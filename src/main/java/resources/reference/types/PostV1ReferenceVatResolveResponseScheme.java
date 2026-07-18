@@ -26,6 +26,8 @@ public final class PostV1ReferenceVatResolveResponseScheme {
 
   public static final PostV1ReferenceVatResolveResponseScheme DOMESTIC = new PostV1ReferenceVatResolveResponseScheme(Value.DOMESTIC, "domestic");
 
+  public static final PostV1ReferenceVatResolveResponseScheme SME_EXEMPT = new PostV1ReferenceVatResolveResponseScheme(Value.SME_EXEMPT, "sme_exempt");
+
   private final Value value;
 
   private final String string;
@@ -74,6 +76,8 @@ public final class PostV1ReferenceVatResolveResponseScheme {
         return visitor.visitMarketplaceDeemed();
       case DOMESTIC:
         return visitor.visitDomestic();
+      case SME_EXEMPT:
+        return visitor.visitSmeExempt();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -101,6 +105,8 @@ public final class PostV1ReferenceVatResolveResponseScheme {
         return MARKETPLACE_DEEMED;
       case "domestic":
         return DOMESTIC;
+      case "sme_exempt":
+        return SME_EXEMPT;
       default:
         return new PostV1ReferenceVatResolveResponseScheme(Value.UNKNOWN, value);
     }
@@ -123,6 +129,8 @@ public final class PostV1ReferenceVatResolveResponseScheme {
 
     OUT_OF_SCOPE,
 
+    SME_EXEMPT,
+
     UNKNOWN
   }
 
@@ -142,6 +150,8 @@ public final class PostV1ReferenceVatResolveResponseScheme {
     T visitExport();
 
     T visitOutOfScope();
+
+    T visitSmeExempt();
 
     T visitUnknown(String unknownType);
   }

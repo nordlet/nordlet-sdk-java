@@ -6,8 +6,10 @@ package com.nordlet.api.resources.agreements;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
+import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsBillingRunRequest;
 import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsCreateRequest;
 import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsDeleteRequest;
+import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsGenerateInvoiceRequest;
 import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsGetRequest;
 import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsListRequest;
 import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsUpdateRequest;
@@ -16,8 +18,10 @@ import com.nordlet.api.resources.agreements.requests.PostV1AgreementsInsurancePo
 import com.nordlet.api.resources.agreements.requests.PostV1AgreementsInsurancePoliciesListRequest;
 import com.nordlet.api.resources.agreements.requests.PostV1AgreementsTypesCreateRequest;
 import com.nordlet.api.resources.agreements.requests.PostV1AgreementsTypesListRequest;
+import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsBillingRunResponse;
 import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsCreateResponse;
 import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsDeleteResponse;
+import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsGenerateInvoiceResponse;
 import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsGetResponse;
 import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsListResponse;
 import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsUpdateResponse;
@@ -130,6 +134,35 @@ public class AgreementsClient {
   public PostV1AgreementsAgreementsListResponse postV1AgreementsAgreementsList(
       PostV1AgreementsAgreementsListRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1AgreementsAgreementsList(request, requestOptions).body();
+  }
+
+  public PostV1AgreementsAgreementsGenerateInvoiceResponse postV1AgreementsAgreementsGenerateInvoice(
+      PostV1AgreementsAgreementsGenerateInvoiceRequest request) {
+    return this.rawClient.postV1AgreementsAgreementsGenerateInvoice(request).body();
+  }
+
+  public PostV1AgreementsAgreementsGenerateInvoiceResponse postV1AgreementsAgreementsGenerateInvoice(
+      PostV1AgreementsAgreementsGenerateInvoiceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AgreementsAgreementsGenerateInvoice(request, requestOptions).body();
+  }
+
+  public PostV1AgreementsAgreementsBillingRunResponse postV1AgreementsAgreementsBillingRun() {
+    return this.rawClient.postV1AgreementsAgreementsBillingRun().body();
+  }
+
+  public PostV1AgreementsAgreementsBillingRunResponse postV1AgreementsAgreementsBillingRun(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1AgreementsAgreementsBillingRun(requestOptions).body();
+  }
+
+  public PostV1AgreementsAgreementsBillingRunResponse postV1AgreementsAgreementsBillingRun(
+      PostV1AgreementsAgreementsBillingRunRequest request) {
+    return this.rawClient.postV1AgreementsAgreementsBillingRun(request).body();
+  }
+
+  public PostV1AgreementsAgreementsBillingRunResponse postV1AgreementsAgreementsBillingRun(
+      PostV1AgreementsAgreementsBillingRunRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AgreementsAgreementsBillingRun(request, requestOptions).body();
   }
 
   public PostV1AgreementsInsurancePoliciesCreateResponse postV1AgreementsInsurancePoliciesCreate(

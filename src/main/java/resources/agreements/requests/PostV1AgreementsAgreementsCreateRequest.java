@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsCreateRequestBillingPeriod;
 import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsCreateRequestItemsItem;
 import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsCreateRequestStatus;
 import java.lang.Boolean;
@@ -46,6 +47,8 @@ public final class PostV1AgreementsAgreementsCreateRequest {
 
   private final Optional<String> value;
 
+  private final Optional<PostV1AgreementsAgreementsCreateRequestBillingPeriod> billingPeriod;
+
   private final Optional<String> currency;
 
   private final Optional<PostV1AgreementsAgreementsCreateRequestStatus> status;
@@ -58,8 +61,10 @@ public final class PostV1AgreementsAgreementsCreateRequest {
 
   private PostV1AgreementsAgreementsCreateRequest(Optional<String> typeId, String partnerId,
       String number, Optional<String> name, String startDate, Optional<String> endDate,
-      Optional<Boolean> autoRenew, Optional<String> value, Optional<String> currency,
-      Optional<PostV1AgreementsAgreementsCreateRequestStatus> status, Optional<String> notes,
+      Optional<Boolean> autoRenew, Optional<String> value,
+      Optional<PostV1AgreementsAgreementsCreateRequestBillingPeriod> billingPeriod,
+      Optional<String> currency, Optional<PostV1AgreementsAgreementsCreateRequestStatus> status,
+      Optional<String> notes,
       Optional<List<PostV1AgreementsAgreementsCreateRequestItemsItem>> items,
       Map<String, Object> additionalProperties) {
     this.typeId = typeId;
@@ -70,6 +75,7 @@ public final class PostV1AgreementsAgreementsCreateRequest {
     this.endDate = endDate;
     this.autoRenew = autoRenew;
     this.value = value;
+    this.billingPeriod = billingPeriod;
     this.currency = currency;
     this.status = status;
     this.notes = notes;
@@ -117,6 +123,11 @@ public final class PostV1AgreementsAgreementsCreateRequest {
     return value;
   }
 
+  @JsonProperty("billingPeriod")
+  public Optional<PostV1AgreementsAgreementsCreateRequestBillingPeriod> getBillingPeriod() {
+    return billingPeriod;
+  }
+
   @JsonProperty("currency")
   public Optional<String> getCurrency() {
     return currency;
@@ -149,12 +160,12 @@ public final class PostV1AgreementsAgreementsCreateRequest {
   }
 
   private boolean equalTo(PostV1AgreementsAgreementsCreateRequest other) {
-    return typeId.equals(other.typeId) && partnerId.equals(other.partnerId) && number.equals(other.number) && name.equals(other.name) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && autoRenew.equals(other.autoRenew) && value.equals(other.value) && currency.equals(other.currency) && status.equals(other.status) && notes.equals(other.notes) && items.equals(other.items);
+    return typeId.equals(other.typeId) && partnerId.equals(other.partnerId) && number.equals(other.number) && name.equals(other.name) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && autoRenew.equals(other.autoRenew) && value.equals(other.value) && billingPeriod.equals(other.billingPeriod) && currency.equals(other.currency) && status.equals(other.status) && notes.equals(other.notes) && items.equals(other.items);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.typeId, this.partnerId, this.number, this.name, this.startDate, this.endDate, this.autoRenew, this.value, this.currency, this.status, this.notes, this.items);
+    return Objects.hash(this.typeId, this.partnerId, this.number, this.name, this.startDate, this.endDate, this.autoRenew, this.value, this.billingPeriod, this.currency, this.status, this.notes, this.items);
   }
 
   @java.lang.Override
@@ -207,6 +218,11 @@ public final class PostV1AgreementsAgreementsCreateRequest {
 
     _FinalStage value(String value);
 
+    _FinalStage billingPeriod(
+        Optional<PostV1AgreementsAgreementsCreateRequestBillingPeriod> billingPeriod);
+
+    _FinalStage billingPeriod(PostV1AgreementsAgreementsCreateRequestBillingPeriod billingPeriod);
+
     _FinalStage currency(Optional<String> currency);
 
     _FinalStage currency(String currency);
@@ -242,6 +258,8 @@ public final class PostV1AgreementsAgreementsCreateRequest {
 
     private Optional<String> currency = Optional.empty();
 
+    private Optional<PostV1AgreementsAgreementsCreateRequestBillingPeriod> billingPeriod = Optional.empty();
+
     private Optional<String> value = Optional.empty();
 
     private Optional<Boolean> autoRenew = Optional.empty();
@@ -268,6 +286,7 @@ public final class PostV1AgreementsAgreementsCreateRequest {
       endDate(other.getEndDate());
       autoRenew(other.getAutoRenew());
       value(other.getValue());
+      billingPeriod(other.getBillingPeriod());
       currency(other.getCurrency());
       status(other.getStatus());
       notes(other.getNotes());
@@ -362,6 +381,24 @@ public final class PostV1AgreementsAgreementsCreateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage billingPeriod(
+        PostV1AgreementsAgreementsCreateRequestBillingPeriod billingPeriod) {
+      this.billingPeriod = Optional.ofNullable(billingPeriod);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "billingPeriod",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage billingPeriod(
+        Optional<PostV1AgreementsAgreementsCreateRequestBillingPeriod> billingPeriod) {
+      this.billingPeriod = billingPeriod;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage value(String value) {
       this.value = Optional.ofNullable(value);
       return this;
@@ -443,7 +480,7 @@ public final class PostV1AgreementsAgreementsCreateRequest {
 
     @java.lang.Override
     public PostV1AgreementsAgreementsCreateRequest build() {
-      return new PostV1AgreementsAgreementsCreateRequest(typeId, partnerId, number, name, startDate, endDate, autoRenew, value, currency, status, notes, items, additionalProperties);
+      return new PostV1AgreementsAgreementsCreateRequest(typeId, partnerId, number, name, startDate, endDate, autoRenew, value, billingPeriod, currency, status, notes, items, additionalProperties);
     }
 
     @java.lang.Override

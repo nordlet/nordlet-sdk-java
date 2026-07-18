@@ -37,6 +37,8 @@ public final class PostV1AccountCompaniesProfileResponse {
 
   private final Optional<String> vatCode;
 
+  private final Optional<String> smeExemptionNumber;
+
   private final boolean isVatPayer;
 
   private final boolean isSandbox;
@@ -66,8 +68,8 @@ public final class PostV1AccountCompaniesProfileResponse {
   private final Map<String, Object> additionalProperties;
 
   private PostV1AccountCompaniesProfileResponse(String id, String name, Optional<String> code,
-      Optional<String> vatCode, boolean isVatPayer, boolean isSandbox, String countryCode,
-      String baseCurrency, String defaultInvoiceCurrency,
+      Optional<String> vatCode, Optional<String> smeExemptionNumber, boolean isVatPayer,
+      boolean isSandbox, String countryCode, String baseCurrency, String defaultInvoiceCurrency,
       PostV1AccountCompaniesProfileResponseStatus status,
       Optional<PostV1AccountCompaniesProfileResponseAddress> address, Optional<String> email,
       Optional<String> phone, Optional<String> iban, Optional<String> bankName,
@@ -77,6 +79,7 @@ public final class PostV1AccountCompaniesProfileResponse {
     this.name = name;
     this.code = code;
     this.vatCode = vatCode;
+    this.smeExemptionNumber = smeExemptionNumber;
     this.isVatPayer = isVatPayer;
     this.isSandbox = isSandbox;
     this.countryCode = countryCode;
@@ -117,6 +120,14 @@ public final class PostV1AccountCompaniesProfileResponse {
       return Optional.empty();
     }
     return vatCode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getSmeExemptionNumber() {
+    if (smeExemptionNumber == null) {
+      return Optional.empty();
+    }
+    return smeExemptionNumber;
   }
 
   @JsonProperty("isVatPayer")
@@ -227,6 +238,15 @@ public final class PostV1AccountCompaniesProfileResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("smeExemptionNumber")
+  private Optional<String> _getSmeExemptionNumber() {
+    return smeExemptionNumber;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("address")
   private Optional<PostV1AccountCompaniesProfileResponseAddress> _getAddress() {
     return address;
@@ -298,12 +318,12 @@ public final class PostV1AccountCompaniesProfileResponse {
   }
 
   private boolean equalTo(PostV1AccountCompaniesProfileResponse other) {
-    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && isVatPayer == other.isVatPayer && isSandbox == other.isSandbox && countryCode.equals(other.countryCode) && baseCurrency.equals(other.baseCurrency) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && status.equals(other.status) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && peppolId.equals(other.peppolId) && logoFileId.equals(other.logoFileId);
+    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer == other.isVatPayer && isSandbox == other.isSandbox && countryCode.equals(other.countryCode) && baseCurrency.equals(other.baseCurrency) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && status.equals(other.status) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && peppolId.equals(other.peppolId) && logoFileId.equals(other.logoFileId);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.isVatPayer, this.isSandbox, this.countryCode, this.baseCurrency, this.defaultInvoiceCurrency, this.status, this.address, this.email, this.phone, this.iban, this.bankName, this.peppolId, this.logoFileId);
+    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.isSandbox, this.countryCode, this.baseCurrency, this.defaultInvoiceCurrency, this.status, this.address, this.email, this.phone, this.iban, this.bankName, this.peppolId, this.logoFileId);
   }
 
   @java.lang.Override
@@ -367,6 +387,12 @@ public final class PostV1AccountCompaniesProfileResponse {
     _FinalStage vatCode(String vatCode);
 
     _FinalStage vatCode(Nullable<String> vatCode);
+
+    _FinalStage smeExemptionNumber(Optional<String> smeExemptionNumber);
+
+    _FinalStage smeExemptionNumber(String smeExemptionNumber);
+
+    _FinalStage smeExemptionNumber(Nullable<String> smeExemptionNumber);
 
     _FinalStage address(Optional<PostV1AccountCompaniesProfileResponseAddress> address);
 
@@ -445,6 +471,8 @@ public final class PostV1AccountCompaniesProfileResponse {
 
     private Optional<PostV1AccountCompaniesProfileResponseAddress> address = Optional.empty();
 
+    private Optional<String> smeExemptionNumber = Optional.empty();
+
     private Optional<String> vatCode = Optional.empty();
 
     private Optional<String> code = Optional.empty();
@@ -461,6 +489,7 @@ public final class PostV1AccountCompaniesProfileResponse {
       name(other.getName());
       code(other.getCode());
       vatCode(other.getVatCode());
+      smeExemptionNumber(other.getSmeExemptionNumber());
       isVatPayer(other.getIsVatPayer());
       isSandbox(other.getIsSandbox());
       countryCode(other.getCountryCode());
@@ -744,6 +773,36 @@ public final class PostV1AccountCompaniesProfileResponse {
     }
 
     @java.lang.Override
+    public _FinalStage smeExemptionNumber(Nullable<String> smeExemptionNumber) {
+      if (smeExemptionNumber.isNull()) {
+        this.smeExemptionNumber = null;
+      }
+      else if (smeExemptionNumber.isEmpty()) {
+        this.smeExemptionNumber = Optional.empty();
+      }
+      else {
+        this.smeExemptionNumber = Optional.of(smeExemptionNumber.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage smeExemptionNumber(String smeExemptionNumber) {
+      this.smeExemptionNumber = Optional.ofNullable(smeExemptionNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "smeExemptionNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage smeExemptionNumber(Optional<String> smeExemptionNumber) {
+      this.smeExemptionNumber = smeExemptionNumber;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage vatCode(Nullable<String> vatCode) {
       if (vatCode.isNull()) {
         this.vatCode = null;
@@ -805,7 +864,7 @@ public final class PostV1AccountCompaniesProfileResponse {
 
     @java.lang.Override
     public PostV1AccountCompaniesProfileResponse build() {
-      return new PostV1AccountCompaniesProfileResponse(id, name, code, vatCode, isVatPayer, isSandbox, countryCode, baseCurrency, defaultInvoiceCurrency, status, address, email, phone, iban, bankName, peppolId, logoFileId, additionalProperties);
+      return new PostV1AccountCompaniesProfileResponse(id, name, code, vatCode, smeExemptionNumber, isVatPayer, isSandbox, countryCode, baseCurrency, defaultInvoiceCurrency, status, address, email, phone, iban, bankName, peppolId, logoFileId, additionalProperties);
     }
 
     @java.lang.Override

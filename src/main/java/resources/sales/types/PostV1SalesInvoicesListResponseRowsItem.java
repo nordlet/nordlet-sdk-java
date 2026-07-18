@@ -66,6 +66,8 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
 
   private final Optional<String> creditedInvoiceId;
 
+  private final Optional<String> agreementId;
+
   private final Optional<PostV1SalesInvoicesListResponseRowsItemVatScheme> vatScheme;
 
   private final Optional<String> vatCountryCode;
@@ -88,6 +90,7 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
       Optional<String> dueDate, String currency, String netTotal, String vatTotal,
       String grossTotal, String paidAmount, Optional<String> journalTransactionId,
       Optional<String> appliedToInvoiceId, Optional<String> creditedInvoiceId,
+      Optional<String> agreementId,
       Optional<PostV1SalesInvoicesListResponseRowsItemVatScheme> vatScheme,
       Optional<String> vatCountryCode, boolean deemedSupplier, Optional<String> notes,
       String createdAt, String updatedAt, Map<String, Object> additionalProperties) {
@@ -109,6 +112,7 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
     this.journalTransactionId = journalTransactionId;
     this.appliedToInvoiceId = appliedToInvoiceId;
     this.creditedInvoiceId = creditedInvoiceId;
+    this.agreementId = agreementId;
     this.vatScheme = vatScheme;
     this.vatCountryCode = vatCountryCode;
     this.deemedSupplier = deemedSupplier;
@@ -233,6 +237,14 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
   }
 
   @JsonIgnore
+  public Optional<String> getAgreementId() {
+    if (agreementId == null) {
+      return Optional.empty();
+    }
+    return agreementId;
+  }
+
+  @JsonIgnore
   public Optional<PostV1SalesInvoicesListResponseRowsItemVatScheme> getVatScheme() {
     if (vatScheme == null) {
       return Optional.empty();
@@ -347,6 +359,15 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("agreementId")
+  private Optional<String> _getAgreementId() {
+    return agreementId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("vatScheme")
   private Optional<PostV1SalesInvoicesListResponseRowsItemVatScheme> _getVatScheme() {
     return vatScheme;
@@ -382,12 +403,12 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
   }
 
   private boolean equalTo(PostV1SalesInvoicesListResponseRowsItem other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && vatScheme.equals(other.vatScheme) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.vatScheme, this.vatCountryCode, this.deemedSupplier, this.notes, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.agreementId, this.vatScheme, this.vatCountryCode, this.deemedSupplier, this.notes, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -509,6 +530,12 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
 
     _FinalStage creditedInvoiceId(Nullable<String> creditedInvoiceId);
 
+    _FinalStage agreementId(Optional<String> agreementId);
+
+    _FinalStage agreementId(String agreementId);
+
+    _FinalStage agreementId(Nullable<String> agreementId);
+
     _FinalStage vatScheme(Optional<PostV1SalesInvoicesListResponseRowsItemVatScheme> vatScheme);
 
     _FinalStage vatScheme(PostV1SalesInvoicesListResponseRowsItemVatScheme vatScheme);
@@ -564,6 +591,8 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
 
     private Optional<PostV1SalesInvoicesListResponseRowsItemVatScheme> vatScheme = Optional.empty();
 
+    private Optional<String> agreementId = Optional.empty();
+
     private Optional<String> creditedInvoiceId = Optional.empty();
 
     private Optional<String> appliedToInvoiceId = Optional.empty();
@@ -606,6 +635,7 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
       journalTransactionId(other.getJournalTransactionId());
       appliedToInvoiceId(other.getAppliedToInvoiceId());
       creditedInvoiceId(other.getCreditedInvoiceId());
+      agreementId(other.getAgreementId());
       vatScheme(other.getVatScheme());
       vatCountryCode(other.getVatCountryCode());
       deemedSupplier(other.getDeemedSupplier());
@@ -797,6 +827,36 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
     public _FinalStage vatScheme(
         Optional<PostV1SalesInvoicesListResponseRowsItemVatScheme> vatScheme) {
       this.vatScheme = vatScheme;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage agreementId(Nullable<String> agreementId) {
+      if (agreementId.isNull()) {
+        this.agreementId = null;
+      }
+      else if (agreementId.isEmpty()) {
+        this.agreementId = Optional.empty();
+      }
+      else {
+        this.agreementId = Optional.of(agreementId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage agreementId(String agreementId) {
+      this.agreementId = Optional.ofNullable(agreementId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "agreementId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage agreementId(Optional<String> agreementId) {
+      this.agreementId = agreementId;
       return this;
     }
 
@@ -1042,7 +1102,7 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
 
     @java.lang.Override
     public PostV1SalesInvoicesListResponseRowsItem build() {
-      return new PostV1SalesInvoicesListResponseRowsItem(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, vatScheme, vatCountryCode, deemedSupplier, notes, createdAt, updatedAt, additionalProperties);
+      return new PostV1SalesInvoicesListResponseRowsItem(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, agreementId, vatScheme, vatCountryCode, deemedSupplier, notes, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

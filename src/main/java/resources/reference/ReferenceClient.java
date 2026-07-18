@@ -14,6 +14,7 @@ import com.nordlet.api.resources.reference.requests.PostV1ReferenceComplianceVer
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceCountriesListRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceCurrenciesListRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesListRequest;
+import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesSetOverridesRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesListRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesOverridesDeleteRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesOverridesListRequest;
@@ -35,6 +36,7 @@ import com.nordlet.api.resources.reference.types.PostV1ReferenceComplianceVersio
 import com.nordlet.api.resources.reference.types.PostV1ReferenceCountriesListResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceCurrenciesListResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesListResponse;
+import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesSetOverridesResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesListResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesOverridesDeleteResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesOverridesListResponse;
@@ -258,23 +260,51 @@ public class ReferenceClient {
     return this.rawClient.postV1ReferenceVatClassifiersUpsert(request, requestOptions).body();
   }
 
+  /**
+   * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
+   */
   public PostV1ReferenceEuVatRatesListResponse postV1ReferenceEuVatRatesList() {
     return this.rawClient.postV1ReferenceEuVatRatesList().body();
   }
 
+  /**
+   * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
+   */
   public PostV1ReferenceEuVatRatesListResponse postV1ReferenceEuVatRatesList(
       RequestOptions requestOptions) {
     return this.rawClient.postV1ReferenceEuVatRatesList(requestOptions).body();
   }
 
+  /**
+   * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
+   */
   public PostV1ReferenceEuVatRatesListResponse postV1ReferenceEuVatRatesList(
       PostV1ReferenceEuVatRatesListRequest request) {
     return this.rawClient.postV1ReferenceEuVatRatesList(request).body();
   }
 
+  /**
+   * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
+   */
   public PostV1ReferenceEuVatRatesListResponse postV1ReferenceEuVatRatesList(
       PostV1ReferenceEuVatRatesListRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1ReferenceEuVatRatesList(request, requestOptions).body();
+  }
+
+  /**
+   * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
+   */
+  public PostV1ReferenceEuVatRatesSetOverridesResponse postV1ReferenceEuVatRatesSetOverrides(
+      PostV1ReferenceEuVatRatesSetOverridesRequest request) {
+    return this.rawClient.postV1ReferenceEuVatRatesSetOverrides(request).body();
+  }
+
+  /**
+   * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
+   */
+  public PostV1ReferenceEuVatRatesSetOverridesResponse postV1ReferenceEuVatRatesSetOverrides(
+      PostV1ReferenceEuVatRatesSetOverridesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ReferenceEuVatRatesSetOverrides(request, requestOptions).body();
   }
 
   public PostV1ReferenceVatResolveResponse postV1ReferenceVatResolve() {

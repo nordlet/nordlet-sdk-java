@@ -695,6 +695,20 @@ client.reference().postV1ReferenceVatClassifiersUpsert(
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -732,6 +746,82 @@ client.reference().postV1ReferenceEuVatRatesList(
 <dd>
 
 **date:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.reference.postV1ReferenceEuVatRatesSetOverrides(request) -> PostV1ReferenceEuVatRatesSetOverridesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.reference().postV1ReferenceEuVatRatesSetOverrides(
+    PostV1ReferenceEuVatRatesSetOverridesRequest
+        .builder()
+        .countryCode("countryCode")
+        .rates(
+            Arrays.asList(
+                PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem
+                    .builder()
+                    .category(PostV1ReferenceEuVatRatesSetOverridesRequestRatesItemCategory.STANDARD)
+                    .ratePercent("ratePercent")
+                    .build()
+            )
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**countryCode:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**rates:** `List<PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem>` 
     
 </dd>
 </dl>
@@ -5541,6 +5631,74 @@ client.sales().postV1SalesInvoicesIssue(
 </dl>
 </details>
 
+<details><summary><code>client.sales.postV1SalesRecognitionSchedulesList(request) -> PostV1SalesRecognitionSchedulesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1SalesRecognitionSchedulesList(
+    PostV1SalesRecognitionSchedulesListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<PostV1SalesRecognitionSchedulesListRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<PostV1SalesRecognitionSchedulesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.sales.postV1SalesInvoicesApplyAdvance(request) -> PostV1SalesInvoicesApplyAdvanceResponse</code></summary>
 <dl>
 <dd>
@@ -6174,6 +6332,506 @@ client.sales().postV1SalesActsPdf(
 <dd>
 
 **locale:** `Optional<PostV1SalesActsPdfRequestLocale>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1SalesRecognitionCompute(request) -> PostV1SalesRecognitionComputeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1SalesRecognitionCompute(
+    PostV1SalesRecognitionComputeRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**asOfDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1SalesRecognitionRun(request) -> PostV1SalesRecognitionRunResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1SalesRecognitionRun(
+    PostV1SalesRecognitionRunRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**asOfDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**postingDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scheduleIds:** `Optional<List<String>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1SalesRecognitionProgress(request) -> PostV1SalesRecognitionProgressResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1SalesRecognitionProgress(
+    PostV1SalesRecognitionProgressRequest
+        .builder()
+        .invoiceLineId("invoiceLineId")
+        .percentComplete("percentComplete")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoiceLineId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**percentComplete:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1SalesRecognitionModify(request) -> PostV1SalesRecognitionModifyResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1SalesRecognitionModify(
+    PostV1SalesRecognitionModifyRequest
+        .builder()
+        .invoiceLineId("invoiceLineId")
+        .approach(PostV1SalesRecognitionModifyRequestApproach.PROSPECTIVE)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoiceLineId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**approach:** `PostV1SalesRecognitionModifyRequestApproach` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**newEndDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**newMilestones:** `Optional<List<PostV1SalesRecognitionModifyRequestNewMilestonesItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1SalesRecognitionRunsList(request) -> PostV1SalesRecognitionRunsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1SalesRecognitionRunsList(
+    PostV1SalesRecognitionRunsListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<PostV1SalesRecognitionRunsListRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<PostV1SalesRecognitionRunsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1SalesRecognitionSummary(request) -> PostV1SalesRecognitionSummaryResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1SalesRecognitionSummary(
+    PostV1SalesRecognitionSummaryRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoiceId:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1SalesRefundLiabilityList(request) -> PostV1SalesRefundLiabilityListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1SalesRefundLiabilityList(
+    PostV1SalesRefundLiabilityListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<PostV1SalesRefundLiabilityListRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<PostV1SalesRefundLiabilityListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1SalesRefundLiabilityTrueUp(request) -> PostV1SalesRefundLiabilityTrueUpResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1SalesRefundLiabilityTrueUp(
+    PostV1SalesRefundLiabilityTrueUpRequest
+        .builder()
+        .invoiceId("invoiceId")
+        .estimatedTotal("estimatedTotal")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoiceId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**estimatedTotal:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -7306,6 +7964,321 @@ client.declarations().postV1DeclarationsEuIossCompute(
 <dd>
 
 **month:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsEuDistanceSalesThresholdGet(request) -> PostV1DeclarationsEuDistanceSalesThresholdGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsEuDistanceSalesThresholdGet(
+    PostV1DeclarationsEuDistanceSalesThresholdGetRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**date:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsEuUnionTurnoverGet(request) -> PostV1DeclarationsEuUnionTurnoverGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsEuUnionTurnoverGet(
+    PostV1DeclarationsEuUnionTurnoverGetRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**date:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsEuSmeCrossBorderReportCompute(request) -> PostV1DeclarationsEuSmeCrossBorderReportComputeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsEuSmeCrossBorderReportCompute(
+    PostV1DeclarationsEuSmeCrossBorderReportComputeRequest
+        .builder()
+        .year(1000000L)
+        .quarter(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**quarter:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsEuSmeThresholdsList(request) -> PostV1DeclarationsEuSmeThresholdsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsEuSmeThresholdsList(
+    PostV1DeclarationsEuSmeThresholdsListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsEuSmeThresholdGet(request) -> PostV1DeclarationsEuSmeThresholdGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsEuSmeThresholdGet(
+    PostV1DeclarationsEuSmeThresholdGetRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**date:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsEuVatReturnPacksList(request) -> PostV1DeclarationsEuVatReturnPacksListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsEuVatReturnPacksList(
+    PostV1DeclarationsEuVatReturnPacksListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsEuVatReturnCompute(request) -> PostV1DeclarationsEuVatReturnComputeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsEuVatReturnCompute(
+    PostV1DeclarationsEuVatReturnComputeRequest
+        .builder()
+        .countryCode("countryCode")
+        .year(1000000L)
+        .month(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**countryCode:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**month:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**months:** `Optional<Long>` 
     
 </dd>
 </dl>
@@ -12374,6 +13347,14 @@ client.agreements().postV1AgreementsAgreementsCreate(
 <dl>
 <dd>
 
+**billingPeriod:** `Optional<PostV1AgreementsAgreementsCreateRequestBillingPeriod>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **currency:** `Optional<String>` 
     
 </dd>
@@ -12536,6 +13517,14 @@ client.agreements().postV1AgreementsAgreementsUpdate(
 <dl>
 <dd>
 
+**billingPeriod:** `Optional<PostV1AgreementsAgreementsUpdateRequestBillingPeriod>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **status:** `Optional<PostV1AgreementsAgreementsUpdateRequestStatus>` 
     
 </dd>
@@ -12658,6 +13647,103 @@ client.agreements().postV1AgreementsAgreementsList(
 <dd>
 
 **filter:** `Optional<List<PostV1AgreementsAgreementsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agreements.postV1AgreementsAgreementsGenerateInvoice(request) -> PostV1AgreementsAgreementsGenerateInvoiceResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.agreements().postV1AgreementsAgreementsGenerateInvoice(
+    PostV1AgreementsAgreementsGenerateInvoiceRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**asOfDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agreements.postV1AgreementsAgreementsBillingRun(request) -> PostV1AgreementsAgreementsBillingRunResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.agreements().postV1AgreementsAgreementsBillingRun(
+    PostV1AgreementsAgreementsBillingRunRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**asOfDate:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -20162,6 +21248,14 @@ client.account().postV1AccountCompaniesCreate(
 <dl>
 <dd>
 
+**smeExemptionNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **isVatPayer:** `Optional<Boolean>` 
     
 </dd>
@@ -20369,6 +21463,14 @@ client.account().postV1AccountCompaniesUpdate(
 <dd>
 
 **vatCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**smeExemptionNumber:** `Optional<String>` 
     
 </dd>
 </dl>

@@ -19,6 +19,7 @@ import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -57,13 +58,32 @@ public final class PostV1SalesInvoicesApplyAdvanceResponseLinesItem {
 
   private final long sortOrder;
 
+  private final PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMethod recognitionMethod;
+
+  private final Optional<String> recognitionStartDate;
+
+  private final Optional<String> recognitionEndDate;
+
+  private final Optional<List<PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMilestonesItem>> recognitionMilestones;
+
+  private final Optional<String> standaloneSellingPrice;
+
+  private final Optional<String> allocatedNet;
+
+  private final Optional<String> refundEstimatePercent;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1SalesInvoicesApplyAdvanceResponseLinesItem(String id, Optional<String> itemId,
       String description, String unit, String quantity, Optional<String> unitPriceExclVat,
       Optional<String> unitPriceInclVat, String vatRatePercent, Optional<String> vatClassifierCode,
       Optional<String> costCenterId, String lineNet, String lineVat, String lineGross,
-      long sortOrder, Map<String, Object> additionalProperties) {
+      long sortOrder,
+      PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMethod recognitionMethod,
+      Optional<String> recognitionStartDate, Optional<String> recognitionEndDate,
+      Optional<List<PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMilestonesItem>> recognitionMilestones,
+      Optional<String> standaloneSellingPrice, Optional<String> allocatedNet,
+      Optional<String> refundEstimatePercent, Map<String, Object> additionalProperties) {
     this.id = id;
     this.itemId = itemId;
     this.description = description;
@@ -78,6 +98,13 @@ public final class PostV1SalesInvoicesApplyAdvanceResponseLinesItem {
     this.lineVat = lineVat;
     this.lineGross = lineGross;
     this.sortOrder = sortOrder;
+    this.recognitionMethod = recognitionMethod;
+    this.recognitionStartDate = recognitionStartDate;
+    this.recognitionEndDate = recognitionEndDate;
+    this.recognitionMilestones = recognitionMilestones;
+    this.standaloneSellingPrice = standaloneSellingPrice;
+    this.allocatedNet = allocatedNet;
+    this.refundEstimatePercent = refundEstimatePercent;
     this.additionalProperties = additionalProperties;
   }
 
@@ -166,6 +193,60 @@ public final class PostV1SalesInvoicesApplyAdvanceResponseLinesItem {
     return sortOrder;
   }
 
+  @JsonProperty("recognitionMethod")
+  public PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMethod getRecognitionMethod() {
+    return recognitionMethod;
+  }
+
+  @JsonIgnore
+  public Optional<String> getRecognitionStartDate() {
+    if (recognitionStartDate == null) {
+      return Optional.empty();
+    }
+    return recognitionStartDate;
+  }
+
+  @JsonIgnore
+  public Optional<String> getRecognitionEndDate() {
+    if (recognitionEndDate == null) {
+      return Optional.empty();
+    }
+    return recognitionEndDate;
+  }
+
+  @JsonIgnore
+  public Optional<List<PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMilestonesItem>> getRecognitionMilestones(
+      ) {
+    if (recognitionMilestones == null) {
+      return Optional.empty();
+    }
+    return recognitionMilestones;
+  }
+
+  @JsonIgnore
+  public Optional<String> getStandaloneSellingPrice() {
+    if (standaloneSellingPrice == null) {
+      return Optional.empty();
+    }
+    return standaloneSellingPrice;
+  }
+
+  @JsonIgnore
+  public Optional<String> getAllocatedNet() {
+    if (allocatedNet == null) {
+      return Optional.empty();
+    }
+    return allocatedNet;
+  }
+
+  @JsonIgnore
+  public Optional<String> getRefundEstimatePercent() {
+    if (refundEstimatePercent == null) {
+      return Optional.empty();
+    }
+    return refundEstimatePercent;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -211,6 +292,61 @@ public final class PostV1SalesInvoicesApplyAdvanceResponseLinesItem {
     return costCenterId;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("recognitionStartDate")
+  private Optional<String> _getRecognitionStartDate() {
+    return recognitionStartDate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("recognitionEndDate")
+  private Optional<String> _getRecognitionEndDate() {
+    return recognitionEndDate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("recognitionMilestones")
+  private Optional<List<PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMilestonesItem>> _getRecognitionMilestones(
+      ) {
+    return recognitionMilestones;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("standaloneSellingPrice")
+  private Optional<String> _getStandaloneSellingPrice() {
+    return standaloneSellingPrice;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("allocatedNet")
+  private Optional<String> _getAllocatedNet() {
+    return allocatedNet;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("refundEstimatePercent")
+  private Optional<String> _getRefundEstimatePercent() {
+    return refundEstimatePercent;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -223,12 +359,12 @@ public final class PostV1SalesInvoicesApplyAdvanceResponseLinesItem {
   }
 
   private boolean equalTo(PostV1SalesInvoicesApplyAdvanceResponseLinesItem other) {
-    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder;
+    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder && recognitionMethod.equals(other.recognitionMethod) && recognitionStartDate.equals(other.recognitionStartDate) && recognitionEndDate.equals(other.recognitionEndDate) && recognitionMilestones.equals(other.recognitionMilestones) && standaloneSellingPrice.equals(other.standaloneSellingPrice) && allocatedNet.equals(other.allocatedNet) && refundEstimatePercent.equals(other.refundEstimatePercent);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.lineNet, this.lineVat, this.lineGross, this.sortOrder);
+    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.lineNet, this.lineVat, this.lineGross, this.sortOrder, this.recognitionMethod, this.recognitionStartDate, this.recognitionEndDate, this.recognitionMilestones, this.standaloneSellingPrice, this.allocatedNet, this.refundEstimatePercent);
   }
 
   @java.lang.Override
@@ -275,7 +411,12 @@ public final class PostV1SalesInvoicesApplyAdvanceResponseLinesItem {
   }
 
   public interface SortOrderStage {
-    _FinalStage sortOrder(long sortOrder);
+    RecognitionMethodStage sortOrder(long sortOrder);
+  }
+
+  public interface RecognitionMethodStage {
+    _FinalStage recognitionMethod(
+        @NotNull PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMethod recognitionMethod);
   }
 
   public interface _FinalStage {
@@ -314,12 +455,51 @@ public final class PostV1SalesInvoicesApplyAdvanceResponseLinesItem {
     _FinalStage costCenterId(String costCenterId);
 
     _FinalStage costCenterId(Nullable<String> costCenterId);
+
+    _FinalStage recognitionStartDate(Optional<String> recognitionStartDate);
+
+    _FinalStage recognitionStartDate(String recognitionStartDate);
+
+    _FinalStage recognitionStartDate(Nullable<String> recognitionStartDate);
+
+    _FinalStage recognitionEndDate(Optional<String> recognitionEndDate);
+
+    _FinalStage recognitionEndDate(String recognitionEndDate);
+
+    _FinalStage recognitionEndDate(Nullable<String> recognitionEndDate);
+
+    _FinalStage recognitionMilestones(
+        Optional<List<PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMilestonesItem>> recognitionMilestones);
+
+    _FinalStage recognitionMilestones(
+        List<PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMilestonesItem> recognitionMilestones);
+
+    _FinalStage recognitionMilestones(
+        Nullable<List<PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMilestonesItem>> recognitionMilestones);
+
+    _FinalStage standaloneSellingPrice(Optional<String> standaloneSellingPrice);
+
+    _FinalStage standaloneSellingPrice(String standaloneSellingPrice);
+
+    _FinalStage standaloneSellingPrice(Nullable<String> standaloneSellingPrice);
+
+    _FinalStage allocatedNet(Optional<String> allocatedNet);
+
+    _FinalStage allocatedNet(String allocatedNet);
+
+    _FinalStage allocatedNet(Nullable<String> allocatedNet);
+
+    _FinalStage refundEstimatePercent(Optional<String> refundEstimatePercent);
+
+    _FinalStage refundEstimatePercent(String refundEstimatePercent);
+
+    _FinalStage refundEstimatePercent(Nullable<String> refundEstimatePercent);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, DescriptionStage, UnitStage, QuantityStage, VatRatePercentStage, LineNetStage, LineVatStage, LineGrossStage, SortOrderStage, _FinalStage {
+  public static final class Builder implements IdStage, DescriptionStage, UnitStage, QuantityStage, VatRatePercentStage, LineNetStage, LineVatStage, LineGrossStage, SortOrderStage, RecognitionMethodStage, _FinalStage {
     private String id;
 
     private String description;
@@ -337,6 +517,20 @@ public final class PostV1SalesInvoicesApplyAdvanceResponseLinesItem {
     private String lineGross;
 
     private long sortOrder;
+
+    private PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMethod recognitionMethod;
+
+    private Optional<String> refundEstimatePercent = Optional.empty();
+
+    private Optional<String> allocatedNet = Optional.empty();
+
+    private Optional<String> standaloneSellingPrice = Optional.empty();
+
+    private Optional<List<PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMilestonesItem>> recognitionMilestones = Optional.empty();
+
+    private Optional<String> recognitionEndDate = Optional.empty();
+
+    private Optional<String> recognitionStartDate = Optional.empty();
 
     private Optional<String> costCenterId = Optional.empty();
 
@@ -370,6 +564,13 @@ public final class PostV1SalesInvoicesApplyAdvanceResponseLinesItem {
       lineVat(other.getLineVat());
       lineGross(other.getLineGross());
       sortOrder(other.getSortOrder());
+      recognitionMethod(other.getRecognitionMethod());
+      recognitionStartDate(other.getRecognitionStartDate());
+      recognitionEndDate(other.getRecognitionEndDate());
+      recognitionMilestones(other.getRecognitionMilestones());
+      standaloneSellingPrice(other.getStandaloneSellingPrice());
+      allocatedNet(other.getAllocatedNet());
+      refundEstimatePercent(other.getRefundEstimatePercent());
       return this;
     }
 
@@ -431,8 +632,199 @@ public final class PostV1SalesInvoicesApplyAdvanceResponseLinesItem {
 
     @java.lang.Override
     @JsonSetter("sortOrder")
-    public _FinalStage sortOrder(long sortOrder) {
+    public RecognitionMethodStage sortOrder(long sortOrder) {
       this.sortOrder = sortOrder;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("recognitionMethod")
+    public _FinalStage recognitionMethod(
+        @NotNull PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMethod recognitionMethod) {
+      this.recognitionMethod = Objects.requireNonNull(recognitionMethod, "recognitionMethod must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage refundEstimatePercent(Nullable<String> refundEstimatePercent) {
+      if (refundEstimatePercent.isNull()) {
+        this.refundEstimatePercent = null;
+      }
+      else if (refundEstimatePercent.isEmpty()) {
+        this.refundEstimatePercent = Optional.empty();
+      }
+      else {
+        this.refundEstimatePercent = Optional.of(refundEstimatePercent.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage refundEstimatePercent(String refundEstimatePercent) {
+      this.refundEstimatePercent = Optional.ofNullable(refundEstimatePercent);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "refundEstimatePercent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage refundEstimatePercent(Optional<String> refundEstimatePercent) {
+      this.refundEstimatePercent = refundEstimatePercent;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage allocatedNet(Nullable<String> allocatedNet) {
+      if (allocatedNet.isNull()) {
+        this.allocatedNet = null;
+      }
+      else if (allocatedNet.isEmpty()) {
+        this.allocatedNet = Optional.empty();
+      }
+      else {
+        this.allocatedNet = Optional.of(allocatedNet.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage allocatedNet(String allocatedNet) {
+      this.allocatedNet = Optional.ofNullable(allocatedNet);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "allocatedNet",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage allocatedNet(Optional<String> allocatedNet) {
+      this.allocatedNet = allocatedNet;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage standaloneSellingPrice(Nullable<String> standaloneSellingPrice) {
+      if (standaloneSellingPrice.isNull()) {
+        this.standaloneSellingPrice = null;
+      }
+      else if (standaloneSellingPrice.isEmpty()) {
+        this.standaloneSellingPrice = Optional.empty();
+      }
+      else {
+        this.standaloneSellingPrice = Optional.of(standaloneSellingPrice.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage standaloneSellingPrice(String standaloneSellingPrice) {
+      this.standaloneSellingPrice = Optional.ofNullable(standaloneSellingPrice);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "standaloneSellingPrice",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage standaloneSellingPrice(Optional<String> standaloneSellingPrice) {
+      this.standaloneSellingPrice = standaloneSellingPrice;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage recognitionMilestones(
+        Nullable<List<PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMilestonesItem>> recognitionMilestones) {
+      if (recognitionMilestones.isNull()) {
+        this.recognitionMilestones = null;
+      }
+      else if (recognitionMilestones.isEmpty()) {
+        this.recognitionMilestones = Optional.empty();
+      }
+      else {
+        this.recognitionMilestones = Optional.of(recognitionMilestones.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage recognitionMilestones(
+        List<PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMilestonesItem> recognitionMilestones) {
+      this.recognitionMilestones = Optional.ofNullable(recognitionMilestones);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "recognitionMilestones",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage recognitionMilestones(
+        Optional<List<PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMilestonesItem>> recognitionMilestones) {
+      this.recognitionMilestones = recognitionMilestones;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage recognitionEndDate(Nullable<String> recognitionEndDate) {
+      if (recognitionEndDate.isNull()) {
+        this.recognitionEndDate = null;
+      }
+      else if (recognitionEndDate.isEmpty()) {
+        this.recognitionEndDate = Optional.empty();
+      }
+      else {
+        this.recognitionEndDate = Optional.of(recognitionEndDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage recognitionEndDate(String recognitionEndDate) {
+      this.recognitionEndDate = Optional.ofNullable(recognitionEndDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "recognitionEndDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage recognitionEndDate(Optional<String> recognitionEndDate) {
+      this.recognitionEndDate = recognitionEndDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage recognitionStartDate(Nullable<String> recognitionStartDate) {
+      if (recognitionStartDate.isNull()) {
+        this.recognitionStartDate = null;
+      }
+      else if (recognitionStartDate.isEmpty()) {
+        this.recognitionStartDate = Optional.empty();
+      }
+      else {
+        this.recognitionStartDate = Optional.of(recognitionStartDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage recognitionStartDate(String recognitionStartDate) {
+      this.recognitionStartDate = Optional.ofNullable(recognitionStartDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "recognitionStartDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage recognitionStartDate(Optional<String> recognitionStartDate) {
+      this.recognitionStartDate = recognitionStartDate;
       return this;
     }
 
@@ -588,7 +980,7 @@ public final class PostV1SalesInvoicesApplyAdvanceResponseLinesItem {
 
     @java.lang.Override
     public PostV1SalesInvoicesApplyAdvanceResponseLinesItem build() {
-      return new PostV1SalesInvoicesApplyAdvanceResponseLinesItem(id, itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, lineNet, lineVat, lineGross, sortOrder, additionalProperties);
+      return new PostV1SalesInvoicesApplyAdvanceResponseLinesItem(id, itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, lineNet, lineVat, lineGross, sortOrder, recognitionMethod, recognitionStartDate, recognitionEndDate, recognitionMilestones, standaloneSellingPrice, allocatedNet, refundEstimatePercent, additionalProperties);
     }
 
     @java.lang.Override

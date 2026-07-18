@@ -39,6 +39,10 @@ public final class PostV1DeclarationsEuOssComputeResponse {
 
   private final PostV1DeclarationsEuOssComputeResponseTotals totals;
 
+  private final List<PostV1DeclarationsEuOssComputeResponseCorrectionsItem> corrections;
+
+  private final PostV1DeclarationsEuOssComputeResponseCorrectionsTotal correctionsTotal;
+
   private final List<String> warnings;
 
   private final long periodQuarter;
@@ -47,14 +51,18 @@ public final class PostV1DeclarationsEuOssComputeResponse {
 
   private PostV1DeclarationsEuOssComputeResponse(long periodYear, String fromDate, String toDate,
       String memberStateOfIdentification, List<PostV1DeclarationsEuOssComputeResponseRowsItem> rows,
-      PostV1DeclarationsEuOssComputeResponseTotals totals, List<String> warnings,
-      long periodQuarter, Map<String, Object> additionalProperties) {
+      PostV1DeclarationsEuOssComputeResponseTotals totals,
+      List<PostV1DeclarationsEuOssComputeResponseCorrectionsItem> corrections,
+      PostV1DeclarationsEuOssComputeResponseCorrectionsTotal correctionsTotal,
+      List<String> warnings, long periodQuarter, Map<String, Object> additionalProperties) {
     this.periodYear = periodYear;
     this.fromDate = fromDate;
     this.toDate = toDate;
     this.memberStateOfIdentification = memberStateOfIdentification;
     this.rows = rows;
     this.totals = totals;
+    this.corrections = corrections;
+    this.correctionsTotal = correctionsTotal;
     this.warnings = warnings;
     this.periodQuarter = periodQuarter;
     this.additionalProperties = additionalProperties;
@@ -90,6 +98,16 @@ public final class PostV1DeclarationsEuOssComputeResponse {
     return totals;
   }
 
+  @JsonProperty("corrections")
+  public List<PostV1DeclarationsEuOssComputeResponseCorrectionsItem> getCorrections() {
+    return corrections;
+  }
+
+  @JsonProperty("correctionsTotal")
+  public PostV1DeclarationsEuOssComputeResponseCorrectionsTotal getCorrectionsTotal() {
+    return correctionsTotal;
+  }
+
   @JsonProperty("warnings")
   public List<String> getWarnings() {
     return warnings;
@@ -112,12 +130,12 @@ public final class PostV1DeclarationsEuOssComputeResponse {
   }
 
   private boolean equalTo(PostV1DeclarationsEuOssComputeResponse other) {
-    return periodYear == other.periodYear && fromDate.equals(other.fromDate) && toDate.equals(other.toDate) && memberStateOfIdentification.equals(other.memberStateOfIdentification) && rows.equals(other.rows) && totals.equals(other.totals) && warnings.equals(other.warnings) && periodQuarter == other.periodQuarter;
+    return periodYear == other.periodYear && fromDate.equals(other.fromDate) && toDate.equals(other.toDate) && memberStateOfIdentification.equals(other.memberStateOfIdentification) && rows.equals(other.rows) && totals.equals(other.totals) && corrections.equals(other.corrections) && correctionsTotal.equals(other.correctionsTotal) && warnings.equals(other.warnings) && periodQuarter == other.periodQuarter;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.periodYear, this.fromDate, this.toDate, this.memberStateOfIdentification, this.rows, this.totals, this.warnings, this.periodQuarter);
+    return Objects.hash(this.periodYear, this.fromDate, this.toDate, this.memberStateOfIdentification, this.rows, this.totals, this.corrections, this.correctionsTotal, this.warnings, this.periodQuarter);
   }
 
   @java.lang.Override
@@ -148,7 +166,12 @@ public final class PostV1DeclarationsEuOssComputeResponse {
   }
 
   public interface TotalsStage {
-    PeriodQuarterStage totals(@NotNull PostV1DeclarationsEuOssComputeResponseTotals totals);
+    CorrectionsTotalStage totals(@NotNull PostV1DeclarationsEuOssComputeResponseTotals totals);
+  }
+
+  public interface CorrectionsTotalStage {
+    PeriodQuarterStage correctionsTotal(
+        @NotNull PostV1DeclarationsEuOssComputeResponseCorrectionsTotal correctionsTotal);
   }
 
   public interface PeriodQuarterStage {
@@ -168,6 +191,14 @@ public final class PostV1DeclarationsEuOssComputeResponse {
 
     _FinalStage addAllRows(List<PostV1DeclarationsEuOssComputeResponseRowsItem> rows);
 
+    _FinalStage corrections(
+        List<PostV1DeclarationsEuOssComputeResponseCorrectionsItem> corrections);
+
+    _FinalStage addCorrections(PostV1DeclarationsEuOssComputeResponseCorrectionsItem corrections);
+
+    _FinalStage addAllCorrections(
+        List<PostV1DeclarationsEuOssComputeResponseCorrectionsItem> corrections);
+
     _FinalStage warnings(List<String> warnings);
 
     _FinalStage addWarnings(String warnings);
@@ -178,7 +209,7 @@ public final class PostV1DeclarationsEuOssComputeResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements PeriodYearStage, FromDateStage, ToDateStage, MemberStateOfIdentificationStage, TotalsStage, PeriodQuarterStage, _FinalStage {
+  public static final class Builder implements PeriodYearStage, FromDateStage, ToDateStage, MemberStateOfIdentificationStage, TotalsStage, CorrectionsTotalStage, PeriodQuarterStage, _FinalStage {
     private long periodYear;
 
     private String fromDate;
@@ -189,9 +220,13 @@ public final class PostV1DeclarationsEuOssComputeResponse {
 
     private PostV1DeclarationsEuOssComputeResponseTotals totals;
 
+    private PostV1DeclarationsEuOssComputeResponseCorrectionsTotal correctionsTotal;
+
     private long periodQuarter;
 
     private List<String> warnings = new ArrayList<>();
+
+    private List<PostV1DeclarationsEuOssComputeResponseCorrectionsItem> corrections = new ArrayList<>();
 
     private List<PostV1DeclarationsEuOssComputeResponseRowsItem> rows = new ArrayList<>();
 
@@ -209,6 +244,8 @@ public final class PostV1DeclarationsEuOssComputeResponse {
       memberStateOfIdentification(other.getMemberStateOfIdentification());
       rows(other.getRows());
       totals(other.getTotals());
+      corrections(other.getCorrections());
+      correctionsTotal(other.getCorrectionsTotal());
       warnings(other.getWarnings());
       periodQuarter(other.getPeriodQuarter());
       return this;
@@ -244,8 +281,17 @@ public final class PostV1DeclarationsEuOssComputeResponse {
 
     @java.lang.Override
     @JsonSetter("totals")
-    public PeriodQuarterStage totals(@NotNull PostV1DeclarationsEuOssComputeResponseTotals totals) {
+    public CorrectionsTotalStage totals(
+        @NotNull PostV1DeclarationsEuOssComputeResponseTotals totals) {
       this.totals = Objects.requireNonNull(totals, "totals must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("correctionsTotal")
+    public PeriodQuarterStage correctionsTotal(
+        @NotNull PostV1DeclarationsEuOssComputeResponseCorrectionsTotal correctionsTotal) {
+      this.correctionsTotal = Objects.requireNonNull(correctionsTotal, "correctionsTotal must not be null");
       return this;
     }
 
@@ -284,6 +330,36 @@ public final class PostV1DeclarationsEuOssComputeResponse {
     }
 
     @java.lang.Override
+    public _FinalStage addAllCorrections(
+        List<PostV1DeclarationsEuOssComputeResponseCorrectionsItem> corrections) {
+      if (corrections != null) {
+        this.corrections.addAll(corrections);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addCorrections(
+        PostV1DeclarationsEuOssComputeResponseCorrectionsItem corrections) {
+      this.corrections.add(corrections);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "corrections",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage corrections(
+        List<PostV1DeclarationsEuOssComputeResponseCorrectionsItem> corrections) {
+      this.corrections.clear();
+      if (corrections != null) {
+        this.corrections.addAll(corrections);
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage addAllRows(List<PostV1DeclarationsEuOssComputeResponseRowsItem> rows) {
       if (rows != null) {
         this.rows.addAll(rows);
@@ -312,7 +388,7 @@ public final class PostV1DeclarationsEuOssComputeResponse {
 
     @java.lang.Override
     public PostV1DeclarationsEuOssComputeResponse build() {
-      return new PostV1DeclarationsEuOssComputeResponse(periodYear, fromDate, toDate, memberStateOfIdentification, rows, totals, warnings, periodQuarter, additionalProperties);
+      return new PostV1DeclarationsEuOssComputeResponse(periodYear, fromDate, toDate, memberStateOfIdentification, rows, totals, corrections, correctionsTotal, warnings, periodQuarter, additionalProperties);
     }
 
     @java.lang.Override

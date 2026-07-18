@@ -35,6 +35,8 @@ public final class PostV1AccountCompaniesCreateRequest {
 
   private final Optional<String> vatCode;
 
+  private final Optional<String> smeExemptionNumber;
+
   private final Optional<Boolean> isVatPayer;
 
   private final Optional<PostV1AccountCompaniesCreateRequestAddress> address;
@@ -58,7 +60,7 @@ public final class PostV1AccountCompaniesCreateRequest {
   private final Map<String, Object> additionalProperties;
 
   private PostV1AccountCompaniesCreateRequest(String name, Optional<String> code,
-      Optional<String> vatCode, Optional<Boolean> isVatPayer,
+      Optional<String> vatCode, Optional<String> smeExemptionNumber, Optional<Boolean> isVatPayer,
       Optional<PostV1AccountCompaniesCreateRequestAddress> address, Optional<String> email,
       Optional<String> phone, Optional<String> iban, Optional<String> bankName,
       Optional<String> peppolId, Optional<String> defaultInvoiceCurrency,
@@ -67,6 +69,7 @@ public final class PostV1AccountCompaniesCreateRequest {
     this.name = name;
     this.code = code;
     this.vatCode = vatCode;
+    this.smeExemptionNumber = smeExemptionNumber;
     this.isVatPayer = isVatPayer;
     this.address = address;
     this.email = email;
@@ -93,6 +96,11 @@ public final class PostV1AccountCompaniesCreateRequest {
   @JsonProperty("vatCode")
   public Optional<String> getVatCode() {
     return vatCode;
+  }
+
+  @JsonProperty("smeExemptionNumber")
+  public Optional<String> getSmeExemptionNumber() {
+    return smeExemptionNumber;
   }
 
   @JsonProperty("isVatPayer")
@@ -163,12 +171,12 @@ public final class PostV1AccountCompaniesCreateRequest {
   }
 
   private boolean equalTo(PostV1AccountCompaniesCreateRequest other) {
-    return name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && isVatPayer.equals(other.isVatPayer) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && peppolId.equals(other.peppolId) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && countryCode.equals(other.countryCode) && isSandbox.equals(other.isSandbox);
+    return name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer.equals(other.isVatPayer) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && peppolId.equals(other.peppolId) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && countryCode.equals(other.countryCode) && isSandbox.equals(other.isSandbox);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.code, this.vatCode, this.isVatPayer, this.address, this.email, this.phone, this.iban, this.bankName, this.peppolId, this.defaultInvoiceCurrency, this.countryCode, this.isSandbox);
+    return Objects.hash(this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.address, this.email, this.phone, this.iban, this.bankName, this.peppolId, this.defaultInvoiceCurrency, this.countryCode, this.isSandbox);
   }
 
   @java.lang.Override
@@ -200,6 +208,10 @@ public final class PostV1AccountCompaniesCreateRequest {
     _FinalStage vatCode(Optional<String> vatCode);
 
     _FinalStage vatCode(String vatCode);
+
+    _FinalStage smeExemptionNumber(Optional<String> smeExemptionNumber);
+
+    _FinalStage smeExemptionNumber(String smeExemptionNumber);
 
     _FinalStage isVatPayer(Optional<Boolean> isVatPayer);
 
@@ -274,6 +286,8 @@ public final class PostV1AccountCompaniesCreateRequest {
 
     private Optional<Boolean> isVatPayer = Optional.empty();
 
+    private Optional<String> smeExemptionNumber = Optional.empty();
+
     private Optional<String> vatCode = Optional.empty();
 
     private Optional<String> code = Optional.empty();
@@ -289,6 +303,7 @@ public final class PostV1AccountCompaniesCreateRequest {
       name(other.getName());
       code(other.getCode());
       vatCode(other.getVatCode());
+      smeExemptionNumber(other.getSmeExemptionNumber());
       isVatPayer(other.getIsVatPayer());
       address(other.getAddress());
       email(other.getEmail());
@@ -485,6 +500,22 @@ public final class PostV1AccountCompaniesCreateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage smeExemptionNumber(String smeExemptionNumber) {
+      this.smeExemptionNumber = Optional.ofNullable(smeExemptionNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "smeExemptionNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage smeExemptionNumber(Optional<String> smeExemptionNumber) {
+      this.smeExemptionNumber = smeExemptionNumber;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage vatCode(String vatCode) {
       this.vatCode = Optional.ofNullable(vatCode);
       return this;
@@ -518,7 +549,7 @@ public final class PostV1AccountCompaniesCreateRequest {
 
     @java.lang.Override
     public PostV1AccountCompaniesCreateRequest build() {
-      return new PostV1AccountCompaniesCreateRequest(name, code, vatCode, isVatPayer, address, email, phone, iban, bankName, peppolId, defaultInvoiceCurrency, countryCode, isSandbox, additionalProperties);
+      return new PostV1AccountCompaniesCreateRequest(name, code, vatCode, smeExemptionNumber, isVatPayer, address, email, phone, iban, bankName, peppolId, defaultInvoiceCurrency, countryCode, isSandbox, additionalProperties);
     }
 
     @java.lang.Override

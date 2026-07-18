@@ -39,16 +39,19 @@ public final class PostV1AgreementsAgreementsCreateResponseItemsItem {
 
   private final Optional<String> unitPrice;
 
+  private final Optional<String> vatRatePercent;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1AgreementsAgreementsCreateResponseItemsItem(String id, Optional<String> itemId,
       String description, Optional<String> quantity, Optional<String> unitPrice,
-      Map<String, Object> additionalProperties) {
+      Optional<String> vatRatePercent, Map<String, Object> additionalProperties) {
     this.id = id;
     this.itemId = itemId;
     this.description = description;
     this.quantity = quantity;
     this.unitPrice = unitPrice;
+    this.vatRatePercent = vatRatePercent;
     this.additionalProperties = additionalProperties;
   }
 
@@ -86,6 +89,14 @@ public final class PostV1AgreementsAgreementsCreateResponseItemsItem {
     return unitPrice;
   }
 
+  @JsonIgnore
+  public Optional<String> getVatRatePercent() {
+    if (vatRatePercent == null) {
+      return Optional.empty();
+    }
+    return vatRatePercent;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -113,6 +124,15 @@ public final class PostV1AgreementsAgreementsCreateResponseItemsItem {
     return unitPrice;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("vatRatePercent")
+  private Optional<String> _getVatRatePercent() {
+    return vatRatePercent;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -125,12 +145,12 @@ public final class PostV1AgreementsAgreementsCreateResponseItemsItem {
   }
 
   private boolean equalTo(PostV1AgreementsAgreementsCreateResponseItemsItem other) {
-    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && quantity.equals(other.quantity) && unitPrice.equals(other.unitPrice);
+    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && quantity.equals(other.quantity) && unitPrice.equals(other.unitPrice) && vatRatePercent.equals(other.vatRatePercent);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.itemId, this.description, this.quantity, this.unitPrice);
+    return Objects.hash(this.id, this.itemId, this.description, this.quantity, this.unitPrice, this.vatRatePercent);
   }
 
   @java.lang.Override
@@ -176,6 +196,12 @@ public final class PostV1AgreementsAgreementsCreateResponseItemsItem {
     _FinalStage unitPrice(String unitPrice);
 
     _FinalStage unitPrice(Nullable<String> unitPrice);
+
+    _FinalStage vatRatePercent(Optional<String> vatRatePercent);
+
+    _FinalStage vatRatePercent(String vatRatePercent);
+
+    _FinalStage vatRatePercent(Nullable<String> vatRatePercent);
   }
 
   @JsonIgnoreProperties(
@@ -185,6 +211,8 @@ public final class PostV1AgreementsAgreementsCreateResponseItemsItem {
     private String id;
 
     private String description;
+
+    private Optional<String> vatRatePercent = Optional.empty();
 
     private Optional<String> unitPrice = Optional.empty();
 
@@ -205,6 +233,7 @@ public final class PostV1AgreementsAgreementsCreateResponseItemsItem {
       description(other.getDescription());
       quantity(other.getQuantity());
       unitPrice(other.getUnitPrice());
+      vatRatePercent(other.getVatRatePercent());
       return this;
     }
 
@@ -219,6 +248,36 @@ public final class PostV1AgreementsAgreementsCreateResponseItemsItem {
     @JsonSetter("description")
     public _FinalStage description(@NotNull String description) {
       this.description = Objects.requireNonNull(description, "description must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatRatePercent(Nullable<String> vatRatePercent) {
+      if (vatRatePercent.isNull()) {
+        this.vatRatePercent = null;
+      }
+      else if (vatRatePercent.isEmpty()) {
+        this.vatRatePercent = Optional.empty();
+      }
+      else {
+        this.vatRatePercent = Optional.of(vatRatePercent.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatRatePercent(String vatRatePercent) {
+      this.vatRatePercent = Optional.ofNullable(vatRatePercent);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "vatRatePercent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage vatRatePercent(Optional<String> vatRatePercent) {
+      this.vatRatePercent = vatRatePercent;
       return this;
     }
 
@@ -314,7 +373,7 @@ public final class PostV1AgreementsAgreementsCreateResponseItemsItem {
 
     @java.lang.Override
     public PostV1AgreementsAgreementsCreateResponseItemsItem build() {
-      return new PostV1AgreementsAgreementsCreateResponseItemsItem(id, itemId, description, quantity, unitPrice, additionalProperties);
+      return new PostV1AgreementsAgreementsCreateResponseItemsItem(id, itemId, description, quantity, unitPrice, vatRatePercent, additionalProperties);
     }
 
     @java.lang.Override

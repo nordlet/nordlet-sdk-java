@@ -8,8 +8,15 @@ import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsConfigsListRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsConfigsUpdateRequest;
+import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuDistanceSalesThresholdGetRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuIossComputeRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuOssComputeRequest;
+import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuSmeCrossBorderReportComputeRequest;
+import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuSmeThresholdGetRequest;
+import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuSmeThresholdsListRequest;
+import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuUnionTurnoverGetRequest;
+import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuVatReturnComputeRequest;
+import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuVatReturnPacksListRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtFr0600ComputeRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtGpm313ComputeRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtIntrastatComputeRequest;
@@ -24,8 +31,15 @@ import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsSubmiss
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsSubmissionsMarkRequest;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsConfigsListResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsConfigsUpdateResponse;
+import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuDistanceSalesThresholdGetResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuIossComputeResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuOssComputeResponse;
+import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuSmeCrossBorderReportComputeResponse;
+import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuSmeThresholdGetResponse;
+import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuSmeThresholdsListResponse;
+import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuUnionTurnoverGetResponse;
+import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuVatReturnComputeResponse;
+import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuVatReturnPacksListResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtFr0600ComputeResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtGpm313ComputeResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtIntrastatComputeResponse;
@@ -165,6 +179,127 @@ public class AsyncDeclarationsClient {
   public CompletableFuture<PostV1DeclarationsEuIossComputeResponse> postV1DeclarationsEuIossCompute(
       PostV1DeclarationsEuIossComputeRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1DeclarationsEuIossCompute(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuDistanceSalesThresholdGetResponse> postV1DeclarationsEuDistanceSalesThresholdGet(
+      ) {
+    return this.rawClient.postV1DeclarationsEuDistanceSalesThresholdGet().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuDistanceSalesThresholdGetResponse> postV1DeclarationsEuDistanceSalesThresholdGet(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuDistanceSalesThresholdGet(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuDistanceSalesThresholdGetResponse> postV1DeclarationsEuDistanceSalesThresholdGet(
+      PostV1DeclarationsEuDistanceSalesThresholdGetRequest request) {
+    return this.rawClient.postV1DeclarationsEuDistanceSalesThresholdGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuDistanceSalesThresholdGetResponse> postV1DeclarationsEuDistanceSalesThresholdGet(
+      PostV1DeclarationsEuDistanceSalesThresholdGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuDistanceSalesThresholdGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuUnionTurnoverGetResponse> postV1DeclarationsEuUnionTurnoverGet(
+      ) {
+    return this.rawClient.postV1DeclarationsEuUnionTurnoverGet().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuUnionTurnoverGetResponse> postV1DeclarationsEuUnionTurnoverGet(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuUnionTurnoverGet(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuUnionTurnoverGetResponse> postV1DeclarationsEuUnionTurnoverGet(
+      PostV1DeclarationsEuUnionTurnoverGetRequest request) {
+    return this.rawClient.postV1DeclarationsEuUnionTurnoverGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuUnionTurnoverGetResponse> postV1DeclarationsEuUnionTurnoverGet(
+      PostV1DeclarationsEuUnionTurnoverGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuUnionTurnoverGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuSmeCrossBorderReportComputeResponse> postV1DeclarationsEuSmeCrossBorderReportCompute(
+      PostV1DeclarationsEuSmeCrossBorderReportComputeRequest request) {
+    return this.rawClient.postV1DeclarationsEuSmeCrossBorderReportCompute(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuSmeCrossBorderReportComputeResponse> postV1DeclarationsEuSmeCrossBorderReportCompute(
+      PostV1DeclarationsEuSmeCrossBorderReportComputeRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuSmeCrossBorderReportCompute(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuSmeThresholdsListResponse> postV1DeclarationsEuSmeThresholdsList(
+      ) {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuSmeThresholdsListResponse> postV1DeclarationsEuSmeThresholdsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuSmeThresholdsListResponse> postV1DeclarationsEuSmeThresholdsList(
+      PostV1DeclarationsEuSmeThresholdsListRequest request) {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuSmeThresholdsListResponse> postV1DeclarationsEuSmeThresholdsList(
+      PostV1DeclarationsEuSmeThresholdsListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuSmeThresholdGetResponse> postV1DeclarationsEuSmeThresholdGet(
+      ) {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdGet().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuSmeThresholdGetResponse> postV1DeclarationsEuSmeThresholdGet(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdGet(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuSmeThresholdGetResponse> postV1DeclarationsEuSmeThresholdGet(
+      PostV1DeclarationsEuSmeThresholdGetRequest request) {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuSmeThresholdGetResponse> postV1DeclarationsEuSmeThresholdGet(
+      PostV1DeclarationsEuSmeThresholdGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuVatReturnPacksListResponse> postV1DeclarationsEuVatReturnPacksList(
+      ) {
+    return this.rawClient.postV1DeclarationsEuVatReturnPacksList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuVatReturnPacksListResponse> postV1DeclarationsEuVatReturnPacksList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuVatReturnPacksList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuVatReturnPacksListResponse> postV1DeclarationsEuVatReturnPacksList(
+      PostV1DeclarationsEuVatReturnPacksListRequest request) {
+    return this.rawClient.postV1DeclarationsEuVatReturnPacksList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuVatReturnPacksListResponse> postV1DeclarationsEuVatReturnPacksList(
+      PostV1DeclarationsEuVatReturnPacksListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuVatReturnPacksList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuVatReturnComputeResponse> postV1DeclarationsEuVatReturnCompute(
+      PostV1DeclarationsEuVatReturnComputeRequest request) {
+    return this.rawClient.postV1DeclarationsEuVatReturnCompute(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1DeclarationsEuVatReturnComputeResponse> postV1DeclarationsEuVatReturnCompute(
+      PostV1DeclarationsEuVatReturnComputeRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuVatReturnCompute(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<PostV1DeclarationsConfigsListResponse> postV1DeclarationsConfigsList() {

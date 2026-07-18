@@ -39,17 +39,21 @@ public final class PostV1ReferenceEuVatRatesListResponseRowsItem {
 
   private final Optional<String> validTo;
 
+  private final PostV1ReferenceEuVatRatesListResponseRowsItemSource source;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1ReferenceEuVatRatesListResponseRowsItem(String countryCode,
       PostV1ReferenceEuVatRatesListResponseRowsItemCategory category, String ratePercent,
       Optional<String> validFrom, Optional<String> validTo,
+      PostV1ReferenceEuVatRatesListResponseRowsItemSource source,
       Map<String, Object> additionalProperties) {
     this.countryCode = countryCode;
     this.category = category;
     this.ratePercent = ratePercent;
     this.validFrom = validFrom;
     this.validTo = validTo;
+    this.source = source;
     this.additionalProperties = additionalProperties;
   }
 
@@ -84,6 +88,11 @@ public final class PostV1ReferenceEuVatRatesListResponseRowsItem {
     return validTo;
   }
 
+  @JsonProperty("source")
+  public PostV1ReferenceEuVatRatesListResponseRowsItemSource getSource() {
+    return source;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -114,12 +123,12 @@ public final class PostV1ReferenceEuVatRatesListResponseRowsItem {
   }
 
   private boolean equalTo(PostV1ReferenceEuVatRatesListResponseRowsItem other) {
-    return countryCode.equals(other.countryCode) && category.equals(other.category) && ratePercent.equals(other.ratePercent) && validFrom.equals(other.validFrom) && validTo.equals(other.validTo);
+    return countryCode.equals(other.countryCode) && category.equals(other.category) && ratePercent.equals(other.ratePercent) && validFrom.equals(other.validFrom) && validTo.equals(other.validTo) && source.equals(other.source);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.countryCode, this.category, this.ratePercent, this.validFrom, this.validTo);
+    return Objects.hash(this.countryCode, this.category, this.ratePercent, this.validFrom, this.validTo, this.source);
   }
 
   @java.lang.Override
@@ -143,7 +152,11 @@ public final class PostV1ReferenceEuVatRatesListResponseRowsItem {
   }
 
   public interface RatePercentStage {
-    _FinalStage ratePercent(@NotNull String ratePercent);
+    SourceStage ratePercent(@NotNull String ratePercent);
+  }
+
+  public interface SourceStage {
+    _FinalStage source(@NotNull PostV1ReferenceEuVatRatesListResponseRowsItemSource source);
   }
 
   public interface _FinalStage {
@@ -169,12 +182,14 @@ public final class PostV1ReferenceEuVatRatesListResponseRowsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements CountryCodeStage, CategoryStage, RatePercentStage, _FinalStage {
+  public static final class Builder implements CountryCodeStage, CategoryStage, RatePercentStage, SourceStage, _FinalStage {
     private String countryCode;
 
     private PostV1ReferenceEuVatRatesListResponseRowsItemCategory category;
 
     private String ratePercent;
+
+    private PostV1ReferenceEuVatRatesListResponseRowsItemSource source;
 
     private Optional<String> validTo = Optional.empty();
 
@@ -193,6 +208,7 @@ public final class PostV1ReferenceEuVatRatesListResponseRowsItem {
       ratePercent(other.getRatePercent());
       validFrom(other.getValidFrom());
       validTo(other.getValidTo());
+      source(other.getSource());
       return this;
     }
 
@@ -213,8 +229,15 @@ public final class PostV1ReferenceEuVatRatesListResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("ratePercent")
-    public _FinalStage ratePercent(@NotNull String ratePercent) {
+    public SourceStage ratePercent(@NotNull String ratePercent) {
       this.ratePercent = Objects.requireNonNull(ratePercent, "ratePercent must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("source")
+    public _FinalStage source(@NotNull PostV1ReferenceEuVatRatesListResponseRowsItemSource source) {
+      this.source = Objects.requireNonNull(source, "source must not be null");
       return this;
     }
 
@@ -280,7 +303,7 @@ public final class PostV1ReferenceEuVatRatesListResponseRowsItem {
 
     @java.lang.Override
     public PostV1ReferenceEuVatRatesListResponseRowsItem build() {
-      return new PostV1ReferenceEuVatRatesListResponseRowsItem(countryCode, category, ratePercent, validFrom, validTo, additionalProperties);
+      return new PostV1ReferenceEuVatRatesListResponseRowsItem(countryCode, category, ratePercent, validFrom, validTo, source, additionalProperties);
     }
 
     @java.lang.Override

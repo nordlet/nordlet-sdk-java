@@ -20,21 +20,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
     builder = PostV1ReferenceEuVatRatesListResponse.Builder.class
 )
 public final class PostV1ReferenceEuVatRatesListResponse {
+  private final String notice;
+
   private final List<PostV1ReferenceEuVatRatesListResponseRowsItem> rows;
 
   private final Map<String, Object> additionalProperties;
 
-  private PostV1ReferenceEuVatRatesListResponse(
+  private PostV1ReferenceEuVatRatesListResponse(String notice,
       List<PostV1ReferenceEuVatRatesListResponseRowsItem> rows,
       Map<String, Object> additionalProperties) {
+    this.notice = notice;
     this.rows = rows;
     this.additionalProperties = additionalProperties;
+  }
+
+  @JsonProperty("notice")
+  public String getNotice() {
+    return notice;
   }
 
   @JsonProperty("rows")
@@ -54,12 +63,12 @@ public final class PostV1ReferenceEuVatRatesListResponse {
   }
 
   private boolean equalTo(PostV1ReferenceEuVatRatesListResponse other) {
-    return rows.equals(other.rows);
+    return notice.equals(other.notice) && rows.equals(other.rows);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.rows);
+    return Objects.hash(this.notice, this.rows);
   }
 
   @java.lang.Override
@@ -67,14 +76,36 @@ public final class PostV1ReferenceEuVatRatesListResponse {
     return ObjectMappers.stringify(this);
   }
 
-  public static Builder builder() {
+  public static NoticeStage builder() {
     return new Builder();
+  }
+
+  public interface NoticeStage {
+    _FinalStage notice(@NotNull String notice);
+
+    Builder from(PostV1ReferenceEuVatRatesListResponse other);
+  }
+
+  public interface _FinalStage {
+    PostV1ReferenceEuVatRatesListResponse build();
+
+    _FinalStage additionalProperty(String key, Object value);
+
+    _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage rows(List<PostV1ReferenceEuVatRatesListResponseRowsItem> rows);
+
+    _FinalStage addRows(PostV1ReferenceEuVatRatesListResponseRowsItem rows);
+
+    _FinalStage addAllRows(List<PostV1ReferenceEuVatRatesListResponseRowsItem> rows);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder {
+  public static final class Builder implements NoticeStage, _FinalStage {
+    private String notice;
+
     private List<PostV1ReferenceEuVatRatesListResponseRowsItem> rows = new ArrayList<>();
 
     @JsonAnySetter
@@ -83,16 +114,40 @@ public final class PostV1ReferenceEuVatRatesListResponse {
     private Builder() {
     }
 
+    @java.lang.Override
     public Builder from(PostV1ReferenceEuVatRatesListResponse other) {
+      notice(other.getNotice());
       rows(other.getRows());
       return this;
     }
 
+    @java.lang.Override
+    @JsonSetter("notice")
+    public _FinalStage notice(@NotNull String notice) {
+      this.notice = Objects.requireNonNull(notice, "notice must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addAllRows(List<PostV1ReferenceEuVatRatesListResponseRowsItem> rows) {
+      if (rows != null) {
+        this.rows.addAll(rows);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addRows(PostV1ReferenceEuVatRatesListResponseRowsItem rows) {
+      this.rows.add(rows);
+      return this;
+    }
+
+    @java.lang.Override
     @JsonSetter(
         value = "rows",
         nulls = Nulls.SKIP
     )
-    public Builder rows(List<PostV1ReferenceEuVatRatesListResponseRowsItem> rows) {
+    public _FinalStage rows(List<PostV1ReferenceEuVatRatesListResponseRowsItem> rows) {
       this.rows.clear();
       if (rows != null) {
         this.rows.addAll(rows);
@@ -100,27 +155,18 @@ public final class PostV1ReferenceEuVatRatesListResponse {
       return this;
     }
 
-    public Builder addRows(PostV1ReferenceEuVatRatesListResponseRowsItem rows) {
-      this.rows.add(rows);
-      return this;
-    }
-
-    public Builder addAllRows(List<PostV1ReferenceEuVatRatesListResponseRowsItem> rows) {
-      if (rows != null) {
-        this.rows.addAll(rows);
-      }
-      return this;
-    }
-
+    @java.lang.Override
     public PostV1ReferenceEuVatRatesListResponse build() {
-      return new PostV1ReferenceEuVatRatesListResponse(rows, additionalProperties);
+      return new PostV1ReferenceEuVatRatesListResponse(notice, rows, additionalProperties);
     }
 
+    @java.lang.Override
     public Builder additionalProperty(String key, Object value) {
       this.additionalProperties.put(key, value);
       return this;
     }
 
+    @java.lang.Override
     public Builder additionalProperties(Map<String, Object> additionalProperties) {
       this.additionalProperties.putAll(additionalProperties);
       return this;

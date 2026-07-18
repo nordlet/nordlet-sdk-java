@@ -30,15 +30,21 @@ public final class PostV1LedgerPostingRulesUpdateRequestRulesItemKey {
 
   public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey BANK_FX_LOSS = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.BANK_FX_LOSS, "bank.fxLoss");
 
+  public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey REVENUE_DEFERRED_INCOME = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.REVENUE_DEFERRED_INCOME, "revenue.deferredIncome");
+
   public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey PURCHASES_VAT_RECEIVABLE = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.PURCHASES_VAT_RECEIVABLE, "purchases.vatReceivable");
 
   public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey SALES_REVENUE_SERVICES = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.SALES_REVENUE_SERVICES, "sales.revenueServices");
+
+  public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey REVENUE_CONTRACT_ASSET = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.REVENUE_CONTRACT_ASSET, "revenue.contractAsset");
 
   public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey SALES_ADVANCES_RECEIVED = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.SALES_ADVANCES_RECEIVED, "sales.advancesReceived");
 
   public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey SETTLEMENTS_FEES = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.SETTLEMENTS_FEES, "settlements.fees");
 
   public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey BANK_FX_GAIN = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.BANK_FX_GAIN, "bank.fxGain");
+
+  public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey REVENUE_REFUND_LIABILITY = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.REVENUE_REFUND_LIABILITY, "revenue.refundLiability");
 
   public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey SALES_VAT_PAYABLE = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.SALES_VAT_PAYABLE, "sales.vatPayable");
 
@@ -96,16 +102,22 @@ public final class PostV1LedgerPostingRulesUpdateRequestRulesItemKey {
         return visitor.visitInventoryStock();
       case BANK_FX_LOSS:
         return visitor.visitBankFxLoss();
+      case REVENUE_DEFERRED_INCOME:
+        return visitor.visitRevenueDeferredIncome();
       case PURCHASES_VAT_RECEIVABLE:
         return visitor.visitPurchasesVatReceivable();
       case SALES_REVENUE_SERVICES:
         return visitor.visitSalesRevenueServices();
+      case REVENUE_CONTRACT_ASSET:
+        return visitor.visitRevenueContractAsset();
       case SALES_ADVANCES_RECEIVED:
         return visitor.visitSalesAdvancesReceived();
       case SETTLEMENTS_FEES:
         return visitor.visitSettlementsFees();
       case BANK_FX_GAIN:
         return visitor.visitBankFxGain();
+      case REVENUE_REFUND_LIABILITY:
+        return visitor.visitRevenueRefundLiability();
       case SALES_VAT_PAYABLE:
         return visitor.visitSalesVatPayable();
       case SETTLEMENTS_SELLER_PAYABLE:
@@ -141,16 +153,22 @@ public final class PostV1LedgerPostingRulesUpdateRequestRulesItemKey {
         return INVENTORY_STOCK;
       case "bank.fxLoss":
         return BANK_FX_LOSS;
+      case "revenue.deferredIncome":
+        return REVENUE_DEFERRED_INCOME;
       case "purchases.vatReceivable":
         return PURCHASES_VAT_RECEIVABLE;
       case "sales.revenueServices":
         return SALES_REVENUE_SERVICES;
+      case "revenue.contractAsset":
+        return REVENUE_CONTRACT_ASSET;
       case "sales.advancesReceived":
         return SALES_ADVANCES_RECEIVED;
       case "settlements.fees":
         return SETTLEMENTS_FEES;
       case "bank.fxGain":
         return BANK_FX_GAIN;
+      case "revenue.refundLiability":
+        return REVENUE_REFUND_LIABILITY;
       case "sales.vatPayable":
         return SALES_VAT_PAYABLE;
       case "settlements.sellerPayable":
@@ -195,6 +213,12 @@ public final class PostV1LedgerPostingRulesUpdateRequestRulesItemKey {
 
     SETTLEMENTS_SUSPENSE,
 
+    REVENUE_DEFERRED_INCOME,
+
+    REVENUE_CONTRACT_ASSET,
+
+    REVENUE_REFUND_LIABILITY,
+
     UNKNOWN
   }
 
@@ -232,6 +256,12 @@ public final class PostV1LedgerPostingRulesUpdateRequestRulesItemKey {
     T visitSettlementsSellerPayable();
 
     T visitSettlementsSuspense();
+
+    T visitRevenueDeferredIncome();
+
+    T visitRevenueContractAsset();
+
+    T visitRevenueRefundLiability();
 
     T visitUnknown(String unknownType);
   }

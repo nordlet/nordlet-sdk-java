@@ -8,8 +8,15 @@ import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsConfigsListRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsConfigsUpdateRequest;
+import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuDistanceSalesThresholdGetRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuIossComputeRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuOssComputeRequest;
+import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuSmeCrossBorderReportComputeRequest;
+import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuSmeThresholdGetRequest;
+import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuSmeThresholdsListRequest;
+import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuUnionTurnoverGetRequest;
+import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuVatReturnComputeRequest;
+import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuVatReturnPacksListRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtFr0600ComputeRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtGpm313ComputeRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtIntrastatComputeRequest;
@@ -24,8 +31,15 @@ import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsSubmiss
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsSubmissionsMarkRequest;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsConfigsListResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsConfigsUpdateResponse;
+import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuDistanceSalesThresholdGetResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuIossComputeResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuOssComputeResponse;
+import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuSmeCrossBorderReportComputeResponse;
+import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuSmeThresholdGetResponse;
+import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuSmeThresholdsListResponse;
+import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuUnionTurnoverGetResponse;
+import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuVatReturnComputeResponse;
+import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuVatReturnPacksListResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtFr0600ComputeResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtGpm313ComputeResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtIntrastatComputeResponse;
@@ -164,6 +178,123 @@ public class DeclarationsClient {
   public PostV1DeclarationsEuIossComputeResponse postV1DeclarationsEuIossCompute(
       PostV1DeclarationsEuIossComputeRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1DeclarationsEuIossCompute(request, requestOptions).body();
+  }
+
+  public PostV1DeclarationsEuDistanceSalesThresholdGetResponse postV1DeclarationsEuDistanceSalesThresholdGet(
+      ) {
+    return this.rawClient.postV1DeclarationsEuDistanceSalesThresholdGet().body();
+  }
+
+  public PostV1DeclarationsEuDistanceSalesThresholdGetResponse postV1DeclarationsEuDistanceSalesThresholdGet(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuDistanceSalesThresholdGet(requestOptions).body();
+  }
+
+  public PostV1DeclarationsEuDistanceSalesThresholdGetResponse postV1DeclarationsEuDistanceSalesThresholdGet(
+      PostV1DeclarationsEuDistanceSalesThresholdGetRequest request) {
+    return this.rawClient.postV1DeclarationsEuDistanceSalesThresholdGet(request).body();
+  }
+
+  public PostV1DeclarationsEuDistanceSalesThresholdGetResponse postV1DeclarationsEuDistanceSalesThresholdGet(
+      PostV1DeclarationsEuDistanceSalesThresholdGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuDistanceSalesThresholdGet(request, requestOptions).body();
+  }
+
+  public PostV1DeclarationsEuUnionTurnoverGetResponse postV1DeclarationsEuUnionTurnoverGet() {
+    return this.rawClient.postV1DeclarationsEuUnionTurnoverGet().body();
+  }
+
+  public PostV1DeclarationsEuUnionTurnoverGetResponse postV1DeclarationsEuUnionTurnoverGet(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuUnionTurnoverGet(requestOptions).body();
+  }
+
+  public PostV1DeclarationsEuUnionTurnoverGetResponse postV1DeclarationsEuUnionTurnoverGet(
+      PostV1DeclarationsEuUnionTurnoverGetRequest request) {
+    return this.rawClient.postV1DeclarationsEuUnionTurnoverGet(request).body();
+  }
+
+  public PostV1DeclarationsEuUnionTurnoverGetResponse postV1DeclarationsEuUnionTurnoverGet(
+      PostV1DeclarationsEuUnionTurnoverGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuUnionTurnoverGet(request, requestOptions).body();
+  }
+
+  public PostV1DeclarationsEuSmeCrossBorderReportComputeResponse postV1DeclarationsEuSmeCrossBorderReportCompute(
+      PostV1DeclarationsEuSmeCrossBorderReportComputeRequest request) {
+    return this.rawClient.postV1DeclarationsEuSmeCrossBorderReportCompute(request).body();
+  }
+
+  public PostV1DeclarationsEuSmeCrossBorderReportComputeResponse postV1DeclarationsEuSmeCrossBorderReportCompute(
+      PostV1DeclarationsEuSmeCrossBorderReportComputeRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuSmeCrossBorderReportCompute(request, requestOptions).body();
+  }
+
+  public PostV1DeclarationsEuSmeThresholdsListResponse postV1DeclarationsEuSmeThresholdsList() {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdsList().body();
+  }
+
+  public PostV1DeclarationsEuSmeThresholdsListResponse postV1DeclarationsEuSmeThresholdsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdsList(requestOptions).body();
+  }
+
+  public PostV1DeclarationsEuSmeThresholdsListResponse postV1DeclarationsEuSmeThresholdsList(
+      PostV1DeclarationsEuSmeThresholdsListRequest request) {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdsList(request).body();
+  }
+
+  public PostV1DeclarationsEuSmeThresholdsListResponse postV1DeclarationsEuSmeThresholdsList(
+      PostV1DeclarationsEuSmeThresholdsListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdsList(request, requestOptions).body();
+  }
+
+  public PostV1DeclarationsEuSmeThresholdGetResponse postV1DeclarationsEuSmeThresholdGet() {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdGet().body();
+  }
+
+  public PostV1DeclarationsEuSmeThresholdGetResponse postV1DeclarationsEuSmeThresholdGet(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdGet(requestOptions).body();
+  }
+
+  public PostV1DeclarationsEuSmeThresholdGetResponse postV1DeclarationsEuSmeThresholdGet(
+      PostV1DeclarationsEuSmeThresholdGetRequest request) {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdGet(request).body();
+  }
+
+  public PostV1DeclarationsEuSmeThresholdGetResponse postV1DeclarationsEuSmeThresholdGet(
+      PostV1DeclarationsEuSmeThresholdGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuSmeThresholdGet(request, requestOptions).body();
+  }
+
+  public PostV1DeclarationsEuVatReturnPacksListResponse postV1DeclarationsEuVatReturnPacksList() {
+    return this.rawClient.postV1DeclarationsEuVatReturnPacksList().body();
+  }
+
+  public PostV1DeclarationsEuVatReturnPacksListResponse postV1DeclarationsEuVatReturnPacksList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuVatReturnPacksList(requestOptions).body();
+  }
+
+  public PostV1DeclarationsEuVatReturnPacksListResponse postV1DeclarationsEuVatReturnPacksList(
+      PostV1DeclarationsEuVatReturnPacksListRequest request) {
+    return this.rawClient.postV1DeclarationsEuVatReturnPacksList(request).body();
+  }
+
+  public PostV1DeclarationsEuVatReturnPacksListResponse postV1DeclarationsEuVatReturnPacksList(
+      PostV1DeclarationsEuVatReturnPacksListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuVatReturnPacksList(request, requestOptions).body();
+  }
+
+  public PostV1DeclarationsEuVatReturnComputeResponse postV1DeclarationsEuVatReturnCompute(
+      PostV1DeclarationsEuVatReturnComputeRequest request) {
+    return this.rawClient.postV1DeclarationsEuVatReturnCompute(request).body();
+  }
+
+  public PostV1DeclarationsEuVatReturnComputeResponse postV1DeclarationsEuVatReturnCompute(
+      PostV1DeclarationsEuVatReturnComputeRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsEuVatReturnCompute(request, requestOptions).body();
   }
 
   public PostV1DeclarationsConfigsListResponse postV1DeclarationsConfigsList() {

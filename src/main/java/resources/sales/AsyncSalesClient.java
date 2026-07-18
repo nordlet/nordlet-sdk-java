@@ -24,6 +24,15 @@ import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesPeppolSendReq
 import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesPeppolXmlRequest;
 import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesSendRequest;
 import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesUpdateRequest;
+import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionComputeRequest;
+import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionModifyRequest;
+import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionProgressRequest;
+import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionRunRequest;
+import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionRunsListRequest;
+import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionSchedulesListRequest;
+import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionSummaryRequest;
+import com.nordlet.api.resources.sales.requests.PostV1SalesRefundLiabilityListRequest;
+import com.nordlet.api.resources.sales.requests.PostV1SalesRefundLiabilityTrueUpRequest;
 import com.nordlet.api.resources.sales.types.PostV1SalesActsCancelResponse;
 import com.nordlet.api.resources.sales.types.PostV1SalesActsCreateResponse;
 import com.nordlet.api.resources.sales.types.PostV1SalesActsGetResponse;
@@ -42,6 +51,15 @@ import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesPeppolSendRespon
 import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesPeppolXmlResponse;
 import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesSendResponse;
 import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesUpdateResponse;
+import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionComputeResponse;
+import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionModifyResponse;
+import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionProgressResponse;
+import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionRunResponse;
+import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionRunsListResponse;
+import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionSchedulesListResponse;
+import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionSummaryResponse;
+import com.nordlet.api.resources.sales.types.PostV1SalesRefundLiabilityListResponse;
+import com.nordlet.api.resources.sales.types.PostV1SalesRefundLiabilityTrueUpResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncSalesClient {
@@ -151,6 +169,26 @@ public class AsyncSalesClient {
     return this.rawClient.postV1SalesInvoicesIssue(request, requestOptions).thenApply(response -> response.body());
   }
 
+  public CompletableFuture<PostV1SalesRecognitionSchedulesListResponse> postV1SalesRecognitionSchedulesList(
+      ) {
+    return this.rawClient.postV1SalesRecognitionSchedulesList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionSchedulesListResponse> postV1SalesRecognitionSchedulesList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesRecognitionSchedulesList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionSchedulesListResponse> postV1SalesRecognitionSchedulesList(
+      PostV1SalesRecognitionSchedulesListRequest request) {
+    return this.rawClient.postV1SalesRecognitionSchedulesList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionSchedulesListResponse> postV1SalesRecognitionSchedulesList(
+      PostV1SalesRecognitionSchedulesListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesRecognitionSchedulesList(request, requestOptions).thenApply(response -> response.body());
+  }
+
   public CompletableFuture<PostV1SalesInvoicesApplyAdvanceResponse> postV1SalesInvoicesApplyAdvance(
       PostV1SalesInvoicesApplyAdvanceRequest request) {
     return this.rawClient.postV1SalesInvoicesApplyAdvance(request).thenApply(response -> response.body());
@@ -257,5 +295,138 @@ public class AsyncSalesClient {
   public CompletableFuture<PostV1SalesActsPdfResponse> postV1SalesActsPdf(
       PostV1SalesActsPdfRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1SalesActsPdf(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionComputeResponse> postV1SalesRecognitionCompute() {
+    return this.rawClient.postV1SalesRecognitionCompute().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionComputeResponse> postV1SalesRecognitionCompute(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesRecognitionCompute(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionComputeResponse> postV1SalesRecognitionCompute(
+      PostV1SalesRecognitionComputeRequest request) {
+    return this.rawClient.postV1SalesRecognitionCompute(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionComputeResponse> postV1SalesRecognitionCompute(
+      PostV1SalesRecognitionComputeRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesRecognitionCompute(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionRunResponse> postV1SalesRecognitionRun() {
+    return this.rawClient.postV1SalesRecognitionRun().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionRunResponse> postV1SalesRecognitionRun(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesRecognitionRun(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionRunResponse> postV1SalesRecognitionRun(
+      PostV1SalesRecognitionRunRequest request) {
+    return this.rawClient.postV1SalesRecognitionRun(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionRunResponse> postV1SalesRecognitionRun(
+      PostV1SalesRecognitionRunRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesRecognitionRun(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionProgressResponse> postV1SalesRecognitionProgress(
+      PostV1SalesRecognitionProgressRequest request) {
+    return this.rawClient.postV1SalesRecognitionProgress(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionProgressResponse> postV1SalesRecognitionProgress(
+      PostV1SalesRecognitionProgressRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesRecognitionProgress(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
+   */
+  public CompletableFuture<PostV1SalesRecognitionModifyResponse> postV1SalesRecognitionModify(
+      PostV1SalesRecognitionModifyRequest request) {
+    return this.rawClient.postV1SalesRecognitionModify(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
+   */
+  public CompletableFuture<PostV1SalesRecognitionModifyResponse> postV1SalesRecognitionModify(
+      PostV1SalesRecognitionModifyRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesRecognitionModify(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionRunsListResponse> postV1SalesRecognitionRunsList(
+      ) {
+    return this.rawClient.postV1SalesRecognitionRunsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionRunsListResponse> postV1SalesRecognitionRunsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesRecognitionRunsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionRunsListResponse> postV1SalesRecognitionRunsList(
+      PostV1SalesRecognitionRunsListRequest request) {
+    return this.rawClient.postV1SalesRecognitionRunsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionRunsListResponse> postV1SalesRecognitionRunsList(
+      PostV1SalesRecognitionRunsListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesRecognitionRunsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionSummaryResponse> postV1SalesRecognitionSummary() {
+    return this.rawClient.postV1SalesRecognitionSummary().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionSummaryResponse> postV1SalesRecognitionSummary(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesRecognitionSummary(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionSummaryResponse> postV1SalesRecognitionSummary(
+      PostV1SalesRecognitionSummaryRequest request) {
+    return this.rawClient.postV1SalesRecognitionSummary(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRecognitionSummaryResponse> postV1SalesRecognitionSummary(
+      PostV1SalesRecognitionSummaryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesRecognitionSummary(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRefundLiabilityListResponse> postV1SalesRefundLiabilityList(
+      ) {
+    return this.rawClient.postV1SalesRefundLiabilityList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRefundLiabilityListResponse> postV1SalesRefundLiabilityList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesRefundLiabilityList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRefundLiabilityListResponse> postV1SalesRefundLiabilityList(
+      PostV1SalesRefundLiabilityListRequest request) {
+    return this.rawClient.postV1SalesRefundLiabilityList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRefundLiabilityListResponse> postV1SalesRefundLiabilityList(
+      PostV1SalesRefundLiabilityListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesRefundLiabilityList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRefundLiabilityTrueUpResponse> postV1SalesRefundLiabilityTrueUp(
+      PostV1SalesRefundLiabilityTrueUpRequest request) {
+    return this.rawClient.postV1SalesRefundLiabilityTrueUp(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1SalesRefundLiabilityTrueUpResponse> postV1SalesRefundLiabilityTrueUp(
+      PostV1SalesRefundLiabilityTrueUpRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesRefundLiabilityTrueUp(request, requestOptions).thenApply(response -> response.body());
   }
 }
