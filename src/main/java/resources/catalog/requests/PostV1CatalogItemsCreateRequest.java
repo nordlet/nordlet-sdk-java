@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsCreateRequestComponentsItem;
+import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsCreateRequestTracking;
 import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsCreateRequestTranslationsValue;
 import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsCreateRequestType;
 import java.lang.Object;
@@ -31,6 +32,8 @@ import org.jetbrains.annotations.NotNull;
 )
 public final class PostV1CatalogItemsCreateRequest {
   private final Optional<PostV1CatalogItemsCreateRequestType> type;
+
+  private final Optional<PostV1CatalogItemsCreateRequestTracking> tracking;
 
   private final String name;
 
@@ -71,7 +74,8 @@ public final class PostV1CatalogItemsCreateRequest {
   private final Map<String, Object> additionalProperties;
 
   private PostV1CatalogItemsCreateRequest(Optional<PostV1CatalogItemsCreateRequestType> type,
-      String name, Optional<String> code, Optional<String> barcode, Optional<String> unit,
+      Optional<PostV1CatalogItemsCreateRequestTracking> tracking, String name,
+      Optional<String> code, Optional<String> barcode, Optional<String> unit,
       Optional<String> vatClassifierCode, Optional<String> vatRatePercent,
       Optional<String> salePriceExclVat, Optional<String> purchasePriceExclVat,
       Optional<String> cnCode, Optional<String> originCountry, Optional<String> netMassKg,
@@ -82,6 +86,7 @@ public final class PostV1CatalogItemsCreateRequest {
       Optional<List<PostV1CatalogItemsCreateRequestComponentsItem>> components,
       Map<String, Object> additionalProperties) {
     this.type = type;
+    this.tracking = tracking;
     this.name = name;
     this.code = code;
     this.barcode = barcode;
@@ -106,6 +111,11 @@ public final class PostV1CatalogItemsCreateRequest {
   @JsonProperty("type")
   public Optional<PostV1CatalogItemsCreateRequestType> getType() {
     return type;
+  }
+
+  @JsonProperty("tracking")
+  public Optional<PostV1CatalogItemsCreateRequestTracking> getTracking() {
+    return tracking;
   }
 
   @JsonProperty("name")
@@ -210,12 +220,12 @@ public final class PostV1CatalogItemsCreateRequest {
   }
 
   private boolean equalTo(PostV1CatalogItemsCreateRequest other) {
-    return type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && barcode.equals(other.barcode) && unit.equals(other.unit) && vatClassifierCode.equals(other.vatClassifierCode) && vatRatePercent.equals(other.vatRatePercent) && salePriceExclVat.equals(other.salePriceExclVat) && purchasePriceExclVat.equals(other.purchasePriceExclVat) && cnCode.equals(other.cnCode) && originCountry.equals(other.originCountry) && netMassKg.equals(other.netMassKg) && supplementaryUnit.equals(other.supplementaryUnit) && supplementaryQtyPerUnit.equals(other.supplementaryQtyPerUnit) && description.equals(other.description) && groupId.equals(other.groupId) && attributes.equals(other.attributes) && translations.equals(other.translations) && components.equals(other.components);
+    return type.equals(other.type) && tracking.equals(other.tracking) && name.equals(other.name) && code.equals(other.code) && barcode.equals(other.barcode) && unit.equals(other.unit) && vatClassifierCode.equals(other.vatClassifierCode) && vatRatePercent.equals(other.vatRatePercent) && salePriceExclVat.equals(other.salePriceExclVat) && purchasePriceExclVat.equals(other.purchasePriceExclVat) && cnCode.equals(other.cnCode) && originCountry.equals(other.originCountry) && netMassKg.equals(other.netMassKg) && supplementaryUnit.equals(other.supplementaryUnit) && supplementaryQtyPerUnit.equals(other.supplementaryQtyPerUnit) && description.equals(other.description) && groupId.equals(other.groupId) && attributes.equals(other.attributes) && translations.equals(other.translations) && components.equals(other.components);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.type, this.name, this.code, this.barcode, this.unit, this.vatClassifierCode, this.vatRatePercent, this.salePriceExclVat, this.purchasePriceExclVat, this.cnCode, this.originCountry, this.netMassKg, this.supplementaryUnit, this.supplementaryQtyPerUnit, this.description, this.groupId, this.attributes, this.translations, this.components);
+    return Objects.hash(this.type, this.tracking, this.name, this.code, this.barcode, this.unit, this.vatClassifierCode, this.vatRatePercent, this.salePriceExclVat, this.purchasePriceExclVat, this.cnCode, this.originCountry, this.netMassKg, this.supplementaryUnit, this.supplementaryQtyPerUnit, this.description, this.groupId, this.attributes, this.translations, this.components);
   }
 
   @java.lang.Override
@@ -243,6 +253,10 @@ public final class PostV1CatalogItemsCreateRequest {
     _FinalStage type(Optional<PostV1CatalogItemsCreateRequestType> type);
 
     _FinalStage type(PostV1CatalogItemsCreateRequestType type);
+
+    _FinalStage tracking(Optional<PostV1CatalogItemsCreateRequestTracking> tracking);
+
+    _FinalStage tracking(PostV1CatalogItemsCreateRequestTracking tracking);
 
     _FinalStage code(Optional<String> code);
 
@@ -356,6 +370,8 @@ public final class PostV1CatalogItemsCreateRequest {
 
     private Optional<String> code = Optional.empty();
 
+    private Optional<PostV1CatalogItemsCreateRequestTracking> tracking = Optional.empty();
+
     private Optional<PostV1CatalogItemsCreateRequestType> type = Optional.empty();
 
     @JsonAnySetter
@@ -367,6 +383,7 @@ public final class PostV1CatalogItemsCreateRequest {
     @java.lang.Override
     public Builder from(PostV1CatalogItemsCreateRequest other) {
       type(other.getType());
+      tracking(other.getTracking());
       name(other.getName());
       code(other.getCode());
       barcode(other.getBarcode());
@@ -671,6 +688,22 @@ public final class PostV1CatalogItemsCreateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage tracking(PostV1CatalogItemsCreateRequestTracking tracking) {
+      this.tracking = Optional.ofNullable(tracking);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "tracking",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage tracking(Optional<PostV1CatalogItemsCreateRequestTracking> tracking) {
+      this.tracking = tracking;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage type(PostV1CatalogItemsCreateRequestType type) {
       this.type = Optional.ofNullable(type);
       return this;
@@ -688,7 +721,7 @@ public final class PostV1CatalogItemsCreateRequest {
 
     @java.lang.Override
     public PostV1CatalogItemsCreateRequest build() {
-      return new PostV1CatalogItemsCreateRequest(type, name, code, barcode, unit, vatClassifierCode, vatRatePercent, salePriceExclVat, purchasePriceExclVat, cnCode, originCountry, netMassKg, supplementaryUnit, supplementaryQtyPerUnit, description, groupId, attributes, translations, components, additionalProperties);
+      return new PostV1CatalogItemsCreateRequest(type, tracking, name, code, barcode, unit, vatClassifierCode, vatRatePercent, salePriceExclVat, purchasePriceExclVat, cnCode, originCountry, netMassKg, supplementaryUnit, supplementaryQtyPerUnit, description, groupId, attributes, translations, components, additionalProperties);
     }
 
     @java.lang.Override

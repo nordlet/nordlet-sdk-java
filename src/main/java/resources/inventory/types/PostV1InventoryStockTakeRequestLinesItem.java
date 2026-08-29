@@ -34,15 +34,22 @@ public final class PostV1InventoryStockTakeRequestLinesItem {
 
   private final Optional<String> unitCost;
 
+  private final Optional<String> lotNumber;
+
+  private final Optional<String> expiryDate;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1InventoryStockTakeRequestLinesItem(Optional<String> itemId,
       Optional<String> barcode, String countedQty, Optional<String> unitCost,
+      Optional<String> lotNumber, Optional<String> expiryDate,
       Map<String, Object> additionalProperties) {
     this.itemId = itemId;
     this.barcode = barcode;
     this.countedQty = countedQty;
     this.unitCost = unitCost;
+    this.lotNumber = lotNumber;
+    this.expiryDate = expiryDate;
     this.additionalProperties = additionalProperties;
   }
 
@@ -66,6 +73,16 @@ public final class PostV1InventoryStockTakeRequestLinesItem {
     return unitCost;
   }
 
+  @JsonProperty("lotNumber")
+  public Optional<String> getLotNumber() {
+    return lotNumber;
+  }
+
+  @JsonProperty("expiryDate")
+  public Optional<String> getExpiryDate() {
+    return expiryDate;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -78,12 +95,12 @@ public final class PostV1InventoryStockTakeRequestLinesItem {
   }
 
   private boolean equalTo(PostV1InventoryStockTakeRequestLinesItem other) {
-    return itemId.equals(other.itemId) && barcode.equals(other.barcode) && countedQty.equals(other.countedQty) && unitCost.equals(other.unitCost);
+    return itemId.equals(other.itemId) && barcode.equals(other.barcode) && countedQty.equals(other.countedQty) && unitCost.equals(other.unitCost) && lotNumber.equals(other.lotNumber) && expiryDate.equals(other.expiryDate);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.itemId, this.barcode, this.countedQty, this.unitCost);
+    return Objects.hash(this.itemId, this.barcode, this.countedQty, this.unitCost, this.lotNumber, this.expiryDate);
   }
 
   @java.lang.Override
@@ -119,6 +136,14 @@ public final class PostV1InventoryStockTakeRequestLinesItem {
     _FinalStage unitCost(Optional<String> unitCost);
 
     _FinalStage unitCost(String unitCost);
+
+    _FinalStage lotNumber(Optional<String> lotNumber);
+
+    _FinalStage lotNumber(String lotNumber);
+
+    _FinalStage expiryDate(Optional<String> expiryDate);
+
+    _FinalStage expiryDate(String expiryDate);
   }
 
   @JsonIgnoreProperties(
@@ -126,6 +151,10 @@ public final class PostV1InventoryStockTakeRequestLinesItem {
   )
   public static final class Builder implements CountedQtyStage, _FinalStage {
     private String countedQty;
+
+    private Optional<String> expiryDate = Optional.empty();
+
+    private Optional<String> lotNumber = Optional.empty();
 
     private Optional<String> unitCost = Optional.empty();
 
@@ -145,6 +174,8 @@ public final class PostV1InventoryStockTakeRequestLinesItem {
       barcode(other.getBarcode());
       countedQty(other.getCountedQty());
       unitCost(other.getUnitCost());
+      lotNumber(other.getLotNumber());
+      expiryDate(other.getExpiryDate());
       return this;
     }
 
@@ -152,6 +183,38 @@ public final class PostV1InventoryStockTakeRequestLinesItem {
     @JsonSetter("countedQty")
     public _FinalStage countedQty(@NotNull String countedQty) {
       this.countedQty = Objects.requireNonNull(countedQty, "countedQty must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage expiryDate(String expiryDate) {
+      this.expiryDate = Optional.ofNullable(expiryDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "expiryDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage expiryDate(Optional<String> expiryDate) {
+      this.expiryDate = expiryDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lotNumber(String lotNumber) {
+      this.lotNumber = Optional.ofNullable(lotNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lotNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lotNumber(Optional<String> lotNumber) {
+      this.lotNumber = lotNumber;
       return this;
     }
 
@@ -205,7 +268,7 @@ public final class PostV1InventoryStockTakeRequestLinesItem {
 
     @java.lang.Override
     public PostV1InventoryStockTakeRequestLinesItem build() {
-      return new PostV1InventoryStockTakeRequestLinesItem(itemId, barcode, countedQty, unitCost, additionalProperties);
+      return new PostV1InventoryStockTakeRequestLinesItem(itemId, barcode, countedQty, unitCost, lotNumber, expiryDate, additionalProperties);
     }
 
     @java.lang.Override

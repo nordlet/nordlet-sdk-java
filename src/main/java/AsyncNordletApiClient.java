@@ -11,12 +11,15 @@ import com.nordlet.api.resources.agreements.AsyncAgreementsClient;
 import com.nordlet.api.resources.assets.AsyncAssetsClient;
 import com.nordlet.api.resources.audit.AsyncAuditClient;
 import com.nordlet.api.resources.bank.AsyncBankClient;
+import com.nordlet.api.resources.billing.AsyncBillingClient;
+import com.nordlet.api.resources.capture.AsyncCaptureClient;
 import com.nordlet.api.resources.cash.AsyncCashClient;
 import com.nordlet.api.resources.catalog.AsyncCatalogClient;
 import com.nordlet.api.resources.consolidation.AsyncConsolidationClient;
 import com.nordlet.api.resources.declarations.AsyncDeclarationsClient;
 import com.nordlet.api.resources.ecommerce.AsyncEcommerceClient;
 import com.nordlet.api.resources.files.AsyncFilesClient;
+import com.nordlet.api.resources.fleet.AsyncFleetClient;
 import com.nordlet.api.resources.hr.AsyncHrClient;
 import com.nordlet.api.resources.inventory.AsyncInventoryClient;
 import com.nordlet.api.resources.ledger.AsyncLedgerClient;
@@ -24,6 +27,7 @@ import com.nordlet.api.resources.partners.AsyncPartnersClient;
 import com.nordlet.api.resources.payroll.AsyncPayrollClient;
 import com.nordlet.api.resources.pos.AsyncPosClient;
 import com.nordlet.api.resources.production.AsyncProductionClient;
+import com.nordlet.api.resources.projects.AsyncProjectsClient;
 import com.nordlet.api.resources.public_.AsyncPublicClient;
 import com.nordlet.api.resources.purchases.AsyncPurchasesClient;
 import com.nordlet.api.resources.reference.AsyncReferenceClient;
@@ -46,6 +50,8 @@ public class AsyncNordletApiClient {
 
   protected final Supplier<AsyncPurchasesClient> purchasesClient;
 
+  protected final Supplier<AsyncCaptureClient> captureClient;
+
   protected final Supplier<AsyncDeclarationsClient> declarationsClient;
 
   protected final Supplier<AsyncLedgerClient> ledgerClient;
@@ -53,6 +59,8 @@ public class AsyncNordletApiClient {
   protected final Supplier<AsyncAssetsClient> assetsClient;
 
   protected final Supplier<AsyncHrClient> hrClient;
+
+  protected final Supplier<AsyncFleetClient> fleetClient;
 
   protected final Supplier<AsyncPayrollClient> payrollClient;
 
@@ -65,6 +73,8 @@ public class AsyncNordletApiClient {
   protected final Supplier<AsyncEcommerceClient> ecommerceClient;
 
   protected final Supplier<AsyncCashClient> cashClient;
+
+  protected final Supplier<AsyncProjectsClient> projectsClient;
 
   protected final Supplier<AsyncTransportClient> transportClient;
 
@@ -84,6 +94,8 @@ public class AsyncNordletApiClient {
 
   protected final Supplier<AsyncPublicClient> publicClient;
 
+  protected final Supplier<AsyncBillingClient> billingClient;
+
   protected final Supplier<AsyncAccountClient> accountClient;
 
   public AsyncNordletApiClient(ClientOptions clientOptions) {
@@ -93,16 +105,19 @@ public class AsyncNordletApiClient {
     this.catalogClient = Suppliers.memoize(() -> new AsyncCatalogClient(clientOptions));
     this.salesClient = Suppliers.memoize(() -> new AsyncSalesClient(clientOptions));
     this.purchasesClient = Suppliers.memoize(() -> new AsyncPurchasesClient(clientOptions));
+    this.captureClient = Suppliers.memoize(() -> new AsyncCaptureClient(clientOptions));
     this.declarationsClient = Suppliers.memoize(() -> new AsyncDeclarationsClient(clientOptions));
     this.ledgerClient = Suppliers.memoize(() -> new AsyncLedgerClient(clientOptions));
     this.assetsClient = Suppliers.memoize(() -> new AsyncAssetsClient(clientOptions));
     this.hrClient = Suppliers.memoize(() -> new AsyncHrClient(clientOptions));
+    this.fleetClient = Suppliers.memoize(() -> new AsyncFleetClient(clientOptions));
     this.payrollClient = Suppliers.memoize(() -> new AsyncPayrollClient(clientOptions));
     this.agreementsClient = Suppliers.memoize(() -> new AsyncAgreementsClient(clientOptions));
     this.inventoryClient = Suppliers.memoize(() -> new AsyncInventoryClient(clientOptions));
     this.productionClient = Suppliers.memoize(() -> new AsyncProductionClient(clientOptions));
     this.ecommerceClient = Suppliers.memoize(() -> new AsyncEcommerceClient(clientOptions));
     this.cashClient = Suppliers.memoize(() -> new AsyncCashClient(clientOptions));
+    this.projectsClient = Suppliers.memoize(() -> new AsyncProjectsClient(clientOptions));
     this.transportClient = Suppliers.memoize(() -> new AsyncTransportClient(clientOptions));
     this.posClient = Suppliers.memoize(() -> new AsyncPosClient(clientOptions));
     this.auditClient = Suppliers.memoize(() -> new AsyncAuditClient(clientOptions));
@@ -112,6 +127,7 @@ public class AsyncNordletApiClient {
     this.reportsClient = Suppliers.memoize(() -> new AsyncReportsClient(clientOptions));
     this.consolidationClient = Suppliers.memoize(() -> new AsyncConsolidationClient(clientOptions));
     this.publicClient = Suppliers.memoize(() -> new AsyncPublicClient(clientOptions));
+    this.billingClient = Suppliers.memoize(() -> new AsyncBillingClient(clientOptions));
     this.accountClient = Suppliers.memoize(() -> new AsyncAccountClient(clientOptions));
   }
 
@@ -135,6 +151,10 @@ public class AsyncNordletApiClient {
     return this.purchasesClient.get();
   }
 
+  public AsyncCaptureClient capture() {
+    return this.captureClient.get();
+  }
+
   public AsyncDeclarationsClient declarations() {
     return this.declarationsClient.get();
   }
@@ -149,6 +169,10 @@ public class AsyncNordletApiClient {
 
   public AsyncHrClient hr() {
     return this.hrClient.get();
+  }
+
+  public AsyncFleetClient fleet() {
+    return this.fleetClient.get();
   }
 
   public AsyncPayrollClient payroll() {
@@ -173,6 +197,10 @@ public class AsyncNordletApiClient {
 
   public AsyncCashClient cash() {
     return this.cashClient.get();
+  }
+
+  public AsyncProjectsClient projects() {
+    return this.projectsClient.get();
   }
 
   public AsyncTransportClient transport() {
@@ -209,6 +237,10 @@ public class AsyncNordletApiClient {
 
   public AsyncPublicClient public_() {
     return this.publicClient.get();
+  }
+
+  public AsyncBillingClient billing() {
+    return this.billingClient.get();
   }
 
   public AsyncAccountClient account() {

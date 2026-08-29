@@ -41,6 +41,8 @@ public final class PostV1PayrollRunsCreateResponseLinesItem {
 
   private final String gross;
 
+  private final String natura;
+
   private final List<PostV1PayrollRunsCreateResponseLinesItemAdditionsItem> additions;
 
   private final List<PostV1PayrollRunsCreateResponseLinesItemDeductionsItem> deductions;
@@ -60,7 +62,7 @@ public final class PostV1PayrollRunsCreateResponseLinesItem {
   private final Map<String, Object> additionalProperties;
 
   private PostV1PayrollRunsCreateResponseLinesItem(String id, String employeeId,
-      Optional<String> contractId, String employeeName, String gross,
+      Optional<String> contractId, String employeeName, String gross, String natura,
       List<PostV1PayrollRunsCreateResponseLinesItemAdditionsItem> additions,
       List<PostV1PayrollRunsCreateResponseLinesItemDeductionsItem> deductions, String taxableBase,
       String npd, String gpm, String sodraEmployee, String sodraEmployer, String net,
@@ -70,6 +72,7 @@ public final class PostV1PayrollRunsCreateResponseLinesItem {
     this.contractId = contractId;
     this.employeeName = employeeName;
     this.gross = gross;
+    this.natura = natura;
     this.additions = additions;
     this.deductions = deductions;
     this.taxableBase = taxableBase;
@@ -107,6 +110,11 @@ public final class PostV1PayrollRunsCreateResponseLinesItem {
   @JsonProperty("gross")
   public String getGross() {
     return gross;
+  }
+
+  @JsonProperty("natura")
+  public String getNatura() {
+    return natura;
   }
 
   @JsonProperty("additions")
@@ -170,12 +178,12 @@ public final class PostV1PayrollRunsCreateResponseLinesItem {
   }
 
   private boolean equalTo(PostV1PayrollRunsCreateResponseLinesItem other) {
-    return id.equals(other.id) && employeeId.equals(other.employeeId) && contractId.equals(other.contractId) && employeeName.equals(other.employeeName) && gross.equals(other.gross) && additions.equals(other.additions) && deductions.equals(other.deductions) && taxableBase.equals(other.taxableBase) && npd.equals(other.npd) && gpm.equals(other.gpm) && sodraEmployee.equals(other.sodraEmployee) && sodraEmployer.equals(other.sodraEmployer) && net.equals(other.net);
+    return id.equals(other.id) && employeeId.equals(other.employeeId) && contractId.equals(other.contractId) && employeeName.equals(other.employeeName) && gross.equals(other.gross) && natura.equals(other.natura) && additions.equals(other.additions) && deductions.equals(other.deductions) && taxableBase.equals(other.taxableBase) && npd.equals(other.npd) && gpm.equals(other.gpm) && sodraEmployee.equals(other.sodraEmployee) && sodraEmployer.equals(other.sodraEmployer) && net.equals(other.net);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.employeeId, this.contractId, this.employeeName, this.gross, this.additions, this.deductions, this.taxableBase, this.npd, this.gpm, this.sodraEmployee, this.sodraEmployer, this.net);
+    return Objects.hash(this.id, this.employeeId, this.contractId, this.employeeName, this.gross, this.natura, this.additions, this.deductions, this.taxableBase, this.npd, this.gpm, this.sodraEmployee, this.sodraEmployer, this.net);
   }
 
   @java.lang.Override
@@ -202,7 +210,11 @@ public final class PostV1PayrollRunsCreateResponseLinesItem {
   }
 
   public interface GrossStage {
-    TaxableBaseStage gross(@NotNull String gross);
+    NaturaStage gross(@NotNull String gross);
+  }
+
+  public interface NaturaStage {
+    TaxableBaseStage natura(@NotNull String natura);
   }
 
   public interface TaxableBaseStage {
@@ -260,7 +272,7 @@ public final class PostV1PayrollRunsCreateResponseLinesItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, EmployeeIdStage, EmployeeNameStage, GrossStage, TaxableBaseStage, NpdStage, GpmStage, SodraEmployeeStage, SodraEmployerStage, NetStage, _FinalStage {
+  public static final class Builder implements IdStage, EmployeeIdStage, EmployeeNameStage, GrossStage, NaturaStage, TaxableBaseStage, NpdStage, GpmStage, SodraEmployeeStage, SodraEmployerStage, NetStage, _FinalStage {
     private String id;
 
     private String employeeId;
@@ -268,6 +280,8 @@ public final class PostV1PayrollRunsCreateResponseLinesItem {
     private String employeeName;
 
     private String gross;
+
+    private String natura;
 
     private String taxableBase;
 
@@ -300,6 +314,7 @@ public final class PostV1PayrollRunsCreateResponseLinesItem {
       contractId(other.getContractId());
       employeeName(other.getEmployeeName());
       gross(other.getGross());
+      natura(other.getNatura());
       additions(other.getAdditions());
       deductions(other.getDeductions());
       taxableBase(other.getTaxableBase());
@@ -334,8 +349,15 @@ public final class PostV1PayrollRunsCreateResponseLinesItem {
 
     @java.lang.Override
     @JsonSetter("gross")
-    public TaxableBaseStage gross(@NotNull String gross) {
+    public NaturaStage gross(@NotNull String gross) {
       this.gross = Objects.requireNonNull(gross, "gross must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("natura")
+    public TaxableBaseStage natura(@NotNull String natura) {
+      this.natura = Objects.requireNonNull(natura, "natura must not be null");
       return this;
     }
 
@@ -473,7 +495,7 @@ public final class PostV1PayrollRunsCreateResponseLinesItem {
 
     @java.lang.Override
     public PostV1PayrollRunsCreateResponseLinesItem build() {
-      return new PostV1PayrollRunsCreateResponseLinesItem(id, employeeId, contractId, employeeName, gross, additions, deductions, taxableBase, npd, gpm, sodraEmployee, sodraEmployer, net, additionalProperties);
+      return new PostV1PayrollRunsCreateResponseLinesItem(id, employeeId, contractId, employeeName, gross, natura, additions, deductions, taxableBase, npd, gpm, sodraEmployee, sodraEmployer, net, additionalProperties);
     }
 
     @java.lang.Override

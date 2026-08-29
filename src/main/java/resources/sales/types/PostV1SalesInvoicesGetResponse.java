@@ -84,6 +84,8 @@ public final class PostV1SalesInvoicesGetResponse {
 
   private final List<PostV1SalesInvoicesGetResponseLinesItem> lines;
 
+  private final Optional<PostV1SalesInvoicesGetResponseVatEvidence> vatEvidence;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1SalesInvoicesGetResponse(String id, String partnerId,
@@ -96,6 +98,7 @@ public final class PostV1SalesInvoicesGetResponse {
       Optional<String> agreementId, Optional<PostV1SalesInvoicesGetResponseVatScheme> vatScheme,
       Optional<String> vatCountryCode, boolean deemedSupplier, Optional<String> notes,
       String createdAt, String updatedAt, List<PostV1SalesInvoicesGetResponseLinesItem> lines,
+      Optional<PostV1SalesInvoicesGetResponseVatEvidence> vatEvidence,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.partnerId = partnerId;
@@ -123,6 +126,7 @@ public final class PostV1SalesInvoicesGetResponse {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.lines = lines;
+    this.vatEvidence = vatEvidence;
     this.additionalProperties = additionalProperties;
   }
 
@@ -292,6 +296,14 @@ public final class PostV1SalesInvoicesGetResponse {
     return lines;
   }
 
+  @JsonIgnore
+  public Optional<PostV1SalesInvoicesGetResponseVatEvidence> getVatEvidence() {
+    if (vatEvidence == null) {
+      return Optional.empty();
+    }
+    return vatEvidence;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -400,6 +412,15 @@ public final class PostV1SalesInvoicesGetResponse {
     return notes;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("vatEvidence")
+  private Optional<PostV1SalesInvoicesGetResponseVatEvidence> _getVatEvidence() {
+    return vatEvidence;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -412,12 +433,12 @@ public final class PostV1SalesInvoicesGetResponse {
   }
 
   private boolean equalTo(PostV1SalesInvoicesGetResponse other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && lines.equals(other.lines);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && lines.equals(other.lines) && vatEvidence.equals(other.vatEvidence);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.agreementId, this.vatScheme, this.vatCountryCode, this.deemedSupplier, this.notes, this.createdAt, this.updatedAt, this.lines);
+    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.agreementId, this.vatScheme, this.vatCountryCode, this.deemedSupplier, this.notes, this.createdAt, this.updatedAt, this.lines, this.vatEvidence);
   }
 
   @java.lang.Override
@@ -567,6 +588,12 @@ public final class PostV1SalesInvoicesGetResponse {
     _FinalStage addLines(PostV1SalesInvoicesGetResponseLinesItem lines);
 
     _FinalStage addAllLines(List<PostV1SalesInvoicesGetResponseLinesItem> lines);
+
+    _FinalStage vatEvidence(Optional<PostV1SalesInvoicesGetResponseVatEvidence> vatEvidence);
+
+    _FinalStage vatEvidence(PostV1SalesInvoicesGetResponseVatEvidence vatEvidence);
+
+    _FinalStage vatEvidence(Nullable<PostV1SalesInvoicesGetResponseVatEvidence> vatEvidence);
   }
 
   @JsonIgnoreProperties(
@@ -598,6 +625,8 @@ public final class PostV1SalesInvoicesGetResponse {
     private String createdAt;
 
     private String updatedAt;
+
+    private Optional<PostV1SalesInvoicesGetResponseVatEvidence> vatEvidence = Optional.empty();
 
     private List<PostV1SalesInvoicesGetResponseLinesItem> lines = new ArrayList<>();
 
@@ -659,6 +688,7 @@ public final class PostV1SalesInvoicesGetResponse {
       createdAt(other.getCreatedAt());
       updatedAt(other.getUpdatedAt());
       lines(other.getLines());
+      vatEvidence(other.getVatEvidence());
       return this;
     }
 
@@ -751,6 +781,38 @@ public final class PostV1SalesInvoicesGetResponse {
     @JsonSetter("updatedAt")
     public _FinalStage updatedAt(@NotNull String updatedAt) {
       this.updatedAt = Objects.requireNonNull(updatedAt, "updatedAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatEvidence(
+        Nullable<PostV1SalesInvoicesGetResponseVatEvidence> vatEvidence) {
+      if (vatEvidence.isNull()) {
+        this.vatEvidence = null;
+      }
+      else if (vatEvidence.isEmpty()) {
+        this.vatEvidence = Optional.empty();
+      }
+      else {
+        this.vatEvidence = Optional.of(vatEvidence.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatEvidence(PostV1SalesInvoicesGetResponseVatEvidence vatEvidence) {
+      this.vatEvidence = Optional.ofNullable(vatEvidence);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "vatEvidence",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage vatEvidence(
+        Optional<PostV1SalesInvoicesGetResponseVatEvidence> vatEvidence) {
+      this.vatEvidence = vatEvidence;
       return this;
     }
 
@@ -1143,7 +1205,7 @@ public final class PostV1SalesInvoicesGetResponse {
 
     @java.lang.Override
     public PostV1SalesInvoicesGetResponse build() {
-      return new PostV1SalesInvoicesGetResponse(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, agreementId, vatScheme, vatCountryCode, deemedSupplier, notes, createdAt, updatedAt, lines, additionalProperties);
+      return new PostV1SalesInvoicesGetResponse(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, agreementId, vatScheme, vatCountryCode, deemedSupplier, notes, createdAt, updatedAt, lines, vatEvidence, additionalProperties);
     }
 
     @java.lang.Override

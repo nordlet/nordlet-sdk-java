@@ -50,6 +50,8 @@ public final class PostV1SalesInvoicesIssueResponseLinesItem {
 
   private final Optional<String> costCenterId;
 
+  private final Optional<String> projectId;
+
   private final String lineNet;
 
   private final String lineVat;
@@ -77,8 +79,9 @@ public final class PostV1SalesInvoicesIssueResponseLinesItem {
   private PostV1SalesInvoicesIssueResponseLinesItem(String id, Optional<String> itemId,
       String description, String unit, String quantity, Optional<String> unitPriceExclVat,
       Optional<String> unitPriceInclVat, String vatRatePercent, Optional<String> vatClassifierCode,
-      Optional<String> costCenterId, String lineNet, String lineVat, String lineGross,
-      long sortOrder, PostV1SalesInvoicesIssueResponseLinesItemRecognitionMethod recognitionMethod,
+      Optional<String> costCenterId, Optional<String> projectId, String lineNet, String lineVat,
+      String lineGross, long sortOrder,
+      PostV1SalesInvoicesIssueResponseLinesItemRecognitionMethod recognitionMethod,
       Optional<String> recognitionStartDate, Optional<String> recognitionEndDate,
       Optional<List<PostV1SalesInvoicesIssueResponseLinesItemRecognitionMilestonesItem>> recognitionMilestones,
       Optional<String> standaloneSellingPrice, Optional<String> allocatedNet,
@@ -93,6 +96,7 @@ public final class PostV1SalesInvoicesIssueResponseLinesItem {
     this.vatRatePercent = vatRatePercent;
     this.vatClassifierCode = vatClassifierCode;
     this.costCenterId = costCenterId;
+    this.projectId = projectId;
     this.lineNet = lineNet;
     this.lineVat = lineVat;
     this.lineGross = lineGross;
@@ -170,6 +174,14 @@ public final class PostV1SalesInvoicesIssueResponseLinesItem {
       return Optional.empty();
     }
     return costCenterId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getProjectId() {
+    if (projectId == null) {
+      return Optional.empty();
+    }
+    return projectId;
   }
 
   @JsonProperty("lineNet")
@@ -295,6 +307,15 @@ public final class PostV1SalesInvoicesIssueResponseLinesItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("projectId")
+  private Optional<String> _getProjectId() {
+    return projectId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("recognitionStartDate")
   private Optional<String> _getRecognitionStartDate() {
     return recognitionStartDate;
@@ -358,12 +379,12 @@ public final class PostV1SalesInvoicesIssueResponseLinesItem {
   }
 
   private boolean equalTo(PostV1SalesInvoicesIssueResponseLinesItem other) {
-    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder && recognitionMethod.equals(other.recognitionMethod) && recognitionStartDate.equals(other.recognitionStartDate) && recognitionEndDate.equals(other.recognitionEndDate) && recognitionMilestones.equals(other.recognitionMilestones) && standaloneSellingPrice.equals(other.standaloneSellingPrice) && allocatedNet.equals(other.allocatedNet) && refundEstimatePercent.equals(other.refundEstimatePercent);
+    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder && recognitionMethod.equals(other.recognitionMethod) && recognitionStartDate.equals(other.recognitionStartDate) && recognitionEndDate.equals(other.recognitionEndDate) && recognitionMilestones.equals(other.recognitionMilestones) && standaloneSellingPrice.equals(other.standaloneSellingPrice) && allocatedNet.equals(other.allocatedNet) && refundEstimatePercent.equals(other.refundEstimatePercent);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.lineNet, this.lineVat, this.lineGross, this.sortOrder, this.recognitionMethod, this.recognitionStartDate, this.recognitionEndDate, this.recognitionMilestones, this.standaloneSellingPrice, this.allocatedNet, this.refundEstimatePercent);
+    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.lineNet, this.lineVat, this.lineGross, this.sortOrder, this.recognitionMethod, this.recognitionStartDate, this.recognitionEndDate, this.recognitionMilestones, this.standaloneSellingPrice, this.allocatedNet, this.refundEstimatePercent);
   }
 
   @java.lang.Override
@@ -455,6 +476,12 @@ public final class PostV1SalesInvoicesIssueResponseLinesItem {
 
     _FinalStage costCenterId(Nullable<String> costCenterId);
 
+    _FinalStage projectId(Optional<String> projectId);
+
+    _FinalStage projectId(String projectId);
+
+    _FinalStage projectId(Nullable<String> projectId);
+
     _FinalStage recognitionStartDate(Optional<String> recognitionStartDate);
 
     _FinalStage recognitionStartDate(String recognitionStartDate);
@@ -531,6 +558,8 @@ public final class PostV1SalesInvoicesIssueResponseLinesItem {
 
     private Optional<String> recognitionStartDate = Optional.empty();
 
+    private Optional<String> projectId = Optional.empty();
+
     private Optional<String> costCenterId = Optional.empty();
 
     private Optional<String> vatClassifierCode = Optional.empty();
@@ -559,6 +588,7 @@ public final class PostV1SalesInvoicesIssueResponseLinesItem {
       vatRatePercent(other.getVatRatePercent());
       vatClassifierCode(other.getVatClassifierCode());
       costCenterId(other.getCostCenterId());
+      projectId(other.getProjectId());
       lineNet(other.getLineNet());
       lineVat(other.getLineVat());
       lineGross(other.getLineGross());
@@ -828,6 +858,36 @@ public final class PostV1SalesInvoicesIssueResponseLinesItem {
     }
 
     @java.lang.Override
+    public _FinalStage projectId(Nullable<String> projectId) {
+      if (projectId.isNull()) {
+        this.projectId = null;
+      }
+      else if (projectId.isEmpty()) {
+        this.projectId = Optional.empty();
+      }
+      else {
+        this.projectId = Optional.of(projectId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage projectId(String projectId) {
+      this.projectId = Optional.ofNullable(projectId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "projectId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage projectId(Optional<String> projectId) {
+      this.projectId = projectId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage costCenterId(Nullable<String> costCenterId) {
       if (costCenterId.isNull()) {
         this.costCenterId = null;
@@ -979,7 +1039,7 @@ public final class PostV1SalesInvoicesIssueResponseLinesItem {
 
     @java.lang.Override
     public PostV1SalesInvoicesIssueResponseLinesItem build() {
-      return new PostV1SalesInvoicesIssueResponseLinesItem(id, itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, lineNet, lineVat, lineGross, sortOrder, recognitionMethod, recognitionStartDate, recognitionEndDate, recognitionMilestones, standaloneSellingPrice, allocatedNet, refundEstimatePercent, additionalProperties);
+      return new PostV1SalesInvoicesIssueResponseLinesItem(id, itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, lineNet, lineVat, lineGross, sortOrder, recognitionMethod, recognitionStartDate, recognitionEndDate, recognitionMilestones, standaloneSellingPrice, allocatedNet, refundEstimatePercent, additionalProperties);
     }
 
     @java.lang.Override

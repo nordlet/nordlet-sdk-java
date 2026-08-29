@@ -6,17 +6,22 @@ package com.nordlet.api.resources.production.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nordlet.api.core.Nullable;
+import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -34,18 +39,21 @@ public final class PostV1ProductionBomsListResponseRowsItem {
 
   private final String outputQuantity;
 
+  private final Optional<String> routingId;
+
   private final boolean isActive;
 
   private final Map<String, Object> additionalProperties;
 
   private PostV1ProductionBomsListResponseRowsItem(String id, String code, String name,
-      String finishedItemId, String outputQuantity, boolean isActive,
+      String finishedItemId, String outputQuantity, Optional<String> routingId, boolean isActive,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.code = code;
     this.name = name;
     this.finishedItemId = finishedItemId;
     this.outputQuantity = outputQuantity;
+    this.routingId = routingId;
     this.isActive = isActive;
     this.additionalProperties = additionalProperties;
   }
@@ -75,9 +83,26 @@ public final class PostV1ProductionBomsListResponseRowsItem {
     return outputQuantity;
   }
 
+  @JsonIgnore
+  public Optional<String> getRoutingId() {
+    if (routingId == null) {
+      return Optional.empty();
+    }
+    return routingId;
+  }
+
   @JsonProperty("isActive")
   public boolean getIsActive() {
     return isActive;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("routingId")
+  private Optional<String> _getRoutingId() {
+    return routingId;
   }
 
   @java.lang.Override
@@ -92,12 +117,12 @@ public final class PostV1ProductionBomsListResponseRowsItem {
   }
 
   private boolean equalTo(PostV1ProductionBomsListResponseRowsItem other) {
-    return id.equals(other.id) && code.equals(other.code) && name.equals(other.name) && finishedItemId.equals(other.finishedItemId) && outputQuantity.equals(other.outputQuantity) && isActive == other.isActive;
+    return id.equals(other.id) && code.equals(other.code) && name.equals(other.name) && finishedItemId.equals(other.finishedItemId) && outputQuantity.equals(other.outputQuantity) && routingId.equals(other.routingId) && isActive == other.isActive;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.code, this.name, this.finishedItemId, this.outputQuantity, this.isActive);
+    return Objects.hash(this.id, this.code, this.name, this.finishedItemId, this.outputQuantity, this.routingId, this.isActive);
   }
 
   @java.lang.Override
@@ -141,6 +166,12 @@ public final class PostV1ProductionBomsListResponseRowsItem {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage routingId(Optional<String> routingId);
+
+    _FinalStage routingId(String routingId);
+
+    _FinalStage routingId(Nullable<String> routingId);
   }
 
   @JsonIgnoreProperties(
@@ -159,6 +190,8 @@ public final class PostV1ProductionBomsListResponseRowsItem {
 
     private boolean isActive;
 
+    private Optional<String> routingId = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -172,6 +205,7 @@ public final class PostV1ProductionBomsListResponseRowsItem {
       name(other.getName());
       finishedItemId(other.getFinishedItemId());
       outputQuantity(other.getOutputQuantity());
+      routingId(other.getRoutingId());
       isActive(other.getIsActive());
       return this;
     }
@@ -219,8 +253,38 @@ public final class PostV1ProductionBomsListResponseRowsItem {
     }
 
     @java.lang.Override
+    public _FinalStage routingId(Nullable<String> routingId) {
+      if (routingId.isNull()) {
+        this.routingId = null;
+      }
+      else if (routingId.isEmpty()) {
+        this.routingId = Optional.empty();
+      }
+      else {
+        this.routingId = Optional.of(routingId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage routingId(String routingId) {
+      this.routingId = Optional.ofNullable(routingId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "routingId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage routingId(Optional<String> routingId) {
+      this.routingId = routingId;
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1ProductionBomsListResponseRowsItem build() {
-      return new PostV1ProductionBomsListResponseRowsItem(id, code, name, finishedItemId, outputQuantity, isActive, additionalProperties);
+      return new PostV1ProductionBomsListResponseRowsItem(id, code, name, finishedItemId, outputQuantity, routingId, isActive, additionalProperties);
     }
 
     @java.lang.Override

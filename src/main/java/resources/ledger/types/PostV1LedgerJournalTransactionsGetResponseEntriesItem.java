@@ -39,6 +39,8 @@ public final class PostV1LedgerJournalTransactionsGetResponseEntriesItem {
 
   private final Optional<String> costCenterId;
 
+  private final Optional<String> projectId;
+
   private final String debit;
 
   private final String credit;
@@ -48,13 +50,15 @@ public final class PostV1LedgerJournalTransactionsGetResponseEntriesItem {
   private final Map<String, Object> additionalProperties;
 
   private PostV1LedgerJournalTransactionsGetResponseEntriesItem(String id, String accountId,
-      String accountCode, String accountName, Optional<String> costCenterId, String debit,
-      String credit, Optional<String> description, Map<String, Object> additionalProperties) {
+      String accountCode, String accountName, Optional<String> costCenterId,
+      Optional<String> projectId, String debit, String credit, Optional<String> description,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.accountId = accountId;
     this.accountCode = accountCode;
     this.accountName = accountName;
     this.costCenterId = costCenterId;
+    this.projectId = projectId;
     this.debit = debit;
     this.credit = credit;
     this.description = description;
@@ -89,6 +93,14 @@ public final class PostV1LedgerJournalTransactionsGetResponseEntriesItem {
     return costCenterId;
   }
 
+  @JsonIgnore
+  public Optional<String> getProjectId() {
+    if (projectId == null) {
+      return Optional.empty();
+    }
+    return projectId;
+  }
+
   @JsonProperty("debit")
   public String getDebit() {
     return debit;
@@ -120,6 +132,15 @@ public final class PostV1LedgerJournalTransactionsGetResponseEntriesItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("projectId")
+  private Optional<String> _getProjectId() {
+    return projectId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("description")
   private Optional<String> _getDescription() {
     return description;
@@ -137,12 +158,12 @@ public final class PostV1LedgerJournalTransactionsGetResponseEntriesItem {
   }
 
   private boolean equalTo(PostV1LedgerJournalTransactionsGetResponseEntriesItem other) {
-    return id.equals(other.id) && accountId.equals(other.accountId) && accountCode.equals(other.accountCode) && accountName.equals(other.accountName) && costCenterId.equals(other.costCenterId) && debit.equals(other.debit) && credit.equals(other.credit) && description.equals(other.description);
+    return id.equals(other.id) && accountId.equals(other.accountId) && accountCode.equals(other.accountCode) && accountName.equals(other.accountName) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && debit.equals(other.debit) && credit.equals(other.credit) && description.equals(other.description);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.accountId, this.accountCode, this.accountName, this.costCenterId, this.debit, this.credit, this.description);
+    return Objects.hash(this.id, this.accountId, this.accountCode, this.accountName, this.costCenterId, this.projectId, this.debit, this.credit, this.description);
   }
 
   @java.lang.Override
@@ -193,6 +214,12 @@ public final class PostV1LedgerJournalTransactionsGetResponseEntriesItem {
 
     _FinalStage costCenterId(Nullable<String> costCenterId);
 
+    _FinalStage projectId(Optional<String> projectId);
+
+    _FinalStage projectId(String projectId);
+
+    _FinalStage projectId(Nullable<String> projectId);
+
     _FinalStage description(Optional<String> description);
 
     _FinalStage description(String description);
@@ -218,6 +245,8 @@ public final class PostV1LedgerJournalTransactionsGetResponseEntriesItem {
 
     private Optional<String> description = Optional.empty();
 
+    private Optional<String> projectId = Optional.empty();
+
     private Optional<String> costCenterId = Optional.empty();
 
     @JsonAnySetter
@@ -233,6 +262,7 @@ public final class PostV1LedgerJournalTransactionsGetResponseEntriesItem {
       accountCode(other.getAccountCode());
       accountName(other.getAccountName());
       costCenterId(other.getCostCenterId());
+      projectId(other.getProjectId());
       debit(other.getDebit());
       credit(other.getCredit());
       description(other.getDescription());
@@ -312,6 +342,36 @@ public final class PostV1LedgerJournalTransactionsGetResponseEntriesItem {
     }
 
     @java.lang.Override
+    public _FinalStage projectId(Nullable<String> projectId) {
+      if (projectId.isNull()) {
+        this.projectId = null;
+      }
+      else if (projectId.isEmpty()) {
+        this.projectId = Optional.empty();
+      }
+      else {
+        this.projectId = Optional.of(projectId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage projectId(String projectId) {
+      this.projectId = Optional.ofNullable(projectId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "projectId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage projectId(Optional<String> projectId) {
+      this.projectId = projectId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage costCenterId(Nullable<String> costCenterId) {
       if (costCenterId.isNull()) {
         this.costCenterId = null;
@@ -343,7 +403,7 @@ public final class PostV1LedgerJournalTransactionsGetResponseEntriesItem {
 
     @java.lang.Override
     public PostV1LedgerJournalTransactionsGetResponseEntriesItem build() {
-      return new PostV1LedgerJournalTransactionsGetResponseEntriesItem(id, accountId, accountCode, accountName, costCenterId, debit, credit, description, additionalProperties);
+      return new PostV1LedgerJournalTransactionsGetResponseEntriesItem(id, accountId, accountCode, accountName, costCenterId, projectId, debit, credit, description, additionalProperties);
     }
 
     @java.lang.Override

@@ -37,11 +37,21 @@ public final class PostV1ProductionOrdersCompleteResponse {
 
   private final String warehouseId;
 
+  private final Optional<String> routingId;
+
   private final String quantity;
 
   private final String date;
 
   private final PostV1ProductionOrdersCompleteResponseStatus status;
+
+  private final Optional<String> scrappedQuantity;
+
+  private final Optional<String> materialCost;
+
+  private final Optional<String> laborCost;
+
+  private final Optional<String> scrapCost;
 
   private final Optional<String> totalCost;
 
@@ -55,16 +65,23 @@ public final class PostV1ProductionOrdersCompleteResponse {
 
   private PostV1ProductionOrdersCompleteResponse(String id,
       PostV1ProductionOrdersCompleteResponseType type, String bomId, String warehouseId,
-      String quantity, String date, PostV1ProductionOrdersCompleteResponseStatus status,
+      Optional<String> routingId, String quantity, String date,
+      PostV1ProductionOrdersCompleteResponseStatus status, Optional<String> scrappedQuantity,
+      Optional<String> materialCost, Optional<String> laborCost, Optional<String> scrapCost,
       Optional<String> totalCost, Optional<String> journalTransactionId, Optional<String> notes,
       String createdAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.type = type;
     this.bomId = bomId;
     this.warehouseId = warehouseId;
+    this.routingId = routingId;
     this.quantity = quantity;
     this.date = date;
     this.status = status;
+    this.scrappedQuantity = scrappedQuantity;
+    this.materialCost = materialCost;
+    this.laborCost = laborCost;
+    this.scrapCost = scrapCost;
     this.totalCost = totalCost;
     this.journalTransactionId = journalTransactionId;
     this.notes = notes;
@@ -92,6 +109,14 @@ public final class PostV1ProductionOrdersCompleteResponse {
     return warehouseId;
   }
 
+  @JsonIgnore
+  public Optional<String> getRoutingId() {
+    if (routingId == null) {
+      return Optional.empty();
+    }
+    return routingId;
+  }
+
   @JsonProperty("quantity")
   public String getQuantity() {
     return quantity;
@@ -105,6 +130,38 @@ public final class PostV1ProductionOrdersCompleteResponse {
   @JsonProperty("status")
   public PostV1ProductionOrdersCompleteResponseStatus getStatus() {
     return status;
+  }
+
+  @JsonIgnore
+  public Optional<String> getScrappedQuantity() {
+    if (scrappedQuantity == null) {
+      return Optional.empty();
+    }
+    return scrappedQuantity;
+  }
+
+  @JsonIgnore
+  public Optional<String> getMaterialCost() {
+    if (materialCost == null) {
+      return Optional.empty();
+    }
+    return materialCost;
+  }
+
+  @JsonIgnore
+  public Optional<String> getLaborCost() {
+    if (laborCost == null) {
+      return Optional.empty();
+    }
+    return laborCost;
+  }
+
+  @JsonIgnore
+  public Optional<String> getScrapCost() {
+    if (scrapCost == null) {
+      return Optional.empty();
+    }
+    return scrapCost;
   }
 
   @JsonIgnore
@@ -134,6 +191,51 @@ public final class PostV1ProductionOrdersCompleteResponse {
   @JsonProperty("createdAt")
   public String getCreatedAt() {
     return createdAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("routingId")
+  private Optional<String> _getRoutingId() {
+    return routingId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("scrappedQuantity")
+  private Optional<String> _getScrappedQuantity() {
+    return scrappedQuantity;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("materialCost")
+  private Optional<String> _getMaterialCost() {
+    return materialCost;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("laborCost")
+  private Optional<String> _getLaborCost() {
+    return laborCost;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("scrapCost")
+  private Optional<String> _getScrapCost() {
+    return scrapCost;
   }
 
   @JsonInclude(
@@ -175,12 +277,12 @@ public final class PostV1ProductionOrdersCompleteResponse {
   }
 
   private boolean equalTo(PostV1ProductionOrdersCompleteResponse other) {
-    return id.equals(other.id) && type.equals(other.type) && bomId.equals(other.bomId) && warehouseId.equals(other.warehouseId) && quantity.equals(other.quantity) && date.equals(other.date) && status.equals(other.status) && totalCost.equals(other.totalCost) && journalTransactionId.equals(other.journalTransactionId) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && type.equals(other.type) && bomId.equals(other.bomId) && warehouseId.equals(other.warehouseId) && routingId.equals(other.routingId) && quantity.equals(other.quantity) && date.equals(other.date) && status.equals(other.status) && scrappedQuantity.equals(other.scrappedQuantity) && materialCost.equals(other.materialCost) && laborCost.equals(other.laborCost) && scrapCost.equals(other.scrapCost) && totalCost.equals(other.totalCost) && journalTransactionId.equals(other.journalTransactionId) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.type, this.bomId, this.warehouseId, this.quantity, this.date, this.status, this.totalCost, this.journalTransactionId, this.notes, this.createdAt);
+    return Objects.hash(this.id, this.type, this.bomId, this.warehouseId, this.routingId, this.quantity, this.date, this.status, this.scrappedQuantity, this.materialCost, this.laborCost, this.scrapCost, this.totalCost, this.journalTransactionId, this.notes, this.createdAt);
   }
 
   @java.lang.Override
@@ -233,6 +335,36 @@ public final class PostV1ProductionOrdersCompleteResponse {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage routingId(Optional<String> routingId);
+
+    _FinalStage routingId(String routingId);
+
+    _FinalStage routingId(Nullable<String> routingId);
+
+    _FinalStage scrappedQuantity(Optional<String> scrappedQuantity);
+
+    _FinalStage scrappedQuantity(String scrappedQuantity);
+
+    _FinalStage scrappedQuantity(Nullable<String> scrappedQuantity);
+
+    _FinalStage materialCost(Optional<String> materialCost);
+
+    _FinalStage materialCost(String materialCost);
+
+    _FinalStage materialCost(Nullable<String> materialCost);
+
+    _FinalStage laborCost(Optional<String> laborCost);
+
+    _FinalStage laborCost(String laborCost);
+
+    _FinalStage laborCost(Nullable<String> laborCost);
+
+    _FinalStage scrapCost(Optional<String> scrapCost);
+
+    _FinalStage scrapCost(String scrapCost);
+
+    _FinalStage scrapCost(Nullable<String> scrapCost);
+
     _FinalStage totalCost(Optional<String> totalCost);
 
     _FinalStage totalCost(String totalCost);
@@ -278,6 +410,16 @@ public final class PostV1ProductionOrdersCompleteResponse {
 
     private Optional<String> totalCost = Optional.empty();
 
+    private Optional<String> scrapCost = Optional.empty();
+
+    private Optional<String> laborCost = Optional.empty();
+
+    private Optional<String> materialCost = Optional.empty();
+
+    private Optional<String> scrappedQuantity = Optional.empty();
+
+    private Optional<String> routingId = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -290,9 +432,14 @@ public final class PostV1ProductionOrdersCompleteResponse {
       type(other.getType());
       bomId(other.getBomId());
       warehouseId(other.getWarehouseId());
+      routingId(other.getRoutingId());
       quantity(other.getQuantity());
       date(other.getDate());
       status(other.getStatus());
+      scrappedQuantity(other.getScrappedQuantity());
+      materialCost(other.getMaterialCost());
+      laborCost(other.getLaborCost());
+      scrapCost(other.getScrapCost());
       totalCost(other.getTotalCost());
       journalTransactionId(other.getJournalTransactionId());
       notes(other.getNotes());
@@ -447,8 +594,158 @@ public final class PostV1ProductionOrdersCompleteResponse {
     }
 
     @java.lang.Override
+    public _FinalStage scrapCost(Nullable<String> scrapCost) {
+      if (scrapCost.isNull()) {
+        this.scrapCost = null;
+      }
+      else if (scrapCost.isEmpty()) {
+        this.scrapCost = Optional.empty();
+      }
+      else {
+        this.scrapCost = Optional.of(scrapCost.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage scrapCost(String scrapCost) {
+      this.scrapCost = Optional.ofNullable(scrapCost);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "scrapCost",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage scrapCost(Optional<String> scrapCost) {
+      this.scrapCost = scrapCost;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage laborCost(Nullable<String> laborCost) {
+      if (laborCost.isNull()) {
+        this.laborCost = null;
+      }
+      else if (laborCost.isEmpty()) {
+        this.laborCost = Optional.empty();
+      }
+      else {
+        this.laborCost = Optional.of(laborCost.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage laborCost(String laborCost) {
+      this.laborCost = Optional.ofNullable(laborCost);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "laborCost",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage laborCost(Optional<String> laborCost) {
+      this.laborCost = laborCost;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage materialCost(Nullable<String> materialCost) {
+      if (materialCost.isNull()) {
+        this.materialCost = null;
+      }
+      else if (materialCost.isEmpty()) {
+        this.materialCost = Optional.empty();
+      }
+      else {
+        this.materialCost = Optional.of(materialCost.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage materialCost(String materialCost) {
+      this.materialCost = Optional.ofNullable(materialCost);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "materialCost",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage materialCost(Optional<String> materialCost) {
+      this.materialCost = materialCost;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage scrappedQuantity(Nullable<String> scrappedQuantity) {
+      if (scrappedQuantity.isNull()) {
+        this.scrappedQuantity = null;
+      }
+      else if (scrappedQuantity.isEmpty()) {
+        this.scrappedQuantity = Optional.empty();
+      }
+      else {
+        this.scrappedQuantity = Optional.of(scrappedQuantity.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage scrappedQuantity(String scrappedQuantity) {
+      this.scrappedQuantity = Optional.ofNullable(scrappedQuantity);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "scrappedQuantity",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage scrappedQuantity(Optional<String> scrappedQuantity) {
+      this.scrappedQuantity = scrappedQuantity;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage routingId(Nullable<String> routingId) {
+      if (routingId.isNull()) {
+        this.routingId = null;
+      }
+      else if (routingId.isEmpty()) {
+        this.routingId = Optional.empty();
+      }
+      else {
+        this.routingId = Optional.of(routingId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage routingId(String routingId) {
+      this.routingId = Optional.ofNullable(routingId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "routingId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage routingId(Optional<String> routingId) {
+      this.routingId = routingId;
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1ProductionOrdersCompleteResponse build() {
-      return new PostV1ProductionOrdersCompleteResponse(id, type, bomId, warehouseId, quantity, date, status, totalCost, journalTransactionId, notes, createdAt, additionalProperties);
+      return new PostV1ProductionOrdersCompleteResponse(id, type, bomId, warehouseId, routingId, quantity, date, status, scrappedQuantity, materialCost, laborCost, scrapCost, totalCost, journalTransactionId, notes, createdAt, additionalProperties);
     }
 
     @java.lang.Override

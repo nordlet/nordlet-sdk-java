@@ -30,6 +30,8 @@ public final class PostV1LedgerJournalTransactionsCreateRequestEntriesItem {
 
   private final Optional<String> costCenterId;
 
+  private final Optional<String> projectId;
+
   private final Optional<String> debit;
 
   private final Optional<String> credit;
@@ -39,10 +41,12 @@ public final class PostV1LedgerJournalTransactionsCreateRequestEntriesItem {
   private final Map<String, Object> additionalProperties;
 
   private PostV1LedgerJournalTransactionsCreateRequestEntriesItem(String accountCode,
-      Optional<String> costCenterId, Optional<String> debit, Optional<String> credit,
-      Optional<String> description, Map<String, Object> additionalProperties) {
+      Optional<String> costCenterId, Optional<String> projectId, Optional<String> debit,
+      Optional<String> credit, Optional<String> description,
+      Map<String, Object> additionalProperties) {
     this.accountCode = accountCode;
     this.costCenterId = costCenterId;
+    this.projectId = projectId;
     this.debit = debit;
     this.credit = credit;
     this.description = description;
@@ -57,6 +61,11 @@ public final class PostV1LedgerJournalTransactionsCreateRequestEntriesItem {
   @JsonProperty("costCenterId")
   public Optional<String> getCostCenterId() {
     return costCenterId;
+  }
+
+  @JsonProperty("projectId")
+  public Optional<String> getProjectId() {
+    return projectId;
   }
 
   @JsonProperty("debit")
@@ -86,12 +95,12 @@ public final class PostV1LedgerJournalTransactionsCreateRequestEntriesItem {
   }
 
   private boolean equalTo(PostV1LedgerJournalTransactionsCreateRequestEntriesItem other) {
-    return accountCode.equals(other.accountCode) && costCenterId.equals(other.costCenterId) && debit.equals(other.debit) && credit.equals(other.credit) && description.equals(other.description);
+    return accountCode.equals(other.accountCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && debit.equals(other.debit) && credit.equals(other.credit) && description.equals(other.description);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.accountCode, this.costCenterId, this.debit, this.credit, this.description);
+    return Objects.hash(this.accountCode, this.costCenterId, this.projectId, this.debit, this.credit, this.description);
   }
 
   @java.lang.Override
@@ -120,6 +129,10 @@ public final class PostV1LedgerJournalTransactionsCreateRequestEntriesItem {
 
     _FinalStage costCenterId(String costCenterId);
 
+    _FinalStage projectId(Optional<String> projectId);
+
+    _FinalStage projectId(String projectId);
+
     _FinalStage debit(Optional<String> debit);
 
     _FinalStage debit(String debit);
@@ -145,6 +158,8 @@ public final class PostV1LedgerJournalTransactionsCreateRequestEntriesItem {
 
     private Optional<String> debit = Optional.empty();
 
+    private Optional<String> projectId = Optional.empty();
+
     private Optional<String> costCenterId = Optional.empty();
 
     @JsonAnySetter
@@ -157,6 +172,7 @@ public final class PostV1LedgerJournalTransactionsCreateRequestEntriesItem {
     public Builder from(PostV1LedgerJournalTransactionsCreateRequestEntriesItem other) {
       accountCode(other.getAccountCode());
       costCenterId(other.getCostCenterId());
+      projectId(other.getProjectId());
       debit(other.getDebit());
       credit(other.getCredit());
       description(other.getDescription());
@@ -219,6 +235,22 @@ public final class PostV1LedgerJournalTransactionsCreateRequestEntriesItem {
     }
 
     @java.lang.Override
+    public _FinalStage projectId(String projectId) {
+      this.projectId = Optional.ofNullable(projectId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "projectId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage projectId(Optional<String> projectId) {
+      this.projectId = projectId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage costCenterId(String costCenterId) {
       this.costCenterId = Optional.ofNullable(costCenterId);
       return this;
@@ -236,7 +268,7 @@ public final class PostV1LedgerJournalTransactionsCreateRequestEntriesItem {
 
     @java.lang.Override
     public PostV1LedgerJournalTransactionsCreateRequestEntriesItem build() {
-      return new PostV1LedgerJournalTransactionsCreateRequestEntriesItem(accountCode, costCenterId, debit, credit, description, additionalProperties);
+      return new PostV1LedgerJournalTransactionsCreateRequestEntriesItem(accountCode, costCenterId, projectId, debit, credit, description, additionalProperties);
     }
 
     @java.lang.Override

@@ -13,8 +13,10 @@ import com.nordlet.api.resources.reference.requests.PostV1ReferenceCnCodesUpsert
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceComplianceVersionsListRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceCountriesListRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceCurrenciesListRequest;
+import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesImportsListRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesListRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesSetOverridesRequest;
+import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesSyncRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesListRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesOverridesDeleteRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesOverridesListRequest;
@@ -35,8 +37,10 @@ import com.nordlet.api.resources.reference.types.PostV1ReferenceCnCodesUpsertRes
 import com.nordlet.api.resources.reference.types.PostV1ReferenceComplianceVersionsListResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceCountriesListResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceCurrenciesListResponse;
+import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesImportsListResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesListResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesSetOverridesResponse;
+import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesSyncResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesListResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesOverridesDeleteResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesOverridesListResponse;
@@ -289,6 +293,68 @@ public class ReferenceClient {
   public PostV1ReferenceEuVatRatesListResponse postV1ReferenceEuVatRatesList(
       PostV1ReferenceEuVatRatesListRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1ReferenceEuVatRatesList(request, requestOptions).body();
+  }
+
+  /**
+   * History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
+   */
+  public PostV1ReferenceEuVatRatesImportsListResponse postV1ReferenceEuVatRatesImportsList() {
+    return this.rawClient.postV1ReferenceEuVatRatesImportsList().body();
+  }
+
+  /**
+   * History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
+   */
+  public PostV1ReferenceEuVatRatesImportsListResponse postV1ReferenceEuVatRatesImportsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1ReferenceEuVatRatesImportsList(requestOptions).body();
+  }
+
+  /**
+   * History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
+   */
+  public PostV1ReferenceEuVatRatesImportsListResponse postV1ReferenceEuVatRatesImportsList(
+      PostV1ReferenceEuVatRatesImportsListRequest request) {
+    return this.rawClient.postV1ReferenceEuVatRatesImportsList(request).body();
+  }
+
+  /**
+   * History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
+   */
+  public PostV1ReferenceEuVatRatesImportsListResponse postV1ReferenceEuVatRatesImportsList(
+      PostV1ReferenceEuVatRatesImportsListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ReferenceEuVatRatesImportsList(request, requestOptions).body();
+  }
+
+  /**
+   * Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
+   */
+  public PostV1ReferenceEuVatRatesSyncResponse postV1ReferenceEuVatRatesSync() {
+    return this.rawClient.postV1ReferenceEuVatRatesSync().body();
+  }
+
+  /**
+   * Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
+   */
+  public PostV1ReferenceEuVatRatesSyncResponse postV1ReferenceEuVatRatesSync(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1ReferenceEuVatRatesSync(requestOptions).body();
+  }
+
+  /**
+   * Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
+   */
+  public PostV1ReferenceEuVatRatesSyncResponse postV1ReferenceEuVatRatesSync(
+      PostV1ReferenceEuVatRatesSyncRequest request) {
+    return this.rawClient.postV1ReferenceEuVatRatesSync(request).body();
+  }
+
+  /**
+   * Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
+   */
+  public PostV1ReferenceEuVatRatesSyncResponse postV1ReferenceEuVatRatesSync(
+      PostV1ReferenceEuVatRatesSyncRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ReferenceEuVatRatesSync(request, requestOptions).body();
   }
 
   /**

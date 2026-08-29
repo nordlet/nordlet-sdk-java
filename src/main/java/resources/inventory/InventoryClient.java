@@ -6,6 +6,17 @@ package com.nordlet.api.resources.inventory;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
+import com.nordlet.api.resources.inventory.requests.PostV1InventoryLandedCostsCreateRequest;
+import com.nordlet.api.resources.inventory.requests.PostV1InventoryLandedCostsGetRequest;
+import com.nordlet.api.resources.inventory.requests.PostV1InventoryLandedCostsListRequest;
+import com.nordlet.api.resources.inventory.requests.PostV1InventoryLotsGetRequest;
+import com.nordlet.api.resources.inventory.requests.PostV1InventoryLotsListRequest;
+import com.nordlet.api.resources.inventory.requests.PostV1InventoryLotsUpdateRequest;
+import com.nordlet.api.resources.inventory.requests.PostV1InventoryReorderRulesCheckRequest;
+import com.nordlet.api.resources.inventory.requests.PostV1InventoryReorderRulesCreateRequest;
+import com.nordlet.api.resources.inventory.requests.PostV1InventoryReorderRulesDeleteRequest;
+import com.nordlet.api.resources.inventory.requests.PostV1InventoryReorderRulesListRequest;
+import com.nordlet.api.resources.inventory.requests.PostV1InventoryReorderRulesUpdateRequest;
 import com.nordlet.api.resources.inventory.requests.PostV1InventorySettingsGetRequest;
 import com.nordlet.api.resources.inventory.requests.PostV1InventorySettingsUpdateRequest;
 import com.nordlet.api.resources.inventory.requests.PostV1InventoryStockLevelsRequest;
@@ -16,6 +27,17 @@ import com.nordlet.api.resources.inventory.requests.PostV1InventoryStockTransfer
 import com.nordlet.api.resources.inventory.requests.PostV1InventoryStockWriteOffRequest;
 import com.nordlet.api.resources.inventory.requests.PostV1InventoryWarehousesCreateRequest;
 import com.nordlet.api.resources.inventory.requests.PostV1InventoryWarehousesListRequest;
+import com.nordlet.api.resources.inventory.types.PostV1InventoryLandedCostsCreateResponse;
+import com.nordlet.api.resources.inventory.types.PostV1InventoryLandedCostsGetResponse;
+import com.nordlet.api.resources.inventory.types.PostV1InventoryLandedCostsListResponse;
+import com.nordlet.api.resources.inventory.types.PostV1InventoryLotsGetResponse;
+import com.nordlet.api.resources.inventory.types.PostV1InventoryLotsListResponse;
+import com.nordlet.api.resources.inventory.types.PostV1InventoryLotsUpdateResponse;
+import com.nordlet.api.resources.inventory.types.PostV1InventoryReorderRulesCheckResponse;
+import com.nordlet.api.resources.inventory.types.PostV1InventoryReorderRulesCreateResponse;
+import com.nordlet.api.resources.inventory.types.PostV1InventoryReorderRulesDeleteResponse;
+import com.nordlet.api.resources.inventory.types.PostV1InventoryReorderRulesListResponse;
+import com.nordlet.api.resources.inventory.types.PostV1InventoryReorderRulesUpdateResponse;
 import com.nordlet.api.resources.inventory.types.PostV1InventorySettingsGetResponse;
 import com.nordlet.api.resources.inventory.types.PostV1InventorySettingsUpdateResponse;
 import com.nordlet.api.resources.inventory.types.PostV1InventoryStockLevelsResponse;
@@ -178,5 +200,150 @@ public class InventoryClient {
   public PostV1InventoryStockMovementsListResponse postV1InventoryStockMovementsList(
       PostV1InventoryStockMovementsListRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1InventoryStockMovementsList(request, requestOptions).body();
+  }
+
+  public PostV1InventoryLotsListResponse postV1InventoryLotsList() {
+    return this.rawClient.postV1InventoryLotsList().body();
+  }
+
+  public PostV1InventoryLotsListResponse postV1InventoryLotsList(RequestOptions requestOptions) {
+    return this.rawClient.postV1InventoryLotsList(requestOptions).body();
+  }
+
+  public PostV1InventoryLotsListResponse postV1InventoryLotsList(
+      PostV1InventoryLotsListRequest request) {
+    return this.rawClient.postV1InventoryLotsList(request).body();
+  }
+
+  public PostV1InventoryLotsListResponse postV1InventoryLotsList(
+      PostV1InventoryLotsListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1InventoryLotsList(request, requestOptions).body();
+  }
+
+  public PostV1InventoryLotsGetResponse postV1InventoryLotsGet(
+      PostV1InventoryLotsGetRequest request) {
+    return this.rawClient.postV1InventoryLotsGet(request).body();
+  }
+
+  public PostV1InventoryLotsGetResponse postV1InventoryLotsGet(
+      PostV1InventoryLotsGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1InventoryLotsGet(request, requestOptions).body();
+  }
+
+  public PostV1InventoryLotsUpdateResponse postV1InventoryLotsUpdate(
+      PostV1InventoryLotsUpdateRequest request) {
+    return this.rawClient.postV1InventoryLotsUpdate(request).body();
+  }
+
+  public PostV1InventoryLotsUpdateResponse postV1InventoryLotsUpdate(
+      PostV1InventoryLotsUpdateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1InventoryLotsUpdate(request, requestOptions).body();
+  }
+
+  public PostV1InventoryLandedCostsCreateResponse postV1InventoryLandedCostsCreate(
+      PostV1InventoryLandedCostsCreateRequest request) {
+    return this.rawClient.postV1InventoryLandedCostsCreate(request).body();
+  }
+
+  public PostV1InventoryLandedCostsCreateResponse postV1InventoryLandedCostsCreate(
+      PostV1InventoryLandedCostsCreateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1InventoryLandedCostsCreate(request, requestOptions).body();
+  }
+
+  public PostV1InventoryLandedCostsGetResponse postV1InventoryLandedCostsGet(
+      PostV1InventoryLandedCostsGetRequest request) {
+    return this.rawClient.postV1InventoryLandedCostsGet(request).body();
+  }
+
+  public PostV1InventoryLandedCostsGetResponse postV1InventoryLandedCostsGet(
+      PostV1InventoryLandedCostsGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1InventoryLandedCostsGet(request, requestOptions).body();
+  }
+
+  public PostV1InventoryLandedCostsListResponse postV1InventoryLandedCostsList() {
+    return this.rawClient.postV1InventoryLandedCostsList().body();
+  }
+
+  public PostV1InventoryLandedCostsListResponse postV1InventoryLandedCostsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1InventoryLandedCostsList(requestOptions).body();
+  }
+
+  public PostV1InventoryLandedCostsListResponse postV1InventoryLandedCostsList(
+      PostV1InventoryLandedCostsListRequest request) {
+    return this.rawClient.postV1InventoryLandedCostsList(request).body();
+  }
+
+  public PostV1InventoryLandedCostsListResponse postV1InventoryLandedCostsList(
+      PostV1InventoryLandedCostsListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1InventoryLandedCostsList(request, requestOptions).body();
+  }
+
+  public PostV1InventoryReorderRulesCreateResponse postV1InventoryReorderRulesCreate(
+      PostV1InventoryReorderRulesCreateRequest request) {
+    return this.rawClient.postV1InventoryReorderRulesCreate(request).body();
+  }
+
+  public PostV1InventoryReorderRulesCreateResponse postV1InventoryReorderRulesCreate(
+      PostV1InventoryReorderRulesCreateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1InventoryReorderRulesCreate(request, requestOptions).body();
+  }
+
+  public PostV1InventoryReorderRulesUpdateResponse postV1InventoryReorderRulesUpdate(
+      PostV1InventoryReorderRulesUpdateRequest request) {
+    return this.rawClient.postV1InventoryReorderRulesUpdate(request).body();
+  }
+
+  public PostV1InventoryReorderRulesUpdateResponse postV1InventoryReorderRulesUpdate(
+      PostV1InventoryReorderRulesUpdateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1InventoryReorderRulesUpdate(request, requestOptions).body();
+  }
+
+  public PostV1InventoryReorderRulesDeleteResponse postV1InventoryReorderRulesDelete(
+      PostV1InventoryReorderRulesDeleteRequest request) {
+    return this.rawClient.postV1InventoryReorderRulesDelete(request).body();
+  }
+
+  public PostV1InventoryReorderRulesDeleteResponse postV1InventoryReorderRulesDelete(
+      PostV1InventoryReorderRulesDeleteRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1InventoryReorderRulesDelete(request, requestOptions).body();
+  }
+
+  public PostV1InventoryReorderRulesListResponse postV1InventoryReorderRulesList() {
+    return this.rawClient.postV1InventoryReorderRulesList().body();
+  }
+
+  public PostV1InventoryReorderRulesListResponse postV1InventoryReorderRulesList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1InventoryReorderRulesList(requestOptions).body();
+  }
+
+  public PostV1InventoryReorderRulesListResponse postV1InventoryReorderRulesList(
+      PostV1InventoryReorderRulesListRequest request) {
+    return this.rawClient.postV1InventoryReorderRulesList(request).body();
+  }
+
+  public PostV1InventoryReorderRulesListResponse postV1InventoryReorderRulesList(
+      PostV1InventoryReorderRulesListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1InventoryReorderRulesList(request, requestOptions).body();
+  }
+
+  public PostV1InventoryReorderRulesCheckResponse postV1InventoryReorderRulesCheck() {
+    return this.rawClient.postV1InventoryReorderRulesCheck().body();
+  }
+
+  public PostV1InventoryReorderRulesCheckResponse postV1InventoryReorderRulesCheck(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1InventoryReorderRulesCheck(requestOptions).body();
+  }
+
+  public PostV1InventoryReorderRulesCheckResponse postV1InventoryReorderRulesCheck(
+      PostV1InventoryReorderRulesCheckRequest request) {
+    return this.rawClient.postV1InventoryReorderRulesCheck(request).body();
+  }
+
+  public PostV1InventoryReorderRulesCheckResponse postV1InventoryReorderRulesCheck(
+      PostV1InventoryReorderRulesCheckRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1InventoryReorderRulesCheck(request, requestOptions).body();
   }
 }

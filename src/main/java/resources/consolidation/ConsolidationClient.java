@@ -11,6 +11,11 @@ import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationGroup
 import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationGroupsGetRequest;
 import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationGroupsListRequest;
 import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationGroupsUpdateRequest;
+import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationIntercompanyCandidatesRequest;
+import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationIntercompanyLinksListRequest;
+import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationIntercompanyLinksRemoveRequest;
+import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationIntercompanyLinksSetRequest;
+import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationIntercompanyReportRequest;
 import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationMembersAddRequest;
 import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationMembersRemoveRequest;
 import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationReportRequest;
@@ -19,6 +24,11 @@ import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationGroupsDe
 import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationGroupsGetResponse;
 import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationGroupsListResponse;
 import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationGroupsUpdateResponse;
+import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationIntercompanyCandidatesResponse;
+import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationIntercompanyLinksListResponse;
+import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationIntercompanyLinksRemoveResponse;
+import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationIntercompanyLinksSetResponse;
+import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationIntercompanyReportResponse;
 import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationMembersAddResponse;
 import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationMembersRemoveResponse;
 import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationReportResponse;
@@ -117,6 +127,74 @@ public class ConsolidationClient {
   public PostV1ConsolidationMembersRemoveResponse postV1ConsolidationMembersRemove(
       PostV1ConsolidationMembersRemoveRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1ConsolidationMembersRemove(request, requestOptions).body();
+  }
+
+  /**
+   * Partners in member companies that look like other members of the same group (matched on company code or VAT code), with any existing intercompany link. Confirming a candidate via intercompany/links/set enables invoice mirroring.
+   */
+  public PostV1ConsolidationIntercompanyCandidatesResponse postV1ConsolidationIntercompanyCandidates(
+      PostV1ConsolidationIntercompanyCandidatesRequest request) {
+    return this.rawClient.postV1ConsolidationIntercompanyCandidates(request).body();
+  }
+
+  /**
+   * Partners in member companies that look like other members of the same group (matched on company code or VAT code), with any existing intercompany link. Confirming a candidate via intercompany/links/set enables invoice mirroring.
+   */
+  public PostV1ConsolidationIntercompanyCandidatesResponse postV1ConsolidationIntercompanyCandidates(
+      PostV1ConsolidationIntercompanyCandidatesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ConsolidationIntercompanyCandidates(request, requestOptions).body();
+  }
+
+  /**
+   * Confirm that a partner record in one member company represents another member company of the group. Once links exist in both directions, issuing an intercompany sale invoice automatically creates the matching draft purchase invoice in the counterparty.
+   */
+  public PostV1ConsolidationIntercompanyLinksSetResponse postV1ConsolidationIntercompanyLinksSet(
+      PostV1ConsolidationIntercompanyLinksSetRequest request) {
+    return this.rawClient.postV1ConsolidationIntercompanyLinksSet(request).body();
+  }
+
+  /**
+   * Confirm that a partner record in one member company represents another member company of the group. Once links exist in both directions, issuing an intercompany sale invoice automatically creates the matching draft purchase invoice in the counterparty.
+   */
+  public PostV1ConsolidationIntercompanyLinksSetResponse postV1ConsolidationIntercompanyLinksSet(
+      PostV1ConsolidationIntercompanyLinksSetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ConsolidationIntercompanyLinksSet(request, requestOptions).body();
+  }
+
+  public PostV1ConsolidationIntercompanyLinksListResponse postV1ConsolidationIntercompanyLinksList(
+      PostV1ConsolidationIntercompanyLinksListRequest request) {
+    return this.rawClient.postV1ConsolidationIntercompanyLinksList(request).body();
+  }
+
+  public PostV1ConsolidationIntercompanyLinksListResponse postV1ConsolidationIntercompanyLinksList(
+      PostV1ConsolidationIntercompanyLinksListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ConsolidationIntercompanyLinksList(request, requestOptions).body();
+  }
+
+  public PostV1ConsolidationIntercompanyLinksRemoveResponse postV1ConsolidationIntercompanyLinksRemove(
+      PostV1ConsolidationIntercompanyLinksRemoveRequest request) {
+    return this.rawClient.postV1ConsolidationIntercompanyLinksRemove(request).body();
+  }
+
+  public PostV1ConsolidationIntercompanyLinksRemoveResponse postV1ConsolidationIntercompanyLinksRemove(
+      PostV1ConsolidationIntercompanyLinksRemoveRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ConsolidationIntercompanyLinksRemove(request, requestOptions).body();
+  }
+
+  /**
+   * Intercompany reconciliation for a period: every issued intercompany sale invoice with its mirrored or manually recorded counterpart, unmatched documents on both sides, and per-currency totals with differences. Confirmed pairs are the basis for consolidation eliminations.
+   */
+  public PostV1ConsolidationIntercompanyReportResponse postV1ConsolidationIntercompanyReport(
+      PostV1ConsolidationIntercompanyReportRequest request) {
+    return this.rawClient.postV1ConsolidationIntercompanyReport(request).body();
+  }
+
+  /**
+   * Intercompany reconciliation for a period: every issued intercompany sale invoice with its mirrored or manually recorded counterpart, unmatched documents on both sides, and per-currency totals with differences. Confirmed pairs are the basis for consolidation eliminations.
+   */
+  public PostV1ConsolidationIntercompanyReportResponse postV1ConsolidationIntercompanyReport(
+      PostV1ConsolidationIntercompanyReportRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ConsolidationIntercompanyReport(request, requestOptions).body();
   }
 
   public PostV1ConsolidationReportResponse postV1ConsolidationReport(

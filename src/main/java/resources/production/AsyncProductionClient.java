@@ -9,17 +9,45 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.production.requests.PostV1ProductionBomsCreateRequest;
 import com.nordlet.api.resources.production.requests.PostV1ProductionBomsGetRequest;
 import com.nordlet.api.resources.production.requests.PostV1ProductionBomsListRequest;
+import com.nordlet.api.resources.production.requests.PostV1ProductionMaintenanceCancelRequest;
+import com.nordlet.api.resources.production.requests.PostV1ProductionMaintenanceCompleteRequest;
+import com.nordlet.api.resources.production.requests.PostV1ProductionMaintenanceCreateRequest;
+import com.nordlet.api.resources.production.requests.PostV1ProductionMaintenanceListRequest;
 import com.nordlet.api.resources.production.requests.PostV1ProductionOrdersCompleteRequest;
 import com.nordlet.api.resources.production.requests.PostV1ProductionOrdersCreateRequest;
 import com.nordlet.api.resources.production.requests.PostV1ProductionOrdersGetRequest;
 import com.nordlet.api.resources.production.requests.PostV1ProductionOrdersListRequest;
+import com.nordlet.api.resources.production.requests.PostV1ProductionOrdersRecordOperationRequest;
+import com.nordlet.api.resources.production.requests.PostV1ProductionQualityChecksAddRequest;
+import com.nordlet.api.resources.production.requests.PostV1ProductionQualityChecksListRequest;
+import com.nordlet.api.resources.production.requests.PostV1ProductionQualityChecksRecordRequest;
+import com.nordlet.api.resources.production.requests.PostV1ProductionRoutingsCreateRequest;
+import com.nordlet.api.resources.production.requests.PostV1ProductionRoutingsGetRequest;
+import com.nordlet.api.resources.production.requests.PostV1ProductionRoutingsListRequest;
+import com.nordlet.api.resources.production.requests.PostV1ProductionWorkCentersCreateRequest;
+import com.nordlet.api.resources.production.requests.PostV1ProductionWorkCentersListRequest;
+import com.nordlet.api.resources.production.requests.PostV1ProductionWorkCentersUpdateRequest;
 import com.nordlet.api.resources.production.types.PostV1ProductionBomsCreateResponse;
 import com.nordlet.api.resources.production.types.PostV1ProductionBomsGetResponse;
 import com.nordlet.api.resources.production.types.PostV1ProductionBomsListResponse;
+import com.nordlet.api.resources.production.types.PostV1ProductionMaintenanceCancelResponse;
+import com.nordlet.api.resources.production.types.PostV1ProductionMaintenanceCompleteResponse;
+import com.nordlet.api.resources.production.types.PostV1ProductionMaintenanceCreateResponse;
+import com.nordlet.api.resources.production.types.PostV1ProductionMaintenanceListResponse;
 import com.nordlet.api.resources.production.types.PostV1ProductionOrdersCompleteResponse;
 import com.nordlet.api.resources.production.types.PostV1ProductionOrdersCreateResponse;
 import com.nordlet.api.resources.production.types.PostV1ProductionOrdersGetResponse;
 import com.nordlet.api.resources.production.types.PostV1ProductionOrdersListResponse;
+import com.nordlet.api.resources.production.types.PostV1ProductionOrdersRecordOperationResponse;
+import com.nordlet.api.resources.production.types.PostV1ProductionQualityChecksAddResponse;
+import com.nordlet.api.resources.production.types.PostV1ProductionQualityChecksListResponse;
+import com.nordlet.api.resources.production.types.PostV1ProductionQualityChecksRecordResponse;
+import com.nordlet.api.resources.production.types.PostV1ProductionRoutingsCreateResponse;
+import com.nordlet.api.resources.production.types.PostV1ProductionRoutingsGetResponse;
+import com.nordlet.api.resources.production.types.PostV1ProductionRoutingsListResponse;
+import com.nordlet.api.resources.production.types.PostV1ProductionWorkCentersCreateResponse;
+import com.nordlet.api.resources.production.types.PostV1ProductionWorkCentersListResponse;
+import com.nordlet.api.resources.production.types.PostV1ProductionWorkCentersUpdateResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncProductionClient {
@@ -37,6 +65,135 @@ public class AsyncProductionClient {
    */
   public AsyncRawProductionClient withRawResponse() {
     return this.rawClient;
+  }
+
+  public CompletableFuture<PostV1ProductionWorkCentersCreateResponse> postV1ProductionWorkCentersCreate(
+      PostV1ProductionWorkCentersCreateRequest request) {
+    return this.rawClient.postV1ProductionWorkCentersCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionWorkCentersCreateResponse> postV1ProductionWorkCentersCreate(
+      PostV1ProductionWorkCentersCreateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionWorkCentersCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionWorkCentersUpdateResponse> postV1ProductionWorkCentersUpdate(
+      PostV1ProductionWorkCentersUpdateRequest request) {
+    return this.rawClient.postV1ProductionWorkCentersUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionWorkCentersUpdateResponse> postV1ProductionWorkCentersUpdate(
+      PostV1ProductionWorkCentersUpdateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionWorkCentersUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionWorkCentersListResponse> postV1ProductionWorkCentersList(
+      ) {
+    return this.rawClient.postV1ProductionWorkCentersList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionWorkCentersListResponse> postV1ProductionWorkCentersList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionWorkCentersList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionWorkCentersListResponse> postV1ProductionWorkCentersList(
+      PostV1ProductionWorkCentersListRequest request) {
+    return this.rawClient.postV1ProductionWorkCentersList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionWorkCentersListResponse> postV1ProductionWorkCentersList(
+      PostV1ProductionWorkCentersListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionWorkCentersList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionRoutingsCreateResponse> postV1ProductionRoutingsCreate(
+      PostV1ProductionRoutingsCreateRequest request) {
+    return this.rawClient.postV1ProductionRoutingsCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionRoutingsCreateResponse> postV1ProductionRoutingsCreate(
+      PostV1ProductionRoutingsCreateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionRoutingsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionRoutingsGetResponse> postV1ProductionRoutingsGet(
+      PostV1ProductionRoutingsGetRequest request) {
+    return this.rawClient.postV1ProductionRoutingsGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionRoutingsGetResponse> postV1ProductionRoutingsGet(
+      PostV1ProductionRoutingsGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionRoutingsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionRoutingsListResponse> postV1ProductionRoutingsList() {
+    return this.rawClient.postV1ProductionRoutingsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionRoutingsListResponse> postV1ProductionRoutingsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionRoutingsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionRoutingsListResponse> postV1ProductionRoutingsList(
+      PostV1ProductionRoutingsListRequest request) {
+    return this.rawClient.postV1ProductionRoutingsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionRoutingsListResponse> postV1ProductionRoutingsList(
+      PostV1ProductionRoutingsListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionRoutingsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionMaintenanceCreateResponse> postV1ProductionMaintenanceCreate(
+      PostV1ProductionMaintenanceCreateRequest request) {
+    return this.rawClient.postV1ProductionMaintenanceCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionMaintenanceCreateResponse> postV1ProductionMaintenanceCreate(
+      PostV1ProductionMaintenanceCreateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionMaintenanceCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionMaintenanceCompleteResponse> postV1ProductionMaintenanceComplete(
+      PostV1ProductionMaintenanceCompleteRequest request) {
+    return this.rawClient.postV1ProductionMaintenanceComplete(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionMaintenanceCompleteResponse> postV1ProductionMaintenanceComplete(
+      PostV1ProductionMaintenanceCompleteRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionMaintenanceComplete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionMaintenanceCancelResponse> postV1ProductionMaintenanceCancel(
+      PostV1ProductionMaintenanceCancelRequest request) {
+    return this.rawClient.postV1ProductionMaintenanceCancel(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionMaintenanceCancelResponse> postV1ProductionMaintenanceCancel(
+      PostV1ProductionMaintenanceCancelRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionMaintenanceCancel(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionMaintenanceListResponse> postV1ProductionMaintenanceList(
+      ) {
+    return this.rawClient.postV1ProductionMaintenanceList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionMaintenanceListResponse> postV1ProductionMaintenanceList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionMaintenanceList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionMaintenanceListResponse> postV1ProductionMaintenanceList(
+      PostV1ProductionMaintenanceListRequest request) {
+    return this.rawClient.postV1ProductionMaintenanceList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionMaintenanceListResponse> postV1ProductionMaintenanceList(
+      PostV1ProductionMaintenanceListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionMaintenanceList(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<PostV1ProductionBomsCreateResponse> postV1ProductionBomsCreate(
@@ -86,6 +243,56 @@ public class AsyncProductionClient {
   public CompletableFuture<PostV1ProductionOrdersCreateResponse> postV1ProductionOrdersCreate(
       PostV1ProductionOrdersCreateRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1ProductionOrdersCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionOrdersRecordOperationResponse> postV1ProductionOrdersRecordOperation(
+      PostV1ProductionOrdersRecordOperationRequest request) {
+    return this.rawClient.postV1ProductionOrdersRecordOperation(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionOrdersRecordOperationResponse> postV1ProductionOrdersRecordOperation(
+      PostV1ProductionOrdersRecordOperationRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionOrdersRecordOperation(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionQualityChecksAddResponse> postV1ProductionQualityChecksAdd(
+      PostV1ProductionQualityChecksAddRequest request) {
+    return this.rawClient.postV1ProductionQualityChecksAdd(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionQualityChecksAddResponse> postV1ProductionQualityChecksAdd(
+      PostV1ProductionQualityChecksAddRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionQualityChecksAdd(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionQualityChecksRecordResponse> postV1ProductionQualityChecksRecord(
+      PostV1ProductionQualityChecksRecordRequest request) {
+    return this.rawClient.postV1ProductionQualityChecksRecord(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionQualityChecksRecordResponse> postV1ProductionQualityChecksRecord(
+      PostV1ProductionQualityChecksRecordRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionQualityChecksRecord(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionQualityChecksListResponse> postV1ProductionQualityChecksList(
+      ) {
+    return this.rawClient.postV1ProductionQualityChecksList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionQualityChecksListResponse> postV1ProductionQualityChecksList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionQualityChecksList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionQualityChecksListResponse> postV1ProductionQualityChecksList(
+      PostV1ProductionQualityChecksListRequest request) {
+    return this.rawClient.postV1ProductionQualityChecksList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1ProductionQualityChecksListResponse> postV1ProductionQualityChecksList(
+      PostV1ProductionQualityChecksListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ProductionQualityChecksList(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<PostV1ProductionOrdersCompleteResponse> postV1ProductionOrdersComplete(

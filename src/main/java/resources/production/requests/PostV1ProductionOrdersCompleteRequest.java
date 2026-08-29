@@ -28,15 +28,19 @@ import org.jetbrains.annotations.NotNull;
 public final class PostV1ProductionOrdersCompleteRequest {
   private final String id;
 
+  private final Optional<String> scrappedQuantity;
+
   private final Optional<String> componentsAccountCode;
 
   private final Optional<String> finishedAccountCode;
 
   private final Map<String, Object> additionalProperties;
 
-  private PostV1ProductionOrdersCompleteRequest(String id, Optional<String> componentsAccountCode,
-      Optional<String> finishedAccountCode, Map<String, Object> additionalProperties) {
+  private PostV1ProductionOrdersCompleteRequest(String id, Optional<String> scrappedQuantity,
+      Optional<String> componentsAccountCode, Optional<String> finishedAccountCode,
+      Map<String, Object> additionalProperties) {
     this.id = id;
+    this.scrappedQuantity = scrappedQuantity;
     this.componentsAccountCode = componentsAccountCode;
     this.finishedAccountCode = finishedAccountCode;
     this.additionalProperties = additionalProperties;
@@ -45,6 +49,11 @@ public final class PostV1ProductionOrdersCompleteRequest {
   @JsonProperty("id")
   public String getId() {
     return id;
+  }
+
+  @JsonProperty("scrappedQuantity")
+  public Optional<String> getScrappedQuantity() {
+    return scrappedQuantity;
   }
 
   @JsonProperty("componentsAccountCode")
@@ -69,12 +78,12 @@ public final class PostV1ProductionOrdersCompleteRequest {
   }
 
   private boolean equalTo(PostV1ProductionOrdersCompleteRequest other) {
-    return id.equals(other.id) && componentsAccountCode.equals(other.componentsAccountCode) && finishedAccountCode.equals(other.finishedAccountCode);
+    return id.equals(other.id) && scrappedQuantity.equals(other.scrappedQuantity) && componentsAccountCode.equals(other.componentsAccountCode) && finishedAccountCode.equals(other.finishedAccountCode);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.componentsAccountCode, this.finishedAccountCode);
+    return Objects.hash(this.id, this.scrappedQuantity, this.componentsAccountCode, this.finishedAccountCode);
   }
 
   @java.lang.Override
@@ -99,6 +108,10 @@ public final class PostV1ProductionOrdersCompleteRequest {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage scrappedQuantity(Optional<String> scrappedQuantity);
+
+    _FinalStage scrappedQuantity(String scrappedQuantity);
+
     _FinalStage componentsAccountCode(Optional<String> componentsAccountCode);
 
     _FinalStage componentsAccountCode(String componentsAccountCode);
@@ -118,6 +131,8 @@ public final class PostV1ProductionOrdersCompleteRequest {
 
     private Optional<String> componentsAccountCode = Optional.empty();
 
+    private Optional<String> scrappedQuantity = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -127,6 +142,7 @@ public final class PostV1ProductionOrdersCompleteRequest {
     @java.lang.Override
     public Builder from(PostV1ProductionOrdersCompleteRequest other) {
       id(other.getId());
+      scrappedQuantity(other.getScrappedQuantity());
       componentsAccountCode(other.getComponentsAccountCode());
       finishedAccountCode(other.getFinishedAccountCode());
       return this;
@@ -172,8 +188,24 @@ public final class PostV1ProductionOrdersCompleteRequest {
     }
 
     @java.lang.Override
+    public _FinalStage scrappedQuantity(String scrappedQuantity) {
+      this.scrappedQuantity = Optional.ofNullable(scrappedQuantity);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "scrappedQuantity",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage scrappedQuantity(Optional<String> scrappedQuantity) {
+      this.scrappedQuantity = scrappedQuantity;
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1ProductionOrdersCompleteRequest build() {
-      return new PostV1ProductionOrdersCompleteRequest(id, componentsAccountCode, finishedAccountCode, additionalProperties);
+      return new PostV1ProductionOrdersCompleteRequest(id, scrappedQuantity, componentsAccountCode, finishedAccountCode, additionalProperties);
     }
 
     @java.lang.Override

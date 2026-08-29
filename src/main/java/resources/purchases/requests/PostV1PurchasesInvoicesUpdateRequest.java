@@ -6,12 +6,15 @@ package com.nordlet.api.resources.purchases.requests;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nordlet.api.core.Nullable;
+import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.purchases.types.PostV1PurchasesInvoicesUpdateRequestLinesItem;
 import java.lang.Object;
@@ -40,6 +43,8 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
 
   private final Optional<String> currency;
 
+  private final Optional<String> purchaseOrderId;
+
   private final Optional<String> notes;
 
   private final Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>> lines;
@@ -48,7 +53,7 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
 
   private PostV1PurchasesInvoicesUpdateRequest(String id, Optional<String> partnerId,
       Optional<String> documentNumber, Optional<String> documentDate, Optional<String> dueDate,
-      Optional<String> currency, Optional<String> notes,
+      Optional<String> currency, Optional<String> purchaseOrderId, Optional<String> notes,
       Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>> lines,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -57,6 +62,7 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     this.documentDate = documentDate;
     this.dueDate = dueDate;
     this.currency = currency;
+    this.purchaseOrderId = purchaseOrderId;
     this.notes = notes;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
@@ -92,6 +98,14 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     return currency;
   }
 
+  @JsonIgnore
+  public Optional<String> getPurchaseOrderId() {
+    if (purchaseOrderId == null) {
+      return Optional.empty();
+    }
+    return purchaseOrderId;
+  }
+
   @JsonProperty("notes")
   public Optional<String> getNotes() {
     return notes;
@@ -100,6 +114,15 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
   @JsonProperty("lines")
   public Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>> getLines() {
     return lines;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("purchaseOrderId")
+  private Optional<String> _getPurchaseOrderId() {
+    return purchaseOrderId;
   }
 
   @java.lang.Override
@@ -114,12 +137,12 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
   }
 
   private boolean equalTo(PostV1PurchasesInvoicesUpdateRequest other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && notes.equals(other.notes) && lines.equals(other.lines);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && purchaseOrderId.equals(other.purchaseOrderId) && notes.equals(other.notes) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.notes, this.lines);
+    return Objects.hash(this.id, this.partnerId, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.purchaseOrderId, this.notes, this.lines);
   }
 
   @java.lang.Override
@@ -164,6 +187,12 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
 
     _FinalStage currency(String currency);
 
+    _FinalStage purchaseOrderId(Optional<String> purchaseOrderId);
+
+    _FinalStage purchaseOrderId(String purchaseOrderId);
+
+    _FinalStage purchaseOrderId(Nullable<String> purchaseOrderId);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -182,6 +211,8 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     private Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>> lines = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
+
+    private Optional<String> purchaseOrderId = Optional.empty();
 
     private Optional<String> currency = Optional.empty();
 
@@ -207,6 +238,7 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
       documentDate(other.getDocumentDate());
       dueDate(other.getDueDate());
       currency(other.getCurrency());
+      purchaseOrderId(other.getPurchaseOrderId());
       notes(other.getNotes());
       lines(other.getLines());
       return this;
@@ -248,6 +280,36 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     )
     public _FinalStage notes(Optional<String> notes) {
       this.notes = notes;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage purchaseOrderId(Nullable<String> purchaseOrderId) {
+      if (purchaseOrderId.isNull()) {
+        this.purchaseOrderId = null;
+      }
+      else if (purchaseOrderId.isEmpty()) {
+        this.purchaseOrderId = Optional.empty();
+      }
+      else {
+        this.purchaseOrderId = Optional.of(purchaseOrderId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage purchaseOrderId(String purchaseOrderId) {
+      this.purchaseOrderId = Optional.ofNullable(purchaseOrderId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "purchaseOrderId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage purchaseOrderId(Optional<String> purchaseOrderId) {
+      this.purchaseOrderId = purchaseOrderId;
       return this;
     }
 
@@ -333,7 +395,7 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
 
     @java.lang.Override
     public PostV1PurchasesInvoicesUpdateRequest build() {
-      return new PostV1PurchasesInvoicesUpdateRequest(id, partnerId, documentNumber, documentDate, dueDate, currency, notes, lines, additionalProperties);
+      return new PostV1PurchasesInvoicesUpdateRequest(id, partnerId, documentNumber, documentDate, dueDate, currency, purchaseOrderId, notes, lines, additionalProperties);
     }
 
     @java.lang.Override

@@ -37,17 +37,21 @@ public final class PostV1ProductionBomsCreateRequest {
 
   private final Optional<String> outputQuantity;
 
+  private final Optional<String> routingId;
+
   private final List<PostV1ProductionBomsCreateRequestLinesItem> lines;
 
   private final Map<String, Object> additionalProperties;
 
   private PostV1ProductionBomsCreateRequest(String code, String name, String finishedItemId,
-      Optional<String> outputQuantity, List<PostV1ProductionBomsCreateRequestLinesItem> lines,
+      Optional<String> outputQuantity, Optional<String> routingId,
+      List<PostV1ProductionBomsCreateRequestLinesItem> lines,
       Map<String, Object> additionalProperties) {
     this.code = code;
     this.name = name;
     this.finishedItemId = finishedItemId;
     this.outputQuantity = outputQuantity;
+    this.routingId = routingId;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
   }
@@ -72,6 +76,11 @@ public final class PostV1ProductionBomsCreateRequest {
     return outputQuantity;
   }
 
+  @JsonProperty("routingId")
+  public Optional<String> getRoutingId() {
+    return routingId;
+  }
+
   @JsonProperty("lines")
   public List<PostV1ProductionBomsCreateRequestLinesItem> getLines() {
     return lines;
@@ -89,12 +98,12 @@ public final class PostV1ProductionBomsCreateRequest {
   }
 
   private boolean equalTo(PostV1ProductionBomsCreateRequest other) {
-    return code.equals(other.code) && name.equals(other.name) && finishedItemId.equals(other.finishedItemId) && outputQuantity.equals(other.outputQuantity) && lines.equals(other.lines);
+    return code.equals(other.code) && name.equals(other.name) && finishedItemId.equals(other.finishedItemId) && outputQuantity.equals(other.outputQuantity) && routingId.equals(other.routingId) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.code, this.name, this.finishedItemId, this.outputQuantity, this.lines);
+    return Objects.hash(this.code, this.name, this.finishedItemId, this.outputQuantity, this.routingId, this.lines);
   }
 
   @java.lang.Override
@@ -131,6 +140,10 @@ public final class PostV1ProductionBomsCreateRequest {
 
     _FinalStage outputQuantity(String outputQuantity);
 
+    _FinalStage routingId(Optional<String> routingId);
+
+    _FinalStage routingId(String routingId);
+
     _FinalStage lines(List<PostV1ProductionBomsCreateRequestLinesItem> lines);
 
     _FinalStage addLines(PostV1ProductionBomsCreateRequestLinesItem lines);
@@ -150,6 +163,8 @@ public final class PostV1ProductionBomsCreateRequest {
 
     private List<PostV1ProductionBomsCreateRequestLinesItem> lines = new ArrayList<>();
 
+    private Optional<String> routingId = Optional.empty();
+
     private Optional<String> outputQuantity = Optional.empty();
 
     @JsonAnySetter
@@ -164,6 +179,7 @@ public final class PostV1ProductionBomsCreateRequest {
       name(other.getName());
       finishedItemId(other.getFinishedItemId());
       outputQuantity(other.getOutputQuantity());
+      routingId(other.getRoutingId());
       lines(other.getLines());
       return this;
     }
@@ -217,6 +233,22 @@ public final class PostV1ProductionBomsCreateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage routingId(String routingId) {
+      this.routingId = Optional.ofNullable(routingId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "routingId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage routingId(Optional<String> routingId) {
+      this.routingId = routingId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage outputQuantity(String outputQuantity) {
       this.outputQuantity = Optional.ofNullable(outputQuantity);
       return this;
@@ -234,7 +266,7 @@ public final class PostV1ProductionBomsCreateRequest {
 
     @java.lang.Override
     public PostV1ProductionBomsCreateRequest build() {
-      return new PostV1ProductionBomsCreateRequest(code, name, finishedItemId, outputQuantity, lines, additionalProperties);
+      return new PostV1ProductionBomsCreateRequest(code, name, finishedItemId, outputQuantity, routingId, lines, additionalProperties);
     }
 
     @java.lang.Override

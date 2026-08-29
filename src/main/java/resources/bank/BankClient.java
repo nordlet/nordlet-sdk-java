@@ -9,6 +9,20 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.bank.requests.PostV1BankAccountsCreateRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankAccountsListRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankAccountsUpdateRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankDirectDebitsExportRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankFeedsAccountsLinkRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankFeedsBanksListRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankFeedsConnectionsCompleteRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankFeedsConnectionsDeleteRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankFeedsConnectionsGetRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankFeedsConnectionsListRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankFeedsConnectionsStartRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankFeedsSyncRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankMandatesCancelRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankMandatesCreateRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankMandatesGetRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankMandatesListRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankMandatesUpdateRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankPaymentsExportRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsGetRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsImportRequest;
@@ -23,6 +37,20 @@ import com.nordlet.api.resources.bank.requests.PostV1BankTransactionsSuggestMatc
 import com.nordlet.api.resources.bank.types.PostV1BankAccountsCreateResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankAccountsListResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankAccountsUpdateResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankDirectDebitsExportResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankFeedsAccountsLinkResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankFeedsBanksListResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankFeedsConnectionsCompleteResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankFeedsConnectionsDeleteResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankFeedsConnectionsGetResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankFeedsConnectionsListResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankFeedsConnectionsStartResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankFeedsSyncResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankMandatesCancelResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankMandatesCreateResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankMandatesGetResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankMandatesListResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankMandatesUpdateResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankPaymentsExportResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankSettlementsGetResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankSettlementsImportResponse;
@@ -149,6 +177,73 @@ public class BankClient {
     return this.rawClient.postV1BankPaymentsExport(request, requestOptions).body();
   }
 
+  public PostV1BankMandatesCreateResponse postV1BankMandatesCreate(
+      PostV1BankMandatesCreateRequest request) {
+    return this.rawClient.postV1BankMandatesCreate(request).body();
+  }
+
+  public PostV1BankMandatesCreateResponse postV1BankMandatesCreate(
+      PostV1BankMandatesCreateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankMandatesCreate(request, requestOptions).body();
+  }
+
+  public PostV1BankMandatesUpdateResponse postV1BankMandatesUpdate(
+      PostV1BankMandatesUpdateRequest request) {
+    return this.rawClient.postV1BankMandatesUpdate(request).body();
+  }
+
+  public PostV1BankMandatesUpdateResponse postV1BankMandatesUpdate(
+      PostV1BankMandatesUpdateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankMandatesUpdate(request, requestOptions).body();
+  }
+
+  public PostV1BankMandatesCancelResponse postV1BankMandatesCancel(
+      PostV1BankMandatesCancelRequest request) {
+    return this.rawClient.postV1BankMandatesCancel(request).body();
+  }
+
+  public PostV1BankMandatesCancelResponse postV1BankMandatesCancel(
+      PostV1BankMandatesCancelRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankMandatesCancel(request, requestOptions).body();
+  }
+
+  public PostV1BankMandatesGetResponse postV1BankMandatesGet(PostV1BankMandatesGetRequest request) {
+    return this.rawClient.postV1BankMandatesGet(request).body();
+  }
+
+  public PostV1BankMandatesGetResponse postV1BankMandatesGet(PostV1BankMandatesGetRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1BankMandatesGet(request, requestOptions).body();
+  }
+
+  public PostV1BankMandatesListResponse postV1BankMandatesList() {
+    return this.rawClient.postV1BankMandatesList().body();
+  }
+
+  public PostV1BankMandatesListResponse postV1BankMandatesList(RequestOptions requestOptions) {
+    return this.rawClient.postV1BankMandatesList(requestOptions).body();
+  }
+
+  public PostV1BankMandatesListResponse postV1BankMandatesList(
+      PostV1BankMandatesListRequest request) {
+    return this.rawClient.postV1BankMandatesList(request).body();
+  }
+
+  public PostV1BankMandatesListResponse postV1BankMandatesList(
+      PostV1BankMandatesListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankMandatesList(request, requestOptions).body();
+  }
+
+  public PostV1BankDirectDebitsExportResponse postV1BankDirectDebitsExport(
+      PostV1BankDirectDebitsExportRequest request) {
+    return this.rawClient.postV1BankDirectDebitsExport(request).body();
+  }
+
+  public PostV1BankDirectDebitsExportResponse postV1BankDirectDebitsExport(
+      PostV1BankDirectDebitsExportRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankDirectDebitsExport(request, requestOptions).body();
+  }
+
   public PostV1BankTransactionsSuggestMatchesResponse postV1BankTransactionsSuggestMatches(
       PostV1BankTransactionsSuggestMatchesRequest request) {
     return this.rawClient.postV1BankTransactionsSuggestMatches(request).body();
@@ -216,5 +311,103 @@ public class BankClient {
   public PostV1BankSettlementsPostResponse postV1BankSettlementsPost(
       PostV1BankSettlementsPostRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1BankSettlementsPost(request, requestOptions).body();
+  }
+
+  public PostV1BankFeedsBanksListResponse listThePsd2BanksAspsPsAvailableToConnect() {
+    return this.rawClient.listThePsd2BanksAspsPsAvailableToConnect().body();
+  }
+
+  public PostV1BankFeedsBanksListResponse listThePsd2BanksAspsPsAvailableToConnect(
+      RequestOptions requestOptions) {
+    return this.rawClient.listThePsd2BanksAspsPsAvailableToConnect(requestOptions).body();
+  }
+
+  public PostV1BankFeedsBanksListResponse listThePsd2BanksAspsPsAvailableToConnect(
+      PostV1BankFeedsBanksListRequest request) {
+    return this.rawClient.listThePsd2BanksAspsPsAvailableToConnect(request).body();
+  }
+
+  public PostV1BankFeedsBanksListResponse listThePsd2BanksAspsPsAvailableToConnect(
+      PostV1BankFeedsBanksListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.listThePsd2BanksAspsPsAvailableToConnect(request, requestOptions).body();
+  }
+
+  public PostV1BankFeedsConnectionsStartResponse beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
+      PostV1BankFeedsConnectionsStartRequest request) {
+    return this.rawClient.beginBankAuthorizationRedirectTheUserToTheReturnedUrl(request).body();
+  }
+
+  public PostV1BankFeedsConnectionsStartResponse beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
+      PostV1BankFeedsConnectionsStartRequest request, RequestOptions requestOptions) {
+    return this.rawClient.beginBankAuthorizationRedirectTheUserToTheReturnedUrl(request, requestOptions).body();
+  }
+
+  public PostV1BankFeedsConnectionsCompleteResponse exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(
+      PostV1BankFeedsConnectionsCompleteRequest request) {
+    return this.rawClient.exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(request).body();
+  }
+
+  public PostV1BankFeedsConnectionsCompleteResponse exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(
+      PostV1BankFeedsConnectionsCompleteRequest request, RequestOptions requestOptions) {
+    return this.rawClient.exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(request, requestOptions).body();
+  }
+
+  public PostV1BankFeedsConnectionsGetResponse postV1BankFeedsConnectionsGet(
+      PostV1BankFeedsConnectionsGetRequest request) {
+    return this.rawClient.postV1BankFeedsConnectionsGet(request).body();
+  }
+
+  public PostV1BankFeedsConnectionsGetResponse postV1BankFeedsConnectionsGet(
+      PostV1BankFeedsConnectionsGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankFeedsConnectionsGet(request, requestOptions).body();
+  }
+
+  public PostV1BankFeedsConnectionsListResponse postV1BankFeedsConnectionsList() {
+    return this.rawClient.postV1BankFeedsConnectionsList().body();
+  }
+
+  public PostV1BankFeedsConnectionsListResponse postV1BankFeedsConnectionsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1BankFeedsConnectionsList(requestOptions).body();
+  }
+
+  public PostV1BankFeedsConnectionsListResponse postV1BankFeedsConnectionsList(
+      PostV1BankFeedsConnectionsListRequest request) {
+    return this.rawClient.postV1BankFeedsConnectionsList(request).body();
+  }
+
+  public PostV1BankFeedsConnectionsListResponse postV1BankFeedsConnectionsList(
+      PostV1BankFeedsConnectionsListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankFeedsConnectionsList(request, requestOptions).body();
+  }
+
+  public PostV1BankFeedsConnectionsDeleteResponse revokeTheConsentAtTheBankAndDropTheStoredConnection(
+      PostV1BankFeedsConnectionsDeleteRequest request) {
+    return this.rawClient.revokeTheConsentAtTheBankAndDropTheStoredConnection(request).body();
+  }
+
+  public PostV1BankFeedsConnectionsDeleteResponse revokeTheConsentAtTheBankAndDropTheStoredConnection(
+      PostV1BankFeedsConnectionsDeleteRequest request, RequestOptions requestOptions) {
+    return this.rawClient.revokeTheConsentAtTheBankAndDropTheStoredConnection(request, requestOptions).body();
+  }
+
+  public PostV1BankFeedsAccountsLinkResponse pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(
+      PostV1BankFeedsAccountsLinkRequest request) {
+    return this.rawClient.pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(request).body();
+  }
+
+  public PostV1BankFeedsAccountsLinkResponse pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(
+      PostV1BankFeedsAccountsLinkRequest request, RequestOptions requestOptions) {
+    return this.rawClient.pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(request, requestOptions).body();
+  }
+
+  public PostV1BankFeedsSyncResponse pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
+      PostV1BankFeedsSyncRequest request) {
+    return this.rawClient.pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(request).body();
+  }
+
+  public PostV1BankFeedsSyncResponse pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
+      PostV1BankFeedsSyncRequest request, RequestOptions requestOptions) {
+    return this.rawClient.pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(request, requestOptions).body();
   }
 }

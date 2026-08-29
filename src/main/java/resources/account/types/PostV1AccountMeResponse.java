@@ -39,18 +39,21 @@ public final class PostV1AccountMeResponse {
 
   private final Optional<String> role;
 
+  private final PostV1AccountMeResponseBilling billing;
+
   private final List<PostV1AccountMeResponseCompaniesItem> companies;
 
   private final Map<String, Object> additionalProperties;
 
   private PostV1AccountMeResponse(PostV1AccountMeResponseUser user, String locale,
       Optional<String> activeCompanyId, Optional<String> role,
-      List<PostV1AccountMeResponseCompaniesItem> companies,
+      PostV1AccountMeResponseBilling billing, List<PostV1AccountMeResponseCompaniesItem> companies,
       Map<String, Object> additionalProperties) {
     this.user = user;
     this.locale = locale;
     this.activeCompanyId = activeCompanyId;
     this.role = role;
+    this.billing = billing;
     this.companies = companies;
     this.additionalProperties = additionalProperties;
   }
@@ -79,6 +82,11 @@ public final class PostV1AccountMeResponse {
       return Optional.empty();
     }
     return role;
+  }
+
+  @JsonProperty("billing")
+  public PostV1AccountMeResponseBilling getBilling() {
+    return billing;
   }
 
   @JsonProperty("companies")
@@ -116,12 +124,12 @@ public final class PostV1AccountMeResponse {
   }
 
   private boolean equalTo(PostV1AccountMeResponse other) {
-    return user.equals(other.user) && locale.equals(other.locale) && activeCompanyId.equals(other.activeCompanyId) && role.equals(other.role) && companies.equals(other.companies);
+    return user.equals(other.user) && locale.equals(other.locale) && activeCompanyId.equals(other.activeCompanyId) && role.equals(other.role) && billing.equals(other.billing) && companies.equals(other.companies);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.user, this.locale, this.activeCompanyId, this.role, this.companies);
+    return Objects.hash(this.user, this.locale, this.activeCompanyId, this.role, this.billing, this.companies);
   }
 
   @java.lang.Override
@@ -140,7 +148,11 @@ public final class PostV1AccountMeResponse {
   }
 
   public interface LocaleStage {
-    _FinalStage locale(@NotNull String locale);
+    BillingStage locale(@NotNull String locale);
+  }
+
+  public interface BillingStage {
+    _FinalStage billing(@NotNull PostV1AccountMeResponseBilling billing);
   }
 
   public interface _FinalStage {
@@ -172,10 +184,12 @@ public final class PostV1AccountMeResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements UserStage, LocaleStage, _FinalStage {
+  public static final class Builder implements UserStage, LocaleStage, BillingStage, _FinalStage {
     private PostV1AccountMeResponseUser user;
 
     private String locale;
+
+    private PostV1AccountMeResponseBilling billing;
 
     private List<PostV1AccountMeResponseCompaniesItem> companies = new ArrayList<>();
 
@@ -195,6 +209,7 @@ public final class PostV1AccountMeResponse {
       locale(other.getLocale());
       activeCompanyId(other.getActiveCompanyId());
       role(other.getRole());
+      billing(other.getBilling());
       companies(other.getCompanies());
       return this;
     }
@@ -208,8 +223,15 @@ public final class PostV1AccountMeResponse {
 
     @java.lang.Override
     @JsonSetter("locale")
-    public _FinalStage locale(@NotNull String locale) {
+    public BillingStage locale(@NotNull String locale) {
       this.locale = Objects.requireNonNull(locale, "locale must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("billing")
+    public _FinalStage billing(@NotNull PostV1AccountMeResponseBilling billing) {
+      this.billing = Objects.requireNonNull(billing, "billing must not be null");
       return this;
     }
 
@@ -302,7 +324,7 @@ public final class PostV1AccountMeResponse {
 
     @java.lang.Override
     public PostV1AccountMeResponse build() {
-      return new PostV1AccountMeResponse(user, locale, activeCompanyId, role, companies, additionalProperties);
+      return new PostV1AccountMeResponse(user, locale, activeCompanyId, role, billing, companies, additionalProperties);
     }
 
     @java.lang.Override

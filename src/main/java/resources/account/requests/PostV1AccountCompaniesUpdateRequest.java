@@ -50,6 +50,8 @@ public final class PostV1AccountCompaniesUpdateRequest {
 
   private final Optional<String> peppolId;
 
+  private final Optional<String> sepaCreditorId;
+
   private final Optional<String> defaultInvoiceCurrency;
 
   private final Optional<PostV1AccountCompaniesUpdateRequestLogo> logo;
@@ -60,7 +62,8 @@ public final class PostV1AccountCompaniesUpdateRequest {
       Optional<String> vatCode, Optional<String> smeExemptionNumber, Optional<Boolean> isVatPayer,
       Optional<PostV1AccountCompaniesUpdateRequestAddress> address, Optional<String> email,
       Optional<String> phone, Optional<String> iban, Optional<String> bankName,
-      Optional<String> peppolId, Optional<String> defaultInvoiceCurrency,
+      Optional<String> peppolId, Optional<String> sepaCreditorId,
+      Optional<String> defaultInvoiceCurrency,
       Optional<PostV1AccountCompaniesUpdateRequestLogo> logo,
       Map<String, Object> additionalProperties) {
     this.name = name;
@@ -74,6 +77,7 @@ public final class PostV1AccountCompaniesUpdateRequest {
     this.iban = iban;
     this.bankName = bankName;
     this.peppolId = peppolId;
+    this.sepaCreditorId = sepaCreditorId;
     this.defaultInvoiceCurrency = defaultInvoiceCurrency;
     this.logo = logo;
     this.additionalProperties = additionalProperties;
@@ -134,6 +138,11 @@ public final class PostV1AccountCompaniesUpdateRequest {
     return peppolId;
   }
 
+  @JsonProperty("sepaCreditorId")
+  public Optional<String> getSepaCreditorId() {
+    return sepaCreditorId;
+  }
+
   @JsonProperty("defaultInvoiceCurrency")
   public Optional<String> getDefaultInvoiceCurrency() {
     return defaultInvoiceCurrency;
@@ -156,12 +165,12 @@ public final class PostV1AccountCompaniesUpdateRequest {
   }
 
   private boolean equalTo(PostV1AccountCompaniesUpdateRequest other) {
-    return name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer.equals(other.isVatPayer) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && peppolId.equals(other.peppolId) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && logo.equals(other.logo);
+    return name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer.equals(other.isVatPayer) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && logo.equals(other.logo);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.address, this.email, this.phone, this.iban, this.bankName, this.peppolId, this.defaultInvoiceCurrency, this.logo);
+    return Objects.hash(this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.address, this.email, this.phone, this.iban, this.bankName, this.peppolId, this.sepaCreditorId, this.defaultInvoiceCurrency, this.logo);
   }
 
   @java.lang.Override
@@ -199,6 +208,8 @@ public final class PostV1AccountCompaniesUpdateRequest {
 
     private Optional<String> peppolId = Optional.empty();
 
+    private Optional<String> sepaCreditorId = Optional.empty();
+
     private Optional<String> defaultInvoiceCurrency = Optional.empty();
 
     private Optional<PostV1AccountCompaniesUpdateRequestLogo> logo = Optional.empty();
@@ -221,6 +232,7 @@ public final class PostV1AccountCompaniesUpdateRequest {
       iban(other.getIban());
       bankName(other.getBankName());
       peppolId(other.getPeppolId());
+      sepaCreditorId(other.getSepaCreditorId());
       defaultInvoiceCurrency(other.getDefaultInvoiceCurrency());
       logo(other.getLogo());
       return this;
@@ -381,6 +393,20 @@ public final class PostV1AccountCompaniesUpdateRequest {
     }
 
     @JsonSetter(
+        value = "sepaCreditorId",
+        nulls = Nulls.SKIP
+    )
+    public Builder sepaCreditorId(Optional<String> sepaCreditorId) {
+      this.sepaCreditorId = sepaCreditorId;
+      return this;
+    }
+
+    public Builder sepaCreditorId(String sepaCreditorId) {
+      this.sepaCreditorId = Optional.ofNullable(sepaCreditorId);
+      return this;
+    }
+
+    @JsonSetter(
         value = "defaultInvoiceCurrency",
         nulls = Nulls.SKIP
     )
@@ -409,7 +435,7 @@ public final class PostV1AccountCompaniesUpdateRequest {
     }
 
     public PostV1AccountCompaniesUpdateRequest build() {
-      return new PostV1AccountCompaniesUpdateRequest(name, code, vatCode, smeExemptionNumber, isVatPayer, address, email, phone, iban, bankName, peppolId, defaultInvoiceCurrency, logo, additionalProperties);
+      return new PostV1AccountCompaniesUpdateRequest(name, code, vatCode, smeExemptionNumber, isVatPayer, address, email, phone, iban, bankName, peppolId, sepaCreditorId, defaultInvoiceCurrency, logo, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

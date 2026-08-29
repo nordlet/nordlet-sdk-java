@@ -63,6 +63,8 @@ public final class PostV1AccountCompaniesUpdateResponse {
 
   private final Optional<String> peppolId;
 
+  private final Optional<String> sepaCreditorId;
+
   private final Optional<String> logoFileId;
 
   private final Map<String, Object> additionalProperties;
@@ -73,7 +75,7 @@ public final class PostV1AccountCompaniesUpdateResponse {
       PostV1AccountCompaniesUpdateResponseStatus status,
       Optional<PostV1AccountCompaniesUpdateResponseAddress> address, Optional<String> email,
       Optional<String> phone, Optional<String> iban, Optional<String> bankName,
-      Optional<String> peppolId, Optional<String> logoFileId,
+      Optional<String> peppolId, Optional<String> sepaCreditorId, Optional<String> logoFileId,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.name = name;
@@ -92,6 +94,7 @@ public final class PostV1AccountCompaniesUpdateResponse {
     this.iban = iban;
     this.bankName = bankName;
     this.peppolId = peppolId;
+    this.sepaCreditorId = sepaCreditorId;
     this.logoFileId = logoFileId;
     this.additionalProperties = additionalProperties;
   }
@@ -209,6 +212,14 @@ public final class PostV1AccountCompaniesUpdateResponse {
   }
 
   @JsonIgnore
+  public Optional<String> getSepaCreditorId() {
+    if (sepaCreditorId == null) {
+      return Optional.empty();
+    }
+    return sepaCreditorId;
+  }
+
+  @JsonIgnore
   public Optional<String> getLogoFileId() {
     if (logoFileId == null) {
       return Optional.empty();
@@ -301,6 +312,15 @@ public final class PostV1AccountCompaniesUpdateResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("sepaCreditorId")
+  private Optional<String> _getSepaCreditorId() {
+    return sepaCreditorId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("logoFileId")
   private Optional<String> _getLogoFileId() {
     return logoFileId;
@@ -318,12 +338,12 @@ public final class PostV1AccountCompaniesUpdateResponse {
   }
 
   private boolean equalTo(PostV1AccountCompaniesUpdateResponse other) {
-    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer == other.isVatPayer && isSandbox == other.isSandbox && countryCode.equals(other.countryCode) && baseCurrency.equals(other.baseCurrency) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && status.equals(other.status) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && peppolId.equals(other.peppolId) && logoFileId.equals(other.logoFileId);
+    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer == other.isVatPayer && isSandbox == other.isSandbox && countryCode.equals(other.countryCode) && baseCurrency.equals(other.baseCurrency) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && status.equals(other.status) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && logoFileId.equals(other.logoFileId);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.isSandbox, this.countryCode, this.baseCurrency, this.defaultInvoiceCurrency, this.status, this.address, this.email, this.phone, this.iban, this.bankName, this.peppolId, this.logoFileId);
+    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.isSandbox, this.countryCode, this.baseCurrency, this.defaultInvoiceCurrency, this.status, this.address, this.email, this.phone, this.iban, this.bankName, this.peppolId, this.sepaCreditorId, this.logoFileId);
   }
 
   @java.lang.Override
@@ -430,6 +450,12 @@ public final class PostV1AccountCompaniesUpdateResponse {
 
     _FinalStage peppolId(Nullable<String> peppolId);
 
+    _FinalStage sepaCreditorId(Optional<String> sepaCreditorId);
+
+    _FinalStage sepaCreditorId(String sepaCreditorId);
+
+    _FinalStage sepaCreditorId(Nullable<String> sepaCreditorId);
+
     _FinalStage logoFileId(Optional<String> logoFileId);
 
     _FinalStage logoFileId(String logoFileId);
@@ -458,6 +484,8 @@ public final class PostV1AccountCompaniesUpdateResponse {
     private PostV1AccountCompaniesUpdateResponseStatus status;
 
     private Optional<String> logoFileId = Optional.empty();
+
+    private Optional<String> sepaCreditorId = Optional.empty();
 
     private Optional<String> peppolId = Optional.empty();
 
@@ -502,6 +530,7 @@ public final class PostV1AccountCompaniesUpdateResponse {
       iban(other.getIban());
       bankName(other.getBankName());
       peppolId(other.getPeppolId());
+      sepaCreditorId(other.getSepaCreditorId());
       logoFileId(other.getLogoFileId());
       return this;
     }
@@ -589,6 +618,36 @@ public final class PostV1AccountCompaniesUpdateResponse {
     )
     public _FinalStage logoFileId(Optional<String> logoFileId) {
       this.logoFileId = logoFileId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage sepaCreditorId(Nullable<String> sepaCreditorId) {
+      if (sepaCreditorId.isNull()) {
+        this.sepaCreditorId = null;
+      }
+      else if (sepaCreditorId.isEmpty()) {
+        this.sepaCreditorId = Optional.empty();
+      }
+      else {
+        this.sepaCreditorId = Optional.of(sepaCreditorId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage sepaCreditorId(String sepaCreditorId) {
+      this.sepaCreditorId = Optional.ofNullable(sepaCreditorId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "sepaCreditorId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage sepaCreditorId(Optional<String> sepaCreditorId) {
+      this.sepaCreditorId = sepaCreditorId;
       return this;
     }
 
@@ -864,7 +923,7 @@ public final class PostV1AccountCompaniesUpdateResponse {
 
     @java.lang.Override
     public PostV1AccountCompaniesUpdateResponse build() {
-      return new PostV1AccountCompaniesUpdateResponse(id, name, code, vatCode, smeExemptionNumber, isVatPayer, isSandbox, countryCode, baseCurrency, defaultInvoiceCurrency, status, address, email, phone, iban, bankName, peppolId, logoFileId, additionalProperties);
+      return new PostV1AccountCompaniesUpdateResponse(id, name, code, vatCode, smeExemptionNumber, isVatPayer, isSandbox, countryCode, baseCurrency, defaultInvoiceCurrency, status, address, email, phone, iban, bankName, peppolId, sepaCreditorId, logoFileId, additionalProperties);
     }
 
     @java.lang.Override

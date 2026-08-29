@@ -26,6 +26,8 @@ public final class PostV1LedgerPostingRulesUpdateRequestRulesItemKey {
 
   public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey PURCHASES_DEFAULT_EXPENSE = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.PURCHASES_DEFAULT_EXPENSE, "purchases.defaultExpense");
 
+  public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey PRODUCTION_SCRAP = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.PRODUCTION_SCRAP, "production.scrap");
+
   public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey INVENTORY_STOCK = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.INVENTORY_STOCK, "inventory.stock");
 
   public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey BANK_FX_LOSS = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.BANK_FX_LOSS, "bank.fxLoss");
@@ -39,6 +41,8 @@ public final class PostV1LedgerPostingRulesUpdateRequestRulesItemKey {
   public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey REVENUE_CONTRACT_ASSET = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.REVENUE_CONTRACT_ASSET, "revenue.contractAsset");
 
   public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey SALES_ADVANCES_RECEIVED = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.SALES_ADVANCES_RECEIVED, "sales.advancesReceived");
+
+  public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey PRODUCTION_LABOR_APPLIED = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.PRODUCTION_LABOR_APPLIED, "production.laborApplied");
 
   public static final PostV1LedgerPostingRulesUpdateRequestRulesItemKey SETTLEMENTS_FEES = new PostV1LedgerPostingRulesUpdateRequestRulesItemKey(Value.SETTLEMENTS_FEES, "settlements.fees");
 
@@ -98,6 +102,8 @@ public final class PostV1LedgerPostingRulesUpdateRequestRulesItemKey {
         return visitor.visitPurchasesPayables();
       case PURCHASES_DEFAULT_EXPENSE:
         return visitor.visitPurchasesDefaultExpense();
+      case PRODUCTION_SCRAP:
+        return visitor.visitProductionScrap();
       case INVENTORY_STOCK:
         return visitor.visitInventoryStock();
       case BANK_FX_LOSS:
@@ -112,6 +118,8 @@ public final class PostV1LedgerPostingRulesUpdateRequestRulesItemKey {
         return visitor.visitRevenueContractAsset();
       case SALES_ADVANCES_RECEIVED:
         return visitor.visitSalesAdvancesReceived();
+      case PRODUCTION_LABOR_APPLIED:
+        return visitor.visitProductionLaborApplied();
       case SETTLEMENTS_FEES:
         return visitor.visitSettlementsFees();
       case BANK_FX_GAIN:
@@ -149,6 +157,8 @@ public final class PostV1LedgerPostingRulesUpdateRequestRulesItemKey {
         return PURCHASES_PAYABLES;
       case "purchases.defaultExpense":
         return PURCHASES_DEFAULT_EXPENSE;
+      case "production.scrap":
+        return PRODUCTION_SCRAP;
       case "inventory.stock":
         return INVENTORY_STOCK;
       case "bank.fxLoss":
@@ -163,6 +173,8 @@ public final class PostV1LedgerPostingRulesUpdateRequestRulesItemKey {
         return REVENUE_CONTRACT_ASSET;
       case "sales.advancesReceived":
         return SALES_ADVANCES_RECEIVED;
+      case "production.laborApplied":
+        return PRODUCTION_LABOR_APPLIED;
       case "settlements.fees":
         return SETTLEMENTS_FEES;
       case "bank.fxGain":
@@ -200,6 +212,10 @@ public final class PostV1LedgerPostingRulesUpdateRequestRulesItemKey {
     INVENTORY_COGS,
 
     INVENTORY_STOCK,
+
+    PRODUCTION_LABOR_APPLIED,
+
+    PRODUCTION_SCRAP,
 
     BANK_FX_GAIN,
 
@@ -244,6 +260,10 @@ public final class PostV1LedgerPostingRulesUpdateRequestRulesItemKey {
     T visitInventoryCogs();
 
     T visitInventoryStock();
+
+    T visitProductionLaborApplied();
+
+    T visitProductionScrap();
 
     T visitBankFxGain();
 

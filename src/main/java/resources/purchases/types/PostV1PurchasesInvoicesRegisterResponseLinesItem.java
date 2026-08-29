@@ -49,6 +49,8 @@ public final class PostV1PurchasesInvoicesRegisterResponseLinesItem {
 
   private final Optional<String> costCenterId;
 
+  private final Optional<String> projectId;
+
   private final Optional<String> accountCode;
 
   private final String lineNet;
@@ -64,8 +66,9 @@ public final class PostV1PurchasesInvoicesRegisterResponseLinesItem {
   private PostV1PurchasesInvoicesRegisterResponseLinesItem(String id, Optional<String> itemId,
       String description, String unit, String quantity, Optional<String> unitPriceExclVat,
       Optional<String> unitPriceInclVat, String vatRatePercent, Optional<String> vatClassifierCode,
-      Optional<String> costCenterId, Optional<String> accountCode, String lineNet, String lineVat,
-      String lineGross, long sortOrder, Map<String, Object> additionalProperties) {
+      Optional<String> costCenterId, Optional<String> projectId, Optional<String> accountCode,
+      String lineNet, String lineVat, String lineGross, long sortOrder,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.itemId = itemId;
     this.description = description;
@@ -76,6 +79,7 @@ public final class PostV1PurchasesInvoicesRegisterResponseLinesItem {
     this.vatRatePercent = vatRatePercent;
     this.vatClassifierCode = vatClassifierCode;
     this.costCenterId = costCenterId;
+    this.projectId = projectId;
     this.accountCode = accountCode;
     this.lineNet = lineNet;
     this.lineVat = lineVat;
@@ -147,6 +151,14 @@ public final class PostV1PurchasesInvoicesRegisterResponseLinesItem {
       return Optional.empty();
     }
     return costCenterId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getProjectId() {
+    if (projectId == null) {
+      return Optional.empty();
+    }
+    return projectId;
   }
 
   @JsonIgnore
@@ -226,6 +238,15 @@ public final class PostV1PurchasesInvoicesRegisterResponseLinesItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("projectId")
+  private Optional<String> _getProjectId() {
+    return projectId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("accountCode")
   private Optional<String> _getAccountCode() {
     return accountCode;
@@ -243,12 +264,12 @@ public final class PostV1PurchasesInvoicesRegisterResponseLinesItem {
   }
 
   private boolean equalTo(PostV1PurchasesInvoicesRegisterResponseLinesItem other) {
-    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && accountCode.equals(other.accountCode) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder;
+    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && accountCode.equals(other.accountCode) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.accountCode, this.lineNet, this.lineVat, this.lineGross, this.sortOrder);
+    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.accountCode, this.lineNet, this.lineVat, this.lineGross, this.sortOrder);
   }
 
   @java.lang.Override
@@ -335,6 +356,12 @@ public final class PostV1PurchasesInvoicesRegisterResponseLinesItem {
 
     _FinalStage costCenterId(Nullable<String> costCenterId);
 
+    _FinalStage projectId(Optional<String> projectId);
+
+    _FinalStage projectId(String projectId);
+
+    _FinalStage projectId(Nullable<String> projectId);
+
     _FinalStage accountCode(Optional<String> accountCode);
 
     _FinalStage accountCode(String accountCode);
@@ -366,6 +393,8 @@ public final class PostV1PurchasesInvoicesRegisterResponseLinesItem {
 
     private Optional<String> accountCode = Optional.empty();
 
+    private Optional<String> projectId = Optional.empty();
+
     private Optional<String> costCenterId = Optional.empty();
 
     private Optional<String> vatClassifierCode = Optional.empty();
@@ -394,6 +423,7 @@ public final class PostV1PurchasesInvoicesRegisterResponseLinesItem {
       vatRatePercent(other.getVatRatePercent());
       vatClassifierCode(other.getVatClassifierCode());
       costCenterId(other.getCostCenterId());
+      projectId(other.getProjectId());
       accountCode(other.getAccountCode());
       lineNet(other.getLineNet());
       lineVat(other.getLineVat());
@@ -492,6 +522,36 @@ public final class PostV1PurchasesInvoicesRegisterResponseLinesItem {
     )
     public _FinalStage accountCode(Optional<String> accountCode) {
       this.accountCode = accountCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage projectId(Nullable<String> projectId) {
+      if (projectId.isNull()) {
+        this.projectId = null;
+      }
+      else if (projectId.isEmpty()) {
+        this.projectId = Optional.empty();
+      }
+      else {
+        this.projectId = Optional.of(projectId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage projectId(String projectId) {
+      this.projectId = Optional.ofNullable(projectId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "projectId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage projectId(Optional<String> projectId) {
+      this.projectId = projectId;
       return this;
     }
 
@@ -647,7 +707,7 @@ public final class PostV1PurchasesInvoicesRegisterResponseLinesItem {
 
     @java.lang.Override
     public PostV1PurchasesInvoicesRegisterResponseLinesItem build() {
-      return new PostV1PurchasesInvoicesRegisterResponseLinesItem(id, itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, accountCode, lineNet, lineVat, lineGross, sortOrder, additionalProperties);
+      return new PostV1PurchasesInvoicesRegisterResponseLinesItem(id, itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, accountCode, lineNet, lineVat, lineGross, sortOrder, additionalProperties);
     }
 
     @java.lang.Override

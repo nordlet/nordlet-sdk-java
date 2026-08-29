@@ -38,6 +38,8 @@ import com.nordlet.api.resources.partners.requests.PostV1PartnersStatusesListReq
 import com.nordlet.api.resources.partners.requests.PostV1PartnersStatusesUpdateRequest;
 import com.nordlet.api.resources.partners.requests.PostV1PartnersUpdateRequest;
 import com.nordlet.api.resources.partners.requests.PostV1PartnersValidateVatRequest;
+import com.nordlet.api.resources.partners.requests.PostV1PartnersVatReviewsListRequest;
+import com.nordlet.api.resources.partners.requests.PostV1PartnersVatReviewsResolveRequest;
 import com.nordlet.api.resources.partners.types.PostV1PartnersAddressesCreateResponse;
 import com.nordlet.api.resources.partners.types.PostV1PartnersAddressesDeleteResponse;
 import com.nordlet.api.resources.partners.types.PostV1PartnersAddressesListResponse;
@@ -70,6 +72,8 @@ import com.nordlet.api.resources.partners.types.PostV1PartnersStatusesListRespon
 import com.nordlet.api.resources.partners.types.PostV1PartnersStatusesUpdateResponse;
 import com.nordlet.api.resources.partners.types.PostV1PartnersUpdateResponse;
 import com.nordlet.api.resources.partners.types.PostV1PartnersValidateVatResponse;
+import com.nordlet.api.resources.partners.types.PostV1PartnersVatReviewsListResponse;
+import com.nordlet.api.resources.partners.types.PostV1PartnersVatReviewsResolveResponse;
 
 public class PartnersClient {
   protected final ClientOptions clientOptions;
@@ -252,6 +256,35 @@ public class PartnersClient {
   public PostV1PartnersValidateVatResponse postV1PartnersValidateVat(
       PostV1PartnersValidateVatRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1PartnersValidateVat(request, requestOptions).body();
+  }
+
+  public PostV1PartnersVatReviewsListResponse postV1PartnersVatReviewsList() {
+    return this.rawClient.postV1PartnersVatReviewsList().body();
+  }
+
+  public PostV1PartnersVatReviewsListResponse postV1PartnersVatReviewsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1PartnersVatReviewsList(requestOptions).body();
+  }
+
+  public PostV1PartnersVatReviewsListResponse postV1PartnersVatReviewsList(
+      PostV1PartnersVatReviewsListRequest request) {
+    return this.rawClient.postV1PartnersVatReviewsList(request).body();
+  }
+
+  public PostV1PartnersVatReviewsListResponse postV1PartnersVatReviewsList(
+      PostV1PartnersVatReviewsListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PartnersVatReviewsList(request, requestOptions).body();
+  }
+
+  public PostV1PartnersVatReviewsResolveResponse postV1PartnersVatReviewsResolve(
+      PostV1PartnersVatReviewsResolveRequest request) {
+    return this.rawClient.postV1PartnersVatReviewsResolve(request).body();
+  }
+
+  public PostV1PartnersVatReviewsResolveResponse postV1PartnersVatReviewsResolve(
+      PostV1PartnersVatReviewsResolveRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PartnersVatReviewsResolve(request, requestOptions).body();
   }
 
   public PostV1PartnersCreateResponse postV1PartnersCreate(PostV1PartnersCreateRequest request) {

@@ -11,12 +11,15 @@ import com.nordlet.api.resources.agreements.AgreementsClient;
 import com.nordlet.api.resources.assets.AssetsClient;
 import com.nordlet.api.resources.audit.AuditClient;
 import com.nordlet.api.resources.bank.BankClient;
+import com.nordlet.api.resources.billing.BillingClient;
+import com.nordlet.api.resources.capture.CaptureClient;
 import com.nordlet.api.resources.cash.CashClient;
 import com.nordlet.api.resources.catalog.CatalogClient;
 import com.nordlet.api.resources.consolidation.ConsolidationClient;
 import com.nordlet.api.resources.declarations.DeclarationsClient;
 import com.nordlet.api.resources.ecommerce.EcommerceClient;
 import com.nordlet.api.resources.files.FilesClient;
+import com.nordlet.api.resources.fleet.FleetClient;
 import com.nordlet.api.resources.hr.HrClient;
 import com.nordlet.api.resources.inventory.InventoryClient;
 import com.nordlet.api.resources.ledger.LedgerClient;
@@ -24,6 +27,7 @@ import com.nordlet.api.resources.partners.PartnersClient;
 import com.nordlet.api.resources.payroll.PayrollClient;
 import com.nordlet.api.resources.pos.PosClient;
 import com.nordlet.api.resources.production.ProductionClient;
+import com.nordlet.api.resources.projects.ProjectsClient;
 import com.nordlet.api.resources.public_.PublicClient;
 import com.nordlet.api.resources.purchases.PurchasesClient;
 import com.nordlet.api.resources.reference.ReferenceClient;
@@ -46,6 +50,8 @@ public class NordletApiClient {
 
   protected final Supplier<PurchasesClient> purchasesClient;
 
+  protected final Supplier<CaptureClient> captureClient;
+
   protected final Supplier<DeclarationsClient> declarationsClient;
 
   protected final Supplier<LedgerClient> ledgerClient;
@@ -53,6 +59,8 @@ public class NordletApiClient {
   protected final Supplier<AssetsClient> assetsClient;
 
   protected final Supplier<HrClient> hrClient;
+
+  protected final Supplier<FleetClient> fleetClient;
 
   protected final Supplier<PayrollClient> payrollClient;
 
@@ -65,6 +73,8 @@ public class NordletApiClient {
   protected final Supplier<EcommerceClient> ecommerceClient;
 
   protected final Supplier<CashClient> cashClient;
+
+  protected final Supplier<ProjectsClient> projectsClient;
 
   protected final Supplier<TransportClient> transportClient;
 
@@ -84,6 +94,8 @@ public class NordletApiClient {
 
   protected final Supplier<PublicClient> publicClient;
 
+  protected final Supplier<BillingClient> billingClient;
+
   protected final Supplier<AccountClient> accountClient;
 
   public NordletApiClient(ClientOptions clientOptions) {
@@ -93,16 +105,19 @@ public class NordletApiClient {
     this.catalogClient = Suppliers.memoize(() -> new CatalogClient(clientOptions));
     this.salesClient = Suppliers.memoize(() -> new SalesClient(clientOptions));
     this.purchasesClient = Suppliers.memoize(() -> new PurchasesClient(clientOptions));
+    this.captureClient = Suppliers.memoize(() -> new CaptureClient(clientOptions));
     this.declarationsClient = Suppliers.memoize(() -> new DeclarationsClient(clientOptions));
     this.ledgerClient = Suppliers.memoize(() -> new LedgerClient(clientOptions));
     this.assetsClient = Suppliers.memoize(() -> new AssetsClient(clientOptions));
     this.hrClient = Suppliers.memoize(() -> new HrClient(clientOptions));
+    this.fleetClient = Suppliers.memoize(() -> new FleetClient(clientOptions));
     this.payrollClient = Suppliers.memoize(() -> new PayrollClient(clientOptions));
     this.agreementsClient = Suppliers.memoize(() -> new AgreementsClient(clientOptions));
     this.inventoryClient = Suppliers.memoize(() -> new InventoryClient(clientOptions));
     this.productionClient = Suppliers.memoize(() -> new ProductionClient(clientOptions));
     this.ecommerceClient = Suppliers.memoize(() -> new EcommerceClient(clientOptions));
     this.cashClient = Suppliers.memoize(() -> new CashClient(clientOptions));
+    this.projectsClient = Suppliers.memoize(() -> new ProjectsClient(clientOptions));
     this.transportClient = Suppliers.memoize(() -> new TransportClient(clientOptions));
     this.posClient = Suppliers.memoize(() -> new PosClient(clientOptions));
     this.auditClient = Suppliers.memoize(() -> new AuditClient(clientOptions));
@@ -112,6 +127,7 @@ public class NordletApiClient {
     this.reportsClient = Suppliers.memoize(() -> new ReportsClient(clientOptions));
     this.consolidationClient = Suppliers.memoize(() -> new ConsolidationClient(clientOptions));
     this.publicClient = Suppliers.memoize(() -> new PublicClient(clientOptions));
+    this.billingClient = Suppliers.memoize(() -> new BillingClient(clientOptions));
     this.accountClient = Suppliers.memoize(() -> new AccountClient(clientOptions));
   }
 
@@ -135,6 +151,10 @@ public class NordletApiClient {
     return this.purchasesClient.get();
   }
 
+  public CaptureClient capture() {
+    return this.captureClient.get();
+  }
+
   public DeclarationsClient declarations() {
     return this.declarationsClient.get();
   }
@@ -149,6 +169,10 @@ public class NordletApiClient {
 
   public HrClient hr() {
     return this.hrClient.get();
+  }
+
+  public FleetClient fleet() {
+    return this.fleetClient.get();
   }
 
   public PayrollClient payroll() {
@@ -173,6 +197,10 @@ public class NordletApiClient {
 
   public CashClient cash() {
     return this.cashClient.get();
+  }
+
+  public ProjectsClient projects() {
+    return this.projectsClient.get();
   }
 
   public TransportClient transport() {
@@ -209,6 +237,10 @@ public class NordletApiClient {
 
   public PublicClient public_() {
     return this.publicClient.get();
+  }
+
+  public BillingClient billing() {
+    return this.billingClient.get();
   }
 
   public AccountClient account() {

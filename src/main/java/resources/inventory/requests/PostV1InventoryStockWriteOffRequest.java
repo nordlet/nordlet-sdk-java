@@ -34,6 +34,8 @@ public final class PostV1InventoryStockWriteOffRequest {
 
   private final String quantity;
 
+  private final Optional<String> lotNumber;
+
   private final Optional<String> expenseAccountCode;
 
   private final Optional<String> inventoryAccountCode;
@@ -43,12 +45,14 @@ public final class PostV1InventoryStockWriteOffRequest {
   private final Map<String, Object> additionalProperties;
 
   private PostV1InventoryStockWriteOffRequest(String warehouseId, String itemId, String date,
-      String quantity, Optional<String> expenseAccountCode, Optional<String> inventoryAccountCode,
-      Optional<String> notes, Map<String, Object> additionalProperties) {
+      String quantity, Optional<String> lotNumber, Optional<String> expenseAccountCode,
+      Optional<String> inventoryAccountCode, Optional<String> notes,
+      Map<String, Object> additionalProperties) {
     this.warehouseId = warehouseId;
     this.itemId = itemId;
     this.date = date;
     this.quantity = quantity;
+    this.lotNumber = lotNumber;
     this.expenseAccountCode = expenseAccountCode;
     this.inventoryAccountCode = inventoryAccountCode;
     this.notes = notes;
@@ -73,6 +77,11 @@ public final class PostV1InventoryStockWriteOffRequest {
   @JsonProperty("quantity")
   public String getQuantity() {
     return quantity;
+  }
+
+  @JsonProperty("lotNumber")
+  public Optional<String> getLotNumber() {
+    return lotNumber;
   }
 
   @JsonProperty("expenseAccountCode")
@@ -102,12 +111,12 @@ public final class PostV1InventoryStockWriteOffRequest {
   }
 
   private boolean equalTo(PostV1InventoryStockWriteOffRequest other) {
-    return warehouseId.equals(other.warehouseId) && itemId.equals(other.itemId) && date.equals(other.date) && quantity.equals(other.quantity) && expenseAccountCode.equals(other.expenseAccountCode) && inventoryAccountCode.equals(other.inventoryAccountCode) && notes.equals(other.notes);
+    return warehouseId.equals(other.warehouseId) && itemId.equals(other.itemId) && date.equals(other.date) && quantity.equals(other.quantity) && lotNumber.equals(other.lotNumber) && expenseAccountCode.equals(other.expenseAccountCode) && inventoryAccountCode.equals(other.inventoryAccountCode) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.warehouseId, this.itemId, this.date, this.quantity, this.expenseAccountCode, this.inventoryAccountCode, this.notes);
+    return Objects.hash(this.warehouseId, this.itemId, this.date, this.quantity, this.lotNumber, this.expenseAccountCode, this.inventoryAccountCode, this.notes);
   }
 
   @java.lang.Override
@@ -144,6 +153,10 @@ public final class PostV1InventoryStockWriteOffRequest {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage lotNumber(Optional<String> lotNumber);
+
+    _FinalStage lotNumber(String lotNumber);
+
     _FinalStage expenseAccountCode(Optional<String> expenseAccountCode);
 
     _FinalStage expenseAccountCode(String expenseAccountCode);
@@ -175,6 +188,8 @@ public final class PostV1InventoryStockWriteOffRequest {
 
     private Optional<String> expenseAccountCode = Optional.empty();
 
+    private Optional<String> lotNumber = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -187,6 +202,7 @@ public final class PostV1InventoryStockWriteOffRequest {
       itemId(other.getItemId());
       date(other.getDate());
       quantity(other.getQuantity());
+      lotNumber(other.getLotNumber());
       expenseAccountCode(other.getExpenseAccountCode());
       inventoryAccountCode(other.getInventoryAccountCode());
       notes(other.getNotes());
@@ -270,8 +286,24 @@ public final class PostV1InventoryStockWriteOffRequest {
     }
 
     @java.lang.Override
+    public _FinalStage lotNumber(String lotNumber) {
+      this.lotNumber = Optional.ofNullable(lotNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lotNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lotNumber(Optional<String> lotNumber) {
+      this.lotNumber = lotNumber;
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1InventoryStockWriteOffRequest build() {
-      return new PostV1InventoryStockWriteOffRequest(warehouseId, itemId, date, quantity, expenseAccountCode, inventoryAccountCode, notes, additionalProperties);
+      return new PostV1InventoryStockWriteOffRequest(warehouseId, itemId, date, quantity, lotNumber, expenseAccountCode, inventoryAccountCode, notes, additionalProperties);
     }
 
     @java.lang.Override

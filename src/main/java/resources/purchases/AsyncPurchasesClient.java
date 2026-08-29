@@ -10,14 +10,42 @@ import com.nordlet.api.resources.purchases.requests.PostV1PurchasesInvoicesCreat
 import com.nordlet.api.resources.purchases.requests.PostV1PurchasesInvoicesDeleteRequest;
 import com.nordlet.api.resources.purchases.requests.PostV1PurchasesInvoicesGetRequest;
 import com.nordlet.api.resources.purchases.requests.PostV1PurchasesInvoicesListRequest;
+import com.nordlet.api.resources.purchases.requests.PostV1PurchasesInvoicesMatchRequest;
 import com.nordlet.api.resources.purchases.requests.PostV1PurchasesInvoicesRegisterRequest;
 import com.nordlet.api.resources.purchases.requests.PostV1PurchasesInvoicesUpdateRequest;
+import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersApproveRequest;
+import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersCancelRequest;
+import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersCloseRequest;
+import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersCreateRequest;
+import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersDeleteRequest;
+import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersGetRequest;
+import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersListRequest;
+import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersRejectRequest;
+import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersSubmitRequest;
+import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersUpdateRequest;
+import com.nordlet.api.resources.purchases.requests.PostV1PurchasesReceiptsCreateRequest;
+import com.nordlet.api.resources.purchases.requests.PostV1PurchasesReceiptsGetRequest;
+import com.nordlet.api.resources.purchases.requests.PostV1PurchasesReceiptsListRequest;
 import com.nordlet.api.resources.purchases.types.PostV1PurchasesInvoicesCreateResponse;
 import com.nordlet.api.resources.purchases.types.PostV1PurchasesInvoicesDeleteResponse;
 import com.nordlet.api.resources.purchases.types.PostV1PurchasesInvoicesGetResponse;
 import com.nordlet.api.resources.purchases.types.PostV1PurchasesInvoicesListResponse;
+import com.nordlet.api.resources.purchases.types.PostV1PurchasesInvoicesMatchResponse;
 import com.nordlet.api.resources.purchases.types.PostV1PurchasesInvoicesRegisterResponse;
 import com.nordlet.api.resources.purchases.types.PostV1PurchasesInvoicesUpdateResponse;
+import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersApproveResponse;
+import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersCancelResponse;
+import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersCloseResponse;
+import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersCreateResponse;
+import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersDeleteResponse;
+import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersGetResponse;
+import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersListResponse;
+import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersRejectResponse;
+import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersSubmitResponse;
+import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersUpdateResponse;
+import com.nordlet.api.resources.purchases.types.PostV1PurchasesReceiptsCreateResponse;
+import com.nordlet.api.resources.purchases.types.PostV1PurchasesReceiptsGetResponse;
+import com.nordlet.api.resources.purchases.types.PostV1PurchasesReceiptsListResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncPurchasesClient {
@@ -104,5 +132,163 @@ public class AsyncPurchasesClient {
   public CompletableFuture<PostV1PurchasesInvoicesListResponse> postV1PurchasesInvoicesList(
       PostV1PurchasesInvoicesListRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1PurchasesInvoicesList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersCreateResponse> postV1PurchasesOrdersCreate(
+      PostV1PurchasesOrdersCreateRequest request) {
+    return this.rawClient.postV1PurchasesOrdersCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersCreateResponse> postV1PurchasesOrdersCreate(
+      PostV1PurchasesOrdersCreateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesOrdersCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersUpdateResponse> postV1PurchasesOrdersUpdate(
+      PostV1PurchasesOrdersUpdateRequest request) {
+    return this.rawClient.postV1PurchasesOrdersUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersUpdateResponse> postV1PurchasesOrdersUpdate(
+      PostV1PurchasesOrdersUpdateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesOrdersUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersGetResponse> postV1PurchasesOrdersGet(
+      PostV1PurchasesOrdersGetRequest request) {
+    return this.rawClient.postV1PurchasesOrdersGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersGetResponse> postV1PurchasesOrdersGet(
+      PostV1PurchasesOrdersGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesOrdersGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersListResponse> postV1PurchasesOrdersList() {
+    return this.rawClient.postV1PurchasesOrdersList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersListResponse> postV1PurchasesOrdersList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesOrdersList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersListResponse> postV1PurchasesOrdersList(
+      PostV1PurchasesOrdersListRequest request) {
+    return this.rawClient.postV1PurchasesOrdersList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersListResponse> postV1PurchasesOrdersList(
+      PostV1PurchasesOrdersListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesOrdersList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersSubmitResponse> postV1PurchasesOrdersSubmit(
+      PostV1PurchasesOrdersSubmitRequest request) {
+    return this.rawClient.postV1PurchasesOrdersSubmit(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersSubmitResponse> postV1PurchasesOrdersSubmit(
+      PostV1PurchasesOrdersSubmitRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesOrdersSubmit(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersApproveResponse> postV1PurchasesOrdersApprove(
+      PostV1PurchasesOrdersApproveRequest request) {
+    return this.rawClient.postV1PurchasesOrdersApprove(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersApproveResponse> postV1PurchasesOrdersApprove(
+      PostV1PurchasesOrdersApproveRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesOrdersApprove(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersRejectResponse> postV1PurchasesOrdersReject(
+      PostV1PurchasesOrdersRejectRequest request) {
+    return this.rawClient.postV1PurchasesOrdersReject(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersRejectResponse> postV1PurchasesOrdersReject(
+      PostV1PurchasesOrdersRejectRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesOrdersReject(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersCancelResponse> postV1PurchasesOrdersCancel(
+      PostV1PurchasesOrdersCancelRequest request) {
+    return this.rawClient.postV1PurchasesOrdersCancel(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersCancelResponse> postV1PurchasesOrdersCancel(
+      PostV1PurchasesOrdersCancelRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesOrdersCancel(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersCloseResponse> postV1PurchasesOrdersClose(
+      PostV1PurchasesOrdersCloseRequest request) {
+    return this.rawClient.postV1PurchasesOrdersClose(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersCloseResponse> postV1PurchasesOrdersClose(
+      PostV1PurchasesOrdersCloseRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesOrdersClose(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersDeleteResponse> postV1PurchasesOrdersDelete(
+      PostV1PurchasesOrdersDeleteRequest request) {
+    return this.rawClient.postV1PurchasesOrdersDelete(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesOrdersDeleteResponse> postV1PurchasesOrdersDelete(
+      PostV1PurchasesOrdersDeleteRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesOrdersDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesReceiptsCreateResponse> postV1PurchasesReceiptsCreate(
+      PostV1PurchasesReceiptsCreateRequest request) {
+    return this.rawClient.postV1PurchasesReceiptsCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesReceiptsCreateResponse> postV1PurchasesReceiptsCreate(
+      PostV1PurchasesReceiptsCreateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesReceiptsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesReceiptsGetResponse> postV1PurchasesReceiptsGet(
+      PostV1PurchasesReceiptsGetRequest request) {
+    return this.rawClient.postV1PurchasesReceiptsGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesReceiptsGetResponse> postV1PurchasesReceiptsGet(
+      PostV1PurchasesReceiptsGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesReceiptsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesReceiptsListResponse> postV1PurchasesReceiptsList() {
+    return this.rawClient.postV1PurchasesReceiptsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesReceiptsListResponse> postV1PurchasesReceiptsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesReceiptsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesReceiptsListResponse> postV1PurchasesReceiptsList(
+      PostV1PurchasesReceiptsListRequest request) {
+    return this.rawClient.postV1PurchasesReceiptsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesReceiptsListResponse> postV1PurchasesReceiptsList(
+      PostV1PurchasesReceiptsListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesReceiptsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesInvoicesMatchResponse> postV1PurchasesInvoicesMatch(
+      PostV1PurchasesInvoicesMatchRequest request) {
+    return this.rawClient.postV1PurchasesInvoicesMatch(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1PurchasesInvoicesMatchResponse> postV1PurchasesInvoicesMatch(
+      PostV1PurchasesInvoicesMatchRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1PurchasesInvoicesMatch(request, requestOptions).thenApply(response -> response.body());
   }
 }

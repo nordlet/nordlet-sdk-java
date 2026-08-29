@@ -35,6 +35,8 @@ public final class PostV1InventoryStockMovementsListResponseRowsItem {
 
   private final String itemId;
 
+  private final Optional<String> lotId;
+
   private final String date;
 
   private final PostV1InventoryStockMovementsListResponseRowsItemDirection direction;
@@ -58,7 +60,7 @@ public final class PostV1InventoryStockMovementsListResponseRowsItem {
   private final Map<String, Object> additionalProperties;
 
   private PostV1InventoryStockMovementsListResponseRowsItem(String id, String warehouseId,
-      String itemId, String date,
+      String itemId, Optional<String> lotId, String date,
       PostV1InventoryStockMovementsListResponseRowsItemDirection direction, String quantity,
       Optional<String> unitCost, String totalCost, String remainingQty,
       Optional<String> documentType, Optional<String> documentId, Optional<String> notes,
@@ -66,6 +68,7 @@ public final class PostV1InventoryStockMovementsListResponseRowsItem {
     this.id = id;
     this.warehouseId = warehouseId;
     this.itemId = itemId;
+    this.lotId = lotId;
     this.date = date;
     this.direction = direction;
     this.quantity = quantity;
@@ -92,6 +95,14 @@ public final class PostV1InventoryStockMovementsListResponseRowsItem {
   @JsonProperty("itemId")
   public String getItemId() {
     return itemId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getLotId() {
+    if (lotId == null) {
+      return Optional.empty();
+    }
+    return lotId;
   }
 
   @JsonProperty("date")
@@ -160,6 +171,15 @@ public final class PostV1InventoryStockMovementsListResponseRowsItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("lotId")
+  private Optional<String> _getLotId() {
+    return lotId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("unitCost")
   private Optional<String> _getUnitCost() {
     return unitCost;
@@ -204,12 +224,12 @@ public final class PostV1InventoryStockMovementsListResponseRowsItem {
   }
 
   private boolean equalTo(PostV1InventoryStockMovementsListResponseRowsItem other) {
-    return id.equals(other.id) && warehouseId.equals(other.warehouseId) && itemId.equals(other.itemId) && date.equals(other.date) && direction.equals(other.direction) && quantity.equals(other.quantity) && unitCost.equals(other.unitCost) && totalCost.equals(other.totalCost) && remainingQty.equals(other.remainingQty) && documentType.equals(other.documentType) && documentId.equals(other.documentId) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && warehouseId.equals(other.warehouseId) && itemId.equals(other.itemId) && lotId.equals(other.lotId) && date.equals(other.date) && direction.equals(other.direction) && quantity.equals(other.quantity) && unitCost.equals(other.unitCost) && totalCost.equals(other.totalCost) && remainingQty.equals(other.remainingQty) && documentType.equals(other.documentType) && documentId.equals(other.documentId) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.warehouseId, this.itemId, this.date, this.direction, this.quantity, this.unitCost, this.totalCost, this.remainingQty, this.documentType, this.documentId, this.notes, this.createdAt);
+    return Objects.hash(this.id, this.warehouseId, this.itemId, this.lotId, this.date, this.direction, this.quantity, this.unitCost, this.totalCost, this.remainingQty, this.documentType, this.documentId, this.notes, this.createdAt);
   }
 
   @java.lang.Override
@@ -267,6 +287,12 @@ public final class PostV1InventoryStockMovementsListResponseRowsItem {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage lotId(Optional<String> lotId);
+
+    _FinalStage lotId(String lotId);
+
+    _FinalStage lotId(Nullable<String> lotId);
+
     _FinalStage unitCost(Optional<String> unitCost);
 
     _FinalStage unitCost(String unitCost);
@@ -322,6 +348,8 @@ public final class PostV1InventoryStockMovementsListResponseRowsItem {
 
     private Optional<String> unitCost = Optional.empty();
 
+    private Optional<String> lotId = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -333,6 +361,7 @@ public final class PostV1InventoryStockMovementsListResponseRowsItem {
       id(other.getId());
       warehouseId(other.getWarehouseId());
       itemId(other.getItemId());
+      lotId(other.getLotId());
       date(other.getDate());
       direction(other.getDirection());
       quantity(other.getQuantity());
@@ -531,8 +560,38 @@ public final class PostV1InventoryStockMovementsListResponseRowsItem {
     }
 
     @java.lang.Override
+    public _FinalStage lotId(Nullable<String> lotId) {
+      if (lotId.isNull()) {
+        this.lotId = null;
+      }
+      else if (lotId.isEmpty()) {
+        this.lotId = Optional.empty();
+      }
+      else {
+        this.lotId = Optional.of(lotId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lotId(String lotId) {
+      this.lotId = Optional.ofNullable(lotId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lotId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lotId(Optional<String> lotId) {
+      this.lotId = lotId;
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1InventoryStockMovementsListResponseRowsItem build() {
-      return new PostV1InventoryStockMovementsListResponseRowsItem(id, warehouseId, itemId, date, direction, quantity, unitCost, totalCost, remainingQty, documentType, documentId, notes, createdAt, additionalProperties);
+      return new PostV1InventoryStockMovementsListResponseRowsItem(id, warehouseId, itemId, lotId, date, direction, quantity, unitCost, totalCost, remainingQty, documentType, documentId, notes, createdAt, additionalProperties);
     }
 
     @java.lang.Override

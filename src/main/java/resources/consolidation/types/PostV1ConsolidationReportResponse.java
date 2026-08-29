@@ -47,6 +47,8 @@ public final class PostV1ConsolidationReportResponse {
 
   private final PostV1ConsolidationReportResponseEliminations eliminations;
 
+  private final PostV1ConsolidationReportResponseCashFlow cashFlow;
+
   private final List<PostV1ConsolidationReportResponseIntercompanyCandidatesItem> intercompanyCandidates;
 
   private final Map<String, Object> additionalProperties;
@@ -59,6 +61,7 @@ public final class PostV1ConsolidationReportResponse {
       PostV1ConsolidationReportResponseEquityMethod equityMethod,
       List<PostV1ConsolidationReportResponseMembersItem> members,
       PostV1ConsolidationReportResponseEliminations eliminations,
+      PostV1ConsolidationReportResponseCashFlow cashFlow,
       List<PostV1ConsolidationReportResponseIntercompanyCandidatesItem> intercompanyCandidates,
       Map<String, Object> additionalProperties) {
     this.presentationCurrency = presentationCurrency;
@@ -71,6 +74,7 @@ public final class PostV1ConsolidationReportResponse {
     this.equityMethod = equityMethod;
     this.members = members;
     this.eliminations = eliminations;
+    this.cashFlow = cashFlow;
     this.intercompanyCandidates = intercompanyCandidates;
     this.additionalProperties = additionalProperties;
   }
@@ -125,6 +129,11 @@ public final class PostV1ConsolidationReportResponse {
     return eliminations;
   }
 
+  @JsonProperty("cashFlow")
+  public PostV1ConsolidationReportResponseCashFlow getCashFlow() {
+    return cashFlow;
+  }
+
   @JsonProperty("intercompanyCandidates")
   public List<PostV1ConsolidationReportResponseIntercompanyCandidatesItem> getIntercompanyCandidates(
       ) {
@@ -143,12 +152,12 @@ public final class PostV1ConsolidationReportResponse {
   }
 
   private boolean equalTo(PostV1ConsolidationReportResponse other) {
-    return presentationCurrency.equals(other.presentationCurrency) && fromDate.equals(other.fromDate) && toDate.equals(other.toDate) && category.equals(other.category) && statements.equals(other.statements) && trialBalance.equals(other.trialBalance) && nonControllingInterest.equals(other.nonControllingInterest) && equityMethod.equals(other.equityMethod) && members.equals(other.members) && eliminations.equals(other.eliminations) && intercompanyCandidates.equals(other.intercompanyCandidates);
+    return presentationCurrency.equals(other.presentationCurrency) && fromDate.equals(other.fromDate) && toDate.equals(other.toDate) && category.equals(other.category) && statements.equals(other.statements) && trialBalance.equals(other.trialBalance) && nonControllingInterest.equals(other.nonControllingInterest) && equityMethod.equals(other.equityMethod) && members.equals(other.members) && eliminations.equals(other.eliminations) && cashFlow.equals(other.cashFlow) && intercompanyCandidates.equals(other.intercompanyCandidates);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.presentationCurrency, this.fromDate, this.toDate, this.category, this.statements, this.trialBalance, this.nonControllingInterest, this.equityMethod, this.members, this.eliminations, this.intercompanyCandidates);
+    return Objects.hash(this.presentationCurrency, this.fromDate, this.toDate, this.category, this.statements, this.trialBalance, this.nonControllingInterest, this.equityMethod, this.members, this.eliminations, this.cashFlow, this.intercompanyCandidates);
   }
 
   @java.lang.Override
@@ -194,7 +203,11 @@ public final class PostV1ConsolidationReportResponse {
   }
 
   public interface EliminationsStage {
-    _FinalStage eliminations(@NotNull PostV1ConsolidationReportResponseEliminations eliminations);
+    CashFlowStage eliminations(@NotNull PostV1ConsolidationReportResponseEliminations eliminations);
+  }
+
+  public interface CashFlowStage {
+    _FinalStage cashFlow(@NotNull PostV1ConsolidationReportResponseCashFlow cashFlow);
   }
 
   public interface _FinalStage {
@@ -230,7 +243,7 @@ public final class PostV1ConsolidationReportResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements PresentationCurrencyStage, FromDateStage, ToDateStage, CategoryStage, StatementsStage, NonControllingInterestStage, EquityMethodStage, EliminationsStage, _FinalStage {
+  public static final class Builder implements PresentationCurrencyStage, FromDateStage, ToDateStage, CategoryStage, StatementsStage, NonControllingInterestStage, EquityMethodStage, EliminationsStage, CashFlowStage, _FinalStage {
     private String presentationCurrency;
 
     private String fromDate;
@@ -246,6 +259,8 @@ public final class PostV1ConsolidationReportResponse {
     private PostV1ConsolidationReportResponseEquityMethod equityMethod;
 
     private PostV1ConsolidationReportResponseEliminations eliminations;
+
+    private PostV1ConsolidationReportResponseCashFlow cashFlow;
 
     private List<PostV1ConsolidationReportResponseIntercompanyCandidatesItem> intercompanyCandidates = new ArrayList<>();
 
@@ -271,6 +286,7 @@ public final class PostV1ConsolidationReportResponse {
       equityMethod(other.getEquityMethod());
       members(other.getMembers());
       eliminations(other.getEliminations());
+      cashFlow(other.getCashFlow());
       intercompanyCandidates(other.getIntercompanyCandidates());
       return this;
     }
@@ -329,9 +345,16 @@ public final class PostV1ConsolidationReportResponse {
 
     @java.lang.Override
     @JsonSetter("eliminations")
-    public _FinalStage eliminations(
+    public CashFlowStage eliminations(
         @NotNull PostV1ConsolidationReportResponseEliminations eliminations) {
       this.eliminations = Objects.requireNonNull(eliminations, "eliminations must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("cashFlow")
+    public _FinalStage cashFlow(@NotNull PostV1ConsolidationReportResponseCashFlow cashFlow) {
+      this.cashFlow = Objects.requireNonNull(cashFlow, "cashFlow must not be null");
       return this;
     }
 
@@ -424,7 +447,7 @@ public final class PostV1ConsolidationReportResponse {
 
     @java.lang.Override
     public PostV1ConsolidationReportResponse build() {
-      return new PostV1ConsolidationReportResponse(presentationCurrency, fromDate, toDate, category, statements, trialBalance, nonControllingInterest, equityMethod, members, eliminations, intercompanyCandidates, additionalProperties);
+      return new PostV1ConsolidationReportResponse(presentationCurrency, fromDate, toDate, category, statements, trialBalance, nonControllingInterest, equityMethod, members, eliminations, cashFlow, intercompanyCandidates, additionalProperties);
     }
 
     @java.lang.Override

@@ -36,18 +36,24 @@ public final class PostV1InventoryStockReceiveRequest {
 
   private final String unitCost;
 
+  private final Optional<String> lotNumber;
+
+  private final Optional<String> expiryDate;
+
   private final Optional<String> notes;
 
   private final Map<String, Object> additionalProperties;
 
   private PostV1InventoryStockReceiveRequest(String warehouseId, String itemId, String date,
-      String quantity, String unitCost, Optional<String> notes,
-      Map<String, Object> additionalProperties) {
+      String quantity, String unitCost, Optional<String> lotNumber, Optional<String> expiryDate,
+      Optional<String> notes, Map<String, Object> additionalProperties) {
     this.warehouseId = warehouseId;
     this.itemId = itemId;
     this.date = date;
     this.quantity = quantity;
     this.unitCost = unitCost;
+    this.lotNumber = lotNumber;
+    this.expiryDate = expiryDate;
     this.notes = notes;
     this.additionalProperties = additionalProperties;
   }
@@ -77,6 +83,16 @@ public final class PostV1InventoryStockReceiveRequest {
     return unitCost;
   }
 
+  @JsonProperty("lotNumber")
+  public Optional<String> getLotNumber() {
+    return lotNumber;
+  }
+
+  @JsonProperty("expiryDate")
+  public Optional<String> getExpiryDate() {
+    return expiryDate;
+  }
+
   @JsonProperty("notes")
   public Optional<String> getNotes() {
     return notes;
@@ -94,12 +110,12 @@ public final class PostV1InventoryStockReceiveRequest {
   }
 
   private boolean equalTo(PostV1InventoryStockReceiveRequest other) {
-    return warehouseId.equals(other.warehouseId) && itemId.equals(other.itemId) && date.equals(other.date) && quantity.equals(other.quantity) && unitCost.equals(other.unitCost) && notes.equals(other.notes);
+    return warehouseId.equals(other.warehouseId) && itemId.equals(other.itemId) && date.equals(other.date) && quantity.equals(other.quantity) && unitCost.equals(other.unitCost) && lotNumber.equals(other.lotNumber) && expiryDate.equals(other.expiryDate) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.warehouseId, this.itemId, this.date, this.quantity, this.unitCost, this.notes);
+    return Objects.hash(this.warehouseId, this.itemId, this.date, this.quantity, this.unitCost, this.lotNumber, this.expiryDate, this.notes);
   }
 
   @java.lang.Override
@@ -140,6 +156,14 @@ public final class PostV1InventoryStockReceiveRequest {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage lotNumber(Optional<String> lotNumber);
+
+    _FinalStage lotNumber(String lotNumber);
+
+    _FinalStage expiryDate(Optional<String> expiryDate);
+
+    _FinalStage expiryDate(String expiryDate);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -161,6 +185,10 @@ public final class PostV1InventoryStockReceiveRequest {
 
     private Optional<String> notes = Optional.empty();
 
+    private Optional<String> expiryDate = Optional.empty();
+
+    private Optional<String> lotNumber = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -174,6 +202,8 @@ public final class PostV1InventoryStockReceiveRequest {
       date(other.getDate());
       quantity(other.getQuantity());
       unitCost(other.getUnitCost());
+      lotNumber(other.getLotNumber());
+      expiryDate(other.getExpiryDate());
       notes(other.getNotes());
       return this;
     }
@@ -230,8 +260,40 @@ public final class PostV1InventoryStockReceiveRequest {
     }
 
     @java.lang.Override
+    public _FinalStage expiryDate(String expiryDate) {
+      this.expiryDate = Optional.ofNullable(expiryDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "expiryDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage expiryDate(Optional<String> expiryDate) {
+      this.expiryDate = expiryDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lotNumber(String lotNumber) {
+      this.lotNumber = Optional.ofNullable(lotNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lotNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lotNumber(Optional<String> lotNumber) {
+      this.lotNumber = lotNumber;
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1InventoryStockReceiveRequest build() {
-      return new PostV1InventoryStockReceiveRequest(warehouseId, itemId, date, quantity, unitCost, notes, additionalProperties);
+      return new PostV1InventoryStockReceiveRequest(warehouseId, itemId, date, quantity, unitCost, lotNumber, expiryDate, notes, additionalProperties);
     }
 
     @java.lang.Override

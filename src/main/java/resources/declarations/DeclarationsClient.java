@@ -26,6 +26,7 @@ import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtIvazG
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtSaftGenerateRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtSamComputeRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtSdGenerateRequest;
+import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsPlJpkV7MGenerateRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsSubmissionsCreateRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsSubmissionsListRequest;
 import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsSubmissionsMarkRequest;
@@ -49,6 +50,7 @@ import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtIvazGene
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtSaftGenerateResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtSamComputeResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtSdGenerateResponse;
+import com.nordlet.api.resources.declarations.types.PostV1DeclarationsPlJpkV7MGenerateResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsSubmissionsCreateResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsSubmissionsListResponse;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsSubmissionsMarkResponse;
@@ -295,6 +297,22 @@ public class DeclarationsClient {
   public PostV1DeclarationsEuVatReturnComputeResponse postV1DeclarationsEuVatReturnCompute(
       PostV1DeclarationsEuVatReturnComputeRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1DeclarationsEuVatReturnCompute(request, requestOptions).body();
+  }
+
+  /**
+   * Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
+   */
+  public PostV1DeclarationsPlJpkV7MGenerateResponse postV1DeclarationsPlJpkV7MGenerate(
+      PostV1DeclarationsPlJpkV7MGenerateRequest request) {
+    return this.rawClient.postV1DeclarationsPlJpkV7MGenerate(request).body();
+  }
+
+  /**
+   * Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
+   */
+  public PostV1DeclarationsPlJpkV7MGenerateResponse postV1DeclarationsPlJpkV7MGenerate(
+      PostV1DeclarationsPlJpkV7MGenerateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1DeclarationsPlJpkV7MGenerate(request, requestOptions).body();
   }
 
   public PostV1DeclarationsConfigsListResponse postV1DeclarationsConfigsList() {

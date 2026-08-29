@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsCreateRequestLinesItem;
+import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -31,17 +32,20 @@ public final class PostV1PayrollRunsCreateRequest {
 
   private final long month;
 
+  private final Optional<Boolean> includeNatura;
+
   private final Optional<List<PostV1PayrollRunsCreateRequestLinesItem>> lines;
 
   private final Optional<String> notes;
 
   private final Map<String, Object> additionalProperties;
 
-  private PostV1PayrollRunsCreateRequest(long year, long month,
+  private PostV1PayrollRunsCreateRequest(long year, long month, Optional<Boolean> includeNatura,
       Optional<List<PostV1PayrollRunsCreateRequestLinesItem>> lines, Optional<String> notes,
       Map<String, Object> additionalProperties) {
     this.year = year;
     this.month = month;
+    this.includeNatura = includeNatura;
     this.lines = lines;
     this.notes = notes;
     this.additionalProperties = additionalProperties;
@@ -55,6 +59,11 @@ public final class PostV1PayrollRunsCreateRequest {
   @JsonProperty("month")
   public long getMonth() {
     return month;
+  }
+
+  @JsonProperty("includeNatura")
+  public Optional<Boolean> getIncludeNatura() {
+    return includeNatura;
   }
 
   @JsonProperty("lines")
@@ -79,12 +88,12 @@ public final class PostV1PayrollRunsCreateRequest {
   }
 
   private boolean equalTo(PostV1PayrollRunsCreateRequest other) {
-    return year == other.year && month == other.month && lines.equals(other.lines) && notes.equals(other.notes);
+    return year == other.year && month == other.month && includeNatura.equals(other.includeNatura) && lines.equals(other.lines) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.year, this.month, this.lines, this.notes);
+    return Objects.hash(this.year, this.month, this.includeNatura, this.lines, this.notes);
   }
 
   @java.lang.Override
@@ -113,6 +122,10 @@ public final class PostV1PayrollRunsCreateRequest {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage includeNatura(Optional<Boolean> includeNatura);
+
+    _FinalStage includeNatura(Boolean includeNatura);
+
     _FinalStage lines(Optional<List<PostV1PayrollRunsCreateRequestLinesItem>> lines);
 
     _FinalStage lines(List<PostV1PayrollRunsCreateRequestLinesItem> lines);
@@ -134,6 +147,8 @@ public final class PostV1PayrollRunsCreateRequest {
 
     private Optional<List<PostV1PayrollRunsCreateRequestLinesItem>> lines = Optional.empty();
 
+    private Optional<Boolean> includeNatura = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -144,6 +159,7 @@ public final class PostV1PayrollRunsCreateRequest {
     public Builder from(PostV1PayrollRunsCreateRequest other) {
       year(other.getYear());
       month(other.getMonth());
+      includeNatura(other.getIncludeNatura());
       lines(other.getLines());
       notes(other.getNotes());
       return this;
@@ -196,8 +212,24 @@ public final class PostV1PayrollRunsCreateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage includeNatura(Boolean includeNatura) {
+      this.includeNatura = Optional.ofNullable(includeNatura);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "includeNatura",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage includeNatura(Optional<Boolean> includeNatura) {
+      this.includeNatura = includeNatura;
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1PayrollRunsCreateRequest build() {
-      return new PostV1PayrollRunsCreateRequest(year, month, lines, notes, additionalProperties);
+      return new PostV1PayrollRunsCreateRequest(year, month, includeNatura, lines, notes, additionalProperties);
     }
 
     @java.lang.Override

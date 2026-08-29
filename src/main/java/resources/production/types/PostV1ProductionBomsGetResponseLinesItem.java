@@ -30,13 +30,16 @@ public final class PostV1ProductionBomsGetResponseLinesItem {
 
   private final String quantity;
 
+  private final String scrapPercent;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1ProductionBomsGetResponseLinesItem(String id, String componentItemId,
-      String quantity, Map<String, Object> additionalProperties) {
+      String quantity, String scrapPercent, Map<String, Object> additionalProperties) {
     this.id = id;
     this.componentItemId = componentItemId;
     this.quantity = quantity;
+    this.scrapPercent = scrapPercent;
     this.additionalProperties = additionalProperties;
   }
 
@@ -55,6 +58,11 @@ public final class PostV1ProductionBomsGetResponseLinesItem {
     return quantity;
   }
 
+  @JsonProperty("scrapPercent")
+  public String getScrapPercent() {
+    return scrapPercent;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -67,12 +75,12 @@ public final class PostV1ProductionBomsGetResponseLinesItem {
   }
 
   private boolean equalTo(PostV1ProductionBomsGetResponseLinesItem other) {
-    return id.equals(other.id) && componentItemId.equals(other.componentItemId) && quantity.equals(other.quantity);
+    return id.equals(other.id) && componentItemId.equals(other.componentItemId) && quantity.equals(other.quantity) && scrapPercent.equals(other.scrapPercent);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.componentItemId, this.quantity);
+    return Objects.hash(this.id, this.componentItemId, this.quantity, this.scrapPercent);
   }
 
   @java.lang.Override
@@ -95,7 +103,11 @@ public final class PostV1ProductionBomsGetResponseLinesItem {
   }
 
   public interface QuantityStage {
-    _FinalStage quantity(@NotNull String quantity);
+    ScrapPercentStage quantity(@NotNull String quantity);
+  }
+
+  public interface ScrapPercentStage {
+    _FinalStage scrapPercent(@NotNull String scrapPercent);
   }
 
   public interface _FinalStage {
@@ -109,12 +121,14 @@ public final class PostV1ProductionBomsGetResponseLinesItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, ComponentItemIdStage, QuantityStage, _FinalStage {
+  public static final class Builder implements IdStage, ComponentItemIdStage, QuantityStage, ScrapPercentStage, _FinalStage {
     private String id;
 
     private String componentItemId;
 
     private String quantity;
+
+    private String scrapPercent;
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -127,6 +141,7 @@ public final class PostV1ProductionBomsGetResponseLinesItem {
       id(other.getId());
       componentItemId(other.getComponentItemId());
       quantity(other.getQuantity());
+      scrapPercent(other.getScrapPercent());
       return this;
     }
 
@@ -146,14 +161,21 @@ public final class PostV1ProductionBomsGetResponseLinesItem {
 
     @java.lang.Override
     @JsonSetter("quantity")
-    public _FinalStage quantity(@NotNull String quantity) {
+    public ScrapPercentStage quantity(@NotNull String quantity) {
       this.quantity = Objects.requireNonNull(quantity, "quantity must not be null");
       return this;
     }
 
     @java.lang.Override
+    @JsonSetter("scrapPercent")
+    public _FinalStage scrapPercent(@NotNull String scrapPercent) {
+      this.scrapPercent = Objects.requireNonNull(scrapPercent, "scrapPercent must not be null");
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1ProductionBomsGetResponseLinesItem build() {
-      return new PostV1ProductionBomsGetResponseLinesItem(id, componentItemId, quantity, additionalProperties);
+      return new PostV1ProductionBomsGetResponseLinesItem(id, componentItemId, quantity, scrapPercent, additionalProperties);
     }
 
     @java.lang.Override

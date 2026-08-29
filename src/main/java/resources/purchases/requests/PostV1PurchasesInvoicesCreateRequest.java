@@ -44,6 +44,8 @@ public final class PostV1PurchasesInvoicesCreateRequest {
 
   private final Optional<String> creditedInvoiceId;
 
+  private final Optional<String> purchaseOrderId;
+
   private final Optional<String> notes;
 
   private final List<PostV1PurchasesInvoicesCreateRequestLinesItem> lines;
@@ -53,7 +55,7 @@ public final class PostV1PurchasesInvoicesCreateRequest {
   private PostV1PurchasesInvoicesCreateRequest(String partnerId,
       Optional<PostV1PurchasesInvoicesCreateRequestType> type, String documentNumber,
       String documentDate, Optional<String> dueDate, Optional<String> currency,
-      Optional<String> creditedInvoiceId, Optional<String> notes,
+      Optional<String> creditedInvoiceId, Optional<String> purchaseOrderId, Optional<String> notes,
       List<PostV1PurchasesInvoicesCreateRequestLinesItem> lines,
       Map<String, Object> additionalProperties) {
     this.partnerId = partnerId;
@@ -63,6 +65,7 @@ public final class PostV1PurchasesInvoicesCreateRequest {
     this.dueDate = dueDate;
     this.currency = currency;
     this.creditedInvoiceId = creditedInvoiceId;
+    this.purchaseOrderId = purchaseOrderId;
     this.notes = notes;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
@@ -103,6 +106,11 @@ public final class PostV1PurchasesInvoicesCreateRequest {
     return creditedInvoiceId;
   }
 
+  @JsonProperty("purchaseOrderId")
+  public Optional<String> getPurchaseOrderId() {
+    return purchaseOrderId;
+  }
+
   @JsonProperty("notes")
   public Optional<String> getNotes() {
     return notes;
@@ -125,12 +133,12 @@ public final class PostV1PurchasesInvoicesCreateRequest {
   }
 
   private boolean equalTo(PostV1PurchasesInvoicesCreateRequest other) {
-    return partnerId.equals(other.partnerId) && type.equals(other.type) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && creditedInvoiceId.equals(other.creditedInvoiceId) && notes.equals(other.notes) && lines.equals(other.lines);
+    return partnerId.equals(other.partnerId) && type.equals(other.type) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && creditedInvoiceId.equals(other.creditedInvoiceId) && purchaseOrderId.equals(other.purchaseOrderId) && notes.equals(other.notes) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.partnerId, this.type, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.creditedInvoiceId, this.notes, this.lines);
+    return Objects.hash(this.partnerId, this.type, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.creditedInvoiceId, this.purchaseOrderId, this.notes, this.lines);
   }
 
   @java.lang.Override
@@ -179,6 +187,10 @@ public final class PostV1PurchasesInvoicesCreateRequest {
 
     _FinalStage creditedInvoiceId(String creditedInvoiceId);
 
+    _FinalStage purchaseOrderId(Optional<String> purchaseOrderId);
+
+    _FinalStage purchaseOrderId(String purchaseOrderId);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -204,6 +216,8 @@ public final class PostV1PurchasesInvoicesCreateRequest {
 
     private Optional<String> notes = Optional.empty();
 
+    private Optional<String> purchaseOrderId = Optional.empty();
+
     private Optional<String> creditedInvoiceId = Optional.empty();
 
     private Optional<String> currency = Optional.empty();
@@ -227,6 +241,7 @@ public final class PostV1PurchasesInvoicesCreateRequest {
       dueDate(other.getDueDate());
       currency(other.getCurrency());
       creditedInvoiceId(other.getCreditedInvoiceId());
+      purchaseOrderId(other.getPurchaseOrderId());
       notes(other.getNotes());
       lines(other.getLines());
       return this;
@@ -297,6 +312,22 @@ public final class PostV1PurchasesInvoicesCreateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage purchaseOrderId(String purchaseOrderId) {
+      this.purchaseOrderId = Optional.ofNullable(purchaseOrderId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "purchaseOrderId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage purchaseOrderId(Optional<String> purchaseOrderId) {
+      this.purchaseOrderId = purchaseOrderId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage creditedInvoiceId(String creditedInvoiceId) {
       this.creditedInvoiceId = Optional.ofNullable(creditedInvoiceId);
       return this;
@@ -362,7 +393,7 @@ public final class PostV1PurchasesInvoicesCreateRequest {
 
     @java.lang.Override
     public PostV1PurchasesInvoicesCreateRequest build() {
-      return new PostV1PurchasesInvoicesCreateRequest(partnerId, type, documentNumber, documentDate, dueDate, currency, creditedInvoiceId, notes, lines, additionalProperties);
+      return new PostV1PurchasesInvoicesCreateRequest(partnerId, type, documentNumber, documentDate, dueDate, currency, creditedInvoiceId, purchaseOrderId, notes, lines, additionalProperties);
     }
 
     @java.lang.Override

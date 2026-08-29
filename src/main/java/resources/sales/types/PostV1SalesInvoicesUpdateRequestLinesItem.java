@@ -43,6 +43,8 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
 
   private final Optional<String> costCenterId;
 
+  private final Optional<String> projectId;
+
   private final Optional<PostV1SalesInvoicesUpdateRequestLinesItemRecognition> recognition;
 
   private final Optional<String> standaloneSellingPrice;
@@ -56,7 +58,7 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
       Optional<PostV1SalesInvoicesUpdateRequestLinesItemQuantity> quantity,
       Optional<String> unitPriceExclVat, Optional<String> unitPriceInclVat,
       Optional<String> vatRatePercent, Optional<String> vatClassifierCode,
-      Optional<String> costCenterId,
+      Optional<String> costCenterId, Optional<String> projectId,
       Optional<PostV1SalesInvoicesUpdateRequestLinesItemRecognition> recognition,
       Optional<String> standaloneSellingPrice, Optional<String> refundEstimatePercent,
       Map<String, Object> additionalProperties) {
@@ -69,6 +71,7 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
     this.vatRatePercent = vatRatePercent;
     this.vatClassifierCode = vatClassifierCode;
     this.costCenterId = costCenterId;
+    this.projectId = projectId;
     this.recognition = recognition;
     this.standaloneSellingPrice = standaloneSellingPrice;
     this.refundEstimatePercent = refundEstimatePercent;
@@ -120,6 +123,11 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
     return costCenterId;
   }
 
+  @JsonProperty("projectId")
+  public Optional<String> getProjectId() {
+    return projectId;
+  }
+
   @JsonProperty("recognition")
   public Optional<PostV1SalesInvoicesUpdateRequestLinesItemRecognition> getRecognition() {
     return recognition;
@@ -147,12 +155,12 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
   }
 
   private boolean equalTo(PostV1SalesInvoicesUpdateRequestLinesItem other) {
-    return itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && recognition.equals(other.recognition) && standaloneSellingPrice.equals(other.standaloneSellingPrice) && refundEstimatePercent.equals(other.refundEstimatePercent);
+    return itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && recognition.equals(other.recognition) && standaloneSellingPrice.equals(other.standaloneSellingPrice) && refundEstimatePercent.equals(other.refundEstimatePercent);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.recognition, this.standaloneSellingPrice, this.refundEstimatePercent);
+    return Objects.hash(this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.recognition, this.standaloneSellingPrice, this.refundEstimatePercent);
   }
 
   @java.lang.Override
@@ -186,6 +194,8 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
 
     private Optional<String> costCenterId = Optional.empty();
 
+    private Optional<String> projectId = Optional.empty();
+
     private Optional<PostV1SalesInvoicesUpdateRequestLinesItemRecognition> recognition = Optional.empty();
 
     private Optional<String> standaloneSellingPrice = Optional.empty();
@@ -208,6 +218,7 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
       vatRatePercent(other.getVatRatePercent());
       vatClassifierCode(other.getVatClassifierCode());
       costCenterId(other.getCostCenterId());
+      projectId(other.getProjectId());
       recognition(other.getRecognition());
       standaloneSellingPrice(other.getStandaloneSellingPrice());
       refundEstimatePercent(other.getRefundEstimatePercent());
@@ -341,6 +352,20 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
     }
 
     @JsonSetter(
+        value = "projectId",
+        nulls = Nulls.SKIP
+    )
+    public Builder projectId(Optional<String> projectId) {
+      this.projectId = projectId;
+      return this;
+    }
+
+    public Builder projectId(String projectId) {
+      this.projectId = Optional.ofNullable(projectId);
+      return this;
+    }
+
+    @JsonSetter(
         value = "recognition",
         nulls = Nulls.SKIP
     )
@@ -384,7 +409,7 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
     }
 
     public PostV1SalesInvoicesUpdateRequestLinesItem build() {
-      return new PostV1SalesInvoicesUpdateRequestLinesItem(itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, recognition, standaloneSellingPrice, refundEstimatePercent, additionalProperties);
+      return new PostV1SalesInvoicesUpdateRequestLinesItem(itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, recognition, standaloneSellingPrice, refundEstimatePercent, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

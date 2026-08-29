@@ -33,6 +33,8 @@ public final class PostV1ProductionOrdersCreateRequest {
 
   private final String warehouseId;
 
+  private final Optional<String> routingId;
+
   private final String quantity;
 
   private final String date;
@@ -43,11 +45,12 @@ public final class PostV1ProductionOrdersCreateRequest {
 
   private PostV1ProductionOrdersCreateRequest(
       Optional<PostV1ProductionOrdersCreateRequestType> type, String bomId, String warehouseId,
-      String quantity, String date, Optional<String> notes,
+      Optional<String> routingId, String quantity, String date, Optional<String> notes,
       Map<String, Object> additionalProperties) {
     this.type = type;
     this.bomId = bomId;
     this.warehouseId = warehouseId;
+    this.routingId = routingId;
     this.quantity = quantity;
     this.date = date;
     this.notes = notes;
@@ -67,6 +70,11 @@ public final class PostV1ProductionOrdersCreateRequest {
   @JsonProperty("warehouseId")
   public String getWarehouseId() {
     return warehouseId;
+  }
+
+  @JsonProperty("routingId")
+  public Optional<String> getRoutingId() {
+    return routingId;
   }
 
   @JsonProperty("quantity")
@@ -96,12 +104,12 @@ public final class PostV1ProductionOrdersCreateRequest {
   }
 
   private boolean equalTo(PostV1ProductionOrdersCreateRequest other) {
-    return type.equals(other.type) && bomId.equals(other.bomId) && warehouseId.equals(other.warehouseId) && quantity.equals(other.quantity) && date.equals(other.date) && notes.equals(other.notes);
+    return type.equals(other.type) && bomId.equals(other.bomId) && warehouseId.equals(other.warehouseId) && routingId.equals(other.routingId) && quantity.equals(other.quantity) && date.equals(other.date) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.type, this.bomId, this.warehouseId, this.quantity, this.date, this.notes);
+    return Objects.hash(this.type, this.bomId, this.warehouseId, this.routingId, this.quantity, this.date, this.notes);
   }
 
   @java.lang.Override
@@ -142,6 +150,10 @@ public final class PostV1ProductionOrdersCreateRequest {
 
     _FinalStage type(PostV1ProductionOrdersCreateRequestType type);
 
+    _FinalStage routingId(Optional<String> routingId);
+
+    _FinalStage routingId(String routingId);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -161,6 +173,8 @@ public final class PostV1ProductionOrdersCreateRequest {
 
     private Optional<String> notes = Optional.empty();
 
+    private Optional<String> routingId = Optional.empty();
+
     private Optional<PostV1ProductionOrdersCreateRequestType> type = Optional.empty();
 
     @JsonAnySetter
@@ -174,6 +188,7 @@ public final class PostV1ProductionOrdersCreateRequest {
       type(other.getType());
       bomId(other.getBomId());
       warehouseId(other.getWarehouseId());
+      routingId(other.getRoutingId());
       quantity(other.getQuantity());
       date(other.getDate());
       notes(other.getNotes());
@@ -225,6 +240,22 @@ public final class PostV1ProductionOrdersCreateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage routingId(String routingId) {
+      this.routingId = Optional.ofNullable(routingId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "routingId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage routingId(Optional<String> routingId) {
+      this.routingId = routingId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage type(PostV1ProductionOrdersCreateRequestType type) {
       this.type = Optional.ofNullable(type);
       return this;
@@ -242,7 +273,7 @@ public final class PostV1ProductionOrdersCreateRequest {
 
     @java.lang.Override
     public PostV1ProductionOrdersCreateRequest build() {
-      return new PostV1ProductionOrdersCreateRequest(type, bomId, warehouseId, quantity, date, notes, additionalProperties);
+      return new PostV1ProductionOrdersCreateRequest(type, bomId, warehouseId, routingId, quantity, date, notes, additionalProperties);
     }
 
     @java.lang.Override

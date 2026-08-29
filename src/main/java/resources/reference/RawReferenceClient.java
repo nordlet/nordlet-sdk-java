@@ -28,8 +28,10 @@ import com.nordlet.api.resources.reference.requests.PostV1ReferenceCnCodesUpsert
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceComplianceVersionsListRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceCountriesListRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceCurrenciesListRequest;
+import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesImportsListRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesListRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesSetOverridesRequest;
+import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesSyncRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesListRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesOverridesDeleteRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesOverridesListRequest;
@@ -50,8 +52,10 @@ import com.nordlet.api.resources.reference.types.PostV1ReferenceCnCodesUpsertRes
 import com.nordlet.api.resources.reference.types.PostV1ReferenceComplianceVersionsListResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceCountriesListResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceCurrenciesListResponse;
+import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesImportsListResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesListResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesSetOverridesResponse;
+import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesSyncResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesListResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesOverridesDeleteResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesOverridesListResponse;
@@ -1064,22 +1068,38 @@ public class RawReferenceClient {
                             }
 
                             /**
-                             * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
+                             * History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
                              */
-                            public NordletApiHttpResponse<PostV1ReferenceEuVatRatesSetOverridesResponse> postV1ReferenceEuVatRatesSetOverrides(
-                                PostV1ReferenceEuVatRatesSetOverridesRequest request) {
-                              return postV1ReferenceEuVatRatesSetOverrides(request,null);
+                            public NordletApiHttpResponse<PostV1ReferenceEuVatRatesImportsListResponse> postV1ReferenceEuVatRatesImportsList(
+                                ) {
+                              return postV1ReferenceEuVatRatesImportsList(PostV1ReferenceEuVatRatesImportsListRequest.builder().build());
                             }
 
                             /**
-                             * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
+                             * History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
                              */
-                            public NordletApiHttpResponse<PostV1ReferenceEuVatRatesSetOverridesResponse> postV1ReferenceEuVatRatesSetOverrides(
-                                PostV1ReferenceEuVatRatesSetOverridesRequest request,
+                            public NordletApiHttpResponse<PostV1ReferenceEuVatRatesImportsListResponse> postV1ReferenceEuVatRatesImportsList(
+                                RequestOptions requestOptions) {
+                              return postV1ReferenceEuVatRatesImportsList(PostV1ReferenceEuVatRatesImportsListRequest.builder().build(),requestOptions);
+                            }
+
+                            /**
+                             * History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
+                             */
+                            public NordletApiHttpResponse<PostV1ReferenceEuVatRatesImportsListResponse> postV1ReferenceEuVatRatesImportsList(
+                                PostV1ReferenceEuVatRatesImportsListRequest request) {
+                              return postV1ReferenceEuVatRatesImportsList(request,null);
+                            }
+
+                            /**
+                             * History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
+                             */
+                            public NordletApiHttpResponse<PostV1ReferenceEuVatRatesImportsListResponse> postV1ReferenceEuVatRatesImportsList(
+                                PostV1ReferenceEuVatRatesImportsListRequest request,
                                 RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                .addPathSegments("v1/reference/eu-vat-rates/set-overrides");if (requestOptions != null) {
+                                .addPathSegments("v1/reference/eu-vat-rates/imports/list");if (requestOptions != null) {
                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                     httpUrl.addQueryParameter(_key, _value);
                                   } );
@@ -1109,7 +1129,7 @@ public class RawReferenceClient {
                                   ResponseBody responseBody = response.body();
                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                   if (response.isSuccessful()) {
-                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceEuVatRatesSetOverridesResponse.class), response);
+                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceEuVatRatesImportsListResponse.class), response);
                                   }
                                   try {
                                     switch (response.code()) {
@@ -1137,27 +1157,39 @@ public class RawReferenceClient {
                                 }
                               }
 
-                              public NordletApiHttpResponse<PostV1ReferenceVatResolveResponse> postV1ReferenceVatResolve(
+                              /**
+                               * Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
+                               */
+                              public NordletApiHttpResponse<PostV1ReferenceEuVatRatesSyncResponse> postV1ReferenceEuVatRatesSync(
                                   ) {
-                                return postV1ReferenceVatResolve(PostV1ReferenceVatResolveRequest.builder().build());
+                                return postV1ReferenceEuVatRatesSync(PostV1ReferenceEuVatRatesSyncRequest.builder().build());
                               }
 
-                              public NordletApiHttpResponse<PostV1ReferenceVatResolveResponse> postV1ReferenceVatResolve(
+                              /**
+                               * Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
+                               */
+                              public NordletApiHttpResponse<PostV1ReferenceEuVatRatesSyncResponse> postV1ReferenceEuVatRatesSync(
                                   RequestOptions requestOptions) {
-                                return postV1ReferenceVatResolve(PostV1ReferenceVatResolveRequest.builder().build(),requestOptions);
+                                return postV1ReferenceEuVatRatesSync(PostV1ReferenceEuVatRatesSyncRequest.builder().build(),requestOptions);
                               }
 
-                              public NordletApiHttpResponse<PostV1ReferenceVatResolveResponse> postV1ReferenceVatResolve(
-                                  PostV1ReferenceVatResolveRequest request) {
-                                return postV1ReferenceVatResolve(request,null);
+                              /**
+                               * Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
+                               */
+                              public NordletApiHttpResponse<PostV1ReferenceEuVatRatesSyncResponse> postV1ReferenceEuVatRatesSync(
+                                  PostV1ReferenceEuVatRatesSyncRequest request) {
+                                return postV1ReferenceEuVatRatesSync(request,null);
                               }
 
-                              public NordletApiHttpResponse<PostV1ReferenceVatResolveResponse> postV1ReferenceVatResolve(
-                                  PostV1ReferenceVatResolveRequest request,
+                              /**
+                               * Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
+                               */
+                              public NordletApiHttpResponse<PostV1ReferenceEuVatRatesSyncResponse> postV1ReferenceEuVatRatesSync(
+                                  PostV1ReferenceEuVatRatesSyncRequest request,
                                   RequestOptions requestOptions) {
                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                  .addPathSegments("v1/reference/vat/resolve");if (requestOptions != null) {
+                                  .addPathSegments("v1/reference/eu-vat-rates/sync");if (requestOptions != null) {
                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                       httpUrl.addQueryParameter(_key, _value);
                                     } );
@@ -1187,7 +1219,7 @@ public class RawReferenceClient {
                                     ResponseBody responseBody = response.body();
                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                     if (response.isSuccessful()) {
-                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceVatResolveResponse.class), response);
+                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceEuVatRatesSyncResponse.class), response);
                                     }
                                     try {
                                       switch (response.code()) {
@@ -1215,27 +1247,23 @@ public class RawReferenceClient {
                                   }
                                 }
 
-                                public NordletApiHttpResponse<PostV1ReferenceCnCodesListResponse> postV1ReferenceCnCodesList(
-                                    ) {
-                                  return postV1ReferenceCnCodesList(PostV1ReferenceCnCodesListRequest.builder().build());
+                                /**
+                                 * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
+                                 */
+                                public NordletApiHttpResponse<PostV1ReferenceEuVatRatesSetOverridesResponse> postV1ReferenceEuVatRatesSetOverrides(
+                                    PostV1ReferenceEuVatRatesSetOverridesRequest request) {
+                                  return postV1ReferenceEuVatRatesSetOverrides(request,null);
                                 }
 
-                                public NordletApiHttpResponse<PostV1ReferenceCnCodesListResponse> postV1ReferenceCnCodesList(
-                                    RequestOptions requestOptions) {
-                                  return postV1ReferenceCnCodesList(PostV1ReferenceCnCodesListRequest.builder().build(),requestOptions);
-                                }
-
-                                public NordletApiHttpResponse<PostV1ReferenceCnCodesListResponse> postV1ReferenceCnCodesList(
-                                    PostV1ReferenceCnCodesListRequest request) {
-                                  return postV1ReferenceCnCodesList(request,null);
-                                }
-
-                                public NordletApiHttpResponse<PostV1ReferenceCnCodesListResponse> postV1ReferenceCnCodesList(
-                                    PostV1ReferenceCnCodesListRequest request,
+                                /**
+                                 * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
+                                 */
+                                public NordletApiHttpResponse<PostV1ReferenceEuVatRatesSetOverridesResponse> postV1ReferenceEuVatRatesSetOverrides(
+                                    PostV1ReferenceEuVatRatesSetOverridesRequest request,
                                     RequestOptions requestOptions) {
                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                    .addPathSegments("v1/reference/cn-codes/list");if (requestOptions != null) {
+                                    .addPathSegments("v1/reference/eu-vat-rates/set-overrides");if (requestOptions != null) {
                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                         httpUrl.addQueryParameter(_key, _value);
                                       } );
@@ -1265,7 +1293,7 @@ public class RawReferenceClient {
                                       ResponseBody responseBody = response.body();
                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                       if (response.isSuccessful()) {
-                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceCnCodesListResponse.class), response);
+                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceEuVatRatesSetOverridesResponse.class), response);
                                       }
                                       try {
                                         switch (response.code()) {
@@ -1293,17 +1321,27 @@ public class RawReferenceClient {
                                     }
                                   }
 
-                                  public NordletApiHttpResponse<PostV1ReferenceCnCodesUpsertResponse> postV1ReferenceCnCodesUpsert(
-                                      PostV1ReferenceCnCodesUpsertRequest request) {
-                                    return postV1ReferenceCnCodesUpsert(request,null);
+                                  public NordletApiHttpResponse<PostV1ReferenceVatResolveResponse> postV1ReferenceVatResolve(
+                                      ) {
+                                    return postV1ReferenceVatResolve(PostV1ReferenceVatResolveRequest.builder().build());
                                   }
 
-                                  public NordletApiHttpResponse<PostV1ReferenceCnCodesUpsertResponse> postV1ReferenceCnCodesUpsert(
-                                      PostV1ReferenceCnCodesUpsertRequest request,
+                                  public NordletApiHttpResponse<PostV1ReferenceVatResolveResponse> postV1ReferenceVatResolve(
+                                      RequestOptions requestOptions) {
+                                    return postV1ReferenceVatResolve(PostV1ReferenceVatResolveRequest.builder().build(),requestOptions);
+                                  }
+
+                                  public NordletApiHttpResponse<PostV1ReferenceVatResolveResponse> postV1ReferenceVatResolve(
+                                      PostV1ReferenceVatResolveRequest request) {
+                                    return postV1ReferenceVatResolve(request,null);
+                                  }
+
+                                  public NordletApiHttpResponse<PostV1ReferenceVatResolveResponse> postV1ReferenceVatResolve(
+                                      PostV1ReferenceVatResolveRequest request,
                                       RequestOptions requestOptions) {
                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                      .addPathSegments("v1/reference/cn-codes/upsert");if (requestOptions != null) {
+                                      .addPathSegments("v1/reference/vat/resolve");if (requestOptions != null) {
                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                           httpUrl.addQueryParameter(_key, _value);
                                         } );
@@ -1333,7 +1371,7 @@ public class RawReferenceClient {
                                         ResponseBody responseBody = response.body();
                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                         if (response.isSuccessful()) {
-                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceCnCodesUpsertResponse.class), response);
+                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceVatResolveResponse.class), response);
                                         }
                                         try {
                                           switch (response.code()) {
@@ -1361,27 +1399,27 @@ public class RawReferenceClient {
                                       }
                                     }
 
-                                    public NordletApiHttpResponse<PostV1ReferenceComplianceVersionsListResponse> postV1ReferenceComplianceVersionsList(
+                                    public NordletApiHttpResponse<PostV1ReferenceCnCodesListResponse> postV1ReferenceCnCodesList(
                                         ) {
-                                      return postV1ReferenceComplianceVersionsList(PostV1ReferenceComplianceVersionsListRequest.builder().build());
+                                      return postV1ReferenceCnCodesList(PostV1ReferenceCnCodesListRequest.builder().build());
                                     }
 
-                                    public NordletApiHttpResponse<PostV1ReferenceComplianceVersionsListResponse> postV1ReferenceComplianceVersionsList(
+                                    public NordletApiHttpResponse<PostV1ReferenceCnCodesListResponse> postV1ReferenceCnCodesList(
                                         RequestOptions requestOptions) {
-                                      return postV1ReferenceComplianceVersionsList(PostV1ReferenceComplianceVersionsListRequest.builder().build(),requestOptions);
+                                      return postV1ReferenceCnCodesList(PostV1ReferenceCnCodesListRequest.builder().build(),requestOptions);
                                     }
 
-                                    public NordletApiHttpResponse<PostV1ReferenceComplianceVersionsListResponse> postV1ReferenceComplianceVersionsList(
-                                        PostV1ReferenceComplianceVersionsListRequest request) {
-                                      return postV1ReferenceComplianceVersionsList(request,null);
+                                    public NordletApiHttpResponse<PostV1ReferenceCnCodesListResponse> postV1ReferenceCnCodesList(
+                                        PostV1ReferenceCnCodesListRequest request) {
+                                      return postV1ReferenceCnCodesList(request,null);
                                     }
 
-                                    public NordletApiHttpResponse<PostV1ReferenceComplianceVersionsListResponse> postV1ReferenceComplianceVersionsList(
-                                        PostV1ReferenceComplianceVersionsListRequest request,
+                                    public NordletApiHttpResponse<PostV1ReferenceCnCodesListResponse> postV1ReferenceCnCodesList(
+                                        PostV1ReferenceCnCodesListRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                        .addPathSegments("v1/reference/compliance-versions/list");if (requestOptions != null) {
+                                        .addPathSegments("v1/reference/cn-codes/list");if (requestOptions != null) {
                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                             httpUrl.addQueryParameter(_key, _value);
                                           } );
@@ -1411,7 +1449,7 @@ public class RawReferenceClient {
                                           ResponseBody responseBody = response.body();
                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                           if (response.isSuccessful()) {
-                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceComplianceVersionsListResponse.class), response);
+                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceCnCodesListResponse.class), response);
                                           }
                                           try {
                                             switch (response.code()) {
@@ -1439,27 +1477,17 @@ public class RawReferenceClient {
                                         }
                                       }
 
-                                      public NordletApiHttpResponse<PostV1ReferenceIntrastatThresholdsListResponse> postV1ReferenceIntrastatThresholdsList(
-                                          ) {
-                                        return postV1ReferenceIntrastatThresholdsList(PostV1ReferenceIntrastatThresholdsListRequest.builder().build());
+                                      public NordletApiHttpResponse<PostV1ReferenceCnCodesUpsertResponse> postV1ReferenceCnCodesUpsert(
+                                          PostV1ReferenceCnCodesUpsertRequest request) {
+                                        return postV1ReferenceCnCodesUpsert(request,null);
                                       }
 
-                                      public NordletApiHttpResponse<PostV1ReferenceIntrastatThresholdsListResponse> postV1ReferenceIntrastatThresholdsList(
-                                          RequestOptions requestOptions) {
-                                        return postV1ReferenceIntrastatThresholdsList(PostV1ReferenceIntrastatThresholdsListRequest.builder().build(),requestOptions);
-                                      }
-
-                                      public NordletApiHttpResponse<PostV1ReferenceIntrastatThresholdsListResponse> postV1ReferenceIntrastatThresholdsList(
-                                          PostV1ReferenceIntrastatThresholdsListRequest request) {
-                                        return postV1ReferenceIntrastatThresholdsList(request,null);
-                                      }
-
-                                      public NordletApiHttpResponse<PostV1ReferenceIntrastatThresholdsListResponse> postV1ReferenceIntrastatThresholdsList(
-                                          PostV1ReferenceIntrastatThresholdsListRequest request,
+                                      public NordletApiHttpResponse<PostV1ReferenceCnCodesUpsertResponse> postV1ReferenceCnCodesUpsert(
+                                          PostV1ReferenceCnCodesUpsertRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                          .addPathSegments("v1/reference/intrastat-thresholds/list");if (requestOptions != null) {
+                                          .addPathSegments("v1/reference/cn-codes/upsert");if (requestOptions != null) {
                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                               httpUrl.addQueryParameter(_key, _value);
                                             } );
@@ -1489,7 +1517,7 @@ public class RawReferenceClient {
                                             ResponseBody responseBody = response.body();
                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                             if (response.isSuccessful()) {
-                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceIntrastatThresholdsListResponse.class), response);
+                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceCnCodesUpsertResponse.class), response);
                                             }
                                             try {
                                               switch (response.code()) {
@@ -1517,27 +1545,27 @@ public class RawReferenceClient {
                                           }
                                         }
 
-                                        public NordletApiHttpResponse<PostV1ReferenceUnitsListResponse> postV1ReferenceUnitsList(
+                                        public NordletApiHttpResponse<PostV1ReferenceComplianceVersionsListResponse> postV1ReferenceComplianceVersionsList(
                                             ) {
-                                          return postV1ReferenceUnitsList(PostV1ReferenceUnitsListRequest.builder().build());
+                                          return postV1ReferenceComplianceVersionsList(PostV1ReferenceComplianceVersionsListRequest.builder().build());
                                         }
 
-                                        public NordletApiHttpResponse<PostV1ReferenceUnitsListResponse> postV1ReferenceUnitsList(
+                                        public NordletApiHttpResponse<PostV1ReferenceComplianceVersionsListResponse> postV1ReferenceComplianceVersionsList(
                                             RequestOptions requestOptions) {
-                                          return postV1ReferenceUnitsList(PostV1ReferenceUnitsListRequest.builder().build(),requestOptions);
+                                          return postV1ReferenceComplianceVersionsList(PostV1ReferenceComplianceVersionsListRequest.builder().build(),requestOptions);
                                         }
 
-                                        public NordletApiHttpResponse<PostV1ReferenceUnitsListResponse> postV1ReferenceUnitsList(
-                                            PostV1ReferenceUnitsListRequest request) {
-                                          return postV1ReferenceUnitsList(request,null);
+                                        public NordletApiHttpResponse<PostV1ReferenceComplianceVersionsListResponse> postV1ReferenceComplianceVersionsList(
+                                            PostV1ReferenceComplianceVersionsListRequest request) {
+                                          return postV1ReferenceComplianceVersionsList(request,null);
                                         }
 
-                                        public NordletApiHttpResponse<PostV1ReferenceUnitsListResponse> postV1ReferenceUnitsList(
-                                            PostV1ReferenceUnitsListRequest request,
+                                        public NordletApiHttpResponse<PostV1ReferenceComplianceVersionsListResponse> postV1ReferenceComplianceVersionsList(
+                                            PostV1ReferenceComplianceVersionsListRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                            .addPathSegments("v1/reference/units/list");if (requestOptions != null) {
+                                            .addPathSegments("v1/reference/compliance-versions/list");if (requestOptions != null) {
                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                 httpUrl.addQueryParameter(_key, _value);
                                               } );
@@ -1567,7 +1595,7 @@ public class RawReferenceClient {
                                               ResponseBody responseBody = response.body();
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceUnitsListResponse.class), response);
+                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceComplianceVersionsListResponse.class), response);
                                               }
                                               try {
                                                 switch (response.code()) {
@@ -1595,17 +1623,27 @@ public class RawReferenceClient {
                                             }
                                           }
 
-                                          public NordletApiHttpResponse<PostV1ReferenceSeriesCreateResponse> postV1ReferenceSeriesCreate(
-                                              PostV1ReferenceSeriesCreateRequest request) {
-                                            return postV1ReferenceSeriesCreate(request,null);
+                                          public NordletApiHttpResponse<PostV1ReferenceIntrastatThresholdsListResponse> postV1ReferenceIntrastatThresholdsList(
+                                              ) {
+                                            return postV1ReferenceIntrastatThresholdsList(PostV1ReferenceIntrastatThresholdsListRequest.builder().build());
                                           }
 
-                                          public NordletApiHttpResponse<PostV1ReferenceSeriesCreateResponse> postV1ReferenceSeriesCreate(
-                                              PostV1ReferenceSeriesCreateRequest request,
+                                          public NordletApiHttpResponse<PostV1ReferenceIntrastatThresholdsListResponse> postV1ReferenceIntrastatThresholdsList(
+                                              RequestOptions requestOptions) {
+                                            return postV1ReferenceIntrastatThresholdsList(PostV1ReferenceIntrastatThresholdsListRequest.builder().build(),requestOptions);
+                                          }
+
+                                          public NordletApiHttpResponse<PostV1ReferenceIntrastatThresholdsListResponse> postV1ReferenceIntrastatThresholdsList(
+                                              PostV1ReferenceIntrastatThresholdsListRequest request) {
+                                            return postV1ReferenceIntrastatThresholdsList(request,null);
+                                          }
+
+                                          public NordletApiHttpResponse<PostV1ReferenceIntrastatThresholdsListResponse> postV1ReferenceIntrastatThresholdsList(
+                                              PostV1ReferenceIntrastatThresholdsListRequest request,
                                               RequestOptions requestOptions) {
                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                              .addPathSegments("v1/reference/series/create");if (requestOptions != null) {
+                                              .addPathSegments("v1/reference/intrastat-thresholds/list");if (requestOptions != null) {
                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                   httpUrl.addQueryParameter(_key, _value);
                                                 } );
@@ -1635,7 +1673,7 @@ public class RawReferenceClient {
                                                 ResponseBody responseBody = response.body();
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceSeriesCreateResponse.class), response);
+                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceIntrastatThresholdsListResponse.class), response);
                                                 }
                                                 try {
                                                   switch (response.code()) {
@@ -1663,27 +1701,27 @@ public class RawReferenceClient {
                                               }
                                             }
 
-                                            public NordletApiHttpResponse<PostV1ReferenceSeriesListResponse> postV1ReferenceSeriesList(
+                                            public NordletApiHttpResponse<PostV1ReferenceUnitsListResponse> postV1ReferenceUnitsList(
                                                 ) {
-                                              return postV1ReferenceSeriesList(PostV1ReferenceSeriesListRequest.builder().build());
+                                              return postV1ReferenceUnitsList(PostV1ReferenceUnitsListRequest.builder().build());
                                             }
 
-                                            public NordletApiHttpResponse<PostV1ReferenceSeriesListResponse> postV1ReferenceSeriesList(
+                                            public NordletApiHttpResponse<PostV1ReferenceUnitsListResponse> postV1ReferenceUnitsList(
                                                 RequestOptions requestOptions) {
-                                              return postV1ReferenceSeriesList(PostV1ReferenceSeriesListRequest.builder().build(),requestOptions);
+                                              return postV1ReferenceUnitsList(PostV1ReferenceUnitsListRequest.builder().build(),requestOptions);
                                             }
 
-                                            public NordletApiHttpResponse<PostV1ReferenceSeriesListResponse> postV1ReferenceSeriesList(
-                                                PostV1ReferenceSeriesListRequest request) {
-                                              return postV1ReferenceSeriesList(request,null);
+                                            public NordletApiHttpResponse<PostV1ReferenceUnitsListResponse> postV1ReferenceUnitsList(
+                                                PostV1ReferenceUnitsListRequest request) {
+                                              return postV1ReferenceUnitsList(request,null);
                                             }
 
-                                            public NordletApiHttpResponse<PostV1ReferenceSeriesListResponse> postV1ReferenceSeriesList(
-                                                PostV1ReferenceSeriesListRequest request,
+                                            public NordletApiHttpResponse<PostV1ReferenceUnitsListResponse> postV1ReferenceUnitsList(
+                                                PostV1ReferenceUnitsListRequest request,
                                                 RequestOptions requestOptions) {
                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                .addPathSegments("v1/reference/series/list");if (requestOptions != null) {
+                                                .addPathSegments("v1/reference/units/list");if (requestOptions != null) {
                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                     httpUrl.addQueryParameter(_key, _value);
                                                   } );
@@ -1713,7 +1751,7 @@ public class RawReferenceClient {
                                                   ResponseBody responseBody = response.body();
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceSeriesListResponse.class), response);
+                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceUnitsListResponse.class), response);
                                                   }
                                                   try {
                                                     switch (response.code()) {
@@ -1740,4 +1778,150 @@ public class RawReferenceClient {
                                                   throw new NordletApiException("Network error executing HTTP request", e);
                                                 }
                                               }
-                                            }
+
+                                              public NordletApiHttpResponse<PostV1ReferenceSeriesCreateResponse> postV1ReferenceSeriesCreate(
+                                                  PostV1ReferenceSeriesCreateRequest request) {
+                                                return postV1ReferenceSeriesCreate(request,null);
+                                              }
+
+                                              public NordletApiHttpResponse<PostV1ReferenceSeriesCreateResponse> postV1ReferenceSeriesCreate(
+                                                  PostV1ReferenceSeriesCreateRequest request,
+                                                  RequestOptions requestOptions) {
+                                                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                  .addPathSegments("v1/reference/series/create");if (requestOptions != null) {
+                                                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                      httpUrl.addQueryParameter(_key, _value);
+                                                    } );
+                                                  }
+                                                  RequestBody body;
+                                                  try {
+                                                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                  }
+                                                  catch(JsonProcessingException e) {
+                                                    throw new NordletApiException("Failed to serialize request", e);
+                                                  }
+                                                  Request okhttpRequest = new Request.Builder()
+                                                    .url(httpUrl.build())
+                                                    .method("POST", body)
+                                                    .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                    .addHeader("Content-Type", "application/json")
+                                                    .addHeader("Accept", "application/json")
+                                                    .build();
+                                                  OkHttpClient client = clientOptions.httpClient();
+                                                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                    client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                  }
+                                                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                  }
+                                                  try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                    ResponseBody responseBody = response.body();
+                                                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                    if (response.isSuccessful()) {
+                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceSeriesCreateResponse.class), response);
+                                                    }
+                                                    try {
+                                                      switch (response.code()) {
+                                                        case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                        case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                        case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                        case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                        case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                        case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                        case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                        case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                      }
+                                                    }
+                                                    catch (JsonProcessingException ignored) {
+                                                      // unable to map error response, throwing generic error
+                                                    }
+                                                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                    throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                  }
+                                                  catch (JsonProcessingException e) {
+                                                    throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                  }
+                                                  catch (IOException e) {
+                                                    throw new NordletApiException("Network error executing HTTP request", e);
+                                                  }
+                                                }
+
+                                                public NordletApiHttpResponse<PostV1ReferenceSeriesListResponse> postV1ReferenceSeriesList(
+                                                    ) {
+                                                  return postV1ReferenceSeriesList(PostV1ReferenceSeriesListRequest.builder().build());
+                                                }
+
+                                                public NordletApiHttpResponse<PostV1ReferenceSeriesListResponse> postV1ReferenceSeriesList(
+                                                    RequestOptions requestOptions) {
+                                                  return postV1ReferenceSeriesList(PostV1ReferenceSeriesListRequest.builder().build(),requestOptions);
+                                                }
+
+                                                public NordletApiHttpResponse<PostV1ReferenceSeriesListResponse> postV1ReferenceSeriesList(
+                                                    PostV1ReferenceSeriesListRequest request) {
+                                                  return postV1ReferenceSeriesList(request,null);
+                                                }
+
+                                                public NordletApiHttpResponse<PostV1ReferenceSeriesListResponse> postV1ReferenceSeriesList(
+                                                    PostV1ReferenceSeriesListRequest request,
+                                                    RequestOptions requestOptions) {
+                                                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                    .addPathSegments("v1/reference/series/list");if (requestOptions != null) {
+                                                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                        httpUrl.addQueryParameter(_key, _value);
+                                                      } );
+                                                    }
+                                                    RequestBody body;
+                                                    try {
+                                                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                    }
+                                                    catch(JsonProcessingException e) {
+                                                      throw new NordletApiException("Failed to serialize request", e);
+                                                    }
+                                                    Request okhttpRequest = new Request.Builder()
+                                                      .url(httpUrl.build())
+                                                      .method("POST", body)
+                                                      .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                      .addHeader("Content-Type", "application/json")
+                                                      .addHeader("Accept", "application/json")
+                                                      .build();
+                                                    OkHttpClient client = clientOptions.httpClient();
+                                                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                      client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                    }
+                                                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                    }
+                                                    try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                      ResponseBody responseBody = response.body();
+                                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                      if (response.isSuccessful()) {
+                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceSeriesListResponse.class), response);
+                                                      }
+                                                      try {
+                                                        switch (response.code()) {
+                                                          case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                        }
+                                                      }
+                                                      catch (JsonProcessingException ignored) {
+                                                        // unable to map error response, throwing generic error
+                                                      }
+                                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                      throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                    }
+                                                    catch (JsonProcessingException e) {
+                                                      throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                    }
+                                                    catch (IOException e) {
+                                                      throw new NordletApiException("Network error executing HTTP request", e);
+                                                    }
+                                                  }
+                                                }

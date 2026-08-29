@@ -35,6 +35,8 @@ public final class PostV1CatalogItemsUpdateResponse {
 
   private final PostV1CatalogItemsUpdateResponseType type;
 
+  private final PostV1CatalogItemsUpdateResponseTracking tracking;
+
   private final String name;
 
   private final Optional<String> code;
@@ -78,10 +80,11 @@ public final class PostV1CatalogItemsUpdateResponse {
   private final Map<String, Object> additionalProperties;
 
   private PostV1CatalogItemsUpdateResponse(String id, PostV1CatalogItemsUpdateResponseType type,
-      String name, Optional<String> code, Optional<String> barcode, String unit,
-      Optional<String> vatClassifierCode, Optional<String> vatRatePercent,
-      Optional<String> salePriceExclVat, Optional<String> purchasePriceExclVat,
-      Optional<String> cnCode, Optional<String> originCountry, Optional<String> netMassKg,
+      PostV1CatalogItemsUpdateResponseTracking tracking, String name, Optional<String> code,
+      Optional<String> barcode, String unit, Optional<String> vatClassifierCode,
+      Optional<String> vatRatePercent, Optional<String> salePriceExclVat,
+      Optional<String> purchasePriceExclVat, Optional<String> cnCode,
+      Optional<String> originCountry, Optional<String> netMassKg,
       Optional<String> supplementaryUnit, Optional<String> supplementaryQtyPerUnit,
       Optional<String> description, Optional<String> groupId,
       Optional<Map<String, Optional<String>>> attributes,
@@ -90,6 +93,7 @@ public final class PostV1CatalogItemsUpdateResponse {
       String updatedAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.type = type;
+    this.tracking = tracking;
     this.name = name;
     this.code = code;
     this.barcode = barcode;
@@ -121,6 +125,11 @@ public final class PostV1CatalogItemsUpdateResponse {
   @JsonProperty("type")
   public PostV1CatalogItemsUpdateResponseType getType() {
     return type;
+  }
+
+  @JsonProperty("tracking")
+  public PostV1CatalogItemsUpdateResponseTracking getTracking() {
+    return tracking;
   }
 
   @JsonProperty("name")
@@ -417,12 +426,12 @@ public final class PostV1CatalogItemsUpdateResponse {
   }
 
   private boolean equalTo(PostV1CatalogItemsUpdateResponse other) {
-    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && barcode.equals(other.barcode) && unit.equals(other.unit) && vatClassifierCode.equals(other.vatClassifierCode) && vatRatePercent.equals(other.vatRatePercent) && salePriceExclVat.equals(other.salePriceExclVat) && purchasePriceExclVat.equals(other.purchasePriceExclVat) && cnCode.equals(other.cnCode) && originCountry.equals(other.originCountry) && netMassKg.equals(other.netMassKg) && supplementaryUnit.equals(other.supplementaryUnit) && supplementaryQtyPerUnit.equals(other.supplementaryQtyPerUnit) && description.equals(other.description) && groupId.equals(other.groupId) && attributes.equals(other.attributes) && translations.equals(other.translations) && components.equals(other.components) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && type.equals(other.type) && tracking.equals(other.tracking) && name.equals(other.name) && code.equals(other.code) && barcode.equals(other.barcode) && unit.equals(other.unit) && vatClassifierCode.equals(other.vatClassifierCode) && vatRatePercent.equals(other.vatRatePercent) && salePriceExclVat.equals(other.salePriceExclVat) && purchasePriceExclVat.equals(other.purchasePriceExclVat) && cnCode.equals(other.cnCode) && originCountry.equals(other.originCountry) && netMassKg.equals(other.netMassKg) && supplementaryUnit.equals(other.supplementaryUnit) && supplementaryQtyPerUnit.equals(other.supplementaryQtyPerUnit) && description.equals(other.description) && groupId.equals(other.groupId) && attributes.equals(other.attributes) && translations.equals(other.translations) && components.equals(other.components) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.type, this.name, this.code, this.barcode, this.unit, this.vatClassifierCode, this.vatRatePercent, this.salePriceExclVat, this.purchasePriceExclVat, this.cnCode, this.originCountry, this.netMassKg, this.supplementaryUnit, this.supplementaryQtyPerUnit, this.description, this.groupId, this.attributes, this.translations, this.components, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.type, this.tracking, this.name, this.code, this.barcode, this.unit, this.vatClassifierCode, this.vatRatePercent, this.salePriceExclVat, this.purchasePriceExclVat, this.cnCode, this.originCountry, this.netMassKg, this.supplementaryUnit, this.supplementaryQtyPerUnit, this.description, this.groupId, this.attributes, this.translations, this.components, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -441,7 +450,11 @@ public final class PostV1CatalogItemsUpdateResponse {
   }
 
   public interface TypeStage {
-    NameStage type(@NotNull PostV1CatalogItemsUpdateResponseType type);
+    TrackingStage type(@NotNull PostV1CatalogItemsUpdateResponseType type);
+  }
+
+  public interface TrackingStage {
+    NameStage tracking(@NotNull PostV1CatalogItemsUpdateResponseTracking tracking);
   }
 
   public interface NameStage {
@@ -570,10 +583,12 @@ public final class PostV1CatalogItemsUpdateResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, TypeStage, NameStage, UnitStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, TypeStage, TrackingStage, NameStage, UnitStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
     private String id;
 
     private PostV1CatalogItemsUpdateResponseType type;
+
+    private PostV1CatalogItemsUpdateResponseTracking tracking;
 
     private String name;
 
@@ -625,6 +640,7 @@ public final class PostV1CatalogItemsUpdateResponse {
     public Builder from(PostV1CatalogItemsUpdateResponse other) {
       id(other.getId());
       type(other.getType());
+      tracking(other.getTracking());
       name(other.getName());
       code(other.getCode());
       barcode(other.getBarcode());
@@ -657,8 +673,15 @@ public final class PostV1CatalogItemsUpdateResponse {
 
     @java.lang.Override
     @JsonSetter("type")
-    public NameStage type(@NotNull PostV1CatalogItemsUpdateResponseType type) {
+    public TrackingStage type(@NotNull PostV1CatalogItemsUpdateResponseType type) {
       this.type = Objects.requireNonNull(type, "type must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("tracking")
+    public NameStage tracking(@NotNull PostV1CatalogItemsUpdateResponseTracking tracking) {
+      this.tracking = Objects.requireNonNull(tracking, "tracking must not be null");
       return this;
     }
 
@@ -1173,7 +1196,7 @@ public final class PostV1CatalogItemsUpdateResponse {
 
     @java.lang.Override
     public PostV1CatalogItemsUpdateResponse build() {
-      return new PostV1CatalogItemsUpdateResponse(id, type, name, code, barcode, unit, vatClassifierCode, vatRatePercent, salePriceExclVat, purchasePriceExclVat, cnCode, originCountry, netMassKg, supplementaryUnit, supplementaryQtyPerUnit, description, groupId, attributes, translations, components, createdAt, updatedAt, additionalProperties);
+      return new PostV1CatalogItemsUpdateResponse(id, type, tracking, name, code, barcode, unit, vatClassifierCode, vatRatePercent, salePriceExclVat, purchasePriceExclVat, cnCode, originCountry, netMassKg, supplementaryUnit, supplementaryQtyPerUnit, description, groupId, attributes, translations, components, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

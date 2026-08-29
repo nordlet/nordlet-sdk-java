@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
@@ -17,6 +18,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -28,12 +30,15 @@ public final class PostV1ProductionBomsCreateRequestLinesItem {
 
   private final String quantity;
 
+  private final Optional<String> scrapPercent;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1ProductionBomsCreateRequestLinesItem(String componentItemId, String quantity,
-      Map<String, Object> additionalProperties) {
+      Optional<String> scrapPercent, Map<String, Object> additionalProperties) {
     this.componentItemId = componentItemId;
     this.quantity = quantity;
+    this.scrapPercent = scrapPercent;
     this.additionalProperties = additionalProperties;
   }
 
@@ -45,6 +50,11 @@ public final class PostV1ProductionBomsCreateRequestLinesItem {
   @JsonProperty("quantity")
   public String getQuantity() {
     return quantity;
+  }
+
+  @JsonProperty("scrapPercent")
+  public Optional<String> getScrapPercent() {
+    return scrapPercent;
   }
 
   @java.lang.Override
@@ -59,12 +69,12 @@ public final class PostV1ProductionBomsCreateRequestLinesItem {
   }
 
   private boolean equalTo(PostV1ProductionBomsCreateRequestLinesItem other) {
-    return componentItemId.equals(other.componentItemId) && quantity.equals(other.quantity);
+    return componentItemId.equals(other.componentItemId) && quantity.equals(other.quantity) && scrapPercent.equals(other.scrapPercent);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.componentItemId, this.quantity);
+    return Objects.hash(this.componentItemId, this.quantity, this.scrapPercent);
   }
 
   @java.lang.Override
@@ -92,6 +102,10 @@ public final class PostV1ProductionBomsCreateRequestLinesItem {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage scrapPercent(Optional<String> scrapPercent);
+
+    _FinalStage scrapPercent(String scrapPercent);
   }
 
   @JsonIgnoreProperties(
@@ -101,6 +115,8 @@ public final class PostV1ProductionBomsCreateRequestLinesItem {
     private String componentItemId;
 
     private String quantity;
+
+    private Optional<String> scrapPercent = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -112,6 +128,7 @@ public final class PostV1ProductionBomsCreateRequestLinesItem {
     public Builder from(PostV1ProductionBomsCreateRequestLinesItem other) {
       componentItemId(other.getComponentItemId());
       quantity(other.getQuantity());
+      scrapPercent(other.getScrapPercent());
       return this;
     }
 
@@ -130,8 +147,24 @@ public final class PostV1ProductionBomsCreateRequestLinesItem {
     }
 
     @java.lang.Override
+    public _FinalStage scrapPercent(String scrapPercent) {
+      this.scrapPercent = Optional.ofNullable(scrapPercent);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "scrapPercent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage scrapPercent(Optional<String> scrapPercent) {
+      this.scrapPercent = scrapPercent;
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1ProductionBomsCreateRequestLinesItem build() {
-      return new PostV1ProductionBomsCreateRequestLinesItem(componentItemId, quantity, additionalProperties);
+      return new PostV1ProductionBomsCreateRequestLinesItem(componentItemId, quantity, scrapPercent, additionalProperties);
     }
 
     @java.lang.Override

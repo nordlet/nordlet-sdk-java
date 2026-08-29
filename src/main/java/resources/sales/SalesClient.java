@@ -16,6 +16,8 @@ import com.nordlet.api.resources.sales.requests.PostV1SalesActsUpdateRequest;
 import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesApplyAdvanceRequest;
 import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesCreateRequest;
 import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesDeleteRequest;
+import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesEinvoiceSendRequest;
+import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesEinvoiceXmlRequest;
 import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesGetRequest;
 import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesIssueRequest;
 import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesListRequest;
@@ -43,6 +45,8 @@ import com.nordlet.api.resources.sales.types.PostV1SalesActsUpdateResponse;
 import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesApplyAdvanceResponse;
 import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesCreateResponse;
 import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesDeleteResponse;
+import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesEinvoiceSendResponse;
+import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesEinvoiceXmlResponse;
 import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesGetResponse;
 import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesIssueResponse;
 import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesListResponse;
@@ -136,6 +140,38 @@ public class SalesClient {
   public PostV1SalesInvoicesPeppolSendResponse postV1SalesInvoicesPeppolSend(
       PostV1SalesInvoicesPeppolSendRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1SalesInvoicesPeppolSend(request, requestOptions).body();
+  }
+
+  /**
+   * Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
+   */
+  public PostV1SalesInvoicesEinvoiceXmlResponse postV1SalesInvoicesEinvoiceXml(
+      PostV1SalesInvoicesEinvoiceXmlRequest request) {
+    return this.rawClient.postV1SalesInvoicesEinvoiceXml(request).body();
+  }
+
+  /**
+   * Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
+   */
+  public PostV1SalesInvoicesEinvoiceXmlResponse postV1SalesInvoicesEinvoiceXml(
+      PostV1SalesInvoicesEinvoiceXmlRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesInvoicesEinvoiceXml(request, requestOptions).body();
+  }
+
+  /**
+   * Build the national e-invoicing payload and deliver it to the bridge endpoint configured for the country gateway in compliance settings. The bridge (an accredited intermediary or connector) handles the certified national channel - SdI accreditation, KSeF sessions or ANAF SPV OAuth.
+   */
+  public PostV1SalesInvoicesEinvoiceSendResponse postV1SalesInvoicesEinvoiceSend(
+      PostV1SalesInvoicesEinvoiceSendRequest request) {
+    return this.rawClient.postV1SalesInvoicesEinvoiceSend(request).body();
+  }
+
+  /**
+   * Build the national e-invoicing payload and deliver it to the bridge endpoint configured for the country gateway in compliance settings. The bridge (an accredited intermediary or connector) handles the certified national channel - SdI accreditation, KSeF sessions or ANAF SPV OAuth.
+   */
+  public PostV1SalesInvoicesEinvoiceSendResponse postV1SalesInvoicesEinvoiceSend(
+      PostV1SalesInvoicesEinvoiceSendRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesInvoicesEinvoiceSend(request, requestOptions).body();
   }
 
   public PostV1SalesInvoicesUpdateResponse postV1SalesInvoicesUpdate(

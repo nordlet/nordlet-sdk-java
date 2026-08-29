@@ -36,18 +36,21 @@ public final class PostV1InventoryStockTransferRequest {
 
   private final String quantity;
 
+  private final Optional<String> lotNumber;
+
   private final Optional<String> notes;
 
   private final Map<String, Object> additionalProperties;
 
   private PostV1InventoryStockTransferRequest(String fromWarehouseId, String toWarehouseId,
-      String itemId, String date, String quantity, Optional<String> notes,
-      Map<String, Object> additionalProperties) {
+      String itemId, String date, String quantity, Optional<String> lotNumber,
+      Optional<String> notes, Map<String, Object> additionalProperties) {
     this.fromWarehouseId = fromWarehouseId;
     this.toWarehouseId = toWarehouseId;
     this.itemId = itemId;
     this.date = date;
     this.quantity = quantity;
+    this.lotNumber = lotNumber;
     this.notes = notes;
     this.additionalProperties = additionalProperties;
   }
@@ -77,6 +80,11 @@ public final class PostV1InventoryStockTransferRequest {
     return quantity;
   }
 
+  @JsonProperty("lotNumber")
+  public Optional<String> getLotNumber() {
+    return lotNumber;
+  }
+
   @JsonProperty("notes")
   public Optional<String> getNotes() {
     return notes;
@@ -94,12 +102,12 @@ public final class PostV1InventoryStockTransferRequest {
   }
 
   private boolean equalTo(PostV1InventoryStockTransferRequest other) {
-    return fromWarehouseId.equals(other.fromWarehouseId) && toWarehouseId.equals(other.toWarehouseId) && itemId.equals(other.itemId) && date.equals(other.date) && quantity.equals(other.quantity) && notes.equals(other.notes);
+    return fromWarehouseId.equals(other.fromWarehouseId) && toWarehouseId.equals(other.toWarehouseId) && itemId.equals(other.itemId) && date.equals(other.date) && quantity.equals(other.quantity) && lotNumber.equals(other.lotNumber) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.fromWarehouseId, this.toWarehouseId, this.itemId, this.date, this.quantity, this.notes);
+    return Objects.hash(this.fromWarehouseId, this.toWarehouseId, this.itemId, this.date, this.quantity, this.lotNumber, this.notes);
   }
 
   @java.lang.Override
@@ -140,6 +148,10 @@ public final class PostV1InventoryStockTransferRequest {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage lotNumber(Optional<String> lotNumber);
+
+    _FinalStage lotNumber(String lotNumber);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -161,6 +173,8 @@ public final class PostV1InventoryStockTransferRequest {
 
     private Optional<String> notes = Optional.empty();
 
+    private Optional<String> lotNumber = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -174,6 +188,7 @@ public final class PostV1InventoryStockTransferRequest {
       itemId(other.getItemId());
       date(other.getDate());
       quantity(other.getQuantity());
+      lotNumber(other.getLotNumber());
       notes(other.getNotes());
       return this;
     }
@@ -230,8 +245,24 @@ public final class PostV1InventoryStockTransferRequest {
     }
 
     @java.lang.Override
+    public _FinalStage lotNumber(String lotNumber) {
+      this.lotNumber = Optional.ofNullable(lotNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lotNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lotNumber(Optional<String> lotNumber) {
+      this.lotNumber = lotNumber;
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1InventoryStockTransferRequest build() {
-      return new PostV1InventoryStockTransferRequest(fromWarehouseId, toWarehouseId, itemId, date, quantity, notes, additionalProperties);
+      return new PostV1InventoryStockTransferRequest(fromWarehouseId, toWarehouseId, itemId, date, quantity, lotNumber, notes, additionalProperties);
     }
 
     @java.lang.Override
