@@ -11770,6 +11770,301 @@ client.ledger().postV1LedgerJournalTransactionsCreate(
 </dl>
 </details>
 
+## Migration
+<details><summary><code>client.migration.checkAHistoricalBooksPackageWithoutWritingAnything(request) -> PostV1MigrationBooksValidateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.migration().checkAHistoricalBooksPackageWithoutWritingAnything(
+    PostV1MigrationBooksValidateRequest
+        .builder()
+        .cutoverDate("cutoverDate")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cutoverDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**source:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**accounts:** `Optional<List<PostV1MigrationBooksValidateRequestAccountsItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partners:** `Optional<List<PostV1MigrationBooksValidateRequestPartnersItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**items:** `Optional<List<PostV1MigrationBooksValidateRequestItemsItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**openingBalances:** `Optional<PostV1MigrationBooksValidateRequestOpeningBalances>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**journal:** `Optional<List<PostV1MigrationBooksValidateRequestJournalItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**openReceivables:** `Optional<List<PostV1MigrationBooksValidateRequestOpenReceivablesItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**openPayables:** `Optional<List<PostV1MigrationBooksValidateRequestOpenPayablesItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetGroups:** `Optional<List<PostV1MigrationBooksValidateRequestAssetGroupsItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fixedAssets:** `Optional<List<PostV1MigrationBooksValidateRequestFixedAssetsItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**stock:** `Optional<List<PostV1MigrationBooksValidateRequestStockItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.migration.importHistoricalBooksFromAPreviousAccountingSystem(request) -> PostV1MigrationBooksImportResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction — if any row fails, nothing is stored.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.migration().importHistoricalBooksFromAPreviousAccountingSystem(
+    PostV1MigrationBooksImportRequest
+        .builder()
+        .cutoverDate("cutoverDate")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cutoverDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**source:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**accounts:** `Optional<List<PostV1MigrationBooksImportRequestAccountsItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partners:** `Optional<List<PostV1MigrationBooksImportRequestPartnersItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**items:** `Optional<List<PostV1MigrationBooksImportRequestItemsItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**openingBalances:** `Optional<PostV1MigrationBooksImportRequestOpeningBalances>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**journal:** `Optional<List<PostV1MigrationBooksImportRequestJournalItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**openReceivables:** `Optional<List<PostV1MigrationBooksImportRequestOpenReceivablesItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**openPayables:** `Optional<List<PostV1MigrationBooksImportRequestOpenPayablesItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetGroups:** `Optional<List<PostV1MigrationBooksImportRequestAssetGroupsItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fixedAssets:** `Optional<List<PostV1MigrationBooksImportRequestFixedAssetsItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**stock:** `Optional<List<PostV1MigrationBooksImportRequestStockItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Assets
 <details><summary><code>client.assets.postV1AssetsGroupsCreate(request) -> PostV1AssetsGroupsCreateResponse</code></summary>
 <dl>

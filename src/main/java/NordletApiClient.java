@@ -23,6 +23,7 @@ import com.nordlet.api.resources.fleet.FleetClient;
 import com.nordlet.api.resources.hr.HrClient;
 import com.nordlet.api.resources.inventory.InventoryClient;
 import com.nordlet.api.resources.ledger.LedgerClient;
+import com.nordlet.api.resources.migration.MigrationClient;
 import com.nordlet.api.resources.partners.PartnersClient;
 import com.nordlet.api.resources.payroll.PayrollClient;
 import com.nordlet.api.resources.pos.PosClient;
@@ -55,6 +56,8 @@ public class NordletApiClient {
   protected final Supplier<DeclarationsClient> declarationsClient;
 
   protected final Supplier<LedgerClient> ledgerClient;
+
+  protected final Supplier<MigrationClient> migrationClient;
 
   protected final Supplier<AssetsClient> assetsClient;
 
@@ -108,6 +111,7 @@ public class NordletApiClient {
     this.captureClient = Suppliers.memoize(() -> new CaptureClient(clientOptions));
     this.declarationsClient = Suppliers.memoize(() -> new DeclarationsClient(clientOptions));
     this.ledgerClient = Suppliers.memoize(() -> new LedgerClient(clientOptions));
+    this.migrationClient = Suppliers.memoize(() -> new MigrationClient(clientOptions));
     this.assetsClient = Suppliers.memoize(() -> new AssetsClient(clientOptions));
     this.hrClient = Suppliers.memoize(() -> new HrClient(clientOptions));
     this.fleetClient = Suppliers.memoize(() -> new FleetClient(clientOptions));
@@ -161,6 +165,10 @@ public class NordletApiClient {
 
   public LedgerClient ledger() {
     return this.ledgerClient.get();
+  }
+
+  public MigrationClient migration() {
+    return this.migrationClient.get();
   }
 
   public AssetsClient assets() {
