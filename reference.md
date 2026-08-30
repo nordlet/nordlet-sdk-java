@@ -3141,6 +3141,65 @@ client.partners().postV1PartnersDelete(
 </dl>
 </details>
 
+<details><summary><code>client.partners.blankAPartnersPersonalDataAndHideTheRecord(request) -> PostV1PartnersAnonymizeResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().blankAPartnersPersonalDataAndHideTheRecord(
+    PostV1PartnersAnonymizeRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.partners.postV1PartnersList(request) -> PostV1PartnersListResponse</code></summary>
 <dl>
 <dd>
@@ -13291,6 +13350,110 @@ client.hr().postV1HrEmployeesList(
 <dd>
 
 **filter:** `Optional<List<PostV1HrEmployeesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.hr.postV1HrEmployeesDelete(request) -> PostV1HrEmployeesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.hr().postV1HrEmployeesDelete(
+    PostV1HrEmployeesDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.hr.blankAnEmployeesPersonalDataAndHideTheRecord(request) -> PostV1HrEmployeesAnonymizeResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replaces the name with a placeholder and removes personal code, birth date, contact details, address, bank account, social-insurance number, notes and sick-leave reasons. Payroll and contract rows stay linked to the record for the statutory retention period.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.hr().blankAnEmployeesPersonalDataAndHideTheRecord(
+    PostV1HrEmployeesAnonymizeRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
     
 </dd>
 </dl>
@@ -27256,6 +27419,22 @@ client.account().postV1AccountLoginLinkRequest(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**acceptTerms:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**acceptDpa:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -27726,6 +27905,22 @@ client.account().postV1AccountInvitesAccept(
 <dd>
 
 **locale:** `Optional<PostV1AccountInvitesAcceptRequestLocale>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**acceptTerms:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**acceptDpa:** `Optional<Boolean>` 
     
 </dd>
 </dl>
@@ -28412,6 +28607,348 @@ client.account().postV1AccountApiKeysRevoke(
 <dd>
 
 **id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.account.postV1AccountConsentAccept(request) -> PostV1AccountConsentAcceptResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.account().postV1AccountConsentAccept(
+    PostV1AccountConsentAcceptRequest
+        .builder()
+        .acceptTerms(true)
+        .acceptDpa(true)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**acceptTerms:** `Boolean` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**acceptDpa:** `Boolean` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.account.postV1AccountProfileUpdate(request) -> PostV1AccountProfileUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.account().postV1AccountProfileUpdate(
+    PostV1AccountProfileUpdateRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.account.postV1AccountEmailChangeRequest(request) -> PostV1AccountEmailChangeRequestResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.account().postV1AccountEmailChangeRequest(
+    PostV1AccountEmailChangeRequestRequest
+        .builder()
+        .newEmail("newEmail")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**newEmail:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**locale:** `Optional<PostV1AccountEmailChangeRequestRequestLocale>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.account.postV1AccountSessionsList(request) -> PostV1AccountSessionsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.account().postV1AccountSessionsList(
+    PostV1AccountSessionsListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.account.postV1AccountSessionsRevoke(request) -> PostV1AccountSessionsRevokeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.account().postV1AccountSessionsRevoke(
+    PostV1AccountSessionsRevokeRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.account.postV1AccountSessionsRevokeOthers(request) -> PostV1AccountSessionsRevokeOthersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.account().postV1AccountSessionsRevokeOthers(
+    PostV1AccountSessionsRevokeOthersRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.account.downloadEverythingNordletStoresAboutTheSignedInUser(request) -> PostV1AccountExportResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.account().downloadEverythingNordletStoresAboutTheSignedInUser(
+    PostV1AccountExportRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.account.deleteTheSignedInUserAccount(request) -> PostV1AccountDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.account().deleteTheSignedInUserAccount(
+    PostV1AccountDeleteRequest
+        .builder()
+        .confirmEmail("confirmEmail")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**confirmEmail:** `String` 
     
 </dd>
 </dl>

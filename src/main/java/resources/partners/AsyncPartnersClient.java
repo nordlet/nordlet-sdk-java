@@ -10,6 +10,7 @@ import com.nordlet.api.resources.partners.requests.PostV1PartnersAddressesCreate
 import com.nordlet.api.resources.partners.requests.PostV1PartnersAddressesDeleteRequest;
 import com.nordlet.api.resources.partners.requests.PostV1PartnersAddressesListRequest;
 import com.nordlet.api.resources.partners.requests.PostV1PartnersAddressesUpdateRequest;
+import com.nordlet.api.resources.partners.requests.PostV1PartnersAnonymizeRequest;
 import com.nordlet.api.resources.partners.requests.PostV1PartnersBankAccountsCreateRequest;
 import com.nordlet.api.resources.partners.requests.PostV1PartnersBankAccountsDeleteRequest;
 import com.nordlet.api.resources.partners.requests.PostV1PartnersBankAccountsListRequest;
@@ -44,6 +45,7 @@ import com.nordlet.api.resources.partners.types.PostV1PartnersAddressesCreateRes
 import com.nordlet.api.resources.partners.types.PostV1PartnersAddressesDeleteResponse;
 import com.nordlet.api.resources.partners.types.PostV1PartnersAddressesListResponse;
 import com.nordlet.api.resources.partners.types.PostV1PartnersAddressesUpdateResponse;
+import com.nordlet.api.resources.partners.types.PostV1PartnersAnonymizeResponse;
 import com.nordlet.api.resources.partners.types.PostV1PartnersBankAccountsCreateResponse;
 import com.nordlet.api.resources.partners.types.PostV1PartnersBankAccountsDeleteResponse;
 import com.nordlet.api.resources.partners.types.PostV1PartnersBankAccountsListResponse;
@@ -337,6 +339,22 @@ public class AsyncPartnersClient {
   public CompletableFuture<PostV1PartnersDeleteResponse> postV1PartnersDelete(
       PostV1PartnersDeleteRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1PartnersDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
+   */
+  public CompletableFuture<PostV1PartnersAnonymizeResponse> blankAPartnersPersonalDataAndHideTheRecord(
+      PostV1PartnersAnonymizeRequest request) {
+    return this.rawClient.blankAPartnersPersonalDataAndHideTheRecord(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
+   */
+  public CompletableFuture<PostV1PartnersAnonymizeResponse> blankAPartnersPersonalDataAndHideTheRecord(
+      PostV1PartnersAnonymizeRequest request, RequestOptions requestOptions) {
+    return this.rawClient.blankAPartnersPersonalDataAndHideTheRecord(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<PostV1PartnersListResponse> postV1PartnersList() {

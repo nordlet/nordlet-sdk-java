@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.account.types.PostV1AccountLoginLinkRequestRequestLocale;
+import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -31,13 +32,19 @@ public final class PostV1AccountLoginLinkRequestRequest {
 
   private final Optional<PostV1AccountLoginLinkRequestRequestLocale> locale;
 
+  private final Optional<Boolean> acceptTerms;
+
+  private final Optional<Boolean> acceptDpa;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1AccountLoginLinkRequestRequest(String email,
-      Optional<PostV1AccountLoginLinkRequestRequestLocale> locale,
-      Map<String, Object> additionalProperties) {
+      Optional<PostV1AccountLoginLinkRequestRequestLocale> locale, Optional<Boolean> acceptTerms,
+      Optional<Boolean> acceptDpa, Map<String, Object> additionalProperties) {
     this.email = email;
     this.locale = locale;
+    this.acceptTerms = acceptTerms;
+    this.acceptDpa = acceptDpa;
     this.additionalProperties = additionalProperties;
   }
 
@@ -49,6 +56,16 @@ public final class PostV1AccountLoginLinkRequestRequest {
   @JsonProperty("locale")
   public Optional<PostV1AccountLoginLinkRequestRequestLocale> getLocale() {
     return locale;
+  }
+
+  @JsonProperty("acceptTerms")
+  public Optional<Boolean> getAcceptTerms() {
+    return acceptTerms;
+  }
+
+  @JsonProperty("acceptDpa")
+  public Optional<Boolean> getAcceptDpa() {
+    return acceptDpa;
   }
 
   @java.lang.Override
@@ -63,12 +80,12 @@ public final class PostV1AccountLoginLinkRequestRequest {
   }
 
   private boolean equalTo(PostV1AccountLoginLinkRequestRequest other) {
-    return email.equals(other.email) && locale.equals(other.locale);
+    return email.equals(other.email) && locale.equals(other.locale) && acceptTerms.equals(other.acceptTerms) && acceptDpa.equals(other.acceptDpa);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.email, this.locale);
+    return Objects.hash(this.email, this.locale, this.acceptTerms, this.acceptDpa);
   }
 
   @java.lang.Override
@@ -96,6 +113,14 @@ public final class PostV1AccountLoginLinkRequestRequest {
     _FinalStage locale(Optional<PostV1AccountLoginLinkRequestRequestLocale> locale);
 
     _FinalStage locale(PostV1AccountLoginLinkRequestRequestLocale locale);
+
+    _FinalStage acceptTerms(Optional<Boolean> acceptTerms);
+
+    _FinalStage acceptTerms(Boolean acceptTerms);
+
+    _FinalStage acceptDpa(Optional<Boolean> acceptDpa);
+
+    _FinalStage acceptDpa(Boolean acceptDpa);
   }
 
   @JsonIgnoreProperties(
@@ -103,6 +128,10 @@ public final class PostV1AccountLoginLinkRequestRequest {
   )
   public static final class Builder implements EmailStage, _FinalStage {
     private String email;
+
+    private Optional<Boolean> acceptDpa = Optional.empty();
+
+    private Optional<Boolean> acceptTerms = Optional.empty();
 
     private Optional<PostV1AccountLoginLinkRequestRequestLocale> locale = Optional.empty();
 
@@ -116,6 +145,8 @@ public final class PostV1AccountLoginLinkRequestRequest {
     public Builder from(PostV1AccountLoginLinkRequestRequest other) {
       email(other.getEmail());
       locale(other.getLocale());
+      acceptTerms(other.getAcceptTerms());
+      acceptDpa(other.getAcceptDpa());
       return this;
     }
 
@@ -123,6 +154,38 @@ public final class PostV1AccountLoginLinkRequestRequest {
     @JsonSetter("email")
     public _FinalStage email(@NotNull String email) {
       this.email = Objects.requireNonNull(email, "email must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage acceptDpa(Boolean acceptDpa) {
+      this.acceptDpa = Optional.ofNullable(acceptDpa);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "acceptDpa",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage acceptDpa(Optional<Boolean> acceptDpa) {
+      this.acceptDpa = acceptDpa;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage acceptTerms(Boolean acceptTerms) {
+      this.acceptTerms = Optional.ofNullable(acceptTerms);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "acceptTerms",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage acceptTerms(Optional<Boolean> acceptTerms) {
+      this.acceptTerms = acceptTerms;
       return this;
     }
 
@@ -144,7 +207,7 @@ public final class PostV1AccountLoginLinkRequestRequest {
 
     @java.lang.Override
     public PostV1AccountLoginLinkRequestRequest build() {
-      return new PostV1AccountLoginLinkRequestRequest(email, locale, additionalProperties);
+      return new PostV1AccountLoginLinkRequestRequest(email, locale, acceptTerms, acceptDpa, additionalProperties);
     }
 
     @java.lang.Override

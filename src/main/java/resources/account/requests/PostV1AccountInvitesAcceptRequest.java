@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.account.types.PostV1AccountInvitesAcceptRequestLocale;
+import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -33,14 +34,20 @@ public final class PostV1AccountInvitesAcceptRequest {
 
   private final Optional<PostV1AccountInvitesAcceptRequestLocale> locale;
 
+  private final Optional<Boolean> acceptTerms;
+
+  private final Optional<Boolean> acceptDpa;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1AccountInvitesAcceptRequest(String token, Optional<String> name,
-      Optional<PostV1AccountInvitesAcceptRequestLocale> locale,
-      Map<String, Object> additionalProperties) {
+      Optional<PostV1AccountInvitesAcceptRequestLocale> locale, Optional<Boolean> acceptTerms,
+      Optional<Boolean> acceptDpa, Map<String, Object> additionalProperties) {
     this.token = token;
     this.name = name;
     this.locale = locale;
+    this.acceptTerms = acceptTerms;
+    this.acceptDpa = acceptDpa;
     this.additionalProperties = additionalProperties;
   }
 
@@ -59,6 +66,16 @@ public final class PostV1AccountInvitesAcceptRequest {
     return locale;
   }
 
+  @JsonProperty("acceptTerms")
+  public Optional<Boolean> getAcceptTerms() {
+    return acceptTerms;
+  }
+
+  @JsonProperty("acceptDpa")
+  public Optional<Boolean> getAcceptDpa() {
+    return acceptDpa;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -71,12 +88,12 @@ public final class PostV1AccountInvitesAcceptRequest {
   }
 
   private boolean equalTo(PostV1AccountInvitesAcceptRequest other) {
-    return token.equals(other.token) && name.equals(other.name) && locale.equals(other.locale);
+    return token.equals(other.token) && name.equals(other.name) && locale.equals(other.locale) && acceptTerms.equals(other.acceptTerms) && acceptDpa.equals(other.acceptDpa);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.token, this.name, this.locale);
+    return Objects.hash(this.token, this.name, this.locale, this.acceptTerms, this.acceptDpa);
   }
 
   @java.lang.Override
@@ -108,6 +125,14 @@ public final class PostV1AccountInvitesAcceptRequest {
     _FinalStage locale(Optional<PostV1AccountInvitesAcceptRequestLocale> locale);
 
     _FinalStage locale(PostV1AccountInvitesAcceptRequestLocale locale);
+
+    _FinalStage acceptTerms(Optional<Boolean> acceptTerms);
+
+    _FinalStage acceptTerms(Boolean acceptTerms);
+
+    _FinalStage acceptDpa(Optional<Boolean> acceptDpa);
+
+    _FinalStage acceptDpa(Boolean acceptDpa);
   }
 
   @JsonIgnoreProperties(
@@ -115,6 +140,10 @@ public final class PostV1AccountInvitesAcceptRequest {
   )
   public static final class Builder implements TokenStage, _FinalStage {
     private String token;
+
+    private Optional<Boolean> acceptDpa = Optional.empty();
+
+    private Optional<Boolean> acceptTerms = Optional.empty();
 
     private Optional<PostV1AccountInvitesAcceptRequestLocale> locale = Optional.empty();
 
@@ -131,6 +160,8 @@ public final class PostV1AccountInvitesAcceptRequest {
       token(other.getToken());
       name(other.getName());
       locale(other.getLocale());
+      acceptTerms(other.getAcceptTerms());
+      acceptDpa(other.getAcceptDpa());
       return this;
     }
 
@@ -138,6 +169,38 @@ public final class PostV1AccountInvitesAcceptRequest {
     @JsonSetter("token")
     public _FinalStage token(@NotNull String token) {
       this.token = Objects.requireNonNull(token, "token must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage acceptDpa(Boolean acceptDpa) {
+      this.acceptDpa = Optional.ofNullable(acceptDpa);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "acceptDpa",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage acceptDpa(Optional<Boolean> acceptDpa) {
+      this.acceptDpa = acceptDpa;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage acceptTerms(Boolean acceptTerms) {
+      this.acceptTerms = Optional.ofNullable(acceptTerms);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "acceptTerms",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage acceptTerms(Optional<Boolean> acceptTerms) {
+      this.acceptTerms = acceptTerms;
       return this;
     }
 
@@ -175,7 +238,7 @@ public final class PostV1AccountInvitesAcceptRequest {
 
     @java.lang.Override
     public PostV1AccountInvitesAcceptRequest build() {
-      return new PostV1AccountInvitesAcceptRequest(token, name, locale, additionalProperties);
+      return new PostV1AccountInvitesAcceptRequest(token, name, locale, acceptTerms, acceptDpa, additionalProperties);
     }
 
     @java.lang.Override

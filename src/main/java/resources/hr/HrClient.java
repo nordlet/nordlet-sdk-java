@@ -9,8 +9,10 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.hr.requests.PostV1HrContractsCreateRequest;
 import com.nordlet.api.resources.hr.requests.PostV1HrContractsEndRequest;
 import com.nordlet.api.resources.hr.requests.PostV1HrContractsListRequest;
+import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesAnonymizeRequest;
 import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesAttachmentsListRequest;
 import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesCreateRequest;
+import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesDeleteRequest;
 import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesGetRequest;
 import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesListRequest;
 import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesRecordsCreateRequest;
@@ -33,8 +35,10 @@ import com.nordlet.api.resources.hr.requests.PostV1HrTimesheetsUpsertRequest;
 import com.nordlet.api.resources.hr.types.PostV1HrContractsCreateResponse;
 import com.nordlet.api.resources.hr.types.PostV1HrContractsEndResponse;
 import com.nordlet.api.resources.hr.types.PostV1HrContractsListResponse;
+import com.nordlet.api.resources.hr.types.PostV1HrEmployeesAnonymizeResponse;
 import com.nordlet.api.resources.hr.types.PostV1HrEmployeesAttachmentsListResponse;
 import com.nordlet.api.resources.hr.types.PostV1HrEmployeesCreateResponse;
+import com.nordlet.api.resources.hr.types.PostV1HrEmployeesDeleteResponse;
 import com.nordlet.api.resources.hr.types.PostV1HrEmployeesGetResponse;
 import com.nordlet.api.resources.hr.types.PostV1HrEmployeesListResponse;
 import com.nordlet.api.resources.hr.types.PostV1HrEmployeesRecordsCreateResponse;
@@ -153,6 +157,32 @@ public class HrClient {
   public PostV1HrEmployeesListResponse postV1HrEmployeesList(PostV1HrEmployeesListRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.postV1HrEmployeesList(request, requestOptions).body();
+  }
+
+  public PostV1HrEmployeesDeleteResponse postV1HrEmployeesDelete(
+      PostV1HrEmployeesDeleteRequest request) {
+    return this.rawClient.postV1HrEmployeesDelete(request).body();
+  }
+
+  public PostV1HrEmployeesDeleteResponse postV1HrEmployeesDelete(
+      PostV1HrEmployeesDeleteRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1HrEmployeesDelete(request, requestOptions).body();
+  }
+
+  /**
+   * Replaces the name with a placeholder and removes personal code, birth date, contact details, address, bank account, social-insurance number, notes and sick-leave reasons. Payroll and contract rows stay linked to the record for the statutory retention period.
+   */
+  public PostV1HrEmployeesAnonymizeResponse blankAnEmployeesPersonalDataAndHideTheRecord(
+      PostV1HrEmployeesAnonymizeRequest request) {
+    return this.rawClient.blankAnEmployeesPersonalDataAndHideTheRecord(request).body();
+  }
+
+  /**
+   * Replaces the name with a placeholder and removes personal code, birth date, contact details, address, bank account, social-insurance number, notes and sick-leave reasons. Payroll and contract rows stay linked to the record for the statutory retention period.
+   */
+  public PostV1HrEmployeesAnonymizeResponse blankAnEmployeesPersonalDataAndHideTheRecord(
+      PostV1HrEmployeesAnonymizeRequest request, RequestOptions requestOptions) {
+    return this.rawClient.blankAnEmployeesPersonalDataAndHideTheRecord(request, requestOptions).body();
   }
 
   public PostV1HrContractsCreateResponse postV1HrContractsCreate(

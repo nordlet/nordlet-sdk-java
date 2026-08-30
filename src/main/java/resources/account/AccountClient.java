@@ -16,6 +16,10 @@ import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesDeleteRe
 import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesProfileRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesSelectRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesUpdateRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountConsentAcceptRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountDeleteRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountEmailChangeRequestRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountExportRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountInvitesAcceptRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountInvitesCreateRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountInvitesGetRequest;
@@ -29,6 +33,10 @@ import com.nordlet.api.resources.account.requests.PostV1AccountMeRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountMembersListRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountMembersRemoveRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountMembersSetRoleRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountProfileUpdateRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountSessionsListRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountSessionsRevokeOthersRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountSessionsRevokeRequest;
 import com.nordlet.api.resources.account.types.PostV1AccountApiKeysCreateResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountApiKeysListResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountApiKeysRevokeResponse;
@@ -39,6 +47,10 @@ import com.nordlet.api.resources.account.types.PostV1AccountCompaniesDeleteRespo
 import com.nordlet.api.resources.account.types.PostV1AccountCompaniesProfileResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountCompaniesSelectResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountCompaniesUpdateResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountConsentAcceptResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountDeleteResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountEmailChangeRequestResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountExportResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountInvitesAcceptResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountInvitesCreateResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountInvitesGetResponse;
@@ -52,6 +64,10 @@ import com.nordlet.api.resources.account.types.PostV1AccountMeResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountMembersListResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountMembersRemoveResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountMembersSetRoleResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountProfileUpdateResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountSessionsListResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountSessionsRevokeOthersResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountSessionsRevokeResponse;
 
 public class AccountClient {
   protected final ClientOptions clientOptions;
@@ -354,5 +370,118 @@ public class AccountClient {
   public PostV1AccountApiKeysRevokeResponse postV1AccountApiKeysRevoke(
       PostV1AccountApiKeysRevokeRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1AccountApiKeysRevoke(request, requestOptions).body();
+  }
+
+  public PostV1AccountConsentAcceptResponse postV1AccountConsentAccept(
+      PostV1AccountConsentAcceptRequest request) {
+    return this.rawClient.postV1AccountConsentAccept(request).body();
+  }
+
+  public PostV1AccountConsentAcceptResponse postV1AccountConsentAccept(
+      PostV1AccountConsentAcceptRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountConsentAccept(request, requestOptions).body();
+  }
+
+  public PostV1AccountProfileUpdateResponse postV1AccountProfileUpdate(
+      PostV1AccountProfileUpdateRequest request) {
+    return this.rawClient.postV1AccountProfileUpdate(request).body();
+  }
+
+  public PostV1AccountProfileUpdateResponse postV1AccountProfileUpdate(
+      PostV1AccountProfileUpdateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountProfileUpdate(request, requestOptions).body();
+  }
+
+  public PostV1AccountEmailChangeRequestResponse postV1AccountEmailChangeRequest(
+      PostV1AccountEmailChangeRequestRequest request) {
+    return this.rawClient.postV1AccountEmailChangeRequest(request).body();
+  }
+
+  public PostV1AccountEmailChangeRequestResponse postV1AccountEmailChangeRequest(
+      PostV1AccountEmailChangeRequestRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountEmailChangeRequest(request, requestOptions).body();
+  }
+
+  public PostV1AccountSessionsListResponse postV1AccountSessionsList() {
+    return this.rawClient.postV1AccountSessionsList().body();
+  }
+
+  public PostV1AccountSessionsListResponse postV1AccountSessionsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountSessionsList(requestOptions).body();
+  }
+
+  public PostV1AccountSessionsListResponse postV1AccountSessionsList(
+      PostV1AccountSessionsListRequest request) {
+    return this.rawClient.postV1AccountSessionsList(request).body();
+  }
+
+  public PostV1AccountSessionsListResponse postV1AccountSessionsList(
+      PostV1AccountSessionsListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountSessionsList(request, requestOptions).body();
+  }
+
+  public PostV1AccountSessionsRevokeResponse postV1AccountSessionsRevoke(
+      PostV1AccountSessionsRevokeRequest request) {
+    return this.rawClient.postV1AccountSessionsRevoke(request).body();
+  }
+
+  public PostV1AccountSessionsRevokeResponse postV1AccountSessionsRevoke(
+      PostV1AccountSessionsRevokeRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountSessionsRevoke(request, requestOptions).body();
+  }
+
+  public PostV1AccountSessionsRevokeOthersResponse postV1AccountSessionsRevokeOthers() {
+    return this.rawClient.postV1AccountSessionsRevokeOthers().body();
+  }
+
+  public PostV1AccountSessionsRevokeOthersResponse postV1AccountSessionsRevokeOthers(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountSessionsRevokeOthers(requestOptions).body();
+  }
+
+  public PostV1AccountSessionsRevokeOthersResponse postV1AccountSessionsRevokeOthers(
+      PostV1AccountSessionsRevokeOthersRequest request) {
+    return this.rawClient.postV1AccountSessionsRevokeOthers(request).body();
+  }
+
+  public PostV1AccountSessionsRevokeOthersResponse postV1AccountSessionsRevokeOthers(
+      PostV1AccountSessionsRevokeOthersRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountSessionsRevokeOthers(request, requestOptions).body();
+  }
+
+  public PostV1AccountExportResponse downloadEverythingNordletStoresAboutTheSignedInUser() {
+    return this.rawClient.downloadEverythingNordletStoresAboutTheSignedInUser().body();
+  }
+
+  public PostV1AccountExportResponse downloadEverythingNordletStoresAboutTheSignedInUser(
+      RequestOptions requestOptions) {
+    return this.rawClient.downloadEverythingNordletStoresAboutTheSignedInUser(requestOptions).body();
+  }
+
+  public PostV1AccountExportResponse downloadEverythingNordletStoresAboutTheSignedInUser(
+      PostV1AccountExportRequest request) {
+    return this.rawClient.downloadEverythingNordletStoresAboutTheSignedInUser(request).body();
+  }
+
+  public PostV1AccountExportResponse downloadEverythingNordletStoresAboutTheSignedInUser(
+      PostV1AccountExportRequest request, RequestOptions requestOptions) {
+    return this.rawClient.downloadEverythingNordletStoresAboutTheSignedInUser(request, requestOptions).body();
+  }
+
+  /**
+   * Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
+   */
+  public PostV1AccountDeleteResponse deleteTheSignedInUserAccount(
+      PostV1AccountDeleteRequest request) {
+    return this.rawClient.deleteTheSignedInUserAccount(request).body();
+  }
+
+  /**
+   * Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
+   */
+  public PostV1AccountDeleteResponse deleteTheSignedInUserAccount(
+      PostV1AccountDeleteRequest request, RequestOptions requestOptions) {
+    return this.rawClient.deleteTheSignedInUserAccount(request, requestOptions).body();
   }
 }
