@@ -57,6 +57,8 @@ public final class PostV1PurchasesOrdersListResponseRowsItem {
 
   private final Optional<String> notes;
 
+  private final Optional<String> documentRef;
+
   private final String createdAt;
 
   private final String updatedAt;
@@ -67,7 +69,7 @@ public final class PostV1PurchasesOrdersListResponseRowsItem {
       PostV1PurchasesOrdersListResponseRowsItemStatus status, String orderNumber, String orderDate,
       Optional<String> expectedDate, Optional<String> warehouseId, String currency, String netTotal,
       String vatTotal, String grossTotal, Optional<String> approvedBy, Optional<String> approvedAt,
-      Optional<String> notes, String createdAt, String updatedAt,
+      Optional<String> notes, Optional<String> documentRef, String createdAt, String updatedAt,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.partnerId = partnerId;
@@ -83,6 +85,7 @@ public final class PostV1PurchasesOrdersListResponseRowsItem {
     this.approvedBy = approvedBy;
     this.approvedAt = approvedAt;
     this.notes = notes;
+    this.documentRef = documentRef;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.additionalProperties = additionalProperties;
@@ -173,6 +176,14 @@ public final class PostV1PurchasesOrdersListResponseRowsItem {
     return notes;
   }
 
+  @JsonIgnore
+  public Optional<String> getDocumentRef() {
+    if (documentRef == null) {
+      return Optional.empty();
+    }
+    return documentRef;
+  }
+
   @JsonProperty("createdAt")
   public String getCreatedAt() {
     return createdAt;
@@ -228,6 +239,15 @@ public final class PostV1PurchasesOrdersListResponseRowsItem {
     return notes;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("documentRef")
+  private Optional<String> _getDocumentRef() {
+    return documentRef;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -240,12 +260,12 @@ public final class PostV1PurchasesOrdersListResponseRowsItem {
   }
 
   private boolean equalTo(PostV1PurchasesOrdersListResponseRowsItem other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && status.equals(other.status) && orderNumber.equals(other.orderNumber) && orderDate.equals(other.orderDate) && expectedDate.equals(other.expectedDate) && warehouseId.equals(other.warehouseId) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && approvedBy.equals(other.approvedBy) && approvedAt.equals(other.approvedAt) && notes.equals(other.notes) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && status.equals(other.status) && orderNumber.equals(other.orderNumber) && orderDate.equals(other.orderDate) && expectedDate.equals(other.expectedDate) && warehouseId.equals(other.warehouseId) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && approvedBy.equals(other.approvedBy) && approvedAt.equals(other.approvedAt) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.status, this.orderNumber, this.orderDate, this.expectedDate, this.warehouseId, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.approvedBy, this.approvedAt, this.notes, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.partnerId, this.status, this.orderNumber, this.orderDate, this.expectedDate, this.warehouseId, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.approvedBy, this.approvedAt, this.notes, this.documentRef, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -339,6 +359,12 @@ public final class PostV1PurchasesOrdersListResponseRowsItem {
     _FinalStage notes(String notes);
 
     _FinalStage notes(Nullable<String> notes);
+
+    _FinalStage documentRef(Optional<String> documentRef);
+
+    _FinalStage documentRef(String documentRef);
+
+    _FinalStage documentRef(Nullable<String> documentRef);
   }
 
   @JsonIgnoreProperties(
@@ -366,6 +392,8 @@ public final class PostV1PurchasesOrdersListResponseRowsItem {
     private String createdAt;
 
     private String updatedAt;
+
+    private Optional<String> documentRef = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -399,6 +427,7 @@ public final class PostV1PurchasesOrdersListResponseRowsItem {
       approvedBy(other.getApprovedBy());
       approvedAt(other.getApprovedAt());
       notes(other.getNotes());
+      documentRef(other.getDocumentRef());
       createdAt(other.getCreatedAt());
       updatedAt(other.getUpdatedAt());
       return this;
@@ -479,6 +508,36 @@ public final class PostV1PurchasesOrdersListResponseRowsItem {
     @JsonSetter("updatedAt")
     public _FinalStage updatedAt(@NotNull String updatedAt) {
       this.updatedAt = Objects.requireNonNull(updatedAt, "updatedAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(Nullable<String> documentRef) {
+      if (documentRef.isNull()) {
+        this.documentRef = null;
+      }
+      else if (documentRef.isEmpty()) {
+        this.documentRef = Optional.empty();
+      }
+      else {
+        this.documentRef = Optional.of(documentRef.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(String documentRef) {
+      this.documentRef = Optional.ofNullable(documentRef);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentRef",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentRef(Optional<String> documentRef) {
+      this.documentRef = documentRef;
       return this;
     }
 
@@ -634,7 +693,7 @@ public final class PostV1PurchasesOrdersListResponseRowsItem {
 
     @java.lang.Override
     public PostV1PurchasesOrdersListResponseRowsItem build() {
-      return new PostV1PurchasesOrdersListResponseRowsItem(id, partnerId, status, orderNumber, orderDate, expectedDate, warehouseId, currency, netTotal, vatTotal, grossTotal, approvedBy, approvedAt, notes, createdAt, updatedAt, additionalProperties);
+      return new PostV1PurchasesOrdersListResponseRowsItem(id, partnerId, status, orderNumber, orderDate, expectedDate, warehouseId, currency, netTotal, vatTotal, grossTotal, approvedBy, approvedAt, notes, documentRef, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

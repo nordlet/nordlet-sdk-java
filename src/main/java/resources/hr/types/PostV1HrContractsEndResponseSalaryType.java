@@ -10,7 +10,13 @@ import java.lang.Object;
 import java.lang.String;
 
 public final class PostV1HrContractsEndResponseSalaryType {
+  public static final PostV1HrContractsEndResponseSalaryType YEARLY = new PostV1HrContractsEndResponseSalaryType(Value.YEARLY, "yearly");
+
   public static final PostV1HrContractsEndResponseSalaryType HOURLY = new PostV1HrContractsEndResponseSalaryType(Value.HOURLY, "hourly");
+
+  public static final PostV1HrContractsEndResponseSalaryType DAILY = new PostV1HrContractsEndResponseSalaryType(Value.DAILY, "daily");
+
+  public static final PostV1HrContractsEndResponseSalaryType WEEKLY = new PostV1HrContractsEndResponseSalaryType(Value.WEEKLY, "weekly");
 
   public static final PostV1HrContractsEndResponseSalaryType MONTHLY = new PostV1HrContractsEndResponseSalaryType(Value.MONTHLY, "monthly");
 
@@ -46,8 +52,14 @@ public final class PostV1HrContractsEndResponseSalaryType {
 
   public <T> T visit(Visitor<T> visitor) {
     switch (value) {
+      case YEARLY:
+        return visitor.visitYearly();
       case HOURLY:
         return visitor.visitHourly();
+      case DAILY:
+        return visitor.visitDaily();
+      case WEEKLY:
+        return visitor.visitWeekly();
       case MONTHLY:
         return visitor.visitMonthly();
       case UNKNOWN:
@@ -61,8 +73,14 @@ public final class PostV1HrContractsEndResponseSalaryType {
   )
   public static PostV1HrContractsEndResponseSalaryType valueOf(String value) {
     switch (value) {
+      case "yearly":
+        return YEARLY;
       case "hourly":
         return HOURLY;
+      case "daily":
+        return DAILY;
+      case "weekly":
+        return WEEKLY;
       case "monthly":
         return MONTHLY;
       default:
@@ -75,6 +93,12 @@ public final class PostV1HrContractsEndResponseSalaryType {
 
     HOURLY,
 
+    WEEKLY,
+
+    DAILY,
+
+    YEARLY,
+
     UNKNOWN
   }
 
@@ -82,6 +106,12 @@ public final class PostV1HrContractsEndResponseSalaryType {
     T visitMonthly();
 
     T visitHourly();
+
+    T visitWeekly();
+
+    T visitDaily();
+
+    T visitYearly();
 
     T visitUnknown(String unknownType);
   }

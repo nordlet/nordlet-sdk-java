@@ -10,7 +10,13 @@ import java.lang.Object;
 import java.lang.String;
 
 public final class PostV1HrContractsListResponseRowsItemSalaryType {
+  public static final PostV1HrContractsListResponseRowsItemSalaryType YEARLY = new PostV1HrContractsListResponseRowsItemSalaryType(Value.YEARLY, "yearly");
+
   public static final PostV1HrContractsListResponseRowsItemSalaryType HOURLY = new PostV1HrContractsListResponseRowsItemSalaryType(Value.HOURLY, "hourly");
+
+  public static final PostV1HrContractsListResponseRowsItemSalaryType DAILY = new PostV1HrContractsListResponseRowsItemSalaryType(Value.DAILY, "daily");
+
+  public static final PostV1HrContractsListResponseRowsItemSalaryType WEEKLY = new PostV1HrContractsListResponseRowsItemSalaryType(Value.WEEKLY, "weekly");
 
   public static final PostV1HrContractsListResponseRowsItemSalaryType MONTHLY = new PostV1HrContractsListResponseRowsItemSalaryType(Value.MONTHLY, "monthly");
 
@@ -46,8 +52,14 @@ public final class PostV1HrContractsListResponseRowsItemSalaryType {
 
   public <T> T visit(Visitor<T> visitor) {
     switch (value) {
+      case YEARLY:
+        return visitor.visitYearly();
       case HOURLY:
         return visitor.visitHourly();
+      case DAILY:
+        return visitor.visitDaily();
+      case WEEKLY:
+        return visitor.visitWeekly();
       case MONTHLY:
         return visitor.visitMonthly();
       case UNKNOWN:
@@ -61,8 +73,14 @@ public final class PostV1HrContractsListResponseRowsItemSalaryType {
   )
   public static PostV1HrContractsListResponseRowsItemSalaryType valueOf(String value) {
     switch (value) {
+      case "yearly":
+        return YEARLY;
       case "hourly":
         return HOURLY;
+      case "daily":
+        return DAILY;
+      case "weekly":
+        return WEEKLY;
       case "monthly":
         return MONTHLY;
       default:
@@ -75,6 +93,12 @@ public final class PostV1HrContractsListResponseRowsItemSalaryType {
 
     HOURLY,
 
+    WEEKLY,
+
+    DAILY,
+
+    YEARLY,
+
     UNKNOWN
   }
 
@@ -82,6 +106,12 @@ public final class PostV1HrContractsListResponseRowsItemSalaryType {
     T visitMonthly();
 
     T visitHourly();
+
+    T visitWeekly();
+
+    T visitDaily();
+
+    T visitYearly();
 
     T visitUnknown(String unknownType);
   }

@@ -30,15 +30,38 @@ public final class PostV1BankStatementsImportResponse {
 
   private final long skipped;
 
+  private final long posted;
+
+  private final long customersCreated;
+
+  private final long invoicesCreated;
+
+  private final long invoicesLinked;
+
+  private final long creditNotesCreated;
+
+  private final long paymentsMatched;
+
+  private final List<String> warnings;
+
   private final List<PostV1BankStatementsImportResponseStatementsItem> statements;
 
   private final Map<String, Object> additionalProperties;
 
-  private PostV1BankStatementsImportResponse(long imported, long skipped,
+  private PostV1BankStatementsImportResponse(long imported, long skipped, long posted,
+      long customersCreated, long invoicesCreated, long invoicesLinked, long creditNotesCreated,
+      long paymentsMatched, List<String> warnings,
       List<PostV1BankStatementsImportResponseStatementsItem> statements,
       Map<String, Object> additionalProperties) {
     this.imported = imported;
     this.skipped = skipped;
+    this.posted = posted;
+    this.customersCreated = customersCreated;
+    this.invoicesCreated = invoicesCreated;
+    this.invoicesLinked = invoicesLinked;
+    this.creditNotesCreated = creditNotesCreated;
+    this.paymentsMatched = paymentsMatched;
+    this.warnings = warnings;
     this.statements = statements;
     this.additionalProperties = additionalProperties;
   }
@@ -51,6 +74,41 @@ public final class PostV1BankStatementsImportResponse {
   @JsonProperty("skipped")
   public long getSkipped() {
     return skipped;
+  }
+
+  @JsonProperty("posted")
+  public long getPosted() {
+    return posted;
+  }
+
+  @JsonProperty("customersCreated")
+  public long getCustomersCreated() {
+    return customersCreated;
+  }
+
+  @JsonProperty("invoicesCreated")
+  public long getInvoicesCreated() {
+    return invoicesCreated;
+  }
+
+  @JsonProperty("invoicesLinked")
+  public long getInvoicesLinked() {
+    return invoicesLinked;
+  }
+
+  @JsonProperty("creditNotesCreated")
+  public long getCreditNotesCreated() {
+    return creditNotesCreated;
+  }
+
+  @JsonProperty("paymentsMatched")
+  public long getPaymentsMatched() {
+    return paymentsMatched;
+  }
+
+  @JsonProperty("warnings")
+  public List<String> getWarnings() {
+    return warnings;
   }
 
   @JsonProperty("statements")
@@ -70,12 +128,12 @@ public final class PostV1BankStatementsImportResponse {
   }
 
   private boolean equalTo(PostV1BankStatementsImportResponse other) {
-    return imported == other.imported && skipped == other.skipped && statements.equals(other.statements);
+    return imported == other.imported && skipped == other.skipped && posted == other.posted && customersCreated == other.customersCreated && invoicesCreated == other.invoicesCreated && invoicesLinked == other.invoicesLinked && creditNotesCreated == other.creditNotesCreated && paymentsMatched == other.paymentsMatched && warnings.equals(other.warnings) && statements.equals(other.statements);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.imported, this.skipped, this.statements);
+    return Objects.hash(this.imported, this.skipped, this.posted, this.customersCreated, this.invoicesCreated, this.invoicesLinked, this.creditNotesCreated, this.paymentsMatched, this.warnings, this.statements);
   }
 
   @java.lang.Override
@@ -94,7 +152,31 @@ public final class PostV1BankStatementsImportResponse {
   }
 
   public interface SkippedStage {
-    _FinalStage skipped(long skipped);
+    PostedStage skipped(long skipped);
+  }
+
+  public interface PostedStage {
+    CustomersCreatedStage posted(long posted);
+  }
+
+  public interface CustomersCreatedStage {
+    InvoicesCreatedStage customersCreated(long customersCreated);
+  }
+
+  public interface InvoicesCreatedStage {
+    InvoicesLinkedStage invoicesCreated(long invoicesCreated);
+  }
+
+  public interface InvoicesLinkedStage {
+    CreditNotesCreatedStage invoicesLinked(long invoicesLinked);
+  }
+
+  public interface CreditNotesCreatedStage {
+    PaymentsMatchedStage creditNotesCreated(long creditNotesCreated);
+  }
+
+  public interface PaymentsMatchedStage {
+    _FinalStage paymentsMatched(long paymentsMatched);
   }
 
   public interface _FinalStage {
@@ -103,6 +185,12 @@ public final class PostV1BankStatementsImportResponse {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage warnings(List<String> warnings);
+
+    _FinalStage addWarnings(String warnings);
+
+    _FinalStage addAllWarnings(List<String> warnings);
 
     _FinalStage statements(List<PostV1BankStatementsImportResponseStatementsItem> statements);
 
@@ -114,12 +202,26 @@ public final class PostV1BankStatementsImportResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements ImportedStage, SkippedStage, _FinalStage {
+  public static final class Builder implements ImportedStage, SkippedStage, PostedStage, CustomersCreatedStage, InvoicesCreatedStage, InvoicesLinkedStage, CreditNotesCreatedStage, PaymentsMatchedStage, _FinalStage {
     private long imported;
 
     private long skipped;
 
+    private long posted;
+
+    private long customersCreated;
+
+    private long invoicesCreated;
+
+    private long invoicesLinked;
+
+    private long creditNotesCreated;
+
+    private long paymentsMatched;
+
     private List<PostV1BankStatementsImportResponseStatementsItem> statements = new ArrayList<>();
+
+    private List<String> warnings = new ArrayList<>();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -131,6 +233,13 @@ public final class PostV1BankStatementsImportResponse {
     public Builder from(PostV1BankStatementsImportResponse other) {
       imported(other.getImported());
       skipped(other.getSkipped());
+      posted(other.getPosted());
+      customersCreated(other.getCustomersCreated());
+      invoicesCreated(other.getInvoicesCreated());
+      invoicesLinked(other.getInvoicesLinked());
+      creditNotesCreated(other.getCreditNotesCreated());
+      paymentsMatched(other.getPaymentsMatched());
+      warnings(other.getWarnings());
       statements(other.getStatements());
       return this;
     }
@@ -144,8 +253,50 @@ public final class PostV1BankStatementsImportResponse {
 
     @java.lang.Override
     @JsonSetter("skipped")
-    public _FinalStage skipped(long skipped) {
+    public PostedStage skipped(long skipped) {
       this.skipped = skipped;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("posted")
+    public CustomersCreatedStage posted(long posted) {
+      this.posted = posted;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("customersCreated")
+    public InvoicesCreatedStage customersCreated(long customersCreated) {
+      this.customersCreated = customersCreated;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("invoicesCreated")
+    public InvoicesLinkedStage invoicesCreated(long invoicesCreated) {
+      this.invoicesCreated = invoicesCreated;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("invoicesLinked")
+    public CreditNotesCreatedStage invoicesLinked(long invoicesLinked) {
+      this.invoicesLinked = invoicesLinked;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("creditNotesCreated")
+    public PaymentsMatchedStage creditNotesCreated(long creditNotesCreated) {
+      this.creditNotesCreated = creditNotesCreated;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("paymentsMatched")
+    public _FinalStage paymentsMatched(long paymentsMatched) {
+      this.paymentsMatched = paymentsMatched;
       return this;
     }
 
@@ -179,8 +330,35 @@ public final class PostV1BankStatementsImportResponse {
     }
 
     @java.lang.Override
+    public _FinalStage addAllWarnings(List<String> warnings) {
+      if (warnings != null) {
+        this.warnings.addAll(warnings);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addWarnings(String warnings) {
+      this.warnings.add(warnings);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "warnings",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage warnings(List<String> warnings) {
+      this.warnings.clear();
+      if (warnings != null) {
+        this.warnings.addAll(warnings);
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1BankStatementsImportResponse build() {
-      return new PostV1BankStatementsImportResponse(imported, skipped, statements, additionalProperties);
+      return new PostV1BankStatementsImportResponse(imported, skipped, posted, customersCreated, invoicesCreated, invoicesLinked, creditNotesCreated, paymentsMatched, warnings, statements, additionalProperties);
     }
 
     @java.lang.Override

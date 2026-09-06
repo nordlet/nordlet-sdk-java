@@ -39,6 +39,8 @@ public final class PostV1LedgerJournalTransactionsListResponseRowsItem {
 
   private final Optional<String> documentId;
 
+  private final Optional<String> partnerId;
+
   private final PostV1LedgerJournalTransactionsListResponseRowsItemStatus status;
 
   private final String createdAt;
@@ -49,13 +51,14 @@ public final class PostV1LedgerJournalTransactionsListResponseRowsItem {
 
   private PostV1LedgerJournalTransactionsListResponseRowsItem(String id, String date,
       Optional<String> description, Optional<String> documentType, Optional<String> documentId,
-      PostV1LedgerJournalTransactionsListResponseRowsItemStatus status, String createdAt,
-      Optional<String> postedAt, Map<String, Object> additionalProperties) {
+      Optional<String> partnerId, PostV1LedgerJournalTransactionsListResponseRowsItemStatus status,
+      String createdAt, Optional<String> postedAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.date = date;
     this.description = description;
     this.documentType = documentType;
     this.documentId = documentId;
+    this.partnerId = partnerId;
     this.status = status;
     this.createdAt = createdAt;
     this.postedAt = postedAt;
@@ -94,6 +97,14 @@ public final class PostV1LedgerJournalTransactionsListResponseRowsItem {
       return Optional.empty();
     }
     return documentId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPartnerId() {
+    if (partnerId == null) {
+      return Optional.empty();
+    }
+    return partnerId;
   }
 
   @JsonProperty("status")
@@ -145,6 +156,15 @@ public final class PostV1LedgerJournalTransactionsListResponseRowsItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("partnerId")
+  private Optional<String> _getPartnerId() {
+    return partnerId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("postedAt")
   private Optional<String> _getPostedAt() {
     return postedAt;
@@ -162,12 +182,12 @@ public final class PostV1LedgerJournalTransactionsListResponseRowsItem {
   }
 
   private boolean equalTo(PostV1LedgerJournalTransactionsListResponseRowsItem other) {
-    return id.equals(other.id) && date.equals(other.date) && description.equals(other.description) && documentType.equals(other.documentType) && documentId.equals(other.documentId) && status.equals(other.status) && createdAt.equals(other.createdAt) && postedAt.equals(other.postedAt);
+    return id.equals(other.id) && date.equals(other.date) && description.equals(other.description) && documentType.equals(other.documentType) && documentId.equals(other.documentId) && partnerId.equals(other.partnerId) && status.equals(other.status) && createdAt.equals(other.createdAt) && postedAt.equals(other.postedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.date, this.description, this.documentType, this.documentId, this.status, this.createdAt, this.postedAt);
+    return Objects.hash(this.id, this.date, this.description, this.documentType, this.documentId, this.partnerId, this.status, this.createdAt, this.postedAt);
   }
 
   @java.lang.Override
@@ -223,6 +243,12 @@ public final class PostV1LedgerJournalTransactionsListResponseRowsItem {
 
     _FinalStage documentId(Nullable<String> documentId);
 
+    _FinalStage partnerId(Optional<String> partnerId);
+
+    _FinalStage partnerId(String partnerId);
+
+    _FinalStage partnerId(Nullable<String> partnerId);
+
     _FinalStage postedAt(Optional<String> postedAt);
 
     _FinalStage postedAt(String postedAt);
@@ -244,6 +270,8 @@ public final class PostV1LedgerJournalTransactionsListResponseRowsItem {
 
     private Optional<String> postedAt = Optional.empty();
 
+    private Optional<String> partnerId = Optional.empty();
+
     private Optional<String> documentId = Optional.empty();
 
     private Optional<String> documentType = Optional.empty();
@@ -263,6 +291,7 @@ public final class PostV1LedgerJournalTransactionsListResponseRowsItem {
       description(other.getDescription());
       documentType(other.getDocumentType());
       documentId(other.getDocumentId());
+      partnerId(other.getPartnerId());
       status(other.getStatus());
       createdAt(other.getCreatedAt());
       postedAt(other.getPostedAt());
@@ -325,6 +354,36 @@ public final class PostV1LedgerJournalTransactionsListResponseRowsItem {
     )
     public _FinalStage postedAt(Optional<String> postedAt) {
       this.postedAt = postedAt;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partnerId(Nullable<String> partnerId) {
+      if (partnerId.isNull()) {
+        this.partnerId = null;
+      }
+      else if (partnerId.isEmpty()) {
+        this.partnerId = Optional.empty();
+      }
+      else {
+        this.partnerId = Optional.of(partnerId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partnerId(String partnerId) {
+      this.partnerId = Optional.ofNullable(partnerId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "partnerId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage partnerId(Optional<String> partnerId) {
+      this.partnerId = partnerId;
       return this;
     }
 
@@ -420,7 +479,7 @@ public final class PostV1LedgerJournalTransactionsListResponseRowsItem {
 
     @java.lang.Override
     public PostV1LedgerJournalTransactionsListResponseRowsItem build() {
-      return new PostV1LedgerJournalTransactionsListResponseRowsItem(id, date, description, documentType, documentId, status, createdAt, postedAt, additionalProperties);
+      return new PostV1LedgerJournalTransactionsListResponseRowsItem(id, date, description, documentType, documentId, partnerId, status, createdAt, postedAt, additionalProperties);
     }
 
     @java.lang.Override

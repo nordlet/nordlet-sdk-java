@@ -13,10 +13,12 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsCreateRequestDocumentsItem;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -45,11 +47,14 @@ public final class PostV1AssetsAssetsCreateRequest {
 
   private final Optional<String> notes;
 
+  private final Optional<List<PostV1AssetsAssetsCreateRequestDocumentsItem>> documents;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1AssetsAssetsCreateRequest(String groupId, String code, String name,
       String acquisitionDate, Optional<String> depreciationStartDate, String acquisitionCost,
       Optional<String> salvageValue, Optional<Long> usefulLifeMonths, Optional<String> notes,
+      Optional<List<PostV1AssetsAssetsCreateRequestDocumentsItem>> documents,
       Map<String, Object> additionalProperties) {
     this.groupId = groupId;
     this.code = code;
@@ -60,6 +65,7 @@ public final class PostV1AssetsAssetsCreateRequest {
     this.salvageValue = salvageValue;
     this.usefulLifeMonths = usefulLifeMonths;
     this.notes = notes;
+    this.documents = documents;
     this.additionalProperties = additionalProperties;
   }
 
@@ -108,6 +114,11 @@ public final class PostV1AssetsAssetsCreateRequest {
     return notes;
   }
 
+  @JsonProperty("documents")
+  public Optional<List<PostV1AssetsAssetsCreateRequestDocumentsItem>> getDocuments() {
+    return documents;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -120,12 +131,12 @@ public final class PostV1AssetsAssetsCreateRequest {
   }
 
   private boolean equalTo(PostV1AssetsAssetsCreateRequest other) {
-    return groupId.equals(other.groupId) && code.equals(other.code) && name.equals(other.name) && acquisitionDate.equals(other.acquisitionDate) && depreciationStartDate.equals(other.depreciationStartDate) && acquisitionCost.equals(other.acquisitionCost) && salvageValue.equals(other.salvageValue) && usefulLifeMonths.equals(other.usefulLifeMonths) && notes.equals(other.notes);
+    return groupId.equals(other.groupId) && code.equals(other.code) && name.equals(other.name) && acquisitionDate.equals(other.acquisitionDate) && depreciationStartDate.equals(other.depreciationStartDate) && acquisitionCost.equals(other.acquisitionCost) && salvageValue.equals(other.salvageValue) && usefulLifeMonths.equals(other.usefulLifeMonths) && notes.equals(other.notes) && documents.equals(other.documents);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.groupId, this.code, this.name, this.acquisitionDate, this.depreciationStartDate, this.acquisitionCost, this.salvageValue, this.usefulLifeMonths, this.notes);
+    return Objects.hash(this.groupId, this.code, this.name, this.acquisitionDate, this.depreciationStartDate, this.acquisitionCost, this.salvageValue, this.usefulLifeMonths, this.notes, this.documents);
   }
 
   @java.lang.Override
@@ -181,6 +192,10 @@ public final class PostV1AssetsAssetsCreateRequest {
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
+
+    _FinalStage documents(Optional<List<PostV1AssetsAssetsCreateRequestDocumentsItem>> documents);
+
+    _FinalStage documents(List<PostV1AssetsAssetsCreateRequestDocumentsItem> documents);
   }
 
   @JsonIgnoreProperties(
@@ -196,6 +211,8 @@ public final class PostV1AssetsAssetsCreateRequest {
     private String acquisitionDate;
 
     private String acquisitionCost;
+
+    private Optional<List<PostV1AssetsAssetsCreateRequestDocumentsItem>> documents = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -222,6 +239,7 @@ public final class PostV1AssetsAssetsCreateRequest {
       salvageValue(other.getSalvageValue());
       usefulLifeMonths(other.getUsefulLifeMonths());
       notes(other.getNotes());
+      documents(other.getDocuments());
       return this;
     }
 
@@ -257,6 +275,23 @@ public final class PostV1AssetsAssetsCreateRequest {
     @JsonSetter("acquisitionCost")
     public _FinalStage acquisitionCost(@NotNull String acquisitionCost) {
       this.acquisitionCost = Objects.requireNonNull(acquisitionCost, "acquisitionCost must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documents(List<PostV1AssetsAssetsCreateRequestDocumentsItem> documents) {
+      this.documents = Optional.ofNullable(documents);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documents",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documents(
+        Optional<List<PostV1AssetsAssetsCreateRequestDocumentsItem>> documents) {
+      this.documents = documents;
       return this;
     }
 
@@ -326,7 +361,7 @@ public final class PostV1AssetsAssetsCreateRequest {
 
     @java.lang.Override
     public PostV1AssetsAssetsCreateRequest build() {
-      return new PostV1AssetsAssetsCreateRequest(groupId, code, name, acquisitionDate, depreciationStartDate, acquisitionCost, salvageValue, usefulLifeMonths, notes, additionalProperties);
+      return new PostV1AssetsAssetsCreateRequest(groupId, code, name, acquisitionDate, depreciationStartDate, acquisitionCost, salvageValue, usefulLifeMonths, notes, documents, additionalProperties);
     }
 
     @java.lang.Override

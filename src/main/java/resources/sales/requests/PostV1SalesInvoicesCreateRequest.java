@@ -52,6 +52,8 @@ public final class PostV1SalesInvoicesCreateRequest {
 
   private final Optional<String> notes;
 
+  private final Optional<String> documentRef;
+
   private final List<PostV1SalesInvoicesCreateRequestLinesItem> lines;
 
   private final Map<String, Object> additionalProperties;
@@ -61,7 +63,7 @@ public final class PostV1SalesInvoicesCreateRequest {
       Optional<String> issueDate, Optional<String> dueDate, Optional<String> creditedInvoiceId,
       Optional<PostV1SalesInvoicesCreateRequestVatScheme> vatScheme,
       Optional<String> vatCountryCode, Optional<Boolean> deemedSupplier, Optional<String> notes,
-      List<PostV1SalesInvoicesCreateRequestLinesItem> lines,
+      Optional<String> documentRef, List<PostV1SalesInvoicesCreateRequestLinesItem> lines,
       Map<String, Object> additionalProperties) {
     this.partnerId = partnerId;
     this.type = type;
@@ -73,6 +75,7 @@ public final class PostV1SalesInvoicesCreateRequest {
     this.vatCountryCode = vatCountryCode;
     this.deemedSupplier = deemedSupplier;
     this.notes = notes;
+    this.documentRef = documentRef;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
   }
@@ -127,6 +130,11 @@ public final class PostV1SalesInvoicesCreateRequest {
     return notes;
   }
 
+  @JsonProperty("documentRef")
+  public Optional<String> getDocumentRef() {
+    return documentRef;
+  }
+
   @JsonProperty("lines")
   public List<PostV1SalesInvoicesCreateRequestLinesItem> getLines() {
     return lines;
@@ -144,12 +152,12 @@ public final class PostV1SalesInvoicesCreateRequest {
   }
 
   private boolean equalTo(PostV1SalesInvoicesCreateRequest other) {
-    return partnerId.equals(other.partnerId) && type.equals(other.type) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && creditedInvoiceId.equals(other.creditedInvoiceId) && vatScheme.equals(other.vatScheme) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && lines.equals(other.lines);
+    return partnerId.equals(other.partnerId) && type.equals(other.type) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && creditedInvoiceId.equals(other.creditedInvoiceId) && vatScheme.equals(other.vatScheme) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.partnerId, this.type, this.currency, this.issueDate, this.dueDate, this.creditedInvoiceId, this.vatScheme, this.vatCountryCode, this.deemedSupplier, this.notes, this.lines);
+    return Objects.hash(this.partnerId, this.type, this.currency, this.issueDate, this.dueDate, this.creditedInvoiceId, this.vatScheme, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.lines);
   }
 
   @java.lang.Override
@@ -210,6 +218,10 @@ public final class PostV1SalesInvoicesCreateRequest {
 
     _FinalStage notes(String notes);
 
+    _FinalStage documentRef(Optional<String> documentRef);
+
+    _FinalStage documentRef(String documentRef);
+
     _FinalStage lines(List<PostV1SalesInvoicesCreateRequestLinesItem> lines);
 
     _FinalStage addLines(PostV1SalesInvoicesCreateRequestLinesItem lines);
@@ -224,6 +236,8 @@ public final class PostV1SalesInvoicesCreateRequest {
     private String partnerId;
 
     private List<PostV1SalesInvoicesCreateRequestLinesItem> lines = new ArrayList<>();
+
+    private Optional<String> documentRef = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -261,6 +275,7 @@ public final class PostV1SalesInvoicesCreateRequest {
       vatCountryCode(other.getVatCountryCode());
       deemedSupplier(other.getDeemedSupplier());
       notes(other.getNotes());
+      documentRef(other.getDocumentRef());
       lines(other.getLines());
       return this;
     }
@@ -296,6 +311,22 @@ public final class PostV1SalesInvoicesCreateRequest {
       if (lines != null) {
         this.lines.addAll(lines);
       }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(String documentRef) {
+      this.documentRef = Optional.ofNullable(documentRef);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentRef",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentRef(Optional<String> documentRef) {
+      this.documentRef = documentRef;
       return this;
     }
 
@@ -445,7 +476,7 @@ public final class PostV1SalesInvoicesCreateRequest {
 
     @java.lang.Override
     public PostV1SalesInvoicesCreateRequest build() {
-      return new PostV1SalesInvoicesCreateRequest(partnerId, type, currency, issueDate, dueDate, creditedInvoiceId, vatScheme, vatCountryCode, deemedSupplier, notes, lines, additionalProperties);
+      return new PostV1SalesInvoicesCreateRequest(partnerId, type, currency, issueDate, dueDate, creditedInvoiceId, vatScheme, vatCountryCode, deemedSupplier, notes, documentRef, lines, additionalProperties);
     }
 
     @java.lang.Override

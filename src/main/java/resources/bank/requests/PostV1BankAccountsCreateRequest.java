@@ -34,15 +34,18 @@ public final class PostV1BankAccountsCreateRequest {
 
   private final Optional<String> accountCode;
 
+  private final Optional<String> documentRef;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1BankAccountsCreateRequest(String name, Optional<String> iban,
-      Optional<String> currency, Optional<String> accountCode,
+      Optional<String> currency, Optional<String> accountCode, Optional<String> documentRef,
       Map<String, Object> additionalProperties) {
     this.name = name;
     this.iban = iban;
     this.currency = currency;
     this.accountCode = accountCode;
+    this.documentRef = documentRef;
     this.additionalProperties = additionalProperties;
   }
 
@@ -66,6 +69,11 @@ public final class PostV1BankAccountsCreateRequest {
     return accountCode;
   }
 
+  @JsonProperty("documentRef")
+  public Optional<String> getDocumentRef() {
+    return documentRef;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -78,12 +86,12 @@ public final class PostV1BankAccountsCreateRequest {
   }
 
   private boolean equalTo(PostV1BankAccountsCreateRequest other) {
-    return name.equals(other.name) && iban.equals(other.iban) && currency.equals(other.currency) && accountCode.equals(other.accountCode);
+    return name.equals(other.name) && iban.equals(other.iban) && currency.equals(other.currency) && accountCode.equals(other.accountCode) && documentRef.equals(other.documentRef);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.iban, this.currency, this.accountCode);
+    return Objects.hash(this.name, this.iban, this.currency, this.accountCode, this.documentRef);
   }
 
   @java.lang.Override
@@ -119,6 +127,10 @@ public final class PostV1BankAccountsCreateRequest {
     _FinalStage accountCode(Optional<String> accountCode);
 
     _FinalStage accountCode(String accountCode);
+
+    _FinalStage documentRef(Optional<String> documentRef);
+
+    _FinalStage documentRef(String documentRef);
   }
 
   @JsonIgnoreProperties(
@@ -126,6 +138,8 @@ public final class PostV1BankAccountsCreateRequest {
   )
   public static final class Builder implements NameStage, _FinalStage {
     private String name;
+
+    private Optional<String> documentRef = Optional.empty();
 
     private Optional<String> accountCode = Optional.empty();
 
@@ -145,6 +159,7 @@ public final class PostV1BankAccountsCreateRequest {
       iban(other.getIban());
       currency(other.getCurrency());
       accountCode(other.getAccountCode());
+      documentRef(other.getDocumentRef());
       return this;
     }
 
@@ -152,6 +167,22 @@ public final class PostV1BankAccountsCreateRequest {
     @JsonSetter("name")
     public _FinalStage name(@NotNull String name) {
       this.name = Objects.requireNonNull(name, "name must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(String documentRef) {
+      this.documentRef = Optional.ofNullable(documentRef);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentRef",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentRef(Optional<String> documentRef) {
+      this.documentRef = documentRef;
       return this;
     }
 
@@ -205,7 +236,7 @@ public final class PostV1BankAccountsCreateRequest {
 
     @java.lang.Override
     public PostV1BankAccountsCreateRequest build() {
-      return new PostV1BankAccountsCreateRequest(name, iban, currency, accountCode, additionalProperties);
+      return new PostV1BankAccountsCreateRequest(name, iban, currency, accountCode, documentRef, additionalProperties);
     }
 
     @java.lang.Override

@@ -33,7 +33,13 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
 
   private final Optional<String> typeId;
 
-  private final String partnerId;
+  private final PostV1AgreementsAgreementsListResponseRowsItemKind kind;
+
+  private final Optional<String> partnerId;
+
+  private final Optional<String> employeeId;
+
+  private final Optional<String> bankAccountId;
 
   private final String number;
 
@@ -55,19 +61,27 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
 
   private final Optional<String> notes;
 
+  private final Optional<String> documentRef;
+
   private final String createdAt;
 
   private final Map<String, Object> additionalProperties;
 
   private PostV1AgreementsAgreementsListResponseRowsItem(String id, Optional<String> typeId,
-      String partnerId, String number, Optional<String> name, String startDate,
-      Optional<String> endDate, boolean autoRenew, Optional<String> value,
+      PostV1AgreementsAgreementsListResponseRowsItemKind kind, Optional<String> partnerId,
+      Optional<String> employeeId, Optional<String> bankAccountId, String number,
+      Optional<String> name, String startDate, Optional<String> endDate, boolean autoRenew,
+      Optional<String> value,
       Optional<PostV1AgreementsAgreementsListResponseRowsItemBillingPeriod> billingPeriod,
       String currency, PostV1AgreementsAgreementsListResponseRowsItemStatus status,
-      Optional<String> notes, String createdAt, Map<String, Object> additionalProperties) {
+      Optional<String> notes, Optional<String> documentRef, String createdAt,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.typeId = typeId;
+    this.kind = kind;
     this.partnerId = partnerId;
+    this.employeeId = employeeId;
+    this.bankAccountId = bankAccountId;
     this.number = number;
     this.name = name;
     this.startDate = startDate;
@@ -78,6 +92,7 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
     this.currency = currency;
     this.status = status;
     this.notes = notes;
+    this.documentRef = documentRef;
     this.createdAt = createdAt;
     this.additionalProperties = additionalProperties;
   }
@@ -95,9 +110,33 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
     return typeId;
   }
 
-  @JsonProperty("partnerId")
-  public String getPartnerId() {
+  @JsonProperty("kind")
+  public PostV1AgreementsAgreementsListResponseRowsItemKind getKind() {
+    return kind;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPartnerId() {
+    if (partnerId == null) {
+      return Optional.empty();
+    }
     return partnerId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getEmployeeId() {
+    if (employeeId == null) {
+      return Optional.empty();
+    }
+    return employeeId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getBankAccountId() {
+    if (bankAccountId == null) {
+      return Optional.empty();
+    }
+    return bankAccountId;
   }
 
   @JsonProperty("number")
@@ -165,6 +204,14 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
     return notes;
   }
 
+  @JsonIgnore
+  public Optional<String> getDocumentRef() {
+    if (documentRef == null) {
+      return Optional.empty();
+    }
+    return documentRef;
+  }
+
   @JsonProperty("createdAt")
   public String getCreatedAt() {
     return createdAt;
@@ -177,6 +224,33 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
   @JsonProperty("typeId")
   private Optional<String> _getTypeId() {
     return typeId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("partnerId")
+  private Optional<String> _getPartnerId() {
+    return partnerId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("employeeId")
+  private Optional<String> _getEmployeeId() {
+    return employeeId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("bankAccountId")
+  private Optional<String> _getBankAccountId() {
+    return bankAccountId;
   }
 
   @JsonInclude(
@@ -225,6 +299,15 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
     return notes;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("documentRef")
+  private Optional<String> _getDocumentRef() {
+    return documentRef;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -237,12 +320,12 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
   }
 
   private boolean equalTo(PostV1AgreementsAgreementsListResponseRowsItem other) {
-    return id.equals(other.id) && typeId.equals(other.typeId) && partnerId.equals(other.partnerId) && number.equals(other.number) && name.equals(other.name) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && autoRenew == other.autoRenew && value.equals(other.value) && billingPeriod.equals(other.billingPeriod) && currency.equals(other.currency) && status.equals(other.status) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && typeId.equals(other.typeId) && kind.equals(other.kind) && partnerId.equals(other.partnerId) && employeeId.equals(other.employeeId) && bankAccountId.equals(other.bankAccountId) && number.equals(other.number) && name.equals(other.name) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && autoRenew == other.autoRenew && value.equals(other.value) && billingPeriod.equals(other.billingPeriod) && currency.equals(other.currency) && status.equals(other.status) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.typeId, this.partnerId, this.number, this.name, this.startDate, this.endDate, this.autoRenew, this.value, this.billingPeriod, this.currency, this.status, this.notes, this.createdAt);
+    return Objects.hash(this.id, this.typeId, this.kind, this.partnerId, this.employeeId, this.bankAccountId, this.number, this.name, this.startDate, this.endDate, this.autoRenew, this.value, this.billingPeriod, this.currency, this.status, this.notes, this.documentRef, this.createdAt);
   }
 
   @java.lang.Override
@@ -255,13 +338,13 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
   }
 
   public interface IdStage {
-    PartnerIdStage id(@NotNull String id);
+    KindStage id(@NotNull String id);
 
     Builder from(PostV1AgreementsAgreementsListResponseRowsItem other);
   }
 
-  public interface PartnerIdStage {
-    NumberStage partnerId(@NotNull String partnerId);
+  public interface KindStage {
+    NumberStage kind(@NotNull PostV1AgreementsAgreementsListResponseRowsItemKind kind);
   }
 
   public interface NumberStage {
@@ -301,6 +384,24 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
 
     _FinalStage typeId(Nullable<String> typeId);
 
+    _FinalStage partnerId(Optional<String> partnerId);
+
+    _FinalStage partnerId(String partnerId);
+
+    _FinalStage partnerId(Nullable<String> partnerId);
+
+    _FinalStage employeeId(Optional<String> employeeId);
+
+    _FinalStage employeeId(String employeeId);
+
+    _FinalStage employeeId(Nullable<String> employeeId);
+
+    _FinalStage bankAccountId(Optional<String> bankAccountId);
+
+    _FinalStage bankAccountId(String bankAccountId);
+
+    _FinalStage bankAccountId(Nullable<String> bankAccountId);
+
     _FinalStage name(Optional<String> name);
 
     _FinalStage name(String name);
@@ -333,15 +434,21 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
     _FinalStage notes(String notes);
 
     _FinalStage notes(Nullable<String> notes);
+
+    _FinalStage documentRef(Optional<String> documentRef);
+
+    _FinalStage documentRef(String documentRef);
+
+    _FinalStage documentRef(Nullable<String> documentRef);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, PartnerIdStage, NumberStage, StartDateStage, AutoRenewStage, CurrencyStage, StatusStage, CreatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, KindStage, NumberStage, StartDateStage, AutoRenewStage, CurrencyStage, StatusStage, CreatedAtStage, _FinalStage {
     private String id;
 
-    private String partnerId;
+    private PostV1AgreementsAgreementsListResponseRowsItemKind kind;
 
     private String number;
 
@@ -355,6 +462,8 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
 
     private String createdAt;
 
+    private Optional<String> documentRef = Optional.empty();
+
     private Optional<String> notes = Optional.empty();
 
     private Optional<PostV1AgreementsAgreementsListResponseRowsItemBillingPeriod> billingPeriod = Optional.empty();
@@ -364,6 +473,12 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
     private Optional<String> endDate = Optional.empty();
 
     private Optional<String> name = Optional.empty();
+
+    private Optional<String> bankAccountId = Optional.empty();
+
+    private Optional<String> employeeId = Optional.empty();
+
+    private Optional<String> partnerId = Optional.empty();
 
     private Optional<String> typeId = Optional.empty();
 
@@ -377,7 +492,10 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
     public Builder from(PostV1AgreementsAgreementsListResponseRowsItem other) {
       id(other.getId());
       typeId(other.getTypeId());
+      kind(other.getKind());
       partnerId(other.getPartnerId());
+      employeeId(other.getEmployeeId());
+      bankAccountId(other.getBankAccountId());
       number(other.getNumber());
       name(other.getName());
       startDate(other.getStartDate());
@@ -388,21 +506,22 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
       currency(other.getCurrency());
       status(other.getStatus());
       notes(other.getNotes());
+      documentRef(other.getDocumentRef());
       createdAt(other.getCreatedAt());
       return this;
     }
 
     @java.lang.Override
     @JsonSetter("id")
-    public PartnerIdStage id(@NotNull String id) {
+    public KindStage id(@NotNull String id) {
       this.id = Objects.requireNonNull(id, "id must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("partnerId")
-    public NumberStage partnerId(@NotNull String partnerId) {
-      this.partnerId = Objects.requireNonNull(partnerId, "partnerId must not be null");
+    @JsonSetter("kind")
+    public NumberStage kind(@NotNull PostV1AgreementsAgreementsListResponseRowsItemKind kind) {
+      this.kind = Objects.requireNonNull(kind, "kind must not be null");
       return this;
     }
 
@@ -446,6 +565,36 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
     @JsonSetter("createdAt")
     public _FinalStage createdAt(@NotNull String createdAt) {
       this.createdAt = Objects.requireNonNull(createdAt, "createdAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(Nullable<String> documentRef) {
+      if (documentRef.isNull()) {
+        this.documentRef = null;
+      }
+      else if (documentRef.isEmpty()) {
+        this.documentRef = Optional.empty();
+      }
+      else {
+        this.documentRef = Optional.of(documentRef.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(String documentRef) {
+      this.documentRef = Optional.ofNullable(documentRef);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentRef",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentRef(Optional<String> documentRef) {
+      this.documentRef = documentRef;
       return this;
     }
 
@@ -603,6 +752,96 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
     }
 
     @java.lang.Override
+    public _FinalStage bankAccountId(Nullable<String> bankAccountId) {
+      if (bankAccountId.isNull()) {
+        this.bankAccountId = null;
+      }
+      else if (bankAccountId.isEmpty()) {
+        this.bankAccountId = Optional.empty();
+      }
+      else {
+        this.bankAccountId = Optional.of(bankAccountId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankAccountId(String bankAccountId) {
+      this.bankAccountId = Optional.ofNullable(bankAccountId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankAccountId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankAccountId(Optional<String> bankAccountId) {
+      this.bankAccountId = bankAccountId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage employeeId(Nullable<String> employeeId) {
+      if (employeeId.isNull()) {
+        this.employeeId = null;
+      }
+      else if (employeeId.isEmpty()) {
+        this.employeeId = Optional.empty();
+      }
+      else {
+        this.employeeId = Optional.of(employeeId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage employeeId(String employeeId) {
+      this.employeeId = Optional.ofNullable(employeeId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "employeeId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage employeeId(Optional<String> employeeId) {
+      this.employeeId = employeeId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partnerId(Nullable<String> partnerId) {
+      if (partnerId.isNull()) {
+        this.partnerId = null;
+      }
+      else if (partnerId.isEmpty()) {
+        this.partnerId = Optional.empty();
+      }
+      else {
+        this.partnerId = Optional.of(partnerId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partnerId(String partnerId) {
+      this.partnerId = Optional.ofNullable(partnerId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "partnerId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage partnerId(Optional<String> partnerId) {
+      this.partnerId = partnerId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage typeId(Nullable<String> typeId) {
       if (typeId.isNull()) {
         this.typeId = null;
@@ -634,7 +873,7 @@ public final class PostV1AgreementsAgreementsListResponseRowsItem {
 
     @java.lang.Override
     public PostV1AgreementsAgreementsListResponseRowsItem build() {
-      return new PostV1AgreementsAgreementsListResponseRowsItem(id, typeId, partnerId, number, name, startDate, endDate, autoRenew, value, billingPeriod, currency, status, notes, createdAt, additionalProperties);
+      return new PostV1AgreementsAgreementsListResponseRowsItem(id, typeId, kind, partnerId, employeeId, bankAccountId, number, name, startDate, endDate, autoRenew, value, billingPeriod, currency, status, notes, documentRef, createdAt, additionalProperties);
     }
 
     @java.lang.Override

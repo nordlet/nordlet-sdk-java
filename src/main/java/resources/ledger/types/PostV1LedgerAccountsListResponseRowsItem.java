@@ -35,6 +35,8 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
 
   private final String name;
 
+  private final Optional<PostV1LedgerAccountsListResponseRowsItemTranslations> translations;
+
   private final PostV1LedgerAccountsListResponseRowsItemType type;
 
   private final Optional<String> parentId;
@@ -46,11 +48,13 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
   private final Map<String, Object> additionalProperties;
 
   private PostV1LedgerAccountsListResponseRowsItem(String id, String code, String name,
+      Optional<PostV1LedgerAccountsListResponseRowsItemTranslations> translations,
       PostV1LedgerAccountsListResponseRowsItemType type, Optional<String> parentId,
       boolean isPostable, String createdAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.code = code;
     this.name = name;
+    this.translations = translations;
     this.type = type;
     this.parentId = parentId;
     this.isPostable = isPostable;
@@ -71,6 +75,14 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
   @JsonProperty("name")
   public String getName() {
     return name;
+  }
+
+  @JsonIgnore
+  public Optional<PostV1LedgerAccountsListResponseRowsItemTranslations> getTranslations() {
+    if (translations == null) {
+      return Optional.empty();
+    }
+    return translations;
   }
 
   @JsonProperty("type")
@@ -100,6 +112,15 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("translations")
+  private Optional<PostV1LedgerAccountsListResponseRowsItemTranslations> _getTranslations() {
+    return translations;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("parentId")
   private Optional<String> _getParentId() {
     return parentId;
@@ -117,12 +138,12 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
   }
 
   private boolean equalTo(PostV1LedgerAccountsListResponseRowsItem other) {
-    return id.equals(other.id) && code.equals(other.code) && name.equals(other.name) && type.equals(other.type) && parentId.equals(other.parentId) && isPostable == other.isPostable && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && code.equals(other.code) && name.equals(other.name) && translations.equals(other.translations) && type.equals(other.type) && parentId.equals(other.parentId) && isPostable == other.isPostable && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.code, this.name, this.type, this.parentId, this.isPostable, this.createdAt);
+    return Objects.hash(this.id, this.code, this.name, this.translations, this.type, this.parentId, this.isPostable, this.createdAt);
   }
 
   @java.lang.Override
@@ -167,6 +188,14 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage translations(
+        Optional<PostV1LedgerAccountsListResponseRowsItemTranslations> translations);
+
+    _FinalStage translations(PostV1LedgerAccountsListResponseRowsItemTranslations translations);
+
+    _FinalStage translations(
+        Nullable<PostV1LedgerAccountsListResponseRowsItemTranslations> translations);
+
     _FinalStage parentId(Optional<String> parentId);
 
     _FinalStage parentId(String parentId);
@@ -192,6 +221,8 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
 
     private Optional<String> parentId = Optional.empty();
 
+    private Optional<PostV1LedgerAccountsListResponseRowsItemTranslations> translations = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -203,6 +234,7 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
       id(other.getId());
       code(other.getCode());
       name(other.getName());
+      translations(other.getTranslations());
       type(other.getType());
       parentId(other.getParentId());
       isPostable(other.getIsPostable());
@@ -283,8 +315,41 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
     }
 
     @java.lang.Override
+    public _FinalStage translations(
+        Nullable<PostV1LedgerAccountsListResponseRowsItemTranslations> translations) {
+      if (translations.isNull()) {
+        this.translations = null;
+      }
+      else if (translations.isEmpty()) {
+        this.translations = Optional.empty();
+      }
+      else {
+        this.translations = Optional.of(translations.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage translations(
+        PostV1LedgerAccountsListResponseRowsItemTranslations translations) {
+      this.translations = Optional.ofNullable(translations);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "translations",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage translations(
+        Optional<PostV1LedgerAccountsListResponseRowsItemTranslations> translations) {
+      this.translations = translations;
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1LedgerAccountsListResponseRowsItem build() {
-      return new PostV1LedgerAccountsListResponseRowsItem(id, code, name, type, parentId, isPostable, createdAt, additionalProperties);
+      return new PostV1LedgerAccountsListResponseRowsItem(id, code, name, translations, type, parentId, isPostable, createdAt, additionalProperties);
     }
 
     @java.lang.Override

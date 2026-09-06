@@ -36,7 +36,9 @@ public final class PostV1HrContractsCreateRequest {
 
   private final Optional<String> scheduleId;
 
-  private final String contractNo;
+  private final Optional<String> agreementId;
+
+  private final Optional<String> contractNo;
 
   private final Optional<PostV1HrContractsCreateRequestType> type;
 
@@ -48,29 +50,30 @@ public final class PostV1HrContractsCreateRequest {
 
   private final Optional<PostV1HrContractsCreateRequestSalaryType> salaryType;
 
-  private final Optional<String> workHoursPerWeek;
+  private final Optional<String> workHours;
 
   private final Optional<String> notes;
 
   private final Map<String, Object> additionalProperties;
 
   private PostV1HrContractsCreateRequest(String employeeId, Optional<String> positionId,
-      Optional<String> departmentId, Optional<String> scheduleId, String contractNo,
-      Optional<PostV1HrContractsCreateRequestType> type, String startDate, Optional<String> endDate,
-      String baseSalary, Optional<PostV1HrContractsCreateRequestSalaryType> salaryType,
-      Optional<String> workHoursPerWeek, Optional<String> notes,
-      Map<String, Object> additionalProperties) {
+      Optional<String> departmentId, Optional<String> scheduleId, Optional<String> agreementId,
+      Optional<String> contractNo, Optional<PostV1HrContractsCreateRequestType> type,
+      String startDate, Optional<String> endDate, String baseSalary,
+      Optional<PostV1HrContractsCreateRequestSalaryType> salaryType, Optional<String> workHours,
+      Optional<String> notes, Map<String, Object> additionalProperties) {
     this.employeeId = employeeId;
     this.positionId = positionId;
     this.departmentId = departmentId;
     this.scheduleId = scheduleId;
+    this.agreementId = agreementId;
     this.contractNo = contractNo;
     this.type = type;
     this.startDate = startDate;
     this.endDate = endDate;
     this.baseSalary = baseSalary;
     this.salaryType = salaryType;
-    this.workHoursPerWeek = workHoursPerWeek;
+    this.workHours = workHours;
     this.notes = notes;
     this.additionalProperties = additionalProperties;
   }
@@ -95,8 +98,13 @@ public final class PostV1HrContractsCreateRequest {
     return scheduleId;
   }
 
+  @JsonProperty("agreementId")
+  public Optional<String> getAgreementId() {
+    return agreementId;
+  }
+
   @JsonProperty("contractNo")
-  public String getContractNo() {
+  public Optional<String> getContractNo() {
     return contractNo;
   }
 
@@ -125,9 +133,9 @@ public final class PostV1HrContractsCreateRequest {
     return salaryType;
   }
 
-  @JsonProperty("workHoursPerWeek")
-  public Optional<String> getWorkHoursPerWeek() {
-    return workHoursPerWeek;
+  @JsonProperty("workHours")
+  public Optional<String> getWorkHours() {
+    return workHours;
   }
 
   @JsonProperty("notes")
@@ -147,12 +155,12 @@ public final class PostV1HrContractsCreateRequest {
   }
 
   private boolean equalTo(PostV1HrContractsCreateRequest other) {
-    return employeeId.equals(other.employeeId) && positionId.equals(other.positionId) && departmentId.equals(other.departmentId) && scheduleId.equals(other.scheduleId) && contractNo.equals(other.contractNo) && type.equals(other.type) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && baseSalary.equals(other.baseSalary) && salaryType.equals(other.salaryType) && workHoursPerWeek.equals(other.workHoursPerWeek) && notes.equals(other.notes);
+    return employeeId.equals(other.employeeId) && positionId.equals(other.positionId) && departmentId.equals(other.departmentId) && scheduleId.equals(other.scheduleId) && agreementId.equals(other.agreementId) && contractNo.equals(other.contractNo) && type.equals(other.type) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && baseSalary.equals(other.baseSalary) && salaryType.equals(other.salaryType) && workHours.equals(other.workHours) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.employeeId, this.positionId, this.departmentId, this.scheduleId, this.contractNo, this.type, this.startDate, this.endDate, this.baseSalary, this.salaryType, this.workHoursPerWeek, this.notes);
+    return Objects.hash(this.employeeId, this.positionId, this.departmentId, this.scheduleId, this.agreementId, this.contractNo, this.type, this.startDate, this.endDate, this.baseSalary, this.salaryType, this.workHours, this.notes);
   }
 
   @java.lang.Override
@@ -165,13 +173,9 @@ public final class PostV1HrContractsCreateRequest {
   }
 
   public interface EmployeeIdStage {
-    ContractNoStage employeeId(@NotNull String employeeId);
+    StartDateStage employeeId(@NotNull String employeeId);
 
     Builder from(PostV1HrContractsCreateRequest other);
-  }
-
-  public interface ContractNoStage {
-    StartDateStage contractNo(@NotNull String contractNo);
   }
 
   public interface StartDateStage {
@@ -201,6 +205,14 @@ public final class PostV1HrContractsCreateRequest {
 
     _FinalStage scheduleId(String scheduleId);
 
+    _FinalStage agreementId(Optional<String> agreementId);
+
+    _FinalStage agreementId(String agreementId);
+
+    _FinalStage contractNo(Optional<String> contractNo);
+
+    _FinalStage contractNo(String contractNo);
+
     _FinalStage type(Optional<PostV1HrContractsCreateRequestType> type);
 
     _FinalStage type(PostV1HrContractsCreateRequestType type);
@@ -213,9 +225,9 @@ public final class PostV1HrContractsCreateRequest {
 
     _FinalStage salaryType(PostV1HrContractsCreateRequestSalaryType salaryType);
 
-    _FinalStage workHoursPerWeek(Optional<String> workHoursPerWeek);
+    _FinalStage workHours(Optional<String> workHours);
 
-    _FinalStage workHoursPerWeek(String workHoursPerWeek);
+    _FinalStage workHours(String workHours);
 
     _FinalStage notes(Optional<String> notes);
 
@@ -225,10 +237,8 @@ public final class PostV1HrContractsCreateRequest {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements EmployeeIdStage, ContractNoStage, StartDateStage, BaseSalaryStage, _FinalStage {
+  public static final class Builder implements EmployeeIdStage, StartDateStage, BaseSalaryStage, _FinalStage {
     private String employeeId;
-
-    private String contractNo;
 
     private String startDate;
 
@@ -236,13 +246,17 @@ public final class PostV1HrContractsCreateRequest {
 
     private Optional<String> notes = Optional.empty();
 
-    private Optional<String> workHoursPerWeek = Optional.empty();
+    private Optional<String> workHours = Optional.empty();
 
     private Optional<PostV1HrContractsCreateRequestSalaryType> salaryType = Optional.empty();
 
     private Optional<String> endDate = Optional.empty();
 
     private Optional<PostV1HrContractsCreateRequestType> type = Optional.empty();
+
+    private Optional<String> contractNo = Optional.empty();
+
+    private Optional<String> agreementId = Optional.empty();
 
     private Optional<String> scheduleId = Optional.empty();
 
@@ -262,28 +276,22 @@ public final class PostV1HrContractsCreateRequest {
       positionId(other.getPositionId());
       departmentId(other.getDepartmentId());
       scheduleId(other.getScheduleId());
+      agreementId(other.getAgreementId());
       contractNo(other.getContractNo());
       type(other.getType());
       startDate(other.getStartDate());
       endDate(other.getEndDate());
       baseSalary(other.getBaseSalary());
       salaryType(other.getSalaryType());
-      workHoursPerWeek(other.getWorkHoursPerWeek());
+      workHours(other.getWorkHours());
       notes(other.getNotes());
       return this;
     }
 
     @java.lang.Override
     @JsonSetter("employeeId")
-    public ContractNoStage employeeId(@NotNull String employeeId) {
+    public StartDateStage employeeId(@NotNull String employeeId) {
       this.employeeId = Objects.requireNonNull(employeeId, "employeeId must not be null");
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter("contractNo")
-    public StartDateStage contractNo(@NotNull String contractNo) {
-      this.contractNo = Objects.requireNonNull(contractNo, "contractNo must not be null");
       return this;
     }
 
@@ -318,18 +326,18 @@ public final class PostV1HrContractsCreateRequest {
     }
 
     @java.lang.Override
-    public _FinalStage workHoursPerWeek(String workHoursPerWeek) {
-      this.workHoursPerWeek = Optional.ofNullable(workHoursPerWeek);
+    public _FinalStage workHours(String workHours) {
+      this.workHours = Optional.ofNullable(workHours);
       return this;
     }
 
     @java.lang.Override
     @JsonSetter(
-        value = "workHoursPerWeek",
+        value = "workHours",
         nulls = Nulls.SKIP
     )
-    public _FinalStage workHoursPerWeek(Optional<String> workHoursPerWeek) {
-      this.workHoursPerWeek = workHoursPerWeek;
+    public _FinalStage workHours(Optional<String> workHours) {
+      this.workHours = workHours;
       return this;
     }
 
@@ -378,6 +386,38 @@ public final class PostV1HrContractsCreateRequest {
     )
     public _FinalStage type(Optional<PostV1HrContractsCreateRequestType> type) {
       this.type = type;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage contractNo(String contractNo) {
+      this.contractNo = Optional.ofNullable(contractNo);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "contractNo",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage contractNo(Optional<String> contractNo) {
+      this.contractNo = contractNo;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage agreementId(String agreementId) {
+      this.agreementId = Optional.ofNullable(agreementId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "agreementId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage agreementId(Optional<String> agreementId) {
+      this.agreementId = agreementId;
       return this;
     }
 
@@ -431,7 +471,7 @@ public final class PostV1HrContractsCreateRequest {
 
     @java.lang.Override
     public PostV1HrContractsCreateRequest build() {
-      return new PostV1HrContractsCreateRequest(employeeId, positionId, departmentId, scheduleId, contractNo, type, startDate, endDate, baseSalary, salaryType, workHoursPerWeek, notes, additionalProperties);
+      return new PostV1HrContractsCreateRequest(employeeId, positionId, departmentId, scheduleId, agreementId, contractNo, type, startDate, endDate, baseSalary, salaryType, workHours, notes, additionalProperties);
     }
 
     @java.lang.Override

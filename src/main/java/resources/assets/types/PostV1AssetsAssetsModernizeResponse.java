@@ -19,6 +19,7 @@ import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -61,6 +62,8 @@ public final class PostV1AssetsAssetsModernizeResponse {
 
   private final Optional<String> notes;
 
+  private final Optional<List<PostV1AssetsAssetsModernizeResponseDocumentsItem>> documents;
+
   private final String createdAt;
 
   private final Map<String, Object> additionalProperties;
@@ -69,7 +72,8 @@ public final class PostV1AssetsAssetsModernizeResponse {
       String acquisitionDate, String depreciationStartDate, String acquisitionCost,
       String salvageValue, long usefulLifeMonths, String totalCost, String accumulatedDepreciation,
       String netBookValue, long depreciatedMonths, long totalLifeMonths,
-      PostV1AssetsAssetsModernizeResponseStatus status, Optional<String> notes, String createdAt,
+      PostV1AssetsAssetsModernizeResponseStatus status, Optional<String> notes,
+      Optional<List<PostV1AssetsAssetsModernizeResponseDocumentsItem>> documents, String createdAt,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.groupId = groupId;
@@ -87,6 +91,7 @@ public final class PostV1AssetsAssetsModernizeResponse {
     this.totalLifeMonths = totalLifeMonths;
     this.status = status;
     this.notes = notes;
+    this.documents = documents;
     this.createdAt = createdAt;
     this.additionalProperties = additionalProperties;
   }
@@ -174,6 +179,14 @@ public final class PostV1AssetsAssetsModernizeResponse {
     return notes;
   }
 
+  @JsonIgnore
+  public Optional<List<PostV1AssetsAssetsModernizeResponseDocumentsItem>> getDocuments() {
+    if (documents == null) {
+      return Optional.empty();
+    }
+    return documents;
+  }
+
   @JsonProperty("createdAt")
   public String getCreatedAt() {
     return createdAt;
@@ -188,6 +201,15 @@ public final class PostV1AssetsAssetsModernizeResponse {
     return notes;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("documents")
+  private Optional<List<PostV1AssetsAssetsModernizeResponseDocumentsItem>> _getDocuments() {
+    return documents;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -200,12 +222,12 @@ public final class PostV1AssetsAssetsModernizeResponse {
   }
 
   private boolean equalTo(PostV1AssetsAssetsModernizeResponse other) {
-    return id.equals(other.id) && groupId.equals(other.groupId) && code.equals(other.code) && name.equals(other.name) && acquisitionDate.equals(other.acquisitionDate) && depreciationStartDate.equals(other.depreciationStartDate) && acquisitionCost.equals(other.acquisitionCost) && salvageValue.equals(other.salvageValue) && usefulLifeMonths == other.usefulLifeMonths && totalCost.equals(other.totalCost) && accumulatedDepreciation.equals(other.accumulatedDepreciation) && netBookValue.equals(other.netBookValue) && depreciatedMonths == other.depreciatedMonths && totalLifeMonths == other.totalLifeMonths && status.equals(other.status) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && groupId.equals(other.groupId) && code.equals(other.code) && name.equals(other.name) && acquisitionDate.equals(other.acquisitionDate) && depreciationStartDate.equals(other.depreciationStartDate) && acquisitionCost.equals(other.acquisitionCost) && salvageValue.equals(other.salvageValue) && usefulLifeMonths == other.usefulLifeMonths && totalCost.equals(other.totalCost) && accumulatedDepreciation.equals(other.accumulatedDepreciation) && netBookValue.equals(other.netBookValue) && depreciatedMonths == other.depreciatedMonths && totalLifeMonths == other.totalLifeMonths && status.equals(other.status) && notes.equals(other.notes) && documents.equals(other.documents) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.groupId, this.code, this.name, this.acquisitionDate, this.depreciationStartDate, this.acquisitionCost, this.salvageValue, this.usefulLifeMonths, this.totalCost, this.accumulatedDepreciation, this.netBookValue, this.depreciatedMonths, this.totalLifeMonths, this.status, this.notes, this.createdAt);
+    return Objects.hash(this.id, this.groupId, this.code, this.name, this.acquisitionDate, this.depreciationStartDate, this.acquisitionCost, this.salvageValue, this.usefulLifeMonths, this.totalCost, this.accumulatedDepreciation, this.netBookValue, this.depreciatedMonths, this.totalLifeMonths, this.status, this.notes, this.documents, this.createdAt);
   }
 
   @java.lang.Override
@@ -295,6 +317,14 @@ public final class PostV1AssetsAssetsModernizeResponse {
     _FinalStage notes(String notes);
 
     _FinalStage notes(Nullable<String> notes);
+
+    _FinalStage documents(
+        Optional<List<PostV1AssetsAssetsModernizeResponseDocumentsItem>> documents);
+
+    _FinalStage documents(List<PostV1AssetsAssetsModernizeResponseDocumentsItem> documents);
+
+    _FinalStage documents(
+        Nullable<List<PostV1AssetsAssetsModernizeResponseDocumentsItem>> documents);
   }
 
   @JsonIgnoreProperties(
@@ -333,6 +363,8 @@ public final class PostV1AssetsAssetsModernizeResponse {
 
     private String createdAt;
 
+    private Optional<List<PostV1AssetsAssetsModernizeResponseDocumentsItem>> documents = Optional.empty();
+
     private Optional<String> notes = Optional.empty();
 
     @JsonAnySetter
@@ -359,6 +391,7 @@ public final class PostV1AssetsAssetsModernizeResponse {
       totalLifeMonths(other.getTotalLifeMonths());
       status(other.getStatus());
       notes(other.getNotes());
+      documents(other.getDocuments());
       createdAt(other.getCreatedAt());
       return this;
     }
@@ -476,6 +509,38 @@ public final class PostV1AssetsAssetsModernizeResponse {
     }
 
     @java.lang.Override
+    public _FinalStage documents(
+        Nullable<List<PostV1AssetsAssetsModernizeResponseDocumentsItem>> documents) {
+      if (documents.isNull()) {
+        this.documents = null;
+      }
+      else if (documents.isEmpty()) {
+        this.documents = Optional.empty();
+      }
+      else {
+        this.documents = Optional.of(documents.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documents(List<PostV1AssetsAssetsModernizeResponseDocumentsItem> documents) {
+      this.documents = Optional.ofNullable(documents);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documents",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documents(
+        Optional<List<PostV1AssetsAssetsModernizeResponseDocumentsItem>> documents) {
+      this.documents = documents;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage notes(Nullable<String> notes) {
       if (notes.isNull()) {
         this.notes = null;
@@ -507,7 +572,7 @@ public final class PostV1AssetsAssetsModernizeResponse {
 
     @java.lang.Override
     public PostV1AssetsAssetsModernizeResponse build() {
-      return new PostV1AssetsAssetsModernizeResponse(id, groupId, code, name, acquisitionDate, depreciationStartDate, acquisitionCost, salvageValue, usefulLifeMonths, totalCost, accumulatedDepreciation, netBookValue, depreciatedMonths, totalLifeMonths, status, notes, createdAt, additionalProperties);
+      return new PostV1AssetsAssetsModernizeResponse(id, groupId, code, name, acquisitionDate, depreciationStartDate, acquisitionCost, salvageValue, usefulLifeMonths, totalCost, accumulatedDepreciation, netBookValue, depreciatedMonths, totalLifeMonths, status, notes, documents, createdAt, additionalProperties);
     }
 
     @java.lang.Override

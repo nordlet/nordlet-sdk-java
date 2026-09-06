@@ -48,6 +48,8 @@ public final class PostV1PurchasesInvoicesCreateRequest {
 
   private final Optional<String> notes;
 
+  private final Optional<String> documentRef;
+
   private final List<PostV1PurchasesInvoicesCreateRequestLinesItem> lines;
 
   private final Map<String, Object> additionalProperties;
@@ -56,7 +58,7 @@ public final class PostV1PurchasesInvoicesCreateRequest {
       Optional<PostV1PurchasesInvoicesCreateRequestType> type, String documentNumber,
       String documentDate, Optional<String> dueDate, Optional<String> currency,
       Optional<String> creditedInvoiceId, Optional<String> purchaseOrderId, Optional<String> notes,
-      List<PostV1PurchasesInvoicesCreateRequestLinesItem> lines,
+      Optional<String> documentRef, List<PostV1PurchasesInvoicesCreateRequestLinesItem> lines,
       Map<String, Object> additionalProperties) {
     this.partnerId = partnerId;
     this.type = type;
@@ -67,6 +69,7 @@ public final class PostV1PurchasesInvoicesCreateRequest {
     this.creditedInvoiceId = creditedInvoiceId;
     this.purchaseOrderId = purchaseOrderId;
     this.notes = notes;
+    this.documentRef = documentRef;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
   }
@@ -116,6 +119,11 @@ public final class PostV1PurchasesInvoicesCreateRequest {
     return notes;
   }
 
+  @JsonProperty("documentRef")
+  public Optional<String> getDocumentRef() {
+    return documentRef;
+  }
+
   @JsonProperty("lines")
   public List<PostV1PurchasesInvoicesCreateRequestLinesItem> getLines() {
     return lines;
@@ -133,12 +141,12 @@ public final class PostV1PurchasesInvoicesCreateRequest {
   }
 
   private boolean equalTo(PostV1PurchasesInvoicesCreateRequest other) {
-    return partnerId.equals(other.partnerId) && type.equals(other.type) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && creditedInvoiceId.equals(other.creditedInvoiceId) && purchaseOrderId.equals(other.purchaseOrderId) && notes.equals(other.notes) && lines.equals(other.lines);
+    return partnerId.equals(other.partnerId) && type.equals(other.type) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && creditedInvoiceId.equals(other.creditedInvoiceId) && purchaseOrderId.equals(other.purchaseOrderId) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.partnerId, this.type, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.creditedInvoiceId, this.purchaseOrderId, this.notes, this.lines);
+    return Objects.hash(this.partnerId, this.type, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.creditedInvoiceId, this.purchaseOrderId, this.notes, this.documentRef, this.lines);
   }
 
   @java.lang.Override
@@ -195,6 +203,10 @@ public final class PostV1PurchasesInvoicesCreateRequest {
 
     _FinalStage notes(String notes);
 
+    _FinalStage documentRef(Optional<String> documentRef);
+
+    _FinalStage documentRef(String documentRef);
+
     _FinalStage lines(List<PostV1PurchasesInvoicesCreateRequestLinesItem> lines);
 
     _FinalStage addLines(PostV1PurchasesInvoicesCreateRequestLinesItem lines);
@@ -213,6 +225,8 @@ public final class PostV1PurchasesInvoicesCreateRequest {
     private String documentDate;
 
     private List<PostV1PurchasesInvoicesCreateRequestLinesItem> lines = new ArrayList<>();
+
+    private Optional<String> documentRef = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -243,6 +257,7 @@ public final class PostV1PurchasesInvoicesCreateRequest {
       creditedInvoiceId(other.getCreditedInvoiceId());
       purchaseOrderId(other.getPurchaseOrderId());
       notes(other.getNotes());
+      documentRef(other.getDocumentRef());
       lines(other.getLines());
       return this;
     }
@@ -292,6 +307,22 @@ public final class PostV1PurchasesInvoicesCreateRequest {
       if (lines != null) {
         this.lines.addAll(lines);
       }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(String documentRef) {
+      this.documentRef = Optional.ofNullable(documentRef);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentRef",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentRef(Optional<String> documentRef) {
+      this.documentRef = documentRef;
       return this;
     }
 
@@ -393,7 +424,7 @@ public final class PostV1PurchasesInvoicesCreateRequest {
 
     @java.lang.Override
     public PostV1PurchasesInvoicesCreateRequest build() {
-      return new PostV1PurchasesInvoicesCreateRequest(partnerId, type, documentNumber, documentDate, dueDate, currency, creditedInvoiceId, purchaseOrderId, notes, lines, additionalProperties);
+      return new PostV1PurchasesInvoicesCreateRequest(partnerId, type, documentNumber, documentDate, dueDate, currency, creditedInvoiceId, purchaseOrderId, notes, documentRef, lines, additionalProperties);
     }
 
     @java.lang.Override

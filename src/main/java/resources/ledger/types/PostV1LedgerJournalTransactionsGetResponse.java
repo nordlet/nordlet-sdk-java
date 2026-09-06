@@ -41,6 +41,8 @@ public final class PostV1LedgerJournalTransactionsGetResponse {
 
   private final Optional<String> documentId;
 
+  private final Optional<String> partnerId;
+
   private final PostV1LedgerJournalTransactionsGetResponseStatus status;
 
   private final String createdAt;
@@ -53,8 +55,8 @@ public final class PostV1LedgerJournalTransactionsGetResponse {
 
   private PostV1LedgerJournalTransactionsGetResponse(String id, String date,
       Optional<String> description, Optional<String> documentType, Optional<String> documentId,
-      PostV1LedgerJournalTransactionsGetResponseStatus status, String createdAt,
-      Optional<String> postedAt,
+      Optional<String> partnerId, PostV1LedgerJournalTransactionsGetResponseStatus status,
+      String createdAt, Optional<String> postedAt,
       List<PostV1LedgerJournalTransactionsGetResponseEntriesItem> entries,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -62,6 +64,7 @@ public final class PostV1LedgerJournalTransactionsGetResponse {
     this.description = description;
     this.documentType = documentType;
     this.documentId = documentId;
+    this.partnerId = partnerId;
     this.status = status;
     this.createdAt = createdAt;
     this.postedAt = postedAt;
@@ -101,6 +104,14 @@ public final class PostV1LedgerJournalTransactionsGetResponse {
       return Optional.empty();
     }
     return documentId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPartnerId() {
+    if (partnerId == null) {
+      return Optional.empty();
+    }
+    return partnerId;
   }
 
   @JsonProperty("status")
@@ -157,6 +168,15 @@ public final class PostV1LedgerJournalTransactionsGetResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("partnerId")
+  private Optional<String> _getPartnerId() {
+    return partnerId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("postedAt")
   private Optional<String> _getPostedAt() {
     return postedAt;
@@ -174,12 +194,12 @@ public final class PostV1LedgerJournalTransactionsGetResponse {
   }
 
   private boolean equalTo(PostV1LedgerJournalTransactionsGetResponse other) {
-    return id.equals(other.id) && date.equals(other.date) && description.equals(other.description) && documentType.equals(other.documentType) && documentId.equals(other.documentId) && status.equals(other.status) && createdAt.equals(other.createdAt) && postedAt.equals(other.postedAt) && entries.equals(other.entries);
+    return id.equals(other.id) && date.equals(other.date) && description.equals(other.description) && documentType.equals(other.documentType) && documentId.equals(other.documentId) && partnerId.equals(other.partnerId) && status.equals(other.status) && createdAt.equals(other.createdAt) && postedAt.equals(other.postedAt) && entries.equals(other.entries);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.date, this.description, this.documentType, this.documentId, this.status, this.createdAt, this.postedAt, this.entries);
+    return Objects.hash(this.id, this.date, this.description, this.documentType, this.documentId, this.partnerId, this.status, this.createdAt, this.postedAt, this.entries);
   }
 
   @java.lang.Override
@@ -234,6 +254,12 @@ public final class PostV1LedgerJournalTransactionsGetResponse {
 
     _FinalStage documentId(Nullable<String> documentId);
 
+    _FinalStage partnerId(Optional<String> partnerId);
+
+    _FinalStage partnerId(String partnerId);
+
+    _FinalStage partnerId(Nullable<String> partnerId);
+
     _FinalStage postedAt(Optional<String> postedAt);
 
     _FinalStage postedAt(String postedAt);
@@ -263,6 +289,8 @@ public final class PostV1LedgerJournalTransactionsGetResponse {
 
     private Optional<String> postedAt = Optional.empty();
 
+    private Optional<String> partnerId = Optional.empty();
+
     private Optional<String> documentId = Optional.empty();
 
     private Optional<String> documentType = Optional.empty();
@@ -282,6 +310,7 @@ public final class PostV1LedgerJournalTransactionsGetResponse {
       description(other.getDescription());
       documentType(other.getDocumentType());
       documentId(other.getDocumentId());
+      partnerId(other.getPartnerId());
       status(other.getStatus());
       createdAt(other.getCreatedAt());
       postedAt(other.getPostedAt());
@@ -377,6 +406,36 @@ public final class PostV1LedgerJournalTransactionsGetResponse {
     }
 
     @java.lang.Override
+    public _FinalStage partnerId(Nullable<String> partnerId) {
+      if (partnerId.isNull()) {
+        this.partnerId = null;
+      }
+      else if (partnerId.isEmpty()) {
+        this.partnerId = Optional.empty();
+      }
+      else {
+        this.partnerId = Optional.of(partnerId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partnerId(String partnerId) {
+      this.partnerId = Optional.ofNullable(partnerId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "partnerId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage partnerId(Optional<String> partnerId) {
+      this.partnerId = partnerId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage documentId(Nullable<String> documentId) {
       if (documentId.isNull()) {
         this.documentId = null;
@@ -468,7 +527,7 @@ public final class PostV1LedgerJournalTransactionsGetResponse {
 
     @java.lang.Override
     public PostV1LedgerJournalTransactionsGetResponse build() {
-      return new PostV1LedgerJournalTransactionsGetResponse(id, date, description, documentType, documentId, status, createdAt, postedAt, entries, additionalProperties);
+      return new PostV1LedgerJournalTransactionsGetResponse(id, date, description, documentType, documentId, partnerId, status, createdAt, postedAt, entries, additionalProperties);
     }
 
     @java.lang.Override

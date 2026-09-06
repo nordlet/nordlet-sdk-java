@@ -33,16 +33,35 @@ public final class PostV1BankFeedsSyncResponse {
 
   private final long skipped;
 
+  private final long posted;
+
+  private final long partnersCreated;
+
+  private final long invoicesCreated;
+
+  private final long invoicesLinked;
+
+  private final long paymentsMatched;
+
+  private final List<String> warnings;
+
   private final List<PostV1BankFeedsSyncResponseAccountsItem> accounts;
 
   private final Map<String, Object> additionalProperties;
 
-  private PostV1BankFeedsSyncResponse(String connectionId, long imported, long skipped,
-      List<PostV1BankFeedsSyncResponseAccountsItem> accounts,
+  private PostV1BankFeedsSyncResponse(String connectionId, long imported, long skipped, long posted,
+      long partnersCreated, long invoicesCreated, long invoicesLinked, long paymentsMatched,
+      List<String> warnings, List<PostV1BankFeedsSyncResponseAccountsItem> accounts,
       Map<String, Object> additionalProperties) {
     this.connectionId = connectionId;
     this.imported = imported;
     this.skipped = skipped;
+    this.posted = posted;
+    this.partnersCreated = partnersCreated;
+    this.invoicesCreated = invoicesCreated;
+    this.invoicesLinked = invoicesLinked;
+    this.paymentsMatched = paymentsMatched;
+    this.warnings = warnings;
     this.accounts = accounts;
     this.additionalProperties = additionalProperties;
   }
@@ -62,6 +81,36 @@ public final class PostV1BankFeedsSyncResponse {
     return skipped;
   }
 
+  @JsonProperty("posted")
+  public long getPosted() {
+    return posted;
+  }
+
+  @JsonProperty("partnersCreated")
+  public long getPartnersCreated() {
+    return partnersCreated;
+  }
+
+  @JsonProperty("invoicesCreated")
+  public long getInvoicesCreated() {
+    return invoicesCreated;
+  }
+
+  @JsonProperty("invoicesLinked")
+  public long getInvoicesLinked() {
+    return invoicesLinked;
+  }
+
+  @JsonProperty("paymentsMatched")
+  public long getPaymentsMatched() {
+    return paymentsMatched;
+  }
+
+  @JsonProperty("warnings")
+  public List<String> getWarnings() {
+    return warnings;
+  }
+
   @JsonProperty("accounts")
   public List<PostV1BankFeedsSyncResponseAccountsItem> getAccounts() {
     return accounts;
@@ -79,12 +128,12 @@ public final class PostV1BankFeedsSyncResponse {
   }
 
   private boolean equalTo(PostV1BankFeedsSyncResponse other) {
-    return connectionId.equals(other.connectionId) && imported == other.imported && skipped == other.skipped && accounts.equals(other.accounts);
+    return connectionId.equals(other.connectionId) && imported == other.imported && skipped == other.skipped && posted == other.posted && partnersCreated == other.partnersCreated && invoicesCreated == other.invoicesCreated && invoicesLinked == other.invoicesLinked && paymentsMatched == other.paymentsMatched && warnings.equals(other.warnings) && accounts.equals(other.accounts);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.connectionId, this.imported, this.skipped, this.accounts);
+    return Objects.hash(this.connectionId, this.imported, this.skipped, this.posted, this.partnersCreated, this.invoicesCreated, this.invoicesLinked, this.paymentsMatched, this.warnings, this.accounts);
   }
 
   @java.lang.Override
@@ -107,7 +156,27 @@ public final class PostV1BankFeedsSyncResponse {
   }
 
   public interface SkippedStage {
-    _FinalStage skipped(long skipped);
+    PostedStage skipped(long skipped);
+  }
+
+  public interface PostedStage {
+    PartnersCreatedStage posted(long posted);
+  }
+
+  public interface PartnersCreatedStage {
+    InvoicesCreatedStage partnersCreated(long partnersCreated);
+  }
+
+  public interface InvoicesCreatedStage {
+    InvoicesLinkedStage invoicesCreated(long invoicesCreated);
+  }
+
+  public interface InvoicesLinkedStage {
+    PaymentsMatchedStage invoicesLinked(long invoicesLinked);
+  }
+
+  public interface PaymentsMatchedStage {
+    _FinalStage paymentsMatched(long paymentsMatched);
   }
 
   public interface _FinalStage {
@@ -116,6 +185,12 @@ public final class PostV1BankFeedsSyncResponse {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage warnings(List<String> warnings);
+
+    _FinalStage addWarnings(String warnings);
+
+    _FinalStage addAllWarnings(List<String> warnings);
 
     _FinalStage accounts(List<PostV1BankFeedsSyncResponseAccountsItem> accounts);
 
@@ -127,14 +202,26 @@ public final class PostV1BankFeedsSyncResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements ConnectionIdStage, ImportedStage, SkippedStage, _FinalStage {
+  public static final class Builder implements ConnectionIdStage, ImportedStage, SkippedStage, PostedStage, PartnersCreatedStage, InvoicesCreatedStage, InvoicesLinkedStage, PaymentsMatchedStage, _FinalStage {
     private String connectionId;
 
     private long imported;
 
     private long skipped;
 
+    private long posted;
+
+    private long partnersCreated;
+
+    private long invoicesCreated;
+
+    private long invoicesLinked;
+
+    private long paymentsMatched;
+
     private List<PostV1BankFeedsSyncResponseAccountsItem> accounts = new ArrayList<>();
+
+    private List<String> warnings = new ArrayList<>();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -147,6 +234,12 @@ public final class PostV1BankFeedsSyncResponse {
       connectionId(other.getConnectionId());
       imported(other.getImported());
       skipped(other.getSkipped());
+      posted(other.getPosted());
+      partnersCreated(other.getPartnersCreated());
+      invoicesCreated(other.getInvoicesCreated());
+      invoicesLinked(other.getInvoicesLinked());
+      paymentsMatched(other.getPaymentsMatched());
+      warnings(other.getWarnings());
       accounts(other.getAccounts());
       return this;
     }
@@ -167,8 +260,43 @@ public final class PostV1BankFeedsSyncResponse {
 
     @java.lang.Override
     @JsonSetter("skipped")
-    public _FinalStage skipped(long skipped) {
+    public PostedStage skipped(long skipped) {
       this.skipped = skipped;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("posted")
+    public PartnersCreatedStage posted(long posted) {
+      this.posted = posted;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("partnersCreated")
+    public InvoicesCreatedStage partnersCreated(long partnersCreated) {
+      this.partnersCreated = partnersCreated;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("invoicesCreated")
+    public InvoicesLinkedStage invoicesCreated(long invoicesCreated) {
+      this.invoicesCreated = invoicesCreated;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("invoicesLinked")
+    public PaymentsMatchedStage invoicesLinked(long invoicesLinked) {
+      this.invoicesLinked = invoicesLinked;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("paymentsMatched")
+    public _FinalStage paymentsMatched(long paymentsMatched) {
+      this.paymentsMatched = paymentsMatched;
       return this;
     }
 
@@ -200,8 +328,35 @@ public final class PostV1BankFeedsSyncResponse {
     }
 
     @java.lang.Override
+    public _FinalStage addAllWarnings(List<String> warnings) {
+      if (warnings != null) {
+        this.warnings.addAll(warnings);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addWarnings(String warnings) {
+      this.warnings.add(warnings);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "warnings",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage warnings(List<String> warnings) {
+      this.warnings.clear();
+      if (warnings != null) {
+        this.warnings.addAll(warnings);
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1BankFeedsSyncResponse build() {
-      return new PostV1BankFeedsSyncResponse(connectionId, imported, skipped, accounts, additionalProperties);
+      return new PostV1BankFeedsSyncResponse(connectionId, imported, skipped, posted, partnersCreated, invoicesCreated, invoicesLinked, paymentsMatched, warnings, accounts, additionalProperties);
     }
 
     @java.lang.Override

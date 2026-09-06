@@ -65,6 +65,8 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
 
   private final Optional<String> notes;
 
+  private final Optional<String> documentRef;
+
   private final String createdAt;
 
   private final String updatedAt;
@@ -78,8 +80,8 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
       String documentDate, Optional<String> dueDate, Optional<String> registrationDate,
       String currency, String netTotal, String vatTotal, String grossTotal, String paidAmount,
       Optional<String> journalTransactionId, Optional<String> creditedInvoiceId,
-      Optional<String> purchaseOrderId, Optional<String> notes, String createdAt, String updatedAt,
-      Map<String, Object> additionalProperties) {
+      Optional<String> purchaseOrderId, Optional<String> notes, Optional<String> documentRef,
+      String createdAt, String updatedAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.partnerId = partnerId;
     this.type = type;
@@ -98,6 +100,7 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
     this.creditedInvoiceId = creditedInvoiceId;
     this.purchaseOrderId = purchaseOrderId;
     this.notes = notes;
+    this.documentRef = documentRef;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.additionalProperties = additionalProperties;
@@ -211,6 +214,14 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
     return notes;
   }
 
+  @JsonIgnore
+  public Optional<String> getDocumentRef() {
+    if (documentRef == null) {
+      return Optional.empty();
+    }
+    return documentRef;
+  }
+
   @JsonProperty("createdAt")
   public String getCreatedAt() {
     return createdAt;
@@ -275,6 +286,15 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
     return notes;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("documentRef")
+  private Optional<String> _getDocumentRef() {
+    return documentRef;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -287,12 +307,12 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
   }
 
   private boolean equalTo(PostV1PurchasesInvoicesListResponseRowsItem other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && registrationDate.equals(other.registrationDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && creditedInvoiceId.equals(other.creditedInvoiceId) && purchaseOrderId.equals(other.purchaseOrderId) && notes.equals(other.notes) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && registrationDate.equals(other.registrationDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && creditedInvoiceId.equals(other.creditedInvoiceId) && purchaseOrderId.equals(other.purchaseOrderId) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.documentNumber, this.documentDate, this.dueDate, this.registrationDate, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.creditedInvoiceId, this.purchaseOrderId, this.notes, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.documentNumber, this.documentDate, this.dueDate, this.registrationDate, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.creditedInvoiceId, this.purchaseOrderId, this.notes, this.documentRef, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -405,6 +425,12 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
     _FinalStage notes(String notes);
 
     _FinalStage notes(Nullable<String> notes);
+
+    _FinalStage documentRef(Optional<String> documentRef);
+
+    _FinalStage documentRef(String documentRef);
+
+    _FinalStage documentRef(Nullable<String> documentRef);
   }
 
   @JsonIgnoreProperties(
@@ -438,6 +464,8 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
     private String createdAt;
 
     private String updatedAt;
+
+    private Optional<String> documentRef = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -477,6 +505,7 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
       creditedInvoiceId(other.getCreditedInvoiceId());
       purchaseOrderId(other.getPurchaseOrderId());
       notes(other.getNotes());
+      documentRef(other.getDocumentRef());
       createdAt(other.getCreatedAt());
       updatedAt(other.getUpdatedAt());
       return this;
@@ -579,6 +608,36 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
     @JsonSetter("updatedAt")
     public _FinalStage updatedAt(@NotNull String updatedAt) {
       this.updatedAt = Objects.requireNonNull(updatedAt, "updatedAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(Nullable<String> documentRef) {
+      if (documentRef.isNull()) {
+        this.documentRef = null;
+      }
+      else if (documentRef.isEmpty()) {
+        this.documentRef = Optional.empty();
+      }
+      else {
+        this.documentRef = Optional.of(documentRef.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(String documentRef) {
+      this.documentRef = Optional.ofNullable(documentRef);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentRef",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentRef(Optional<String> documentRef) {
+      this.documentRef = documentRef;
       return this;
     }
 
@@ -764,7 +823,7 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
 
     @java.lang.Override
     public PostV1PurchasesInvoicesListResponseRowsItem build() {
-      return new PostV1PurchasesInvoicesListResponseRowsItem(id, partnerId, type, status, paymentStatus, documentNumber, documentDate, dueDate, registrationDate, currency, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, creditedInvoiceId, purchaseOrderId, notes, createdAt, updatedAt, additionalProperties);
+      return new PostV1PurchasesInvoicesListResponseRowsItem(id, partnerId, type, status, paymentStatus, documentNumber, documentDate, dueDate, registrationDate, currency, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, creditedInvoiceId, purchaseOrderId, notes, documentRef, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

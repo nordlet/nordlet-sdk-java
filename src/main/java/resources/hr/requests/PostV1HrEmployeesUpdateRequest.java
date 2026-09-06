@@ -17,11 +17,13 @@ import com.nordlet.api.core.Nullable;
 import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.hr.types.PostV1HrEmployeesUpdateRequestAddress;
+import com.nordlet.api.resources.hr.types.PostV1HrEmployeesUpdateRequestAttributesItem;
 import com.nordlet.api.resources.hr.types.PostV1HrEmployeesUpdateRequestStatus;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -64,6 +66,8 @@ public final class PostV1HrEmployeesUpdateRequest {
 
   private final Optional<String> notes;
 
+  private final Optional<List<PostV1HrEmployeesUpdateRequestAttributesItem>> attributes;
+
   private final String id;
 
   private final Optional<String> terminationDate;
@@ -78,7 +82,8 @@ public final class PostV1HrEmployeesUpdateRequest {
       Optional<PostV1HrEmployeesUpdateRequestAddress> address, Optional<String> iban,
       Optional<String> socialInsuranceNo, Optional<String> socialInsuranceStart,
       Optional<String> hireDate, Optional<Boolean> applyNpd, Optional<String> npdOverride,
-      Optional<Boolean> pensionAccumulation, Optional<String> notes, String id,
+      Optional<Boolean> pensionAccumulation, Optional<String> notes,
+      Optional<List<PostV1HrEmployeesUpdateRequestAttributesItem>> attributes, String id,
       Optional<String> terminationDate, Optional<PostV1HrEmployeesUpdateRequestStatus> status,
       Map<String, Object> additionalProperties) {
     this.code = code;
@@ -97,6 +102,7 @@ public final class PostV1HrEmployeesUpdateRequest {
     this.npdOverride = npdOverride;
     this.pensionAccumulation = pensionAccumulation;
     this.notes = notes;
+    this.attributes = attributes;
     this.id = id;
     this.terminationDate = terminationDate;
     this.status = status;
@@ -186,6 +192,11 @@ public final class PostV1HrEmployeesUpdateRequest {
     return notes;
   }
 
+  @JsonProperty("attributes")
+  public Optional<List<PostV1HrEmployeesUpdateRequestAttributesItem>> getAttributes() {
+    return attributes;
+  }
+
   @JsonProperty("id")
   public String getId() {
     return id;
@@ -222,12 +233,12 @@ public final class PostV1HrEmployeesUpdateRequest {
   }
 
   private boolean equalTo(PostV1HrEmployeesUpdateRequest other) {
-    return code.equals(other.code) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && personalCode.equals(other.personalCode) && birthDate.equals(other.birthDate) && email.equals(other.email) && phone.equals(other.phone) && address.equals(other.address) && iban.equals(other.iban) && socialInsuranceNo.equals(other.socialInsuranceNo) && socialInsuranceStart.equals(other.socialInsuranceStart) && hireDate.equals(other.hireDate) && applyNpd.equals(other.applyNpd) && npdOverride.equals(other.npdOverride) && pensionAccumulation.equals(other.pensionAccumulation) && notes.equals(other.notes) && id.equals(other.id) && terminationDate.equals(other.terminationDate) && status.equals(other.status);
+    return code.equals(other.code) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && personalCode.equals(other.personalCode) && birthDate.equals(other.birthDate) && email.equals(other.email) && phone.equals(other.phone) && address.equals(other.address) && iban.equals(other.iban) && socialInsuranceNo.equals(other.socialInsuranceNo) && socialInsuranceStart.equals(other.socialInsuranceStart) && hireDate.equals(other.hireDate) && applyNpd.equals(other.applyNpd) && npdOverride.equals(other.npdOverride) && pensionAccumulation.equals(other.pensionAccumulation) && notes.equals(other.notes) && attributes.equals(other.attributes) && id.equals(other.id) && terminationDate.equals(other.terminationDate) && status.equals(other.status);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.code, this.firstName, this.lastName, this.personalCode, this.birthDate, this.email, this.phone, this.address, this.iban, this.socialInsuranceNo, this.socialInsuranceStart, this.hireDate, this.applyNpd, this.npdOverride, this.pensionAccumulation, this.notes, this.id, this.terminationDate, this.status);
+    return Objects.hash(this.code, this.firstName, this.lastName, this.personalCode, this.birthDate, this.email, this.phone, this.address, this.iban, this.socialInsuranceNo, this.socialInsuranceStart, this.hireDate, this.applyNpd, this.npdOverride, this.pensionAccumulation, this.notes, this.attributes, this.id, this.terminationDate, this.status);
   }
 
   @java.lang.Override
@@ -318,6 +329,10 @@ public final class PostV1HrEmployeesUpdateRequest {
 
     _FinalStage notes(String notes);
 
+    _FinalStage attributes(Optional<List<PostV1HrEmployeesUpdateRequestAttributesItem>> attributes);
+
+    _FinalStage attributes(List<PostV1HrEmployeesUpdateRequestAttributesItem> attributes);
+
     _FinalStage terminationDate(Optional<String> terminationDate);
 
     _FinalStage terminationDate(String terminationDate);
@@ -336,6 +351,8 @@ public final class PostV1HrEmployeesUpdateRequest {
     private Optional<PostV1HrEmployeesUpdateRequestStatus> status = Optional.empty();
 
     private Optional<String> terminationDate = Optional.empty();
+
+    private Optional<List<PostV1HrEmployeesUpdateRequestAttributesItem>> attributes = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -393,6 +410,7 @@ public final class PostV1HrEmployeesUpdateRequest {
       npdOverride(other.getNpdOverride());
       pensionAccumulation(other.getPensionAccumulation());
       notes(other.getNotes());
+      attributes(other.getAttributes());
       id(other.getId());
       terminationDate(other.getTerminationDate());
       status(other.getStatus());
@@ -435,6 +453,23 @@ public final class PostV1HrEmployeesUpdateRequest {
     )
     public _FinalStage terminationDate(Optional<String> terminationDate) {
       this.terminationDate = terminationDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage attributes(List<PostV1HrEmployeesUpdateRequestAttributesItem> attributes) {
+      this.attributes = Optional.ofNullable(attributes);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "attributes",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage attributes(
+        Optional<List<PostV1HrEmployeesUpdateRequestAttributesItem>> attributes) {
+      this.attributes = attributes;
       return this;
     }
 
@@ -710,7 +745,7 @@ public final class PostV1HrEmployeesUpdateRequest {
 
     @java.lang.Override
     public PostV1HrEmployeesUpdateRequest build() {
-      return new PostV1HrEmployeesUpdateRequest(code, firstName, lastName, personalCode, birthDate, email, phone, address, iban, socialInsuranceNo, socialInsuranceStart, hireDate, applyNpd, npdOverride, pensionAccumulation, notes, id, terminationDate, status, additionalProperties);
+      return new PostV1HrEmployeesUpdateRequest(code, firstName, lastName, personalCode, birthDate, email, phone, address, iban, socialInsuranceNo, socialInsuranceStart, hireDate, applyNpd, npdOverride, pensionAccumulation, notes, attributes, id, terminationDate, status, additionalProperties);
     }
 
     @java.lang.Override

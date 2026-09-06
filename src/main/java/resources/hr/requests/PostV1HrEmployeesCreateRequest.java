@@ -17,10 +17,12 @@ import com.nordlet.api.core.Nullable;
 import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.hr.types.PostV1HrEmployeesCreateRequestAddress;
+import com.nordlet.api.resources.hr.types.PostV1HrEmployeesCreateRequestAttributesItem;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -63,6 +65,8 @@ public final class PostV1HrEmployeesCreateRequest {
 
   private final Optional<String> notes;
 
+  private final Optional<List<PostV1HrEmployeesCreateRequestAttributesItem>> attributes;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1HrEmployeesCreateRequest(Optional<String> code, String firstName, String lastName,
@@ -71,6 +75,7 @@ public final class PostV1HrEmployeesCreateRequest {
       Optional<String> iban, Optional<String> socialInsuranceNo,
       Optional<String> socialInsuranceStart, Optional<String> hireDate, Optional<Boolean> applyNpd,
       Optional<String> npdOverride, Optional<Boolean> pensionAccumulation, Optional<String> notes,
+      Optional<List<PostV1HrEmployeesCreateRequestAttributesItem>> attributes,
       Map<String, Object> additionalProperties) {
     this.code = code;
     this.firstName = firstName;
@@ -88,6 +93,7 @@ public final class PostV1HrEmployeesCreateRequest {
     this.npdOverride = npdOverride;
     this.pensionAccumulation = pensionAccumulation;
     this.notes = notes;
+    this.attributes = attributes;
     this.additionalProperties = additionalProperties;
   }
 
@@ -174,6 +180,11 @@ public final class PostV1HrEmployeesCreateRequest {
     return notes;
   }
 
+  @JsonProperty("attributes")
+  public Optional<List<PostV1HrEmployeesCreateRequestAttributesItem>> getAttributes() {
+    return attributes;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -195,12 +206,12 @@ public final class PostV1HrEmployeesCreateRequest {
   }
 
   private boolean equalTo(PostV1HrEmployeesCreateRequest other) {
-    return code.equals(other.code) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && personalCode.equals(other.personalCode) && birthDate.equals(other.birthDate) && email.equals(other.email) && phone.equals(other.phone) && address.equals(other.address) && iban.equals(other.iban) && socialInsuranceNo.equals(other.socialInsuranceNo) && socialInsuranceStart.equals(other.socialInsuranceStart) && hireDate.equals(other.hireDate) && applyNpd.equals(other.applyNpd) && npdOverride.equals(other.npdOverride) && pensionAccumulation.equals(other.pensionAccumulation) && notes.equals(other.notes);
+    return code.equals(other.code) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && personalCode.equals(other.personalCode) && birthDate.equals(other.birthDate) && email.equals(other.email) && phone.equals(other.phone) && address.equals(other.address) && iban.equals(other.iban) && socialInsuranceNo.equals(other.socialInsuranceNo) && socialInsuranceStart.equals(other.socialInsuranceStart) && hireDate.equals(other.hireDate) && applyNpd.equals(other.applyNpd) && npdOverride.equals(other.npdOverride) && pensionAccumulation.equals(other.pensionAccumulation) && notes.equals(other.notes) && attributes.equals(other.attributes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.code, this.firstName, this.lastName, this.personalCode, this.birthDate, this.email, this.phone, this.address, this.iban, this.socialInsuranceNo, this.socialInsuranceStart, this.hireDate, this.applyNpd, this.npdOverride, this.pensionAccumulation, this.notes);
+    return Objects.hash(this.code, this.firstName, this.lastName, this.personalCode, this.birthDate, this.email, this.phone, this.address, this.iban, this.socialInsuranceNo, this.socialInsuranceStart, this.hireDate, this.applyNpd, this.npdOverride, this.pensionAccumulation, this.notes, this.attributes);
   }
 
   @java.lang.Override
@@ -286,6 +297,10 @@ public final class PostV1HrEmployeesCreateRequest {
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
+
+    _FinalStage attributes(Optional<List<PostV1HrEmployeesCreateRequestAttributesItem>> attributes);
+
+    _FinalStage attributes(List<PostV1HrEmployeesCreateRequestAttributesItem> attributes);
   }
 
   @JsonIgnoreProperties(
@@ -295,6 +310,8 @@ public final class PostV1HrEmployeesCreateRequest {
     private String firstName;
 
     private String lastName;
+
+    private Optional<List<PostV1HrEmployeesCreateRequestAttributesItem>> attributes = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -348,6 +365,7 @@ public final class PostV1HrEmployeesCreateRequest {
       npdOverride(other.getNpdOverride());
       pensionAccumulation(other.getPensionAccumulation());
       notes(other.getNotes());
+      attributes(other.getAttributes());
       return this;
     }
 
@@ -362,6 +380,23 @@ public final class PostV1HrEmployeesCreateRequest {
     @JsonSetter("lastName")
     public _FinalStage lastName(@NotNull String lastName) {
       this.lastName = Objects.requireNonNull(lastName, "lastName must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage attributes(List<PostV1HrEmployeesCreateRequestAttributesItem> attributes) {
+      this.attributes = Optional.ofNullable(attributes);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "attributes",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage attributes(
+        Optional<List<PostV1HrEmployeesCreateRequestAttributesItem>> attributes) {
+      this.attributes = attributes;
       return this;
     }
 
@@ -605,7 +640,7 @@ public final class PostV1HrEmployeesCreateRequest {
 
     @java.lang.Override
     public PostV1HrEmployeesCreateRequest build() {
-      return new PostV1HrEmployeesCreateRequest(code, firstName, lastName, personalCode, birthDate, email, phone, address, iban, socialInsuranceNo, socialInsuranceStart, hireDate, applyNpd, npdOverride, pensionAccumulation, notes, additionalProperties);
+      return new PostV1HrEmployeesCreateRequest(code, firstName, lastName, personalCode, birthDate, email, phone, address, iban, socialInsuranceNo, socialInsuranceStart, hireDate, applyNpd, npdOverride, pensionAccumulation, notes, attributes, additionalProperties);
     }
 
     @java.lang.Override

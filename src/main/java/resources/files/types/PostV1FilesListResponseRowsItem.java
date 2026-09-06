@@ -6,17 +6,22 @@ package com.nordlet.api.resources.files.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nordlet.api.core.Nullable;
+import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -28,7 +33,7 @@ public final class PostV1FilesListResponseRowsItem {
 
   private final String entity;
 
-  private final String entityId;
+  private final Optional<String> entityId;
 
   private final String fileName;
 
@@ -38,13 +43,15 @@ public final class PostV1FilesListResponseRowsItem {
 
   private final String sha256;
 
+  private final String storageKey;
+
   private final String createdAt;
 
   private final Map<String, Object> additionalProperties;
 
-  private PostV1FilesListResponseRowsItem(String id, String entity, String entityId,
-      String fileName, String mimeType, long sizeBytes, String sha256, String createdAt,
-      Map<String, Object> additionalProperties) {
+  private PostV1FilesListResponseRowsItem(String id, String entity, Optional<String> entityId,
+      String fileName, String mimeType, long sizeBytes, String sha256, String storageKey,
+      String createdAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.entity = entity;
     this.entityId = entityId;
@@ -52,6 +59,7 @@ public final class PostV1FilesListResponseRowsItem {
     this.mimeType = mimeType;
     this.sizeBytes = sizeBytes;
     this.sha256 = sha256;
+    this.storageKey = storageKey;
     this.createdAt = createdAt;
     this.additionalProperties = additionalProperties;
   }
@@ -66,8 +74,11 @@ public final class PostV1FilesListResponseRowsItem {
     return entity;
   }
 
-  @JsonProperty("entityId")
-  public String getEntityId() {
+  @JsonIgnore
+  public Optional<String> getEntityId() {
+    if (entityId == null) {
+      return Optional.empty();
+    }
     return entityId;
   }
 
@@ -91,9 +102,23 @@ public final class PostV1FilesListResponseRowsItem {
     return sha256;
   }
 
+  @JsonProperty("storageKey")
+  public String getStorageKey() {
+    return storageKey;
+  }
+
   @JsonProperty("createdAt")
   public String getCreatedAt() {
     return createdAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("entityId")
+  private Optional<String> _getEntityId() {
+    return entityId;
   }
 
   @java.lang.Override
@@ -108,12 +133,12 @@ public final class PostV1FilesListResponseRowsItem {
   }
 
   private boolean equalTo(PostV1FilesListResponseRowsItem other) {
-    return id.equals(other.id) && entity.equals(other.entity) && entityId.equals(other.entityId) && fileName.equals(other.fileName) && mimeType.equals(other.mimeType) && sizeBytes == other.sizeBytes && sha256.equals(other.sha256) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && entity.equals(other.entity) && entityId.equals(other.entityId) && fileName.equals(other.fileName) && mimeType.equals(other.mimeType) && sizeBytes == other.sizeBytes && sha256.equals(other.sha256) && storageKey.equals(other.storageKey) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.entity, this.entityId, this.fileName, this.mimeType, this.sizeBytes, this.sha256, this.createdAt);
+    return Objects.hash(this.id, this.entity, this.entityId, this.fileName, this.mimeType, this.sizeBytes, this.sha256, this.storageKey, this.createdAt);
   }
 
   @java.lang.Override
@@ -132,11 +157,7 @@ public final class PostV1FilesListResponseRowsItem {
   }
 
   public interface EntityStage {
-    EntityIdStage entity(@NotNull String entity);
-  }
-
-  public interface EntityIdStage {
-    FileNameStage entityId(@NotNull String entityId);
+    FileNameStage entity(@NotNull String entity);
   }
 
   public interface FileNameStage {
@@ -152,7 +173,11 @@ public final class PostV1FilesListResponseRowsItem {
   }
 
   public interface Sha256Stage {
-    CreatedAtStage sha256(@NotNull String sha256);
+    StorageKeyStage sha256(@NotNull String sha256);
+  }
+
+  public interface StorageKeyStage {
+    CreatedAtStage storageKey(@NotNull String storageKey);
   }
 
   public interface CreatedAtStage {
@@ -165,17 +190,21 @@ public final class PostV1FilesListResponseRowsItem {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage entityId(Optional<String> entityId);
+
+    _FinalStage entityId(String entityId);
+
+    _FinalStage entityId(Nullable<String> entityId);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, EntityStage, EntityIdStage, FileNameStage, MimeTypeStage, SizeBytesStage, Sha256Stage, CreatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, EntityStage, FileNameStage, MimeTypeStage, SizeBytesStage, Sha256Stage, StorageKeyStage, CreatedAtStage, _FinalStage {
     private String id;
 
     private String entity;
-
-    private String entityId;
 
     private String fileName;
 
@@ -185,7 +214,11 @@ public final class PostV1FilesListResponseRowsItem {
 
     private String sha256;
 
+    private String storageKey;
+
     private String createdAt;
+
+    private Optional<String> entityId = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -202,6 +235,7 @@ public final class PostV1FilesListResponseRowsItem {
       mimeType(other.getMimeType());
       sizeBytes(other.getSizeBytes());
       sha256(other.getSha256());
+      storageKey(other.getStorageKey());
       createdAt(other.getCreatedAt());
       return this;
     }
@@ -215,15 +249,8 @@ public final class PostV1FilesListResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("entity")
-    public EntityIdStage entity(@NotNull String entity) {
+    public FileNameStage entity(@NotNull String entity) {
       this.entity = Objects.requireNonNull(entity, "entity must not be null");
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter("entityId")
-    public FileNameStage entityId(@NotNull String entityId) {
-      this.entityId = Objects.requireNonNull(entityId, "entityId must not be null");
       return this;
     }
 
@@ -250,8 +277,15 @@ public final class PostV1FilesListResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("sha256")
-    public CreatedAtStage sha256(@NotNull String sha256) {
+    public StorageKeyStage sha256(@NotNull String sha256) {
       this.sha256 = Objects.requireNonNull(sha256, "sha256 must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("storageKey")
+    public CreatedAtStage storageKey(@NotNull String storageKey) {
+      this.storageKey = Objects.requireNonNull(storageKey, "storageKey must not be null");
       return this;
     }
 
@@ -263,8 +297,38 @@ public final class PostV1FilesListResponseRowsItem {
     }
 
     @java.lang.Override
+    public _FinalStage entityId(Nullable<String> entityId) {
+      if (entityId.isNull()) {
+        this.entityId = null;
+      }
+      else if (entityId.isEmpty()) {
+        this.entityId = Optional.empty();
+      }
+      else {
+        this.entityId = Optional.of(entityId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage entityId(String entityId) {
+      this.entityId = Optional.ofNullable(entityId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "entityId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage entityId(Optional<String> entityId) {
+      this.entityId = entityId;
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1FilesListResponseRowsItem build() {
-      return new PostV1FilesListResponseRowsItem(id, entity, entityId, fileName, mimeType, sizeBytes, sha256, createdAt, additionalProperties);
+      return new PostV1FilesListResponseRowsItem(id, entity, entityId, fileName, mimeType, sizeBytes, sha256, storageKey, createdAt, additionalProperties);
     }
 
     @java.lang.Override

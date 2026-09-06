@@ -10,6 +10,7 @@ import com.nordlet.api.resources.bank.requests.PostV1BankAccountsCreateRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankAccountsListRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankAccountsUpdateRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankDirectDebitsExportRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankFeedsAccountsConfigureRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankFeedsAccountsLinkRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankFeedsBanksListRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankFeedsConnectionsCompleteRequest;
@@ -18,6 +19,11 @@ import com.nordlet.api.resources.bank.requests.PostV1BankFeedsConnectionsGetRequ
 import com.nordlet.api.resources.bank.requests.PostV1BankFeedsConnectionsListRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankFeedsConnectionsStartRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankFeedsSyncRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankImportTemplatesCreateRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankImportTemplatesDeleteRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankImportTemplatesGetRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankImportTemplatesListRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankImportTemplatesUpdateRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankMandatesCancelRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankMandatesCreateRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankMandatesGetRequest;
@@ -33,11 +39,13 @@ import com.nordlet.api.resources.bank.requests.PostV1BankStatementsImportRequest
 import com.nordlet.api.resources.bank.requests.PostV1BankTransactionsImportRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankTransactionsListRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankTransactionsMatchRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankTransactionsRecordRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankTransactionsSuggestMatchesRequest;
 import com.nordlet.api.resources.bank.types.PostV1BankAccountsCreateResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankAccountsListResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankAccountsUpdateResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankDirectDebitsExportResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankFeedsAccountsConfigureResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankFeedsAccountsLinkResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankFeedsBanksListResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankFeedsConnectionsCompleteResponse;
@@ -46,6 +54,11 @@ import com.nordlet.api.resources.bank.types.PostV1BankFeedsConnectionsGetRespons
 import com.nordlet.api.resources.bank.types.PostV1BankFeedsConnectionsListResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankFeedsConnectionsStartResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankFeedsSyncResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankImportTemplatesCreateResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankImportTemplatesDeleteResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankImportTemplatesGetResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankImportTemplatesListResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankImportTemplatesUpdateResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankMandatesCancelResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankMandatesCreateResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankMandatesGetResponse;
@@ -61,6 +74,7 @@ import com.nordlet.api.resources.bank.types.PostV1BankStatementsImportResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankTransactionsImportResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankTransactionsListResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankTransactionsMatchResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankTransactionsRecordResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankTransactionsSuggestMatchesResponse;
 
 public class BankClient {
@@ -167,6 +181,16 @@ public class BankClient {
     return this.rawClient.postV1BankTransactionsMatch(request, requestOptions).body();
   }
 
+  public PostV1BankTransactionsRecordResponse postV1BankTransactionsRecord(
+      PostV1BankTransactionsRecordRequest request) {
+    return this.rawClient.postV1BankTransactionsRecord(request).body();
+  }
+
+  public PostV1BankTransactionsRecordResponse postV1BankTransactionsRecord(
+      PostV1BankTransactionsRecordRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankTransactionsRecord(request, requestOptions).body();
+  }
+
   public PostV1BankPaymentsExportResponse postV1BankPaymentsExport(
       PostV1BankPaymentsExportRequest request) {
     return this.rawClient.postV1BankPaymentsExport(request).body();
@@ -175,6 +199,65 @@ public class BankClient {
   public PostV1BankPaymentsExportResponse postV1BankPaymentsExport(
       PostV1BankPaymentsExportRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1BankPaymentsExport(request, requestOptions).body();
+  }
+
+  public PostV1BankImportTemplatesCreateResponse createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(
+      PostV1BankImportTemplatesCreateRequest request) {
+    return this.rawClient.createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(request).body();
+  }
+
+  public PostV1BankImportTemplatesCreateResponse createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(
+      PostV1BankImportTemplatesCreateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(request, requestOptions).body();
+  }
+
+  public PostV1BankImportTemplatesUpdateResponse postV1BankImportTemplatesUpdate(
+      PostV1BankImportTemplatesUpdateRequest request) {
+    return this.rawClient.postV1BankImportTemplatesUpdate(request).body();
+  }
+
+  public PostV1BankImportTemplatesUpdateResponse postV1BankImportTemplatesUpdate(
+      PostV1BankImportTemplatesUpdateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankImportTemplatesUpdate(request, requestOptions).body();
+  }
+
+  public PostV1BankImportTemplatesDeleteResponse postV1BankImportTemplatesDelete(
+      PostV1BankImportTemplatesDeleteRequest request) {
+    return this.rawClient.postV1BankImportTemplatesDelete(request).body();
+  }
+
+  public PostV1BankImportTemplatesDeleteResponse postV1BankImportTemplatesDelete(
+      PostV1BankImportTemplatesDeleteRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankImportTemplatesDelete(request, requestOptions).body();
+  }
+
+  public PostV1BankImportTemplatesGetResponse postV1BankImportTemplatesGet(
+      PostV1BankImportTemplatesGetRequest request) {
+    return this.rawClient.postV1BankImportTemplatesGet(request).body();
+  }
+
+  public PostV1BankImportTemplatesGetResponse postV1BankImportTemplatesGet(
+      PostV1BankImportTemplatesGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankImportTemplatesGet(request, requestOptions).body();
+  }
+
+  public PostV1BankImportTemplatesListResponse postV1BankImportTemplatesList() {
+    return this.rawClient.postV1BankImportTemplatesList().body();
+  }
+
+  public PostV1BankImportTemplatesListResponse postV1BankImportTemplatesList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1BankImportTemplatesList(requestOptions).body();
+  }
+
+  public PostV1BankImportTemplatesListResponse postV1BankImportTemplatesList(
+      PostV1BankImportTemplatesListRequest request) {
+    return this.rawClient.postV1BankImportTemplatesList(request).body();
+  }
+
+  public PostV1BankImportTemplatesListResponse postV1BankImportTemplatesList(
+      PostV1BankImportTemplatesListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankImportTemplatesList(request, requestOptions).body();
   }
 
   public PostV1BankMandatesCreateResponse postV1BankMandatesCreate(
@@ -399,6 +482,16 @@ public class BankClient {
   public PostV1BankFeedsAccountsLinkResponse pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(
       PostV1BankFeedsAccountsLinkRequest request, RequestOptions requestOptions) {
     return this.rawClient.pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(request, requestOptions).body();
+  }
+
+  public PostV1BankFeedsAccountsConfigureResponse chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(
+      PostV1BankFeedsAccountsConfigureRequest request) {
+    return this.rawClient.chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(request).body();
+  }
+
+  public PostV1BankFeedsAccountsConfigureResponse chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(
+      PostV1BankFeedsAccountsConfigureRequest request, RequestOptions requestOptions) {
+    return this.rawClient.chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(request, requestOptions).body();
   }
 
   public PostV1BankFeedsSyncResponse pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(

@@ -757,107 +757,6 @@ client.reference().postV1ReferenceEuVatRatesList(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceEuVatRatesImportsList(request) -> PostV1ReferenceEuVatRatesImportsListResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.reference().postV1ReferenceEuVatRatesImportsList(
-    PostV1ReferenceEuVatRatesImportsListRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.reference.postV1ReferenceEuVatRatesSync(request) -> PostV1ReferenceEuVatRatesSyncResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.reference().postV1ReferenceEuVatRatesSync(
-    PostV1ReferenceEuVatRatesSyncRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.reference.postV1ReferenceEuVatRatesSetOverrides(request) -> PostV1ReferenceEuVatRatesSetOverridesResponse</code></summary>
 <dl>
 <dd>
@@ -2673,6 +2572,14 @@ client.partners().postV1PartnersCreate(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**documentRef:** `Optional<String>` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -2851,6 +2758,14 @@ client.partners().postV1PartnersFindOrCreate(
 <dd>
 
 **notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentRef:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -3085,6 +3000,14 @@ client.partners().postV1PartnersUpdate(
 <dd>
 
 **notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentRef:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -4216,6 +4139,14 @@ client.catalog().postV1CatalogItemsCreate(
 <dl>
 <dd>
 
+**documentRef:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **translations:** `Optional<Map<String, PostV1CatalogItemsCreateRequestTranslationsValue>>` 
     
 </dd>
@@ -4459,6 +4390,14 @@ client.catalog().postV1CatalogItemsUpdate(
 <dd>
 
 **attributes:** `Optional<Map<String, String>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentRef:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -5438,6 +5377,14 @@ client.sales().postV1SalesInvoicesCreate(
 <dd>
 
 **notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentRef:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -7382,6 +7329,14 @@ client.purchases().postV1PurchasesInvoicesCreate(
 <dl>
 <dd>
 
+**documentRef:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **lines:** `List<PostV1PurchasesInvoicesCreateRequestLinesItem>` 
     
 </dd>
@@ -7812,6 +7767,14 @@ client.purchases().postV1PurchasesOrdersCreate(
 <dd>
 
 **notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentRef:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -10511,6 +10474,14 @@ client.ledger().postV1LedgerAccountsCreate(
 <dl>
 <dd>
 
+**translations:** `Optional<PostV1LedgerAccountsCreateRequestTranslations>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **type:** `PostV1LedgerAccountsCreateRequestType` 
     
 </dd>
@@ -10581,6 +10552,14 @@ client.ledger().postV1LedgerAccountsUpdate(
 <dd>
 
 **name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**translations:** `Optional<PostV1LedgerAccountsUpdateRequestTranslations>` 
     
 </dd>
 </dl>
@@ -12386,6 +12365,14 @@ client.assets().postV1AssetsAssetsCreate(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**documents:** `Optional<List<PostV1AssetsAssetsCreateRequestDocumentsItem>>` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -13051,6 +13038,14 @@ client.hr().postV1HrEmployeesCreate(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**attributes:** `Optional<List<PostV1HrEmployeesCreateRequestAttributesItem>>` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -13213,6 +13208,14 @@ client.hr().postV1HrEmployeesUpdate(
 <dd>
 
 **notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**attributes:** `Optional<List<PostV1HrEmployeesUpdateRequestAttributesItem>>` 
     
 </dd>
 </dl>
@@ -13482,7 +13485,6 @@ client.hr().postV1HrContractsCreate(
     PostV1HrContractsCreateRequest
         .builder()
         .employeeId("employeeId")
-        .contractNo("contractNo")
         .startDate("startDate")
         .baseSalary("baseSalary")
         .build()
@@ -13533,7 +13535,15 @@ client.hr().postV1HrContractsCreate(
 <dl>
 <dd>
 
-**contractNo:** `String` 
+**agreementId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contractNo:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -13581,7 +13591,7 @@ client.hr().postV1HrContractsCreate(
 <dl>
 <dd>
 
-**workHoursPerWeek:** `Optional<String>` 
+**workHours:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -14810,6 +14820,14 @@ client.fleet().postV1FleetVehiclesCreate(
 <dd>
 
 **notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documents:** `Optional<List<PostV1FleetVehiclesCreateRequestDocumentsItem>>` 
     
 </dd>
 </dl>
@@ -16145,7 +16163,6 @@ client.agreements().postV1AgreementsTypesList(
 client.agreements().postV1AgreementsAgreementsCreate(
     PostV1AgreementsAgreementsCreateRequest
         .builder()
-        .partnerId("partnerId")
         .number("number")
         .startDate("startDate")
         .build()
@@ -16172,7 +16189,31 @@ client.agreements().postV1AgreementsAgreementsCreate(
 <dl>
 <dd>
 
-**partnerId:** `String` 
+**kind:** `Optional<PostV1AgreementsAgreementsCreateRequestKind>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partnerId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**employeeId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bankAccountId:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -16253,6 +16294,14 @@ client.agreements().postV1AgreementsAgreementsCreate(
 <dd>
 
 **notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentRef:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -16366,6 +16415,14 @@ client.agreements().postV1AgreementsAgreementsUpdate(
 <dl>
 <dd>
 
+**kind:** `Optional<PostV1AgreementsAgreementsUpdateRequestKind>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **name:** `Optional<String>` 
     
 </dd>
@@ -16415,6 +16472,14 @@ client.agreements().postV1AgreementsAgreementsUpdate(
 <dd>
 
 **notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentRef:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -22871,6 +22936,14 @@ client.bank().postV1BankAccountsCreate(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**documentRef:** `Optional<String>` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -23128,6 +23201,14 @@ client.bank().postV1BankStatementsImport(
 <dl>
 <dd>
 
+**templateId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **format:** `Optional<PostV1BankStatementsImportRequestFormat>` 
     
 </dd>
@@ -23279,6 +23360,95 @@ client.bank().postV1BankTransactionsMatch(
 </dl>
 </details>
 
+<details><summary><code>client.bank.postV1BankTransactionsRecord(request) -> PostV1BankTransactionsRecordResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().postV1BankTransactionsRecord(
+    PostV1BankTransactionsRecordRequest
+        .builder()
+        .bankAccountId("bankAccountId")
+        .date("date")
+        .amount("amount")
+        .documentType(PostV1BankTransactionsRecordRequestDocumentType.SALE_INVOICE)
+        .documentId("documentId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**bankAccountId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amount:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentType:** `PostV1BankTransactionsRecordRequestDocumentType` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentId:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.bank.postV1BankPaymentsExport(request) -> PostV1BankPaymentsExportResponse</code></summary>
 <dl>
 <dd>
@@ -23332,6 +23502,391 @@ client.bank().postV1BankPaymentsExport(
 <dd>
 
 **executionDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(request) -> PostV1BankImportTemplatesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(
+    PostV1BankImportTemplatesCreateRequest
+        .builder()
+        .name("name")
+        .type(PostV1BankImportTemplatesCreateRequestType.STRIPE)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**type:** `PostV1BankImportTemplatesCreateRequestType` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fields:** `Optional<List<PostV1BankImportTemplatesCreateRequestFieldsItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metaFields:** `Optional<List<String>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoiceMetaField:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoiceVatRatePercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**companyMetaField:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoiceItemId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**advanceInvoices:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.postV1BankImportTemplatesUpdate(request) -> PostV1BankImportTemplatesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().postV1BankImportTemplatesUpdate(
+    PostV1BankImportTemplatesUpdateRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**type:** `Optional<PostV1BankImportTemplatesUpdateRequestType>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fields:** `Optional<List<PostV1BankImportTemplatesUpdateRequestFieldsItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metaFields:** `Optional<List<String>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoiceMetaField:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoiceVatRatePercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**companyMetaField:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoiceItemId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**advanceInvoices:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.postV1BankImportTemplatesDelete(request) -> PostV1BankImportTemplatesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().postV1BankImportTemplatesDelete(
+    PostV1BankImportTemplatesDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.postV1BankImportTemplatesGet(request) -> PostV1BankImportTemplatesGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().postV1BankImportTemplatesGet(
+    PostV1BankImportTemplatesGetRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.postV1BankImportTemplatesList(request) -> PostV1BankImportTemplatesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().postV1BankImportTemplatesList(
+    PostV1BankImportTemplatesListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<PostV1BankImportTemplatesListRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<PostV1BankImportTemplatesListRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -24498,6 +25053,67 @@ client.bank().pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSyn
 </dl>
 </details>
 
+<details><summary><code>client.bank.chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(request) -> PostV1BankFeedsAccountsConfigureResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(
+    PostV1BankFeedsAccountsConfigureRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**importTemplateId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**syncSchedule:** `Optional<PostV1BankFeedsAccountsConfigureRequestSyncSchedule>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.bank.pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(request) -> PostV1BankFeedsSyncResponse</code></summary>
 <dl>
 <dd>
@@ -24585,7 +25201,6 @@ client.files().postV1FilesUpload(
     PostV1FilesUploadRequest
         .builder()
         .entity("entity")
-        .entityId("entityId")
         .fileName("fileName")
         .mimeType("mimeType")
         .content("content")
@@ -24613,7 +25228,7 @@ client.files().postV1FilesUpload(
 <dl>
 <dd>
 
-**entityId:** `String` 
+**entityId:** `Optional<String>` 
     
 </dd>
 </dl>

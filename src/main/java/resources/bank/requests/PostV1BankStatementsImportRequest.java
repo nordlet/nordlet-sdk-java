@@ -29,16 +29,19 @@ import org.jetbrains.annotations.NotNull;
 public final class PostV1BankStatementsImportRequest {
   private final String bankAccountId;
 
+  private final Optional<String> templateId;
+
   private final Optional<PostV1BankStatementsImportRequestFormat> format;
 
   private final String content;
 
   private final Map<String, Object> additionalProperties;
 
-  private PostV1BankStatementsImportRequest(String bankAccountId,
+  private PostV1BankStatementsImportRequest(String bankAccountId, Optional<String> templateId,
       Optional<PostV1BankStatementsImportRequestFormat> format, String content,
       Map<String, Object> additionalProperties) {
     this.bankAccountId = bankAccountId;
+    this.templateId = templateId;
     this.format = format;
     this.content = content;
     this.additionalProperties = additionalProperties;
@@ -47,6 +50,11 @@ public final class PostV1BankStatementsImportRequest {
   @JsonProperty("bankAccountId")
   public String getBankAccountId() {
     return bankAccountId;
+  }
+
+  @JsonProperty("templateId")
+  public Optional<String> getTemplateId() {
+    return templateId;
   }
 
   @JsonProperty("format")
@@ -71,12 +79,12 @@ public final class PostV1BankStatementsImportRequest {
   }
 
   private boolean equalTo(PostV1BankStatementsImportRequest other) {
-    return bankAccountId.equals(other.bankAccountId) && format.equals(other.format) && content.equals(other.content);
+    return bankAccountId.equals(other.bankAccountId) && templateId.equals(other.templateId) && format.equals(other.format) && content.equals(other.content);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.bankAccountId, this.format, this.content);
+    return Objects.hash(this.bankAccountId, this.templateId, this.format, this.content);
   }
 
   @java.lang.Override
@@ -105,6 +113,10 @@ public final class PostV1BankStatementsImportRequest {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage templateId(Optional<String> templateId);
+
+    _FinalStage templateId(String templateId);
+
     _FinalStage format(Optional<PostV1BankStatementsImportRequestFormat> format);
 
     _FinalStage format(PostV1BankStatementsImportRequestFormat format);
@@ -120,6 +132,8 @@ public final class PostV1BankStatementsImportRequest {
 
     private Optional<PostV1BankStatementsImportRequestFormat> format = Optional.empty();
 
+    private Optional<String> templateId = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -129,6 +143,7 @@ public final class PostV1BankStatementsImportRequest {
     @java.lang.Override
     public Builder from(PostV1BankStatementsImportRequest other) {
       bankAccountId(other.getBankAccountId());
+      templateId(other.getTemplateId());
       format(other.getFormat());
       content(other.getContent());
       return this;
@@ -165,8 +180,24 @@ public final class PostV1BankStatementsImportRequest {
     }
 
     @java.lang.Override
+    public _FinalStage templateId(String templateId) {
+      this.templateId = Optional.ofNullable(templateId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "templateId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage templateId(Optional<String> templateId) {
+      this.templateId = templateId;
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1BankStatementsImportRequest build() {
-      return new PostV1BankStatementsImportRequest(bankAccountId, format, content, additionalProperties);
+      return new PostV1BankStatementsImportRequest(bankAccountId, templateId, format, content, additionalProperties);
     }
 
     @java.lang.Override

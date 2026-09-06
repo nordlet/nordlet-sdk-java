@@ -67,6 +67,8 @@ public final class PostV1CatalogItemsCreateRequest {
 
   private final Optional<Map<String, String>> attributes;
 
+  private final Optional<String> documentRef;
+
   private final Optional<Map<String, PostV1CatalogItemsCreateRequestTranslationsValue>> translations;
 
   private final Optional<List<PostV1CatalogItemsCreateRequestComponentsItem>> components;
@@ -81,7 +83,7 @@ public final class PostV1CatalogItemsCreateRequest {
       Optional<String> cnCode, Optional<String> originCountry, Optional<String> netMassKg,
       Optional<String> supplementaryUnit, Optional<String> supplementaryQtyPerUnit,
       Optional<String> description, Optional<String> groupId,
-      Optional<Map<String, String>> attributes,
+      Optional<Map<String, String>> attributes, Optional<String> documentRef,
       Optional<Map<String, PostV1CatalogItemsCreateRequestTranslationsValue>> translations,
       Optional<List<PostV1CatalogItemsCreateRequestComponentsItem>> components,
       Map<String, Object> additionalProperties) {
@@ -103,6 +105,7 @@ public final class PostV1CatalogItemsCreateRequest {
     this.description = description;
     this.groupId = groupId;
     this.attributes = attributes;
+    this.documentRef = documentRef;
     this.translations = translations;
     this.components = components;
     this.additionalProperties = additionalProperties;
@@ -198,6 +201,11 @@ public final class PostV1CatalogItemsCreateRequest {
     return attributes;
   }
 
+  @JsonProperty("documentRef")
+  public Optional<String> getDocumentRef() {
+    return documentRef;
+  }
+
   @JsonProperty("translations")
   public Optional<Map<String, PostV1CatalogItemsCreateRequestTranslationsValue>> getTranslations() {
     return translations;
@@ -220,12 +228,12 @@ public final class PostV1CatalogItemsCreateRequest {
   }
 
   private boolean equalTo(PostV1CatalogItemsCreateRequest other) {
-    return type.equals(other.type) && tracking.equals(other.tracking) && name.equals(other.name) && code.equals(other.code) && barcode.equals(other.barcode) && unit.equals(other.unit) && vatClassifierCode.equals(other.vatClassifierCode) && vatRatePercent.equals(other.vatRatePercent) && salePriceExclVat.equals(other.salePriceExclVat) && purchasePriceExclVat.equals(other.purchasePriceExclVat) && cnCode.equals(other.cnCode) && originCountry.equals(other.originCountry) && netMassKg.equals(other.netMassKg) && supplementaryUnit.equals(other.supplementaryUnit) && supplementaryQtyPerUnit.equals(other.supplementaryQtyPerUnit) && description.equals(other.description) && groupId.equals(other.groupId) && attributes.equals(other.attributes) && translations.equals(other.translations) && components.equals(other.components);
+    return type.equals(other.type) && tracking.equals(other.tracking) && name.equals(other.name) && code.equals(other.code) && barcode.equals(other.barcode) && unit.equals(other.unit) && vatClassifierCode.equals(other.vatClassifierCode) && vatRatePercent.equals(other.vatRatePercent) && salePriceExclVat.equals(other.salePriceExclVat) && purchasePriceExclVat.equals(other.purchasePriceExclVat) && cnCode.equals(other.cnCode) && originCountry.equals(other.originCountry) && netMassKg.equals(other.netMassKg) && supplementaryUnit.equals(other.supplementaryUnit) && supplementaryQtyPerUnit.equals(other.supplementaryQtyPerUnit) && description.equals(other.description) && groupId.equals(other.groupId) && attributes.equals(other.attributes) && documentRef.equals(other.documentRef) && translations.equals(other.translations) && components.equals(other.components);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.type, this.tracking, this.name, this.code, this.barcode, this.unit, this.vatClassifierCode, this.vatRatePercent, this.salePriceExclVat, this.purchasePriceExclVat, this.cnCode, this.originCountry, this.netMassKg, this.supplementaryUnit, this.supplementaryQtyPerUnit, this.description, this.groupId, this.attributes, this.translations, this.components);
+    return Objects.hash(this.type, this.tracking, this.name, this.code, this.barcode, this.unit, this.vatClassifierCode, this.vatRatePercent, this.salePriceExclVat, this.purchasePriceExclVat, this.cnCode, this.originCountry, this.netMassKg, this.supplementaryUnit, this.supplementaryQtyPerUnit, this.description, this.groupId, this.attributes, this.documentRef, this.translations, this.components);
   }
 
   @java.lang.Override
@@ -318,6 +326,10 @@ public final class PostV1CatalogItemsCreateRequest {
 
     _FinalStage attributes(Map<String, String> attributes);
 
+    _FinalStage documentRef(Optional<String> documentRef);
+
+    _FinalStage documentRef(String documentRef);
+
     _FinalStage translations(
         Optional<Map<String, PostV1CatalogItemsCreateRequestTranslationsValue>> translations);
 
@@ -339,6 +351,8 @@ public final class PostV1CatalogItemsCreateRequest {
     private Optional<List<PostV1CatalogItemsCreateRequestComponentsItem>> components = Optional.empty();
 
     private Optional<Map<String, PostV1CatalogItemsCreateRequestTranslationsValue>> translations = Optional.empty();
+
+    private Optional<String> documentRef = Optional.empty();
 
     private Optional<Map<String, String>> attributes = Optional.empty();
 
@@ -400,6 +414,7 @@ public final class PostV1CatalogItemsCreateRequest {
       description(other.getDescription());
       groupId(other.getGroupId());
       attributes(other.getAttributes());
+      documentRef(other.getDocumentRef());
       translations(other.getTranslations());
       components(other.getComponents());
       return this;
@@ -444,6 +459,22 @@ public final class PostV1CatalogItemsCreateRequest {
     public _FinalStage translations(
         Optional<Map<String, PostV1CatalogItemsCreateRequestTranslationsValue>> translations) {
       this.translations = translations;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(String documentRef) {
+      this.documentRef = Optional.ofNullable(documentRef);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentRef",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentRef(Optional<String> documentRef) {
+      this.documentRef = documentRef;
       return this;
     }
 
@@ -721,7 +752,7 @@ public final class PostV1CatalogItemsCreateRequest {
 
     @java.lang.Override
     public PostV1CatalogItemsCreateRequest build() {
-      return new PostV1CatalogItemsCreateRequest(type, tracking, name, code, barcode, unit, vatClassifierCode, vatRatePercent, salePriceExclVat, purchasePriceExclVat, cnCode, originCountry, netMassKg, supplementaryUnit, supplementaryQtyPerUnit, description, groupId, attributes, translations, components, additionalProperties);
+      return new PostV1CatalogItemsCreateRequest(type, tracking, name, code, barcode, unit, vatClassifierCode, vatRatePercent, salePriceExclVat, purchasePriceExclVat, cnCode, originCountry, netMassKg, supplementaryUnit, supplementaryQtyPerUnit, description, groupId, attributes, documentRef, translations, components, additionalProperties);
     }
 
     @java.lang.Override

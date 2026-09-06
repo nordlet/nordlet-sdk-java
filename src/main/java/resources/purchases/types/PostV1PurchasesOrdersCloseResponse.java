@@ -59,6 +59,8 @@ public final class PostV1PurchasesOrdersCloseResponse {
 
   private final Optional<String> notes;
 
+  private final Optional<String> documentRef;
+
   private final String createdAt;
 
   private final String updatedAt;
@@ -71,7 +73,7 @@ public final class PostV1PurchasesOrdersCloseResponse {
       PostV1PurchasesOrdersCloseResponseStatus status, String orderNumber, String orderDate,
       Optional<String> expectedDate, Optional<String> warehouseId, String currency, String netTotal,
       String vatTotal, String grossTotal, Optional<String> approvedBy, Optional<String> approvedAt,
-      Optional<String> notes, String createdAt, String updatedAt,
+      Optional<String> notes, Optional<String> documentRef, String createdAt, String updatedAt,
       List<PostV1PurchasesOrdersCloseResponseLinesItem> lines,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -88,6 +90,7 @@ public final class PostV1PurchasesOrdersCloseResponse {
     this.approvedBy = approvedBy;
     this.approvedAt = approvedAt;
     this.notes = notes;
+    this.documentRef = documentRef;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.lines = lines;
@@ -179,6 +182,14 @@ public final class PostV1PurchasesOrdersCloseResponse {
     return notes;
   }
 
+  @JsonIgnore
+  public Optional<String> getDocumentRef() {
+    if (documentRef == null) {
+      return Optional.empty();
+    }
+    return documentRef;
+  }
+
   @JsonProperty("createdAt")
   public String getCreatedAt() {
     return createdAt;
@@ -239,6 +250,15 @@ public final class PostV1PurchasesOrdersCloseResponse {
     return notes;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("documentRef")
+  private Optional<String> _getDocumentRef() {
+    return documentRef;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -251,12 +271,12 @@ public final class PostV1PurchasesOrdersCloseResponse {
   }
 
   private boolean equalTo(PostV1PurchasesOrdersCloseResponse other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && status.equals(other.status) && orderNumber.equals(other.orderNumber) && orderDate.equals(other.orderDate) && expectedDate.equals(other.expectedDate) && warehouseId.equals(other.warehouseId) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && approvedBy.equals(other.approvedBy) && approvedAt.equals(other.approvedAt) && notes.equals(other.notes) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && lines.equals(other.lines);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && status.equals(other.status) && orderNumber.equals(other.orderNumber) && orderDate.equals(other.orderDate) && expectedDate.equals(other.expectedDate) && warehouseId.equals(other.warehouseId) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && approvedBy.equals(other.approvedBy) && approvedAt.equals(other.approvedAt) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.status, this.orderNumber, this.orderDate, this.expectedDate, this.warehouseId, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.approvedBy, this.approvedAt, this.notes, this.createdAt, this.updatedAt, this.lines);
+    return Objects.hash(this.id, this.partnerId, this.status, this.orderNumber, this.orderDate, this.expectedDate, this.warehouseId, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.approvedBy, this.approvedAt, this.notes, this.documentRef, this.createdAt, this.updatedAt, this.lines);
   }
 
   @java.lang.Override
@@ -351,6 +371,12 @@ public final class PostV1PurchasesOrdersCloseResponse {
 
     _FinalStage notes(Nullable<String> notes);
 
+    _FinalStage documentRef(Optional<String> documentRef);
+
+    _FinalStage documentRef(String documentRef);
+
+    _FinalStage documentRef(Nullable<String> documentRef);
+
     _FinalStage lines(List<PostV1PurchasesOrdersCloseResponseLinesItem> lines);
 
     _FinalStage addLines(PostV1PurchasesOrdersCloseResponseLinesItem lines);
@@ -386,6 +412,8 @@ public final class PostV1PurchasesOrdersCloseResponse {
 
     private List<PostV1PurchasesOrdersCloseResponseLinesItem> lines = new ArrayList<>();
 
+    private Optional<String> documentRef = Optional.empty();
+
     private Optional<String> notes = Optional.empty();
 
     private Optional<String> approvedAt = Optional.empty();
@@ -418,6 +446,7 @@ public final class PostV1PurchasesOrdersCloseResponse {
       approvedBy(other.getApprovedBy());
       approvedAt(other.getApprovedAt());
       notes(other.getNotes());
+      documentRef(other.getDocumentRef());
       createdAt(other.getCreatedAt());
       updatedAt(other.getUpdatedAt());
       lines(other.getLines());
@@ -525,6 +554,36 @@ public final class PostV1PurchasesOrdersCloseResponse {
       if (lines != null) {
         this.lines.addAll(lines);
       }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(Nullable<String> documentRef) {
+      if (documentRef.isNull()) {
+        this.documentRef = null;
+      }
+      else if (documentRef.isEmpty()) {
+        this.documentRef = Optional.empty();
+      }
+      else {
+        this.documentRef = Optional.of(documentRef.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(String documentRef) {
+      this.documentRef = Optional.ofNullable(documentRef);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentRef",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentRef(Optional<String> documentRef) {
+      this.documentRef = documentRef;
       return this;
     }
 
@@ -680,7 +739,7 @@ public final class PostV1PurchasesOrdersCloseResponse {
 
     @java.lang.Override
     public PostV1PurchasesOrdersCloseResponse build() {
-      return new PostV1PurchasesOrdersCloseResponse(id, partnerId, status, orderNumber, orderDate, expectedDate, warehouseId, currency, netTotal, vatTotal, grossTotal, approvedBy, approvedAt, notes, createdAt, updatedAt, lines, additionalProperties);
+      return new PostV1PurchasesOrdersCloseResponse(id, partnerId, status, orderNumber, orderDate, expectedDate, warehouseId, currency, netTotal, vatTotal, grossTotal, approvedBy, approvedAt, notes, documentRef, createdAt, updatedAt, lines, additionalProperties);
     }
 
     @java.lang.Override

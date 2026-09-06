@@ -20,21 +20,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
     builder = PostV1DeclarationsConfigsListResponse.Builder.class
 )
 public final class PostV1DeclarationsConfigsListResponse {
+  private final String companyCountry;
+
   private final List<PostV1DeclarationsConfigsListResponseRowsItem> rows;
 
   private final Map<String, Object> additionalProperties;
 
-  private PostV1DeclarationsConfigsListResponse(
+  private PostV1DeclarationsConfigsListResponse(String companyCountry,
       List<PostV1DeclarationsConfigsListResponseRowsItem> rows,
       Map<String, Object> additionalProperties) {
+    this.companyCountry = companyCountry;
     this.rows = rows;
     this.additionalProperties = additionalProperties;
+  }
+
+  @JsonProperty("companyCountry")
+  public String getCompanyCountry() {
+    return companyCountry;
   }
 
   @JsonProperty("rows")
@@ -54,12 +63,12 @@ public final class PostV1DeclarationsConfigsListResponse {
   }
 
   private boolean equalTo(PostV1DeclarationsConfigsListResponse other) {
-    return rows.equals(other.rows);
+    return companyCountry.equals(other.companyCountry) && rows.equals(other.rows);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.rows);
+    return Objects.hash(this.companyCountry, this.rows);
   }
 
   @java.lang.Override
@@ -67,14 +76,36 @@ public final class PostV1DeclarationsConfigsListResponse {
     return ObjectMappers.stringify(this);
   }
 
-  public static Builder builder() {
+  public static CompanyCountryStage builder() {
     return new Builder();
+  }
+
+  public interface CompanyCountryStage {
+    _FinalStage companyCountry(@NotNull String companyCountry);
+
+    Builder from(PostV1DeclarationsConfigsListResponse other);
+  }
+
+  public interface _FinalStage {
+    PostV1DeclarationsConfigsListResponse build();
+
+    _FinalStage additionalProperty(String key, Object value);
+
+    _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage rows(List<PostV1DeclarationsConfigsListResponseRowsItem> rows);
+
+    _FinalStage addRows(PostV1DeclarationsConfigsListResponseRowsItem rows);
+
+    _FinalStage addAllRows(List<PostV1DeclarationsConfigsListResponseRowsItem> rows);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder {
+  public static final class Builder implements CompanyCountryStage, _FinalStage {
+    private String companyCountry;
+
     private List<PostV1DeclarationsConfigsListResponseRowsItem> rows = new ArrayList<>();
 
     @JsonAnySetter
@@ -83,16 +114,40 @@ public final class PostV1DeclarationsConfigsListResponse {
     private Builder() {
     }
 
+    @java.lang.Override
     public Builder from(PostV1DeclarationsConfigsListResponse other) {
+      companyCountry(other.getCompanyCountry());
       rows(other.getRows());
       return this;
     }
 
+    @java.lang.Override
+    @JsonSetter("companyCountry")
+    public _FinalStage companyCountry(@NotNull String companyCountry) {
+      this.companyCountry = Objects.requireNonNull(companyCountry, "companyCountry must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addAllRows(List<PostV1DeclarationsConfigsListResponseRowsItem> rows) {
+      if (rows != null) {
+        this.rows.addAll(rows);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addRows(PostV1DeclarationsConfigsListResponseRowsItem rows) {
+      this.rows.add(rows);
+      return this;
+    }
+
+    @java.lang.Override
     @JsonSetter(
         value = "rows",
         nulls = Nulls.SKIP
     )
-    public Builder rows(List<PostV1DeclarationsConfigsListResponseRowsItem> rows) {
+    public _FinalStage rows(List<PostV1DeclarationsConfigsListResponseRowsItem> rows) {
       this.rows.clear();
       if (rows != null) {
         this.rows.addAll(rows);
@@ -100,27 +155,18 @@ public final class PostV1DeclarationsConfigsListResponse {
       return this;
     }
 
-    public Builder addRows(PostV1DeclarationsConfigsListResponseRowsItem rows) {
-      this.rows.add(rows);
-      return this;
-    }
-
-    public Builder addAllRows(List<PostV1DeclarationsConfigsListResponseRowsItem> rows) {
-      if (rows != null) {
-        this.rows.addAll(rows);
-      }
-      return this;
-    }
-
+    @java.lang.Override
     public PostV1DeclarationsConfigsListResponse build() {
-      return new PostV1DeclarationsConfigsListResponse(rows, additionalProperties);
+      return new PostV1DeclarationsConfigsListResponse(companyCountry, rows, additionalProperties);
     }
 
+    @java.lang.Override
     public Builder additionalProperty(String key, Object value) {
       this.additionalProperties.put(key, value);
       return this;
     }
 
+    @java.lang.Override
     public Builder additionalProperties(Map<String, Object> additionalProperties) {
       this.additionalProperties.putAll(additionalProperties);
       return this;

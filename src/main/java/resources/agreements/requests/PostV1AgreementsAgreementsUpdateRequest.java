@@ -17,6 +17,7 @@ import com.nordlet.api.core.Nullable;
 import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsUpdateRequestBillingPeriod;
+import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsUpdateRequestKind;
 import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsUpdateRequestStatus;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -36,6 +37,8 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
 
   private final Optional<String> typeId;
 
+  private final Optional<PostV1AgreementsAgreementsUpdateRequestKind> kind;
+
   private final Optional<String> name;
 
   private final Optional<String> endDate;
@@ -50,16 +53,19 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
 
   private final Optional<String> notes;
 
+  private final Optional<String> documentRef;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1AgreementsAgreementsUpdateRequest(String id, Optional<String> typeId,
-      Optional<String> name, Optional<String> endDate, Optional<Boolean> autoRenew,
-      Optional<String> value,
+      Optional<PostV1AgreementsAgreementsUpdateRequestKind> kind, Optional<String> name,
+      Optional<String> endDate, Optional<Boolean> autoRenew, Optional<String> value,
       Optional<PostV1AgreementsAgreementsUpdateRequestBillingPeriod> billingPeriod,
       Optional<PostV1AgreementsAgreementsUpdateRequestStatus> status, Optional<String> notes,
-      Map<String, Object> additionalProperties) {
+      Optional<String> documentRef, Map<String, Object> additionalProperties) {
     this.id = id;
     this.typeId = typeId;
+    this.kind = kind;
     this.name = name;
     this.endDate = endDate;
     this.autoRenew = autoRenew;
@@ -67,6 +73,7 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
     this.billingPeriod = billingPeriod;
     this.status = status;
     this.notes = notes;
+    this.documentRef = documentRef;
     this.additionalProperties = additionalProperties;
   }
 
@@ -81,6 +88,11 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
       return Optional.empty();
     }
     return typeId;
+  }
+
+  @JsonProperty("kind")
+  public Optional<PostV1AgreementsAgreementsUpdateRequestKind> getKind() {
+    return kind;
   }
 
   @JsonIgnore
@@ -131,6 +143,14 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
       return Optional.empty();
     }
     return notes;
+  }
+
+  @JsonIgnore
+  public Optional<String> getDocumentRef() {
+    if (documentRef == null) {
+      return Optional.empty();
+    }
+    return documentRef;
   }
 
   @JsonInclude(
@@ -187,6 +207,15 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
     return notes;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("documentRef")
+  private Optional<String> _getDocumentRef() {
+    return documentRef;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -199,12 +228,12 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
   }
 
   private boolean equalTo(PostV1AgreementsAgreementsUpdateRequest other) {
-    return id.equals(other.id) && typeId.equals(other.typeId) && name.equals(other.name) && endDate.equals(other.endDate) && autoRenew.equals(other.autoRenew) && value.equals(other.value) && billingPeriod.equals(other.billingPeriod) && status.equals(other.status) && notes.equals(other.notes);
+    return id.equals(other.id) && typeId.equals(other.typeId) && kind.equals(other.kind) && name.equals(other.name) && endDate.equals(other.endDate) && autoRenew.equals(other.autoRenew) && value.equals(other.value) && billingPeriod.equals(other.billingPeriod) && status.equals(other.status) && notes.equals(other.notes) && documentRef.equals(other.documentRef);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.typeId, this.name, this.endDate, this.autoRenew, this.value, this.billingPeriod, this.status, this.notes);
+    return Objects.hash(this.id, this.typeId, this.kind, this.name, this.endDate, this.autoRenew, this.value, this.billingPeriod, this.status, this.notes, this.documentRef);
   }
 
   @java.lang.Override
@@ -234,6 +263,10 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
     _FinalStage typeId(String typeId);
 
     _FinalStage typeId(Nullable<String> typeId);
+
+    _FinalStage kind(Optional<PostV1AgreementsAgreementsUpdateRequestKind> kind);
+
+    _FinalStage kind(PostV1AgreementsAgreementsUpdateRequestKind kind);
 
     _FinalStage name(Optional<String> name);
 
@@ -274,6 +307,12 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
     _FinalStage notes(String notes);
 
     _FinalStage notes(Nullable<String> notes);
+
+    _FinalStage documentRef(Optional<String> documentRef);
+
+    _FinalStage documentRef(String documentRef);
+
+    _FinalStage documentRef(Nullable<String> documentRef);
   }
 
   @JsonIgnoreProperties(
@@ -281,6 +320,8 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
   )
   public static final class Builder implements IdStage, _FinalStage {
     private String id;
+
+    private Optional<String> documentRef = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -296,6 +337,8 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
 
     private Optional<String> name = Optional.empty();
 
+    private Optional<PostV1AgreementsAgreementsUpdateRequestKind> kind = Optional.empty();
+
     private Optional<String> typeId = Optional.empty();
 
     @JsonAnySetter
@@ -308,6 +351,7 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
     public Builder from(PostV1AgreementsAgreementsUpdateRequest other) {
       id(other.getId());
       typeId(other.getTypeId());
+      kind(other.getKind());
       name(other.getName());
       endDate(other.getEndDate());
       autoRenew(other.getAutoRenew());
@@ -315,6 +359,7 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
       billingPeriod(other.getBillingPeriod());
       status(other.getStatus());
       notes(other.getNotes());
+      documentRef(other.getDocumentRef());
       return this;
     }
 
@@ -322,6 +367,36 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
     @JsonSetter("id")
     public _FinalStage id(@NotNull String id) {
       this.id = Objects.requireNonNull(id, "id must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(Nullable<String> documentRef) {
+      if (documentRef.isNull()) {
+        this.documentRef = null;
+      }
+      else if (documentRef.isEmpty()) {
+        this.documentRef = Optional.empty();
+      }
+      else {
+        this.documentRef = Optional.of(documentRef.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(String documentRef) {
+      this.documentRef = Optional.ofNullable(documentRef);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentRef",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentRef(Optional<String> documentRef) {
+      this.documentRef = documentRef;
       return this;
     }
 
@@ -511,6 +586,22 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage kind(PostV1AgreementsAgreementsUpdateRequestKind kind) {
+      this.kind = Optional.ofNullable(kind);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "kind",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage kind(Optional<PostV1AgreementsAgreementsUpdateRequestKind> kind) {
+      this.kind = kind;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage typeId(Nullable<String> typeId) {
       if (typeId.isNull()) {
         this.typeId = null;
@@ -542,7 +633,7 @@ public final class PostV1AgreementsAgreementsUpdateRequest {
 
     @java.lang.Override
     public PostV1AgreementsAgreementsUpdateRequest build() {
-      return new PostV1AgreementsAgreementsUpdateRequest(id, typeId, name, endDate, autoRenew, value, billingPeriod, status, notes, additionalProperties);
+      return new PostV1AgreementsAgreementsUpdateRequest(id, typeId, kind, name, endDate, autoRenew, value, billingPeriod, status, notes, documentRef, additionalProperties);
     }
 
     @java.lang.Override

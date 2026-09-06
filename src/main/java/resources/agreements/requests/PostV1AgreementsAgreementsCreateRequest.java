@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsCreateRequestBillingPeriod;
 import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsCreateRequestItemsItem;
+import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsCreateRequestKind;
 import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsCreateRequestStatus;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -33,7 +34,13 @@ import org.jetbrains.annotations.NotNull;
 public final class PostV1AgreementsAgreementsCreateRequest {
   private final Optional<String> typeId;
 
-  private final String partnerId;
+  private final Optional<PostV1AgreementsAgreementsCreateRequestKind> kind;
+
+  private final Optional<String> partnerId;
+
+  private final Optional<String> employeeId;
+
+  private final Optional<String> bankAccountId;
 
   private final String number;
 
@@ -55,20 +62,27 @@ public final class PostV1AgreementsAgreementsCreateRequest {
 
   private final Optional<String> notes;
 
+  private final Optional<String> documentRef;
+
   private final Optional<List<PostV1AgreementsAgreementsCreateRequestItemsItem>> items;
 
   private final Map<String, Object> additionalProperties;
 
-  private PostV1AgreementsAgreementsCreateRequest(Optional<String> typeId, String partnerId,
-      String number, Optional<String> name, String startDate, Optional<String> endDate,
+  private PostV1AgreementsAgreementsCreateRequest(Optional<String> typeId,
+      Optional<PostV1AgreementsAgreementsCreateRequestKind> kind, Optional<String> partnerId,
+      Optional<String> employeeId, Optional<String> bankAccountId, String number,
+      Optional<String> name, String startDate, Optional<String> endDate,
       Optional<Boolean> autoRenew, Optional<String> value,
       Optional<PostV1AgreementsAgreementsCreateRequestBillingPeriod> billingPeriod,
       Optional<String> currency, Optional<PostV1AgreementsAgreementsCreateRequestStatus> status,
-      Optional<String> notes,
+      Optional<String> notes, Optional<String> documentRef,
       Optional<List<PostV1AgreementsAgreementsCreateRequestItemsItem>> items,
       Map<String, Object> additionalProperties) {
     this.typeId = typeId;
+    this.kind = kind;
     this.partnerId = partnerId;
+    this.employeeId = employeeId;
+    this.bankAccountId = bankAccountId;
     this.number = number;
     this.name = name;
     this.startDate = startDate;
@@ -79,6 +93,7 @@ public final class PostV1AgreementsAgreementsCreateRequest {
     this.currency = currency;
     this.status = status;
     this.notes = notes;
+    this.documentRef = documentRef;
     this.items = items;
     this.additionalProperties = additionalProperties;
   }
@@ -88,9 +103,24 @@ public final class PostV1AgreementsAgreementsCreateRequest {
     return typeId;
   }
 
+  @JsonProperty("kind")
+  public Optional<PostV1AgreementsAgreementsCreateRequestKind> getKind() {
+    return kind;
+  }
+
   @JsonProperty("partnerId")
-  public String getPartnerId() {
+  public Optional<String> getPartnerId() {
     return partnerId;
+  }
+
+  @JsonProperty("employeeId")
+  public Optional<String> getEmployeeId() {
+    return employeeId;
+  }
+
+  @JsonProperty("bankAccountId")
+  public Optional<String> getBankAccountId() {
+    return bankAccountId;
   }
 
   @JsonProperty("number")
@@ -143,6 +173,11 @@ public final class PostV1AgreementsAgreementsCreateRequest {
     return notes;
   }
 
+  @JsonProperty("documentRef")
+  public Optional<String> getDocumentRef() {
+    return documentRef;
+  }
+
   @JsonProperty("items")
   public Optional<List<PostV1AgreementsAgreementsCreateRequestItemsItem>> getItems() {
     return items;
@@ -160,12 +195,12 @@ public final class PostV1AgreementsAgreementsCreateRequest {
   }
 
   private boolean equalTo(PostV1AgreementsAgreementsCreateRequest other) {
-    return typeId.equals(other.typeId) && partnerId.equals(other.partnerId) && number.equals(other.number) && name.equals(other.name) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && autoRenew.equals(other.autoRenew) && value.equals(other.value) && billingPeriod.equals(other.billingPeriod) && currency.equals(other.currency) && status.equals(other.status) && notes.equals(other.notes) && items.equals(other.items);
+    return typeId.equals(other.typeId) && kind.equals(other.kind) && partnerId.equals(other.partnerId) && employeeId.equals(other.employeeId) && bankAccountId.equals(other.bankAccountId) && number.equals(other.number) && name.equals(other.name) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && autoRenew.equals(other.autoRenew) && value.equals(other.value) && billingPeriod.equals(other.billingPeriod) && currency.equals(other.currency) && status.equals(other.status) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && items.equals(other.items);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.typeId, this.partnerId, this.number, this.name, this.startDate, this.endDate, this.autoRenew, this.value, this.billingPeriod, this.currency, this.status, this.notes, this.items);
+    return Objects.hash(this.typeId, this.kind, this.partnerId, this.employeeId, this.bankAccountId, this.number, this.name, this.startDate, this.endDate, this.autoRenew, this.value, this.billingPeriod, this.currency, this.status, this.notes, this.documentRef, this.items);
   }
 
   @java.lang.Override
@@ -173,18 +208,14 @@ public final class PostV1AgreementsAgreementsCreateRequest {
     return ObjectMappers.stringify(this);
   }
 
-  public static PartnerIdStage builder() {
+  public static NumberStage builder() {
     return new Builder();
-  }
-
-  public interface PartnerIdStage {
-    NumberStage partnerId(@NotNull String partnerId);
-
-    Builder from(PostV1AgreementsAgreementsCreateRequest other);
   }
 
   public interface NumberStage {
     StartDateStage number(@NotNull String number);
+
+    Builder from(PostV1AgreementsAgreementsCreateRequest other);
   }
 
   public interface StartDateStage {
@@ -201,6 +232,22 @@ public final class PostV1AgreementsAgreementsCreateRequest {
     _FinalStage typeId(Optional<String> typeId);
 
     _FinalStage typeId(String typeId);
+
+    _FinalStage kind(Optional<PostV1AgreementsAgreementsCreateRequestKind> kind);
+
+    _FinalStage kind(PostV1AgreementsAgreementsCreateRequestKind kind);
+
+    _FinalStage partnerId(Optional<String> partnerId);
+
+    _FinalStage partnerId(String partnerId);
+
+    _FinalStage employeeId(Optional<String> employeeId);
+
+    _FinalStage employeeId(String employeeId);
+
+    _FinalStage bankAccountId(Optional<String> bankAccountId);
+
+    _FinalStage bankAccountId(String bankAccountId);
 
     _FinalStage name(Optional<String> name);
 
@@ -235,6 +282,10 @@ public final class PostV1AgreementsAgreementsCreateRequest {
 
     _FinalStage notes(String notes);
 
+    _FinalStage documentRef(Optional<String> documentRef);
+
+    _FinalStage documentRef(String documentRef);
+
     _FinalStage items(Optional<List<PostV1AgreementsAgreementsCreateRequestItemsItem>> items);
 
     _FinalStage items(List<PostV1AgreementsAgreementsCreateRequestItemsItem> items);
@@ -243,14 +294,14 @@ public final class PostV1AgreementsAgreementsCreateRequest {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements PartnerIdStage, NumberStage, StartDateStage, _FinalStage {
-    private String partnerId;
-
+  public static final class Builder implements NumberStage, StartDateStage, _FinalStage {
     private String number;
 
     private String startDate;
 
     private Optional<List<PostV1AgreementsAgreementsCreateRequestItemsItem>> items = Optional.empty();
+
+    private Optional<String> documentRef = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -268,6 +319,14 @@ public final class PostV1AgreementsAgreementsCreateRequest {
 
     private Optional<String> name = Optional.empty();
 
+    private Optional<String> bankAccountId = Optional.empty();
+
+    private Optional<String> employeeId = Optional.empty();
+
+    private Optional<String> partnerId = Optional.empty();
+
+    private Optional<PostV1AgreementsAgreementsCreateRequestKind> kind = Optional.empty();
+
     private Optional<String> typeId = Optional.empty();
 
     @JsonAnySetter
@@ -279,7 +338,10 @@ public final class PostV1AgreementsAgreementsCreateRequest {
     @java.lang.Override
     public Builder from(PostV1AgreementsAgreementsCreateRequest other) {
       typeId(other.getTypeId());
+      kind(other.getKind());
       partnerId(other.getPartnerId());
+      employeeId(other.getEmployeeId());
+      bankAccountId(other.getBankAccountId());
       number(other.getNumber());
       name(other.getName());
       startDate(other.getStartDate());
@@ -290,14 +352,8 @@ public final class PostV1AgreementsAgreementsCreateRequest {
       currency(other.getCurrency());
       status(other.getStatus());
       notes(other.getNotes());
+      documentRef(other.getDocumentRef());
       items(other.getItems());
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter("partnerId")
-    public NumberStage partnerId(@NotNull String partnerId) {
-      this.partnerId = Objects.requireNonNull(partnerId, "partnerId must not be null");
       return this;
     }
 
@@ -329,6 +385,22 @@ public final class PostV1AgreementsAgreementsCreateRequest {
     public _FinalStage items(
         Optional<List<PostV1AgreementsAgreementsCreateRequestItemsItem>> items) {
       this.items = items;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(String documentRef) {
+      this.documentRef = Optional.ofNullable(documentRef);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentRef",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentRef(Optional<String> documentRef) {
+      this.documentRef = documentRef;
       return this;
     }
 
@@ -463,6 +535,70 @@ public final class PostV1AgreementsAgreementsCreateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage bankAccountId(String bankAccountId) {
+      this.bankAccountId = Optional.ofNullable(bankAccountId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankAccountId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankAccountId(Optional<String> bankAccountId) {
+      this.bankAccountId = bankAccountId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage employeeId(String employeeId) {
+      this.employeeId = Optional.ofNullable(employeeId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "employeeId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage employeeId(Optional<String> employeeId) {
+      this.employeeId = employeeId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partnerId(String partnerId) {
+      this.partnerId = Optional.ofNullable(partnerId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "partnerId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage partnerId(Optional<String> partnerId) {
+      this.partnerId = partnerId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage kind(PostV1AgreementsAgreementsCreateRequestKind kind) {
+      this.kind = Optional.ofNullable(kind);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "kind",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage kind(Optional<PostV1AgreementsAgreementsCreateRequestKind> kind) {
+      this.kind = kind;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage typeId(String typeId) {
       this.typeId = Optional.ofNullable(typeId);
       return this;
@@ -480,7 +616,7 @@ public final class PostV1AgreementsAgreementsCreateRequest {
 
     @java.lang.Override
     public PostV1AgreementsAgreementsCreateRequest build() {
-      return new PostV1AgreementsAgreementsCreateRequest(typeId, partnerId, number, name, startDate, endDate, autoRenew, value, billingPeriod, currency, status, notes, items, additionalProperties);
+      return new PostV1AgreementsAgreementsCreateRequest(typeId, kind, partnerId, employeeId, bankAccountId, number, name, startDate, endDate, autoRenew, value, billingPeriod, currency, status, notes, documentRef, items, additionalProperties);
     }
 
     @java.lang.Override

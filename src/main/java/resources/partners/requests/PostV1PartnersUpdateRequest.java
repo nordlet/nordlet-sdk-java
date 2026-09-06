@@ -68,6 +68,8 @@ public final class PostV1PartnersUpdateRequest {
 
   private final Optional<String> notes;
 
+  private final Optional<String> documentRef;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1PartnersUpdateRequest(String id, Optional<PostV1PartnersUpdateRequestType> type,
@@ -77,7 +79,8 @@ public final class PostV1PartnersUpdateRequest {
       Optional<Boolean> isCustomer, Optional<Boolean> isSupplier, Optional<Long> paymentTermDays,
       Optional<String> creditLimit, Optional<String> priceListId, Optional<String> groupId,
       Optional<String> statusId, Optional<PostV1PartnersUpdateRequestAddress> address,
-      Optional<String> notes, Map<String, Object> additionalProperties) {
+      Optional<String> notes, Optional<String> documentRef,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.type = type;
     this.name = name;
@@ -97,6 +100,7 @@ public final class PostV1PartnersUpdateRequest {
     this.statusId = statusId;
     this.address = address;
     this.notes = notes;
+    this.documentRef = documentRef;
     this.additionalProperties = additionalProperties;
   }
 
@@ -195,6 +199,11 @@ public final class PostV1PartnersUpdateRequest {
     return notes;
   }
 
+  @JsonProperty("documentRef")
+  public Optional<String> getDocumentRef() {
+    return documentRef;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -207,12 +216,12 @@ public final class PostV1PartnersUpdateRequest {
   }
 
   private boolean equalTo(PostV1PartnersUpdateRequest other) {
-    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && notes.equals(other.notes);
+    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && notes.equals(other.notes) && documentRef.equals(other.documentRef);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isCustomer, this.isSupplier, this.paymentTermDays, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.notes);
+    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isCustomer, this.isSupplier, this.paymentTermDays, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.notes, this.documentRef);
   }
 
   @java.lang.Override
@@ -308,6 +317,10 @@ public final class PostV1PartnersUpdateRequest {
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
+
+    _FinalStage documentRef(Optional<String> documentRef);
+
+    _FinalStage documentRef(String documentRef);
   }
 
   @JsonIgnoreProperties(
@@ -315,6 +328,8 @@ public final class PostV1PartnersUpdateRequest {
   )
   public static final class Builder implements IdStage, _FinalStage {
     private String id;
+
+    private Optional<String> documentRef = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -379,6 +394,7 @@ public final class PostV1PartnersUpdateRequest {
       statusId(other.getStatusId());
       address(other.getAddress());
       notes(other.getNotes());
+      documentRef(other.getDocumentRef());
       return this;
     }
 
@@ -386,6 +402,22 @@ public final class PostV1PartnersUpdateRequest {
     @JsonSetter("id")
     public _FinalStage id(@NotNull String id) {
       this.id = Objects.requireNonNull(id, "id must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(String documentRef) {
+      this.documentRef = Optional.ofNullable(documentRef);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentRef",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentRef(Optional<String> documentRef) {
+      this.documentRef = documentRef;
       return this;
     }
 
@@ -679,7 +711,7 @@ public final class PostV1PartnersUpdateRequest {
 
     @java.lang.Override
     public PostV1PartnersUpdateRequest build() {
-      return new PostV1PartnersUpdateRequest(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isCustomer, isSupplier, paymentTermDays, creditLimit, priceListId, groupId, statusId, address, notes, additionalProperties);
+      return new PostV1PartnersUpdateRequest(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isCustomer, isSupplier, paymentTermDays, creditLimit, priceListId, groupId, statusId, address, notes, documentRef, additionalProperties);
     }
 
     @java.lang.Override

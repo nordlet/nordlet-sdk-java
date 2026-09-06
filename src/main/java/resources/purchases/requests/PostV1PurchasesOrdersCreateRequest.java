@@ -43,13 +43,15 @@ public final class PostV1PurchasesOrdersCreateRequest {
 
   private final Optional<String> notes;
 
+  private final Optional<String> documentRef;
+
   private final List<PostV1PurchasesOrdersCreateRequestLinesItem> lines;
 
   private final Map<String, Object> additionalProperties;
 
   private PostV1PurchasesOrdersCreateRequest(String partnerId, Optional<String> orderNumber,
       String orderDate, Optional<String> expectedDate, Optional<String> warehouseId,
-      Optional<String> currency, Optional<String> notes,
+      Optional<String> currency, Optional<String> notes, Optional<String> documentRef,
       List<PostV1PurchasesOrdersCreateRequestLinesItem> lines,
       Map<String, Object> additionalProperties) {
     this.partnerId = partnerId;
@@ -59,6 +61,7 @@ public final class PostV1PurchasesOrdersCreateRequest {
     this.warehouseId = warehouseId;
     this.currency = currency;
     this.notes = notes;
+    this.documentRef = documentRef;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
   }
@@ -98,6 +101,11 @@ public final class PostV1PurchasesOrdersCreateRequest {
     return notes;
   }
 
+  @JsonProperty("documentRef")
+  public Optional<String> getDocumentRef() {
+    return documentRef;
+  }
+
   @JsonProperty("lines")
   public List<PostV1PurchasesOrdersCreateRequestLinesItem> getLines() {
     return lines;
@@ -115,12 +123,12 @@ public final class PostV1PurchasesOrdersCreateRequest {
   }
 
   private boolean equalTo(PostV1PurchasesOrdersCreateRequest other) {
-    return partnerId.equals(other.partnerId) && orderNumber.equals(other.orderNumber) && orderDate.equals(other.orderDate) && expectedDate.equals(other.expectedDate) && warehouseId.equals(other.warehouseId) && currency.equals(other.currency) && notes.equals(other.notes) && lines.equals(other.lines);
+    return partnerId.equals(other.partnerId) && orderNumber.equals(other.orderNumber) && orderDate.equals(other.orderDate) && expectedDate.equals(other.expectedDate) && warehouseId.equals(other.warehouseId) && currency.equals(other.currency) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.partnerId, this.orderNumber, this.orderDate, this.expectedDate, this.warehouseId, this.currency, this.notes, this.lines);
+    return Objects.hash(this.partnerId, this.orderNumber, this.orderDate, this.expectedDate, this.warehouseId, this.currency, this.notes, this.documentRef, this.lines);
   }
 
   @java.lang.Override
@@ -169,6 +177,10 @@ public final class PostV1PurchasesOrdersCreateRequest {
 
     _FinalStage notes(String notes);
 
+    _FinalStage documentRef(Optional<String> documentRef);
+
+    _FinalStage documentRef(String documentRef);
+
     _FinalStage lines(List<PostV1PurchasesOrdersCreateRequestLinesItem> lines);
 
     _FinalStage addLines(PostV1PurchasesOrdersCreateRequestLinesItem lines);
@@ -185,6 +197,8 @@ public final class PostV1PurchasesOrdersCreateRequest {
     private String orderDate;
 
     private List<PostV1PurchasesOrdersCreateRequestLinesItem> lines = new ArrayList<>();
+
+    private Optional<String> documentRef = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -211,6 +225,7 @@ public final class PostV1PurchasesOrdersCreateRequest {
       warehouseId(other.getWarehouseId());
       currency(other.getCurrency());
       notes(other.getNotes());
+      documentRef(other.getDocumentRef());
       lines(other.getLines());
       return this;
     }
@@ -253,6 +268,22 @@ public final class PostV1PurchasesOrdersCreateRequest {
       if (lines != null) {
         this.lines.addAll(lines);
       }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentRef(String documentRef) {
+      this.documentRef = Optional.ofNullable(documentRef);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentRef",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentRef(Optional<String> documentRef) {
+      this.documentRef = documentRef;
       return this;
     }
 
@@ -338,7 +369,7 @@ public final class PostV1PurchasesOrdersCreateRequest {
 
     @java.lang.Override
     public PostV1PurchasesOrdersCreateRequest build() {
-      return new PostV1PurchasesOrdersCreateRequest(partnerId, orderNumber, orderDate, expectedDate, warehouseId, currency, notes, lines, additionalProperties);
+      return new PostV1PurchasesOrdersCreateRequest(partnerId, orderNumber, orderDate, expectedDate, warehouseId, currency, notes, documentRef, lines, additionalProperties);
     }
 
     @java.lang.Override

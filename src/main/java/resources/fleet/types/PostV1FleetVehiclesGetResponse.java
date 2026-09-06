@@ -20,6 +20,7 @@ import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -58,6 +59,8 @@ public final class PostV1FleetVehiclesGetResponse {
 
   private final Optional<String> notes;
 
+  private final Optional<List<PostV1FleetVehiclesGetResponseDocumentsItem>> documents;
+
   private final Optional<PostV1FleetVehiclesGetResponseCurrentAssignment> currentAssignment;
 
   private final String createdAt;
@@ -69,6 +72,7 @@ public final class PostV1FleetVehiclesGetResponse {
       Optional<String> acquisitionDate, String marketValue, Optional<String> fixedAssetId,
       Optional<String> technicalInspectionDue, Optional<String> insuranceDue,
       PostV1FleetVehiclesGetResponseStatus status, Optional<String> notes,
+      Optional<List<PostV1FleetVehiclesGetResponseDocumentsItem>> documents,
       Optional<PostV1FleetVehiclesGetResponseCurrentAssignment> currentAssignment, String createdAt,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -85,6 +89,7 @@ public final class PostV1FleetVehiclesGetResponse {
     this.insuranceDue = insuranceDue;
     this.status = status;
     this.notes = notes;
+    this.documents = documents;
     this.currentAssignment = currentAssignment;
     this.createdAt = createdAt;
     this.additionalProperties = additionalProperties;
@@ -185,6 +190,14 @@ public final class PostV1FleetVehiclesGetResponse {
   }
 
   @JsonIgnore
+  public Optional<List<PostV1FleetVehiclesGetResponseDocumentsItem>> getDocuments() {
+    if (documents == null) {
+      return Optional.empty();
+    }
+    return documents;
+  }
+
+  @JsonIgnore
   public Optional<PostV1FleetVehiclesGetResponseCurrentAssignment> getCurrentAssignment() {
     if (currentAssignment == null) {
       return Optional.empty();
@@ -273,6 +286,15 @@ public final class PostV1FleetVehiclesGetResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("documents")
+  private Optional<List<PostV1FleetVehiclesGetResponseDocumentsItem>> _getDocuments() {
+    return documents;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("currentAssignment")
   private Optional<PostV1FleetVehiclesGetResponseCurrentAssignment> _getCurrentAssignment() {
     return currentAssignment;
@@ -290,12 +312,12 @@ public final class PostV1FleetVehiclesGetResponse {
   }
 
   private boolean equalTo(PostV1FleetVehiclesGetResponse other) {
-    return id.equals(other.id) && plateNumber.equals(other.plateNumber) && make.equals(other.make) && model.equals(other.model) && year.equals(other.year) && vin.equals(other.vin) && fuelType.equals(other.fuelType) && acquisitionDate.equals(other.acquisitionDate) && marketValue.equals(other.marketValue) && fixedAssetId.equals(other.fixedAssetId) && technicalInspectionDue.equals(other.technicalInspectionDue) && insuranceDue.equals(other.insuranceDue) && status.equals(other.status) && notes.equals(other.notes) && currentAssignment.equals(other.currentAssignment) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && plateNumber.equals(other.plateNumber) && make.equals(other.make) && model.equals(other.model) && year.equals(other.year) && vin.equals(other.vin) && fuelType.equals(other.fuelType) && acquisitionDate.equals(other.acquisitionDate) && marketValue.equals(other.marketValue) && fixedAssetId.equals(other.fixedAssetId) && technicalInspectionDue.equals(other.technicalInspectionDue) && insuranceDue.equals(other.insuranceDue) && status.equals(other.status) && notes.equals(other.notes) && documents.equals(other.documents) && currentAssignment.equals(other.currentAssignment) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.plateNumber, this.make, this.model, this.year, this.vin, this.fuelType, this.acquisitionDate, this.marketValue, this.fixedAssetId, this.technicalInspectionDue, this.insuranceDue, this.status, this.notes, this.currentAssignment, this.createdAt);
+    return Objects.hash(this.id, this.plateNumber, this.make, this.model, this.year, this.vin, this.fuelType, this.acquisitionDate, this.marketValue, this.fixedAssetId, this.technicalInspectionDue, this.insuranceDue, this.status, this.notes, this.documents, this.currentAssignment, this.createdAt);
   }
 
   @java.lang.Override
@@ -392,6 +414,12 @@ public final class PostV1FleetVehiclesGetResponse {
 
     _FinalStage notes(Nullable<String> notes);
 
+    _FinalStage documents(Optional<List<PostV1FleetVehiclesGetResponseDocumentsItem>> documents);
+
+    _FinalStage documents(List<PostV1FleetVehiclesGetResponseDocumentsItem> documents);
+
+    _FinalStage documents(Nullable<List<PostV1FleetVehiclesGetResponseDocumentsItem>> documents);
+
     _FinalStage currentAssignment(
         Optional<PostV1FleetVehiclesGetResponseCurrentAssignment> currentAssignment);
 
@@ -421,6 +449,8 @@ public final class PostV1FleetVehiclesGetResponse {
     private String createdAt;
 
     private Optional<PostV1FleetVehiclesGetResponseCurrentAssignment> currentAssignment = Optional.empty();
+
+    private Optional<List<PostV1FleetVehiclesGetResponseDocumentsItem>> documents = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -460,6 +490,7 @@ public final class PostV1FleetVehiclesGetResponse {
       insuranceDue(other.getInsuranceDue());
       status(other.getStatus());
       notes(other.getNotes());
+      documents(other.getDocuments());
       currentAssignment(other.getCurrentAssignment());
       createdAt(other.getCreatedAt());
       return this;
@@ -544,6 +575,38 @@ public final class PostV1FleetVehiclesGetResponse {
     public _FinalStage currentAssignment(
         Optional<PostV1FleetVehiclesGetResponseCurrentAssignment> currentAssignment) {
       this.currentAssignment = currentAssignment;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documents(
+        Nullable<List<PostV1FleetVehiclesGetResponseDocumentsItem>> documents) {
+      if (documents.isNull()) {
+        this.documents = null;
+      }
+      else if (documents.isEmpty()) {
+        this.documents = Optional.empty();
+      }
+      else {
+        this.documents = Optional.of(documents.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documents(List<PostV1FleetVehiclesGetResponseDocumentsItem> documents) {
+      this.documents = Optional.ofNullable(documents);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documents",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documents(
+        Optional<List<PostV1FleetVehiclesGetResponseDocumentsItem>> documents) {
+      this.documents = documents;
       return this;
     }
 
@@ -789,7 +852,7 @@ public final class PostV1FleetVehiclesGetResponse {
 
     @java.lang.Override
     public PostV1FleetVehiclesGetResponse build() {
-      return new PostV1FleetVehiclesGetResponse(id, plateNumber, make, model, year, vin, fuelType, acquisitionDate, marketValue, fixedAssetId, technicalInspectionDue, insuranceDue, status, notes, currentAssignment, createdAt, additionalProperties);
+      return new PostV1FleetVehiclesGetResponse(id, plateNumber, make, model, year, vin, fuelType, acquisitionDate, marketValue, fixedAssetId, technicalInspectionDue, insuranceDue, status, notes, documents, currentAssignment, createdAt, additionalProperties);
     }
 
     @java.lang.Override

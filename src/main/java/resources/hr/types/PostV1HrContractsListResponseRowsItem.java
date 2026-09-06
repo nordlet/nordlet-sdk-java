@@ -39,6 +39,8 @@ public final class PostV1HrContractsListResponseRowsItem {
 
   private final Optional<String> scheduleId;
 
+  private final Optional<String> agreementId;
+
   private final String contractNo;
 
   private final PostV1HrContractsListResponseRowsItemType type;
@@ -53,7 +55,9 @@ public final class PostV1HrContractsListResponseRowsItem {
 
   private final PostV1HrContractsListResponseRowsItemSalaryType salaryType;
 
-  private final String workHoursPerWeek;
+  private final String workHours;
+
+  private final PostV1HrContractsListResponseRowsItemWorkHoursUnit workHoursUnit;
 
   private final PostV1HrContractsListResponseRowsItemStatus status;
 
@@ -65,9 +69,11 @@ public final class PostV1HrContractsListResponseRowsItem {
 
   private PostV1HrContractsListResponseRowsItem(String id, String employeeId,
       Optional<String> positionId, Optional<String> departmentId, Optional<String> scheduleId,
-      String contractNo, PostV1HrContractsListResponseRowsItemType type, String startDate,
-      Optional<String> endDate, Optional<String> endReason, String baseSalary,
-      PostV1HrContractsListResponseRowsItemSalaryType salaryType, String workHoursPerWeek,
+      Optional<String> agreementId, String contractNo,
+      PostV1HrContractsListResponseRowsItemType type, String startDate, Optional<String> endDate,
+      Optional<String> endReason, String baseSalary,
+      PostV1HrContractsListResponseRowsItemSalaryType salaryType, String workHours,
+      PostV1HrContractsListResponseRowsItemWorkHoursUnit workHoursUnit,
       PostV1HrContractsListResponseRowsItemStatus status, Optional<String> notes, String createdAt,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -75,6 +81,7 @@ public final class PostV1HrContractsListResponseRowsItem {
     this.positionId = positionId;
     this.departmentId = departmentId;
     this.scheduleId = scheduleId;
+    this.agreementId = agreementId;
     this.contractNo = contractNo;
     this.type = type;
     this.startDate = startDate;
@@ -82,7 +89,8 @@ public final class PostV1HrContractsListResponseRowsItem {
     this.endReason = endReason;
     this.baseSalary = baseSalary;
     this.salaryType = salaryType;
-    this.workHoursPerWeek = workHoursPerWeek;
+    this.workHours = workHours;
+    this.workHoursUnit = workHoursUnit;
     this.status = status;
     this.notes = notes;
     this.createdAt = createdAt;
@@ -121,6 +129,14 @@ public final class PostV1HrContractsListResponseRowsItem {
       return Optional.empty();
     }
     return scheduleId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getAgreementId() {
+    if (agreementId == null) {
+      return Optional.empty();
+    }
+    return agreementId;
   }
 
   @JsonProperty("contractNo")
@@ -164,9 +180,14 @@ public final class PostV1HrContractsListResponseRowsItem {
     return salaryType;
   }
 
-  @JsonProperty("workHoursPerWeek")
-  public String getWorkHoursPerWeek() {
-    return workHoursPerWeek;
+  @JsonProperty("workHours")
+  public String getWorkHours() {
+    return workHours;
+  }
+
+  @JsonProperty("workHoursUnit")
+  public PostV1HrContractsListResponseRowsItemWorkHoursUnit getWorkHoursUnit() {
+    return workHoursUnit;
   }
 
   @JsonProperty("status")
@@ -218,6 +239,15 @@ public final class PostV1HrContractsListResponseRowsItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("agreementId")
+  private Optional<String> _getAgreementId() {
+    return agreementId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("endDate")
   private Optional<String> _getEndDate() {
     return endDate;
@@ -253,12 +283,12 @@ public final class PostV1HrContractsListResponseRowsItem {
   }
 
   private boolean equalTo(PostV1HrContractsListResponseRowsItem other) {
-    return id.equals(other.id) && employeeId.equals(other.employeeId) && positionId.equals(other.positionId) && departmentId.equals(other.departmentId) && scheduleId.equals(other.scheduleId) && contractNo.equals(other.contractNo) && type.equals(other.type) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && endReason.equals(other.endReason) && baseSalary.equals(other.baseSalary) && salaryType.equals(other.salaryType) && workHoursPerWeek.equals(other.workHoursPerWeek) && status.equals(other.status) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && employeeId.equals(other.employeeId) && positionId.equals(other.positionId) && departmentId.equals(other.departmentId) && scheduleId.equals(other.scheduleId) && agreementId.equals(other.agreementId) && contractNo.equals(other.contractNo) && type.equals(other.type) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && endReason.equals(other.endReason) && baseSalary.equals(other.baseSalary) && salaryType.equals(other.salaryType) && workHours.equals(other.workHours) && workHoursUnit.equals(other.workHoursUnit) && status.equals(other.status) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.employeeId, this.positionId, this.departmentId, this.scheduleId, this.contractNo, this.type, this.startDate, this.endDate, this.endReason, this.baseSalary, this.salaryType, this.workHoursPerWeek, this.status, this.notes, this.createdAt);
+    return Objects.hash(this.id, this.employeeId, this.positionId, this.departmentId, this.scheduleId, this.agreementId, this.contractNo, this.type, this.startDate, this.endDate, this.endReason, this.baseSalary, this.salaryType, this.workHours, this.workHoursUnit, this.status, this.notes, this.createdAt);
   }
 
   @java.lang.Override
@@ -297,12 +327,16 @@ public final class PostV1HrContractsListResponseRowsItem {
   }
 
   public interface SalaryTypeStage {
-    WorkHoursPerWeekStage salaryType(
-        @NotNull PostV1HrContractsListResponseRowsItemSalaryType salaryType);
+    WorkHoursStage salaryType(@NotNull PostV1HrContractsListResponseRowsItemSalaryType salaryType);
   }
 
-  public interface WorkHoursPerWeekStage {
-    StatusStage workHoursPerWeek(@NotNull String workHoursPerWeek);
+  public interface WorkHoursStage {
+    WorkHoursUnitStage workHours(@NotNull String workHours);
+  }
+
+  public interface WorkHoursUnitStage {
+    StatusStage workHoursUnit(
+        @NotNull PostV1HrContractsListResponseRowsItemWorkHoursUnit workHoursUnit);
   }
 
   public interface StatusStage {
@@ -338,6 +372,12 @@ public final class PostV1HrContractsListResponseRowsItem {
 
     _FinalStage scheduleId(Nullable<String> scheduleId);
 
+    _FinalStage agreementId(Optional<String> agreementId);
+
+    _FinalStage agreementId(String agreementId);
+
+    _FinalStage agreementId(Nullable<String> agreementId);
+
     _FinalStage endDate(Optional<String> endDate);
 
     _FinalStage endDate(String endDate);
@@ -360,7 +400,7 @@ public final class PostV1HrContractsListResponseRowsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, EmployeeIdStage, ContractNoStage, TypeStage, StartDateStage, BaseSalaryStage, SalaryTypeStage, WorkHoursPerWeekStage, StatusStage, CreatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, EmployeeIdStage, ContractNoStage, TypeStage, StartDateStage, BaseSalaryStage, SalaryTypeStage, WorkHoursStage, WorkHoursUnitStage, StatusStage, CreatedAtStage, _FinalStage {
     private String id;
 
     private String employeeId;
@@ -375,7 +415,9 @@ public final class PostV1HrContractsListResponseRowsItem {
 
     private PostV1HrContractsListResponseRowsItemSalaryType salaryType;
 
-    private String workHoursPerWeek;
+    private String workHours;
+
+    private PostV1HrContractsListResponseRowsItemWorkHoursUnit workHoursUnit;
 
     private PostV1HrContractsListResponseRowsItemStatus status;
 
@@ -386,6 +428,8 @@ public final class PostV1HrContractsListResponseRowsItem {
     private Optional<String> endReason = Optional.empty();
 
     private Optional<String> endDate = Optional.empty();
+
+    private Optional<String> agreementId = Optional.empty();
 
     private Optional<String> scheduleId = Optional.empty();
 
@@ -406,6 +450,7 @@ public final class PostV1HrContractsListResponseRowsItem {
       positionId(other.getPositionId());
       departmentId(other.getDepartmentId());
       scheduleId(other.getScheduleId());
+      agreementId(other.getAgreementId());
       contractNo(other.getContractNo());
       type(other.getType());
       startDate(other.getStartDate());
@@ -413,7 +458,8 @@ public final class PostV1HrContractsListResponseRowsItem {
       endReason(other.getEndReason());
       baseSalary(other.getBaseSalary());
       salaryType(other.getSalaryType());
-      workHoursPerWeek(other.getWorkHoursPerWeek());
+      workHours(other.getWorkHours());
+      workHoursUnit(other.getWorkHoursUnit());
       status(other.getStatus());
       notes(other.getNotes());
       createdAt(other.getCreatedAt());
@@ -464,16 +510,24 @@ public final class PostV1HrContractsListResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("salaryType")
-    public WorkHoursPerWeekStage salaryType(
+    public WorkHoursStage salaryType(
         @NotNull PostV1HrContractsListResponseRowsItemSalaryType salaryType) {
       this.salaryType = Objects.requireNonNull(salaryType, "salaryType must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("workHoursPerWeek")
-    public StatusStage workHoursPerWeek(@NotNull String workHoursPerWeek) {
-      this.workHoursPerWeek = Objects.requireNonNull(workHoursPerWeek, "workHoursPerWeek must not be null");
+    @JsonSetter("workHours")
+    public WorkHoursUnitStage workHours(@NotNull String workHours) {
+      this.workHours = Objects.requireNonNull(workHours, "workHours must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("workHoursUnit")
+    public StatusStage workHoursUnit(
+        @NotNull PostV1HrContractsListResponseRowsItemWorkHoursUnit workHoursUnit) {
+      this.workHoursUnit = Objects.requireNonNull(workHoursUnit, "workHoursUnit must not be null");
       return this;
     }
 
@@ -582,6 +636,36 @@ public final class PostV1HrContractsListResponseRowsItem {
     }
 
     @java.lang.Override
+    public _FinalStage agreementId(Nullable<String> agreementId) {
+      if (agreementId.isNull()) {
+        this.agreementId = null;
+      }
+      else if (agreementId.isEmpty()) {
+        this.agreementId = Optional.empty();
+      }
+      else {
+        this.agreementId = Optional.of(agreementId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage agreementId(String agreementId) {
+      this.agreementId = Optional.ofNullable(agreementId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "agreementId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage agreementId(Optional<String> agreementId) {
+      this.agreementId = agreementId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage scheduleId(Nullable<String> scheduleId) {
       if (scheduleId.isNull()) {
         this.scheduleId = null;
@@ -673,7 +757,7 @@ public final class PostV1HrContractsListResponseRowsItem {
 
     @java.lang.Override
     public PostV1HrContractsListResponseRowsItem build() {
-      return new PostV1HrContractsListResponseRowsItem(id, employeeId, positionId, departmentId, scheduleId, contractNo, type, startDate, endDate, endReason, baseSalary, salaryType, workHoursPerWeek, status, notes, createdAt, additionalProperties);
+      return new PostV1HrContractsListResponseRowsItem(id, employeeId, positionId, departmentId, scheduleId, agreementId, contractNo, type, startDate, endDate, endReason, baseSalary, salaryType, workHours, workHoursUnit, status, notes, createdAt, additionalProperties);
     }
 
     @java.lang.Override

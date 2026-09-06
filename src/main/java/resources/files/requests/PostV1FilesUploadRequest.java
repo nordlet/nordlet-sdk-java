@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
@@ -17,6 +18,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -26,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 public final class PostV1FilesUploadRequest {
   private final String entity;
 
-  private final String entityId;
+  private final Optional<String> entityId;
 
   private final String fileName;
 
@@ -36,8 +38,8 @@ public final class PostV1FilesUploadRequest {
 
   private final Map<String, Object> additionalProperties;
 
-  private PostV1FilesUploadRequest(String entity, String entityId, String fileName, String mimeType,
-      String content, Map<String, Object> additionalProperties) {
+  private PostV1FilesUploadRequest(String entity, Optional<String> entityId, String fileName,
+      String mimeType, String content, Map<String, Object> additionalProperties) {
     this.entity = entity;
     this.entityId = entityId;
     this.fileName = fileName;
@@ -52,7 +54,7 @@ public final class PostV1FilesUploadRequest {
   }
 
   @JsonProperty("entityId")
-  public String getEntityId() {
+  public Optional<String> getEntityId() {
     return entityId;
   }
 
@@ -104,13 +106,9 @@ public final class PostV1FilesUploadRequest {
   }
 
   public interface EntityStage {
-    EntityIdStage entity(@NotNull String entity);
+    FileNameStage entity(@NotNull String entity);
 
     Builder from(PostV1FilesUploadRequest other);
-  }
-
-  public interface EntityIdStage {
-    FileNameStage entityId(@NotNull String entityId);
   }
 
   public interface FileNameStage {
@@ -134,21 +132,25 @@ public final class PostV1FilesUploadRequest {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage entityId(Optional<String> entityId);
+
+    _FinalStage entityId(String entityId);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements EntityStage, EntityIdStage, FileNameStage, MimeTypeStage, ContentStage, _FinalStage {
+  public static final class Builder implements EntityStage, FileNameStage, MimeTypeStage, ContentStage, _FinalStage {
     private String entity;
-
-    private String entityId;
 
     private String fileName;
 
     private String mimeType;
 
     private String content;
+
+    private Optional<String> entityId = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -168,15 +170,8 @@ public final class PostV1FilesUploadRequest {
 
     @java.lang.Override
     @JsonSetter("entity")
-    public EntityIdStage entity(@NotNull String entity) {
+    public FileNameStage entity(@NotNull String entity) {
       this.entity = Objects.requireNonNull(entity, "entity must not be null");
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter("entityId")
-    public FileNameStage entityId(@NotNull String entityId) {
-      this.entityId = Objects.requireNonNull(entityId, "entityId must not be null");
       return this;
     }
 
@@ -202,6 +197,22 @@ public final class PostV1FilesUploadRequest {
     @JsonSetter("content")
     public _FinalStage content(@NotNull String content) {
       this.content = Objects.requireNonNull(content, "content must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage entityId(String entityId) {
+      this.entityId = Optional.ofNullable(entityId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "entityId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage entityId(Optional<String> entityId) {
+      this.entityId = entityId;
       return this;
     }
 

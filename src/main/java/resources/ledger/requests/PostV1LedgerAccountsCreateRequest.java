@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsCreateRequestTranslations;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsCreateRequestType;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -32,6 +33,8 @@ public final class PostV1LedgerAccountsCreateRequest {
 
   private final String name;
 
+  private final Optional<PostV1LedgerAccountsCreateRequestTranslations> translations;
+
   private final PostV1LedgerAccountsCreateRequestType type;
 
   private final Optional<String> parentId;
@@ -41,10 +44,12 @@ public final class PostV1LedgerAccountsCreateRequest {
   private final Map<String, Object> additionalProperties;
 
   private PostV1LedgerAccountsCreateRequest(String code, String name,
+      Optional<PostV1LedgerAccountsCreateRequestTranslations> translations,
       PostV1LedgerAccountsCreateRequestType type, Optional<String> parentId,
       Optional<Boolean> isPostable, Map<String, Object> additionalProperties) {
     this.code = code;
     this.name = name;
+    this.translations = translations;
     this.type = type;
     this.parentId = parentId;
     this.isPostable = isPostable;
@@ -59,6 +64,11 @@ public final class PostV1LedgerAccountsCreateRequest {
   @JsonProperty("name")
   public String getName() {
     return name;
+  }
+
+  @JsonProperty("translations")
+  public Optional<PostV1LedgerAccountsCreateRequestTranslations> getTranslations() {
+    return translations;
   }
 
   @JsonProperty("type")
@@ -88,12 +98,12 @@ public final class PostV1LedgerAccountsCreateRequest {
   }
 
   private boolean equalTo(PostV1LedgerAccountsCreateRequest other) {
-    return code.equals(other.code) && name.equals(other.name) && type.equals(other.type) && parentId.equals(other.parentId) && isPostable.equals(other.isPostable);
+    return code.equals(other.code) && name.equals(other.name) && translations.equals(other.translations) && type.equals(other.type) && parentId.equals(other.parentId) && isPostable.equals(other.isPostable);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.code, this.name, this.type, this.parentId, this.isPostable);
+    return Objects.hash(this.code, this.name, this.translations, this.type, this.parentId, this.isPostable);
   }
 
   @java.lang.Override
@@ -126,6 +136,10 @@ public final class PostV1LedgerAccountsCreateRequest {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage translations(Optional<PostV1LedgerAccountsCreateRequestTranslations> translations);
+
+    _FinalStage translations(PostV1LedgerAccountsCreateRequestTranslations translations);
+
     _FinalStage parentId(Optional<String> parentId);
 
     _FinalStage parentId(String parentId);
@@ -149,6 +163,8 @@ public final class PostV1LedgerAccountsCreateRequest {
 
     private Optional<String> parentId = Optional.empty();
 
+    private Optional<PostV1LedgerAccountsCreateRequestTranslations> translations = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -159,6 +175,7 @@ public final class PostV1LedgerAccountsCreateRequest {
     public Builder from(PostV1LedgerAccountsCreateRequest other) {
       code(other.getCode());
       name(other.getName());
+      translations(other.getTranslations());
       type(other.getType());
       parentId(other.getParentId());
       isPostable(other.getIsPostable());
@@ -219,8 +236,25 @@ public final class PostV1LedgerAccountsCreateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage translations(PostV1LedgerAccountsCreateRequestTranslations translations) {
+      this.translations = Optional.ofNullable(translations);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "translations",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage translations(
+        Optional<PostV1LedgerAccountsCreateRequestTranslations> translations) {
+      this.translations = translations;
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1LedgerAccountsCreateRequest build() {
-      return new PostV1LedgerAccountsCreateRequest(code, name, type, parentId, isPostable, additionalProperties);
+      return new PostV1LedgerAccountsCreateRequest(code, name, translations, type, parentId, isPostable, additionalProperties);
     }
 
     @java.lang.Override

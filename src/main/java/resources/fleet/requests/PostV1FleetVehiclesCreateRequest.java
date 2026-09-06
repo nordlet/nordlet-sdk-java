@@ -13,11 +13,13 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.fleet.types.PostV1FleetVehiclesCreateRequestDocumentsItem;
 import com.nordlet.api.resources.fleet.types.PostV1FleetVehiclesCreateRequestFuelType;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -52,6 +54,8 @@ public final class PostV1FleetVehiclesCreateRequest {
 
   private final Optional<String> notes;
 
+  private final Optional<List<PostV1FleetVehiclesCreateRequestDocumentsItem>> documents;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1FleetVehiclesCreateRequest(String plateNumber, String make, String model,
@@ -59,7 +63,9 @@ public final class PostV1FleetVehiclesCreateRequest {
       Optional<PostV1FleetVehiclesCreateRequestFuelType> fuelType, Optional<String> acquisitionDate,
       Optional<String> marketValue, Optional<String> fixedAssetId,
       Optional<String> technicalInspectionDue, Optional<String> insuranceDue,
-      Optional<String> notes, Map<String, Object> additionalProperties) {
+      Optional<String> notes,
+      Optional<List<PostV1FleetVehiclesCreateRequestDocumentsItem>> documents,
+      Map<String, Object> additionalProperties) {
     this.plateNumber = plateNumber;
     this.make = make;
     this.model = model;
@@ -72,6 +78,7 @@ public final class PostV1FleetVehiclesCreateRequest {
     this.technicalInspectionDue = technicalInspectionDue;
     this.insuranceDue = insuranceDue;
     this.notes = notes;
+    this.documents = documents;
     this.additionalProperties = additionalProperties;
   }
 
@@ -135,6 +142,11 @@ public final class PostV1FleetVehiclesCreateRequest {
     return notes;
   }
 
+  @JsonProperty("documents")
+  public Optional<List<PostV1FleetVehiclesCreateRequestDocumentsItem>> getDocuments() {
+    return documents;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -147,12 +159,12 @@ public final class PostV1FleetVehiclesCreateRequest {
   }
 
   private boolean equalTo(PostV1FleetVehiclesCreateRequest other) {
-    return plateNumber.equals(other.plateNumber) && make.equals(other.make) && model.equals(other.model) && year.equals(other.year) && vin.equals(other.vin) && fuelType.equals(other.fuelType) && acquisitionDate.equals(other.acquisitionDate) && marketValue.equals(other.marketValue) && fixedAssetId.equals(other.fixedAssetId) && technicalInspectionDue.equals(other.technicalInspectionDue) && insuranceDue.equals(other.insuranceDue) && notes.equals(other.notes);
+    return plateNumber.equals(other.plateNumber) && make.equals(other.make) && model.equals(other.model) && year.equals(other.year) && vin.equals(other.vin) && fuelType.equals(other.fuelType) && acquisitionDate.equals(other.acquisitionDate) && marketValue.equals(other.marketValue) && fixedAssetId.equals(other.fixedAssetId) && technicalInspectionDue.equals(other.technicalInspectionDue) && insuranceDue.equals(other.insuranceDue) && notes.equals(other.notes) && documents.equals(other.documents);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.plateNumber, this.make, this.model, this.year, this.vin, this.fuelType, this.acquisitionDate, this.marketValue, this.fixedAssetId, this.technicalInspectionDue, this.insuranceDue, this.notes);
+    return Objects.hash(this.plateNumber, this.make, this.model, this.year, this.vin, this.fuelType, this.acquisitionDate, this.marketValue, this.fixedAssetId, this.technicalInspectionDue, this.insuranceDue, this.notes, this.documents);
   }
 
   @java.lang.Override
@@ -220,6 +232,10 @@ public final class PostV1FleetVehiclesCreateRequest {
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
+
+    _FinalStage documents(Optional<List<PostV1FleetVehiclesCreateRequestDocumentsItem>> documents);
+
+    _FinalStage documents(List<PostV1FleetVehiclesCreateRequestDocumentsItem> documents);
   }
 
   @JsonIgnoreProperties(
@@ -231,6 +247,8 @@ public final class PostV1FleetVehiclesCreateRequest {
     private String make;
 
     private String model;
+
+    private Optional<List<PostV1FleetVehiclesCreateRequestDocumentsItem>> documents = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -270,6 +288,7 @@ public final class PostV1FleetVehiclesCreateRequest {
       technicalInspectionDue(other.getTechnicalInspectionDue());
       insuranceDue(other.getInsuranceDue());
       notes(other.getNotes());
+      documents(other.getDocuments());
       return this;
     }
 
@@ -291,6 +310,23 @@ public final class PostV1FleetVehiclesCreateRequest {
     @JsonSetter("model")
     public _FinalStage model(@NotNull String model) {
       this.model = Objects.requireNonNull(model, "model must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documents(List<PostV1FleetVehiclesCreateRequestDocumentsItem> documents) {
+      this.documents = Optional.ofNullable(documents);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documents",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documents(
+        Optional<List<PostV1FleetVehiclesCreateRequestDocumentsItem>> documents) {
+      this.documents = documents;
       return this;
     }
 
@@ -440,7 +476,7 @@ public final class PostV1FleetVehiclesCreateRequest {
 
     @java.lang.Override
     public PostV1FleetVehiclesCreateRequest build() {
-      return new PostV1FleetVehiclesCreateRequest(plateNumber, make, model, year, vin, fuelType, acquisitionDate, marketValue, fixedAssetId, technicalInspectionDue, insuranceDue, notes, additionalProperties);
+      return new PostV1FleetVehiclesCreateRequest(plateNumber, make, model, year, vin, fuelType, acquisitionDate, marketValue, fixedAssetId, technicalInspectionDue, insuranceDue, notes, documents, additionalProperties);
     }
 
     @java.lang.Override

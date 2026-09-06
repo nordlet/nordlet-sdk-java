@@ -19,6 +19,7 @@ import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -67,6 +68,8 @@ public final class PostV1HrEmployeesAnonymizeResponse {
 
   private final Optional<String> notes;
 
+  private final Optional<List<PostV1HrEmployeesAnonymizeResponseAttributesItem>> attributes;
+
   private final String createdAt;
 
   private final Map<String, Object> additionalProperties;
@@ -78,7 +81,8 @@ public final class PostV1HrEmployeesAnonymizeResponse {
       Optional<String> socialInsuranceNo, Optional<String> socialInsuranceStart,
       Optional<String> hireDate, Optional<String> terminationDate, boolean applyNpd,
       Optional<String> npdOverride, boolean pensionAccumulation,
-      PostV1HrEmployeesAnonymizeResponseStatus status, Optional<String> notes, String createdAt,
+      PostV1HrEmployeesAnonymizeResponseStatus status, Optional<String> notes,
+      Optional<List<PostV1HrEmployeesAnonymizeResponseAttributesItem>> attributes, String createdAt,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.code = code;
@@ -99,6 +103,7 @@ public final class PostV1HrEmployeesAnonymizeResponse {
     this.pensionAccumulation = pensionAccumulation;
     this.status = status;
     this.notes = notes;
+    this.attributes = attributes;
     this.createdAt = createdAt;
     this.additionalProperties = additionalProperties;
   }
@@ -237,6 +242,14 @@ public final class PostV1HrEmployeesAnonymizeResponse {
     return notes;
   }
 
+  @JsonIgnore
+  public Optional<List<PostV1HrEmployeesAnonymizeResponseAttributesItem>> getAttributes() {
+    if (attributes == null) {
+      return Optional.empty();
+    }
+    return attributes;
+  }
+
   @JsonProperty("createdAt")
   public String getCreatedAt() {
     return createdAt;
@@ -359,6 +372,15 @@ public final class PostV1HrEmployeesAnonymizeResponse {
     return notes;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("attributes")
+  private Optional<List<PostV1HrEmployeesAnonymizeResponseAttributesItem>> _getAttributes() {
+    return attributes;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -371,12 +393,12 @@ public final class PostV1HrEmployeesAnonymizeResponse {
   }
 
   private boolean equalTo(PostV1HrEmployeesAnonymizeResponse other) {
-    return id.equals(other.id) && code.equals(other.code) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && personalCode.equals(other.personalCode) && birthDate.equals(other.birthDate) && email.equals(other.email) && phone.equals(other.phone) && address.equals(other.address) && iban.equals(other.iban) && socialInsuranceNo.equals(other.socialInsuranceNo) && socialInsuranceStart.equals(other.socialInsuranceStart) && hireDate.equals(other.hireDate) && terminationDate.equals(other.terminationDate) && applyNpd == other.applyNpd && npdOverride.equals(other.npdOverride) && pensionAccumulation == other.pensionAccumulation && status.equals(other.status) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && code.equals(other.code) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && personalCode.equals(other.personalCode) && birthDate.equals(other.birthDate) && email.equals(other.email) && phone.equals(other.phone) && address.equals(other.address) && iban.equals(other.iban) && socialInsuranceNo.equals(other.socialInsuranceNo) && socialInsuranceStart.equals(other.socialInsuranceStart) && hireDate.equals(other.hireDate) && terminationDate.equals(other.terminationDate) && applyNpd == other.applyNpd && npdOverride.equals(other.npdOverride) && pensionAccumulation == other.pensionAccumulation && status.equals(other.status) && notes.equals(other.notes) && attributes.equals(other.attributes) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.code, this.firstName, this.lastName, this.personalCode, this.birthDate, this.email, this.phone, this.address, this.iban, this.socialInsuranceNo, this.socialInsuranceStart, this.hireDate, this.terminationDate, this.applyNpd, this.npdOverride, this.pensionAccumulation, this.status, this.notes, this.createdAt);
+    return Objects.hash(this.id, this.code, this.firstName, this.lastName, this.personalCode, this.birthDate, this.email, this.phone, this.address, this.iban, this.socialInsuranceNo, this.socialInsuranceStart, this.hireDate, this.terminationDate, this.applyNpd, this.npdOverride, this.pensionAccumulation, this.status, this.notes, this.attributes, this.createdAt);
   }
 
   @java.lang.Override
@@ -502,6 +524,14 @@ public final class PostV1HrEmployeesAnonymizeResponse {
     _FinalStage notes(String notes);
 
     _FinalStage notes(Nullable<String> notes);
+
+    _FinalStage attributes(
+        Optional<List<PostV1HrEmployeesAnonymizeResponseAttributesItem>> attributes);
+
+    _FinalStage attributes(List<PostV1HrEmployeesAnonymizeResponseAttributesItem> attributes);
+
+    _FinalStage attributes(
+        Nullable<List<PostV1HrEmployeesAnonymizeResponseAttributesItem>> attributes);
   }
 
   @JsonIgnoreProperties(
@@ -521,6 +551,8 @@ public final class PostV1HrEmployeesAnonymizeResponse {
     private PostV1HrEmployeesAnonymizeResponseStatus status;
 
     private String createdAt;
+
+    private Optional<List<PostV1HrEmployeesAnonymizeResponseAttributesItem>> attributes = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -575,6 +607,7 @@ public final class PostV1HrEmployeesAnonymizeResponse {
       pensionAccumulation(other.getPensionAccumulation());
       status(other.getStatus());
       notes(other.getNotes());
+      attributes(other.getAttributes());
       createdAt(other.getCreatedAt());
       return this;
     }
@@ -625,6 +658,39 @@ public final class PostV1HrEmployeesAnonymizeResponse {
     @JsonSetter("createdAt")
     public _FinalStage createdAt(@NotNull String createdAt) {
       this.createdAt = Objects.requireNonNull(createdAt, "createdAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage attributes(
+        Nullable<List<PostV1HrEmployeesAnonymizeResponseAttributesItem>> attributes) {
+      if (attributes.isNull()) {
+        this.attributes = null;
+      }
+      else if (attributes.isEmpty()) {
+        this.attributes = Optional.empty();
+      }
+      else {
+        this.attributes = Optional.of(attributes.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage attributes(
+        List<PostV1HrEmployeesAnonymizeResponseAttributesItem> attributes) {
+      this.attributes = Optional.ofNullable(attributes);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "attributes",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage attributes(
+        Optional<List<PostV1HrEmployeesAnonymizeResponseAttributesItem>> attributes) {
+      this.attributes = attributes;
       return this;
     }
 
@@ -1020,7 +1086,7 @@ public final class PostV1HrEmployeesAnonymizeResponse {
 
     @java.lang.Override
     public PostV1HrEmployeesAnonymizeResponse build() {
-      return new PostV1HrEmployeesAnonymizeResponse(id, code, firstName, lastName, personalCode, birthDate, email, phone, address, iban, socialInsuranceNo, socialInsuranceStart, hireDate, terminationDate, applyNpd, npdOverride, pensionAccumulation, status, notes, createdAt, additionalProperties);
+      return new PostV1HrEmployeesAnonymizeResponse(id, code, firstName, lastName, personalCode, birthDate, email, phone, address, iban, socialInsuranceNo, socialInsuranceStart, hireDate, terminationDate, applyNpd, npdOverride, pensionAccumulation, status, notes, attributes, createdAt, additionalProperties);
     }
 
     @java.lang.Override

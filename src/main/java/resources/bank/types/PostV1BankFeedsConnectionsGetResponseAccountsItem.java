@@ -35,6 +35,10 @@ public final class PostV1BankFeedsConnectionsGetResponseAccountsItem {
 
   private final Optional<String> bankAccountId;
 
+  private final Optional<String> importTemplateId;
+
+  private final PostV1BankFeedsConnectionsGetResponseAccountsItemSyncSchedule syncSchedule;
+
   private final String externalId;
 
   private final Optional<String> iban;
@@ -52,12 +56,16 @@ public final class PostV1BankFeedsConnectionsGetResponseAccountsItem {
   private final Map<String, Object> additionalProperties;
 
   private PostV1BankFeedsConnectionsGetResponseAccountsItem(String id, String connectionId,
-      Optional<String> bankAccountId, String externalId, Optional<String> iban, String currency,
-      Optional<String> name, Optional<String> product, Optional<String> syncFrom,
-      Optional<String> lastSyncedAt, Map<String, Object> additionalProperties) {
+      Optional<String> bankAccountId, Optional<String> importTemplateId,
+      PostV1BankFeedsConnectionsGetResponseAccountsItemSyncSchedule syncSchedule, String externalId,
+      Optional<String> iban, String currency, Optional<String> name, Optional<String> product,
+      Optional<String> syncFrom, Optional<String> lastSyncedAt,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.connectionId = connectionId;
     this.bankAccountId = bankAccountId;
+    this.importTemplateId = importTemplateId;
+    this.syncSchedule = syncSchedule;
     this.externalId = externalId;
     this.iban = iban;
     this.currency = currency;
@@ -84,6 +92,19 @@ public final class PostV1BankFeedsConnectionsGetResponseAccountsItem {
       return Optional.empty();
     }
     return bankAccountId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getImportTemplateId() {
+    if (importTemplateId == null) {
+      return Optional.empty();
+    }
+    return importTemplateId;
+  }
+
+  @JsonProperty("syncSchedule")
+  public PostV1BankFeedsConnectionsGetResponseAccountsItemSyncSchedule getSyncSchedule() {
+    return syncSchedule;
   }
 
   @JsonProperty("externalId")
@@ -149,6 +170,15 @@ public final class PostV1BankFeedsConnectionsGetResponseAccountsItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("importTemplateId")
+  private Optional<String> _getImportTemplateId() {
+    return importTemplateId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("iban")
   private Optional<String> _getIban() {
     return iban;
@@ -202,12 +232,12 @@ public final class PostV1BankFeedsConnectionsGetResponseAccountsItem {
   }
 
   private boolean equalTo(PostV1BankFeedsConnectionsGetResponseAccountsItem other) {
-    return id.equals(other.id) && connectionId.equals(other.connectionId) && bankAccountId.equals(other.bankAccountId) && externalId.equals(other.externalId) && iban.equals(other.iban) && currency.equals(other.currency) && name.equals(other.name) && product.equals(other.product) && syncFrom.equals(other.syncFrom) && lastSyncedAt.equals(other.lastSyncedAt);
+    return id.equals(other.id) && connectionId.equals(other.connectionId) && bankAccountId.equals(other.bankAccountId) && importTemplateId.equals(other.importTemplateId) && syncSchedule.equals(other.syncSchedule) && externalId.equals(other.externalId) && iban.equals(other.iban) && currency.equals(other.currency) && name.equals(other.name) && product.equals(other.product) && syncFrom.equals(other.syncFrom) && lastSyncedAt.equals(other.lastSyncedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.connectionId, this.bankAccountId, this.externalId, this.iban, this.currency, this.name, this.product, this.syncFrom, this.lastSyncedAt);
+    return Objects.hash(this.id, this.connectionId, this.bankAccountId, this.importTemplateId, this.syncSchedule, this.externalId, this.iban, this.currency, this.name, this.product, this.syncFrom, this.lastSyncedAt);
   }
 
   @java.lang.Override
@@ -226,7 +256,12 @@ public final class PostV1BankFeedsConnectionsGetResponseAccountsItem {
   }
 
   public interface ConnectionIdStage {
-    ExternalIdStage connectionId(@NotNull String connectionId);
+    SyncScheduleStage connectionId(@NotNull String connectionId);
+  }
+
+  public interface SyncScheduleStage {
+    ExternalIdStage syncSchedule(
+        @NotNull PostV1BankFeedsConnectionsGetResponseAccountsItemSyncSchedule syncSchedule);
   }
 
   public interface ExternalIdStage {
@@ -249,6 +284,12 @@ public final class PostV1BankFeedsConnectionsGetResponseAccountsItem {
     _FinalStage bankAccountId(String bankAccountId);
 
     _FinalStage bankAccountId(Nullable<String> bankAccountId);
+
+    _FinalStage importTemplateId(Optional<String> importTemplateId);
+
+    _FinalStage importTemplateId(String importTemplateId);
+
+    _FinalStage importTemplateId(Nullable<String> importTemplateId);
 
     _FinalStage iban(Optional<String> iban);
 
@@ -284,10 +325,12 @@ public final class PostV1BankFeedsConnectionsGetResponseAccountsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, ConnectionIdStage, ExternalIdStage, CurrencyStage, _FinalStage {
+  public static final class Builder implements IdStage, ConnectionIdStage, SyncScheduleStage, ExternalIdStage, CurrencyStage, _FinalStage {
     private String id;
 
     private String connectionId;
+
+    private PostV1BankFeedsConnectionsGetResponseAccountsItemSyncSchedule syncSchedule;
 
     private String externalId;
 
@@ -303,6 +346,8 @@ public final class PostV1BankFeedsConnectionsGetResponseAccountsItem {
 
     private Optional<String> iban = Optional.empty();
 
+    private Optional<String> importTemplateId = Optional.empty();
+
     private Optional<String> bankAccountId = Optional.empty();
 
     @JsonAnySetter
@@ -316,6 +361,8 @@ public final class PostV1BankFeedsConnectionsGetResponseAccountsItem {
       id(other.getId());
       connectionId(other.getConnectionId());
       bankAccountId(other.getBankAccountId());
+      importTemplateId(other.getImportTemplateId());
+      syncSchedule(other.getSyncSchedule());
       externalId(other.getExternalId());
       iban(other.getIban());
       currency(other.getCurrency());
@@ -335,8 +382,16 @@ public final class PostV1BankFeedsConnectionsGetResponseAccountsItem {
 
     @java.lang.Override
     @JsonSetter("connectionId")
-    public ExternalIdStage connectionId(@NotNull String connectionId) {
+    public SyncScheduleStage connectionId(@NotNull String connectionId) {
       this.connectionId = Objects.requireNonNull(connectionId, "connectionId must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("syncSchedule")
+    public ExternalIdStage syncSchedule(
+        @NotNull PostV1BankFeedsConnectionsGetResponseAccountsItemSyncSchedule syncSchedule) {
+      this.syncSchedule = Objects.requireNonNull(syncSchedule, "syncSchedule must not be null");
       return this;
     }
 
@@ -505,6 +560,36 @@ public final class PostV1BankFeedsConnectionsGetResponseAccountsItem {
     }
 
     @java.lang.Override
+    public _FinalStage importTemplateId(Nullable<String> importTemplateId) {
+      if (importTemplateId.isNull()) {
+        this.importTemplateId = null;
+      }
+      else if (importTemplateId.isEmpty()) {
+        this.importTemplateId = Optional.empty();
+      }
+      else {
+        this.importTemplateId = Optional.of(importTemplateId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage importTemplateId(String importTemplateId) {
+      this.importTemplateId = Optional.ofNullable(importTemplateId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "importTemplateId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage importTemplateId(Optional<String> importTemplateId) {
+      this.importTemplateId = importTemplateId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage bankAccountId(Nullable<String> bankAccountId) {
       if (bankAccountId.isNull()) {
         this.bankAccountId = null;
@@ -536,7 +621,7 @@ public final class PostV1BankFeedsConnectionsGetResponseAccountsItem {
 
     @java.lang.Override
     public PostV1BankFeedsConnectionsGetResponseAccountsItem build() {
-      return new PostV1BankFeedsConnectionsGetResponseAccountsItem(id, connectionId, bankAccountId, externalId, iban, currency, name, product, syncFrom, lastSyncedAt, additionalProperties);
+      return new PostV1BankFeedsConnectionsGetResponseAccountsItem(id, connectionId, bankAccountId, importTemplateId, syncSchedule, externalId, iban, currency, name, product, syncFrom, lastSyncedAt, additionalProperties);
     }
 
     @java.lang.Override
