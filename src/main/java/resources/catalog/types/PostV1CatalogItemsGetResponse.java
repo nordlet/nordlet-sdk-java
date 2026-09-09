@@ -16,6 +16,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.Nullable;
 import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
+import java.lang.Boolean;
+import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.util.ArrayList;
@@ -75,6 +77,60 @@ public final class PostV1CatalogItemsGetResponse {
 
   private final List<PostV1CatalogItemsGetResponseComponentsItem> components;
 
+  private final Optional<String> kindId;
+
+  private final Optional<String> saleAccountCode;
+
+  private final Optional<String> purchaseAccountCode;
+
+  private final Optional<String> expenseAccountCode;
+
+  private final Optional<String> manufacturer;
+
+  private final Optional<String> grossMassKg;
+
+  private final Optional<String> minQuantity;
+
+  private final Optional<String> costPrice;
+
+  private final boolean isFreePrice;
+
+  private final Optional<String> externalId;
+
+  private final boolean isReturnable;
+
+  private final boolean commentRequired;
+
+  private final Optional<String> priceFrom;
+
+  private final Optional<String> priceTo;
+
+  private final Optional<String> minPrice;
+
+  private final Optional<String> discountPercent;
+
+  private final Optional<String> maxDiscountPercent;
+
+  private final Optional<Long> loyaltyPoints;
+
+  private final Optional<String> department;
+
+  private final Optional<Long> ageRestriction;
+
+  private final Optional<String> packageQuantity;
+
+  private final Optional<String> taraCode;
+
+  private final Optional<String> certificateNumber;
+
+  private final Optional<String> certificateDate;
+
+  private final Optional<String> validFrom;
+
+  private final Optional<String> validTo;
+
+  private final Optional<Map<String, Optional<Boolean>>> posFlags;
+
   private final String createdAt;
 
   private final String updatedAt;
@@ -91,8 +147,19 @@ public final class PostV1CatalogItemsGetResponse {
       Optional<String> description, Optional<String> groupId,
       Optional<Map<String, Optional<String>>> attributes, Optional<String> documentRef,
       Optional<Map<String, Optional<PostV1CatalogItemsGetResponseTranslationsValue>>> translations,
-      List<PostV1CatalogItemsGetResponseComponentsItem> components, String createdAt,
-      String updatedAt, Map<String, Object> additionalProperties) {
+      List<PostV1CatalogItemsGetResponseComponentsItem> components, Optional<String> kindId,
+      Optional<String> saleAccountCode, Optional<String> purchaseAccountCode,
+      Optional<String> expenseAccountCode, Optional<String> manufacturer,
+      Optional<String> grossMassKg, Optional<String> minQuantity, Optional<String> costPrice,
+      boolean isFreePrice, Optional<String> externalId, boolean isReturnable,
+      boolean commentRequired, Optional<String> priceFrom, Optional<String> priceTo,
+      Optional<String> minPrice, Optional<String> discountPercent,
+      Optional<String> maxDiscountPercent, Optional<Long> loyaltyPoints,
+      Optional<String> department, Optional<Long> ageRestriction, Optional<String> packageQuantity,
+      Optional<String> taraCode, Optional<String> certificateNumber,
+      Optional<String> certificateDate, Optional<String> validFrom, Optional<String> validTo,
+      Optional<Map<String, Optional<Boolean>>> posFlags, String createdAt, String updatedAt,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.type = type;
     this.tracking = tracking;
@@ -115,6 +182,33 @@ public final class PostV1CatalogItemsGetResponse {
     this.documentRef = documentRef;
     this.translations = translations;
     this.components = components;
+    this.kindId = kindId;
+    this.saleAccountCode = saleAccountCode;
+    this.purchaseAccountCode = purchaseAccountCode;
+    this.expenseAccountCode = expenseAccountCode;
+    this.manufacturer = manufacturer;
+    this.grossMassKg = grossMassKg;
+    this.minQuantity = minQuantity;
+    this.costPrice = costPrice;
+    this.isFreePrice = isFreePrice;
+    this.externalId = externalId;
+    this.isReturnable = isReturnable;
+    this.commentRequired = commentRequired;
+    this.priceFrom = priceFrom;
+    this.priceTo = priceTo;
+    this.minPrice = minPrice;
+    this.discountPercent = discountPercent;
+    this.maxDiscountPercent = maxDiscountPercent;
+    this.loyaltyPoints = loyaltyPoints;
+    this.department = department;
+    this.ageRestriction = ageRestriction;
+    this.packageQuantity = packageQuantity;
+    this.taraCode = taraCode;
+    this.certificateNumber = certificateNumber;
+    this.certificateDate = certificateDate;
+    this.validFrom = validFrom;
+    this.validTo = validTo;
+    this.posFlags = posFlags;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.additionalProperties = additionalProperties;
@@ -279,6 +373,213 @@ public final class PostV1CatalogItemsGetResponse {
     return components;
   }
 
+  @JsonIgnore
+  public Optional<String> getKindId() {
+    if (kindId == null) {
+      return Optional.empty();
+    }
+    return kindId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getSaleAccountCode() {
+    if (saleAccountCode == null) {
+      return Optional.empty();
+    }
+    return saleAccountCode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPurchaseAccountCode() {
+    if (purchaseAccountCode == null) {
+      return Optional.empty();
+    }
+    return purchaseAccountCode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getExpenseAccountCode() {
+    if (expenseAccountCode == null) {
+      return Optional.empty();
+    }
+    return expenseAccountCode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getManufacturer() {
+    if (manufacturer == null) {
+      return Optional.empty();
+    }
+    return manufacturer;
+  }
+
+  @JsonIgnore
+  public Optional<String> getGrossMassKg() {
+    if (grossMassKg == null) {
+      return Optional.empty();
+    }
+    return grossMassKg;
+  }
+
+  @JsonIgnore
+  public Optional<String> getMinQuantity() {
+    if (minQuantity == null) {
+      return Optional.empty();
+    }
+    return minQuantity;
+  }
+
+  @JsonIgnore
+  public Optional<String> getCostPrice() {
+    if (costPrice == null) {
+      return Optional.empty();
+    }
+    return costPrice;
+  }
+
+  @JsonProperty("isFreePrice")
+  public boolean getIsFreePrice() {
+    return isFreePrice;
+  }
+
+  @JsonIgnore
+  public Optional<String> getExternalId() {
+    if (externalId == null) {
+      return Optional.empty();
+    }
+    return externalId;
+  }
+
+  @JsonProperty("isReturnable")
+  public boolean getIsReturnable() {
+    return isReturnable;
+  }
+
+  @JsonProperty("commentRequired")
+  public boolean getCommentRequired() {
+    return commentRequired;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPriceFrom() {
+    if (priceFrom == null) {
+      return Optional.empty();
+    }
+    return priceFrom;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPriceTo() {
+    if (priceTo == null) {
+      return Optional.empty();
+    }
+    return priceTo;
+  }
+
+  @JsonIgnore
+  public Optional<String> getMinPrice() {
+    if (minPrice == null) {
+      return Optional.empty();
+    }
+    return minPrice;
+  }
+
+  @JsonIgnore
+  public Optional<String> getDiscountPercent() {
+    if (discountPercent == null) {
+      return Optional.empty();
+    }
+    return discountPercent;
+  }
+
+  @JsonIgnore
+  public Optional<String> getMaxDiscountPercent() {
+    if (maxDiscountPercent == null) {
+      return Optional.empty();
+    }
+    return maxDiscountPercent;
+  }
+
+  @JsonIgnore
+  public Optional<Long> getLoyaltyPoints() {
+    if (loyaltyPoints == null) {
+      return Optional.empty();
+    }
+    return loyaltyPoints;
+  }
+
+  @JsonIgnore
+  public Optional<String> getDepartment() {
+    if (department == null) {
+      return Optional.empty();
+    }
+    return department;
+  }
+
+  @JsonIgnore
+  public Optional<Long> getAgeRestriction() {
+    if (ageRestriction == null) {
+      return Optional.empty();
+    }
+    return ageRestriction;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPackageQuantity() {
+    if (packageQuantity == null) {
+      return Optional.empty();
+    }
+    return packageQuantity;
+  }
+
+  @JsonIgnore
+  public Optional<String> getTaraCode() {
+    if (taraCode == null) {
+      return Optional.empty();
+    }
+    return taraCode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getCertificateNumber() {
+    if (certificateNumber == null) {
+      return Optional.empty();
+    }
+    return certificateNumber;
+  }
+
+  @JsonIgnore
+  public Optional<String> getCertificateDate() {
+    if (certificateDate == null) {
+      return Optional.empty();
+    }
+    return certificateDate;
+  }
+
+  @JsonIgnore
+  public Optional<String> getValidFrom() {
+    if (validFrom == null) {
+      return Optional.empty();
+    }
+    return validFrom;
+  }
+
+  @JsonIgnore
+  public Optional<String> getValidTo() {
+    if (validTo == null) {
+      return Optional.empty();
+    }
+    return validTo;
+  }
+
+  @JsonIgnore
+  public Optional<Map<String, Optional<Boolean>>> getPosFlags() {
+    if (posFlags == null) {
+      return Optional.empty();
+    }
+    return posFlags;
+  }
+
   @JsonProperty("createdAt")
   public String getCreatedAt() {
     return createdAt;
@@ -434,6 +735,222 @@ public final class PostV1CatalogItemsGetResponse {
     return translations;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("kindId")
+  private Optional<String> _getKindId() {
+    return kindId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("saleAccountCode")
+  private Optional<String> _getSaleAccountCode() {
+    return saleAccountCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("purchaseAccountCode")
+  private Optional<String> _getPurchaseAccountCode() {
+    return purchaseAccountCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("expenseAccountCode")
+  private Optional<String> _getExpenseAccountCode() {
+    return expenseAccountCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("manufacturer")
+  private Optional<String> _getManufacturer() {
+    return manufacturer;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("grossMassKg")
+  private Optional<String> _getGrossMassKg() {
+    return grossMassKg;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("minQuantity")
+  private Optional<String> _getMinQuantity() {
+    return minQuantity;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("costPrice")
+  private Optional<String> _getCostPrice() {
+    return costPrice;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("externalId")
+  private Optional<String> _getExternalId() {
+    return externalId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("priceFrom")
+  private Optional<String> _getPriceFrom() {
+    return priceFrom;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("priceTo")
+  private Optional<String> _getPriceTo() {
+    return priceTo;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("minPrice")
+  private Optional<String> _getMinPrice() {
+    return minPrice;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("discountPercent")
+  private Optional<String> _getDiscountPercent() {
+    return discountPercent;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("maxDiscountPercent")
+  private Optional<String> _getMaxDiscountPercent() {
+    return maxDiscountPercent;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("loyaltyPoints")
+  private Optional<Long> _getLoyaltyPoints() {
+    return loyaltyPoints;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("department")
+  private Optional<String> _getDepartment() {
+    return department;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("ageRestriction")
+  private Optional<Long> _getAgeRestriction() {
+    return ageRestriction;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("packageQuantity")
+  private Optional<String> _getPackageQuantity() {
+    return packageQuantity;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("taraCode")
+  private Optional<String> _getTaraCode() {
+    return taraCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("certificateNumber")
+  private Optional<String> _getCertificateNumber() {
+    return certificateNumber;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("certificateDate")
+  private Optional<String> _getCertificateDate() {
+    return certificateDate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("validFrom")
+  private Optional<String> _getValidFrom() {
+    return validFrom;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("validTo")
+  private Optional<String> _getValidTo() {
+    return validTo;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("posFlags")
+  private Optional<Map<String, Optional<Boolean>>> _getPosFlags() {
+    return posFlags;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -446,12 +963,12 @@ public final class PostV1CatalogItemsGetResponse {
   }
 
   private boolean equalTo(PostV1CatalogItemsGetResponse other) {
-    return id.equals(other.id) && type.equals(other.type) && tracking.equals(other.tracking) && name.equals(other.name) && code.equals(other.code) && barcode.equals(other.barcode) && unit.equals(other.unit) && vatClassifierCode.equals(other.vatClassifierCode) && vatRatePercent.equals(other.vatRatePercent) && salePriceExclVat.equals(other.salePriceExclVat) && purchasePriceExclVat.equals(other.purchasePriceExclVat) && cnCode.equals(other.cnCode) && originCountry.equals(other.originCountry) && netMassKg.equals(other.netMassKg) && supplementaryUnit.equals(other.supplementaryUnit) && supplementaryQtyPerUnit.equals(other.supplementaryQtyPerUnit) && description.equals(other.description) && groupId.equals(other.groupId) && attributes.equals(other.attributes) && documentRef.equals(other.documentRef) && translations.equals(other.translations) && components.equals(other.components) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && type.equals(other.type) && tracking.equals(other.tracking) && name.equals(other.name) && code.equals(other.code) && barcode.equals(other.barcode) && unit.equals(other.unit) && vatClassifierCode.equals(other.vatClassifierCode) && vatRatePercent.equals(other.vatRatePercent) && salePriceExclVat.equals(other.salePriceExclVat) && purchasePriceExclVat.equals(other.purchasePriceExclVat) && cnCode.equals(other.cnCode) && originCountry.equals(other.originCountry) && netMassKg.equals(other.netMassKg) && supplementaryUnit.equals(other.supplementaryUnit) && supplementaryQtyPerUnit.equals(other.supplementaryQtyPerUnit) && description.equals(other.description) && groupId.equals(other.groupId) && attributes.equals(other.attributes) && documentRef.equals(other.documentRef) && translations.equals(other.translations) && components.equals(other.components) && kindId.equals(other.kindId) && saleAccountCode.equals(other.saleAccountCode) && purchaseAccountCode.equals(other.purchaseAccountCode) && expenseAccountCode.equals(other.expenseAccountCode) && manufacturer.equals(other.manufacturer) && grossMassKg.equals(other.grossMassKg) && minQuantity.equals(other.minQuantity) && costPrice.equals(other.costPrice) && isFreePrice == other.isFreePrice && externalId.equals(other.externalId) && isReturnable == other.isReturnable && commentRequired == other.commentRequired && priceFrom.equals(other.priceFrom) && priceTo.equals(other.priceTo) && minPrice.equals(other.minPrice) && discountPercent.equals(other.discountPercent) && maxDiscountPercent.equals(other.maxDiscountPercent) && loyaltyPoints.equals(other.loyaltyPoints) && department.equals(other.department) && ageRestriction.equals(other.ageRestriction) && packageQuantity.equals(other.packageQuantity) && taraCode.equals(other.taraCode) && certificateNumber.equals(other.certificateNumber) && certificateDate.equals(other.certificateDate) && validFrom.equals(other.validFrom) && validTo.equals(other.validTo) && posFlags.equals(other.posFlags) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.type, this.tracking, this.name, this.code, this.barcode, this.unit, this.vatClassifierCode, this.vatRatePercent, this.salePriceExclVat, this.purchasePriceExclVat, this.cnCode, this.originCountry, this.netMassKg, this.supplementaryUnit, this.supplementaryQtyPerUnit, this.description, this.groupId, this.attributes, this.documentRef, this.translations, this.components, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.type, this.tracking, this.name, this.code, this.barcode, this.unit, this.vatClassifierCode, this.vatRatePercent, this.salePriceExclVat, this.purchasePriceExclVat, this.cnCode, this.originCountry, this.netMassKg, this.supplementaryUnit, this.supplementaryQtyPerUnit, this.description, this.groupId, this.attributes, this.documentRef, this.translations, this.components, this.kindId, this.saleAccountCode, this.purchaseAccountCode, this.expenseAccountCode, this.manufacturer, this.grossMassKg, this.minQuantity, this.costPrice, this.isFreePrice, this.externalId, this.isReturnable, this.commentRequired, this.priceFrom, this.priceTo, this.minPrice, this.discountPercent, this.maxDiscountPercent, this.loyaltyPoints, this.department, this.ageRestriction, this.packageQuantity, this.taraCode, this.certificateNumber, this.certificateDate, this.validFrom, this.validTo, this.posFlags, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -482,7 +999,19 @@ public final class PostV1CatalogItemsGetResponse {
   }
 
   public interface UnitStage {
-    CreatedAtStage unit(@NotNull String unit);
+    IsFreePriceStage unit(@NotNull String unit);
+  }
+
+  public interface IsFreePriceStage {
+    IsReturnableStage isFreePrice(boolean isFreePrice);
+  }
+
+  public interface IsReturnableStage {
+    CommentRequiredStage isReturnable(boolean isReturnable);
+  }
+
+  public interface CommentRequiredStage {
+    CreatedAtStage commentRequired(boolean commentRequired);
   }
 
   public interface CreatedAtStage {
@@ -604,12 +1133,156 @@ public final class PostV1CatalogItemsGetResponse {
     _FinalStage addComponents(PostV1CatalogItemsGetResponseComponentsItem components);
 
     _FinalStage addAllComponents(List<PostV1CatalogItemsGetResponseComponentsItem> components);
+
+    _FinalStage kindId(Optional<String> kindId);
+
+    _FinalStage kindId(String kindId);
+
+    _FinalStage kindId(Nullable<String> kindId);
+
+    _FinalStage saleAccountCode(Optional<String> saleAccountCode);
+
+    _FinalStage saleAccountCode(String saleAccountCode);
+
+    _FinalStage saleAccountCode(Nullable<String> saleAccountCode);
+
+    _FinalStage purchaseAccountCode(Optional<String> purchaseAccountCode);
+
+    _FinalStage purchaseAccountCode(String purchaseAccountCode);
+
+    _FinalStage purchaseAccountCode(Nullable<String> purchaseAccountCode);
+
+    _FinalStage expenseAccountCode(Optional<String> expenseAccountCode);
+
+    _FinalStage expenseAccountCode(String expenseAccountCode);
+
+    _FinalStage expenseAccountCode(Nullable<String> expenseAccountCode);
+
+    _FinalStage manufacturer(Optional<String> manufacturer);
+
+    _FinalStage manufacturer(String manufacturer);
+
+    _FinalStage manufacturer(Nullable<String> manufacturer);
+
+    _FinalStage grossMassKg(Optional<String> grossMassKg);
+
+    _FinalStage grossMassKg(String grossMassKg);
+
+    _FinalStage grossMassKg(Nullable<String> grossMassKg);
+
+    _FinalStage minQuantity(Optional<String> minQuantity);
+
+    _FinalStage minQuantity(String minQuantity);
+
+    _FinalStage minQuantity(Nullable<String> minQuantity);
+
+    _FinalStage costPrice(Optional<String> costPrice);
+
+    _FinalStage costPrice(String costPrice);
+
+    _FinalStage costPrice(Nullable<String> costPrice);
+
+    _FinalStage externalId(Optional<String> externalId);
+
+    _FinalStage externalId(String externalId);
+
+    _FinalStage externalId(Nullable<String> externalId);
+
+    _FinalStage priceFrom(Optional<String> priceFrom);
+
+    _FinalStage priceFrom(String priceFrom);
+
+    _FinalStage priceFrom(Nullable<String> priceFrom);
+
+    _FinalStage priceTo(Optional<String> priceTo);
+
+    _FinalStage priceTo(String priceTo);
+
+    _FinalStage priceTo(Nullable<String> priceTo);
+
+    _FinalStage minPrice(Optional<String> minPrice);
+
+    _FinalStage minPrice(String minPrice);
+
+    _FinalStage minPrice(Nullable<String> minPrice);
+
+    _FinalStage discountPercent(Optional<String> discountPercent);
+
+    _FinalStage discountPercent(String discountPercent);
+
+    _FinalStage discountPercent(Nullable<String> discountPercent);
+
+    _FinalStage maxDiscountPercent(Optional<String> maxDiscountPercent);
+
+    _FinalStage maxDiscountPercent(String maxDiscountPercent);
+
+    _FinalStage maxDiscountPercent(Nullable<String> maxDiscountPercent);
+
+    _FinalStage loyaltyPoints(Optional<Long> loyaltyPoints);
+
+    _FinalStage loyaltyPoints(Long loyaltyPoints);
+
+    _FinalStage loyaltyPoints(Nullable<Long> loyaltyPoints);
+
+    _FinalStage department(Optional<String> department);
+
+    _FinalStage department(String department);
+
+    _FinalStage department(Nullable<String> department);
+
+    _FinalStage ageRestriction(Optional<Long> ageRestriction);
+
+    _FinalStage ageRestriction(Long ageRestriction);
+
+    _FinalStage ageRestriction(Nullable<Long> ageRestriction);
+
+    _FinalStage packageQuantity(Optional<String> packageQuantity);
+
+    _FinalStage packageQuantity(String packageQuantity);
+
+    _FinalStage packageQuantity(Nullable<String> packageQuantity);
+
+    _FinalStage taraCode(Optional<String> taraCode);
+
+    _FinalStage taraCode(String taraCode);
+
+    _FinalStage taraCode(Nullable<String> taraCode);
+
+    _FinalStage certificateNumber(Optional<String> certificateNumber);
+
+    _FinalStage certificateNumber(String certificateNumber);
+
+    _FinalStage certificateNumber(Nullable<String> certificateNumber);
+
+    _FinalStage certificateDate(Optional<String> certificateDate);
+
+    _FinalStage certificateDate(String certificateDate);
+
+    _FinalStage certificateDate(Nullable<String> certificateDate);
+
+    _FinalStage validFrom(Optional<String> validFrom);
+
+    _FinalStage validFrom(String validFrom);
+
+    _FinalStage validFrom(Nullable<String> validFrom);
+
+    _FinalStage validTo(Optional<String> validTo);
+
+    _FinalStage validTo(String validTo);
+
+    _FinalStage validTo(Nullable<String> validTo);
+
+    _FinalStage posFlags(Optional<Map<String, Optional<Boolean>>> posFlags);
+
+    _FinalStage posFlags(Map<String, Optional<Boolean>> posFlags);
+
+    _FinalStage posFlags(Nullable<Map<String, Optional<Boolean>>> posFlags);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, TypeStage, TrackingStage, NameStage, UnitStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, TypeStage, TrackingStage, NameStage, UnitStage, IsFreePriceStage, IsReturnableStage, CommentRequiredStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
     private String id;
 
     private PostV1CatalogItemsGetResponseType type;
@@ -620,9 +1293,63 @@ public final class PostV1CatalogItemsGetResponse {
 
     private String unit;
 
+    private boolean isFreePrice;
+
+    private boolean isReturnable;
+
+    private boolean commentRequired;
+
     private String createdAt;
 
     private String updatedAt;
+
+    private Optional<Map<String, Optional<Boolean>>> posFlags = Optional.empty();
+
+    private Optional<String> validTo = Optional.empty();
+
+    private Optional<String> validFrom = Optional.empty();
+
+    private Optional<String> certificateDate = Optional.empty();
+
+    private Optional<String> certificateNumber = Optional.empty();
+
+    private Optional<String> taraCode = Optional.empty();
+
+    private Optional<String> packageQuantity = Optional.empty();
+
+    private Optional<Long> ageRestriction = Optional.empty();
+
+    private Optional<String> department = Optional.empty();
+
+    private Optional<Long> loyaltyPoints = Optional.empty();
+
+    private Optional<String> maxDiscountPercent = Optional.empty();
+
+    private Optional<String> discountPercent = Optional.empty();
+
+    private Optional<String> minPrice = Optional.empty();
+
+    private Optional<String> priceTo = Optional.empty();
+
+    private Optional<String> priceFrom = Optional.empty();
+
+    private Optional<String> externalId = Optional.empty();
+
+    private Optional<String> costPrice = Optional.empty();
+
+    private Optional<String> minQuantity = Optional.empty();
+
+    private Optional<String> grossMassKg = Optional.empty();
+
+    private Optional<String> manufacturer = Optional.empty();
+
+    private Optional<String> expenseAccountCode = Optional.empty();
+
+    private Optional<String> purchaseAccountCode = Optional.empty();
+
+    private Optional<String> saleAccountCode = Optional.empty();
+
+    private Optional<String> kindId = Optional.empty();
 
     private List<PostV1CatalogItemsGetResponseComponentsItem> components = new ArrayList<>();
 
@@ -688,6 +1415,33 @@ public final class PostV1CatalogItemsGetResponse {
       documentRef(other.getDocumentRef());
       translations(other.getTranslations());
       components(other.getComponents());
+      kindId(other.getKindId());
+      saleAccountCode(other.getSaleAccountCode());
+      purchaseAccountCode(other.getPurchaseAccountCode());
+      expenseAccountCode(other.getExpenseAccountCode());
+      manufacturer(other.getManufacturer());
+      grossMassKg(other.getGrossMassKg());
+      minQuantity(other.getMinQuantity());
+      costPrice(other.getCostPrice());
+      isFreePrice(other.getIsFreePrice());
+      externalId(other.getExternalId());
+      isReturnable(other.getIsReturnable());
+      commentRequired(other.getCommentRequired());
+      priceFrom(other.getPriceFrom());
+      priceTo(other.getPriceTo());
+      minPrice(other.getMinPrice());
+      discountPercent(other.getDiscountPercent());
+      maxDiscountPercent(other.getMaxDiscountPercent());
+      loyaltyPoints(other.getLoyaltyPoints());
+      department(other.getDepartment());
+      ageRestriction(other.getAgeRestriction());
+      packageQuantity(other.getPackageQuantity());
+      taraCode(other.getTaraCode());
+      certificateNumber(other.getCertificateNumber());
+      certificateDate(other.getCertificateDate());
+      validFrom(other.getValidFrom());
+      validTo(other.getValidTo());
+      posFlags(other.getPosFlags());
       createdAt(other.getCreatedAt());
       updatedAt(other.getUpdatedAt());
       return this;
@@ -723,8 +1477,29 @@ public final class PostV1CatalogItemsGetResponse {
 
     @java.lang.Override
     @JsonSetter("unit")
-    public CreatedAtStage unit(@NotNull String unit) {
+    public IsFreePriceStage unit(@NotNull String unit) {
       this.unit = Objects.requireNonNull(unit, "unit must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("isFreePrice")
+    public IsReturnableStage isFreePrice(boolean isFreePrice) {
+      this.isFreePrice = isFreePrice;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("isReturnable")
+    public CommentRequiredStage isReturnable(boolean isReturnable) {
+      this.isReturnable = isReturnable;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("commentRequired")
+    public CreatedAtStage commentRequired(boolean commentRequired) {
+      this.commentRequired = commentRequired;
       return this;
     }
 
@@ -739,6 +1514,726 @@ public final class PostV1CatalogItemsGetResponse {
     @JsonSetter("updatedAt")
     public _FinalStage updatedAt(@NotNull String updatedAt) {
       this.updatedAt = Objects.requireNonNull(updatedAt, "updatedAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage posFlags(Nullable<Map<String, Optional<Boolean>>> posFlags) {
+      if (posFlags.isNull()) {
+        this.posFlags = null;
+      }
+      else if (posFlags.isEmpty()) {
+        this.posFlags = Optional.empty();
+      }
+      else {
+        this.posFlags = Optional.of(posFlags.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage posFlags(Map<String, Optional<Boolean>> posFlags) {
+      this.posFlags = Optional.ofNullable(posFlags);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "posFlags",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage posFlags(Optional<Map<String, Optional<Boolean>>> posFlags) {
+      this.posFlags = posFlags;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage validTo(Nullable<String> validTo) {
+      if (validTo.isNull()) {
+        this.validTo = null;
+      }
+      else if (validTo.isEmpty()) {
+        this.validTo = Optional.empty();
+      }
+      else {
+        this.validTo = Optional.of(validTo.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage validTo(String validTo) {
+      this.validTo = Optional.ofNullable(validTo);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "validTo",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage validTo(Optional<String> validTo) {
+      this.validTo = validTo;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage validFrom(Nullable<String> validFrom) {
+      if (validFrom.isNull()) {
+        this.validFrom = null;
+      }
+      else if (validFrom.isEmpty()) {
+        this.validFrom = Optional.empty();
+      }
+      else {
+        this.validFrom = Optional.of(validFrom.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage validFrom(String validFrom) {
+      this.validFrom = Optional.ofNullable(validFrom);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "validFrom",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage validFrom(Optional<String> validFrom) {
+      this.validFrom = validFrom;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage certificateDate(Nullable<String> certificateDate) {
+      if (certificateDate.isNull()) {
+        this.certificateDate = null;
+      }
+      else if (certificateDate.isEmpty()) {
+        this.certificateDate = Optional.empty();
+      }
+      else {
+        this.certificateDate = Optional.of(certificateDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage certificateDate(String certificateDate) {
+      this.certificateDate = Optional.ofNullable(certificateDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "certificateDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage certificateDate(Optional<String> certificateDate) {
+      this.certificateDate = certificateDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage certificateNumber(Nullable<String> certificateNumber) {
+      if (certificateNumber.isNull()) {
+        this.certificateNumber = null;
+      }
+      else if (certificateNumber.isEmpty()) {
+        this.certificateNumber = Optional.empty();
+      }
+      else {
+        this.certificateNumber = Optional.of(certificateNumber.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage certificateNumber(String certificateNumber) {
+      this.certificateNumber = Optional.ofNullable(certificateNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "certificateNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage certificateNumber(Optional<String> certificateNumber) {
+      this.certificateNumber = certificateNumber;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage taraCode(Nullable<String> taraCode) {
+      if (taraCode.isNull()) {
+        this.taraCode = null;
+      }
+      else if (taraCode.isEmpty()) {
+        this.taraCode = Optional.empty();
+      }
+      else {
+        this.taraCode = Optional.of(taraCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage taraCode(String taraCode) {
+      this.taraCode = Optional.ofNullable(taraCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "taraCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage taraCode(Optional<String> taraCode) {
+      this.taraCode = taraCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage packageQuantity(Nullable<String> packageQuantity) {
+      if (packageQuantity.isNull()) {
+        this.packageQuantity = null;
+      }
+      else if (packageQuantity.isEmpty()) {
+        this.packageQuantity = Optional.empty();
+      }
+      else {
+        this.packageQuantity = Optional.of(packageQuantity.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage packageQuantity(String packageQuantity) {
+      this.packageQuantity = Optional.ofNullable(packageQuantity);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "packageQuantity",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage packageQuantity(Optional<String> packageQuantity) {
+      this.packageQuantity = packageQuantity;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage ageRestriction(Nullable<Long> ageRestriction) {
+      if (ageRestriction.isNull()) {
+        this.ageRestriction = null;
+      }
+      else if (ageRestriction.isEmpty()) {
+        this.ageRestriction = Optional.empty();
+      }
+      else {
+        this.ageRestriction = Optional.of(ageRestriction.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage ageRestriction(Long ageRestriction) {
+      this.ageRestriction = Optional.ofNullable(ageRestriction);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "ageRestriction",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage ageRestriction(Optional<Long> ageRestriction) {
+      this.ageRestriction = ageRestriction;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage department(Nullable<String> department) {
+      if (department.isNull()) {
+        this.department = null;
+      }
+      else if (department.isEmpty()) {
+        this.department = Optional.empty();
+      }
+      else {
+        this.department = Optional.of(department.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage department(String department) {
+      this.department = Optional.ofNullable(department);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "department",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage department(Optional<String> department) {
+      this.department = department;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage loyaltyPoints(Nullable<Long> loyaltyPoints) {
+      if (loyaltyPoints.isNull()) {
+        this.loyaltyPoints = null;
+      }
+      else if (loyaltyPoints.isEmpty()) {
+        this.loyaltyPoints = Optional.empty();
+      }
+      else {
+        this.loyaltyPoints = Optional.of(loyaltyPoints.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage loyaltyPoints(Long loyaltyPoints) {
+      this.loyaltyPoints = Optional.ofNullable(loyaltyPoints);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "loyaltyPoints",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage loyaltyPoints(Optional<Long> loyaltyPoints) {
+      this.loyaltyPoints = loyaltyPoints;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage maxDiscountPercent(Nullable<String> maxDiscountPercent) {
+      if (maxDiscountPercent.isNull()) {
+        this.maxDiscountPercent = null;
+      }
+      else if (maxDiscountPercent.isEmpty()) {
+        this.maxDiscountPercent = Optional.empty();
+      }
+      else {
+        this.maxDiscountPercent = Optional.of(maxDiscountPercent.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage maxDiscountPercent(String maxDiscountPercent) {
+      this.maxDiscountPercent = Optional.ofNullable(maxDiscountPercent);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "maxDiscountPercent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage maxDiscountPercent(Optional<String> maxDiscountPercent) {
+      this.maxDiscountPercent = maxDiscountPercent;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage discountPercent(Nullable<String> discountPercent) {
+      if (discountPercent.isNull()) {
+        this.discountPercent = null;
+      }
+      else if (discountPercent.isEmpty()) {
+        this.discountPercent = Optional.empty();
+      }
+      else {
+        this.discountPercent = Optional.of(discountPercent.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage discountPercent(String discountPercent) {
+      this.discountPercent = Optional.ofNullable(discountPercent);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "discountPercent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage discountPercent(Optional<String> discountPercent) {
+      this.discountPercent = discountPercent;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage minPrice(Nullable<String> minPrice) {
+      if (minPrice.isNull()) {
+        this.minPrice = null;
+      }
+      else if (minPrice.isEmpty()) {
+        this.minPrice = Optional.empty();
+      }
+      else {
+        this.minPrice = Optional.of(minPrice.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage minPrice(String minPrice) {
+      this.minPrice = Optional.ofNullable(minPrice);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "minPrice",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage minPrice(Optional<String> minPrice) {
+      this.minPrice = minPrice;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage priceTo(Nullable<String> priceTo) {
+      if (priceTo.isNull()) {
+        this.priceTo = null;
+      }
+      else if (priceTo.isEmpty()) {
+        this.priceTo = Optional.empty();
+      }
+      else {
+        this.priceTo = Optional.of(priceTo.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage priceTo(String priceTo) {
+      this.priceTo = Optional.ofNullable(priceTo);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "priceTo",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage priceTo(Optional<String> priceTo) {
+      this.priceTo = priceTo;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage priceFrom(Nullable<String> priceFrom) {
+      if (priceFrom.isNull()) {
+        this.priceFrom = null;
+      }
+      else if (priceFrom.isEmpty()) {
+        this.priceFrom = Optional.empty();
+      }
+      else {
+        this.priceFrom = Optional.of(priceFrom.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage priceFrom(String priceFrom) {
+      this.priceFrom = Optional.ofNullable(priceFrom);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "priceFrom",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage priceFrom(Optional<String> priceFrom) {
+      this.priceFrom = priceFrom;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage externalId(Nullable<String> externalId) {
+      if (externalId.isNull()) {
+        this.externalId = null;
+      }
+      else if (externalId.isEmpty()) {
+        this.externalId = Optional.empty();
+      }
+      else {
+        this.externalId = Optional.of(externalId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage externalId(String externalId) {
+      this.externalId = Optional.ofNullable(externalId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "externalId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage externalId(Optional<String> externalId) {
+      this.externalId = externalId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage costPrice(Nullable<String> costPrice) {
+      if (costPrice.isNull()) {
+        this.costPrice = null;
+      }
+      else if (costPrice.isEmpty()) {
+        this.costPrice = Optional.empty();
+      }
+      else {
+        this.costPrice = Optional.of(costPrice.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage costPrice(String costPrice) {
+      this.costPrice = Optional.ofNullable(costPrice);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "costPrice",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage costPrice(Optional<String> costPrice) {
+      this.costPrice = costPrice;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage minQuantity(Nullable<String> minQuantity) {
+      if (minQuantity.isNull()) {
+        this.minQuantity = null;
+      }
+      else if (minQuantity.isEmpty()) {
+        this.minQuantity = Optional.empty();
+      }
+      else {
+        this.minQuantity = Optional.of(minQuantity.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage minQuantity(String minQuantity) {
+      this.minQuantity = Optional.ofNullable(minQuantity);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "minQuantity",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage minQuantity(Optional<String> minQuantity) {
+      this.minQuantity = minQuantity;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage grossMassKg(Nullable<String> grossMassKg) {
+      if (grossMassKg.isNull()) {
+        this.grossMassKg = null;
+      }
+      else if (grossMassKg.isEmpty()) {
+        this.grossMassKg = Optional.empty();
+      }
+      else {
+        this.grossMassKg = Optional.of(grossMassKg.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage grossMassKg(String grossMassKg) {
+      this.grossMassKg = Optional.ofNullable(grossMassKg);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "grossMassKg",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage grossMassKg(Optional<String> grossMassKg) {
+      this.grossMassKg = grossMassKg;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage manufacturer(Nullable<String> manufacturer) {
+      if (manufacturer.isNull()) {
+        this.manufacturer = null;
+      }
+      else if (manufacturer.isEmpty()) {
+        this.manufacturer = Optional.empty();
+      }
+      else {
+        this.manufacturer = Optional.of(manufacturer.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage manufacturer(String manufacturer) {
+      this.manufacturer = Optional.ofNullable(manufacturer);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "manufacturer",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage manufacturer(Optional<String> manufacturer) {
+      this.manufacturer = manufacturer;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage expenseAccountCode(Nullable<String> expenseAccountCode) {
+      if (expenseAccountCode.isNull()) {
+        this.expenseAccountCode = null;
+      }
+      else if (expenseAccountCode.isEmpty()) {
+        this.expenseAccountCode = Optional.empty();
+      }
+      else {
+        this.expenseAccountCode = Optional.of(expenseAccountCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage expenseAccountCode(String expenseAccountCode) {
+      this.expenseAccountCode = Optional.ofNullable(expenseAccountCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "expenseAccountCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage expenseAccountCode(Optional<String> expenseAccountCode) {
+      this.expenseAccountCode = expenseAccountCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage purchaseAccountCode(Nullable<String> purchaseAccountCode) {
+      if (purchaseAccountCode.isNull()) {
+        this.purchaseAccountCode = null;
+      }
+      else if (purchaseAccountCode.isEmpty()) {
+        this.purchaseAccountCode = Optional.empty();
+      }
+      else {
+        this.purchaseAccountCode = Optional.of(purchaseAccountCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage purchaseAccountCode(String purchaseAccountCode) {
+      this.purchaseAccountCode = Optional.ofNullable(purchaseAccountCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "purchaseAccountCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage purchaseAccountCode(Optional<String> purchaseAccountCode) {
+      this.purchaseAccountCode = purchaseAccountCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage saleAccountCode(Nullable<String> saleAccountCode) {
+      if (saleAccountCode.isNull()) {
+        this.saleAccountCode = null;
+      }
+      else if (saleAccountCode.isEmpty()) {
+        this.saleAccountCode = Optional.empty();
+      }
+      else {
+        this.saleAccountCode = Optional.of(saleAccountCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage saleAccountCode(String saleAccountCode) {
+      this.saleAccountCode = Optional.ofNullable(saleAccountCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "saleAccountCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage saleAccountCode(Optional<String> saleAccountCode) {
+      this.saleAccountCode = saleAccountCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage kindId(Nullable<String> kindId) {
+      if (kindId.isNull()) {
+        this.kindId = null;
+      }
+      else if (kindId.isEmpty()) {
+        this.kindId = Optional.empty();
+      }
+      else {
+        this.kindId = Optional.of(kindId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage kindId(String kindId) {
+      this.kindId = Optional.ofNullable(kindId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "kindId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage kindId(Optional<String> kindId) {
+      this.kindId = kindId;
       return this;
     }
 
@@ -1255,7 +2750,7 @@ public final class PostV1CatalogItemsGetResponse {
 
     @java.lang.Override
     public PostV1CatalogItemsGetResponse build() {
-      return new PostV1CatalogItemsGetResponse(id, type, tracking, name, code, barcode, unit, vatClassifierCode, vatRatePercent, salePriceExclVat, purchasePriceExclVat, cnCode, originCountry, netMassKg, supplementaryUnit, supplementaryQtyPerUnit, description, groupId, attributes, documentRef, translations, components, createdAt, updatedAt, additionalProperties);
+      return new PostV1CatalogItemsGetResponse(id, type, tracking, name, code, barcode, unit, vatClassifierCode, vatRatePercent, salePriceExclVat, purchasePriceExclVat, cnCode, originCountry, netMassKg, supplementaryUnit, supplementaryQtyPerUnit, description, groupId, attributes, documentRef, translations, components, kindId, saleAccountCode, purchaseAccountCode, expenseAccountCode, manufacturer, grossMassKg, minQuantity, costPrice, isFreePrice, externalId, isReturnable, commentRequired, priceFrom, priceTo, minPrice, discountPercent, maxDiscountPercent, loyaltyPoints, department, ageRestriction, packageQuantity, taraCode, certificateNumber, certificateDate, validFrom, validTo, posFlags, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

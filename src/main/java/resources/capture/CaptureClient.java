@@ -12,12 +12,20 @@ import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsExtractR
 import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsGetRequest;
 import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsListRequest;
 import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsUploadRequest;
+import com.nordlet.api.resources.capture.requests.PostV1CaptureInboundEmailRequest;
+import com.nordlet.api.resources.capture.requests.PostV1CaptureSettingsGetRequest;
+import com.nordlet.api.resources.capture.requests.PostV1CaptureSettingsRegenerateIntakeRequest;
+import com.nordlet.api.resources.capture.requests.PostV1CaptureSettingsUpdateRequest;
 import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsConfirmResponse;
 import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsDeleteResponse;
 import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsExtractResponse;
 import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsGetResponse;
 import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsListResponse;
 import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsUploadResponse;
+import com.nordlet.api.resources.capture.types.PostV1CaptureInboundEmailResponse;
+import com.nordlet.api.resources.capture.types.PostV1CaptureSettingsGetResponse;
+import com.nordlet.api.resources.capture.types.PostV1CaptureSettingsRegenerateIntakeResponse;
+import com.nordlet.api.resources.capture.types.PostV1CaptureSettingsUpdateResponse;
 
 public class CaptureClient {
   protected final ClientOptions clientOptions;
@@ -34,6 +42,82 @@ public class CaptureClient {
    */
   public RawCaptureClient withRawResponse() {
     return this.rawClient;
+  }
+
+  public PostV1CaptureSettingsGetResponse postV1CaptureSettingsGet() {
+    return this.rawClient.postV1CaptureSettingsGet().body();
+  }
+
+  public PostV1CaptureSettingsGetResponse postV1CaptureSettingsGet(RequestOptions requestOptions) {
+    return this.rawClient.postV1CaptureSettingsGet(requestOptions).body();
+  }
+
+  public PostV1CaptureSettingsGetResponse postV1CaptureSettingsGet(
+      PostV1CaptureSettingsGetRequest request) {
+    return this.rawClient.postV1CaptureSettingsGet(request).body();
+  }
+
+  public PostV1CaptureSettingsGetResponse postV1CaptureSettingsGet(
+      PostV1CaptureSettingsGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1CaptureSettingsGet(request, requestOptions).body();
+  }
+
+  public PostV1CaptureSettingsUpdateResponse postV1CaptureSettingsUpdate() {
+    return this.rawClient.postV1CaptureSettingsUpdate().body();
+  }
+
+  public PostV1CaptureSettingsUpdateResponse postV1CaptureSettingsUpdate(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1CaptureSettingsUpdate(requestOptions).body();
+  }
+
+  public PostV1CaptureSettingsUpdateResponse postV1CaptureSettingsUpdate(
+      PostV1CaptureSettingsUpdateRequest request) {
+    return this.rawClient.postV1CaptureSettingsUpdate(request).body();
+  }
+
+  public PostV1CaptureSettingsUpdateResponse postV1CaptureSettingsUpdate(
+      PostV1CaptureSettingsUpdateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1CaptureSettingsUpdate(request, requestOptions).body();
+  }
+
+  public PostV1CaptureSettingsRegenerateIntakeResponse postV1CaptureSettingsRegenerateIntake() {
+    return this.rawClient.postV1CaptureSettingsRegenerateIntake().body();
+  }
+
+  public PostV1CaptureSettingsRegenerateIntakeResponse postV1CaptureSettingsRegenerateIntake(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1CaptureSettingsRegenerateIntake(requestOptions).body();
+  }
+
+  public PostV1CaptureSettingsRegenerateIntakeResponse postV1CaptureSettingsRegenerateIntake(
+      PostV1CaptureSettingsRegenerateIntakeRequest request) {
+    return this.rawClient.postV1CaptureSettingsRegenerateIntake(request).body();
+  }
+
+  public PostV1CaptureSettingsRegenerateIntakeResponse postV1CaptureSettingsRegenerateIntake(
+      PostV1CaptureSettingsRegenerateIntakeRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1CaptureSettingsRegenerateIntake(request, requestOptions).body();
+  }
+
+  public PostV1CaptureInboundEmailResponse receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
+      ) {
+    return this.rawClient.receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson().body();
+  }
+
+  public PostV1CaptureInboundEmailResponse receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
+      RequestOptions requestOptions) {
+    return this.rawClient.receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(requestOptions).body();
+  }
+
+  public PostV1CaptureInboundEmailResponse receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
+      PostV1CaptureInboundEmailRequest request) {
+    return this.rawClient.receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(request).body();
+  }
+
+  public PostV1CaptureInboundEmailResponse receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
+      PostV1CaptureInboundEmailRequest request, RequestOptions requestOptions) {
+    return this.rawClient.receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(request, requestOptions).body();
   }
 
   public PostV1CaptureDocumentsUploadResponse readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft(

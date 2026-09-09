@@ -14,6 +14,8 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.partners.types.PostV1PartnersCreateRequestAddress;
+import com.nordlet.api.resources.partners.types.PostV1PartnersCreateRequestCorrespondenceAddress;
+import com.nordlet.api.resources.partners.types.PostV1PartnersCreateRequestLegalCountryClass;
 import com.nordlet.api.resources.partners.types.PostV1PartnersCreateRequestType;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -64,9 +66,43 @@ public final class PostV1PartnersCreateRequest {
 
   private final Optional<PostV1PartnersCreateRequestAddress> address;
 
+  private final Optional<PostV1PartnersCreateRequestCorrespondenceAddress> correspondenceAddress;
+
   private final Optional<String> notes;
 
   private final Optional<String> documentRef;
+
+  private final Optional<String> shortName;
+
+  private final Optional<String> website;
+
+  private final Optional<String> fax;
+
+  private final Optional<String> eoriCode;
+
+  private final Optional<String> otherCode;
+
+  private final Optional<String> foreignTaxNumber;
+
+  private final Optional<Boolean> autoDebtReminder;
+
+  private final Optional<String> lateInterestPercent;
+
+  private final Optional<String> firstCallDate;
+
+  private final Optional<String> lastCallDate;
+
+  private final Optional<String> nextCallDate;
+
+  private final Optional<Long> rating;
+
+  private final Optional<Boolean> isEmployee;
+
+  private final Optional<Boolean> isGroupMember;
+
+  private final Optional<Boolean> isActive;
+
+  private final Optional<PostV1PartnersCreateRequestLegalCountryClass> legalCountryClass;
 
   private final Map<String, Object> additionalProperties;
 
@@ -76,8 +112,17 @@ public final class PostV1PartnersCreateRequest {
       Optional<String> birthDate, Optional<Boolean> isCustomer, Optional<Boolean> isSupplier,
       Optional<Long> paymentTermDays, Optional<String> creditLimit, Optional<String> priceListId,
       Optional<String> groupId, Optional<String> statusId,
-      Optional<PostV1PartnersCreateRequestAddress> address, Optional<String> notes,
-      Optional<String> documentRef, Map<String, Object> additionalProperties) {
+      Optional<PostV1PartnersCreateRequestAddress> address,
+      Optional<PostV1PartnersCreateRequestCorrespondenceAddress> correspondenceAddress,
+      Optional<String> notes, Optional<String> documentRef, Optional<String> shortName,
+      Optional<String> website, Optional<String> fax, Optional<String> eoriCode,
+      Optional<String> otherCode, Optional<String> foreignTaxNumber,
+      Optional<Boolean> autoDebtReminder, Optional<String> lateInterestPercent,
+      Optional<String> firstCallDate, Optional<String> lastCallDate, Optional<String> nextCallDate,
+      Optional<Long> rating, Optional<Boolean> isEmployee, Optional<Boolean> isGroupMember,
+      Optional<Boolean> isActive,
+      Optional<PostV1PartnersCreateRequestLegalCountryClass> legalCountryClass,
+      Map<String, Object> additionalProperties) {
     this.type = type;
     this.name = name;
     this.code = code;
@@ -95,8 +140,25 @@ public final class PostV1PartnersCreateRequest {
     this.groupId = groupId;
     this.statusId = statusId;
     this.address = address;
+    this.correspondenceAddress = correspondenceAddress;
     this.notes = notes;
     this.documentRef = documentRef;
+    this.shortName = shortName;
+    this.website = website;
+    this.fax = fax;
+    this.eoriCode = eoriCode;
+    this.otherCode = otherCode;
+    this.foreignTaxNumber = foreignTaxNumber;
+    this.autoDebtReminder = autoDebtReminder;
+    this.lateInterestPercent = lateInterestPercent;
+    this.firstCallDate = firstCallDate;
+    this.lastCallDate = lastCallDate;
+    this.nextCallDate = nextCallDate;
+    this.rating = rating;
+    this.isEmployee = isEmployee;
+    this.isGroupMember = isGroupMember;
+    this.isActive = isActive;
+    this.legalCountryClass = legalCountryClass;
     this.additionalProperties = additionalProperties;
   }
 
@@ -185,6 +247,11 @@ public final class PostV1PartnersCreateRequest {
     return address;
   }
 
+  @JsonProperty("correspondenceAddress")
+  public Optional<PostV1PartnersCreateRequestCorrespondenceAddress> getCorrespondenceAddress() {
+    return correspondenceAddress;
+  }
+
   @JsonProperty("notes")
   public Optional<String> getNotes() {
     return notes;
@@ -193,6 +260,86 @@ public final class PostV1PartnersCreateRequest {
   @JsonProperty("documentRef")
   public Optional<String> getDocumentRef() {
     return documentRef;
+  }
+
+  @JsonProperty("shortName")
+  public Optional<String> getShortName() {
+    return shortName;
+  }
+
+  @JsonProperty("website")
+  public Optional<String> getWebsite() {
+    return website;
+  }
+
+  @JsonProperty("fax")
+  public Optional<String> getFax() {
+    return fax;
+  }
+
+  @JsonProperty("eoriCode")
+  public Optional<String> getEoriCode() {
+    return eoriCode;
+  }
+
+  @JsonProperty("otherCode")
+  public Optional<String> getOtherCode() {
+    return otherCode;
+  }
+
+  @JsonProperty("foreignTaxNumber")
+  public Optional<String> getForeignTaxNumber() {
+    return foreignTaxNumber;
+  }
+
+  @JsonProperty("autoDebtReminder")
+  public Optional<Boolean> getAutoDebtReminder() {
+    return autoDebtReminder;
+  }
+
+  @JsonProperty("lateInterestPercent")
+  public Optional<String> getLateInterestPercent() {
+    return lateInterestPercent;
+  }
+
+  @JsonProperty("firstCallDate")
+  public Optional<String> getFirstCallDate() {
+    return firstCallDate;
+  }
+
+  @JsonProperty("lastCallDate")
+  public Optional<String> getLastCallDate() {
+    return lastCallDate;
+  }
+
+  @JsonProperty("nextCallDate")
+  public Optional<String> getNextCallDate() {
+    return nextCallDate;
+  }
+
+  @JsonProperty("rating")
+  public Optional<Long> getRating() {
+    return rating;
+  }
+
+  @JsonProperty("isEmployee")
+  public Optional<Boolean> getIsEmployee() {
+    return isEmployee;
+  }
+
+  @JsonProperty("isGroupMember")
+  public Optional<Boolean> getIsGroupMember() {
+    return isGroupMember;
+  }
+
+  @JsonProperty("isActive")
+  public Optional<Boolean> getIsActive() {
+    return isActive;
+  }
+
+  @JsonProperty("legalCountryClass")
+  public Optional<PostV1PartnersCreateRequestLegalCountryClass> getLegalCountryClass() {
+    return legalCountryClass;
   }
 
   @java.lang.Override
@@ -207,12 +354,12 @@ public final class PostV1PartnersCreateRequest {
   }
 
   private boolean equalTo(PostV1PartnersCreateRequest other) {
-    return type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && notes.equals(other.notes) && documentRef.equals(other.documentRef);
+    return type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && otherCode.equals(other.otherCode) && foreignTaxNumber.equals(other.foreignTaxNumber) && autoDebtReminder.equals(other.autoDebtReminder) && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee.equals(other.isEmployee) && isGroupMember.equals(other.isGroupMember) && isActive.equals(other.isActive) && legalCountryClass.equals(other.legalCountryClass);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isCustomer, this.isSupplier, this.paymentTermDays, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.notes, this.documentRef);
+    return Objects.hash(this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isCustomer, this.isSupplier, this.paymentTermDays, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.otherCode, this.foreignTaxNumber, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass);
   }
 
   @java.lang.Override
@@ -301,6 +448,12 @@ public final class PostV1PartnersCreateRequest {
 
     _FinalStage address(PostV1PartnersCreateRequestAddress address);
 
+    _FinalStage correspondenceAddress(
+        Optional<PostV1PartnersCreateRequestCorrespondenceAddress> correspondenceAddress);
+
+    _FinalStage correspondenceAddress(
+        PostV1PartnersCreateRequestCorrespondenceAddress correspondenceAddress);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -308,6 +461,71 @@ public final class PostV1PartnersCreateRequest {
     _FinalStage documentRef(Optional<String> documentRef);
 
     _FinalStage documentRef(String documentRef);
+
+    _FinalStage shortName(Optional<String> shortName);
+
+    _FinalStage shortName(String shortName);
+
+    _FinalStage website(Optional<String> website);
+
+    _FinalStage website(String website);
+
+    _FinalStage fax(Optional<String> fax);
+
+    _FinalStage fax(String fax);
+
+    _FinalStage eoriCode(Optional<String> eoriCode);
+
+    _FinalStage eoriCode(String eoriCode);
+
+    _FinalStage otherCode(Optional<String> otherCode);
+
+    _FinalStage otherCode(String otherCode);
+
+    _FinalStage foreignTaxNumber(Optional<String> foreignTaxNumber);
+
+    _FinalStage foreignTaxNumber(String foreignTaxNumber);
+
+    _FinalStage autoDebtReminder(Optional<Boolean> autoDebtReminder);
+
+    _FinalStage autoDebtReminder(Boolean autoDebtReminder);
+
+    _FinalStage lateInterestPercent(Optional<String> lateInterestPercent);
+
+    _FinalStage lateInterestPercent(String lateInterestPercent);
+
+    _FinalStage firstCallDate(Optional<String> firstCallDate);
+
+    _FinalStage firstCallDate(String firstCallDate);
+
+    _FinalStage lastCallDate(Optional<String> lastCallDate);
+
+    _FinalStage lastCallDate(String lastCallDate);
+
+    _FinalStage nextCallDate(Optional<String> nextCallDate);
+
+    _FinalStage nextCallDate(String nextCallDate);
+
+    _FinalStage rating(Optional<Long> rating);
+
+    _FinalStage rating(Long rating);
+
+    _FinalStage isEmployee(Optional<Boolean> isEmployee);
+
+    _FinalStage isEmployee(Boolean isEmployee);
+
+    _FinalStage isGroupMember(Optional<Boolean> isGroupMember);
+
+    _FinalStage isGroupMember(Boolean isGroupMember);
+
+    _FinalStage isActive(Optional<Boolean> isActive);
+
+    _FinalStage isActive(Boolean isActive);
+
+    _FinalStage legalCountryClass(
+        Optional<PostV1PartnersCreateRequestLegalCountryClass> legalCountryClass);
+
+    _FinalStage legalCountryClass(PostV1PartnersCreateRequestLegalCountryClass legalCountryClass);
   }
 
   @JsonIgnoreProperties(
@@ -316,9 +534,43 @@ public final class PostV1PartnersCreateRequest {
   public static final class Builder implements NameStage, _FinalStage {
     private String name;
 
+    private Optional<PostV1PartnersCreateRequestLegalCountryClass> legalCountryClass = Optional.empty();
+
+    private Optional<Boolean> isActive = Optional.empty();
+
+    private Optional<Boolean> isGroupMember = Optional.empty();
+
+    private Optional<Boolean> isEmployee = Optional.empty();
+
+    private Optional<Long> rating = Optional.empty();
+
+    private Optional<String> nextCallDate = Optional.empty();
+
+    private Optional<String> lastCallDate = Optional.empty();
+
+    private Optional<String> firstCallDate = Optional.empty();
+
+    private Optional<String> lateInterestPercent = Optional.empty();
+
+    private Optional<Boolean> autoDebtReminder = Optional.empty();
+
+    private Optional<String> foreignTaxNumber = Optional.empty();
+
+    private Optional<String> otherCode = Optional.empty();
+
+    private Optional<String> eoriCode = Optional.empty();
+
+    private Optional<String> fax = Optional.empty();
+
+    private Optional<String> website = Optional.empty();
+
+    private Optional<String> shortName = Optional.empty();
+
     private Optional<String> documentRef = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
+
+    private Optional<PostV1PartnersCreateRequestCorrespondenceAddress> correspondenceAddress = Optional.empty();
 
     private Optional<PostV1PartnersCreateRequestAddress> address = Optional.empty();
 
@@ -377,8 +629,25 @@ public final class PostV1PartnersCreateRequest {
       groupId(other.getGroupId());
       statusId(other.getStatusId());
       address(other.getAddress());
+      correspondenceAddress(other.getCorrespondenceAddress());
       notes(other.getNotes());
       documentRef(other.getDocumentRef());
+      shortName(other.getShortName());
+      website(other.getWebsite());
+      fax(other.getFax());
+      eoriCode(other.getEoriCode());
+      otherCode(other.getOtherCode());
+      foreignTaxNumber(other.getForeignTaxNumber());
+      autoDebtReminder(other.getAutoDebtReminder());
+      lateInterestPercent(other.getLateInterestPercent());
+      firstCallDate(other.getFirstCallDate());
+      lastCallDate(other.getLastCallDate());
+      nextCallDate(other.getNextCallDate());
+      rating(other.getRating());
+      isEmployee(other.getIsEmployee());
+      isGroupMember(other.getIsGroupMember());
+      isActive(other.getIsActive());
+      legalCountryClass(other.getLegalCountryClass());
       return this;
     }
 
@@ -386,6 +655,264 @@ public final class PostV1PartnersCreateRequest {
     @JsonSetter("name")
     public _FinalStage name(@NotNull String name) {
       this.name = Objects.requireNonNull(name, "name must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage legalCountryClass(
+        PostV1PartnersCreateRequestLegalCountryClass legalCountryClass) {
+      this.legalCountryClass = Optional.ofNullable(legalCountryClass);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "legalCountryClass",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage legalCountryClass(
+        Optional<PostV1PartnersCreateRequestLegalCountryClass> legalCountryClass) {
+      this.legalCountryClass = legalCountryClass;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage isActive(Boolean isActive) {
+      this.isActive = Optional.ofNullable(isActive);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "isActive",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage isActive(Optional<Boolean> isActive) {
+      this.isActive = isActive;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage isGroupMember(Boolean isGroupMember) {
+      this.isGroupMember = Optional.ofNullable(isGroupMember);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "isGroupMember",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage isGroupMember(Optional<Boolean> isGroupMember) {
+      this.isGroupMember = isGroupMember;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage isEmployee(Boolean isEmployee) {
+      this.isEmployee = Optional.ofNullable(isEmployee);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "isEmployee",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage isEmployee(Optional<Boolean> isEmployee) {
+      this.isEmployee = isEmployee;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage rating(Long rating) {
+      this.rating = Optional.ofNullable(rating);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "rating",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage rating(Optional<Long> rating) {
+      this.rating = rating;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage nextCallDate(String nextCallDate) {
+      this.nextCallDate = Optional.ofNullable(nextCallDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "nextCallDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage nextCallDate(Optional<String> nextCallDate) {
+      this.nextCallDate = nextCallDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lastCallDate(String lastCallDate) {
+      this.lastCallDate = Optional.ofNullable(lastCallDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lastCallDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lastCallDate(Optional<String> lastCallDate) {
+      this.lastCallDate = lastCallDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage firstCallDate(String firstCallDate) {
+      this.firstCallDate = Optional.ofNullable(firstCallDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "firstCallDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage firstCallDate(Optional<String> firstCallDate) {
+      this.firstCallDate = firstCallDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lateInterestPercent(String lateInterestPercent) {
+      this.lateInterestPercent = Optional.ofNullable(lateInterestPercent);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lateInterestPercent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lateInterestPercent(Optional<String> lateInterestPercent) {
+      this.lateInterestPercent = lateInterestPercent;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage autoDebtReminder(Boolean autoDebtReminder) {
+      this.autoDebtReminder = Optional.ofNullable(autoDebtReminder);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "autoDebtReminder",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage autoDebtReminder(Optional<Boolean> autoDebtReminder) {
+      this.autoDebtReminder = autoDebtReminder;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage foreignTaxNumber(String foreignTaxNumber) {
+      this.foreignTaxNumber = Optional.ofNullable(foreignTaxNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "foreignTaxNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage foreignTaxNumber(Optional<String> foreignTaxNumber) {
+      this.foreignTaxNumber = foreignTaxNumber;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage otherCode(String otherCode) {
+      this.otherCode = Optional.ofNullable(otherCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "otherCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage otherCode(Optional<String> otherCode) {
+      this.otherCode = otherCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage eoriCode(String eoriCode) {
+      this.eoriCode = Optional.ofNullable(eoriCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "eoriCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage eoriCode(Optional<String> eoriCode) {
+      this.eoriCode = eoriCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fax(String fax) {
+      this.fax = Optional.ofNullable(fax);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "fax",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage fax(Optional<String> fax) {
+      this.fax = fax;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage website(String website) {
+      this.website = Optional.ofNullable(website);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "website",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage website(Optional<String> website) {
+      this.website = website;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage shortName(String shortName) {
+      this.shortName = Optional.ofNullable(shortName);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "shortName",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage shortName(Optional<String> shortName) {
+      this.shortName = shortName;
       return this;
     }
 
@@ -418,6 +945,24 @@ public final class PostV1PartnersCreateRequest {
     )
     public _FinalStage notes(Optional<String> notes) {
       this.notes = notes;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage correspondenceAddress(
+        PostV1PartnersCreateRequestCorrespondenceAddress correspondenceAddress) {
+      this.correspondenceAddress = Optional.ofNullable(correspondenceAddress);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "correspondenceAddress",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage correspondenceAddress(
+        Optional<PostV1PartnersCreateRequestCorrespondenceAddress> correspondenceAddress) {
+      this.correspondenceAddress = correspondenceAddress;
       return this;
     }
 
@@ -679,7 +1224,7 @@ public final class PostV1PartnersCreateRequest {
 
     @java.lang.Override
     public PostV1PartnersCreateRequest build() {
-      return new PostV1PartnersCreateRequest(type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isCustomer, isSupplier, paymentTermDays, creditLimit, priceListId, groupId, statusId, address, notes, documentRef, additionalProperties);
+      return new PostV1PartnersCreateRequest(type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isCustomer, isSupplier, paymentTermDays, creditLimit, priceListId, groupId, statusId, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, otherCode, foreignTaxNumber, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, additionalProperties);
     }
 
     @java.lang.Override

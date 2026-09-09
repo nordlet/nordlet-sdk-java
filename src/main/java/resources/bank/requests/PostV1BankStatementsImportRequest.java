@@ -35,15 +35,18 @@ public final class PostV1BankStatementsImportRequest {
 
   private final String content;
 
+  private final Optional<String> transfersCsv;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1BankStatementsImportRequest(String bankAccountId, Optional<String> templateId,
       Optional<PostV1BankStatementsImportRequestFormat> format, String content,
-      Map<String, Object> additionalProperties) {
+      Optional<String> transfersCsv, Map<String, Object> additionalProperties) {
     this.bankAccountId = bankAccountId;
     this.templateId = templateId;
     this.format = format;
     this.content = content;
+    this.transfersCsv = transfersCsv;
     this.additionalProperties = additionalProperties;
   }
 
@@ -67,6 +70,14 @@ public final class PostV1BankStatementsImportRequest {
     return content;
   }
 
+  /**
+   * @return Stripe transfers export (plain CSV or base64) used to post lender payouts and commissions
+   */
+  @JsonProperty("transfersCsv")
+  public Optional<String> getTransfersCsv() {
+    return transfersCsv;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -79,12 +90,12 @@ public final class PostV1BankStatementsImportRequest {
   }
 
   private boolean equalTo(PostV1BankStatementsImportRequest other) {
-    return bankAccountId.equals(other.bankAccountId) && templateId.equals(other.templateId) && format.equals(other.format) && content.equals(other.content);
+    return bankAccountId.equals(other.bankAccountId) && templateId.equals(other.templateId) && format.equals(other.format) && content.equals(other.content) && transfersCsv.equals(other.transfersCsv);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.bankAccountId, this.templateId, this.format, this.content);
+    return Objects.hash(this.bankAccountId, this.templateId, this.format, this.content, this.transfersCsv);
   }
 
   @java.lang.Override
@@ -120,6 +131,13 @@ public final class PostV1BankStatementsImportRequest {
     _FinalStage format(Optional<PostV1BankStatementsImportRequestFormat> format);
 
     _FinalStage format(PostV1BankStatementsImportRequestFormat format);
+
+    /**
+     * <p>Stripe transfers export (plain CSV or base64) used to post lender payouts and commissions</p>
+     */
+    _FinalStage transfersCsv(Optional<String> transfersCsv);
+
+    _FinalStage transfersCsv(String transfersCsv);
   }
 
   @JsonIgnoreProperties(
@@ -129,6 +147,8 @@ public final class PostV1BankStatementsImportRequest {
     private String bankAccountId;
 
     private String content;
+
+    private Optional<String> transfersCsv = Optional.empty();
 
     private Optional<PostV1BankStatementsImportRequestFormat> format = Optional.empty();
 
@@ -146,6 +166,7 @@ public final class PostV1BankStatementsImportRequest {
       templateId(other.getTemplateId());
       format(other.getFormat());
       content(other.getContent());
+      transfersCsv(other.getTransfersCsv());
       return this;
     }
 
@@ -160,6 +181,29 @@ public final class PostV1BankStatementsImportRequest {
     @JsonSetter("content")
     public _FinalStage content(@NotNull String content) {
       this.content = Objects.requireNonNull(content, "content must not be null");
+      return this;
+    }
+
+    /**
+     * <p>Stripe transfers export (plain CSV or base64) used to post lender payouts and commissions</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage transfersCsv(String transfersCsv) {
+      this.transfersCsv = Optional.ofNullable(transfersCsv);
+      return this;
+    }
+
+    /**
+     * <p>Stripe transfers export (plain CSV or base64) used to post lender payouts and commissions</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "transfersCsv",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage transfersCsv(Optional<String> transfersCsv) {
+      this.transfersCsv = transfersCsv;
       return this;
     }
 
@@ -197,7 +241,7 @@ public final class PostV1BankStatementsImportRequest {
 
     @java.lang.Override
     public PostV1BankStatementsImportRequest build() {
-      return new PostV1BankStatementsImportRequest(bankAccountId, templateId, format, content, additionalProperties);
+      return new PostV1BankStatementsImportRequest(bankAccountId, templateId, format, content, transfersCsv, additionalProperties);
     }
 
     @java.lang.Override

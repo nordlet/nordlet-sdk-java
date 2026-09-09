@@ -51,6 +51,18 @@ public final class PostV1BankImportTemplatesUpdateRequest {
 
   private final Optional<Boolean> advanceInvoices;
 
+  private final Optional<String> authorizationOperationTypeId;
+
+  private final Optional<String> payoutOperationTypeId;
+
+  private final Optional<String> commissionOperationTypeId;
+
+  private final Optional<String> lenderMetaField;
+
+  private final Optional<String> partialRefundLabel;
+
+  private final Optional<String> fullRefundLabel;
+
   private final String id;
 
   private final Map<String, Object> additionalProperties;
@@ -60,7 +72,10 @@ public final class PostV1BankImportTemplatesUpdateRequest {
       Optional<List<PostV1BankImportTemplatesUpdateRequestFieldsItem>> fields,
       Optional<List<String>> metaFields, Optional<String> invoiceMetaField,
       Optional<String> invoiceVatRatePercent, Optional<String> companyMetaField,
-      Optional<String> invoiceItemId, Optional<Boolean> advanceInvoices, String id,
+      Optional<String> invoiceItemId, Optional<Boolean> advanceInvoices,
+      Optional<String> authorizationOperationTypeId, Optional<String> payoutOperationTypeId,
+      Optional<String> commissionOperationTypeId, Optional<String> lenderMetaField,
+      Optional<String> partialRefundLabel, Optional<String> fullRefundLabel, String id,
       Map<String, Object> additionalProperties) {
     this.name = name;
     this.type = type;
@@ -71,6 +86,12 @@ public final class PostV1BankImportTemplatesUpdateRequest {
     this.companyMetaField = companyMetaField;
     this.invoiceItemId = invoiceItemId;
     this.advanceInvoices = advanceInvoices;
+    this.authorizationOperationTypeId = authorizationOperationTypeId;
+    this.payoutOperationTypeId = payoutOperationTypeId;
+    this.commissionOperationTypeId = commissionOperationTypeId;
+    this.lenderMetaField = lenderMetaField;
+    this.partialRefundLabel = partialRefundLabel;
+    this.fullRefundLabel = fullRefundLabel;
     this.id = id;
     this.additionalProperties = additionalProperties;
   }
@@ -132,6 +153,54 @@ public final class PostV1BankImportTemplatesUpdateRequest {
     return advanceInvoices;
   }
 
+  @JsonIgnore
+  public Optional<String> getAuthorizationOperationTypeId() {
+    if (authorizationOperationTypeId == null) {
+      return Optional.empty();
+    }
+    return authorizationOperationTypeId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPayoutOperationTypeId() {
+    if (payoutOperationTypeId == null) {
+      return Optional.empty();
+    }
+    return payoutOperationTypeId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getCommissionOperationTypeId() {
+    if (commissionOperationTypeId == null) {
+      return Optional.empty();
+    }
+    return commissionOperationTypeId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getLenderMetaField() {
+    if (lenderMetaField == null) {
+      return Optional.empty();
+    }
+    return lenderMetaField;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPartialRefundLabel() {
+    if (partialRefundLabel == null) {
+      return Optional.empty();
+    }
+    return partialRefundLabel;
+  }
+
+  @JsonIgnore
+  public Optional<String> getFullRefundLabel() {
+    if (fullRefundLabel == null) {
+      return Optional.empty();
+    }
+    return fullRefundLabel;
+  }
+
   @JsonProperty("id")
   public String getId() {
     return id;
@@ -173,6 +242,60 @@ public final class PostV1BankImportTemplatesUpdateRequest {
     return invoiceItemId;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("authorizationOperationTypeId")
+  private Optional<String> _getAuthorizationOperationTypeId() {
+    return authorizationOperationTypeId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("payoutOperationTypeId")
+  private Optional<String> _getPayoutOperationTypeId() {
+    return payoutOperationTypeId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("commissionOperationTypeId")
+  private Optional<String> _getCommissionOperationTypeId() {
+    return commissionOperationTypeId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("lenderMetaField")
+  private Optional<String> _getLenderMetaField() {
+    return lenderMetaField;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("partialRefundLabel")
+  private Optional<String> _getPartialRefundLabel() {
+    return partialRefundLabel;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("fullRefundLabel")
+  private Optional<String> _getFullRefundLabel() {
+    return fullRefundLabel;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -185,12 +308,12 @@ public final class PostV1BankImportTemplatesUpdateRequest {
   }
 
   private boolean equalTo(PostV1BankImportTemplatesUpdateRequest other) {
-    return name.equals(other.name) && type.equals(other.type) && fields.equals(other.fields) && metaFields.equals(other.metaFields) && invoiceMetaField.equals(other.invoiceMetaField) && invoiceVatRatePercent.equals(other.invoiceVatRatePercent) && companyMetaField.equals(other.companyMetaField) && invoiceItemId.equals(other.invoiceItemId) && advanceInvoices.equals(other.advanceInvoices) && id.equals(other.id);
+    return name.equals(other.name) && type.equals(other.type) && fields.equals(other.fields) && metaFields.equals(other.metaFields) && invoiceMetaField.equals(other.invoiceMetaField) && invoiceVatRatePercent.equals(other.invoiceVatRatePercent) && companyMetaField.equals(other.companyMetaField) && invoiceItemId.equals(other.invoiceItemId) && advanceInvoices.equals(other.advanceInvoices) && authorizationOperationTypeId.equals(other.authorizationOperationTypeId) && payoutOperationTypeId.equals(other.payoutOperationTypeId) && commissionOperationTypeId.equals(other.commissionOperationTypeId) && lenderMetaField.equals(other.lenderMetaField) && partialRefundLabel.equals(other.partialRefundLabel) && fullRefundLabel.equals(other.fullRefundLabel) && id.equals(other.id);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.type, this.fields, this.metaFields, this.invoiceMetaField, this.invoiceVatRatePercent, this.companyMetaField, this.invoiceItemId, this.advanceInvoices, this.id);
+    return Objects.hash(this.name, this.type, this.fields, this.metaFields, this.invoiceMetaField, this.invoiceVatRatePercent, this.companyMetaField, this.invoiceItemId, this.advanceInvoices, this.authorizationOperationTypeId, this.payoutOperationTypeId, this.commissionOperationTypeId, this.lenderMetaField, this.partialRefundLabel, this.fullRefundLabel, this.id);
   }
 
   @java.lang.Override
@@ -258,6 +381,42 @@ public final class PostV1BankImportTemplatesUpdateRequest {
     _FinalStage advanceInvoices(Optional<Boolean> advanceInvoices);
 
     _FinalStage advanceInvoices(Boolean advanceInvoices);
+
+    _FinalStage authorizationOperationTypeId(Optional<String> authorizationOperationTypeId);
+
+    _FinalStage authorizationOperationTypeId(String authorizationOperationTypeId);
+
+    _FinalStage authorizationOperationTypeId(Nullable<String> authorizationOperationTypeId);
+
+    _FinalStage payoutOperationTypeId(Optional<String> payoutOperationTypeId);
+
+    _FinalStage payoutOperationTypeId(String payoutOperationTypeId);
+
+    _FinalStage payoutOperationTypeId(Nullable<String> payoutOperationTypeId);
+
+    _FinalStage commissionOperationTypeId(Optional<String> commissionOperationTypeId);
+
+    _FinalStage commissionOperationTypeId(String commissionOperationTypeId);
+
+    _FinalStage commissionOperationTypeId(Nullable<String> commissionOperationTypeId);
+
+    _FinalStage lenderMetaField(Optional<String> lenderMetaField);
+
+    _FinalStage lenderMetaField(String lenderMetaField);
+
+    _FinalStage lenderMetaField(Nullable<String> lenderMetaField);
+
+    _FinalStage partialRefundLabel(Optional<String> partialRefundLabel);
+
+    _FinalStage partialRefundLabel(String partialRefundLabel);
+
+    _FinalStage partialRefundLabel(Nullable<String> partialRefundLabel);
+
+    _FinalStage fullRefundLabel(Optional<String> fullRefundLabel);
+
+    _FinalStage fullRefundLabel(String fullRefundLabel);
+
+    _FinalStage fullRefundLabel(Nullable<String> fullRefundLabel);
   }
 
   @JsonIgnoreProperties(
@@ -265,6 +424,18 @@ public final class PostV1BankImportTemplatesUpdateRequest {
   )
   public static final class Builder implements IdStage, _FinalStage {
     private String id;
+
+    private Optional<String> fullRefundLabel = Optional.empty();
+
+    private Optional<String> partialRefundLabel = Optional.empty();
+
+    private Optional<String> lenderMetaField = Optional.empty();
+
+    private Optional<String> commissionOperationTypeId = Optional.empty();
+
+    private Optional<String> payoutOperationTypeId = Optional.empty();
+
+    private Optional<String> authorizationOperationTypeId = Optional.empty();
 
     private Optional<Boolean> advanceInvoices = Optional.empty();
 
@@ -301,6 +472,12 @@ public final class PostV1BankImportTemplatesUpdateRequest {
       companyMetaField(other.getCompanyMetaField());
       invoiceItemId(other.getInvoiceItemId());
       advanceInvoices(other.getAdvanceInvoices());
+      authorizationOperationTypeId(other.getAuthorizationOperationTypeId());
+      payoutOperationTypeId(other.getPayoutOperationTypeId());
+      commissionOperationTypeId(other.getCommissionOperationTypeId());
+      lenderMetaField(other.getLenderMetaField());
+      partialRefundLabel(other.getPartialRefundLabel());
+      fullRefundLabel(other.getFullRefundLabel());
       id(other.getId());
       return this;
     }
@@ -309,6 +486,186 @@ public final class PostV1BankImportTemplatesUpdateRequest {
     @JsonSetter("id")
     public _FinalStage id(@NotNull String id) {
       this.id = Objects.requireNonNull(id, "id must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fullRefundLabel(Nullable<String> fullRefundLabel) {
+      if (fullRefundLabel.isNull()) {
+        this.fullRefundLabel = null;
+      }
+      else if (fullRefundLabel.isEmpty()) {
+        this.fullRefundLabel = Optional.empty();
+      }
+      else {
+        this.fullRefundLabel = Optional.of(fullRefundLabel.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fullRefundLabel(String fullRefundLabel) {
+      this.fullRefundLabel = Optional.ofNullable(fullRefundLabel);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "fullRefundLabel",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage fullRefundLabel(Optional<String> fullRefundLabel) {
+      this.fullRefundLabel = fullRefundLabel;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partialRefundLabel(Nullable<String> partialRefundLabel) {
+      if (partialRefundLabel.isNull()) {
+        this.partialRefundLabel = null;
+      }
+      else if (partialRefundLabel.isEmpty()) {
+        this.partialRefundLabel = Optional.empty();
+      }
+      else {
+        this.partialRefundLabel = Optional.of(partialRefundLabel.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partialRefundLabel(String partialRefundLabel) {
+      this.partialRefundLabel = Optional.ofNullable(partialRefundLabel);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "partialRefundLabel",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage partialRefundLabel(Optional<String> partialRefundLabel) {
+      this.partialRefundLabel = partialRefundLabel;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lenderMetaField(Nullable<String> lenderMetaField) {
+      if (lenderMetaField.isNull()) {
+        this.lenderMetaField = null;
+      }
+      else if (lenderMetaField.isEmpty()) {
+        this.lenderMetaField = Optional.empty();
+      }
+      else {
+        this.lenderMetaField = Optional.of(lenderMetaField.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lenderMetaField(String lenderMetaField) {
+      this.lenderMetaField = Optional.ofNullable(lenderMetaField);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lenderMetaField",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lenderMetaField(Optional<String> lenderMetaField) {
+      this.lenderMetaField = lenderMetaField;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage commissionOperationTypeId(Nullable<String> commissionOperationTypeId) {
+      if (commissionOperationTypeId.isNull()) {
+        this.commissionOperationTypeId = null;
+      }
+      else if (commissionOperationTypeId.isEmpty()) {
+        this.commissionOperationTypeId = Optional.empty();
+      }
+      else {
+        this.commissionOperationTypeId = Optional.of(commissionOperationTypeId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage commissionOperationTypeId(String commissionOperationTypeId) {
+      this.commissionOperationTypeId = Optional.ofNullable(commissionOperationTypeId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "commissionOperationTypeId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage commissionOperationTypeId(Optional<String> commissionOperationTypeId) {
+      this.commissionOperationTypeId = commissionOperationTypeId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage payoutOperationTypeId(Nullable<String> payoutOperationTypeId) {
+      if (payoutOperationTypeId.isNull()) {
+        this.payoutOperationTypeId = null;
+      }
+      else if (payoutOperationTypeId.isEmpty()) {
+        this.payoutOperationTypeId = Optional.empty();
+      }
+      else {
+        this.payoutOperationTypeId = Optional.of(payoutOperationTypeId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage payoutOperationTypeId(String payoutOperationTypeId) {
+      this.payoutOperationTypeId = Optional.ofNullable(payoutOperationTypeId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "payoutOperationTypeId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage payoutOperationTypeId(Optional<String> payoutOperationTypeId) {
+      this.payoutOperationTypeId = payoutOperationTypeId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage authorizationOperationTypeId(Nullable<String> authorizationOperationTypeId) {
+      if (authorizationOperationTypeId.isNull()) {
+        this.authorizationOperationTypeId = null;
+      }
+      else if (authorizationOperationTypeId.isEmpty()) {
+        this.authorizationOperationTypeId = Optional.empty();
+      }
+      else {
+        this.authorizationOperationTypeId = Optional.of(authorizationOperationTypeId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage authorizationOperationTypeId(String authorizationOperationTypeId) {
+      this.authorizationOperationTypeId = Optional.ofNullable(authorizationOperationTypeId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "authorizationOperationTypeId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage authorizationOperationTypeId(Optional<String> authorizationOperationTypeId) {
+      this.authorizationOperationTypeId = authorizationOperationTypeId;
       return this;
     }
 
@@ -515,7 +872,7 @@ public final class PostV1BankImportTemplatesUpdateRequest {
 
     @java.lang.Override
     public PostV1BankImportTemplatesUpdateRequest build() {
-      return new PostV1BankImportTemplatesUpdateRequest(name, type, fields, metaFields, invoiceMetaField, invoiceVatRatePercent, companyMetaField, invoiceItemId, advanceInvoices, id, additionalProperties);
+      return new PostV1BankImportTemplatesUpdateRequest(name, type, fields, metaFields, invoiceMetaField, invoiceVatRatePercent, companyMetaField, invoiceItemId, advanceInvoices, authorizationOperationTypeId, payoutOperationTypeId, commissionOperationTypeId, lenderMetaField, partialRefundLabel, fullRefundLabel, id, additionalProperties);
     }
 
     @java.lang.Override

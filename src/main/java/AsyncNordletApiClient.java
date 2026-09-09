@@ -12,6 +12,7 @@ import com.nordlet.api.resources.assets.AsyncAssetsClient;
 import com.nordlet.api.resources.audit.AsyncAuditClient;
 import com.nordlet.api.resources.bank.AsyncBankClient;
 import com.nordlet.api.resources.billing.AsyncBillingClient;
+import com.nordlet.api.resources.calendar.AsyncCalendarClient;
 import com.nordlet.api.resources.capture.AsyncCaptureClient;
 import com.nordlet.api.resources.cash.AsyncCashClient;
 import com.nordlet.api.resources.catalog.AsyncCatalogClient;
@@ -83,6 +84,8 @@ public class AsyncNordletApiClient {
 
   protected final Supplier<AsyncPosClient> posClient;
 
+  protected final Supplier<AsyncCalendarClient> calendarClient;
+
   protected final Supplier<AsyncAuditClient> auditClient;
 
   protected final Supplier<AsyncWebhooksClient> webhooksClient;
@@ -124,6 +127,7 @@ public class AsyncNordletApiClient {
     this.projectsClient = Suppliers.memoize(() -> new AsyncProjectsClient(clientOptions));
     this.transportClient = Suppliers.memoize(() -> new AsyncTransportClient(clientOptions));
     this.posClient = Suppliers.memoize(() -> new AsyncPosClient(clientOptions));
+    this.calendarClient = Suppliers.memoize(() -> new AsyncCalendarClient(clientOptions));
     this.auditClient = Suppliers.memoize(() -> new AsyncAuditClient(clientOptions));
     this.webhooksClient = Suppliers.memoize(() -> new AsyncWebhooksClient(clientOptions));
     this.bankClient = Suppliers.memoize(() -> new AsyncBankClient(clientOptions));
@@ -217,6 +221,10 @@ public class AsyncNordletApiClient {
 
   public AsyncPosClient pos() {
     return this.posClient.get();
+  }
+
+  public AsyncCalendarClient calendar() {
+    return this.calendarClient.get();
   }
 
   public AsyncAuditClient audit() {

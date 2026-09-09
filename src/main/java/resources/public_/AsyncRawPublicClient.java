@@ -21,6 +21,7 @@ import com.nordlet.api.errors.NotFoundError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
+import com.nordlet.api.resources.public_.requests.GetV1PublicPayTokenRequest;
 import com.nordlet.api.resources.public_.requests.PostV1PublicIntegrationRequestsRequest;
 import com.nordlet.api.resources.public_.types.PostV1PublicIntegrationRequestsResponse;
 import com.nordlet.api.types.ErrorResponse;
@@ -28,6 +29,7 @@ import java.io.IOException;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.Void;
 import java.util.concurrent.CompletableFuture;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -134,4 +136,94 @@ public class AsyncRawPublicClient {
       });
       return future;
     }
-  }
+
+    public CompletableFuture<NordletApiHttpResponse<Void>> getV1PublicPayToken(String token) {
+      return getV1PublicPayToken(token,GetV1PublicPayTokenRequest.builder().build());
+    }
+
+    public CompletableFuture<NordletApiHttpResponse<Void>> getV1PublicPayToken(String token,
+        RequestOptions requestOptions) {
+      return getV1PublicPayToken(token,GetV1PublicPayTokenRequest.builder().build(),requestOptions);
+    }
+
+    public CompletableFuture<NordletApiHttpResponse<Void>> getV1PublicPayToken(String token,
+        GetV1PublicPayTokenRequest request) {
+      return getV1PublicPayToken(token,request,null);
+    }
+
+    public CompletableFuture<NordletApiHttpResponse<Void>> getV1PublicPayToken(String token,
+        GetV1PublicPayTokenRequest request, RequestOptions requestOptions) {
+      HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+        .addPathSegments("v1/public/pay")
+        .addPathSegment(token);if (requestOptions != null) {
+          requestOptions.getQueryParameters().forEach((_key, _value) -> {
+            httpUrl.addQueryParameter(_key, _value);
+          } );
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+          .url(httpUrl.build())
+          .method("GET", null)
+          .headers(Headers.of(clientOptions.headers(requestOptions)))
+          .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+          client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+          okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+        }
+        CompletableFuture<NordletApiHttpResponse<Void>> future = new CompletableFuture<>();
+        client.newCall(okhttpRequest).enqueue(new Callback() {
+          @Override
+          public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+            try (ResponseBody responseBody = response.body()) {
+              if (response.isSuccessful()) {
+                future.complete(new NordletApiHttpResponse<>(null, response));
+                return;
+              }
+              String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+              try {
+                switch (response.code()) {
+                  case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                }
+              }
+              catch (JsonProcessingException ignored) {
+                // unable to map error response, throwing generic error
+              }
+              Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+              future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+              return;
+            }
+            catch (JsonProcessingException e) {
+              future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+            }
+            catch (IOException e) {
+              future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+            }
+          }
+
+          @Override
+          public void onFailure(@NotNull Call call, @NotNull IOException e) {
+            future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+          }
+        });
+        return future;
+      }
+    }

@@ -51,6 +51,24 @@ public final class PostV1SalesInvoicesUpdateRequest {
 
   private final Optional<String> notes;
 
+  private final Optional<String> operationTypeId;
+
+  private final Optional<String> documentSeriesId;
+
+  private final Optional<String> seriesLabel;
+
+  private final Optional<String> discountPercent;
+
+  private final Optional<String> orderNumber;
+
+  private final Optional<String> issuedByName;
+
+  private final Optional<String> issuedByTitle;
+
+  private final Optional<String> receivedByName;
+
+  private final Optional<String> receivedByTitle;
+
   private final Optional<List<PostV1SalesInvoicesUpdateRequestLinesItem>> lines;
 
   private final Map<String, Object> additionalProperties;
@@ -59,6 +77,10 @@ public final class PostV1SalesInvoicesUpdateRequest {
       Optional<String> currency, Optional<String> issueDate, Optional<String> dueDate,
       Optional<PostV1SalesInvoicesUpdateRequestVatScheme> vatScheme,
       Optional<String> vatCountryCode, Optional<Boolean> deemedSupplier, Optional<String> notes,
+      Optional<String> operationTypeId, Optional<String> documentSeriesId,
+      Optional<String> seriesLabel, Optional<String> discountPercent, Optional<String> orderNumber,
+      Optional<String> issuedByName, Optional<String> issuedByTitle,
+      Optional<String> receivedByName, Optional<String> receivedByTitle,
       Optional<List<PostV1SalesInvoicesUpdateRequestLinesItem>> lines,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -70,6 +92,15 @@ public final class PostV1SalesInvoicesUpdateRequest {
     this.vatCountryCode = vatCountryCode;
     this.deemedSupplier = deemedSupplier;
     this.notes = notes;
+    this.operationTypeId = operationTypeId;
+    this.documentSeriesId = documentSeriesId;
+    this.seriesLabel = seriesLabel;
+    this.discountPercent = discountPercent;
+    this.orderNumber = orderNumber;
+    this.issuedByName = issuedByName;
+    this.issuedByTitle = issuedByTitle;
+    this.receivedByName = receivedByName;
+    this.receivedByTitle = receivedByTitle;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
   }
@@ -125,6 +156,75 @@ public final class PostV1SalesInvoicesUpdateRequest {
     return notes;
   }
 
+  @JsonIgnore
+  public Optional<String> getOperationTypeId() {
+    if (operationTypeId == null) {
+      return Optional.empty();
+    }
+    return operationTypeId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getDocumentSeriesId() {
+    if (documentSeriesId == null) {
+      return Optional.empty();
+    }
+    return documentSeriesId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getSeriesLabel() {
+    if (seriesLabel == null) {
+      return Optional.empty();
+    }
+    return seriesLabel;
+  }
+
+  @JsonProperty("discountPercent")
+  public Optional<String> getDiscountPercent() {
+    return discountPercent;
+  }
+
+  @JsonIgnore
+  public Optional<String> getOrderNumber() {
+    if (orderNumber == null) {
+      return Optional.empty();
+    }
+    return orderNumber;
+  }
+
+  @JsonIgnore
+  public Optional<String> getIssuedByName() {
+    if (issuedByName == null) {
+      return Optional.empty();
+    }
+    return issuedByName;
+  }
+
+  @JsonIgnore
+  public Optional<String> getIssuedByTitle() {
+    if (issuedByTitle == null) {
+      return Optional.empty();
+    }
+    return issuedByTitle;
+  }
+
+  @JsonIgnore
+  public Optional<String> getReceivedByName() {
+    if (receivedByName == null) {
+      return Optional.empty();
+    }
+    return receivedByName;
+  }
+
+  @JsonIgnore
+  public Optional<String> getReceivedByTitle() {
+    if (receivedByTitle == null) {
+      return Optional.empty();
+    }
+    return receivedByTitle;
+  }
+
   @JsonProperty("lines")
   public Optional<List<PostV1SalesInvoicesUpdateRequestLinesItem>> getLines() {
     return lines;
@@ -148,6 +248,78 @@ public final class PostV1SalesInvoicesUpdateRequest {
     return vatCountryCode;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("operationTypeId")
+  private Optional<String> _getOperationTypeId() {
+    return operationTypeId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("documentSeriesId")
+  private Optional<String> _getDocumentSeriesId() {
+    return documentSeriesId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("seriesLabel")
+  private Optional<String> _getSeriesLabel() {
+    return seriesLabel;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("orderNumber")
+  private Optional<String> _getOrderNumber() {
+    return orderNumber;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("issuedByName")
+  private Optional<String> _getIssuedByName() {
+    return issuedByName;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("issuedByTitle")
+  private Optional<String> _getIssuedByTitle() {
+    return issuedByTitle;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("receivedByName")
+  private Optional<String> _getReceivedByName() {
+    return receivedByName;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("receivedByTitle")
+  private Optional<String> _getReceivedByTitle() {
+    return receivedByTitle;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -160,12 +332,12 @@ public final class PostV1SalesInvoicesUpdateRequest {
   }
 
   private boolean equalTo(PostV1SalesInvoicesUpdateRequest other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && vatScheme.equals(other.vatScheme) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && lines.equals(other.lines);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && vatScheme.equals(other.vatScheme) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.currency, this.issueDate, this.dueDate, this.vatScheme, this.vatCountryCode, this.deemedSupplier, this.notes, this.lines);
+    return Objects.hash(this.id, this.partnerId, this.currency, this.issueDate, this.dueDate, this.vatScheme, this.vatCountryCode, this.deemedSupplier, this.notes, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.lines);
   }
 
   @java.lang.Override
@@ -226,6 +398,58 @@ public final class PostV1SalesInvoicesUpdateRequest {
 
     _FinalStage notes(String notes);
 
+    _FinalStage operationTypeId(Optional<String> operationTypeId);
+
+    _FinalStage operationTypeId(String operationTypeId);
+
+    _FinalStage operationTypeId(Nullable<String> operationTypeId);
+
+    _FinalStage documentSeriesId(Optional<String> documentSeriesId);
+
+    _FinalStage documentSeriesId(String documentSeriesId);
+
+    _FinalStage documentSeriesId(Nullable<String> documentSeriesId);
+
+    _FinalStage seriesLabel(Optional<String> seriesLabel);
+
+    _FinalStage seriesLabel(String seriesLabel);
+
+    _FinalStage seriesLabel(Nullable<String> seriesLabel);
+
+    _FinalStage discountPercent(Optional<String> discountPercent);
+
+    _FinalStage discountPercent(String discountPercent);
+
+    _FinalStage orderNumber(Optional<String> orderNumber);
+
+    _FinalStage orderNumber(String orderNumber);
+
+    _FinalStage orderNumber(Nullable<String> orderNumber);
+
+    _FinalStage issuedByName(Optional<String> issuedByName);
+
+    _FinalStage issuedByName(String issuedByName);
+
+    _FinalStage issuedByName(Nullable<String> issuedByName);
+
+    _FinalStage issuedByTitle(Optional<String> issuedByTitle);
+
+    _FinalStage issuedByTitle(String issuedByTitle);
+
+    _FinalStage issuedByTitle(Nullable<String> issuedByTitle);
+
+    _FinalStage receivedByName(Optional<String> receivedByName);
+
+    _FinalStage receivedByName(String receivedByName);
+
+    _FinalStage receivedByName(Nullable<String> receivedByName);
+
+    _FinalStage receivedByTitle(Optional<String> receivedByTitle);
+
+    _FinalStage receivedByTitle(String receivedByTitle);
+
+    _FinalStage receivedByTitle(Nullable<String> receivedByTitle);
+
     _FinalStage lines(Optional<List<PostV1SalesInvoicesUpdateRequestLinesItem>> lines);
 
     _FinalStage lines(List<PostV1SalesInvoicesUpdateRequestLinesItem> lines);
@@ -238,6 +462,24 @@ public final class PostV1SalesInvoicesUpdateRequest {
     private String id;
 
     private Optional<List<PostV1SalesInvoicesUpdateRequestLinesItem>> lines = Optional.empty();
+
+    private Optional<String> receivedByTitle = Optional.empty();
+
+    private Optional<String> receivedByName = Optional.empty();
+
+    private Optional<String> issuedByTitle = Optional.empty();
+
+    private Optional<String> issuedByName = Optional.empty();
+
+    private Optional<String> orderNumber = Optional.empty();
+
+    private Optional<String> discountPercent = Optional.empty();
+
+    private Optional<String> seriesLabel = Optional.empty();
+
+    private Optional<String> documentSeriesId = Optional.empty();
+
+    private Optional<String> operationTypeId = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -272,6 +514,15 @@ public final class PostV1SalesInvoicesUpdateRequest {
       vatCountryCode(other.getVatCountryCode());
       deemedSupplier(other.getDeemedSupplier());
       notes(other.getNotes());
+      operationTypeId(other.getOperationTypeId());
+      documentSeriesId(other.getDocumentSeriesId());
+      seriesLabel(other.getSeriesLabel());
+      discountPercent(other.getDiscountPercent());
+      orderNumber(other.getOrderNumber());
+      issuedByName(other.getIssuedByName());
+      issuedByTitle(other.getIssuedByTitle());
+      receivedByName(other.getReceivedByName());
+      receivedByTitle(other.getReceivedByTitle());
       lines(other.getLines());
       return this;
     }
@@ -296,6 +547,262 @@ public final class PostV1SalesInvoicesUpdateRequest {
     )
     public _FinalStage lines(Optional<List<PostV1SalesInvoicesUpdateRequestLinesItem>> lines) {
       this.lines = lines;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage receivedByTitle(Nullable<String> receivedByTitle) {
+      if (receivedByTitle.isNull()) {
+        this.receivedByTitle = null;
+      }
+      else if (receivedByTitle.isEmpty()) {
+        this.receivedByTitle = Optional.empty();
+      }
+      else {
+        this.receivedByTitle = Optional.of(receivedByTitle.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage receivedByTitle(String receivedByTitle) {
+      this.receivedByTitle = Optional.ofNullable(receivedByTitle);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "receivedByTitle",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage receivedByTitle(Optional<String> receivedByTitle) {
+      this.receivedByTitle = receivedByTitle;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage receivedByName(Nullable<String> receivedByName) {
+      if (receivedByName.isNull()) {
+        this.receivedByName = null;
+      }
+      else if (receivedByName.isEmpty()) {
+        this.receivedByName = Optional.empty();
+      }
+      else {
+        this.receivedByName = Optional.of(receivedByName.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage receivedByName(String receivedByName) {
+      this.receivedByName = Optional.ofNullable(receivedByName);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "receivedByName",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage receivedByName(Optional<String> receivedByName) {
+      this.receivedByName = receivedByName;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage issuedByTitle(Nullable<String> issuedByTitle) {
+      if (issuedByTitle.isNull()) {
+        this.issuedByTitle = null;
+      }
+      else if (issuedByTitle.isEmpty()) {
+        this.issuedByTitle = Optional.empty();
+      }
+      else {
+        this.issuedByTitle = Optional.of(issuedByTitle.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage issuedByTitle(String issuedByTitle) {
+      this.issuedByTitle = Optional.ofNullable(issuedByTitle);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "issuedByTitle",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage issuedByTitle(Optional<String> issuedByTitle) {
+      this.issuedByTitle = issuedByTitle;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage issuedByName(Nullable<String> issuedByName) {
+      if (issuedByName.isNull()) {
+        this.issuedByName = null;
+      }
+      else if (issuedByName.isEmpty()) {
+        this.issuedByName = Optional.empty();
+      }
+      else {
+        this.issuedByName = Optional.of(issuedByName.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage issuedByName(String issuedByName) {
+      this.issuedByName = Optional.ofNullable(issuedByName);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "issuedByName",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage issuedByName(Optional<String> issuedByName) {
+      this.issuedByName = issuedByName;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage orderNumber(Nullable<String> orderNumber) {
+      if (orderNumber.isNull()) {
+        this.orderNumber = null;
+      }
+      else if (orderNumber.isEmpty()) {
+        this.orderNumber = Optional.empty();
+      }
+      else {
+        this.orderNumber = Optional.of(orderNumber.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage orderNumber(String orderNumber) {
+      this.orderNumber = Optional.ofNullable(orderNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "orderNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage orderNumber(Optional<String> orderNumber) {
+      this.orderNumber = orderNumber;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage discountPercent(String discountPercent) {
+      this.discountPercent = Optional.ofNullable(discountPercent);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "discountPercent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage discountPercent(Optional<String> discountPercent) {
+      this.discountPercent = discountPercent;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage seriesLabel(Nullable<String> seriesLabel) {
+      if (seriesLabel.isNull()) {
+        this.seriesLabel = null;
+      }
+      else if (seriesLabel.isEmpty()) {
+        this.seriesLabel = Optional.empty();
+      }
+      else {
+        this.seriesLabel = Optional.of(seriesLabel.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage seriesLabel(String seriesLabel) {
+      this.seriesLabel = Optional.ofNullable(seriesLabel);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "seriesLabel",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage seriesLabel(Optional<String> seriesLabel) {
+      this.seriesLabel = seriesLabel;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentSeriesId(Nullable<String> documentSeriesId) {
+      if (documentSeriesId.isNull()) {
+        this.documentSeriesId = null;
+      }
+      else if (documentSeriesId.isEmpty()) {
+        this.documentSeriesId = Optional.empty();
+      }
+      else {
+        this.documentSeriesId = Optional.of(documentSeriesId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentSeriesId(String documentSeriesId) {
+      this.documentSeriesId = Optional.ofNullable(documentSeriesId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentSeriesId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentSeriesId(Optional<String> documentSeriesId) {
+      this.documentSeriesId = documentSeriesId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage operationTypeId(Nullable<String> operationTypeId) {
+      if (operationTypeId.isNull()) {
+        this.operationTypeId = null;
+      }
+      else if (operationTypeId.isEmpty()) {
+        this.operationTypeId = Optional.empty();
+      }
+      else {
+        this.operationTypeId = Optional.of(operationTypeId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage operationTypeId(String operationTypeId) {
+      this.operationTypeId = Optional.ofNullable(operationTypeId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "operationTypeId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage operationTypeId(Optional<String> operationTypeId) {
+      this.operationTypeId = operationTypeId;
       return this;
     }
 
@@ -457,7 +964,7 @@ public final class PostV1SalesInvoicesUpdateRequest {
 
     @java.lang.Override
     public PostV1SalesInvoicesUpdateRequest build() {
-      return new PostV1SalesInvoicesUpdateRequest(id, partnerId, currency, issueDate, dueDate, vatScheme, vatCountryCode, deemedSupplier, notes, lines, additionalProperties);
+      return new PostV1SalesInvoicesUpdateRequest(id, partnerId, currency, issueDate, dueDate, vatScheme, vatCountryCode, deemedSupplier, notes, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, lines, additionalProperties);
     }
 
     @java.lang.Override

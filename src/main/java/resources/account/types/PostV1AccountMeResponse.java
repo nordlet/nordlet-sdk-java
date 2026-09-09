@@ -41,6 +41,8 @@ public final class PostV1AccountMeResponse {
 
   private final PostV1AccountMeResponseBilling billing;
 
+  private final long referralPoints;
+
   private final PostV1AccountMeResponseConsent consent;
 
   private final List<PostV1AccountMeResponseCompaniesItem> companies;
@@ -49,14 +51,15 @@ public final class PostV1AccountMeResponse {
 
   private PostV1AccountMeResponse(PostV1AccountMeResponseUser user, String locale,
       Optional<String> activeCompanyId, Optional<String> role,
-      PostV1AccountMeResponseBilling billing, PostV1AccountMeResponseConsent consent,
-      List<PostV1AccountMeResponseCompaniesItem> companies,
+      PostV1AccountMeResponseBilling billing, long referralPoints,
+      PostV1AccountMeResponseConsent consent, List<PostV1AccountMeResponseCompaniesItem> companies,
       Map<String, Object> additionalProperties) {
     this.user = user;
     this.locale = locale;
     this.activeCompanyId = activeCompanyId;
     this.role = role;
     this.billing = billing;
+    this.referralPoints = referralPoints;
     this.consent = consent;
     this.companies = companies;
     this.additionalProperties = additionalProperties;
@@ -91,6 +94,11 @@ public final class PostV1AccountMeResponse {
   @JsonProperty("billing")
   public PostV1AccountMeResponseBilling getBilling() {
     return billing;
+  }
+
+  @JsonProperty("referralPoints")
+  public long getReferralPoints() {
+    return referralPoints;
   }
 
   @JsonProperty("consent")
@@ -133,12 +141,12 @@ public final class PostV1AccountMeResponse {
   }
 
   private boolean equalTo(PostV1AccountMeResponse other) {
-    return user.equals(other.user) && locale.equals(other.locale) && activeCompanyId.equals(other.activeCompanyId) && role.equals(other.role) && billing.equals(other.billing) && consent.equals(other.consent) && companies.equals(other.companies);
+    return user.equals(other.user) && locale.equals(other.locale) && activeCompanyId.equals(other.activeCompanyId) && role.equals(other.role) && billing.equals(other.billing) && referralPoints == other.referralPoints && consent.equals(other.consent) && companies.equals(other.companies);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.user, this.locale, this.activeCompanyId, this.role, this.billing, this.consent, this.companies);
+    return Objects.hash(this.user, this.locale, this.activeCompanyId, this.role, this.billing, this.referralPoints, this.consent, this.companies);
   }
 
   @java.lang.Override
@@ -161,7 +169,11 @@ public final class PostV1AccountMeResponse {
   }
 
   public interface BillingStage {
-    ConsentStage billing(@NotNull PostV1AccountMeResponseBilling billing);
+    ReferralPointsStage billing(@NotNull PostV1AccountMeResponseBilling billing);
+  }
+
+  public interface ReferralPointsStage {
+    ConsentStage referralPoints(long referralPoints);
   }
 
   public interface ConsentStage {
@@ -197,12 +209,14 @@ public final class PostV1AccountMeResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements UserStage, LocaleStage, BillingStage, ConsentStage, _FinalStage {
+  public static final class Builder implements UserStage, LocaleStage, BillingStage, ReferralPointsStage, ConsentStage, _FinalStage {
     private PostV1AccountMeResponseUser user;
 
     private String locale;
 
     private PostV1AccountMeResponseBilling billing;
+
+    private long referralPoints;
 
     private PostV1AccountMeResponseConsent consent;
 
@@ -225,6 +239,7 @@ public final class PostV1AccountMeResponse {
       activeCompanyId(other.getActiveCompanyId());
       role(other.getRole());
       billing(other.getBilling());
+      referralPoints(other.getReferralPoints());
       consent(other.getConsent());
       companies(other.getCompanies());
       return this;
@@ -246,8 +261,15 @@ public final class PostV1AccountMeResponse {
 
     @java.lang.Override
     @JsonSetter("billing")
-    public ConsentStage billing(@NotNull PostV1AccountMeResponseBilling billing) {
+    public ReferralPointsStage billing(@NotNull PostV1AccountMeResponseBilling billing) {
       this.billing = Objects.requireNonNull(billing, "billing must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("referralPoints")
+    public ConsentStage referralPoints(long referralPoints) {
+      this.referralPoints = referralPoints;
       return this;
     }
 
@@ -347,7 +369,7 @@ public final class PostV1AccountMeResponse {
 
     @java.lang.Override
     public PostV1AccountMeResponse build() {
-      return new PostV1AccountMeResponse(user, locale, activeCompanyId, role, billing, consent, companies, additionalProperties);
+      return new PostV1AccountMeResponse(user, locale, activeCompanyId, role, billing, referralPoints, consent, companies, additionalProperties);
     }
 
     @java.lang.Override

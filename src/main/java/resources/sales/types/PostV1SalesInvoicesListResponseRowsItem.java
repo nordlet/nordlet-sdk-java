@@ -78,6 +78,30 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
 
   private final Optional<String> documentRef;
 
+  private final Optional<String> operationTypeId;
+
+  private final Optional<String> documentSeriesId;
+
+  private final Optional<String> seriesLabel;
+
+  private final String discountPercent;
+
+  private final Optional<String> orderNumber;
+
+  private final Optional<String> issuedByName;
+
+  private final Optional<String> issuedByTitle;
+
+  private final Optional<String> receivedByName;
+
+  private final Optional<String> receivedByTitle;
+
+  private final Optional<String> lockedAt;
+
+  private final Optional<String> lockedBy;
+
+  private final Optional<String> payToken;
+
   private final String createdAt;
 
   private final String updatedAt;
@@ -95,7 +119,11 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
       Optional<String> agreementId,
       Optional<PostV1SalesInvoicesListResponseRowsItemVatScheme> vatScheme,
       Optional<String> vatCountryCode, boolean deemedSupplier, Optional<String> notes,
-      Optional<String> documentRef, String createdAt, String updatedAt,
+      Optional<String> documentRef, Optional<String> operationTypeId,
+      Optional<String> documentSeriesId, Optional<String> seriesLabel, String discountPercent,
+      Optional<String> orderNumber, Optional<String> issuedByName, Optional<String> issuedByTitle,
+      Optional<String> receivedByName, Optional<String> receivedByTitle, Optional<String> lockedAt,
+      Optional<String> lockedBy, Optional<String> payToken, String createdAt, String updatedAt,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.partnerId = partnerId;
@@ -121,6 +149,18 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
     this.deemedSupplier = deemedSupplier;
     this.notes = notes;
     this.documentRef = documentRef;
+    this.operationTypeId = operationTypeId;
+    this.documentSeriesId = documentSeriesId;
+    this.seriesLabel = seriesLabel;
+    this.discountPercent = discountPercent;
+    this.orderNumber = orderNumber;
+    this.issuedByName = issuedByName;
+    this.issuedByTitle = issuedByTitle;
+    this.receivedByName = receivedByName;
+    this.receivedByTitle = receivedByTitle;
+    this.lockedAt = lockedAt;
+    this.lockedBy = lockedBy;
+    this.payToken = payToken;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.additionalProperties = additionalProperties;
@@ -285,6 +325,99 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
     return documentRef;
   }
 
+  @JsonIgnore
+  public Optional<String> getOperationTypeId() {
+    if (operationTypeId == null) {
+      return Optional.empty();
+    }
+    return operationTypeId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getDocumentSeriesId() {
+    if (documentSeriesId == null) {
+      return Optional.empty();
+    }
+    return documentSeriesId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getSeriesLabel() {
+    if (seriesLabel == null) {
+      return Optional.empty();
+    }
+    return seriesLabel;
+  }
+
+  @JsonProperty("discountPercent")
+  public String getDiscountPercent() {
+    return discountPercent;
+  }
+
+  @JsonIgnore
+  public Optional<String> getOrderNumber() {
+    if (orderNumber == null) {
+      return Optional.empty();
+    }
+    return orderNumber;
+  }
+
+  @JsonIgnore
+  public Optional<String> getIssuedByName() {
+    if (issuedByName == null) {
+      return Optional.empty();
+    }
+    return issuedByName;
+  }
+
+  @JsonIgnore
+  public Optional<String> getIssuedByTitle() {
+    if (issuedByTitle == null) {
+      return Optional.empty();
+    }
+    return issuedByTitle;
+  }
+
+  @JsonIgnore
+  public Optional<String> getReceivedByName() {
+    if (receivedByName == null) {
+      return Optional.empty();
+    }
+    return receivedByName;
+  }
+
+  @JsonIgnore
+  public Optional<String> getReceivedByTitle() {
+    if (receivedByTitle == null) {
+      return Optional.empty();
+    }
+    return receivedByTitle;
+  }
+
+  @JsonIgnore
+  public Optional<String> getLockedAt() {
+    if (lockedAt == null) {
+      return Optional.empty();
+    }
+    return lockedAt;
+  }
+
+  @JsonIgnore
+  public Optional<String> getLockedBy() {
+    if (lockedBy == null) {
+      return Optional.empty();
+    }
+    return lockedBy;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPayToken() {
+    if (payToken == null) {
+      return Optional.empty();
+    }
+    return payToken;
+  }
+
   @JsonProperty("createdAt")
   public String getCreatedAt() {
     return createdAt;
@@ -412,6 +545,105 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
     return documentRef;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("operationTypeId")
+  private Optional<String> _getOperationTypeId() {
+    return operationTypeId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("documentSeriesId")
+  private Optional<String> _getDocumentSeriesId() {
+    return documentSeriesId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("seriesLabel")
+  private Optional<String> _getSeriesLabel() {
+    return seriesLabel;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("orderNumber")
+  private Optional<String> _getOrderNumber() {
+    return orderNumber;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("issuedByName")
+  private Optional<String> _getIssuedByName() {
+    return issuedByName;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("issuedByTitle")
+  private Optional<String> _getIssuedByTitle() {
+    return issuedByTitle;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("receivedByName")
+  private Optional<String> _getReceivedByName() {
+    return receivedByName;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("receivedByTitle")
+  private Optional<String> _getReceivedByTitle() {
+    return receivedByTitle;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("lockedAt")
+  private Optional<String> _getLockedAt() {
+    return lockedAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("lockedBy")
+  private Optional<String> _getLockedBy() {
+    return lockedBy;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("payToken")
+  private Optional<String> _getPayToken() {
+    return payToken;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -424,12 +656,12 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
   }
 
   private boolean equalTo(PostV1SalesInvoicesListResponseRowsItem other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && documentRef.equals(other.documentRef) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && lockedAt.equals(other.lockedAt) && lockedBy.equals(other.lockedBy) && payToken.equals(other.payToken) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.agreementId, this.vatScheme, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.agreementId, this.vatScheme, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.lockedAt, this.lockedBy, this.payToken, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -485,7 +717,11 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
   }
 
   public interface DeemedSupplierStage {
-    CreatedAtStage deemedSupplier(boolean deemedSupplier);
+    DiscountPercentStage deemedSupplier(boolean deemedSupplier);
+  }
+
+  public interface DiscountPercentStage {
+    CreatedAtStage discountPercent(@NotNull String discountPercent);
   }
 
   public interface CreatedAtStage {
@@ -580,12 +816,78 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
     _FinalStage documentRef(String documentRef);
 
     _FinalStage documentRef(Nullable<String> documentRef);
+
+    _FinalStage operationTypeId(Optional<String> operationTypeId);
+
+    _FinalStage operationTypeId(String operationTypeId);
+
+    _FinalStage operationTypeId(Nullable<String> operationTypeId);
+
+    _FinalStage documentSeriesId(Optional<String> documentSeriesId);
+
+    _FinalStage documentSeriesId(String documentSeriesId);
+
+    _FinalStage documentSeriesId(Nullable<String> documentSeriesId);
+
+    _FinalStage seriesLabel(Optional<String> seriesLabel);
+
+    _FinalStage seriesLabel(String seriesLabel);
+
+    _FinalStage seriesLabel(Nullable<String> seriesLabel);
+
+    _FinalStage orderNumber(Optional<String> orderNumber);
+
+    _FinalStage orderNumber(String orderNumber);
+
+    _FinalStage orderNumber(Nullable<String> orderNumber);
+
+    _FinalStage issuedByName(Optional<String> issuedByName);
+
+    _FinalStage issuedByName(String issuedByName);
+
+    _FinalStage issuedByName(Nullable<String> issuedByName);
+
+    _FinalStage issuedByTitle(Optional<String> issuedByTitle);
+
+    _FinalStage issuedByTitle(String issuedByTitle);
+
+    _FinalStage issuedByTitle(Nullable<String> issuedByTitle);
+
+    _FinalStage receivedByName(Optional<String> receivedByName);
+
+    _FinalStage receivedByName(String receivedByName);
+
+    _FinalStage receivedByName(Nullable<String> receivedByName);
+
+    _FinalStage receivedByTitle(Optional<String> receivedByTitle);
+
+    _FinalStage receivedByTitle(String receivedByTitle);
+
+    _FinalStage receivedByTitle(Nullable<String> receivedByTitle);
+
+    _FinalStage lockedAt(Optional<String> lockedAt);
+
+    _FinalStage lockedAt(String lockedAt);
+
+    _FinalStage lockedAt(Nullable<String> lockedAt);
+
+    _FinalStage lockedBy(Optional<String> lockedBy);
+
+    _FinalStage lockedBy(String lockedBy);
+
+    _FinalStage lockedBy(Nullable<String> lockedBy);
+
+    _FinalStage payToken(Optional<String> payToken);
+
+    _FinalStage payToken(String payToken);
+
+    _FinalStage payToken(Nullable<String> payToken);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, PartnerIdStage, TypeStage, StatusStage, PaymentStatusStage, CurrencyStage, NetTotalStage, VatTotalStage, GrossTotalStage, PaidAmountStage, DeemedSupplierStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, PartnerIdStage, TypeStage, StatusStage, PaymentStatusStage, CurrencyStage, NetTotalStage, VatTotalStage, GrossTotalStage, PaidAmountStage, DeemedSupplierStage, DiscountPercentStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
     private String id;
 
     private String partnerId;
@@ -608,9 +910,33 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
 
     private boolean deemedSupplier;
 
+    private String discountPercent;
+
     private String createdAt;
 
     private String updatedAt;
+
+    private Optional<String> payToken = Optional.empty();
+
+    private Optional<String> lockedBy = Optional.empty();
+
+    private Optional<String> lockedAt = Optional.empty();
+
+    private Optional<String> receivedByTitle = Optional.empty();
+
+    private Optional<String> receivedByName = Optional.empty();
+
+    private Optional<String> issuedByTitle = Optional.empty();
+
+    private Optional<String> issuedByName = Optional.empty();
+
+    private Optional<String> orderNumber = Optional.empty();
+
+    private Optional<String> seriesLabel = Optional.empty();
+
+    private Optional<String> documentSeriesId = Optional.empty();
+
+    private Optional<String> operationTypeId = Optional.empty();
 
     private Optional<String> documentRef = Optional.empty();
 
@@ -670,6 +996,18 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
       deemedSupplier(other.getDeemedSupplier());
       notes(other.getNotes());
       documentRef(other.getDocumentRef());
+      operationTypeId(other.getOperationTypeId());
+      documentSeriesId(other.getDocumentSeriesId());
+      seriesLabel(other.getSeriesLabel());
+      discountPercent(other.getDiscountPercent());
+      orderNumber(other.getOrderNumber());
+      issuedByName(other.getIssuedByName());
+      issuedByTitle(other.getIssuedByTitle());
+      receivedByName(other.getReceivedByName());
+      receivedByTitle(other.getReceivedByTitle());
+      lockedAt(other.getLockedAt());
+      lockedBy(other.getLockedBy());
+      payToken(other.getPayToken());
       createdAt(other.getCreatedAt());
       updatedAt(other.getUpdatedAt());
       return this;
@@ -749,8 +1087,15 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("deemedSupplier")
-    public CreatedAtStage deemedSupplier(boolean deemedSupplier) {
+    public DiscountPercentStage deemedSupplier(boolean deemedSupplier) {
       this.deemedSupplier = deemedSupplier;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("discountPercent")
+    public CreatedAtStage discountPercent(@NotNull String discountPercent) {
+      this.discountPercent = Objects.requireNonNull(discountPercent, "discountPercent must not be null");
       return this;
     }
 
@@ -765,6 +1110,336 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
     @JsonSetter("updatedAt")
     public _FinalStage updatedAt(@NotNull String updatedAt) {
       this.updatedAt = Objects.requireNonNull(updatedAt, "updatedAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage payToken(Nullable<String> payToken) {
+      if (payToken.isNull()) {
+        this.payToken = null;
+      }
+      else if (payToken.isEmpty()) {
+        this.payToken = Optional.empty();
+      }
+      else {
+        this.payToken = Optional.of(payToken.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage payToken(String payToken) {
+      this.payToken = Optional.ofNullable(payToken);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "payToken",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage payToken(Optional<String> payToken) {
+      this.payToken = payToken;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lockedBy(Nullable<String> lockedBy) {
+      if (lockedBy.isNull()) {
+        this.lockedBy = null;
+      }
+      else if (lockedBy.isEmpty()) {
+        this.lockedBy = Optional.empty();
+      }
+      else {
+        this.lockedBy = Optional.of(lockedBy.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lockedBy(String lockedBy) {
+      this.lockedBy = Optional.ofNullable(lockedBy);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lockedBy",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lockedBy(Optional<String> lockedBy) {
+      this.lockedBy = lockedBy;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lockedAt(Nullable<String> lockedAt) {
+      if (lockedAt.isNull()) {
+        this.lockedAt = null;
+      }
+      else if (lockedAt.isEmpty()) {
+        this.lockedAt = Optional.empty();
+      }
+      else {
+        this.lockedAt = Optional.of(lockedAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lockedAt(String lockedAt) {
+      this.lockedAt = Optional.ofNullable(lockedAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lockedAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lockedAt(Optional<String> lockedAt) {
+      this.lockedAt = lockedAt;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage receivedByTitle(Nullable<String> receivedByTitle) {
+      if (receivedByTitle.isNull()) {
+        this.receivedByTitle = null;
+      }
+      else if (receivedByTitle.isEmpty()) {
+        this.receivedByTitle = Optional.empty();
+      }
+      else {
+        this.receivedByTitle = Optional.of(receivedByTitle.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage receivedByTitle(String receivedByTitle) {
+      this.receivedByTitle = Optional.ofNullable(receivedByTitle);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "receivedByTitle",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage receivedByTitle(Optional<String> receivedByTitle) {
+      this.receivedByTitle = receivedByTitle;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage receivedByName(Nullable<String> receivedByName) {
+      if (receivedByName.isNull()) {
+        this.receivedByName = null;
+      }
+      else if (receivedByName.isEmpty()) {
+        this.receivedByName = Optional.empty();
+      }
+      else {
+        this.receivedByName = Optional.of(receivedByName.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage receivedByName(String receivedByName) {
+      this.receivedByName = Optional.ofNullable(receivedByName);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "receivedByName",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage receivedByName(Optional<String> receivedByName) {
+      this.receivedByName = receivedByName;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage issuedByTitle(Nullable<String> issuedByTitle) {
+      if (issuedByTitle.isNull()) {
+        this.issuedByTitle = null;
+      }
+      else if (issuedByTitle.isEmpty()) {
+        this.issuedByTitle = Optional.empty();
+      }
+      else {
+        this.issuedByTitle = Optional.of(issuedByTitle.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage issuedByTitle(String issuedByTitle) {
+      this.issuedByTitle = Optional.ofNullable(issuedByTitle);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "issuedByTitle",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage issuedByTitle(Optional<String> issuedByTitle) {
+      this.issuedByTitle = issuedByTitle;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage issuedByName(Nullable<String> issuedByName) {
+      if (issuedByName.isNull()) {
+        this.issuedByName = null;
+      }
+      else if (issuedByName.isEmpty()) {
+        this.issuedByName = Optional.empty();
+      }
+      else {
+        this.issuedByName = Optional.of(issuedByName.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage issuedByName(String issuedByName) {
+      this.issuedByName = Optional.ofNullable(issuedByName);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "issuedByName",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage issuedByName(Optional<String> issuedByName) {
+      this.issuedByName = issuedByName;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage orderNumber(Nullable<String> orderNumber) {
+      if (orderNumber.isNull()) {
+        this.orderNumber = null;
+      }
+      else if (orderNumber.isEmpty()) {
+        this.orderNumber = Optional.empty();
+      }
+      else {
+        this.orderNumber = Optional.of(orderNumber.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage orderNumber(String orderNumber) {
+      this.orderNumber = Optional.ofNullable(orderNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "orderNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage orderNumber(Optional<String> orderNumber) {
+      this.orderNumber = orderNumber;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage seriesLabel(Nullable<String> seriesLabel) {
+      if (seriesLabel.isNull()) {
+        this.seriesLabel = null;
+      }
+      else if (seriesLabel.isEmpty()) {
+        this.seriesLabel = Optional.empty();
+      }
+      else {
+        this.seriesLabel = Optional.of(seriesLabel.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage seriesLabel(String seriesLabel) {
+      this.seriesLabel = Optional.ofNullable(seriesLabel);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "seriesLabel",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage seriesLabel(Optional<String> seriesLabel) {
+      this.seriesLabel = seriesLabel;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentSeriesId(Nullable<String> documentSeriesId) {
+      if (documentSeriesId.isNull()) {
+        this.documentSeriesId = null;
+      }
+      else if (documentSeriesId.isEmpty()) {
+        this.documentSeriesId = Optional.empty();
+      }
+      else {
+        this.documentSeriesId = Optional.of(documentSeriesId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentSeriesId(String documentSeriesId) {
+      this.documentSeriesId = Optional.ofNullable(documentSeriesId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentSeriesId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentSeriesId(Optional<String> documentSeriesId) {
+      this.documentSeriesId = documentSeriesId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage operationTypeId(Nullable<String> operationTypeId) {
+      if (operationTypeId.isNull()) {
+        this.operationTypeId = null;
+      }
+      else if (operationTypeId.isEmpty()) {
+        this.operationTypeId = Optional.empty();
+      }
+      else {
+        this.operationTypeId = Optional.of(operationTypeId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage operationTypeId(String operationTypeId) {
+      this.operationTypeId = Optional.ofNullable(operationTypeId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "operationTypeId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage operationTypeId(Optional<String> operationTypeId) {
+      this.operationTypeId = operationTypeId;
       return this;
     }
 
@@ -1162,7 +1837,7 @@ public final class PostV1SalesInvoicesListResponseRowsItem {
 
     @java.lang.Override
     public PostV1SalesInvoicesListResponseRowsItem build() {
-      return new PostV1SalesInvoicesListResponseRowsItem(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, agreementId, vatScheme, vatCountryCode, deemedSupplier, notes, documentRef, createdAt, updatedAt, additionalProperties);
+      return new PostV1SalesInvoicesListResponseRowsItem(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, agreementId, vatScheme, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, lockedAt, lockedBy, payToken, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

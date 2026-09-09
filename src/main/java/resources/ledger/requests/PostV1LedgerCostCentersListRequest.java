@@ -37,16 +37,19 @@ public final class PostV1LedgerCostCentersListRequest {
 
   private final Optional<List<PostV1LedgerCostCentersListRequestFilterItem>> filter;
 
+  private final Optional<List<String>> totals;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1LedgerCostCentersListRequest(Optional<Long> page, Optional<Long> pageSize,
       Optional<List<PostV1LedgerCostCentersListRequestSortItem>> sort,
       Optional<List<PostV1LedgerCostCentersListRequestFilterItem>> filter,
-      Map<String, Object> additionalProperties) {
+      Optional<List<String>> totals, Map<String, Object> additionalProperties) {
     this.page = page;
     this.pageSize = pageSize;
     this.sort = sort;
     this.filter = filter;
+    this.totals = totals;
     this.additionalProperties = additionalProperties;
   }
 
@@ -70,6 +73,14 @@ public final class PostV1LedgerCostCentersListRequest {
     return filter;
   }
 
+  /**
+   * @return Numeric fields to sum over every row matching the filter (not only the current page)
+   */
+  @JsonProperty("totals")
+  public Optional<List<String>> getTotals() {
+    return totals;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -82,12 +93,12 @@ public final class PostV1LedgerCostCentersListRequest {
   }
 
   private boolean equalTo(PostV1LedgerCostCentersListRequest other) {
-    return page.equals(other.page) && pageSize.equals(other.pageSize) && sort.equals(other.sort) && filter.equals(other.filter);
+    return page.equals(other.page) && pageSize.equals(other.pageSize) && sort.equals(other.sort) && filter.equals(other.filter) && totals.equals(other.totals);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.page, this.pageSize, this.sort, this.filter);
+    return Objects.hash(this.page, this.pageSize, this.sort, this.filter, this.totals);
   }
 
   @java.lang.Override
@@ -111,6 +122,8 @@ public final class PostV1LedgerCostCentersListRequest {
 
     private Optional<List<PostV1LedgerCostCentersListRequestFilterItem>> filter = Optional.empty();
 
+    private Optional<List<String>> totals = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -122,6 +135,7 @@ public final class PostV1LedgerCostCentersListRequest {
       pageSize(other.getPageSize());
       sort(other.getSort());
       filter(other.getFilter());
+      totals(other.getTotals());
       return this;
     }
 
@@ -181,8 +195,25 @@ public final class PostV1LedgerCostCentersListRequest {
       return this;
     }
 
+    /**
+     * <p>Numeric fields to sum over every row matching the filter (not only the current page)</p>
+     */
+    @JsonSetter(
+        value = "totals",
+        nulls = Nulls.SKIP
+    )
+    public Builder totals(Optional<List<String>> totals) {
+      this.totals = totals;
+      return this;
+    }
+
+    public Builder totals(List<String> totals) {
+      this.totals = Optional.ofNullable(totals);
+      return this;
+    }
+
     public PostV1LedgerCostCentersListRequest build() {
-      return new PostV1LedgerCostCentersListRequest(page, pageSize, sort, filter, additionalProperties);
+      return new PostV1LedgerCostCentersListRequest(page, pageSize, sort, filter, totals, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

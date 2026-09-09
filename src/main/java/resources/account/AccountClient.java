@@ -34,9 +34,13 @@ import com.nordlet.api.resources.account.requests.PostV1AccountMembersListReques
 import com.nordlet.api.resources.account.requests.PostV1AccountMembersRemoveRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountMembersSetRoleRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountProfileUpdateRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountReferralGetRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountSessionsListRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountSessionsRevokeOthersRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountSessionsRevokeRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountTableSettingsGetRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountTableSettingsListRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountTableSettingsSetRequest;
 import com.nordlet.api.resources.account.types.PostV1AccountApiKeysCreateResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountApiKeysListResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountApiKeysRevokeResponse;
@@ -65,9 +69,13 @@ import com.nordlet.api.resources.account.types.PostV1AccountMembersListResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountMembersRemoveResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountMembersSetRoleResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountProfileUpdateResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountReferralGetResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountSessionsListResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountSessionsRevokeOthersResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountSessionsRevokeResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountTableSettingsGetResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountTableSettingsListResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountTableSettingsSetResponse;
 
 public class AccountClient {
   protected final ClientOptions clientOptions;
@@ -483,5 +491,62 @@ public class AccountClient {
   public PostV1AccountDeleteResponse deleteTheSignedInUserAccount(
       PostV1AccountDeleteRequest request, RequestOptions requestOptions) {
     return this.rawClient.deleteTheSignedInUserAccount(request, requestOptions).body();
+  }
+
+  public PostV1AccountReferralGetResponse postV1AccountReferralGet() {
+    return this.rawClient.postV1AccountReferralGet().body();
+  }
+
+  public PostV1AccountReferralGetResponse postV1AccountReferralGet(RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountReferralGet(requestOptions).body();
+  }
+
+  public PostV1AccountReferralGetResponse postV1AccountReferralGet(
+      PostV1AccountReferralGetRequest request) {
+    return this.rawClient.postV1AccountReferralGet(request).body();
+  }
+
+  public PostV1AccountReferralGetResponse postV1AccountReferralGet(
+      PostV1AccountReferralGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountReferralGet(request, requestOptions).body();
+  }
+
+  public PostV1AccountTableSettingsGetResponse postV1AccountTableSettingsGet(
+      PostV1AccountTableSettingsGetRequest request) {
+    return this.rawClient.postV1AccountTableSettingsGet(request).body();
+  }
+
+  public PostV1AccountTableSettingsGetResponse postV1AccountTableSettingsGet(
+      PostV1AccountTableSettingsGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountTableSettingsGet(request, requestOptions).body();
+  }
+
+  public PostV1AccountTableSettingsSetResponse postV1AccountTableSettingsSet(
+      PostV1AccountTableSettingsSetRequest request) {
+    return this.rawClient.postV1AccountTableSettingsSet(request).body();
+  }
+
+  public PostV1AccountTableSettingsSetResponse postV1AccountTableSettingsSet(
+      PostV1AccountTableSettingsSetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountTableSettingsSet(request, requestOptions).body();
+  }
+
+  public PostV1AccountTableSettingsListResponse postV1AccountTableSettingsList() {
+    return this.rawClient.postV1AccountTableSettingsList().body();
+  }
+
+  public PostV1AccountTableSettingsListResponse postV1AccountTableSettingsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountTableSettingsList(requestOptions).body();
+  }
+
+  public PostV1AccountTableSettingsListResponse postV1AccountTableSettingsList(
+      PostV1AccountTableSettingsListRequest request) {
+    return this.rawClient.postV1AccountTableSettingsList(request).body();
+  }
+
+  public PostV1AccountTableSettingsListResponse postV1AccountTableSettingsList(
+      PostV1AccountTableSettingsListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountTableSettingsList(request, requestOptions).body();
   }
 }

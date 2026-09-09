@@ -12,6 +12,7 @@ import com.nordlet.api.resources.assets.AssetsClient;
 import com.nordlet.api.resources.audit.AuditClient;
 import com.nordlet.api.resources.bank.BankClient;
 import com.nordlet.api.resources.billing.BillingClient;
+import com.nordlet.api.resources.calendar.CalendarClient;
 import com.nordlet.api.resources.capture.CaptureClient;
 import com.nordlet.api.resources.cash.CashClient;
 import com.nordlet.api.resources.catalog.CatalogClient;
@@ -83,6 +84,8 @@ public class NordletApiClient {
 
   protected final Supplier<PosClient> posClient;
 
+  protected final Supplier<CalendarClient> calendarClient;
+
   protected final Supplier<AuditClient> auditClient;
 
   protected final Supplier<WebhooksClient> webhooksClient;
@@ -124,6 +127,7 @@ public class NordletApiClient {
     this.projectsClient = Suppliers.memoize(() -> new ProjectsClient(clientOptions));
     this.transportClient = Suppliers.memoize(() -> new TransportClient(clientOptions));
     this.posClient = Suppliers.memoize(() -> new PosClient(clientOptions));
+    this.calendarClient = Suppliers.memoize(() -> new CalendarClient(clientOptions));
     this.auditClient = Suppliers.memoize(() -> new AuditClient(clientOptions));
     this.webhooksClient = Suppliers.memoize(() -> new WebhooksClient(clientOptions));
     this.bankClient = Suppliers.memoize(() -> new BankClient(clientOptions));
@@ -217,6 +221,10 @@ public class NordletApiClient {
 
   public PosClient pos() {
     return this.posClient.get();
+  }
+
+  public CalendarClient calendar() {
+    return this.calendarClient.get();
   }
 
   public AuditClient audit() {

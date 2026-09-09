@@ -21,6 +21,9 @@ import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRates
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesSetRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesSyncRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceIntrastatThresholdsListRequest;
+import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtCitiesListRequest;
+import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtCountiesListRequest;
+import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtMunicipalitiesListRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtRegionsListRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceSeriesCreateRequest;
 import com.nordlet.api.resources.reference.requests.PostV1ReferenceSeriesListRequest;
@@ -43,6 +46,9 @@ import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesOve
 import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesSetResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesSyncResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceIntrastatThresholdsListResponse;
+import com.nordlet.api.resources.reference.types.PostV1ReferenceLtCitiesListResponse;
+import com.nordlet.api.resources.reference.types.PostV1ReferenceLtCountiesListResponse;
+import com.nordlet.api.resources.reference.types.PostV1ReferenceLtMunicipalitiesListResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceLtRegionsListResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceSeriesCreateResponse;
 import com.nordlet.api.resources.reference.types.PostV1ReferenceSeriesListResponse;
@@ -163,6 +169,63 @@ public class ReferenceClient {
   public PostV1ReferenceCountriesListResponse postV1ReferenceCountriesList(
       PostV1ReferenceCountriesListRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1ReferenceCountriesList(request, requestOptions).body();
+  }
+
+  public PostV1ReferenceLtCountiesListResponse postV1ReferenceLtCountiesList() {
+    return this.rawClient.postV1ReferenceLtCountiesList().body();
+  }
+
+  public PostV1ReferenceLtCountiesListResponse postV1ReferenceLtCountiesList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1ReferenceLtCountiesList(requestOptions).body();
+  }
+
+  public PostV1ReferenceLtCountiesListResponse postV1ReferenceLtCountiesList(
+      PostV1ReferenceLtCountiesListRequest request) {
+    return this.rawClient.postV1ReferenceLtCountiesList(request).body();
+  }
+
+  public PostV1ReferenceLtCountiesListResponse postV1ReferenceLtCountiesList(
+      PostV1ReferenceLtCountiesListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ReferenceLtCountiesList(request, requestOptions).body();
+  }
+
+  public PostV1ReferenceLtMunicipalitiesListResponse postV1ReferenceLtMunicipalitiesList() {
+    return this.rawClient.postV1ReferenceLtMunicipalitiesList().body();
+  }
+
+  public PostV1ReferenceLtMunicipalitiesListResponse postV1ReferenceLtMunicipalitiesList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1ReferenceLtMunicipalitiesList(requestOptions).body();
+  }
+
+  public PostV1ReferenceLtMunicipalitiesListResponse postV1ReferenceLtMunicipalitiesList(
+      PostV1ReferenceLtMunicipalitiesListRequest request) {
+    return this.rawClient.postV1ReferenceLtMunicipalitiesList(request).body();
+  }
+
+  public PostV1ReferenceLtMunicipalitiesListResponse postV1ReferenceLtMunicipalitiesList(
+      PostV1ReferenceLtMunicipalitiesListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ReferenceLtMunicipalitiesList(request, requestOptions).body();
+  }
+
+  public PostV1ReferenceLtCitiesListResponse postV1ReferenceLtCitiesList() {
+    return this.rawClient.postV1ReferenceLtCitiesList().body();
+  }
+
+  public PostV1ReferenceLtCitiesListResponse postV1ReferenceLtCitiesList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1ReferenceLtCitiesList(requestOptions).body();
+  }
+
+  public PostV1ReferenceLtCitiesListResponse postV1ReferenceLtCitiesList(
+      PostV1ReferenceLtCitiesListRequest request) {
+    return this.rawClient.postV1ReferenceLtCitiesList(request).body();
+  }
+
+  public PostV1ReferenceLtCitiesListResponse postV1ReferenceLtCitiesList(
+      PostV1ReferenceLtCitiesListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ReferenceLtCitiesList(request, requestOptions).body();
   }
 
   public PostV1ReferenceBanksListResponse postV1ReferenceBanksList() {

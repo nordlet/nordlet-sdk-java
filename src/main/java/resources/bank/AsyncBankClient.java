@@ -29,12 +29,18 @@ import com.nordlet.api.resources.bank.requests.PostV1BankMandatesCreateRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankMandatesGetRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankMandatesListRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankMandatesUpdateRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankMatchRulesCreateRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankMatchRulesDeleteRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankMatchRulesListRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankMatchRulesUpdateRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankPaymentsExportRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsGetRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsImportRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsLinkRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsListRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsMatchRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsPostRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsUnlinkRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankStatementsImportRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankTransactionsImportRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankTransactionsListRequest;
@@ -64,12 +70,18 @@ import com.nordlet.api.resources.bank.types.PostV1BankMandatesCreateResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankMandatesGetResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankMandatesListResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankMandatesUpdateResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankMatchRulesCreateResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankMatchRulesDeleteResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankMatchRulesListResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankMatchRulesUpdateResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankPaymentsExportResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankSettlementsGetResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankSettlementsImportResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankSettlementsLinkResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankSettlementsListResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankSettlementsMatchResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankSettlementsPostResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankSettlementsUnlinkResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankStatementsImportResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankTransactionsImportResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankTransactionsListResponse;
@@ -262,6 +274,55 @@ public class AsyncBankClient {
     return this.rawClient.postV1BankImportTemplatesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  public CompletableFuture<PostV1BankMatchRulesCreateResponse> postV1BankMatchRulesCreate(
+      PostV1BankMatchRulesCreateRequest request) {
+    return this.rawClient.postV1BankMatchRulesCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1BankMatchRulesCreateResponse> postV1BankMatchRulesCreate(
+      PostV1BankMatchRulesCreateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankMatchRulesCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1BankMatchRulesUpdateResponse> postV1BankMatchRulesUpdate(
+      PostV1BankMatchRulesUpdateRequest request) {
+    return this.rawClient.postV1BankMatchRulesUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1BankMatchRulesUpdateResponse> postV1BankMatchRulesUpdate(
+      PostV1BankMatchRulesUpdateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankMatchRulesUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1BankMatchRulesDeleteResponse> postV1BankMatchRulesDelete(
+      PostV1BankMatchRulesDeleteRequest request) {
+    return this.rawClient.postV1BankMatchRulesDelete(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1BankMatchRulesDeleteResponse> postV1BankMatchRulesDelete(
+      PostV1BankMatchRulesDeleteRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankMatchRulesDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1BankMatchRulesListResponse> postV1BankMatchRulesList() {
+    return this.rawClient.postV1BankMatchRulesList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1BankMatchRulesListResponse> postV1BankMatchRulesList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1BankMatchRulesList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1BankMatchRulesListResponse> postV1BankMatchRulesList(
+      PostV1BankMatchRulesListRequest request) {
+    return this.rawClient.postV1BankMatchRulesList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1BankMatchRulesListResponse> postV1BankMatchRulesList(
+      PostV1BankMatchRulesListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankMatchRulesList(request, requestOptions).thenApply(response -> response.body());
+  }
+
   public CompletableFuture<PostV1BankMandatesCreateResponse> postV1BankMandatesCreate(
       PostV1BankMandatesCreateRequest request) {
     return this.rawClient.postV1BankMandatesCreate(request).thenApply(response -> response.body());
@@ -388,6 +449,38 @@ public class AsyncBankClient {
   public CompletableFuture<PostV1BankSettlementsMatchResponse> postV1BankSettlementsMatch(
       PostV1BankSettlementsMatchRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1BankSettlementsMatch(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Attach the incoming bank-statement line that carries this payout to the settlement batch.
+   */
+  public CompletableFuture<PostV1BankSettlementsLinkResponse> postV1BankSettlementsLink(
+      PostV1BankSettlementsLinkRequest request) {
+    return this.rawClient.postV1BankSettlementsLink(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Attach the incoming bank-statement line that carries this payout to the settlement batch.
+   */
+  public CompletableFuture<PostV1BankSettlementsLinkResponse> postV1BankSettlementsLink(
+      PostV1BankSettlementsLinkRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankSettlementsLink(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+   */
+  public CompletableFuture<PostV1BankSettlementsUnlinkResponse> postV1BankSettlementsUnlink(
+      PostV1BankSettlementsUnlinkRequest request) {
+    return this.rawClient.postV1BankSettlementsUnlink(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+   */
+  public CompletableFuture<PostV1BankSettlementsUnlinkResponse> postV1BankSettlementsUnlink(
+      PostV1BankSettlementsUnlinkRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BankSettlementsUnlink(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<PostV1BankSettlementsPostResponse> postV1BankSettlementsPost(

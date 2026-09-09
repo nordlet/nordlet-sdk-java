@@ -63,6 +63,8 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
 
   private final Optional<String> purchaseOrderId;
 
+  private final Optional<String> operationTypeId;
+
   private final Optional<String> notes;
 
   private final Optional<String> documentRef;
@@ -80,8 +82,9 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
       String documentDate, Optional<String> dueDate, Optional<String> registrationDate,
       String currency, String netTotal, String vatTotal, String grossTotal, String paidAmount,
       Optional<String> journalTransactionId, Optional<String> creditedInvoiceId,
-      Optional<String> purchaseOrderId, Optional<String> notes, Optional<String> documentRef,
-      String createdAt, String updatedAt, Map<String, Object> additionalProperties) {
+      Optional<String> purchaseOrderId, Optional<String> operationTypeId, Optional<String> notes,
+      Optional<String> documentRef, String createdAt, String updatedAt,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.partnerId = partnerId;
     this.type = type;
@@ -99,6 +102,7 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
     this.journalTransactionId = journalTransactionId;
     this.creditedInvoiceId = creditedInvoiceId;
     this.purchaseOrderId = purchaseOrderId;
+    this.operationTypeId = operationTypeId;
     this.notes = notes;
     this.documentRef = documentRef;
     this.createdAt = createdAt;
@@ -207,6 +211,14 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
   }
 
   @JsonIgnore
+  public Optional<String> getOperationTypeId() {
+    if (operationTypeId == null) {
+      return Optional.empty();
+    }
+    return operationTypeId;
+  }
+
+  @JsonIgnore
   public Optional<String> getNotes() {
     if (notes == null) {
       return Optional.empty();
@@ -281,6 +293,15 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("operationTypeId")
+  private Optional<String> _getOperationTypeId() {
+    return operationTypeId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("notes")
   private Optional<String> _getNotes() {
     return notes;
@@ -307,12 +328,12 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
   }
 
   private boolean equalTo(PostV1PurchasesInvoicesListResponseRowsItem other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && registrationDate.equals(other.registrationDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && creditedInvoiceId.equals(other.creditedInvoiceId) && purchaseOrderId.equals(other.purchaseOrderId) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && registrationDate.equals(other.registrationDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && creditedInvoiceId.equals(other.creditedInvoiceId) && purchaseOrderId.equals(other.purchaseOrderId) && operationTypeId.equals(other.operationTypeId) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.documentNumber, this.documentDate, this.dueDate, this.registrationDate, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.creditedInvoiceId, this.purchaseOrderId, this.notes, this.documentRef, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.documentNumber, this.documentDate, this.dueDate, this.registrationDate, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.creditedInvoiceId, this.purchaseOrderId, this.operationTypeId, this.notes, this.documentRef, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -420,6 +441,12 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
 
     _FinalStage purchaseOrderId(Nullable<String> purchaseOrderId);
 
+    _FinalStage operationTypeId(Optional<String> operationTypeId);
+
+    _FinalStage operationTypeId(String operationTypeId);
+
+    _FinalStage operationTypeId(Nullable<String> operationTypeId);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -469,6 +496,8 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
 
     private Optional<String> notes = Optional.empty();
 
+    private Optional<String> operationTypeId = Optional.empty();
+
     private Optional<String> purchaseOrderId = Optional.empty();
 
     private Optional<String> creditedInvoiceId = Optional.empty();
@@ -504,6 +533,7 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
       journalTransactionId(other.getJournalTransactionId());
       creditedInvoiceId(other.getCreditedInvoiceId());
       purchaseOrderId(other.getPurchaseOrderId());
+      operationTypeId(other.getOperationTypeId());
       notes(other.getNotes());
       documentRef(other.getDocumentRef());
       createdAt(other.getCreatedAt());
@@ -672,6 +702,36 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
     }
 
     @java.lang.Override
+    public _FinalStage operationTypeId(Nullable<String> operationTypeId) {
+      if (operationTypeId.isNull()) {
+        this.operationTypeId = null;
+      }
+      else if (operationTypeId.isEmpty()) {
+        this.operationTypeId = Optional.empty();
+      }
+      else {
+        this.operationTypeId = Optional.of(operationTypeId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage operationTypeId(String operationTypeId) {
+      this.operationTypeId = Optional.ofNullable(operationTypeId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "operationTypeId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage operationTypeId(Optional<String> operationTypeId) {
+      this.operationTypeId = operationTypeId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage purchaseOrderId(Nullable<String> purchaseOrderId) {
       if (purchaseOrderId.isNull()) {
         this.purchaseOrderId = null;
@@ -823,7 +883,7 @@ public final class PostV1PurchasesInvoicesListResponseRowsItem {
 
     @java.lang.Override
     public PostV1PurchasesInvoicesListResponseRowsItem build() {
-      return new PostV1PurchasesInvoicesListResponseRowsItem(id, partnerId, type, status, paymentStatus, documentNumber, documentDate, dueDate, registrationDate, currency, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, creditedInvoiceId, purchaseOrderId, notes, documentRef, createdAt, updatedAt, additionalProperties);
+      return new PostV1PurchasesInvoicesListResponseRowsItem(id, partnerId, type, status, paymentStatus, documentNumber, documentDate, dueDate, registrationDate, currency, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, creditedInvoiceId, purchaseOrderId, operationTypeId, notes, documentRef, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

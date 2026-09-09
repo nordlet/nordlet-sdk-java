@@ -8,11 +8,13 @@ import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.billing.requests.PostV1BillingAccountGetRequest;
 import com.nordlet.api.resources.billing.requests.PostV1BillingAccountSetPlanRequest;
+import com.nordlet.api.resources.billing.requests.PostV1BillingPortalCreateRequest;
 import com.nordlet.api.resources.billing.requests.PostV1BillingTopupCreateRequest;
 import com.nordlet.api.resources.billing.requests.PostV1BillingTransactionsListRequest;
 import com.nordlet.api.resources.billing.requests.PostV1BillingUsageListRequest;
 import com.nordlet.api.resources.billing.types.PostV1BillingAccountGetResponse;
 import com.nordlet.api.resources.billing.types.PostV1BillingAccountSetPlanResponse;
+import com.nordlet.api.resources.billing.types.PostV1BillingPortalCreateResponse;
 import com.nordlet.api.resources.billing.types.PostV1BillingTopupCreateResponse;
 import com.nordlet.api.resources.billing.types.PostV1BillingTransactionsListResponse;
 import com.nordlet.api.resources.billing.types.PostV1BillingUsageListResponse;
@@ -70,6 +72,25 @@ public class BillingClient {
   public PostV1BillingTopupCreateResponse postV1BillingTopupCreate(
       PostV1BillingTopupCreateRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1BillingTopupCreate(request, requestOptions).body();
+  }
+
+  public PostV1BillingPortalCreateResponse postV1BillingPortalCreate() {
+    return this.rawClient.postV1BillingPortalCreate().body();
+  }
+
+  public PostV1BillingPortalCreateResponse postV1BillingPortalCreate(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1BillingPortalCreate(requestOptions).body();
+  }
+
+  public PostV1BillingPortalCreateResponse postV1BillingPortalCreate(
+      PostV1BillingPortalCreateRequest request) {
+    return this.rawClient.postV1BillingPortalCreate(request).body();
+  }
+
+  public PostV1BillingPortalCreateResponse postV1BillingPortalCreate(
+      PostV1BillingPortalCreateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1BillingPortalCreate(request, requestOptions).body();
   }
 
   public PostV1BillingTransactionsListResponse postV1BillingTransactionsList() {

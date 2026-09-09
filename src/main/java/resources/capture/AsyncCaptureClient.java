@@ -12,12 +12,20 @@ import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsExtractR
 import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsGetRequest;
 import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsListRequest;
 import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsUploadRequest;
+import com.nordlet.api.resources.capture.requests.PostV1CaptureInboundEmailRequest;
+import com.nordlet.api.resources.capture.requests.PostV1CaptureSettingsGetRequest;
+import com.nordlet.api.resources.capture.requests.PostV1CaptureSettingsRegenerateIntakeRequest;
+import com.nordlet.api.resources.capture.requests.PostV1CaptureSettingsUpdateRequest;
 import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsConfirmResponse;
 import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsDeleteResponse;
 import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsExtractResponse;
 import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsGetResponse;
 import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsListResponse;
 import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsUploadResponse;
+import com.nordlet.api.resources.capture.types.PostV1CaptureInboundEmailResponse;
+import com.nordlet.api.resources.capture.types.PostV1CaptureSettingsGetResponse;
+import com.nordlet.api.resources.capture.types.PostV1CaptureSettingsRegenerateIntakeResponse;
+import com.nordlet.api.resources.capture.types.PostV1CaptureSettingsUpdateResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncCaptureClient {
@@ -35,6 +43,84 @@ public class AsyncCaptureClient {
    */
   public AsyncRawCaptureClient withRawResponse() {
     return this.rawClient;
+  }
+
+  public CompletableFuture<PostV1CaptureSettingsGetResponse> postV1CaptureSettingsGet() {
+    return this.rawClient.postV1CaptureSettingsGet().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CaptureSettingsGetResponse> postV1CaptureSettingsGet(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1CaptureSettingsGet(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CaptureSettingsGetResponse> postV1CaptureSettingsGet(
+      PostV1CaptureSettingsGetRequest request) {
+    return this.rawClient.postV1CaptureSettingsGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CaptureSettingsGetResponse> postV1CaptureSettingsGet(
+      PostV1CaptureSettingsGetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1CaptureSettingsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CaptureSettingsUpdateResponse> postV1CaptureSettingsUpdate() {
+    return this.rawClient.postV1CaptureSettingsUpdate().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CaptureSettingsUpdateResponse> postV1CaptureSettingsUpdate(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1CaptureSettingsUpdate(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CaptureSettingsUpdateResponse> postV1CaptureSettingsUpdate(
+      PostV1CaptureSettingsUpdateRequest request) {
+    return this.rawClient.postV1CaptureSettingsUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CaptureSettingsUpdateResponse> postV1CaptureSettingsUpdate(
+      PostV1CaptureSettingsUpdateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1CaptureSettingsUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CaptureSettingsRegenerateIntakeResponse> postV1CaptureSettingsRegenerateIntake(
+      ) {
+    return this.rawClient.postV1CaptureSettingsRegenerateIntake().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CaptureSettingsRegenerateIntakeResponse> postV1CaptureSettingsRegenerateIntake(
+      RequestOptions requestOptions) {
+    return this.rawClient.postV1CaptureSettingsRegenerateIntake(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CaptureSettingsRegenerateIntakeResponse> postV1CaptureSettingsRegenerateIntake(
+      PostV1CaptureSettingsRegenerateIntakeRequest request) {
+    return this.rawClient.postV1CaptureSettingsRegenerateIntake(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CaptureSettingsRegenerateIntakeResponse> postV1CaptureSettingsRegenerateIntake(
+      PostV1CaptureSettingsRegenerateIntakeRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1CaptureSettingsRegenerateIntake(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CaptureInboundEmailResponse> receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
+      ) {
+    return this.rawClient.receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CaptureInboundEmailResponse> receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
+      RequestOptions requestOptions) {
+    return this.rawClient.receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CaptureInboundEmailResponse> receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
+      PostV1CaptureInboundEmailRequest request) {
+    return this.rawClient.receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CaptureInboundEmailResponse> receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
+      PostV1CaptureInboundEmailRequest request, RequestOptions requestOptions) {
+    return this.rawClient.receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<PostV1CaptureDocumentsUploadResponse> readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft(

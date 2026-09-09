@@ -29,6 +29,10 @@ public final class PostV1PartnersListResponseRowsItemAddress {
 
   private final Optional<String> city;
 
+  private final Optional<String> municipality;
+
+  private final Optional<String> county;
+
   private final Optional<String> postalCode;
 
   private final Optional<String> countryCode;
@@ -36,10 +40,12 @@ public final class PostV1PartnersListResponseRowsItemAddress {
   private final Map<String, Object> additionalProperties;
 
   private PostV1PartnersListResponseRowsItemAddress(Optional<String> street, Optional<String> city,
-      Optional<String> postalCode, Optional<String> countryCode,
-      Map<String, Object> additionalProperties) {
+      Optional<String> municipality, Optional<String> county, Optional<String> postalCode,
+      Optional<String> countryCode, Map<String, Object> additionalProperties) {
     this.street = street;
     this.city = city;
+    this.municipality = municipality;
+    this.county = county;
     this.postalCode = postalCode;
     this.countryCode = countryCode;
     this.additionalProperties = additionalProperties;
@@ -53,6 +59,16 @@ public final class PostV1PartnersListResponseRowsItemAddress {
   @JsonProperty("city")
   public Optional<String> getCity() {
     return city;
+  }
+
+  @JsonProperty("municipality")
+  public Optional<String> getMunicipality() {
+    return municipality;
+  }
+
+  @JsonProperty("county")
+  public Optional<String> getCounty() {
+    return county;
   }
 
   @JsonProperty("postalCode")
@@ -77,12 +93,12 @@ public final class PostV1PartnersListResponseRowsItemAddress {
   }
 
   private boolean equalTo(PostV1PartnersListResponseRowsItemAddress other) {
-    return street.equals(other.street) && city.equals(other.city) && postalCode.equals(other.postalCode) && countryCode.equals(other.countryCode);
+    return street.equals(other.street) && city.equals(other.city) && municipality.equals(other.municipality) && county.equals(other.county) && postalCode.equals(other.postalCode) && countryCode.equals(other.countryCode);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.street, this.city, this.postalCode, this.countryCode);
+    return Objects.hash(this.street, this.city, this.municipality, this.county, this.postalCode, this.countryCode);
   }
 
   @java.lang.Override
@@ -102,6 +118,10 @@ public final class PostV1PartnersListResponseRowsItemAddress {
 
     private Optional<String> city = Optional.empty();
 
+    private Optional<String> municipality = Optional.empty();
+
+    private Optional<String> county = Optional.empty();
+
     private Optional<String> postalCode = Optional.empty();
 
     private Optional<String> countryCode = Optional.empty();
@@ -115,6 +135,8 @@ public final class PostV1PartnersListResponseRowsItemAddress {
     public Builder from(PostV1PartnersListResponseRowsItemAddress other) {
       street(other.getStreet());
       city(other.getCity());
+      municipality(other.getMunicipality());
+      county(other.getCounty());
       postalCode(other.getPostalCode());
       countryCode(other.getCountryCode());
       return this;
@@ -149,6 +171,34 @@ public final class PostV1PartnersListResponseRowsItemAddress {
     }
 
     @JsonSetter(
+        value = "municipality",
+        nulls = Nulls.SKIP
+    )
+    public Builder municipality(Optional<String> municipality) {
+      this.municipality = municipality;
+      return this;
+    }
+
+    public Builder municipality(String municipality) {
+      this.municipality = Optional.ofNullable(municipality);
+      return this;
+    }
+
+    @JsonSetter(
+        value = "county",
+        nulls = Nulls.SKIP
+    )
+    public Builder county(Optional<String> county) {
+      this.county = county;
+      return this;
+    }
+
+    public Builder county(String county) {
+      this.county = Optional.ofNullable(county);
+      return this;
+    }
+
+    @JsonSetter(
         value = "postalCode",
         nulls = Nulls.SKIP
     )
@@ -177,7 +227,7 @@ public final class PostV1PartnersListResponseRowsItemAddress {
     }
 
     public PostV1PartnersListResponseRowsItemAddress build() {
-      return new PostV1PartnersListResponseRowsItemAddress(street, city, postalCode, countryCode, additionalProperties);
+      return new PostV1PartnersListResponseRowsItemAddress(street, city, municipality, county, postalCode, countryCode, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

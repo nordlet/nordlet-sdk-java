@@ -6,8 +6,11 @@ package com.nordlet.api.resources.public_;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
+import com.nordlet.api.resources.public_.requests.GetV1PublicPayTokenRequest;
 import com.nordlet.api.resources.public_.requests.PostV1PublicIntegrationRequestsRequest;
 import com.nordlet.api.resources.public_.types.PostV1PublicIntegrationRequestsResponse;
+import java.lang.String;
+import java.lang.Void;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncPublicClient {
@@ -35,5 +38,23 @@ public class AsyncPublicClient {
   public CompletableFuture<PostV1PublicIntegrationRequestsResponse> postV1PublicIntegrationRequests(
       PostV1PublicIntegrationRequestsRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1PublicIntegrationRequests(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<Void> getV1PublicPayToken(String token) {
+    return this.rawClient.getV1PublicPayToken(token).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<Void> getV1PublicPayToken(String token, RequestOptions requestOptions) {
+    return this.rawClient.getV1PublicPayToken(token, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<Void> getV1PublicPayToken(String token,
+      GetV1PublicPayTokenRequest request) {
+    return this.rawClient.getV1PublicPayToken(token, request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<Void> getV1PublicPayToken(String token,
+      GetV1PublicPayTokenRequest request, RequestOptions requestOptions) {
+    return this.rawClient.getV1PublicPayToken(token, request, requestOptions).thenApply(response -> response.body());
   }
 }

@@ -104,6 +104,14 @@ client.reference().postV1ReferenceExchangeRatesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -235,6 +243,14 @@ client.reference().postV1ReferenceExchangeRatesOverridesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -326,6 +342,131 @@ client.reference().postV1ReferenceCountriesList(
 </dl>
 </details>
 
+<details><summary><code>client.reference.postV1ReferenceLtCountiesList(request) -> PostV1ReferenceLtCountiesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.reference().postV1ReferenceLtCountiesList(
+    PostV1ReferenceLtCountiesListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.reference.postV1ReferenceLtMunicipalitiesList(request) -> PostV1ReferenceLtMunicipalitiesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.reference().postV1ReferenceLtMunicipalitiesList(
+    PostV1ReferenceLtMunicipalitiesListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**countyCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.reference.postV1ReferenceLtCitiesList(request) -> PostV1ReferenceLtCitiesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.reference().postV1ReferenceLtCitiesList(
+    PostV1ReferenceLtCitiesListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**municipalityCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**q:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.reference.postV1ReferenceBanksList(request) -> PostV1ReferenceBanksListResponse</code></summary>
 <dl>
 <dd>
@@ -383,6 +524,14 @@ client.reference().postV1ReferenceBanksList(
 <dd>
 
 **filter:** `Optional<List<PostV1ReferenceBanksListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -562,6 +711,14 @@ client.reference().postV1ReferenceCurrenciesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -627,6 +784,14 @@ client.reference().postV1ReferenceVatClassifiersList(
 <dd>
 
 **filter:** `Optional<List<PostV1ReferenceVatClassifiersListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -1009,6 +1174,14 @@ client.reference().postV1ReferenceCnCodesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -1203,6 +1376,14 @@ client.reference().postV1ReferenceUnitsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -1338,6 +1519,14 @@ client.reference().postV1ReferenceSeriesList(
 <dd>
 
 **filter:** `Optional<List<PostV1ReferenceSeriesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -1641,6 +1830,14 @@ client.partners().postV1PartnersAddressesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -1922,6 +2119,14 @@ client.partners().postV1PartnersContactsList(
 <dd>
 
 **filter:** `Optional<List<PostV1PartnersContactsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -2209,6 +2414,164 @@ client.partners().postV1PartnersBankAccountsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1PartnersFilesList(request) -> PostV1PartnersFilesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1PartnersFilesList(
+    PostV1PartnersFilesListRequest
+        .builder()
+        .partnerId("partnerId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**partnerId:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany(request) -> PostV1PartnersDebtRemindersPreviewResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany(
+    PostV1PartnersDebtRemindersPreviewRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1PartnersDebtRemindersList(request) -> PostV1PartnersDebtRemindersListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1PartnersDebtRemindersList(
+    PostV1PartnersDebtRemindersListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<PostV1PartnersDebtRemindersListRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<PostV1PartnersDebtRemindersListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -2326,6 +2689,14 @@ client.partners().postV1PartnersVatReviewsList(
 <dd>
 
 **filter:** `Optional<List<PostV1PartnersVatReviewsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -2568,6 +2939,14 @@ client.partners().postV1PartnersCreate(
 <dl>
 <dd>
 
+**correspondenceAddress:** `Optional<PostV1PartnersCreateRequestCorrespondenceAddress>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **notes:** `Optional<String>` 
     
 </dd>
@@ -2577,6 +2956,134 @@ client.partners().postV1PartnersCreate(
 <dd>
 
 **documentRef:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**shortName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**website:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fax:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**eoriCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**otherCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**foreignTaxNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**autoDebtReminder:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lateInterestPercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**firstCallDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lastCallDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**nextCallDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**rating:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isEmployee:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isGroupMember:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isActive:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**legalCountryClass:** `Optional<PostV1PartnersCreateRequestLegalCountryClass>` 
     
 </dd>
 </dl>
@@ -2757,6 +3264,14 @@ client.partners().postV1PartnersFindOrCreate(
 <dl>
 <dd>
 
+**correspondenceAddress:** `Optional<PostV1PartnersFindOrCreateRequestCorrespondenceAddress>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **notes:** `Optional<String>` 
     
 </dd>
@@ -2766,6 +3281,134 @@ client.partners().postV1PartnersFindOrCreate(
 <dd>
 
 **documentRef:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**shortName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**website:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fax:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**eoriCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**otherCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**foreignTaxNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**autoDebtReminder:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lateInterestPercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**firstCallDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lastCallDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**nextCallDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**rating:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isEmployee:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isGroupMember:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isActive:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**legalCountryClass:** `Optional<PostV1PartnersFindOrCreateRequestLegalCountryClass>` 
     
 </dd>
 </dl>
@@ -2999,6 +3642,14 @@ client.partners().postV1PartnersUpdate(
 <dl>
 <dd>
 
+**correspondenceAddress:** `Optional<PostV1PartnersUpdateRequestCorrespondenceAddress>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **notes:** `Optional<String>` 
     
 </dd>
@@ -3008,6 +3659,134 @@ client.partners().postV1PartnersUpdate(
 <dd>
 
 **documentRef:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**shortName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**website:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fax:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**eoriCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**otherCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**foreignTaxNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**autoDebtReminder:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lateInterestPercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**firstCallDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lastCallDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**nextCallDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**rating:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isEmployee:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isGroupMember:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isActive:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**legalCountryClass:** `Optional<PostV1PartnersUpdateRequestLegalCountryClass>` 
     
 </dd>
 </dl>
@@ -3180,6 +3959,14 @@ client.partners().postV1PartnersList(
 <dd>
 
 **filter:** `Optional<List<PostV1PartnersListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -3900,6 +4687,14 @@ client.partners().postV1PartnersInquiriesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -3950,6 +4745,959 @@ client.partners().postV1PartnersCreditCheck(
 <dd>
 
 **additionalAmount:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1LeadsCreate(request) -> PostV1LeadsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1LeadsCreate(
+    PostV1LeadsCreateRequest
+        .builder()
+        .name("name")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contactName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**email:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**phone:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**website:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**countryCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sourceId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Optional<PostV1LeadsCreateRequestStatus>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**estimatedValue:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currency:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assignedUserId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documents:** `Optional<List<PostV1LeadsCreateRequestDocumentsItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<List<String>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1LeadsGet(request) -> PostV1LeadsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1LeadsGet(
+    PostV1LeadsGetRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1LeadsUpdate(request) -> PostV1LeadsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1LeadsUpdate(
+    PostV1LeadsUpdateRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contactName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**email:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**phone:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**website:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**countryCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sourceId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Optional<PostV1LeadsUpdateRequestStatus>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**estimatedValue:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currency:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assignedUserId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documents:** `Optional<List<PostV1LeadsUpdateRequestDocumentsItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1LeadsDelete(request) -> PostV1LeadsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1LeadsDelete(
+    PostV1LeadsDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1LeadsList(request) -> PostV1LeadsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1LeadsList(
+    PostV1LeadsListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<PostV1LeadsListRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<PostV1LeadsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1LeadsNotesCreate(request) -> PostV1LeadsNotesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1LeadsNotesCreate(
+    PostV1LeadsNotesCreateRequest
+        .builder()
+        .leadId("leadId")
+        .body("body")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**leadId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**body:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1LeadsNotesDelete(request) -> PostV1LeadsNotesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1LeadsNotesDelete(
+    PostV1LeadsNotesDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1LeadsNotesList(request) -> PostV1LeadsNotesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1LeadsNotesList(
+    PostV1LeadsNotesListRequest
+        .builder()
+        .leadId("leadId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**leadId:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1LeadsFilesList(request) -> PostV1LeadsFilesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1LeadsFilesList(
+    PostV1LeadsFilesListRequest
+        .builder()
+        .leadId("leadId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**leadId:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1LeadsSourcesCreate(request) -> PostV1LeadsSourcesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1LeadsSourcesCreate(
+    PostV1LeadsSourcesCreateRequest
+        .builder()
+        .name("name")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isActive:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1LeadsSourcesUpdate(request) -> PostV1LeadsSourcesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1LeadsSourcesUpdate(
+    PostV1LeadsSourcesUpdateRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isActive:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1LeadsSourcesDelete(request) -> PostV1LeadsSourcesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1LeadsSourcesDelete(
+    PostV1LeadsSourcesDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1LeadsSourcesList(request) -> PostV1LeadsSourcesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1LeadsSourcesList(
+    PostV1LeadsSourcesListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1LeadsSourcesOptions(request) -> PostV1LeadsSourcesOptionsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1LeadsSourcesOptions(
+    PostV1LeadsSourcesOptionsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.partners.postV1LeadsConvert(request) -> PostV1LeadsConvertResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a customer partner from the lead, move the lead files to the partner, copy the lead notes into the partner notes and mark the lead as converted.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().postV1LeadsConvert(
+    PostV1LeadsConvertRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partnerType:** `Optional<PostV1LeadsConvertRequestPartnerType>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**code:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vatCode:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -4156,6 +5904,222 @@ client.catalog().postV1CatalogItemsCreate(
 <dd>
 
 **components:** `Optional<List<PostV1CatalogItemsCreateRequestComponentsItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**kindId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**saleAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchaseAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expenseAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**manufacturer:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**grossMassKg:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**minQuantity:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**costPrice:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isFreePrice:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isReturnable:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**commentRequired:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**priceFrom:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**priceTo:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**minPrice:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**discountPercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**maxDiscountPercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**loyaltyPoints:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**department:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ageRestriction:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**packageQuantity:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taraCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**certificateNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**certificateDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**validFrom:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**validTo:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**posFlags:** `Optional<Map<String, Boolean>>` 
     
 </dd>
 </dl>
@@ -4389,7 +6353,7 @@ client.catalog().postV1CatalogItemsUpdate(
 <dl>
 <dd>
 
-**attributes:** `Optional<Map<String, String>>` 
+**attributes:** `Optional<Map<String, Optional<String>>>` 
     
 </dd>
 </dl>
@@ -4405,7 +6369,7 @@ client.catalog().postV1CatalogItemsUpdate(
 <dl>
 <dd>
 
-**translations:** `Optional<Map<String, PostV1CatalogItemsUpdateRequestTranslationsValue>>` 
+**translations:** `Optional<Map<String, Optional<PostV1CatalogItemsUpdateRequestTranslationsValue>>>` 
     
 </dd>
 </dl>
@@ -4414,6 +6378,222 @@ client.catalog().postV1CatalogItemsUpdate(
 <dd>
 
 **components:** `Optional<List<PostV1CatalogItemsUpdateRequestComponentsItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**kindId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**saleAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchaseAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expenseAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**manufacturer:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**grossMassKg:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**minQuantity:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**costPrice:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isFreePrice:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isReturnable:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**commentRequired:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**priceFrom:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**priceTo:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**minPrice:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**discountPercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**maxDiscountPercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**loyaltyPoints:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**department:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ageRestriction:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**packageQuantity:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taraCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**certificateNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**certificateDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**validFrom:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**validTo:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**posFlags:** `Optional<Map<String, Optional<Boolean>>>` 
     
 </dd>
 </dl>
@@ -4527,6 +6707,545 @@ client.catalog().postV1CatalogItemsList(
 <dd>
 
 **filter:** `Optional<List<PostV1CatalogItemsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalog.postV1CatalogItemsFilesList(request) -> PostV1CatalogItemsFilesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.catalog().postV1CatalogItemsFilesList(
+    PostV1CatalogItemsFilesListRequest
+        .builder()
+        .itemId("itemId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**itemId:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalog.postV1CatalogItemsKindsCreate(request) -> PostV1CatalogItemsKindsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.catalog().postV1CatalogItemsKindsCreate(
+    PostV1CatalogItemsKindsCreateRequest
+        .builder()
+        .code("code")
+        .name("name")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**code:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**saftType:** `Optional<PostV1CatalogItemsKindsCreateRequestSaftType>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**quantityAccounting:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `Optional<Long>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalog.postV1CatalogItemsKindsUpdate(request) -> PostV1CatalogItemsKindsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.catalog().postV1CatalogItemsKindsUpdate(
+    PostV1CatalogItemsKindsUpdateRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**code:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**saftType:** `Optional<PostV1CatalogItemsKindsUpdateRequestSaftType>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**quantityAccounting:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `Optional<Long>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalog.postV1CatalogItemsKindsDelete(request) -> PostV1CatalogItemsKindsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.catalog().postV1CatalogItemsKindsDelete(
+    PostV1CatalogItemsKindsDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalog.postV1CatalogItemsKindsList(request) -> PostV1CatalogItemsKindsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.catalog().postV1CatalogItemsKindsList(
+    PostV1CatalogItemsKindsListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalog.postV1CatalogUnitsCreate(request) -> PostV1CatalogUnitsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.catalog().postV1CatalogUnitsCreate(
+    PostV1CatalogUnitsCreateRequest
+        .builder()
+        .code("code")
+        .name("name")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**code:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isActive:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalog.postV1CatalogUnitsUpdate(request) -> PostV1CatalogUnitsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.catalog().postV1CatalogUnitsUpdate(
+    PostV1CatalogUnitsUpdateRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**code:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isActive:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalog.postV1CatalogUnitsDelete(request) -> PostV1CatalogUnitsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.catalog().postV1CatalogUnitsDelete(
+    PostV1CatalogUnitsDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalog.postV1CatalogUnitsList(request) -> PostV1CatalogUnitsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.catalog().postV1CatalogUnitsList(
+    PostV1CatalogUnitsListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalog.postV1CatalogUnitsOptions(request) -> PostV1CatalogUnitsOptionsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.catalog().postV1CatalogUnitsOptions(
+    PostV1CatalogUnitsOptionsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**locale:** `Optional<PostV1CatalogUnitsOptionsRequestLocale>` 
     
 </dd>
 </dl>
@@ -5392,6 +8111,78 @@ client.sales().postV1SalesInvoicesCreate(
 <dl>
 <dd>
 
+**operationTypeId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentSeriesId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**seriesLabel:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orderNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**issuedByName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**issuedByTitle:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**receivedByName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**receivedByTitle:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**discountPercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **lines:** `List<PostV1SalesInvoicesCreateRequestLinesItem>` 
     
 </dd>
@@ -5876,6 +8667,78 @@ client.sales().postV1SalesInvoicesUpdate(
 <dl>
 <dd>
 
+**operationTypeId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentSeriesId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**seriesLabel:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**discountPercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orderNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**issuedByName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**issuedByTitle:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**receivedByName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**receivedByTitle:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **lines:** `Optional<List<PostV1SalesInvoicesUpdateRequestLinesItem>>` 
     
 </dd>
@@ -6002,6 +8865,214 @@ client.sales().postV1SalesInvoicesIssue(
 </dl>
 </details>
 
+<details><summary><code>client.sales.postV1SalesInvoicesLock(request) -> PostV1SalesInvoicesLockResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1SalesInvoicesLock(
+    PostV1SalesInvoicesLockRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1SalesInvoicesUnlock(request) -> PostV1SalesInvoicesUnlockResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1SalesInvoicesUnlock(
+    PostV1SalesInvoicesUnlockRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1SalesInvoicesPaymentLink(request) -> PostV1SalesInvoicesPaymentLinkResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1SalesInvoicesPaymentLink(
+    PostV1SalesInvoicesPaymentLinkRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1SalesInvoicesPaymentSettingsGet(request) -> PostV1SalesInvoicesPaymentSettingsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1SalesInvoicesPaymentSettingsGet(
+    PostV1SalesInvoicesPaymentSettingsGetRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1SalesInvoicesPaymentSettingsUpdate(request) -> PostV1SalesInvoicesPaymentSettingsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1SalesInvoicesPaymentSettingsUpdate(
+    PostV1SalesInvoicesPaymentSettingsUpdateRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paymentLinkTemplate:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.sales.postV1SalesRecognitionSchedulesList(request) -> PostV1SalesRecognitionSchedulesListResponse</code></summary>
 <dl>
 <dd>
@@ -6059,6 +9130,14 @@ client.sales().postV1SalesRecognitionSchedulesList(
 <dd>
 
 **filter:** `Optional<List<PostV1SalesRecognitionSchedulesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -6189,6 +9268,14 @@ client.sales().postV1SalesInvoicesList(
 <dd>
 
 **filter:** `Optional<List<PostV1SalesInvoicesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -6653,6 +9740,14 @@ client.sales().postV1SalesActsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -6703,6 +9798,1079 @@ client.sales().postV1SalesActsPdf(
 <dd>
 
 **locale:** `Optional<PostV1SalesActsPdfRequestLocale>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1OperationTypesCreate(request) -> PostV1OperationTypesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1OperationTypesCreate(
+    PostV1OperationTypesCreateRequest
+        .builder()
+        .code("code")
+        .name("name")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**code:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoiceType:** `Optional<PostV1OperationTypesCreateRequestInvoiceType>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payerPartnerId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**debitAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**creditAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vatAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expenseAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**advanceAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**incomeAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isPurchase:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isSale:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isWriteOff:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isInternalMovement:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isPurchaseReturn:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isSalesReturn:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isConsignment:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isProduction:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isAssetIn:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isAssetOut:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isCashRegisterSale:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeInVatRegister:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeInSaft:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isActive:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `Optional<Long>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1OperationTypesUpdate(request) -> PostV1OperationTypesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1OperationTypesUpdate(
+    PostV1OperationTypesUpdateRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**code:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoiceType:** `Optional<PostV1OperationTypesUpdateRequestInvoiceType>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payerPartnerId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**debitAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**creditAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vatAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expenseAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**advanceAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**incomeAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isPurchase:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isSale:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isWriteOff:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isInternalMovement:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isPurchaseReturn:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isSalesReturn:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isConsignment:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isProduction:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isAssetIn:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isAssetOut:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isCashRegisterSale:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeInVatRegister:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeInSaft:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isActive:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `Optional<Long>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1OperationTypesGet(request) -> PostV1OperationTypesGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1OperationTypesGet(
+    PostV1OperationTypesGetRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1OperationTypesDelete(request) -> PostV1OperationTypesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1OperationTypesDelete(
+    PostV1OperationTypesDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1OperationTypesList(request) -> PostV1OperationTypesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1OperationTypesList(
+    PostV1OperationTypesListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<PostV1OperationTypesListRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<PostV1OperationTypesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1DocumentSeriesCreate(request) -> PostV1DocumentSeriesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1DocumentSeriesCreate(
+    PostV1DocumentSeriesCreateRequest
+        .builder()
+        .prefix("prefix")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**documentType:** `Optional<PostV1DocumentSeriesCreateRequestDocumentType>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**prefix:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**label:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**operationTypeId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**numberLength:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**nextNumber:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warehouseId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**printSeries:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isDefault:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isActive:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1DocumentSeriesUpdate(request) -> PostV1DocumentSeriesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1DocumentSeriesUpdate(
+    PostV1DocumentSeriesUpdateRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentType:** `Optional<PostV1DocumentSeriesUpdateRequestDocumentType>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**prefix:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**label:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**operationTypeId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**numberLength:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**nextNumber:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warehouseId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**printSeries:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isDefault:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isActive:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1DocumentSeriesGet(request) -> PostV1DocumentSeriesGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1DocumentSeriesGet(
+    PostV1DocumentSeriesGetRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1DocumentSeriesDelete(request) -> PostV1DocumentSeriesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1DocumentSeriesDelete(
+    PostV1DocumentSeriesDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1DocumentSeriesList(request) -> PostV1DocumentSeriesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1DocumentSeriesList(
+    PostV1DocumentSeriesListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<PostV1DocumentSeriesListRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<PostV1DocumentSeriesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -7032,6 +11200,14 @@ client.sales().postV1SalesRecognitionRunsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -7141,6 +11317,14 @@ client.sales().postV1SalesRefundLiabilityList(
 <dd>
 
 **filter:** `Optional<List<PostV1SalesRefundLiabilityListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -7321,6 +11505,14 @@ client.purchases().postV1PurchasesInvoicesCreate(
 <dl>
 <dd>
 
+**operationTypeId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **notes:** `Optional<String>` 
     
 </dd>
@@ -7476,6 +11668,14 @@ client.purchases().postV1PurchasesInvoicesUpdate(
 <dd>
 
 **purchaseOrderId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**operationTypeId:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -7666,6 +11866,14 @@ client.purchases().postV1PurchasesInvoicesList(
 <dd>
 
 **filter:** `Optional<List<PostV1PurchasesInvoicesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -7997,6 +12205,14 @@ client.purchases().postV1PurchasesOrdersList(
 <dd>
 
 **filter:** `Optional<List<PostV1PurchasesOrdersListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -8510,6 +12726,14 @@ client.purchases().postV1PurchasesReceiptsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -8572,6 +12796,224 @@ client.purchases().postV1PurchasesInvoicesMatch(
 </details>
 
 ## Capture
+<details><summary><code>client.capture.postV1CaptureSettingsGet(request) -> PostV1CaptureSettingsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.capture().postV1CaptureSettingsGet(
+    PostV1CaptureSettingsGetRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.capture.postV1CaptureSettingsUpdate(request) -> PostV1CaptureSettingsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.capture().postV1CaptureSettingsUpdate(
+    PostV1CaptureSettingsUpdateRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**intakeEnabled:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**captureAutoExtract:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.capture.postV1CaptureSettingsRegenerateIntake(request) -> PostV1CaptureSettingsRegenerateIntakeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.capture().postV1CaptureSettingsRegenerateIntake(
+    PostV1CaptureSettingsRegenerateIntakeRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.capture.receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(request) -> PostV1CaptureInboundEmailResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.capture().receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
+    PostV1CaptureInboundEmailRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**postmarkTo:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**toFull:** `Optional<List<PostV1CaptureInboundEmailRequestToFullItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**postmarkFrom:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**postmarkSubject:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**postmarkAttachments:** `Optional<List<PostV1CaptureInboundEmailRequestAttachmentsItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to:** `Optional<PostV1CaptureInboundEmailRequestTo>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**from:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**subject:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**attachments:** `Optional<List<PostV1CaptureInboundEmailRequestAttachmentsItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.capture.readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft(request) -> PostV1CaptureDocumentsUploadResponse</code></summary>
 <dl>
 <dd>
@@ -8782,6 +13224,14 @@ client.capture().postV1CaptureDocumentsList(
 <dd>
 
 **filter:** `Optional<List<PostV1CaptureDocumentsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -10346,6 +14796,14 @@ client.declarations().postV1DeclarationsSubmissionsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -10412,6 +14870,14 @@ client.ledger().postV1LedgerAccountsList(
 <dd>
 
 **filter:** `Optional<List<PostV1LedgerAccountsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -10676,6 +15142,14 @@ client.ledger().postV1LedgerPeriodsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -10849,6 +15323,14 @@ client.ledger().postV1LedgerJournalTransactionsList(
 <dd>
 
 **filter:** `Optional<List<PostV1LedgerJournalTransactionsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -11048,6 +15530,14 @@ client.ledger().postV1LedgerCostCentersList(
 <dd>
 
 **filter:** `Optional<List<PostV1LedgerCostCentersListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -11276,6 +15766,14 @@ client.ledger().postV1LedgerCostCenterGroupsList(
 <dd>
 
 **filter:** `Optional<List<PostV1LedgerCostCenterGroupsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -11683,6 +16181,14 @@ client.ledger().postV1LedgerOwnersList(
 <dd>
 
 **filter:** `Optional<List<PostV1LedgerOwnersListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -12252,6 +16758,14 @@ client.assets().postV1AssetsGroupsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -12483,6 +16997,14 @@ client.assets().postV1AssetsAssetsList(
 <dd>
 
 **filter:** `Optional<List<PostV1AssetsAssetsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -12869,6 +17391,14 @@ client.hr().postV1HrPositionsList(
 <dd>
 
 **filter:** `Optional<List<PostV1HrPositionsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -13356,6 +17886,14 @@ client.hr().postV1HrEmployeesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -13733,6 +18271,14 @@ client.hr().postV1HrContractsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -14017,6 +18563,14 @@ client.hr().postV1HrIncapacityCertificatesList(
 <dd>
 
 **filter:** `Optional<List<PostV1HrIncapacityCertificatesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -14334,6 +18888,14 @@ client.hr().postV1HrEmployeesRecordsList(
 <dd>
 
 **filter:** `Optional<List<PostV1HrEmployeesRecordsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -15093,6 +19655,14 @@ client.fleet().postV1FleetVehiclesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -15307,6 +19877,14 @@ client.fleet().postV1FleetAssignmentsList(
 <dd>
 
 **filter:** `Optional<List<PostV1FleetAssignmentsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -15816,6 +20394,14 @@ client.payroll().postV1PayrollRunsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -16136,6 +20722,14 @@ client.agreements().postV1AgreementsTypesList(
 <dd>
 
 **filter:** `Optional<List<PostV1AgreementsTypesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -16596,6 +21190,14 @@ client.agreements().postV1AgreementsAgreementsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -16865,6 +21467,14 @@ client.agreements().postV1AgreementsInsurancePoliciesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -17112,6 +21722,14 @@ client.inventory().postV1InventoryWarehousesList(
 <dd>
 
 **filter:** `Optional<List<PostV1InventoryWarehousesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -17627,6 +22245,14 @@ client.inventory().postV1InventoryStockMovementsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -17692,6 +22318,14 @@ client.inventory().postV1InventoryLotsList(
 <dd>
 
 **filter:** `Optional<List<PostV1InventoryLotsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -18008,6 +22642,14 @@ client.inventory().postV1InventoryLandedCostsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -18281,6 +22923,14 @@ client.inventory().postV1InventoryReorderRulesList(
 <dd>
 
 **filter:** `Optional<List<PostV1InventoryReorderRulesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -18569,6 +23219,14 @@ client.production().postV1ProductionWorkCentersList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -18759,6 +23417,14 @@ client.production().postV1ProductionRoutingsList(
 <dd>
 
 **filter:** `Optional<List<PostV1ProductionRoutingsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -19032,6 +23698,14 @@ client.production().postV1ProductionMaintenanceList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -19238,6 +23912,14 @@ client.production().postV1ProductionBomsList(
 <dd>
 
 **filter:** `Optional<List<PostV1ProductionBomsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -19583,6 +24265,14 @@ client.production().postV1ProductionQualityChecksList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -19762,6 +24452,14 @@ client.production().postV1ProductionOrdersList(
 <dd>
 
 **filter:** `Optional<List<PostV1ProductionOrdersListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -20002,6 +24700,14 @@ client.ecommerce().postV1EcommerceOrdersList(
 <dd>
 
 **filter:** `Optional<List<PostV1EcommerceOrdersListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -20527,6 +25233,14 @@ client.cash().postV1CashOrdersList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -20869,6 +25583,14 @@ client.projects().postV1ProjectsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -21159,6 +25881,14 @@ client.projects().postV1ProjectsTimeEntriesList(
 <dd>
 
 **filter:** `Optional<List<PostV1ProjectsTimeEntriesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -21916,6 +26646,14 @@ client.transport().postV1TransportWaybillsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -22153,6 +26891,14 @@ client.pos().postV1PosDevicesList(
 <dd>
 
 **filter:** `Optional<List<PostV1PosDevicesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -22437,6 +27183,312 @@ client.pos().postV1PosReportsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Calendar
+<details><summary><code>client.calendar.postV1CalendarList(request) -> PostV1CalendarListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.calendar().postV1CalendarList(
+    PostV1CalendarListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**from:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeDone:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.calendar.postV1CalendarGet(request) -> PostV1CalendarGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.calendar().postV1CalendarGet(
+    PostV1CalendarGetRequest
+        .builder()
+        .key("key")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**key:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.calendar.postV1CalendarCreate(request) -> PostV1CalendarCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.calendar().postV1CalendarCreate(
+    PostV1CalendarCreateRequest
+        .builder()
+        .title("title")
+        .dueDate("dueDate")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**title:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dueDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**done:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.calendar.postV1CalendarUpdate(request) -> PostV1CalendarUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.calendar().postV1CalendarUpdate(
+    PostV1CalendarUpdateRequest
+        .builder()
+        .key("key")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**key:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**title:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dueDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**done:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.calendar.postV1CalendarDelete(request) -> PostV1CalendarDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.calendar().postV1CalendarDelete(
+    PostV1CalendarDeleteRequest
+        .builder()
+        .key("key")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**key:** `String` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -22503,6 +27555,14 @@ client.audit().postV1AuditList(
 <dd>
 
 **filter:** `Optional<List<PostV1AuditListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -22636,6 +27696,14 @@ client.webhooks().postV1WebhooksSubscriptionsList(
 <dd>
 
 **filter:** `Optional<List<PostV1WebhooksSubscriptionsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -22818,6 +27886,14 @@ client.webhooks().postV1WebhooksDeliveriesList(
 <dd>
 
 **filter:** `Optional<List<PostV1WebhooksDeliveriesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -23009,6 +28085,14 @@ client.bank().postV1BankAccountsList(
 <dd>
 
 **filter:** `Optional<List<PostV1BankAccountsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -23221,6 +28305,14 @@ client.bank().postV1BankStatementsImport(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**transfersCsv:** `Optional<String>` — Stripe transfers export (plain CSV or base64) used to post lender payouts and commissions
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -23286,6 +28378,14 @@ client.bank().postV1BankTransactionsList(
 <dd>
 
 **filter:** `Optional<List<PostV1BankTransactionsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -23615,6 +28715,54 @@ client.bank().createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**authorizationOperationTypeId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payoutOperationTypeId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**commissionOperationTypeId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lenderMetaField:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partialRefundLabel:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fullRefundLabel:** `Optional<String>` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -23721,6 +28869,54 @@ client.bank().postV1BankImportTemplatesUpdate(
 <dd>
 
 **advanceInvoices:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**authorizationOperationTypeId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payoutOperationTypeId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**commissionOperationTypeId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lenderMetaField:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partialRefundLabel:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fullRefundLabel:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -23888,6 +29084,283 @@ client.bank().postV1BankImportTemplatesList(
 
 **filter:** `Optional<List<PostV1BankImportTemplatesListRequestFilterItem>>` 
     
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.postV1BankMatchRulesCreate(request) -> PostV1BankMatchRulesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().postV1BankMatchRulesCreate(
+    PostV1BankMatchRulesCreateRequest
+        .builder()
+        .name("name")
+        .pattern("pattern")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**provider:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pattern:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payoutIdPrefix:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bankAccountId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dateWindowDays:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isActive:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.postV1BankMatchRulesUpdate(request) -> PostV1BankMatchRulesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().postV1BankMatchRulesUpdate(
+    PostV1BankMatchRulesUpdateRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**provider:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pattern:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payoutIdPrefix:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bankAccountId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dateWindowDays:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isActive:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.postV1BankMatchRulesDelete(request) -> PostV1BankMatchRulesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().postV1BankMatchRulesDelete(
+    PostV1BankMatchRulesDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.postV1BankMatchRulesList(request) -> PostV1BankMatchRulesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().postV1BankMatchRulesList(
+    PostV1BankMatchRulesListRequest
+        .builder()
+        .build()
+);
+```
 </dd>
 </dl>
 </dd>
@@ -24228,6 +29701,14 @@ client.bank().postV1BankMandatesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -24475,6 +29956,14 @@ client.bank().postV1BankSettlementsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -24570,6 +30059,133 @@ client.bank().postV1BankSettlementsMatch(
 <dd>
 
 **invoiceId:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.postV1BankSettlementsLink(request) -> PostV1BankSettlementsLinkResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Attach the incoming bank-statement line that carries this payout to the settlement batch.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().postV1BankSettlementsLink(
+    PostV1BankSettlementsLinkRequest
+        .builder()
+        .id("id")
+        .bankTransactionId("bankTransactionId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bankTransactionId:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.postV1BankSettlementsUnlink(request) -> PostV1BankSettlementsUnlinkResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Detach the bank-statement line from the settlement batch and return the line to unmatched.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().postV1BankSettlementsUnlink(
+    PostV1BankSettlementsUnlinkRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
     
 </dd>
 </dl>
@@ -24928,6 +30544,14 @@ client.bank().postV1BankFeedsConnectionsList(
 <dd>
 
 **filter:** `Optional<List<PostV1BankFeedsConnectionsListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -25366,6 +30990,14 @@ client.files().postV1FilesList(
 <dd>
 
 **filter:** `Optional<List<PostV1FilesListRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -26917,6 +32549,14 @@ client.reports().postV1ReportsJobsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -27762,6 +33402,51 @@ client.public_().postV1PublicIntegrationRequests(
 </dl>
 </details>
 
+<details><summary><code>client.public_.getV1PublicPayToken(token)</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.public_().getV1PublicPayToken(
+    "token",
+    GetV1PublicPayTokenRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**token:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Billing
 <details><summary><code>client.billing.postV1BillingAccountGet(request) -> PostV1BillingAccountGetResponse</code></summary>
 <dl>
@@ -27879,6 +33564,50 @@ client.billing().postV1BillingTopupCreate(
 <dd>
 
 **locale:** `Optional<PostV1BillingTopupCreateRequestLocale>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.postV1BillingPortalCreate(request) -> PostV1BillingPortalCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.billing().postV1BillingPortalCreate(
+    PostV1BillingPortalCreateRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**locale:** `Optional<PostV1BillingPortalCreateRequestLocale>` 
     
 </dd>
 </dl>
@@ -28047,6 +33776,14 @@ client.account().postV1AccountLoginLinkRequest(
 <dd>
 
 **acceptDpa:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**referralCode:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -29565,6 +35302,170 @@ client.account().deleteTheSignedInUserAccount(
 
 **confirmEmail:** `String` 
     
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.account.postV1AccountReferralGet(request) -> PostV1AccountReferralGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.account().postV1AccountReferralGet(
+    PostV1AccountReferralGetRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.account.postV1AccountTableSettingsGet(request) -> PostV1AccountTableSettingsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.account().postV1AccountTableSettingsGet(
+    PostV1AccountTableSettingsGetRequest
+        .builder()
+        .tableKey("tableKey")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tableKey:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.account.postV1AccountTableSettingsSet(request) -> PostV1AccountTableSettingsSetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.account().postV1AccountTableSettingsSet(
+    PostV1AccountTableSettingsSetRequest
+        .builder()
+        .tableKey("tableKey")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tableKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**columns:** `Optional<List<String>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Double>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.account.postV1AccountTableSettingsList(request) -> PostV1AccountTableSettingsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.account().postV1AccountTableSettingsList(
+    PostV1AccountTableSettingsListRequest
+        .builder()
+        .build()
+);
+```
 </dd>
 </dl>
 </dd>

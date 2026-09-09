@@ -36,15 +36,19 @@ public final class PostV1AccountLoginLinkRequestRequest {
 
   private final Optional<Boolean> acceptDpa;
 
+  private final Optional<String> referralCode;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1AccountLoginLinkRequestRequest(String email,
       Optional<PostV1AccountLoginLinkRequestRequestLocale> locale, Optional<Boolean> acceptTerms,
-      Optional<Boolean> acceptDpa, Map<String, Object> additionalProperties) {
+      Optional<Boolean> acceptDpa, Optional<String> referralCode,
+      Map<String, Object> additionalProperties) {
     this.email = email;
     this.locale = locale;
     this.acceptTerms = acceptTerms;
     this.acceptDpa = acceptDpa;
+    this.referralCode = referralCode;
     this.additionalProperties = additionalProperties;
   }
 
@@ -68,6 +72,11 @@ public final class PostV1AccountLoginLinkRequestRequest {
     return acceptDpa;
   }
 
+  @JsonProperty("referralCode")
+  public Optional<String> getReferralCode() {
+    return referralCode;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -80,12 +89,12 @@ public final class PostV1AccountLoginLinkRequestRequest {
   }
 
   private boolean equalTo(PostV1AccountLoginLinkRequestRequest other) {
-    return email.equals(other.email) && locale.equals(other.locale) && acceptTerms.equals(other.acceptTerms) && acceptDpa.equals(other.acceptDpa);
+    return email.equals(other.email) && locale.equals(other.locale) && acceptTerms.equals(other.acceptTerms) && acceptDpa.equals(other.acceptDpa) && referralCode.equals(other.referralCode);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.email, this.locale, this.acceptTerms, this.acceptDpa);
+    return Objects.hash(this.email, this.locale, this.acceptTerms, this.acceptDpa, this.referralCode);
   }
 
   @java.lang.Override
@@ -121,6 +130,10 @@ public final class PostV1AccountLoginLinkRequestRequest {
     _FinalStage acceptDpa(Optional<Boolean> acceptDpa);
 
     _FinalStage acceptDpa(Boolean acceptDpa);
+
+    _FinalStage referralCode(Optional<String> referralCode);
+
+    _FinalStage referralCode(String referralCode);
   }
 
   @JsonIgnoreProperties(
@@ -128,6 +141,8 @@ public final class PostV1AccountLoginLinkRequestRequest {
   )
   public static final class Builder implements EmailStage, _FinalStage {
     private String email;
+
+    private Optional<String> referralCode = Optional.empty();
 
     private Optional<Boolean> acceptDpa = Optional.empty();
 
@@ -147,6 +162,7 @@ public final class PostV1AccountLoginLinkRequestRequest {
       locale(other.getLocale());
       acceptTerms(other.getAcceptTerms());
       acceptDpa(other.getAcceptDpa());
+      referralCode(other.getReferralCode());
       return this;
     }
 
@@ -154,6 +170,22 @@ public final class PostV1AccountLoginLinkRequestRequest {
     @JsonSetter("email")
     public _FinalStage email(@NotNull String email) {
       this.email = Objects.requireNonNull(email, "email must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage referralCode(String referralCode) {
+      this.referralCode = Optional.ofNullable(referralCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "referralCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage referralCode(Optional<String> referralCode) {
+      this.referralCode = referralCode;
       return this;
     }
 
@@ -207,7 +239,7 @@ public final class PostV1AccountLoginLinkRequestRequest {
 
     @java.lang.Override
     public PostV1AccountLoginLinkRequestRequest build() {
-      return new PostV1AccountLoginLinkRequestRequest(email, locale, acceptTerms, acceptDpa, additionalProperties);
+      return new PostV1AccountLoginLinkRequestRequest(email, locale, acceptTerms, acceptDpa, referralCode, additionalProperties);
     }
 
     @java.lang.Override

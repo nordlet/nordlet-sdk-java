@@ -6,8 +6,10 @@ package com.nordlet.api.resources.public_;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
+import com.nordlet.api.resources.public_.requests.GetV1PublicPayTokenRequest;
 import com.nordlet.api.resources.public_.requests.PostV1PublicIntegrationRequestsRequest;
 import com.nordlet.api.resources.public_.types.PostV1PublicIntegrationRequestsResponse;
+import java.lang.String;
 
 public class PublicClient {
   protected final ClientOptions clientOptions;
@@ -34,5 +36,22 @@ public class PublicClient {
   public PostV1PublicIntegrationRequestsResponse postV1PublicIntegrationRequests(
       PostV1PublicIntegrationRequestsRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1PublicIntegrationRequests(request, requestOptions).body();
+  }
+
+  public void getV1PublicPayToken(String token) {
+    this.rawClient.getV1PublicPayToken(token).body();
+  }
+
+  public void getV1PublicPayToken(String token, RequestOptions requestOptions) {
+    this.rawClient.getV1PublicPayToken(token, requestOptions).body();
+  }
+
+  public void getV1PublicPayToken(String token, GetV1PublicPayTokenRequest request) {
+    this.rawClient.getV1PublicPayToken(token, request).body();
+  }
+
+  public void getV1PublicPayToken(String token, GetV1PublicPayTokenRequest request,
+      RequestOptions requestOptions) {
+    this.rawClient.getV1PublicPayToken(token, request, requestOptions).body();
   }
 }

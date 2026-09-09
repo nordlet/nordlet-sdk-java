@@ -6,14 +6,19 @@ package com.nordlet.api.resources.partners.requests;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nordlet.api.core.Nullable;
+import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.partners.types.PostV1PartnersUpdateRequestAddress;
+import com.nordlet.api.resources.partners.types.PostV1PartnersUpdateRequestCorrespondenceAddress;
+import com.nordlet.api.resources.partners.types.PostV1PartnersUpdateRequestLegalCountryClass;
 import com.nordlet.api.resources.partners.types.PostV1PartnersUpdateRequestType;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -66,9 +71,43 @@ public final class PostV1PartnersUpdateRequest {
 
   private final Optional<PostV1PartnersUpdateRequestAddress> address;
 
+  private final Optional<PostV1PartnersUpdateRequestCorrespondenceAddress> correspondenceAddress;
+
   private final Optional<String> notes;
 
   private final Optional<String> documentRef;
+
+  private final Optional<String> shortName;
+
+  private final Optional<String> website;
+
+  private final Optional<String> fax;
+
+  private final Optional<String> eoriCode;
+
+  private final Optional<String> otherCode;
+
+  private final Optional<String> foreignTaxNumber;
+
+  private final Optional<Boolean> autoDebtReminder;
+
+  private final Optional<String> lateInterestPercent;
+
+  private final Optional<String> firstCallDate;
+
+  private final Optional<String> lastCallDate;
+
+  private final Optional<String> nextCallDate;
+
+  private final Optional<Long> rating;
+
+  private final Optional<Boolean> isEmployee;
+
+  private final Optional<Boolean> isGroupMember;
+
+  private final Optional<Boolean> isActive;
+
+  private final Optional<PostV1PartnersUpdateRequestLegalCountryClass> legalCountryClass;
 
   private final Map<String, Object> additionalProperties;
 
@@ -79,7 +118,15 @@ public final class PostV1PartnersUpdateRequest {
       Optional<Boolean> isCustomer, Optional<Boolean> isSupplier, Optional<Long> paymentTermDays,
       Optional<String> creditLimit, Optional<String> priceListId, Optional<String> groupId,
       Optional<String> statusId, Optional<PostV1PartnersUpdateRequestAddress> address,
-      Optional<String> notes, Optional<String> documentRef,
+      Optional<PostV1PartnersUpdateRequestCorrespondenceAddress> correspondenceAddress,
+      Optional<String> notes, Optional<String> documentRef, Optional<String> shortName,
+      Optional<String> website, Optional<String> fax, Optional<String> eoriCode,
+      Optional<String> otherCode, Optional<String> foreignTaxNumber,
+      Optional<Boolean> autoDebtReminder, Optional<String> lateInterestPercent,
+      Optional<String> firstCallDate, Optional<String> lastCallDate, Optional<String> nextCallDate,
+      Optional<Long> rating, Optional<Boolean> isEmployee, Optional<Boolean> isGroupMember,
+      Optional<Boolean> isActive,
+      Optional<PostV1PartnersUpdateRequestLegalCountryClass> legalCountryClass,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.type = type;
@@ -99,8 +146,25 @@ public final class PostV1PartnersUpdateRequest {
     this.groupId = groupId;
     this.statusId = statusId;
     this.address = address;
+    this.correspondenceAddress = correspondenceAddress;
     this.notes = notes;
     this.documentRef = documentRef;
+    this.shortName = shortName;
+    this.website = website;
+    this.fax = fax;
+    this.eoriCode = eoriCode;
+    this.otherCode = otherCode;
+    this.foreignTaxNumber = foreignTaxNumber;
+    this.autoDebtReminder = autoDebtReminder;
+    this.lateInterestPercent = lateInterestPercent;
+    this.firstCallDate = firstCallDate;
+    this.lastCallDate = lastCallDate;
+    this.nextCallDate = nextCallDate;
+    this.rating = rating;
+    this.isEmployee = isEmployee;
+    this.isGroupMember = isGroupMember;
+    this.isActive = isActive;
+    this.legalCountryClass = legalCountryClass;
     this.additionalProperties = additionalProperties;
   }
 
@@ -119,38 +183,59 @@ public final class PostV1PartnersUpdateRequest {
     return name;
   }
 
-  @JsonProperty("code")
+  @JsonIgnore
   public Optional<String> getCode() {
+    if (code == null) {
+      return Optional.empty();
+    }
     return code;
   }
 
-  @JsonProperty("vatCode")
+  @JsonIgnore
   public Optional<String> getVatCode() {
+    if (vatCode == null) {
+      return Optional.empty();
+    }
     return vatCode;
   }
 
-  @JsonProperty("peppolId")
+  @JsonIgnore
   public Optional<String> getPeppolId() {
+    if (peppolId == null) {
+      return Optional.empty();
+    }
     return peppolId;
   }
 
-  @JsonProperty("email")
+  @JsonIgnore
   public Optional<String> getEmail() {
+    if (email == null) {
+      return Optional.empty();
+    }
     return email;
   }
 
-  @JsonProperty("phone")
+  @JsonIgnore
   public Optional<String> getPhone() {
+    if (phone == null) {
+      return Optional.empty();
+    }
     return phone;
   }
 
-  @JsonProperty("selfEmploymentCertNo")
+  @JsonIgnore
   public Optional<String> getSelfEmploymentCertNo() {
+    if (selfEmploymentCertNo == null) {
+      return Optional.empty();
+    }
     return selfEmploymentCertNo;
   }
 
-  @JsonProperty("birthDate")
+  @JsonIgnore
   public Optional<String> getBirthDate() {
+    if (birthDate == null) {
+      return Optional.empty();
+    }
     return birthDate;
   }
 
@@ -164,44 +249,432 @@ public final class PostV1PartnersUpdateRequest {
     return isSupplier;
   }
 
-  @JsonProperty("paymentTermDays")
+  @JsonIgnore
   public Optional<Long> getPaymentTermDays() {
+    if (paymentTermDays == null) {
+      return Optional.empty();
+    }
     return paymentTermDays;
   }
 
-  @JsonProperty("creditLimit")
+  @JsonIgnore
   public Optional<String> getCreditLimit() {
+    if (creditLimit == null) {
+      return Optional.empty();
+    }
     return creditLimit;
   }
 
-  @JsonProperty("priceListId")
+  @JsonIgnore
   public Optional<String> getPriceListId() {
+    if (priceListId == null) {
+      return Optional.empty();
+    }
     return priceListId;
   }
 
-  @JsonProperty("groupId")
+  @JsonIgnore
   public Optional<String> getGroupId() {
+    if (groupId == null) {
+      return Optional.empty();
+    }
     return groupId;
   }
 
-  @JsonProperty("statusId")
+  @JsonIgnore
   public Optional<String> getStatusId() {
+    if (statusId == null) {
+      return Optional.empty();
+    }
     return statusId;
   }
 
-  @JsonProperty("address")
+  @JsonIgnore
   public Optional<PostV1PartnersUpdateRequestAddress> getAddress() {
+    if (address == null) {
+      return Optional.empty();
+    }
     return address;
   }
 
-  @JsonProperty("notes")
+  @JsonIgnore
+  public Optional<PostV1PartnersUpdateRequestCorrespondenceAddress> getCorrespondenceAddress() {
+    if (correspondenceAddress == null) {
+      return Optional.empty();
+    }
+    return correspondenceAddress;
+  }
+
+  @JsonIgnore
   public Optional<String> getNotes() {
+    if (notes == null) {
+      return Optional.empty();
+    }
     return notes;
   }
 
   @JsonProperty("documentRef")
   public Optional<String> getDocumentRef() {
     return documentRef;
+  }
+
+  @JsonIgnore
+  public Optional<String> getShortName() {
+    if (shortName == null) {
+      return Optional.empty();
+    }
+    return shortName;
+  }
+
+  @JsonIgnore
+  public Optional<String> getWebsite() {
+    if (website == null) {
+      return Optional.empty();
+    }
+    return website;
+  }
+
+  @JsonIgnore
+  public Optional<String> getFax() {
+    if (fax == null) {
+      return Optional.empty();
+    }
+    return fax;
+  }
+
+  @JsonIgnore
+  public Optional<String> getEoriCode() {
+    if (eoriCode == null) {
+      return Optional.empty();
+    }
+    return eoriCode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getOtherCode() {
+    if (otherCode == null) {
+      return Optional.empty();
+    }
+    return otherCode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getForeignTaxNumber() {
+    if (foreignTaxNumber == null) {
+      return Optional.empty();
+    }
+    return foreignTaxNumber;
+  }
+
+  @JsonProperty("autoDebtReminder")
+  public Optional<Boolean> getAutoDebtReminder() {
+    return autoDebtReminder;
+  }
+
+  @JsonIgnore
+  public Optional<String> getLateInterestPercent() {
+    if (lateInterestPercent == null) {
+      return Optional.empty();
+    }
+    return lateInterestPercent;
+  }
+
+  @JsonIgnore
+  public Optional<String> getFirstCallDate() {
+    if (firstCallDate == null) {
+      return Optional.empty();
+    }
+    return firstCallDate;
+  }
+
+  @JsonIgnore
+  public Optional<String> getLastCallDate() {
+    if (lastCallDate == null) {
+      return Optional.empty();
+    }
+    return lastCallDate;
+  }
+
+  @JsonIgnore
+  public Optional<String> getNextCallDate() {
+    if (nextCallDate == null) {
+      return Optional.empty();
+    }
+    return nextCallDate;
+  }
+
+  @JsonIgnore
+  public Optional<Long> getRating() {
+    if (rating == null) {
+      return Optional.empty();
+    }
+    return rating;
+  }
+
+  @JsonProperty("isEmployee")
+  public Optional<Boolean> getIsEmployee() {
+    return isEmployee;
+  }
+
+  @JsonProperty("isGroupMember")
+  public Optional<Boolean> getIsGroupMember() {
+    return isGroupMember;
+  }
+
+  @JsonProperty("isActive")
+  public Optional<Boolean> getIsActive() {
+    return isActive;
+  }
+
+  @JsonIgnore
+  public Optional<PostV1PartnersUpdateRequestLegalCountryClass> getLegalCountryClass() {
+    if (legalCountryClass == null) {
+      return Optional.empty();
+    }
+    return legalCountryClass;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("code")
+  private Optional<String> _getCode() {
+    return code;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("vatCode")
+  private Optional<String> _getVatCode() {
+    return vatCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("peppolId")
+  private Optional<String> _getPeppolId() {
+    return peppolId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("email")
+  private Optional<String> _getEmail() {
+    return email;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("phone")
+  private Optional<String> _getPhone() {
+    return phone;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("selfEmploymentCertNo")
+  private Optional<String> _getSelfEmploymentCertNo() {
+    return selfEmploymentCertNo;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("birthDate")
+  private Optional<String> _getBirthDate() {
+    return birthDate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("paymentTermDays")
+  private Optional<Long> _getPaymentTermDays() {
+    return paymentTermDays;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("creditLimit")
+  private Optional<String> _getCreditLimit() {
+    return creditLimit;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("priceListId")
+  private Optional<String> _getPriceListId() {
+    return priceListId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("groupId")
+  private Optional<String> _getGroupId() {
+    return groupId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("statusId")
+  private Optional<String> _getStatusId() {
+    return statusId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("address")
+  private Optional<PostV1PartnersUpdateRequestAddress> _getAddress() {
+    return address;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("correspondenceAddress")
+  private Optional<PostV1PartnersUpdateRequestCorrespondenceAddress> _getCorrespondenceAddress() {
+    return correspondenceAddress;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("notes")
+  private Optional<String> _getNotes() {
+    return notes;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("shortName")
+  private Optional<String> _getShortName() {
+    return shortName;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("website")
+  private Optional<String> _getWebsite() {
+    return website;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("fax")
+  private Optional<String> _getFax() {
+    return fax;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("eoriCode")
+  private Optional<String> _getEoriCode() {
+    return eoriCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("otherCode")
+  private Optional<String> _getOtherCode() {
+    return otherCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("foreignTaxNumber")
+  private Optional<String> _getForeignTaxNumber() {
+    return foreignTaxNumber;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("lateInterestPercent")
+  private Optional<String> _getLateInterestPercent() {
+    return lateInterestPercent;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("firstCallDate")
+  private Optional<String> _getFirstCallDate() {
+    return firstCallDate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("lastCallDate")
+  private Optional<String> _getLastCallDate() {
+    return lastCallDate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("nextCallDate")
+  private Optional<String> _getNextCallDate() {
+    return nextCallDate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("rating")
+  private Optional<Long> _getRating() {
+    return rating;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("legalCountryClass")
+  private Optional<PostV1PartnersUpdateRequestLegalCountryClass> _getLegalCountryClass() {
+    return legalCountryClass;
   }
 
   @java.lang.Override
@@ -216,12 +689,12 @@ public final class PostV1PartnersUpdateRequest {
   }
 
   private boolean equalTo(PostV1PartnersUpdateRequest other) {
-    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && notes.equals(other.notes) && documentRef.equals(other.documentRef);
+    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && otherCode.equals(other.otherCode) && foreignTaxNumber.equals(other.foreignTaxNumber) && autoDebtReminder.equals(other.autoDebtReminder) && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee.equals(other.isEmployee) && isGroupMember.equals(other.isGroupMember) && isActive.equals(other.isActive) && legalCountryClass.equals(other.legalCountryClass);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isCustomer, this.isSupplier, this.paymentTermDays, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.notes, this.documentRef);
+    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isCustomer, this.isSupplier, this.paymentTermDays, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.otherCode, this.foreignTaxNumber, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass);
   }
 
   @java.lang.Override
@@ -258,29 +731,43 @@ public final class PostV1PartnersUpdateRequest {
 
     _FinalStage code(String code);
 
+    _FinalStage code(Nullable<String> code);
+
     _FinalStage vatCode(Optional<String> vatCode);
 
     _FinalStage vatCode(String vatCode);
+
+    _FinalStage vatCode(Nullable<String> vatCode);
 
     _FinalStage peppolId(Optional<String> peppolId);
 
     _FinalStage peppolId(String peppolId);
 
+    _FinalStage peppolId(Nullable<String> peppolId);
+
     _FinalStage email(Optional<String> email);
 
     _FinalStage email(String email);
+
+    _FinalStage email(Nullable<String> email);
 
     _FinalStage phone(Optional<String> phone);
 
     _FinalStage phone(String phone);
 
+    _FinalStage phone(Nullable<String> phone);
+
     _FinalStage selfEmploymentCertNo(Optional<String> selfEmploymentCertNo);
 
     _FinalStage selfEmploymentCertNo(String selfEmploymentCertNo);
 
+    _FinalStage selfEmploymentCertNo(Nullable<String> selfEmploymentCertNo);
+
     _FinalStage birthDate(Optional<String> birthDate);
 
     _FinalStage birthDate(String birthDate);
+
+    _FinalStage birthDate(Nullable<String> birthDate);
 
     _FinalStage isCustomer(Optional<Boolean> isCustomer);
 
@@ -294,33 +781,146 @@ public final class PostV1PartnersUpdateRequest {
 
     _FinalStage paymentTermDays(Long paymentTermDays);
 
+    _FinalStage paymentTermDays(Nullable<Long> paymentTermDays);
+
     _FinalStage creditLimit(Optional<String> creditLimit);
 
     _FinalStage creditLimit(String creditLimit);
+
+    _FinalStage creditLimit(Nullable<String> creditLimit);
 
     _FinalStage priceListId(Optional<String> priceListId);
 
     _FinalStage priceListId(String priceListId);
 
+    _FinalStage priceListId(Nullable<String> priceListId);
+
     _FinalStage groupId(Optional<String> groupId);
 
     _FinalStage groupId(String groupId);
+
+    _FinalStage groupId(Nullable<String> groupId);
 
     _FinalStage statusId(Optional<String> statusId);
 
     _FinalStage statusId(String statusId);
 
+    _FinalStage statusId(Nullable<String> statusId);
+
     _FinalStage address(Optional<PostV1PartnersUpdateRequestAddress> address);
 
     _FinalStage address(PostV1PartnersUpdateRequestAddress address);
+
+    _FinalStage address(Nullable<PostV1PartnersUpdateRequestAddress> address);
+
+    _FinalStage correspondenceAddress(
+        Optional<PostV1PartnersUpdateRequestCorrespondenceAddress> correspondenceAddress);
+
+    _FinalStage correspondenceAddress(
+        PostV1PartnersUpdateRequestCorrespondenceAddress correspondenceAddress);
+
+    _FinalStage correspondenceAddress(
+        Nullable<PostV1PartnersUpdateRequestCorrespondenceAddress> correspondenceAddress);
 
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
 
+    _FinalStage notes(Nullable<String> notes);
+
     _FinalStage documentRef(Optional<String> documentRef);
 
     _FinalStage documentRef(String documentRef);
+
+    _FinalStage shortName(Optional<String> shortName);
+
+    _FinalStage shortName(String shortName);
+
+    _FinalStage shortName(Nullable<String> shortName);
+
+    _FinalStage website(Optional<String> website);
+
+    _FinalStage website(String website);
+
+    _FinalStage website(Nullable<String> website);
+
+    _FinalStage fax(Optional<String> fax);
+
+    _FinalStage fax(String fax);
+
+    _FinalStage fax(Nullable<String> fax);
+
+    _FinalStage eoriCode(Optional<String> eoriCode);
+
+    _FinalStage eoriCode(String eoriCode);
+
+    _FinalStage eoriCode(Nullable<String> eoriCode);
+
+    _FinalStage otherCode(Optional<String> otherCode);
+
+    _FinalStage otherCode(String otherCode);
+
+    _FinalStage otherCode(Nullable<String> otherCode);
+
+    _FinalStage foreignTaxNumber(Optional<String> foreignTaxNumber);
+
+    _FinalStage foreignTaxNumber(String foreignTaxNumber);
+
+    _FinalStage foreignTaxNumber(Nullable<String> foreignTaxNumber);
+
+    _FinalStage autoDebtReminder(Optional<Boolean> autoDebtReminder);
+
+    _FinalStage autoDebtReminder(Boolean autoDebtReminder);
+
+    _FinalStage lateInterestPercent(Optional<String> lateInterestPercent);
+
+    _FinalStage lateInterestPercent(String lateInterestPercent);
+
+    _FinalStage lateInterestPercent(Nullable<String> lateInterestPercent);
+
+    _FinalStage firstCallDate(Optional<String> firstCallDate);
+
+    _FinalStage firstCallDate(String firstCallDate);
+
+    _FinalStage firstCallDate(Nullable<String> firstCallDate);
+
+    _FinalStage lastCallDate(Optional<String> lastCallDate);
+
+    _FinalStage lastCallDate(String lastCallDate);
+
+    _FinalStage lastCallDate(Nullable<String> lastCallDate);
+
+    _FinalStage nextCallDate(Optional<String> nextCallDate);
+
+    _FinalStage nextCallDate(String nextCallDate);
+
+    _FinalStage nextCallDate(Nullable<String> nextCallDate);
+
+    _FinalStage rating(Optional<Long> rating);
+
+    _FinalStage rating(Long rating);
+
+    _FinalStage rating(Nullable<Long> rating);
+
+    _FinalStage isEmployee(Optional<Boolean> isEmployee);
+
+    _FinalStage isEmployee(Boolean isEmployee);
+
+    _FinalStage isGroupMember(Optional<Boolean> isGroupMember);
+
+    _FinalStage isGroupMember(Boolean isGroupMember);
+
+    _FinalStage isActive(Optional<Boolean> isActive);
+
+    _FinalStage isActive(Boolean isActive);
+
+    _FinalStage legalCountryClass(
+        Optional<PostV1PartnersUpdateRequestLegalCountryClass> legalCountryClass);
+
+    _FinalStage legalCountryClass(PostV1PartnersUpdateRequestLegalCountryClass legalCountryClass);
+
+    _FinalStage legalCountryClass(
+        Nullable<PostV1PartnersUpdateRequestLegalCountryClass> legalCountryClass);
   }
 
   @JsonIgnoreProperties(
@@ -329,9 +929,43 @@ public final class PostV1PartnersUpdateRequest {
   public static final class Builder implements IdStage, _FinalStage {
     private String id;
 
+    private Optional<PostV1PartnersUpdateRequestLegalCountryClass> legalCountryClass = Optional.empty();
+
+    private Optional<Boolean> isActive = Optional.empty();
+
+    private Optional<Boolean> isGroupMember = Optional.empty();
+
+    private Optional<Boolean> isEmployee = Optional.empty();
+
+    private Optional<Long> rating = Optional.empty();
+
+    private Optional<String> nextCallDate = Optional.empty();
+
+    private Optional<String> lastCallDate = Optional.empty();
+
+    private Optional<String> firstCallDate = Optional.empty();
+
+    private Optional<String> lateInterestPercent = Optional.empty();
+
+    private Optional<Boolean> autoDebtReminder = Optional.empty();
+
+    private Optional<String> foreignTaxNumber = Optional.empty();
+
+    private Optional<String> otherCode = Optional.empty();
+
+    private Optional<String> eoriCode = Optional.empty();
+
+    private Optional<String> fax = Optional.empty();
+
+    private Optional<String> website = Optional.empty();
+
+    private Optional<String> shortName = Optional.empty();
+
     private Optional<String> documentRef = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
+
+    private Optional<PostV1PartnersUpdateRequestCorrespondenceAddress> correspondenceAddress = Optional.empty();
 
     private Optional<PostV1PartnersUpdateRequestAddress> address = Optional.empty();
 
@@ -393,8 +1027,25 @@ public final class PostV1PartnersUpdateRequest {
       groupId(other.getGroupId());
       statusId(other.getStatusId());
       address(other.getAddress());
+      correspondenceAddress(other.getCorrespondenceAddress());
       notes(other.getNotes());
       documentRef(other.getDocumentRef());
+      shortName(other.getShortName());
+      website(other.getWebsite());
+      fax(other.getFax());
+      eoriCode(other.getEoriCode());
+      otherCode(other.getOtherCode());
+      foreignTaxNumber(other.getForeignTaxNumber());
+      autoDebtReminder(other.getAutoDebtReminder());
+      lateInterestPercent(other.getLateInterestPercent());
+      firstCallDate(other.getFirstCallDate());
+      lastCallDate(other.getLastCallDate());
+      nextCallDate(other.getNextCallDate());
+      rating(other.getRating());
+      isEmployee(other.getIsEmployee());
+      isGroupMember(other.getIsGroupMember());
+      isActive(other.getIsActive());
+      legalCountryClass(other.getLegalCountryClass());
       return this;
     }
 
@@ -402,6 +1053,433 @@ public final class PostV1PartnersUpdateRequest {
     @JsonSetter("id")
     public _FinalStage id(@NotNull String id) {
       this.id = Objects.requireNonNull(id, "id must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage legalCountryClass(
+        Nullable<PostV1PartnersUpdateRequestLegalCountryClass> legalCountryClass) {
+      if (legalCountryClass.isNull()) {
+        this.legalCountryClass = null;
+      }
+      else if (legalCountryClass.isEmpty()) {
+        this.legalCountryClass = Optional.empty();
+      }
+      else {
+        this.legalCountryClass = Optional.of(legalCountryClass.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage legalCountryClass(
+        PostV1PartnersUpdateRequestLegalCountryClass legalCountryClass) {
+      this.legalCountryClass = Optional.ofNullable(legalCountryClass);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "legalCountryClass",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage legalCountryClass(
+        Optional<PostV1PartnersUpdateRequestLegalCountryClass> legalCountryClass) {
+      this.legalCountryClass = legalCountryClass;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage isActive(Boolean isActive) {
+      this.isActive = Optional.ofNullable(isActive);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "isActive",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage isActive(Optional<Boolean> isActive) {
+      this.isActive = isActive;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage isGroupMember(Boolean isGroupMember) {
+      this.isGroupMember = Optional.ofNullable(isGroupMember);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "isGroupMember",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage isGroupMember(Optional<Boolean> isGroupMember) {
+      this.isGroupMember = isGroupMember;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage isEmployee(Boolean isEmployee) {
+      this.isEmployee = Optional.ofNullable(isEmployee);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "isEmployee",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage isEmployee(Optional<Boolean> isEmployee) {
+      this.isEmployee = isEmployee;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage rating(Nullable<Long> rating) {
+      if (rating.isNull()) {
+        this.rating = null;
+      }
+      else if (rating.isEmpty()) {
+        this.rating = Optional.empty();
+      }
+      else {
+        this.rating = Optional.of(rating.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage rating(Long rating) {
+      this.rating = Optional.ofNullable(rating);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "rating",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage rating(Optional<Long> rating) {
+      this.rating = rating;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage nextCallDate(Nullable<String> nextCallDate) {
+      if (nextCallDate.isNull()) {
+        this.nextCallDate = null;
+      }
+      else if (nextCallDate.isEmpty()) {
+        this.nextCallDate = Optional.empty();
+      }
+      else {
+        this.nextCallDate = Optional.of(nextCallDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage nextCallDate(String nextCallDate) {
+      this.nextCallDate = Optional.ofNullable(nextCallDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "nextCallDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage nextCallDate(Optional<String> nextCallDate) {
+      this.nextCallDate = nextCallDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lastCallDate(Nullable<String> lastCallDate) {
+      if (lastCallDate.isNull()) {
+        this.lastCallDate = null;
+      }
+      else if (lastCallDate.isEmpty()) {
+        this.lastCallDate = Optional.empty();
+      }
+      else {
+        this.lastCallDate = Optional.of(lastCallDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lastCallDate(String lastCallDate) {
+      this.lastCallDate = Optional.ofNullable(lastCallDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lastCallDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lastCallDate(Optional<String> lastCallDate) {
+      this.lastCallDate = lastCallDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage firstCallDate(Nullable<String> firstCallDate) {
+      if (firstCallDate.isNull()) {
+        this.firstCallDate = null;
+      }
+      else if (firstCallDate.isEmpty()) {
+        this.firstCallDate = Optional.empty();
+      }
+      else {
+        this.firstCallDate = Optional.of(firstCallDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage firstCallDate(String firstCallDate) {
+      this.firstCallDate = Optional.ofNullable(firstCallDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "firstCallDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage firstCallDate(Optional<String> firstCallDate) {
+      this.firstCallDate = firstCallDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lateInterestPercent(Nullable<String> lateInterestPercent) {
+      if (lateInterestPercent.isNull()) {
+        this.lateInterestPercent = null;
+      }
+      else if (lateInterestPercent.isEmpty()) {
+        this.lateInterestPercent = Optional.empty();
+      }
+      else {
+        this.lateInterestPercent = Optional.of(lateInterestPercent.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lateInterestPercent(String lateInterestPercent) {
+      this.lateInterestPercent = Optional.ofNullable(lateInterestPercent);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lateInterestPercent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lateInterestPercent(Optional<String> lateInterestPercent) {
+      this.lateInterestPercent = lateInterestPercent;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage autoDebtReminder(Boolean autoDebtReminder) {
+      this.autoDebtReminder = Optional.ofNullable(autoDebtReminder);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "autoDebtReminder",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage autoDebtReminder(Optional<Boolean> autoDebtReminder) {
+      this.autoDebtReminder = autoDebtReminder;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage foreignTaxNumber(Nullable<String> foreignTaxNumber) {
+      if (foreignTaxNumber.isNull()) {
+        this.foreignTaxNumber = null;
+      }
+      else if (foreignTaxNumber.isEmpty()) {
+        this.foreignTaxNumber = Optional.empty();
+      }
+      else {
+        this.foreignTaxNumber = Optional.of(foreignTaxNumber.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage foreignTaxNumber(String foreignTaxNumber) {
+      this.foreignTaxNumber = Optional.ofNullable(foreignTaxNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "foreignTaxNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage foreignTaxNumber(Optional<String> foreignTaxNumber) {
+      this.foreignTaxNumber = foreignTaxNumber;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage otherCode(Nullable<String> otherCode) {
+      if (otherCode.isNull()) {
+        this.otherCode = null;
+      }
+      else if (otherCode.isEmpty()) {
+        this.otherCode = Optional.empty();
+      }
+      else {
+        this.otherCode = Optional.of(otherCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage otherCode(String otherCode) {
+      this.otherCode = Optional.ofNullable(otherCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "otherCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage otherCode(Optional<String> otherCode) {
+      this.otherCode = otherCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage eoriCode(Nullable<String> eoriCode) {
+      if (eoriCode.isNull()) {
+        this.eoriCode = null;
+      }
+      else if (eoriCode.isEmpty()) {
+        this.eoriCode = Optional.empty();
+      }
+      else {
+        this.eoriCode = Optional.of(eoriCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage eoriCode(String eoriCode) {
+      this.eoriCode = Optional.ofNullable(eoriCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "eoriCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage eoriCode(Optional<String> eoriCode) {
+      this.eoriCode = eoriCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fax(Nullable<String> fax) {
+      if (fax.isNull()) {
+        this.fax = null;
+      }
+      else if (fax.isEmpty()) {
+        this.fax = Optional.empty();
+      }
+      else {
+        this.fax = Optional.of(fax.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fax(String fax) {
+      this.fax = Optional.ofNullable(fax);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "fax",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage fax(Optional<String> fax) {
+      this.fax = fax;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage website(Nullable<String> website) {
+      if (website.isNull()) {
+        this.website = null;
+      }
+      else if (website.isEmpty()) {
+        this.website = Optional.empty();
+      }
+      else {
+        this.website = Optional.of(website.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage website(String website) {
+      this.website = Optional.ofNullable(website);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "website",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage website(Optional<String> website) {
+      this.website = website;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage shortName(Nullable<String> shortName) {
+      if (shortName.isNull()) {
+        this.shortName = null;
+      }
+      else if (shortName.isEmpty()) {
+        this.shortName = Optional.empty();
+      }
+      else {
+        this.shortName = Optional.of(shortName.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage shortName(String shortName) {
+      this.shortName = Optional.ofNullable(shortName);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "shortName",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage shortName(Optional<String> shortName) {
+      this.shortName = shortName;
       return this;
     }
 
@@ -422,6 +1500,20 @@ public final class PostV1PartnersUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage notes(Nullable<String> notes) {
+      if (notes.isNull()) {
+        this.notes = null;
+      }
+      else if (notes.isEmpty()) {
+        this.notes = Optional.empty();
+      }
+      else {
+        this.notes = Optional.of(notes.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage notes(String notes) {
       this.notes = Optional.ofNullable(notes);
       return this;
@@ -434,6 +1526,53 @@ public final class PostV1PartnersUpdateRequest {
     )
     public _FinalStage notes(Optional<String> notes) {
       this.notes = notes;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage correspondenceAddress(
+        Nullable<PostV1PartnersUpdateRequestCorrespondenceAddress> correspondenceAddress) {
+      if (correspondenceAddress.isNull()) {
+        this.correspondenceAddress = null;
+      }
+      else if (correspondenceAddress.isEmpty()) {
+        this.correspondenceAddress = Optional.empty();
+      }
+      else {
+        this.correspondenceAddress = Optional.of(correspondenceAddress.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage correspondenceAddress(
+        PostV1PartnersUpdateRequestCorrespondenceAddress correspondenceAddress) {
+      this.correspondenceAddress = Optional.ofNullable(correspondenceAddress);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "correspondenceAddress",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage correspondenceAddress(
+        Optional<PostV1PartnersUpdateRequestCorrespondenceAddress> correspondenceAddress) {
+      this.correspondenceAddress = correspondenceAddress;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage address(Nullable<PostV1PartnersUpdateRequestAddress> address) {
+      if (address.isNull()) {
+        this.address = null;
+      }
+      else if (address.isEmpty()) {
+        this.address = Optional.empty();
+      }
+      else {
+        this.address = Optional.of(address.get());
+      }
       return this;
     }
 
@@ -454,6 +1593,20 @@ public final class PostV1PartnersUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage statusId(Nullable<String> statusId) {
+      if (statusId.isNull()) {
+        this.statusId = null;
+      }
+      else if (statusId.isEmpty()) {
+        this.statusId = Optional.empty();
+      }
+      else {
+        this.statusId = Optional.of(statusId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage statusId(String statusId) {
       this.statusId = Optional.ofNullable(statusId);
       return this;
@@ -466,6 +1619,20 @@ public final class PostV1PartnersUpdateRequest {
     )
     public _FinalStage statusId(Optional<String> statusId) {
       this.statusId = statusId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage groupId(Nullable<String> groupId) {
+      if (groupId.isNull()) {
+        this.groupId = null;
+      }
+      else if (groupId.isEmpty()) {
+        this.groupId = Optional.empty();
+      }
+      else {
+        this.groupId = Optional.of(groupId.get());
+      }
       return this;
     }
 
@@ -486,6 +1653,20 @@ public final class PostV1PartnersUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage priceListId(Nullable<String> priceListId) {
+      if (priceListId.isNull()) {
+        this.priceListId = null;
+      }
+      else if (priceListId.isEmpty()) {
+        this.priceListId = Optional.empty();
+      }
+      else {
+        this.priceListId = Optional.of(priceListId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage priceListId(String priceListId) {
       this.priceListId = Optional.ofNullable(priceListId);
       return this;
@@ -502,6 +1683,20 @@ public final class PostV1PartnersUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage creditLimit(Nullable<String> creditLimit) {
+      if (creditLimit.isNull()) {
+        this.creditLimit = null;
+      }
+      else if (creditLimit.isEmpty()) {
+        this.creditLimit = Optional.empty();
+      }
+      else {
+        this.creditLimit = Optional.of(creditLimit.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage creditLimit(String creditLimit) {
       this.creditLimit = Optional.ofNullable(creditLimit);
       return this;
@@ -514,6 +1709,20 @@ public final class PostV1PartnersUpdateRequest {
     )
     public _FinalStage creditLimit(Optional<String> creditLimit) {
       this.creditLimit = creditLimit;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage paymentTermDays(Nullable<Long> paymentTermDays) {
+      if (paymentTermDays.isNull()) {
+        this.paymentTermDays = null;
+      }
+      else if (paymentTermDays.isEmpty()) {
+        this.paymentTermDays = Optional.empty();
+      }
+      else {
+        this.paymentTermDays = Optional.of(paymentTermDays.get());
+      }
       return this;
     }
 
@@ -566,6 +1775,20 @@ public final class PostV1PartnersUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage birthDate(Nullable<String> birthDate) {
+      if (birthDate.isNull()) {
+        this.birthDate = null;
+      }
+      else if (birthDate.isEmpty()) {
+        this.birthDate = Optional.empty();
+      }
+      else {
+        this.birthDate = Optional.of(birthDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage birthDate(String birthDate) {
       this.birthDate = Optional.ofNullable(birthDate);
       return this;
@@ -578,6 +1801,20 @@ public final class PostV1PartnersUpdateRequest {
     )
     public _FinalStage birthDate(Optional<String> birthDate) {
       this.birthDate = birthDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage selfEmploymentCertNo(Nullable<String> selfEmploymentCertNo) {
+      if (selfEmploymentCertNo.isNull()) {
+        this.selfEmploymentCertNo = null;
+      }
+      else if (selfEmploymentCertNo.isEmpty()) {
+        this.selfEmploymentCertNo = Optional.empty();
+      }
+      else {
+        this.selfEmploymentCertNo = Optional.of(selfEmploymentCertNo.get());
+      }
       return this;
     }
 
@@ -598,6 +1835,20 @@ public final class PostV1PartnersUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage phone(Nullable<String> phone) {
+      if (phone.isNull()) {
+        this.phone = null;
+      }
+      else if (phone.isEmpty()) {
+        this.phone = Optional.empty();
+      }
+      else {
+        this.phone = Optional.of(phone.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage phone(String phone) {
       this.phone = Optional.ofNullable(phone);
       return this;
@@ -610,6 +1861,20 @@ public final class PostV1PartnersUpdateRequest {
     )
     public _FinalStage phone(Optional<String> phone) {
       this.phone = phone;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage email(Nullable<String> email) {
+      if (email.isNull()) {
+        this.email = null;
+      }
+      else if (email.isEmpty()) {
+        this.email = Optional.empty();
+      }
+      else {
+        this.email = Optional.of(email.get());
+      }
       return this;
     }
 
@@ -630,6 +1895,20 @@ public final class PostV1PartnersUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage peppolId(Nullable<String> peppolId) {
+      if (peppolId.isNull()) {
+        this.peppolId = null;
+      }
+      else if (peppolId.isEmpty()) {
+        this.peppolId = Optional.empty();
+      }
+      else {
+        this.peppolId = Optional.of(peppolId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage peppolId(String peppolId) {
       this.peppolId = Optional.ofNullable(peppolId);
       return this;
@@ -646,6 +1925,20 @@ public final class PostV1PartnersUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage vatCode(Nullable<String> vatCode) {
+      if (vatCode.isNull()) {
+        this.vatCode = null;
+      }
+      else if (vatCode.isEmpty()) {
+        this.vatCode = Optional.empty();
+      }
+      else {
+        this.vatCode = Optional.of(vatCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage vatCode(String vatCode) {
       this.vatCode = Optional.ofNullable(vatCode);
       return this;
@@ -658,6 +1951,20 @@ public final class PostV1PartnersUpdateRequest {
     )
     public _FinalStage vatCode(Optional<String> vatCode) {
       this.vatCode = vatCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage code(Nullable<String> code) {
+      if (code.isNull()) {
+        this.code = null;
+      }
+      else if (code.isEmpty()) {
+        this.code = Optional.empty();
+      }
+      else {
+        this.code = Optional.of(code.get());
+      }
       return this;
     }
 
@@ -711,7 +2018,7 @@ public final class PostV1PartnersUpdateRequest {
 
     @java.lang.Override
     public PostV1PartnersUpdateRequest build() {
-      return new PostV1PartnersUpdateRequest(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isCustomer, isSupplier, paymentTermDays, creditLimit, priceListId, groupId, statusId, address, notes, documentRef, additionalProperties);
+      return new PostV1PartnersUpdateRequest(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isCustomer, isSupplier, paymentTermDays, creditLimit, priceListId, groupId, statusId, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, otherCode, foreignTaxNumber, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, additionalProperties);
     }
 
     @java.lang.Override

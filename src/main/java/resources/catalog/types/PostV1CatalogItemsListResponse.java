@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
@@ -34,14 +35,18 @@ public final class PostV1CatalogItemsListResponse {
 
   private final long total;
 
+  private final Optional<Map<String, String>> totals;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1CatalogItemsListResponse(List<PostV1CatalogItemsListResponseRowsItem> rows,
-      long page, long pageSize, long total, Map<String, Object> additionalProperties) {
+      long page, long pageSize, long total, Optional<Map<String, String>> totals,
+      Map<String, Object> additionalProperties) {
     this.rows = rows;
     this.page = page;
     this.pageSize = pageSize;
     this.total = total;
+    this.totals = totals;
     this.additionalProperties = additionalProperties;
   }
 
@@ -65,6 +70,11 @@ public final class PostV1CatalogItemsListResponse {
     return total;
   }
 
+  @JsonProperty("totals")
+  public Optional<Map<String, String>> getTotals() {
+    return totals;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -77,12 +87,12 @@ public final class PostV1CatalogItemsListResponse {
   }
 
   private boolean equalTo(PostV1CatalogItemsListResponse other) {
-    return rows.equals(other.rows) && page == other.page && pageSize == other.pageSize && total == other.total;
+    return rows.equals(other.rows) && page == other.page && pageSize == other.pageSize && total == other.total && totals.equals(other.totals);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.rows, this.page, this.pageSize, this.total);
+    return Objects.hash(this.rows, this.page, this.pageSize, this.total, this.totals);
   }
 
   @java.lang.Override
@@ -120,6 +130,10 @@ public final class PostV1CatalogItemsListResponse {
     _FinalStage addRows(PostV1CatalogItemsListResponseRowsItem rows);
 
     _FinalStage addAllRows(List<PostV1CatalogItemsListResponseRowsItem> rows);
+
+    _FinalStage totals(Optional<Map<String, String>> totals);
+
+    _FinalStage totals(Map<String, String> totals);
   }
 
   @JsonIgnoreProperties(
@@ -131,6 +145,8 @@ public final class PostV1CatalogItemsListResponse {
     private long pageSize;
 
     private long total;
+
+    private Optional<Map<String, String>> totals = Optional.empty();
 
     private List<PostV1CatalogItemsListResponseRowsItem> rows = new ArrayList<>();
 
@@ -146,6 +162,7 @@ public final class PostV1CatalogItemsListResponse {
       page(other.getPage());
       pageSize(other.getPageSize());
       total(other.getTotal());
+      totals(other.getTotals());
       return this;
     }
 
@@ -167,6 +184,22 @@ public final class PostV1CatalogItemsListResponse {
     @JsonSetter("total")
     public _FinalStage total(long total) {
       this.total = total;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage totals(Map<String, String> totals) {
+      this.totals = Optional.ofNullable(totals);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "totals",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage totals(Optional<Map<String, String>> totals) {
+      this.totals = totals;
       return this;
     }
 
@@ -199,7 +232,7 @@ public final class PostV1CatalogItemsListResponse {
 
     @java.lang.Override
     public PostV1CatalogItemsListResponse build() {
-      return new PostV1CatalogItemsListResponse(rows, page, pageSize, total, additionalProperties);
+      return new PostV1CatalogItemsListResponse(rows, page, pageSize, total, totals, additionalProperties);
     }
 
     @java.lang.Override

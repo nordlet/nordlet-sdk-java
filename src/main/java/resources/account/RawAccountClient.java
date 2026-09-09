@@ -49,9 +49,13 @@ import com.nordlet.api.resources.account.requests.PostV1AccountMembersListReques
 import com.nordlet.api.resources.account.requests.PostV1AccountMembersRemoveRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountMembersSetRoleRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountProfileUpdateRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountReferralGetRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountSessionsListRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountSessionsRevokeOthersRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountSessionsRevokeRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountTableSettingsGetRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountTableSettingsListRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountTableSettingsSetRequest;
 import com.nordlet.api.resources.account.types.PostV1AccountApiKeysCreateResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountApiKeysListResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountApiKeysRevokeResponse;
@@ -80,9 +84,13 @@ import com.nordlet.api.resources.account.types.PostV1AccountMembersListResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountMembersRemoveResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountMembersSetRoleResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountProfileUpdateResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountReferralGetResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountSessionsListResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountSessionsRevokeOthersResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountSessionsRevokeResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountTableSettingsGetResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountTableSettingsListResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountTableSettingsSetResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -2302,4 +2310,296 @@ public class RawAccountClient {
                                                                     throw new NordletApiException("Network error executing HTTP request", e);
                                                                   }
                                                                 }
-                                                              }
+
+                                                                public NordletApiHttpResponse<PostV1AccountReferralGetResponse> postV1AccountReferralGet(
+                                                                    ) {
+                                                                  return postV1AccountReferralGet(PostV1AccountReferralGetRequest.builder().build());
+                                                                }
+
+                                                                public NordletApiHttpResponse<PostV1AccountReferralGetResponse> postV1AccountReferralGet(
+                                                                    RequestOptions requestOptions) {
+                                                                  return postV1AccountReferralGet(PostV1AccountReferralGetRequest.builder().build(),requestOptions);
+                                                                }
+
+                                                                public NordletApiHttpResponse<PostV1AccountReferralGetResponse> postV1AccountReferralGet(
+                                                                    PostV1AccountReferralGetRequest request) {
+                                                                  return postV1AccountReferralGet(request,null);
+                                                                }
+
+                                                                public NordletApiHttpResponse<PostV1AccountReferralGetResponse> postV1AccountReferralGet(
+                                                                    PostV1AccountReferralGetRequest request,
+                                                                    RequestOptions requestOptions) {
+                                                                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                    .addPathSegments("v1/account/referral/get");if (requestOptions != null) {
+                                                                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                        httpUrl.addQueryParameter(_key, _value);
+                                                                      } );
+                                                                    }
+                                                                    RequestBody body;
+                                                                    try {
+                                                                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                    }
+                                                                    catch(JsonProcessingException e) {
+                                                                      throw new NordletApiException("Failed to serialize request", e);
+                                                                    }
+                                                                    Request okhttpRequest = new Request.Builder()
+                                                                      .url(httpUrl.build())
+                                                                      .method("POST", body)
+                                                                      .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                      .addHeader("Content-Type", "application/json")
+                                                                      .addHeader("Accept", "application/json")
+                                                                      .build();
+                                                                    OkHttpClient client = clientOptions.httpClient();
+                                                                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                      client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                    }
+                                                                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                    }
+                                                                    try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                      ResponseBody responseBody = response.body();
+                                                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                      if (response.isSuccessful()) {
+                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountReferralGetResponse.class), response);
+                                                                      }
+                                                                      try {
+                                                                        switch (response.code()) {
+                                                                          case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        }
+                                                                      }
+                                                                      catch (JsonProcessingException ignored) {
+                                                                        // unable to map error response, throwing generic error
+                                                                      }
+                                                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                      throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                    }
+                                                                    catch (JsonProcessingException e) {
+                                                                      throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                    }
+                                                                    catch (IOException e) {
+                                                                      throw new NordletApiException("Network error executing HTTP request", e);
+                                                                    }
+                                                                  }
+
+                                                                  public NordletApiHttpResponse<PostV1AccountTableSettingsGetResponse> postV1AccountTableSettingsGet(
+                                                                      PostV1AccountTableSettingsGetRequest request) {
+                                                                    return postV1AccountTableSettingsGet(request,null);
+                                                                  }
+
+                                                                  public NordletApiHttpResponse<PostV1AccountTableSettingsGetResponse> postV1AccountTableSettingsGet(
+                                                                      PostV1AccountTableSettingsGetRequest request,
+                                                                      RequestOptions requestOptions) {
+                                                                    HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                      .addPathSegments("v1/account/table-settings/get");if (requestOptions != null) {
+                                                                        requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                          httpUrl.addQueryParameter(_key, _value);
+                                                                        } );
+                                                                      }
+                                                                      RequestBody body;
+                                                                      try {
+                                                                        body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                      }
+                                                                      catch(JsonProcessingException e) {
+                                                                        throw new NordletApiException("Failed to serialize request", e);
+                                                                      }
+                                                                      Request okhttpRequest = new Request.Builder()
+                                                                        .url(httpUrl.build())
+                                                                        .method("POST", body)
+                                                                        .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                        .addHeader("Content-Type", "application/json")
+                                                                        .addHeader("Accept", "application/json")
+                                                                        .build();
+                                                                      OkHttpClient client = clientOptions.httpClient();
+                                                                      if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                        client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                      }
+                                                                      if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                        okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                      }
+                                                                      try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                        ResponseBody responseBody = response.body();
+                                                                        String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                        if (response.isSuccessful()) {
+                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountTableSettingsGetResponse.class), response);
+                                                                        }
+                                                                        try {
+                                                                          switch (response.code()) {
+                                                                            case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          }
+                                                                        }
+                                                                        catch (JsonProcessingException ignored) {
+                                                                          // unable to map error response, throwing generic error
+                                                                        }
+                                                                        Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                        throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                      }
+                                                                      catch (JsonProcessingException e) {
+                                                                        throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                      }
+                                                                      catch (IOException e) {
+                                                                        throw new NordletApiException("Network error executing HTTP request", e);
+                                                                      }
+                                                                    }
+
+                                                                    public NordletApiHttpResponse<PostV1AccountTableSettingsSetResponse> postV1AccountTableSettingsSet(
+                                                                        PostV1AccountTableSettingsSetRequest request) {
+                                                                      return postV1AccountTableSettingsSet(request,null);
+                                                                    }
+
+                                                                    public NordletApiHttpResponse<PostV1AccountTableSettingsSetResponse> postV1AccountTableSettingsSet(
+                                                                        PostV1AccountTableSettingsSetRequest request,
+                                                                        RequestOptions requestOptions) {
+                                                                      HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                        .addPathSegments("v1/account/table-settings/set");if (requestOptions != null) {
+                                                                          requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                            httpUrl.addQueryParameter(_key, _value);
+                                                                          } );
+                                                                        }
+                                                                        RequestBody body;
+                                                                        try {
+                                                                          body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                        }
+                                                                        catch(JsonProcessingException e) {
+                                                                          throw new NordletApiException("Failed to serialize request", e);
+                                                                        }
+                                                                        Request okhttpRequest = new Request.Builder()
+                                                                          .url(httpUrl.build())
+                                                                          .method("POST", body)
+                                                                          .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                          .addHeader("Content-Type", "application/json")
+                                                                          .addHeader("Accept", "application/json")
+                                                                          .build();
+                                                                        OkHttpClient client = clientOptions.httpClient();
+                                                                        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                          client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                        }
+                                                                        if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                          okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                        }
+                                                                        try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                          ResponseBody responseBody = response.body();
+                                                                          String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                          if (response.isSuccessful()) {
+                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountTableSettingsSetResponse.class), response);
+                                                                          }
+                                                                          try {
+                                                                            switch (response.code()) {
+                                                                              case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            }
+                                                                          }
+                                                                          catch (JsonProcessingException ignored) {
+                                                                            // unable to map error response, throwing generic error
+                                                                          }
+                                                                          Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                          throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                        }
+                                                                        catch (JsonProcessingException e) {
+                                                                          throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                        }
+                                                                        catch (IOException e) {
+                                                                          throw new NordletApiException("Network error executing HTTP request", e);
+                                                                        }
+                                                                      }
+
+                                                                      public NordletApiHttpResponse<PostV1AccountTableSettingsListResponse> postV1AccountTableSettingsList(
+                                                                          ) {
+                                                                        return postV1AccountTableSettingsList(PostV1AccountTableSettingsListRequest.builder().build());
+                                                                      }
+
+                                                                      public NordletApiHttpResponse<PostV1AccountTableSettingsListResponse> postV1AccountTableSettingsList(
+                                                                          RequestOptions requestOptions) {
+                                                                        return postV1AccountTableSettingsList(PostV1AccountTableSettingsListRequest.builder().build(),requestOptions);
+                                                                      }
+
+                                                                      public NordletApiHttpResponse<PostV1AccountTableSettingsListResponse> postV1AccountTableSettingsList(
+                                                                          PostV1AccountTableSettingsListRequest request) {
+                                                                        return postV1AccountTableSettingsList(request,null);
+                                                                      }
+
+                                                                      public NordletApiHttpResponse<PostV1AccountTableSettingsListResponse> postV1AccountTableSettingsList(
+                                                                          PostV1AccountTableSettingsListRequest request,
+                                                                          RequestOptions requestOptions) {
+                                                                        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                          .addPathSegments("v1/account/table-settings/list");if (requestOptions != null) {
+                                                                            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                              httpUrl.addQueryParameter(_key, _value);
+                                                                            } );
+                                                                          }
+                                                                          RequestBody body;
+                                                                          try {
+                                                                            body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                          }
+                                                                          catch(JsonProcessingException e) {
+                                                                            throw new NordletApiException("Failed to serialize request", e);
+                                                                          }
+                                                                          Request okhttpRequest = new Request.Builder()
+                                                                            .url(httpUrl.build())
+                                                                            .method("POST", body)
+                                                                            .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                            .addHeader("Content-Type", "application/json")
+                                                                            .addHeader("Accept", "application/json")
+                                                                            .build();
+                                                                          OkHttpClient client = clientOptions.httpClient();
+                                                                          if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                            client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                          }
+                                                                          if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                            okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                          }
+                                                                          try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                            ResponseBody responseBody = response.body();
+                                                                            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                            if (response.isSuccessful()) {
+                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountTableSettingsListResponse.class), response);
+                                                                            }
+                                                                            try {
+                                                                              switch (response.code()) {
+                                                                                case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              }
+                                                                            }
+                                                                            catch (JsonProcessingException ignored) {
+                                                                              // unable to map error response, throwing generic error
+                                                                            }
+                                                                            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                            throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                          }
+                                                                          catch (JsonProcessingException e) {
+                                                                            throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                          }
+                                                                          catch (IOException e) {
+                                                                            throw new NordletApiException("Network error executing HTTP request", e);
+                                                                          }
+                                                                        }
+                                                                      }

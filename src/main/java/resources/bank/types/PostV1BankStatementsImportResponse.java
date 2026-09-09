@@ -40,6 +40,12 @@ public final class PostV1BankStatementsImportResponse {
 
   private final long creditNotesCreated;
 
+  private final long authorizationsRecorded;
+
+  private final long payoutsPosted;
+
+  private final long commissionsPosted;
+
   private final long paymentsMatched;
 
   private final List<String> warnings;
@@ -50,8 +56,8 @@ public final class PostV1BankStatementsImportResponse {
 
   private PostV1BankStatementsImportResponse(long imported, long skipped, long posted,
       long customersCreated, long invoicesCreated, long invoicesLinked, long creditNotesCreated,
-      long paymentsMatched, List<String> warnings,
-      List<PostV1BankStatementsImportResponseStatementsItem> statements,
+      long authorizationsRecorded, long payoutsPosted, long commissionsPosted, long paymentsMatched,
+      List<String> warnings, List<PostV1BankStatementsImportResponseStatementsItem> statements,
       Map<String, Object> additionalProperties) {
     this.imported = imported;
     this.skipped = skipped;
@@ -60,6 +66,9 @@ public final class PostV1BankStatementsImportResponse {
     this.invoicesCreated = invoicesCreated;
     this.invoicesLinked = invoicesLinked;
     this.creditNotesCreated = creditNotesCreated;
+    this.authorizationsRecorded = authorizationsRecorded;
+    this.payoutsPosted = payoutsPosted;
+    this.commissionsPosted = commissionsPosted;
     this.paymentsMatched = paymentsMatched;
     this.warnings = warnings;
     this.statements = statements;
@@ -101,6 +110,21 @@ public final class PostV1BankStatementsImportResponse {
     return creditNotesCreated;
   }
 
+  @JsonProperty("authorizationsRecorded")
+  public long getAuthorizationsRecorded() {
+    return authorizationsRecorded;
+  }
+
+  @JsonProperty("payoutsPosted")
+  public long getPayoutsPosted() {
+    return payoutsPosted;
+  }
+
+  @JsonProperty("commissionsPosted")
+  public long getCommissionsPosted() {
+    return commissionsPosted;
+  }
+
   @JsonProperty("paymentsMatched")
   public long getPaymentsMatched() {
     return paymentsMatched;
@@ -128,12 +152,12 @@ public final class PostV1BankStatementsImportResponse {
   }
 
   private boolean equalTo(PostV1BankStatementsImportResponse other) {
-    return imported == other.imported && skipped == other.skipped && posted == other.posted && customersCreated == other.customersCreated && invoicesCreated == other.invoicesCreated && invoicesLinked == other.invoicesLinked && creditNotesCreated == other.creditNotesCreated && paymentsMatched == other.paymentsMatched && warnings.equals(other.warnings) && statements.equals(other.statements);
+    return imported == other.imported && skipped == other.skipped && posted == other.posted && customersCreated == other.customersCreated && invoicesCreated == other.invoicesCreated && invoicesLinked == other.invoicesLinked && creditNotesCreated == other.creditNotesCreated && authorizationsRecorded == other.authorizationsRecorded && payoutsPosted == other.payoutsPosted && commissionsPosted == other.commissionsPosted && paymentsMatched == other.paymentsMatched && warnings.equals(other.warnings) && statements.equals(other.statements);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.imported, this.skipped, this.posted, this.customersCreated, this.invoicesCreated, this.invoicesLinked, this.creditNotesCreated, this.paymentsMatched, this.warnings, this.statements);
+    return Objects.hash(this.imported, this.skipped, this.posted, this.customersCreated, this.invoicesCreated, this.invoicesLinked, this.creditNotesCreated, this.authorizationsRecorded, this.payoutsPosted, this.commissionsPosted, this.paymentsMatched, this.warnings, this.statements);
   }
 
   @java.lang.Override
@@ -172,7 +196,19 @@ public final class PostV1BankStatementsImportResponse {
   }
 
   public interface CreditNotesCreatedStage {
-    PaymentsMatchedStage creditNotesCreated(long creditNotesCreated);
+    AuthorizationsRecordedStage creditNotesCreated(long creditNotesCreated);
+  }
+
+  public interface AuthorizationsRecordedStage {
+    PayoutsPostedStage authorizationsRecorded(long authorizationsRecorded);
+  }
+
+  public interface PayoutsPostedStage {
+    CommissionsPostedStage payoutsPosted(long payoutsPosted);
+  }
+
+  public interface CommissionsPostedStage {
+    PaymentsMatchedStage commissionsPosted(long commissionsPosted);
   }
 
   public interface PaymentsMatchedStage {
@@ -202,7 +238,7 @@ public final class PostV1BankStatementsImportResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements ImportedStage, SkippedStage, PostedStage, CustomersCreatedStage, InvoicesCreatedStage, InvoicesLinkedStage, CreditNotesCreatedStage, PaymentsMatchedStage, _FinalStage {
+  public static final class Builder implements ImportedStage, SkippedStage, PostedStage, CustomersCreatedStage, InvoicesCreatedStage, InvoicesLinkedStage, CreditNotesCreatedStage, AuthorizationsRecordedStage, PayoutsPostedStage, CommissionsPostedStage, PaymentsMatchedStage, _FinalStage {
     private long imported;
 
     private long skipped;
@@ -216,6 +252,12 @@ public final class PostV1BankStatementsImportResponse {
     private long invoicesLinked;
 
     private long creditNotesCreated;
+
+    private long authorizationsRecorded;
+
+    private long payoutsPosted;
+
+    private long commissionsPosted;
 
     private long paymentsMatched;
 
@@ -238,6 +280,9 @@ public final class PostV1BankStatementsImportResponse {
       invoicesCreated(other.getInvoicesCreated());
       invoicesLinked(other.getInvoicesLinked());
       creditNotesCreated(other.getCreditNotesCreated());
+      authorizationsRecorded(other.getAuthorizationsRecorded());
+      payoutsPosted(other.getPayoutsPosted());
+      commissionsPosted(other.getCommissionsPosted());
       paymentsMatched(other.getPaymentsMatched());
       warnings(other.getWarnings());
       statements(other.getStatements());
@@ -288,8 +333,29 @@ public final class PostV1BankStatementsImportResponse {
 
     @java.lang.Override
     @JsonSetter("creditNotesCreated")
-    public PaymentsMatchedStage creditNotesCreated(long creditNotesCreated) {
+    public AuthorizationsRecordedStage creditNotesCreated(long creditNotesCreated) {
       this.creditNotesCreated = creditNotesCreated;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("authorizationsRecorded")
+    public PayoutsPostedStage authorizationsRecorded(long authorizationsRecorded) {
+      this.authorizationsRecorded = authorizationsRecorded;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("payoutsPosted")
+    public CommissionsPostedStage payoutsPosted(long payoutsPosted) {
+      this.payoutsPosted = payoutsPosted;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("commissionsPosted")
+    public PaymentsMatchedStage commissionsPosted(long commissionsPosted) {
+      this.commissionsPosted = commissionsPosted;
       return this;
     }
 
@@ -358,7 +424,7 @@ public final class PostV1BankStatementsImportResponse {
 
     @java.lang.Override
     public PostV1BankStatementsImportResponse build() {
-      return new PostV1BankStatementsImportResponse(imported, skipped, posted, customersCreated, invoicesCreated, invoicesLinked, creditNotesCreated, paymentsMatched, warnings, statements, additionalProperties);
+      return new PostV1BankStatementsImportResponse(imported, skipped, posted, customersCreated, invoicesCreated, invoicesLinked, creditNotesCreated, authorizationsRecorded, payoutsPosted, commissionsPosted, paymentsMatched, warnings, statements, additionalProperties);
     }
 
     @java.lang.Override

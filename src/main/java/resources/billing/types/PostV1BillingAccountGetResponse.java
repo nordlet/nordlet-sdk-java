@@ -44,6 +44,10 @@ public final class PostV1BillingAccountGetResponse {
 
   private final boolean paymentsConfigured;
 
+  private final boolean hasPaymentAccount;
+
+  private final boolean hasSubscription;
+
   private final PostV1BillingAccountGetResponseMonthToDate monthToDate;
 
   private final Map<String, PostV1BillingAccountGetResponsePlansValue> plans;
@@ -57,6 +61,7 @@ public final class PostV1BillingAccountGetResponse {
   private PostV1BillingAccountGetResponse(PostV1BillingAccountGetResponsePlan plan,
       PostV1BillingAccountGetResponseStatus status, long balanceCents, Optional<String> trialEndsAt,
       Optional<String> firstTopUpAt, Optional<String> lastChargedDate, boolean paymentsConfigured,
+      boolean hasPaymentAccount, boolean hasSubscription,
       PostV1BillingAccountGetResponseMonthToDate monthToDate,
       Map<String, PostV1BillingAccountGetResponsePlansValue> plans,
       PostV1BillingAccountGetResponseTopUp topUp, long trialDays,
@@ -68,6 +73,8 @@ public final class PostV1BillingAccountGetResponse {
     this.firstTopUpAt = firstTopUpAt;
     this.lastChargedDate = lastChargedDate;
     this.paymentsConfigured = paymentsConfigured;
+    this.hasPaymentAccount = hasPaymentAccount;
+    this.hasSubscription = hasSubscription;
     this.monthToDate = monthToDate;
     this.plans = plans;
     this.topUp = topUp;
@@ -117,6 +124,16 @@ public final class PostV1BillingAccountGetResponse {
   @JsonProperty("paymentsConfigured")
   public boolean getPaymentsConfigured() {
     return paymentsConfigured;
+  }
+
+  @JsonProperty("hasPaymentAccount")
+  public boolean getHasPaymentAccount() {
+    return hasPaymentAccount;
+  }
+
+  @JsonProperty("hasSubscription")
+  public boolean getHasSubscription() {
+    return hasSubscription;
   }
 
   @JsonProperty("monthToDate")
@@ -178,12 +195,12 @@ public final class PostV1BillingAccountGetResponse {
   }
 
   private boolean equalTo(PostV1BillingAccountGetResponse other) {
-    return plan.equals(other.plan) && status.equals(other.status) && balanceCents == other.balanceCents && trialEndsAt.equals(other.trialEndsAt) && firstTopUpAt.equals(other.firstTopUpAt) && lastChargedDate.equals(other.lastChargedDate) && paymentsConfigured == other.paymentsConfigured && monthToDate.equals(other.monthToDate) && plans.equals(other.plans) && topUp.equals(other.topUp) && trialDays == other.trialDays;
+    return plan.equals(other.plan) && status.equals(other.status) && balanceCents == other.balanceCents && trialEndsAt.equals(other.trialEndsAt) && firstTopUpAt.equals(other.firstTopUpAt) && lastChargedDate.equals(other.lastChargedDate) && paymentsConfigured == other.paymentsConfigured && hasPaymentAccount == other.hasPaymentAccount && hasSubscription == other.hasSubscription && monthToDate.equals(other.monthToDate) && plans.equals(other.plans) && topUp.equals(other.topUp) && trialDays == other.trialDays;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.plan, this.status, this.balanceCents, this.trialEndsAt, this.firstTopUpAt, this.lastChargedDate, this.paymentsConfigured, this.monthToDate, this.plans, this.topUp, this.trialDays);
+    return Objects.hash(this.plan, this.status, this.balanceCents, this.trialEndsAt, this.firstTopUpAt, this.lastChargedDate, this.paymentsConfigured, this.hasPaymentAccount, this.hasSubscription, this.monthToDate, this.plans, this.topUp, this.trialDays);
   }
 
   @java.lang.Override
@@ -210,7 +227,15 @@ public final class PostV1BillingAccountGetResponse {
   }
 
   public interface PaymentsConfiguredStage {
-    MonthToDateStage paymentsConfigured(boolean paymentsConfigured);
+    HasPaymentAccountStage paymentsConfigured(boolean paymentsConfigured);
+  }
+
+  public interface HasPaymentAccountStage {
+    HasSubscriptionStage hasPaymentAccount(boolean hasPaymentAccount);
+  }
+
+  public interface HasSubscriptionStage {
+    MonthToDateStage hasSubscription(boolean hasSubscription);
   }
 
   public interface MonthToDateStage {
@@ -260,7 +285,7 @@ public final class PostV1BillingAccountGetResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements PlanStage, StatusStage, BalanceCentsStage, PaymentsConfiguredStage, MonthToDateStage, TopUpStage, TrialDaysStage, _FinalStage {
+  public static final class Builder implements PlanStage, StatusStage, BalanceCentsStage, PaymentsConfiguredStage, HasPaymentAccountStage, HasSubscriptionStage, MonthToDateStage, TopUpStage, TrialDaysStage, _FinalStage {
     private PostV1BillingAccountGetResponsePlan plan;
 
     private PostV1BillingAccountGetResponseStatus status;
@@ -268,6 +293,10 @@ public final class PostV1BillingAccountGetResponse {
     private long balanceCents;
 
     private boolean paymentsConfigured;
+
+    private boolean hasPaymentAccount;
+
+    private boolean hasSubscription;
 
     private PostV1BillingAccountGetResponseMonthToDate monthToDate;
 
@@ -298,6 +327,8 @@ public final class PostV1BillingAccountGetResponse {
       firstTopUpAt(other.getFirstTopUpAt());
       lastChargedDate(other.getLastChargedDate());
       paymentsConfigured(other.getPaymentsConfigured());
+      hasPaymentAccount(other.getHasPaymentAccount());
+      hasSubscription(other.getHasSubscription());
       monthToDate(other.getMonthToDate());
       plans(other.getPlans());
       topUp(other.getTopUp());
@@ -328,8 +359,22 @@ public final class PostV1BillingAccountGetResponse {
 
     @java.lang.Override
     @JsonSetter("paymentsConfigured")
-    public MonthToDateStage paymentsConfigured(boolean paymentsConfigured) {
+    public HasPaymentAccountStage paymentsConfigured(boolean paymentsConfigured) {
       this.paymentsConfigured = paymentsConfigured;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("hasPaymentAccount")
+    public HasSubscriptionStage hasPaymentAccount(boolean hasPaymentAccount) {
+      this.hasPaymentAccount = hasPaymentAccount;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("hasSubscription")
+    public MonthToDateStage hasSubscription(boolean hasSubscription) {
+      this.hasSubscription = hasSubscription;
       return this;
     }
 
@@ -473,7 +518,7 @@ public final class PostV1BillingAccountGetResponse {
 
     @java.lang.Override
     public PostV1BillingAccountGetResponse build() {
-      return new PostV1BillingAccountGetResponse(plan, status, balanceCents, trialEndsAt, firstTopUpAt, lastChargedDate, paymentsConfigured, monthToDate, plans, topUp, trialDays, additionalProperties);
+      return new PostV1BillingAccountGetResponse(plan, status, balanceCents, trialEndsAt, firstTopUpAt, lastChargedDate, paymentsConfigured, hasPaymentAccount, hasSubscription, monthToDate, plans, topUp, trialDays, additionalProperties);
     }
 
     @java.lang.Override

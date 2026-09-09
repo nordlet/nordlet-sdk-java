@@ -51,6 +51,8 @@ public final class PostV1BankSettlementsImportResponseBatchesItem {
 
   private final Optional<String> journalTransactionId;
 
+  private final Optional<String> bankTransactionId;
+
   private final long lineCount;
 
   private final long matchedCount;
@@ -67,8 +69,9 @@ public final class PostV1BankSettlementsImportResponseBatchesItem {
       String provider, String payoutId, Optional<String> payoutDate, String currency,
       String grossTotal, String feeTotal, String netTotal,
       PostV1BankSettlementsImportResponseBatchesItemStatus status,
-      Optional<String> journalTransactionId, long lineCount, long matchedCount, long unmatchedCount,
-      String createdAt, String updatedAt, Map<String, Object> additionalProperties) {
+      Optional<String> journalTransactionId, Optional<String> bankTransactionId, long lineCount,
+      long matchedCount, long unmatchedCount, String createdAt, String updatedAt,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.bankAccountId = bankAccountId;
     this.provider = provider;
@@ -80,6 +83,7 @@ public final class PostV1BankSettlementsImportResponseBatchesItem {
     this.netTotal = netTotal;
     this.status = status;
     this.journalTransactionId = journalTransactionId;
+    this.bankTransactionId = bankTransactionId;
     this.lineCount = lineCount;
     this.matchedCount = matchedCount;
     this.unmatchedCount = unmatchedCount;
@@ -149,6 +153,14 @@ public final class PostV1BankSettlementsImportResponseBatchesItem {
     return journalTransactionId;
   }
 
+  @JsonIgnore
+  public Optional<String> getBankTransactionId() {
+    if (bankTransactionId == null) {
+      return Optional.empty();
+    }
+    return bankTransactionId;
+  }
+
   @JsonProperty("lineCount")
   public long getLineCount() {
     return lineCount;
@@ -192,6 +204,15 @@ public final class PostV1BankSettlementsImportResponseBatchesItem {
     return journalTransactionId;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("bankTransactionId")
+  private Optional<String> _getBankTransactionId() {
+    return bankTransactionId;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -204,12 +225,12 @@ public final class PostV1BankSettlementsImportResponseBatchesItem {
   }
 
   private boolean equalTo(PostV1BankSettlementsImportResponseBatchesItem other) {
-    return id.equals(other.id) && bankAccountId.equals(other.bankAccountId) && provider.equals(other.provider) && payoutId.equals(other.payoutId) && payoutDate.equals(other.payoutDate) && currency.equals(other.currency) && grossTotal.equals(other.grossTotal) && feeTotal.equals(other.feeTotal) && netTotal.equals(other.netTotal) && status.equals(other.status) && journalTransactionId.equals(other.journalTransactionId) && lineCount == other.lineCount && matchedCount == other.matchedCount && unmatchedCount == other.unmatchedCount && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && bankAccountId.equals(other.bankAccountId) && provider.equals(other.provider) && payoutId.equals(other.payoutId) && payoutDate.equals(other.payoutDate) && currency.equals(other.currency) && grossTotal.equals(other.grossTotal) && feeTotal.equals(other.feeTotal) && netTotal.equals(other.netTotal) && status.equals(other.status) && journalTransactionId.equals(other.journalTransactionId) && bankTransactionId.equals(other.bankTransactionId) && lineCount == other.lineCount && matchedCount == other.matchedCount && unmatchedCount == other.unmatchedCount && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.bankAccountId, this.provider, this.payoutId, this.payoutDate, this.currency, this.grossTotal, this.feeTotal, this.netTotal, this.status, this.journalTransactionId, this.lineCount, this.matchedCount, this.unmatchedCount, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.bankAccountId, this.provider, this.payoutId, this.payoutDate, this.currency, this.grossTotal, this.feeTotal, this.netTotal, this.status, this.journalTransactionId, this.bankTransactionId, this.lineCount, this.matchedCount, this.unmatchedCount, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -297,6 +318,12 @@ public final class PostV1BankSettlementsImportResponseBatchesItem {
     _FinalStage journalTransactionId(String journalTransactionId);
 
     _FinalStage journalTransactionId(Nullable<String> journalTransactionId);
+
+    _FinalStage bankTransactionId(Optional<String> bankTransactionId);
+
+    _FinalStage bankTransactionId(String bankTransactionId);
+
+    _FinalStage bankTransactionId(Nullable<String> bankTransactionId);
   }
 
   @JsonIgnoreProperties(
@@ -331,6 +358,8 @@ public final class PostV1BankSettlementsImportResponseBatchesItem {
 
     private String updatedAt;
 
+    private Optional<String> bankTransactionId = Optional.empty();
+
     private Optional<String> journalTransactionId = Optional.empty();
 
     private Optional<String> payoutDate = Optional.empty();
@@ -354,6 +383,7 @@ public final class PostV1BankSettlementsImportResponseBatchesItem {
       netTotal(other.getNetTotal());
       status(other.getStatus());
       journalTransactionId(other.getJournalTransactionId());
+      bankTransactionId(other.getBankTransactionId());
       lineCount(other.getLineCount());
       matchedCount(other.getMatchedCount());
       unmatchedCount(other.getUnmatchedCount());
@@ -462,6 +492,36 @@ public final class PostV1BankSettlementsImportResponseBatchesItem {
     }
 
     @java.lang.Override
+    public _FinalStage bankTransactionId(Nullable<String> bankTransactionId) {
+      if (bankTransactionId.isNull()) {
+        this.bankTransactionId = null;
+      }
+      else if (bankTransactionId.isEmpty()) {
+        this.bankTransactionId = Optional.empty();
+      }
+      else {
+        this.bankTransactionId = Optional.of(bankTransactionId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankTransactionId(String bankTransactionId) {
+      this.bankTransactionId = Optional.ofNullable(bankTransactionId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankTransactionId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankTransactionId(Optional<String> bankTransactionId) {
+      this.bankTransactionId = bankTransactionId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage journalTransactionId(Nullable<String> journalTransactionId) {
       if (journalTransactionId.isNull()) {
         this.journalTransactionId = null;
@@ -523,7 +583,7 @@ public final class PostV1BankSettlementsImportResponseBatchesItem {
 
     @java.lang.Override
     public PostV1BankSettlementsImportResponseBatchesItem build() {
-      return new PostV1BankSettlementsImportResponseBatchesItem(id, bankAccountId, provider, payoutId, payoutDate, currency, grossTotal, feeTotal, netTotal, status, journalTransactionId, lineCount, matchedCount, unmatchedCount, createdAt, updatedAt, additionalProperties);
+      return new PostV1BankSettlementsImportResponseBatchesItem(id, bankAccountId, provider, payoutId, payoutDate, currency, grossTotal, feeTotal, netTotal, status, journalTransactionId, bankTransactionId, lineCount, matchedCount, unmatchedCount, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

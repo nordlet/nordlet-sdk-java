@@ -45,6 +45,8 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
 
   private final Optional<String> purchaseOrderId;
 
+  private final Optional<String> operationTypeId;
+
   private final Optional<String> notes;
 
   private final Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>> lines;
@@ -53,8 +55,8 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
 
   private PostV1PurchasesInvoicesUpdateRequest(String id, Optional<String> partnerId,
       Optional<String> documentNumber, Optional<String> documentDate, Optional<String> dueDate,
-      Optional<String> currency, Optional<String> purchaseOrderId, Optional<String> notes,
-      Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>> lines,
+      Optional<String> currency, Optional<String> purchaseOrderId, Optional<String> operationTypeId,
+      Optional<String> notes, Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>> lines,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.partnerId = partnerId;
@@ -63,6 +65,7 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     this.dueDate = dueDate;
     this.currency = currency;
     this.purchaseOrderId = purchaseOrderId;
+    this.operationTypeId = operationTypeId;
     this.notes = notes;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
@@ -106,6 +109,14 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     return purchaseOrderId;
   }
 
+  @JsonIgnore
+  public Optional<String> getOperationTypeId() {
+    if (operationTypeId == null) {
+      return Optional.empty();
+    }
+    return operationTypeId;
+  }
+
   @JsonProperty("notes")
   public Optional<String> getNotes() {
     return notes;
@@ -125,6 +136,15 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     return purchaseOrderId;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("operationTypeId")
+  private Optional<String> _getOperationTypeId() {
+    return operationTypeId;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -137,12 +157,12 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
   }
 
   private boolean equalTo(PostV1PurchasesInvoicesUpdateRequest other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && purchaseOrderId.equals(other.purchaseOrderId) && notes.equals(other.notes) && lines.equals(other.lines);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && purchaseOrderId.equals(other.purchaseOrderId) && operationTypeId.equals(other.operationTypeId) && notes.equals(other.notes) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.purchaseOrderId, this.notes, this.lines);
+    return Objects.hash(this.id, this.partnerId, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.purchaseOrderId, this.operationTypeId, this.notes, this.lines);
   }
 
   @java.lang.Override
@@ -193,6 +213,12 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
 
     _FinalStage purchaseOrderId(Nullable<String> purchaseOrderId);
 
+    _FinalStage operationTypeId(Optional<String> operationTypeId);
+
+    _FinalStage operationTypeId(String operationTypeId);
+
+    _FinalStage operationTypeId(Nullable<String> operationTypeId);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -211,6 +237,8 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     private Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>> lines = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
+
+    private Optional<String> operationTypeId = Optional.empty();
 
     private Optional<String> purchaseOrderId = Optional.empty();
 
@@ -239,6 +267,7 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
       dueDate(other.getDueDate());
       currency(other.getCurrency());
       purchaseOrderId(other.getPurchaseOrderId());
+      operationTypeId(other.getOperationTypeId());
       notes(other.getNotes());
       lines(other.getLines());
       return this;
@@ -280,6 +309,36 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     )
     public _FinalStage notes(Optional<String> notes) {
       this.notes = notes;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage operationTypeId(Nullable<String> operationTypeId) {
+      if (operationTypeId.isNull()) {
+        this.operationTypeId = null;
+      }
+      else if (operationTypeId.isEmpty()) {
+        this.operationTypeId = Optional.empty();
+      }
+      else {
+        this.operationTypeId = Optional.of(operationTypeId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage operationTypeId(String operationTypeId) {
+      this.operationTypeId = Optional.ofNullable(operationTypeId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "operationTypeId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage operationTypeId(Optional<String> operationTypeId) {
+      this.operationTypeId = operationTypeId;
       return this;
     }
 
@@ -395,7 +454,7 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
 
     @java.lang.Override
     public PostV1PurchasesInvoicesUpdateRequest build() {
-      return new PostV1PurchasesInvoicesUpdateRequest(id, partnerId, documentNumber, documentDate, dueDate, currency, purchaseOrderId, notes, lines, additionalProperties);
+      return new PostV1PurchasesInvoicesUpdateRequest(id, partnerId, documentNumber, documentDate, dueDate, currency, purchaseOrderId, operationTypeId, notes, lines, additionalProperties);
     }
 
     @java.lang.Override
