@@ -54,6 +54,8 @@ public final class PostV1SalesInvoicesLockResponse {
 
   private final String currency;
 
+  private final Optional<String> fxRate;
+
   private final String netTotal;
 
   private final String vatTotal;
@@ -71,6 +73,14 @@ public final class PostV1SalesInvoicesLockResponse {
   private final Optional<String> agreementId;
 
   private final Optional<PostV1SalesInvoicesLockResponseVatScheme> vatScheme;
+
+  private final Optional<String> intrastatTransportMode;
+
+  private final Optional<String> intrastatDeliveryTerms;
+
+  private final Optional<String> intrastatRegion;
+
+  private final Optional<String> intrastatNatureOfTransaction;
 
   private final Optional<String> vatCountryCode;
 
@@ -104,6 +114,22 @@ public final class PostV1SalesInvoicesLockResponse {
 
   private final Optional<String> payToken;
 
+  private final Optional<String> einvoiceSystem;
+
+  private final Optional<String> einvoiceTransport;
+
+  private final Optional<String> einvoiceMessageId;
+
+  private final Optional<String> einvoiceNumber;
+
+  private final Optional<String> einvoiceStatus;
+
+  private final Optional<String> einvoiceDetail;
+
+  private final Optional<String> einvoiceSentAt;
+
+  private final Optional<String> einvoiceCheckedAt;
+
   private final String createdAt;
 
   private final String updatedAt;
@@ -118,16 +144,22 @@ public final class PostV1SalesInvoicesLockResponse {
       PostV1SalesInvoicesLockResponseType type, PostV1SalesInvoicesLockResponseStatus status,
       PostV1SalesInvoicesLockResponsePaymentStatus paymentStatus, Optional<String> series,
       Optional<Long> number, Optional<String> fullNumber, Optional<String> issueDate,
-      Optional<String> dueDate, String currency, String netTotal, String vatTotal,
-      String grossTotal, String paidAmount, Optional<String> journalTransactionId,
+      Optional<String> dueDate, String currency, Optional<String> fxRate, String netTotal,
+      String vatTotal, String grossTotal, String paidAmount, Optional<String> journalTransactionId,
       Optional<String> appliedToInvoiceId, Optional<String> creditedInvoiceId,
       Optional<String> agreementId, Optional<PostV1SalesInvoicesLockResponseVatScheme> vatScheme,
+      Optional<String> intrastatTransportMode, Optional<String> intrastatDeliveryTerms,
+      Optional<String> intrastatRegion, Optional<String> intrastatNatureOfTransaction,
       Optional<String> vatCountryCode, boolean deemedSupplier, Optional<String> notes,
       Optional<String> documentRef, Optional<String> operationTypeId,
       Optional<String> documentSeriesId, Optional<String> seriesLabel, String discountPercent,
       Optional<String> orderNumber, Optional<String> issuedByName, Optional<String> issuedByTitle,
       Optional<String> receivedByName, Optional<String> receivedByTitle, Optional<String> lockedAt,
-      Optional<String> lockedBy, Optional<String> payToken, String createdAt, String updatedAt,
+      Optional<String> lockedBy, Optional<String> payToken, Optional<String> einvoiceSystem,
+      Optional<String> einvoiceTransport, Optional<String> einvoiceMessageId,
+      Optional<String> einvoiceNumber, Optional<String> einvoiceStatus,
+      Optional<String> einvoiceDetail, Optional<String> einvoiceSentAt,
+      Optional<String> einvoiceCheckedAt, String createdAt, String updatedAt,
       List<PostV1SalesInvoicesLockResponseLinesItem> lines,
       Optional<PostV1SalesInvoicesLockResponseVatEvidence> vatEvidence,
       Map<String, Object> additionalProperties) {
@@ -142,6 +174,7 @@ public final class PostV1SalesInvoicesLockResponse {
     this.issueDate = issueDate;
     this.dueDate = dueDate;
     this.currency = currency;
+    this.fxRate = fxRate;
     this.netTotal = netTotal;
     this.vatTotal = vatTotal;
     this.grossTotal = grossTotal;
@@ -151,6 +184,10 @@ public final class PostV1SalesInvoicesLockResponse {
     this.creditedInvoiceId = creditedInvoiceId;
     this.agreementId = agreementId;
     this.vatScheme = vatScheme;
+    this.intrastatTransportMode = intrastatTransportMode;
+    this.intrastatDeliveryTerms = intrastatDeliveryTerms;
+    this.intrastatRegion = intrastatRegion;
+    this.intrastatNatureOfTransaction = intrastatNatureOfTransaction;
     this.vatCountryCode = vatCountryCode;
     this.deemedSupplier = deemedSupplier;
     this.notes = notes;
@@ -167,6 +204,14 @@ public final class PostV1SalesInvoicesLockResponse {
     this.lockedAt = lockedAt;
     this.lockedBy = lockedBy;
     this.payToken = payToken;
+    this.einvoiceSystem = einvoiceSystem;
+    this.einvoiceTransport = einvoiceTransport;
+    this.einvoiceMessageId = einvoiceMessageId;
+    this.einvoiceNumber = einvoiceNumber;
+    this.einvoiceStatus = einvoiceStatus;
+    this.einvoiceDetail = einvoiceDetail;
+    this.einvoiceSentAt = einvoiceSentAt;
+    this.einvoiceCheckedAt = einvoiceCheckedAt;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.lines = lines;
@@ -244,6 +289,14 @@ public final class PostV1SalesInvoicesLockResponse {
     return currency;
   }
 
+  @JsonIgnore
+  public Optional<String> getFxRate() {
+    if (fxRate == null) {
+      return Optional.empty();
+    }
+    return fxRate;
+  }
+
   @JsonProperty("netTotal")
   public String getNetTotal() {
     return netTotal;
@@ -302,6 +355,38 @@ public final class PostV1SalesInvoicesLockResponse {
       return Optional.empty();
     }
     return vatScheme;
+  }
+
+  @JsonIgnore
+  public Optional<String> getIntrastatTransportMode() {
+    if (intrastatTransportMode == null) {
+      return Optional.empty();
+    }
+    return intrastatTransportMode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getIntrastatDeliveryTerms() {
+    if (intrastatDeliveryTerms == null) {
+      return Optional.empty();
+    }
+    return intrastatDeliveryTerms;
+  }
+
+  @JsonIgnore
+  public Optional<String> getIntrastatRegion() {
+    if (intrastatRegion == null) {
+      return Optional.empty();
+    }
+    return intrastatRegion;
+  }
+
+  @JsonIgnore
+  public Optional<String> getIntrastatNatureOfTransaction() {
+    if (intrastatNatureOfTransaction == null) {
+      return Optional.empty();
+    }
+    return intrastatNatureOfTransaction;
   }
 
   @JsonIgnore
@@ -426,6 +511,70 @@ public final class PostV1SalesInvoicesLockResponse {
     return payToken;
   }
 
+  @JsonIgnore
+  public Optional<String> getEinvoiceSystem() {
+    if (einvoiceSystem == null) {
+      return Optional.empty();
+    }
+    return einvoiceSystem;
+  }
+
+  @JsonIgnore
+  public Optional<String> getEinvoiceTransport() {
+    if (einvoiceTransport == null) {
+      return Optional.empty();
+    }
+    return einvoiceTransport;
+  }
+
+  @JsonIgnore
+  public Optional<String> getEinvoiceMessageId() {
+    if (einvoiceMessageId == null) {
+      return Optional.empty();
+    }
+    return einvoiceMessageId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getEinvoiceNumber() {
+    if (einvoiceNumber == null) {
+      return Optional.empty();
+    }
+    return einvoiceNumber;
+  }
+
+  @JsonIgnore
+  public Optional<String> getEinvoiceStatus() {
+    if (einvoiceStatus == null) {
+      return Optional.empty();
+    }
+    return einvoiceStatus;
+  }
+
+  @JsonIgnore
+  public Optional<String> getEinvoiceDetail() {
+    if (einvoiceDetail == null) {
+      return Optional.empty();
+    }
+    return einvoiceDetail;
+  }
+
+  @JsonIgnore
+  public Optional<String> getEinvoiceSentAt() {
+    if (einvoiceSentAt == null) {
+      return Optional.empty();
+    }
+    return einvoiceSentAt;
+  }
+
+  @JsonIgnore
+  public Optional<String> getEinvoiceCheckedAt() {
+    if (einvoiceCheckedAt == null) {
+      return Optional.empty();
+    }
+    return einvoiceCheckedAt;
+  }
+
   @JsonProperty("createdAt")
   public String getCreatedAt() {
     return createdAt;
@@ -498,6 +647,15 @@ public final class PostV1SalesInvoicesLockResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("fxRate")
+  private Optional<String> _getFxRate() {
+    return fxRate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("journalTransactionId")
   private Optional<String> _getJournalTransactionId() {
     return journalTransactionId;
@@ -537,6 +695,42 @@ public final class PostV1SalesInvoicesLockResponse {
   @JsonProperty("vatScheme")
   private Optional<PostV1SalesInvoicesLockResponseVatScheme> _getVatScheme() {
     return vatScheme;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("intrastatTransportMode")
+  private Optional<String> _getIntrastatTransportMode() {
+    return intrastatTransportMode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("intrastatDeliveryTerms")
+  private Optional<String> _getIntrastatDeliveryTerms() {
+    return intrastatDeliveryTerms;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("intrastatRegion")
+  private Optional<String> _getIntrastatRegion() {
+    return intrastatRegion;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("intrastatNatureOfTransaction")
+  private Optional<String> _getIntrastatNatureOfTransaction() {
+    return intrastatNatureOfTransaction;
   }
 
   @JsonInclude(
@@ -669,6 +863,78 @@ public final class PostV1SalesInvoicesLockResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("einvoiceSystem")
+  private Optional<String> _getEinvoiceSystem() {
+    return einvoiceSystem;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("einvoiceTransport")
+  private Optional<String> _getEinvoiceTransport() {
+    return einvoiceTransport;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("einvoiceMessageId")
+  private Optional<String> _getEinvoiceMessageId() {
+    return einvoiceMessageId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("einvoiceNumber")
+  private Optional<String> _getEinvoiceNumber() {
+    return einvoiceNumber;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("einvoiceStatus")
+  private Optional<String> _getEinvoiceStatus() {
+    return einvoiceStatus;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("einvoiceDetail")
+  private Optional<String> _getEinvoiceDetail() {
+    return einvoiceDetail;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("einvoiceSentAt")
+  private Optional<String> _getEinvoiceSentAt() {
+    return einvoiceSentAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("einvoiceCheckedAt")
+  private Optional<String> _getEinvoiceCheckedAt() {
+    return einvoiceCheckedAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("vatEvidence")
   private Optional<PostV1SalesInvoicesLockResponseVatEvidence> _getVatEvidence() {
     return vatEvidence;
@@ -686,12 +952,12 @@ public final class PostV1SalesInvoicesLockResponse {
   }
 
   private boolean equalTo(PostV1SalesInvoicesLockResponse other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && lockedAt.equals(other.lockedAt) && lockedBy.equals(other.lockedBy) && payToken.equals(other.payToken) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && lines.equals(other.lines) && vatEvidence.equals(other.vatEvidence);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && fxRate.equals(other.fxRate) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && lockedAt.equals(other.lockedAt) && lockedBy.equals(other.lockedBy) && payToken.equals(other.payToken) && einvoiceSystem.equals(other.einvoiceSystem) && einvoiceTransport.equals(other.einvoiceTransport) && einvoiceMessageId.equals(other.einvoiceMessageId) && einvoiceNumber.equals(other.einvoiceNumber) && einvoiceStatus.equals(other.einvoiceStatus) && einvoiceDetail.equals(other.einvoiceDetail) && einvoiceSentAt.equals(other.einvoiceSentAt) && einvoiceCheckedAt.equals(other.einvoiceCheckedAt) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && lines.equals(other.lines) && vatEvidence.equals(other.vatEvidence);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.agreementId, this.vatScheme, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.lockedAt, this.lockedBy, this.payToken, this.createdAt, this.updatedAt, this.lines, this.vatEvidence);
+    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.fxRate, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.lockedAt, this.lockedBy, this.payToken, this.einvoiceSystem, this.einvoiceTransport, this.einvoiceMessageId, this.einvoiceNumber, this.einvoiceStatus, this.einvoiceDetail, this.einvoiceSentAt, this.einvoiceCheckedAt, this.createdAt, this.updatedAt, this.lines, this.vatEvidence);
   }
 
   @java.lang.Override
@@ -799,6 +1065,12 @@ public final class PostV1SalesInvoicesLockResponse {
 
     _FinalStage dueDate(Nullable<String> dueDate);
 
+    _FinalStage fxRate(Optional<String> fxRate);
+
+    _FinalStage fxRate(String fxRate);
+
+    _FinalStage fxRate(Nullable<String> fxRate);
+
     _FinalStage journalTransactionId(Optional<String> journalTransactionId);
 
     _FinalStage journalTransactionId(String journalTransactionId);
@@ -828,6 +1100,30 @@ public final class PostV1SalesInvoicesLockResponse {
     _FinalStage vatScheme(PostV1SalesInvoicesLockResponseVatScheme vatScheme);
 
     _FinalStage vatScheme(Nullable<PostV1SalesInvoicesLockResponseVatScheme> vatScheme);
+
+    _FinalStage intrastatTransportMode(Optional<String> intrastatTransportMode);
+
+    _FinalStage intrastatTransportMode(String intrastatTransportMode);
+
+    _FinalStage intrastatTransportMode(Nullable<String> intrastatTransportMode);
+
+    _FinalStage intrastatDeliveryTerms(Optional<String> intrastatDeliveryTerms);
+
+    _FinalStage intrastatDeliveryTerms(String intrastatDeliveryTerms);
+
+    _FinalStage intrastatDeliveryTerms(Nullable<String> intrastatDeliveryTerms);
+
+    _FinalStage intrastatRegion(Optional<String> intrastatRegion);
+
+    _FinalStage intrastatRegion(String intrastatRegion);
+
+    _FinalStage intrastatRegion(Nullable<String> intrastatRegion);
+
+    _FinalStage intrastatNatureOfTransaction(Optional<String> intrastatNatureOfTransaction);
+
+    _FinalStage intrastatNatureOfTransaction(String intrastatNatureOfTransaction);
+
+    _FinalStage intrastatNatureOfTransaction(Nullable<String> intrastatNatureOfTransaction);
 
     _FinalStage vatCountryCode(Optional<String> vatCountryCode);
 
@@ -913,6 +1209,54 @@ public final class PostV1SalesInvoicesLockResponse {
 
     _FinalStage payToken(Nullable<String> payToken);
 
+    _FinalStage einvoiceSystem(Optional<String> einvoiceSystem);
+
+    _FinalStage einvoiceSystem(String einvoiceSystem);
+
+    _FinalStage einvoiceSystem(Nullable<String> einvoiceSystem);
+
+    _FinalStage einvoiceTransport(Optional<String> einvoiceTransport);
+
+    _FinalStage einvoiceTransport(String einvoiceTransport);
+
+    _FinalStage einvoiceTransport(Nullable<String> einvoiceTransport);
+
+    _FinalStage einvoiceMessageId(Optional<String> einvoiceMessageId);
+
+    _FinalStage einvoiceMessageId(String einvoiceMessageId);
+
+    _FinalStage einvoiceMessageId(Nullable<String> einvoiceMessageId);
+
+    _FinalStage einvoiceNumber(Optional<String> einvoiceNumber);
+
+    _FinalStage einvoiceNumber(String einvoiceNumber);
+
+    _FinalStage einvoiceNumber(Nullable<String> einvoiceNumber);
+
+    _FinalStage einvoiceStatus(Optional<String> einvoiceStatus);
+
+    _FinalStage einvoiceStatus(String einvoiceStatus);
+
+    _FinalStage einvoiceStatus(Nullable<String> einvoiceStatus);
+
+    _FinalStage einvoiceDetail(Optional<String> einvoiceDetail);
+
+    _FinalStage einvoiceDetail(String einvoiceDetail);
+
+    _FinalStage einvoiceDetail(Nullable<String> einvoiceDetail);
+
+    _FinalStage einvoiceSentAt(Optional<String> einvoiceSentAt);
+
+    _FinalStage einvoiceSentAt(String einvoiceSentAt);
+
+    _FinalStage einvoiceSentAt(Nullable<String> einvoiceSentAt);
+
+    _FinalStage einvoiceCheckedAt(Optional<String> einvoiceCheckedAt);
+
+    _FinalStage einvoiceCheckedAt(String einvoiceCheckedAt);
+
+    _FinalStage einvoiceCheckedAt(Nullable<String> einvoiceCheckedAt);
+
     _FinalStage lines(List<PostV1SalesInvoicesLockResponseLinesItem> lines);
 
     _FinalStage addLines(PostV1SalesInvoicesLockResponseLinesItem lines);
@@ -962,6 +1306,22 @@ public final class PostV1SalesInvoicesLockResponse {
 
     private List<PostV1SalesInvoicesLockResponseLinesItem> lines = new ArrayList<>();
 
+    private Optional<String> einvoiceCheckedAt = Optional.empty();
+
+    private Optional<String> einvoiceSentAt = Optional.empty();
+
+    private Optional<String> einvoiceDetail = Optional.empty();
+
+    private Optional<String> einvoiceStatus = Optional.empty();
+
+    private Optional<String> einvoiceNumber = Optional.empty();
+
+    private Optional<String> einvoiceMessageId = Optional.empty();
+
+    private Optional<String> einvoiceTransport = Optional.empty();
+
+    private Optional<String> einvoiceSystem = Optional.empty();
+
     private Optional<String> payToken = Optional.empty();
 
     private Optional<String> lockedBy = Optional.empty();
@@ -990,6 +1350,14 @@ public final class PostV1SalesInvoicesLockResponse {
 
     private Optional<String> vatCountryCode = Optional.empty();
 
+    private Optional<String> intrastatNatureOfTransaction = Optional.empty();
+
+    private Optional<String> intrastatRegion = Optional.empty();
+
+    private Optional<String> intrastatDeliveryTerms = Optional.empty();
+
+    private Optional<String> intrastatTransportMode = Optional.empty();
+
     private Optional<PostV1SalesInvoicesLockResponseVatScheme> vatScheme = Optional.empty();
 
     private Optional<String> agreementId = Optional.empty();
@@ -999,6 +1367,8 @@ public final class PostV1SalesInvoicesLockResponse {
     private Optional<String> appliedToInvoiceId = Optional.empty();
 
     private Optional<String> journalTransactionId = Optional.empty();
+
+    private Optional<String> fxRate = Optional.empty();
 
     private Optional<String> dueDate = Optional.empty();
 
@@ -1029,6 +1399,7 @@ public final class PostV1SalesInvoicesLockResponse {
       issueDate(other.getIssueDate());
       dueDate(other.getDueDate());
       currency(other.getCurrency());
+      fxRate(other.getFxRate());
       netTotal(other.getNetTotal());
       vatTotal(other.getVatTotal());
       grossTotal(other.getGrossTotal());
@@ -1038,6 +1409,10 @@ public final class PostV1SalesInvoicesLockResponse {
       creditedInvoiceId(other.getCreditedInvoiceId());
       agreementId(other.getAgreementId());
       vatScheme(other.getVatScheme());
+      intrastatTransportMode(other.getIntrastatTransportMode());
+      intrastatDeliveryTerms(other.getIntrastatDeliveryTerms());
+      intrastatRegion(other.getIntrastatRegion());
+      intrastatNatureOfTransaction(other.getIntrastatNatureOfTransaction());
       vatCountryCode(other.getVatCountryCode());
       deemedSupplier(other.getDeemedSupplier());
       notes(other.getNotes());
@@ -1054,6 +1429,14 @@ public final class PostV1SalesInvoicesLockResponse {
       lockedAt(other.getLockedAt());
       lockedBy(other.getLockedBy());
       payToken(other.getPayToken());
+      einvoiceSystem(other.getEinvoiceSystem());
+      einvoiceTransport(other.getEinvoiceTransport());
+      einvoiceMessageId(other.getEinvoiceMessageId());
+      einvoiceNumber(other.getEinvoiceNumber());
+      einvoiceStatus(other.getEinvoiceStatus());
+      einvoiceDetail(other.getEinvoiceDetail());
+      einvoiceSentAt(other.getEinvoiceSentAt());
+      einvoiceCheckedAt(other.getEinvoiceCheckedAt());
       createdAt(other.getCreatedAt());
       updatedAt(other.getUpdatedAt());
       lines(other.getLines());
@@ -1216,6 +1599,246 @@ public final class PostV1SalesInvoicesLockResponse {
       if (lines != null) {
         this.lines.addAll(lines);
       }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceCheckedAt(Nullable<String> einvoiceCheckedAt) {
+      if (einvoiceCheckedAt.isNull()) {
+        this.einvoiceCheckedAt = null;
+      }
+      else if (einvoiceCheckedAt.isEmpty()) {
+        this.einvoiceCheckedAt = Optional.empty();
+      }
+      else {
+        this.einvoiceCheckedAt = Optional.of(einvoiceCheckedAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceCheckedAt(String einvoiceCheckedAt) {
+      this.einvoiceCheckedAt = Optional.ofNullable(einvoiceCheckedAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "einvoiceCheckedAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage einvoiceCheckedAt(Optional<String> einvoiceCheckedAt) {
+      this.einvoiceCheckedAt = einvoiceCheckedAt;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceSentAt(Nullable<String> einvoiceSentAt) {
+      if (einvoiceSentAt.isNull()) {
+        this.einvoiceSentAt = null;
+      }
+      else if (einvoiceSentAt.isEmpty()) {
+        this.einvoiceSentAt = Optional.empty();
+      }
+      else {
+        this.einvoiceSentAt = Optional.of(einvoiceSentAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceSentAt(String einvoiceSentAt) {
+      this.einvoiceSentAt = Optional.ofNullable(einvoiceSentAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "einvoiceSentAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage einvoiceSentAt(Optional<String> einvoiceSentAt) {
+      this.einvoiceSentAt = einvoiceSentAt;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceDetail(Nullable<String> einvoiceDetail) {
+      if (einvoiceDetail.isNull()) {
+        this.einvoiceDetail = null;
+      }
+      else if (einvoiceDetail.isEmpty()) {
+        this.einvoiceDetail = Optional.empty();
+      }
+      else {
+        this.einvoiceDetail = Optional.of(einvoiceDetail.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceDetail(String einvoiceDetail) {
+      this.einvoiceDetail = Optional.ofNullable(einvoiceDetail);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "einvoiceDetail",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage einvoiceDetail(Optional<String> einvoiceDetail) {
+      this.einvoiceDetail = einvoiceDetail;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceStatus(Nullable<String> einvoiceStatus) {
+      if (einvoiceStatus.isNull()) {
+        this.einvoiceStatus = null;
+      }
+      else if (einvoiceStatus.isEmpty()) {
+        this.einvoiceStatus = Optional.empty();
+      }
+      else {
+        this.einvoiceStatus = Optional.of(einvoiceStatus.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceStatus(String einvoiceStatus) {
+      this.einvoiceStatus = Optional.ofNullable(einvoiceStatus);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "einvoiceStatus",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage einvoiceStatus(Optional<String> einvoiceStatus) {
+      this.einvoiceStatus = einvoiceStatus;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceNumber(Nullable<String> einvoiceNumber) {
+      if (einvoiceNumber.isNull()) {
+        this.einvoiceNumber = null;
+      }
+      else if (einvoiceNumber.isEmpty()) {
+        this.einvoiceNumber = Optional.empty();
+      }
+      else {
+        this.einvoiceNumber = Optional.of(einvoiceNumber.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceNumber(String einvoiceNumber) {
+      this.einvoiceNumber = Optional.ofNullable(einvoiceNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "einvoiceNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage einvoiceNumber(Optional<String> einvoiceNumber) {
+      this.einvoiceNumber = einvoiceNumber;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceMessageId(Nullable<String> einvoiceMessageId) {
+      if (einvoiceMessageId.isNull()) {
+        this.einvoiceMessageId = null;
+      }
+      else if (einvoiceMessageId.isEmpty()) {
+        this.einvoiceMessageId = Optional.empty();
+      }
+      else {
+        this.einvoiceMessageId = Optional.of(einvoiceMessageId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceMessageId(String einvoiceMessageId) {
+      this.einvoiceMessageId = Optional.ofNullable(einvoiceMessageId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "einvoiceMessageId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage einvoiceMessageId(Optional<String> einvoiceMessageId) {
+      this.einvoiceMessageId = einvoiceMessageId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceTransport(Nullable<String> einvoiceTransport) {
+      if (einvoiceTransport.isNull()) {
+        this.einvoiceTransport = null;
+      }
+      else if (einvoiceTransport.isEmpty()) {
+        this.einvoiceTransport = Optional.empty();
+      }
+      else {
+        this.einvoiceTransport = Optional.of(einvoiceTransport.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceTransport(String einvoiceTransport) {
+      this.einvoiceTransport = Optional.ofNullable(einvoiceTransport);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "einvoiceTransport",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage einvoiceTransport(Optional<String> einvoiceTransport) {
+      this.einvoiceTransport = einvoiceTransport;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceSystem(Nullable<String> einvoiceSystem) {
+      if (einvoiceSystem.isNull()) {
+        this.einvoiceSystem = null;
+      }
+      else if (einvoiceSystem.isEmpty()) {
+        this.einvoiceSystem = Optional.empty();
+      }
+      else {
+        this.einvoiceSystem = Optional.of(einvoiceSystem.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceSystem(String einvoiceSystem) {
+      this.einvoiceSystem = Optional.ofNullable(einvoiceSystem);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "einvoiceSystem",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage einvoiceSystem(Optional<String> einvoiceSystem) {
+      this.einvoiceSystem = einvoiceSystem;
       return this;
     }
 
@@ -1640,6 +2263,126 @@ public final class PostV1SalesInvoicesLockResponse {
     }
 
     @java.lang.Override
+    public _FinalStage intrastatNatureOfTransaction(Nullable<String> intrastatNatureOfTransaction) {
+      if (intrastatNatureOfTransaction.isNull()) {
+        this.intrastatNatureOfTransaction = null;
+      }
+      else if (intrastatNatureOfTransaction.isEmpty()) {
+        this.intrastatNatureOfTransaction = Optional.empty();
+      }
+      else {
+        this.intrastatNatureOfTransaction = Optional.of(intrastatNatureOfTransaction.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatNatureOfTransaction(String intrastatNatureOfTransaction) {
+      this.intrastatNatureOfTransaction = Optional.ofNullable(intrastatNatureOfTransaction);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatNatureOfTransaction",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatNatureOfTransaction(Optional<String> intrastatNatureOfTransaction) {
+      this.intrastatNatureOfTransaction = intrastatNatureOfTransaction;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatRegion(Nullable<String> intrastatRegion) {
+      if (intrastatRegion.isNull()) {
+        this.intrastatRegion = null;
+      }
+      else if (intrastatRegion.isEmpty()) {
+        this.intrastatRegion = Optional.empty();
+      }
+      else {
+        this.intrastatRegion = Optional.of(intrastatRegion.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatRegion(String intrastatRegion) {
+      this.intrastatRegion = Optional.ofNullable(intrastatRegion);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatRegion",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatRegion(Optional<String> intrastatRegion) {
+      this.intrastatRegion = intrastatRegion;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatDeliveryTerms(Nullable<String> intrastatDeliveryTerms) {
+      if (intrastatDeliveryTerms.isNull()) {
+        this.intrastatDeliveryTerms = null;
+      }
+      else if (intrastatDeliveryTerms.isEmpty()) {
+        this.intrastatDeliveryTerms = Optional.empty();
+      }
+      else {
+        this.intrastatDeliveryTerms = Optional.of(intrastatDeliveryTerms.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatDeliveryTerms(String intrastatDeliveryTerms) {
+      this.intrastatDeliveryTerms = Optional.ofNullable(intrastatDeliveryTerms);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatDeliveryTerms",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatDeliveryTerms(Optional<String> intrastatDeliveryTerms) {
+      this.intrastatDeliveryTerms = intrastatDeliveryTerms;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatTransportMode(Nullable<String> intrastatTransportMode) {
+      if (intrastatTransportMode.isNull()) {
+        this.intrastatTransportMode = null;
+      }
+      else if (intrastatTransportMode.isEmpty()) {
+        this.intrastatTransportMode = Optional.empty();
+      }
+      else {
+        this.intrastatTransportMode = Optional.of(intrastatTransportMode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatTransportMode(String intrastatTransportMode) {
+      this.intrastatTransportMode = Optional.ofNullable(intrastatTransportMode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatTransportMode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatTransportMode(Optional<String> intrastatTransportMode) {
+      this.intrastatTransportMode = intrastatTransportMode;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage vatScheme(Nullable<PostV1SalesInvoicesLockResponseVatScheme> vatScheme) {
       if (vatScheme.isNull()) {
         this.vatScheme = null;
@@ -1786,6 +2529,36 @@ public final class PostV1SalesInvoicesLockResponse {
     )
     public _FinalStage journalTransactionId(Optional<String> journalTransactionId) {
       this.journalTransactionId = journalTransactionId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fxRate(Nullable<String> fxRate) {
+      if (fxRate.isNull()) {
+        this.fxRate = null;
+      }
+      else if (fxRate.isEmpty()) {
+        this.fxRate = Optional.empty();
+      }
+      else {
+        this.fxRate = Optional.of(fxRate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fxRate(String fxRate) {
+      this.fxRate = Optional.ofNullable(fxRate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "fxRate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage fxRate(Optional<String> fxRate) {
+      this.fxRate = fxRate;
       return this;
     }
 
@@ -1941,7 +2714,7 @@ public final class PostV1SalesInvoicesLockResponse {
 
     @java.lang.Override
     public PostV1SalesInvoicesLockResponse build() {
-      return new PostV1SalesInvoicesLockResponse(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, agreementId, vatScheme, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, lockedAt, lockedBy, payToken, createdAt, updatedAt, lines, vatEvidence, additionalProperties);
+      return new PostV1SalesInvoicesLockResponse(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, fxRate, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, lockedAt, lockedBy, payToken, einvoiceSystem, einvoiceTransport, einvoiceMessageId, einvoiceNumber, einvoiceStatus, einvoiceDetail, einvoiceSentAt, einvoiceCheckedAt, createdAt, updatedAt, lines, vatEvidence, additionalProperties);
     }
 
     @java.lang.Override

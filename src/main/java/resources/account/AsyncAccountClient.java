@@ -9,6 +9,7 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysCreateRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysListRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysRevokeRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysRotateRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesActivateRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesArchiveRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesCreateRequest;
@@ -33,7 +34,9 @@ import com.nordlet.api.resources.account.requests.PostV1AccountMeRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountMembersListRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountMembersRemoveRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountMembersSetRoleRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountMembersTransferOwnershipRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountProfileUpdateRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountReferralConvertRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountReferralGetRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountSessionsListRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountSessionsRevokeOthersRequest;
@@ -44,6 +47,7 @@ import com.nordlet.api.resources.account.requests.PostV1AccountTableSettingsSetR
 import com.nordlet.api.resources.account.types.PostV1AccountApiKeysCreateResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountApiKeysListResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountApiKeysRevokeResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountApiKeysRotateResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountCompaniesActivateResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountCompaniesArchiveResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountCompaniesCreateResponse;
@@ -68,7 +72,9 @@ import com.nordlet.api.resources.account.types.PostV1AccountMeResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountMembersListResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountMembersRemoveResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountMembersSetRoleResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountMembersTransferOwnershipResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountProfileUpdateResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountReferralConvertResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountReferralGetResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountSessionsListResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountSessionsRevokeOthersResponse;
@@ -179,6 +185,16 @@ public class AsyncAccountClient {
   public CompletableFuture<PostV1AccountMembersSetRoleResponse> postV1AccountMembersSetRole(
       PostV1AccountMembersSetRoleRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1AccountMembersSetRole(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1AccountMembersTransferOwnershipResponse> postV1AccountMembersTransferOwnership(
+      PostV1AccountMembersTransferOwnershipRequest request) {
+    return this.rawClient.postV1AccountMembersTransferOwnership(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1AccountMembersTransferOwnershipResponse> postV1AccountMembersTransferOwnership(
+      PostV1AccountMembersTransferOwnershipRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountMembersTransferOwnership(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<PostV1AccountMembersRemoveResponse> postV1AccountMembersRemove(
@@ -377,6 +393,16 @@ public class AsyncAccountClient {
     return this.rawClient.postV1AccountApiKeysList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  public CompletableFuture<PostV1AccountApiKeysRotateResponse> issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(
+      PostV1AccountApiKeysRotateRequest request) {
+    return this.rawClient.issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1AccountApiKeysRotateResponse> issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(
+      PostV1AccountApiKeysRotateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(request, requestOptions).thenApply(response -> response.body());
+  }
+
   public CompletableFuture<PostV1AccountApiKeysRevokeResponse> postV1AccountApiKeysRevoke(
       PostV1AccountApiKeysRevokeRequest request) {
     return this.rawClient.postV1AccountApiKeysRevoke(request).thenApply(response -> response.body());
@@ -519,6 +545,16 @@ public class AsyncAccountClient {
   public CompletableFuture<PostV1AccountReferralGetResponse> postV1AccountReferralGet(
       PostV1AccountReferralGetRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1AccountReferralGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1AccountReferralConvertResponse> postV1AccountReferralConvert(
+      PostV1AccountReferralConvertRequest request) {
+    return this.rawClient.postV1AccountReferralConvert(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1AccountReferralConvertResponse> postV1AccountReferralConvert(
+      PostV1AccountReferralConvertRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AccountReferralConvert(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<PostV1AccountTableSettingsGetResponse> postV1AccountTableSettingsGet(

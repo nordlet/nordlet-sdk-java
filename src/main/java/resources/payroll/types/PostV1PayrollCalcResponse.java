@@ -10,11 +10,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
@@ -24,46 +27,64 @@ import org.jetbrains.annotations.NotNull;
     builder = PostV1PayrollCalcResponse.Builder.class
 )
 public final class PostV1PayrollCalcResponse {
-  private final String npd;
+  private final String countryCode;
 
-  private final String gpm;
+  private final String taxAllowance;
 
-  private final String sodraEmployee;
+  private final String incomeTax;
 
-  private final String sodraEmployer;
+  private final String employeeContributions;
+
+  private final String employerContributions;
+
+  private final List<PostV1PayrollCalcResponseComponentsItem> components;
 
   private final String net;
 
   private final Map<String, Object> additionalProperties;
 
-  private PostV1PayrollCalcResponse(String npd, String gpm, String sodraEmployee,
-      String sodraEmployer, String net, Map<String, Object> additionalProperties) {
-    this.npd = npd;
-    this.gpm = gpm;
-    this.sodraEmployee = sodraEmployee;
-    this.sodraEmployer = sodraEmployer;
+  private PostV1PayrollCalcResponse(String countryCode, String taxAllowance, String incomeTax,
+      String employeeContributions, String employerContributions,
+      List<PostV1PayrollCalcResponseComponentsItem> components, String net,
+      Map<String, Object> additionalProperties) {
+    this.countryCode = countryCode;
+    this.taxAllowance = taxAllowance;
+    this.incomeTax = incomeTax;
+    this.employeeContributions = employeeContributions;
+    this.employerContributions = employerContributions;
+    this.components = components;
     this.net = net;
     this.additionalProperties = additionalProperties;
   }
 
-  @JsonProperty("npd")
-  public String getNpd() {
-    return npd;
+  @JsonProperty("countryCode")
+  public String getCountryCode() {
+    return countryCode;
   }
 
-  @JsonProperty("gpm")
-  public String getGpm() {
-    return gpm;
+  @JsonProperty("taxAllowance")
+  public String getTaxAllowance() {
+    return taxAllowance;
   }
 
-  @JsonProperty("sodraEmployee")
-  public String getSodraEmployee() {
-    return sodraEmployee;
+  @JsonProperty("incomeTax")
+  public String getIncomeTax() {
+    return incomeTax;
   }
 
-  @JsonProperty("sodraEmployer")
-  public String getSodraEmployer() {
-    return sodraEmployer;
+  @JsonProperty("employeeContributions")
+  public String getEmployeeContributions() {
+    return employeeContributions;
+  }
+
+  @JsonProperty("employerContributions")
+  public String getEmployerContributions() {
+    return employerContributions;
+  }
+
+  @JsonProperty("components")
+  public List<PostV1PayrollCalcResponseComponentsItem> getComponents() {
+    return components;
   }
 
   @JsonProperty("net")
@@ -83,12 +104,12 @@ public final class PostV1PayrollCalcResponse {
   }
 
   private boolean equalTo(PostV1PayrollCalcResponse other) {
-    return npd.equals(other.npd) && gpm.equals(other.gpm) && sodraEmployee.equals(other.sodraEmployee) && sodraEmployer.equals(other.sodraEmployer) && net.equals(other.net);
+    return countryCode.equals(other.countryCode) && taxAllowance.equals(other.taxAllowance) && incomeTax.equals(other.incomeTax) && employeeContributions.equals(other.employeeContributions) && employerContributions.equals(other.employerContributions) && components.equals(other.components) && net.equals(other.net);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.npd, this.gpm, this.sodraEmployee, this.sodraEmployer, this.net);
+    return Objects.hash(this.countryCode, this.taxAllowance, this.incomeTax, this.employeeContributions, this.employerContributions, this.components, this.net);
   }
 
   @java.lang.Override
@@ -96,26 +117,30 @@ public final class PostV1PayrollCalcResponse {
     return ObjectMappers.stringify(this);
   }
 
-  public static NpdStage builder() {
+  public static CountryCodeStage builder() {
     return new Builder();
   }
 
-  public interface NpdStage {
-    GpmStage npd(@NotNull String npd);
+  public interface CountryCodeStage {
+    TaxAllowanceStage countryCode(@NotNull String countryCode);
 
     Builder from(PostV1PayrollCalcResponse other);
   }
 
-  public interface GpmStage {
-    SodraEmployeeStage gpm(@NotNull String gpm);
+  public interface TaxAllowanceStage {
+    IncomeTaxStage taxAllowance(@NotNull String taxAllowance);
   }
 
-  public interface SodraEmployeeStage {
-    SodraEmployerStage sodraEmployee(@NotNull String sodraEmployee);
+  public interface IncomeTaxStage {
+    EmployeeContributionsStage incomeTax(@NotNull String incomeTax);
   }
 
-  public interface SodraEmployerStage {
-    NetStage sodraEmployer(@NotNull String sodraEmployer);
+  public interface EmployeeContributionsStage {
+    EmployerContributionsStage employeeContributions(@NotNull String employeeContributions);
+  }
+
+  public interface EmployerContributionsStage {
+    NetStage employerContributions(@NotNull String employerContributions);
   }
 
   public interface NetStage {
@@ -128,21 +153,31 @@ public final class PostV1PayrollCalcResponse {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage components(List<PostV1PayrollCalcResponseComponentsItem> components);
+
+    _FinalStage addComponents(PostV1PayrollCalcResponseComponentsItem components);
+
+    _FinalStage addAllComponents(List<PostV1PayrollCalcResponseComponentsItem> components);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements NpdStage, GpmStage, SodraEmployeeStage, SodraEmployerStage, NetStage, _FinalStage {
-    private String npd;
+  public static final class Builder implements CountryCodeStage, TaxAllowanceStage, IncomeTaxStage, EmployeeContributionsStage, EmployerContributionsStage, NetStage, _FinalStage {
+    private String countryCode;
 
-    private String gpm;
+    private String taxAllowance;
 
-    private String sodraEmployee;
+    private String incomeTax;
 
-    private String sodraEmployer;
+    private String employeeContributions;
+
+    private String employerContributions;
 
     private String net;
+
+    private List<PostV1PayrollCalcResponseComponentsItem> components = new ArrayList<>();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -152,39 +187,48 @@ public final class PostV1PayrollCalcResponse {
 
     @java.lang.Override
     public Builder from(PostV1PayrollCalcResponse other) {
-      npd(other.getNpd());
-      gpm(other.getGpm());
-      sodraEmployee(other.getSodraEmployee());
-      sodraEmployer(other.getSodraEmployer());
+      countryCode(other.getCountryCode());
+      taxAllowance(other.getTaxAllowance());
+      incomeTax(other.getIncomeTax());
+      employeeContributions(other.getEmployeeContributions());
+      employerContributions(other.getEmployerContributions());
+      components(other.getComponents());
       net(other.getNet());
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("npd")
-    public GpmStage npd(@NotNull String npd) {
-      this.npd = Objects.requireNonNull(npd, "npd must not be null");
+    @JsonSetter("countryCode")
+    public TaxAllowanceStage countryCode(@NotNull String countryCode) {
+      this.countryCode = Objects.requireNonNull(countryCode, "countryCode must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("gpm")
-    public SodraEmployeeStage gpm(@NotNull String gpm) {
-      this.gpm = Objects.requireNonNull(gpm, "gpm must not be null");
+    @JsonSetter("taxAllowance")
+    public IncomeTaxStage taxAllowance(@NotNull String taxAllowance) {
+      this.taxAllowance = Objects.requireNonNull(taxAllowance, "taxAllowance must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("sodraEmployee")
-    public SodraEmployerStage sodraEmployee(@NotNull String sodraEmployee) {
-      this.sodraEmployee = Objects.requireNonNull(sodraEmployee, "sodraEmployee must not be null");
+    @JsonSetter("incomeTax")
+    public EmployeeContributionsStage incomeTax(@NotNull String incomeTax) {
+      this.incomeTax = Objects.requireNonNull(incomeTax, "incomeTax must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("sodraEmployer")
-    public NetStage sodraEmployer(@NotNull String sodraEmployer) {
-      this.sodraEmployer = Objects.requireNonNull(sodraEmployer, "sodraEmployer must not be null");
+    @JsonSetter("employeeContributions")
+    public EmployerContributionsStage employeeContributions(@NotNull String employeeContributions) {
+      this.employeeContributions = Objects.requireNonNull(employeeContributions, "employeeContributions must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("employerContributions")
+    public NetStage employerContributions(@NotNull String employerContributions) {
+      this.employerContributions = Objects.requireNonNull(employerContributions, "employerContributions must not be null");
       return this;
     }
 
@@ -196,8 +240,35 @@ public final class PostV1PayrollCalcResponse {
     }
 
     @java.lang.Override
+    public _FinalStage addAllComponents(List<PostV1PayrollCalcResponseComponentsItem> components) {
+      if (components != null) {
+        this.components.addAll(components);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addComponents(PostV1PayrollCalcResponseComponentsItem components) {
+      this.components.add(components);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "components",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage components(List<PostV1PayrollCalcResponseComponentsItem> components) {
+      this.components.clear();
+      if (components != null) {
+        this.components.addAll(components);
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1PayrollCalcResponse build() {
-      return new PostV1PayrollCalcResponse(npd, gpm, sodraEmployee, sodraEmployer, net, additionalProperties);
+      return new PostV1PayrollCalcResponse(countryCode, taxAllowance, incomeTax, employeeContributions, employerContributions, components, net, additionalProperties);
     }
 
     @java.lang.Override

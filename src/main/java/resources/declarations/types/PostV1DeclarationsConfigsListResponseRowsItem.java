@@ -41,18 +41,22 @@ public final class PostV1DeclarationsConfigsListResponseRowsItem {
 
   private final Map<String, String> values;
 
+  private final boolean acceptsCertificate;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1DeclarationsConfigsListResponseRowsItem(String system, String country, String title,
       List<PostV1DeclarationsConfigsListResponseRowsItemFieldsItem> fields,
       Optional<List<PostV1DeclarationsConfigsListResponseRowsItemEndpointsItem>> endpoints,
-      Map<String, String> values, Map<String, Object> additionalProperties) {
+      Map<String, String> values, boolean acceptsCertificate,
+      Map<String, Object> additionalProperties) {
     this.system = system;
     this.country = country;
     this.title = title;
     this.fields = fields;
     this.endpoints = endpoints;
     this.values = values;
+    this.acceptsCertificate = acceptsCertificate;
     this.additionalProperties = additionalProperties;
   }
 
@@ -86,6 +90,11 @@ public final class PostV1DeclarationsConfigsListResponseRowsItem {
     return values;
   }
 
+  @JsonProperty("acceptsCertificate")
+  public boolean getAcceptsCertificate() {
+    return acceptsCertificate;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -98,12 +107,12 @@ public final class PostV1DeclarationsConfigsListResponseRowsItem {
   }
 
   private boolean equalTo(PostV1DeclarationsConfigsListResponseRowsItem other) {
-    return system.equals(other.system) && country.equals(other.country) && title.equals(other.title) && fields.equals(other.fields) && endpoints.equals(other.endpoints) && values.equals(other.values);
+    return system.equals(other.system) && country.equals(other.country) && title.equals(other.title) && fields.equals(other.fields) && endpoints.equals(other.endpoints) && values.equals(other.values) && acceptsCertificate == other.acceptsCertificate;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.system, this.country, this.title, this.fields, this.endpoints, this.values);
+    return Objects.hash(this.system, this.country, this.title, this.fields, this.endpoints, this.values, this.acceptsCertificate);
   }
 
   @java.lang.Override
@@ -126,7 +135,11 @@ public final class PostV1DeclarationsConfigsListResponseRowsItem {
   }
 
   public interface TitleStage {
-    _FinalStage title(@NotNull String title);
+    AcceptsCertificateStage title(@NotNull String title);
+  }
+
+  public interface AcceptsCertificateStage {
+    _FinalStage acceptsCertificate(boolean acceptsCertificate);
   }
 
   public interface _FinalStage {
@@ -158,12 +171,14 @@ public final class PostV1DeclarationsConfigsListResponseRowsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements SystemStage, CountryStage, TitleStage, _FinalStage {
+  public static final class Builder implements SystemStage, CountryStage, TitleStage, AcceptsCertificateStage, _FinalStage {
     private String system;
 
     private String country;
 
     private String title;
+
+    private boolean acceptsCertificate;
 
     private Map<String, String> values = new LinkedHashMap<>();
 
@@ -185,6 +200,7 @@ public final class PostV1DeclarationsConfigsListResponseRowsItem {
       fields(other.getFields());
       endpoints(other.getEndpoints());
       values(other.getValues());
+      acceptsCertificate(other.getAcceptsCertificate());
       return this;
     }
 
@@ -204,8 +220,15 @@ public final class PostV1DeclarationsConfigsListResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("title")
-    public _FinalStage title(@NotNull String title) {
+    public AcceptsCertificateStage title(@NotNull String title) {
       this.title = Objects.requireNonNull(title, "title must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("acceptsCertificate")
+    public _FinalStage acceptsCertificate(boolean acceptsCertificate) {
+      this.acceptsCertificate = acceptsCertificate;
       return this;
     }
 
@@ -285,7 +308,7 @@ public final class PostV1DeclarationsConfigsListResponseRowsItem {
 
     @java.lang.Override
     public PostV1DeclarationsConfigsListResponseRowsItem build() {
-      return new PostV1DeclarationsConfigsListResponseRowsItem(system, country, title, fields, endpoints, values, additionalProperties);
+      return new PostV1DeclarationsConfigsListResponseRowsItem(system, country, title, fields, endpoints, values, acceptsCertificate, additionalProperties);
     }
 
     @java.lang.Override

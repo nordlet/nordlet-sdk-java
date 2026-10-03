@@ -24,6 +24,7 @@ import com.nordlet.api.errors.UnprocessableEntityError;
 import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysCreateRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysListRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysRevokeRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysRotateRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesActivateRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesArchiveRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesCreateRequest;
@@ -48,7 +49,9 @@ import com.nordlet.api.resources.account.requests.PostV1AccountMeRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountMembersListRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountMembersRemoveRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountMembersSetRoleRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountMembersTransferOwnershipRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountProfileUpdateRequest;
+import com.nordlet.api.resources.account.requests.PostV1AccountReferralConvertRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountReferralGetRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountSessionsListRequest;
 import com.nordlet.api.resources.account.requests.PostV1AccountSessionsRevokeOthersRequest;
@@ -59,6 +62,7 @@ import com.nordlet.api.resources.account.requests.PostV1AccountTableSettingsSetR
 import com.nordlet.api.resources.account.types.PostV1AccountApiKeysCreateResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountApiKeysListResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountApiKeysRevokeResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountApiKeysRotateResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountCompaniesActivateResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountCompaniesArchiveResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountCompaniesCreateResponse;
@@ -83,7 +87,9 @@ import com.nordlet.api.resources.account.types.PostV1AccountMeResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountMembersListResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountMembersRemoveResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountMembersSetRoleResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountMembersTransferOwnershipResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountProfileUpdateResponse;
+import com.nordlet.api.resources.account.types.PostV1AccountReferralConvertResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountReferralGetResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountSessionsListResponse;
 import com.nordlet.api.resources.account.types.PostV1AccountSessionsRevokeOthersResponse;
@@ -673,16 +679,17 @@ public class AsyncRawAccountClient {
                 return future;
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1AccountMembersRemoveResponse>> postV1AccountMembersRemove(
-                  PostV1AccountMembersRemoveRequest request) {
-                return postV1AccountMembersRemove(request,null);
+              public CompletableFuture<NordletApiHttpResponse<PostV1AccountMembersTransferOwnershipResponse>> postV1AccountMembersTransferOwnership(
+                  PostV1AccountMembersTransferOwnershipRequest request) {
+                return postV1AccountMembersTransferOwnership(request,null);
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1AccountMembersRemoveResponse>> postV1AccountMembersRemove(
-                  PostV1AccountMembersRemoveRequest request, RequestOptions requestOptions) {
+              public CompletableFuture<NordletApiHttpResponse<PostV1AccountMembersTransferOwnershipResponse>> postV1AccountMembersTransferOwnership(
+                  PostV1AccountMembersTransferOwnershipRequest request,
+                  RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                  .addPathSegments("v1/account/members/remove");if (requestOptions != null) {
+                  .addPathSegments("v1/account/members/transfer-ownership");if (requestOptions != null) {
                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                       httpUrl.addQueryParameter(_key, _value);
                     } );
@@ -708,14 +715,14 @@ public class AsyncRawAccountClient {
                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                   }
-                  CompletableFuture<NordletApiHttpResponse<PostV1AccountMembersRemoveResponse>> future = new CompletableFuture<>();
+                  CompletableFuture<NordletApiHttpResponse<PostV1AccountMembersTransferOwnershipResponse>> future = new CompletableFuture<>();
                   client.newCall(okhttpRequest).enqueue(new Callback() {
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                       try (ResponseBody responseBody = response.body()) {
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountMembersRemoveResponse.class), response));
+                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountMembersTransferOwnershipResponse.class), response));
                           return;
                         }
                         try {
@@ -761,16 +768,16 @@ public class AsyncRawAccountClient {
                   return future;
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesCreateResponse>> postV1AccountInvitesCreate(
-                    PostV1AccountInvitesCreateRequest request) {
-                  return postV1AccountInvitesCreate(request,null);
+                public CompletableFuture<NordletApiHttpResponse<PostV1AccountMembersRemoveResponse>> postV1AccountMembersRemove(
+                    PostV1AccountMembersRemoveRequest request) {
+                  return postV1AccountMembersRemove(request,null);
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesCreateResponse>> postV1AccountInvitesCreate(
-                    PostV1AccountInvitesCreateRequest request, RequestOptions requestOptions) {
+                public CompletableFuture<NordletApiHttpResponse<PostV1AccountMembersRemoveResponse>> postV1AccountMembersRemove(
+                    PostV1AccountMembersRemoveRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                    .addPathSegments("v1/account/invites/create");if (requestOptions != null) {
+                    .addPathSegments("v1/account/members/remove");if (requestOptions != null) {
                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                         httpUrl.addQueryParameter(_key, _value);
                       } );
@@ -796,14 +803,14 @@ public class AsyncRawAccountClient {
                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                     }
-                    CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesCreateResponse>> future = new CompletableFuture<>();
+                    CompletableFuture<NordletApiHttpResponse<PostV1AccountMembersRemoveResponse>> future = new CompletableFuture<>();
                     client.newCall(okhttpRequest).enqueue(new Callback() {
                       @Override
                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         try (ResponseBody responseBody = response.body()) {
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountInvitesCreateResponse.class), response));
+                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountMembersRemoveResponse.class), response));
                             return;
                           }
                           try {
@@ -849,26 +856,16 @@ public class AsyncRawAccountClient {
                     return future;
                   }
 
-                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesListResponse>> postV1AccountInvitesList(
-                      ) {
-                    return postV1AccountInvitesList(PostV1AccountInvitesListRequest.builder().build());
+                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesCreateResponse>> postV1AccountInvitesCreate(
+                      PostV1AccountInvitesCreateRequest request) {
+                    return postV1AccountInvitesCreate(request,null);
                   }
 
-                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesListResponse>> postV1AccountInvitesList(
-                      RequestOptions requestOptions) {
-                    return postV1AccountInvitesList(PostV1AccountInvitesListRequest.builder().build(),requestOptions);
-                  }
-
-                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesListResponse>> postV1AccountInvitesList(
-                      PostV1AccountInvitesListRequest request) {
-                    return postV1AccountInvitesList(request,null);
-                  }
-
-                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesListResponse>> postV1AccountInvitesList(
-                      PostV1AccountInvitesListRequest request, RequestOptions requestOptions) {
+                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesCreateResponse>> postV1AccountInvitesCreate(
+                      PostV1AccountInvitesCreateRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                      .addPathSegments("v1/account/invites/list");if (requestOptions != null) {
+                      .addPathSegments("v1/account/invites/create");if (requestOptions != null) {
                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                           httpUrl.addQueryParameter(_key, _value);
                         } );
@@ -894,14 +891,14 @@ public class AsyncRawAccountClient {
                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                       }
-                      CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesListResponse>> future = new CompletableFuture<>();
+                      CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesCreateResponse>> future = new CompletableFuture<>();
                       client.newCall(okhttpRequest).enqueue(new Callback() {
                         @Override
                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                           try (ResponseBody responseBody = response.body()) {
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountInvitesListResponse.class), response));
+                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountInvitesCreateResponse.class), response));
                               return;
                             }
                             try {
@@ -947,16 +944,26 @@ public class AsyncRawAccountClient {
                       return future;
                     }
 
-                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesRevokeResponse>> postV1AccountInvitesRevoke(
-                        PostV1AccountInvitesRevokeRequest request) {
-                      return postV1AccountInvitesRevoke(request,null);
+                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesListResponse>> postV1AccountInvitesList(
+                        ) {
+                      return postV1AccountInvitesList(PostV1AccountInvitesListRequest.builder().build());
                     }
 
-                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesRevokeResponse>> postV1AccountInvitesRevoke(
-                        PostV1AccountInvitesRevokeRequest request, RequestOptions requestOptions) {
+                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesListResponse>> postV1AccountInvitesList(
+                        RequestOptions requestOptions) {
+                      return postV1AccountInvitesList(PostV1AccountInvitesListRequest.builder().build(),requestOptions);
+                    }
+
+                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesListResponse>> postV1AccountInvitesList(
+                        PostV1AccountInvitesListRequest request) {
+                      return postV1AccountInvitesList(request,null);
+                    }
+
+                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesListResponse>> postV1AccountInvitesList(
+                        PostV1AccountInvitesListRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                        .addPathSegments("v1/account/invites/revoke");if (requestOptions != null) {
+                        .addPathSegments("v1/account/invites/list");if (requestOptions != null) {
                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                             httpUrl.addQueryParameter(_key, _value);
                           } );
@@ -982,14 +989,14 @@ public class AsyncRawAccountClient {
                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                         }
-                        CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesRevokeResponse>> future = new CompletableFuture<>();
+                        CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesListResponse>> future = new CompletableFuture<>();
                         client.newCall(okhttpRequest).enqueue(new Callback() {
                           @Override
                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                             try (ResponseBody responseBody = response.body()) {
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountInvitesRevokeResponse.class), response));
+                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountInvitesListResponse.class), response));
                                 return;
                               }
                               try {
@@ -1035,16 +1042,17 @@ public class AsyncRawAccountClient {
                         return future;
                       }
 
-                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesGetResponse>> postV1AccountInvitesGet(
-                          PostV1AccountInvitesGetRequest request) {
-                        return postV1AccountInvitesGet(request,null);
+                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesRevokeResponse>> postV1AccountInvitesRevoke(
+                          PostV1AccountInvitesRevokeRequest request) {
+                        return postV1AccountInvitesRevoke(request,null);
                       }
 
-                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesGetResponse>> postV1AccountInvitesGet(
-                          PostV1AccountInvitesGetRequest request, RequestOptions requestOptions) {
+                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesRevokeResponse>> postV1AccountInvitesRevoke(
+                          PostV1AccountInvitesRevokeRequest request,
+                          RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                          .addPathSegments("v1/account/invites/get");if (requestOptions != null) {
+                          .addPathSegments("v1/account/invites/revoke");if (requestOptions != null) {
                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                               httpUrl.addQueryParameter(_key, _value);
                             } );
@@ -1070,14 +1078,14 @@ public class AsyncRawAccountClient {
                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                           }
-                          CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesGetResponse>> future = new CompletableFuture<>();
+                          CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesRevokeResponse>> future = new CompletableFuture<>();
                           client.newCall(okhttpRequest).enqueue(new Callback() {
                             @Override
                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                               try (ResponseBody responseBody = response.body()) {
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountInvitesGetResponse.class), response));
+                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountInvitesRevokeResponse.class), response));
                                   return;
                                 }
                                 try {
@@ -1123,17 +1131,16 @@ public class AsyncRawAccountClient {
                           return future;
                         }
 
-                        public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesAcceptResponse>> postV1AccountInvitesAccept(
-                            PostV1AccountInvitesAcceptRequest request) {
-                          return postV1AccountInvitesAccept(request,null);
+                        public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesGetResponse>> postV1AccountInvitesGet(
+                            PostV1AccountInvitesGetRequest request) {
+                          return postV1AccountInvitesGet(request,null);
                         }
 
-                        public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesAcceptResponse>> postV1AccountInvitesAccept(
-                            PostV1AccountInvitesAcceptRequest request,
-                            RequestOptions requestOptions) {
+                        public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesGetResponse>> postV1AccountInvitesGet(
+                            PostV1AccountInvitesGetRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                            .addPathSegments("v1/account/invites/accept");if (requestOptions != null) {
+                            .addPathSegments("v1/account/invites/get");if (requestOptions != null) {
                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                 httpUrl.addQueryParameter(_key, _value);
                               } );
@@ -1159,14 +1166,14 @@ public class AsyncRawAccountClient {
                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                             }
-                            CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesAcceptResponse>> future = new CompletableFuture<>();
+                            CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesGetResponse>> future = new CompletableFuture<>();
                             client.newCall(okhttpRequest).enqueue(new Callback() {
                               @Override
                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                 try (ResponseBody responseBody = response.body()) {
                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                   if (response.isSuccessful()) {
-                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountInvitesAcceptResponse.class), response));
+                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountInvitesGetResponse.class), response));
                                     return;
                                   }
                                   try {
@@ -1212,17 +1219,17 @@ public class AsyncRawAccountClient {
                             return future;
                           }
 
-                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountLocaleSetResponse>> postV1AccountLocaleSet(
-                              PostV1AccountLocaleSetRequest request) {
-                            return postV1AccountLocaleSet(request,null);
+                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesAcceptResponse>> postV1AccountInvitesAccept(
+                              PostV1AccountInvitesAcceptRequest request) {
+                            return postV1AccountInvitesAccept(request,null);
                           }
 
-                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountLocaleSetResponse>> postV1AccountLocaleSet(
-                              PostV1AccountLocaleSetRequest request,
+                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesAcceptResponse>> postV1AccountInvitesAccept(
+                              PostV1AccountInvitesAcceptRequest request,
                               RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                              .addPathSegments("v1/account/locale/set");if (requestOptions != null) {
+                              .addPathSegments("v1/account/invites/accept");if (requestOptions != null) {
                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                   httpUrl.addQueryParameter(_key, _value);
                                 } );
@@ -1248,14 +1255,14 @@ public class AsyncRawAccountClient {
                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                               }
-                              CompletableFuture<NordletApiHttpResponse<PostV1AccountLocaleSetResponse>> future = new CompletableFuture<>();
+                              CompletableFuture<NordletApiHttpResponse<PostV1AccountInvitesAcceptResponse>> future = new CompletableFuture<>();
                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                 @Override
                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                   try (ResponseBody responseBody = response.body()) {
                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                     if (response.isSuccessful()) {
-                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountLocaleSetResponse.class), response));
+                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountInvitesAcceptResponse.class), response));
                                       return;
                                     }
                                     try {
@@ -1301,17 +1308,17 @@ public class AsyncRawAccountClient {
                               return future;
                             }
 
-                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesCreateResponse>> postV1AccountCompaniesCreate(
-                                PostV1AccountCompaniesCreateRequest request) {
-                              return postV1AccountCompaniesCreate(request,null);
+                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountLocaleSetResponse>> postV1AccountLocaleSet(
+                                PostV1AccountLocaleSetRequest request) {
+                              return postV1AccountLocaleSet(request,null);
                             }
 
-                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesCreateResponse>> postV1AccountCompaniesCreate(
-                                PostV1AccountCompaniesCreateRequest request,
+                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountLocaleSetResponse>> postV1AccountLocaleSet(
+                                PostV1AccountLocaleSetRequest request,
                                 RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                .addPathSegments("v1/account/companies/create");if (requestOptions != null) {
+                                .addPathSegments("v1/account/locale/set");if (requestOptions != null) {
                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                     httpUrl.addQueryParameter(_key, _value);
                                   } );
@@ -1337,14 +1344,14 @@ public class AsyncRawAccountClient {
                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                 }
-                                CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesCreateResponse>> future = new CompletableFuture<>();
+                                CompletableFuture<NordletApiHttpResponse<PostV1AccountLocaleSetResponse>> future = new CompletableFuture<>();
                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                   @Override
                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                     try (ResponseBody responseBody = response.body()) {
                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                       if (response.isSuccessful()) {
-                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountCompaniesCreateResponse.class), response));
+                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountLocaleSetResponse.class), response));
                                         return;
                                       }
                                       try {
@@ -1390,17 +1397,17 @@ public class AsyncRawAccountClient {
                                 return future;
                               }
 
-                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesSelectResponse>> postV1AccountCompaniesSelect(
-                                  PostV1AccountCompaniesSelectRequest request) {
-                                return postV1AccountCompaniesSelect(request,null);
+                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesCreateResponse>> postV1AccountCompaniesCreate(
+                                  PostV1AccountCompaniesCreateRequest request) {
+                                return postV1AccountCompaniesCreate(request,null);
                               }
 
-                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesSelectResponse>> postV1AccountCompaniesSelect(
-                                  PostV1AccountCompaniesSelectRequest request,
+                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesCreateResponse>> postV1AccountCompaniesCreate(
+                                  PostV1AccountCompaniesCreateRequest request,
                                   RequestOptions requestOptions) {
                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                  .addPathSegments("v1/account/companies/select");if (requestOptions != null) {
+                                  .addPathSegments("v1/account/companies/create");if (requestOptions != null) {
                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                       httpUrl.addQueryParameter(_key, _value);
                                     } );
@@ -1426,14 +1433,14 @@ public class AsyncRawAccountClient {
                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                   }
-                                  CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesSelectResponse>> future = new CompletableFuture<>();
+                                  CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesCreateResponse>> future = new CompletableFuture<>();
                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                     @Override
                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                       try (ResponseBody responseBody = response.body()) {
                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                         if (response.isSuccessful()) {
-                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountCompaniesSelectResponse.class), response));
+                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountCompaniesCreateResponse.class), response));
                                           return;
                                         }
                                         try {
@@ -1479,27 +1486,17 @@ public class AsyncRawAccountClient {
                                   return future;
                                 }
 
-                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesProfileResponse>> postV1AccountCompaniesProfile(
-                                    ) {
-                                  return postV1AccountCompaniesProfile(PostV1AccountCompaniesProfileRequest.builder().build());
+                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesSelectResponse>> postV1AccountCompaniesSelect(
+                                    PostV1AccountCompaniesSelectRequest request) {
+                                  return postV1AccountCompaniesSelect(request,null);
                                 }
 
-                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesProfileResponse>> postV1AccountCompaniesProfile(
-                                    RequestOptions requestOptions) {
-                                  return postV1AccountCompaniesProfile(PostV1AccountCompaniesProfileRequest.builder().build(),requestOptions);
-                                }
-
-                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesProfileResponse>> postV1AccountCompaniesProfile(
-                                    PostV1AccountCompaniesProfileRequest request) {
-                                  return postV1AccountCompaniesProfile(request,null);
-                                }
-
-                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesProfileResponse>> postV1AccountCompaniesProfile(
-                                    PostV1AccountCompaniesProfileRequest request,
+                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesSelectResponse>> postV1AccountCompaniesSelect(
+                                    PostV1AccountCompaniesSelectRequest request,
                                     RequestOptions requestOptions) {
                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                    .addPathSegments("v1/account/companies/profile");if (requestOptions != null) {
+                                    .addPathSegments("v1/account/companies/select");if (requestOptions != null) {
                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                         httpUrl.addQueryParameter(_key, _value);
                                       } );
@@ -1525,14 +1522,14 @@ public class AsyncRawAccountClient {
                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                     }
-                                    CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesProfileResponse>> future = new CompletableFuture<>();
+                                    CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesSelectResponse>> future = new CompletableFuture<>();
                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                       @Override
                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                         try (ResponseBody responseBody = response.body()) {
                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                           if (response.isSuccessful()) {
-                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountCompaniesProfileResponse.class), response));
+                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountCompaniesSelectResponse.class), response));
                                             return;
                                           }
                                           try {
@@ -1578,27 +1575,27 @@ public class AsyncRawAccountClient {
                                     return future;
                                   }
 
-                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesUpdateResponse>> postV1AccountCompaniesUpdate(
+                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesProfileResponse>> postV1AccountCompaniesProfile(
                                       ) {
-                                    return postV1AccountCompaniesUpdate(PostV1AccountCompaniesUpdateRequest.builder().build());
+                                    return postV1AccountCompaniesProfile(PostV1AccountCompaniesProfileRequest.builder().build());
                                   }
 
-                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesUpdateResponse>> postV1AccountCompaniesUpdate(
+                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesProfileResponse>> postV1AccountCompaniesProfile(
                                       RequestOptions requestOptions) {
-                                    return postV1AccountCompaniesUpdate(PostV1AccountCompaniesUpdateRequest.builder().build(),requestOptions);
+                                    return postV1AccountCompaniesProfile(PostV1AccountCompaniesProfileRequest.builder().build(),requestOptions);
                                   }
 
-                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesUpdateResponse>> postV1AccountCompaniesUpdate(
-                                      PostV1AccountCompaniesUpdateRequest request) {
-                                    return postV1AccountCompaniesUpdate(request,null);
+                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesProfileResponse>> postV1AccountCompaniesProfile(
+                                      PostV1AccountCompaniesProfileRequest request) {
+                                    return postV1AccountCompaniesProfile(request,null);
                                   }
 
-                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesUpdateResponse>> postV1AccountCompaniesUpdate(
-                                      PostV1AccountCompaniesUpdateRequest request,
+                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesProfileResponse>> postV1AccountCompaniesProfile(
+                                      PostV1AccountCompaniesProfileRequest request,
                                       RequestOptions requestOptions) {
                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                      .addPathSegments("v1/account/companies/update");if (requestOptions != null) {
+                                      .addPathSegments("v1/account/companies/profile");if (requestOptions != null) {
                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                           httpUrl.addQueryParameter(_key, _value);
                                         } );
@@ -1624,14 +1621,14 @@ public class AsyncRawAccountClient {
                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                       }
-                                      CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesUpdateResponse>> future = new CompletableFuture<>();
+                                      CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesProfileResponse>> future = new CompletableFuture<>();
                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                         @Override
                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                           try (ResponseBody responseBody = response.body()) {
                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                             if (response.isSuccessful()) {
-                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountCompaniesUpdateResponse.class), response));
+                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountCompaniesProfileResponse.class), response));
                                               return;
                                             }
                                             try {
@@ -1677,17 +1674,27 @@ public class AsyncRawAccountClient {
                                       return future;
                                     }
 
-                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesArchiveResponse>> postV1AccountCompaniesArchive(
-                                        PostV1AccountCompaniesArchiveRequest request) {
-                                      return postV1AccountCompaniesArchive(request,null);
+                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesUpdateResponse>> postV1AccountCompaniesUpdate(
+                                        ) {
+                                      return postV1AccountCompaniesUpdate(PostV1AccountCompaniesUpdateRequest.builder().build());
                                     }
 
-                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesArchiveResponse>> postV1AccountCompaniesArchive(
-                                        PostV1AccountCompaniesArchiveRequest request,
+                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesUpdateResponse>> postV1AccountCompaniesUpdate(
+                                        RequestOptions requestOptions) {
+                                      return postV1AccountCompaniesUpdate(PostV1AccountCompaniesUpdateRequest.builder().build(),requestOptions);
+                                    }
+
+                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesUpdateResponse>> postV1AccountCompaniesUpdate(
+                                        PostV1AccountCompaniesUpdateRequest request) {
+                                      return postV1AccountCompaniesUpdate(request,null);
+                                    }
+
+                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesUpdateResponse>> postV1AccountCompaniesUpdate(
+                                        PostV1AccountCompaniesUpdateRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                        .addPathSegments("v1/account/companies/archive");if (requestOptions != null) {
+                                        .addPathSegments("v1/account/companies/update");if (requestOptions != null) {
                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                             httpUrl.addQueryParameter(_key, _value);
                                           } );
@@ -1713,14 +1720,14 @@ public class AsyncRawAccountClient {
                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                         }
-                                        CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesArchiveResponse>> future = new CompletableFuture<>();
+                                        CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesUpdateResponse>> future = new CompletableFuture<>();
                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                           @Override
                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                             try (ResponseBody responseBody = response.body()) {
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountCompaniesArchiveResponse.class), response));
+                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountCompaniesUpdateResponse.class), response));
                                                 return;
                                               }
                                               try {
@@ -1766,17 +1773,17 @@ public class AsyncRawAccountClient {
                                         return future;
                                       }
 
-                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesDeleteResponse>> postV1AccountCompaniesDelete(
-                                          PostV1AccountCompaniesDeleteRequest request) {
-                                        return postV1AccountCompaniesDelete(request,null);
+                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesArchiveResponse>> postV1AccountCompaniesArchive(
+                                          PostV1AccountCompaniesArchiveRequest request) {
+                                        return postV1AccountCompaniesArchive(request,null);
                                       }
 
-                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesDeleteResponse>> postV1AccountCompaniesDelete(
-                                          PostV1AccountCompaniesDeleteRequest request,
+                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesArchiveResponse>> postV1AccountCompaniesArchive(
+                                          PostV1AccountCompaniesArchiveRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                          .addPathSegments("v1/account/companies/delete");if (requestOptions != null) {
+                                          .addPathSegments("v1/account/companies/archive");if (requestOptions != null) {
                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                               httpUrl.addQueryParameter(_key, _value);
                                             } );
@@ -1802,14 +1809,14 @@ public class AsyncRawAccountClient {
                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                           }
-                                          CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesDeleteResponse>> future = new CompletableFuture<>();
+                                          CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesArchiveResponse>> future = new CompletableFuture<>();
                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                             @Override
                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                               try (ResponseBody responseBody = response.body()) {
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountCompaniesDeleteResponse.class), response));
+                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountCompaniesArchiveResponse.class), response));
                                                   return;
                                                 }
                                                 try {
@@ -1855,17 +1862,17 @@ public class AsyncRawAccountClient {
                                           return future;
                                         }
 
-                                        public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesActivateResponse>> postV1AccountCompaniesActivate(
-                                            PostV1AccountCompaniesActivateRequest request) {
-                                          return postV1AccountCompaniesActivate(request,null);
+                                        public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesDeleteResponse>> postV1AccountCompaniesDelete(
+                                            PostV1AccountCompaniesDeleteRequest request) {
+                                          return postV1AccountCompaniesDelete(request,null);
                                         }
 
-                                        public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesActivateResponse>> postV1AccountCompaniesActivate(
-                                            PostV1AccountCompaniesActivateRequest request,
+                                        public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesDeleteResponse>> postV1AccountCompaniesDelete(
+                                            PostV1AccountCompaniesDeleteRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                            .addPathSegments("v1/account/companies/activate");if (requestOptions != null) {
+                                            .addPathSegments("v1/account/companies/delete");if (requestOptions != null) {
                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                 httpUrl.addQueryParameter(_key, _value);
                                               } );
@@ -1891,14 +1898,14 @@ public class AsyncRawAccountClient {
                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                             }
-                                            CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesActivateResponse>> future = new CompletableFuture<>();
+                                            CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesDeleteResponse>> future = new CompletableFuture<>();
                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                               @Override
                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                 try (ResponseBody responseBody = response.body()) {
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountCompaniesActivateResponse.class), response));
+                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountCompaniesDeleteResponse.class), response));
                                                     return;
                                                   }
                                                   try {
@@ -1944,17 +1951,17 @@ public class AsyncRawAccountClient {
                                             return future;
                                           }
 
-                                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysCreateResponse>> postV1AccountApiKeysCreate(
-                                              PostV1AccountApiKeysCreateRequest request) {
-                                            return postV1AccountApiKeysCreate(request,null);
+                                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesActivateResponse>> postV1AccountCompaniesActivate(
+                                              PostV1AccountCompaniesActivateRequest request) {
+                                            return postV1AccountCompaniesActivate(request,null);
                                           }
 
-                                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysCreateResponse>> postV1AccountApiKeysCreate(
-                                              PostV1AccountApiKeysCreateRequest request,
+                                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesActivateResponse>> postV1AccountCompaniesActivate(
+                                              PostV1AccountCompaniesActivateRequest request,
                                               RequestOptions requestOptions) {
                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                              .addPathSegments("v1/account/api-keys/create");if (requestOptions != null) {
+                                              .addPathSegments("v1/account/companies/activate");if (requestOptions != null) {
                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                   httpUrl.addQueryParameter(_key, _value);
                                                 } );
@@ -1980,14 +1987,14 @@ public class AsyncRawAccountClient {
                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                               }
-                                              CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysCreateResponse>> future = new CompletableFuture<>();
+                                              CompletableFuture<NordletApiHttpResponse<PostV1AccountCompaniesActivateResponse>> future = new CompletableFuture<>();
                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                 @Override
                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                   try (ResponseBody responseBody = response.body()) {
                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                     if (response.isSuccessful()) {
-                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountApiKeysCreateResponse.class), response));
+                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountCompaniesActivateResponse.class), response));
                                                       return;
                                                     }
                                                     try {
@@ -2033,27 +2040,17 @@ public class AsyncRawAccountClient {
                                               return future;
                                             }
 
-                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysListResponse>> postV1AccountApiKeysList(
-                                                ) {
-                                              return postV1AccountApiKeysList(PostV1AccountApiKeysListRequest.builder().build());
+                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysCreateResponse>> postV1AccountApiKeysCreate(
+                                                PostV1AccountApiKeysCreateRequest request) {
+                                              return postV1AccountApiKeysCreate(request,null);
                                             }
 
-                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysListResponse>> postV1AccountApiKeysList(
-                                                RequestOptions requestOptions) {
-                                              return postV1AccountApiKeysList(PostV1AccountApiKeysListRequest.builder().build(),requestOptions);
-                                            }
-
-                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysListResponse>> postV1AccountApiKeysList(
-                                                PostV1AccountApiKeysListRequest request) {
-                                              return postV1AccountApiKeysList(request,null);
-                                            }
-
-                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysListResponse>> postV1AccountApiKeysList(
-                                                PostV1AccountApiKeysListRequest request,
+                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysCreateResponse>> postV1AccountApiKeysCreate(
+                                                PostV1AccountApiKeysCreateRequest request,
                                                 RequestOptions requestOptions) {
                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                .addPathSegments("v1/account/api-keys/list");if (requestOptions != null) {
+                                                .addPathSegments("v1/account/api-keys/create");if (requestOptions != null) {
                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                     httpUrl.addQueryParameter(_key, _value);
                                                   } );
@@ -2079,14 +2076,14 @@ public class AsyncRawAccountClient {
                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                 }
-                                                CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysListResponse>> future = new CompletableFuture<>();
+                                                CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysCreateResponse>> future = new CompletableFuture<>();
                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                   @Override
                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                     try (ResponseBody responseBody = response.body()) {
                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                       if (response.isSuccessful()) {
-                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountApiKeysListResponse.class), response));
+                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountApiKeysCreateResponse.class), response));
                                                         return;
                                                       }
                                                       try {
@@ -2132,17 +2129,27 @@ public class AsyncRawAccountClient {
                                                 return future;
                                               }
 
-                                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysRevokeResponse>> postV1AccountApiKeysRevoke(
-                                                  PostV1AccountApiKeysRevokeRequest request) {
-                                                return postV1AccountApiKeysRevoke(request,null);
+                                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysListResponse>> postV1AccountApiKeysList(
+                                                  ) {
+                                                return postV1AccountApiKeysList(PostV1AccountApiKeysListRequest.builder().build());
                                               }
 
-                                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysRevokeResponse>> postV1AccountApiKeysRevoke(
-                                                  PostV1AccountApiKeysRevokeRequest request,
+                                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysListResponse>> postV1AccountApiKeysList(
+                                                  RequestOptions requestOptions) {
+                                                return postV1AccountApiKeysList(PostV1AccountApiKeysListRequest.builder().build(),requestOptions);
+                                              }
+
+                                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysListResponse>> postV1AccountApiKeysList(
+                                                  PostV1AccountApiKeysListRequest request) {
+                                                return postV1AccountApiKeysList(request,null);
+                                              }
+
+                                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysListResponse>> postV1AccountApiKeysList(
+                                                  PostV1AccountApiKeysListRequest request,
                                                   RequestOptions requestOptions) {
                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                  .addPathSegments("v1/account/api-keys/revoke");if (requestOptions != null) {
+                                                  .addPathSegments("v1/account/api-keys/list");if (requestOptions != null) {
                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                       httpUrl.addQueryParameter(_key, _value);
                                                     } );
@@ -2168,14 +2175,14 @@ public class AsyncRawAccountClient {
                                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                   }
-                                                  CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysRevokeResponse>> future = new CompletableFuture<>();
+                                                  CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysListResponse>> future = new CompletableFuture<>();
                                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                                     @Override
                                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                       try (ResponseBody responseBody = response.body()) {
                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                         if (response.isSuccessful()) {
-                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountApiKeysRevokeResponse.class), response));
+                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountApiKeysListResponse.class), response));
                                                           return;
                                                         }
                                                         try {
@@ -2221,17 +2228,17 @@ public class AsyncRawAccountClient {
                                                   return future;
                                                 }
 
-                                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountConsentAcceptResponse>> postV1AccountConsentAccept(
-                                                    PostV1AccountConsentAcceptRequest request) {
-                                                  return postV1AccountConsentAccept(request,null);
+                                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysRotateResponse>> issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(
+                                                    PostV1AccountApiKeysRotateRequest request) {
+                                                  return issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(request,null);
                                                 }
 
-                                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountConsentAcceptResponse>> postV1AccountConsentAccept(
-                                                    PostV1AccountConsentAcceptRequest request,
+                                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysRotateResponse>> issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(
+                                                    PostV1AccountApiKeysRotateRequest request,
                                                     RequestOptions requestOptions) {
                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                    .addPathSegments("v1/account/consent/accept");if (requestOptions != null) {
+                                                    .addPathSegments("v1/account/api-keys/rotate");if (requestOptions != null) {
                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                         httpUrl.addQueryParameter(_key, _value);
                                                       } );
@@ -2257,14 +2264,14 @@ public class AsyncRawAccountClient {
                                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                     }
-                                                    CompletableFuture<NordletApiHttpResponse<PostV1AccountConsentAcceptResponse>> future = new CompletableFuture<>();
+                                                    CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysRotateResponse>> future = new CompletableFuture<>();
                                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                                       @Override
                                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                         try (ResponseBody responseBody = response.body()) {
                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                           if (response.isSuccessful()) {
-                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountConsentAcceptResponse.class), response));
+                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountApiKeysRotateResponse.class), response));
                                                             return;
                                                           }
                                                           try {
@@ -2310,17 +2317,17 @@ public class AsyncRawAccountClient {
                                                     return future;
                                                   }
 
-                                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountProfileUpdateResponse>> postV1AccountProfileUpdate(
-                                                      PostV1AccountProfileUpdateRequest request) {
-                                                    return postV1AccountProfileUpdate(request,null);
+                                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysRevokeResponse>> postV1AccountApiKeysRevoke(
+                                                      PostV1AccountApiKeysRevokeRequest request) {
+                                                    return postV1AccountApiKeysRevoke(request,null);
                                                   }
 
-                                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountProfileUpdateResponse>> postV1AccountProfileUpdate(
-                                                      PostV1AccountProfileUpdateRequest request,
+                                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysRevokeResponse>> postV1AccountApiKeysRevoke(
+                                                      PostV1AccountApiKeysRevokeRequest request,
                                                       RequestOptions requestOptions) {
                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                      .addPathSegments("v1/account/profile/update");if (requestOptions != null) {
+                                                      .addPathSegments("v1/account/api-keys/revoke");if (requestOptions != null) {
                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                           httpUrl.addQueryParameter(_key, _value);
                                                         } );
@@ -2346,14 +2353,14 @@ public class AsyncRawAccountClient {
                                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                       }
-                                                      CompletableFuture<NordletApiHttpResponse<PostV1AccountProfileUpdateResponse>> future = new CompletableFuture<>();
+                                                      CompletableFuture<NordletApiHttpResponse<PostV1AccountApiKeysRevokeResponse>> future = new CompletableFuture<>();
                                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                                         @Override
                                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                           try (ResponseBody responseBody = response.body()) {
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountProfileUpdateResponse.class), response));
+                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountApiKeysRevokeResponse.class), response));
                                                               return;
                                                             }
                                                             try {
@@ -2399,17 +2406,17 @@ public class AsyncRawAccountClient {
                                                       return future;
                                                     }
 
-                                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountEmailChangeRequestResponse>> postV1AccountEmailChangeRequest(
-                                                        PostV1AccountEmailChangeRequestRequest request) {
-                                                      return postV1AccountEmailChangeRequest(request,null);
+                                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountConsentAcceptResponse>> postV1AccountConsentAccept(
+                                                        PostV1AccountConsentAcceptRequest request) {
+                                                      return postV1AccountConsentAccept(request,null);
                                                     }
 
-                                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountEmailChangeRequestResponse>> postV1AccountEmailChangeRequest(
-                                                        PostV1AccountEmailChangeRequestRequest request,
+                                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountConsentAcceptResponse>> postV1AccountConsentAccept(
+                                                        PostV1AccountConsentAcceptRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                        .addPathSegments("v1/account/email/change-request");if (requestOptions != null) {
+                                                        .addPathSegments("v1/account/consent/accept");if (requestOptions != null) {
                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                             httpUrl.addQueryParameter(_key, _value);
                                                           } );
@@ -2435,14 +2442,14 @@ public class AsyncRawAccountClient {
                                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                         }
-                                                        CompletableFuture<NordletApiHttpResponse<PostV1AccountEmailChangeRequestResponse>> future = new CompletableFuture<>();
+                                                        CompletableFuture<NordletApiHttpResponse<PostV1AccountConsentAcceptResponse>> future = new CompletableFuture<>();
                                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                                           @Override
                                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                             try (ResponseBody responseBody = response.body()) {
                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                               if (response.isSuccessful()) {
-                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountEmailChangeRequestResponse.class), response));
+                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountConsentAcceptResponse.class), response));
                                                                 return;
                                                               }
                                                               try {
@@ -2488,27 +2495,17 @@ public class AsyncRawAccountClient {
                                                         return future;
                                                       }
 
-                                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsListResponse>> postV1AccountSessionsList(
-                                                          ) {
-                                                        return postV1AccountSessionsList(PostV1AccountSessionsListRequest.builder().build());
+                                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountProfileUpdateResponse>> postV1AccountProfileUpdate(
+                                                          PostV1AccountProfileUpdateRequest request) {
+                                                        return postV1AccountProfileUpdate(request,null);
                                                       }
 
-                                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsListResponse>> postV1AccountSessionsList(
-                                                          RequestOptions requestOptions) {
-                                                        return postV1AccountSessionsList(PostV1AccountSessionsListRequest.builder().build(),requestOptions);
-                                                      }
-
-                                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsListResponse>> postV1AccountSessionsList(
-                                                          PostV1AccountSessionsListRequest request) {
-                                                        return postV1AccountSessionsList(request,null);
-                                                      }
-
-                                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsListResponse>> postV1AccountSessionsList(
-                                                          PostV1AccountSessionsListRequest request,
+                                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountProfileUpdateResponse>> postV1AccountProfileUpdate(
+                                                          PostV1AccountProfileUpdateRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                          .addPathSegments("v1/account/sessions/list");if (requestOptions != null) {
+                                                          .addPathSegments("v1/account/profile/update");if (requestOptions != null) {
                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                               httpUrl.addQueryParameter(_key, _value);
                                                             } );
@@ -2534,14 +2531,14 @@ public class AsyncRawAccountClient {
                                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                           }
-                                                          CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsListResponse>> future = new CompletableFuture<>();
+                                                          CompletableFuture<NordletApiHttpResponse<PostV1AccountProfileUpdateResponse>> future = new CompletableFuture<>();
                                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                                             @Override
                                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                               try (ResponseBody responseBody = response.body()) {
                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                 if (response.isSuccessful()) {
-                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountSessionsListResponse.class), response));
+                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountProfileUpdateResponse.class), response));
                                                                   return;
                                                                 }
                                                                 try {
@@ -2587,17 +2584,17 @@ public class AsyncRawAccountClient {
                                                           return future;
                                                         }
 
-                                                        public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeResponse>> postV1AccountSessionsRevoke(
-                                                            PostV1AccountSessionsRevokeRequest request) {
-                                                          return postV1AccountSessionsRevoke(request,null);
+                                                        public CompletableFuture<NordletApiHttpResponse<PostV1AccountEmailChangeRequestResponse>> postV1AccountEmailChangeRequest(
+                                                            PostV1AccountEmailChangeRequestRequest request) {
+                                                          return postV1AccountEmailChangeRequest(request,null);
                                                         }
 
-                                                        public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeResponse>> postV1AccountSessionsRevoke(
-                                                            PostV1AccountSessionsRevokeRequest request,
+                                                        public CompletableFuture<NordletApiHttpResponse<PostV1AccountEmailChangeRequestResponse>> postV1AccountEmailChangeRequest(
+                                                            PostV1AccountEmailChangeRequestRequest request,
                                                             RequestOptions requestOptions) {
                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                            .addPathSegments("v1/account/sessions/revoke");if (requestOptions != null) {
+                                                            .addPathSegments("v1/account/email/change-request");if (requestOptions != null) {
                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                 httpUrl.addQueryParameter(_key, _value);
                                                               } );
@@ -2623,14 +2620,14 @@ public class AsyncRawAccountClient {
                                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                             }
-                                                            CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeResponse>> future = new CompletableFuture<>();
+                                                            CompletableFuture<NordletApiHttpResponse<PostV1AccountEmailChangeRequestResponse>> future = new CompletableFuture<>();
                                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                                               @Override
                                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                 try (ResponseBody responseBody = response.body()) {
                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                   if (response.isSuccessful()) {
-                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountSessionsRevokeResponse.class), response));
+                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountEmailChangeRequestResponse.class), response));
                                                                     return;
                                                                   }
                                                                   try {
@@ -2676,27 +2673,27 @@ public class AsyncRawAccountClient {
                                                             return future;
                                                           }
 
-                                                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeOthersResponse>> postV1AccountSessionsRevokeOthers(
+                                                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsListResponse>> postV1AccountSessionsList(
                                                               ) {
-                                                            return postV1AccountSessionsRevokeOthers(PostV1AccountSessionsRevokeOthersRequest.builder().build());
+                                                            return postV1AccountSessionsList(PostV1AccountSessionsListRequest.builder().build());
                                                           }
 
-                                                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeOthersResponse>> postV1AccountSessionsRevokeOthers(
+                                                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsListResponse>> postV1AccountSessionsList(
                                                               RequestOptions requestOptions) {
-                                                            return postV1AccountSessionsRevokeOthers(PostV1AccountSessionsRevokeOthersRequest.builder().build(),requestOptions);
+                                                            return postV1AccountSessionsList(PostV1AccountSessionsListRequest.builder().build(),requestOptions);
                                                           }
 
-                                                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeOthersResponse>> postV1AccountSessionsRevokeOthers(
-                                                              PostV1AccountSessionsRevokeOthersRequest request) {
-                                                            return postV1AccountSessionsRevokeOthers(request,null);
+                                                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsListResponse>> postV1AccountSessionsList(
+                                                              PostV1AccountSessionsListRequest request) {
+                                                            return postV1AccountSessionsList(request,null);
                                                           }
 
-                                                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeOthersResponse>> postV1AccountSessionsRevokeOthers(
-                                                              PostV1AccountSessionsRevokeOthersRequest request,
+                                                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsListResponse>> postV1AccountSessionsList(
+                                                              PostV1AccountSessionsListRequest request,
                                                               RequestOptions requestOptions) {
                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                              .addPathSegments("v1/account/sessions/revoke-others");if (requestOptions != null) {
+                                                              .addPathSegments("v1/account/sessions/list");if (requestOptions != null) {
                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                 } );
@@ -2722,14 +2719,14 @@ public class AsyncRawAccountClient {
                                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                               }
-                                                              CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeOthersResponse>> future = new CompletableFuture<>();
+                                                              CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsListResponse>> future = new CompletableFuture<>();
                                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                 @Override
                                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                   try (ResponseBody responseBody = response.body()) {
                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                     if (response.isSuccessful()) {
-                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountSessionsRevokeOthersResponse.class), response));
+                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountSessionsListResponse.class), response));
                                                                       return;
                                                                     }
                                                                     try {
@@ -2775,27 +2772,17 @@ public class AsyncRawAccountClient {
                                                               return future;
                                                             }
 
-                                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountExportResponse>> downloadEverythingNordletStoresAboutTheSignedInUser(
-                                                                ) {
-                                                              return downloadEverythingNordletStoresAboutTheSignedInUser(PostV1AccountExportRequest.builder().build());
+                                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeResponse>> postV1AccountSessionsRevoke(
+                                                                PostV1AccountSessionsRevokeRequest request) {
+                                                              return postV1AccountSessionsRevoke(request,null);
                                                             }
 
-                                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountExportResponse>> downloadEverythingNordletStoresAboutTheSignedInUser(
-                                                                RequestOptions requestOptions) {
-                                                              return downloadEverythingNordletStoresAboutTheSignedInUser(PostV1AccountExportRequest.builder().build(),requestOptions);
-                                                            }
-
-                                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountExportResponse>> downloadEverythingNordletStoresAboutTheSignedInUser(
-                                                                PostV1AccountExportRequest request) {
-                                                              return downloadEverythingNordletStoresAboutTheSignedInUser(request,null);
-                                                            }
-
-                                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountExportResponse>> downloadEverythingNordletStoresAboutTheSignedInUser(
-                                                                PostV1AccountExportRequest request,
+                                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeResponse>> postV1AccountSessionsRevoke(
+                                                                PostV1AccountSessionsRevokeRequest request,
                                                                 RequestOptions requestOptions) {
                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                .addPathSegments("v1/account/export");if (requestOptions != null) {
+                                                                .addPathSegments("v1/account/sessions/revoke");if (requestOptions != null) {
                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                   } );
@@ -2821,14 +2808,14 @@ public class AsyncRawAccountClient {
                                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                 }
-                                                                CompletableFuture<NordletApiHttpResponse<PostV1AccountExportResponse>> future = new CompletableFuture<>();
+                                                                CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeResponse>> future = new CompletableFuture<>();
                                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                   @Override
                                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                     try (ResponseBody responseBody = response.body()) {
                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                       if (response.isSuccessful()) {
-                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountExportResponse.class), response));
+                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountSessionsRevokeResponse.class), response));
                                                                         return;
                                                                       }
                                                                       try {
@@ -2874,23 +2861,27 @@ public class AsyncRawAccountClient {
                                                                 return future;
                                                               }
 
-                                                              /**
-                                                               * Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
-                                                               */
-                                                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountDeleteResponse>> deleteTheSignedInUserAccount(
-                                                                  PostV1AccountDeleteRequest request) {
-                                                                return deleteTheSignedInUserAccount(request,null);
+                                                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeOthersResponse>> postV1AccountSessionsRevokeOthers(
+                                                                  ) {
+                                                                return postV1AccountSessionsRevokeOthers(PostV1AccountSessionsRevokeOthersRequest.builder().build());
                                                               }
 
-                                                              /**
-                                                               * Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
-                                                               */
-                                                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountDeleteResponse>> deleteTheSignedInUserAccount(
-                                                                  PostV1AccountDeleteRequest request,
+                                                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeOthersResponse>> postV1AccountSessionsRevokeOthers(
+                                                                  RequestOptions requestOptions) {
+                                                                return postV1AccountSessionsRevokeOthers(PostV1AccountSessionsRevokeOthersRequest.builder().build(),requestOptions);
+                                                              }
+
+                                                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeOthersResponse>> postV1AccountSessionsRevokeOthers(
+                                                                  PostV1AccountSessionsRevokeOthersRequest request) {
+                                                                return postV1AccountSessionsRevokeOthers(request,null);
+                                                              }
+
+                                                              public CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeOthersResponse>> postV1AccountSessionsRevokeOthers(
+                                                                  PostV1AccountSessionsRevokeOthersRequest request,
                                                                   RequestOptions requestOptions) {
                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                  .addPathSegments("v1/account/delete");if (requestOptions != null) {
+                                                                  .addPathSegments("v1/account/sessions/revoke-others");if (requestOptions != null) {
                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                     } );
@@ -2916,14 +2907,14 @@ public class AsyncRawAccountClient {
                                                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                   }
-                                                                  CompletableFuture<NordletApiHttpResponse<PostV1AccountDeleteResponse>> future = new CompletableFuture<>();
+                                                                  CompletableFuture<NordletApiHttpResponse<PostV1AccountSessionsRevokeOthersResponse>> future = new CompletableFuture<>();
                                                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                     @Override
                                                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                       try (ResponseBody responseBody = response.body()) {
                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                         if (response.isSuccessful()) {
-                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountDeleteResponse.class), response));
+                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountSessionsRevokeOthersResponse.class), response));
                                                                           return;
                                                                         }
                                                                         try {
@@ -2969,27 +2960,27 @@ public class AsyncRawAccountClient {
                                                                   return future;
                                                                 }
 
-                                                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountReferralGetResponse>> postV1AccountReferralGet(
+                                                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountExportResponse>> downloadEverythingNordletStoresAboutTheSignedInUser(
                                                                     ) {
-                                                                  return postV1AccountReferralGet(PostV1AccountReferralGetRequest.builder().build());
+                                                                  return downloadEverythingNordletStoresAboutTheSignedInUser(PostV1AccountExportRequest.builder().build());
                                                                 }
 
-                                                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountReferralGetResponse>> postV1AccountReferralGet(
+                                                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountExportResponse>> downloadEverythingNordletStoresAboutTheSignedInUser(
                                                                     RequestOptions requestOptions) {
-                                                                  return postV1AccountReferralGet(PostV1AccountReferralGetRequest.builder().build(),requestOptions);
+                                                                  return downloadEverythingNordletStoresAboutTheSignedInUser(PostV1AccountExportRequest.builder().build(),requestOptions);
                                                                 }
 
-                                                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountReferralGetResponse>> postV1AccountReferralGet(
-                                                                    PostV1AccountReferralGetRequest request) {
-                                                                  return postV1AccountReferralGet(request,null);
+                                                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountExportResponse>> downloadEverythingNordletStoresAboutTheSignedInUser(
+                                                                    PostV1AccountExportRequest request) {
+                                                                  return downloadEverythingNordletStoresAboutTheSignedInUser(request,null);
                                                                 }
 
-                                                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountReferralGetResponse>> postV1AccountReferralGet(
-                                                                    PostV1AccountReferralGetRequest request,
+                                                                public CompletableFuture<NordletApiHttpResponse<PostV1AccountExportResponse>> downloadEverythingNordletStoresAboutTheSignedInUser(
+                                                                    PostV1AccountExportRequest request,
                                                                     RequestOptions requestOptions) {
                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                    .addPathSegments("v1/account/referral/get");if (requestOptions != null) {
+                                                                    .addPathSegments("v1/account/export");if (requestOptions != null) {
                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                       } );
@@ -3015,14 +3006,14 @@ public class AsyncRawAccountClient {
                                                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                     }
-                                                                    CompletableFuture<NordletApiHttpResponse<PostV1AccountReferralGetResponse>> future = new CompletableFuture<>();
+                                                                    CompletableFuture<NordletApiHttpResponse<PostV1AccountExportResponse>> future = new CompletableFuture<>();
                                                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                       @Override
                                                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                         try (ResponseBody responseBody = response.body()) {
                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                           if (response.isSuccessful()) {
-                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountReferralGetResponse.class), response));
+                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountExportResponse.class), response));
                                                                             return;
                                                                           }
                                                                           try {
@@ -3068,17 +3059,23 @@ public class AsyncRawAccountClient {
                                                                     return future;
                                                                   }
 
-                                                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsGetResponse>> postV1AccountTableSettingsGet(
-                                                                      PostV1AccountTableSettingsGetRequest request) {
-                                                                    return postV1AccountTableSettingsGet(request,null);
+                                                                  /**
+                                                                   * Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
+                                                                   */
+                                                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountDeleteResponse>> deleteTheSignedInUserAccount(
+                                                                      PostV1AccountDeleteRequest request) {
+                                                                    return deleteTheSignedInUserAccount(request,null);
                                                                   }
 
-                                                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsGetResponse>> postV1AccountTableSettingsGet(
-                                                                      PostV1AccountTableSettingsGetRequest request,
+                                                                  /**
+                                                                   * Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
+                                                                   */
+                                                                  public CompletableFuture<NordletApiHttpResponse<PostV1AccountDeleteResponse>> deleteTheSignedInUserAccount(
+                                                                      PostV1AccountDeleteRequest request,
                                                                       RequestOptions requestOptions) {
                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                      .addPathSegments("v1/account/table-settings/get");if (requestOptions != null) {
+                                                                      .addPathSegments("v1/account/delete");if (requestOptions != null) {
                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                         } );
@@ -3104,14 +3101,14 @@ public class AsyncRawAccountClient {
                                                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                       }
-                                                                      CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsGetResponse>> future = new CompletableFuture<>();
+                                                                      CompletableFuture<NordletApiHttpResponse<PostV1AccountDeleteResponse>> future = new CompletableFuture<>();
                                                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                         @Override
                                                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                           try (ResponseBody responseBody = response.body()) {
                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                             if (response.isSuccessful()) {
-                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountTableSettingsGetResponse.class), response));
+                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountDeleteResponse.class), response));
                                                                               return;
                                                                             }
                                                                             try {
@@ -3157,17 +3154,27 @@ public class AsyncRawAccountClient {
                                                                       return future;
                                                                     }
 
-                                                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsSetResponse>> postV1AccountTableSettingsSet(
-                                                                        PostV1AccountTableSettingsSetRequest request) {
-                                                                      return postV1AccountTableSettingsSet(request,null);
+                                                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountReferralGetResponse>> postV1AccountReferralGet(
+                                                                        ) {
+                                                                      return postV1AccountReferralGet(PostV1AccountReferralGetRequest.builder().build());
                                                                     }
 
-                                                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsSetResponse>> postV1AccountTableSettingsSet(
-                                                                        PostV1AccountTableSettingsSetRequest request,
+                                                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountReferralGetResponse>> postV1AccountReferralGet(
+                                                                        RequestOptions requestOptions) {
+                                                                      return postV1AccountReferralGet(PostV1AccountReferralGetRequest.builder().build(),requestOptions);
+                                                                    }
+
+                                                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountReferralGetResponse>> postV1AccountReferralGet(
+                                                                        PostV1AccountReferralGetRequest request) {
+                                                                      return postV1AccountReferralGet(request,null);
+                                                                    }
+
+                                                                    public CompletableFuture<NordletApiHttpResponse<PostV1AccountReferralGetResponse>> postV1AccountReferralGet(
+                                                                        PostV1AccountReferralGetRequest request,
                                                                         RequestOptions requestOptions) {
                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                        .addPathSegments("v1/account/table-settings/set");if (requestOptions != null) {
+                                                                        .addPathSegments("v1/account/referral/get");if (requestOptions != null) {
                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                           } );
@@ -3193,14 +3200,14 @@ public class AsyncRawAccountClient {
                                                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                         }
-                                                                        CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsSetResponse>> future = new CompletableFuture<>();
+                                                                        CompletableFuture<NordletApiHttpResponse<PostV1AccountReferralGetResponse>> future = new CompletableFuture<>();
                                                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                           @Override
                                                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                             try (ResponseBody responseBody = response.body()) {
                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                               if (response.isSuccessful()) {
-                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountTableSettingsSetResponse.class), response));
+                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountReferralGetResponse.class), response));
                                                                                 return;
                                                                               }
                                                                               try {
@@ -3246,27 +3253,17 @@ public class AsyncRawAccountClient {
                                                                         return future;
                                                                       }
 
-                                                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsListResponse>> postV1AccountTableSettingsList(
-                                                                          ) {
-                                                                        return postV1AccountTableSettingsList(PostV1AccountTableSettingsListRequest.builder().build());
+                                                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountReferralConvertResponse>> postV1AccountReferralConvert(
+                                                                          PostV1AccountReferralConvertRequest request) {
+                                                                        return postV1AccountReferralConvert(request,null);
                                                                       }
 
-                                                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsListResponse>> postV1AccountTableSettingsList(
-                                                                          RequestOptions requestOptions) {
-                                                                        return postV1AccountTableSettingsList(PostV1AccountTableSettingsListRequest.builder().build(),requestOptions);
-                                                                      }
-
-                                                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsListResponse>> postV1AccountTableSettingsList(
-                                                                          PostV1AccountTableSettingsListRequest request) {
-                                                                        return postV1AccountTableSettingsList(request,null);
-                                                                      }
-
-                                                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsListResponse>> postV1AccountTableSettingsList(
-                                                                          PostV1AccountTableSettingsListRequest request,
+                                                                      public CompletableFuture<NordletApiHttpResponse<PostV1AccountReferralConvertResponse>> postV1AccountReferralConvert(
+                                                                          PostV1AccountReferralConvertRequest request,
                                                                           RequestOptions requestOptions) {
                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                          .addPathSegments("v1/account/table-settings/list");if (requestOptions != null) {
+                                                                          .addPathSegments("v1/account/referral/convert");if (requestOptions != null) {
                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                             } );
@@ -3292,14 +3289,14 @@ public class AsyncRawAccountClient {
                                                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                           }
-                                                                          CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsListResponse>> future = new CompletableFuture<>();
+                                                                          CompletableFuture<NordletApiHttpResponse<PostV1AccountReferralConvertResponse>> future = new CompletableFuture<>();
                                                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                             @Override
                                                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                               try (ResponseBody responseBody = response.body()) {
                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                 if (response.isSuccessful()) {
-                                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountTableSettingsListResponse.class), response));
+                                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountReferralConvertResponse.class), response));
                                                                                   return;
                                                                                 }
                                                                                 try {
@@ -3344,4 +3341,281 @@ public class AsyncRawAccountClient {
                                                                           });
                                                                           return future;
                                                                         }
-                                                                      }
+
+                                                                        public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsGetResponse>> postV1AccountTableSettingsGet(
+                                                                            PostV1AccountTableSettingsGetRequest request) {
+                                                                          return postV1AccountTableSettingsGet(request,null);
+                                                                        }
+
+                                                                        public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsGetResponse>> postV1AccountTableSettingsGet(
+                                                                            PostV1AccountTableSettingsGetRequest request,
+                                                                            RequestOptions requestOptions) {
+                                                                          HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                            .addPathSegments("v1/account/table-settings/get");if (requestOptions != null) {
+                                                                              requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                httpUrl.addQueryParameter(_key, _value);
+                                                                              } );
+                                                                            }
+                                                                            RequestBody body;
+                                                                            try {
+                                                                              body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                            }
+                                                                            catch(JsonProcessingException e) {
+                                                                              throw new NordletApiException("Failed to serialize request", e);
+                                                                            }
+                                                                            Request okhttpRequest = new Request.Builder()
+                                                                              .url(httpUrl.build())
+                                                                              .method("POST", body)
+                                                                              .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                              .addHeader("Content-Type", "application/json")
+                                                                              .addHeader("Accept", "application/json")
+                                                                              .build();
+                                                                            OkHttpClient client = clientOptions.httpClient();
+                                                                            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                              client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                            }
+                                                                            if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                              okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                            }
+                                                                            CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsGetResponse>> future = new CompletableFuture<>();
+                                                                            client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                                              @Override
+                                                                              public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                                                try (ResponseBody responseBody = response.body()) {
+                                                                                  String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                  if (response.isSuccessful()) {
+                                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountTableSettingsGetResponse.class), response));
+                                                                                    return;
+                                                                                  }
+                                                                                  try {
+                                                                                    switch (response.code()) {
+                                                                                      case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                      return;
+                                                                                      case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                      return;
+                                                                                      case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                      return;
+                                                                                      case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                      return;
+                                                                                      case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                      return;
+                                                                                      case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                      return;
+                                                                                      case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                      return;
+                                                                                      case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                      return;
+                                                                                    }
+                                                                                  }
+                                                                                  catch (JsonProcessingException ignored) {
+                                                                                    // unable to map error response, throwing generic error
+                                                                                  }
+                                                                                  Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                  future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                                                  return;
+                                                                                }
+                                                                                catch (JsonProcessingException e) {
+                                                                                  future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                                                }
+                                                                                catch (IOException e) {
+                                                                                  future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                                }
+                                                                              }
+
+                                                                              @Override
+                                                                              public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                                                future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                              }
+                                                                            });
+                                                                            return future;
+                                                                          }
+
+                                                                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsSetResponse>> postV1AccountTableSettingsSet(
+                                                                              PostV1AccountTableSettingsSetRequest request) {
+                                                                            return postV1AccountTableSettingsSet(request,null);
+                                                                          }
+
+                                                                          public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsSetResponse>> postV1AccountTableSettingsSet(
+                                                                              PostV1AccountTableSettingsSetRequest request,
+                                                                              RequestOptions requestOptions) {
+                                                                            HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                              .addPathSegments("v1/account/table-settings/set");if (requestOptions != null) {
+                                                                                requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                  httpUrl.addQueryParameter(_key, _value);
+                                                                                } );
+                                                                              }
+                                                                              RequestBody body;
+                                                                              try {
+                                                                                body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                              }
+                                                                              catch(JsonProcessingException e) {
+                                                                                throw new NordletApiException("Failed to serialize request", e);
+                                                                              }
+                                                                              Request okhttpRequest = new Request.Builder()
+                                                                                .url(httpUrl.build())
+                                                                                .method("POST", body)
+                                                                                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                .addHeader("Content-Type", "application/json")
+                                                                                .addHeader("Accept", "application/json")
+                                                                                .build();
+                                                                              OkHttpClient client = clientOptions.httpClient();
+                                                                              if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                              }
+                                                                              if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                              }
+                                                                              CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsSetResponse>> future = new CompletableFuture<>();
+                                                                              client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                                                @Override
+                                                                                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                                                  try (ResponseBody responseBody = response.body()) {
+                                                                                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                    if (response.isSuccessful()) {
+                                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountTableSettingsSetResponse.class), response));
+                                                                                      return;
+                                                                                    }
+                                                                                    try {
+                                                                                      switch (response.code()) {
+                                                                                        case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                        return;
+                                                                                        case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                        return;
+                                                                                        case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                        return;
+                                                                                        case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                        return;
+                                                                                        case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                        return;
+                                                                                        case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                        return;
+                                                                                        case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                        return;
+                                                                                        case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                        return;
+                                                                                      }
+                                                                                    }
+                                                                                    catch (JsonProcessingException ignored) {
+                                                                                      // unable to map error response, throwing generic error
+                                                                                    }
+                                                                                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                    future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                                                    return;
+                                                                                  }
+                                                                                  catch (JsonProcessingException e) {
+                                                                                    future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                                                  }
+                                                                                  catch (IOException e) {
+                                                                                    future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                                  }
+                                                                                }
+
+                                                                                @Override
+                                                                                public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                                                  future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                                }
+                                                                              });
+                                                                              return future;
+                                                                            }
+
+                                                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsListResponse>> postV1AccountTableSettingsList(
+                                                                                ) {
+                                                                              return postV1AccountTableSettingsList(PostV1AccountTableSettingsListRequest.builder().build());
+                                                                            }
+
+                                                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsListResponse>> postV1AccountTableSettingsList(
+                                                                                RequestOptions requestOptions) {
+                                                                              return postV1AccountTableSettingsList(PostV1AccountTableSettingsListRequest.builder().build(),requestOptions);
+                                                                            }
+
+                                                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsListResponse>> postV1AccountTableSettingsList(
+                                                                                PostV1AccountTableSettingsListRequest request) {
+                                                                              return postV1AccountTableSettingsList(request,null);
+                                                                            }
+
+                                                                            public CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsListResponse>> postV1AccountTableSettingsList(
+                                                                                PostV1AccountTableSettingsListRequest request,
+                                                                                RequestOptions requestOptions) {
+                                                                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                .addPathSegments("v1/account/table-settings/list");if (requestOptions != null) {
+                                                                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                    httpUrl.addQueryParameter(_key, _value);
+                                                                                  } );
+                                                                                }
+                                                                                RequestBody body;
+                                                                                try {
+                                                                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                }
+                                                                                catch(JsonProcessingException e) {
+                                                                                  throw new NordletApiException("Failed to serialize request", e);
+                                                                                }
+                                                                                Request okhttpRequest = new Request.Builder()
+                                                                                  .url(httpUrl.build())
+                                                                                  .method("POST", body)
+                                                                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                  .addHeader("Content-Type", "application/json")
+                                                                                  .addHeader("Accept", "application/json")
+                                                                                  .build();
+                                                                                OkHttpClient client = clientOptions.httpClient();
+                                                                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                  client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                }
+                                                                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                }
+                                                                                CompletableFuture<NordletApiHttpResponse<PostV1AccountTableSettingsListResponse>> future = new CompletableFuture<>();
+                                                                                client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                                                  @Override
+                                                                                  public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                                                    try (ResponseBody responseBody = response.body()) {
+                                                                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                      if (response.isSuccessful()) {
+                                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AccountTableSettingsListResponse.class), response));
+                                                                                        return;
+                                                                                      }
+                                                                                      try {
+                                                                                        switch (response.code()) {
+                                                                                          case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                          return;
+                                                                                          case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                          return;
+                                                                                          case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                          return;
+                                                                                          case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                          return;
+                                                                                          case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                          return;
+                                                                                          case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                          return;
+                                                                                          case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                          return;
+                                                                                          case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                          return;
+                                                                                        }
+                                                                                      }
+                                                                                      catch (JsonProcessingException ignored) {
+                                                                                        // unable to map error response, throwing generic error
+                                                                                      }
+                                                                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                      future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                                                      return;
+                                                                                    }
+                                                                                    catch (JsonProcessingException e) {
+                                                                                      future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                                                    }
+                                                                                    catch (IOException e) {
+                                                                                      future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                                    }
+                                                                                  }
+
+                                                                                  @Override
+                                                                                  public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                                                    future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                                  }
+                                                                                });
+                                                                                return future;
+                                                                              }
+                                                                            }

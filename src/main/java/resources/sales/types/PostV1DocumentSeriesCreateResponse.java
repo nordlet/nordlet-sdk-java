@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.Nullable;
 import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
+import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -45,6 +46,10 @@ public final class PostV1DocumentSeriesCreateResponse {
 
   private final long nextNumber;
 
+  private final Optional<Long> allocatedFrom;
+
+  private final Optional<Long> allocatedTo;
+
   private final Optional<String> warehouseId;
 
   private final boolean printSeries;
@@ -61,9 +66,9 @@ public final class PostV1DocumentSeriesCreateResponse {
 
   private PostV1DocumentSeriesCreateResponse(String id, String documentType, String prefix,
       Optional<String> name, Optional<String> label, Optional<String> operationTypeId,
-      long numberLength, long nextNumber, Optional<String> warehouseId, boolean printSeries,
-      boolean isDefault, boolean isActive, String createdAt, String updatedAt,
-      Map<String, Object> additionalProperties) {
+      long numberLength, long nextNumber, Optional<Long> allocatedFrom, Optional<Long> allocatedTo,
+      Optional<String> warehouseId, boolean printSeries, boolean isDefault, boolean isActive,
+      String createdAt, String updatedAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.documentType = documentType;
     this.prefix = prefix;
@@ -72,6 +77,8 @@ public final class PostV1DocumentSeriesCreateResponse {
     this.operationTypeId = operationTypeId;
     this.numberLength = numberLength;
     this.nextNumber = nextNumber;
+    this.allocatedFrom = allocatedFrom;
+    this.allocatedTo = allocatedTo;
     this.warehouseId = warehouseId;
     this.printSeries = printSeries;
     this.isDefault = isDefault;
@@ -128,6 +135,22 @@ public final class PostV1DocumentSeriesCreateResponse {
   @JsonProperty("nextNumber")
   public long getNextNumber() {
     return nextNumber;
+  }
+
+  @JsonIgnore
+  public Optional<Long> getAllocatedFrom() {
+    if (allocatedFrom == null) {
+      return Optional.empty();
+    }
+    return allocatedFrom;
+  }
+
+  @JsonIgnore
+  public Optional<Long> getAllocatedTo() {
+    if (allocatedTo == null) {
+      return Optional.empty();
+    }
+    return allocatedTo;
   }
 
   @JsonIgnore
@@ -194,6 +217,24 @@ public final class PostV1DocumentSeriesCreateResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("allocatedFrom")
+  private Optional<Long> _getAllocatedFrom() {
+    return allocatedFrom;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("allocatedTo")
+  private Optional<Long> _getAllocatedTo() {
+    return allocatedTo;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("warehouseId")
   private Optional<String> _getWarehouseId() {
     return warehouseId;
@@ -211,12 +252,12 @@ public final class PostV1DocumentSeriesCreateResponse {
   }
 
   private boolean equalTo(PostV1DocumentSeriesCreateResponse other) {
-    return id.equals(other.id) && documentType.equals(other.documentType) && prefix.equals(other.prefix) && name.equals(other.name) && label.equals(other.label) && operationTypeId.equals(other.operationTypeId) && numberLength == other.numberLength && nextNumber == other.nextNumber && warehouseId.equals(other.warehouseId) && printSeries == other.printSeries && isDefault == other.isDefault && isActive == other.isActive && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && documentType.equals(other.documentType) && prefix.equals(other.prefix) && name.equals(other.name) && label.equals(other.label) && operationTypeId.equals(other.operationTypeId) && numberLength == other.numberLength && nextNumber == other.nextNumber && allocatedFrom.equals(other.allocatedFrom) && allocatedTo.equals(other.allocatedTo) && warehouseId.equals(other.warehouseId) && printSeries == other.printSeries && isDefault == other.isDefault && isActive == other.isActive && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.documentType, this.prefix, this.name, this.label, this.operationTypeId, this.numberLength, this.nextNumber, this.warehouseId, this.printSeries, this.isDefault, this.isActive, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.documentType, this.prefix, this.name, this.label, this.operationTypeId, this.numberLength, this.nextNumber, this.allocatedFrom, this.allocatedTo, this.warehouseId, this.printSeries, this.isDefault, this.isActive, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -295,6 +336,18 @@ public final class PostV1DocumentSeriesCreateResponse {
 
     _FinalStage operationTypeId(Nullable<String> operationTypeId);
 
+    _FinalStage allocatedFrom(Optional<Long> allocatedFrom);
+
+    _FinalStage allocatedFrom(Long allocatedFrom);
+
+    _FinalStage allocatedFrom(Nullable<Long> allocatedFrom);
+
+    _FinalStage allocatedTo(Optional<Long> allocatedTo);
+
+    _FinalStage allocatedTo(Long allocatedTo);
+
+    _FinalStage allocatedTo(Nullable<Long> allocatedTo);
+
     _FinalStage warehouseId(Optional<String> warehouseId);
 
     _FinalStage warehouseId(String warehouseId);
@@ -328,6 +381,10 @@ public final class PostV1DocumentSeriesCreateResponse {
 
     private Optional<String> warehouseId = Optional.empty();
 
+    private Optional<Long> allocatedTo = Optional.empty();
+
+    private Optional<Long> allocatedFrom = Optional.empty();
+
     private Optional<String> operationTypeId = Optional.empty();
 
     private Optional<String> label = Optional.empty();
@@ -350,6 +407,8 @@ public final class PostV1DocumentSeriesCreateResponse {
       operationTypeId(other.getOperationTypeId());
       numberLength(other.getNumberLength());
       nextNumber(other.getNextNumber());
+      allocatedFrom(other.getAllocatedFrom());
+      allocatedTo(other.getAllocatedTo());
       warehouseId(other.getWarehouseId());
       printSeries(other.getPrintSeries());
       isDefault(other.getIsDefault());
@@ -460,6 +519,66 @@ public final class PostV1DocumentSeriesCreateResponse {
     }
 
     @java.lang.Override
+    public _FinalStage allocatedTo(Nullable<Long> allocatedTo) {
+      if (allocatedTo.isNull()) {
+        this.allocatedTo = null;
+      }
+      else if (allocatedTo.isEmpty()) {
+        this.allocatedTo = Optional.empty();
+      }
+      else {
+        this.allocatedTo = Optional.of(allocatedTo.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage allocatedTo(Long allocatedTo) {
+      this.allocatedTo = Optional.ofNullable(allocatedTo);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "allocatedTo",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage allocatedTo(Optional<Long> allocatedTo) {
+      this.allocatedTo = allocatedTo;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage allocatedFrom(Nullable<Long> allocatedFrom) {
+      if (allocatedFrom.isNull()) {
+        this.allocatedFrom = null;
+      }
+      else if (allocatedFrom.isEmpty()) {
+        this.allocatedFrom = Optional.empty();
+      }
+      else {
+        this.allocatedFrom = Optional.of(allocatedFrom.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage allocatedFrom(Long allocatedFrom) {
+      this.allocatedFrom = Optional.ofNullable(allocatedFrom);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "allocatedFrom",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage allocatedFrom(Optional<Long> allocatedFrom) {
+      this.allocatedFrom = allocatedFrom;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage operationTypeId(Nullable<String> operationTypeId) {
       if (operationTypeId.isNull()) {
         this.operationTypeId = null;
@@ -551,7 +670,7 @@ public final class PostV1DocumentSeriesCreateResponse {
 
     @java.lang.Override
     public PostV1DocumentSeriesCreateResponse build() {
-      return new PostV1DocumentSeriesCreateResponse(id, documentType, prefix, name, label, operationTypeId, numberLength, nextNumber, warehouseId, printSeries, isDefault, isActive, createdAt, updatedAt, additionalProperties);
+      return new PostV1DocumentSeriesCreateResponse(id, documentType, prefix, name, label, operationTypeId, numberLength, nextNumber, allocatedFrom, allocatedTo, warehouseId, printSeries, isDefault, isActive, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

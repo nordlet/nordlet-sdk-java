@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsCreateRequestGrossOverridesItem;
 import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsCreateRequestLinesItem;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -34,6 +35,8 @@ public final class PostV1PayrollRunsCreateRequest {
 
   private final Optional<Boolean> includeNatura;
 
+  private final Optional<List<PostV1PayrollRunsCreateRequestGrossOverridesItem>> grossOverrides;
+
   private final Optional<List<PostV1PayrollRunsCreateRequestLinesItem>> lines;
 
   private final Optional<String> notes;
@@ -41,11 +44,13 @@ public final class PostV1PayrollRunsCreateRequest {
   private final Map<String, Object> additionalProperties;
 
   private PostV1PayrollRunsCreateRequest(long year, long month, Optional<Boolean> includeNatura,
+      Optional<List<PostV1PayrollRunsCreateRequestGrossOverridesItem>> grossOverrides,
       Optional<List<PostV1PayrollRunsCreateRequestLinesItem>> lines, Optional<String> notes,
       Map<String, Object> additionalProperties) {
     this.year = year;
     this.month = month;
     this.includeNatura = includeNatura;
+    this.grossOverrides = grossOverrides;
     this.lines = lines;
     this.notes = notes;
     this.additionalProperties = additionalProperties;
@@ -64,6 +69,11 @@ public final class PostV1PayrollRunsCreateRequest {
   @JsonProperty("includeNatura")
   public Optional<Boolean> getIncludeNatura() {
     return includeNatura;
+  }
+
+  @JsonProperty("grossOverrides")
+  public Optional<List<PostV1PayrollRunsCreateRequestGrossOverridesItem>> getGrossOverrides() {
+    return grossOverrides;
   }
 
   @JsonProperty("lines")
@@ -88,12 +98,12 @@ public final class PostV1PayrollRunsCreateRequest {
   }
 
   private boolean equalTo(PostV1PayrollRunsCreateRequest other) {
-    return year == other.year && month == other.month && includeNatura.equals(other.includeNatura) && lines.equals(other.lines) && notes.equals(other.notes);
+    return year == other.year && month == other.month && includeNatura.equals(other.includeNatura) && grossOverrides.equals(other.grossOverrides) && lines.equals(other.lines) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.year, this.month, this.includeNatura, this.lines, this.notes);
+    return Objects.hash(this.year, this.month, this.includeNatura, this.grossOverrides, this.lines, this.notes);
   }
 
   @java.lang.Override
@@ -126,6 +136,12 @@ public final class PostV1PayrollRunsCreateRequest {
 
     _FinalStage includeNatura(Boolean includeNatura);
 
+    _FinalStage grossOverrides(
+        Optional<List<PostV1PayrollRunsCreateRequestGrossOverridesItem>> grossOverrides);
+
+    _FinalStage grossOverrides(
+        List<PostV1PayrollRunsCreateRequestGrossOverridesItem> grossOverrides);
+
     _FinalStage lines(Optional<List<PostV1PayrollRunsCreateRequestLinesItem>> lines);
 
     _FinalStage lines(List<PostV1PayrollRunsCreateRequestLinesItem> lines);
@@ -147,6 +163,8 @@ public final class PostV1PayrollRunsCreateRequest {
 
     private Optional<List<PostV1PayrollRunsCreateRequestLinesItem>> lines = Optional.empty();
 
+    private Optional<List<PostV1PayrollRunsCreateRequestGrossOverridesItem>> grossOverrides = Optional.empty();
+
     private Optional<Boolean> includeNatura = Optional.empty();
 
     @JsonAnySetter
@@ -160,6 +178,7 @@ public final class PostV1PayrollRunsCreateRequest {
       year(other.getYear());
       month(other.getMonth());
       includeNatura(other.getIncludeNatura());
+      grossOverrides(other.getGrossOverrides());
       lines(other.getLines());
       notes(other.getNotes());
       return this;
@@ -212,6 +231,24 @@ public final class PostV1PayrollRunsCreateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage grossOverrides(
+        List<PostV1PayrollRunsCreateRequestGrossOverridesItem> grossOverrides) {
+      this.grossOverrides = Optional.ofNullable(grossOverrides);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "grossOverrides",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage grossOverrides(
+        Optional<List<PostV1PayrollRunsCreateRequestGrossOverridesItem>> grossOverrides) {
+      this.grossOverrides = grossOverrides;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage includeNatura(Boolean includeNatura) {
       this.includeNatura = Optional.ofNullable(includeNatura);
       return this;
@@ -229,7 +266,7 @@ public final class PostV1PayrollRunsCreateRequest {
 
     @java.lang.Override
     public PostV1PayrollRunsCreateRequest build() {
-      return new PostV1PayrollRunsCreateRequest(year, month, includeNatura, lines, notes, additionalProperties);
+      return new PostV1PayrollRunsCreateRequest(year, month, includeNatura, grossOverrides, lines, notes, additionalProperties);
     }
 
     @java.lang.Override

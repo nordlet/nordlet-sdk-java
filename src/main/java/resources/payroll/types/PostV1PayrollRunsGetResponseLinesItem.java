@@ -49,15 +49,25 @@ public final class PostV1PayrollRunsGetResponseLinesItem {
 
   private final String taxableBase;
 
-  private final String npd;
+  private final String taxAllowance;
 
-  private final String gpm;
+  private final String incomeTax;
 
-  private final String sodraEmployee;
+  private final String employeeContributions;
 
-  private final String sodraEmployer;
+  private final String employerContributions;
+
+  private final List<PostV1PayrollRunsGetResponseLinesItemComponentsItem> components;
 
   private final String net;
+
+  private final Optional<String> daysWorked;
+
+  private final Optional<String> hoursWorked;
+
+  private final Optional<String> registeredDays;
+
+  private final Optional<String> averageHourlyEarnings;
 
   private final Map<String, Object> additionalProperties;
 
@@ -65,8 +75,11 @@ public final class PostV1PayrollRunsGetResponseLinesItem {
       Optional<String> contractId, String employeeName, String gross, String natura,
       List<PostV1PayrollRunsGetResponseLinesItemAdditionsItem> additions,
       List<PostV1PayrollRunsGetResponseLinesItemDeductionsItem> deductions, String taxableBase,
-      String npd, String gpm, String sodraEmployee, String sodraEmployer, String net,
-      Map<String, Object> additionalProperties) {
+      String taxAllowance, String incomeTax, String employeeContributions,
+      String employerContributions,
+      List<PostV1PayrollRunsGetResponseLinesItemComponentsItem> components, String net,
+      Optional<String> daysWorked, Optional<String> hoursWorked, Optional<String> registeredDays,
+      Optional<String> averageHourlyEarnings, Map<String, Object> additionalProperties) {
     this.id = id;
     this.employeeId = employeeId;
     this.contractId = contractId;
@@ -76,11 +89,16 @@ public final class PostV1PayrollRunsGetResponseLinesItem {
     this.additions = additions;
     this.deductions = deductions;
     this.taxableBase = taxableBase;
-    this.npd = npd;
-    this.gpm = gpm;
-    this.sodraEmployee = sodraEmployee;
-    this.sodraEmployer = sodraEmployer;
+    this.taxAllowance = taxAllowance;
+    this.incomeTax = incomeTax;
+    this.employeeContributions = employeeContributions;
+    this.employerContributions = employerContributions;
+    this.components = components;
     this.net = net;
+    this.daysWorked = daysWorked;
+    this.hoursWorked = hoursWorked;
+    this.registeredDays = registeredDays;
+    this.averageHourlyEarnings = averageHourlyEarnings;
     this.additionalProperties = additionalProperties;
   }
 
@@ -132,29 +150,66 @@ public final class PostV1PayrollRunsGetResponseLinesItem {
     return taxableBase;
   }
 
-  @JsonProperty("npd")
-  public String getNpd() {
-    return npd;
+  @JsonProperty("taxAllowance")
+  public String getTaxAllowance() {
+    return taxAllowance;
   }
 
-  @JsonProperty("gpm")
-  public String getGpm() {
-    return gpm;
+  @JsonProperty("incomeTax")
+  public String getIncomeTax() {
+    return incomeTax;
   }
 
-  @JsonProperty("sodraEmployee")
-  public String getSodraEmployee() {
-    return sodraEmployee;
+  @JsonProperty("employeeContributions")
+  public String getEmployeeContributions() {
+    return employeeContributions;
   }
 
-  @JsonProperty("sodraEmployer")
-  public String getSodraEmployer() {
-    return sodraEmployer;
+  @JsonProperty("employerContributions")
+  public String getEmployerContributions() {
+    return employerContributions;
+  }
+
+  @JsonProperty("components")
+  public List<PostV1PayrollRunsGetResponseLinesItemComponentsItem> getComponents() {
+    return components;
   }
 
   @JsonProperty("net")
   public String getNet() {
     return net;
+  }
+
+  @JsonIgnore
+  public Optional<String> getDaysWorked() {
+    if (daysWorked == null) {
+      return Optional.empty();
+    }
+    return daysWorked;
+  }
+
+  @JsonIgnore
+  public Optional<String> getHoursWorked() {
+    if (hoursWorked == null) {
+      return Optional.empty();
+    }
+    return hoursWorked;
+  }
+
+  @JsonIgnore
+  public Optional<String> getRegisteredDays() {
+    if (registeredDays == null) {
+      return Optional.empty();
+    }
+    return registeredDays;
+  }
+
+  @JsonIgnore
+  public Optional<String> getAverageHourlyEarnings() {
+    if (averageHourlyEarnings == null) {
+      return Optional.empty();
+    }
+    return averageHourlyEarnings;
   }
 
   @JsonInclude(
@@ -164,6 +219,42 @@ public final class PostV1PayrollRunsGetResponseLinesItem {
   @JsonProperty("contractId")
   private Optional<String> _getContractId() {
     return contractId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("daysWorked")
+  private Optional<String> _getDaysWorked() {
+    return daysWorked;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("hoursWorked")
+  private Optional<String> _getHoursWorked() {
+    return hoursWorked;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("registeredDays")
+  private Optional<String> _getRegisteredDays() {
+    return registeredDays;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("averageHourlyEarnings")
+  private Optional<String> _getAverageHourlyEarnings() {
+    return averageHourlyEarnings;
   }
 
   @java.lang.Override
@@ -178,12 +269,12 @@ public final class PostV1PayrollRunsGetResponseLinesItem {
   }
 
   private boolean equalTo(PostV1PayrollRunsGetResponseLinesItem other) {
-    return id.equals(other.id) && employeeId.equals(other.employeeId) && contractId.equals(other.contractId) && employeeName.equals(other.employeeName) && gross.equals(other.gross) && natura.equals(other.natura) && additions.equals(other.additions) && deductions.equals(other.deductions) && taxableBase.equals(other.taxableBase) && npd.equals(other.npd) && gpm.equals(other.gpm) && sodraEmployee.equals(other.sodraEmployee) && sodraEmployer.equals(other.sodraEmployer) && net.equals(other.net);
+    return id.equals(other.id) && employeeId.equals(other.employeeId) && contractId.equals(other.contractId) && employeeName.equals(other.employeeName) && gross.equals(other.gross) && natura.equals(other.natura) && additions.equals(other.additions) && deductions.equals(other.deductions) && taxableBase.equals(other.taxableBase) && taxAllowance.equals(other.taxAllowance) && incomeTax.equals(other.incomeTax) && employeeContributions.equals(other.employeeContributions) && employerContributions.equals(other.employerContributions) && components.equals(other.components) && net.equals(other.net) && daysWorked.equals(other.daysWorked) && hoursWorked.equals(other.hoursWorked) && registeredDays.equals(other.registeredDays) && averageHourlyEarnings.equals(other.averageHourlyEarnings);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.employeeId, this.contractId, this.employeeName, this.gross, this.natura, this.additions, this.deductions, this.taxableBase, this.npd, this.gpm, this.sodraEmployee, this.sodraEmployer, this.net);
+    return Objects.hash(this.id, this.employeeId, this.contractId, this.employeeName, this.gross, this.natura, this.additions, this.deductions, this.taxableBase, this.taxAllowance, this.incomeTax, this.employeeContributions, this.employerContributions, this.components, this.net, this.daysWorked, this.hoursWorked, this.registeredDays, this.averageHourlyEarnings);
   }
 
   @java.lang.Override
@@ -218,23 +309,23 @@ public final class PostV1PayrollRunsGetResponseLinesItem {
   }
 
   public interface TaxableBaseStage {
-    NpdStage taxableBase(@NotNull String taxableBase);
+    TaxAllowanceStage taxableBase(@NotNull String taxableBase);
   }
 
-  public interface NpdStage {
-    GpmStage npd(@NotNull String npd);
+  public interface TaxAllowanceStage {
+    IncomeTaxStage taxAllowance(@NotNull String taxAllowance);
   }
 
-  public interface GpmStage {
-    SodraEmployeeStage gpm(@NotNull String gpm);
+  public interface IncomeTaxStage {
+    EmployeeContributionsStage incomeTax(@NotNull String incomeTax);
   }
 
-  public interface SodraEmployeeStage {
-    SodraEmployerStage sodraEmployee(@NotNull String sodraEmployee);
+  public interface EmployeeContributionsStage {
+    EmployerContributionsStage employeeContributions(@NotNull String employeeContributions);
   }
 
-  public interface SodraEmployerStage {
-    NetStage sodraEmployer(@NotNull String sodraEmployer);
+  public interface EmployerContributionsStage {
+    NetStage employerContributions(@NotNull String employerContributions);
   }
 
   public interface NetStage {
@@ -266,12 +357,43 @@ public final class PostV1PayrollRunsGetResponseLinesItem {
 
     _FinalStage addAllDeductions(
         List<PostV1PayrollRunsGetResponseLinesItemDeductionsItem> deductions);
+
+    _FinalStage components(List<PostV1PayrollRunsGetResponseLinesItemComponentsItem> components);
+
+    _FinalStage addComponents(PostV1PayrollRunsGetResponseLinesItemComponentsItem components);
+
+    _FinalStage addAllComponents(
+        List<PostV1PayrollRunsGetResponseLinesItemComponentsItem> components);
+
+    _FinalStage daysWorked(Optional<String> daysWorked);
+
+    _FinalStage daysWorked(String daysWorked);
+
+    _FinalStage daysWorked(Nullable<String> daysWorked);
+
+    _FinalStage hoursWorked(Optional<String> hoursWorked);
+
+    _FinalStage hoursWorked(String hoursWorked);
+
+    _FinalStage hoursWorked(Nullable<String> hoursWorked);
+
+    _FinalStage registeredDays(Optional<String> registeredDays);
+
+    _FinalStage registeredDays(String registeredDays);
+
+    _FinalStage registeredDays(Nullable<String> registeredDays);
+
+    _FinalStage averageHourlyEarnings(Optional<String> averageHourlyEarnings);
+
+    _FinalStage averageHourlyEarnings(String averageHourlyEarnings);
+
+    _FinalStage averageHourlyEarnings(Nullable<String> averageHourlyEarnings);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, EmployeeIdStage, EmployeeNameStage, GrossStage, NaturaStage, TaxableBaseStage, NpdStage, GpmStage, SodraEmployeeStage, SodraEmployerStage, NetStage, _FinalStage {
+  public static final class Builder implements IdStage, EmployeeIdStage, EmployeeNameStage, GrossStage, NaturaStage, TaxableBaseStage, TaxAllowanceStage, IncomeTaxStage, EmployeeContributionsStage, EmployerContributionsStage, NetStage, _FinalStage {
     private String id;
 
     private String employeeId;
@@ -284,15 +406,25 @@ public final class PostV1PayrollRunsGetResponseLinesItem {
 
     private String taxableBase;
 
-    private String npd;
+    private String taxAllowance;
 
-    private String gpm;
+    private String incomeTax;
 
-    private String sodraEmployee;
+    private String employeeContributions;
 
-    private String sodraEmployer;
+    private String employerContributions;
 
     private String net;
+
+    private Optional<String> averageHourlyEarnings = Optional.empty();
+
+    private Optional<String> registeredDays = Optional.empty();
+
+    private Optional<String> hoursWorked = Optional.empty();
+
+    private Optional<String> daysWorked = Optional.empty();
+
+    private List<PostV1PayrollRunsGetResponseLinesItemComponentsItem> components = new ArrayList<>();
 
     private List<PostV1PayrollRunsGetResponseLinesItemDeductionsItem> deductions = new ArrayList<>();
 
@@ -317,11 +449,16 @@ public final class PostV1PayrollRunsGetResponseLinesItem {
       additions(other.getAdditions());
       deductions(other.getDeductions());
       taxableBase(other.getTaxableBase());
-      npd(other.getNpd());
-      gpm(other.getGpm());
-      sodraEmployee(other.getSodraEmployee());
-      sodraEmployer(other.getSodraEmployer());
+      taxAllowance(other.getTaxAllowance());
+      incomeTax(other.getIncomeTax());
+      employeeContributions(other.getEmployeeContributions());
+      employerContributions(other.getEmployerContributions());
+      components(other.getComponents());
       net(other.getNet());
+      daysWorked(other.getDaysWorked());
+      hoursWorked(other.getHoursWorked());
+      registeredDays(other.getRegisteredDays());
+      averageHourlyEarnings(other.getAverageHourlyEarnings());
       return this;
     }
 
@@ -362,36 +499,36 @@ public final class PostV1PayrollRunsGetResponseLinesItem {
 
     @java.lang.Override
     @JsonSetter("taxableBase")
-    public NpdStage taxableBase(@NotNull String taxableBase) {
+    public TaxAllowanceStage taxableBase(@NotNull String taxableBase) {
       this.taxableBase = Objects.requireNonNull(taxableBase, "taxableBase must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("npd")
-    public GpmStage npd(@NotNull String npd) {
-      this.npd = Objects.requireNonNull(npd, "npd must not be null");
+    @JsonSetter("taxAllowance")
+    public IncomeTaxStage taxAllowance(@NotNull String taxAllowance) {
+      this.taxAllowance = Objects.requireNonNull(taxAllowance, "taxAllowance must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("gpm")
-    public SodraEmployeeStage gpm(@NotNull String gpm) {
-      this.gpm = Objects.requireNonNull(gpm, "gpm must not be null");
+    @JsonSetter("incomeTax")
+    public EmployeeContributionsStage incomeTax(@NotNull String incomeTax) {
+      this.incomeTax = Objects.requireNonNull(incomeTax, "incomeTax must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("sodraEmployee")
-    public SodraEmployerStage sodraEmployee(@NotNull String sodraEmployee) {
-      this.sodraEmployee = Objects.requireNonNull(sodraEmployee, "sodraEmployee must not be null");
+    @JsonSetter("employeeContributions")
+    public EmployerContributionsStage employeeContributions(@NotNull String employeeContributions) {
+      this.employeeContributions = Objects.requireNonNull(employeeContributions, "employeeContributions must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("sodraEmployer")
-    public NetStage sodraEmployer(@NotNull String sodraEmployer) {
-      this.sodraEmployer = Objects.requireNonNull(sodraEmployer, "sodraEmployer must not be null");
+    @JsonSetter("employerContributions")
+    public NetStage employerContributions(@NotNull String employerContributions) {
+      this.employerContributions = Objects.requireNonNull(employerContributions, "employerContributions must not be null");
       return this;
     }
 
@@ -399,6 +536,156 @@ public final class PostV1PayrollRunsGetResponseLinesItem {
     @JsonSetter("net")
     public _FinalStage net(@NotNull String net) {
       this.net = Objects.requireNonNull(net, "net must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage averageHourlyEarnings(Nullable<String> averageHourlyEarnings) {
+      if (averageHourlyEarnings.isNull()) {
+        this.averageHourlyEarnings = null;
+      }
+      else if (averageHourlyEarnings.isEmpty()) {
+        this.averageHourlyEarnings = Optional.empty();
+      }
+      else {
+        this.averageHourlyEarnings = Optional.of(averageHourlyEarnings.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage averageHourlyEarnings(String averageHourlyEarnings) {
+      this.averageHourlyEarnings = Optional.ofNullable(averageHourlyEarnings);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "averageHourlyEarnings",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage averageHourlyEarnings(Optional<String> averageHourlyEarnings) {
+      this.averageHourlyEarnings = averageHourlyEarnings;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage registeredDays(Nullable<String> registeredDays) {
+      if (registeredDays.isNull()) {
+        this.registeredDays = null;
+      }
+      else if (registeredDays.isEmpty()) {
+        this.registeredDays = Optional.empty();
+      }
+      else {
+        this.registeredDays = Optional.of(registeredDays.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage registeredDays(String registeredDays) {
+      this.registeredDays = Optional.ofNullable(registeredDays);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "registeredDays",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage registeredDays(Optional<String> registeredDays) {
+      this.registeredDays = registeredDays;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage hoursWorked(Nullable<String> hoursWorked) {
+      if (hoursWorked.isNull()) {
+        this.hoursWorked = null;
+      }
+      else if (hoursWorked.isEmpty()) {
+        this.hoursWorked = Optional.empty();
+      }
+      else {
+        this.hoursWorked = Optional.of(hoursWorked.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage hoursWorked(String hoursWorked) {
+      this.hoursWorked = Optional.ofNullable(hoursWorked);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "hoursWorked",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage hoursWorked(Optional<String> hoursWorked) {
+      this.hoursWorked = hoursWorked;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage daysWorked(Nullable<String> daysWorked) {
+      if (daysWorked.isNull()) {
+        this.daysWorked = null;
+      }
+      else if (daysWorked.isEmpty()) {
+        this.daysWorked = Optional.empty();
+      }
+      else {
+        this.daysWorked = Optional.of(daysWorked.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage daysWorked(String daysWorked) {
+      this.daysWorked = Optional.ofNullable(daysWorked);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "daysWorked",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage daysWorked(Optional<String> daysWorked) {
+      this.daysWorked = daysWorked;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addAllComponents(
+        List<PostV1PayrollRunsGetResponseLinesItemComponentsItem> components) {
+      if (components != null) {
+        this.components.addAll(components);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addComponents(
+        PostV1PayrollRunsGetResponseLinesItemComponentsItem components) {
+      this.components.add(components);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "components",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage components(
+        List<PostV1PayrollRunsGetResponseLinesItemComponentsItem> components) {
+      this.components.clear();
+      if (components != null) {
+        this.components.addAll(components);
+      }
       return this;
     }
 
@@ -493,7 +780,7 @@ public final class PostV1PayrollRunsGetResponseLinesItem {
 
     @java.lang.Override
     public PostV1PayrollRunsGetResponseLinesItem build() {
-      return new PostV1PayrollRunsGetResponseLinesItem(id, employeeId, contractId, employeeName, gross, natura, additions, deductions, taxableBase, npd, gpm, sodraEmployee, sodraEmployer, net, additionalProperties);
+      return new PostV1PayrollRunsGetResponseLinesItem(id, employeeId, contractId, employeeName, gross, natura, additions, deductions, taxableBase, taxAllowance, incomeTax, employeeContributions, employerContributions, components, net, daysWorked, hoursWorked, registeredDays, averageHourlyEarnings, additionalProperties);
     }
 
     @java.lang.Override

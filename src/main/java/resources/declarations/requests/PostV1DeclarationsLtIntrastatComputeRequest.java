@@ -16,6 +16,7 @@ import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtIntrastatComputeRequestFlow;
 import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtIntrastatComputeRequestTransportMode;
 import java.lang.Boolean;
+import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -41,6 +42,14 @@ public final class PostV1DeclarationsLtIntrastatComputeRequest {
 
   private final Optional<PostV1DeclarationsLtIntrastatComputeRequestTransportMode> transportMode;
 
+  private final Optional<String> regionCode;
+
+  private final Optional<Boolean> statisticalValueRequired;
+
+  private final Optional<Long> preparationTimeHours;
+
+  private final Optional<Long> preparationTimeMinutes;
+
   private final Optional<Boolean> persist;
 
   private final Map<String, Object> additionalProperties;
@@ -49,6 +58,8 @@ public final class PostV1DeclarationsLtIntrastatComputeRequest {
       PostV1DeclarationsLtIntrastatComputeRequestFlow flow, Optional<String> transactionNature,
       Optional<String> deliveryTerms,
       Optional<PostV1DeclarationsLtIntrastatComputeRequestTransportMode> transportMode,
+      Optional<String> regionCode, Optional<Boolean> statisticalValueRequired,
+      Optional<Long> preparationTimeHours, Optional<Long> preparationTimeMinutes,
       Optional<Boolean> persist, Map<String, Object> additionalProperties) {
     this.year = year;
     this.month = month;
@@ -56,6 +67,10 @@ public final class PostV1DeclarationsLtIntrastatComputeRequest {
     this.transactionNature = transactionNature;
     this.deliveryTerms = deliveryTerms;
     this.transportMode = transportMode;
+    this.regionCode = regionCode;
+    this.statisticalValueRequired = statisticalValueRequired;
+    this.preparationTimeHours = preparationTimeHours;
+    this.preparationTimeMinutes = preparationTimeMinutes;
     this.persist = persist;
     this.additionalProperties = additionalProperties;
   }
@@ -90,6 +105,26 @@ public final class PostV1DeclarationsLtIntrastatComputeRequest {
     return transportMode;
   }
 
+  @JsonProperty("regionCode")
+  public Optional<String> getRegionCode() {
+    return regionCode;
+  }
+
+  @JsonProperty("statisticalValueRequired")
+  public Optional<Boolean> getStatisticalValueRequired() {
+    return statisticalValueRequired;
+  }
+
+  @JsonProperty("preparationTimeHours")
+  public Optional<Long> getPreparationTimeHours() {
+    return preparationTimeHours;
+  }
+
+  @JsonProperty("preparationTimeMinutes")
+  public Optional<Long> getPreparationTimeMinutes() {
+    return preparationTimeMinutes;
+  }
+
   @JsonProperty("persist")
   public Optional<Boolean> getPersist() {
     return persist;
@@ -107,12 +142,12 @@ public final class PostV1DeclarationsLtIntrastatComputeRequest {
   }
 
   private boolean equalTo(PostV1DeclarationsLtIntrastatComputeRequest other) {
-    return year == other.year && month == other.month && flow.equals(other.flow) && transactionNature.equals(other.transactionNature) && deliveryTerms.equals(other.deliveryTerms) && transportMode.equals(other.transportMode) && persist.equals(other.persist);
+    return year == other.year && month == other.month && flow.equals(other.flow) && transactionNature.equals(other.transactionNature) && deliveryTerms.equals(other.deliveryTerms) && transportMode.equals(other.transportMode) && regionCode.equals(other.regionCode) && statisticalValueRequired.equals(other.statisticalValueRequired) && preparationTimeHours.equals(other.preparationTimeHours) && preparationTimeMinutes.equals(other.preparationTimeMinutes) && persist.equals(other.persist);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.year, this.month, this.flow, this.transactionNature, this.deliveryTerms, this.transportMode, this.persist);
+    return Objects.hash(this.year, this.month, this.flow, this.transactionNature, this.deliveryTerms, this.transportMode, this.regionCode, this.statisticalValueRequired, this.preparationTimeHours, this.preparationTimeMinutes, this.persist);
   }
 
   @java.lang.Override
@@ -159,6 +194,22 @@ public final class PostV1DeclarationsLtIntrastatComputeRequest {
     _FinalStage transportMode(
         PostV1DeclarationsLtIntrastatComputeRequestTransportMode transportMode);
 
+    _FinalStage regionCode(Optional<String> regionCode);
+
+    _FinalStage regionCode(String regionCode);
+
+    _FinalStage statisticalValueRequired(Optional<Boolean> statisticalValueRequired);
+
+    _FinalStage statisticalValueRequired(Boolean statisticalValueRequired);
+
+    _FinalStage preparationTimeHours(Optional<Long> preparationTimeHours);
+
+    _FinalStage preparationTimeHours(Long preparationTimeHours);
+
+    _FinalStage preparationTimeMinutes(Optional<Long> preparationTimeMinutes);
+
+    _FinalStage preparationTimeMinutes(Long preparationTimeMinutes);
+
     _FinalStage persist(Optional<Boolean> persist);
 
     _FinalStage persist(Boolean persist);
@@ -175,6 +226,14 @@ public final class PostV1DeclarationsLtIntrastatComputeRequest {
     private PostV1DeclarationsLtIntrastatComputeRequestFlow flow;
 
     private Optional<Boolean> persist = Optional.empty();
+
+    private Optional<Long> preparationTimeMinutes = Optional.empty();
+
+    private Optional<Long> preparationTimeHours = Optional.empty();
+
+    private Optional<Boolean> statisticalValueRequired = Optional.empty();
+
+    private Optional<String> regionCode = Optional.empty();
 
     private Optional<PostV1DeclarationsLtIntrastatComputeRequestTransportMode> transportMode = Optional.empty();
 
@@ -196,6 +255,10 @@ public final class PostV1DeclarationsLtIntrastatComputeRequest {
       transactionNature(other.getTransactionNature());
       deliveryTerms(other.getDeliveryTerms());
       transportMode(other.getTransportMode());
+      regionCode(other.getRegionCode());
+      statisticalValueRequired(other.getStatisticalValueRequired());
+      preparationTimeHours(other.getPreparationTimeHours());
+      preparationTimeMinutes(other.getPreparationTimeMinutes());
       persist(other.getPersist());
       return this;
     }
@@ -234,6 +297,70 @@ public final class PostV1DeclarationsLtIntrastatComputeRequest {
     )
     public _FinalStage persist(Optional<Boolean> persist) {
       this.persist = persist;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage preparationTimeMinutes(Long preparationTimeMinutes) {
+      this.preparationTimeMinutes = Optional.ofNullable(preparationTimeMinutes);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "preparationTimeMinutes",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage preparationTimeMinutes(Optional<Long> preparationTimeMinutes) {
+      this.preparationTimeMinutes = preparationTimeMinutes;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage preparationTimeHours(Long preparationTimeHours) {
+      this.preparationTimeHours = Optional.ofNullable(preparationTimeHours);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "preparationTimeHours",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage preparationTimeHours(Optional<Long> preparationTimeHours) {
+      this.preparationTimeHours = preparationTimeHours;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage statisticalValueRequired(Boolean statisticalValueRequired) {
+      this.statisticalValueRequired = Optional.ofNullable(statisticalValueRequired);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "statisticalValueRequired",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage statisticalValueRequired(Optional<Boolean> statisticalValueRequired) {
+      this.statisticalValueRequired = statisticalValueRequired;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage regionCode(String regionCode) {
+      this.regionCode = Optional.ofNullable(regionCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "regionCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage regionCode(Optional<String> regionCode) {
+      this.regionCode = regionCode;
       return this;
     }
 
@@ -289,7 +416,7 @@ public final class PostV1DeclarationsLtIntrastatComputeRequest {
 
     @java.lang.Override
     public PostV1DeclarationsLtIntrastatComputeRequest build() {
-      return new PostV1DeclarationsLtIntrastatComputeRequest(year, month, flow, transactionNature, deliveryTerms, transportMode, persist, additionalProperties);
+      return new PostV1DeclarationsLtIntrastatComputeRequest(year, month, flow, transactionNature, deliveryTerms, transportMode, regionCode, statisticalValueRequired, preparationTimeHours, preparationTimeMinutes, persist, additionalProperties);
     }
 
     @java.lang.Override

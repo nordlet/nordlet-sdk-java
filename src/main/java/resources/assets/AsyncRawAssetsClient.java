@@ -23,16 +23,20 @@ import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsCreateRequest;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsGetRequest;
+import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsInputVatRequest;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsListRequest;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsModernizeRequest;
+import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsUpdateRequest;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsDepreciationPostRequest;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsDepreciationPreviewRequest;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsGroupsCreateRequest;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsGroupsListRequest;
 import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsCreateResponse;
 import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsGetResponse;
+import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsInputVatResponse;
 import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsListResponse;
 import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsModernizeResponse;
+import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsUpdateResponse;
 import com.nordlet.api.resources.assets.types.PostV1AssetsDepreciationPostResponse;
 import com.nordlet.api.resources.assets.types.PostV1AssetsDepreciationPreviewResponse;
 import com.nordlet.api.resources.assets.types.PostV1AssetsGroupsCreateResponse;
@@ -335,16 +339,16 @@ public class AsyncRawAssetsClient {
           return future;
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsGetResponse>> postV1AssetsAssetsGet(
-            PostV1AssetsAssetsGetRequest request) {
-          return postV1AssetsAssetsGet(request,null);
+        public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsUpdateResponse>> postV1AssetsAssetsUpdate(
+            PostV1AssetsAssetsUpdateRequest request) {
+          return postV1AssetsAssetsUpdate(request,null);
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsGetResponse>> postV1AssetsAssetsGet(
-            PostV1AssetsAssetsGetRequest request, RequestOptions requestOptions) {
+        public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsUpdateResponse>> postV1AssetsAssetsUpdate(
+            PostV1AssetsAssetsUpdateRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-            .addPathSegments("v1/assets/assets/get");if (requestOptions != null) {
+            .addPathSegments("v1/assets/assets/update");if (requestOptions != null) {
               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                 httpUrl.addQueryParameter(_key, _value);
               } );
@@ -370,14 +374,14 @@ public class AsyncRawAssetsClient {
             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
             }
-            CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsGetResponse>> future = new CompletableFuture<>();
+            CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsUpdateResponse>> future = new CompletableFuture<>();
             client.newCall(okhttpRequest).enqueue(new Callback() {
               @Override
               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsAssetsGetResponse.class), response));
+                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsAssetsUpdateResponse.class), response));
                     return;
                   }
                   try {
@@ -423,26 +427,22 @@ public class AsyncRawAssetsClient {
             return future;
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsListResponse>> postV1AssetsAssetsList(
-              ) {
-            return postV1AssetsAssetsList(PostV1AssetsAssetsListRequest.builder().build());
+          /**
+           * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
+           */
+          public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsInputVatResponse>> postV1AssetsAssetsInputVat(
+              PostV1AssetsAssetsInputVatRequest request) {
+            return postV1AssetsAssetsInputVat(request,null);
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsListResponse>> postV1AssetsAssetsList(
-              RequestOptions requestOptions) {
-            return postV1AssetsAssetsList(PostV1AssetsAssetsListRequest.builder().build(),requestOptions);
-          }
-
-          public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsListResponse>> postV1AssetsAssetsList(
-              PostV1AssetsAssetsListRequest request) {
-            return postV1AssetsAssetsList(request,null);
-          }
-
-          public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsListResponse>> postV1AssetsAssetsList(
-              PostV1AssetsAssetsListRequest request, RequestOptions requestOptions) {
+          /**
+           * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
+           */
+          public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsInputVatResponse>> postV1AssetsAssetsInputVat(
+              PostV1AssetsAssetsInputVatRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-              .addPathSegments("v1/assets/assets/list");if (requestOptions != null) {
+              .addPathSegments("v1/assets/assets/input-vat");if (requestOptions != null) {
                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                   httpUrl.addQueryParameter(_key, _value);
                 } );
@@ -468,14 +468,14 @@ public class AsyncRawAssetsClient {
               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
               }
-              CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsListResponse>> future = new CompletableFuture<>();
+              CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsInputVatResponse>> future = new CompletableFuture<>();
               client.newCall(okhttpRequest).enqueue(new Callback() {
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                   try (ResponseBody responseBody = response.body()) {
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsAssetsListResponse.class), response));
+                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsAssetsInputVatResponse.class), response));
                       return;
                     }
                     try {
@@ -521,16 +521,16 @@ public class AsyncRawAssetsClient {
               return future;
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsModernizeResponse>> postV1AssetsAssetsModernize(
-                PostV1AssetsAssetsModernizeRequest request) {
-              return postV1AssetsAssetsModernize(request,null);
+            public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsGetResponse>> postV1AssetsAssetsGet(
+                PostV1AssetsAssetsGetRequest request) {
+              return postV1AssetsAssetsGet(request,null);
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsModernizeResponse>> postV1AssetsAssetsModernize(
-                PostV1AssetsAssetsModernizeRequest request, RequestOptions requestOptions) {
+            public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsGetResponse>> postV1AssetsAssetsGet(
+                PostV1AssetsAssetsGetRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                .addPathSegments("v1/assets/assets/modernize");if (requestOptions != null) {
+                .addPathSegments("v1/assets/assets/get");if (requestOptions != null) {
                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                     httpUrl.addQueryParameter(_key, _value);
                   } );
@@ -556,14 +556,14 @@ public class AsyncRawAssetsClient {
                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                 }
-                CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsModernizeResponse>> future = new CompletableFuture<>();
+                CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsGetResponse>> future = new CompletableFuture<>();
                 client.newCall(okhttpRequest).enqueue(new Callback() {
                   @Override
                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     try (ResponseBody responseBody = response.body()) {
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsAssetsModernizeResponse.class), response));
+                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsAssetsGetResponse.class), response));
                         return;
                       }
                       try {
@@ -609,16 +609,26 @@ public class AsyncRawAssetsClient {
                 return future;
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1AssetsDepreciationPreviewResponse>> postV1AssetsDepreciationPreview(
-                  PostV1AssetsDepreciationPreviewRequest request) {
-                return postV1AssetsDepreciationPreview(request,null);
+              public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsListResponse>> postV1AssetsAssetsList(
+                  ) {
+                return postV1AssetsAssetsList(PostV1AssetsAssetsListRequest.builder().build());
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1AssetsDepreciationPreviewResponse>> postV1AssetsDepreciationPreview(
-                  PostV1AssetsDepreciationPreviewRequest request, RequestOptions requestOptions) {
+              public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsListResponse>> postV1AssetsAssetsList(
+                  RequestOptions requestOptions) {
+                return postV1AssetsAssetsList(PostV1AssetsAssetsListRequest.builder().build(),requestOptions);
+              }
+
+              public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsListResponse>> postV1AssetsAssetsList(
+                  PostV1AssetsAssetsListRequest request) {
+                return postV1AssetsAssetsList(request,null);
+              }
+
+              public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsListResponse>> postV1AssetsAssetsList(
+                  PostV1AssetsAssetsListRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                  .addPathSegments("v1/assets/depreciation/preview");if (requestOptions != null) {
+                  .addPathSegments("v1/assets/assets/list");if (requestOptions != null) {
                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                       httpUrl.addQueryParameter(_key, _value);
                     } );
@@ -644,14 +654,14 @@ public class AsyncRawAssetsClient {
                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                   }
-                  CompletableFuture<NordletApiHttpResponse<PostV1AssetsDepreciationPreviewResponse>> future = new CompletableFuture<>();
+                  CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsListResponse>> future = new CompletableFuture<>();
                   client.newCall(okhttpRequest).enqueue(new Callback() {
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                       try (ResponseBody responseBody = response.body()) {
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsDepreciationPreviewResponse.class), response));
+                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsAssetsListResponse.class), response));
                           return;
                         }
                         try {
@@ -697,16 +707,16 @@ public class AsyncRawAssetsClient {
                   return future;
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1AssetsDepreciationPostResponse>> postV1AssetsDepreciationPost(
-                    PostV1AssetsDepreciationPostRequest request) {
-                  return postV1AssetsDepreciationPost(request,null);
+                public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsModernizeResponse>> postV1AssetsAssetsModernize(
+                    PostV1AssetsAssetsModernizeRequest request) {
+                  return postV1AssetsAssetsModernize(request,null);
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1AssetsDepreciationPostResponse>> postV1AssetsDepreciationPost(
-                    PostV1AssetsDepreciationPostRequest request, RequestOptions requestOptions) {
+                public CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsModernizeResponse>> postV1AssetsAssetsModernize(
+                    PostV1AssetsAssetsModernizeRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                    .addPathSegments("v1/assets/depreciation/post");if (requestOptions != null) {
+                    .addPathSegments("v1/assets/assets/modernize");if (requestOptions != null) {
                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                         httpUrl.addQueryParameter(_key, _value);
                       } );
@@ -732,14 +742,14 @@ public class AsyncRawAssetsClient {
                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                     }
-                    CompletableFuture<NordletApiHttpResponse<PostV1AssetsDepreciationPostResponse>> future = new CompletableFuture<>();
+                    CompletableFuture<NordletApiHttpResponse<PostV1AssetsAssetsModernizeResponse>> future = new CompletableFuture<>();
                     client.newCall(okhttpRequest).enqueue(new Callback() {
                       @Override
                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         try (ResponseBody responseBody = response.body()) {
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsDepreciationPostResponse.class), response));
+                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsAssetsModernizeResponse.class), response));
                             return;
                           }
                           try {
@@ -784,4 +794,182 @@ public class AsyncRawAssetsClient {
                     });
                     return future;
                   }
-                }
+
+                  public CompletableFuture<NordletApiHttpResponse<PostV1AssetsDepreciationPreviewResponse>> postV1AssetsDepreciationPreview(
+                      PostV1AssetsDepreciationPreviewRequest request) {
+                    return postV1AssetsDepreciationPreview(request,null);
+                  }
+
+                  public CompletableFuture<NordletApiHttpResponse<PostV1AssetsDepreciationPreviewResponse>> postV1AssetsDepreciationPreview(
+                      PostV1AssetsDepreciationPreviewRequest request,
+                      RequestOptions requestOptions) {
+                    HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                      .addPathSegments("v1/assets/depreciation/preview");if (requestOptions != null) {
+                        requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                          httpUrl.addQueryParameter(_key, _value);
+                        } );
+                      }
+                      RequestBody body;
+                      try {
+                        body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                      }
+                      catch(JsonProcessingException e) {
+                        throw new NordletApiException("Failed to serialize request", e);
+                      }
+                      Request okhttpRequest = new Request.Builder()
+                        .url(httpUrl.build())
+                        .method("POST", body)
+                        .headers(Headers.of(clientOptions.headers(requestOptions)))
+                        .addHeader("Content-Type", "application/json")
+                        .addHeader("Accept", "application/json")
+                        .build();
+                      OkHttpClient client = clientOptions.httpClient();
+                      if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                        client = clientOptions.httpClientWithTimeout(requestOptions);
+                      }
+                      if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                        okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                      }
+                      CompletableFuture<NordletApiHttpResponse<PostV1AssetsDepreciationPreviewResponse>> future = new CompletableFuture<>();
+                      client.newCall(okhttpRequest).enqueue(new Callback() {
+                        @Override
+                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                          try (ResponseBody responseBody = response.body()) {
+                            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                            if (response.isSuccessful()) {
+                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsDepreciationPreviewResponse.class), response));
+                              return;
+                            }
+                            try {
+                              switch (response.code()) {
+                                case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                return;
+                                case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                return;
+                                case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                return;
+                                case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                return;
+                                case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                return;
+                                case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                return;
+                                case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                return;
+                                case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                return;
+                              }
+                            }
+                            catch (JsonProcessingException ignored) {
+                              // unable to map error response, throwing generic error
+                            }
+                            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                            future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                            return;
+                          }
+                          catch (JsonProcessingException e) {
+                            future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                          }
+                          catch (IOException e) {
+                            future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                          }
+                        }
+
+                        @Override
+                        public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                          future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                        }
+                      });
+                      return future;
+                    }
+
+                    public CompletableFuture<NordletApiHttpResponse<PostV1AssetsDepreciationPostResponse>> postV1AssetsDepreciationPost(
+                        PostV1AssetsDepreciationPostRequest request) {
+                      return postV1AssetsDepreciationPost(request,null);
+                    }
+
+                    public CompletableFuture<NordletApiHttpResponse<PostV1AssetsDepreciationPostResponse>> postV1AssetsDepreciationPost(
+                        PostV1AssetsDepreciationPostRequest request,
+                        RequestOptions requestOptions) {
+                      HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                        .addPathSegments("v1/assets/depreciation/post");if (requestOptions != null) {
+                          requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                            httpUrl.addQueryParameter(_key, _value);
+                          } );
+                        }
+                        RequestBody body;
+                        try {
+                          body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                        }
+                        catch(JsonProcessingException e) {
+                          throw new NordletApiException("Failed to serialize request", e);
+                        }
+                        Request okhttpRequest = new Request.Builder()
+                          .url(httpUrl.build())
+                          .method("POST", body)
+                          .headers(Headers.of(clientOptions.headers(requestOptions)))
+                          .addHeader("Content-Type", "application/json")
+                          .addHeader("Accept", "application/json")
+                          .build();
+                        OkHttpClient client = clientOptions.httpClient();
+                        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                          client = clientOptions.httpClientWithTimeout(requestOptions);
+                        }
+                        if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                          okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                        }
+                        CompletableFuture<NordletApiHttpResponse<PostV1AssetsDepreciationPostResponse>> future = new CompletableFuture<>();
+                        client.newCall(okhttpRequest).enqueue(new Callback() {
+                          @Override
+                          public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                            try (ResponseBody responseBody = response.body()) {
+                              String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                              if (response.isSuccessful()) {
+                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsDepreciationPostResponse.class), response));
+                                return;
+                              }
+                              try {
+                                switch (response.code()) {
+                                  case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                  return;
+                                  case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                  return;
+                                  case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                  return;
+                                  case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                  return;
+                                  case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                  return;
+                                  case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                  return;
+                                  case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                  return;
+                                  case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                  return;
+                                }
+                              }
+                              catch (JsonProcessingException ignored) {
+                                // unable to map error response, throwing generic error
+                              }
+                              Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                              future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                              return;
+                            }
+                            catch (JsonProcessingException e) {
+                              future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                            }
+                            catch (IOException e) {
+                              future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                            }
+                          }
+
+                          @Override
+                          public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                            future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                          }
+                        });
+                        return future;
+                      }
+                    }

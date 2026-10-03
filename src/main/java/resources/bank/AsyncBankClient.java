@@ -34,6 +34,7 @@ import com.nordlet.api.resources.bank.requests.PostV1BankMatchRulesDeleteRequest
 import com.nordlet.api.resources.bank.requests.PostV1BankMatchRulesListRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankMatchRulesUpdateRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankPaymentsExportRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsCommissionRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsGetRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsImportRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsLinkRequest;
@@ -75,6 +76,7 @@ import com.nordlet.api.resources.bank.types.PostV1BankMatchRulesDeleteResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankMatchRulesListResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankMatchRulesUpdateResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankPaymentsExportResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankSettlementsCommissionResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankSettlementsGetResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankSettlementsImportResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankSettlementsLinkResponse;
@@ -449,6 +451,22 @@ public class AsyncBankClient {
   public CompletableFuture<PostV1BankSettlementsMatchResponse> postV1BankSettlementsMatch(
       PostV1BankSettlementsMatchRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1BankSettlementsMatch(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
+   */
+  public CompletableFuture<PostV1BankSettlementsCommissionResponse> setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(
+      PostV1BankSettlementsCommissionRequest request) {
+    return this.rawClient.setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
+   */
+  public CompletableFuture<PostV1BankSettlementsCommissionResponse> setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(
+      PostV1BankSettlementsCommissionRequest request, RequestOptions requestOptions) {
+    return this.rawClient.setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**

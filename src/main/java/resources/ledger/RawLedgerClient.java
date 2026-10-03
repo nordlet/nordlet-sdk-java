@@ -24,6 +24,7 @@ import com.nordlet.api.errors.UnprocessableEntityError;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsApplyTemplateRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsCreateRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsListRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsSwitchChartRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsUpdateRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsCreateRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsDeleteRequest;
@@ -44,9 +45,17 @@ import com.nordlet.api.resources.ledger.requests.PostV1LedgerPeriodsLockRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerPeriodsUnlockRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerPostingRulesListRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerPostingRulesUpdateRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1LedgerStatementRowsListRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1LedgerStatementRowsSchemesRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1LedgerStatementRowsSetRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1OfficersCreateRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1OfficersDeleteRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1OfficersListRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1OfficersUpdateRequest;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsApplyTemplateResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsCreateResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsListResponse;
+import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsSwitchChartResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsUpdateResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsCreateResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsDeleteResponse;
@@ -67,6 +76,13 @@ import com.nordlet.api.resources.ledger.types.PostV1LedgerPeriodsLockResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerPeriodsUnlockResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerPostingRulesListResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerPostingRulesUpdateResponse;
+import com.nordlet.api.resources.ledger.types.PostV1LedgerStatementRowsListResponse;
+import com.nordlet.api.resources.ledger.types.PostV1LedgerStatementRowsSchemesResponse;
+import com.nordlet.api.resources.ledger.types.PostV1LedgerStatementRowsSetResponse;
+import com.nordlet.api.resources.ledger.types.PostV1OfficersCreateResponse;
+import com.nordlet.api.resources.ledger.types.PostV1OfficersDeleteResponse;
+import com.nordlet.api.resources.ledger.types.PostV1OfficersListResponse;
+import com.nordlet.api.resources.ledger.types.PostV1OfficersUpdateResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -373,25 +389,38 @@ public class RawLedgerClient {
             }
           }
 
-          public NordletApiHttpResponse<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList() {
-            return postV1LedgerPeriodsList(PostV1LedgerPeriodsListRequest.builder().build());
+          /**
+           * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+           */
+          public NordletApiHttpResponse<PostV1LedgerAccountsSwitchChartResponse> moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
+              ) {
+            return moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(PostV1LedgerAccountsSwitchChartRequest.builder().build());
           }
 
-          public NordletApiHttpResponse<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList(
+          /**
+           * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+           */
+          public NordletApiHttpResponse<PostV1LedgerAccountsSwitchChartResponse> moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
               RequestOptions requestOptions) {
-            return postV1LedgerPeriodsList(PostV1LedgerPeriodsListRequest.builder().build(),requestOptions);
+            return moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(PostV1LedgerAccountsSwitchChartRequest.builder().build(),requestOptions);
           }
 
-          public NordletApiHttpResponse<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList(
-              PostV1LedgerPeriodsListRequest request) {
-            return postV1LedgerPeriodsList(request,null);
+          /**
+           * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+           */
+          public NordletApiHttpResponse<PostV1LedgerAccountsSwitchChartResponse> moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
+              PostV1LedgerAccountsSwitchChartRequest request) {
+            return moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(request,null);
           }
 
-          public NordletApiHttpResponse<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList(
-              PostV1LedgerPeriodsListRequest request, RequestOptions requestOptions) {
+          /**
+           * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+           */
+          public NordletApiHttpResponse<PostV1LedgerAccountsSwitchChartResponse> moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
+              PostV1LedgerAccountsSwitchChartRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-              .addPathSegments("v1/ledger/periods/list");if (requestOptions != null) {
+              .addPathSegments("v1/ledger/accounts/switch-chart");if (requestOptions != null) {
                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                   httpUrl.addQueryParameter(_key, _value);
                 } );
@@ -421,7 +450,7 @@ public class RawLedgerClient {
                 ResponseBody responseBody = response.body();
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerPeriodsListResponse.class), response);
+                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerAccountsSwitchChartResponse.class), response);
                 }
                 try {
                   switch (response.code()) {
@@ -449,16 +478,26 @@ public class RawLedgerClient {
               }
             }
 
-            public NordletApiHttpResponse<PostV1LedgerPeriodsLockResponse> postV1LedgerPeriodsLock(
-                PostV1LedgerPeriodsLockRequest request) {
-              return postV1LedgerPeriodsLock(request,null);
+            public NordletApiHttpResponse<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList(
+                ) {
+              return postV1LedgerPeriodsList(PostV1LedgerPeriodsListRequest.builder().build());
             }
 
-            public NordletApiHttpResponse<PostV1LedgerPeriodsLockResponse> postV1LedgerPeriodsLock(
-                PostV1LedgerPeriodsLockRequest request, RequestOptions requestOptions) {
+            public NordletApiHttpResponse<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList(
+                RequestOptions requestOptions) {
+              return postV1LedgerPeriodsList(PostV1LedgerPeriodsListRequest.builder().build(),requestOptions);
+            }
+
+            public NordletApiHttpResponse<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList(
+                PostV1LedgerPeriodsListRequest request) {
+              return postV1LedgerPeriodsList(request,null);
+            }
+
+            public NordletApiHttpResponse<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList(
+                PostV1LedgerPeriodsListRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                .addPathSegments("v1/ledger/periods/lock");if (requestOptions != null) {
+                .addPathSegments("v1/ledger/periods/list");if (requestOptions != null) {
                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                     httpUrl.addQueryParameter(_key, _value);
                   } );
@@ -488,7 +527,7 @@ public class RawLedgerClient {
                   ResponseBody responseBody = response.body();
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerPeriodsLockResponse.class), response);
+                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerPeriodsListResponse.class), response);
                   }
                   try {
                     switch (response.code()) {
@@ -516,16 +555,16 @@ public class RawLedgerClient {
                 }
               }
 
-              public NordletApiHttpResponse<PostV1LedgerPeriodsUnlockResponse> postV1LedgerPeriodsUnlock(
-                  PostV1LedgerPeriodsUnlockRequest request) {
-                return postV1LedgerPeriodsUnlock(request,null);
+              public NordletApiHttpResponse<PostV1LedgerPeriodsLockResponse> postV1LedgerPeriodsLock(
+                  PostV1LedgerPeriodsLockRequest request) {
+                return postV1LedgerPeriodsLock(request,null);
               }
 
-              public NordletApiHttpResponse<PostV1LedgerPeriodsUnlockResponse> postV1LedgerPeriodsUnlock(
-                  PostV1LedgerPeriodsUnlockRequest request, RequestOptions requestOptions) {
+              public NordletApiHttpResponse<PostV1LedgerPeriodsLockResponse> postV1LedgerPeriodsLock(
+                  PostV1LedgerPeriodsLockRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                  .addPathSegments("v1/ledger/periods/unlock");if (requestOptions != null) {
+                  .addPathSegments("v1/ledger/periods/lock");if (requestOptions != null) {
                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                       httpUrl.addQueryParameter(_key, _value);
                     } );
@@ -555,7 +594,7 @@ public class RawLedgerClient {
                     ResponseBody responseBody = response.body();
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerPeriodsUnlockResponse.class), response);
+                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerPeriodsLockResponse.class), response);
                     }
                     try {
                       switch (response.code()) {
@@ -583,27 +622,16 @@ public class RawLedgerClient {
                   }
                 }
 
-                public NordletApiHttpResponse<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
-                    ) {
-                  return postV1LedgerJournalTransactionsList(PostV1LedgerJournalTransactionsListRequest.builder().build());
+                public NordletApiHttpResponse<PostV1LedgerPeriodsUnlockResponse> postV1LedgerPeriodsUnlock(
+                    PostV1LedgerPeriodsUnlockRequest request) {
+                  return postV1LedgerPeriodsUnlock(request,null);
                 }
 
-                public NordletApiHttpResponse<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
-                    RequestOptions requestOptions) {
-                  return postV1LedgerJournalTransactionsList(PostV1LedgerJournalTransactionsListRequest.builder().build(),requestOptions);
-                }
-
-                public NordletApiHttpResponse<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
-                    PostV1LedgerJournalTransactionsListRequest request) {
-                  return postV1LedgerJournalTransactionsList(request,null);
-                }
-
-                public NordletApiHttpResponse<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
-                    PostV1LedgerJournalTransactionsListRequest request,
-                    RequestOptions requestOptions) {
+                public NordletApiHttpResponse<PostV1LedgerPeriodsUnlockResponse> postV1LedgerPeriodsUnlock(
+                    PostV1LedgerPeriodsUnlockRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                    .addPathSegments("v1/ledger/journal/transactions/list");if (requestOptions != null) {
+                    .addPathSegments("v1/ledger/periods/unlock");if (requestOptions != null) {
                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                         httpUrl.addQueryParameter(_key, _value);
                       } );
@@ -633,7 +661,7 @@ public class RawLedgerClient {
                       ResponseBody responseBody = response.body();
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerJournalTransactionsListResponse.class), response);
+                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerPeriodsUnlockResponse.class), response);
                       }
                       try {
                         switch (response.code()) {
@@ -661,16 +689,27 @@ public class RawLedgerClient {
                     }
                   }
 
-                  public NordletApiHttpResponse<PostV1LedgerCostCentersCreateResponse> postV1LedgerCostCentersCreate(
-                      PostV1LedgerCostCentersCreateRequest request) {
-                    return postV1LedgerCostCentersCreate(request,null);
+                  public NordletApiHttpResponse<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
+                      ) {
+                    return postV1LedgerJournalTransactionsList(PostV1LedgerJournalTransactionsListRequest.builder().build());
                   }
 
-                  public NordletApiHttpResponse<PostV1LedgerCostCentersCreateResponse> postV1LedgerCostCentersCreate(
-                      PostV1LedgerCostCentersCreateRequest request, RequestOptions requestOptions) {
+                  public NordletApiHttpResponse<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
+                      RequestOptions requestOptions) {
+                    return postV1LedgerJournalTransactionsList(PostV1LedgerJournalTransactionsListRequest.builder().build(),requestOptions);
+                  }
+
+                  public NordletApiHttpResponse<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
+                      PostV1LedgerJournalTransactionsListRequest request) {
+                    return postV1LedgerJournalTransactionsList(request,null);
+                  }
+
+                  public NordletApiHttpResponse<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
+                      PostV1LedgerJournalTransactionsListRequest request,
+                      RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                      .addPathSegments("v1/ledger/cost-centers/create");if (requestOptions != null) {
+                      .addPathSegments("v1/ledger/journal/transactions/list");if (requestOptions != null) {
                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                           httpUrl.addQueryParameter(_key, _value);
                         } );
@@ -700,7 +739,7 @@ public class RawLedgerClient {
                         ResponseBody responseBody = response.body();
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCentersCreateResponse.class), response);
+                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerJournalTransactionsListResponse.class), response);
                         }
                         try {
                           switch (response.code()) {
@@ -728,17 +767,17 @@ public class RawLedgerClient {
                       }
                     }
 
-                    public NordletApiHttpResponse<PostV1LedgerCostCentersUpdateResponse> postV1LedgerCostCentersUpdate(
-                        PostV1LedgerCostCentersUpdateRequest request) {
-                      return postV1LedgerCostCentersUpdate(request,null);
+                    public NordletApiHttpResponse<PostV1LedgerCostCentersCreateResponse> postV1LedgerCostCentersCreate(
+                        PostV1LedgerCostCentersCreateRequest request) {
+                      return postV1LedgerCostCentersCreate(request,null);
                     }
 
-                    public NordletApiHttpResponse<PostV1LedgerCostCentersUpdateResponse> postV1LedgerCostCentersUpdate(
-                        PostV1LedgerCostCentersUpdateRequest request,
+                    public NordletApiHttpResponse<PostV1LedgerCostCentersCreateResponse> postV1LedgerCostCentersCreate(
+                        PostV1LedgerCostCentersCreateRequest request,
                         RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                        .addPathSegments("v1/ledger/cost-centers/update");if (requestOptions != null) {
+                        .addPathSegments("v1/ledger/cost-centers/create");if (requestOptions != null) {
                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                             httpUrl.addQueryParameter(_key, _value);
                           } );
@@ -768,7 +807,7 @@ public class RawLedgerClient {
                           ResponseBody responseBody = response.body();
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCentersUpdateResponse.class), response);
+                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCentersCreateResponse.class), response);
                           }
                           try {
                             switch (response.code()) {
@@ -796,27 +835,17 @@ public class RawLedgerClient {
                         }
                       }
 
-                      public NordletApiHttpResponse<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList(
-                          ) {
-                        return postV1LedgerCostCentersList(PostV1LedgerCostCentersListRequest.builder().build());
+                      public NordletApiHttpResponse<PostV1LedgerCostCentersUpdateResponse> postV1LedgerCostCentersUpdate(
+                          PostV1LedgerCostCentersUpdateRequest request) {
+                        return postV1LedgerCostCentersUpdate(request,null);
                       }
 
-                      public NordletApiHttpResponse<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList(
-                          RequestOptions requestOptions) {
-                        return postV1LedgerCostCentersList(PostV1LedgerCostCentersListRequest.builder().build(),requestOptions);
-                      }
-
-                      public NordletApiHttpResponse<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList(
-                          PostV1LedgerCostCentersListRequest request) {
-                        return postV1LedgerCostCentersList(request,null);
-                      }
-
-                      public NordletApiHttpResponse<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList(
-                          PostV1LedgerCostCentersListRequest request,
+                      public NordletApiHttpResponse<PostV1LedgerCostCentersUpdateResponse> postV1LedgerCostCentersUpdate(
+                          PostV1LedgerCostCentersUpdateRequest request,
                           RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                          .addPathSegments("v1/ledger/cost-centers/list");if (requestOptions != null) {
+                          .addPathSegments("v1/ledger/cost-centers/update");if (requestOptions != null) {
                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                               httpUrl.addQueryParameter(_key, _value);
                             } );
@@ -846,7 +875,7 @@ public class RawLedgerClient {
                             ResponseBody responseBody = response.body();
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCentersListResponse.class), response);
+                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCentersUpdateResponse.class), response);
                             }
                             try {
                               switch (response.code()) {
@@ -874,17 +903,27 @@ public class RawLedgerClient {
                           }
                         }
 
-                        public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsCreateResponse> postV1LedgerCostCenterGroupsCreate(
-                            PostV1LedgerCostCenterGroupsCreateRequest request) {
-                          return postV1LedgerCostCenterGroupsCreate(request,null);
+                        public NordletApiHttpResponse<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList(
+                            ) {
+                          return postV1LedgerCostCentersList(PostV1LedgerCostCentersListRequest.builder().build());
                         }
 
-                        public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsCreateResponse> postV1LedgerCostCenterGroupsCreate(
-                            PostV1LedgerCostCenterGroupsCreateRequest request,
+                        public NordletApiHttpResponse<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList(
+                            RequestOptions requestOptions) {
+                          return postV1LedgerCostCentersList(PostV1LedgerCostCentersListRequest.builder().build(),requestOptions);
+                        }
+
+                        public NordletApiHttpResponse<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList(
+                            PostV1LedgerCostCentersListRequest request) {
+                          return postV1LedgerCostCentersList(request,null);
+                        }
+
+                        public NordletApiHttpResponse<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList(
+                            PostV1LedgerCostCentersListRequest request,
                             RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                            .addPathSegments("v1/ledger/cost-center-groups/create");if (requestOptions != null) {
+                            .addPathSegments("v1/ledger/cost-centers/list");if (requestOptions != null) {
                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                 httpUrl.addQueryParameter(_key, _value);
                               } );
@@ -914,7 +953,7 @@ public class RawLedgerClient {
                               ResponseBody responseBody = response.body();
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCenterGroupsCreateResponse.class), response);
+                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCentersListResponse.class), response);
                               }
                               try {
                                 switch (response.code()) {
@@ -942,17 +981,17 @@ public class RawLedgerClient {
                             }
                           }
 
-                          public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsUpdateResponse> postV1LedgerCostCenterGroupsUpdate(
-                              PostV1LedgerCostCenterGroupsUpdateRequest request) {
-                            return postV1LedgerCostCenterGroupsUpdate(request,null);
+                          public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsCreateResponse> postV1LedgerCostCenterGroupsCreate(
+                              PostV1LedgerCostCenterGroupsCreateRequest request) {
+                            return postV1LedgerCostCenterGroupsCreate(request,null);
                           }
 
-                          public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsUpdateResponse> postV1LedgerCostCenterGroupsUpdate(
-                              PostV1LedgerCostCenterGroupsUpdateRequest request,
+                          public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsCreateResponse> postV1LedgerCostCenterGroupsCreate(
+                              PostV1LedgerCostCenterGroupsCreateRequest request,
                               RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                              .addPathSegments("v1/ledger/cost-center-groups/update");if (requestOptions != null) {
+                              .addPathSegments("v1/ledger/cost-center-groups/create");if (requestOptions != null) {
                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                   httpUrl.addQueryParameter(_key, _value);
                                 } );
@@ -982,7 +1021,7 @@ public class RawLedgerClient {
                                 ResponseBody responseBody = response.body();
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCenterGroupsUpdateResponse.class), response);
+                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCenterGroupsCreateResponse.class), response);
                                 }
                                 try {
                                   switch (response.code()) {
@@ -1010,17 +1049,17 @@ public class RawLedgerClient {
                               }
                             }
 
-                            public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsDeleteResponse> postV1LedgerCostCenterGroupsDelete(
-                                PostV1LedgerCostCenterGroupsDeleteRequest request) {
-                              return postV1LedgerCostCenterGroupsDelete(request,null);
+                            public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsUpdateResponse> postV1LedgerCostCenterGroupsUpdate(
+                                PostV1LedgerCostCenterGroupsUpdateRequest request) {
+                              return postV1LedgerCostCenterGroupsUpdate(request,null);
                             }
 
-                            public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsDeleteResponse> postV1LedgerCostCenterGroupsDelete(
-                                PostV1LedgerCostCenterGroupsDeleteRequest request,
+                            public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsUpdateResponse> postV1LedgerCostCenterGroupsUpdate(
+                                PostV1LedgerCostCenterGroupsUpdateRequest request,
                                 RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                .addPathSegments("v1/ledger/cost-center-groups/delete");if (requestOptions != null) {
+                                .addPathSegments("v1/ledger/cost-center-groups/update");if (requestOptions != null) {
                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                     httpUrl.addQueryParameter(_key, _value);
                                   } );
@@ -1050,7 +1089,7 @@ public class RawLedgerClient {
                                   ResponseBody responseBody = response.body();
                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                   if (response.isSuccessful()) {
-                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCenterGroupsDeleteResponse.class), response);
+                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCenterGroupsUpdateResponse.class), response);
                                   }
                                   try {
                                     switch (response.code()) {
@@ -1078,27 +1117,17 @@ public class RawLedgerClient {
                                 }
                               }
 
-                              public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
-                                  ) {
-                                return postV1LedgerCostCenterGroupsList(PostV1LedgerCostCenterGroupsListRequest.builder().build());
+                              public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsDeleteResponse> postV1LedgerCostCenterGroupsDelete(
+                                  PostV1LedgerCostCenterGroupsDeleteRequest request) {
+                                return postV1LedgerCostCenterGroupsDelete(request,null);
                               }
 
-                              public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
-                                  RequestOptions requestOptions) {
-                                return postV1LedgerCostCenterGroupsList(PostV1LedgerCostCenterGroupsListRequest.builder().build(),requestOptions);
-                              }
-
-                              public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
-                                  PostV1LedgerCostCenterGroupsListRequest request) {
-                                return postV1LedgerCostCenterGroupsList(request,null);
-                              }
-
-                              public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
-                                  PostV1LedgerCostCenterGroupsListRequest request,
+                              public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsDeleteResponse> postV1LedgerCostCenterGroupsDelete(
+                                  PostV1LedgerCostCenterGroupsDeleteRequest request,
                                   RequestOptions requestOptions) {
                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                  .addPathSegments("v1/ledger/cost-center-groups/list");if (requestOptions != null) {
+                                  .addPathSegments("v1/ledger/cost-center-groups/delete");if (requestOptions != null) {
                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                       httpUrl.addQueryParameter(_key, _value);
                                     } );
@@ -1128,7 +1157,7 @@ public class RawLedgerClient {
                                     ResponseBody responseBody = response.body();
                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                     if (response.isSuccessful()) {
-                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCenterGroupsListResponse.class), response);
+                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCenterGroupsDeleteResponse.class), response);
                                     }
                                     try {
                                       switch (response.code()) {
@@ -1156,27 +1185,27 @@ public class RawLedgerClient {
                                   }
                                 }
 
-                                public NordletApiHttpResponse<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList(
+                                public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
                                     ) {
-                                  return postV1LedgerPostingRulesList(PostV1LedgerPostingRulesListRequest.builder().build());
+                                  return postV1LedgerCostCenterGroupsList(PostV1LedgerCostCenterGroupsListRequest.builder().build());
                                 }
 
-                                public NordletApiHttpResponse<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList(
+                                public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
                                     RequestOptions requestOptions) {
-                                  return postV1LedgerPostingRulesList(PostV1LedgerPostingRulesListRequest.builder().build(),requestOptions);
+                                  return postV1LedgerCostCenterGroupsList(PostV1LedgerCostCenterGroupsListRequest.builder().build(),requestOptions);
                                 }
 
-                                public NordletApiHttpResponse<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList(
-                                    PostV1LedgerPostingRulesListRequest request) {
-                                  return postV1LedgerPostingRulesList(request,null);
+                                public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
+                                    PostV1LedgerCostCenterGroupsListRequest request) {
+                                  return postV1LedgerCostCenterGroupsList(request,null);
                                 }
 
-                                public NordletApiHttpResponse<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList(
-                                    PostV1LedgerPostingRulesListRequest request,
+                                public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
+                                    PostV1LedgerCostCenterGroupsListRequest request,
                                     RequestOptions requestOptions) {
                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                    .addPathSegments("v1/ledger/posting-rules/list");if (requestOptions != null) {
+                                    .addPathSegments("v1/ledger/cost-center-groups/list");if (requestOptions != null) {
                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                         httpUrl.addQueryParameter(_key, _value);
                                       } );
@@ -1206,7 +1235,7 @@ public class RawLedgerClient {
                                       ResponseBody responseBody = response.body();
                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                       if (response.isSuccessful()) {
-                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerPostingRulesListResponse.class), response);
+                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCenterGroupsListResponse.class), response);
                                       }
                                       try {
                                         switch (response.code()) {
@@ -1234,17 +1263,27 @@ public class RawLedgerClient {
                                     }
                                   }
 
-                                  public NordletApiHttpResponse<PostV1LedgerPostingRulesUpdateResponse> postV1LedgerPostingRulesUpdate(
-                                      PostV1LedgerPostingRulesUpdateRequest request) {
-                                    return postV1LedgerPostingRulesUpdate(request,null);
+                                  public NordletApiHttpResponse<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList(
+                                      ) {
+                                    return postV1LedgerPostingRulesList(PostV1LedgerPostingRulesListRequest.builder().build());
                                   }
 
-                                  public NordletApiHttpResponse<PostV1LedgerPostingRulesUpdateResponse> postV1LedgerPostingRulesUpdate(
-                                      PostV1LedgerPostingRulesUpdateRequest request,
+                                  public NordletApiHttpResponse<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList(
+                                      RequestOptions requestOptions) {
+                                    return postV1LedgerPostingRulesList(PostV1LedgerPostingRulesListRequest.builder().build(),requestOptions);
+                                  }
+
+                                  public NordletApiHttpResponse<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList(
+                                      PostV1LedgerPostingRulesListRequest request) {
+                                    return postV1LedgerPostingRulesList(request,null);
+                                  }
+
+                                  public NordletApiHttpResponse<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList(
+                                      PostV1LedgerPostingRulesListRequest request,
                                       RequestOptions requestOptions) {
                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                      .addPathSegments("v1/ledger/posting-rules/update");if (requestOptions != null) {
+                                      .addPathSegments("v1/ledger/posting-rules/list");if (requestOptions != null) {
                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                           httpUrl.addQueryParameter(_key, _value);
                                         } );
@@ -1274,7 +1313,7 @@ public class RawLedgerClient {
                                         ResponseBody responseBody = response.body();
                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                         if (response.isSuccessful()) {
-                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerPostingRulesUpdateResponse.class), response);
+                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerPostingRulesListResponse.class), response);
                                         }
                                         try {
                                           switch (response.code()) {
@@ -1302,17 +1341,17 @@ public class RawLedgerClient {
                                       }
                                     }
 
-                                    public NordletApiHttpResponse<PostV1LedgerOwnersCreateResponse> postV1LedgerOwnersCreate(
-                                        PostV1LedgerOwnersCreateRequest request) {
-                                      return postV1LedgerOwnersCreate(request,null);
+                                    public NordletApiHttpResponse<PostV1LedgerPostingRulesUpdateResponse> postV1LedgerPostingRulesUpdate(
+                                        PostV1LedgerPostingRulesUpdateRequest request) {
+                                      return postV1LedgerPostingRulesUpdate(request,null);
                                     }
 
-                                    public NordletApiHttpResponse<PostV1LedgerOwnersCreateResponse> postV1LedgerOwnersCreate(
-                                        PostV1LedgerOwnersCreateRequest request,
+                                    public NordletApiHttpResponse<PostV1LedgerPostingRulesUpdateResponse> postV1LedgerPostingRulesUpdate(
+                                        PostV1LedgerPostingRulesUpdateRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                        .addPathSegments("v1/ledger/owners/create");if (requestOptions != null) {
+                                        .addPathSegments("v1/ledger/posting-rules/update");if (requestOptions != null) {
                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                             httpUrl.addQueryParameter(_key, _value);
                                           } );
@@ -1342,7 +1381,7 @@ public class RawLedgerClient {
                                           ResponseBody responseBody = response.body();
                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                           if (response.isSuccessful()) {
-                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerOwnersCreateResponse.class), response);
+                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerPostingRulesUpdateResponse.class), response);
                                           }
                                           try {
                                             switch (response.code()) {
@@ -1370,17 +1409,17 @@ public class RawLedgerClient {
                                         }
                                       }
 
-                                      public NordletApiHttpResponse<PostV1LedgerOwnersUpdateResponse> postV1LedgerOwnersUpdate(
-                                          PostV1LedgerOwnersUpdateRequest request) {
-                                        return postV1LedgerOwnersUpdate(request,null);
+                                      public NordletApiHttpResponse<PostV1LedgerOwnersCreateResponse> postV1LedgerOwnersCreate(
+                                          PostV1LedgerOwnersCreateRequest request) {
+                                        return postV1LedgerOwnersCreate(request,null);
                                       }
 
-                                      public NordletApiHttpResponse<PostV1LedgerOwnersUpdateResponse> postV1LedgerOwnersUpdate(
-                                          PostV1LedgerOwnersUpdateRequest request,
+                                      public NordletApiHttpResponse<PostV1LedgerOwnersCreateResponse> postV1LedgerOwnersCreate(
+                                          PostV1LedgerOwnersCreateRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                          .addPathSegments("v1/ledger/owners/update");if (requestOptions != null) {
+                                          .addPathSegments("v1/ledger/owners/create");if (requestOptions != null) {
                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                               httpUrl.addQueryParameter(_key, _value);
                                             } );
@@ -1410,7 +1449,7 @@ public class RawLedgerClient {
                                             ResponseBody responseBody = response.body();
                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                             if (response.isSuccessful()) {
-                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerOwnersUpdateResponse.class), response);
+                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerOwnersCreateResponse.class), response);
                                             }
                                             try {
                                               switch (response.code()) {
@@ -1438,17 +1477,17 @@ public class RawLedgerClient {
                                           }
                                         }
 
-                                        public NordletApiHttpResponse<PostV1LedgerOwnersDeleteResponse> postV1LedgerOwnersDelete(
-                                            PostV1LedgerOwnersDeleteRequest request) {
-                                          return postV1LedgerOwnersDelete(request,null);
+                                        public NordletApiHttpResponse<PostV1LedgerOwnersUpdateResponse> postV1LedgerOwnersUpdate(
+                                            PostV1LedgerOwnersUpdateRequest request) {
+                                          return postV1LedgerOwnersUpdate(request,null);
                                         }
 
-                                        public NordletApiHttpResponse<PostV1LedgerOwnersDeleteResponse> postV1LedgerOwnersDelete(
-                                            PostV1LedgerOwnersDeleteRequest request,
+                                        public NordletApiHttpResponse<PostV1LedgerOwnersUpdateResponse> postV1LedgerOwnersUpdate(
+                                            PostV1LedgerOwnersUpdateRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                            .addPathSegments("v1/ledger/owners/delete");if (requestOptions != null) {
+                                            .addPathSegments("v1/ledger/owners/update");if (requestOptions != null) {
                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                 httpUrl.addQueryParameter(_key, _value);
                                               } );
@@ -1478,7 +1517,7 @@ public class RawLedgerClient {
                                               ResponseBody responseBody = response.body();
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerOwnersDeleteResponse.class), response);
+                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerOwnersUpdateResponse.class), response);
                                               }
                                               try {
                                                 switch (response.code()) {
@@ -1506,27 +1545,17 @@ public class RawLedgerClient {
                                             }
                                           }
 
-                                          public NordletApiHttpResponse<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList(
-                                              ) {
-                                            return postV1LedgerOwnersList(PostV1LedgerOwnersListRequest.builder().build());
+                                          public NordletApiHttpResponse<PostV1LedgerOwnersDeleteResponse> postV1LedgerOwnersDelete(
+                                              PostV1LedgerOwnersDeleteRequest request) {
+                                            return postV1LedgerOwnersDelete(request,null);
                                           }
 
-                                          public NordletApiHttpResponse<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList(
-                                              RequestOptions requestOptions) {
-                                            return postV1LedgerOwnersList(PostV1LedgerOwnersListRequest.builder().build(),requestOptions);
-                                          }
-
-                                          public NordletApiHttpResponse<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList(
-                                              PostV1LedgerOwnersListRequest request) {
-                                            return postV1LedgerOwnersList(request,null);
-                                          }
-
-                                          public NordletApiHttpResponse<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList(
-                                              PostV1LedgerOwnersListRequest request,
+                                          public NordletApiHttpResponse<PostV1LedgerOwnersDeleteResponse> postV1LedgerOwnersDelete(
+                                              PostV1LedgerOwnersDeleteRequest request,
                                               RequestOptions requestOptions) {
                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                              .addPathSegments("v1/ledger/owners/list");if (requestOptions != null) {
+                                              .addPathSegments("v1/ledger/owners/delete");if (requestOptions != null) {
                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                   httpUrl.addQueryParameter(_key, _value);
                                                 } );
@@ -1556,7 +1585,7 @@ public class RawLedgerClient {
                                                 ResponseBody responseBody = response.body();
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerOwnersListResponse.class), response);
+                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerOwnersDeleteResponse.class), response);
                                                 }
                                                 try {
                                                   switch (response.code()) {
@@ -1584,17 +1613,27 @@ public class RawLedgerClient {
                                               }
                                             }
 
-                                            public NordletApiHttpResponse<PostV1LedgerJournalTransactionsGetResponse> postV1LedgerJournalTransactionsGet(
-                                                PostV1LedgerJournalTransactionsGetRequest request) {
-                                              return postV1LedgerJournalTransactionsGet(request,null);
+                                            public NordletApiHttpResponse<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList(
+                                                ) {
+                                              return postV1LedgerOwnersList(PostV1LedgerOwnersListRequest.builder().build());
                                             }
 
-                                            public NordletApiHttpResponse<PostV1LedgerJournalTransactionsGetResponse> postV1LedgerJournalTransactionsGet(
-                                                PostV1LedgerJournalTransactionsGetRequest request,
+                                            public NordletApiHttpResponse<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList(
+                                                RequestOptions requestOptions) {
+                                              return postV1LedgerOwnersList(PostV1LedgerOwnersListRequest.builder().build(),requestOptions);
+                                            }
+
+                                            public NordletApiHttpResponse<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList(
+                                                PostV1LedgerOwnersListRequest request) {
+                                              return postV1LedgerOwnersList(request,null);
+                                            }
+
+                                            public NordletApiHttpResponse<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList(
+                                                PostV1LedgerOwnersListRequest request,
                                                 RequestOptions requestOptions) {
                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                .addPathSegments("v1/ledger/journal/transactions/get");if (requestOptions != null) {
+                                                .addPathSegments("v1/ledger/owners/list");if (requestOptions != null) {
                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                     httpUrl.addQueryParameter(_key, _value);
                                                   } );
@@ -1624,7 +1663,7 @@ public class RawLedgerClient {
                                                   ResponseBody responseBody = response.body();
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerJournalTransactionsGetResponse.class), response);
+                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerOwnersListResponse.class), response);
                                                   }
                                                   try {
                                                     switch (response.code()) {
@@ -1652,17 +1691,17 @@ public class RawLedgerClient {
                                                 }
                                               }
 
-                                              public NordletApiHttpResponse<PostV1LedgerJournalTransactionsCreateResponse> postV1LedgerJournalTransactionsCreate(
-                                                  PostV1LedgerJournalTransactionsCreateRequest request) {
-                                                return postV1LedgerJournalTransactionsCreate(request,null);
+                                              public NordletApiHttpResponse<PostV1LedgerJournalTransactionsGetResponse> postV1LedgerJournalTransactionsGet(
+                                                  PostV1LedgerJournalTransactionsGetRequest request) {
+                                                return postV1LedgerJournalTransactionsGet(request,null);
                                               }
 
-                                              public NordletApiHttpResponse<PostV1LedgerJournalTransactionsCreateResponse> postV1LedgerJournalTransactionsCreate(
-                                                  PostV1LedgerJournalTransactionsCreateRequest request,
+                                              public NordletApiHttpResponse<PostV1LedgerJournalTransactionsGetResponse> postV1LedgerJournalTransactionsGet(
+                                                  PostV1LedgerJournalTransactionsGetRequest request,
                                                   RequestOptions requestOptions) {
                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                  .addPathSegments("v1/ledger/journal/transactions/create");if (requestOptions != null) {
+                                                  .addPathSegments("v1/ledger/journal/transactions/get");if (requestOptions != null) {
                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                       httpUrl.addQueryParameter(_key, _value);
                                                     } );
@@ -1692,7 +1731,7 @@ public class RawLedgerClient {
                                                     ResponseBody responseBody = response.body();
                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                     if (response.isSuccessful()) {
-                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerJournalTransactionsCreateResponse.class), response);
+                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerJournalTransactionsGetResponse.class), response);
                                                     }
                                                     try {
                                                       switch (response.code()) {
@@ -1719,4 +1758,598 @@ public class RawLedgerClient {
                                                     throw new NordletApiException("Network error executing HTTP request", e);
                                                   }
                                                 }
-                                              }
+
+                                                public NordletApiHttpResponse<PostV1LedgerJournalTransactionsCreateResponse> postV1LedgerJournalTransactionsCreate(
+                                                    PostV1LedgerJournalTransactionsCreateRequest request) {
+                                                  return postV1LedgerJournalTransactionsCreate(request,null);
+                                                }
+
+                                                public NordletApiHttpResponse<PostV1LedgerJournalTransactionsCreateResponse> postV1LedgerJournalTransactionsCreate(
+                                                    PostV1LedgerJournalTransactionsCreateRequest request,
+                                                    RequestOptions requestOptions) {
+                                                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                    .addPathSegments("v1/ledger/journal/transactions/create");if (requestOptions != null) {
+                                                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                        httpUrl.addQueryParameter(_key, _value);
+                                                      } );
+                                                    }
+                                                    RequestBody body;
+                                                    try {
+                                                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                    }
+                                                    catch(JsonProcessingException e) {
+                                                      throw new NordletApiException("Failed to serialize request", e);
+                                                    }
+                                                    Request okhttpRequest = new Request.Builder()
+                                                      .url(httpUrl.build())
+                                                      .method("POST", body)
+                                                      .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                      .addHeader("Content-Type", "application/json")
+                                                      .addHeader("Accept", "application/json")
+                                                      .build();
+                                                    OkHttpClient client = clientOptions.httpClient();
+                                                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                      client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                    }
+                                                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                    }
+                                                    try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                      ResponseBody responseBody = response.body();
+                                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                      if (response.isSuccessful()) {
+                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerJournalTransactionsCreateResponse.class), response);
+                                                      }
+                                                      try {
+                                                        switch (response.code()) {
+                                                          case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                        }
+                                                      }
+                                                      catch (JsonProcessingException ignored) {
+                                                        // unable to map error response, throwing generic error
+                                                      }
+                                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                      throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                    }
+                                                    catch (JsonProcessingException e) {
+                                                      throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                    }
+                                                    catch (IOException e) {
+                                                      throw new NordletApiException("Network error executing HTTP request", e);
+                                                    }
+                                                  }
+
+                                                  /**
+                                                   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+                                                   */
+                                                  public NordletApiHttpResponse<PostV1LedgerStatementRowsSchemesResponse> nationalStatementLayoutsAvailableToTheCompany(
+                                                      ) {
+                                                    return nationalStatementLayoutsAvailableToTheCompany(PostV1LedgerStatementRowsSchemesRequest.builder().build());
+                                                  }
+
+                                                  /**
+                                                   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+                                                   */
+                                                  public NordletApiHttpResponse<PostV1LedgerStatementRowsSchemesResponse> nationalStatementLayoutsAvailableToTheCompany(
+                                                      RequestOptions requestOptions) {
+                                                    return nationalStatementLayoutsAvailableToTheCompany(PostV1LedgerStatementRowsSchemesRequest.builder().build(),requestOptions);
+                                                  }
+
+                                                  /**
+                                                   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+                                                   */
+                                                  public NordletApiHttpResponse<PostV1LedgerStatementRowsSchemesResponse> nationalStatementLayoutsAvailableToTheCompany(
+                                                      PostV1LedgerStatementRowsSchemesRequest request) {
+                                                    return nationalStatementLayoutsAvailableToTheCompany(request,null);
+                                                  }
+
+                                                  /**
+                                                   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+                                                   */
+                                                  public NordletApiHttpResponse<PostV1LedgerStatementRowsSchemesResponse> nationalStatementLayoutsAvailableToTheCompany(
+                                                      PostV1LedgerStatementRowsSchemesRequest request,
+                                                      RequestOptions requestOptions) {
+                                                    HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                      .addPathSegments("v1/ledger/statement-rows/schemes");if (requestOptions != null) {
+                                                        requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                          httpUrl.addQueryParameter(_key, _value);
+                                                        } );
+                                                      }
+                                                      RequestBody body;
+                                                      try {
+                                                        body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                      }
+                                                      catch(JsonProcessingException e) {
+                                                        throw new NordletApiException("Failed to serialize request", e);
+                                                      }
+                                                      Request okhttpRequest = new Request.Builder()
+                                                        .url(httpUrl.build())
+                                                        .method("POST", body)
+                                                        .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                        .addHeader("Content-Type", "application/json")
+                                                        .addHeader("Accept", "application/json")
+                                                        .build();
+                                                      OkHttpClient client = clientOptions.httpClient();
+                                                      if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                        client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                      }
+                                                      if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                        okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                      }
+                                                      try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                        ResponseBody responseBody = response.body();
+                                                        String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                        if (response.isSuccessful()) {
+                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerStatementRowsSchemesResponse.class), response);
+                                                        }
+                                                        try {
+                                                          switch (response.code()) {
+                                                            case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                            case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                            case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                            case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                            case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                            case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                            case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                            case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          }
+                                                        }
+                                                        catch (JsonProcessingException ignored) {
+                                                          // unable to map error response, throwing generic error
+                                                        }
+                                                        Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                        throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                      }
+                                                      catch (JsonProcessingException e) {
+                                                        throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                      }
+                                                      catch (IOException e) {
+                                                        throw new NordletApiException("Network error executing HTTP request", e);
+                                                      }
+                                                    }
+
+                                                    public NordletApiHttpResponse<PostV1LedgerStatementRowsListResponse> accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(
+                                                        PostV1LedgerStatementRowsListRequest request) {
+                                                      return accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(request,null);
+                                                    }
+
+                                                    public NordletApiHttpResponse<PostV1LedgerStatementRowsListResponse> accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(
+                                                        PostV1LedgerStatementRowsListRequest request,
+                                                        RequestOptions requestOptions) {
+                                                      HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                        .addPathSegments("v1/ledger/statement-rows/list");if (requestOptions != null) {
+                                                          requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                            httpUrl.addQueryParameter(_key, _value);
+                                                          } );
+                                                        }
+                                                        RequestBody body;
+                                                        try {
+                                                          body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                        }
+                                                        catch(JsonProcessingException e) {
+                                                          throw new NordletApiException("Failed to serialize request", e);
+                                                        }
+                                                        Request okhttpRequest = new Request.Builder()
+                                                          .url(httpUrl.build())
+                                                          .method("POST", body)
+                                                          .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                          .addHeader("Content-Type", "application/json")
+                                                          .addHeader("Accept", "application/json")
+                                                          .build();
+                                                        OkHttpClient client = clientOptions.httpClient();
+                                                        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                          client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                        }
+                                                        if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                          okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                        }
+                                                        try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                          ResponseBody responseBody = response.body();
+                                                          String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                          if (response.isSuccessful()) {
+                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerStatementRowsListResponse.class), response);
+                                                          }
+                                                          try {
+                                                            switch (response.code()) {
+                                                              case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                              case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                              case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                              case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                              case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                              case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                              case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                              case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                            }
+                                                          }
+                                                          catch (JsonProcessingException ignored) {
+                                                            // unable to map error response, throwing generic error
+                                                          }
+                                                          Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                          throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                        }
+                                                        catch (JsonProcessingException e) {
+                                                          throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                        }
+                                                        catch (IOException e) {
+                                                          throw new NordletApiException("Network error executing HTTP request", e);
+                                                        }
+                                                      }
+
+                                                      /**
+                                                       * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+                                                       */
+                                                      public NordletApiHttpResponse<PostV1LedgerStatementRowsSetResponse> mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(
+                                                          PostV1LedgerStatementRowsSetRequest request) {
+                                                        return mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(request,null);
+                                                      }
+
+                                                      /**
+                                                       * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+                                                       */
+                                                      public NordletApiHttpResponse<PostV1LedgerStatementRowsSetResponse> mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(
+                                                          PostV1LedgerStatementRowsSetRequest request,
+                                                          RequestOptions requestOptions) {
+                                                        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                          .addPathSegments("v1/ledger/statement-rows/set");if (requestOptions != null) {
+                                                            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                              httpUrl.addQueryParameter(_key, _value);
+                                                            } );
+                                                          }
+                                                          RequestBody body;
+                                                          try {
+                                                            body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                          }
+                                                          catch(JsonProcessingException e) {
+                                                            throw new NordletApiException("Failed to serialize request", e);
+                                                          }
+                                                          Request okhttpRequest = new Request.Builder()
+                                                            .url(httpUrl.build())
+                                                            .method("POST", body)
+                                                            .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                            .addHeader("Content-Type", "application/json")
+                                                            .addHeader("Accept", "application/json")
+                                                            .build();
+                                                          OkHttpClient client = clientOptions.httpClient();
+                                                          if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                            client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                          }
+                                                          if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                            okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                          }
+                                                          try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                            ResponseBody responseBody = response.body();
+                                                            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                            if (response.isSuccessful()) {
+                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerStatementRowsSetResponse.class), response);
+                                                            }
+                                                            try {
+                                                              switch (response.code()) {
+                                                                case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                              }
+                                                            }
+                                                            catch (JsonProcessingException ignored) {
+                                                              // unable to map error response, throwing generic error
+                                                            }
+                                                            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                            throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                          }
+                                                          catch (JsonProcessingException e) {
+                                                            throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                          }
+                                                          catch (IOException e) {
+                                                            throw new NordletApiException("Network error executing HTTP request", e);
+                                                          }
+                                                        }
+
+                                                        /**
+                                                         * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
+                                                         */
+                                                        public NordletApiHttpResponse<PostV1OfficersListResponse> officersOfTheCompany(
+                                                            ) {
+                                                          return officersOfTheCompany(PostV1OfficersListRequest.builder().build());
+                                                        }
+
+                                                        /**
+                                                         * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
+                                                         */
+                                                        public NordletApiHttpResponse<PostV1OfficersListResponse> officersOfTheCompany(
+                                                            RequestOptions requestOptions) {
+                                                          return officersOfTheCompany(PostV1OfficersListRequest.builder().build(),requestOptions);
+                                                        }
+
+                                                        /**
+                                                         * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
+                                                         */
+                                                        public NordletApiHttpResponse<PostV1OfficersListResponse> officersOfTheCompany(
+                                                            PostV1OfficersListRequest request) {
+                                                          return officersOfTheCompany(request,null);
+                                                        }
+
+                                                        /**
+                                                         * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
+                                                         */
+                                                        public NordletApiHttpResponse<PostV1OfficersListResponse> officersOfTheCompany(
+                                                            PostV1OfficersListRequest request,
+                                                            RequestOptions requestOptions) {
+                                                          HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                            .addPathSegments("v1/officers/list");if (requestOptions != null) {
+                                                              requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                httpUrl.addQueryParameter(_key, _value);
+                                                              } );
+                                                            }
+                                                            RequestBody body;
+                                                            try {
+                                                              body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                            }
+                                                            catch(JsonProcessingException e) {
+                                                              throw new NordletApiException("Failed to serialize request", e);
+                                                            }
+                                                            Request okhttpRequest = new Request.Builder()
+                                                              .url(httpUrl.build())
+                                                              .method("POST", body)
+                                                              .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                              .addHeader("Content-Type", "application/json")
+                                                              .addHeader("Accept", "application/json")
+                                                              .build();
+                                                            OkHttpClient client = clientOptions.httpClient();
+                                                            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                              client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                            }
+                                                            if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                              okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                            }
+                                                            try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                              ResponseBody responseBody = response.body();
+                                                              String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                              if (response.isSuccessful()) {
+                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1OfficersListResponse.class), response);
+                                                              }
+                                                              try {
+                                                                switch (response.code()) {
+                                                                  case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                }
+                                                              }
+                                                              catch (JsonProcessingException ignored) {
+                                                                // unable to map error response, throwing generic error
+                                                              }
+                                                              Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                              throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                            }
+                                                            catch (JsonProcessingException e) {
+                                                              throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                            }
+                                                            catch (IOException e) {
+                                                              throw new NordletApiException("Network error executing HTTP request", e);
+                                                            }
+                                                          }
+
+                                                          public NordletApiHttpResponse<PostV1OfficersCreateResponse> recordAnOfficerOfTheCompany(
+                                                              PostV1OfficersCreateRequest request) {
+                                                            return recordAnOfficerOfTheCompany(request,null);
+                                                          }
+
+                                                          public NordletApiHttpResponse<PostV1OfficersCreateResponse> recordAnOfficerOfTheCompany(
+                                                              PostV1OfficersCreateRequest request,
+                                                              RequestOptions requestOptions) {
+                                                            HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                              .addPathSegments("v1/officers/create");if (requestOptions != null) {
+                                                                requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                  httpUrl.addQueryParameter(_key, _value);
+                                                                } );
+                                                              }
+                                                              RequestBody body;
+                                                              try {
+                                                                body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                              }
+                                                              catch(JsonProcessingException e) {
+                                                                throw new NordletApiException("Failed to serialize request", e);
+                                                              }
+                                                              Request okhttpRequest = new Request.Builder()
+                                                                .url(httpUrl.build())
+                                                                .method("POST", body)
+                                                                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                .addHeader("Content-Type", "application/json")
+                                                                .addHeader("Accept", "application/json")
+                                                                .build();
+                                                              OkHttpClient client = clientOptions.httpClient();
+                                                              if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                              }
+                                                              if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                              }
+                                                              try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                ResponseBody responseBody = response.body();
+                                                                String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                if (response.isSuccessful()) {
+                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1OfficersCreateResponse.class), response);
+                                                                }
+                                                                try {
+                                                                  switch (response.code()) {
+                                                                    case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  }
+                                                                }
+                                                                catch (JsonProcessingException ignored) {
+                                                                  // unable to map error response, throwing generic error
+                                                                }
+                                                                Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                              }
+                                                              catch (JsonProcessingException e) {
+                                                                throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                              }
+                                                              catch (IOException e) {
+                                                                throw new NordletApiException("Network error executing HTTP request", e);
+                                                              }
+                                                            }
+
+                                                            public NordletApiHttpResponse<PostV1OfficersUpdateResponse> changeARecordedOfficer(
+                                                                PostV1OfficersUpdateRequest request) {
+                                                              return changeARecordedOfficer(request,null);
+                                                            }
+
+                                                            public NordletApiHttpResponse<PostV1OfficersUpdateResponse> changeARecordedOfficer(
+                                                                PostV1OfficersUpdateRequest request,
+                                                                RequestOptions requestOptions) {
+                                                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                .addPathSegments("v1/officers/update");if (requestOptions != null) {
+                                                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                    httpUrl.addQueryParameter(_key, _value);
+                                                                  } );
+                                                                }
+                                                                RequestBody body;
+                                                                try {
+                                                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                }
+                                                                catch(JsonProcessingException e) {
+                                                                  throw new NordletApiException("Failed to serialize request", e);
+                                                                }
+                                                                Request okhttpRequest = new Request.Builder()
+                                                                  .url(httpUrl.build())
+                                                                  .method("POST", body)
+                                                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                  .addHeader("Content-Type", "application/json")
+                                                                  .addHeader("Accept", "application/json")
+                                                                  .build();
+                                                                OkHttpClient client = clientOptions.httpClient();
+                                                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                  client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                }
+                                                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                }
+                                                                try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                  ResponseBody responseBody = response.body();
+                                                                  String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                  if (response.isSuccessful()) {
+                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1OfficersUpdateResponse.class), response);
+                                                                  }
+                                                                  try {
+                                                                    switch (response.code()) {
+                                                                      case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    }
+                                                                  }
+                                                                  catch (JsonProcessingException ignored) {
+                                                                    // unable to map error response, throwing generic error
+                                                                  }
+                                                                  Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                  throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                }
+                                                                catch (JsonProcessingException e) {
+                                                                  throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                }
+                                                                catch (IOException e) {
+                                                                  throw new NordletApiException("Network error executing HTTP request", e);
+                                                                }
+                                                              }
+
+                                                              public NordletApiHttpResponse<PostV1OfficersDeleteResponse> removeARecordedOfficer(
+                                                                  PostV1OfficersDeleteRequest request) {
+                                                                return removeARecordedOfficer(request,null);
+                                                              }
+
+                                                              public NordletApiHttpResponse<PostV1OfficersDeleteResponse> removeARecordedOfficer(
+                                                                  PostV1OfficersDeleteRequest request,
+                                                                  RequestOptions requestOptions) {
+                                                                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                  .addPathSegments("v1/officers/delete");if (requestOptions != null) {
+                                                                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                      httpUrl.addQueryParameter(_key, _value);
+                                                                    } );
+                                                                  }
+                                                                  RequestBody body;
+                                                                  try {
+                                                                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                  }
+                                                                  catch(JsonProcessingException e) {
+                                                                    throw new NordletApiException("Failed to serialize request", e);
+                                                                  }
+                                                                  Request okhttpRequest = new Request.Builder()
+                                                                    .url(httpUrl.build())
+                                                                    .method("POST", body)
+                                                                    .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                    .addHeader("Content-Type", "application/json")
+                                                                    .addHeader("Accept", "application/json")
+                                                                    .build();
+                                                                  OkHttpClient client = clientOptions.httpClient();
+                                                                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                    client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                  }
+                                                                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                  }
+                                                                  try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                    ResponseBody responseBody = response.body();
+                                                                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                    if (response.isSuccessful()) {
+                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1OfficersDeleteResponse.class), response);
+                                                                    }
+                                                                    try {
+                                                                      switch (response.code()) {
+                                                                        case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      }
+                                                                    }
+                                                                    catch (JsonProcessingException ignored) {
+                                                                      // unable to map error response, throwing generic error
+                                                                    }
+                                                                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                    throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                  }
+                                                                  catch (JsonProcessingException e) {
+                                                                    throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                  }
+                                                                  catch (IOException e) {
+                                                                    throw new NordletApiException("Network error executing HTTP request", e);
+                                                                  }
+                                                                }
+                                                              }

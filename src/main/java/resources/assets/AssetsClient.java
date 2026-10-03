@@ -8,16 +8,20 @@ import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsCreateRequest;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsGetRequest;
+import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsInputVatRequest;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsListRequest;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsModernizeRequest;
+import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsUpdateRequest;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsDepreciationPostRequest;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsDepreciationPreviewRequest;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsGroupsCreateRequest;
 import com.nordlet.api.resources.assets.requests.PostV1AssetsGroupsListRequest;
 import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsCreateResponse;
 import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsGetResponse;
+import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsInputVatResponse;
 import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsListResponse;
 import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsModernizeResponse;
+import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsUpdateResponse;
 import com.nordlet.api.resources.assets.types.PostV1AssetsDepreciationPostResponse;
 import com.nordlet.api.resources.assets.types.PostV1AssetsDepreciationPreviewResponse;
 import com.nordlet.api.resources.assets.types.PostV1AssetsGroupsCreateResponse;
@@ -76,6 +80,32 @@ public class AssetsClient {
   public PostV1AssetsAssetsCreateResponse postV1AssetsAssetsCreate(
       PostV1AssetsAssetsCreateRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1AssetsAssetsCreate(request, requestOptions).body();
+  }
+
+  public PostV1AssetsAssetsUpdateResponse postV1AssetsAssetsUpdate(
+      PostV1AssetsAssetsUpdateRequest request) {
+    return this.rawClient.postV1AssetsAssetsUpdate(request).body();
+  }
+
+  public PostV1AssetsAssetsUpdateResponse postV1AssetsAssetsUpdate(
+      PostV1AssetsAssetsUpdateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AssetsAssetsUpdate(request, requestOptions).body();
+  }
+
+  /**
+   * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
+   */
+  public PostV1AssetsAssetsInputVatResponse postV1AssetsAssetsInputVat(
+      PostV1AssetsAssetsInputVatRequest request) {
+    return this.rawClient.postV1AssetsAssetsInputVat(request).body();
+  }
+
+  /**
+   * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
+   */
+  public PostV1AssetsAssetsInputVatResponse postV1AssetsAssetsInputVat(
+      PostV1AssetsAssetsInputVatRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1AssetsAssetsInputVat(request, requestOptions).body();
   }
 
   public PostV1AssetsAssetsGetResponse postV1AssetsAssetsGet(PostV1AssetsAssetsGetRequest request) {

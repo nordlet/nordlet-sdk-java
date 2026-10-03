@@ -10,11 +10,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
@@ -30,13 +32,12 @@ public final class PostV1ReferenceCountriesListResponseRowsItem {
 
   private final boolean isEea;
 
-  private final PostV1ReferenceCountriesListResponseRowsItemNames names;
+  private final Map<String, String> names;
 
   private final Map<String, Object> additionalProperties;
 
   private PostV1ReferenceCountriesListResponseRowsItem(String code, boolean isEu, boolean isEea,
-      PostV1ReferenceCountriesListResponseRowsItemNames names,
-      Map<String, Object> additionalProperties) {
+      Map<String, String> names, Map<String, Object> additionalProperties) {
     this.code = code;
     this.isEu = isEu;
     this.isEea = isEea;
@@ -60,7 +61,7 @@ public final class PostV1ReferenceCountriesListResponseRowsItem {
   }
 
   @JsonProperty("names")
-  public PostV1ReferenceCountriesListResponseRowsItemNames getNames() {
+  public Map<String, String> getNames() {
     return names;
   }
 
@@ -104,11 +105,7 @@ public final class PostV1ReferenceCountriesListResponseRowsItem {
   }
 
   public interface IsEeaStage {
-    NamesStage isEea(boolean isEea);
-  }
-
-  public interface NamesStage {
-    _FinalStage names(@NotNull PostV1ReferenceCountriesListResponseRowsItemNames names);
+    _FinalStage isEea(boolean isEea);
   }
 
   public interface _FinalStage {
@@ -117,19 +114,25 @@ public final class PostV1ReferenceCountriesListResponseRowsItem {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage names(Map<String, String> names);
+
+    _FinalStage putAllNames(Map<String, String> names);
+
+    _FinalStage names(String key, String value);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements CodeStage, IsEuStage, IsEeaStage, NamesStage, _FinalStage {
+  public static final class Builder implements CodeStage, IsEuStage, IsEeaStage, _FinalStage {
     private String code;
 
     private boolean isEu;
 
     private boolean isEea;
 
-    private PostV1ReferenceCountriesListResponseRowsItemNames names;
+    private Map<String, String> names = new LinkedHashMap<>();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -162,15 +165,35 @@ public final class PostV1ReferenceCountriesListResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("isEea")
-    public NamesStage isEea(boolean isEea) {
+    public _FinalStage isEea(boolean isEea) {
       this.isEea = isEea;
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("names")
-    public _FinalStage names(@NotNull PostV1ReferenceCountriesListResponseRowsItemNames names) {
-      this.names = Objects.requireNonNull(names, "names must not be null");
+    public _FinalStage names(String key, String value) {
+      this.names.put(key, value);
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage putAllNames(Map<String, String> names) {
+      if (names != null) {
+        this.names.putAll(names);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "names",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage names(Map<String, String> names) {
+      this.names.clear();
+      if (names != null) {
+        this.names.putAll(names);
+      }
       return this;
     }
 

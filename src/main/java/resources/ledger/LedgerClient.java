@@ -9,6 +9,7 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsApplyTemplateRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsCreateRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsListRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsSwitchChartRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsUpdateRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsCreateRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsDeleteRequest;
@@ -29,9 +30,17 @@ import com.nordlet.api.resources.ledger.requests.PostV1LedgerPeriodsLockRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerPeriodsUnlockRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerPostingRulesListRequest;
 import com.nordlet.api.resources.ledger.requests.PostV1LedgerPostingRulesUpdateRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1LedgerStatementRowsListRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1LedgerStatementRowsSchemesRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1LedgerStatementRowsSetRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1OfficersCreateRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1OfficersDeleteRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1OfficersListRequest;
+import com.nordlet.api.resources.ledger.requests.PostV1OfficersUpdateRequest;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsApplyTemplateResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsCreateResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsListResponse;
+import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsSwitchChartResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsUpdateResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsCreateResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsDeleteResponse;
@@ -52,6 +61,13 @@ import com.nordlet.api.resources.ledger.types.PostV1LedgerPeriodsLockResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerPeriodsUnlockResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerPostingRulesListResponse;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerPostingRulesUpdateResponse;
+import com.nordlet.api.resources.ledger.types.PostV1LedgerStatementRowsListResponse;
+import com.nordlet.api.resources.ledger.types.PostV1LedgerStatementRowsSchemesResponse;
+import com.nordlet.api.resources.ledger.types.PostV1LedgerStatementRowsSetResponse;
+import com.nordlet.api.resources.ledger.types.PostV1OfficersCreateResponse;
+import com.nordlet.api.resources.ledger.types.PostV1OfficersDeleteResponse;
+import com.nordlet.api.resources.ledger.types.PostV1OfficersListResponse;
+import com.nordlet.api.resources.ledger.types.PostV1OfficersUpdateResponse;
 
 public class LedgerClient {
   protected final ClientOptions clientOptions;
@@ -125,6 +141,38 @@ public class LedgerClient {
   public PostV1LedgerAccountsApplyTemplateResponse postV1LedgerAccountsApplyTemplate(
       PostV1LedgerAccountsApplyTemplateRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1LedgerAccountsApplyTemplate(request, requestOptions).body();
+  }
+
+  /**
+   * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+   */
+  public PostV1LedgerAccountsSwitchChartResponse moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
+      ) {
+    return this.rawClient.moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry().body();
+  }
+
+  /**
+   * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+   */
+  public PostV1LedgerAccountsSwitchChartResponse moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
+      RequestOptions requestOptions) {
+    return this.rawClient.moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(requestOptions).body();
+  }
+
+  /**
+   * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+   */
+  public PostV1LedgerAccountsSwitchChartResponse moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
+      PostV1LedgerAccountsSwitchChartRequest request) {
+    return this.rawClient.moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(request).body();
+  }
+
+  /**
+   * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+   */
+  public PostV1LedgerAccountsSwitchChartResponse moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
+      PostV1LedgerAccountsSwitchChartRequest request, RequestOptions requestOptions) {
+    return this.rawClient.moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(request, requestOptions).body();
   }
 
   public PostV1LedgerPeriodsListResponse postV1LedgerPeriodsList() {
@@ -367,5 +415,119 @@ public class LedgerClient {
   public PostV1LedgerJournalTransactionsCreateResponse postV1LedgerJournalTransactionsCreate(
       PostV1LedgerJournalTransactionsCreateRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1LedgerJournalTransactionsCreate(request, requestOptions).body();
+  }
+
+  /**
+   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+   */
+  public PostV1LedgerStatementRowsSchemesResponse nationalStatementLayoutsAvailableToTheCompany() {
+    return this.rawClient.nationalStatementLayoutsAvailableToTheCompany().body();
+  }
+
+  /**
+   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+   */
+  public PostV1LedgerStatementRowsSchemesResponse nationalStatementLayoutsAvailableToTheCompany(
+      RequestOptions requestOptions) {
+    return this.rawClient.nationalStatementLayoutsAvailableToTheCompany(requestOptions).body();
+  }
+
+  /**
+   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+   */
+  public PostV1LedgerStatementRowsSchemesResponse nationalStatementLayoutsAvailableToTheCompany(
+      PostV1LedgerStatementRowsSchemesRequest request) {
+    return this.rawClient.nationalStatementLayoutsAvailableToTheCompany(request).body();
+  }
+
+  /**
+   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+   */
+  public PostV1LedgerStatementRowsSchemesResponse nationalStatementLayoutsAvailableToTheCompany(
+      PostV1LedgerStatementRowsSchemesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.nationalStatementLayoutsAvailableToTheCompany(request, requestOptions).body();
+  }
+
+  public PostV1LedgerStatementRowsListResponse accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(
+      PostV1LedgerStatementRowsListRequest request) {
+    return this.rawClient.accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(request).body();
+  }
+
+  public PostV1LedgerStatementRowsListResponse accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(
+      PostV1LedgerStatementRowsListRequest request, RequestOptions requestOptions) {
+    return this.rawClient.accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(request, requestOptions).body();
+  }
+
+  /**
+   * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+   */
+  public PostV1LedgerStatementRowsSetResponse mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(
+      PostV1LedgerStatementRowsSetRequest request) {
+    return this.rawClient.mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(request).body();
+  }
+
+  /**
+   * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+   */
+  public PostV1LedgerStatementRowsSetResponse mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(
+      PostV1LedgerStatementRowsSetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(request, requestOptions).body();
+  }
+
+  /**
+   * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
+   */
+  public PostV1OfficersListResponse officersOfTheCompany() {
+    return this.rawClient.officersOfTheCompany().body();
+  }
+
+  /**
+   * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
+   */
+  public PostV1OfficersListResponse officersOfTheCompany(RequestOptions requestOptions) {
+    return this.rawClient.officersOfTheCompany(requestOptions).body();
+  }
+
+  /**
+   * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
+   */
+  public PostV1OfficersListResponse officersOfTheCompany(PostV1OfficersListRequest request) {
+    return this.rawClient.officersOfTheCompany(request).body();
+  }
+
+  /**
+   * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
+   */
+  public PostV1OfficersListResponse officersOfTheCompany(PostV1OfficersListRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.officersOfTheCompany(request, requestOptions).body();
+  }
+
+  public PostV1OfficersCreateResponse recordAnOfficerOfTheCompany(
+      PostV1OfficersCreateRequest request) {
+    return this.rawClient.recordAnOfficerOfTheCompany(request).body();
+  }
+
+  public PostV1OfficersCreateResponse recordAnOfficerOfTheCompany(
+      PostV1OfficersCreateRequest request, RequestOptions requestOptions) {
+    return this.rawClient.recordAnOfficerOfTheCompany(request, requestOptions).body();
+  }
+
+  public PostV1OfficersUpdateResponse changeARecordedOfficer(PostV1OfficersUpdateRequest request) {
+    return this.rawClient.changeARecordedOfficer(request).body();
+  }
+
+  public PostV1OfficersUpdateResponse changeARecordedOfficer(PostV1OfficersUpdateRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.changeARecordedOfficer(request, requestOptions).body();
+  }
+
+  public PostV1OfficersDeleteResponse removeARecordedOfficer(PostV1OfficersDeleteRequest request) {
+    return this.rawClient.removeARecordedOfficer(request).body();
+  }
+
+  public PostV1OfficersDeleteResponse removeARecordedOfficer(PostV1OfficersDeleteRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.removeARecordedOfficer(request, requestOptions).body();
   }
 }

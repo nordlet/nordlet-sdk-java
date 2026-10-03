@@ -58,11 +58,13 @@ public final class PostV1HrEmployeesUpdateRequest {
 
   private final Optional<String> hireDate;
 
-  private final Optional<Boolean> applyNpd;
+  private final Optional<Boolean> applyAllowance;
 
-  private final Optional<String> npdOverride;
+  private final Optional<String> allowanceOverride;
 
   private final Optional<Boolean> pensionAccumulation;
+
+  private final Optional<Map<String, String>> payrollOptions;
 
   private final Optional<String> notes;
 
@@ -81,8 +83,9 @@ public final class PostV1HrEmployeesUpdateRequest {
       Optional<String> email, Optional<String> phone,
       Optional<PostV1HrEmployeesUpdateRequestAddress> address, Optional<String> iban,
       Optional<String> socialInsuranceNo, Optional<String> socialInsuranceStart,
-      Optional<String> hireDate, Optional<Boolean> applyNpd, Optional<String> npdOverride,
-      Optional<Boolean> pensionAccumulation, Optional<String> notes,
+      Optional<String> hireDate, Optional<Boolean> applyAllowance,
+      Optional<String> allowanceOverride, Optional<Boolean> pensionAccumulation,
+      Optional<Map<String, String>> payrollOptions, Optional<String> notes,
       Optional<List<PostV1HrEmployeesUpdateRequestAttributesItem>> attributes, String id,
       Optional<String> terminationDate, Optional<PostV1HrEmployeesUpdateRequestStatus> status,
       Map<String, Object> additionalProperties) {
@@ -98,9 +101,10 @@ public final class PostV1HrEmployeesUpdateRequest {
     this.socialInsuranceNo = socialInsuranceNo;
     this.socialInsuranceStart = socialInsuranceStart;
     this.hireDate = hireDate;
-    this.applyNpd = applyNpd;
-    this.npdOverride = npdOverride;
+    this.applyAllowance = applyAllowance;
+    this.allowanceOverride = allowanceOverride;
     this.pensionAccumulation = pensionAccumulation;
+    this.payrollOptions = payrollOptions;
     this.notes = notes;
     this.attributes = attributes;
     this.id = id;
@@ -109,8 +113,11 @@ public final class PostV1HrEmployeesUpdateRequest {
     this.additionalProperties = additionalProperties;
   }
 
-  @JsonProperty("code")
+  @JsonIgnore
   public Optional<String> getCode() {
+    if (code == null) {
+      return Optional.empty();
+    }
     return code;
   }
 
@@ -124,62 +131,89 @@ public final class PostV1HrEmployeesUpdateRequest {
     return lastName;
   }
 
-  @JsonProperty("personalCode")
+  @JsonIgnore
   public Optional<String> getPersonalCode() {
+    if (personalCode == null) {
+      return Optional.empty();
+    }
     return personalCode;
   }
 
-  @JsonProperty("birthDate")
+  @JsonIgnore
   public Optional<String> getBirthDate() {
+    if (birthDate == null) {
+      return Optional.empty();
+    }
     return birthDate;
   }
 
-  @JsonProperty("email")
+  @JsonIgnore
   public Optional<String> getEmail() {
+    if (email == null) {
+      return Optional.empty();
+    }
     return email;
   }
 
-  @JsonProperty("phone")
+  @JsonIgnore
   public Optional<String> getPhone() {
+    if (phone == null) {
+      return Optional.empty();
+    }
     return phone;
   }
 
-  @JsonProperty("address")
+  @JsonIgnore
   public Optional<PostV1HrEmployeesUpdateRequestAddress> getAddress() {
+    if (address == null) {
+      return Optional.empty();
+    }
     return address;
   }
 
-  @JsonProperty("iban")
+  @JsonIgnore
   public Optional<String> getIban() {
+    if (iban == null) {
+      return Optional.empty();
+    }
     return iban;
   }
 
-  @JsonProperty("socialInsuranceNo")
+  @JsonIgnore
   public Optional<String> getSocialInsuranceNo() {
+    if (socialInsuranceNo == null) {
+      return Optional.empty();
+    }
     return socialInsuranceNo;
   }
 
-  @JsonProperty("socialInsuranceStart")
+  @JsonIgnore
   public Optional<String> getSocialInsuranceStart() {
+    if (socialInsuranceStart == null) {
+      return Optional.empty();
+    }
     return socialInsuranceStart;
   }
 
-  @JsonProperty("hireDate")
+  @JsonIgnore
   public Optional<String> getHireDate() {
+    if (hireDate == null) {
+      return Optional.empty();
+    }
     return hireDate;
   }
 
-  @JsonProperty("applyNpd")
-  public Optional<Boolean> getApplyNpd() {
-    return applyNpd;
+  @JsonProperty("applyAllowance")
+  public Optional<Boolean> getApplyAllowance() {
+    return applyAllowance;
   }
 
   @JsonIgnore
-  public Optional<String> getNpdOverride() {
-    if (npdOverride == null) {
+  public Optional<String> getAllowanceOverride() {
+    if (allowanceOverride == null) {
       return Optional.empty();
     }
-    return npdOverride;
+    return allowanceOverride;
   }
 
   @JsonProperty("pensionAccumulation")
@@ -187,8 +221,16 @@ public final class PostV1HrEmployeesUpdateRequest {
     return pensionAccumulation;
   }
 
-  @JsonProperty("notes")
+  @JsonProperty("payrollOptions")
+  public Optional<Map<String, String>> getPayrollOptions() {
+    return payrollOptions;
+  }
+
+  @JsonIgnore
   public Optional<String> getNotes() {
+    if (notes == null) {
+      return Optional.empty();
+    }
     return notes;
   }
 
@@ -202,8 +244,11 @@ public final class PostV1HrEmployeesUpdateRequest {
     return id;
   }
 
-  @JsonProperty("terminationDate")
+  @JsonIgnore
   public Optional<String> getTerminationDate() {
+    if (terminationDate == null) {
+      return Optional.empty();
+    }
     return terminationDate;
   }
 
@@ -216,9 +261,117 @@ public final class PostV1HrEmployeesUpdateRequest {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
-  @JsonProperty("npdOverride")
-  private Optional<String> _getNpdOverride() {
-    return npdOverride;
+  @JsonProperty("code")
+  private Optional<String> _getCode() {
+    return code;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("personalCode")
+  private Optional<String> _getPersonalCode() {
+    return personalCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("birthDate")
+  private Optional<String> _getBirthDate() {
+    return birthDate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("email")
+  private Optional<String> _getEmail() {
+    return email;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("phone")
+  private Optional<String> _getPhone() {
+    return phone;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("address")
+  private Optional<PostV1HrEmployeesUpdateRequestAddress> _getAddress() {
+    return address;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("iban")
+  private Optional<String> _getIban() {
+    return iban;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("socialInsuranceNo")
+  private Optional<String> _getSocialInsuranceNo() {
+    return socialInsuranceNo;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("socialInsuranceStart")
+  private Optional<String> _getSocialInsuranceStart() {
+    return socialInsuranceStart;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("hireDate")
+  private Optional<String> _getHireDate() {
+    return hireDate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("allowanceOverride")
+  private Optional<String> _getAllowanceOverride() {
+    return allowanceOverride;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("notes")
+  private Optional<String> _getNotes() {
+    return notes;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("terminationDate")
+  private Optional<String> _getTerminationDate() {
+    return terminationDate;
   }
 
   @java.lang.Override
@@ -233,12 +386,12 @@ public final class PostV1HrEmployeesUpdateRequest {
   }
 
   private boolean equalTo(PostV1HrEmployeesUpdateRequest other) {
-    return code.equals(other.code) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && personalCode.equals(other.personalCode) && birthDate.equals(other.birthDate) && email.equals(other.email) && phone.equals(other.phone) && address.equals(other.address) && iban.equals(other.iban) && socialInsuranceNo.equals(other.socialInsuranceNo) && socialInsuranceStart.equals(other.socialInsuranceStart) && hireDate.equals(other.hireDate) && applyNpd.equals(other.applyNpd) && npdOverride.equals(other.npdOverride) && pensionAccumulation.equals(other.pensionAccumulation) && notes.equals(other.notes) && attributes.equals(other.attributes) && id.equals(other.id) && terminationDate.equals(other.terminationDate) && status.equals(other.status);
+    return code.equals(other.code) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && personalCode.equals(other.personalCode) && birthDate.equals(other.birthDate) && email.equals(other.email) && phone.equals(other.phone) && address.equals(other.address) && iban.equals(other.iban) && socialInsuranceNo.equals(other.socialInsuranceNo) && socialInsuranceStart.equals(other.socialInsuranceStart) && hireDate.equals(other.hireDate) && applyAllowance.equals(other.applyAllowance) && allowanceOverride.equals(other.allowanceOverride) && pensionAccumulation.equals(other.pensionAccumulation) && payrollOptions.equals(other.payrollOptions) && notes.equals(other.notes) && attributes.equals(other.attributes) && id.equals(other.id) && terminationDate.equals(other.terminationDate) && status.equals(other.status);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.code, this.firstName, this.lastName, this.personalCode, this.birthDate, this.email, this.phone, this.address, this.iban, this.socialInsuranceNo, this.socialInsuranceStart, this.hireDate, this.applyNpd, this.npdOverride, this.pensionAccumulation, this.notes, this.attributes, this.id, this.terminationDate, this.status);
+    return Objects.hash(this.code, this.firstName, this.lastName, this.personalCode, this.birthDate, this.email, this.phone, this.address, this.iban, this.socialInsuranceNo, this.socialInsuranceStart, this.hireDate, this.applyAllowance, this.allowanceOverride, this.pensionAccumulation, this.payrollOptions, this.notes, this.attributes, this.id, this.terminationDate, this.status);
   }
 
   @java.lang.Override
@@ -267,6 +420,8 @@ public final class PostV1HrEmployeesUpdateRequest {
 
     _FinalStage code(String code);
 
+    _FinalStage code(Nullable<String> code);
+
     _FinalStage firstName(Optional<String> firstName);
 
     _FinalStage firstName(String firstName);
@@ -279,55 +434,79 @@ public final class PostV1HrEmployeesUpdateRequest {
 
     _FinalStage personalCode(String personalCode);
 
+    _FinalStage personalCode(Nullable<String> personalCode);
+
     _FinalStage birthDate(Optional<String> birthDate);
 
     _FinalStage birthDate(String birthDate);
+
+    _FinalStage birthDate(Nullable<String> birthDate);
 
     _FinalStage email(Optional<String> email);
 
     _FinalStage email(String email);
 
+    _FinalStage email(Nullable<String> email);
+
     _FinalStage phone(Optional<String> phone);
 
     _FinalStage phone(String phone);
+
+    _FinalStage phone(Nullable<String> phone);
 
     _FinalStage address(Optional<PostV1HrEmployeesUpdateRequestAddress> address);
 
     _FinalStage address(PostV1HrEmployeesUpdateRequestAddress address);
 
+    _FinalStage address(Nullable<PostV1HrEmployeesUpdateRequestAddress> address);
+
     _FinalStage iban(Optional<String> iban);
 
     _FinalStage iban(String iban);
+
+    _FinalStage iban(Nullable<String> iban);
 
     _FinalStage socialInsuranceNo(Optional<String> socialInsuranceNo);
 
     _FinalStage socialInsuranceNo(String socialInsuranceNo);
 
+    _FinalStage socialInsuranceNo(Nullable<String> socialInsuranceNo);
+
     _FinalStage socialInsuranceStart(Optional<String> socialInsuranceStart);
 
     _FinalStage socialInsuranceStart(String socialInsuranceStart);
+
+    _FinalStage socialInsuranceStart(Nullable<String> socialInsuranceStart);
 
     _FinalStage hireDate(Optional<String> hireDate);
 
     _FinalStage hireDate(String hireDate);
 
-    _FinalStage applyNpd(Optional<Boolean> applyNpd);
+    _FinalStage hireDate(Nullable<String> hireDate);
 
-    _FinalStage applyNpd(Boolean applyNpd);
+    _FinalStage applyAllowance(Optional<Boolean> applyAllowance);
 
-    _FinalStage npdOverride(Optional<String> npdOverride);
+    _FinalStage applyAllowance(Boolean applyAllowance);
 
-    _FinalStage npdOverride(String npdOverride);
+    _FinalStage allowanceOverride(Optional<String> allowanceOverride);
 
-    _FinalStage npdOverride(Nullable<String> npdOverride);
+    _FinalStage allowanceOverride(String allowanceOverride);
+
+    _FinalStage allowanceOverride(Nullable<String> allowanceOverride);
 
     _FinalStage pensionAccumulation(Optional<Boolean> pensionAccumulation);
 
     _FinalStage pensionAccumulation(Boolean pensionAccumulation);
 
+    _FinalStage payrollOptions(Optional<Map<String, String>> payrollOptions);
+
+    _FinalStage payrollOptions(Map<String, String> payrollOptions);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
+
+    _FinalStage notes(Nullable<String> notes);
 
     _FinalStage attributes(Optional<List<PostV1HrEmployeesUpdateRequestAttributesItem>> attributes);
 
@@ -336,6 +515,8 @@ public final class PostV1HrEmployeesUpdateRequest {
     _FinalStage terminationDate(Optional<String> terminationDate);
 
     _FinalStage terminationDate(String terminationDate);
+
+    _FinalStage terminationDate(Nullable<String> terminationDate);
 
     _FinalStage status(Optional<PostV1HrEmployeesUpdateRequestStatus> status);
 
@@ -356,11 +537,13 @@ public final class PostV1HrEmployeesUpdateRequest {
 
     private Optional<String> notes = Optional.empty();
 
+    private Optional<Map<String, String>> payrollOptions = Optional.empty();
+
     private Optional<Boolean> pensionAccumulation = Optional.empty();
 
-    private Optional<String> npdOverride = Optional.empty();
+    private Optional<String> allowanceOverride = Optional.empty();
 
-    private Optional<Boolean> applyNpd = Optional.empty();
+    private Optional<Boolean> applyAllowance = Optional.empty();
 
     private Optional<String> hireDate = Optional.empty();
 
@@ -406,9 +589,10 @@ public final class PostV1HrEmployeesUpdateRequest {
       socialInsuranceNo(other.getSocialInsuranceNo());
       socialInsuranceStart(other.getSocialInsuranceStart());
       hireDate(other.getHireDate());
-      applyNpd(other.getApplyNpd());
-      npdOverride(other.getNpdOverride());
+      applyAllowance(other.getApplyAllowance());
+      allowanceOverride(other.getAllowanceOverride());
       pensionAccumulation(other.getPensionAccumulation());
+      payrollOptions(other.getPayrollOptions());
       notes(other.getNotes());
       attributes(other.getAttributes());
       id(other.getId());
@@ -437,6 +621,20 @@ public final class PostV1HrEmployeesUpdateRequest {
     )
     public _FinalStage status(Optional<PostV1HrEmployeesUpdateRequestStatus> status) {
       this.status = status;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage terminationDate(Nullable<String> terminationDate) {
+      if (terminationDate.isNull()) {
+        this.terminationDate = null;
+      }
+      else if (terminationDate.isEmpty()) {
+        this.terminationDate = Optional.empty();
+      }
+      else {
+        this.terminationDate = Optional.of(terminationDate.get());
+      }
       return this;
     }
 
@@ -474,6 +672,20 @@ public final class PostV1HrEmployeesUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage notes(Nullable<String> notes) {
+      if (notes.isNull()) {
+        this.notes = null;
+      }
+      else if (notes.isEmpty()) {
+        this.notes = Optional.empty();
+      }
+      else {
+        this.notes = Optional.of(notes.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage notes(String notes) {
       this.notes = Optional.ofNullable(notes);
       return this;
@@ -486,6 +698,22 @@ public final class PostV1HrEmployeesUpdateRequest {
     )
     public _FinalStage notes(Optional<String> notes) {
       this.notes = notes;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage payrollOptions(Map<String, String> payrollOptions) {
+      this.payrollOptions = Optional.ofNullable(payrollOptions);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "payrollOptions",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage payrollOptions(Optional<Map<String, String>> payrollOptions) {
+      this.payrollOptions = payrollOptions;
       return this;
     }
 
@@ -506,48 +734,62 @@ public final class PostV1HrEmployeesUpdateRequest {
     }
 
     @java.lang.Override
-    public _FinalStage npdOverride(Nullable<String> npdOverride) {
-      if (npdOverride.isNull()) {
-        this.npdOverride = null;
+    public _FinalStage allowanceOverride(Nullable<String> allowanceOverride) {
+      if (allowanceOverride.isNull()) {
+        this.allowanceOverride = null;
       }
-      else if (npdOverride.isEmpty()) {
-        this.npdOverride = Optional.empty();
+      else if (allowanceOverride.isEmpty()) {
+        this.allowanceOverride = Optional.empty();
       }
       else {
-        this.npdOverride = Optional.of(npdOverride.get());
+        this.allowanceOverride = Optional.of(allowanceOverride.get());
       }
       return this;
     }
 
     @java.lang.Override
-    public _FinalStage npdOverride(String npdOverride) {
-      this.npdOverride = Optional.ofNullable(npdOverride);
+    public _FinalStage allowanceOverride(String allowanceOverride) {
+      this.allowanceOverride = Optional.ofNullable(allowanceOverride);
       return this;
     }
 
     @java.lang.Override
     @JsonSetter(
-        value = "npdOverride",
+        value = "allowanceOverride",
         nulls = Nulls.SKIP
     )
-    public _FinalStage npdOverride(Optional<String> npdOverride) {
-      this.npdOverride = npdOverride;
+    public _FinalStage allowanceOverride(Optional<String> allowanceOverride) {
+      this.allowanceOverride = allowanceOverride;
       return this;
     }
 
     @java.lang.Override
-    public _FinalStage applyNpd(Boolean applyNpd) {
-      this.applyNpd = Optional.ofNullable(applyNpd);
+    public _FinalStage applyAllowance(Boolean applyAllowance) {
+      this.applyAllowance = Optional.ofNullable(applyAllowance);
       return this;
     }
 
     @java.lang.Override
     @JsonSetter(
-        value = "applyNpd",
+        value = "applyAllowance",
         nulls = Nulls.SKIP
     )
-    public _FinalStage applyNpd(Optional<Boolean> applyNpd) {
-      this.applyNpd = applyNpd;
+    public _FinalStage applyAllowance(Optional<Boolean> applyAllowance) {
+      this.applyAllowance = applyAllowance;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage hireDate(Nullable<String> hireDate) {
+      if (hireDate.isNull()) {
+        this.hireDate = null;
+      }
+      else if (hireDate.isEmpty()) {
+        this.hireDate = Optional.empty();
+      }
+      else {
+        this.hireDate = Optional.of(hireDate.get());
+      }
       return this;
     }
 
@@ -568,6 +810,20 @@ public final class PostV1HrEmployeesUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage socialInsuranceStart(Nullable<String> socialInsuranceStart) {
+      if (socialInsuranceStart.isNull()) {
+        this.socialInsuranceStart = null;
+      }
+      else if (socialInsuranceStart.isEmpty()) {
+        this.socialInsuranceStart = Optional.empty();
+      }
+      else {
+        this.socialInsuranceStart = Optional.of(socialInsuranceStart.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage socialInsuranceStart(String socialInsuranceStart) {
       this.socialInsuranceStart = Optional.ofNullable(socialInsuranceStart);
       return this;
@@ -580,6 +836,20 @@ public final class PostV1HrEmployeesUpdateRequest {
     )
     public _FinalStage socialInsuranceStart(Optional<String> socialInsuranceStart) {
       this.socialInsuranceStart = socialInsuranceStart;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage socialInsuranceNo(Nullable<String> socialInsuranceNo) {
+      if (socialInsuranceNo.isNull()) {
+        this.socialInsuranceNo = null;
+      }
+      else if (socialInsuranceNo.isEmpty()) {
+        this.socialInsuranceNo = Optional.empty();
+      }
+      else {
+        this.socialInsuranceNo = Optional.of(socialInsuranceNo.get());
+      }
       return this;
     }
 
@@ -600,6 +870,20 @@ public final class PostV1HrEmployeesUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage iban(Nullable<String> iban) {
+      if (iban.isNull()) {
+        this.iban = null;
+      }
+      else if (iban.isEmpty()) {
+        this.iban = Optional.empty();
+      }
+      else {
+        this.iban = Optional.of(iban.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage iban(String iban) {
       this.iban = Optional.ofNullable(iban);
       return this;
@@ -612,6 +896,20 @@ public final class PostV1HrEmployeesUpdateRequest {
     )
     public _FinalStage iban(Optional<String> iban) {
       this.iban = iban;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage address(Nullable<PostV1HrEmployeesUpdateRequestAddress> address) {
+      if (address.isNull()) {
+        this.address = null;
+      }
+      else if (address.isEmpty()) {
+        this.address = Optional.empty();
+      }
+      else {
+        this.address = Optional.of(address.get());
+      }
       return this;
     }
 
@@ -632,6 +930,20 @@ public final class PostV1HrEmployeesUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage phone(Nullable<String> phone) {
+      if (phone.isNull()) {
+        this.phone = null;
+      }
+      else if (phone.isEmpty()) {
+        this.phone = Optional.empty();
+      }
+      else {
+        this.phone = Optional.of(phone.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage phone(String phone) {
       this.phone = Optional.ofNullable(phone);
       return this;
@@ -644,6 +956,20 @@ public final class PostV1HrEmployeesUpdateRequest {
     )
     public _FinalStage phone(Optional<String> phone) {
       this.phone = phone;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage email(Nullable<String> email) {
+      if (email.isNull()) {
+        this.email = null;
+      }
+      else if (email.isEmpty()) {
+        this.email = Optional.empty();
+      }
+      else {
+        this.email = Optional.of(email.get());
+      }
       return this;
     }
 
@@ -664,6 +990,20 @@ public final class PostV1HrEmployeesUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage birthDate(Nullable<String> birthDate) {
+      if (birthDate.isNull()) {
+        this.birthDate = null;
+      }
+      else if (birthDate.isEmpty()) {
+        this.birthDate = Optional.empty();
+      }
+      else {
+        this.birthDate = Optional.of(birthDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage birthDate(String birthDate) {
       this.birthDate = Optional.ofNullable(birthDate);
       return this;
@@ -676,6 +1016,20 @@ public final class PostV1HrEmployeesUpdateRequest {
     )
     public _FinalStage birthDate(Optional<String> birthDate) {
       this.birthDate = birthDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage personalCode(Nullable<String> personalCode) {
+      if (personalCode.isNull()) {
+        this.personalCode = null;
+      }
+      else if (personalCode.isEmpty()) {
+        this.personalCode = Optional.empty();
+      }
+      else {
+        this.personalCode = Optional.of(personalCode.get());
+      }
       return this;
     }
 
@@ -728,6 +1082,20 @@ public final class PostV1HrEmployeesUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage code(Nullable<String> code) {
+      if (code.isNull()) {
+        this.code = null;
+      }
+      else if (code.isEmpty()) {
+        this.code = Optional.empty();
+      }
+      else {
+        this.code = Optional.of(code.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage code(String code) {
       this.code = Optional.ofNullable(code);
       return this;
@@ -745,7 +1113,7 @@ public final class PostV1HrEmployeesUpdateRequest {
 
     @java.lang.Override
     public PostV1HrEmployeesUpdateRequest build() {
-      return new PostV1HrEmployeesUpdateRequest(code, firstName, lastName, personalCode, birthDate, email, phone, address, iban, socialInsuranceNo, socialInsuranceStart, hireDate, applyNpd, npdOverride, pensionAccumulation, notes, attributes, id, terminationDate, status, additionalProperties);
+      return new PostV1HrEmployeesUpdateRequest(code, firstName, lastName, personalCode, birthDate, email, phone, address, iban, socialInsuranceNo, socialInsuranceStart, hireDate, applyAllowance, allowanceOverride, pensionAccumulation, payrollOptions, notes, attributes, id, terminationDate, status, additionalProperties);
     }
 
     @java.lang.Override

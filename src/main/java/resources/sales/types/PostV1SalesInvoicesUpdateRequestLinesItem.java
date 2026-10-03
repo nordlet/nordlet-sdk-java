@@ -47,6 +47,8 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
 
   private final Optional<PostV1SalesInvoicesUpdateRequestLinesItemRecognition> recognition;
 
+  private final Optional<String> vatExemptionBasis;
+
   private final Optional<String> standaloneSellingPrice;
 
   private final Optional<String> refundEstimatePercent;
@@ -60,8 +62,8 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
       Optional<String> vatRatePercent, Optional<String> vatClassifierCode,
       Optional<String> costCenterId, Optional<String> projectId,
       Optional<PostV1SalesInvoicesUpdateRequestLinesItemRecognition> recognition,
-      Optional<String> standaloneSellingPrice, Optional<String> refundEstimatePercent,
-      Map<String, Object> additionalProperties) {
+      Optional<String> vatExemptionBasis, Optional<String> standaloneSellingPrice,
+      Optional<String> refundEstimatePercent, Map<String, Object> additionalProperties) {
     this.itemId = itemId;
     this.description = description;
     this.unit = unit;
@@ -73,6 +75,7 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
     this.costCenterId = costCenterId;
     this.projectId = projectId;
     this.recognition = recognition;
+    this.vatExemptionBasis = vatExemptionBasis;
     this.standaloneSellingPrice = standaloneSellingPrice;
     this.refundEstimatePercent = refundEstimatePercent;
     this.additionalProperties = additionalProperties;
@@ -133,6 +136,11 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
     return recognition;
   }
 
+  @JsonProperty("vatExemptionBasis")
+  public Optional<String> getVatExemptionBasis() {
+    return vatExemptionBasis;
+  }
+
   @JsonProperty("standaloneSellingPrice")
   public Optional<String> getStandaloneSellingPrice() {
     return standaloneSellingPrice;
@@ -155,12 +163,12 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
   }
 
   private boolean equalTo(PostV1SalesInvoicesUpdateRequestLinesItem other) {
-    return itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && recognition.equals(other.recognition) && standaloneSellingPrice.equals(other.standaloneSellingPrice) && refundEstimatePercent.equals(other.refundEstimatePercent);
+    return itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && recognition.equals(other.recognition) && vatExemptionBasis.equals(other.vatExemptionBasis) && standaloneSellingPrice.equals(other.standaloneSellingPrice) && refundEstimatePercent.equals(other.refundEstimatePercent);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.recognition, this.standaloneSellingPrice, this.refundEstimatePercent);
+    return Objects.hash(this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.recognition, this.vatExemptionBasis, this.standaloneSellingPrice, this.refundEstimatePercent);
   }
 
   @java.lang.Override
@@ -198,6 +206,8 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
 
     private Optional<PostV1SalesInvoicesUpdateRequestLinesItemRecognition> recognition = Optional.empty();
 
+    private Optional<String> vatExemptionBasis = Optional.empty();
+
     private Optional<String> standaloneSellingPrice = Optional.empty();
 
     private Optional<String> refundEstimatePercent = Optional.empty();
@@ -220,6 +230,7 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
       costCenterId(other.getCostCenterId());
       projectId(other.getProjectId());
       recognition(other.getRecognition());
+      vatExemptionBasis(other.getVatExemptionBasis());
       standaloneSellingPrice(other.getStandaloneSellingPrice());
       refundEstimatePercent(other.getRefundEstimatePercent());
       return this;
@@ -381,6 +392,20 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
     }
 
     @JsonSetter(
+        value = "vatExemptionBasis",
+        nulls = Nulls.SKIP
+    )
+    public Builder vatExemptionBasis(Optional<String> vatExemptionBasis) {
+      this.vatExemptionBasis = vatExemptionBasis;
+      return this;
+    }
+
+    public Builder vatExemptionBasis(String vatExemptionBasis) {
+      this.vatExemptionBasis = Optional.ofNullable(vatExemptionBasis);
+      return this;
+    }
+
+    @JsonSetter(
         value = "standaloneSellingPrice",
         nulls = Nulls.SKIP
     )
@@ -409,7 +434,7 @@ public final class PostV1SalesInvoicesUpdateRequestLinesItem {
     }
 
     public PostV1SalesInvoicesUpdateRequestLinesItem build() {
-      return new PostV1SalesInvoicesUpdateRequestLinesItem(itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, recognition, standaloneSellingPrice, refundEstimatePercent, additionalProperties);
+      return new PostV1SalesInvoicesUpdateRequestLinesItem(itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, recognition, vatExemptionBasis, standaloneSellingPrice, refundEstimatePercent, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

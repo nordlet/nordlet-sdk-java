@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.Nullable;
 import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
+import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -45,6 +46,10 @@ public final class PostV1AccountCompaniesProfileResponse {
 
   private final String countryCode;
 
+  private final String chartTemplate;
+
+  private final String countryChartTemplate;
+
   private final String baseCurrency;
 
   private final String defaultInvoiceCurrency;
@@ -67,16 +72,50 @@ public final class PostV1AccountCompaniesProfileResponse {
 
   private final Optional<String> logoFileId;
 
+  private final Optional<String> legalForm;
+
+  private final Optional<String> registryName;
+
+  private final Optional<String> incorporatedOn;
+
+  private final Optional<String> shareCapital;
+
+  private final Optional<PostV1AccountCompaniesProfileResponseAccountsKeptBy> accountsKeptBy;
+
+  private final Optional<PostV1AccountCompaniesProfileResponseVatPeriod> vatPeriod;
+
+  private final Optional<Long> fiscalYearEndMonth;
+
+  private final String timeZone;
+
+  private final Optional<Map<String, Optional<String>>> filingOptions;
+
+  private final Optional<String> bookkeeperName;
+
+  private final Optional<String> auditorName;
+
+  private final Optional<String> auditorRegistrationNumber;
+
+  private final boolean auditRequired;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1AccountCompaniesProfileResponse(String id, String name, Optional<String> code,
       Optional<String> vatCode, Optional<String> smeExemptionNumber, boolean isVatPayer,
-      boolean isSandbox, String countryCode, String baseCurrency, String defaultInvoiceCurrency,
+      boolean isSandbox, String countryCode, String chartTemplate, String countryChartTemplate,
+      String baseCurrency, String defaultInvoiceCurrency,
       PostV1AccountCompaniesProfileResponseStatus status,
       Optional<PostV1AccountCompaniesProfileResponseAddress> address, Optional<String> email,
       Optional<String> phone, Optional<String> iban, Optional<String> bankName,
       Optional<String> peppolId, Optional<String> sepaCreditorId, Optional<String> logoFileId,
-      Map<String, Object> additionalProperties) {
+      Optional<String> legalForm, Optional<String> registryName, Optional<String> incorporatedOn,
+      Optional<String> shareCapital,
+      Optional<PostV1AccountCompaniesProfileResponseAccountsKeptBy> accountsKeptBy,
+      Optional<PostV1AccountCompaniesProfileResponseVatPeriod> vatPeriod,
+      Optional<Long> fiscalYearEndMonth, String timeZone,
+      Optional<Map<String, Optional<String>>> filingOptions, Optional<String> bookkeeperName,
+      Optional<String> auditorName, Optional<String> auditorRegistrationNumber,
+      boolean auditRequired, Map<String, Object> additionalProperties) {
     this.id = id;
     this.name = name;
     this.code = code;
@@ -85,6 +124,8 @@ public final class PostV1AccountCompaniesProfileResponse {
     this.isVatPayer = isVatPayer;
     this.isSandbox = isSandbox;
     this.countryCode = countryCode;
+    this.chartTemplate = chartTemplate;
+    this.countryChartTemplate = countryChartTemplate;
     this.baseCurrency = baseCurrency;
     this.defaultInvoiceCurrency = defaultInvoiceCurrency;
     this.status = status;
@@ -96,6 +137,19 @@ public final class PostV1AccountCompaniesProfileResponse {
     this.peppolId = peppolId;
     this.sepaCreditorId = sepaCreditorId;
     this.logoFileId = logoFileId;
+    this.legalForm = legalForm;
+    this.registryName = registryName;
+    this.incorporatedOn = incorporatedOn;
+    this.shareCapital = shareCapital;
+    this.accountsKeptBy = accountsKeptBy;
+    this.vatPeriod = vatPeriod;
+    this.fiscalYearEndMonth = fiscalYearEndMonth;
+    this.timeZone = timeZone;
+    this.filingOptions = filingOptions;
+    this.bookkeeperName = bookkeeperName;
+    this.auditorName = auditorName;
+    this.auditorRegistrationNumber = auditorRegistrationNumber;
+    this.auditRequired = auditRequired;
     this.additionalProperties = additionalProperties;
   }
 
@@ -146,6 +200,22 @@ public final class PostV1AccountCompaniesProfileResponse {
   @JsonProperty("countryCode")
   public String getCountryCode() {
     return countryCode;
+  }
+
+  /**
+   * @return Chart of accounts template the company was seeded with
+   */
+  @JsonProperty("chartTemplate")
+  public String getChartTemplate() {
+    return chartTemplate;
+  }
+
+  /**
+   * @return Chart of accounts template of the company country
+   */
+  @JsonProperty("countryChartTemplate")
+  public String getCountryChartTemplate() {
+    return countryChartTemplate;
   }
 
   @JsonProperty("baseCurrency")
@@ -225,6 +295,104 @@ public final class PostV1AccountCompaniesProfileResponse {
       return Optional.empty();
     }
     return logoFileId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getLegalForm() {
+    if (legalForm == null) {
+      return Optional.empty();
+    }
+    return legalForm;
+  }
+
+  @JsonIgnore
+  public Optional<String> getRegistryName() {
+    if (registryName == null) {
+      return Optional.empty();
+    }
+    return registryName;
+  }
+
+  @JsonIgnore
+  public Optional<String> getIncorporatedOn() {
+    if (incorporatedOn == null) {
+      return Optional.empty();
+    }
+    return incorporatedOn;
+  }
+
+  @JsonIgnore
+  public Optional<String> getShareCapital() {
+    if (shareCapital == null) {
+      return Optional.empty();
+    }
+    return shareCapital;
+  }
+
+  @JsonIgnore
+  public Optional<PostV1AccountCompaniesProfileResponseAccountsKeptBy> getAccountsKeptBy() {
+    if (accountsKeptBy == null) {
+      return Optional.empty();
+    }
+    return accountsKeptBy;
+  }
+
+  @JsonIgnore
+  public Optional<PostV1AccountCompaniesProfileResponseVatPeriod> getVatPeriod() {
+    if (vatPeriod == null) {
+      return Optional.empty();
+    }
+    return vatPeriod;
+  }
+
+  @JsonIgnore
+  public Optional<Long> getFiscalYearEndMonth() {
+    if (fiscalYearEndMonth == null) {
+      return Optional.empty();
+    }
+    return fiscalYearEndMonth;
+  }
+
+  @JsonProperty("timeZone")
+  public String getTimeZone() {
+    return timeZone;
+  }
+
+  @JsonIgnore
+  public Optional<Map<String, Optional<String>>> getFilingOptions() {
+    if (filingOptions == null) {
+      return Optional.empty();
+    }
+    return filingOptions;
+  }
+
+  @JsonIgnore
+  public Optional<String> getBookkeeperName() {
+    if (bookkeeperName == null) {
+      return Optional.empty();
+    }
+    return bookkeeperName;
+  }
+
+  @JsonIgnore
+  public Optional<String> getAuditorName() {
+    if (auditorName == null) {
+      return Optional.empty();
+    }
+    return auditorName;
+  }
+
+  @JsonIgnore
+  public Optional<String> getAuditorRegistrationNumber() {
+    if (auditorRegistrationNumber == null) {
+      return Optional.empty();
+    }
+    return auditorRegistrationNumber;
+  }
+
+  @JsonProperty("auditRequired")
+  public boolean getAuditRequired() {
+    return auditRequired;
   }
 
   @JsonInclude(
@@ -326,6 +494,105 @@ public final class PostV1AccountCompaniesProfileResponse {
     return logoFileId;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("legalForm")
+  private Optional<String> _getLegalForm() {
+    return legalForm;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("registryName")
+  private Optional<String> _getRegistryName() {
+    return registryName;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("incorporatedOn")
+  private Optional<String> _getIncorporatedOn() {
+    return incorporatedOn;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("shareCapital")
+  private Optional<String> _getShareCapital() {
+    return shareCapital;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("accountsKeptBy")
+  private Optional<PostV1AccountCompaniesProfileResponseAccountsKeptBy> _getAccountsKeptBy() {
+    return accountsKeptBy;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("vatPeriod")
+  private Optional<PostV1AccountCompaniesProfileResponseVatPeriod> _getVatPeriod() {
+    return vatPeriod;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("fiscalYearEndMonth")
+  private Optional<Long> _getFiscalYearEndMonth() {
+    return fiscalYearEndMonth;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("filingOptions")
+  private Optional<Map<String, Optional<String>>> _getFilingOptions() {
+    return filingOptions;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("bookkeeperName")
+  private Optional<String> _getBookkeeperName() {
+    return bookkeeperName;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("auditorName")
+  private Optional<String> _getAuditorName() {
+    return auditorName;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("auditorRegistrationNumber")
+  private Optional<String> _getAuditorRegistrationNumber() {
+    return auditorRegistrationNumber;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -338,12 +605,12 @@ public final class PostV1AccountCompaniesProfileResponse {
   }
 
   private boolean equalTo(PostV1AccountCompaniesProfileResponse other) {
-    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer == other.isVatPayer && isSandbox == other.isSandbox && countryCode.equals(other.countryCode) && baseCurrency.equals(other.baseCurrency) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && status.equals(other.status) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && logoFileId.equals(other.logoFileId);
+    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer == other.isVatPayer && isSandbox == other.isSandbox && countryCode.equals(other.countryCode) && chartTemplate.equals(other.chartTemplate) && countryChartTemplate.equals(other.countryChartTemplate) && baseCurrency.equals(other.baseCurrency) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && status.equals(other.status) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && logoFileId.equals(other.logoFileId) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired == other.auditRequired;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.isSandbox, this.countryCode, this.baseCurrency, this.defaultInvoiceCurrency, this.status, this.address, this.email, this.phone, this.iban, this.bankName, this.peppolId, this.sepaCreditorId, this.logoFileId);
+    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.isSandbox, this.countryCode, this.chartTemplate, this.countryChartTemplate, this.baseCurrency, this.defaultInvoiceCurrency, this.status, this.address, this.email, this.phone, this.iban, this.bankName, this.peppolId, this.sepaCreditorId, this.logoFileId, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.vatPeriod, this.fiscalYearEndMonth, this.timeZone, this.filingOptions, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired);
   }
 
   @java.lang.Override
@@ -374,7 +641,21 @@ public final class PostV1AccountCompaniesProfileResponse {
   }
 
   public interface CountryCodeStage {
-    BaseCurrencyStage countryCode(@NotNull String countryCode);
+    ChartTemplateStage countryCode(@NotNull String countryCode);
+  }
+
+  public interface ChartTemplateStage {
+    /**
+     * <p>Chart of accounts template the company was seeded with</p>
+     */
+    CountryChartTemplateStage chartTemplate(@NotNull String chartTemplate);
+  }
+
+  public interface CountryChartTemplateStage {
+    /**
+     * <p>Chart of accounts template of the company country</p>
+     */
+    BaseCurrencyStage countryChartTemplate(@NotNull String countryChartTemplate);
   }
 
   public interface BaseCurrencyStage {
@@ -386,7 +667,15 @@ public final class PostV1AccountCompaniesProfileResponse {
   }
 
   public interface StatusStage {
-    _FinalStage status(@NotNull PostV1AccountCompaniesProfileResponseStatus status);
+    TimeZoneStage status(@NotNull PostV1AccountCompaniesProfileResponseStatus status);
+  }
+
+  public interface TimeZoneStage {
+    AuditRequiredStage timeZone(@NotNull String timeZone);
+  }
+
+  public interface AuditRequiredStage {
+    _FinalStage auditRequired(boolean auditRequired);
   }
 
   public interface _FinalStage {
@@ -461,12 +750,80 @@ public final class PostV1AccountCompaniesProfileResponse {
     _FinalStage logoFileId(String logoFileId);
 
     _FinalStage logoFileId(Nullable<String> logoFileId);
+
+    _FinalStage legalForm(Optional<String> legalForm);
+
+    _FinalStage legalForm(String legalForm);
+
+    _FinalStage legalForm(Nullable<String> legalForm);
+
+    _FinalStage registryName(Optional<String> registryName);
+
+    _FinalStage registryName(String registryName);
+
+    _FinalStage registryName(Nullable<String> registryName);
+
+    _FinalStage incorporatedOn(Optional<String> incorporatedOn);
+
+    _FinalStage incorporatedOn(String incorporatedOn);
+
+    _FinalStage incorporatedOn(Nullable<String> incorporatedOn);
+
+    _FinalStage shareCapital(Optional<String> shareCapital);
+
+    _FinalStage shareCapital(String shareCapital);
+
+    _FinalStage shareCapital(Nullable<String> shareCapital);
+
+    _FinalStage accountsKeptBy(
+        Optional<PostV1AccountCompaniesProfileResponseAccountsKeptBy> accountsKeptBy);
+
+    _FinalStage accountsKeptBy(PostV1AccountCompaniesProfileResponseAccountsKeptBy accountsKeptBy);
+
+    _FinalStage accountsKeptBy(
+        Nullable<PostV1AccountCompaniesProfileResponseAccountsKeptBy> accountsKeptBy);
+
+    _FinalStage vatPeriod(Optional<PostV1AccountCompaniesProfileResponseVatPeriod> vatPeriod);
+
+    _FinalStage vatPeriod(PostV1AccountCompaniesProfileResponseVatPeriod vatPeriod);
+
+    _FinalStage vatPeriod(Nullable<PostV1AccountCompaniesProfileResponseVatPeriod> vatPeriod);
+
+    _FinalStage fiscalYearEndMonth(Optional<Long> fiscalYearEndMonth);
+
+    _FinalStage fiscalYearEndMonth(Long fiscalYearEndMonth);
+
+    _FinalStage fiscalYearEndMonth(Nullable<Long> fiscalYearEndMonth);
+
+    _FinalStage filingOptions(Optional<Map<String, Optional<String>>> filingOptions);
+
+    _FinalStage filingOptions(Map<String, Optional<String>> filingOptions);
+
+    _FinalStage filingOptions(Nullable<Map<String, Optional<String>>> filingOptions);
+
+    _FinalStage bookkeeperName(Optional<String> bookkeeperName);
+
+    _FinalStage bookkeeperName(String bookkeeperName);
+
+    _FinalStage bookkeeperName(Nullable<String> bookkeeperName);
+
+    _FinalStage auditorName(Optional<String> auditorName);
+
+    _FinalStage auditorName(String auditorName);
+
+    _FinalStage auditorName(Nullable<String> auditorName);
+
+    _FinalStage auditorRegistrationNumber(Optional<String> auditorRegistrationNumber);
+
+    _FinalStage auditorRegistrationNumber(String auditorRegistrationNumber);
+
+    _FinalStage auditorRegistrationNumber(Nullable<String> auditorRegistrationNumber);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, NameStage, IsVatPayerStage, IsSandboxStage, CountryCodeStage, BaseCurrencyStage, DefaultInvoiceCurrencyStage, StatusStage, _FinalStage {
+  public static final class Builder implements IdStage, NameStage, IsVatPayerStage, IsSandboxStage, CountryCodeStage, ChartTemplateStage, CountryChartTemplateStage, BaseCurrencyStage, DefaultInvoiceCurrencyStage, StatusStage, TimeZoneStage, AuditRequiredStage, _FinalStage {
     private String id;
 
     private String name;
@@ -477,11 +834,41 @@ public final class PostV1AccountCompaniesProfileResponse {
 
     private String countryCode;
 
+    private String chartTemplate;
+
+    private String countryChartTemplate;
+
     private String baseCurrency;
 
     private String defaultInvoiceCurrency;
 
     private PostV1AccountCompaniesProfileResponseStatus status;
+
+    private String timeZone;
+
+    private boolean auditRequired;
+
+    private Optional<String> auditorRegistrationNumber = Optional.empty();
+
+    private Optional<String> auditorName = Optional.empty();
+
+    private Optional<String> bookkeeperName = Optional.empty();
+
+    private Optional<Map<String, Optional<String>>> filingOptions = Optional.empty();
+
+    private Optional<Long> fiscalYearEndMonth = Optional.empty();
+
+    private Optional<PostV1AccountCompaniesProfileResponseVatPeriod> vatPeriod = Optional.empty();
+
+    private Optional<PostV1AccountCompaniesProfileResponseAccountsKeptBy> accountsKeptBy = Optional.empty();
+
+    private Optional<String> shareCapital = Optional.empty();
+
+    private Optional<String> incorporatedOn = Optional.empty();
+
+    private Optional<String> registryName = Optional.empty();
+
+    private Optional<String> legalForm = Optional.empty();
 
     private Optional<String> logoFileId = Optional.empty();
 
@@ -521,6 +908,8 @@ public final class PostV1AccountCompaniesProfileResponse {
       isVatPayer(other.getIsVatPayer());
       isSandbox(other.getIsSandbox());
       countryCode(other.getCountryCode());
+      chartTemplate(other.getChartTemplate());
+      countryChartTemplate(other.getCountryChartTemplate());
       baseCurrency(other.getBaseCurrency());
       defaultInvoiceCurrency(other.getDefaultInvoiceCurrency());
       status(other.getStatus());
@@ -532,6 +921,19 @@ public final class PostV1AccountCompaniesProfileResponse {
       peppolId(other.getPeppolId());
       sepaCreditorId(other.getSepaCreditorId());
       logoFileId(other.getLogoFileId());
+      legalForm(other.getLegalForm());
+      registryName(other.getRegistryName());
+      incorporatedOn(other.getIncorporatedOn());
+      shareCapital(other.getShareCapital());
+      accountsKeptBy(other.getAccountsKeptBy());
+      vatPeriod(other.getVatPeriod());
+      fiscalYearEndMonth(other.getFiscalYearEndMonth());
+      timeZone(other.getTimeZone());
+      filingOptions(other.getFilingOptions());
+      bookkeeperName(other.getBookkeeperName());
+      auditorName(other.getAuditorName());
+      auditorRegistrationNumber(other.getAuditorRegistrationNumber());
+      auditRequired(other.getAuditRequired());
       return this;
     }
 
@@ -565,8 +967,30 @@ public final class PostV1AccountCompaniesProfileResponse {
 
     @java.lang.Override
     @JsonSetter("countryCode")
-    public BaseCurrencyStage countryCode(@NotNull String countryCode) {
+    public ChartTemplateStage countryCode(@NotNull String countryCode) {
       this.countryCode = Objects.requireNonNull(countryCode, "countryCode must not be null");
+      return this;
+    }
+
+    /**
+     * <p>Chart of accounts template the company was seeded with</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    @JsonSetter("chartTemplate")
+    public CountryChartTemplateStage chartTemplate(@NotNull String chartTemplate) {
+      this.chartTemplate = Objects.requireNonNull(chartTemplate, "chartTemplate must not be null");
+      return this;
+    }
+
+    /**
+     * <p>Chart of accounts template of the company country</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    @JsonSetter("countryChartTemplate")
+    public BaseCurrencyStage countryChartTemplate(@NotNull String countryChartTemplate) {
+      this.countryChartTemplate = Objects.requireNonNull(countryChartTemplate, "countryChartTemplate must not be null");
       return this;
     }
 
@@ -586,8 +1010,357 @@ public final class PostV1AccountCompaniesProfileResponse {
 
     @java.lang.Override
     @JsonSetter("status")
-    public _FinalStage status(@NotNull PostV1AccountCompaniesProfileResponseStatus status) {
+    public TimeZoneStage status(@NotNull PostV1AccountCompaniesProfileResponseStatus status) {
       this.status = Objects.requireNonNull(status, "status must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("timeZone")
+    public AuditRequiredStage timeZone(@NotNull String timeZone) {
+      this.timeZone = Objects.requireNonNull(timeZone, "timeZone must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("auditRequired")
+    public _FinalStage auditRequired(boolean auditRequired) {
+      this.auditRequired = auditRequired;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage auditorRegistrationNumber(Nullable<String> auditorRegistrationNumber) {
+      if (auditorRegistrationNumber.isNull()) {
+        this.auditorRegistrationNumber = null;
+      }
+      else if (auditorRegistrationNumber.isEmpty()) {
+        this.auditorRegistrationNumber = Optional.empty();
+      }
+      else {
+        this.auditorRegistrationNumber = Optional.of(auditorRegistrationNumber.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage auditorRegistrationNumber(String auditorRegistrationNumber) {
+      this.auditorRegistrationNumber = Optional.ofNullable(auditorRegistrationNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "auditorRegistrationNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage auditorRegistrationNumber(Optional<String> auditorRegistrationNumber) {
+      this.auditorRegistrationNumber = auditorRegistrationNumber;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage auditorName(Nullable<String> auditorName) {
+      if (auditorName.isNull()) {
+        this.auditorName = null;
+      }
+      else if (auditorName.isEmpty()) {
+        this.auditorName = Optional.empty();
+      }
+      else {
+        this.auditorName = Optional.of(auditorName.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage auditorName(String auditorName) {
+      this.auditorName = Optional.ofNullable(auditorName);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "auditorName",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage auditorName(Optional<String> auditorName) {
+      this.auditorName = auditorName;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bookkeeperName(Nullable<String> bookkeeperName) {
+      if (bookkeeperName.isNull()) {
+        this.bookkeeperName = null;
+      }
+      else if (bookkeeperName.isEmpty()) {
+        this.bookkeeperName = Optional.empty();
+      }
+      else {
+        this.bookkeeperName = Optional.of(bookkeeperName.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bookkeeperName(String bookkeeperName) {
+      this.bookkeeperName = Optional.ofNullable(bookkeeperName);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bookkeeperName",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bookkeeperName(Optional<String> bookkeeperName) {
+      this.bookkeeperName = bookkeeperName;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage filingOptions(Nullable<Map<String, Optional<String>>> filingOptions) {
+      if (filingOptions.isNull()) {
+        this.filingOptions = null;
+      }
+      else if (filingOptions.isEmpty()) {
+        this.filingOptions = Optional.empty();
+      }
+      else {
+        this.filingOptions = Optional.of(filingOptions.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage filingOptions(Map<String, Optional<String>> filingOptions) {
+      this.filingOptions = Optional.ofNullable(filingOptions);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "filingOptions",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage filingOptions(Optional<Map<String, Optional<String>>> filingOptions) {
+      this.filingOptions = filingOptions;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fiscalYearEndMonth(Nullable<Long> fiscalYearEndMonth) {
+      if (fiscalYearEndMonth.isNull()) {
+        this.fiscalYearEndMonth = null;
+      }
+      else if (fiscalYearEndMonth.isEmpty()) {
+        this.fiscalYearEndMonth = Optional.empty();
+      }
+      else {
+        this.fiscalYearEndMonth = Optional.of(fiscalYearEndMonth.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fiscalYearEndMonth(Long fiscalYearEndMonth) {
+      this.fiscalYearEndMonth = Optional.ofNullable(fiscalYearEndMonth);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "fiscalYearEndMonth",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage fiscalYearEndMonth(Optional<Long> fiscalYearEndMonth) {
+      this.fiscalYearEndMonth = fiscalYearEndMonth;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatPeriod(
+        Nullable<PostV1AccountCompaniesProfileResponseVatPeriod> vatPeriod) {
+      if (vatPeriod.isNull()) {
+        this.vatPeriod = null;
+      }
+      else if (vatPeriod.isEmpty()) {
+        this.vatPeriod = Optional.empty();
+      }
+      else {
+        this.vatPeriod = Optional.of(vatPeriod.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatPeriod(PostV1AccountCompaniesProfileResponseVatPeriod vatPeriod) {
+      this.vatPeriod = Optional.ofNullable(vatPeriod);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "vatPeriod",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage vatPeriod(
+        Optional<PostV1AccountCompaniesProfileResponseVatPeriod> vatPeriod) {
+      this.vatPeriod = vatPeriod;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage accountsKeptBy(
+        Nullable<PostV1AccountCompaniesProfileResponseAccountsKeptBy> accountsKeptBy) {
+      if (accountsKeptBy.isNull()) {
+        this.accountsKeptBy = null;
+      }
+      else if (accountsKeptBy.isEmpty()) {
+        this.accountsKeptBy = Optional.empty();
+      }
+      else {
+        this.accountsKeptBy = Optional.of(accountsKeptBy.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage accountsKeptBy(
+        PostV1AccountCompaniesProfileResponseAccountsKeptBy accountsKeptBy) {
+      this.accountsKeptBy = Optional.ofNullable(accountsKeptBy);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "accountsKeptBy",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage accountsKeptBy(
+        Optional<PostV1AccountCompaniesProfileResponseAccountsKeptBy> accountsKeptBy) {
+      this.accountsKeptBy = accountsKeptBy;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage shareCapital(Nullable<String> shareCapital) {
+      if (shareCapital.isNull()) {
+        this.shareCapital = null;
+      }
+      else if (shareCapital.isEmpty()) {
+        this.shareCapital = Optional.empty();
+      }
+      else {
+        this.shareCapital = Optional.of(shareCapital.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage shareCapital(String shareCapital) {
+      this.shareCapital = Optional.ofNullable(shareCapital);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "shareCapital",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage shareCapital(Optional<String> shareCapital) {
+      this.shareCapital = shareCapital;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage incorporatedOn(Nullable<String> incorporatedOn) {
+      if (incorporatedOn.isNull()) {
+        this.incorporatedOn = null;
+      }
+      else if (incorporatedOn.isEmpty()) {
+        this.incorporatedOn = Optional.empty();
+      }
+      else {
+        this.incorporatedOn = Optional.of(incorporatedOn.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage incorporatedOn(String incorporatedOn) {
+      this.incorporatedOn = Optional.ofNullable(incorporatedOn);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "incorporatedOn",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage incorporatedOn(Optional<String> incorporatedOn) {
+      this.incorporatedOn = incorporatedOn;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage registryName(Nullable<String> registryName) {
+      if (registryName.isNull()) {
+        this.registryName = null;
+      }
+      else if (registryName.isEmpty()) {
+        this.registryName = Optional.empty();
+      }
+      else {
+        this.registryName = Optional.of(registryName.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage registryName(String registryName) {
+      this.registryName = Optional.ofNullable(registryName);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "registryName",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage registryName(Optional<String> registryName) {
+      this.registryName = registryName;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage legalForm(Nullable<String> legalForm) {
+      if (legalForm.isNull()) {
+        this.legalForm = null;
+      }
+      else if (legalForm.isEmpty()) {
+        this.legalForm = Optional.empty();
+      }
+      else {
+        this.legalForm = Optional.of(legalForm.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage legalForm(String legalForm) {
+      this.legalForm = Optional.ofNullable(legalForm);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "legalForm",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage legalForm(Optional<String> legalForm) {
+      this.legalForm = legalForm;
       return this;
     }
 
@@ -923,7 +1696,7 @@ public final class PostV1AccountCompaniesProfileResponse {
 
     @java.lang.Override
     public PostV1AccountCompaniesProfileResponse build() {
-      return new PostV1AccountCompaniesProfileResponse(id, name, code, vatCode, smeExemptionNumber, isVatPayer, isSandbox, countryCode, baseCurrency, defaultInvoiceCurrency, status, address, email, phone, iban, bankName, peppolId, sepaCreditorId, logoFileId, additionalProperties);
+      return new PostV1AccountCompaniesProfileResponse(id, name, code, vatCode, smeExemptionNumber, isVatPayer, isSandbox, countryCode, chartTemplate, countryChartTemplate, baseCurrency, defaultInvoiceCurrency, status, address, email, phone, iban, bankName, peppolId, sepaCreditorId, logoFileId, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, vatPeriod, fiscalYearEndMonth, timeZone, filingOptions, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, additionalProperties);
     }
 
     @java.lang.Override

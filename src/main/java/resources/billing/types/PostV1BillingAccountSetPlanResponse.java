@@ -48,6 +48,10 @@ public final class PostV1BillingAccountSetPlanResponse {
 
   private final boolean hasSubscription;
 
+  private final Optional<String> paymentFailedAt;
+
+  private final Optional<String> paymentFailedInvoiceUrl;
+
   private final PostV1BillingAccountSetPlanResponseMonthToDate monthToDate;
 
   private final Map<String, PostV1BillingAccountSetPlanResponsePlansValue> plans;
@@ -62,6 +66,7 @@ public final class PostV1BillingAccountSetPlanResponse {
       PostV1BillingAccountSetPlanResponseStatus status, long balanceCents,
       Optional<String> trialEndsAt, Optional<String> firstTopUpAt, Optional<String> lastChargedDate,
       boolean paymentsConfigured, boolean hasPaymentAccount, boolean hasSubscription,
+      Optional<String> paymentFailedAt, Optional<String> paymentFailedInvoiceUrl,
       PostV1BillingAccountSetPlanResponseMonthToDate monthToDate,
       Map<String, PostV1BillingAccountSetPlanResponsePlansValue> plans,
       PostV1BillingAccountSetPlanResponseTopUp topUp, long trialDays,
@@ -75,6 +80,8 @@ public final class PostV1BillingAccountSetPlanResponse {
     this.paymentsConfigured = paymentsConfigured;
     this.hasPaymentAccount = hasPaymentAccount;
     this.hasSubscription = hasSubscription;
+    this.paymentFailedAt = paymentFailedAt;
+    this.paymentFailedInvoiceUrl = paymentFailedInvoiceUrl;
     this.monthToDate = monthToDate;
     this.plans = plans;
     this.topUp = topUp;
@@ -136,6 +143,22 @@ public final class PostV1BillingAccountSetPlanResponse {
     return hasSubscription;
   }
 
+  @JsonIgnore
+  public Optional<String> getPaymentFailedAt() {
+    if (paymentFailedAt == null) {
+      return Optional.empty();
+    }
+    return paymentFailedAt;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPaymentFailedInvoiceUrl() {
+    if (paymentFailedInvoiceUrl == null) {
+      return Optional.empty();
+    }
+    return paymentFailedInvoiceUrl;
+  }
+
   @JsonProperty("monthToDate")
   public PostV1BillingAccountSetPlanResponseMonthToDate getMonthToDate() {
     return monthToDate;
@@ -183,6 +206,24 @@ public final class PostV1BillingAccountSetPlanResponse {
     return lastChargedDate;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("paymentFailedAt")
+  private Optional<String> _getPaymentFailedAt() {
+    return paymentFailedAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("paymentFailedInvoiceUrl")
+  private Optional<String> _getPaymentFailedInvoiceUrl() {
+    return paymentFailedInvoiceUrl;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -195,12 +236,12 @@ public final class PostV1BillingAccountSetPlanResponse {
   }
 
   private boolean equalTo(PostV1BillingAccountSetPlanResponse other) {
-    return plan.equals(other.plan) && status.equals(other.status) && balanceCents == other.balanceCents && trialEndsAt.equals(other.trialEndsAt) && firstTopUpAt.equals(other.firstTopUpAt) && lastChargedDate.equals(other.lastChargedDate) && paymentsConfigured == other.paymentsConfigured && hasPaymentAccount == other.hasPaymentAccount && hasSubscription == other.hasSubscription && monthToDate.equals(other.monthToDate) && plans.equals(other.plans) && topUp.equals(other.topUp) && trialDays == other.trialDays;
+    return plan.equals(other.plan) && status.equals(other.status) && balanceCents == other.balanceCents && trialEndsAt.equals(other.trialEndsAt) && firstTopUpAt.equals(other.firstTopUpAt) && lastChargedDate.equals(other.lastChargedDate) && paymentsConfigured == other.paymentsConfigured && hasPaymentAccount == other.hasPaymentAccount && hasSubscription == other.hasSubscription && paymentFailedAt.equals(other.paymentFailedAt) && paymentFailedInvoiceUrl.equals(other.paymentFailedInvoiceUrl) && monthToDate.equals(other.monthToDate) && plans.equals(other.plans) && topUp.equals(other.topUp) && trialDays == other.trialDays;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.plan, this.status, this.balanceCents, this.trialEndsAt, this.firstTopUpAt, this.lastChargedDate, this.paymentsConfigured, this.hasPaymentAccount, this.hasSubscription, this.monthToDate, this.plans, this.topUp, this.trialDays);
+    return Objects.hash(this.plan, this.status, this.balanceCents, this.trialEndsAt, this.firstTopUpAt, this.lastChargedDate, this.paymentsConfigured, this.hasPaymentAccount, this.hasSubscription, this.paymentFailedAt, this.paymentFailedInvoiceUrl, this.monthToDate, this.plans, this.topUp, this.trialDays);
   }
 
   @java.lang.Override
@@ -275,6 +316,18 @@ public final class PostV1BillingAccountSetPlanResponse {
 
     _FinalStage lastChargedDate(Nullable<String> lastChargedDate);
 
+    _FinalStage paymentFailedAt(Optional<String> paymentFailedAt);
+
+    _FinalStage paymentFailedAt(String paymentFailedAt);
+
+    _FinalStage paymentFailedAt(Nullable<String> paymentFailedAt);
+
+    _FinalStage paymentFailedInvoiceUrl(Optional<String> paymentFailedInvoiceUrl);
+
+    _FinalStage paymentFailedInvoiceUrl(String paymentFailedInvoiceUrl);
+
+    _FinalStage paymentFailedInvoiceUrl(Nullable<String> paymentFailedInvoiceUrl);
+
     _FinalStage plans(Map<String, PostV1BillingAccountSetPlanResponsePlansValue> plans);
 
     _FinalStage putAllPlans(Map<String, PostV1BillingAccountSetPlanResponsePlansValue> plans);
@@ -306,6 +359,10 @@ public final class PostV1BillingAccountSetPlanResponse {
 
     private Map<String, PostV1BillingAccountSetPlanResponsePlansValue> plans = new LinkedHashMap<>();
 
+    private Optional<String> paymentFailedInvoiceUrl = Optional.empty();
+
+    private Optional<String> paymentFailedAt = Optional.empty();
+
     private Optional<String> lastChargedDate = Optional.empty();
 
     private Optional<String> firstTopUpAt = Optional.empty();
@@ -329,6 +386,8 @@ public final class PostV1BillingAccountSetPlanResponse {
       paymentsConfigured(other.getPaymentsConfigured());
       hasPaymentAccount(other.getHasPaymentAccount());
       hasSubscription(other.getHasSubscription());
+      paymentFailedAt(other.getPaymentFailedAt());
+      paymentFailedInvoiceUrl(other.getPaymentFailedInvoiceUrl());
       monthToDate(other.getMonthToDate());
       plans(other.getPlans());
       topUp(other.getTopUp());
@@ -429,6 +488,66 @@ public final class PostV1BillingAccountSetPlanResponse {
     }
 
     @java.lang.Override
+    public _FinalStage paymentFailedInvoiceUrl(Nullable<String> paymentFailedInvoiceUrl) {
+      if (paymentFailedInvoiceUrl.isNull()) {
+        this.paymentFailedInvoiceUrl = null;
+      }
+      else if (paymentFailedInvoiceUrl.isEmpty()) {
+        this.paymentFailedInvoiceUrl = Optional.empty();
+      }
+      else {
+        this.paymentFailedInvoiceUrl = Optional.of(paymentFailedInvoiceUrl.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage paymentFailedInvoiceUrl(String paymentFailedInvoiceUrl) {
+      this.paymentFailedInvoiceUrl = Optional.ofNullable(paymentFailedInvoiceUrl);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "paymentFailedInvoiceUrl",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage paymentFailedInvoiceUrl(Optional<String> paymentFailedInvoiceUrl) {
+      this.paymentFailedInvoiceUrl = paymentFailedInvoiceUrl;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage paymentFailedAt(Nullable<String> paymentFailedAt) {
+      if (paymentFailedAt.isNull()) {
+        this.paymentFailedAt = null;
+      }
+      else if (paymentFailedAt.isEmpty()) {
+        this.paymentFailedAt = Optional.empty();
+      }
+      else {
+        this.paymentFailedAt = Optional.of(paymentFailedAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage paymentFailedAt(String paymentFailedAt) {
+      this.paymentFailedAt = Optional.ofNullable(paymentFailedAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "paymentFailedAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage paymentFailedAt(Optional<String> paymentFailedAt) {
+      this.paymentFailedAt = paymentFailedAt;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage lastChargedDate(Nullable<String> lastChargedDate) {
       if (lastChargedDate.isNull()) {
         this.lastChargedDate = null;
@@ -520,7 +639,7 @@ public final class PostV1BillingAccountSetPlanResponse {
 
     @java.lang.Override
     public PostV1BillingAccountSetPlanResponse build() {
-      return new PostV1BillingAccountSetPlanResponse(plan, status, balanceCents, trialEndsAt, firstTopUpAt, lastChargedDate, paymentsConfigured, hasPaymentAccount, hasSubscription, monthToDate, plans, topUp, trialDays, additionalProperties);
+      return new PostV1BillingAccountSetPlanResponse(plan, status, balanceCents, trialEndsAt, firstTopUpAt, lastChargedDate, paymentsConfigured, hasPaymentAccount, hasSubscription, paymentFailedAt, paymentFailedInvoiceUrl, monthToDate, plans, topUp, trialDays, additionalProperties);
     }
 
     @java.lang.Override

@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsCreateRequestTranslations;
+import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsCreateRequestTranslationsValue;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsCreateRequestType;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -33,7 +33,7 @@ public final class PostV1LedgerAccountsCreateRequest {
 
   private final String name;
 
-  private final Optional<PostV1LedgerAccountsCreateRequestTranslations> translations;
+  private final Optional<Map<String, PostV1LedgerAccountsCreateRequestTranslationsValue>> translations;
 
   private final PostV1LedgerAccountsCreateRequestType type;
 
@@ -44,7 +44,7 @@ public final class PostV1LedgerAccountsCreateRequest {
   private final Map<String, Object> additionalProperties;
 
   private PostV1LedgerAccountsCreateRequest(String code, String name,
-      Optional<PostV1LedgerAccountsCreateRequestTranslations> translations,
+      Optional<Map<String, PostV1LedgerAccountsCreateRequestTranslationsValue>> translations,
       PostV1LedgerAccountsCreateRequestType type, Optional<String> parentId,
       Optional<Boolean> isPostable, Map<String, Object> additionalProperties) {
     this.code = code;
@@ -67,7 +67,8 @@ public final class PostV1LedgerAccountsCreateRequest {
   }
 
   @JsonProperty("translations")
-  public Optional<PostV1LedgerAccountsCreateRequestTranslations> getTranslations() {
+  public Optional<Map<String, PostV1LedgerAccountsCreateRequestTranslationsValue>> getTranslations(
+      ) {
     return translations;
   }
 
@@ -136,9 +137,11 @@ public final class PostV1LedgerAccountsCreateRequest {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
-    _FinalStage translations(Optional<PostV1LedgerAccountsCreateRequestTranslations> translations);
+    _FinalStage translations(
+        Optional<Map<String, PostV1LedgerAccountsCreateRequestTranslationsValue>> translations);
 
-    _FinalStage translations(PostV1LedgerAccountsCreateRequestTranslations translations);
+    _FinalStage translations(
+        Map<String, PostV1LedgerAccountsCreateRequestTranslationsValue> translations);
 
     _FinalStage parentId(Optional<String> parentId);
 
@@ -163,7 +166,7 @@ public final class PostV1LedgerAccountsCreateRequest {
 
     private Optional<String> parentId = Optional.empty();
 
-    private Optional<PostV1LedgerAccountsCreateRequestTranslations> translations = Optional.empty();
+    private Optional<Map<String, PostV1LedgerAccountsCreateRequestTranslationsValue>> translations = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -236,7 +239,8 @@ public final class PostV1LedgerAccountsCreateRequest {
     }
 
     @java.lang.Override
-    public _FinalStage translations(PostV1LedgerAccountsCreateRequestTranslations translations) {
+    public _FinalStage translations(
+        Map<String, PostV1LedgerAccountsCreateRequestTranslationsValue> translations) {
       this.translations = Optional.ofNullable(translations);
       return this;
     }
@@ -247,7 +251,7 @@ public final class PostV1LedgerAccountsCreateRequest {
         nulls = Nulls.SKIP
     )
     public _FinalStage translations(
-        Optional<PostV1LedgerAccountsCreateRequestTranslations> translations) {
+        Optional<Map<String, PostV1LedgerAccountsCreateRequestTranslationsValue>> translations) {
       this.translations = translations;
       return this;
     }

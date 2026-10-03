@@ -16,6 +16,10 @@ public final class PostV1DeclarationsConfigsListResponseRowsItemFieldsItemKind {
 
   public static final PostV1DeclarationsConfigsListResponseRowsItemFieldsItemKind SELECT = new PostV1DeclarationsConfigsListResponseRowsItemFieldsItemKind(Value.SELECT, "select");
 
+  public static final PostV1DeclarationsConfigsListResponseRowsItemFieldsItemKind CERTIFICATE = new PostV1DeclarationsConfigsListResponseRowsItemFieldsItemKind(Value.CERTIFICATE, "certificate");
+
+  public static final PostV1DeclarationsConfigsListResponseRowsItemFieldsItemKind URL = new PostV1DeclarationsConfigsListResponseRowsItemFieldsItemKind(Value.URL, "url");
+
   private final Value value;
 
   private final String string;
@@ -54,6 +58,10 @@ public final class PostV1DeclarationsConfigsListResponseRowsItemFieldsItemKind {
         return visitor.visitText();
       case SELECT:
         return visitor.visitSelect();
+      case CERTIFICATE:
+        return visitor.visitCertificate();
+      case URL:
+        return visitor.visitUrl();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -71,6 +79,10 @@ public final class PostV1DeclarationsConfigsListResponseRowsItemFieldsItemKind {
         return TEXT;
       case "select":
         return SELECT;
+      case "certificate":
+        return CERTIFICATE;
+      case "url":
+        return URL;
       default:
         return new PostV1DeclarationsConfigsListResponseRowsItemFieldsItemKind(Value.UNKNOWN, value);
     }
@@ -83,6 +95,10 @@ public final class PostV1DeclarationsConfigsListResponseRowsItemFieldsItemKind {
 
     SELECT,
 
+    URL,
+
+    CERTIFICATE,
+
     UNKNOWN
   }
 
@@ -92,6 +108,10 @@ public final class PostV1DeclarationsConfigsListResponseRowsItemFieldsItemKind {
     T visitSecret();
 
     T visitSelect();
+
+    T visitUrl();
+
+    T visitCertificate();
 
     T visitUnknown(String unknownType);
   }

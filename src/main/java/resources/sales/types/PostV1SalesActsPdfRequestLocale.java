@@ -12,9 +12,9 @@ import java.lang.String;
 public final class PostV1SalesActsPdfRequestLocale {
   public static final PostV1SalesActsPdfRequestLocale EN = new PostV1SalesActsPdfRequestLocale(Value.EN, "en");
 
-  public static final PostV1SalesActsPdfRequestLocale LT = new PostV1SalesActsPdfRequestLocale(Value.LT, "lt");
+  public static final PostV1SalesActsPdfRequestLocale DE = new PostV1SalesActsPdfRequestLocale(Value.DE, "de");
 
-  public static final PostV1SalesActsPdfRequestLocale RU = new PostV1SalesActsPdfRequestLocale(Value.RU, "ru");
+  public static final PostV1SalesActsPdfRequestLocale LT = new PostV1SalesActsPdfRequestLocale(Value.LT, "lt");
 
   private final Value value;
 
@@ -50,10 +50,10 @@ public final class PostV1SalesActsPdfRequestLocale {
     switch (value) {
       case EN:
         return visitor.visitEn();
+      case DE:
+        return visitor.visitDe();
       case LT:
         return visitor.visitLt();
-      case RU:
-        return visitor.visitRu();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -67,31 +67,31 @@ public final class PostV1SalesActsPdfRequestLocale {
     switch (value) {
       case "en":
         return EN;
+      case "de":
+        return DE;
       case "lt":
         return LT;
-      case "ru":
-        return RU;
       default:
         return new PostV1SalesActsPdfRequestLocale(Value.UNKNOWN, value);
     }
   }
 
   public enum Value {
-    LT,
-
     EN,
 
-    RU,
+    LT,
+
+    DE,
 
     UNKNOWN
   }
 
   public interface Visitor<T> {
-    T visitLt();
-
     T visitEn();
 
-    T visitRu();
+    T visitLt();
+
+    T visitDe();
 
     T visitUnknown(String unknownType);
   }

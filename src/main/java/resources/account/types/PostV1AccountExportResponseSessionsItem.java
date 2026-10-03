@@ -33,6 +33,12 @@ public final class PostV1AccountExportResponseSessionsItem {
 
   private final Optional<String> companyId;
 
+  private final Optional<String> ipAddress;
+
+  private final Optional<String> userAgent;
+
+  private final Optional<String> lastSeenAt;
+
   private final String createdAt;
 
   private final String expiresAt;
@@ -42,10 +48,14 @@ public final class PostV1AccountExportResponseSessionsItem {
   private final Map<String, Object> additionalProperties;
 
   private PostV1AccountExportResponseSessionsItem(String id, Optional<String> companyId,
+      Optional<String> ipAddress, Optional<String> userAgent, Optional<String> lastSeenAt,
       String createdAt, String expiresAt, boolean current,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.companyId = companyId;
+    this.ipAddress = ipAddress;
+    this.userAgent = userAgent;
+    this.lastSeenAt = lastSeenAt;
     this.createdAt = createdAt;
     this.expiresAt = expiresAt;
     this.current = current;
@@ -63,6 +73,30 @@ public final class PostV1AccountExportResponseSessionsItem {
       return Optional.empty();
     }
     return companyId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getIpAddress() {
+    if (ipAddress == null) {
+      return Optional.empty();
+    }
+    return ipAddress;
+  }
+
+  @JsonIgnore
+  public Optional<String> getUserAgent() {
+    if (userAgent == null) {
+      return Optional.empty();
+    }
+    return userAgent;
+  }
+
+  @JsonIgnore
+  public Optional<String> getLastSeenAt() {
+    if (lastSeenAt == null) {
+      return Optional.empty();
+    }
+    return lastSeenAt;
   }
 
   @JsonProperty("createdAt")
@@ -89,6 +123,33 @@ public final class PostV1AccountExportResponseSessionsItem {
     return companyId;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("ipAddress")
+  private Optional<String> _getIpAddress() {
+    return ipAddress;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("userAgent")
+  private Optional<String> _getUserAgent() {
+    return userAgent;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("lastSeenAt")
+  private Optional<String> _getLastSeenAt() {
+    return lastSeenAt;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -101,12 +162,12 @@ public final class PostV1AccountExportResponseSessionsItem {
   }
 
   private boolean equalTo(PostV1AccountExportResponseSessionsItem other) {
-    return id.equals(other.id) && companyId.equals(other.companyId) && createdAt.equals(other.createdAt) && expiresAt.equals(other.expiresAt) && current == other.current;
+    return id.equals(other.id) && companyId.equals(other.companyId) && ipAddress.equals(other.ipAddress) && userAgent.equals(other.userAgent) && lastSeenAt.equals(other.lastSeenAt) && createdAt.equals(other.createdAt) && expiresAt.equals(other.expiresAt) && current == other.current;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.companyId, this.createdAt, this.expiresAt, this.current);
+    return Objects.hash(this.id, this.companyId, this.ipAddress, this.userAgent, this.lastSeenAt, this.createdAt, this.expiresAt, this.current);
   }
 
   @java.lang.Override
@@ -148,6 +209,24 @@ public final class PostV1AccountExportResponseSessionsItem {
     _FinalStage companyId(String companyId);
 
     _FinalStage companyId(Nullable<String> companyId);
+
+    _FinalStage ipAddress(Optional<String> ipAddress);
+
+    _FinalStage ipAddress(String ipAddress);
+
+    _FinalStage ipAddress(Nullable<String> ipAddress);
+
+    _FinalStage userAgent(Optional<String> userAgent);
+
+    _FinalStage userAgent(String userAgent);
+
+    _FinalStage userAgent(Nullable<String> userAgent);
+
+    _FinalStage lastSeenAt(Optional<String> lastSeenAt);
+
+    _FinalStage lastSeenAt(String lastSeenAt);
+
+    _FinalStage lastSeenAt(Nullable<String> lastSeenAt);
   }
 
   @JsonIgnoreProperties(
@@ -162,6 +241,12 @@ public final class PostV1AccountExportResponseSessionsItem {
 
     private boolean current;
 
+    private Optional<String> lastSeenAt = Optional.empty();
+
+    private Optional<String> userAgent = Optional.empty();
+
+    private Optional<String> ipAddress = Optional.empty();
+
     private Optional<String> companyId = Optional.empty();
 
     @JsonAnySetter
@@ -174,6 +259,9 @@ public final class PostV1AccountExportResponseSessionsItem {
     public Builder from(PostV1AccountExportResponseSessionsItem other) {
       id(other.getId());
       companyId(other.getCompanyId());
+      ipAddress(other.getIpAddress());
+      userAgent(other.getUserAgent());
+      lastSeenAt(other.getLastSeenAt());
       createdAt(other.getCreatedAt());
       expiresAt(other.getExpiresAt());
       current(other.getCurrent());
@@ -209,6 +297,96 @@ public final class PostV1AccountExportResponseSessionsItem {
     }
 
     @java.lang.Override
+    public _FinalStage lastSeenAt(Nullable<String> lastSeenAt) {
+      if (lastSeenAt.isNull()) {
+        this.lastSeenAt = null;
+      }
+      else if (lastSeenAt.isEmpty()) {
+        this.lastSeenAt = Optional.empty();
+      }
+      else {
+        this.lastSeenAt = Optional.of(lastSeenAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lastSeenAt(String lastSeenAt) {
+      this.lastSeenAt = Optional.ofNullable(lastSeenAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lastSeenAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lastSeenAt(Optional<String> lastSeenAt) {
+      this.lastSeenAt = lastSeenAt;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage userAgent(Nullable<String> userAgent) {
+      if (userAgent.isNull()) {
+        this.userAgent = null;
+      }
+      else if (userAgent.isEmpty()) {
+        this.userAgent = Optional.empty();
+      }
+      else {
+        this.userAgent = Optional.of(userAgent.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage userAgent(String userAgent) {
+      this.userAgent = Optional.ofNullable(userAgent);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "userAgent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage userAgent(Optional<String> userAgent) {
+      this.userAgent = userAgent;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage ipAddress(Nullable<String> ipAddress) {
+      if (ipAddress.isNull()) {
+        this.ipAddress = null;
+      }
+      else if (ipAddress.isEmpty()) {
+        this.ipAddress = Optional.empty();
+      }
+      else {
+        this.ipAddress = Optional.of(ipAddress.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage ipAddress(String ipAddress) {
+      this.ipAddress = Optional.ofNullable(ipAddress);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "ipAddress",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage ipAddress(Optional<String> ipAddress) {
+      this.ipAddress = ipAddress;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage companyId(Nullable<String> companyId) {
       if (companyId.isNull()) {
         this.companyId = null;
@@ -240,7 +418,7 @@ public final class PostV1AccountExportResponseSessionsItem {
 
     @java.lang.Override
     public PostV1AccountExportResponseSessionsItem build() {
-      return new PostV1AccountExportResponseSessionsItem(id, companyId, createdAt, expiresAt, current, additionalProperties);
+      return new PostV1AccountExportResponseSessionsItem(id, companyId, ipAddress, userAgent, lastSeenAt, createdAt, expiresAt, current, additionalProperties);
     }
 
     @java.lang.Override

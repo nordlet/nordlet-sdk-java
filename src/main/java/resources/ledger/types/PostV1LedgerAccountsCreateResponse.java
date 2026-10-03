@@ -35,7 +35,7 @@ public final class PostV1LedgerAccountsCreateResponse {
 
   private final String name;
 
-  private final Optional<PostV1LedgerAccountsCreateResponseTranslations> translations;
+  private final Optional<Map<String, Optional<PostV1LedgerAccountsCreateResponseTranslationsValue>>> translations;
 
   private final PostV1LedgerAccountsCreateResponseType type;
 
@@ -48,7 +48,7 @@ public final class PostV1LedgerAccountsCreateResponse {
   private final Map<String, Object> additionalProperties;
 
   private PostV1LedgerAccountsCreateResponse(String id, String code, String name,
-      Optional<PostV1LedgerAccountsCreateResponseTranslations> translations,
+      Optional<Map<String, Optional<PostV1LedgerAccountsCreateResponseTranslationsValue>>> translations,
       PostV1LedgerAccountsCreateResponseType type, Optional<String> parentId, boolean isPostable,
       String createdAt, Map<String, Object> additionalProperties) {
     this.id = id;
@@ -78,7 +78,8 @@ public final class PostV1LedgerAccountsCreateResponse {
   }
 
   @JsonIgnore
-  public Optional<PostV1LedgerAccountsCreateResponseTranslations> getTranslations() {
+  public Optional<Map<String, Optional<PostV1LedgerAccountsCreateResponseTranslationsValue>>> getTranslations(
+      ) {
     if (translations == null) {
       return Optional.empty();
     }
@@ -113,7 +114,8 @@ public final class PostV1LedgerAccountsCreateResponse {
       valueFilter = NullableNonemptyFilter.class
   )
   @JsonProperty("translations")
-  private Optional<PostV1LedgerAccountsCreateResponseTranslations> _getTranslations() {
+  private Optional<Map<String, Optional<PostV1LedgerAccountsCreateResponseTranslationsValue>>> _getTranslations(
+      ) {
     return translations;
   }
 
@@ -188,11 +190,14 @@ public final class PostV1LedgerAccountsCreateResponse {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
-    _FinalStage translations(Optional<PostV1LedgerAccountsCreateResponseTranslations> translations);
+    _FinalStage translations(
+        Optional<Map<String, Optional<PostV1LedgerAccountsCreateResponseTranslationsValue>>> translations);
 
-    _FinalStage translations(PostV1LedgerAccountsCreateResponseTranslations translations);
+    _FinalStage translations(
+        Map<String, Optional<PostV1LedgerAccountsCreateResponseTranslationsValue>> translations);
 
-    _FinalStage translations(Nullable<PostV1LedgerAccountsCreateResponseTranslations> translations);
+    _FinalStage translations(
+        Nullable<Map<String, Optional<PostV1LedgerAccountsCreateResponseTranslationsValue>>> translations);
 
     _FinalStage parentId(Optional<String> parentId);
 
@@ -219,7 +224,7 @@ public final class PostV1LedgerAccountsCreateResponse {
 
     private Optional<String> parentId = Optional.empty();
 
-    private Optional<PostV1LedgerAccountsCreateResponseTranslations> translations = Optional.empty();
+    private Optional<Map<String, Optional<PostV1LedgerAccountsCreateResponseTranslationsValue>>> translations = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -314,7 +319,7 @@ public final class PostV1LedgerAccountsCreateResponse {
 
     @java.lang.Override
     public _FinalStage translations(
-        Nullable<PostV1LedgerAccountsCreateResponseTranslations> translations) {
+        Nullable<Map<String, Optional<PostV1LedgerAccountsCreateResponseTranslationsValue>>> translations) {
       if (translations.isNull()) {
         this.translations = null;
       }
@@ -328,7 +333,8 @@ public final class PostV1LedgerAccountsCreateResponse {
     }
 
     @java.lang.Override
-    public _FinalStage translations(PostV1LedgerAccountsCreateResponseTranslations translations) {
+    public _FinalStage translations(
+        Map<String, Optional<PostV1LedgerAccountsCreateResponseTranslationsValue>> translations) {
       this.translations = Optional.ofNullable(translations);
       return this;
     }
@@ -339,7 +345,7 @@ public final class PostV1LedgerAccountsCreateResponse {
         nulls = Nulls.SKIP
     )
     public _FinalStage translations(
-        Optional<PostV1LedgerAccountsCreateResponseTranslations> translations) {
+        Optional<Map<String, Optional<PostV1LedgerAccountsCreateResponseTranslationsValue>>> translations) {
       this.translations = translations;
       return this;
     }

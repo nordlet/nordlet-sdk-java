@@ -49,6 +49,10 @@ public final class PostV1BankSettlementsMatchResponse {
 
   private final Optional<String> chargeId;
 
+  private final Optional<String> commissionPercent;
+
+  private final Optional<String> commissionAmount;
+
   private final Optional<String> reference;
 
   private final Optional<String> matchedInvoiceId;
@@ -59,7 +63,8 @@ public final class PostV1BankSettlementsMatchResponse {
 
   private PostV1BankSettlementsMatchResponse(String id, String externalId, String category,
       String date, String gross, String fee, String net, Optional<String> description,
-      Optional<String> sourceId, Optional<String> chargeId, Optional<String> reference,
+      Optional<String> sourceId, Optional<String> chargeId, Optional<String> commissionPercent,
+      Optional<String> commissionAmount, Optional<String> reference,
       Optional<String> matchedInvoiceId, PostV1BankSettlementsMatchResponseMatchStatus matchStatus,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -72,6 +77,8 @@ public final class PostV1BankSettlementsMatchResponse {
     this.description = description;
     this.sourceId = sourceId;
     this.chargeId = chargeId;
+    this.commissionPercent = commissionPercent;
+    this.commissionAmount = commissionAmount;
     this.reference = reference;
     this.matchedInvoiceId = matchedInvoiceId;
     this.matchStatus = matchStatus;
@@ -138,6 +145,22 @@ public final class PostV1BankSettlementsMatchResponse {
   }
 
   @JsonIgnore
+  public Optional<String> getCommissionPercent() {
+    if (commissionPercent == null) {
+      return Optional.empty();
+    }
+    return commissionPercent;
+  }
+
+  @JsonIgnore
+  public Optional<String> getCommissionAmount() {
+    if (commissionAmount == null) {
+      return Optional.empty();
+    }
+    return commissionAmount;
+  }
+
+  @JsonIgnore
   public Optional<String> getReference() {
     if (reference == null) {
       return Optional.empty();
@@ -189,6 +212,24 @@ public final class PostV1BankSettlementsMatchResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("commissionPercent")
+  private Optional<String> _getCommissionPercent() {
+    return commissionPercent;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("commissionAmount")
+  private Optional<String> _getCommissionAmount() {
+    return commissionAmount;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("reference")
   private Optional<String> _getReference() {
     return reference;
@@ -215,12 +256,12 @@ public final class PostV1BankSettlementsMatchResponse {
   }
 
   private boolean equalTo(PostV1BankSettlementsMatchResponse other) {
-    return id.equals(other.id) && externalId.equals(other.externalId) && category.equals(other.category) && date.equals(other.date) && gross.equals(other.gross) && fee.equals(other.fee) && net.equals(other.net) && description.equals(other.description) && sourceId.equals(other.sourceId) && chargeId.equals(other.chargeId) && reference.equals(other.reference) && matchedInvoiceId.equals(other.matchedInvoiceId) && matchStatus.equals(other.matchStatus);
+    return id.equals(other.id) && externalId.equals(other.externalId) && category.equals(other.category) && date.equals(other.date) && gross.equals(other.gross) && fee.equals(other.fee) && net.equals(other.net) && description.equals(other.description) && sourceId.equals(other.sourceId) && chargeId.equals(other.chargeId) && commissionPercent.equals(other.commissionPercent) && commissionAmount.equals(other.commissionAmount) && reference.equals(other.reference) && matchedInvoiceId.equals(other.matchedInvoiceId) && matchStatus.equals(other.matchStatus);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.externalId, this.category, this.date, this.gross, this.fee, this.net, this.description, this.sourceId, this.chargeId, this.reference, this.matchedInvoiceId, this.matchStatus);
+    return Objects.hash(this.id, this.externalId, this.category, this.date, this.gross, this.fee, this.net, this.description, this.sourceId, this.chargeId, this.commissionPercent, this.commissionAmount, this.reference, this.matchedInvoiceId, this.matchStatus);
   }
 
   @java.lang.Override
@@ -291,6 +332,18 @@ public final class PostV1BankSettlementsMatchResponse {
 
     _FinalStage chargeId(Nullable<String> chargeId);
 
+    _FinalStage commissionPercent(Optional<String> commissionPercent);
+
+    _FinalStage commissionPercent(String commissionPercent);
+
+    _FinalStage commissionPercent(Nullable<String> commissionPercent);
+
+    _FinalStage commissionAmount(Optional<String> commissionAmount);
+
+    _FinalStage commissionAmount(String commissionAmount);
+
+    _FinalStage commissionAmount(Nullable<String> commissionAmount);
+
     _FinalStage reference(Optional<String> reference);
 
     _FinalStage reference(String reference);
@@ -328,6 +381,10 @@ public final class PostV1BankSettlementsMatchResponse {
 
     private Optional<String> reference = Optional.empty();
 
+    private Optional<String> commissionAmount = Optional.empty();
+
+    private Optional<String> commissionPercent = Optional.empty();
+
     private Optional<String> chargeId = Optional.empty();
 
     private Optional<String> sourceId = Optional.empty();
@@ -352,6 +409,8 @@ public final class PostV1BankSettlementsMatchResponse {
       description(other.getDescription());
       sourceId(other.getSourceId());
       chargeId(other.getChargeId());
+      commissionPercent(other.getCommissionPercent());
+      commissionAmount(other.getCommissionAmount());
       reference(other.getReference());
       matchedInvoiceId(other.getMatchedInvoiceId());
       matchStatus(other.getMatchStatus());
@@ -476,6 +535,66 @@ public final class PostV1BankSettlementsMatchResponse {
     }
 
     @java.lang.Override
+    public _FinalStage commissionAmount(Nullable<String> commissionAmount) {
+      if (commissionAmount.isNull()) {
+        this.commissionAmount = null;
+      }
+      else if (commissionAmount.isEmpty()) {
+        this.commissionAmount = Optional.empty();
+      }
+      else {
+        this.commissionAmount = Optional.of(commissionAmount.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage commissionAmount(String commissionAmount) {
+      this.commissionAmount = Optional.ofNullable(commissionAmount);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "commissionAmount",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage commissionAmount(Optional<String> commissionAmount) {
+      this.commissionAmount = commissionAmount;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage commissionPercent(Nullable<String> commissionPercent) {
+      if (commissionPercent.isNull()) {
+        this.commissionPercent = null;
+      }
+      else if (commissionPercent.isEmpty()) {
+        this.commissionPercent = Optional.empty();
+      }
+      else {
+        this.commissionPercent = Optional.of(commissionPercent.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage commissionPercent(String commissionPercent) {
+      this.commissionPercent = Optional.ofNullable(commissionPercent);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "commissionPercent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage commissionPercent(Optional<String> commissionPercent) {
+      this.commissionPercent = commissionPercent;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage chargeId(Nullable<String> chargeId) {
       if (chargeId.isNull()) {
         this.chargeId = null;
@@ -567,7 +686,7 @@ public final class PostV1BankSettlementsMatchResponse {
 
     @java.lang.Override
     public PostV1BankSettlementsMatchResponse build() {
-      return new PostV1BankSettlementsMatchResponse(id, externalId, category, date, gross, fee, net, description, sourceId, chargeId, reference, matchedInvoiceId, matchStatus, additionalProperties);
+      return new PostV1BankSettlementsMatchResponse(id, externalId, category, date, gross, fee, net, description, sourceId, chargeId, commissionPercent, commissionAmount, reference, matchedInvoiceId, matchStatus, additionalProperties);
     }
 
     @java.lang.Override

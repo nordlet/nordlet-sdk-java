@@ -34,16 +34,22 @@ public final class PostV1BankSettlementsPostResponseSummary {
 
   private final String suspenseAmount;
 
+  private final String fxRate;
+
+  private final String exchangeDifference;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1BankSettlementsPostResponseSummary(String receivableApplied,
       String commissionAmount, String sellerAmount, String feeAmount, String suspenseAmount,
-      Map<String, Object> additionalProperties) {
+      String fxRate, String exchangeDifference, Map<String, Object> additionalProperties) {
     this.receivableApplied = receivableApplied;
     this.commissionAmount = commissionAmount;
     this.sellerAmount = sellerAmount;
     this.feeAmount = feeAmount;
     this.suspenseAmount = suspenseAmount;
+    this.fxRate = fxRate;
+    this.exchangeDifference = exchangeDifference;
     this.additionalProperties = additionalProperties;
   }
 
@@ -72,6 +78,16 @@ public final class PostV1BankSettlementsPostResponseSummary {
     return suspenseAmount;
   }
 
+  @JsonProperty("fxRate")
+  public String getFxRate() {
+    return fxRate;
+  }
+
+  @JsonProperty("exchangeDifference")
+  public String getExchangeDifference() {
+    return exchangeDifference;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -84,12 +100,12 @@ public final class PostV1BankSettlementsPostResponseSummary {
   }
 
   private boolean equalTo(PostV1BankSettlementsPostResponseSummary other) {
-    return receivableApplied.equals(other.receivableApplied) && commissionAmount.equals(other.commissionAmount) && sellerAmount.equals(other.sellerAmount) && feeAmount.equals(other.feeAmount) && suspenseAmount.equals(other.suspenseAmount);
+    return receivableApplied.equals(other.receivableApplied) && commissionAmount.equals(other.commissionAmount) && sellerAmount.equals(other.sellerAmount) && feeAmount.equals(other.feeAmount) && suspenseAmount.equals(other.suspenseAmount) && fxRate.equals(other.fxRate) && exchangeDifference.equals(other.exchangeDifference);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.receivableApplied, this.commissionAmount, this.sellerAmount, this.feeAmount, this.suspenseAmount);
+    return Objects.hash(this.receivableApplied, this.commissionAmount, this.sellerAmount, this.feeAmount, this.suspenseAmount, this.fxRate, this.exchangeDifference);
   }
 
   @java.lang.Override
@@ -120,7 +136,15 @@ public final class PostV1BankSettlementsPostResponseSummary {
   }
 
   public interface SuspenseAmountStage {
-    _FinalStage suspenseAmount(@NotNull String suspenseAmount);
+    FxRateStage suspenseAmount(@NotNull String suspenseAmount);
+  }
+
+  public interface FxRateStage {
+    ExchangeDifferenceStage fxRate(@NotNull String fxRate);
+  }
+
+  public interface ExchangeDifferenceStage {
+    _FinalStage exchangeDifference(@NotNull String exchangeDifference);
   }
 
   public interface _FinalStage {
@@ -134,7 +158,7 @@ public final class PostV1BankSettlementsPostResponseSummary {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements ReceivableAppliedStage, CommissionAmountStage, SellerAmountStage, FeeAmountStage, SuspenseAmountStage, _FinalStage {
+  public static final class Builder implements ReceivableAppliedStage, CommissionAmountStage, SellerAmountStage, FeeAmountStage, SuspenseAmountStage, FxRateStage, ExchangeDifferenceStage, _FinalStage {
     private String receivableApplied;
 
     private String commissionAmount;
@@ -144,6 +168,10 @@ public final class PostV1BankSettlementsPostResponseSummary {
     private String feeAmount;
 
     private String suspenseAmount;
+
+    private String fxRate;
+
+    private String exchangeDifference;
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -158,6 +186,8 @@ public final class PostV1BankSettlementsPostResponseSummary {
       sellerAmount(other.getSellerAmount());
       feeAmount(other.getFeeAmount());
       suspenseAmount(other.getSuspenseAmount());
+      fxRate(other.getFxRate());
+      exchangeDifference(other.getExchangeDifference());
       return this;
     }
 
@@ -191,14 +221,28 @@ public final class PostV1BankSettlementsPostResponseSummary {
 
     @java.lang.Override
     @JsonSetter("suspenseAmount")
-    public _FinalStage suspenseAmount(@NotNull String suspenseAmount) {
+    public FxRateStage suspenseAmount(@NotNull String suspenseAmount) {
       this.suspenseAmount = Objects.requireNonNull(suspenseAmount, "suspenseAmount must not be null");
       return this;
     }
 
     @java.lang.Override
+    @JsonSetter("fxRate")
+    public ExchangeDifferenceStage fxRate(@NotNull String fxRate) {
+      this.fxRate = Objects.requireNonNull(fxRate, "fxRate must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("exchangeDifference")
+    public _FinalStage exchangeDifference(@NotNull String exchangeDifference) {
+      this.exchangeDifference = Objects.requireNonNull(exchangeDifference, "exchangeDifference must not be null");
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1BankSettlementsPostResponseSummary build() {
-      return new PostV1BankSettlementsPostResponseSummary(receivableApplied, commissionAmount, sellerAmount, feeAmount, suspenseAmount, additionalProperties);
+      return new PostV1BankSettlementsPostResponseSummary(receivableApplied, commissionAmount, sellerAmount, feeAmount, suspenseAmount, fxRate, exchangeDifference, additionalProperties);
     }
 
     @java.lang.Override

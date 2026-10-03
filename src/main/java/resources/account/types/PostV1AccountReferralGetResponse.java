@@ -35,17 +35,21 @@ public final class PostV1AccountReferralGetResponse {
 
   private final long referredCount;
 
+  private final PostV1AccountReferralGetResponseRates rates;
+
   private final List<PostV1AccountReferralGetResponseHistoryItem> history;
 
   private final Map<String, Object> additionalProperties;
 
   private PostV1AccountReferralGetResponse(String code, String link, long points,
-      long referredCount, List<PostV1AccountReferralGetResponseHistoryItem> history,
+      long referredCount, PostV1AccountReferralGetResponseRates rates,
+      List<PostV1AccountReferralGetResponseHistoryItem> history,
       Map<String, Object> additionalProperties) {
     this.code = code;
     this.link = link;
     this.points = points;
     this.referredCount = referredCount;
+    this.rates = rates;
     this.history = history;
     this.additionalProperties = additionalProperties;
   }
@@ -70,6 +74,11 @@ public final class PostV1AccountReferralGetResponse {
     return referredCount;
   }
 
+  @JsonProperty("rates")
+  public PostV1AccountReferralGetResponseRates getRates() {
+    return rates;
+  }
+
   @JsonProperty("history")
   public List<PostV1AccountReferralGetResponseHistoryItem> getHistory() {
     return history;
@@ -87,12 +96,12 @@ public final class PostV1AccountReferralGetResponse {
   }
 
   private boolean equalTo(PostV1AccountReferralGetResponse other) {
-    return code.equals(other.code) && link.equals(other.link) && points == other.points && referredCount == other.referredCount && history.equals(other.history);
+    return code.equals(other.code) && link.equals(other.link) && points == other.points && referredCount == other.referredCount && rates.equals(other.rates) && history.equals(other.history);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.code, this.link, this.points, this.referredCount, this.history);
+    return Objects.hash(this.code, this.link, this.points, this.referredCount, this.rates, this.history);
   }
 
   @java.lang.Override
@@ -119,7 +128,11 @@ public final class PostV1AccountReferralGetResponse {
   }
 
   public interface ReferredCountStage {
-    _FinalStage referredCount(long referredCount);
+    RatesStage referredCount(long referredCount);
+  }
+
+  public interface RatesStage {
+    _FinalStage rates(@NotNull PostV1AccountReferralGetResponseRates rates);
   }
 
   public interface _FinalStage {
@@ -139,7 +152,7 @@ public final class PostV1AccountReferralGetResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements CodeStage, LinkStage, PointsStage, ReferredCountStage, _FinalStage {
+  public static final class Builder implements CodeStage, LinkStage, PointsStage, ReferredCountStage, RatesStage, _FinalStage {
     private String code;
 
     private String link;
@@ -147,6 +160,8 @@ public final class PostV1AccountReferralGetResponse {
     private long points;
 
     private long referredCount;
+
+    private PostV1AccountReferralGetResponseRates rates;
 
     private List<PostV1AccountReferralGetResponseHistoryItem> history = new ArrayList<>();
 
@@ -162,6 +177,7 @@ public final class PostV1AccountReferralGetResponse {
       link(other.getLink());
       points(other.getPoints());
       referredCount(other.getReferredCount());
+      rates(other.getRates());
       history(other.getHistory());
       return this;
     }
@@ -189,8 +205,15 @@ public final class PostV1AccountReferralGetResponse {
 
     @java.lang.Override
     @JsonSetter("referredCount")
-    public _FinalStage referredCount(long referredCount) {
+    public RatesStage referredCount(long referredCount) {
       this.referredCount = referredCount;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("rates")
+    public _FinalStage rates(@NotNull PostV1AccountReferralGetResponseRates rates) {
+      this.rates = Objects.requireNonNull(rates, "rates must not be null");
       return this;
     }
 
@@ -223,7 +246,7 @@ public final class PostV1AccountReferralGetResponse {
 
     @java.lang.Override
     public PostV1AccountReferralGetResponse build() {
-      return new PostV1AccountReferralGetResponse(code, link, points, referredCount, history, additionalProperties);
+      return new PostV1AccountReferralGetResponse(code, link, points, referredCount, rates, history, additionalProperties);
     }
 
     @java.lang.Override

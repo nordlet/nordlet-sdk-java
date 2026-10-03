@@ -12,9 +12,9 @@ import java.lang.String;
 public final class PostV1AccountInvitesCreateRequestLocale {
   public static final PostV1AccountInvitesCreateRequestLocale EN = new PostV1AccountInvitesCreateRequestLocale(Value.EN, "en");
 
-  public static final PostV1AccountInvitesCreateRequestLocale LT = new PostV1AccountInvitesCreateRequestLocale(Value.LT, "lt");
+  public static final PostV1AccountInvitesCreateRequestLocale DE = new PostV1AccountInvitesCreateRequestLocale(Value.DE, "de");
 
-  public static final PostV1AccountInvitesCreateRequestLocale RU = new PostV1AccountInvitesCreateRequestLocale(Value.RU, "ru");
+  public static final PostV1AccountInvitesCreateRequestLocale LT = new PostV1AccountInvitesCreateRequestLocale(Value.LT, "lt");
 
   private final Value value;
 
@@ -50,10 +50,10 @@ public final class PostV1AccountInvitesCreateRequestLocale {
     switch (value) {
       case EN:
         return visitor.visitEn();
+      case DE:
+        return visitor.visitDe();
       case LT:
         return visitor.visitLt();
-      case RU:
-        return visitor.visitRu();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -67,31 +67,31 @@ public final class PostV1AccountInvitesCreateRequestLocale {
     switch (value) {
       case "en":
         return EN;
+      case "de":
+        return DE;
       case "lt":
         return LT;
-      case "ru":
-        return RU;
       default:
         return new PostV1AccountInvitesCreateRequestLocale(Value.UNKNOWN, value);
     }
   }
 
   public enum Value {
-    LT,
-
     EN,
 
-    RU,
+    LT,
+
+    DE,
 
     UNKNOWN
   }
 
   public interface Visitor<T> {
-    T visitLt();
-
     T visitEn();
 
-    T visitRu();
+    T visitLt();
+
+    T visitDe();
 
     T visitUnknown(String unknownType);
   }

@@ -32,19 +32,16 @@ public final class PostV1AccountInvitesCreateResponse {
 
   private final String expiresAt;
 
-  private final String inviteUrl;
-
   private final boolean emailSent;
 
   private final Map<String, Object> additionalProperties;
 
   private PostV1AccountInvitesCreateResponse(String id, String email, String role, String expiresAt,
-      String inviteUrl, boolean emailSent, Map<String, Object> additionalProperties) {
+      boolean emailSent, Map<String, Object> additionalProperties) {
     this.id = id;
     this.email = email;
     this.role = role;
     this.expiresAt = expiresAt;
-    this.inviteUrl = inviteUrl;
     this.emailSent = emailSent;
     this.additionalProperties = additionalProperties;
   }
@@ -69,11 +66,6 @@ public final class PostV1AccountInvitesCreateResponse {
     return expiresAt;
   }
 
-  @JsonProperty("inviteUrl")
-  public String getInviteUrl() {
-    return inviteUrl;
-  }
-
   @JsonProperty("emailSent")
   public boolean getEmailSent() {
     return emailSent;
@@ -91,12 +83,12 @@ public final class PostV1AccountInvitesCreateResponse {
   }
 
   private boolean equalTo(PostV1AccountInvitesCreateResponse other) {
-    return id.equals(other.id) && email.equals(other.email) && role.equals(other.role) && expiresAt.equals(other.expiresAt) && inviteUrl.equals(other.inviteUrl) && emailSent == other.emailSent;
+    return id.equals(other.id) && email.equals(other.email) && role.equals(other.role) && expiresAt.equals(other.expiresAt) && emailSent == other.emailSent;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.email, this.role, this.expiresAt, this.inviteUrl, this.emailSent);
+    return Objects.hash(this.id, this.email, this.role, this.expiresAt, this.emailSent);
   }
 
   @java.lang.Override
@@ -123,11 +115,7 @@ public final class PostV1AccountInvitesCreateResponse {
   }
 
   public interface ExpiresAtStage {
-    InviteUrlStage expiresAt(@NotNull String expiresAt);
-  }
-
-  public interface InviteUrlStage {
-    EmailSentStage inviteUrl(@NotNull String inviteUrl);
+    EmailSentStage expiresAt(@NotNull String expiresAt);
   }
 
   public interface EmailSentStage {
@@ -145,7 +133,7 @@ public final class PostV1AccountInvitesCreateResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, EmailStage, RoleStage, ExpiresAtStage, InviteUrlStage, EmailSentStage, _FinalStage {
+  public static final class Builder implements IdStage, EmailStage, RoleStage, ExpiresAtStage, EmailSentStage, _FinalStage {
     private String id;
 
     private String email;
@@ -153,8 +141,6 @@ public final class PostV1AccountInvitesCreateResponse {
     private String role;
 
     private String expiresAt;
-
-    private String inviteUrl;
 
     private boolean emailSent;
 
@@ -170,7 +156,6 @@ public final class PostV1AccountInvitesCreateResponse {
       email(other.getEmail());
       role(other.getRole());
       expiresAt(other.getExpiresAt());
-      inviteUrl(other.getInviteUrl());
       emailSent(other.getEmailSent());
       return this;
     }
@@ -198,15 +183,8 @@ public final class PostV1AccountInvitesCreateResponse {
 
     @java.lang.Override
     @JsonSetter("expiresAt")
-    public InviteUrlStage expiresAt(@NotNull String expiresAt) {
+    public EmailSentStage expiresAt(@NotNull String expiresAt) {
       this.expiresAt = Objects.requireNonNull(expiresAt, "expiresAt must not be null");
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter("inviteUrl")
-    public EmailSentStage inviteUrl(@NotNull String inviteUrl) {
-      this.inviteUrl = Objects.requireNonNull(inviteUrl, "inviteUrl must not be null");
       return this;
     }
 
@@ -219,7 +197,7 @@ public final class PostV1AccountInvitesCreateResponse {
 
     @java.lang.Override
     public PostV1AccountInvitesCreateResponse build() {
-      return new PostV1AccountInvitesCreateResponse(id, email, role, expiresAt, inviteUrl, emailSent, additionalProperties);
+      return new PostV1AccountInvitesCreateResponse(id, email, role, expiresAt, emailSent, additionalProperties);
     }
 
     @java.lang.Override

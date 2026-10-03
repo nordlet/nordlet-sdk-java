@@ -8071,7 +8071,47 @@ client.sales().postV1SalesInvoicesCreate(
 <dl>
 <dd>
 
+**agreementId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **vatScheme:** `Optional<PostV1SalesInvoicesCreateRequestVatScheme>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatTransportMode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatDeliveryTerms:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatRegion:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatNatureOfTransaction:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -8515,7 +8555,7 @@ client.sales().postV1SalesInvoicesEinvoiceXml(
 <dl>
 <dd>
 
-Build the national e-invoicing payload and deliver it to the bridge endpoint configured for the country gateway in compliance settings. The bridge (an accredited intermediary or connector) handles the certified national channel - SdI accreditation, KSeF sessions or ANAF SPV OAuth.
+Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
 </dd>
 </dl>
 </dd>
@@ -8532,6 +8572,65 @@ Build the national e-invoicing payload and deliver it to the bridge endpoint con
 ```java
 client.sales().postV1SalesInvoicesEinvoiceSend(
     PostV1SalesInvoicesEinvoiceSendRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.postV1SalesInvoicesEinvoiceStatus(request) -> PostV1SalesInvoicesEinvoiceStatusResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().postV1SalesInvoicesEinvoiceStatus(
+    PostV1SalesInvoicesEinvoiceStatusRequest
         .builder()
         .id("id")
         .build()
@@ -8611,6 +8710,14 @@ client.sales().postV1SalesInvoicesUpdate(
 <dl>
 <dd>
 
+**agreementId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **currency:** `Optional<String>` 
     
 </dd>
@@ -8636,6 +8743,38 @@ client.sales().postV1SalesInvoicesUpdate(
 <dd>
 
 **vatScheme:** `Optional<PostV1SalesInvoicesUpdateRequestVatScheme>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatTransportMode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatDeliveryTerms:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatRegion:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatNatureOfTransaction:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -10547,6 +10686,22 @@ client.sales().postV1DocumentSeriesCreate(
 <dl>
 <dd>
 
+**allocatedFrom:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**allocatedTo:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **warehouseId:** `Optional<String>` 
     
 </dd>
@@ -10673,6 +10828,22 @@ client.sales().postV1DocumentSeriesUpdate(
 <dd>
 
 **nextNumber:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**allocatedFrom:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**allocatedTo:** `Optional<Long>` 
     
 </dd>
 </dl>
@@ -11521,6 +11692,46 @@ client.purchases().postV1PurchasesInvoicesCreate(
 <dl>
 <dd>
 
+**intrastatTransportMode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatDeliveryTerms:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatRegion:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatNatureOfTransaction:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**einvoiceNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **documentRef:** `Optional<String>` 
     
 </dd>
@@ -11684,6 +11895,46 @@ client.purchases().postV1PurchasesInvoicesUpdate(
 <dd>
 
 **notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatTransportMode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatDeliveryTerms:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatRegion:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatNatureOfTransaction:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**einvoiceNumber:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -13490,6 +13741,38 @@ client.declarations().postV1DeclarationsLtIntrastatCompute(
 <dl>
 <dd>
 
+**regionCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**statisticalValueRequired:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**preparationTimeHours:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**preparationTimeMinutes:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **persist:** `Optional<Boolean>` 
     
 </dd>
@@ -13980,6 +14263,274 @@ client.declarations().postV1DeclarationsLtSaftGenerate(
 <dd>
 
 **persist:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsLtIvazAmend(request) -> PostV1DeclarationsLtIvazAmendResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsLtIvazAmend(
+    PostV1DeclarationsLtIvazAmendRequest
+        .builder()
+        .waybillIds(
+            Arrays.asList("waybillIds")
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**waybillIds:** `List<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**persist:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsLtIvazCancel(request) -> PostV1DeclarationsLtIvazCancelResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsLtIvazCancel(
+    PostV1DeclarationsLtIvazCancelRequest
+        .builder()
+        .entries(
+            Arrays.asList(
+                PostV1DeclarationsLtIvazCancelRequestEntriesItem
+                    .builder()
+                    .waybillId("waybillId")
+                    .reason(PostV1DeclarationsLtIvazCancelRequestEntriesItemReason.ONE)
+                    .build()
+            )
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entries:** `List<PostV1DeclarationsLtIvazCancelRequestEntriesItem>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**persist:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsLtFr0564Compute(request) -> PostV1DeclarationsLtFr0564ComputeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsLtFr0564Compute(
+    PostV1DeclarationsLtFr0564ComputeRequest
+        .builder()
+        .year(1000000L)
+        .month(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**month:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsLtGpm312Compute(request) -> PostV1DeclarationsLtGpm312ComputeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsLtGpm312Compute(
+    PostV1DeclarationsLtGpm312ComputeRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payoutTiming:** `Optional<PostV1DeclarationsLtGpm312ComputeRequestPayoutTiming>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsLtPln204Compute(request) -> PostV1DeclarationsLtPln204ComputeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsLtPln204Compute(
+    PostV1DeclarationsLtPln204ComputeRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
     
 </dd>
 </dl>
@@ -14508,6 +15059,3797 @@ client.declarations().postV1DeclarationsPlJpkV7MGenerate(
 </dl>
 </details>
 
+<details><summary><code>client.declarations.postV1DeclarationsPlVatUeGenerate(request) -> PostV1DeclarationsPlVatUeGenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build the rows of the Polish recapitulative statement VAT-UE for a month: section C intra-Community supplies of goods, section D intra-Community acquisitions, section E services taxed where the customer is established. Amounts are full złoty per counterparty. The VAT-UE(5) file itself goes out from the EU sales list deadline in the calendar.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsPlVatUeGenerate(
+    PostV1DeclarationsPlVatUeGenerateRequest
+        .builder()
+        .year(1000000L)
+        .month(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**month:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsPlIntrastatGenerate(request) -> PostV1DeclarationsPlIntrastatGenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Goods without a CN code are left out and named in the warnings. The IST message itself goes out from the Intrastat deadline in the calendar.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsPlIntrastatGenerate(
+    PostV1DeclarationsPlIntrastatGenerateRequest
+        .builder()
+        .year(1000000L)
+        .month(1000000L)
+        .flow(PostV1DeclarationsPlIntrastatGenerateRequestFlow.ARRIVALS)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**month:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**flow:** `PostV1DeclarationsPlIntrastatGenerateRequestFlow` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transactionNature:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsPlKsefReceivedList(request) -> PostV1DeclarationsPlKsefReceivedListResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List the invoices KSeF holds for this company as the buyer, for a window of acquisition timestamps. Each row carries the KSeF number and, when the document number matches a registered purchase invoice, the invoice it belongs to.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsPlKsefReceivedList(
+    PostV1DeclarationsPlKsefReceivedListRequest
+        .builder()
+        .from(OffsetDateTime.parse("2024-01-15T09:30:00Z"))
+        .to(OffsetDateTime.parse("2024-01-15T09:30:00Z"))
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**from:** `OffsetDateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to:** `OffsetDateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageOffset:** `Optional<Long>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsPlKsefReceivedFetch(request) -> PostV1DeclarationsPlKsefReceivedFetchResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Read one invoice out of KSeF by its national number. With a purchase invoice given, the KSeF number is written onto that invoice, which is what makes the purchase row of JPK_V7M carry NrKSeF instead of the BFK marker.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsPlKsefReceivedFetch(
+    PostV1DeclarationsPlKsefReceivedFetchRequest
+        .builder()
+        .ksefNumber("ksefNumber")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**ksefNumber:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchaseInvoiceId:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsPlKsefReceipt(request) -> PostV1DeclarationsPlKsefReceiptResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsPlKsefReceipt(
+    PostV1DeclarationsPlKsefReceiptRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionReferenceNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.taxAdjustmentsRecordedForATaxYear(request) -> PostV1DeclarationsTaxAdjustmentsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The differences between the accounting result and the taxable profit: non-deductible expenses, income added to or left out of the tax base, extra deductible expenses, donations, losses carried forward, reliefs and tax credits. The annual corporate income tax return is built from them.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().taxAdjustmentsRecordedForATaxYear(
+    PostV1DeclarationsTaxAdjustmentsListRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.recordATaxAdjustmentForATaxYear(request) -> PostV1DeclarationsTaxAdjustmentsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().recordATaxAdjustmentForATaxYear(
+    PostV1DeclarationsTaxAdjustmentsCreateRequest
+        .builder()
+        .year(1000000L)
+        .kind(PostV1DeclarationsTaxAdjustmentsCreateRequestKind.NON_DEDUCTIBLE)
+        .amount("amount")
+        .description("description")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**kind:** `PostV1DeclarationsTaxAdjustmentsCreateRequestKind` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**code:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amount:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.changeARecordedTaxAdjustment(request) -> PostV1DeclarationsTaxAdjustmentsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().changeARecordedTaxAdjustment(
+    PostV1DeclarationsTaxAdjustmentsUpdateRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**kind:** `Optional<PostV1DeclarationsTaxAdjustmentsUpdateRequestKind>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**code:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amount:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.removeARecordedTaxAdjustment(request) -> PostV1DeclarationsTaxAdjustmentsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().removeARecordedTaxAdjustment(
+    PostV1DeclarationsTaxAdjustmentsDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.paymentsAlreadyMadeTowardsATaxOfAYear(request) -> PostV1DeclarationsTaxPaymentsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+What the company has paid the administration towards a tax before the return is filed: payments on account, tax withheld at source by others, a final settlement, and a refund received. Returns report these on their own lines, so the amount they ask for is the balance.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().paymentsAlreadyMadeTowardsATaxOfAYear(
+    PostV1DeclarationsTaxPaymentsListRequest
+        .builder()
+        .tax(PostV1DeclarationsTaxPaymentsListRequestTax.CORPORATE_INCOME_TAX)
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tax:** `PostV1DeclarationsTaxPaymentsListRequestTax` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**month:** `Optional<Long>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.recordAPaymentMadeTowardsATax(request) -> PostV1DeclarationsTaxPaymentsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().recordAPaymentMadeTowardsATax(
+    PostV1DeclarationsTaxPaymentsCreateRequest
+        .builder()
+        .tax(PostV1DeclarationsTaxPaymentsCreateRequestTax.CORPORATE_INCOME_TAX)
+        .year(1000000L)
+        .kind(PostV1DeclarationsTaxPaymentsCreateRequestKind.ADVANCE)
+        .amount("amount")
+        .paidOn("paidOn")
+        .description("description")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tax:** `PostV1DeclarationsTaxPaymentsCreateRequestTax` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**month:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**kind:** `PostV1DeclarationsTaxPaymentsCreateRequestKind` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amount:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**paidOn:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reference:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.changeARecordedTaxPayment(request) -> PostV1DeclarationsTaxPaymentsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().changeARecordedTaxPayment(
+    PostV1DeclarationsTaxPaymentsUpdateRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**kind:** `Optional<PostV1DeclarationsTaxPaymentsUpdateRequestKind>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amount:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**paidOn:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reference:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.removeARecordedTaxPayment(request) -> PostV1DeclarationsTaxPaymentsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().removeARecordedTaxPayment(
+    PostV1DeclarationsTaxPaymentsDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.adoptionAndSigningFactsOfTheAnnualAccountsOfAYear(request) -> PostV1DeclarationsAnnualAccountsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Whether the general meeting adopted the annual accounts and on which date, the date the accounts were prepared, and which directors signed them. The annual accounts filed with the trade register are built from these facts.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().adoptionAndSigningFactsOfTheAnnualAccountsOfAYear(
+    PostV1DeclarationsAnnualAccountsGetRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear(request) -> PostV1DeclarationsAnnualAccountsSetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear(
+    PostV1DeclarationsAnnualAccountsSetRequest
+        .builder()
+        .year(1000000L)
+        .adopted(true)
+        .dateOfPreparation("dateOfPreparation")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**adopted:** `Boolean` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**adoptionDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dateOfPreparation:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**audited:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**auditReportQualified:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**auditorNotElected:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notesText:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**managementReportText:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**auditorReportText:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**auditorReportDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resultToReserves:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resultToLossCompensation:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resultToRemainder:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.recordWhetherADirectorSignedTheAnnualAccountsOfAYear(request) -> PostV1DeclarationsAnnualAccountsSignaturesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().recordWhetherADirectorSignedTheAnnualAccountsOfAYear(
+    PostV1DeclarationsAnnualAccountsSignaturesCreateRequest
+        .builder()
+        .year(1000000L)
+        .directorName("directorName")
+        .directorType(PostV1DeclarationsAnnualAccountsSignaturesCreateRequestDirectorType.MANAGING_CURRENT)
+        .signed(true)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**directorName:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**directorType:** `PostV1DeclarationsAnnualAccountsSignaturesCreateRequestDirectorType` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**signed:** `Boolean` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**signedOn:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**signedAt:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reasonNotSigned:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.changeARecordedDirectorSignature(request) -> PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().changeARecordedDirectorSignature(
+    PostV1DeclarationsAnnualAccountsSignaturesUpdateRequest
+        .builder()
+        .id("id")
+        .directorName("directorName")
+        .directorType(PostV1DeclarationsAnnualAccountsSignaturesUpdateRequestDirectorType.MANAGING_CURRENT)
+        .signed(true)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**directorName:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**directorType:** `PostV1DeclarationsAnnualAccountsSignaturesUpdateRequestDirectorType` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**signed:** `Boolean` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**signedOn:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**signedAt:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reasonNotSigned:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.removeARecordedDirectorSignature(request) -> PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().removeARecordedDirectorSignature(
+    PostV1DeclarationsAnnualAccountsSignaturesDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.recordADecisionToDistributeProfitADividendAnInterimDividendOrAPaymentTreatedAsOne(request) -> PostV1DeclarationsAnnualAccountsDistributionsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().recordADecisionToDistributeProfitADividendAnInterimDividendOrAPaymentTreatedAsOne(
+    PostV1DeclarationsAnnualAccountsDistributionsCreateRequest
+        .builder()
+        .year(1000000L)
+        .decidedOn("decidedOn")
+        .kind(PostV1DeclarationsAnnualAccountsDistributionsCreateRequestKind.DIVIDEND)
+        .amount("amount")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**decidedOn:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**kind:** `PostV1DeclarationsAnnualAccountsDistributionsCreateRequestKind` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amount:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.changeARecordedProfitDistribution(request) -> PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().changeARecordedProfitDistribution(
+    PostV1DeclarationsAnnualAccountsDistributionsUpdateRequest
+        .builder()
+        .id("id")
+        .decidedOn("decidedOn")
+        .kind(PostV1DeclarationsAnnualAccountsDistributionsUpdateRequestKind.DIVIDEND)
+        .amount("amount")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**decidedOn:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**kind:** `PostV1DeclarationsAnnualAccountsDistributionsUpdateRequestKind` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amount:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.removeARecordedProfitDistribution(request) -> PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().removeARecordedProfitDistribution(
+    PostV1DeclarationsAnnualAccountsDistributionsDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.attachAnUploadedDocumentToTheAnnualAccountsOfAYear(request) -> PostV1DeclarationsAnnualAccountsAttachmentsAddResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Links a file uploaded through files/upload (its storageKey) to the annual accounts of the year as the notes, the management report, the auditor statement, the profit appropriation resolution, the approval certificate, the general data sheet, the full report as a pdf, or another document. Deposits that must carry these documents take them from here.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().attachAnUploadedDocumentToTheAnnualAccountsOfAYear(
+    PostV1DeclarationsAnnualAccountsAttachmentsAddRequest
+        .builder()
+        .year(1000000L)
+        .kind(PostV1DeclarationsAnnualAccountsAttachmentsAddRequestKind.FULL_REPORT)
+        .ref("ref")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**kind:** `PostV1DeclarationsAnnualAccountsAttachmentsAddRequestKind` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ref:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.removeADocumentAttachedToTheAnnualAccountsAndDeleteItsFile(request) -> PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().removeADocumentAttachedToTheAnnualAccountsAndDeleteItsFile(
+    PostV1DeclarationsAnnualAccountsAttachmentsDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsCyTd4Generate(request) -> PostV1DeclarationsCyTd4GenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Compute the company income tax return TD4 of a tax year from the ledger and the recorded tax adjustments: the accounting profit, the add-backs, deductions, capital allowances and losses brought forward, the chargeable income, the corporation tax at the rate of the year and the double tax relief, as the fields the company keys into TAXISnet or Tax For All. The Tax Department publishes no upload layout for the TD4; the XML is a working file.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsCyTd4Generate(
+    PostV1DeclarationsCyTd4GenerateRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsCyHe32Generate(request) -> PostV1DeclarationsCyHe32GenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build the annual return HE32 of a year: the figures the Registrar’s e-filing screens ask for (company number, registered office, made-up-to date, share capital, register of members, directors and secretary, annual general meeting date, the accounts summary), the working file, and the printed form HE32(I) filled in as a PDF for signing and for keying into the Registrar’s system, which takes the return only through its own screens.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsCyHe32Generate(
+    PostV1DeclarationsCyHe32GenerateRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsDeReturnsGenerate(request) -> PostV1DeclarationsDeReturnsGenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build one of the German returns that ELSTER accepts only through a licensed ERiC transmission (E-Bilanz, Körperschaftsteuer, Gewerbesteuer with its Zerlegungserklärung, annual VAT return, Lohnsteuer-Anmeldung, Lohnsteuerbescheinigung) for the company to send through its own ELSTER-capable program. The period is the year, or YYYY-MM for the monthly Lohnsteuer-Anmeldung.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsDeReturnsGenerate(
+    PostV1DeclarationsDeReturnsGenerateRequest
+        .builder()
+        .ruleKey(PostV1DeclarationsDeReturnsGenerateRequestRuleKey.DE_E_BILANZ)
+        .period("period")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**ruleKey:** `PostV1DeclarationsDeReturnsGenerateRequestRuleKey` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**period:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsDeReturnFactsGet(request) -> PostV1DeclarationsDeReturnFactsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The facts of one year that the German annual returns (Körperschaftsteuer, Gewerbesteuer, Umsatzsteuererklärung) need and the ledger does not hold: changes of shareholders, contracts with shareholders, the tax contribution account, loss carry-back, the donation carry-forward, the business premises with the municipalities for the apportionment of the trade tax, the land values or property tax and the participations for the trade tax additions and reductions, the foreign income per country for the Anlage AESt, the date of leaving the small-business scheme and the Anlage UN answers of a company seated abroad. A key that is absent has not been answered.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsDeReturnFactsGet(
+    PostV1DeclarationsDeReturnFactsGetRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsDeReturnFactsSet(request) -> PostV1DeclarationsDeReturnFactsSetResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replace the facts of one year for the German annual returns. The returns built afterwards read them; a key left out stays unanswered.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsDeReturnFactsSet(
+    PostV1DeclarationsDeReturnFactsSetRequest
+        .builder()
+        .year(1000000L)
+        .facts(
+            PostV1DeclarationsDeReturnFactsSetRequestFacts
+                .builder()
+                .build()
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**facts:** `PostV1DeclarationsDeReturnFactsSetRequestFacts` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsDeDeuevGenerate(request) -> PostV1DeclarationsDeDeuevGenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build the DEÜV notifications of a month (Anmeldung for every start, Abmeldung for every leaving, in December the Jahresmeldung for everyone employed on 31 December) as DSME records with the DBME, DBNA, DBGB and DBAN blocks of Anlage 4 in force from 2026, from the approved payroll runs and the employee record, for the company's own transmission channel.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsDeDeuevGenerate(
+    PostV1DeclarationsDeDeuevGenerateRequest
+        .builder()
+        .year(1000000L)
+        .month(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**month:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsDeBeitragsnachweisGenerate(request) -> PostV1DeclarationsDeBeitragsnachweisGenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build the monthly contribution statement to the health insurers (Beitragsnachweis) from the payroll run: one fixed-length record BW02 per insurer, in the record layout in force from 2026, ready for the company's own transmission channel.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsDeBeitragsnachweisGenerate(
+    PostV1DeclarationsDeBeitragsnachweisGenerateRequest
+        .builder()
+        .year(1000000L)
+        .month(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**month:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsDkSelskabsskatGenerate(request) -> PostV1DeclarationsDkSelskabsskatGenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Compute the oplysningsskema for selskaber (selskabsselvangivelsen) of an income year from the ledger and the recorded tax adjustments: accounting result before tax, tax adjustments, losses carried forward, taxable income, the 22 % corporation tax, reliefs and the balance, as the rubrikker the company keys into TastSelv Selskabsskat (DIAS). Skatteforvaltningen publishes no file format for the return; the XML is a working file.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsDkSelskabsskatGenerate(
+    PostV1DeclarationsDkSelskabsskatGenerateRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsEeEmploymentRegisterSend(request) -> PostV1DeclarationsEeEmploymentRegisterSendResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Send one employment register (töötamise register) entry for an employment contract to e-MTA over X-tee: the start of work, or its end with the reason recorded on the contract.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsEeEmploymentRegisterSend(
+    PostV1DeclarationsEeEmploymentRegisterSendRequest
+        .builder()
+        .contractId("contractId")
+        .event(PostV1DeclarationsEeEmploymentRegisterSendRequestEvent.START)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event:** `PostV1DeclarationsEeEmploymentRegisterSendRequestEvent` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsEsVerifactuDeclaracionResponsable(request) -> PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsEsVerifactuDeclaracionResponsable(
+    PostV1DeclarationsEsVerifactuDeclaracionResponsableRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsIeCt1Generate(request) -> PostV1DeclarationsIeCt1GenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build the Form CT1 of an accounting year as the ROS version 26 XML and the accompanying financial statements as inline XBRL on the FRS 102 Irish Extension 2026 taxonomy Revenue accepts, both from the ledger, the recorded tax adjustments, the annual accounts record and the officers, for upload through the company’s own ROS account. Says whether the company is above the iXBRL deferral limits (balance sheet total €4.4 million, turnover €8.8 million, 50 employees).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsIeCt1Generate(
+    PostV1DeclarationsIeCt1GenerateRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsIeB1Generate(request) -> PostV1DeclarationsIeB1GenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build the working paper for the Form B1 annual return of a financial year — company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements — in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsIeB1Generate(
+    PostV1DeclarationsIeB1GenerateRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsItSdiPurchaseSend(request) -> PostV1DeclarationsItSdiPurchaseSendResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsItSdiPurchaseSend(
+    PostV1DeclarationsItSdiPurchaseSendRequest
+        .builder()
+        .purchaseInvoiceId("purchaseInvoiceId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**purchaseInvoiceId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vatRatePercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tipoDocumento:** `Optional<PostV1DeclarationsItSdiPurchaseSendRequestTipoDocumento>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsItSdiPurchasePreview(request) -> PostV1DeclarationsItSdiPurchasePreviewResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsItSdiPurchasePreview(
+    PostV1DeclarationsItSdiPurchasePreviewRequest
+        .builder()
+        .purchaseInvoiceId("purchaseInvoiceId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**purchaseInvoiceId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vatRatePercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tipoDocumento:** `Optional<PostV1DeclarationsItSdiPurchasePreviewRequestTipoDocumento>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsLtSaftSend(request) -> PostV1DeclarationsLtSaftSendResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsLtSaftSend(
+    PostV1DeclarationsLtSaftSendRequest
+        .builder()
+        .fromDate("fromDate")
+        .toDate("toDate")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fromDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**toDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dataType:** `Optional<PostV1DeclarationsLtSaftSendRequestDataType>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**confirm:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsLtSdFfdata(request) -> PostV1DeclarationsLtSdFfdataResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Render the Sodra 1-SD or 2-SD notice for the contracts starting or ending in the range as an .ffdata document for EDAS.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsLtSdFfdata(
+    PostV1DeclarationsLtSdFfdataRequest
+        .builder()
+        .type(PostV1DeclarationsLtSdFfdataRequestType.ONE_SD)
+        .fromDate("fromDate")
+        .toDate("toDate")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**type:** `PostV1DeclarationsLtSdFfdataRequestType` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fromDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**toDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**managerFullName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**preparatorDetails:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsLtPln204Ffdata(request) -> PostV1DeclarationsLtPln204FfdataResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Render the annual corporate income tax return PLN204 as an .ffdata document, including the PLN204S and PLN204Z annexes, from the ledger and the tax adjustments recorded for that year.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsLtPln204Ffdata(
+    PostV1DeclarationsLtPln204FfdataRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsMtCompanyTaxGenerate(request) -> PostV1DeclarationsMtCompanyTaxGenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Compute the company income tax return and self-assessment of a year of assessment from the ledger and the recorded tax adjustments: the accounting profit before tax, the add-backs and deductions, the approved donations, capital allowances and losses carried forward, the chargeable income, the 35 % charge, the relief against the tax and the allocation of the distributable profit to the five tax accounts. The Malta Tax and Customs Administration issues the return as a personalised spreadsheet to the registered tax practitioner and publishes no layout, so the XML is a working file and the figures are keyed into that spreadsheet.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsMtCompanyTaxGenerate(
+    PostV1DeclarationsMtCompanyTaxGenerateRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsMtAnnualReturnGenerate(request) -> PostV1DeclarationsMtAnnualReturnGenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build the annual return of a year: the company number, registered office and made-up-to date, the share capital, the register of members, the directors and the company secretary and the accounts summary, as the figures the Malta Business Registry asks for on its own screens, plus the printed Annual Return Form of the Seventh Schedule filled in as a PDF for signing.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsMtAnnualReturnGenerate(
+    PostV1DeclarationsMtAnnualReturnGenerateRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsPlJpkFaGenerate(request) -> PostV1DeclarationsPlJpkFaGenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generate JPK_FA(4), the on-demand structure with every sales invoice issued in a period, its VAT bases per rate and one row per invoice line. Filed only when the tax office asks for it.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsPlJpkFaGenerate(
+    PostV1DeclarationsPlJpkFaGenerateRequest
+        .builder()
+        .dateFrom("dateFrom")
+        .dateTo("dateTo")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**dateFrom:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dateTo:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsPlJpkKrGenerate(request) -> PostV1DeclarationsPlJpkKrGenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generate JPK_KR(1), the on-demand structure with the chart of accounts and its opening balances and turnover, the journal and the double entries behind it. Filed only when the tax office asks for it.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsPlJpkKrGenerate(
+    PostV1DeclarationsPlJpkKrGenerateRequest
+        .builder()
+        .dateFrom("dateFrom")
+        .dateTo("dateTo")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**dateFrom:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dateTo:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsPlJpkMagGenerate(request) -> PostV1DeclarationsPlJpkMagGenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generate JPK_MAG(2), the on-demand structure with the warehouse documents of one warehouse: goods received from outside (PZ) or internally (PW) and issued to a customer (WZ) or internally (RW). Filed only when the tax office asks for it.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsPlJpkMagGenerate(
+    PostV1DeclarationsPlJpkMagGenerateRequest
+        .builder()
+        .dateFrom("dateFrom")
+        .dateTo("dateTo")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**dateFrom:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dateTo:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warehouseId:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsPlPit11Generate(request) -> PostV1DeclarationsPlPit11GenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsPlPit11Generate(
+    PostV1DeclarationsPlPit11GenerateRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsPlCit8Generate(request) -> PostV1DeclarationsPlCit8GenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsPlCit8Generate(
+    PostV1DeclarationsPlCit8GenerateRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsPlZusDraCompute(request) -> PostV1DeclarationsPlZusDraComputeResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Compute the monthly ZUS DRA settlement from the payroll run of one month: the pension, disability, sickness, accident and health insurance contributions and the Labour Fund, Solidarity Fund and guaranteed benefits fund charges, each split between the insured person and the payer. The amounts are carried into Płatnik or ePłatnik by hand.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsPlZusDraCompute(
+    PostV1DeclarationsPlZusDraComputeRequest
+        .builder()
+        .year(1000000L)
+        .month(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**month:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsPlZusDraKedu(request) -> PostV1DeclarationsPlZusDraKeduResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build the KEDU file for one month: the ZUS DRA settlement and one ZUS RCA report per person on the payroll, in the schema kedu_5_4 that Płatnik and ePłatnik import. The payer REGON, short name and declaration deadline code come from the ZUS compliance settings; the insurance title code and working time of each person from the employee record.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsPlZusDraKedu(
+    PostV1DeclarationsPlZusDraKeduRequest
+        .builder()
+        .year(1000000L)
+        .month(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**month:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsPlZusDraPdf(request) -> PostV1DeclarationsPlZusDraPdfResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fill the published ZUS DRA form for one month and return it as a PDF. The amounts, the payer identity and the deadline code are the same ones the KEDU file carries; blocks the payroll does not hold (paid benefits, bridging pensions, income declaration of a self-paying person) stay empty.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsPlZusDraPdf(
+    PostV1DeclarationsPlZusDraPdfRequest
+        .builder()
+        .year(1000000L)
+        .month(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**month:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsRoEtransportBuild(request) -> PostV1DeclarationsRoEtransportBuildResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build the RO e-Transport declaration for an issued waybill: goods with their tariff codes and masses, the commercial partner, the route and the vehicle. The XML follows the ANAF eTransport v2 schema and is kept as a file on the waybill. Anything listed in blockers has to be filled in before /etransport/send will accept it.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsRoEtransportBuild(
+    PostV1DeclarationsRoEtransportBuildRequest
+        .builder()
+        .waybillId("waybillId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**waybillId:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsRoEtransportSubmit(request) -> PostV1DeclarationsRoEtransportSubmitResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Hand the RO e-Transport declaration for an issued waybill to ANAF under the SPV OAuth token in compliance settings, and return the upload index the UIT is read back with. Answers 422 while any field the ANAF validator requires is still missing.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsRoEtransportSubmit(
+    PostV1DeclarationsRoEtransportSubmitRequest
+        .builder()
+        .waybillId("waybillId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**waybillId:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsRoEtransportStatus(request) -> PostV1DeclarationsRoEtransportStatusResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Read the outcome of an e-Transport declaration from ANAF by its upload index, under the SPV OAuth token in compliance settings. Returns the UIT code once the declaration validates.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsRoEtransportStatus(
+    PostV1DeclarationsRoEtransportStatusRequest
+        .builder()
+        .reference("reference")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**reference:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsLiLohndeklarationGenerate(request) -> PostV1DeclarationsLiLohndeklarationGenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build the annual wage declaration (Lohndeklaration) to the AHV-IV-FAK from the approved payroll runs of the year as the CSV that AHVeasy imports under Lohndeklaration → CSV-Import der Lohndaten: one row per employee with the 18 columns of the AHVeasy template, the AHV-liable wage and the ALV wage.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsLiLohndeklarationGenerate(
+    PostV1DeclarationsLiLohndeklarationGenerateRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsLiLohnlistenGenerate(request) -> PostV1DeclarationsLiLohnlistenGenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build the annual wage list (Lohnliste) of a Liechtenstein employer from the approved payroll runs of the year as the XLSX file the tax administration's eLohnausweis / eLohnlisten application imports: one row per employee with PEID, name, birth date, address, gross wage, wage tax withheld and the settlement period.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsLiLohnlistenGenerate(
+    PostV1DeclarationsLiLohnlistenGenerateRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.declarations.postV1DeclarationsConfigsList(request) -> PostV1DeclarationsConfigsListResponse</code></summary>
 <dl>
 <dd>
@@ -14584,6 +18926,288 @@ client.declarations().postV1DeclarationsConfigsUpdate(
 <dd>
 
 **config:** `Map<String, String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.storeTheCertificateOrPrivateKeyAFilingSystemAuthenticatesWith(request) -> PostV1DeclarationsCertificatesUploadResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().storeTheCertificateOrPrivateKeyAFilingSystemAuthenticatesWith(
+    PostV1DeclarationsCertificatesUploadRequest
+        .builder()
+        .system("system")
+        .fileName("fileName")
+        .content("content")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**system:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fileName:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**content:** `String` — Base64-encoded PEM or PKCS#12 file
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**passphrase:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsCertificatesList(request) -> PostV1DeclarationsCertificatesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsCertificatesList(
+    PostV1DeclarationsCertificatesListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsCertificatesDelete(request) -> PostV1DeclarationsCertificatesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsCertificatesDelete(
+    PostV1DeclarationsCertificatesDeleteRequest
+        .builder()
+        .system("system")
+        .fieldKey(PostV1DeclarationsCertificatesDeleteRequestFieldKey.CERTIFICATE)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**system:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fieldKey:** `PostV1DeclarationsCertificatesDeleteRequestFieldKey` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhichAreSwitchedOn(request) -> PostV1DeclarationsAutomationListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhichAreSwitchedOn(
+    PostV1DeclarationsAutomationListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.postV1DeclarationsAutomationUpdate(request) -> PostV1DeclarationsAutomationUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().postV1DeclarationsAutomationUpdate(
+    PostV1DeclarationsAutomationUpdateRequest
+        .builder()
+        .ruleKey("ruleKey")
+        .enabled(true)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**ruleKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**enabled:** `Boolean` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.sendAFilingWhoseDeliveryFailedOnceMoreWithTheBytesThatWereGenerated(request) -> PostV1DeclarationsSubmissionsRetryResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().sendAFilingWhoseDeliveryFailedOnceMoreWithTheBytesThatWereGenerated(
+    PostV1DeclarationsSubmissionsRetryRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
     
 </dd>
 </dl>
@@ -14940,7 +19564,7 @@ client.ledger().postV1LedgerAccountsCreate(
 <dl>
 <dd>
 
-**translations:** `Optional<PostV1LedgerAccountsCreateRequestTranslations>` 
+**translations:** `Optional<Map<String, PostV1LedgerAccountsCreateRequestTranslationsValue>>` 
     
 </dd>
 </dl>
@@ -15025,7 +19649,7 @@ client.ledger().postV1LedgerAccountsUpdate(
 <dl>
 <dd>
 
-**translations:** `Optional<PostV1LedgerAccountsUpdateRequestTranslations>` 
+**translations:** `Optional<Map<String, Optional<PostV1LedgerAccountsUpdateRequestTranslationsValue>>>` 
     
 </dd>
 </dl>
@@ -15068,6 +19692,49 @@ client.ledger().postV1LedgerAccountsUpdate(
 ```java
 client.ledger().postV1LedgerAccountsApplyTemplate(
     PostV1LedgerAccountsApplyTemplateRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ledger.moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(request) -> PostV1LedgerAccountsSwitchChartResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.ledger().moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
+    PostV1LedgerAccountsSwitchChartRequest
         .builder()
         .build()
 );
@@ -15958,6 +20625,38 @@ client.ledger().postV1LedgerOwnersCreate(
 <dl>
 <dd>
 
+**withholdingTaxPercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partnerLiability:** `Optional<PostV1LedgerOwnersCreateRequestPartnerLiability>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**specialBalanceRequired:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**supplementaryBalanceRequired:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **address:** `Optional<PostV1LedgerOwnersCreateRequestAddress>` 
     
 </dd>
@@ -16060,6 +20759,38 @@ client.ledger().postV1LedgerOwnersUpdate(
 <dd>
 
 **sharesAcquisitionDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**withholdingTaxPercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partnerLiability:** `Optional<PostV1LedgerOwnersUpdateRequestPartnerLiability>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**specialBalanceRequired:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**supplementaryBalanceRequired:** `Optional<Boolean>` 
     
 </dd>
 </dl>
@@ -16303,6 +21034,487 @@ client.ledger().postV1LedgerJournalTransactionsCreate(
 <dd>
 
 **entries:** `List<PostV1LedgerJournalTransactionsCreateRequestEntriesItem>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ledger.nationalStatementLayoutsAvailableToTheCompany(request) -> PostV1LedgerStatementRowsSchemesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.ledger().nationalStatementLayoutsAvailableToTheCompany(
+    PostV1LedgerStatementRowsSchemesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ledger.accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(request) -> PostV1LedgerStatementRowsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.ledger().accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(
+    PostV1LedgerStatementRowsListRequest
+        .builder()
+        .scheme("scheme")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**scheme:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fromDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**toDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ledger.mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(request) -> PostV1LedgerStatementRowsSetResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.ledger().mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(
+    PostV1LedgerStatementRowsSetRequest
+        .builder()
+        .scheme("scheme")
+        .accountCode("accountCode")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**scheme:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**accountCode:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**rowCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ledger.officersOfTheCompany(request) -> PostV1OfficersListResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.ledger().officersOfTheCompany(
+    PostV1OfficersListRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ledger.recordAnOfficerOfTheCompany(request) -> PostV1OfficersCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.ledger().recordAnOfficerOfTheCompany(
+    PostV1OfficersCreateRequest
+        .builder()
+        .name("name")
+        .role(PostV1OfficersCreateRequestRole.DIRECTOR)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**role:** `PostV1OfficersCreateRequestRole` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**personalCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**birthDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**appointedOn:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**powerNotary:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resignedOn:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**signsAccounts:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ledger.changeARecordedOfficer(request) -> PostV1OfficersUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.ledger().changeARecordedOfficer(
+    PostV1OfficersUpdateRequest
+        .builder()
+        .id("id")
+        .name("name")
+        .role(PostV1OfficersUpdateRequestRole.DIRECTOR)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**role:** `PostV1OfficersUpdateRequestRole` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**personalCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**birthDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**appointedOn:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**powerNotary:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resignedOn:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**signsAccounts:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ledger.removeARecordedOfficer(request) -> PostV1OfficersDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.ledger().removeARecordedOfficer(
+    PostV1OfficersDeleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
     
 </dd>
 </dl>
@@ -16884,6 +22096,241 @@ client.assets().postV1AssetsAssetsCreate(
 <dd>
 
 **documents:** `Optional<List<PostV1AssetsAssetsCreateRequestDocumentsItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.assets.postV1AssetsAssetsUpdate(request) -> PostV1AssetsAssetsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().postV1AssetsAssetsUpdate(
+    PostV1AssetsAssetsUpdateRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**groupId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**code:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**acquisitionDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**depreciationStartDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**acquisitionCost:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**salvageValue:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**usefulLifeMonths:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documents:** `Optional<List<PostV1AssetsAssetsUpdateRequestDocumentsItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.assets.postV1AssetsAssetsInputVat(request) -> PostV1AssetsAssetsInputVatResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().postV1AssetsAssetsInputVat(
+    PostV1AssetsAssetsInputVatRequest
+        .builder()
+        .id("id")
+        .inputVatRealEstate(true)
+        .inputVatUseChanges(
+            Arrays.asList(
+                PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem
+                    .builder()
+                    .year(1000000L)
+                    .percent("percent")
+                    .reason(PostV1AssetsAssetsInputVatRequestInputVatUseChangesItemReason.USE_CHANGE)
+                    .build()
+            )
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**inputVatAmount:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**inputVatFirstUseDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**inputVatDeductiblePercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**inputVatRealEstate:** `Boolean` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**inputVatUseChanges:** `List<PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem>` 
     
 </dd>
 </dl>
@@ -17540,7 +22987,7 @@ client.hr().postV1HrEmployeesCreate(
 <dl>
 <dd>
 
-**applyNpd:** `Optional<Boolean>` 
+**applyAllowance:** `Optional<Boolean>` 
     
 </dd>
 </dl>
@@ -17548,7 +22995,7 @@ client.hr().postV1HrEmployeesCreate(
 <dl>
 <dd>
 
-**npdOverride:** `Optional<String>` 
+**allowanceOverride:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -17557,6 +23004,14 @@ client.hr().postV1HrEmployeesCreate(
 <dd>
 
 **pensionAccumulation:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payrollOptions:** `Optional<Map<String, String>>` 
     
 </dd>
 </dl>
@@ -17713,7 +23168,7 @@ client.hr().postV1HrEmployeesUpdate(
 <dl>
 <dd>
 
-**applyNpd:** `Optional<Boolean>` 
+**applyAllowance:** `Optional<Boolean>` 
     
 </dd>
 </dl>
@@ -17721,7 +23176,7 @@ client.hr().postV1HrEmployeesUpdate(
 <dl>
 <dd>
 
-**npdOverride:** `Optional<String>` 
+**allowanceOverride:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -17730,6 +23185,14 @@ client.hr().postV1HrEmployeesUpdate(
 <dd>
 
 **pensionAccumulation:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payrollOptions:** `Optional<Map<String, String>>` 
     
 </dd>
 </dl>
@@ -17816,6 +23279,49 @@ client.hr().postV1HrEmployeesGet(
 
 **id:** `String` 
     
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.hr.extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(request) -> PostV1HrEmployeesFieldsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.hr().extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(
+    PostV1HrEmployeesFieldsRequest
+        .builder()
+        .build()
+);
+```
 </dd>
 </dl>
 </dd>
@@ -20125,7 +25631,7 @@ client.payroll().postV1PayrollSchedulesList(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.postV1PayrollCalc(request) -> PostV1PayrollCalcResponse</code></summary>
+<details><summary><code>client.payroll.calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(request) -> PostV1PayrollCalcResponse</code></summary>
 <dl>
 <dd>
 
@@ -20138,7 +25644,7 @@ client.payroll().postV1PayrollSchedulesList(
 <dd>
 
 ```java
-client.payroll().postV1PayrollCalc(
+client.payroll().calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
     PostV1PayrollCalcRequest
         .builder()
         .taxableBase("taxableBase")
@@ -20175,7 +25681,7 @@ client.payroll().postV1PayrollCalc(
 <dl>
 <dd>
 
-**applyNpd:** `Optional<Boolean>` 
+**applyAllowance:** `Optional<Boolean>` 
     
 </dd>
 </dl>
@@ -20183,7 +25689,7 @@ client.payroll().postV1PayrollCalc(
 <dl>
 <dd>
 
-**npdOverride:** `Optional<String>` 
+**allowanceOverride:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -20200,6 +25706,22 @@ client.payroll().postV1PayrollCalc(
 <dd>
 
 **fixedTerm:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**benefitInKind:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**options:** `Optional<Map<String, String>>` 
     
 </dd>
 </dl>
@@ -20262,6 +25784,14 @@ client.payroll().postV1PayrollRunsCreate(
 <dd>
 
 **includeNatura:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**grossOverrides:** `Optional<List<PostV1PayrollRunsCreateRequestGrossOverridesItem>>` 
     
 </dd>
 </dl>
@@ -20410,6 +25940,97 @@ client.payroll().postV1PayrollRunsList(
 </dl>
 </details>
 
+<details><summary><code>client.payroll.recordTheTimeAPersonWorkedInAPayrollLine(request) -> PostV1PayrollLinesAttendanceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The days and hours worked, the days on the register and the average hourly earnings that some countries report per employment. The Czech monthly employer report asks for all four. They can be set while the run is a draft.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.payroll().recordTheTimeAPersonWorkedInAPayrollLine(
+    PostV1PayrollLinesAttendanceRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**daysWorked:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hoursWorked:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**registeredDays:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**averageHourlyEarnings:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.payroll.postV1PayrollRunsApprove(request) -> PostV1PayrollRunsApproveResponse</code></summary>
 <dl>
 <dd>
@@ -20484,6 +26105,14 @@ client.payroll().postV1PayrollRunsApprove(
 <dd>
 
 **sodraAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**employerSocialAccountCode:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -27305,6 +32934,110 @@ client.calendar().postV1CalendarGet(
 </dl>
 </details>
 
+<details><summary><code>client.calendar.generateTheFilingForADeadlineAndSendItToTheAdministration(request) -> PostV1CalendarSubmitResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.calendar().generateTheFilingForADeadlineAndSendItToTheAdministration(
+    PostV1CalendarSubmitRequest
+        .builder()
+        .key("key")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**key:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.calendar.generateTheFileOfADeadlineForTheCompanyToSendItself(request) -> PostV1CalendarDownloadResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.calendar().generateTheFileOfADeadlineForTheCompanyToSendItself(
+    PostV1CalendarDownloadRequest
+        .builder()
+        .key("key")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**key:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.calendar.postV1CalendarCreate(request) -> PostV1CalendarCreateResponse</code></summary>
 <dl>
 <dd>
@@ -30070,6 +35803,81 @@ client.bank().postV1BankSettlementsMatch(
 </dl>
 </details>
 
+<details><summary><code>client.bank.setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(request) -> PostV1BankSettlementsCommissionResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(
+    PostV1BankSettlementsCommissionRequest
+        .builder()
+        .lineId("lineId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**commissionPercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**commissionAmount:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.bank.postV1BankSettlementsLink(request) -> PostV1BankSettlementsLinkResponse</code></summary>
 <dl>
 <dd>
@@ -31799,6 +37607,234 @@ client.reports().postV1ReportsStockShortage(
 <dd>
 
 **warehouseId:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.reports.postV1ReportsSie(request) -> PostV1ReportsSieResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Export the ledger of one financial year as an SIE file (the Swedish standard accounting interchange format, specification 4B). The file carries the chart of accounts, the opening and closing balance of every balance sheet account and the turnover of every result account for the year and the year before it, and, when asked for, every posted voucher of the year with its lines. Cost centres travel as dimension 1 and projects as dimension 6. Services that build a Swedish annual report read this file.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.reports().postV1ReportsSie(
+    PostV1ReportsSieRequest
+        .builder()
+        .fromDate("fromDate")
+        .toDate("toDate")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fromDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**toDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeTransactions:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.reports.postV1ReportsDatev(request) -> PostV1ReportsDatevResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Export the posted ledger of a period as a DATEV Buchungsstapel file (DATEV format, category 21, version 700). Every transaction becomes one or more bookings of an amount between an account and a contra account; a transaction with more than two lines is split into pairs whose totals match it. The file is semicolon separated and written in the Windows-1252 character set DATEV expects.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.reports().postV1ReportsDatev(
+    PostV1ReportsDatevRequest
+        .builder()
+        .fromDate("fromDate")
+        .toDate("toDate")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fromDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**toDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**consultantNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**clientNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.reports.postV1ReportsFec(request) -> PostV1ReportsFecResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Export the posted ledger of a period as a French FEC file (fichier des écritures comptables, order of 29 July 2013). One line per journal entry line, with the eighteen fields the order names, in their order, after a header line. Tab separated, UTF-8, comma as the decimal separator.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.reports().postV1ReportsFec(
+    PostV1ReportsFecRequest
+        .builder()
+        .fromDate("fromDate")
+        .toDate("toDate")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fromDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**toDate:** `String` 
     
 </dd>
 </dl>
@@ -33981,6 +40017,59 @@ client.account().postV1AccountMembersSetRole(
 </dl>
 </details>
 
+<details><summary><code>client.account.postV1AccountMembersTransferOwnership(request) -> PostV1AccountMembersTransferOwnershipResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.account().postV1AccountMembersTransferOwnership(
+    PostV1AccountMembersTransferOwnershipRequest
+        .builder()
+        .userId("userId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**movePayer:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.account.postV1AccountMembersRemove(request) -> PostV1AccountMembersRemoveResponse</code></summary>
 <dl>
 <dd>
@@ -34300,7 +40389,7 @@ client.account().postV1AccountInvitesAccept(
 client.account().postV1AccountLocaleSet(
     PostV1AccountLocaleSetRequest
         .builder()
-        .locale(PostV1AccountLocaleSetRequestLocale.LT)
+        .locale(PostV1AccountLocaleSetRequestLocale.EN)
         .build()
 );
 ```
@@ -34402,6 +40491,38 @@ client.account().postV1AccountCompaniesCreate(
 <dl>
 <dd>
 
+**vatPeriod:** `Optional<PostV1AccountCompaniesCreateRequestVatPeriod>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fiscalYearEndMonth:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**timeZone:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filingOptions:** `Optional<Map<String, String>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **address:** `Optional<PostV1AccountCompaniesCreateRequestAddress>` 
     
 </dd>
@@ -34459,6 +40580,78 @@ client.account().postV1AccountCompaniesCreate(
 <dd>
 
 **defaultInvoiceCurrency:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**legalForm:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**registryName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**incorporatedOn:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**shareCapital:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**accountsKeptBy:** `Optional<PostV1AccountCompaniesCreateRequestAccountsKeptBy>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bookkeeperName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**auditorName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**auditorRegistrationNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**auditRequired:** `Optional<Boolean>` 
     
 </dd>
 </dl>
@@ -34632,6 +40825,38 @@ client.account().postV1AccountCompaniesUpdate(
 <dl>
 <dd>
 
+**vatPeriod:** `Optional<PostV1AccountCompaniesUpdateRequestVatPeriod>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fiscalYearEndMonth:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**timeZone:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filingOptions:** `Optional<Map<String, Optional<String>>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **address:** `Optional<PostV1AccountCompaniesUpdateRequestAddress>` 
     
 </dd>
@@ -34689,6 +40914,78 @@ client.account().postV1AccountCompaniesUpdate(
 <dd>
 
 **defaultInvoiceCurrency:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**legalForm:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**registryName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**incorporatedOn:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**shareCapital:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**accountsKeptBy:** `Optional<PostV1AccountCompaniesUpdateRequestAccountsKeptBy>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bookkeeperName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**auditorName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**auditorRegistrationNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**auditRequired:** `Optional<Boolean>` 
     
 </dd>
 </dl>
@@ -34888,6 +41185,14 @@ client.account().postV1AccountApiKeysCreate(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**expiresInDays:** `Optional<Long>` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -34915,6 +41220,67 @@ client.account().postV1AccountApiKeysList(
         .build()
 );
 ```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.account.issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(request) -> PostV1AccountApiKeysRotateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.account().issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(
+    PostV1AccountApiKeysRotateRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**overlapHours:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expiresInDays:** `Optional<Long>` 
+    
 </dd>
 </dl>
 </dd>
@@ -35331,6 +41697,51 @@ client.account().postV1AccountReferralGet(
         .build()
 );
 ```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.account.postV1AccountReferralConvert(request) -> PostV1AccountReferralConvertResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.account().postV1AccountReferralConvert(
+    PostV1AccountReferralConvertRequest
+        .builder()
+        .points(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**points:** `Long` 
+    
 </dd>
 </dl>
 </dd>

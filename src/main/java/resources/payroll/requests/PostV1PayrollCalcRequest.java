@@ -31,25 +31,33 @@ public final class PostV1PayrollCalcRequest {
 
   private final String date;
 
-  private final Optional<Boolean> applyNpd;
+  private final Optional<Boolean> applyAllowance;
 
-  private final Optional<String> npdOverride;
+  private final Optional<String> allowanceOverride;
 
   private final Optional<Boolean> pensionAccumulation;
 
   private final Optional<Boolean> fixedTerm;
 
+  private final Optional<String> benefitInKind;
+
+  private final Optional<Map<String, String>> options;
+
   private final Map<String, Object> additionalProperties;
 
-  private PostV1PayrollCalcRequest(String taxableBase, String date, Optional<Boolean> applyNpd,
-      Optional<String> npdOverride, Optional<Boolean> pensionAccumulation,
-      Optional<Boolean> fixedTerm, Map<String, Object> additionalProperties) {
+  private PostV1PayrollCalcRequest(String taxableBase, String date,
+      Optional<Boolean> applyAllowance, Optional<String> allowanceOverride,
+      Optional<Boolean> pensionAccumulation, Optional<Boolean> fixedTerm,
+      Optional<String> benefitInKind, Optional<Map<String, String>> options,
+      Map<String, Object> additionalProperties) {
     this.taxableBase = taxableBase;
     this.date = date;
-    this.applyNpd = applyNpd;
-    this.npdOverride = npdOverride;
+    this.applyAllowance = applyAllowance;
+    this.allowanceOverride = allowanceOverride;
     this.pensionAccumulation = pensionAccumulation;
     this.fixedTerm = fixedTerm;
+    this.benefitInKind = benefitInKind;
+    this.options = options;
     this.additionalProperties = additionalProperties;
   }
 
@@ -63,14 +71,14 @@ public final class PostV1PayrollCalcRequest {
     return date;
   }
 
-  @JsonProperty("applyNpd")
-  public Optional<Boolean> getApplyNpd() {
-    return applyNpd;
+  @JsonProperty("applyAllowance")
+  public Optional<Boolean> getApplyAllowance() {
+    return applyAllowance;
   }
 
-  @JsonProperty("npdOverride")
-  public Optional<String> getNpdOverride() {
-    return npdOverride;
+  @JsonProperty("allowanceOverride")
+  public Optional<String> getAllowanceOverride() {
+    return allowanceOverride;
   }
 
   @JsonProperty("pensionAccumulation")
@@ -81,6 +89,16 @@ public final class PostV1PayrollCalcRequest {
   @JsonProperty("fixedTerm")
   public Optional<Boolean> getFixedTerm() {
     return fixedTerm;
+  }
+
+  @JsonProperty("benefitInKind")
+  public Optional<String> getBenefitInKind() {
+    return benefitInKind;
+  }
+
+  @JsonProperty("options")
+  public Optional<Map<String, String>> getOptions() {
+    return options;
   }
 
   @java.lang.Override
@@ -95,12 +113,12 @@ public final class PostV1PayrollCalcRequest {
   }
 
   private boolean equalTo(PostV1PayrollCalcRequest other) {
-    return taxableBase.equals(other.taxableBase) && date.equals(other.date) && applyNpd.equals(other.applyNpd) && npdOverride.equals(other.npdOverride) && pensionAccumulation.equals(other.pensionAccumulation) && fixedTerm.equals(other.fixedTerm);
+    return taxableBase.equals(other.taxableBase) && date.equals(other.date) && applyAllowance.equals(other.applyAllowance) && allowanceOverride.equals(other.allowanceOverride) && pensionAccumulation.equals(other.pensionAccumulation) && fixedTerm.equals(other.fixedTerm) && benefitInKind.equals(other.benefitInKind) && options.equals(other.options);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.taxableBase, this.date, this.applyNpd, this.npdOverride, this.pensionAccumulation, this.fixedTerm);
+    return Objects.hash(this.taxableBase, this.date, this.applyAllowance, this.allowanceOverride, this.pensionAccumulation, this.fixedTerm, this.benefitInKind, this.options);
   }
 
   @java.lang.Override
@@ -129,13 +147,13 @@ public final class PostV1PayrollCalcRequest {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
-    _FinalStage applyNpd(Optional<Boolean> applyNpd);
+    _FinalStage applyAllowance(Optional<Boolean> applyAllowance);
 
-    _FinalStage applyNpd(Boolean applyNpd);
+    _FinalStage applyAllowance(Boolean applyAllowance);
 
-    _FinalStage npdOverride(Optional<String> npdOverride);
+    _FinalStage allowanceOverride(Optional<String> allowanceOverride);
 
-    _FinalStage npdOverride(String npdOverride);
+    _FinalStage allowanceOverride(String allowanceOverride);
 
     _FinalStage pensionAccumulation(Optional<Boolean> pensionAccumulation);
 
@@ -144,6 +162,14 @@ public final class PostV1PayrollCalcRequest {
     _FinalStage fixedTerm(Optional<Boolean> fixedTerm);
 
     _FinalStage fixedTerm(Boolean fixedTerm);
+
+    _FinalStage benefitInKind(Optional<String> benefitInKind);
+
+    _FinalStage benefitInKind(String benefitInKind);
+
+    _FinalStage options(Optional<Map<String, String>> options);
+
+    _FinalStage options(Map<String, String> options);
   }
 
   @JsonIgnoreProperties(
@@ -154,13 +180,17 @@ public final class PostV1PayrollCalcRequest {
 
     private String date;
 
+    private Optional<Map<String, String>> options = Optional.empty();
+
+    private Optional<String> benefitInKind = Optional.empty();
+
     private Optional<Boolean> fixedTerm = Optional.empty();
 
     private Optional<Boolean> pensionAccumulation = Optional.empty();
 
-    private Optional<String> npdOverride = Optional.empty();
+    private Optional<String> allowanceOverride = Optional.empty();
 
-    private Optional<Boolean> applyNpd = Optional.empty();
+    private Optional<Boolean> applyAllowance = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -172,10 +202,12 @@ public final class PostV1PayrollCalcRequest {
     public Builder from(PostV1PayrollCalcRequest other) {
       taxableBase(other.getTaxableBase());
       date(other.getDate());
-      applyNpd(other.getApplyNpd());
-      npdOverride(other.getNpdOverride());
+      applyAllowance(other.getApplyAllowance());
+      allowanceOverride(other.getAllowanceOverride());
       pensionAccumulation(other.getPensionAccumulation());
       fixedTerm(other.getFixedTerm());
+      benefitInKind(other.getBenefitInKind());
+      options(other.getOptions());
       return this;
     }
 
@@ -190,6 +222,38 @@ public final class PostV1PayrollCalcRequest {
     @JsonSetter("date")
     public _FinalStage date(@NotNull String date) {
       this.date = Objects.requireNonNull(date, "date must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage options(Map<String, String> options) {
+      this.options = Optional.ofNullable(options);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "options",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage options(Optional<Map<String, String>> options) {
+      this.options = options;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage benefitInKind(String benefitInKind) {
+      this.benefitInKind = Optional.ofNullable(benefitInKind);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "benefitInKind",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage benefitInKind(Optional<String> benefitInKind) {
+      this.benefitInKind = benefitInKind;
       return this;
     }
 
@@ -226,40 +290,40 @@ public final class PostV1PayrollCalcRequest {
     }
 
     @java.lang.Override
-    public _FinalStage npdOverride(String npdOverride) {
-      this.npdOverride = Optional.ofNullable(npdOverride);
+    public _FinalStage allowanceOverride(String allowanceOverride) {
+      this.allowanceOverride = Optional.ofNullable(allowanceOverride);
       return this;
     }
 
     @java.lang.Override
     @JsonSetter(
-        value = "npdOverride",
+        value = "allowanceOverride",
         nulls = Nulls.SKIP
     )
-    public _FinalStage npdOverride(Optional<String> npdOverride) {
-      this.npdOverride = npdOverride;
+    public _FinalStage allowanceOverride(Optional<String> allowanceOverride) {
+      this.allowanceOverride = allowanceOverride;
       return this;
     }
 
     @java.lang.Override
-    public _FinalStage applyNpd(Boolean applyNpd) {
-      this.applyNpd = Optional.ofNullable(applyNpd);
+    public _FinalStage applyAllowance(Boolean applyAllowance) {
+      this.applyAllowance = Optional.ofNullable(applyAllowance);
       return this;
     }
 
     @java.lang.Override
     @JsonSetter(
-        value = "applyNpd",
+        value = "applyAllowance",
         nulls = Nulls.SKIP
     )
-    public _FinalStage applyNpd(Optional<Boolean> applyNpd) {
-      this.applyNpd = applyNpd;
+    public _FinalStage applyAllowance(Optional<Boolean> applyAllowance) {
+      this.applyAllowance = applyAllowance;
       return this;
     }
 
     @java.lang.Override
     public PostV1PayrollCalcRequest build() {
-      return new PostV1PayrollCalcRequest(taxableBase, date, applyNpd, npdOverride, pensionAccumulation, fixedTerm, additionalProperties);
+      return new PostV1PayrollCalcRequest(taxableBase, date, applyAllowance, allowanceOverride, pensionAccumulation, fixedTerm, benefitInKind, options, additionalProperties);
     }
 
     @java.lang.Override

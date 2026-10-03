@@ -8,13 +8,17 @@ import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.calendar.requests.PostV1CalendarCreateRequest;
 import com.nordlet.api.resources.calendar.requests.PostV1CalendarDeleteRequest;
+import com.nordlet.api.resources.calendar.requests.PostV1CalendarDownloadRequest;
 import com.nordlet.api.resources.calendar.requests.PostV1CalendarGetRequest;
 import com.nordlet.api.resources.calendar.requests.PostV1CalendarListRequest;
+import com.nordlet.api.resources.calendar.requests.PostV1CalendarSubmitRequest;
 import com.nordlet.api.resources.calendar.requests.PostV1CalendarUpdateRequest;
 import com.nordlet.api.resources.calendar.types.PostV1CalendarCreateResponse;
 import com.nordlet.api.resources.calendar.types.PostV1CalendarDeleteResponse;
+import com.nordlet.api.resources.calendar.types.PostV1CalendarDownloadResponse;
 import com.nordlet.api.resources.calendar.types.PostV1CalendarGetResponse;
 import com.nordlet.api.resources.calendar.types.PostV1CalendarListResponse;
+import com.nordlet.api.resources.calendar.types.PostV1CalendarSubmitResponse;
 import com.nordlet.api.resources.calendar.types.PostV1CalendarUpdateResponse;
 import java.util.concurrent.CompletableFuture;
 
@@ -62,6 +66,32 @@ public class AsyncCalendarClient {
   public CompletableFuture<PostV1CalendarGetResponse> postV1CalendarGet(
       PostV1CalendarGetRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1CalendarGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CalendarSubmitResponse> generateTheFilingForADeadlineAndSendItToTheAdministration(
+      PostV1CalendarSubmitRequest request) {
+    return this.rawClient.generateTheFilingForADeadlineAndSendItToTheAdministration(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PostV1CalendarSubmitResponse> generateTheFilingForADeadlineAndSendItToTheAdministration(
+      PostV1CalendarSubmitRequest request, RequestOptions requestOptions) {
+    return this.rawClient.generateTheFilingForADeadlineAndSendItToTheAdministration(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded.
+   */
+  public CompletableFuture<PostV1CalendarDownloadResponse> generateTheFileOfADeadlineForTheCompanyToSendItself(
+      PostV1CalendarDownloadRequest request) {
+    return this.rawClient.generateTheFileOfADeadlineForTheCompanyToSendItself(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded.
+   */
+  public CompletableFuture<PostV1CalendarDownloadResponse> generateTheFileOfADeadlineForTheCompanyToSendItself(
+      PostV1CalendarDownloadRequest request, RequestOptions requestOptions) {
+    return this.rawClient.generateTheFileOfADeadlineForTheCompanyToSendItself(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<PostV1CalendarCreateResponse> postV1CalendarCreate(

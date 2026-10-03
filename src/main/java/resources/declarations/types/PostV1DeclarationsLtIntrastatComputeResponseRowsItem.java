@@ -41,6 +41,8 @@ public final class PostV1DeclarationsLtIntrastatComputeResponseRowsItem {
 
   private final Optional<String> transportMode;
 
+  private final Optional<String> regionCode;
+
   private final String country;
 
   private final Optional<String> originCountry;
@@ -61,16 +63,17 @@ public final class PostV1DeclarationsLtIntrastatComputeResponseRowsItem {
 
   private PostV1DeclarationsLtIntrastatComputeResponseRowsItem(long itemNumber, String cnCode,
       Optional<String> description, String transactionNature, Optional<String> deliveryTerms,
-      Optional<String> transportMode, String country, Optional<String> originCountry,
-      Optional<String> partnerVat, String netMassKg, Optional<String> supplementaryUnit,
-      Optional<String> supplementaryQty, String invoicedValue, String statisticalValue,
-      Map<String, Object> additionalProperties) {
+      Optional<String> transportMode, Optional<String> regionCode, String country,
+      Optional<String> originCountry, Optional<String> partnerVat, String netMassKg,
+      Optional<String> supplementaryUnit, Optional<String> supplementaryQty, String invoicedValue,
+      String statisticalValue, Map<String, Object> additionalProperties) {
     this.itemNumber = itemNumber;
     this.cnCode = cnCode;
     this.description = description;
     this.transactionNature = transactionNature;
     this.deliveryTerms = deliveryTerms;
     this.transportMode = transportMode;
+    this.regionCode = regionCode;
     this.country = country;
     this.originCountry = originCountry;
     this.partnerVat = partnerVat;
@@ -119,6 +122,14 @@ public final class PostV1DeclarationsLtIntrastatComputeResponseRowsItem {
       return Optional.empty();
     }
     return transportMode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getRegionCode() {
+    if (regionCode == null) {
+      return Optional.empty();
+    }
+    return regionCode;
   }
 
   @JsonProperty("country")
@@ -204,6 +215,15 @@ public final class PostV1DeclarationsLtIntrastatComputeResponseRowsItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("regionCode")
+  private Optional<String> _getRegionCode() {
+    return regionCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("originCountry")
   private Optional<String> _getOriginCountry() {
     return originCountry;
@@ -248,12 +268,12 @@ public final class PostV1DeclarationsLtIntrastatComputeResponseRowsItem {
   }
 
   private boolean equalTo(PostV1DeclarationsLtIntrastatComputeResponseRowsItem other) {
-    return itemNumber == other.itemNumber && cnCode.equals(other.cnCode) && description.equals(other.description) && transactionNature.equals(other.transactionNature) && deliveryTerms.equals(other.deliveryTerms) && transportMode.equals(other.transportMode) && country.equals(other.country) && originCountry.equals(other.originCountry) && partnerVat.equals(other.partnerVat) && netMassKg.equals(other.netMassKg) && supplementaryUnit.equals(other.supplementaryUnit) && supplementaryQty.equals(other.supplementaryQty) && invoicedValue.equals(other.invoicedValue) && statisticalValue.equals(other.statisticalValue);
+    return itemNumber == other.itemNumber && cnCode.equals(other.cnCode) && description.equals(other.description) && transactionNature.equals(other.transactionNature) && deliveryTerms.equals(other.deliveryTerms) && transportMode.equals(other.transportMode) && regionCode.equals(other.regionCode) && country.equals(other.country) && originCountry.equals(other.originCountry) && partnerVat.equals(other.partnerVat) && netMassKg.equals(other.netMassKg) && supplementaryUnit.equals(other.supplementaryUnit) && supplementaryQty.equals(other.supplementaryQty) && invoicedValue.equals(other.invoicedValue) && statisticalValue.equals(other.statisticalValue);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.itemNumber, this.cnCode, this.description, this.transactionNature, this.deliveryTerms, this.transportMode, this.country, this.originCountry, this.partnerVat, this.netMassKg, this.supplementaryUnit, this.supplementaryQty, this.invoicedValue, this.statisticalValue);
+    return Objects.hash(this.itemNumber, this.cnCode, this.description, this.transactionNature, this.deliveryTerms, this.transportMode, this.regionCode, this.country, this.originCountry, this.partnerVat, this.netMassKg, this.supplementaryUnit, this.supplementaryQty, this.invoicedValue, this.statisticalValue);
   }
 
   @java.lang.Override
@@ -320,6 +340,12 @@ public final class PostV1DeclarationsLtIntrastatComputeResponseRowsItem {
 
     _FinalStage transportMode(Nullable<String> transportMode);
 
+    _FinalStage regionCode(Optional<String> regionCode);
+
+    _FinalStage regionCode(String regionCode);
+
+    _FinalStage regionCode(Nullable<String> regionCode);
+
     _FinalStage originCountry(Optional<String> originCountry);
 
     _FinalStage originCountry(String originCountry);
@@ -371,6 +397,8 @@ public final class PostV1DeclarationsLtIntrastatComputeResponseRowsItem {
 
     private Optional<String> originCountry = Optional.empty();
 
+    private Optional<String> regionCode = Optional.empty();
+
     private Optional<String> transportMode = Optional.empty();
 
     private Optional<String> deliveryTerms = Optional.empty();
@@ -391,6 +419,7 @@ public final class PostV1DeclarationsLtIntrastatComputeResponseRowsItem {
       transactionNature(other.getTransactionNature());
       deliveryTerms(other.getDeliveryTerms());
       transportMode(other.getTransportMode());
+      regionCode(other.getRegionCode());
       country(other.getCountry());
       originCountry(other.getOriginCountry());
       partnerVat(other.getPartnerVat());
@@ -572,6 +601,36 @@ public final class PostV1DeclarationsLtIntrastatComputeResponseRowsItem {
     }
 
     @java.lang.Override
+    public _FinalStage regionCode(Nullable<String> regionCode) {
+      if (regionCode.isNull()) {
+        this.regionCode = null;
+      }
+      else if (regionCode.isEmpty()) {
+        this.regionCode = Optional.empty();
+      }
+      else {
+        this.regionCode = Optional.of(regionCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage regionCode(String regionCode) {
+      this.regionCode = Optional.ofNullable(regionCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "regionCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage regionCode(Optional<String> regionCode) {
+      this.regionCode = regionCode;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage transportMode(Nullable<String> transportMode) {
       if (transportMode.isNull()) {
         this.transportMode = null;
@@ -663,7 +722,7 @@ public final class PostV1DeclarationsLtIntrastatComputeResponseRowsItem {
 
     @java.lang.Override
     public PostV1DeclarationsLtIntrastatComputeResponseRowsItem build() {
-      return new PostV1DeclarationsLtIntrastatComputeResponseRowsItem(itemNumber, cnCode, description, transactionNature, deliveryTerms, transportMode, country, originCountry, partnerVat, netMassKg, supplementaryUnit, supplementaryQty, invoicedValue, statisticalValue, additionalProperties);
+      return new PostV1DeclarationsLtIntrastatComputeResponseRowsItem(itemNumber, cnCode, description, transactionNature, deliveryTerms, transportMode, regionCode, country, originCountry, partnerVat, netMassKg, supplementaryUnit, supplementaryQty, invoicedValue, statisticalValue, additionalProperties);
     }
 
     @java.lang.Override

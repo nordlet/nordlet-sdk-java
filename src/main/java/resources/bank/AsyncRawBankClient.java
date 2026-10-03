@@ -49,6 +49,7 @@ import com.nordlet.api.resources.bank.requests.PostV1BankMatchRulesDeleteRequest
 import com.nordlet.api.resources.bank.requests.PostV1BankMatchRulesListRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankMatchRulesUpdateRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankPaymentsExportRequest;
+import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsCommissionRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsGetRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsImportRequest;
 import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsLinkRequest;
@@ -90,6 +91,7 @@ import com.nordlet.api.resources.bank.types.PostV1BankMatchRulesDeleteResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankMatchRulesListResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankMatchRulesUpdateResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankPaymentsExportResponse;
+import com.nordlet.api.resources.bank.types.PostV1BankSettlementsCommissionResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankSettlementsGetResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankSettlementsImportResponse;
 import com.nordlet.api.resources.bank.types.PostV1BankSettlementsLinkResponse;
@@ -2760,22 +2762,22 @@ public class AsyncRawBankClient {
                                                             }
 
                                                             /**
-                                                             * Attach the incoming bank-statement line that carries this payout to the settlement batch.
+                                                             * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
                                                              */
-                                                            public CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsLinkResponse>> postV1BankSettlementsLink(
-                                                                PostV1BankSettlementsLinkRequest request) {
-                                                              return postV1BankSettlementsLink(request,null);
+                                                            public CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsCommissionResponse>> setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(
+                                                                PostV1BankSettlementsCommissionRequest request) {
+                                                              return setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(request,null);
                                                             }
 
                                                             /**
-                                                             * Attach the incoming bank-statement line that carries this payout to the settlement batch.
+                                                             * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
                                                              */
-                                                            public CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsLinkResponse>> postV1BankSettlementsLink(
-                                                                PostV1BankSettlementsLinkRequest request,
+                                                            public CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsCommissionResponse>> setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(
+                                                                PostV1BankSettlementsCommissionRequest request,
                                                                 RequestOptions requestOptions) {
                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                .addPathSegments("v1/bank/settlements/link");if (requestOptions != null) {
+                                                                .addPathSegments("v1/bank/settlements/commission");if (requestOptions != null) {
                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                   } );
@@ -2801,14 +2803,14 @@ public class AsyncRawBankClient {
                                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                 }
-                                                                CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsLinkResponse>> future = new CompletableFuture<>();
+                                                                CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsCommissionResponse>> future = new CompletableFuture<>();
                                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                   @Override
                                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                     try (ResponseBody responseBody = response.body()) {
                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                       if (response.isSuccessful()) {
-                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankSettlementsLinkResponse.class), response));
+                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankSettlementsCommissionResponse.class), response));
                                                                         return;
                                                                       }
                                                                       try {
@@ -2855,22 +2857,22 @@ public class AsyncRawBankClient {
                                                               }
 
                                                               /**
-                                                               * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+                                                               * Attach the incoming bank-statement line that carries this payout to the settlement batch.
                                                                */
-                                                              public CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsUnlinkResponse>> postV1BankSettlementsUnlink(
-                                                                  PostV1BankSettlementsUnlinkRequest request) {
-                                                                return postV1BankSettlementsUnlink(request,null);
+                                                              public CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsLinkResponse>> postV1BankSettlementsLink(
+                                                                  PostV1BankSettlementsLinkRequest request) {
+                                                                return postV1BankSettlementsLink(request,null);
                                                               }
 
                                                               /**
-                                                               * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+                                                               * Attach the incoming bank-statement line that carries this payout to the settlement batch.
                                                                */
-                                                              public CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsUnlinkResponse>> postV1BankSettlementsUnlink(
-                                                                  PostV1BankSettlementsUnlinkRequest request,
+                                                              public CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsLinkResponse>> postV1BankSettlementsLink(
+                                                                  PostV1BankSettlementsLinkRequest request,
                                                                   RequestOptions requestOptions) {
                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                  .addPathSegments("v1/bank/settlements/unlink");if (requestOptions != null) {
+                                                                  .addPathSegments("v1/bank/settlements/link");if (requestOptions != null) {
                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                     } );
@@ -2896,14 +2898,14 @@ public class AsyncRawBankClient {
                                                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                   }
-                                                                  CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsUnlinkResponse>> future = new CompletableFuture<>();
+                                                                  CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsLinkResponse>> future = new CompletableFuture<>();
                                                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                     @Override
                                                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                       try (ResponseBody responseBody = response.body()) {
                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                         if (response.isSuccessful()) {
-                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankSettlementsUnlinkResponse.class), response));
+                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankSettlementsLinkResponse.class), response));
                                                                           return;
                                                                         }
                                                                         try {
@@ -2949,17 +2951,23 @@ public class AsyncRawBankClient {
                                                                   return future;
                                                                 }
 
-                                                                public CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsPostResponse>> postV1BankSettlementsPost(
-                                                                    PostV1BankSettlementsPostRequest request) {
-                                                                  return postV1BankSettlementsPost(request,null);
+                                                                /**
+                                                                 * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+                                                                 */
+                                                                public CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsUnlinkResponse>> postV1BankSettlementsUnlink(
+                                                                    PostV1BankSettlementsUnlinkRequest request) {
+                                                                  return postV1BankSettlementsUnlink(request,null);
                                                                 }
 
-                                                                public CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsPostResponse>> postV1BankSettlementsPost(
-                                                                    PostV1BankSettlementsPostRequest request,
+                                                                /**
+                                                                 * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+                                                                 */
+                                                                public CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsUnlinkResponse>> postV1BankSettlementsUnlink(
+                                                                    PostV1BankSettlementsUnlinkRequest request,
                                                                     RequestOptions requestOptions) {
                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                    .addPathSegments("v1/bank/settlements/post");if (requestOptions != null) {
+                                                                    .addPathSegments("v1/bank/settlements/unlink");if (requestOptions != null) {
                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                       } );
@@ -2985,14 +2993,14 @@ public class AsyncRawBankClient {
                                                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                     }
-                                                                    CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsPostResponse>> future = new CompletableFuture<>();
+                                                                    CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsUnlinkResponse>> future = new CompletableFuture<>();
                                                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                       @Override
                                                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                         try (ResponseBody responseBody = response.body()) {
                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                           if (response.isSuccessful()) {
-                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankSettlementsPostResponse.class), response));
+                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankSettlementsUnlinkResponse.class), response));
                                                                             return;
                                                                           }
                                                                           try {
@@ -3038,27 +3046,17 @@ public class AsyncRawBankClient {
                                                                     return future;
                                                                   }
 
-                                                                  public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsBanksListResponse>> listThePsd2BanksAspsPsAvailableToConnect(
-                                                                      ) {
-                                                                    return listThePsd2BanksAspsPsAvailableToConnect(PostV1BankFeedsBanksListRequest.builder().build());
+                                                                  public CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsPostResponse>> postV1BankSettlementsPost(
+                                                                      PostV1BankSettlementsPostRequest request) {
+                                                                    return postV1BankSettlementsPost(request,null);
                                                                   }
 
-                                                                  public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsBanksListResponse>> listThePsd2BanksAspsPsAvailableToConnect(
-                                                                      RequestOptions requestOptions) {
-                                                                    return listThePsd2BanksAspsPsAvailableToConnect(PostV1BankFeedsBanksListRequest.builder().build(),requestOptions);
-                                                                  }
-
-                                                                  public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsBanksListResponse>> listThePsd2BanksAspsPsAvailableToConnect(
-                                                                      PostV1BankFeedsBanksListRequest request) {
-                                                                    return listThePsd2BanksAspsPsAvailableToConnect(request,null);
-                                                                  }
-
-                                                                  public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsBanksListResponse>> listThePsd2BanksAspsPsAvailableToConnect(
-                                                                      PostV1BankFeedsBanksListRequest request,
+                                                                  public CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsPostResponse>> postV1BankSettlementsPost(
+                                                                      PostV1BankSettlementsPostRequest request,
                                                                       RequestOptions requestOptions) {
                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                      .addPathSegments("v1/bank/feeds/banks/list");if (requestOptions != null) {
+                                                                      .addPathSegments("v1/bank/settlements/post");if (requestOptions != null) {
                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                         } );
@@ -3084,14 +3082,14 @@ public class AsyncRawBankClient {
                                                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                       }
-                                                                      CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsBanksListResponse>> future = new CompletableFuture<>();
+                                                                      CompletableFuture<NordletApiHttpResponse<PostV1BankSettlementsPostResponse>> future = new CompletableFuture<>();
                                                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                         @Override
                                                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                           try (ResponseBody responseBody = response.body()) {
                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                             if (response.isSuccessful()) {
-                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsBanksListResponse.class), response));
+                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankSettlementsPostResponse.class), response));
                                                                               return;
                                                                             }
                                                                             try {
@@ -3137,17 +3135,27 @@ public class AsyncRawBankClient {
                                                                       return future;
                                                                     }
 
-                                                                    public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsStartResponse>> beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
-                                                                        PostV1BankFeedsConnectionsStartRequest request) {
-                                                                      return beginBankAuthorizationRedirectTheUserToTheReturnedUrl(request,null);
+                                                                    public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsBanksListResponse>> listThePsd2BanksAspsPsAvailableToConnect(
+                                                                        ) {
+                                                                      return listThePsd2BanksAspsPsAvailableToConnect(PostV1BankFeedsBanksListRequest.builder().build());
                                                                     }
 
-                                                                    public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsStartResponse>> beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
-                                                                        PostV1BankFeedsConnectionsStartRequest request,
+                                                                    public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsBanksListResponse>> listThePsd2BanksAspsPsAvailableToConnect(
+                                                                        RequestOptions requestOptions) {
+                                                                      return listThePsd2BanksAspsPsAvailableToConnect(PostV1BankFeedsBanksListRequest.builder().build(),requestOptions);
+                                                                    }
+
+                                                                    public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsBanksListResponse>> listThePsd2BanksAspsPsAvailableToConnect(
+                                                                        PostV1BankFeedsBanksListRequest request) {
+                                                                      return listThePsd2BanksAspsPsAvailableToConnect(request,null);
+                                                                    }
+
+                                                                    public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsBanksListResponse>> listThePsd2BanksAspsPsAvailableToConnect(
+                                                                        PostV1BankFeedsBanksListRequest request,
                                                                         RequestOptions requestOptions) {
                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                        .addPathSegments("v1/bank/feeds/connections/start");if (requestOptions != null) {
+                                                                        .addPathSegments("v1/bank/feeds/banks/list");if (requestOptions != null) {
                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                           } );
@@ -3173,14 +3181,14 @@ public class AsyncRawBankClient {
                                                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                         }
-                                                                        CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsStartResponse>> future = new CompletableFuture<>();
+                                                                        CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsBanksListResponse>> future = new CompletableFuture<>();
                                                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                           @Override
                                                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                             try (ResponseBody responseBody = response.body()) {
                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                               if (response.isSuccessful()) {
-                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsConnectionsStartResponse.class), response));
+                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsBanksListResponse.class), response));
                                                                                 return;
                                                                               }
                                                                               try {
@@ -3226,17 +3234,17 @@ public class AsyncRawBankClient {
                                                                         return future;
                                                                       }
 
-                                                                      public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsCompleteResponse>> exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(
-                                                                          PostV1BankFeedsConnectionsCompleteRequest request) {
-                                                                        return exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(request,null);
+                                                                      public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsStartResponse>> beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
+                                                                          PostV1BankFeedsConnectionsStartRequest request) {
+                                                                        return beginBankAuthorizationRedirectTheUserToTheReturnedUrl(request,null);
                                                                       }
 
-                                                                      public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsCompleteResponse>> exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(
-                                                                          PostV1BankFeedsConnectionsCompleteRequest request,
+                                                                      public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsStartResponse>> beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
+                                                                          PostV1BankFeedsConnectionsStartRequest request,
                                                                           RequestOptions requestOptions) {
                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                          .addPathSegments("v1/bank/feeds/connections/complete");if (requestOptions != null) {
+                                                                          .addPathSegments("v1/bank/feeds/connections/start");if (requestOptions != null) {
                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                             } );
@@ -3262,14 +3270,14 @@ public class AsyncRawBankClient {
                                                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                           }
-                                                                          CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsCompleteResponse>> future = new CompletableFuture<>();
+                                                                          CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsStartResponse>> future = new CompletableFuture<>();
                                                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                             @Override
                                                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                               try (ResponseBody responseBody = response.body()) {
                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                 if (response.isSuccessful()) {
-                                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsConnectionsCompleteResponse.class), response));
+                                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsConnectionsStartResponse.class), response));
                                                                                   return;
                                                                                 }
                                                                                 try {
@@ -3315,17 +3323,17 @@ public class AsyncRawBankClient {
                                                                           return future;
                                                                         }
 
-                                                                        public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsGetResponse>> postV1BankFeedsConnectionsGet(
-                                                                            PostV1BankFeedsConnectionsGetRequest request) {
-                                                                          return postV1BankFeedsConnectionsGet(request,null);
+                                                                        public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsCompleteResponse>> exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(
+                                                                            PostV1BankFeedsConnectionsCompleteRequest request) {
+                                                                          return exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(request,null);
                                                                         }
 
-                                                                        public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsGetResponse>> postV1BankFeedsConnectionsGet(
-                                                                            PostV1BankFeedsConnectionsGetRequest request,
+                                                                        public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsCompleteResponse>> exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(
+                                                                            PostV1BankFeedsConnectionsCompleteRequest request,
                                                                             RequestOptions requestOptions) {
                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                            .addPathSegments("v1/bank/feeds/connections/get");if (requestOptions != null) {
+                                                                            .addPathSegments("v1/bank/feeds/connections/complete");if (requestOptions != null) {
                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                               } );
@@ -3351,14 +3359,14 @@ public class AsyncRawBankClient {
                                                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                             }
-                                                                            CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsGetResponse>> future = new CompletableFuture<>();
+                                                                            CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsCompleteResponse>> future = new CompletableFuture<>();
                                                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                               @Override
                                                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                 try (ResponseBody responseBody = response.body()) {
                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                   if (response.isSuccessful()) {
-                                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsConnectionsGetResponse.class), response));
+                                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsConnectionsCompleteResponse.class), response));
                                                                                     return;
                                                                                   }
                                                                                   try {
@@ -3404,27 +3412,17 @@ public class AsyncRawBankClient {
                                                                             return future;
                                                                           }
 
-                                                                          public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsListResponse>> postV1BankFeedsConnectionsList(
-                                                                              ) {
-                                                                            return postV1BankFeedsConnectionsList(PostV1BankFeedsConnectionsListRequest.builder().build());
+                                                                          public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsGetResponse>> postV1BankFeedsConnectionsGet(
+                                                                              PostV1BankFeedsConnectionsGetRequest request) {
+                                                                            return postV1BankFeedsConnectionsGet(request,null);
                                                                           }
 
-                                                                          public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsListResponse>> postV1BankFeedsConnectionsList(
-                                                                              RequestOptions requestOptions) {
-                                                                            return postV1BankFeedsConnectionsList(PostV1BankFeedsConnectionsListRequest.builder().build(),requestOptions);
-                                                                          }
-
-                                                                          public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsListResponse>> postV1BankFeedsConnectionsList(
-                                                                              PostV1BankFeedsConnectionsListRequest request) {
-                                                                            return postV1BankFeedsConnectionsList(request,null);
-                                                                          }
-
-                                                                          public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsListResponse>> postV1BankFeedsConnectionsList(
-                                                                              PostV1BankFeedsConnectionsListRequest request,
+                                                                          public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsGetResponse>> postV1BankFeedsConnectionsGet(
+                                                                              PostV1BankFeedsConnectionsGetRequest request,
                                                                               RequestOptions requestOptions) {
                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                              .addPathSegments("v1/bank/feeds/connections/list");if (requestOptions != null) {
+                                                                              .addPathSegments("v1/bank/feeds/connections/get");if (requestOptions != null) {
                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                 } );
@@ -3450,14 +3448,14 @@ public class AsyncRawBankClient {
                                                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                               }
-                                                                              CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsListResponse>> future = new CompletableFuture<>();
+                                                                              CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsGetResponse>> future = new CompletableFuture<>();
                                                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                 @Override
                                                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                   try (ResponseBody responseBody = response.body()) {
                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                     if (response.isSuccessful()) {
-                                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsConnectionsListResponse.class), response));
+                                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsConnectionsGetResponse.class), response));
                                                                                       return;
                                                                                     }
                                                                                     try {
@@ -3503,17 +3501,27 @@ public class AsyncRawBankClient {
                                                                               return future;
                                                                             }
 
-                                                                            public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsDeleteResponse>> revokeTheConsentAtTheBankAndDropTheStoredConnection(
-                                                                                PostV1BankFeedsConnectionsDeleteRequest request) {
-                                                                              return revokeTheConsentAtTheBankAndDropTheStoredConnection(request,null);
+                                                                            public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsListResponse>> postV1BankFeedsConnectionsList(
+                                                                                ) {
+                                                                              return postV1BankFeedsConnectionsList(PostV1BankFeedsConnectionsListRequest.builder().build());
                                                                             }
 
-                                                                            public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsDeleteResponse>> revokeTheConsentAtTheBankAndDropTheStoredConnection(
-                                                                                PostV1BankFeedsConnectionsDeleteRequest request,
+                                                                            public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsListResponse>> postV1BankFeedsConnectionsList(
+                                                                                RequestOptions requestOptions) {
+                                                                              return postV1BankFeedsConnectionsList(PostV1BankFeedsConnectionsListRequest.builder().build(),requestOptions);
+                                                                            }
+
+                                                                            public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsListResponse>> postV1BankFeedsConnectionsList(
+                                                                                PostV1BankFeedsConnectionsListRequest request) {
+                                                                              return postV1BankFeedsConnectionsList(request,null);
+                                                                            }
+
+                                                                            public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsListResponse>> postV1BankFeedsConnectionsList(
+                                                                                PostV1BankFeedsConnectionsListRequest request,
                                                                                 RequestOptions requestOptions) {
                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                .addPathSegments("v1/bank/feeds/connections/delete");if (requestOptions != null) {
+                                                                                .addPathSegments("v1/bank/feeds/connections/list");if (requestOptions != null) {
                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                   } );
@@ -3539,14 +3547,14 @@ public class AsyncRawBankClient {
                                                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                 }
-                                                                                CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsDeleteResponse>> future = new CompletableFuture<>();
+                                                                                CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsListResponse>> future = new CompletableFuture<>();
                                                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                   @Override
                                                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                     try (ResponseBody responseBody = response.body()) {
                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                       if (response.isSuccessful()) {
-                                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsConnectionsDeleteResponse.class), response));
+                                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsConnectionsListResponse.class), response));
                                                                                         return;
                                                                                       }
                                                                                       try {
@@ -3592,17 +3600,17 @@ public class AsyncRawBankClient {
                                                                                 return future;
                                                                               }
 
-                                                                              public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsAccountsLinkResponse>> pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(
-                                                                                  PostV1BankFeedsAccountsLinkRequest request) {
-                                                                                return pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(request,null);
+                                                                              public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsDeleteResponse>> revokeTheConsentAtTheBankAndDropTheStoredConnection(
+                                                                                  PostV1BankFeedsConnectionsDeleteRequest request) {
+                                                                                return revokeTheConsentAtTheBankAndDropTheStoredConnection(request,null);
                                                                               }
 
-                                                                              public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsAccountsLinkResponse>> pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(
-                                                                                  PostV1BankFeedsAccountsLinkRequest request,
+                                                                              public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsDeleteResponse>> revokeTheConsentAtTheBankAndDropTheStoredConnection(
+                                                                                  PostV1BankFeedsConnectionsDeleteRequest request,
                                                                                   RequestOptions requestOptions) {
                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                  .addPathSegments("v1/bank/feeds/accounts/link");if (requestOptions != null) {
+                                                                                  .addPathSegments("v1/bank/feeds/connections/delete");if (requestOptions != null) {
                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                     } );
@@ -3628,14 +3636,14 @@ public class AsyncRawBankClient {
                                                                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                   }
-                                                                                  CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsAccountsLinkResponse>> future = new CompletableFuture<>();
+                                                                                  CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsConnectionsDeleteResponse>> future = new CompletableFuture<>();
                                                                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                     @Override
                                                                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                       try (ResponseBody responseBody = response.body()) {
                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                         if (response.isSuccessful()) {
-                                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsAccountsLinkResponse.class), response));
+                                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsConnectionsDeleteResponse.class), response));
                                                                                           return;
                                                                                         }
                                                                                         try {
@@ -3681,17 +3689,17 @@ public class AsyncRawBankClient {
                                                                                   return future;
                                                                                 }
 
-                                                                                public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsAccountsConfigureResponse>> chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(
-                                                                                    PostV1BankFeedsAccountsConfigureRequest request) {
-                                                                                  return chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(request,null);
+                                                                                public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsAccountsLinkResponse>> pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(
+                                                                                    PostV1BankFeedsAccountsLinkRequest request) {
+                                                                                  return pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(request,null);
                                                                                 }
 
-                                                                                public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsAccountsConfigureResponse>> chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(
-                                                                                    PostV1BankFeedsAccountsConfigureRequest request,
+                                                                                public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsAccountsLinkResponse>> pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(
+                                                                                    PostV1BankFeedsAccountsLinkRequest request,
                                                                                     RequestOptions requestOptions) {
                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                    .addPathSegments("v1/bank/feeds/accounts/configure");if (requestOptions != null) {
+                                                                                    .addPathSegments("v1/bank/feeds/accounts/link");if (requestOptions != null) {
                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                       } );
@@ -3717,14 +3725,14 @@ public class AsyncRawBankClient {
                                                                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                     }
-                                                                                    CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsAccountsConfigureResponse>> future = new CompletableFuture<>();
+                                                                                    CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsAccountsLinkResponse>> future = new CompletableFuture<>();
                                                                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                       @Override
                                                                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                         try (ResponseBody responseBody = response.body()) {
                                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                           if (response.isSuccessful()) {
-                                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsAccountsConfigureResponse.class), response));
+                                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsAccountsLinkResponse.class), response));
                                                                                             return;
                                                                                           }
                                                                                           try {
@@ -3770,17 +3778,17 @@ public class AsyncRawBankClient {
                                                                                     return future;
                                                                                   }
 
-                                                                                  public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsSyncResponse>> pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
-                                                                                      PostV1BankFeedsSyncRequest request) {
-                                                                                    return pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(request,null);
+                                                                                  public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsAccountsConfigureResponse>> chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(
+                                                                                      PostV1BankFeedsAccountsConfigureRequest request) {
+                                                                                    return chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(request,null);
                                                                                   }
 
-                                                                                  public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsSyncResponse>> pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
-                                                                                      PostV1BankFeedsSyncRequest request,
+                                                                                  public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsAccountsConfigureResponse>> chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(
+                                                                                      PostV1BankFeedsAccountsConfigureRequest request,
                                                                                       RequestOptions requestOptions) {
                                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                      .addPathSegments("v1/bank/feeds/sync");if (requestOptions != null) {
+                                                                                      .addPathSegments("v1/bank/feeds/accounts/configure");if (requestOptions != null) {
                                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                                         } );
@@ -3806,14 +3814,14 @@ public class AsyncRawBankClient {
                                                                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                       }
-                                                                                      CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsSyncResponse>> future = new CompletableFuture<>();
+                                                                                      CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsAccountsConfigureResponse>> future = new CompletableFuture<>();
                                                                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                         @Override
                                                                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                           try (ResponseBody responseBody = response.body()) {
                                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                             if (response.isSuccessful()) {
-                                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsSyncResponse.class), response));
+                                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsAccountsConfigureResponse.class), response));
                                                                                               return;
                                                                                             }
                                                                                             try {
@@ -3858,4 +3866,93 @@ public class AsyncRawBankClient {
                                                                                       });
                                                                                       return future;
                                                                                     }
-                                                                                  }
+
+                                                                                    public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsSyncResponse>> pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
+                                                                                        PostV1BankFeedsSyncRequest request) {
+                                                                                      return pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(request,null);
+                                                                                    }
+
+                                                                                    public CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsSyncResponse>> pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
+                                                                                        PostV1BankFeedsSyncRequest request,
+                                                                                        RequestOptions requestOptions) {
+                                                                                      HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                        .addPathSegments("v1/bank/feeds/sync");if (requestOptions != null) {
+                                                                                          requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                            httpUrl.addQueryParameter(_key, _value);
+                                                                                          } );
+                                                                                        }
+                                                                                        RequestBody body;
+                                                                                        try {
+                                                                                          body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                        }
+                                                                                        catch(JsonProcessingException e) {
+                                                                                          throw new NordletApiException("Failed to serialize request", e);
+                                                                                        }
+                                                                                        Request okhttpRequest = new Request.Builder()
+                                                                                          .url(httpUrl.build())
+                                                                                          .method("POST", body)
+                                                                                          .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                          .addHeader("Content-Type", "application/json")
+                                                                                          .addHeader("Accept", "application/json")
+                                                                                          .build();
+                                                                                        OkHttpClient client = clientOptions.httpClient();
+                                                                                        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                          client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                        }
+                                                                                        if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                          okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                        }
+                                                                                        CompletableFuture<NordletApiHttpResponse<PostV1BankFeedsSyncResponse>> future = new CompletableFuture<>();
+                                                                                        client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                                                          @Override
+                                                                                          public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                                                            try (ResponseBody responseBody = response.body()) {
+                                                                                              String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                              if (response.isSuccessful()) {
+                                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsSyncResponse.class), response));
+                                                                                                return;
+                                                                                              }
+                                                                                              try {
+                                                                                                switch (response.code()) {
+                                                                                                  case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                  return;
+                                                                                                  case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                  return;
+                                                                                                  case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                  return;
+                                                                                                  case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                  return;
+                                                                                                  case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                  return;
+                                                                                                  case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                  return;
+                                                                                                  case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                  return;
+                                                                                                  case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                  return;
+                                                                                                }
+                                                                                              }
+                                                                                              catch (JsonProcessingException ignored) {
+                                                                                                // unable to map error response, throwing generic error
+                                                                                              }
+                                                                                              Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                              future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                                                              return;
+                                                                                            }
+                                                                                            catch (JsonProcessingException e) {
+                                                                                              future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                                                            }
+                                                                                            catch (IOException e) {
+                                                                                              future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                                            }
+                                                                                          }
+
+                                                                                          @Override
+                                                                                          public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                                                            future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                                          }
+                                                                                        });
+                                                                                        return future;
+                                                                                      }
+                                                                                    }

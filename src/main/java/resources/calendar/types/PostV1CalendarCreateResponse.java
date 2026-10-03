@@ -49,12 +49,21 @@ public final class PostV1CalendarCreateResponse {
 
   private final Optional<String> href;
 
+  private final Optional<PostV1CalendarCreateResponseSubmission> submission;
+
+  private final boolean canSubmit;
+
+  private final boolean canDownload;
+
+  private final boolean automated;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1CalendarCreateResponse(String key, Optional<String> id,
       PostV1CalendarCreateResponseKind kind, Optional<String> ruleKey, Optional<String> period,
       String title, String dueDate, Optional<String> notes, boolean done, Optional<String> href,
-      Map<String, Object> additionalProperties) {
+      Optional<PostV1CalendarCreateResponseSubmission> submission, boolean canSubmit,
+      boolean canDownload, boolean automated, Map<String, Object> additionalProperties) {
     this.key = key;
     this.id = id;
     this.kind = kind;
@@ -65,6 +74,10 @@ public final class PostV1CalendarCreateResponse {
     this.notes = notes;
     this.done = done;
     this.href = href;
+    this.submission = submission;
+    this.canSubmit = canSubmit;
+    this.canDownload = canDownload;
+    this.automated = automated;
     this.additionalProperties = additionalProperties;
   }
 
@@ -133,6 +146,29 @@ public final class PostV1CalendarCreateResponse {
     return href;
   }
 
+  @JsonIgnore
+  public Optional<PostV1CalendarCreateResponseSubmission> getSubmission() {
+    if (submission == null) {
+      return Optional.empty();
+    }
+    return submission;
+  }
+
+  @JsonProperty("canSubmit")
+  public boolean getCanSubmit() {
+    return canSubmit;
+  }
+
+  @JsonProperty("canDownload")
+  public boolean getCanDownload() {
+    return canDownload;
+  }
+
+  @JsonProperty("automated")
+  public boolean getAutomated() {
+    return automated;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -178,6 +214,15 @@ public final class PostV1CalendarCreateResponse {
     return href;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("submission")
+  private Optional<PostV1CalendarCreateResponseSubmission> _getSubmission() {
+    return submission;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -190,12 +235,12 @@ public final class PostV1CalendarCreateResponse {
   }
 
   private boolean equalTo(PostV1CalendarCreateResponse other) {
-    return key.equals(other.key) && id.equals(other.id) && kind.equals(other.kind) && ruleKey.equals(other.ruleKey) && period.equals(other.period) && title.equals(other.title) && dueDate.equals(other.dueDate) && notes.equals(other.notes) && done == other.done && href.equals(other.href);
+    return key.equals(other.key) && id.equals(other.id) && kind.equals(other.kind) && ruleKey.equals(other.ruleKey) && period.equals(other.period) && title.equals(other.title) && dueDate.equals(other.dueDate) && notes.equals(other.notes) && done == other.done && href.equals(other.href) && submission.equals(other.submission) && canSubmit == other.canSubmit && canDownload == other.canDownload && automated == other.automated;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.key, this.id, this.kind, this.ruleKey, this.period, this.title, this.dueDate, this.notes, this.done, this.href);
+    return Objects.hash(this.key, this.id, this.kind, this.ruleKey, this.period, this.title, this.dueDate, this.notes, this.done, this.href, this.submission, this.canSubmit, this.canDownload, this.automated);
   }
 
   @java.lang.Override
@@ -226,7 +271,19 @@ public final class PostV1CalendarCreateResponse {
   }
 
   public interface DoneStage {
-    _FinalStage done(boolean done);
+    CanSubmitStage done(boolean done);
+  }
+
+  public interface CanSubmitStage {
+    CanDownloadStage canSubmit(boolean canSubmit);
+  }
+
+  public interface CanDownloadStage {
+    AutomatedStage canDownload(boolean canDownload);
+  }
+
+  public interface AutomatedStage {
+    _FinalStage automated(boolean automated);
   }
 
   public interface _FinalStage {
@@ -265,12 +322,18 @@ public final class PostV1CalendarCreateResponse {
     _FinalStage href(String href);
 
     _FinalStage href(Nullable<String> href);
+
+    _FinalStage submission(Optional<PostV1CalendarCreateResponseSubmission> submission);
+
+    _FinalStage submission(PostV1CalendarCreateResponseSubmission submission);
+
+    _FinalStage submission(Nullable<PostV1CalendarCreateResponseSubmission> submission);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements KeyStage, KindStage, TitleStage, DueDateStage, DoneStage, _FinalStage {
+  public static final class Builder implements KeyStage, KindStage, TitleStage, DueDateStage, DoneStage, CanSubmitStage, CanDownloadStage, AutomatedStage, _FinalStage {
     private String key;
 
     private PostV1CalendarCreateResponseKind kind;
@@ -280,6 +343,14 @@ public final class PostV1CalendarCreateResponse {
     private String dueDate;
 
     private boolean done;
+
+    private boolean canSubmit;
+
+    private boolean canDownload;
+
+    private boolean automated;
+
+    private Optional<PostV1CalendarCreateResponseSubmission> submission = Optional.empty();
 
     private Optional<String> href = Optional.empty();
 
@@ -309,6 +380,10 @@ public final class PostV1CalendarCreateResponse {
       notes(other.getNotes());
       done(other.getDone());
       href(other.getHref());
+      submission(other.getSubmission());
+      canSubmit(other.getCanSubmit());
+      canDownload(other.getCanDownload());
+      automated(other.getAutomated());
       return this;
     }
 
@@ -342,8 +417,59 @@ public final class PostV1CalendarCreateResponse {
 
     @java.lang.Override
     @JsonSetter("done")
-    public _FinalStage done(boolean done) {
+    public CanSubmitStage done(boolean done) {
       this.done = done;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("canSubmit")
+    public CanDownloadStage canSubmit(boolean canSubmit) {
+      this.canSubmit = canSubmit;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("canDownload")
+    public AutomatedStage canDownload(boolean canDownload) {
+      this.canDownload = canDownload;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("automated")
+    public _FinalStage automated(boolean automated) {
+      this.automated = automated;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage submission(Nullable<PostV1CalendarCreateResponseSubmission> submission) {
+      if (submission.isNull()) {
+        this.submission = null;
+      }
+      else if (submission.isEmpty()) {
+        this.submission = Optional.empty();
+      }
+      else {
+        this.submission = Optional.of(submission.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage submission(PostV1CalendarCreateResponseSubmission submission) {
+      this.submission = Optional.ofNullable(submission);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "submission",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage submission(Optional<PostV1CalendarCreateResponseSubmission> submission) {
+      this.submission = submission;
       return this;
     }
 
@@ -499,7 +625,7 @@ public final class PostV1CalendarCreateResponse {
 
     @java.lang.Override
     public PostV1CalendarCreateResponse build() {
-      return new PostV1CalendarCreateResponse(key, id, kind, ruleKey, period, title, dueDate, notes, done, href, additionalProperties);
+      return new PostV1CalendarCreateResponse(key, id, kind, ruleKey, period, title, dueDate, notes, done, href, submission, canSubmit, canDownload, automated, additionalProperties);
     }
 
     @java.lang.Override

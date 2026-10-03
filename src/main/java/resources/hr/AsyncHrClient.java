@@ -13,6 +13,7 @@ import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesAnonymizeRequest;
 import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesAttachmentsListRequest;
 import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesCreateRequest;
 import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesDeleteRequest;
+import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesFieldsRequest;
 import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesGetRequest;
 import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesListRequest;
 import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesRecordsCreateRequest;
@@ -39,6 +40,7 @@ import com.nordlet.api.resources.hr.types.PostV1HrEmployeesAnonymizeResponse;
 import com.nordlet.api.resources.hr.types.PostV1HrEmployeesAttachmentsListResponse;
 import com.nordlet.api.resources.hr.types.PostV1HrEmployeesCreateResponse;
 import com.nordlet.api.resources.hr.types.PostV1HrEmployeesDeleteResponse;
+import com.nordlet.api.resources.hr.types.PostV1HrEmployeesFieldsResponse;
 import com.nordlet.api.resources.hr.types.PostV1HrEmployeesGetResponse;
 import com.nordlet.api.resources.hr.types.PostV1HrEmployeesListResponse;
 import com.nordlet.api.resources.hr.types.PostV1HrEmployeesRecordsCreateResponse;
@@ -144,6 +146,38 @@ public class AsyncHrClient {
   public CompletableFuture<PostV1HrEmployeesGetResponse> postV1HrEmployeesGet(
       PostV1HrEmployeesGetRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1HrEmployeesGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
+   */
+  public CompletableFuture<PostV1HrEmployeesFieldsResponse> extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(
+      ) {
+    return this.rawClient.extraEmployeeDetailsTheCountryOfTheCompanyAsksFor().thenApply(response -> response.body());
+  }
+
+  /**
+   * Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
+   */
+  public CompletableFuture<PostV1HrEmployeesFieldsResponse> extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(
+      RequestOptions requestOptions) {
+    return this.rawClient.extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
+   */
+  public CompletableFuture<PostV1HrEmployeesFieldsResponse> extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(
+      PostV1HrEmployeesFieldsRequest request) {
+    return this.rawClient.extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
+   */
+  public CompletableFuture<PostV1HrEmployeesFieldsResponse> extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(
+      PostV1HrEmployeesFieldsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<PostV1HrEmployeesListResponse> postV1HrEmployeesList() {

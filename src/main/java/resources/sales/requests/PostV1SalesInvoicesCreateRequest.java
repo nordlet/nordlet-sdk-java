@@ -44,7 +44,17 @@ public final class PostV1SalesInvoicesCreateRequest {
 
   private final Optional<String> creditedInvoiceId;
 
+  private final Optional<String> agreementId;
+
   private final Optional<PostV1SalesInvoicesCreateRequestVatScheme> vatScheme;
+
+  private final Optional<String> intrastatTransportMode;
+
+  private final Optional<String> intrastatDeliveryTerms;
+
+  private final Optional<String> intrastatRegion;
+
+  private final Optional<String> intrastatNatureOfTransaction;
 
   private final Optional<String> vatCountryCode;
 
@@ -79,7 +89,9 @@ public final class PostV1SalesInvoicesCreateRequest {
   private PostV1SalesInvoicesCreateRequest(String partnerId,
       Optional<PostV1SalesInvoicesCreateRequestType> type, Optional<String> currency,
       Optional<String> issueDate, Optional<String> dueDate, Optional<String> creditedInvoiceId,
-      Optional<PostV1SalesInvoicesCreateRequestVatScheme> vatScheme,
+      Optional<String> agreementId, Optional<PostV1SalesInvoicesCreateRequestVatScheme> vatScheme,
+      Optional<String> intrastatTransportMode, Optional<String> intrastatDeliveryTerms,
+      Optional<String> intrastatRegion, Optional<String> intrastatNatureOfTransaction,
       Optional<String> vatCountryCode, Optional<Boolean> deemedSupplier, Optional<String> notes,
       Optional<String> documentRef, Optional<String> operationTypeId,
       Optional<String> documentSeriesId, Optional<String> seriesLabel, Optional<String> orderNumber,
@@ -93,7 +105,12 @@ public final class PostV1SalesInvoicesCreateRequest {
     this.issueDate = issueDate;
     this.dueDate = dueDate;
     this.creditedInvoiceId = creditedInvoiceId;
+    this.agreementId = agreementId;
     this.vatScheme = vatScheme;
+    this.intrastatTransportMode = intrastatTransportMode;
+    this.intrastatDeliveryTerms = intrastatDeliveryTerms;
+    this.intrastatRegion = intrastatRegion;
+    this.intrastatNatureOfTransaction = intrastatNatureOfTransaction;
     this.vatCountryCode = vatCountryCode;
     this.deemedSupplier = deemedSupplier;
     this.notes = notes;
@@ -141,9 +158,34 @@ public final class PostV1SalesInvoicesCreateRequest {
     return creditedInvoiceId;
   }
 
+  @JsonProperty("agreementId")
+  public Optional<String> getAgreementId() {
+    return agreementId;
+  }
+
   @JsonProperty("vatScheme")
   public Optional<PostV1SalesInvoicesCreateRequestVatScheme> getVatScheme() {
     return vatScheme;
+  }
+
+  @JsonProperty("intrastatTransportMode")
+  public Optional<String> getIntrastatTransportMode() {
+    return intrastatTransportMode;
+  }
+
+  @JsonProperty("intrastatDeliveryTerms")
+  public Optional<String> getIntrastatDeliveryTerms() {
+    return intrastatDeliveryTerms;
+  }
+
+  @JsonProperty("intrastatRegion")
+  public Optional<String> getIntrastatRegion() {
+    return intrastatRegion;
+  }
+
+  @JsonProperty("intrastatNatureOfTransaction")
+  public Optional<String> getIntrastatNatureOfTransaction() {
+    return intrastatNatureOfTransaction;
   }
 
   @JsonProperty("vatCountryCode")
@@ -228,12 +270,12 @@ public final class PostV1SalesInvoicesCreateRequest {
   }
 
   private boolean equalTo(PostV1SalesInvoicesCreateRequest other) {
-    return partnerId.equals(other.partnerId) && type.equals(other.type) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && creditedInvoiceId.equals(other.creditedInvoiceId) && vatScheme.equals(other.vatScheme) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && discountPercent.equals(other.discountPercent) && lines.equals(other.lines);
+    return partnerId.equals(other.partnerId) && type.equals(other.type) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && creditedInvoiceId.equals(other.creditedInvoiceId) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && discountPercent.equals(other.discountPercent) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.partnerId, this.type, this.currency, this.issueDate, this.dueDate, this.creditedInvoiceId, this.vatScheme, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.discountPercent, this.lines);
+    return Objects.hash(this.partnerId, this.type, this.currency, this.issueDate, this.dueDate, this.creditedInvoiceId, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.discountPercent, this.lines);
   }
 
   @java.lang.Override
@@ -278,9 +320,29 @@ public final class PostV1SalesInvoicesCreateRequest {
 
     _FinalStage creditedInvoiceId(String creditedInvoiceId);
 
+    _FinalStage agreementId(Optional<String> agreementId);
+
+    _FinalStage agreementId(String agreementId);
+
     _FinalStage vatScheme(Optional<PostV1SalesInvoicesCreateRequestVatScheme> vatScheme);
 
     _FinalStage vatScheme(PostV1SalesInvoicesCreateRequestVatScheme vatScheme);
+
+    _FinalStage intrastatTransportMode(Optional<String> intrastatTransportMode);
+
+    _FinalStage intrastatTransportMode(String intrastatTransportMode);
+
+    _FinalStage intrastatDeliveryTerms(Optional<String> intrastatDeliveryTerms);
+
+    _FinalStage intrastatDeliveryTerms(String intrastatDeliveryTerms);
+
+    _FinalStage intrastatRegion(Optional<String> intrastatRegion);
+
+    _FinalStage intrastatRegion(String intrastatRegion);
+
+    _FinalStage intrastatNatureOfTransaction(Optional<String> intrastatNatureOfTransaction);
+
+    _FinalStage intrastatNatureOfTransaction(String intrastatNatureOfTransaction);
 
     _FinalStage vatCountryCode(Optional<String> vatCountryCode);
 
@@ -375,7 +437,17 @@ public final class PostV1SalesInvoicesCreateRequest {
 
     private Optional<String> vatCountryCode = Optional.empty();
 
+    private Optional<String> intrastatNatureOfTransaction = Optional.empty();
+
+    private Optional<String> intrastatRegion = Optional.empty();
+
+    private Optional<String> intrastatDeliveryTerms = Optional.empty();
+
+    private Optional<String> intrastatTransportMode = Optional.empty();
+
     private Optional<PostV1SalesInvoicesCreateRequestVatScheme> vatScheme = Optional.empty();
+
+    private Optional<String> agreementId = Optional.empty();
 
     private Optional<String> creditedInvoiceId = Optional.empty();
 
@@ -401,7 +473,12 @@ public final class PostV1SalesInvoicesCreateRequest {
       issueDate(other.getIssueDate());
       dueDate(other.getDueDate());
       creditedInvoiceId(other.getCreditedInvoiceId());
+      agreementId(other.getAgreementId());
       vatScheme(other.getVatScheme());
+      intrastatTransportMode(other.getIntrastatTransportMode());
+      intrastatDeliveryTerms(other.getIntrastatDeliveryTerms());
+      intrastatRegion(other.getIntrastatRegion());
+      intrastatNatureOfTransaction(other.getIntrastatNatureOfTransaction());
       vatCountryCode(other.getVatCountryCode());
       deemedSupplier(other.getDeemedSupplier());
       notes(other.getNotes());
@@ -662,6 +739,70 @@ public final class PostV1SalesInvoicesCreateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage intrastatNatureOfTransaction(String intrastatNatureOfTransaction) {
+      this.intrastatNatureOfTransaction = Optional.ofNullable(intrastatNatureOfTransaction);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatNatureOfTransaction",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatNatureOfTransaction(Optional<String> intrastatNatureOfTransaction) {
+      this.intrastatNatureOfTransaction = intrastatNatureOfTransaction;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatRegion(String intrastatRegion) {
+      this.intrastatRegion = Optional.ofNullable(intrastatRegion);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatRegion",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatRegion(Optional<String> intrastatRegion) {
+      this.intrastatRegion = intrastatRegion;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatDeliveryTerms(String intrastatDeliveryTerms) {
+      this.intrastatDeliveryTerms = Optional.ofNullable(intrastatDeliveryTerms);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatDeliveryTerms",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatDeliveryTerms(Optional<String> intrastatDeliveryTerms) {
+      this.intrastatDeliveryTerms = intrastatDeliveryTerms;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatTransportMode(String intrastatTransportMode) {
+      this.intrastatTransportMode = Optional.ofNullable(intrastatTransportMode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatTransportMode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatTransportMode(Optional<String> intrastatTransportMode) {
+      this.intrastatTransportMode = intrastatTransportMode;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage vatScheme(PostV1SalesInvoicesCreateRequestVatScheme vatScheme) {
       this.vatScheme = Optional.ofNullable(vatScheme);
       return this;
@@ -674,6 +815,22 @@ public final class PostV1SalesInvoicesCreateRequest {
     )
     public _FinalStage vatScheme(Optional<PostV1SalesInvoicesCreateRequestVatScheme> vatScheme) {
       this.vatScheme = vatScheme;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage agreementId(String agreementId) {
+      this.agreementId = Optional.ofNullable(agreementId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "agreementId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage agreementId(Optional<String> agreementId) {
+      this.agreementId = agreementId;
       return this;
     }
 
@@ -759,7 +916,7 @@ public final class PostV1SalesInvoicesCreateRequest {
 
     @java.lang.Override
     public PostV1SalesInvoicesCreateRequest build() {
-      return new PostV1SalesInvoicesCreateRequest(partnerId, type, currency, issueDate, dueDate, creditedInvoiceId, vatScheme, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, discountPercent, lines, additionalProperties);
+      return new PostV1SalesInvoicesCreateRequest(partnerId, type, currency, issueDate, dueDate, creditedInvoiceId, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, discountPercent, lines, additionalProperties);
     }
 
     @java.lang.Override

@@ -6,12 +6,15 @@ package com.nordlet.api.resources.transport.requests;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nordlet.api.core.Nullable;
+import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsUpdateRequestLinesItem;
 import java.lang.Object;
@@ -102,8 +105,11 @@ public final class PostV1TransportWaybillsUpdateRequest {
     return consigneePartnerId;
   }
 
-  @JsonProperty("transporterPartnerId")
+  @JsonIgnore
   public Optional<String> getTransporterPartnerId() {
+    if (transporterPartnerId == null) {
+      return Optional.empty();
+    }
     return transporterPartnerId;
   }
 
@@ -117,33 +123,51 @@ public final class PostV1TransportWaybillsUpdateRequest {
     return dispatchAt;
   }
 
-  @JsonProperty("estimatedArrivalAt")
+  @JsonIgnore
   public Optional<OffsetDateTime> getEstimatedArrivalAt() {
+    if (estimatedArrivalAt == null) {
+      return Optional.empty();
+    }
     return estimatedArrivalAt;
   }
 
-  @JsonProperty("vehiclePlate")
+  @JsonIgnore
   public Optional<String> getVehiclePlate() {
+    if (vehiclePlate == null) {
+      return Optional.empty();
+    }
     return vehiclePlate;
   }
 
-  @JsonProperty("trailerPlate")
+  @JsonIgnore
   public Optional<String> getTrailerPlate() {
+    if (trailerPlate == null) {
+      return Optional.empty();
+    }
     return trailerPlate;
   }
 
-  @JsonProperty("driverName")
+  @JsonIgnore
   public Optional<String> getDriverName() {
+    if (driverName == null) {
+      return Optional.empty();
+    }
     return driverName;
   }
 
-  @JsonProperty("driverSurname")
+  @JsonIgnore
   public Optional<String> getDriverSurname() {
+    if (driverSurname == null) {
+      return Optional.empty();
+    }
     return driverSurname;
   }
 
-  @JsonProperty("loadWarehouseId")
+  @JsonIgnore
   public Optional<String> getLoadWarehouseId() {
+    if (loadWarehouseId == null) {
+      return Optional.empty();
+    }
     return loadWarehouseId;
   }
 
@@ -157,18 +181,27 @@ public final class PostV1TransportWaybillsUpdateRequest {
     return unloadAddress;
   }
 
-  @JsonProperty("valueEur")
+  @JsonIgnore
   public Optional<String> getValueEur() {
+    if (valueEur == null) {
+      return Optional.empty();
+    }
     return valueEur;
   }
 
-  @JsonProperty("saleInvoiceId")
+  @JsonIgnore
   public Optional<String> getSaleInvoiceId() {
+    if (saleInvoiceId == null) {
+      return Optional.empty();
+    }
     return saleInvoiceId;
   }
 
-  @JsonProperty("notes")
+  @JsonIgnore
   public Optional<String> getNotes() {
+    if (notes == null) {
+      return Optional.empty();
+    }
     return notes;
   }
 
@@ -185,6 +218,96 @@ public final class PostV1TransportWaybillsUpdateRequest {
   @JsonProperty("id")
   public String getId() {
     return id;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("transporterPartnerId")
+  private Optional<String> _getTransporterPartnerId() {
+    return transporterPartnerId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("estimatedArrivalAt")
+  private Optional<OffsetDateTime> _getEstimatedArrivalAt() {
+    return estimatedArrivalAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("vehiclePlate")
+  private Optional<String> _getVehiclePlate() {
+    return vehiclePlate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("trailerPlate")
+  private Optional<String> _getTrailerPlate() {
+    return trailerPlate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("driverName")
+  private Optional<String> _getDriverName() {
+    return driverName;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("driverSurname")
+  private Optional<String> _getDriverSurname() {
+    return driverSurname;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("loadWarehouseId")
+  private Optional<String> _getLoadWarehouseId() {
+    return loadWarehouseId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("valueEur")
+  private Optional<String> _getValueEur() {
+    return valueEur;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("saleInvoiceId")
+  private Optional<String> _getSaleInvoiceId() {
+    return saleInvoiceId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("notes")
+  private Optional<String> _getNotes() {
+    return notes;
   }
 
   @java.lang.Override
@@ -237,6 +360,8 @@ public final class PostV1TransportWaybillsUpdateRequest {
 
     _FinalStage transporterPartnerId(String transporterPartnerId);
 
+    _FinalStage transporterPartnerId(Nullable<String> transporterPartnerId);
+
     _FinalStage documentDate(Optional<String> documentDate);
 
     _FinalStage documentDate(String documentDate);
@@ -249,25 +374,37 @@ public final class PostV1TransportWaybillsUpdateRequest {
 
     _FinalStage estimatedArrivalAt(OffsetDateTime estimatedArrivalAt);
 
+    _FinalStage estimatedArrivalAt(Nullable<OffsetDateTime> estimatedArrivalAt);
+
     _FinalStage vehiclePlate(Optional<String> vehiclePlate);
 
     _FinalStage vehiclePlate(String vehiclePlate);
+
+    _FinalStage vehiclePlate(Nullable<String> vehiclePlate);
 
     _FinalStage trailerPlate(Optional<String> trailerPlate);
 
     _FinalStage trailerPlate(String trailerPlate);
 
+    _FinalStage trailerPlate(Nullable<String> trailerPlate);
+
     _FinalStage driverName(Optional<String> driverName);
 
     _FinalStage driverName(String driverName);
+
+    _FinalStage driverName(Nullable<String> driverName);
 
     _FinalStage driverSurname(Optional<String> driverSurname);
 
     _FinalStage driverSurname(String driverSurname);
 
+    _FinalStage driverSurname(Nullable<String> driverSurname);
+
     _FinalStage loadWarehouseId(Optional<String> loadWarehouseId);
 
     _FinalStage loadWarehouseId(String loadWarehouseId);
+
+    _FinalStage loadWarehouseId(Nullable<String> loadWarehouseId);
 
     _FinalStage loadAddress(Optional<String> loadAddress);
 
@@ -281,13 +418,19 @@ public final class PostV1TransportWaybillsUpdateRequest {
 
     _FinalStage valueEur(String valueEur);
 
+    _FinalStage valueEur(Nullable<String> valueEur);
+
     _FinalStage saleInvoiceId(Optional<String> saleInvoiceId);
 
     _FinalStage saleInvoiceId(String saleInvoiceId);
 
+    _FinalStage saleInvoiceId(Nullable<String> saleInvoiceId);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
+
+    _FinalStage notes(Nullable<String> notes);
 
     _FinalStage series(Optional<String> series);
 
@@ -407,6 +550,20 @@ public final class PostV1TransportWaybillsUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage notes(Nullable<String> notes) {
+      if (notes.isNull()) {
+        this.notes = null;
+      }
+      else if (notes.isEmpty()) {
+        this.notes = Optional.empty();
+      }
+      else {
+        this.notes = Optional.of(notes.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage notes(String notes) {
       this.notes = Optional.ofNullable(notes);
       return this;
@@ -423,6 +580,20 @@ public final class PostV1TransportWaybillsUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage saleInvoiceId(Nullable<String> saleInvoiceId) {
+      if (saleInvoiceId.isNull()) {
+        this.saleInvoiceId = null;
+      }
+      else if (saleInvoiceId.isEmpty()) {
+        this.saleInvoiceId = Optional.empty();
+      }
+      else {
+        this.saleInvoiceId = Optional.of(saleInvoiceId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage saleInvoiceId(String saleInvoiceId) {
       this.saleInvoiceId = Optional.ofNullable(saleInvoiceId);
       return this;
@@ -435,6 +606,20 @@ public final class PostV1TransportWaybillsUpdateRequest {
     )
     public _FinalStage saleInvoiceId(Optional<String> saleInvoiceId) {
       this.saleInvoiceId = saleInvoiceId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage valueEur(Nullable<String> valueEur) {
+      if (valueEur.isNull()) {
+        this.valueEur = null;
+      }
+      else if (valueEur.isEmpty()) {
+        this.valueEur = Optional.empty();
+      }
+      else {
+        this.valueEur = Optional.of(valueEur.get());
+      }
       return this;
     }
 
@@ -487,6 +672,20 @@ public final class PostV1TransportWaybillsUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage loadWarehouseId(Nullable<String> loadWarehouseId) {
+      if (loadWarehouseId.isNull()) {
+        this.loadWarehouseId = null;
+      }
+      else if (loadWarehouseId.isEmpty()) {
+        this.loadWarehouseId = Optional.empty();
+      }
+      else {
+        this.loadWarehouseId = Optional.of(loadWarehouseId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage loadWarehouseId(String loadWarehouseId) {
       this.loadWarehouseId = Optional.ofNullable(loadWarehouseId);
       return this;
@@ -499,6 +698,20 @@ public final class PostV1TransportWaybillsUpdateRequest {
     )
     public _FinalStage loadWarehouseId(Optional<String> loadWarehouseId) {
       this.loadWarehouseId = loadWarehouseId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage driverSurname(Nullable<String> driverSurname) {
+      if (driverSurname.isNull()) {
+        this.driverSurname = null;
+      }
+      else if (driverSurname.isEmpty()) {
+        this.driverSurname = Optional.empty();
+      }
+      else {
+        this.driverSurname = Optional.of(driverSurname.get());
+      }
       return this;
     }
 
@@ -519,6 +732,20 @@ public final class PostV1TransportWaybillsUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage driverName(Nullable<String> driverName) {
+      if (driverName.isNull()) {
+        this.driverName = null;
+      }
+      else if (driverName.isEmpty()) {
+        this.driverName = Optional.empty();
+      }
+      else {
+        this.driverName = Optional.of(driverName.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage driverName(String driverName) {
       this.driverName = Optional.ofNullable(driverName);
       return this;
@@ -531,6 +758,20 @@ public final class PostV1TransportWaybillsUpdateRequest {
     )
     public _FinalStage driverName(Optional<String> driverName) {
       this.driverName = driverName;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage trailerPlate(Nullable<String> trailerPlate) {
+      if (trailerPlate.isNull()) {
+        this.trailerPlate = null;
+      }
+      else if (trailerPlate.isEmpty()) {
+        this.trailerPlate = Optional.empty();
+      }
+      else {
+        this.trailerPlate = Optional.of(trailerPlate.get());
+      }
       return this;
     }
 
@@ -551,6 +792,20 @@ public final class PostV1TransportWaybillsUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage vehiclePlate(Nullable<String> vehiclePlate) {
+      if (vehiclePlate.isNull()) {
+        this.vehiclePlate = null;
+      }
+      else if (vehiclePlate.isEmpty()) {
+        this.vehiclePlate = Optional.empty();
+      }
+      else {
+        this.vehiclePlate = Optional.of(vehiclePlate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage vehiclePlate(String vehiclePlate) {
       this.vehiclePlate = Optional.ofNullable(vehiclePlate);
       return this;
@@ -563,6 +818,20 @@ public final class PostV1TransportWaybillsUpdateRequest {
     )
     public _FinalStage vehiclePlate(Optional<String> vehiclePlate) {
       this.vehiclePlate = vehiclePlate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage estimatedArrivalAt(Nullable<OffsetDateTime> estimatedArrivalAt) {
+      if (estimatedArrivalAt.isNull()) {
+        this.estimatedArrivalAt = null;
+      }
+      else if (estimatedArrivalAt.isEmpty()) {
+        this.estimatedArrivalAt = Optional.empty();
+      }
+      else {
+        this.estimatedArrivalAt = Optional.of(estimatedArrivalAt.get());
+      }
       return this;
     }
 
@@ -611,6 +880,20 @@ public final class PostV1TransportWaybillsUpdateRequest {
     )
     public _FinalStage documentDate(Optional<String> documentDate) {
       this.documentDate = documentDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage transporterPartnerId(Nullable<String> transporterPartnerId) {
+      if (transporterPartnerId.isNull()) {
+        this.transporterPartnerId = null;
+      }
+      else if (transporterPartnerId.isEmpty()) {
+        this.transporterPartnerId = Optional.empty();
+      }
+      else {
+        this.transporterPartnerId = Optional.of(transporterPartnerId.get());
+      }
       return this;
     }
 

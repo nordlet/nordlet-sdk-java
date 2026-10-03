@@ -9,6 +9,7 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.payroll.requests.PostV1PayrollCalcRequest;
 import com.nordlet.api.resources.payroll.requests.PostV1PayrollDepartmentsCreateRequest;
 import com.nordlet.api.resources.payroll.requests.PostV1PayrollDepartmentsListRequest;
+import com.nordlet.api.resources.payroll.requests.PostV1PayrollLinesAttendanceRequest;
 import com.nordlet.api.resources.payroll.requests.PostV1PayrollPaymentsExportRequest;
 import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsApproveRequest;
 import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsCancelRequest;
@@ -20,6 +21,7 @@ import com.nordlet.api.resources.payroll.requests.PostV1PayrollSchedulesListRequ
 import com.nordlet.api.resources.payroll.types.PostV1PayrollCalcResponse;
 import com.nordlet.api.resources.payroll.types.PostV1PayrollDepartmentsCreateResponse;
 import com.nordlet.api.resources.payroll.types.PostV1PayrollDepartmentsListResponse;
+import com.nordlet.api.resources.payroll.types.PostV1PayrollLinesAttendanceResponse;
 import com.nordlet.api.resources.payroll.types.PostV1PayrollPaymentsExportResponse;
 import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsApproveResponse;
 import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsCancelResponse;
@@ -105,14 +107,14 @@ public class AsyncPayrollClient {
     return this.rawClient.postV1PayrollSchedulesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollCalcResponse> postV1PayrollCalc(
+  public CompletableFuture<PostV1PayrollCalcResponse> calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
       PostV1PayrollCalcRequest request) {
-    return this.rawClient.postV1PayrollCalc(request).thenApply(response -> response.body());
+    return this.rawClient.calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollCalcResponse> postV1PayrollCalc(
+  public CompletableFuture<PostV1PayrollCalcResponse> calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
       PostV1PayrollCalcRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PayrollCalc(request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<PostV1PayrollRunsCreateResponse> postV1PayrollRunsCreate(
@@ -152,6 +154,22 @@ public class AsyncPayrollClient {
   public CompletableFuture<PostV1PayrollRunsListResponse> postV1PayrollRunsList(
       PostV1PayrollRunsListRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1PayrollRunsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * The days and hours worked, the days on the register and the average hourly earnings that some countries report per employment. The Czech monthly employer report asks for all four. They can be set while the run is a draft.
+   */
+  public CompletableFuture<PostV1PayrollLinesAttendanceResponse> recordTheTimeAPersonWorkedInAPayrollLine(
+      PostV1PayrollLinesAttendanceRequest request) {
+    return this.rawClient.recordTheTimeAPersonWorkedInAPayrollLine(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * The days and hours worked, the days on the register and the average hourly earnings that some countries report per employment. The Czech monthly employer report asks for all four. They can be set while the run is a draft.
+   */
+  public CompletableFuture<PostV1PayrollLinesAttendanceResponse> recordTheTimeAPersonWorkedInAPayrollLine(
+      PostV1PayrollLinesAttendanceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.recordTheTimeAPersonWorkedInAPayrollLine(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<PostV1PayrollRunsApproveResponse> postV1PayrollRunsApprove(

@@ -11,8 +11,10 @@ import com.nordlet.api.resources.reports.requests.PostV1ReportsCashFlowRequest;
 import com.nordlet.api.resources.reports.requests.PostV1ReportsCostCenterActivityRequest;
 import com.nordlet.api.resources.reports.requests.PostV1ReportsCostCenterItemsRequest;
 import com.nordlet.api.resources.reports.requests.PostV1ReportsCostCentersRequest;
+import com.nordlet.api.resources.reports.requests.PostV1ReportsDatevRequest;
 import com.nordlet.api.resources.reports.requests.PostV1ReportsDebtAgingRequest;
 import com.nordlet.api.resources.reports.requests.PostV1ReportsEuPurchasesRequest;
+import com.nordlet.api.resources.reports.requests.PostV1ReportsFecRequest;
 import com.nordlet.api.resources.reports.requests.PostV1ReportsFinancialStatementsRequest;
 import com.nordlet.api.resources.reports.requests.PostV1ReportsGeneralJournalRequest;
 import com.nordlet.api.resources.reports.requests.PostV1ReportsGlDetailRequest;
@@ -24,6 +26,7 @@ import com.nordlet.api.resources.reports.requests.PostV1ReportsOnlineSalesReques
 import com.nordlet.api.resources.reports.requests.PostV1ReportsOssRequest;
 import com.nordlet.api.resources.reports.requests.PostV1ReportsPartnerBalancesRequest;
 import com.nordlet.api.resources.reports.requests.PostV1ReportsPosSalesRequest;
+import com.nordlet.api.resources.reports.requests.PostV1ReportsSieRequest;
 import com.nordlet.api.resources.reports.requests.PostV1ReportsSizeCategoryRequest;
 import com.nordlet.api.resources.reports.requests.PostV1ReportsStockAgingRequest;
 import com.nordlet.api.resources.reports.requests.PostV1ReportsStockBalanceRequest;
@@ -38,8 +41,10 @@ import com.nordlet.api.resources.reports.types.PostV1ReportsCashFlowResponse;
 import com.nordlet.api.resources.reports.types.PostV1ReportsCostCenterActivityResponse;
 import com.nordlet.api.resources.reports.types.PostV1ReportsCostCenterItemsResponse;
 import com.nordlet.api.resources.reports.types.PostV1ReportsCostCentersResponse;
+import com.nordlet.api.resources.reports.types.PostV1ReportsDatevResponse;
 import com.nordlet.api.resources.reports.types.PostV1ReportsDebtAgingResponse;
 import com.nordlet.api.resources.reports.types.PostV1ReportsEuPurchasesResponse;
+import com.nordlet.api.resources.reports.types.PostV1ReportsFecResponse;
 import com.nordlet.api.resources.reports.types.PostV1ReportsFinancialStatementsResponse;
 import com.nordlet.api.resources.reports.types.PostV1ReportsGeneralJournalResponse;
 import com.nordlet.api.resources.reports.types.PostV1ReportsGlDetailResponse;
@@ -51,6 +56,7 @@ import com.nordlet.api.resources.reports.types.PostV1ReportsOnlineSalesResponse;
 import com.nordlet.api.resources.reports.types.PostV1ReportsOssResponse;
 import com.nordlet.api.resources.reports.types.PostV1ReportsPartnerBalancesResponse;
 import com.nordlet.api.resources.reports.types.PostV1ReportsPosSalesResponse;
+import com.nordlet.api.resources.reports.types.PostV1ReportsSieResponse;
 import com.nordlet.api.resources.reports.types.PostV1ReportsSizeCategoryResponse;
 import com.nordlet.api.resources.reports.types.PostV1ReportsStockAgingResponse;
 import com.nordlet.api.resources.reports.types.PostV1ReportsStockBalanceResponse;
@@ -253,6 +259,54 @@ public class AsyncReportsClient {
   public CompletableFuture<PostV1ReportsStockShortageResponse> postV1ReportsStockShortage(
       PostV1ReportsStockShortageRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1ReportsStockShortage(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Export the ledger of one financial year as an SIE file (the Swedish standard accounting interchange format, specification 4B). The file carries the chart of accounts, the opening and closing balance of every balance sheet account and the turnover of every result account for the year and the year before it, and, when asked for, every posted voucher of the year with its lines. Cost centres travel as dimension 1 and projects as dimension 6. Services that build a Swedish annual report read this file.
+   */
+  public CompletableFuture<PostV1ReportsSieResponse> postV1ReportsSie(
+      PostV1ReportsSieRequest request) {
+    return this.rawClient.postV1ReportsSie(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Export the ledger of one financial year as an SIE file (the Swedish standard accounting interchange format, specification 4B). The file carries the chart of accounts, the opening and closing balance of every balance sheet account and the turnover of every result account for the year and the year before it, and, when asked for, every posted voucher of the year with its lines. Cost centres travel as dimension 1 and projects as dimension 6. Services that build a Swedish annual report read this file.
+   */
+  public CompletableFuture<PostV1ReportsSieResponse> postV1ReportsSie(
+      PostV1ReportsSieRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ReportsSie(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Export the posted ledger of a period as a DATEV Buchungsstapel file (DATEV format, category 21, version 700). Every transaction becomes one or more bookings of an amount between an account and a contra account; a transaction with more than two lines is split into pairs whose totals match it. The file is semicolon separated and written in the Windows-1252 character set DATEV expects.
+   */
+  public CompletableFuture<PostV1ReportsDatevResponse> postV1ReportsDatev(
+      PostV1ReportsDatevRequest request) {
+    return this.rawClient.postV1ReportsDatev(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Export the posted ledger of a period as a DATEV Buchungsstapel file (DATEV format, category 21, version 700). Every transaction becomes one or more bookings of an amount between an account and a contra account; a transaction with more than two lines is split into pairs whose totals match it. The file is semicolon separated and written in the Windows-1252 character set DATEV expects.
+   */
+  public CompletableFuture<PostV1ReportsDatevResponse> postV1ReportsDatev(
+      PostV1ReportsDatevRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ReportsDatev(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Export the posted ledger of a period as a French FEC file (fichier des écritures comptables, order of 29 July 2013). One line per journal entry line, with the eighteen fields the order names, in their order, after a header line. Tab separated, UTF-8, comma as the decimal separator.
+   */
+  public CompletableFuture<PostV1ReportsFecResponse> postV1ReportsFec(
+      PostV1ReportsFecRequest request) {
+    return this.rawClient.postV1ReportsFec(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Export the posted ledger of a period as a French FEC file (fichier des écritures comptables, order of 29 July 2013). One line per journal entry line, with the eighteen fields the order names, in their order, after a header line. Tab separated, UTF-8, comma as the decimal separator.
+   */
+  public CompletableFuture<PostV1ReportsFecResponse> postV1ReportsFec(
+      PostV1ReportsFecRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1ReportsFec(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<PostV1ReportsEuPurchasesResponse> postV1ReportsEuPurchases(

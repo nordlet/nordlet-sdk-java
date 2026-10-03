@@ -49,6 +49,16 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
 
   private final Optional<String> notes;
 
+  private final Optional<String> intrastatTransportMode;
+
+  private final Optional<String> intrastatDeliveryTerms;
+
+  private final Optional<String> intrastatRegion;
+
+  private final Optional<String> intrastatNatureOfTransaction;
+
+  private final Optional<String> einvoiceNumber;
+
   private final Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>> lines;
 
   private final Map<String, Object> additionalProperties;
@@ -56,7 +66,10 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
   private PostV1PurchasesInvoicesUpdateRequest(String id, Optional<String> partnerId,
       Optional<String> documentNumber, Optional<String> documentDate, Optional<String> dueDate,
       Optional<String> currency, Optional<String> purchaseOrderId, Optional<String> operationTypeId,
-      Optional<String> notes, Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>> lines,
+      Optional<String> notes, Optional<String> intrastatTransportMode,
+      Optional<String> intrastatDeliveryTerms, Optional<String> intrastatRegion,
+      Optional<String> intrastatNatureOfTransaction, Optional<String> einvoiceNumber,
+      Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>> lines,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.partnerId = partnerId;
@@ -67,6 +80,11 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     this.purchaseOrderId = purchaseOrderId;
     this.operationTypeId = operationTypeId;
     this.notes = notes;
+    this.intrastatTransportMode = intrastatTransportMode;
+    this.intrastatDeliveryTerms = intrastatDeliveryTerms;
+    this.intrastatRegion = intrastatRegion;
+    this.intrastatNatureOfTransaction = intrastatNatureOfTransaction;
+    this.einvoiceNumber = einvoiceNumber;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
   }
@@ -91,8 +109,11 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     return documentDate;
   }
 
-  @JsonProperty("dueDate")
+  @JsonIgnore
   public Optional<String> getDueDate() {
+    if (dueDate == null) {
+      return Optional.empty();
+    }
     return dueDate;
   }
 
@@ -122,9 +143,58 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     return notes;
   }
 
+  @JsonIgnore
+  public Optional<String> getIntrastatTransportMode() {
+    if (intrastatTransportMode == null) {
+      return Optional.empty();
+    }
+    return intrastatTransportMode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getIntrastatDeliveryTerms() {
+    if (intrastatDeliveryTerms == null) {
+      return Optional.empty();
+    }
+    return intrastatDeliveryTerms;
+  }
+
+  @JsonIgnore
+  public Optional<String> getIntrastatRegion() {
+    if (intrastatRegion == null) {
+      return Optional.empty();
+    }
+    return intrastatRegion;
+  }
+
+  @JsonIgnore
+  public Optional<String> getIntrastatNatureOfTransaction() {
+    if (intrastatNatureOfTransaction == null) {
+      return Optional.empty();
+    }
+    return intrastatNatureOfTransaction;
+  }
+
+  @JsonIgnore
+  public Optional<String> getEinvoiceNumber() {
+    if (einvoiceNumber == null) {
+      return Optional.empty();
+    }
+    return einvoiceNumber;
+  }
+
   @JsonProperty("lines")
   public Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>> getLines() {
     return lines;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("dueDate")
+  private Optional<String> _getDueDate() {
+    return dueDate;
   }
 
   @JsonInclude(
@@ -145,6 +215,51 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     return operationTypeId;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("intrastatTransportMode")
+  private Optional<String> _getIntrastatTransportMode() {
+    return intrastatTransportMode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("intrastatDeliveryTerms")
+  private Optional<String> _getIntrastatDeliveryTerms() {
+    return intrastatDeliveryTerms;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("intrastatRegion")
+  private Optional<String> _getIntrastatRegion() {
+    return intrastatRegion;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("intrastatNatureOfTransaction")
+  private Optional<String> _getIntrastatNatureOfTransaction() {
+    return intrastatNatureOfTransaction;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("einvoiceNumber")
+  private Optional<String> _getEinvoiceNumber() {
+    return einvoiceNumber;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -157,12 +272,12 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
   }
 
   private boolean equalTo(PostV1PurchasesInvoicesUpdateRequest other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && purchaseOrderId.equals(other.purchaseOrderId) && operationTypeId.equals(other.operationTypeId) && notes.equals(other.notes) && lines.equals(other.lines);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && purchaseOrderId.equals(other.purchaseOrderId) && operationTypeId.equals(other.operationTypeId) && notes.equals(other.notes) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && einvoiceNumber.equals(other.einvoiceNumber) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.purchaseOrderId, this.operationTypeId, this.notes, this.lines);
+    return Objects.hash(this.id, this.partnerId, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.purchaseOrderId, this.operationTypeId, this.notes, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.einvoiceNumber, this.lines);
   }
 
   @java.lang.Override
@@ -203,6 +318,8 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
 
     _FinalStage dueDate(String dueDate);
 
+    _FinalStage dueDate(Nullable<String> dueDate);
+
     _FinalStage currency(Optional<String> currency);
 
     _FinalStage currency(String currency);
@@ -223,6 +340,36 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
 
     _FinalStage notes(String notes);
 
+    _FinalStage intrastatTransportMode(Optional<String> intrastatTransportMode);
+
+    _FinalStage intrastatTransportMode(String intrastatTransportMode);
+
+    _FinalStage intrastatTransportMode(Nullable<String> intrastatTransportMode);
+
+    _FinalStage intrastatDeliveryTerms(Optional<String> intrastatDeliveryTerms);
+
+    _FinalStage intrastatDeliveryTerms(String intrastatDeliveryTerms);
+
+    _FinalStage intrastatDeliveryTerms(Nullable<String> intrastatDeliveryTerms);
+
+    _FinalStage intrastatRegion(Optional<String> intrastatRegion);
+
+    _FinalStage intrastatRegion(String intrastatRegion);
+
+    _FinalStage intrastatRegion(Nullable<String> intrastatRegion);
+
+    _FinalStage intrastatNatureOfTransaction(Optional<String> intrastatNatureOfTransaction);
+
+    _FinalStage intrastatNatureOfTransaction(String intrastatNatureOfTransaction);
+
+    _FinalStage intrastatNatureOfTransaction(Nullable<String> intrastatNatureOfTransaction);
+
+    _FinalStage einvoiceNumber(Optional<String> einvoiceNumber);
+
+    _FinalStage einvoiceNumber(String einvoiceNumber);
+
+    _FinalStage einvoiceNumber(Nullable<String> einvoiceNumber);
+
     _FinalStage lines(Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>> lines);
 
     _FinalStage lines(List<PostV1PurchasesInvoicesUpdateRequestLinesItem> lines);
@@ -235,6 +382,16 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     private String id;
 
     private Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>> lines = Optional.empty();
+
+    private Optional<String> einvoiceNumber = Optional.empty();
+
+    private Optional<String> intrastatNatureOfTransaction = Optional.empty();
+
+    private Optional<String> intrastatRegion = Optional.empty();
+
+    private Optional<String> intrastatDeliveryTerms = Optional.empty();
+
+    private Optional<String> intrastatTransportMode = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -269,6 +426,11 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
       purchaseOrderId(other.getPurchaseOrderId());
       operationTypeId(other.getOperationTypeId());
       notes(other.getNotes());
+      intrastatTransportMode(other.getIntrastatTransportMode());
+      intrastatDeliveryTerms(other.getIntrastatDeliveryTerms());
+      intrastatRegion(other.getIntrastatRegion());
+      intrastatNatureOfTransaction(other.getIntrastatNatureOfTransaction());
+      einvoiceNumber(other.getEinvoiceNumber());
       lines(other.getLines());
       return this;
     }
@@ -293,6 +455,156 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     )
     public _FinalStage lines(Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>> lines) {
       this.lines = lines;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceNumber(Nullable<String> einvoiceNumber) {
+      if (einvoiceNumber.isNull()) {
+        this.einvoiceNumber = null;
+      }
+      else if (einvoiceNumber.isEmpty()) {
+        this.einvoiceNumber = Optional.empty();
+      }
+      else {
+        this.einvoiceNumber = Optional.of(einvoiceNumber.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceNumber(String einvoiceNumber) {
+      this.einvoiceNumber = Optional.ofNullable(einvoiceNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "einvoiceNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage einvoiceNumber(Optional<String> einvoiceNumber) {
+      this.einvoiceNumber = einvoiceNumber;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatNatureOfTransaction(Nullable<String> intrastatNatureOfTransaction) {
+      if (intrastatNatureOfTransaction.isNull()) {
+        this.intrastatNatureOfTransaction = null;
+      }
+      else if (intrastatNatureOfTransaction.isEmpty()) {
+        this.intrastatNatureOfTransaction = Optional.empty();
+      }
+      else {
+        this.intrastatNatureOfTransaction = Optional.of(intrastatNatureOfTransaction.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatNatureOfTransaction(String intrastatNatureOfTransaction) {
+      this.intrastatNatureOfTransaction = Optional.ofNullable(intrastatNatureOfTransaction);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatNatureOfTransaction",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatNatureOfTransaction(Optional<String> intrastatNatureOfTransaction) {
+      this.intrastatNatureOfTransaction = intrastatNatureOfTransaction;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatRegion(Nullable<String> intrastatRegion) {
+      if (intrastatRegion.isNull()) {
+        this.intrastatRegion = null;
+      }
+      else if (intrastatRegion.isEmpty()) {
+        this.intrastatRegion = Optional.empty();
+      }
+      else {
+        this.intrastatRegion = Optional.of(intrastatRegion.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatRegion(String intrastatRegion) {
+      this.intrastatRegion = Optional.ofNullable(intrastatRegion);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatRegion",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatRegion(Optional<String> intrastatRegion) {
+      this.intrastatRegion = intrastatRegion;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatDeliveryTerms(Nullable<String> intrastatDeliveryTerms) {
+      if (intrastatDeliveryTerms.isNull()) {
+        this.intrastatDeliveryTerms = null;
+      }
+      else if (intrastatDeliveryTerms.isEmpty()) {
+        this.intrastatDeliveryTerms = Optional.empty();
+      }
+      else {
+        this.intrastatDeliveryTerms = Optional.of(intrastatDeliveryTerms.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatDeliveryTerms(String intrastatDeliveryTerms) {
+      this.intrastatDeliveryTerms = Optional.ofNullable(intrastatDeliveryTerms);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatDeliveryTerms",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatDeliveryTerms(Optional<String> intrastatDeliveryTerms) {
+      this.intrastatDeliveryTerms = intrastatDeliveryTerms;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatTransportMode(Nullable<String> intrastatTransportMode) {
+      if (intrastatTransportMode.isNull()) {
+        this.intrastatTransportMode = null;
+      }
+      else if (intrastatTransportMode.isEmpty()) {
+        this.intrastatTransportMode = Optional.empty();
+      }
+      else {
+        this.intrastatTransportMode = Optional.of(intrastatTransportMode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatTransportMode(String intrastatTransportMode) {
+      this.intrastatTransportMode = Optional.ofNullable(intrastatTransportMode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatTransportMode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatTransportMode(Optional<String> intrastatTransportMode) {
+      this.intrastatTransportMode = intrastatTransportMode;
       return this;
     }
 
@@ -389,6 +701,20 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
     }
 
     @java.lang.Override
+    public _FinalStage dueDate(Nullable<String> dueDate) {
+      if (dueDate.isNull()) {
+        this.dueDate = null;
+      }
+      else if (dueDate.isEmpty()) {
+        this.dueDate = Optional.empty();
+      }
+      else {
+        this.dueDate = Optional.of(dueDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage dueDate(String dueDate) {
       this.dueDate = Optional.ofNullable(dueDate);
       return this;
@@ -454,7 +780,7 @@ public final class PostV1PurchasesInvoicesUpdateRequest {
 
     @java.lang.Override
     public PostV1PurchasesInvoicesUpdateRequest build() {
-      return new PostV1PurchasesInvoicesUpdateRequest(id, partnerId, documentNumber, documentDate, dueDate, currency, purchaseOrderId, operationTypeId, notes, lines, additionalProperties);
+      return new PostV1PurchasesInvoicesUpdateRequest(id, partnerId, documentNumber, documentDate, dueDate, currency, purchaseOrderId, operationTypeId, notes, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, einvoiceNumber, lines, additionalProperties);
     }
 
     @java.lang.Override

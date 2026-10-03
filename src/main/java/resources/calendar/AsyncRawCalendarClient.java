@@ -23,13 +23,17 @@ import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
 import com.nordlet.api.resources.calendar.requests.PostV1CalendarCreateRequest;
 import com.nordlet.api.resources.calendar.requests.PostV1CalendarDeleteRequest;
+import com.nordlet.api.resources.calendar.requests.PostV1CalendarDownloadRequest;
 import com.nordlet.api.resources.calendar.requests.PostV1CalendarGetRequest;
 import com.nordlet.api.resources.calendar.requests.PostV1CalendarListRequest;
+import com.nordlet.api.resources.calendar.requests.PostV1CalendarSubmitRequest;
 import com.nordlet.api.resources.calendar.requests.PostV1CalendarUpdateRequest;
 import com.nordlet.api.resources.calendar.types.PostV1CalendarCreateResponse;
 import com.nordlet.api.resources.calendar.types.PostV1CalendarDeleteResponse;
+import com.nordlet.api.resources.calendar.types.PostV1CalendarDownloadResponse;
 import com.nordlet.api.resources.calendar.types.PostV1CalendarGetResponse;
 import com.nordlet.api.resources.calendar.types.PostV1CalendarListResponse;
+import com.nordlet.api.resources.calendar.types.PostV1CalendarSubmitResponse;
 import com.nordlet.api.resources.calendar.types.PostV1CalendarUpdateResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
@@ -241,16 +245,16 @@ public class AsyncRawCalendarClient {
         return future;
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1CalendarCreateResponse>> postV1CalendarCreate(
-          PostV1CalendarCreateRequest request) {
-        return postV1CalendarCreate(request,null);
+      public CompletableFuture<NordletApiHttpResponse<PostV1CalendarSubmitResponse>> generateTheFilingForADeadlineAndSendItToTheAdministration(
+          PostV1CalendarSubmitRequest request) {
+        return generateTheFilingForADeadlineAndSendItToTheAdministration(request,null);
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1CalendarCreateResponse>> postV1CalendarCreate(
-          PostV1CalendarCreateRequest request, RequestOptions requestOptions) {
+      public CompletableFuture<NordletApiHttpResponse<PostV1CalendarSubmitResponse>> generateTheFilingForADeadlineAndSendItToTheAdministration(
+          PostV1CalendarSubmitRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-          .addPathSegments("v1/calendar/create");if (requestOptions != null) {
+          .addPathSegments("v1/calendar/submit");if (requestOptions != null) {
             requestOptions.getQueryParameters().forEach((_key, _value) -> {
               httpUrl.addQueryParameter(_key, _value);
             } );
@@ -276,14 +280,14 @@ public class AsyncRawCalendarClient {
           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
           }
-          CompletableFuture<NordletApiHttpResponse<PostV1CalendarCreateResponse>> future = new CompletableFuture<>();
+          CompletableFuture<NordletApiHttpResponse<PostV1CalendarSubmitResponse>> future = new CompletableFuture<>();
           client.newCall(okhttpRequest).enqueue(new Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
               try (ResponseBody responseBody = response.body()) {
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CalendarCreateResponse.class), response));
+                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CalendarSubmitResponse.class), response));
                   return;
                 }
                 try {
@@ -329,16 +333,22 @@ public class AsyncRawCalendarClient {
           return future;
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1CalendarUpdateResponse>> postV1CalendarUpdate(
-            PostV1CalendarUpdateRequest request) {
-          return postV1CalendarUpdate(request,null);
+        /**
+         * Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded.
+         */
+        public CompletableFuture<NordletApiHttpResponse<PostV1CalendarDownloadResponse>> generateTheFileOfADeadlineForTheCompanyToSendItself(
+            PostV1CalendarDownloadRequest request) {
+          return generateTheFileOfADeadlineForTheCompanyToSendItself(request,null);
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1CalendarUpdateResponse>> postV1CalendarUpdate(
-            PostV1CalendarUpdateRequest request, RequestOptions requestOptions) {
+        /**
+         * Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded.
+         */
+        public CompletableFuture<NordletApiHttpResponse<PostV1CalendarDownloadResponse>> generateTheFileOfADeadlineForTheCompanyToSendItself(
+            PostV1CalendarDownloadRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-            .addPathSegments("v1/calendar/update");if (requestOptions != null) {
+            .addPathSegments("v1/calendar/download");if (requestOptions != null) {
               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                 httpUrl.addQueryParameter(_key, _value);
               } );
@@ -364,14 +374,14 @@ public class AsyncRawCalendarClient {
             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
             }
-            CompletableFuture<NordletApiHttpResponse<PostV1CalendarUpdateResponse>> future = new CompletableFuture<>();
+            CompletableFuture<NordletApiHttpResponse<PostV1CalendarDownloadResponse>> future = new CompletableFuture<>();
             client.newCall(okhttpRequest).enqueue(new Callback() {
               @Override
               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CalendarUpdateResponse.class), response));
+                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CalendarDownloadResponse.class), response));
                     return;
                   }
                   try {
@@ -417,16 +427,16 @@ public class AsyncRawCalendarClient {
             return future;
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1CalendarDeleteResponse>> postV1CalendarDelete(
-              PostV1CalendarDeleteRequest request) {
-            return postV1CalendarDelete(request,null);
+          public CompletableFuture<NordletApiHttpResponse<PostV1CalendarCreateResponse>> postV1CalendarCreate(
+              PostV1CalendarCreateRequest request) {
+            return postV1CalendarCreate(request,null);
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1CalendarDeleteResponse>> postV1CalendarDelete(
-              PostV1CalendarDeleteRequest request, RequestOptions requestOptions) {
+          public CompletableFuture<NordletApiHttpResponse<PostV1CalendarCreateResponse>> postV1CalendarCreate(
+              PostV1CalendarCreateRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-              .addPathSegments("v1/calendar/delete");if (requestOptions != null) {
+              .addPathSegments("v1/calendar/create");if (requestOptions != null) {
                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                   httpUrl.addQueryParameter(_key, _value);
                 } );
@@ -452,14 +462,14 @@ public class AsyncRawCalendarClient {
               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
               }
-              CompletableFuture<NordletApiHttpResponse<PostV1CalendarDeleteResponse>> future = new CompletableFuture<>();
+              CompletableFuture<NordletApiHttpResponse<PostV1CalendarCreateResponse>> future = new CompletableFuture<>();
               client.newCall(okhttpRequest).enqueue(new Callback() {
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                   try (ResponseBody responseBody = response.body()) {
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CalendarDeleteResponse.class), response));
+                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CalendarCreateResponse.class), response));
                       return;
                     }
                     try {
@@ -504,4 +514,180 @@ public class AsyncRawCalendarClient {
               });
               return future;
             }
-          }
+
+            public CompletableFuture<NordletApiHttpResponse<PostV1CalendarUpdateResponse>> postV1CalendarUpdate(
+                PostV1CalendarUpdateRequest request) {
+              return postV1CalendarUpdate(request,null);
+            }
+
+            public CompletableFuture<NordletApiHttpResponse<PostV1CalendarUpdateResponse>> postV1CalendarUpdate(
+                PostV1CalendarUpdateRequest request, RequestOptions requestOptions) {
+              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                .addPathSegments("v1/calendar/update");if (requestOptions != null) {
+                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                    httpUrl.addQueryParameter(_key, _value);
+                  } );
+                }
+                RequestBody body;
+                try {
+                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                }
+                catch(JsonProcessingException e) {
+                  throw new NordletApiException("Failed to serialize request", e);
+                }
+                Request okhttpRequest = new Request.Builder()
+                  .url(httpUrl.build())
+                  .method("POST", body)
+                  .headers(Headers.of(clientOptions.headers(requestOptions)))
+                  .addHeader("Content-Type", "application/json")
+                  .addHeader("Accept", "application/json")
+                  .build();
+                OkHttpClient client = clientOptions.httpClient();
+                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                  client = clientOptions.httpClientWithTimeout(requestOptions);
+                }
+                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                }
+                CompletableFuture<NordletApiHttpResponse<PostV1CalendarUpdateResponse>> future = new CompletableFuture<>();
+                client.newCall(okhttpRequest).enqueue(new Callback() {
+                  @Override
+                  public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                    try (ResponseBody responseBody = response.body()) {
+                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                      if (response.isSuccessful()) {
+                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CalendarUpdateResponse.class), response));
+                        return;
+                      }
+                      try {
+                        switch (response.code()) {
+                          case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
+                          case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
+                          case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
+                          case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
+                          case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
+                          case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
+                          case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
+                          case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
+                        }
+                      }
+                      catch (JsonProcessingException ignored) {
+                        // unable to map error response, throwing generic error
+                      }
+                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                      future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                      return;
+                    }
+                    catch (JsonProcessingException e) {
+                      future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                    }
+                    catch (IOException e) {
+                      future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                    }
+                  }
+
+                  @Override
+                  public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                    future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                  }
+                });
+                return future;
+              }
+
+              public CompletableFuture<NordletApiHttpResponse<PostV1CalendarDeleteResponse>> postV1CalendarDelete(
+                  PostV1CalendarDeleteRequest request) {
+                return postV1CalendarDelete(request,null);
+              }
+
+              public CompletableFuture<NordletApiHttpResponse<PostV1CalendarDeleteResponse>> postV1CalendarDelete(
+                  PostV1CalendarDeleteRequest request, RequestOptions requestOptions) {
+                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                  .addPathSegments("v1/calendar/delete");if (requestOptions != null) {
+                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                      httpUrl.addQueryParameter(_key, _value);
+                    } );
+                  }
+                  RequestBody body;
+                  try {
+                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                  }
+                  catch(JsonProcessingException e) {
+                    throw new NordletApiException("Failed to serialize request", e);
+                  }
+                  Request okhttpRequest = new Request.Builder()
+                    .url(httpUrl.build())
+                    .method("POST", body)
+                    .headers(Headers.of(clientOptions.headers(requestOptions)))
+                    .addHeader("Content-Type", "application/json")
+                    .addHeader("Accept", "application/json")
+                    .build();
+                  OkHttpClient client = clientOptions.httpClient();
+                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                    client = clientOptions.httpClientWithTimeout(requestOptions);
+                  }
+                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                  }
+                  CompletableFuture<NordletApiHttpResponse<PostV1CalendarDeleteResponse>> future = new CompletableFuture<>();
+                  client.newCall(okhttpRequest).enqueue(new Callback() {
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                      try (ResponseBody responseBody = response.body()) {
+                        String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                        if (response.isSuccessful()) {
+                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CalendarDeleteResponse.class), response));
+                          return;
+                        }
+                        try {
+                          switch (response.code()) {
+                            case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
+                            case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
+                            case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
+                            case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
+                            case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
+                            case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
+                            case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
+                            case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
+                          }
+                        }
+                        catch (JsonProcessingException ignored) {
+                          // unable to map error response, throwing generic error
+                        }
+                        Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                        future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                        return;
+                      }
+                      catch (JsonProcessingException e) {
+                        future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                      }
+                      catch (IOException e) {
+                        future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                      }
+                    }
+
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                      future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                    }
+                  });
+                  return future;
+                }
+              }

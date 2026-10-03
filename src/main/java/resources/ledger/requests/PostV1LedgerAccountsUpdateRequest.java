@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.Nullable;
 import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsUpdateRequestTranslations;
+import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsUpdateRequestTranslationsValue;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -35,7 +35,7 @@ public final class PostV1LedgerAccountsUpdateRequest {
 
   private final Optional<String> name;
 
-  private final Optional<PostV1LedgerAccountsUpdateRequestTranslations> translations;
+  private final Optional<Map<String, Optional<PostV1LedgerAccountsUpdateRequestTranslationsValue>>> translations;
 
   private final Optional<String> parentId;
 
@@ -44,7 +44,7 @@ public final class PostV1LedgerAccountsUpdateRequest {
   private final Map<String, Object> additionalProperties;
 
   private PostV1LedgerAccountsUpdateRequest(String id, Optional<String> name,
-      Optional<PostV1LedgerAccountsUpdateRequestTranslations> translations,
+      Optional<Map<String, Optional<PostV1LedgerAccountsUpdateRequestTranslationsValue>>> translations,
       Optional<String> parentId, Optional<Boolean> isPostable,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -66,7 +66,8 @@ public final class PostV1LedgerAccountsUpdateRequest {
   }
 
   @JsonIgnore
-  public Optional<PostV1LedgerAccountsUpdateRequestTranslations> getTranslations() {
+  public Optional<Map<String, Optional<PostV1LedgerAccountsUpdateRequestTranslationsValue>>> getTranslations(
+      ) {
     if (translations == null) {
       return Optional.empty();
     }
@@ -91,7 +92,8 @@ public final class PostV1LedgerAccountsUpdateRequest {
       valueFilter = NullableNonemptyFilter.class
   )
   @JsonProperty("translations")
-  private Optional<PostV1LedgerAccountsUpdateRequestTranslations> _getTranslations() {
+  private Optional<Map<String, Optional<PostV1LedgerAccountsUpdateRequestTranslationsValue>>> _getTranslations(
+      ) {
     return translations;
   }
 
@@ -150,11 +152,14 @@ public final class PostV1LedgerAccountsUpdateRequest {
 
     _FinalStage name(String name);
 
-    _FinalStage translations(Optional<PostV1LedgerAccountsUpdateRequestTranslations> translations);
+    _FinalStage translations(
+        Optional<Map<String, Optional<PostV1LedgerAccountsUpdateRequestTranslationsValue>>> translations);
 
-    _FinalStage translations(PostV1LedgerAccountsUpdateRequestTranslations translations);
+    _FinalStage translations(
+        Map<String, Optional<PostV1LedgerAccountsUpdateRequestTranslationsValue>> translations);
 
-    _FinalStage translations(Nullable<PostV1LedgerAccountsUpdateRequestTranslations> translations);
+    _FinalStage translations(
+        Nullable<Map<String, Optional<PostV1LedgerAccountsUpdateRequestTranslationsValue>>> translations);
 
     _FinalStage parentId(Optional<String> parentId);
 
@@ -177,7 +182,7 @@ public final class PostV1LedgerAccountsUpdateRequest {
 
     private Optional<String> parentId = Optional.empty();
 
-    private Optional<PostV1LedgerAccountsUpdateRequestTranslations> translations = Optional.empty();
+    private Optional<Map<String, Optional<PostV1LedgerAccountsUpdateRequestTranslationsValue>>> translations = Optional.empty();
 
     private Optional<String> name = Optional.empty();
 
@@ -252,7 +257,7 @@ public final class PostV1LedgerAccountsUpdateRequest {
 
     @java.lang.Override
     public _FinalStage translations(
-        Nullable<PostV1LedgerAccountsUpdateRequestTranslations> translations) {
+        Nullable<Map<String, Optional<PostV1LedgerAccountsUpdateRequestTranslationsValue>>> translations) {
       if (translations.isNull()) {
         this.translations = null;
       }
@@ -266,7 +271,8 @@ public final class PostV1LedgerAccountsUpdateRequest {
     }
 
     @java.lang.Override
-    public _FinalStage translations(PostV1LedgerAccountsUpdateRequestTranslations translations) {
+    public _FinalStage translations(
+        Map<String, Optional<PostV1LedgerAccountsUpdateRequestTranslationsValue>> translations) {
       this.translations = Optional.ofNullable(translations);
       return this;
     }
@@ -277,7 +283,7 @@ public final class PostV1LedgerAccountsUpdateRequest {
         nulls = Nulls.SKIP
     )
     public _FinalStage translations(
-        Optional<PostV1LedgerAccountsUpdateRequestTranslations> translations) {
+        Optional<Map<String, Optional<PostV1LedgerAccountsUpdateRequestTranslationsValue>>> translations) {
       this.translations = translations;
       return this;
     }

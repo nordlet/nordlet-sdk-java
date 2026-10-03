@@ -6,12 +6,15 @@ package com.nordlet.api.resources.account.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nordlet.api.core.Nullable;
+import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
@@ -20,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -35,14 +39,17 @@ public final class PostV1AccountApiKeysCreateResponse {
 
   private final String key;
 
+  private final Optional<String> expiresAt;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1AccountApiKeysCreateResponse(String id, String name, List<String> scopes,
-      String key, Map<String, Object> additionalProperties) {
+      String key, Optional<String> expiresAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.name = name;
     this.scopes = scopes;
     this.key = key;
+    this.expiresAt = expiresAt;
     this.additionalProperties = additionalProperties;
   }
 
@@ -66,6 +73,23 @@ public final class PostV1AccountApiKeysCreateResponse {
     return key;
   }
 
+  @JsonIgnore
+  public Optional<String> getExpiresAt() {
+    if (expiresAt == null) {
+      return Optional.empty();
+    }
+    return expiresAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("expiresAt")
+  private Optional<String> _getExpiresAt() {
+    return expiresAt;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -78,12 +102,12 @@ public final class PostV1AccountApiKeysCreateResponse {
   }
 
   private boolean equalTo(PostV1AccountApiKeysCreateResponse other) {
-    return id.equals(other.id) && name.equals(other.name) && scopes.equals(other.scopes) && key.equals(other.key);
+    return id.equals(other.id) && name.equals(other.name) && scopes.equals(other.scopes) && key.equals(other.key) && expiresAt.equals(other.expiresAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.scopes, this.key);
+    return Objects.hash(this.id, this.name, this.scopes, this.key, this.expiresAt);
   }
 
   @java.lang.Override
@@ -121,6 +145,12 @@ public final class PostV1AccountApiKeysCreateResponse {
     _FinalStage addScopes(String scopes);
 
     _FinalStage addAllScopes(List<String> scopes);
+
+    _FinalStage expiresAt(Optional<String> expiresAt);
+
+    _FinalStage expiresAt(String expiresAt);
+
+    _FinalStage expiresAt(Nullable<String> expiresAt);
   }
 
   @JsonIgnoreProperties(
@@ -132,6 +162,8 @@ public final class PostV1AccountApiKeysCreateResponse {
     private String name;
 
     private String key;
+
+    private Optional<String> expiresAt = Optional.empty();
 
     private List<String> scopes = new ArrayList<>();
 
@@ -147,6 +179,7 @@ public final class PostV1AccountApiKeysCreateResponse {
       name(other.getName());
       scopes(other.getScopes());
       key(other.getKey());
+      expiresAt(other.getExpiresAt());
       return this;
     }
 
@@ -168,6 +201,36 @@ public final class PostV1AccountApiKeysCreateResponse {
     @JsonSetter("key")
     public _FinalStage key(@NotNull String key) {
       this.key = Objects.requireNonNull(key, "key must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage expiresAt(Nullable<String> expiresAt) {
+      if (expiresAt.isNull()) {
+        this.expiresAt = null;
+      }
+      else if (expiresAt.isEmpty()) {
+        this.expiresAt = Optional.empty();
+      }
+      else {
+        this.expiresAt = Optional.of(expiresAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage expiresAt(String expiresAt) {
+      this.expiresAt = Optional.ofNullable(expiresAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "expiresAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage expiresAt(Optional<String> expiresAt) {
+      this.expiresAt = expiresAt;
       return this;
     }
 
@@ -200,7 +263,7 @@ public final class PostV1AccountApiKeysCreateResponse {
 
     @java.lang.Override
     public PostV1AccountApiKeysCreateResponse build() {
-      return new PostV1AccountApiKeysCreateResponse(id, name, scopes, key, additionalProperties);
+      return new PostV1AccountApiKeysCreateResponse(id, name, scopes, key, expiresAt, additionalProperties);
     }
 
     @java.lang.Override

@@ -27,6 +27,7 @@ import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesApplyAdvanceR
 import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesCreateRequest;
 import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesDeleteRequest;
 import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesEinvoiceSendRequest;
+import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesEinvoiceStatusRequest;
 import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesEinvoiceXmlRequest;
 import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesGetRequest;
 import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesIssueRequest;
@@ -71,6 +72,7 @@ import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesApplyAdvanceResp
 import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesCreateResponse;
 import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesDeleteResponse;
 import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesEinvoiceSendResponse;
+import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesEinvoiceStatusResponse;
 import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesEinvoiceXmlResponse;
 import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesGetResponse;
 import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesIssueResponse;
@@ -190,7 +192,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Build the national e-invoicing payload and deliver it to the bridge endpoint configured for the country gateway in compliance settings. The bridge (an accredited intermediary or connector) handles the certified national channel - SdI accreditation, KSeF sessions or ANAF SPV OAuth.
+   * Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
    */
   public CompletableFuture<PostV1SalesInvoicesEinvoiceSendResponse> postV1SalesInvoicesEinvoiceSend(
       PostV1SalesInvoicesEinvoiceSendRequest request) {
@@ -198,11 +200,27 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Build the national e-invoicing payload and deliver it to the bridge endpoint configured for the country gateway in compliance settings. The bridge (an accredited intermediary or connector) handles the certified national channel - SdI accreditation, KSeF sessions or ANAF SPV OAuth.
+   * Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
    */
   public CompletableFuture<PostV1SalesInvoicesEinvoiceSendResponse> postV1SalesInvoicesEinvoiceSend(
       PostV1SalesInvoicesEinvoiceSendRequest request, RequestOptions requestOptions) {
     return this.rawClient.postV1SalesInvoicesEinvoiceSend(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
+   */
+  public CompletableFuture<PostV1SalesInvoicesEinvoiceStatusResponse> postV1SalesInvoicesEinvoiceStatus(
+      PostV1SalesInvoicesEinvoiceStatusRequest request) {
+    return this.rawClient.postV1SalesInvoicesEinvoiceStatus(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
+   */
+  public CompletableFuture<PostV1SalesInvoicesEinvoiceStatusResponse> postV1SalesInvoicesEinvoiceStatus(
+      PostV1SalesInvoicesEinvoiceStatusRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postV1SalesInvoicesEinvoiceStatus(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<PostV1SalesInvoicesUpdateResponse> postV1SalesInvoicesUpdate(

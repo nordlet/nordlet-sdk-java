@@ -6,12 +6,15 @@ package com.nordlet.api.resources.sales.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nordlet.api.core.Nullable;
+import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
@@ -20,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -33,7 +37,15 @@ public final class PostV1SalesInvoicesEinvoiceSendResponse {
 
   private final String format;
 
+  private final PostV1SalesInvoicesEinvoiceSendResponseTransport transport;
+
   private final String messageId;
+
+  private final Optional<String> nationalNumber;
+
+  private final PostV1SalesInvoicesEinvoiceSendResponseStatus status;
+
+  private final Optional<String> detail;
 
   private final String fileId;
 
@@ -42,12 +54,18 @@ public final class PostV1SalesInvoicesEinvoiceSendResponse {
   private final Map<String, Object> additionalProperties;
 
   private PostV1SalesInvoicesEinvoiceSendResponse(boolean sent, String system, String format,
-      String messageId, String fileId, List<String> warnings,
+      PostV1SalesInvoicesEinvoiceSendResponseTransport transport, String messageId,
+      Optional<String> nationalNumber, PostV1SalesInvoicesEinvoiceSendResponseStatus status,
+      Optional<String> detail, String fileId, List<String> warnings,
       Map<String, Object> additionalProperties) {
     this.sent = sent;
     this.system = system;
     this.format = format;
+    this.transport = transport;
     this.messageId = messageId;
+    this.nationalNumber = nationalNumber;
+    this.status = status;
+    this.detail = detail;
     this.fileId = fileId;
     this.warnings = warnings;
     this.additionalProperties = additionalProperties;
@@ -68,9 +86,35 @@ public final class PostV1SalesInvoicesEinvoiceSendResponse {
     return format;
   }
 
+  @JsonProperty("transport")
+  public PostV1SalesInvoicesEinvoiceSendResponseTransport getTransport() {
+    return transport;
+  }
+
   @JsonProperty("messageId")
   public String getMessageId() {
     return messageId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getNationalNumber() {
+    if (nationalNumber == null) {
+      return Optional.empty();
+    }
+    return nationalNumber;
+  }
+
+  @JsonProperty("status")
+  public PostV1SalesInvoicesEinvoiceSendResponseStatus getStatus() {
+    return status;
+  }
+
+  @JsonIgnore
+  public Optional<String> getDetail() {
+    if (detail == null) {
+      return Optional.empty();
+    }
+    return detail;
   }
 
   @JsonProperty("fileId")
@@ -81,6 +125,24 @@ public final class PostV1SalesInvoicesEinvoiceSendResponse {
   @JsonProperty("warnings")
   public List<String> getWarnings() {
     return warnings;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("nationalNumber")
+  private Optional<String> _getNationalNumber() {
+    return nationalNumber;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("detail")
+  private Optional<String> _getDetail() {
+    return detail;
   }
 
   @java.lang.Override
@@ -95,12 +157,12 @@ public final class PostV1SalesInvoicesEinvoiceSendResponse {
   }
 
   private boolean equalTo(PostV1SalesInvoicesEinvoiceSendResponse other) {
-    return sent == other.sent && system.equals(other.system) && format.equals(other.format) && messageId.equals(other.messageId) && fileId.equals(other.fileId) && warnings.equals(other.warnings);
+    return sent == other.sent && system.equals(other.system) && format.equals(other.format) && transport.equals(other.transport) && messageId.equals(other.messageId) && nationalNumber.equals(other.nationalNumber) && status.equals(other.status) && detail.equals(other.detail) && fileId.equals(other.fileId) && warnings.equals(other.warnings);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.sent, this.system, this.format, this.messageId, this.fileId, this.warnings);
+    return Objects.hash(this.sent, this.system, this.format, this.transport, this.messageId, this.nationalNumber, this.status, this.detail, this.fileId, this.warnings);
   }
 
   @java.lang.Override
@@ -123,11 +185,19 @@ public final class PostV1SalesInvoicesEinvoiceSendResponse {
   }
 
   public interface FormatStage {
-    MessageIdStage format(@NotNull String format);
+    TransportStage format(@NotNull String format);
+  }
+
+  public interface TransportStage {
+    MessageIdStage transport(@NotNull PostV1SalesInvoicesEinvoiceSendResponseTransport transport);
   }
 
   public interface MessageIdStage {
-    FileIdStage messageId(@NotNull String messageId);
+    StatusStage messageId(@NotNull String messageId);
+  }
+
+  public interface StatusStage {
+    FileIdStage status(@NotNull PostV1SalesInvoicesEinvoiceSendResponseStatus status);
   }
 
   public interface FileIdStage {
@@ -141,6 +211,18 @@ public final class PostV1SalesInvoicesEinvoiceSendResponse {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage nationalNumber(Optional<String> nationalNumber);
+
+    _FinalStage nationalNumber(String nationalNumber);
+
+    _FinalStage nationalNumber(Nullable<String> nationalNumber);
+
+    _FinalStage detail(Optional<String> detail);
+
+    _FinalStage detail(String detail);
+
+    _FinalStage detail(Nullable<String> detail);
+
     _FinalStage warnings(List<String> warnings);
 
     _FinalStage addWarnings(String warnings);
@@ -151,18 +233,26 @@ public final class PostV1SalesInvoicesEinvoiceSendResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements SentStage, SystemStage, FormatStage, MessageIdStage, FileIdStage, _FinalStage {
+  public static final class Builder implements SentStage, SystemStage, FormatStage, TransportStage, MessageIdStage, StatusStage, FileIdStage, _FinalStage {
     private boolean sent;
 
     private String system;
 
     private String format;
 
+    private PostV1SalesInvoicesEinvoiceSendResponseTransport transport;
+
     private String messageId;
+
+    private PostV1SalesInvoicesEinvoiceSendResponseStatus status;
 
     private String fileId;
 
     private List<String> warnings = new ArrayList<>();
+
+    private Optional<String> detail = Optional.empty();
+
+    private Optional<String> nationalNumber = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -175,7 +265,11 @@ public final class PostV1SalesInvoicesEinvoiceSendResponse {
       sent(other.getSent());
       system(other.getSystem());
       format(other.getFormat());
+      transport(other.getTransport());
       messageId(other.getMessageId());
+      nationalNumber(other.getNationalNumber());
+      status(other.getStatus());
+      detail(other.getDetail());
       fileId(other.getFileId());
       warnings(other.getWarnings());
       return this;
@@ -197,15 +291,30 @@ public final class PostV1SalesInvoicesEinvoiceSendResponse {
 
     @java.lang.Override
     @JsonSetter("format")
-    public MessageIdStage format(@NotNull String format) {
+    public TransportStage format(@NotNull String format) {
       this.format = Objects.requireNonNull(format, "format must not be null");
       return this;
     }
 
     @java.lang.Override
+    @JsonSetter("transport")
+    public MessageIdStage transport(
+        @NotNull PostV1SalesInvoicesEinvoiceSendResponseTransport transport) {
+      this.transport = Objects.requireNonNull(transport, "transport must not be null");
+      return this;
+    }
+
+    @java.lang.Override
     @JsonSetter("messageId")
-    public FileIdStage messageId(@NotNull String messageId) {
+    public StatusStage messageId(@NotNull String messageId) {
       this.messageId = Objects.requireNonNull(messageId, "messageId must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("status")
+    public FileIdStage status(@NotNull PostV1SalesInvoicesEinvoiceSendResponseStatus status) {
+      this.status = Objects.requireNonNull(status, "status must not be null");
       return this;
     }
 
@@ -244,8 +353,68 @@ public final class PostV1SalesInvoicesEinvoiceSendResponse {
     }
 
     @java.lang.Override
+    public _FinalStage detail(Nullable<String> detail) {
+      if (detail.isNull()) {
+        this.detail = null;
+      }
+      else if (detail.isEmpty()) {
+        this.detail = Optional.empty();
+      }
+      else {
+        this.detail = Optional.of(detail.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage detail(String detail) {
+      this.detail = Optional.ofNullable(detail);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "detail",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage detail(Optional<String> detail) {
+      this.detail = detail;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage nationalNumber(Nullable<String> nationalNumber) {
+      if (nationalNumber.isNull()) {
+        this.nationalNumber = null;
+      }
+      else if (nationalNumber.isEmpty()) {
+        this.nationalNumber = Optional.empty();
+      }
+      else {
+        this.nationalNumber = Optional.of(nationalNumber.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage nationalNumber(String nationalNumber) {
+      this.nationalNumber = Optional.ofNullable(nationalNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "nationalNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage nationalNumber(Optional<String> nationalNumber) {
+      this.nationalNumber = nationalNumber;
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1SalesInvoicesEinvoiceSendResponse build() {
-      return new PostV1SalesInvoicesEinvoiceSendResponse(sent, system, format, messageId, fileId, warnings, additionalProperties);
+      return new PostV1SalesInvoicesEinvoiceSendResponse(sent, system, format, transport, messageId, nationalNumber, status, detail, fileId, warnings, additionalProperties);
     }
 
     @java.lang.Override

@@ -12,6 +12,8 @@ import java.lang.String;
 public final class PostV1CatalogUnitsOptionsRequestLocale {
   public static final PostV1CatalogUnitsOptionsRequestLocale EN = new PostV1CatalogUnitsOptionsRequestLocale(Value.EN, "en");
 
+  public static final PostV1CatalogUnitsOptionsRequestLocale DE = new PostV1CatalogUnitsOptionsRequestLocale(Value.DE, "de");
+
   public static final PostV1CatalogUnitsOptionsRequestLocale LT = new PostV1CatalogUnitsOptionsRequestLocale(Value.LT, "lt");
 
   private final Value value;
@@ -48,6 +50,8 @@ public final class PostV1CatalogUnitsOptionsRequestLocale {
     switch (value) {
       case EN:
         return visitor.visitEn();
+      case DE:
+        return visitor.visitDe();
       case LT:
         return visitor.visitLt();
       case UNKNOWN:
@@ -63,6 +67,8 @@ public final class PostV1CatalogUnitsOptionsRequestLocale {
     switch (value) {
       case "en":
         return EN;
+      case "de":
+        return DE;
       case "lt":
         return LT;
       default:
@@ -71,17 +77,21 @@ public final class PostV1CatalogUnitsOptionsRequestLocale {
   }
 
   public enum Value {
+    EN,
+
     LT,
 
-    EN,
+    DE,
 
     UNKNOWN
   }
 
   public interface Visitor<T> {
+    T visitEn();
+
     T visitLt();
 
-    T visitEn();
+    T visitDe();
 
     T visitUnknown(String unknownType);
   }

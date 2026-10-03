@@ -18,6 +18,7 @@ import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +65,16 @@ public final class PostV1AssetsAssetsModernizeResponse {
 
   private final Optional<List<PostV1AssetsAssetsModernizeResponseDocumentsItem>> documents;
 
+  private final Optional<String> inputVatAmount;
+
+  private final Optional<String> inputVatFirstUseDate;
+
+  private final Optional<String> inputVatDeductiblePercent;
+
+  private final boolean inputVatRealEstate;
+
+  private final List<PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem> inputVatUseChanges;
+
   private final String createdAt;
 
   private final Map<String, Object> additionalProperties;
@@ -73,8 +84,11 @@ public final class PostV1AssetsAssetsModernizeResponse {
       String salvageValue, long usefulLifeMonths, String totalCost, String accumulatedDepreciation,
       String netBookValue, long depreciatedMonths, long totalLifeMonths,
       PostV1AssetsAssetsModernizeResponseStatus status, Optional<String> notes,
-      Optional<List<PostV1AssetsAssetsModernizeResponseDocumentsItem>> documents, String createdAt,
-      Map<String, Object> additionalProperties) {
+      Optional<List<PostV1AssetsAssetsModernizeResponseDocumentsItem>> documents,
+      Optional<String> inputVatAmount, Optional<String> inputVatFirstUseDate,
+      Optional<String> inputVatDeductiblePercent, boolean inputVatRealEstate,
+      List<PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem> inputVatUseChanges,
+      String createdAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.groupId = groupId;
     this.code = code;
@@ -92,6 +106,11 @@ public final class PostV1AssetsAssetsModernizeResponse {
     this.status = status;
     this.notes = notes;
     this.documents = documents;
+    this.inputVatAmount = inputVatAmount;
+    this.inputVatFirstUseDate = inputVatFirstUseDate;
+    this.inputVatDeductiblePercent = inputVatDeductiblePercent;
+    this.inputVatRealEstate = inputVatRealEstate;
+    this.inputVatUseChanges = inputVatUseChanges;
     this.createdAt = createdAt;
     this.additionalProperties = additionalProperties;
   }
@@ -187,6 +206,40 @@ public final class PostV1AssetsAssetsModernizeResponse {
     return documents;
   }
 
+  @JsonIgnore
+  public Optional<String> getInputVatAmount() {
+    if (inputVatAmount == null) {
+      return Optional.empty();
+    }
+    return inputVatAmount;
+  }
+
+  @JsonIgnore
+  public Optional<String> getInputVatFirstUseDate() {
+    if (inputVatFirstUseDate == null) {
+      return Optional.empty();
+    }
+    return inputVatFirstUseDate;
+  }
+
+  @JsonIgnore
+  public Optional<String> getInputVatDeductiblePercent() {
+    if (inputVatDeductiblePercent == null) {
+      return Optional.empty();
+    }
+    return inputVatDeductiblePercent;
+  }
+
+  @JsonProperty("inputVatRealEstate")
+  public boolean getInputVatRealEstate() {
+    return inputVatRealEstate;
+  }
+
+  @JsonProperty("inputVatUseChanges")
+  public List<PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem> getInputVatUseChanges() {
+    return inputVatUseChanges;
+  }
+
   @JsonProperty("createdAt")
   public String getCreatedAt() {
     return createdAt;
@@ -210,6 +263,33 @@ public final class PostV1AssetsAssetsModernizeResponse {
     return documents;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("inputVatAmount")
+  private Optional<String> _getInputVatAmount() {
+    return inputVatAmount;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("inputVatFirstUseDate")
+  private Optional<String> _getInputVatFirstUseDate() {
+    return inputVatFirstUseDate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("inputVatDeductiblePercent")
+  private Optional<String> _getInputVatDeductiblePercent() {
+    return inputVatDeductiblePercent;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -222,12 +302,12 @@ public final class PostV1AssetsAssetsModernizeResponse {
   }
 
   private boolean equalTo(PostV1AssetsAssetsModernizeResponse other) {
-    return id.equals(other.id) && groupId.equals(other.groupId) && code.equals(other.code) && name.equals(other.name) && acquisitionDate.equals(other.acquisitionDate) && depreciationStartDate.equals(other.depreciationStartDate) && acquisitionCost.equals(other.acquisitionCost) && salvageValue.equals(other.salvageValue) && usefulLifeMonths == other.usefulLifeMonths && totalCost.equals(other.totalCost) && accumulatedDepreciation.equals(other.accumulatedDepreciation) && netBookValue.equals(other.netBookValue) && depreciatedMonths == other.depreciatedMonths && totalLifeMonths == other.totalLifeMonths && status.equals(other.status) && notes.equals(other.notes) && documents.equals(other.documents) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && groupId.equals(other.groupId) && code.equals(other.code) && name.equals(other.name) && acquisitionDate.equals(other.acquisitionDate) && depreciationStartDate.equals(other.depreciationStartDate) && acquisitionCost.equals(other.acquisitionCost) && salvageValue.equals(other.salvageValue) && usefulLifeMonths == other.usefulLifeMonths && totalCost.equals(other.totalCost) && accumulatedDepreciation.equals(other.accumulatedDepreciation) && netBookValue.equals(other.netBookValue) && depreciatedMonths == other.depreciatedMonths && totalLifeMonths == other.totalLifeMonths && status.equals(other.status) && notes.equals(other.notes) && documents.equals(other.documents) && inputVatAmount.equals(other.inputVatAmount) && inputVatFirstUseDate.equals(other.inputVatFirstUseDate) && inputVatDeductiblePercent.equals(other.inputVatDeductiblePercent) && inputVatRealEstate == other.inputVatRealEstate && inputVatUseChanges.equals(other.inputVatUseChanges) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.groupId, this.code, this.name, this.acquisitionDate, this.depreciationStartDate, this.acquisitionCost, this.salvageValue, this.usefulLifeMonths, this.totalCost, this.accumulatedDepreciation, this.netBookValue, this.depreciatedMonths, this.totalLifeMonths, this.status, this.notes, this.documents, this.createdAt);
+    return Objects.hash(this.id, this.groupId, this.code, this.name, this.acquisitionDate, this.depreciationStartDate, this.acquisitionCost, this.salvageValue, this.usefulLifeMonths, this.totalCost, this.accumulatedDepreciation, this.netBookValue, this.depreciatedMonths, this.totalLifeMonths, this.status, this.notes, this.documents, this.inputVatAmount, this.inputVatFirstUseDate, this.inputVatDeductiblePercent, this.inputVatRealEstate, this.inputVatUseChanges, this.createdAt);
   }
 
   @java.lang.Override
@@ -298,7 +378,11 @@ public final class PostV1AssetsAssetsModernizeResponse {
   }
 
   public interface StatusStage {
-    CreatedAtStage status(@NotNull PostV1AssetsAssetsModernizeResponseStatus status);
+    InputVatRealEstateStage status(@NotNull PostV1AssetsAssetsModernizeResponseStatus status);
+  }
+
+  public interface InputVatRealEstateStage {
+    CreatedAtStage inputVatRealEstate(boolean inputVatRealEstate);
   }
 
   public interface CreatedAtStage {
@@ -325,12 +409,39 @@ public final class PostV1AssetsAssetsModernizeResponse {
 
     _FinalStage documents(
         Nullable<List<PostV1AssetsAssetsModernizeResponseDocumentsItem>> documents);
+
+    _FinalStage inputVatAmount(Optional<String> inputVatAmount);
+
+    _FinalStage inputVatAmount(String inputVatAmount);
+
+    _FinalStage inputVatAmount(Nullable<String> inputVatAmount);
+
+    _FinalStage inputVatFirstUseDate(Optional<String> inputVatFirstUseDate);
+
+    _FinalStage inputVatFirstUseDate(String inputVatFirstUseDate);
+
+    _FinalStage inputVatFirstUseDate(Nullable<String> inputVatFirstUseDate);
+
+    _FinalStage inputVatDeductiblePercent(Optional<String> inputVatDeductiblePercent);
+
+    _FinalStage inputVatDeductiblePercent(String inputVatDeductiblePercent);
+
+    _FinalStage inputVatDeductiblePercent(Nullable<String> inputVatDeductiblePercent);
+
+    _FinalStage inputVatUseChanges(
+        List<PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem> inputVatUseChanges);
+
+    _FinalStage addInputVatUseChanges(
+        PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem inputVatUseChanges);
+
+    _FinalStage addAllInputVatUseChanges(
+        List<PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem> inputVatUseChanges);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, GroupIdStage, CodeStage, NameStage, AcquisitionDateStage, DepreciationStartDateStage, AcquisitionCostStage, SalvageValueStage, UsefulLifeMonthsStage, TotalCostStage, AccumulatedDepreciationStage, NetBookValueStage, DepreciatedMonthsStage, TotalLifeMonthsStage, StatusStage, CreatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, GroupIdStage, CodeStage, NameStage, AcquisitionDateStage, DepreciationStartDateStage, AcquisitionCostStage, SalvageValueStage, UsefulLifeMonthsStage, TotalCostStage, AccumulatedDepreciationStage, NetBookValueStage, DepreciatedMonthsStage, TotalLifeMonthsStage, StatusStage, InputVatRealEstateStage, CreatedAtStage, _FinalStage {
     private String id;
 
     private String groupId;
@@ -361,7 +472,17 @@ public final class PostV1AssetsAssetsModernizeResponse {
 
     private PostV1AssetsAssetsModernizeResponseStatus status;
 
+    private boolean inputVatRealEstate;
+
     private String createdAt;
+
+    private List<PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem> inputVatUseChanges = new ArrayList<>();
+
+    private Optional<String> inputVatDeductiblePercent = Optional.empty();
+
+    private Optional<String> inputVatFirstUseDate = Optional.empty();
+
+    private Optional<String> inputVatAmount = Optional.empty();
 
     private Optional<List<PostV1AssetsAssetsModernizeResponseDocumentsItem>> documents = Optional.empty();
 
@@ -392,6 +513,11 @@ public final class PostV1AssetsAssetsModernizeResponse {
       status(other.getStatus());
       notes(other.getNotes());
       documents(other.getDocuments());
+      inputVatAmount(other.getInputVatAmount());
+      inputVatFirstUseDate(other.getInputVatFirstUseDate());
+      inputVatDeductiblePercent(other.getInputVatDeductiblePercent());
+      inputVatRealEstate(other.getInputVatRealEstate());
+      inputVatUseChanges(other.getInputVatUseChanges());
       createdAt(other.getCreatedAt());
       return this;
     }
@@ -496,8 +622,16 @@ public final class PostV1AssetsAssetsModernizeResponse {
 
     @java.lang.Override
     @JsonSetter("status")
-    public CreatedAtStage status(@NotNull PostV1AssetsAssetsModernizeResponseStatus status) {
+    public InputVatRealEstateStage status(
+        @NotNull PostV1AssetsAssetsModernizeResponseStatus status) {
       this.status = Objects.requireNonNull(status, "status must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("inputVatRealEstate")
+    public CreatedAtStage inputVatRealEstate(boolean inputVatRealEstate) {
+      this.inputVatRealEstate = inputVatRealEstate;
       return this;
     }
 
@@ -505,6 +639,126 @@ public final class PostV1AssetsAssetsModernizeResponse {
     @JsonSetter("createdAt")
     public _FinalStage createdAt(@NotNull String createdAt) {
       this.createdAt = Objects.requireNonNull(createdAt, "createdAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addAllInputVatUseChanges(
+        List<PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem> inputVatUseChanges) {
+      if (inputVatUseChanges != null) {
+        this.inputVatUseChanges.addAll(inputVatUseChanges);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addInputVatUseChanges(
+        PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem inputVatUseChanges) {
+      this.inputVatUseChanges.add(inputVatUseChanges);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "inputVatUseChanges",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage inputVatUseChanges(
+        List<PostV1AssetsAssetsModernizeResponseInputVatUseChangesItem> inputVatUseChanges) {
+      this.inputVatUseChanges.clear();
+      if (inputVatUseChanges != null) {
+        this.inputVatUseChanges.addAll(inputVatUseChanges);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage inputVatDeductiblePercent(Nullable<String> inputVatDeductiblePercent) {
+      if (inputVatDeductiblePercent.isNull()) {
+        this.inputVatDeductiblePercent = null;
+      }
+      else if (inputVatDeductiblePercent.isEmpty()) {
+        this.inputVatDeductiblePercent = Optional.empty();
+      }
+      else {
+        this.inputVatDeductiblePercent = Optional.of(inputVatDeductiblePercent.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage inputVatDeductiblePercent(String inputVatDeductiblePercent) {
+      this.inputVatDeductiblePercent = Optional.ofNullable(inputVatDeductiblePercent);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "inputVatDeductiblePercent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage inputVatDeductiblePercent(Optional<String> inputVatDeductiblePercent) {
+      this.inputVatDeductiblePercent = inputVatDeductiblePercent;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage inputVatFirstUseDate(Nullable<String> inputVatFirstUseDate) {
+      if (inputVatFirstUseDate.isNull()) {
+        this.inputVatFirstUseDate = null;
+      }
+      else if (inputVatFirstUseDate.isEmpty()) {
+        this.inputVatFirstUseDate = Optional.empty();
+      }
+      else {
+        this.inputVatFirstUseDate = Optional.of(inputVatFirstUseDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage inputVatFirstUseDate(String inputVatFirstUseDate) {
+      this.inputVatFirstUseDate = Optional.ofNullable(inputVatFirstUseDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "inputVatFirstUseDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage inputVatFirstUseDate(Optional<String> inputVatFirstUseDate) {
+      this.inputVatFirstUseDate = inputVatFirstUseDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage inputVatAmount(Nullable<String> inputVatAmount) {
+      if (inputVatAmount.isNull()) {
+        this.inputVatAmount = null;
+      }
+      else if (inputVatAmount.isEmpty()) {
+        this.inputVatAmount = Optional.empty();
+      }
+      else {
+        this.inputVatAmount = Optional.of(inputVatAmount.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage inputVatAmount(String inputVatAmount) {
+      this.inputVatAmount = Optional.ofNullable(inputVatAmount);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "inputVatAmount",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage inputVatAmount(Optional<String> inputVatAmount) {
+      this.inputVatAmount = inputVatAmount;
       return this;
     }
 
@@ -572,7 +826,7 @@ public final class PostV1AssetsAssetsModernizeResponse {
 
     @java.lang.Override
     public PostV1AssetsAssetsModernizeResponse build() {
-      return new PostV1AssetsAssetsModernizeResponse(id, groupId, code, name, acquisitionDate, depreciationStartDate, acquisitionCost, salvageValue, usefulLifeMonths, totalCost, accumulatedDepreciation, netBookValue, depreciatedMonths, totalLifeMonths, status, notes, documents, createdAt, additionalProperties);
+      return new PostV1AssetsAssetsModernizeResponse(id, groupId, code, name, acquisitionDate, depreciationStartDate, acquisitionCost, salvageValue, usefulLifeMonths, totalCost, accumulatedDepreciation, netBookValue, depreciatedMonths, totalLifeMonths, status, notes, documents, inputVatAmount, inputVatFirstUseDate, inputVatDeductiblePercent, inputVatRealEstate, inputVatUseChanges, createdAt, additionalProperties);
     }
 
     @java.lang.Override

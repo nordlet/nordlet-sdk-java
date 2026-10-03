@@ -6,15 +6,20 @@ package com.nordlet.api.resources.ledger.requests;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nordlet.api.core.Nullable;
+import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerOwnersCreateRequestAddress;
+import com.nordlet.api.resources.ledger.types.PostV1LedgerOwnersCreateRequestPartnerLiability;
 import com.nordlet.api.resources.ledger.types.PostV1LedgerOwnersCreateRequestSharesType;
+import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -42,6 +47,14 @@ public final class PostV1LedgerOwnersCreateRequest {
 
   private final Optional<String> sharesAcquisitionDate;
 
+  private final Optional<String> withholdingTaxPercent;
+
+  private final Optional<PostV1LedgerOwnersCreateRequestPartnerLiability> partnerLiability;
+
+  private final Optional<Boolean> specialBalanceRequired;
+
+  private final Optional<Boolean> supplementaryBalanceRequired;
+
   private final Optional<PostV1LedgerOwnersCreateRequestAddress> address;
 
   private final Map<String, Object> additionalProperties;
@@ -49,7 +62,9 @@ public final class PostV1LedgerOwnersCreateRequest {
   private PostV1LedgerOwnersCreateRequest(String name, Optional<String> code,
       Optional<String> equityAccountCode, Optional<String> sharesQuantity,
       Optional<String> sharesAmount, Optional<PostV1LedgerOwnersCreateRequestSharesType> sharesType,
-      Optional<String> sharesAcquisitionDate,
+      Optional<String> sharesAcquisitionDate, Optional<String> withholdingTaxPercent,
+      Optional<PostV1LedgerOwnersCreateRequestPartnerLiability> partnerLiability,
+      Optional<Boolean> specialBalanceRequired, Optional<Boolean> supplementaryBalanceRequired,
       Optional<PostV1LedgerOwnersCreateRequestAddress> address,
       Map<String, Object> additionalProperties) {
     this.name = name;
@@ -59,6 +74,10 @@ public final class PostV1LedgerOwnersCreateRequest {
     this.sharesAmount = sharesAmount;
     this.sharesType = sharesType;
     this.sharesAcquisitionDate = sharesAcquisitionDate;
+    this.withholdingTaxPercent = withholdingTaxPercent;
+    this.partnerLiability = partnerLiability;
+    this.specialBalanceRequired = specialBalanceRequired;
+    this.supplementaryBalanceRequired = supplementaryBalanceRequired;
     this.address = address;
     this.additionalProperties = additionalProperties;
   }
@@ -98,9 +117,65 @@ public final class PostV1LedgerOwnersCreateRequest {
     return sharesAcquisitionDate;
   }
 
+  @JsonProperty("withholdingTaxPercent")
+  public Optional<String> getWithholdingTaxPercent() {
+    return withholdingTaxPercent;
+  }
+
+  @JsonIgnore
+  public Optional<PostV1LedgerOwnersCreateRequestPartnerLiability> getPartnerLiability() {
+    if (partnerLiability == null) {
+      return Optional.empty();
+    }
+    return partnerLiability;
+  }
+
+  @JsonIgnore
+  public Optional<Boolean> getSpecialBalanceRequired() {
+    if (specialBalanceRequired == null) {
+      return Optional.empty();
+    }
+    return specialBalanceRequired;
+  }
+
+  @JsonIgnore
+  public Optional<Boolean> getSupplementaryBalanceRequired() {
+    if (supplementaryBalanceRequired == null) {
+      return Optional.empty();
+    }
+    return supplementaryBalanceRequired;
+  }
+
   @JsonProperty("address")
   public Optional<PostV1LedgerOwnersCreateRequestAddress> getAddress() {
     return address;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("partnerLiability")
+  private Optional<PostV1LedgerOwnersCreateRequestPartnerLiability> _getPartnerLiability() {
+    return partnerLiability;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("specialBalanceRequired")
+  private Optional<Boolean> _getSpecialBalanceRequired() {
+    return specialBalanceRequired;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("supplementaryBalanceRequired")
+  private Optional<Boolean> _getSupplementaryBalanceRequired() {
+    return supplementaryBalanceRequired;
   }
 
   @java.lang.Override
@@ -115,12 +190,12 @@ public final class PostV1LedgerOwnersCreateRequest {
   }
 
   private boolean equalTo(PostV1LedgerOwnersCreateRequest other) {
-    return name.equals(other.name) && code.equals(other.code) && equityAccountCode.equals(other.equityAccountCode) && sharesQuantity.equals(other.sharesQuantity) && sharesAmount.equals(other.sharesAmount) && sharesType.equals(other.sharesType) && sharesAcquisitionDate.equals(other.sharesAcquisitionDate) && address.equals(other.address);
+    return name.equals(other.name) && code.equals(other.code) && equityAccountCode.equals(other.equityAccountCode) && sharesQuantity.equals(other.sharesQuantity) && sharesAmount.equals(other.sharesAmount) && sharesType.equals(other.sharesType) && sharesAcquisitionDate.equals(other.sharesAcquisitionDate) && withholdingTaxPercent.equals(other.withholdingTaxPercent) && partnerLiability.equals(other.partnerLiability) && specialBalanceRequired.equals(other.specialBalanceRequired) && supplementaryBalanceRequired.equals(other.supplementaryBalanceRequired) && address.equals(other.address);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.code, this.equityAccountCode, this.sharesQuantity, this.sharesAmount, this.sharesType, this.sharesAcquisitionDate, this.address);
+    return Objects.hash(this.name, this.code, this.equityAccountCode, this.sharesQuantity, this.sharesAmount, this.sharesType, this.sharesAcquisitionDate, this.withholdingTaxPercent, this.partnerLiability, this.specialBalanceRequired, this.supplementaryBalanceRequired, this.address);
   }
 
   @java.lang.Override
@@ -169,6 +244,30 @@ public final class PostV1LedgerOwnersCreateRequest {
 
     _FinalStage sharesAcquisitionDate(String sharesAcquisitionDate);
 
+    _FinalStage withholdingTaxPercent(Optional<String> withholdingTaxPercent);
+
+    _FinalStage withholdingTaxPercent(String withholdingTaxPercent);
+
+    _FinalStage partnerLiability(
+        Optional<PostV1LedgerOwnersCreateRequestPartnerLiability> partnerLiability);
+
+    _FinalStage partnerLiability(PostV1LedgerOwnersCreateRequestPartnerLiability partnerLiability);
+
+    _FinalStage partnerLiability(
+        Nullable<PostV1LedgerOwnersCreateRequestPartnerLiability> partnerLiability);
+
+    _FinalStage specialBalanceRequired(Optional<Boolean> specialBalanceRequired);
+
+    _FinalStage specialBalanceRequired(Boolean specialBalanceRequired);
+
+    _FinalStage specialBalanceRequired(Nullable<Boolean> specialBalanceRequired);
+
+    _FinalStage supplementaryBalanceRequired(Optional<Boolean> supplementaryBalanceRequired);
+
+    _FinalStage supplementaryBalanceRequired(Boolean supplementaryBalanceRequired);
+
+    _FinalStage supplementaryBalanceRequired(Nullable<Boolean> supplementaryBalanceRequired);
+
     _FinalStage address(Optional<PostV1LedgerOwnersCreateRequestAddress> address);
 
     _FinalStage address(PostV1LedgerOwnersCreateRequestAddress address);
@@ -181,6 +280,14 @@ public final class PostV1LedgerOwnersCreateRequest {
     private String name;
 
     private Optional<PostV1LedgerOwnersCreateRequestAddress> address = Optional.empty();
+
+    private Optional<Boolean> supplementaryBalanceRequired = Optional.empty();
+
+    private Optional<Boolean> specialBalanceRequired = Optional.empty();
+
+    private Optional<PostV1LedgerOwnersCreateRequestPartnerLiability> partnerLiability = Optional.empty();
+
+    private Optional<String> withholdingTaxPercent = Optional.empty();
 
     private Optional<String> sharesAcquisitionDate = Optional.empty();
 
@@ -209,6 +316,10 @@ public final class PostV1LedgerOwnersCreateRequest {
       sharesAmount(other.getSharesAmount());
       sharesType(other.getSharesType());
       sharesAcquisitionDate(other.getSharesAcquisitionDate());
+      withholdingTaxPercent(other.getWithholdingTaxPercent());
+      partnerLiability(other.getPartnerLiability());
+      specialBalanceRequired(other.getSpecialBalanceRequired());
+      supplementaryBalanceRequired(other.getSupplementaryBalanceRequired());
       address(other.getAddress());
       return this;
     }
@@ -233,6 +344,117 @@ public final class PostV1LedgerOwnersCreateRequest {
     )
     public _FinalStage address(Optional<PostV1LedgerOwnersCreateRequestAddress> address) {
       this.address = address;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage supplementaryBalanceRequired(
+        Nullable<Boolean> supplementaryBalanceRequired) {
+      if (supplementaryBalanceRequired.isNull()) {
+        this.supplementaryBalanceRequired = null;
+      }
+      else if (supplementaryBalanceRequired.isEmpty()) {
+        this.supplementaryBalanceRequired = Optional.empty();
+      }
+      else {
+        this.supplementaryBalanceRequired = Optional.of(supplementaryBalanceRequired.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage supplementaryBalanceRequired(Boolean supplementaryBalanceRequired) {
+      this.supplementaryBalanceRequired = Optional.ofNullable(supplementaryBalanceRequired);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "supplementaryBalanceRequired",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage supplementaryBalanceRequired(
+        Optional<Boolean> supplementaryBalanceRequired) {
+      this.supplementaryBalanceRequired = supplementaryBalanceRequired;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage specialBalanceRequired(Nullable<Boolean> specialBalanceRequired) {
+      if (specialBalanceRequired.isNull()) {
+        this.specialBalanceRequired = null;
+      }
+      else if (specialBalanceRequired.isEmpty()) {
+        this.specialBalanceRequired = Optional.empty();
+      }
+      else {
+        this.specialBalanceRequired = Optional.of(specialBalanceRequired.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage specialBalanceRequired(Boolean specialBalanceRequired) {
+      this.specialBalanceRequired = Optional.ofNullable(specialBalanceRequired);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "specialBalanceRequired",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage specialBalanceRequired(Optional<Boolean> specialBalanceRequired) {
+      this.specialBalanceRequired = specialBalanceRequired;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partnerLiability(
+        Nullable<PostV1LedgerOwnersCreateRequestPartnerLiability> partnerLiability) {
+      if (partnerLiability.isNull()) {
+        this.partnerLiability = null;
+      }
+      else if (partnerLiability.isEmpty()) {
+        this.partnerLiability = Optional.empty();
+      }
+      else {
+        this.partnerLiability = Optional.of(partnerLiability.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partnerLiability(
+        PostV1LedgerOwnersCreateRequestPartnerLiability partnerLiability) {
+      this.partnerLiability = Optional.ofNullable(partnerLiability);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "partnerLiability",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage partnerLiability(
+        Optional<PostV1LedgerOwnersCreateRequestPartnerLiability> partnerLiability) {
+      this.partnerLiability = partnerLiability;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage withholdingTaxPercent(String withholdingTaxPercent) {
+      this.withholdingTaxPercent = Optional.ofNullable(withholdingTaxPercent);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "withholdingTaxPercent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage withholdingTaxPercent(Optional<String> withholdingTaxPercent) {
+      this.withholdingTaxPercent = withholdingTaxPercent;
       return this;
     }
 
@@ -334,7 +556,7 @@ public final class PostV1LedgerOwnersCreateRequest {
 
     @java.lang.Override
     public PostV1LedgerOwnersCreateRequest build() {
-      return new PostV1LedgerOwnersCreateRequest(name, code, equityAccountCode, sharesQuantity, sharesAmount, sharesType, sharesAcquisitionDate, address, additionalProperties);
+      return new PostV1LedgerOwnersCreateRequest(name, code, equityAccountCode, sharesQuantity, sharesAmount, sharesType, sharesAcquisitionDate, withholdingTaxPercent, partnerLiability, specialBalanceRequired, supplementaryBalanceRequired, address, additionalProperties);
     }
 
     @java.lang.Override

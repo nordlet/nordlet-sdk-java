@@ -37,14 +37,24 @@ public final class PostV1AccountMeResponseBilling {
 
   private final Optional<String> trialEndsAt;
 
+  private final String payerUserId;
+
+  private final String payerEmail;
+
+  private final boolean isPayer;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1AccountMeResponseBilling(PostV1AccountMeResponseBillingStatus status, String plan,
-      long balanceCents, Optional<String> trialEndsAt, Map<String, Object> additionalProperties) {
+      long balanceCents, Optional<String> trialEndsAt, String payerUserId, String payerEmail,
+      boolean isPayer, Map<String, Object> additionalProperties) {
     this.status = status;
     this.plan = plan;
     this.balanceCents = balanceCents;
     this.trialEndsAt = trialEndsAt;
+    this.payerUserId = payerUserId;
+    this.payerEmail = payerEmail;
+    this.isPayer = isPayer;
     this.additionalProperties = additionalProperties;
   }
 
@@ -71,6 +81,21 @@ public final class PostV1AccountMeResponseBilling {
     return trialEndsAt;
   }
 
+  @JsonProperty("payerUserId")
+  public String getPayerUserId() {
+    return payerUserId;
+  }
+
+  @JsonProperty("payerEmail")
+  public String getPayerEmail() {
+    return payerEmail;
+  }
+
+  @JsonProperty("isPayer")
+  public boolean getIsPayer() {
+    return isPayer;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -92,12 +117,12 @@ public final class PostV1AccountMeResponseBilling {
   }
 
   private boolean equalTo(PostV1AccountMeResponseBilling other) {
-    return status.equals(other.status) && plan.equals(other.plan) && balanceCents == other.balanceCents && trialEndsAt.equals(other.trialEndsAt);
+    return status.equals(other.status) && plan.equals(other.plan) && balanceCents == other.balanceCents && trialEndsAt.equals(other.trialEndsAt) && payerUserId.equals(other.payerUserId) && payerEmail.equals(other.payerEmail) && isPayer == other.isPayer;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.status, this.plan, this.balanceCents, this.trialEndsAt);
+    return Objects.hash(this.status, this.plan, this.balanceCents, this.trialEndsAt, this.payerUserId, this.payerEmail, this.isPayer);
   }
 
   @java.lang.Override
@@ -120,7 +145,19 @@ public final class PostV1AccountMeResponseBilling {
   }
 
   public interface BalanceCentsStage {
-    _FinalStage balanceCents(long balanceCents);
+    PayerUserIdStage balanceCents(long balanceCents);
+  }
+
+  public interface PayerUserIdStage {
+    PayerEmailStage payerUserId(@NotNull String payerUserId);
+  }
+
+  public interface PayerEmailStage {
+    IsPayerStage payerEmail(@NotNull String payerEmail);
+  }
+
+  public interface IsPayerStage {
+    _FinalStage isPayer(boolean isPayer);
   }
 
   public interface _FinalStage {
@@ -140,12 +177,18 @@ public final class PostV1AccountMeResponseBilling {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements StatusStage, PlanStage, BalanceCentsStage, _FinalStage {
+  public static final class Builder implements StatusStage, PlanStage, BalanceCentsStage, PayerUserIdStage, PayerEmailStage, IsPayerStage, _FinalStage {
     private PostV1AccountMeResponseBillingStatus status;
 
     private String plan;
 
     private long balanceCents;
+
+    private String payerUserId;
+
+    private String payerEmail;
+
+    private boolean isPayer;
 
     private Optional<String> trialEndsAt = Optional.empty();
 
@@ -161,6 +204,9 @@ public final class PostV1AccountMeResponseBilling {
       plan(other.getPlan());
       balanceCents(other.getBalanceCents());
       trialEndsAt(other.getTrialEndsAt());
+      payerUserId(other.getPayerUserId());
+      payerEmail(other.getPayerEmail());
+      isPayer(other.getIsPayer());
       return this;
     }
 
@@ -180,8 +226,29 @@ public final class PostV1AccountMeResponseBilling {
 
     @java.lang.Override
     @JsonSetter("balanceCents")
-    public _FinalStage balanceCents(long balanceCents) {
+    public PayerUserIdStage balanceCents(long balanceCents) {
       this.balanceCents = balanceCents;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("payerUserId")
+    public PayerEmailStage payerUserId(@NotNull String payerUserId) {
+      this.payerUserId = Objects.requireNonNull(payerUserId, "payerUserId must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("payerEmail")
+    public IsPayerStage payerEmail(@NotNull String payerEmail) {
+      this.payerEmail = Objects.requireNonNull(payerEmail, "payerEmail must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("isPayer")
+    public _FinalStage isPayer(boolean isPayer) {
+      this.isPayer = isPayer;
       return this;
     }
 
@@ -217,7 +284,7 @@ public final class PostV1AccountMeResponseBilling {
 
     @java.lang.Override
     public PostV1AccountMeResponseBilling build() {
-      return new PostV1AccountMeResponseBilling(status, plan, balanceCents, trialEndsAt, additionalProperties);
+      return new PostV1AccountMeResponseBilling(status, plan, balanceCents, trialEndsAt, payerUserId, payerEmail, isPayer, additionalProperties);
     }
 
     @java.lang.Override

@@ -37,17 +37,21 @@ public final class PostV1PayrollRunsGetResponse {
 
   private final long month;
 
+  private final String countryCode;
+
   private final PostV1PayrollRunsGetResponseStatus status;
 
   private final String grossTotal;
 
-  private final String npdTotal;
+  private final String taxAllowanceTotal;
 
-  private final String gpmTotal;
+  private final String incomeTaxTotal;
 
-  private final String sodraEmployeeTotal;
+  private final String employeeContributionsTotal;
 
-  private final String sodraEmployerTotal;
+  private final String employerContributionsTotal;
+
+  private final List<PostV1PayrollRunsGetResponseComponentTotalsItem> componentTotals;
 
   private final String netTotal;
 
@@ -63,21 +67,24 @@ public final class PostV1PayrollRunsGetResponse {
 
   private final Map<String, Object> additionalProperties;
 
-  private PostV1PayrollRunsGetResponse(String id, long year, long month,
-      PostV1PayrollRunsGetResponseStatus status, String grossTotal, String npdTotal,
-      String gpmTotal, String sodraEmployeeTotal, String sodraEmployerTotal, String netTotal,
+  private PostV1PayrollRunsGetResponse(String id, long year, long month, String countryCode,
+      PostV1PayrollRunsGetResponseStatus status, String grossTotal, String taxAllowanceTotal,
+      String incomeTaxTotal, String employeeContributionsTotal, String employerContributionsTotal,
+      List<PostV1PayrollRunsGetResponseComponentTotalsItem> componentTotals, String netTotal,
       Optional<String> journalTransactionId, Optional<String> notes, String createdAt,
       Optional<String> approvedAt, List<PostV1PayrollRunsGetResponseLinesItem> lines,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.year = year;
     this.month = month;
+    this.countryCode = countryCode;
     this.status = status;
     this.grossTotal = grossTotal;
-    this.npdTotal = npdTotal;
-    this.gpmTotal = gpmTotal;
-    this.sodraEmployeeTotal = sodraEmployeeTotal;
-    this.sodraEmployerTotal = sodraEmployerTotal;
+    this.taxAllowanceTotal = taxAllowanceTotal;
+    this.incomeTaxTotal = incomeTaxTotal;
+    this.employeeContributionsTotal = employeeContributionsTotal;
+    this.employerContributionsTotal = employerContributionsTotal;
+    this.componentTotals = componentTotals;
     this.netTotal = netTotal;
     this.journalTransactionId = journalTransactionId;
     this.notes = notes;
@@ -102,6 +109,11 @@ public final class PostV1PayrollRunsGetResponse {
     return month;
   }
 
+  @JsonProperty("countryCode")
+  public String getCountryCode() {
+    return countryCode;
+  }
+
   @JsonProperty("status")
   public PostV1PayrollRunsGetResponseStatus getStatus() {
     return status;
@@ -112,24 +124,29 @@ public final class PostV1PayrollRunsGetResponse {
     return grossTotal;
   }
 
-  @JsonProperty("npdTotal")
-  public String getNpdTotal() {
-    return npdTotal;
+  @JsonProperty("taxAllowanceTotal")
+  public String getTaxAllowanceTotal() {
+    return taxAllowanceTotal;
   }
 
-  @JsonProperty("gpmTotal")
-  public String getGpmTotal() {
-    return gpmTotal;
+  @JsonProperty("incomeTaxTotal")
+  public String getIncomeTaxTotal() {
+    return incomeTaxTotal;
   }
 
-  @JsonProperty("sodraEmployeeTotal")
-  public String getSodraEmployeeTotal() {
-    return sodraEmployeeTotal;
+  @JsonProperty("employeeContributionsTotal")
+  public String getEmployeeContributionsTotal() {
+    return employeeContributionsTotal;
   }
 
-  @JsonProperty("sodraEmployerTotal")
-  public String getSodraEmployerTotal() {
-    return sodraEmployerTotal;
+  @JsonProperty("employerContributionsTotal")
+  public String getEmployerContributionsTotal() {
+    return employerContributionsTotal;
+  }
+
+  @JsonProperty("componentTotals")
+  public List<PostV1PayrollRunsGetResponseComponentTotalsItem> getComponentTotals() {
+    return componentTotals;
   }
 
   @JsonProperty("netTotal")
@@ -210,12 +227,12 @@ public final class PostV1PayrollRunsGetResponse {
   }
 
   private boolean equalTo(PostV1PayrollRunsGetResponse other) {
-    return id.equals(other.id) && year == other.year && month == other.month && status.equals(other.status) && grossTotal.equals(other.grossTotal) && npdTotal.equals(other.npdTotal) && gpmTotal.equals(other.gpmTotal) && sodraEmployeeTotal.equals(other.sodraEmployeeTotal) && sodraEmployerTotal.equals(other.sodraEmployerTotal) && netTotal.equals(other.netTotal) && journalTransactionId.equals(other.journalTransactionId) && notes.equals(other.notes) && createdAt.equals(other.createdAt) && approvedAt.equals(other.approvedAt) && lines.equals(other.lines);
+    return id.equals(other.id) && year == other.year && month == other.month && countryCode.equals(other.countryCode) && status.equals(other.status) && grossTotal.equals(other.grossTotal) && taxAllowanceTotal.equals(other.taxAllowanceTotal) && incomeTaxTotal.equals(other.incomeTaxTotal) && employeeContributionsTotal.equals(other.employeeContributionsTotal) && employerContributionsTotal.equals(other.employerContributionsTotal) && componentTotals.equals(other.componentTotals) && netTotal.equals(other.netTotal) && journalTransactionId.equals(other.journalTransactionId) && notes.equals(other.notes) && createdAt.equals(other.createdAt) && approvedAt.equals(other.approvedAt) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.year, this.month, this.status, this.grossTotal, this.npdTotal, this.gpmTotal, this.sodraEmployeeTotal, this.sodraEmployerTotal, this.netTotal, this.journalTransactionId, this.notes, this.createdAt, this.approvedAt, this.lines);
+    return Objects.hash(this.id, this.year, this.month, this.countryCode, this.status, this.grossTotal, this.taxAllowanceTotal, this.incomeTaxTotal, this.employeeContributionsTotal, this.employerContributionsTotal, this.componentTotals, this.netTotal, this.journalTransactionId, this.notes, this.createdAt, this.approvedAt, this.lines);
   }
 
   @java.lang.Override
@@ -238,7 +255,11 @@ public final class PostV1PayrollRunsGetResponse {
   }
 
   public interface MonthStage {
-    StatusStage month(long month);
+    CountryCodeStage month(long month);
+  }
+
+  public interface CountryCodeStage {
+    StatusStage countryCode(@NotNull String countryCode);
   }
 
   public interface StatusStage {
@@ -246,23 +267,24 @@ public final class PostV1PayrollRunsGetResponse {
   }
 
   public interface GrossTotalStage {
-    NpdTotalStage grossTotal(@NotNull String grossTotal);
+    TaxAllowanceTotalStage grossTotal(@NotNull String grossTotal);
   }
 
-  public interface NpdTotalStage {
-    GpmTotalStage npdTotal(@NotNull String npdTotal);
+  public interface TaxAllowanceTotalStage {
+    IncomeTaxTotalStage taxAllowanceTotal(@NotNull String taxAllowanceTotal);
   }
 
-  public interface GpmTotalStage {
-    SodraEmployeeTotalStage gpmTotal(@NotNull String gpmTotal);
+  public interface IncomeTaxTotalStage {
+    EmployeeContributionsTotalStage incomeTaxTotal(@NotNull String incomeTaxTotal);
   }
 
-  public interface SodraEmployeeTotalStage {
-    SodraEmployerTotalStage sodraEmployeeTotal(@NotNull String sodraEmployeeTotal);
+  public interface EmployeeContributionsTotalStage {
+    EmployerContributionsTotalStage employeeContributionsTotal(
+        @NotNull String employeeContributionsTotal);
   }
 
-  public interface SodraEmployerTotalStage {
-    NetTotalStage sodraEmployerTotal(@NotNull String sodraEmployerTotal);
+  public interface EmployerContributionsTotalStage {
+    NetTotalStage employerContributionsTotal(@NotNull String employerContributionsTotal);
   }
 
   public interface NetTotalStage {
@@ -279,6 +301,14 @@ public final class PostV1PayrollRunsGetResponse {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage componentTotals(
+        List<PostV1PayrollRunsGetResponseComponentTotalsItem> componentTotals);
+
+    _FinalStage addComponentTotals(PostV1PayrollRunsGetResponseComponentTotalsItem componentTotals);
+
+    _FinalStage addAllComponentTotals(
+        List<PostV1PayrollRunsGetResponseComponentTotalsItem> componentTotals);
 
     _FinalStage journalTransactionId(Optional<String> journalTransactionId);
 
@@ -308,24 +338,26 @@ public final class PostV1PayrollRunsGetResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, YearStage, MonthStage, StatusStage, GrossTotalStage, NpdTotalStage, GpmTotalStage, SodraEmployeeTotalStage, SodraEmployerTotalStage, NetTotalStage, CreatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, YearStage, MonthStage, CountryCodeStage, StatusStage, GrossTotalStage, TaxAllowanceTotalStage, IncomeTaxTotalStage, EmployeeContributionsTotalStage, EmployerContributionsTotalStage, NetTotalStage, CreatedAtStage, _FinalStage {
     private String id;
 
     private long year;
 
     private long month;
 
+    private String countryCode;
+
     private PostV1PayrollRunsGetResponseStatus status;
 
     private String grossTotal;
 
-    private String npdTotal;
+    private String taxAllowanceTotal;
 
-    private String gpmTotal;
+    private String incomeTaxTotal;
 
-    private String sodraEmployeeTotal;
+    private String employeeContributionsTotal;
 
-    private String sodraEmployerTotal;
+    private String employerContributionsTotal;
 
     private String netTotal;
 
@@ -339,6 +371,8 @@ public final class PostV1PayrollRunsGetResponse {
 
     private Optional<String> journalTransactionId = Optional.empty();
 
+    private List<PostV1PayrollRunsGetResponseComponentTotalsItem> componentTotals = new ArrayList<>();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -350,12 +384,14 @@ public final class PostV1PayrollRunsGetResponse {
       id(other.getId());
       year(other.getYear());
       month(other.getMonth());
+      countryCode(other.getCountryCode());
       status(other.getStatus());
       grossTotal(other.getGrossTotal());
-      npdTotal(other.getNpdTotal());
-      gpmTotal(other.getGpmTotal());
-      sodraEmployeeTotal(other.getSodraEmployeeTotal());
-      sodraEmployerTotal(other.getSodraEmployerTotal());
+      taxAllowanceTotal(other.getTaxAllowanceTotal());
+      incomeTaxTotal(other.getIncomeTaxTotal());
+      employeeContributionsTotal(other.getEmployeeContributionsTotal());
+      employerContributionsTotal(other.getEmployerContributionsTotal());
+      componentTotals(other.getComponentTotals());
       netTotal(other.getNetTotal());
       journalTransactionId(other.getJournalTransactionId());
       notes(other.getNotes());
@@ -381,8 +417,15 @@ public final class PostV1PayrollRunsGetResponse {
 
     @java.lang.Override
     @JsonSetter("month")
-    public StatusStage month(long month) {
+    public CountryCodeStage month(long month) {
       this.month = month;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("countryCode")
+    public StatusStage countryCode(@NotNull String countryCode) {
+      this.countryCode = Objects.requireNonNull(countryCode, "countryCode must not be null");
       return this;
     }
 
@@ -395,36 +438,37 @@ public final class PostV1PayrollRunsGetResponse {
 
     @java.lang.Override
     @JsonSetter("grossTotal")
-    public NpdTotalStage grossTotal(@NotNull String grossTotal) {
+    public TaxAllowanceTotalStage grossTotal(@NotNull String grossTotal) {
       this.grossTotal = Objects.requireNonNull(grossTotal, "grossTotal must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("npdTotal")
-    public GpmTotalStage npdTotal(@NotNull String npdTotal) {
-      this.npdTotal = Objects.requireNonNull(npdTotal, "npdTotal must not be null");
+    @JsonSetter("taxAllowanceTotal")
+    public IncomeTaxTotalStage taxAllowanceTotal(@NotNull String taxAllowanceTotal) {
+      this.taxAllowanceTotal = Objects.requireNonNull(taxAllowanceTotal, "taxAllowanceTotal must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("gpmTotal")
-    public SodraEmployeeTotalStage gpmTotal(@NotNull String gpmTotal) {
-      this.gpmTotal = Objects.requireNonNull(gpmTotal, "gpmTotal must not be null");
+    @JsonSetter("incomeTaxTotal")
+    public EmployeeContributionsTotalStage incomeTaxTotal(@NotNull String incomeTaxTotal) {
+      this.incomeTaxTotal = Objects.requireNonNull(incomeTaxTotal, "incomeTaxTotal must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("sodraEmployeeTotal")
-    public SodraEmployerTotalStage sodraEmployeeTotal(@NotNull String sodraEmployeeTotal) {
-      this.sodraEmployeeTotal = Objects.requireNonNull(sodraEmployeeTotal, "sodraEmployeeTotal must not be null");
+    @JsonSetter("employeeContributionsTotal")
+    public EmployerContributionsTotalStage employeeContributionsTotal(
+        @NotNull String employeeContributionsTotal) {
+      this.employeeContributionsTotal = Objects.requireNonNull(employeeContributionsTotal, "employeeContributionsTotal must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("sodraEmployerTotal")
-    public NetTotalStage sodraEmployerTotal(@NotNull String sodraEmployerTotal) {
-      this.sodraEmployerTotal = Objects.requireNonNull(sodraEmployerTotal, "sodraEmployerTotal must not be null");
+    @JsonSetter("employerContributionsTotal")
+    public NetTotalStage employerContributionsTotal(@NotNull String employerContributionsTotal) {
+      this.employerContributionsTotal = Objects.requireNonNull(employerContributionsTotal, "employerContributionsTotal must not be null");
       return this;
     }
 
@@ -560,8 +604,38 @@ public final class PostV1PayrollRunsGetResponse {
     }
 
     @java.lang.Override
+    public _FinalStage addAllComponentTotals(
+        List<PostV1PayrollRunsGetResponseComponentTotalsItem> componentTotals) {
+      if (componentTotals != null) {
+        this.componentTotals.addAll(componentTotals);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addComponentTotals(
+        PostV1PayrollRunsGetResponseComponentTotalsItem componentTotals) {
+      this.componentTotals.add(componentTotals);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "componentTotals",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage componentTotals(
+        List<PostV1PayrollRunsGetResponseComponentTotalsItem> componentTotals) {
+      this.componentTotals.clear();
+      if (componentTotals != null) {
+        this.componentTotals.addAll(componentTotals);
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public PostV1PayrollRunsGetResponse build() {
-      return new PostV1PayrollRunsGetResponse(id, year, month, status, grossTotal, npdTotal, gpmTotal, sodraEmployeeTotal, sodraEmployerTotal, netTotal, journalTransactionId, notes, createdAt, approvedAt, lines, additionalProperties);
+      return new PostV1PayrollRunsGetResponse(id, year, month, countryCode, status, grossTotal, taxAllowanceTotal, incomeTaxTotal, employeeContributionsTotal, employerContributionsTotal, componentTotals, netTotal, journalTransactionId, notes, createdAt, approvedAt, lines, additionalProperties);
     }
 
     @java.lang.Override

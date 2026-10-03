@@ -35,7 +35,7 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
 
   private final String name;
 
-  private final Optional<PostV1LedgerAccountsListResponseRowsItemTranslations> translations;
+  private final Optional<Map<String, Optional<PostV1LedgerAccountsListResponseRowsItemTranslationsValue>>> translations;
 
   private final PostV1LedgerAccountsListResponseRowsItemType type;
 
@@ -48,7 +48,7 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
   private final Map<String, Object> additionalProperties;
 
   private PostV1LedgerAccountsListResponseRowsItem(String id, String code, String name,
-      Optional<PostV1LedgerAccountsListResponseRowsItemTranslations> translations,
+      Optional<Map<String, Optional<PostV1LedgerAccountsListResponseRowsItemTranslationsValue>>> translations,
       PostV1LedgerAccountsListResponseRowsItemType type, Optional<String> parentId,
       boolean isPostable, String createdAt, Map<String, Object> additionalProperties) {
     this.id = id;
@@ -78,7 +78,8 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
   }
 
   @JsonIgnore
-  public Optional<PostV1LedgerAccountsListResponseRowsItemTranslations> getTranslations() {
+  public Optional<Map<String, Optional<PostV1LedgerAccountsListResponseRowsItemTranslationsValue>>> getTranslations(
+      ) {
     if (translations == null) {
       return Optional.empty();
     }
@@ -113,7 +114,8 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
       valueFilter = NullableNonemptyFilter.class
   )
   @JsonProperty("translations")
-  private Optional<PostV1LedgerAccountsListResponseRowsItemTranslations> _getTranslations() {
+  private Optional<Map<String, Optional<PostV1LedgerAccountsListResponseRowsItemTranslationsValue>>> _getTranslations(
+      ) {
     return translations;
   }
 
@@ -189,12 +191,13 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
     _FinalStage translations(
-        Optional<PostV1LedgerAccountsListResponseRowsItemTranslations> translations);
-
-    _FinalStage translations(PostV1LedgerAccountsListResponseRowsItemTranslations translations);
+        Optional<Map<String, Optional<PostV1LedgerAccountsListResponseRowsItemTranslationsValue>>> translations);
 
     _FinalStage translations(
-        Nullable<PostV1LedgerAccountsListResponseRowsItemTranslations> translations);
+        Map<String, Optional<PostV1LedgerAccountsListResponseRowsItemTranslationsValue>> translations);
+
+    _FinalStage translations(
+        Nullable<Map<String, Optional<PostV1LedgerAccountsListResponseRowsItemTranslationsValue>>> translations);
 
     _FinalStage parentId(Optional<String> parentId);
 
@@ -221,7 +224,7 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
 
     private Optional<String> parentId = Optional.empty();
 
-    private Optional<PostV1LedgerAccountsListResponseRowsItemTranslations> translations = Optional.empty();
+    private Optional<Map<String, Optional<PostV1LedgerAccountsListResponseRowsItemTranslationsValue>>> translations = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -316,7 +319,7 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
 
     @java.lang.Override
     public _FinalStage translations(
-        Nullable<PostV1LedgerAccountsListResponseRowsItemTranslations> translations) {
+        Nullable<Map<String, Optional<PostV1LedgerAccountsListResponseRowsItemTranslationsValue>>> translations) {
       if (translations.isNull()) {
         this.translations = null;
       }
@@ -331,7 +334,7 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
 
     @java.lang.Override
     public _FinalStage translations(
-        PostV1LedgerAccountsListResponseRowsItemTranslations translations) {
+        Map<String, Optional<PostV1LedgerAccountsListResponseRowsItemTranslationsValue>> translations) {
       this.translations = Optional.ofNullable(translations);
       return this;
     }
@@ -342,7 +345,7 @@ public final class PostV1LedgerAccountsListResponseRowsItem {
         nulls = Nulls.SKIP
     )
     public _FinalStage translations(
-        Optional<PostV1LedgerAccountsListResponseRowsItemTranslations> translations) {
+        Optional<Map<String, Optional<PostV1LedgerAccountsListResponseRowsItemTranslationsValue>>> translations) {
       this.translations = translations;
       return this;
     }

@@ -52,6 +52,38 @@ public final class PostV1DeclarationsSubmissionsCreateResponse {
 
   private final Optional<String> message;
 
+  private final Optional<String> ruleKey;
+
+  private final Optional<String> period;
+
+  private final Optional<String> documentKey;
+
+  private final String origin;
+
+  private final Optional<String> transportSystem;
+
+  private final Optional<String> submittedAt;
+
+  private final Optional<String> acceptedAt;
+
+  private final Optional<String> rejectedAt;
+
+  private final Optional<String> checkedAt;
+
+  private final Optional<String> nextCheckAt;
+
+  private final long attempts;
+
+  private final Optional<String> deliveryError;
+
+  private final Optional<String> sentSha256;
+
+  private final Optional<String> certificateFingerprint;
+
+  private final Optional<String> submittedByActorType;
+
+  private final Optional<String> submittedByActorId;
+
   private final String createdAt;
 
   private final String updatedAt;
@@ -64,8 +96,13 @@ public final class PostV1DeclarationsSubmissionsCreateResponse {
       Optional<Long> periodMonth, Optional<String> variant,
       PostV1DeclarationsSubmissionsCreateResponseStatus status, String fileName,
       Optional<String> fileId, Optional<String> externalRef, Optional<String> message,
-      String createdAt, String updatedAt, List<String> warnings,
-      Map<String, Object> additionalProperties) {
+      Optional<String> ruleKey, Optional<String> period, Optional<String> documentKey,
+      String origin, Optional<String> transportSystem, Optional<String> submittedAt,
+      Optional<String> acceptedAt, Optional<String> rejectedAt, Optional<String> checkedAt,
+      Optional<String> nextCheckAt, long attempts, Optional<String> deliveryError,
+      Optional<String> sentSha256, Optional<String> certificateFingerprint,
+      Optional<String> submittedByActorType, Optional<String> submittedByActorId, String createdAt,
+      String updatedAt, List<String> warnings, Map<String, Object> additionalProperties) {
     this.id = id;
     this.obligation = obligation;
     this.periodYear = periodYear;
@@ -76,6 +113,22 @@ public final class PostV1DeclarationsSubmissionsCreateResponse {
     this.fileId = fileId;
     this.externalRef = externalRef;
     this.message = message;
+    this.ruleKey = ruleKey;
+    this.period = period;
+    this.documentKey = documentKey;
+    this.origin = origin;
+    this.transportSystem = transportSystem;
+    this.submittedAt = submittedAt;
+    this.acceptedAt = acceptedAt;
+    this.rejectedAt = rejectedAt;
+    this.checkedAt = checkedAt;
+    this.nextCheckAt = nextCheckAt;
+    this.attempts = attempts;
+    this.deliveryError = deliveryError;
+    this.sentSha256 = sentSha256;
+    this.certificateFingerprint = certificateFingerprint;
+    this.submittedByActorType = submittedByActorType;
+    this.submittedByActorId = submittedByActorId;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.warnings = warnings;
@@ -147,6 +200,128 @@ public final class PostV1DeclarationsSubmissionsCreateResponse {
     return message;
   }
 
+  @JsonIgnore
+  public Optional<String> getRuleKey() {
+    if (ruleKey == null) {
+      return Optional.empty();
+    }
+    return ruleKey;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPeriod() {
+    if (period == null) {
+      return Optional.empty();
+    }
+    return period;
+  }
+
+  @JsonIgnore
+  public Optional<String> getDocumentKey() {
+    if (documentKey == null) {
+      return Optional.empty();
+    }
+    return documentKey;
+  }
+
+  @JsonProperty("origin")
+  public String getOrigin() {
+    return origin;
+  }
+
+  @JsonIgnore
+  public Optional<String> getTransportSystem() {
+    if (transportSystem == null) {
+      return Optional.empty();
+    }
+    return transportSystem;
+  }
+
+  @JsonIgnore
+  public Optional<String> getSubmittedAt() {
+    if (submittedAt == null) {
+      return Optional.empty();
+    }
+    return submittedAt;
+  }
+
+  @JsonIgnore
+  public Optional<String> getAcceptedAt() {
+    if (acceptedAt == null) {
+      return Optional.empty();
+    }
+    return acceptedAt;
+  }
+
+  @JsonIgnore
+  public Optional<String> getRejectedAt() {
+    if (rejectedAt == null) {
+      return Optional.empty();
+    }
+    return rejectedAt;
+  }
+
+  @JsonIgnore
+  public Optional<String> getCheckedAt() {
+    if (checkedAt == null) {
+      return Optional.empty();
+    }
+    return checkedAt;
+  }
+
+  @JsonIgnore
+  public Optional<String> getNextCheckAt() {
+    if (nextCheckAt == null) {
+      return Optional.empty();
+    }
+    return nextCheckAt;
+  }
+
+  @JsonProperty("attempts")
+  public long getAttempts() {
+    return attempts;
+  }
+
+  @JsonIgnore
+  public Optional<String> getDeliveryError() {
+    if (deliveryError == null) {
+      return Optional.empty();
+    }
+    return deliveryError;
+  }
+
+  @JsonIgnore
+  public Optional<String> getSentSha256() {
+    if (sentSha256 == null) {
+      return Optional.empty();
+    }
+    return sentSha256;
+  }
+
+  @JsonIgnore
+  public Optional<String> getCertificateFingerprint() {
+    if (certificateFingerprint == null) {
+      return Optional.empty();
+    }
+    return certificateFingerprint;
+  }
+
+  @JsonIgnore
+  public Optional<String> getSubmittedByActorType() {
+    if (submittedByActorType == null) {
+      return Optional.empty();
+    }
+    return submittedByActorType;
+  }
+
+  @JsonIgnore
+  public Optional<String> getSubmittedByActorId() {
+    if (submittedByActorId == null) {
+      return Optional.empty();
+    }
+    return submittedByActorId;
+  }
+
   @JsonProperty("createdAt")
   public String getCreatedAt() {
     return createdAt;
@@ -207,6 +382,132 @@ public final class PostV1DeclarationsSubmissionsCreateResponse {
     return message;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("ruleKey")
+  private Optional<String> _getRuleKey() {
+    return ruleKey;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("period")
+  private Optional<String> _getPeriod() {
+    return period;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("documentKey")
+  private Optional<String> _getDocumentKey() {
+    return documentKey;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("transportSystem")
+  private Optional<String> _getTransportSystem() {
+    return transportSystem;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("submittedAt")
+  private Optional<String> _getSubmittedAt() {
+    return submittedAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("acceptedAt")
+  private Optional<String> _getAcceptedAt() {
+    return acceptedAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("rejectedAt")
+  private Optional<String> _getRejectedAt() {
+    return rejectedAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("checkedAt")
+  private Optional<String> _getCheckedAt() {
+    return checkedAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("nextCheckAt")
+  private Optional<String> _getNextCheckAt() {
+    return nextCheckAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("deliveryError")
+  private Optional<String> _getDeliveryError() {
+    return deliveryError;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("sentSha256")
+  private Optional<String> _getSentSha256() {
+    return sentSha256;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("certificateFingerprint")
+  private Optional<String> _getCertificateFingerprint() {
+    return certificateFingerprint;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("submittedByActorType")
+  private Optional<String> _getSubmittedByActorType() {
+    return submittedByActorType;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("submittedByActorId")
+  private Optional<String> _getSubmittedByActorId() {
+    return submittedByActorId;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -219,12 +520,12 @@ public final class PostV1DeclarationsSubmissionsCreateResponse {
   }
 
   private boolean equalTo(PostV1DeclarationsSubmissionsCreateResponse other) {
-    return id.equals(other.id) && obligation.equals(other.obligation) && periodYear == other.periodYear && periodMonth.equals(other.periodMonth) && variant.equals(other.variant) && status.equals(other.status) && fileName.equals(other.fileName) && fileId.equals(other.fileId) && externalRef.equals(other.externalRef) && message.equals(other.message) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && warnings.equals(other.warnings);
+    return id.equals(other.id) && obligation.equals(other.obligation) && periodYear == other.periodYear && periodMonth.equals(other.periodMonth) && variant.equals(other.variant) && status.equals(other.status) && fileName.equals(other.fileName) && fileId.equals(other.fileId) && externalRef.equals(other.externalRef) && message.equals(other.message) && ruleKey.equals(other.ruleKey) && period.equals(other.period) && documentKey.equals(other.documentKey) && origin.equals(other.origin) && transportSystem.equals(other.transportSystem) && submittedAt.equals(other.submittedAt) && acceptedAt.equals(other.acceptedAt) && rejectedAt.equals(other.rejectedAt) && checkedAt.equals(other.checkedAt) && nextCheckAt.equals(other.nextCheckAt) && attempts == other.attempts && deliveryError.equals(other.deliveryError) && sentSha256.equals(other.sentSha256) && certificateFingerprint.equals(other.certificateFingerprint) && submittedByActorType.equals(other.submittedByActorType) && submittedByActorId.equals(other.submittedByActorId) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && warnings.equals(other.warnings);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.obligation, this.periodYear, this.periodMonth, this.variant, this.status, this.fileName, this.fileId, this.externalRef, this.message, this.createdAt, this.updatedAt, this.warnings);
+    return Objects.hash(this.id, this.obligation, this.periodYear, this.periodMonth, this.variant, this.status, this.fileName, this.fileId, this.externalRef, this.message, this.ruleKey, this.period, this.documentKey, this.origin, this.transportSystem, this.submittedAt, this.acceptedAt, this.rejectedAt, this.checkedAt, this.nextCheckAt, this.attempts, this.deliveryError, this.sentSha256, this.certificateFingerprint, this.submittedByActorType, this.submittedByActorId, this.createdAt, this.updatedAt, this.warnings);
   }
 
   @java.lang.Override
@@ -255,7 +556,15 @@ public final class PostV1DeclarationsSubmissionsCreateResponse {
   }
 
   public interface FileNameStage {
-    CreatedAtStage fileName(@NotNull String fileName);
+    OriginStage fileName(@NotNull String fileName);
+  }
+
+  public interface OriginStage {
+    AttemptsStage origin(@NotNull String origin);
+  }
+
+  public interface AttemptsStage {
+    CreatedAtStage attempts(long attempts);
   }
 
   public interface CreatedAtStage {
@@ -303,6 +612,90 @@ public final class PostV1DeclarationsSubmissionsCreateResponse {
 
     _FinalStage message(Nullable<String> message);
 
+    _FinalStage ruleKey(Optional<String> ruleKey);
+
+    _FinalStage ruleKey(String ruleKey);
+
+    _FinalStage ruleKey(Nullable<String> ruleKey);
+
+    _FinalStage period(Optional<String> period);
+
+    _FinalStage period(String period);
+
+    _FinalStage period(Nullable<String> period);
+
+    _FinalStage documentKey(Optional<String> documentKey);
+
+    _FinalStage documentKey(String documentKey);
+
+    _FinalStage documentKey(Nullable<String> documentKey);
+
+    _FinalStage transportSystem(Optional<String> transportSystem);
+
+    _FinalStage transportSystem(String transportSystem);
+
+    _FinalStage transportSystem(Nullable<String> transportSystem);
+
+    _FinalStage submittedAt(Optional<String> submittedAt);
+
+    _FinalStage submittedAt(String submittedAt);
+
+    _FinalStage submittedAt(Nullable<String> submittedAt);
+
+    _FinalStage acceptedAt(Optional<String> acceptedAt);
+
+    _FinalStage acceptedAt(String acceptedAt);
+
+    _FinalStage acceptedAt(Nullable<String> acceptedAt);
+
+    _FinalStage rejectedAt(Optional<String> rejectedAt);
+
+    _FinalStage rejectedAt(String rejectedAt);
+
+    _FinalStage rejectedAt(Nullable<String> rejectedAt);
+
+    _FinalStage checkedAt(Optional<String> checkedAt);
+
+    _FinalStage checkedAt(String checkedAt);
+
+    _FinalStage checkedAt(Nullable<String> checkedAt);
+
+    _FinalStage nextCheckAt(Optional<String> nextCheckAt);
+
+    _FinalStage nextCheckAt(String nextCheckAt);
+
+    _FinalStage nextCheckAt(Nullable<String> nextCheckAt);
+
+    _FinalStage deliveryError(Optional<String> deliveryError);
+
+    _FinalStage deliveryError(String deliveryError);
+
+    _FinalStage deliveryError(Nullable<String> deliveryError);
+
+    _FinalStage sentSha256(Optional<String> sentSha256);
+
+    _FinalStage sentSha256(String sentSha256);
+
+    _FinalStage sentSha256(Nullable<String> sentSha256);
+
+    _FinalStage certificateFingerprint(Optional<String> certificateFingerprint);
+
+    _FinalStage certificateFingerprint(String certificateFingerprint);
+
+    _FinalStage certificateFingerprint(Nullable<String> certificateFingerprint);
+
+    _FinalStage submittedByActorType(Optional<String> submittedByActorType);
+
+    _FinalStage submittedByActorType(String submittedByActorType);
+
+    _FinalStage submittedByActorType(Nullable<String> submittedByActorType);
+
+    _FinalStage submittedByActorId(Optional<String> submittedByActorId);
+
+    _FinalStage submittedByActorId(String submittedByActorId);
+
+    _FinalStage submittedByActorId(Nullable<String> submittedByActorId);
+
     _FinalStage warnings(List<String> warnings);
 
     _FinalStage addWarnings(String warnings);
@@ -313,7 +706,7 @@ public final class PostV1DeclarationsSubmissionsCreateResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, ObligationStage, PeriodYearStage, StatusStage, FileNameStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, ObligationStage, PeriodYearStage, StatusStage, FileNameStage, OriginStage, AttemptsStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
     private String id;
 
     private String obligation;
@@ -324,11 +717,43 @@ public final class PostV1DeclarationsSubmissionsCreateResponse {
 
     private String fileName;
 
+    private String origin;
+
+    private long attempts;
+
     private String createdAt;
 
     private String updatedAt;
 
     private List<String> warnings = new ArrayList<>();
+
+    private Optional<String> submittedByActorId = Optional.empty();
+
+    private Optional<String> submittedByActorType = Optional.empty();
+
+    private Optional<String> certificateFingerprint = Optional.empty();
+
+    private Optional<String> sentSha256 = Optional.empty();
+
+    private Optional<String> deliveryError = Optional.empty();
+
+    private Optional<String> nextCheckAt = Optional.empty();
+
+    private Optional<String> checkedAt = Optional.empty();
+
+    private Optional<String> rejectedAt = Optional.empty();
+
+    private Optional<String> acceptedAt = Optional.empty();
+
+    private Optional<String> submittedAt = Optional.empty();
+
+    private Optional<String> transportSystem = Optional.empty();
+
+    private Optional<String> documentKey = Optional.empty();
+
+    private Optional<String> period = Optional.empty();
+
+    private Optional<String> ruleKey = Optional.empty();
 
     private Optional<String> message = Optional.empty();
 
@@ -358,6 +783,22 @@ public final class PostV1DeclarationsSubmissionsCreateResponse {
       fileId(other.getFileId());
       externalRef(other.getExternalRef());
       message(other.getMessage());
+      ruleKey(other.getRuleKey());
+      period(other.getPeriod());
+      documentKey(other.getDocumentKey());
+      origin(other.getOrigin());
+      transportSystem(other.getTransportSystem());
+      submittedAt(other.getSubmittedAt());
+      acceptedAt(other.getAcceptedAt());
+      rejectedAt(other.getRejectedAt());
+      checkedAt(other.getCheckedAt());
+      nextCheckAt(other.getNextCheckAt());
+      attempts(other.getAttempts());
+      deliveryError(other.getDeliveryError());
+      sentSha256(other.getSentSha256());
+      certificateFingerprint(other.getCertificateFingerprint());
+      submittedByActorType(other.getSubmittedByActorType());
+      submittedByActorId(other.getSubmittedByActorId());
       createdAt(other.getCreatedAt());
       updatedAt(other.getUpdatedAt());
       warnings(other.getWarnings());
@@ -394,8 +835,22 @@ public final class PostV1DeclarationsSubmissionsCreateResponse {
 
     @java.lang.Override
     @JsonSetter("fileName")
-    public CreatedAtStage fileName(@NotNull String fileName) {
+    public OriginStage fileName(@NotNull String fileName) {
       this.fileName = Objects.requireNonNull(fileName, "fileName must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("origin")
+    public AttemptsStage origin(@NotNull String origin) {
+      this.origin = Objects.requireNonNull(origin, "origin must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("attempts")
+    public CreatedAtStage attempts(long attempts) {
+      this.attempts = attempts;
       return this;
     }
 
@@ -437,6 +892,426 @@ public final class PostV1DeclarationsSubmissionsCreateResponse {
       if (warnings != null) {
         this.warnings.addAll(warnings);
       }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage submittedByActorId(Nullable<String> submittedByActorId) {
+      if (submittedByActorId.isNull()) {
+        this.submittedByActorId = null;
+      }
+      else if (submittedByActorId.isEmpty()) {
+        this.submittedByActorId = Optional.empty();
+      }
+      else {
+        this.submittedByActorId = Optional.of(submittedByActorId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage submittedByActorId(String submittedByActorId) {
+      this.submittedByActorId = Optional.ofNullable(submittedByActorId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "submittedByActorId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage submittedByActorId(Optional<String> submittedByActorId) {
+      this.submittedByActorId = submittedByActorId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage submittedByActorType(Nullable<String> submittedByActorType) {
+      if (submittedByActorType.isNull()) {
+        this.submittedByActorType = null;
+      }
+      else if (submittedByActorType.isEmpty()) {
+        this.submittedByActorType = Optional.empty();
+      }
+      else {
+        this.submittedByActorType = Optional.of(submittedByActorType.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage submittedByActorType(String submittedByActorType) {
+      this.submittedByActorType = Optional.ofNullable(submittedByActorType);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "submittedByActorType",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage submittedByActorType(Optional<String> submittedByActorType) {
+      this.submittedByActorType = submittedByActorType;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage certificateFingerprint(Nullable<String> certificateFingerprint) {
+      if (certificateFingerprint.isNull()) {
+        this.certificateFingerprint = null;
+      }
+      else if (certificateFingerprint.isEmpty()) {
+        this.certificateFingerprint = Optional.empty();
+      }
+      else {
+        this.certificateFingerprint = Optional.of(certificateFingerprint.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage certificateFingerprint(String certificateFingerprint) {
+      this.certificateFingerprint = Optional.ofNullable(certificateFingerprint);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "certificateFingerprint",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage certificateFingerprint(Optional<String> certificateFingerprint) {
+      this.certificateFingerprint = certificateFingerprint;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage sentSha256(Nullable<String> sentSha256) {
+      if (sentSha256.isNull()) {
+        this.sentSha256 = null;
+      }
+      else if (sentSha256.isEmpty()) {
+        this.sentSha256 = Optional.empty();
+      }
+      else {
+        this.sentSha256 = Optional.of(sentSha256.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage sentSha256(String sentSha256) {
+      this.sentSha256 = Optional.ofNullable(sentSha256);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "sentSha256",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage sentSha256(Optional<String> sentSha256) {
+      this.sentSha256 = sentSha256;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage deliveryError(Nullable<String> deliveryError) {
+      if (deliveryError.isNull()) {
+        this.deliveryError = null;
+      }
+      else if (deliveryError.isEmpty()) {
+        this.deliveryError = Optional.empty();
+      }
+      else {
+        this.deliveryError = Optional.of(deliveryError.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage deliveryError(String deliveryError) {
+      this.deliveryError = Optional.ofNullable(deliveryError);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "deliveryError",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage deliveryError(Optional<String> deliveryError) {
+      this.deliveryError = deliveryError;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage nextCheckAt(Nullable<String> nextCheckAt) {
+      if (nextCheckAt.isNull()) {
+        this.nextCheckAt = null;
+      }
+      else if (nextCheckAt.isEmpty()) {
+        this.nextCheckAt = Optional.empty();
+      }
+      else {
+        this.nextCheckAt = Optional.of(nextCheckAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage nextCheckAt(String nextCheckAt) {
+      this.nextCheckAt = Optional.ofNullable(nextCheckAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "nextCheckAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage nextCheckAt(Optional<String> nextCheckAt) {
+      this.nextCheckAt = nextCheckAt;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage checkedAt(Nullable<String> checkedAt) {
+      if (checkedAt.isNull()) {
+        this.checkedAt = null;
+      }
+      else if (checkedAt.isEmpty()) {
+        this.checkedAt = Optional.empty();
+      }
+      else {
+        this.checkedAt = Optional.of(checkedAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage checkedAt(String checkedAt) {
+      this.checkedAt = Optional.ofNullable(checkedAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "checkedAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage checkedAt(Optional<String> checkedAt) {
+      this.checkedAt = checkedAt;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage rejectedAt(Nullable<String> rejectedAt) {
+      if (rejectedAt.isNull()) {
+        this.rejectedAt = null;
+      }
+      else if (rejectedAt.isEmpty()) {
+        this.rejectedAt = Optional.empty();
+      }
+      else {
+        this.rejectedAt = Optional.of(rejectedAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage rejectedAt(String rejectedAt) {
+      this.rejectedAt = Optional.ofNullable(rejectedAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "rejectedAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage rejectedAt(Optional<String> rejectedAt) {
+      this.rejectedAt = rejectedAt;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage acceptedAt(Nullable<String> acceptedAt) {
+      if (acceptedAt.isNull()) {
+        this.acceptedAt = null;
+      }
+      else if (acceptedAt.isEmpty()) {
+        this.acceptedAt = Optional.empty();
+      }
+      else {
+        this.acceptedAt = Optional.of(acceptedAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage acceptedAt(String acceptedAt) {
+      this.acceptedAt = Optional.ofNullable(acceptedAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "acceptedAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage acceptedAt(Optional<String> acceptedAt) {
+      this.acceptedAt = acceptedAt;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage submittedAt(Nullable<String> submittedAt) {
+      if (submittedAt.isNull()) {
+        this.submittedAt = null;
+      }
+      else if (submittedAt.isEmpty()) {
+        this.submittedAt = Optional.empty();
+      }
+      else {
+        this.submittedAt = Optional.of(submittedAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage submittedAt(String submittedAt) {
+      this.submittedAt = Optional.ofNullable(submittedAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "submittedAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage submittedAt(Optional<String> submittedAt) {
+      this.submittedAt = submittedAt;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage transportSystem(Nullable<String> transportSystem) {
+      if (transportSystem.isNull()) {
+        this.transportSystem = null;
+      }
+      else if (transportSystem.isEmpty()) {
+        this.transportSystem = Optional.empty();
+      }
+      else {
+        this.transportSystem = Optional.of(transportSystem.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage transportSystem(String transportSystem) {
+      this.transportSystem = Optional.ofNullable(transportSystem);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "transportSystem",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage transportSystem(Optional<String> transportSystem) {
+      this.transportSystem = transportSystem;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentKey(Nullable<String> documentKey) {
+      if (documentKey.isNull()) {
+        this.documentKey = null;
+      }
+      else if (documentKey.isEmpty()) {
+        this.documentKey = Optional.empty();
+      }
+      else {
+        this.documentKey = Optional.of(documentKey.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentKey(String documentKey) {
+      this.documentKey = Optional.ofNullable(documentKey);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentKey",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentKey(Optional<String> documentKey) {
+      this.documentKey = documentKey;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage period(Nullable<String> period) {
+      if (period.isNull()) {
+        this.period = null;
+      }
+      else if (period.isEmpty()) {
+        this.period = Optional.empty();
+      }
+      else {
+        this.period = Optional.of(period.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage period(String period) {
+      this.period = Optional.ofNullable(period);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "period",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage period(Optional<String> period) {
+      this.period = period;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage ruleKey(Nullable<String> ruleKey) {
+      if (ruleKey.isNull()) {
+        this.ruleKey = null;
+      }
+      else if (ruleKey.isEmpty()) {
+        this.ruleKey = Optional.empty();
+      }
+      else {
+        this.ruleKey = Optional.of(ruleKey.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage ruleKey(String ruleKey) {
+      this.ruleKey = Optional.ofNullable(ruleKey);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "ruleKey",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage ruleKey(Optional<String> ruleKey) {
+      this.ruleKey = ruleKey;
       return this;
     }
 
@@ -592,7 +1467,7 @@ public final class PostV1DeclarationsSubmissionsCreateResponse {
 
     @java.lang.Override
     public PostV1DeclarationsSubmissionsCreateResponse build() {
-      return new PostV1DeclarationsSubmissionsCreateResponse(id, obligation, periodYear, periodMonth, variant, status, fileName, fileId, externalRef, message, createdAt, updatedAt, warnings, additionalProperties);
+      return new PostV1DeclarationsSubmissionsCreateResponse(id, obligation, periodYear, periodMonth, variant, status, fileName, fileId, externalRef, message, ruleKey, period, documentKey, origin, transportSystem, submittedAt, acceptedAt, rejectedAt, checkedAt, nextCheckAt, attempts, deliveryError, sentSha256, certificateFingerprint, submittedByActorType, submittedByActorId, createdAt, updatedAt, warnings, additionalProperties);
     }
 
     @java.lang.Override

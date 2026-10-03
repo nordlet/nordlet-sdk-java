@@ -50,6 +50,16 @@ public final class PostV1PurchasesInvoicesCreateRequest {
 
   private final Optional<String> notes;
 
+  private final Optional<String> intrastatTransportMode;
+
+  private final Optional<String> intrastatDeliveryTerms;
+
+  private final Optional<String> intrastatRegion;
+
+  private final Optional<String> intrastatNatureOfTransaction;
+
+  private final Optional<String> einvoiceNumber;
+
   private final Optional<String> documentRef;
 
   private final List<PostV1PurchasesInvoicesCreateRequestLinesItem> lines;
@@ -60,7 +70,10 @@ public final class PostV1PurchasesInvoicesCreateRequest {
       Optional<PostV1PurchasesInvoicesCreateRequestType> type, String documentNumber,
       String documentDate, Optional<String> dueDate, Optional<String> currency,
       Optional<String> creditedInvoiceId, Optional<String> purchaseOrderId,
-      Optional<String> operationTypeId, Optional<String> notes, Optional<String> documentRef,
+      Optional<String> operationTypeId, Optional<String> notes,
+      Optional<String> intrastatTransportMode, Optional<String> intrastatDeliveryTerms,
+      Optional<String> intrastatRegion, Optional<String> intrastatNatureOfTransaction,
+      Optional<String> einvoiceNumber, Optional<String> documentRef,
       List<PostV1PurchasesInvoicesCreateRequestLinesItem> lines,
       Map<String, Object> additionalProperties) {
     this.partnerId = partnerId;
@@ -73,6 +86,11 @@ public final class PostV1PurchasesInvoicesCreateRequest {
     this.purchaseOrderId = purchaseOrderId;
     this.operationTypeId = operationTypeId;
     this.notes = notes;
+    this.intrastatTransportMode = intrastatTransportMode;
+    this.intrastatDeliveryTerms = intrastatDeliveryTerms;
+    this.intrastatRegion = intrastatRegion;
+    this.intrastatNatureOfTransaction = intrastatNatureOfTransaction;
+    this.einvoiceNumber = einvoiceNumber;
     this.documentRef = documentRef;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
@@ -128,6 +146,31 @@ public final class PostV1PurchasesInvoicesCreateRequest {
     return notes;
   }
 
+  @JsonProperty("intrastatTransportMode")
+  public Optional<String> getIntrastatTransportMode() {
+    return intrastatTransportMode;
+  }
+
+  @JsonProperty("intrastatDeliveryTerms")
+  public Optional<String> getIntrastatDeliveryTerms() {
+    return intrastatDeliveryTerms;
+  }
+
+  @JsonProperty("intrastatRegion")
+  public Optional<String> getIntrastatRegion() {
+    return intrastatRegion;
+  }
+
+  @JsonProperty("intrastatNatureOfTransaction")
+  public Optional<String> getIntrastatNatureOfTransaction() {
+    return intrastatNatureOfTransaction;
+  }
+
+  @JsonProperty("einvoiceNumber")
+  public Optional<String> getEinvoiceNumber() {
+    return einvoiceNumber;
+  }
+
   @JsonProperty("documentRef")
   public Optional<String> getDocumentRef() {
     return documentRef;
@@ -150,12 +193,12 @@ public final class PostV1PurchasesInvoicesCreateRequest {
   }
 
   private boolean equalTo(PostV1PurchasesInvoicesCreateRequest other) {
-    return partnerId.equals(other.partnerId) && type.equals(other.type) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && creditedInvoiceId.equals(other.creditedInvoiceId) && purchaseOrderId.equals(other.purchaseOrderId) && operationTypeId.equals(other.operationTypeId) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && lines.equals(other.lines);
+    return partnerId.equals(other.partnerId) && type.equals(other.type) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && creditedInvoiceId.equals(other.creditedInvoiceId) && purchaseOrderId.equals(other.purchaseOrderId) && operationTypeId.equals(other.operationTypeId) && notes.equals(other.notes) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && einvoiceNumber.equals(other.einvoiceNumber) && documentRef.equals(other.documentRef) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.partnerId, this.type, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.creditedInvoiceId, this.purchaseOrderId, this.operationTypeId, this.notes, this.documentRef, this.lines);
+    return Objects.hash(this.partnerId, this.type, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.creditedInvoiceId, this.purchaseOrderId, this.operationTypeId, this.notes, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.einvoiceNumber, this.documentRef, this.lines);
   }
 
   @java.lang.Override
@@ -216,6 +259,26 @@ public final class PostV1PurchasesInvoicesCreateRequest {
 
     _FinalStage notes(String notes);
 
+    _FinalStage intrastatTransportMode(Optional<String> intrastatTransportMode);
+
+    _FinalStage intrastatTransportMode(String intrastatTransportMode);
+
+    _FinalStage intrastatDeliveryTerms(Optional<String> intrastatDeliveryTerms);
+
+    _FinalStage intrastatDeliveryTerms(String intrastatDeliveryTerms);
+
+    _FinalStage intrastatRegion(Optional<String> intrastatRegion);
+
+    _FinalStage intrastatRegion(String intrastatRegion);
+
+    _FinalStage intrastatNatureOfTransaction(Optional<String> intrastatNatureOfTransaction);
+
+    _FinalStage intrastatNatureOfTransaction(String intrastatNatureOfTransaction);
+
+    _FinalStage einvoiceNumber(Optional<String> einvoiceNumber);
+
+    _FinalStage einvoiceNumber(String einvoiceNumber);
+
     _FinalStage documentRef(Optional<String> documentRef);
 
     _FinalStage documentRef(String documentRef);
@@ -240,6 +303,16 @@ public final class PostV1PurchasesInvoicesCreateRequest {
     private List<PostV1PurchasesInvoicesCreateRequestLinesItem> lines = new ArrayList<>();
 
     private Optional<String> documentRef = Optional.empty();
+
+    private Optional<String> einvoiceNumber = Optional.empty();
+
+    private Optional<String> intrastatNatureOfTransaction = Optional.empty();
+
+    private Optional<String> intrastatRegion = Optional.empty();
+
+    private Optional<String> intrastatDeliveryTerms = Optional.empty();
+
+    private Optional<String> intrastatTransportMode = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -273,6 +346,11 @@ public final class PostV1PurchasesInvoicesCreateRequest {
       purchaseOrderId(other.getPurchaseOrderId());
       operationTypeId(other.getOperationTypeId());
       notes(other.getNotes());
+      intrastatTransportMode(other.getIntrastatTransportMode());
+      intrastatDeliveryTerms(other.getIntrastatDeliveryTerms());
+      intrastatRegion(other.getIntrastatRegion());
+      intrastatNatureOfTransaction(other.getIntrastatNatureOfTransaction());
+      einvoiceNumber(other.getEinvoiceNumber());
       documentRef(other.getDocumentRef());
       lines(other.getLines());
       return this;
@@ -339,6 +417,86 @@ public final class PostV1PurchasesInvoicesCreateRequest {
     )
     public _FinalStage documentRef(Optional<String> documentRef) {
       this.documentRef = documentRef;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage einvoiceNumber(String einvoiceNumber) {
+      this.einvoiceNumber = Optional.ofNullable(einvoiceNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "einvoiceNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage einvoiceNumber(Optional<String> einvoiceNumber) {
+      this.einvoiceNumber = einvoiceNumber;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatNatureOfTransaction(String intrastatNatureOfTransaction) {
+      this.intrastatNatureOfTransaction = Optional.ofNullable(intrastatNatureOfTransaction);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatNatureOfTransaction",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatNatureOfTransaction(Optional<String> intrastatNatureOfTransaction) {
+      this.intrastatNatureOfTransaction = intrastatNatureOfTransaction;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatRegion(String intrastatRegion) {
+      this.intrastatRegion = Optional.ofNullable(intrastatRegion);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatRegion",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatRegion(Optional<String> intrastatRegion) {
+      this.intrastatRegion = intrastatRegion;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatDeliveryTerms(String intrastatDeliveryTerms) {
+      this.intrastatDeliveryTerms = Optional.ofNullable(intrastatDeliveryTerms);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatDeliveryTerms",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatDeliveryTerms(Optional<String> intrastatDeliveryTerms) {
+      this.intrastatDeliveryTerms = intrastatDeliveryTerms;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage intrastatTransportMode(String intrastatTransportMode) {
+      this.intrastatTransportMode = Optional.ofNullable(intrastatTransportMode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "intrastatTransportMode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage intrastatTransportMode(Optional<String> intrastatTransportMode) {
+      this.intrastatTransportMode = intrastatTransportMode;
       return this;
     }
 
@@ -456,7 +614,7 @@ public final class PostV1PurchasesInvoicesCreateRequest {
 
     @java.lang.Override
     public PostV1PurchasesInvoicesCreateRequest build() {
-      return new PostV1PurchasesInvoicesCreateRequest(partnerId, type, documentNumber, documentDate, dueDate, currency, creditedInvoiceId, purchaseOrderId, operationTypeId, notes, documentRef, lines, additionalProperties);
+      return new PostV1PurchasesInvoicesCreateRequest(partnerId, type, documentNumber, documentDate, dueDate, currency, creditedInvoiceId, purchaseOrderId, operationTypeId, notes, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, einvoiceNumber, documentRef, lines, additionalProperties);
     }
 
     @java.lang.Override

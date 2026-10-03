@@ -37,6 +37,8 @@ public final class PostV1AccountMeResponse {
 
   private final Optional<String> activeCompanyId;
 
+  private final String timeZone;
+
   private final Optional<String> role;
 
   private final PostV1AccountMeResponseBilling billing;
@@ -50,13 +52,14 @@ public final class PostV1AccountMeResponse {
   private final Map<String, Object> additionalProperties;
 
   private PostV1AccountMeResponse(PostV1AccountMeResponseUser user, String locale,
-      Optional<String> activeCompanyId, Optional<String> role,
+      Optional<String> activeCompanyId, String timeZone, Optional<String> role,
       PostV1AccountMeResponseBilling billing, long referralPoints,
       PostV1AccountMeResponseConsent consent, List<PostV1AccountMeResponseCompaniesItem> companies,
       Map<String, Object> additionalProperties) {
     this.user = user;
     this.locale = locale;
     this.activeCompanyId = activeCompanyId;
+    this.timeZone = timeZone;
     this.role = role;
     this.billing = billing;
     this.referralPoints = referralPoints;
@@ -81,6 +84,11 @@ public final class PostV1AccountMeResponse {
       return Optional.empty();
     }
     return activeCompanyId;
+  }
+
+  @JsonProperty("timeZone")
+  public String getTimeZone() {
+    return timeZone;
   }
 
   @JsonIgnore
@@ -141,12 +149,12 @@ public final class PostV1AccountMeResponse {
   }
 
   private boolean equalTo(PostV1AccountMeResponse other) {
-    return user.equals(other.user) && locale.equals(other.locale) && activeCompanyId.equals(other.activeCompanyId) && role.equals(other.role) && billing.equals(other.billing) && referralPoints == other.referralPoints && consent.equals(other.consent) && companies.equals(other.companies);
+    return user.equals(other.user) && locale.equals(other.locale) && activeCompanyId.equals(other.activeCompanyId) && timeZone.equals(other.timeZone) && role.equals(other.role) && billing.equals(other.billing) && referralPoints == other.referralPoints && consent.equals(other.consent) && companies.equals(other.companies);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.user, this.locale, this.activeCompanyId, this.role, this.billing, this.referralPoints, this.consent, this.companies);
+    return Objects.hash(this.user, this.locale, this.activeCompanyId, this.timeZone, this.role, this.billing, this.referralPoints, this.consent, this.companies);
   }
 
   @java.lang.Override
@@ -165,7 +173,11 @@ public final class PostV1AccountMeResponse {
   }
 
   public interface LocaleStage {
-    BillingStage locale(@NotNull String locale);
+    TimeZoneStage locale(@NotNull String locale);
+  }
+
+  public interface TimeZoneStage {
+    BillingStage timeZone(@NotNull String timeZone);
   }
 
   public interface BillingStage {
@@ -209,10 +221,12 @@ public final class PostV1AccountMeResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements UserStage, LocaleStage, BillingStage, ReferralPointsStage, ConsentStage, _FinalStage {
+  public static final class Builder implements UserStage, LocaleStage, TimeZoneStage, BillingStage, ReferralPointsStage, ConsentStage, _FinalStage {
     private PostV1AccountMeResponseUser user;
 
     private String locale;
+
+    private String timeZone;
 
     private PostV1AccountMeResponseBilling billing;
 
@@ -237,6 +251,7 @@ public final class PostV1AccountMeResponse {
       user(other.getUser());
       locale(other.getLocale());
       activeCompanyId(other.getActiveCompanyId());
+      timeZone(other.getTimeZone());
       role(other.getRole());
       billing(other.getBilling());
       referralPoints(other.getReferralPoints());
@@ -254,8 +269,15 @@ public final class PostV1AccountMeResponse {
 
     @java.lang.Override
     @JsonSetter("locale")
-    public BillingStage locale(@NotNull String locale) {
+    public TimeZoneStage locale(@NotNull String locale) {
       this.locale = Objects.requireNonNull(locale, "locale must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("timeZone")
+    public BillingStage timeZone(@NotNull String timeZone) {
+      this.timeZone = Objects.requireNonNull(timeZone, "timeZone must not be null");
       return this;
     }
 
@@ -369,7 +391,7 @@ public final class PostV1AccountMeResponse {
 
     @java.lang.Override
     public PostV1AccountMeResponse build() {
-      return new PostV1AccountMeResponse(user, locale, activeCompanyId, role, billing, referralPoints, consent, companies, additionalProperties);
+      return new PostV1AccountMeResponse(user, locale, activeCompanyId, timeZone, role, billing, referralPoints, consent, companies, additionalProperties);
     }
 
     @java.lang.Override

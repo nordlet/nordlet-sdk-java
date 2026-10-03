@@ -39,6 +39,10 @@ public final class PostV1AccountApiKeysListResponseRowsItem {
 
   private final Optional<String> lastUsedAt;
 
+  private final Optional<String> expiresAt;
+
+  private final Optional<String> replacedByKeyId;
+
   private final Optional<String> revokedAt;
 
   private final String createdAt;
@@ -46,12 +50,14 @@ public final class PostV1AccountApiKeysListResponseRowsItem {
   private final Map<String, Object> additionalProperties;
 
   private PostV1AccountApiKeysListResponseRowsItem(String id, String name, List<String> scopes,
-      Optional<String> lastUsedAt, Optional<String> revokedAt, String createdAt,
-      Map<String, Object> additionalProperties) {
+      Optional<String> lastUsedAt, Optional<String> expiresAt, Optional<String> replacedByKeyId,
+      Optional<String> revokedAt, String createdAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.name = name;
     this.scopes = scopes;
     this.lastUsedAt = lastUsedAt;
+    this.expiresAt = expiresAt;
+    this.replacedByKeyId = replacedByKeyId;
     this.revokedAt = revokedAt;
     this.createdAt = createdAt;
     this.additionalProperties = additionalProperties;
@@ -81,6 +87,22 @@ public final class PostV1AccountApiKeysListResponseRowsItem {
   }
 
   @JsonIgnore
+  public Optional<String> getExpiresAt() {
+    if (expiresAt == null) {
+      return Optional.empty();
+    }
+    return expiresAt;
+  }
+
+  @JsonIgnore
+  public Optional<String> getReplacedByKeyId() {
+    if (replacedByKeyId == null) {
+      return Optional.empty();
+    }
+    return replacedByKeyId;
+  }
+
+  @JsonIgnore
   public Optional<String> getRevokedAt() {
     if (revokedAt == null) {
       return Optional.empty();
@@ -106,6 +128,24 @@ public final class PostV1AccountApiKeysListResponseRowsItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("expiresAt")
+  private Optional<String> _getExpiresAt() {
+    return expiresAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("replacedByKeyId")
+  private Optional<String> _getReplacedByKeyId() {
+    return replacedByKeyId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("revokedAt")
   private Optional<String> _getRevokedAt() {
     return revokedAt;
@@ -123,12 +163,12 @@ public final class PostV1AccountApiKeysListResponseRowsItem {
   }
 
   private boolean equalTo(PostV1AccountApiKeysListResponseRowsItem other) {
-    return id.equals(other.id) && name.equals(other.name) && scopes.equals(other.scopes) && lastUsedAt.equals(other.lastUsedAt) && revokedAt.equals(other.revokedAt) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && name.equals(other.name) && scopes.equals(other.scopes) && lastUsedAt.equals(other.lastUsedAt) && expiresAt.equals(other.expiresAt) && replacedByKeyId.equals(other.replacedByKeyId) && revokedAt.equals(other.revokedAt) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.scopes, this.lastUsedAt, this.revokedAt, this.createdAt);
+    return Objects.hash(this.id, this.name, this.scopes, this.lastUsedAt, this.expiresAt, this.replacedByKeyId, this.revokedAt, this.createdAt);
   }
 
   @java.lang.Override
@@ -173,6 +213,18 @@ public final class PostV1AccountApiKeysListResponseRowsItem {
 
     _FinalStage lastUsedAt(Nullable<String> lastUsedAt);
 
+    _FinalStage expiresAt(Optional<String> expiresAt);
+
+    _FinalStage expiresAt(String expiresAt);
+
+    _FinalStage expiresAt(Nullable<String> expiresAt);
+
+    _FinalStage replacedByKeyId(Optional<String> replacedByKeyId);
+
+    _FinalStage replacedByKeyId(String replacedByKeyId);
+
+    _FinalStage replacedByKeyId(Nullable<String> replacedByKeyId);
+
     _FinalStage revokedAt(Optional<String> revokedAt);
 
     _FinalStage revokedAt(String revokedAt);
@@ -192,6 +244,10 @@ public final class PostV1AccountApiKeysListResponseRowsItem {
 
     private Optional<String> revokedAt = Optional.empty();
 
+    private Optional<String> replacedByKeyId = Optional.empty();
+
+    private Optional<String> expiresAt = Optional.empty();
+
     private Optional<String> lastUsedAt = Optional.empty();
 
     private List<String> scopes = new ArrayList<>();
@@ -208,6 +264,8 @@ public final class PostV1AccountApiKeysListResponseRowsItem {
       name(other.getName());
       scopes(other.getScopes());
       lastUsedAt(other.getLastUsedAt());
+      expiresAt(other.getExpiresAt());
+      replacedByKeyId(other.getReplacedByKeyId());
       revokedAt(other.getRevokedAt());
       createdAt(other.getCreatedAt());
       return this;
@@ -261,6 +319,66 @@ public final class PostV1AccountApiKeysListResponseRowsItem {
     )
     public _FinalStage revokedAt(Optional<String> revokedAt) {
       this.revokedAt = revokedAt;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage replacedByKeyId(Nullable<String> replacedByKeyId) {
+      if (replacedByKeyId.isNull()) {
+        this.replacedByKeyId = null;
+      }
+      else if (replacedByKeyId.isEmpty()) {
+        this.replacedByKeyId = Optional.empty();
+      }
+      else {
+        this.replacedByKeyId = Optional.of(replacedByKeyId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage replacedByKeyId(String replacedByKeyId) {
+      this.replacedByKeyId = Optional.ofNullable(replacedByKeyId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "replacedByKeyId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage replacedByKeyId(Optional<String> replacedByKeyId) {
+      this.replacedByKeyId = replacedByKeyId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage expiresAt(Nullable<String> expiresAt) {
+      if (expiresAt.isNull()) {
+        this.expiresAt = null;
+      }
+      else if (expiresAt.isEmpty()) {
+        this.expiresAt = Optional.empty();
+      }
+      else {
+        this.expiresAt = Optional.of(expiresAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage expiresAt(String expiresAt) {
+      this.expiresAt = Optional.ofNullable(expiresAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "expiresAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage expiresAt(Optional<String> expiresAt) {
+      this.expiresAt = expiresAt;
       return this;
     }
 
@@ -323,7 +441,7 @@ public final class PostV1AccountApiKeysListResponseRowsItem {
 
     @java.lang.Override
     public PostV1AccountApiKeysListResponseRowsItem build() {
-      return new PostV1AccountApiKeysListResponseRowsItem(id, name, scopes, lastUsedAt, revokedAt, createdAt, additionalProperties);
+      return new PostV1AccountApiKeysListResponseRowsItem(id, name, scopes, lastUsedAt, expiresAt, replacedByKeyId, revokedAt, createdAt, additionalProperties);
     }
 
     @java.lang.Override

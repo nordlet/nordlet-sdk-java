@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -31,12 +32,15 @@ public final class PostV1AccountApiKeysCreateRequest {
 
   private final Optional<List<String>> scopes;
 
+  private final Optional<Long> expiresInDays;
+
   private final Map<String, Object> additionalProperties;
 
   private PostV1AccountApiKeysCreateRequest(String name, Optional<List<String>> scopes,
-      Map<String, Object> additionalProperties) {
+      Optional<Long> expiresInDays, Map<String, Object> additionalProperties) {
     this.name = name;
     this.scopes = scopes;
+    this.expiresInDays = expiresInDays;
     this.additionalProperties = additionalProperties;
   }
 
@@ -48,6 +52,11 @@ public final class PostV1AccountApiKeysCreateRequest {
   @JsonProperty("scopes")
   public Optional<List<String>> getScopes() {
     return scopes;
+  }
+
+  @JsonProperty("expiresInDays")
+  public Optional<Long> getExpiresInDays() {
+    return expiresInDays;
   }
 
   @java.lang.Override
@@ -62,12 +71,12 @@ public final class PostV1AccountApiKeysCreateRequest {
   }
 
   private boolean equalTo(PostV1AccountApiKeysCreateRequest other) {
-    return name.equals(other.name) && scopes.equals(other.scopes);
+    return name.equals(other.name) && scopes.equals(other.scopes) && expiresInDays.equals(other.expiresInDays);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.scopes);
+    return Objects.hash(this.name, this.scopes, this.expiresInDays);
   }
 
   @java.lang.Override
@@ -95,6 +104,10 @@ public final class PostV1AccountApiKeysCreateRequest {
     _FinalStage scopes(Optional<List<String>> scopes);
 
     _FinalStage scopes(List<String> scopes);
+
+    _FinalStage expiresInDays(Optional<Long> expiresInDays);
+
+    _FinalStage expiresInDays(Long expiresInDays);
   }
 
   @JsonIgnoreProperties(
@@ -102,6 +115,8 @@ public final class PostV1AccountApiKeysCreateRequest {
   )
   public static final class Builder implements NameStage, _FinalStage {
     private String name;
+
+    private Optional<Long> expiresInDays = Optional.empty();
 
     private Optional<List<String>> scopes = Optional.empty();
 
@@ -115,6 +130,7 @@ public final class PostV1AccountApiKeysCreateRequest {
     public Builder from(PostV1AccountApiKeysCreateRequest other) {
       name(other.getName());
       scopes(other.getScopes());
+      expiresInDays(other.getExpiresInDays());
       return this;
     }
 
@@ -122,6 +138,22 @@ public final class PostV1AccountApiKeysCreateRequest {
     @JsonSetter("name")
     public _FinalStage name(@NotNull String name) {
       this.name = Objects.requireNonNull(name, "name must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage expiresInDays(Long expiresInDays) {
+      this.expiresInDays = Optional.ofNullable(expiresInDays);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "expiresInDays",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage expiresInDays(Optional<Long> expiresInDays) {
+      this.expiresInDays = expiresInDays;
       return this;
     }
 
@@ -143,7 +175,7 @@ public final class PostV1AccountApiKeysCreateRequest {
 
     @java.lang.Override
     public PostV1AccountApiKeysCreateRequest build() {
-      return new PostV1AccountApiKeysCreateRequest(name, scopes, additionalProperties);
+      return new PostV1AccountApiKeysCreateRequest(name, scopes, expiresInDays, additionalProperties);
     }
 
     @java.lang.Override
