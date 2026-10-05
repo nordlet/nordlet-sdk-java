@@ -18,13 +18,17 @@ import com.nordlet.api.resources.cash.CashClient;
 import com.nordlet.api.resources.catalog.CatalogClient;
 import com.nordlet.api.resources.consolidation.ConsolidationClient;
 import com.nordlet.api.resources.declarations.DeclarationsClient;
+import com.nordlet.api.resources.documentseries.DocumentSeriesClient;
 import com.nordlet.api.resources.ecommerce.EcommerceClient;
 import com.nordlet.api.resources.files.FilesClient;
 import com.nordlet.api.resources.fleet.FleetClient;
 import com.nordlet.api.resources.hr.HrClient;
 import com.nordlet.api.resources.inventory.InventoryClient;
+import com.nordlet.api.resources.leads.LeadsClient;
 import com.nordlet.api.resources.ledger.LedgerClient;
 import com.nordlet.api.resources.migration.MigrationClient;
+import com.nordlet.api.resources.officers.OfficersClient;
+import com.nordlet.api.resources.operationtypes.OperationTypesClient;
 import com.nordlet.api.resources.partners.PartnersClient;
 import com.nordlet.api.resources.payroll.PayrollClient;
 import com.nordlet.api.resources.pos.PosClient;
@@ -46,9 +50,15 @@ public class NordletApiClient {
 
   protected final Supplier<PartnersClient> partnersClient;
 
+  protected final Supplier<LeadsClient> leadsClient;
+
   protected final Supplier<CatalogClient> catalogClient;
 
   protected final Supplier<SalesClient> salesClient;
+
+  protected final Supplier<OperationTypesClient> operationTypesClient;
+
+  protected final Supplier<DocumentSeriesClient> documentSeriesClient;
 
   protected final Supplier<PurchasesClient> purchasesClient;
 
@@ -57,6 +67,8 @@ public class NordletApiClient {
   protected final Supplier<DeclarationsClient> declarationsClient;
 
   protected final Supplier<LedgerClient> ledgerClient;
+
+  protected final Supplier<OfficersClient> officersClient;
 
   protected final Supplier<MigrationClient> migrationClient;
 
@@ -108,12 +120,16 @@ public class NordletApiClient {
     this.clientOptions = clientOptions;
     this.referenceClient = Suppliers.memoize(() -> new ReferenceClient(clientOptions));
     this.partnersClient = Suppliers.memoize(() -> new PartnersClient(clientOptions));
+    this.leadsClient = Suppliers.memoize(() -> new LeadsClient(clientOptions));
     this.catalogClient = Suppliers.memoize(() -> new CatalogClient(clientOptions));
     this.salesClient = Suppliers.memoize(() -> new SalesClient(clientOptions));
+    this.operationTypesClient = Suppliers.memoize(() -> new OperationTypesClient(clientOptions));
+    this.documentSeriesClient = Suppliers.memoize(() -> new DocumentSeriesClient(clientOptions));
     this.purchasesClient = Suppliers.memoize(() -> new PurchasesClient(clientOptions));
     this.captureClient = Suppliers.memoize(() -> new CaptureClient(clientOptions));
     this.declarationsClient = Suppliers.memoize(() -> new DeclarationsClient(clientOptions));
     this.ledgerClient = Suppliers.memoize(() -> new LedgerClient(clientOptions));
+    this.officersClient = Suppliers.memoize(() -> new OfficersClient(clientOptions));
     this.migrationClient = Suppliers.memoize(() -> new MigrationClient(clientOptions));
     this.assetsClient = Suppliers.memoize(() -> new AssetsClient(clientOptions));
     this.hrClient = Suppliers.memoize(() -> new HrClient(clientOptions));
@@ -147,12 +163,24 @@ public class NordletApiClient {
     return this.partnersClient.get();
   }
 
+  public LeadsClient leads() {
+    return this.leadsClient.get();
+  }
+
   public CatalogClient catalog() {
     return this.catalogClient.get();
   }
 
   public SalesClient sales() {
     return this.salesClient.get();
+  }
+
+  public OperationTypesClient operationTypes() {
+    return this.operationTypesClient.get();
+  }
+
+  public DocumentSeriesClient documentSeries() {
+    return this.documentSeriesClient.get();
   }
 
   public PurchasesClient purchases() {
@@ -169,6 +197,10 @@ public class NordletApiClient {
 
   public LedgerClient ledger() {
     return this.ledgerClient.get();
+  }
+
+  public OfficersClient officers() {
+    return this.officersClient.get();
   }
 
   public MigrationClient migration() {

@@ -6,68 +6,60 @@ package com.nordlet.api.resources.ledger;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsApplyTemplateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsSwitchChartRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsUpdateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsDeleteRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsUpdateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCentersCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCentersListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCentersUpdateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerJournalTransactionsCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerJournalTransactionsGetRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerJournalTransactionsListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerOwnersCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerOwnersDeleteRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerOwnersListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerOwnersUpdateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerPeriodsListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerPeriodsLockRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerPeriodsUnlockRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerPostingRulesListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerPostingRulesUpdateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerStatementRowsListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerStatementRowsSchemesRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerStatementRowsSetRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1OfficersCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1OfficersDeleteRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1OfficersListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1OfficersUpdateRequest;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsApplyTemplateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsSwitchChartResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsUpdateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsDeleteResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsUpdateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCentersCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCentersListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCentersUpdateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerJournalTransactionsCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerJournalTransactionsGetResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerJournalTransactionsListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerOwnersCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerOwnersDeleteResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerOwnersListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerOwnersUpdateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerPeriodsListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerPeriodsLockResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerPeriodsUnlockResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerPostingRulesListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerPostingRulesUpdateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerStatementRowsListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerStatementRowsSchemesResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerStatementRowsSetResponse;
-import com.nordlet.api.resources.ledger.types.PostV1OfficersCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1OfficersDeleteResponse;
-import com.nordlet.api.resources.ledger.types.PostV1OfficersListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1OfficersUpdateResponse;
+import com.nordlet.api.resources.ledger.requests.AccountsApplyTemplateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.AccountsCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.AccountsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.AccountsSwitchChartLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.AccountsUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCenterGroupsCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCenterGroupsDeleteLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCenterGroupsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCenterGroupsUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCentersCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCentersListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCentersUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.JournalTransactionsCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.JournalTransactionsGetLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.JournalTransactionsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.OwnersCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.OwnersDeleteLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.OwnersListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.OwnersUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.PeriodsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.PeriodsLockLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.PeriodsUnlockLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.PostingRulesListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.PostingRulesUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.StatementRowsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.StatementRowsSchemesLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.StatementRowsSetLedgerRequest;
+import com.nordlet.api.resources.ledger.types.AccountsApplyTemplateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.AccountsCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.AccountsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.AccountsSwitchChartLedgerResponse;
+import com.nordlet.api.resources.ledger.types.AccountsUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCenterGroupsCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCenterGroupsDeleteLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCenterGroupsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCenterGroupsUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCentersCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCentersListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCentersUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.JournalTransactionsCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.JournalTransactionsGetLedgerResponse;
+import com.nordlet.api.resources.ledger.types.JournalTransactionsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.OwnersCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.OwnersDeleteLedgerResponse;
+import com.nordlet.api.resources.ledger.types.OwnersListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.OwnersUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.PeriodsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.PeriodsLockLedgerResponse;
+import com.nordlet.api.resources.ledger.types.PeriodsUnlockLedgerResponse;
+import com.nordlet.api.resources.ledger.types.PostingRulesListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.PostingRulesUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.StatementRowsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.StatementRowsSchemesLedgerResponse;
+import com.nordlet.api.resources.ledger.types.StatementRowsSetLedgerResponse;
 
 public class LedgerClient {
   protected final ClientOptions clientOptions;
@@ -86,448 +78,368 @@ public class LedgerClient {
     return this.rawClient;
   }
 
-  public PostV1LedgerAccountsListResponse postV1LedgerAccountsList() {
-    return this.rawClient.postV1LedgerAccountsList().body();
+  public AccountsListLedgerResponse accountsList() {
+    return this.rawClient.accountsList().body();
   }
 
-  public PostV1LedgerAccountsListResponse postV1LedgerAccountsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerAccountsList(requestOptions).body();
+  public AccountsListLedgerResponse accountsList(RequestOptions requestOptions) {
+    return this.rawClient.accountsList(requestOptions).body();
   }
 
-  public PostV1LedgerAccountsListResponse postV1LedgerAccountsList(
-      PostV1LedgerAccountsListRequest request) {
-    return this.rawClient.postV1LedgerAccountsList(request).body();
+  public AccountsListLedgerResponse accountsList(AccountsListLedgerRequest request) {
+    return this.rawClient.accountsList(request).body();
   }
 
-  public PostV1LedgerAccountsListResponse postV1LedgerAccountsList(
-      PostV1LedgerAccountsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerAccountsList(request, requestOptions).body();
-  }
-
-  public PostV1LedgerAccountsCreateResponse postV1LedgerAccountsCreate(
-      PostV1LedgerAccountsCreateRequest request) {
-    return this.rawClient.postV1LedgerAccountsCreate(request).body();
-  }
-
-  public PostV1LedgerAccountsCreateResponse postV1LedgerAccountsCreate(
-      PostV1LedgerAccountsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerAccountsCreate(request, requestOptions).body();
-  }
-
-  public PostV1LedgerAccountsUpdateResponse postV1LedgerAccountsUpdate(
-      PostV1LedgerAccountsUpdateRequest request) {
-    return this.rawClient.postV1LedgerAccountsUpdate(request).body();
-  }
-
-  public PostV1LedgerAccountsUpdateResponse postV1LedgerAccountsUpdate(
-      PostV1LedgerAccountsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerAccountsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1LedgerAccountsApplyTemplateResponse postV1LedgerAccountsApplyTemplate() {
-    return this.rawClient.postV1LedgerAccountsApplyTemplate().body();
-  }
-
-  public PostV1LedgerAccountsApplyTemplateResponse postV1LedgerAccountsApplyTemplate(
+  public AccountsListLedgerResponse accountsList(AccountsListLedgerRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerAccountsApplyTemplate(requestOptions).body();
+    return this.rawClient.accountsList(request, requestOptions).body();
   }
 
-  public PostV1LedgerAccountsApplyTemplateResponse postV1LedgerAccountsApplyTemplate(
-      PostV1LedgerAccountsApplyTemplateRequest request) {
-    return this.rawClient.postV1LedgerAccountsApplyTemplate(request).body();
+  public AccountsCreateLedgerResponse accountsCreate(AccountsCreateLedgerRequest request) {
+    return this.rawClient.accountsCreate(request).body();
   }
 
-  public PostV1LedgerAccountsApplyTemplateResponse postV1LedgerAccountsApplyTemplate(
-      PostV1LedgerAccountsApplyTemplateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerAccountsApplyTemplate(request, requestOptions).body();
+  public AccountsCreateLedgerResponse accountsCreate(AccountsCreateLedgerRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.accountsCreate(request, requestOptions).body();
+  }
+
+  public AccountsUpdateLedgerResponse accountsUpdate(AccountsUpdateLedgerRequest request) {
+    return this.rawClient.accountsUpdate(request).body();
+  }
+
+  public AccountsUpdateLedgerResponse accountsUpdate(AccountsUpdateLedgerRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.accountsUpdate(request, requestOptions).body();
+  }
+
+  public AccountsApplyTemplateLedgerResponse accountsApplyTemplate() {
+    return this.rawClient.accountsApplyTemplate().body();
+  }
+
+  public AccountsApplyTemplateLedgerResponse accountsApplyTemplate(RequestOptions requestOptions) {
+    return this.rawClient.accountsApplyTemplate(requestOptions).body();
+  }
+
+  public AccountsApplyTemplateLedgerResponse accountsApplyTemplate(
+      AccountsApplyTemplateLedgerRequest request) {
+    return this.rawClient.accountsApplyTemplate(request).body();
+  }
+
+  public AccountsApplyTemplateLedgerResponse accountsApplyTemplate(
+      AccountsApplyTemplateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.accountsApplyTemplate(request, requestOptions).body();
   }
 
   /**
    * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
    */
-  public PostV1LedgerAccountsSwitchChartResponse moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
-      ) {
-    return this.rawClient.moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry().body();
+  public AccountsSwitchChartLedgerResponse accountsSwitchChart() {
+    return this.rawClient.accountsSwitchChart().body();
   }
 
   /**
    * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
    */
-  public PostV1LedgerAccountsSwitchChartResponse moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
-      RequestOptions requestOptions) {
-    return this.rawClient.moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(requestOptions).body();
+  public AccountsSwitchChartLedgerResponse accountsSwitchChart(RequestOptions requestOptions) {
+    return this.rawClient.accountsSwitchChart(requestOptions).body();
   }
 
   /**
    * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
    */
-  public PostV1LedgerAccountsSwitchChartResponse moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
-      PostV1LedgerAccountsSwitchChartRequest request) {
-    return this.rawClient.moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(request).body();
+  public AccountsSwitchChartLedgerResponse accountsSwitchChart(
+      AccountsSwitchChartLedgerRequest request) {
+    return this.rawClient.accountsSwitchChart(request).body();
   }
 
   /**
    * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
    */
-  public PostV1LedgerAccountsSwitchChartResponse moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
-      PostV1LedgerAccountsSwitchChartRequest request, RequestOptions requestOptions) {
-    return this.rawClient.moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(request, requestOptions).body();
+  public AccountsSwitchChartLedgerResponse accountsSwitchChart(
+      AccountsSwitchChartLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.accountsSwitchChart(request, requestOptions).body();
   }
 
-  public PostV1LedgerPeriodsListResponse postV1LedgerPeriodsList() {
-    return this.rawClient.postV1LedgerPeriodsList().body();
+  public PeriodsListLedgerResponse periodsList() {
+    return this.rawClient.periodsList().body();
   }
 
-  public PostV1LedgerPeriodsListResponse postV1LedgerPeriodsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerPeriodsList(requestOptions).body();
+  public PeriodsListLedgerResponse periodsList(RequestOptions requestOptions) {
+    return this.rawClient.periodsList(requestOptions).body();
   }
 
-  public PostV1LedgerPeriodsListResponse postV1LedgerPeriodsList(
-      PostV1LedgerPeriodsListRequest request) {
-    return this.rawClient.postV1LedgerPeriodsList(request).body();
+  public PeriodsListLedgerResponse periodsList(PeriodsListLedgerRequest request) {
+    return this.rawClient.periodsList(request).body();
   }
 
-  public PostV1LedgerPeriodsListResponse postV1LedgerPeriodsList(
-      PostV1LedgerPeriodsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerPeriodsList(request, requestOptions).body();
-  }
-
-  public PostV1LedgerPeriodsLockResponse postV1LedgerPeriodsLock(
-      PostV1LedgerPeriodsLockRequest request) {
-    return this.rawClient.postV1LedgerPeriodsLock(request).body();
-  }
-
-  public PostV1LedgerPeriodsLockResponse postV1LedgerPeriodsLock(
-      PostV1LedgerPeriodsLockRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerPeriodsLock(request, requestOptions).body();
-  }
-
-  public PostV1LedgerPeriodsUnlockResponse postV1LedgerPeriodsUnlock(
-      PostV1LedgerPeriodsUnlockRequest request) {
-    return this.rawClient.postV1LedgerPeriodsUnlock(request).body();
-  }
-
-  public PostV1LedgerPeriodsUnlockResponse postV1LedgerPeriodsUnlock(
-      PostV1LedgerPeriodsUnlockRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerPeriodsUnlock(request, requestOptions).body();
-  }
-
-  public PostV1LedgerJournalTransactionsListResponse postV1LedgerJournalTransactionsList() {
-    return this.rawClient.postV1LedgerJournalTransactionsList().body();
-  }
-
-  public PostV1LedgerJournalTransactionsListResponse postV1LedgerJournalTransactionsList(
+  public PeriodsListLedgerResponse periodsList(PeriodsListLedgerRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerJournalTransactionsList(requestOptions).body();
+    return this.rawClient.periodsList(request, requestOptions).body();
   }
 
-  public PostV1LedgerJournalTransactionsListResponse postV1LedgerJournalTransactionsList(
-      PostV1LedgerJournalTransactionsListRequest request) {
-    return this.rawClient.postV1LedgerJournalTransactionsList(request).body();
+  public PeriodsLockLedgerResponse periodsLock(PeriodsLockLedgerRequest request) {
+    return this.rawClient.periodsLock(request).body();
   }
 
-  public PostV1LedgerJournalTransactionsListResponse postV1LedgerJournalTransactionsList(
-      PostV1LedgerJournalTransactionsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerJournalTransactionsList(request, requestOptions).body();
-  }
-
-  public PostV1LedgerCostCentersCreateResponse postV1LedgerCostCentersCreate(
-      PostV1LedgerCostCentersCreateRequest request) {
-    return this.rawClient.postV1LedgerCostCentersCreate(request).body();
-  }
-
-  public PostV1LedgerCostCentersCreateResponse postV1LedgerCostCentersCreate(
-      PostV1LedgerCostCentersCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCentersCreate(request, requestOptions).body();
-  }
-
-  public PostV1LedgerCostCentersUpdateResponse postV1LedgerCostCentersUpdate(
-      PostV1LedgerCostCentersUpdateRequest request) {
-    return this.rawClient.postV1LedgerCostCentersUpdate(request).body();
-  }
-
-  public PostV1LedgerCostCentersUpdateResponse postV1LedgerCostCentersUpdate(
-      PostV1LedgerCostCentersUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCentersUpdate(request, requestOptions).body();
-  }
-
-  public PostV1LedgerCostCentersListResponse postV1LedgerCostCentersList() {
-    return this.rawClient.postV1LedgerCostCentersList().body();
-  }
-
-  public PostV1LedgerCostCentersListResponse postV1LedgerCostCentersList(
+  public PeriodsLockLedgerResponse periodsLock(PeriodsLockLedgerRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCentersList(requestOptions).body();
+    return this.rawClient.periodsLock(request, requestOptions).body();
   }
 
-  public PostV1LedgerCostCentersListResponse postV1LedgerCostCentersList(
-      PostV1LedgerCostCentersListRequest request) {
-    return this.rawClient.postV1LedgerCostCentersList(request).body();
+  public PeriodsUnlockLedgerResponse periodsUnlock(PeriodsUnlockLedgerRequest request) {
+    return this.rawClient.periodsUnlock(request).body();
   }
 
-  public PostV1LedgerCostCentersListResponse postV1LedgerCostCentersList(
-      PostV1LedgerCostCentersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCentersList(request, requestOptions).body();
-  }
-
-  public PostV1LedgerCostCenterGroupsCreateResponse postV1LedgerCostCenterGroupsCreate(
-      PostV1LedgerCostCenterGroupsCreateRequest request) {
-    return this.rawClient.postV1LedgerCostCenterGroupsCreate(request).body();
-  }
-
-  public PostV1LedgerCostCenterGroupsCreateResponse postV1LedgerCostCenterGroupsCreate(
-      PostV1LedgerCostCenterGroupsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCenterGroupsCreate(request, requestOptions).body();
-  }
-
-  public PostV1LedgerCostCenterGroupsUpdateResponse postV1LedgerCostCenterGroupsUpdate(
-      PostV1LedgerCostCenterGroupsUpdateRequest request) {
-    return this.rawClient.postV1LedgerCostCenterGroupsUpdate(request).body();
-  }
-
-  public PostV1LedgerCostCenterGroupsUpdateResponse postV1LedgerCostCenterGroupsUpdate(
-      PostV1LedgerCostCenterGroupsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCenterGroupsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1LedgerCostCenterGroupsDeleteResponse postV1LedgerCostCenterGroupsDelete(
-      PostV1LedgerCostCenterGroupsDeleteRequest request) {
-    return this.rawClient.postV1LedgerCostCenterGroupsDelete(request).body();
-  }
-
-  public PostV1LedgerCostCenterGroupsDeleteResponse postV1LedgerCostCenterGroupsDelete(
-      PostV1LedgerCostCenterGroupsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCenterGroupsDelete(request, requestOptions).body();
-  }
-
-  public PostV1LedgerCostCenterGroupsListResponse postV1LedgerCostCenterGroupsList() {
-    return this.rawClient.postV1LedgerCostCenterGroupsList().body();
-  }
-
-  public PostV1LedgerCostCenterGroupsListResponse postV1LedgerCostCenterGroupsList(
+  public PeriodsUnlockLedgerResponse periodsUnlock(PeriodsUnlockLedgerRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCenterGroupsList(requestOptions).body();
+    return this.rawClient.periodsUnlock(request, requestOptions).body();
   }
 
-  public PostV1LedgerCostCenterGroupsListResponse postV1LedgerCostCenterGroupsList(
-      PostV1LedgerCostCenterGroupsListRequest request) {
-    return this.rawClient.postV1LedgerCostCenterGroupsList(request).body();
+  public JournalTransactionsListLedgerResponse journalTransactionsList() {
+    return this.rawClient.journalTransactionsList().body();
   }
 
-  public PostV1LedgerCostCenterGroupsListResponse postV1LedgerCostCenterGroupsList(
-      PostV1LedgerCostCenterGroupsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCenterGroupsList(request, requestOptions).body();
-  }
-
-  public PostV1LedgerPostingRulesListResponse postV1LedgerPostingRulesList() {
-    return this.rawClient.postV1LedgerPostingRulesList().body();
-  }
-
-  public PostV1LedgerPostingRulesListResponse postV1LedgerPostingRulesList(
+  public JournalTransactionsListLedgerResponse journalTransactionsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerPostingRulesList(requestOptions).body();
+    return this.rawClient.journalTransactionsList(requestOptions).body();
   }
 
-  public PostV1LedgerPostingRulesListResponse postV1LedgerPostingRulesList(
-      PostV1LedgerPostingRulesListRequest request) {
-    return this.rawClient.postV1LedgerPostingRulesList(request).body();
+  public JournalTransactionsListLedgerResponse journalTransactionsList(
+      JournalTransactionsListLedgerRequest request) {
+    return this.rawClient.journalTransactionsList(request).body();
   }
 
-  public PostV1LedgerPostingRulesListResponse postV1LedgerPostingRulesList(
-      PostV1LedgerPostingRulesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerPostingRulesList(request, requestOptions).body();
+  public JournalTransactionsListLedgerResponse journalTransactionsList(
+      JournalTransactionsListLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.journalTransactionsList(request, requestOptions).body();
   }
 
-  public PostV1LedgerPostingRulesUpdateResponse postV1LedgerPostingRulesUpdate(
-      PostV1LedgerPostingRulesUpdateRequest request) {
-    return this.rawClient.postV1LedgerPostingRulesUpdate(request).body();
+  public CostCentersCreateLedgerResponse costCentersCreate(CostCentersCreateLedgerRequest request) {
+    return this.rawClient.costCentersCreate(request).body();
   }
 
-  public PostV1LedgerPostingRulesUpdateResponse postV1LedgerPostingRulesUpdate(
-      PostV1LedgerPostingRulesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerPostingRulesUpdate(request, requestOptions).body();
+  public CostCentersCreateLedgerResponse costCentersCreate(CostCentersCreateLedgerRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.costCentersCreate(request, requestOptions).body();
   }
 
-  public PostV1LedgerOwnersCreateResponse postV1LedgerOwnersCreate(
-      PostV1LedgerOwnersCreateRequest request) {
-    return this.rawClient.postV1LedgerOwnersCreate(request).body();
+  public CostCentersUpdateLedgerResponse costCentersUpdate(CostCentersUpdateLedgerRequest request) {
+    return this.rawClient.costCentersUpdate(request).body();
   }
 
-  public PostV1LedgerOwnersCreateResponse postV1LedgerOwnersCreate(
-      PostV1LedgerOwnersCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerOwnersCreate(request, requestOptions).body();
+  public CostCentersUpdateLedgerResponse costCentersUpdate(CostCentersUpdateLedgerRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.costCentersUpdate(request, requestOptions).body();
   }
 
-  public PostV1LedgerOwnersUpdateResponse postV1LedgerOwnersUpdate(
-      PostV1LedgerOwnersUpdateRequest request) {
-    return this.rawClient.postV1LedgerOwnersUpdate(request).body();
+  public CostCentersListLedgerResponse costCentersList() {
+    return this.rawClient.costCentersList().body();
   }
 
-  public PostV1LedgerOwnersUpdateResponse postV1LedgerOwnersUpdate(
-      PostV1LedgerOwnersUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerOwnersUpdate(request, requestOptions).body();
+  public CostCentersListLedgerResponse costCentersList(RequestOptions requestOptions) {
+    return this.rawClient.costCentersList(requestOptions).body();
   }
 
-  public PostV1LedgerOwnersDeleteResponse postV1LedgerOwnersDelete(
-      PostV1LedgerOwnersDeleteRequest request) {
-    return this.rawClient.postV1LedgerOwnersDelete(request).body();
+  public CostCentersListLedgerResponse costCentersList(CostCentersListLedgerRequest request) {
+    return this.rawClient.costCentersList(request).body();
   }
 
-  public PostV1LedgerOwnersDeleteResponse postV1LedgerOwnersDelete(
-      PostV1LedgerOwnersDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerOwnersDelete(request, requestOptions).body();
+  public CostCentersListLedgerResponse costCentersList(CostCentersListLedgerRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.costCentersList(request, requestOptions).body();
   }
 
-  public PostV1LedgerOwnersListResponse postV1LedgerOwnersList() {
-    return this.rawClient.postV1LedgerOwnersList().body();
+  public CostCenterGroupsCreateLedgerResponse costCenterGroupsCreate(
+      CostCenterGroupsCreateLedgerRequest request) {
+    return this.rawClient.costCenterGroupsCreate(request).body();
   }
 
-  public PostV1LedgerOwnersListResponse postV1LedgerOwnersList(RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerOwnersList(requestOptions).body();
+  public CostCenterGroupsCreateLedgerResponse costCenterGroupsCreate(
+      CostCenterGroupsCreateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.costCenterGroupsCreate(request, requestOptions).body();
   }
 
-  public PostV1LedgerOwnersListResponse postV1LedgerOwnersList(
-      PostV1LedgerOwnersListRequest request) {
-    return this.rawClient.postV1LedgerOwnersList(request).body();
+  public CostCenterGroupsUpdateLedgerResponse costCenterGroupsUpdate(
+      CostCenterGroupsUpdateLedgerRequest request) {
+    return this.rawClient.costCenterGroupsUpdate(request).body();
   }
 
-  public PostV1LedgerOwnersListResponse postV1LedgerOwnersList(
-      PostV1LedgerOwnersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerOwnersList(request, requestOptions).body();
+  public CostCenterGroupsUpdateLedgerResponse costCenterGroupsUpdate(
+      CostCenterGroupsUpdateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.costCenterGroupsUpdate(request, requestOptions).body();
   }
 
-  public PostV1LedgerJournalTransactionsGetResponse postV1LedgerJournalTransactionsGet(
-      PostV1LedgerJournalTransactionsGetRequest request) {
-    return this.rawClient.postV1LedgerJournalTransactionsGet(request).body();
+  public CostCenterGroupsDeleteLedgerResponse costCenterGroupsDelete(
+      CostCenterGroupsDeleteLedgerRequest request) {
+    return this.rawClient.costCenterGroupsDelete(request).body();
   }
 
-  public PostV1LedgerJournalTransactionsGetResponse postV1LedgerJournalTransactionsGet(
-      PostV1LedgerJournalTransactionsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerJournalTransactionsGet(request, requestOptions).body();
+  public CostCenterGroupsDeleteLedgerResponse costCenterGroupsDelete(
+      CostCenterGroupsDeleteLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.costCenterGroupsDelete(request, requestOptions).body();
   }
 
-  public PostV1LedgerJournalTransactionsCreateResponse postV1LedgerJournalTransactionsCreate(
-      PostV1LedgerJournalTransactionsCreateRequest request) {
-    return this.rawClient.postV1LedgerJournalTransactionsCreate(request).body();
+  public CostCenterGroupsListLedgerResponse costCenterGroupsList() {
+    return this.rawClient.costCenterGroupsList().body();
   }
 
-  public PostV1LedgerJournalTransactionsCreateResponse postV1LedgerJournalTransactionsCreate(
-      PostV1LedgerJournalTransactionsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerJournalTransactionsCreate(request, requestOptions).body();
+  public CostCenterGroupsListLedgerResponse costCenterGroupsList(RequestOptions requestOptions) {
+    return this.rawClient.costCenterGroupsList(requestOptions).body();
+  }
+
+  public CostCenterGroupsListLedgerResponse costCenterGroupsList(
+      CostCenterGroupsListLedgerRequest request) {
+    return this.rawClient.costCenterGroupsList(request).body();
+  }
+
+  public CostCenterGroupsListLedgerResponse costCenterGroupsList(
+      CostCenterGroupsListLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.costCenterGroupsList(request, requestOptions).body();
+  }
+
+  public PostingRulesListLedgerResponse postingRulesList() {
+    return this.rawClient.postingRulesList().body();
+  }
+
+  public PostingRulesListLedgerResponse postingRulesList(RequestOptions requestOptions) {
+    return this.rawClient.postingRulesList(requestOptions).body();
+  }
+
+  public PostingRulesListLedgerResponse postingRulesList(PostingRulesListLedgerRequest request) {
+    return this.rawClient.postingRulesList(request).body();
+  }
+
+  public PostingRulesListLedgerResponse postingRulesList(PostingRulesListLedgerRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.postingRulesList(request, requestOptions).body();
+  }
+
+  public PostingRulesUpdateLedgerResponse postingRulesUpdate(
+      PostingRulesUpdateLedgerRequest request) {
+    return this.rawClient.postingRulesUpdate(request).body();
+  }
+
+  public PostingRulesUpdateLedgerResponse postingRulesUpdate(
+      PostingRulesUpdateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postingRulesUpdate(request, requestOptions).body();
+  }
+
+  public OwnersCreateLedgerResponse ownersCreate(OwnersCreateLedgerRequest request) {
+    return this.rawClient.ownersCreate(request).body();
+  }
+
+  public OwnersCreateLedgerResponse ownersCreate(OwnersCreateLedgerRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ownersCreate(request, requestOptions).body();
+  }
+
+  public OwnersUpdateLedgerResponse ownersUpdate(OwnersUpdateLedgerRequest request) {
+    return this.rawClient.ownersUpdate(request).body();
+  }
+
+  public OwnersUpdateLedgerResponse ownersUpdate(OwnersUpdateLedgerRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ownersUpdate(request, requestOptions).body();
+  }
+
+  public OwnersDeleteLedgerResponse ownersDelete(OwnersDeleteLedgerRequest request) {
+    return this.rawClient.ownersDelete(request).body();
+  }
+
+  public OwnersDeleteLedgerResponse ownersDelete(OwnersDeleteLedgerRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ownersDelete(request, requestOptions).body();
+  }
+
+  public OwnersListLedgerResponse ownersList() {
+    return this.rawClient.ownersList().body();
+  }
+
+  public OwnersListLedgerResponse ownersList(RequestOptions requestOptions) {
+    return this.rawClient.ownersList(requestOptions).body();
+  }
+
+  public OwnersListLedgerResponse ownersList(OwnersListLedgerRequest request) {
+    return this.rawClient.ownersList(request).body();
+  }
+
+  public OwnersListLedgerResponse ownersList(OwnersListLedgerRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ownersList(request, requestOptions).body();
+  }
+
+  public JournalTransactionsGetLedgerResponse journalTransactionsGet(
+      JournalTransactionsGetLedgerRequest request) {
+    return this.rawClient.journalTransactionsGet(request).body();
+  }
+
+  public JournalTransactionsGetLedgerResponse journalTransactionsGet(
+      JournalTransactionsGetLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.journalTransactionsGet(request, requestOptions).body();
+  }
+
+  public JournalTransactionsCreateLedgerResponse journalTransactionsCreate(
+      JournalTransactionsCreateLedgerRequest request) {
+    return this.rawClient.journalTransactionsCreate(request).body();
+  }
+
+  public JournalTransactionsCreateLedgerResponse journalTransactionsCreate(
+      JournalTransactionsCreateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.journalTransactionsCreate(request, requestOptions).body();
   }
 
   /**
    * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
    */
-  public PostV1LedgerStatementRowsSchemesResponse nationalStatementLayoutsAvailableToTheCompany() {
-    return this.rawClient.nationalStatementLayoutsAvailableToTheCompany().body();
+  public StatementRowsSchemesLedgerResponse statementRowsSchemes() {
+    return this.rawClient.statementRowsSchemes().body();
   }
 
   /**
    * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
    */
-  public PostV1LedgerStatementRowsSchemesResponse nationalStatementLayoutsAvailableToTheCompany(
+  public StatementRowsSchemesLedgerResponse statementRowsSchemes(RequestOptions requestOptions) {
+    return this.rawClient.statementRowsSchemes(requestOptions).body();
+  }
+
+  /**
+   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+   */
+  public StatementRowsSchemesLedgerResponse statementRowsSchemes(
+      StatementRowsSchemesLedgerRequest request) {
+    return this.rawClient.statementRowsSchemes(request).body();
+  }
+
+  /**
+   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+   */
+  public StatementRowsSchemesLedgerResponse statementRowsSchemes(
+      StatementRowsSchemesLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.statementRowsSchemes(request, requestOptions).body();
+  }
+
+  public StatementRowsListLedgerResponse statementRowsList(StatementRowsListLedgerRequest request) {
+    return this.rawClient.statementRowsList(request).body();
+  }
+
+  public StatementRowsListLedgerResponse statementRowsList(StatementRowsListLedgerRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.nationalStatementLayoutsAvailableToTheCompany(requestOptions).body();
-  }
-
-  /**
-   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
-   */
-  public PostV1LedgerStatementRowsSchemesResponse nationalStatementLayoutsAvailableToTheCompany(
-      PostV1LedgerStatementRowsSchemesRequest request) {
-    return this.rawClient.nationalStatementLayoutsAvailableToTheCompany(request).body();
-  }
-
-  /**
-   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
-   */
-  public PostV1LedgerStatementRowsSchemesResponse nationalStatementLayoutsAvailableToTheCompany(
-      PostV1LedgerStatementRowsSchemesRequest request, RequestOptions requestOptions) {
-    return this.rawClient.nationalStatementLayoutsAvailableToTheCompany(request, requestOptions).body();
-  }
-
-  public PostV1LedgerStatementRowsListResponse accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(
-      PostV1LedgerStatementRowsListRequest request) {
-    return this.rawClient.accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(request).body();
-  }
-
-  public PostV1LedgerStatementRowsListResponse accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(
-      PostV1LedgerStatementRowsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(request, requestOptions).body();
+    return this.rawClient.statementRowsList(request, requestOptions).body();
   }
 
   /**
    * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
    */
-  public PostV1LedgerStatementRowsSetResponse mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(
-      PostV1LedgerStatementRowsSetRequest request) {
-    return this.rawClient.mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(request).body();
+  public StatementRowsSetLedgerResponse statementRowsSet(StatementRowsSetLedgerRequest request) {
+    return this.rawClient.statementRowsSet(request).body();
   }
 
   /**
    * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
    */
-  public PostV1LedgerStatementRowsSetResponse mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(
-      PostV1LedgerStatementRowsSetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(request, requestOptions).body();
-  }
-
-  /**
-   * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
-   */
-  public PostV1OfficersListResponse officersOfTheCompany() {
-    return this.rawClient.officersOfTheCompany().body();
-  }
-
-  /**
-   * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
-   */
-  public PostV1OfficersListResponse officersOfTheCompany(RequestOptions requestOptions) {
-    return this.rawClient.officersOfTheCompany(requestOptions).body();
-  }
-
-  /**
-   * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
-   */
-  public PostV1OfficersListResponse officersOfTheCompany(PostV1OfficersListRequest request) {
-    return this.rawClient.officersOfTheCompany(request).body();
-  }
-
-  /**
-   * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
-   */
-  public PostV1OfficersListResponse officersOfTheCompany(PostV1OfficersListRequest request,
+  public StatementRowsSetLedgerResponse statementRowsSet(StatementRowsSetLedgerRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.officersOfTheCompany(request, requestOptions).body();
-  }
-
-  public PostV1OfficersCreateResponse recordAnOfficerOfTheCompany(
-      PostV1OfficersCreateRequest request) {
-    return this.rawClient.recordAnOfficerOfTheCompany(request).body();
-  }
-
-  public PostV1OfficersCreateResponse recordAnOfficerOfTheCompany(
-      PostV1OfficersCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.recordAnOfficerOfTheCompany(request, requestOptions).body();
-  }
-
-  public PostV1OfficersUpdateResponse changeARecordedOfficer(PostV1OfficersUpdateRequest request) {
-    return this.rawClient.changeARecordedOfficer(request).body();
-  }
-
-  public PostV1OfficersUpdateResponse changeARecordedOfficer(PostV1OfficersUpdateRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.changeARecordedOfficer(request, requestOptions).body();
-  }
-
-  public PostV1OfficersDeleteResponse removeARecordedOfficer(PostV1OfficersDeleteRequest request) {
-    return this.rawClient.removeARecordedOfficer(request).body();
-  }
-
-  public PostV1OfficersDeleteResponse removeARecordedOfficer(PostV1OfficersDeleteRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.removeARecordedOfficer(request, requestOptions).body();
+    return this.rawClient.statementRowsSet(request, requestOptions).body();
   }
 }

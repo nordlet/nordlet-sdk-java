@@ -6,96 +6,76 @@ package com.nordlet.api.resources.sales;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.sales.requests.PostV1DocumentSeriesCreateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1DocumentSeriesDeleteRequest;
-import com.nordlet.api.resources.sales.requests.PostV1DocumentSeriesGetRequest;
-import com.nordlet.api.resources.sales.requests.PostV1DocumentSeriesListRequest;
-import com.nordlet.api.resources.sales.requests.PostV1DocumentSeriesUpdateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1OperationTypesCreateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1OperationTypesDeleteRequest;
-import com.nordlet.api.resources.sales.requests.PostV1OperationTypesGetRequest;
-import com.nordlet.api.resources.sales.requests.PostV1OperationTypesListRequest;
-import com.nordlet.api.resources.sales.requests.PostV1OperationTypesUpdateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesActsCancelRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesActsCreateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesActsGetRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesActsIssueRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesActsListRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesActsPdfRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesActsUpdateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesApplyAdvanceRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesCreateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesDeleteRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesEinvoiceSendRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesEinvoiceStatusRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesEinvoiceXmlRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesGetRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesIssueRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesListRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesLockRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesPaymentLinkRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesPaymentSettingsGetRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesPaymentSettingsUpdateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesPdfRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesPeppolSendRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesPeppolXmlRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesSendRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesUnlockRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesUpdateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionComputeRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionModifyRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionProgressRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionRunRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionRunsListRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionSchedulesListRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionSummaryRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRefundLiabilityListRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRefundLiabilityTrueUpRequest;
-import com.nordlet.api.resources.sales.types.PostV1DocumentSeriesCreateResponse;
-import com.nordlet.api.resources.sales.types.PostV1DocumentSeriesDeleteResponse;
-import com.nordlet.api.resources.sales.types.PostV1DocumentSeriesGetResponse;
-import com.nordlet.api.resources.sales.types.PostV1DocumentSeriesListResponse;
-import com.nordlet.api.resources.sales.types.PostV1DocumentSeriesUpdateResponse;
-import com.nordlet.api.resources.sales.types.PostV1OperationTypesCreateResponse;
-import com.nordlet.api.resources.sales.types.PostV1OperationTypesDeleteResponse;
-import com.nordlet.api.resources.sales.types.PostV1OperationTypesGetResponse;
-import com.nordlet.api.resources.sales.types.PostV1OperationTypesListResponse;
-import com.nordlet.api.resources.sales.types.PostV1OperationTypesUpdateResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesActsCancelResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesActsCreateResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesActsGetResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesActsIssueResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesActsListResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesActsPdfResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesActsUpdateResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesApplyAdvanceResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesCreateResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesDeleteResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesEinvoiceSendResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesEinvoiceStatusResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesEinvoiceXmlResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesGetResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesIssueResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesListResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesLockResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesPaymentLinkResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesPaymentSettingsGetResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesPaymentSettingsUpdateResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesPdfResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesPeppolSendResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesPeppolXmlResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesSendResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesUnlockResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesUpdateResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionComputeResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionModifyResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionProgressResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionRunResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionRunsListResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionSchedulesListResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionSummaryResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRefundLiabilityListResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRefundLiabilityTrueUpResponse;
+import com.nordlet.api.resources.sales.requests.ActsCancelSalesRequest;
+import com.nordlet.api.resources.sales.requests.ActsCreateSalesRequest;
+import com.nordlet.api.resources.sales.requests.ActsGetSalesRequest;
+import com.nordlet.api.resources.sales.requests.ActsIssueSalesRequest;
+import com.nordlet.api.resources.sales.requests.ActsListSalesRequest;
+import com.nordlet.api.resources.sales.requests.ActsPdfSalesRequest;
+import com.nordlet.api.resources.sales.requests.ActsUpdateSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesApplyAdvanceSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesCreateSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesDeleteSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesEinvoiceSendSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesEinvoiceStatusSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesEinvoiceXmlSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesGetSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesIssueSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesListSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesLockSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesPaymentLinkSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesPaymentSettingsGetSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesPaymentSettingsUpdateSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesPdfSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesPeppolSendSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesPeppolXmlSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesSendSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesUnlockSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesUpdateSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecognitionComputeSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecognitionModifySalesRequest;
+import com.nordlet.api.resources.sales.requests.RecognitionProgressSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecognitionRunSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecognitionRunsListSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecognitionSchedulesListSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecognitionSummarySalesRequest;
+import com.nordlet.api.resources.sales.requests.RefundLiabilityListSalesRequest;
+import com.nordlet.api.resources.sales.requests.RefundLiabilityTrueUpSalesRequest;
+import com.nordlet.api.resources.sales.types.ActsCancelSalesResponse;
+import com.nordlet.api.resources.sales.types.ActsCreateSalesResponse;
+import com.nordlet.api.resources.sales.types.ActsGetSalesResponse;
+import com.nordlet.api.resources.sales.types.ActsIssueSalesResponse;
+import com.nordlet.api.resources.sales.types.ActsListSalesResponse;
+import com.nordlet.api.resources.sales.types.ActsPdfSalesResponse;
+import com.nordlet.api.resources.sales.types.ActsUpdateSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesApplyAdvanceSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesCreateSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesDeleteSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesEinvoiceSendSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesEinvoiceStatusSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesEinvoiceXmlSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesGetSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesIssueSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesListSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesLockSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesPaymentLinkSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesPaymentSettingsGetSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesPaymentSettingsUpdateSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesPdfSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesPeppolSendSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesPeppolXmlSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesSendSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesUnlockSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesUpdateSalesResponse;
+import com.nordlet.api.resources.sales.types.RecognitionComputeSalesResponse;
+import com.nordlet.api.resources.sales.types.RecognitionModifySalesResponse;
+import com.nordlet.api.resources.sales.types.RecognitionProgressSalesResponse;
+import com.nordlet.api.resources.sales.types.RecognitionRunSalesResponse;
+import com.nordlet.api.resources.sales.types.RecognitionRunsListSalesResponse;
+import com.nordlet.api.resources.sales.types.RecognitionSchedulesListSalesResponse;
+import com.nordlet.api.resources.sales.types.RecognitionSummarySalesResponse;
+import com.nordlet.api.resources.sales.types.RefundLiabilityListSalesResponse;
+import com.nordlet.api.resources.sales.types.RefundLiabilityTrueUpSalesResponse;
 
 public class SalesClient {
   protected final ClientOptions clientOptions;
@@ -114,565 +94,429 @@ public class SalesClient {
     return this.rawClient;
   }
 
-  public PostV1SalesInvoicesCreateResponse postV1SalesInvoicesCreate(
-      PostV1SalesInvoicesCreateRequest request) {
-    return this.rawClient.postV1SalesInvoicesCreate(request).body();
+  public InvoicesCreateSalesResponse invoicesCreate(InvoicesCreateSalesRequest request) {
+    return this.rawClient.invoicesCreate(request).body();
   }
 
-  public PostV1SalesInvoicesCreateResponse postV1SalesInvoicesCreate(
-      PostV1SalesInvoicesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesCreate(request, requestOptions).body();
+  public InvoicesCreateSalesResponse invoicesCreate(InvoicesCreateSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesCreate(request, requestOptions).body();
   }
 
-  public PostV1SalesInvoicesGetResponse postV1SalesInvoicesGet(
-      PostV1SalesInvoicesGetRequest request) {
-    return this.rawClient.postV1SalesInvoicesGet(request).body();
+  public InvoicesGetSalesResponse invoicesGet(InvoicesGetSalesRequest request) {
+    return this.rawClient.invoicesGet(request).body();
   }
 
-  public PostV1SalesInvoicesGetResponse postV1SalesInvoicesGet(
-      PostV1SalesInvoicesGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesGet(request, requestOptions).body();
+  public InvoicesGetSalesResponse invoicesGet(InvoicesGetSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesGet(request, requestOptions).body();
   }
 
-  public PostV1SalesInvoicesPdfResponse postV1SalesInvoicesPdf(
-      PostV1SalesInvoicesPdfRequest request) {
-    return this.rawClient.postV1SalesInvoicesPdf(request).body();
+  public InvoicesPdfSalesResponse invoicesPdf(InvoicesPdfSalesRequest request) {
+    return this.rawClient.invoicesPdf(request).body();
   }
 
-  public PostV1SalesInvoicesPdfResponse postV1SalesInvoicesPdf(
-      PostV1SalesInvoicesPdfRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesPdf(request, requestOptions).body();
+  public InvoicesPdfSalesResponse invoicesPdf(InvoicesPdfSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesPdf(request, requestOptions).body();
   }
 
-  public PostV1SalesInvoicesSendResponse postV1SalesInvoicesSend(
-      PostV1SalesInvoicesSendRequest request) {
-    return this.rawClient.postV1SalesInvoicesSend(request).body();
+  public InvoicesSendSalesResponse invoicesSend(InvoicesSendSalesRequest request) {
+    return this.rawClient.invoicesSend(request).body();
   }
 
-  public PostV1SalesInvoicesSendResponse postV1SalesInvoicesSend(
-      PostV1SalesInvoicesSendRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesSend(request, requestOptions).body();
+  public InvoicesSendSalesResponse invoicesSend(InvoicesSendSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesSend(request, requestOptions).body();
   }
 
-  public PostV1SalesInvoicesPeppolXmlResponse postV1SalesInvoicesPeppolXml(
-      PostV1SalesInvoicesPeppolXmlRequest request) {
-    return this.rawClient.postV1SalesInvoicesPeppolXml(request).body();
+  public InvoicesPeppolXmlSalesResponse invoicesPeppolXml(InvoicesPeppolXmlSalesRequest request) {
+    return this.rawClient.invoicesPeppolXml(request).body();
   }
 
-  public PostV1SalesInvoicesPeppolXmlResponse postV1SalesInvoicesPeppolXml(
-      PostV1SalesInvoicesPeppolXmlRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesPeppolXml(request, requestOptions).body();
+  public InvoicesPeppolXmlSalesResponse invoicesPeppolXml(InvoicesPeppolXmlSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesPeppolXml(request, requestOptions).body();
   }
 
-  public PostV1SalesInvoicesPeppolSendResponse postV1SalesInvoicesPeppolSend(
-      PostV1SalesInvoicesPeppolSendRequest request) {
-    return this.rawClient.postV1SalesInvoicesPeppolSend(request).body();
+  public InvoicesPeppolSendSalesResponse invoicesPeppolSend(
+      InvoicesPeppolSendSalesRequest request) {
+    return this.rawClient.invoicesPeppolSend(request).body();
   }
 
-  public PostV1SalesInvoicesPeppolSendResponse postV1SalesInvoicesPeppolSend(
-      PostV1SalesInvoicesPeppolSendRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesPeppolSend(request, requestOptions).body();
+  public InvoicesPeppolSendSalesResponse invoicesPeppolSend(InvoicesPeppolSendSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesPeppolSend(request, requestOptions).body();
   }
 
   /**
    * Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
    */
-  public PostV1SalesInvoicesEinvoiceXmlResponse postV1SalesInvoicesEinvoiceXml(
-      PostV1SalesInvoicesEinvoiceXmlRequest request) {
-    return this.rawClient.postV1SalesInvoicesEinvoiceXml(request).body();
+  public InvoicesEinvoiceXmlSalesResponse invoicesEinvoiceXml(
+      InvoicesEinvoiceXmlSalesRequest request) {
+    return this.rawClient.invoicesEinvoiceXml(request).body();
   }
 
   /**
    * Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
    */
-  public PostV1SalesInvoicesEinvoiceXmlResponse postV1SalesInvoicesEinvoiceXml(
-      PostV1SalesInvoicesEinvoiceXmlRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesEinvoiceXml(request, requestOptions).body();
+  public InvoicesEinvoiceXmlSalesResponse invoicesEinvoiceXml(
+      InvoicesEinvoiceXmlSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesEinvoiceXml(request, requestOptions).body();
   }
 
   /**
    * Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
    */
-  public PostV1SalesInvoicesEinvoiceSendResponse postV1SalesInvoicesEinvoiceSend(
-      PostV1SalesInvoicesEinvoiceSendRequest request) {
-    return this.rawClient.postV1SalesInvoicesEinvoiceSend(request).body();
+  public InvoicesEinvoiceSendSalesResponse invoicesEinvoiceSend(
+      InvoicesEinvoiceSendSalesRequest request) {
+    return this.rawClient.invoicesEinvoiceSend(request).body();
   }
 
   /**
    * Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
    */
-  public PostV1SalesInvoicesEinvoiceSendResponse postV1SalesInvoicesEinvoiceSend(
-      PostV1SalesInvoicesEinvoiceSendRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesEinvoiceSend(request, requestOptions).body();
+  public InvoicesEinvoiceSendSalesResponse invoicesEinvoiceSend(
+      InvoicesEinvoiceSendSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesEinvoiceSend(request, requestOptions).body();
   }
 
   /**
    * Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
    */
-  public PostV1SalesInvoicesEinvoiceStatusResponse postV1SalesInvoicesEinvoiceStatus(
-      PostV1SalesInvoicesEinvoiceStatusRequest request) {
-    return this.rawClient.postV1SalesInvoicesEinvoiceStatus(request).body();
+  public InvoicesEinvoiceStatusSalesResponse invoicesEinvoiceStatus(
+      InvoicesEinvoiceStatusSalesRequest request) {
+    return this.rawClient.invoicesEinvoiceStatus(request).body();
   }
 
   /**
    * Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
    */
-  public PostV1SalesInvoicesEinvoiceStatusResponse postV1SalesInvoicesEinvoiceStatus(
-      PostV1SalesInvoicesEinvoiceStatusRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesEinvoiceStatus(request, requestOptions).body();
+  public InvoicesEinvoiceStatusSalesResponse invoicesEinvoiceStatus(
+      InvoicesEinvoiceStatusSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesEinvoiceStatus(request, requestOptions).body();
   }
 
-  public PostV1SalesInvoicesUpdateResponse postV1SalesInvoicesUpdate(
-      PostV1SalesInvoicesUpdateRequest request) {
-    return this.rawClient.postV1SalesInvoicesUpdate(request).body();
+  public InvoicesUpdateSalesResponse invoicesUpdate(InvoicesUpdateSalesRequest request) {
+    return this.rawClient.invoicesUpdate(request).body();
   }
 
-  public PostV1SalesInvoicesUpdateResponse postV1SalesInvoicesUpdate(
-      PostV1SalesInvoicesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesUpdate(request, requestOptions).body();
-  }
-
-  public PostV1SalesInvoicesDeleteResponse postV1SalesInvoicesDelete(
-      PostV1SalesInvoicesDeleteRequest request) {
-    return this.rawClient.postV1SalesInvoicesDelete(request).body();
-  }
-
-  public PostV1SalesInvoicesDeleteResponse postV1SalesInvoicesDelete(
-      PostV1SalesInvoicesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesDelete(request, requestOptions).body();
-  }
-
-  public PostV1SalesInvoicesIssueResponse postV1SalesInvoicesIssue(
-      PostV1SalesInvoicesIssueRequest request) {
-    return this.rawClient.postV1SalesInvoicesIssue(request).body();
-  }
-
-  public PostV1SalesInvoicesIssueResponse postV1SalesInvoicesIssue(
-      PostV1SalesInvoicesIssueRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesIssue(request, requestOptions).body();
-  }
-
-  public PostV1SalesInvoicesLockResponse postV1SalesInvoicesLock(
-      PostV1SalesInvoicesLockRequest request) {
-    return this.rawClient.postV1SalesInvoicesLock(request).body();
-  }
-
-  public PostV1SalesInvoicesLockResponse postV1SalesInvoicesLock(
-      PostV1SalesInvoicesLockRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesLock(request, requestOptions).body();
-  }
-
-  public PostV1SalesInvoicesUnlockResponse postV1SalesInvoicesUnlock(
-      PostV1SalesInvoicesUnlockRequest request) {
-    return this.rawClient.postV1SalesInvoicesUnlock(request).body();
-  }
-
-  public PostV1SalesInvoicesUnlockResponse postV1SalesInvoicesUnlock(
-      PostV1SalesInvoicesUnlockRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesUnlock(request, requestOptions).body();
-  }
-
-  public PostV1SalesInvoicesPaymentLinkResponse postV1SalesInvoicesPaymentLink(
-      PostV1SalesInvoicesPaymentLinkRequest request) {
-    return this.rawClient.postV1SalesInvoicesPaymentLink(request).body();
-  }
-
-  public PostV1SalesInvoicesPaymentLinkResponse postV1SalesInvoicesPaymentLink(
-      PostV1SalesInvoicesPaymentLinkRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesPaymentLink(request, requestOptions).body();
-  }
-
-  public PostV1SalesInvoicesPaymentSettingsGetResponse postV1SalesInvoicesPaymentSettingsGet() {
-    return this.rawClient.postV1SalesInvoicesPaymentSettingsGet().body();
-  }
-
-  public PostV1SalesInvoicesPaymentSettingsGetResponse postV1SalesInvoicesPaymentSettingsGet(
+  public InvoicesUpdateSalesResponse invoicesUpdate(InvoicesUpdateSalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesPaymentSettingsGet(requestOptions).body();
+    return this.rawClient.invoicesUpdate(request, requestOptions).body();
   }
 
-  public PostV1SalesInvoicesPaymentSettingsGetResponse postV1SalesInvoicesPaymentSettingsGet(
-      PostV1SalesInvoicesPaymentSettingsGetRequest request) {
-    return this.rawClient.postV1SalesInvoicesPaymentSettingsGet(request).body();
+  public InvoicesDeleteSalesResponse invoicesDelete(InvoicesDeleteSalesRequest request) {
+    return this.rawClient.invoicesDelete(request).body();
   }
 
-  public PostV1SalesInvoicesPaymentSettingsGetResponse postV1SalesInvoicesPaymentSettingsGet(
-      PostV1SalesInvoicesPaymentSettingsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesPaymentSettingsGet(request, requestOptions).body();
-  }
-
-  public PostV1SalesInvoicesPaymentSettingsUpdateResponse postV1SalesInvoicesPaymentSettingsUpdate(
-      PostV1SalesInvoicesPaymentSettingsUpdateRequest request) {
-    return this.rawClient.postV1SalesInvoicesPaymentSettingsUpdate(request).body();
-  }
-
-  public PostV1SalesInvoicesPaymentSettingsUpdateResponse postV1SalesInvoicesPaymentSettingsUpdate(
-      PostV1SalesInvoicesPaymentSettingsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesPaymentSettingsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1SalesRecognitionSchedulesListResponse postV1SalesRecognitionSchedulesList() {
-    return this.rawClient.postV1SalesRecognitionSchedulesList().body();
-  }
-
-  public PostV1SalesRecognitionSchedulesListResponse postV1SalesRecognitionSchedulesList(
+  public InvoicesDeleteSalesResponse invoicesDelete(InvoicesDeleteSalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionSchedulesList(requestOptions).body();
+    return this.rawClient.invoicesDelete(request, requestOptions).body();
   }
 
-  public PostV1SalesRecognitionSchedulesListResponse postV1SalesRecognitionSchedulesList(
-      PostV1SalesRecognitionSchedulesListRequest request) {
-    return this.rawClient.postV1SalesRecognitionSchedulesList(request).body();
+  public InvoicesIssueSalesResponse invoicesIssue(InvoicesIssueSalesRequest request) {
+    return this.rawClient.invoicesIssue(request).body();
   }
 
-  public PostV1SalesRecognitionSchedulesListResponse postV1SalesRecognitionSchedulesList(
-      PostV1SalesRecognitionSchedulesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionSchedulesList(request, requestOptions).body();
-  }
-
-  public PostV1SalesInvoicesApplyAdvanceResponse postV1SalesInvoicesApplyAdvance(
-      PostV1SalesInvoicesApplyAdvanceRequest request) {
-    return this.rawClient.postV1SalesInvoicesApplyAdvance(request).body();
-  }
-
-  public PostV1SalesInvoicesApplyAdvanceResponse postV1SalesInvoicesApplyAdvance(
-      PostV1SalesInvoicesApplyAdvanceRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesApplyAdvance(request, requestOptions).body();
-  }
-
-  public PostV1SalesInvoicesListResponse postV1SalesInvoicesList() {
-    return this.rawClient.postV1SalesInvoicesList().body();
-  }
-
-  public PostV1SalesInvoicesListResponse postV1SalesInvoicesList(RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesList(requestOptions).body();
-  }
-
-  public PostV1SalesInvoicesListResponse postV1SalesInvoicesList(
-      PostV1SalesInvoicesListRequest request) {
-    return this.rawClient.postV1SalesInvoicesList(request).body();
-  }
-
-  public PostV1SalesInvoicesListResponse postV1SalesInvoicesList(
-      PostV1SalesInvoicesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesList(request, requestOptions).body();
-  }
-
-  public PostV1SalesActsCreateResponse postV1SalesActsCreate(PostV1SalesActsCreateRequest request) {
-    return this.rawClient.postV1SalesActsCreate(request).body();
-  }
-
-  public PostV1SalesActsCreateResponse postV1SalesActsCreate(PostV1SalesActsCreateRequest request,
+  public InvoicesIssueSalesResponse invoicesIssue(InvoicesIssueSalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsCreate(request, requestOptions).body();
+    return this.rawClient.invoicesIssue(request, requestOptions).body();
   }
 
-  public PostV1SalesActsUpdateResponse postV1SalesActsUpdate(PostV1SalesActsUpdateRequest request) {
-    return this.rawClient.postV1SalesActsUpdate(request).body();
+  public InvoicesLockSalesResponse invoicesLock(InvoicesLockSalesRequest request) {
+    return this.rawClient.invoicesLock(request).body();
   }
 
-  public PostV1SalesActsUpdateResponse postV1SalesActsUpdate(PostV1SalesActsUpdateRequest request,
+  public InvoicesLockSalesResponse invoicesLock(InvoicesLockSalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsUpdate(request, requestOptions).body();
+    return this.rawClient.invoicesLock(request, requestOptions).body();
   }
 
-  public PostV1SalesActsIssueResponse postV1SalesActsIssue(PostV1SalesActsIssueRequest request) {
-    return this.rawClient.postV1SalesActsIssue(request).body();
+  public InvoicesUnlockSalesResponse invoicesUnlock(InvoicesUnlockSalesRequest request) {
+    return this.rawClient.invoicesUnlock(request).body();
   }
 
-  public PostV1SalesActsIssueResponse postV1SalesActsIssue(PostV1SalesActsIssueRequest request,
+  public InvoicesUnlockSalesResponse invoicesUnlock(InvoicesUnlockSalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsIssue(request, requestOptions).body();
+    return this.rawClient.invoicesUnlock(request, requestOptions).body();
   }
 
-  public PostV1SalesActsCancelResponse postV1SalesActsCancel(PostV1SalesActsCancelRequest request) {
-    return this.rawClient.postV1SalesActsCancel(request).body();
+  public InvoicesPaymentLinkSalesResponse invoicesPaymentLink(
+      InvoicesPaymentLinkSalesRequest request) {
+    return this.rawClient.invoicesPaymentLink(request).body();
   }
 
-  public PostV1SalesActsCancelResponse postV1SalesActsCancel(PostV1SalesActsCancelRequest request,
+  public InvoicesPaymentLinkSalesResponse invoicesPaymentLink(
+      InvoicesPaymentLinkSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesPaymentLink(request, requestOptions).body();
+  }
+
+  public InvoicesPaymentSettingsGetSalesResponse invoicesPaymentSettingsGet() {
+    return this.rawClient.invoicesPaymentSettingsGet().body();
+  }
+
+  public InvoicesPaymentSettingsGetSalesResponse invoicesPaymentSettingsGet(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsCancel(request, requestOptions).body();
+    return this.rawClient.invoicesPaymentSettingsGet(requestOptions).body();
   }
 
-  public PostV1SalesActsGetResponse postV1SalesActsGet(PostV1SalesActsGetRequest request) {
-    return this.rawClient.postV1SalesActsGet(request).body();
+  public InvoicesPaymentSettingsGetSalesResponse invoicesPaymentSettingsGet(
+      InvoicesPaymentSettingsGetSalesRequest request) {
+    return this.rawClient.invoicesPaymentSettingsGet(request).body();
   }
 
-  public PostV1SalesActsGetResponse postV1SalesActsGet(PostV1SalesActsGetRequest request,
+  public InvoicesPaymentSettingsGetSalesResponse invoicesPaymentSettingsGet(
+      InvoicesPaymentSettingsGetSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesPaymentSettingsGet(request, requestOptions).body();
+  }
+
+  public InvoicesPaymentSettingsUpdateSalesResponse invoicesPaymentSettingsUpdate(
+      InvoicesPaymentSettingsUpdateSalesRequest request) {
+    return this.rawClient.invoicesPaymentSettingsUpdate(request).body();
+  }
+
+  public InvoicesPaymentSettingsUpdateSalesResponse invoicesPaymentSettingsUpdate(
+      InvoicesPaymentSettingsUpdateSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesPaymentSettingsUpdate(request, requestOptions).body();
+  }
+
+  public RecognitionSchedulesListSalesResponse recognitionSchedulesList() {
+    return this.rawClient.recognitionSchedulesList().body();
+  }
+
+  public RecognitionSchedulesListSalesResponse recognitionSchedulesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsGet(request, requestOptions).body();
+    return this.rawClient.recognitionSchedulesList(requestOptions).body();
   }
 
-  public PostV1SalesActsListResponse postV1SalesActsList() {
-    return this.rawClient.postV1SalesActsList().body();
+  public RecognitionSchedulesListSalesResponse recognitionSchedulesList(
+      RecognitionSchedulesListSalesRequest request) {
+    return this.rawClient.recognitionSchedulesList(request).body();
   }
 
-  public PostV1SalesActsListResponse postV1SalesActsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsList(requestOptions).body();
+  public RecognitionSchedulesListSalesResponse recognitionSchedulesList(
+      RecognitionSchedulesListSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.recognitionSchedulesList(request, requestOptions).body();
   }
 
-  public PostV1SalesActsListResponse postV1SalesActsList(PostV1SalesActsListRequest request) {
-    return this.rawClient.postV1SalesActsList(request).body();
+  public InvoicesApplyAdvanceSalesResponse invoicesApplyAdvance(
+      InvoicesApplyAdvanceSalesRequest request) {
+    return this.rawClient.invoicesApplyAdvance(request).body();
   }
 
-  public PostV1SalesActsListResponse postV1SalesActsList(PostV1SalesActsListRequest request,
+  public InvoicesApplyAdvanceSalesResponse invoicesApplyAdvance(
+      InvoicesApplyAdvanceSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesApplyAdvance(request, requestOptions).body();
+  }
+
+  public InvoicesListSalesResponse invoicesList() {
+    return this.rawClient.invoicesList().body();
+  }
+
+  public InvoicesListSalesResponse invoicesList(RequestOptions requestOptions) {
+    return this.rawClient.invoicesList(requestOptions).body();
+  }
+
+  public InvoicesListSalesResponse invoicesList(InvoicesListSalesRequest request) {
+    return this.rawClient.invoicesList(request).body();
+  }
+
+  public InvoicesListSalesResponse invoicesList(InvoicesListSalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsList(request, requestOptions).body();
+    return this.rawClient.invoicesList(request, requestOptions).body();
   }
 
-  public PostV1SalesActsPdfResponse postV1SalesActsPdf(PostV1SalesActsPdfRequest request) {
-    return this.rawClient.postV1SalesActsPdf(request).body();
+  public ActsCreateSalesResponse actsCreate(ActsCreateSalesRequest request) {
+    return this.rawClient.actsCreate(request).body();
   }
 
-  public PostV1SalesActsPdfResponse postV1SalesActsPdf(PostV1SalesActsPdfRequest request,
+  public ActsCreateSalesResponse actsCreate(ActsCreateSalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsPdf(request, requestOptions).body();
+    return this.rawClient.actsCreate(request, requestOptions).body();
   }
 
-  public PostV1OperationTypesCreateResponse postV1OperationTypesCreate(
-      PostV1OperationTypesCreateRequest request) {
-    return this.rawClient.postV1OperationTypesCreate(request).body();
+  public ActsUpdateSalesResponse actsUpdate(ActsUpdateSalesRequest request) {
+    return this.rawClient.actsUpdate(request).body();
   }
 
-  public PostV1OperationTypesCreateResponse postV1OperationTypesCreate(
-      PostV1OperationTypesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1OperationTypesCreate(request, requestOptions).body();
-  }
-
-  public PostV1OperationTypesUpdateResponse postV1OperationTypesUpdate(
-      PostV1OperationTypesUpdateRequest request) {
-    return this.rawClient.postV1OperationTypesUpdate(request).body();
-  }
-
-  public PostV1OperationTypesUpdateResponse postV1OperationTypesUpdate(
-      PostV1OperationTypesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1OperationTypesUpdate(request, requestOptions).body();
-  }
-
-  public PostV1OperationTypesGetResponse postV1OperationTypesGet(
-      PostV1OperationTypesGetRequest request) {
-    return this.rawClient.postV1OperationTypesGet(request).body();
-  }
-
-  public PostV1OperationTypesGetResponse postV1OperationTypesGet(
-      PostV1OperationTypesGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1OperationTypesGet(request, requestOptions).body();
-  }
-
-  public PostV1OperationTypesDeleteResponse postV1OperationTypesDelete(
-      PostV1OperationTypesDeleteRequest request) {
-    return this.rawClient.postV1OperationTypesDelete(request).body();
-  }
-
-  public PostV1OperationTypesDeleteResponse postV1OperationTypesDelete(
-      PostV1OperationTypesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1OperationTypesDelete(request, requestOptions).body();
-  }
-
-  public PostV1OperationTypesListResponse postV1OperationTypesList() {
-    return this.rawClient.postV1OperationTypesList().body();
-  }
-
-  public PostV1OperationTypesListResponse postV1OperationTypesList(RequestOptions requestOptions) {
-    return this.rawClient.postV1OperationTypesList(requestOptions).body();
-  }
-
-  public PostV1OperationTypesListResponse postV1OperationTypesList(
-      PostV1OperationTypesListRequest request) {
-    return this.rawClient.postV1OperationTypesList(request).body();
-  }
-
-  public PostV1OperationTypesListResponse postV1OperationTypesList(
-      PostV1OperationTypesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1OperationTypesList(request, requestOptions).body();
-  }
-
-  public PostV1DocumentSeriesCreateResponse postV1DocumentSeriesCreate(
-      PostV1DocumentSeriesCreateRequest request) {
-    return this.rawClient.postV1DocumentSeriesCreate(request).body();
-  }
-
-  public PostV1DocumentSeriesCreateResponse postV1DocumentSeriesCreate(
-      PostV1DocumentSeriesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DocumentSeriesCreate(request, requestOptions).body();
-  }
-
-  public PostV1DocumentSeriesUpdateResponse postV1DocumentSeriesUpdate(
-      PostV1DocumentSeriesUpdateRequest request) {
-    return this.rawClient.postV1DocumentSeriesUpdate(request).body();
-  }
-
-  public PostV1DocumentSeriesUpdateResponse postV1DocumentSeriesUpdate(
-      PostV1DocumentSeriesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DocumentSeriesUpdate(request, requestOptions).body();
-  }
-
-  public PostV1DocumentSeriesGetResponse postV1DocumentSeriesGet(
-      PostV1DocumentSeriesGetRequest request) {
-    return this.rawClient.postV1DocumentSeriesGet(request).body();
-  }
-
-  public PostV1DocumentSeriesGetResponse postV1DocumentSeriesGet(
-      PostV1DocumentSeriesGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DocumentSeriesGet(request, requestOptions).body();
-  }
-
-  public PostV1DocumentSeriesDeleteResponse postV1DocumentSeriesDelete(
-      PostV1DocumentSeriesDeleteRequest request) {
-    return this.rawClient.postV1DocumentSeriesDelete(request).body();
-  }
-
-  public PostV1DocumentSeriesDeleteResponse postV1DocumentSeriesDelete(
-      PostV1DocumentSeriesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DocumentSeriesDelete(request, requestOptions).body();
-  }
-
-  public PostV1DocumentSeriesListResponse postV1DocumentSeriesList() {
-    return this.rawClient.postV1DocumentSeriesList().body();
-  }
-
-  public PostV1DocumentSeriesListResponse postV1DocumentSeriesList(RequestOptions requestOptions) {
-    return this.rawClient.postV1DocumentSeriesList(requestOptions).body();
-  }
-
-  public PostV1DocumentSeriesListResponse postV1DocumentSeriesList(
-      PostV1DocumentSeriesListRequest request) {
-    return this.rawClient.postV1DocumentSeriesList(request).body();
-  }
-
-  public PostV1DocumentSeriesListResponse postV1DocumentSeriesList(
-      PostV1DocumentSeriesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DocumentSeriesList(request, requestOptions).body();
-  }
-
-  public PostV1SalesRecognitionComputeResponse postV1SalesRecognitionCompute() {
-    return this.rawClient.postV1SalesRecognitionCompute().body();
-  }
-
-  public PostV1SalesRecognitionComputeResponse postV1SalesRecognitionCompute(
+  public ActsUpdateSalesResponse actsUpdate(ActsUpdateSalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionCompute(requestOptions).body();
+    return this.rawClient.actsUpdate(request, requestOptions).body();
   }
 
-  public PostV1SalesRecognitionComputeResponse postV1SalesRecognitionCompute(
-      PostV1SalesRecognitionComputeRequest request) {
-    return this.rawClient.postV1SalesRecognitionCompute(request).body();
+  public ActsIssueSalesResponse actsIssue(ActsIssueSalesRequest request) {
+    return this.rawClient.actsIssue(request).body();
   }
 
-  public PostV1SalesRecognitionComputeResponse postV1SalesRecognitionCompute(
-      PostV1SalesRecognitionComputeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionCompute(request, requestOptions).body();
-  }
-
-  public PostV1SalesRecognitionRunResponse postV1SalesRecognitionRun() {
-    return this.rawClient.postV1SalesRecognitionRun().body();
-  }
-
-  public PostV1SalesRecognitionRunResponse postV1SalesRecognitionRun(
+  public ActsIssueSalesResponse actsIssue(ActsIssueSalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionRun(requestOptions).body();
+    return this.rawClient.actsIssue(request, requestOptions).body();
   }
 
-  public PostV1SalesRecognitionRunResponse postV1SalesRecognitionRun(
-      PostV1SalesRecognitionRunRequest request) {
-    return this.rawClient.postV1SalesRecognitionRun(request).body();
+  public ActsCancelSalesResponse actsCancel(ActsCancelSalesRequest request) {
+    return this.rawClient.actsCancel(request).body();
   }
 
-  public PostV1SalesRecognitionRunResponse postV1SalesRecognitionRun(
-      PostV1SalesRecognitionRunRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionRun(request, requestOptions).body();
+  public ActsCancelSalesResponse actsCancel(ActsCancelSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.actsCancel(request, requestOptions).body();
   }
 
-  public PostV1SalesRecognitionProgressResponse postV1SalesRecognitionProgress(
-      PostV1SalesRecognitionProgressRequest request) {
-    return this.rawClient.postV1SalesRecognitionProgress(request).body();
+  public ActsGetSalesResponse actsGet(ActsGetSalesRequest request) {
+    return this.rawClient.actsGet(request).body();
   }
 
-  public PostV1SalesRecognitionProgressResponse postV1SalesRecognitionProgress(
-      PostV1SalesRecognitionProgressRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionProgress(request, requestOptions).body();
+  public ActsGetSalesResponse actsGet(ActsGetSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.actsGet(request, requestOptions).body();
+  }
+
+  public ActsListSalesResponse actsList() {
+    return this.rawClient.actsList().body();
+  }
+
+  public ActsListSalesResponse actsList(RequestOptions requestOptions) {
+    return this.rawClient.actsList(requestOptions).body();
+  }
+
+  public ActsListSalesResponse actsList(ActsListSalesRequest request) {
+    return this.rawClient.actsList(request).body();
+  }
+
+  public ActsListSalesResponse actsList(ActsListSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.actsList(request, requestOptions).body();
+  }
+
+  public ActsPdfSalesResponse actsPdf(ActsPdfSalesRequest request) {
+    return this.rawClient.actsPdf(request).body();
+  }
+
+  public ActsPdfSalesResponse actsPdf(ActsPdfSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.actsPdf(request, requestOptions).body();
+  }
+
+  public RecognitionComputeSalesResponse recognitionCompute() {
+    return this.rawClient.recognitionCompute().body();
+  }
+
+  public RecognitionComputeSalesResponse recognitionCompute(RequestOptions requestOptions) {
+    return this.rawClient.recognitionCompute(requestOptions).body();
+  }
+
+  public RecognitionComputeSalesResponse recognitionCompute(
+      RecognitionComputeSalesRequest request) {
+    return this.rawClient.recognitionCompute(request).body();
+  }
+
+  public RecognitionComputeSalesResponse recognitionCompute(RecognitionComputeSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.recognitionCompute(request, requestOptions).body();
+  }
+
+  public RecognitionRunSalesResponse recognitionRun() {
+    return this.rawClient.recognitionRun().body();
+  }
+
+  public RecognitionRunSalesResponse recognitionRun(RequestOptions requestOptions) {
+    return this.rawClient.recognitionRun(requestOptions).body();
+  }
+
+  public RecognitionRunSalesResponse recognitionRun(RecognitionRunSalesRequest request) {
+    return this.rawClient.recognitionRun(request).body();
+  }
+
+  public RecognitionRunSalesResponse recognitionRun(RecognitionRunSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.recognitionRun(request, requestOptions).body();
+  }
+
+  public RecognitionProgressSalesResponse recognitionProgress(
+      RecognitionProgressSalesRequest request) {
+    return this.rawClient.recognitionProgress(request).body();
+  }
+
+  public RecognitionProgressSalesResponse recognitionProgress(
+      RecognitionProgressSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.recognitionProgress(request, requestOptions).body();
   }
 
   /**
    * Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
    */
-  public PostV1SalesRecognitionModifyResponse postV1SalesRecognitionModify(
-      PostV1SalesRecognitionModifyRequest request) {
-    return this.rawClient.postV1SalesRecognitionModify(request).body();
+  public RecognitionModifySalesResponse recognitionModify(RecognitionModifySalesRequest request) {
+    return this.rawClient.recognitionModify(request).body();
   }
 
   /**
    * Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
    */
-  public PostV1SalesRecognitionModifyResponse postV1SalesRecognitionModify(
-      PostV1SalesRecognitionModifyRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionModify(request, requestOptions).body();
-  }
-
-  public PostV1SalesRecognitionRunsListResponse postV1SalesRecognitionRunsList() {
-    return this.rawClient.postV1SalesRecognitionRunsList().body();
-  }
-
-  public PostV1SalesRecognitionRunsListResponse postV1SalesRecognitionRunsList(
+  public RecognitionModifySalesResponse recognitionModify(RecognitionModifySalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionRunsList(requestOptions).body();
+    return this.rawClient.recognitionModify(request, requestOptions).body();
   }
 
-  public PostV1SalesRecognitionRunsListResponse postV1SalesRecognitionRunsList(
-      PostV1SalesRecognitionRunsListRequest request) {
-    return this.rawClient.postV1SalesRecognitionRunsList(request).body();
+  public RecognitionRunsListSalesResponse recognitionRunsList() {
+    return this.rawClient.recognitionRunsList().body();
   }
 
-  public PostV1SalesRecognitionRunsListResponse postV1SalesRecognitionRunsList(
-      PostV1SalesRecognitionRunsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionRunsList(request, requestOptions).body();
+  public RecognitionRunsListSalesResponse recognitionRunsList(RequestOptions requestOptions) {
+    return this.rawClient.recognitionRunsList(requestOptions).body();
   }
 
-  public PostV1SalesRecognitionSummaryResponse postV1SalesRecognitionSummary() {
-    return this.rawClient.postV1SalesRecognitionSummary().body();
+  public RecognitionRunsListSalesResponse recognitionRunsList(
+      RecognitionRunsListSalesRequest request) {
+    return this.rawClient.recognitionRunsList(request).body();
   }
 
-  public PostV1SalesRecognitionSummaryResponse postV1SalesRecognitionSummary(
+  public RecognitionRunsListSalesResponse recognitionRunsList(
+      RecognitionRunsListSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.recognitionRunsList(request, requestOptions).body();
+  }
+
+  public RecognitionSummarySalesResponse recognitionSummary() {
+    return this.rawClient.recognitionSummary().body();
+  }
+
+  public RecognitionSummarySalesResponse recognitionSummary(RequestOptions requestOptions) {
+    return this.rawClient.recognitionSummary(requestOptions).body();
+  }
+
+  public RecognitionSummarySalesResponse recognitionSummary(
+      RecognitionSummarySalesRequest request) {
+    return this.rawClient.recognitionSummary(request).body();
+  }
+
+  public RecognitionSummarySalesResponse recognitionSummary(RecognitionSummarySalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionSummary(requestOptions).body();
+    return this.rawClient.recognitionSummary(request, requestOptions).body();
   }
 
-  public PostV1SalesRecognitionSummaryResponse postV1SalesRecognitionSummary(
-      PostV1SalesRecognitionSummaryRequest request) {
-    return this.rawClient.postV1SalesRecognitionSummary(request).body();
+  public RefundLiabilityListSalesResponse refundLiabilityList() {
+    return this.rawClient.refundLiabilityList().body();
   }
 
-  public PostV1SalesRecognitionSummaryResponse postV1SalesRecognitionSummary(
-      PostV1SalesRecognitionSummaryRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionSummary(request, requestOptions).body();
+  public RefundLiabilityListSalesResponse refundLiabilityList(RequestOptions requestOptions) {
+    return this.rawClient.refundLiabilityList(requestOptions).body();
   }
 
-  public PostV1SalesRefundLiabilityListResponse postV1SalesRefundLiabilityList() {
-    return this.rawClient.postV1SalesRefundLiabilityList().body();
+  public RefundLiabilityListSalesResponse refundLiabilityList(
+      RefundLiabilityListSalesRequest request) {
+    return this.rawClient.refundLiabilityList(request).body();
   }
 
-  public PostV1SalesRefundLiabilityListResponse postV1SalesRefundLiabilityList(
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRefundLiabilityList(requestOptions).body();
+  public RefundLiabilityListSalesResponse refundLiabilityList(
+      RefundLiabilityListSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.refundLiabilityList(request, requestOptions).body();
   }
 
-  public PostV1SalesRefundLiabilityListResponse postV1SalesRefundLiabilityList(
-      PostV1SalesRefundLiabilityListRequest request) {
-    return this.rawClient.postV1SalesRefundLiabilityList(request).body();
+  public RefundLiabilityTrueUpSalesResponse refundLiabilityTrueUp(
+      RefundLiabilityTrueUpSalesRequest request) {
+    return this.rawClient.refundLiabilityTrueUp(request).body();
   }
 
-  public PostV1SalesRefundLiabilityListResponse postV1SalesRefundLiabilityList(
-      PostV1SalesRefundLiabilityListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRefundLiabilityList(request, requestOptions).body();
-  }
-
-  public PostV1SalesRefundLiabilityTrueUpResponse postV1SalesRefundLiabilityTrueUp(
-      PostV1SalesRefundLiabilityTrueUpRequest request) {
-    return this.rawClient.postV1SalesRefundLiabilityTrueUp(request).body();
-  }
-
-  public PostV1SalesRefundLiabilityTrueUpResponse postV1SalesRefundLiabilityTrueUp(
-      PostV1SalesRefundLiabilityTrueUpRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRefundLiabilityTrueUp(request, requestOptions).body();
+  public RefundLiabilityTrueUpSalesResponse refundLiabilityTrueUp(
+      RefundLiabilityTrueUpSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.refundLiabilityTrueUp(request, requestOptions).body();
   }
 }

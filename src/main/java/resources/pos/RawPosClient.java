@@ -15,24 +15,26 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.pos.requests.PostV1PosDevicesCreateRequest;
-import com.nordlet.api.resources.pos.requests.PostV1PosDevicesListRequest;
-import com.nordlet.api.resources.pos.requests.PostV1PosDevicesUpdateRequest;
-import com.nordlet.api.resources.pos.requests.PostV1PosReportsCreateRequest;
-import com.nordlet.api.resources.pos.requests.PostV1PosReportsGetRequest;
-import com.nordlet.api.resources.pos.requests.PostV1PosReportsListRequest;
-import com.nordlet.api.resources.pos.types.PostV1PosDevicesCreateResponse;
-import com.nordlet.api.resources.pos.types.PostV1PosDevicesListResponse;
-import com.nordlet.api.resources.pos.types.PostV1PosDevicesUpdateResponse;
-import com.nordlet.api.resources.pos.types.PostV1PosReportsCreateResponse;
-import com.nordlet.api.resources.pos.types.PostV1PosReportsGetResponse;
-import com.nordlet.api.resources.pos.types.PostV1PosReportsListResponse;
+import com.nordlet.api.resources.pos.requests.DevicesCreatePosRequest;
+import com.nordlet.api.resources.pos.requests.DevicesListPosRequest;
+import com.nordlet.api.resources.pos.requests.DevicesUpdatePosRequest;
+import com.nordlet.api.resources.pos.requests.ReportsCreatePosRequest;
+import com.nordlet.api.resources.pos.requests.ReportsGetPosRequest;
+import com.nordlet.api.resources.pos.requests.ReportsListPosRequest;
+import com.nordlet.api.resources.pos.types.DevicesCreatePosResponse;
+import com.nordlet.api.resources.pos.types.DevicesListPosResponse;
+import com.nordlet.api.resources.pos.types.DevicesUpdatePosResponse;
+import com.nordlet.api.resources.pos.types.ReportsCreatePosResponse;
+import com.nordlet.api.resources.pos.types.ReportsGetPosResponse;
+import com.nordlet.api.resources.pos.types.ReportsListPosResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -52,13 +54,13 @@ public class RawPosClient {
     this.clientOptions = clientOptions;
   }
 
-  public NordletApiHttpResponse<PostV1PosDevicesCreateResponse> postV1PosDevicesCreate(
-      PostV1PosDevicesCreateRequest request) {
-    return postV1PosDevicesCreate(request,null);
+  public NordletApiHttpResponse<DevicesCreatePosResponse> devicesCreate(
+      DevicesCreatePosRequest request) {
+    return devicesCreate(request,null);
   }
 
-  public NordletApiHttpResponse<PostV1PosDevicesCreateResponse> postV1PosDevicesCreate(
-      PostV1PosDevicesCreateRequest request, RequestOptions requestOptions) {
+  public NordletApiHttpResponse<DevicesCreatePosResponse> devicesCreate(
+      DevicesCreatePosRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/pos/devices/create");if (requestOptions != null) {
@@ -91,15 +93,17 @@ public class RawPosClient {
         ResponseBody responseBody = response.body();
         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
         if (response.isSuccessful()) {
-          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PosDevicesCreateResponse.class), response);
+          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DevicesCreatePosResponse.class), response);
         }
         try {
           switch (response.code()) {
             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -119,13 +123,13 @@ public class RawPosClient {
       }
     }
 
-    public NordletApiHttpResponse<PostV1PosDevicesUpdateResponse> postV1PosDevicesUpdate(
-        PostV1PosDevicesUpdateRequest request) {
-      return postV1PosDevicesUpdate(request,null);
+    public NordletApiHttpResponse<DevicesUpdatePosResponse> devicesUpdate(
+        DevicesUpdatePosRequest request) {
+      return devicesUpdate(request,null);
     }
 
-    public NordletApiHttpResponse<PostV1PosDevicesUpdateResponse> postV1PosDevicesUpdate(
-        PostV1PosDevicesUpdateRequest request, RequestOptions requestOptions) {
+    public NordletApiHttpResponse<DevicesUpdatePosResponse> devicesUpdate(
+        DevicesUpdatePosRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/pos/devices/update");if (requestOptions != null) {
@@ -158,15 +162,17 @@ public class RawPosClient {
           ResponseBody responseBody = response.body();
           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
           if (response.isSuccessful()) {
-            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PosDevicesUpdateResponse.class), response);
+            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DevicesUpdatePosResponse.class), response);
           }
           try {
             switch (response.code()) {
               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -186,22 +192,22 @@ public class RawPosClient {
         }
       }
 
-      public NordletApiHttpResponse<PostV1PosDevicesListResponse> postV1PosDevicesList() {
-        return postV1PosDevicesList(PostV1PosDevicesListRequest.builder().build());
+      public NordletApiHttpResponse<DevicesListPosResponse> devicesList() {
+        return devicesList(DevicesListPosRequest.builder().build());
       }
 
-      public NordletApiHttpResponse<PostV1PosDevicesListResponse> postV1PosDevicesList(
+      public NordletApiHttpResponse<DevicesListPosResponse> devicesList(
           RequestOptions requestOptions) {
-        return postV1PosDevicesList(PostV1PosDevicesListRequest.builder().build(),requestOptions);
+        return devicesList(DevicesListPosRequest.builder().build(),requestOptions);
       }
 
-      public NordletApiHttpResponse<PostV1PosDevicesListResponse> postV1PosDevicesList(
-          PostV1PosDevicesListRequest request) {
-        return postV1PosDevicesList(request,null);
+      public NordletApiHttpResponse<DevicesListPosResponse> devicesList(
+          DevicesListPosRequest request) {
+        return devicesList(request,null);
       }
 
-      public NordletApiHttpResponse<PostV1PosDevicesListResponse> postV1PosDevicesList(
-          PostV1PosDevicesListRequest request, RequestOptions requestOptions) {
+      public NordletApiHttpResponse<DevicesListPosResponse> devicesList(
+          DevicesListPosRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/pos/devices/list");if (requestOptions != null) {
@@ -234,15 +240,17 @@ public class RawPosClient {
             ResponseBody responseBody = response.body();
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PosDevicesListResponse.class), response);
+              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DevicesListPosResponse.class), response);
             }
             try {
               switch (response.code()) {
                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -262,13 +270,13 @@ public class RawPosClient {
           }
         }
 
-        public NordletApiHttpResponse<PostV1PosReportsCreateResponse> postV1PosReportsCreate(
-            PostV1PosReportsCreateRequest request) {
-          return postV1PosReportsCreate(request,null);
+        public NordletApiHttpResponse<ReportsCreatePosResponse> reportsCreate(
+            ReportsCreatePosRequest request) {
+          return reportsCreate(request,null);
         }
 
-        public NordletApiHttpResponse<PostV1PosReportsCreateResponse> postV1PosReportsCreate(
-            PostV1PosReportsCreateRequest request, RequestOptions requestOptions) {
+        public NordletApiHttpResponse<ReportsCreatePosResponse> reportsCreate(
+            ReportsCreatePosRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/pos/reports/create");if (requestOptions != null) {
@@ -301,15 +309,17 @@ public class RawPosClient {
               ResponseBody responseBody = response.body();
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PosReportsCreateResponse.class), response);
+                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReportsCreatePosResponse.class), response);
               }
               try {
                 switch (response.code()) {
                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -329,13 +339,13 @@ public class RawPosClient {
             }
           }
 
-          public NordletApiHttpResponse<PostV1PosReportsGetResponse> postV1PosReportsGet(
-              PostV1PosReportsGetRequest request) {
-            return postV1PosReportsGet(request,null);
+          public NordletApiHttpResponse<ReportsGetPosResponse> reportsGet(
+              ReportsGetPosRequest request) {
+            return reportsGet(request,null);
           }
 
-          public NordletApiHttpResponse<PostV1PosReportsGetResponse> postV1PosReportsGet(
-              PostV1PosReportsGetRequest request, RequestOptions requestOptions) {
+          public NordletApiHttpResponse<ReportsGetPosResponse> reportsGet(
+              ReportsGetPosRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
               .addPathSegments("v1/pos/reports/get");if (requestOptions != null) {
@@ -368,15 +378,17 @@ public class RawPosClient {
                 ResponseBody responseBody = response.body();
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PosReportsGetResponse.class), response);
+                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReportsGetPosResponse.class), response);
                 }
                 try {
                   switch (response.code()) {
                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -396,22 +408,22 @@ public class RawPosClient {
               }
             }
 
-            public NordletApiHttpResponse<PostV1PosReportsListResponse> postV1PosReportsList() {
-              return postV1PosReportsList(PostV1PosReportsListRequest.builder().build());
+            public NordletApiHttpResponse<ReportsListPosResponse> reportsList() {
+              return reportsList(ReportsListPosRequest.builder().build());
             }
 
-            public NordletApiHttpResponse<PostV1PosReportsListResponse> postV1PosReportsList(
+            public NordletApiHttpResponse<ReportsListPosResponse> reportsList(
                 RequestOptions requestOptions) {
-              return postV1PosReportsList(PostV1PosReportsListRequest.builder().build(),requestOptions);
+              return reportsList(ReportsListPosRequest.builder().build(),requestOptions);
             }
 
-            public NordletApiHttpResponse<PostV1PosReportsListResponse> postV1PosReportsList(
-                PostV1PosReportsListRequest request) {
-              return postV1PosReportsList(request,null);
+            public NordletApiHttpResponse<ReportsListPosResponse> reportsList(
+                ReportsListPosRequest request) {
+              return reportsList(request,null);
             }
 
-            public NordletApiHttpResponse<PostV1PosReportsListResponse> postV1PosReportsList(
-                PostV1PosReportsListRequest request, RequestOptions requestOptions) {
+            public NordletApiHttpResponse<ReportsListPosResponse> reportsList(
+                ReportsListPosRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/pos/reports/list");if (requestOptions != null) {
@@ -444,15 +456,17 @@ public class RawPosClient {
                   ResponseBody responseBody = response.body();
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PosReportsListResponse.class), response);
+                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReportsListPosResponse.class), response);
                   }
                   try {
                     switch (response.code()) {
                       case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);

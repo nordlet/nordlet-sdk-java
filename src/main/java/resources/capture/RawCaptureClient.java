@@ -15,32 +15,34 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsConfirmRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsDeleteRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsExtractRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsGetRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsListRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsUploadRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureInboundEmailRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureSettingsGetRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureSettingsRegenerateIntakeRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureSettingsUpdateRequest;
-import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsConfirmResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsDeleteResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsExtractResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsGetResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsListResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsUploadResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureInboundEmailResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureSettingsGetResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureSettingsRegenerateIntakeResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureSettingsUpdateResponse;
+import com.nordlet.api.resources.capture.requests.DocumentsConfirmCaptureRequest;
+import com.nordlet.api.resources.capture.requests.DocumentsDeleteCaptureRequest;
+import com.nordlet.api.resources.capture.requests.DocumentsExtractCaptureRequest;
+import com.nordlet.api.resources.capture.requests.DocumentsGetCaptureRequest;
+import com.nordlet.api.resources.capture.requests.DocumentsListCaptureRequest;
+import com.nordlet.api.resources.capture.requests.DocumentsUploadCaptureRequest;
+import com.nordlet.api.resources.capture.requests.InboundEmailCaptureRequest;
+import com.nordlet.api.resources.capture.requests.SettingsGetCaptureRequest;
+import com.nordlet.api.resources.capture.requests.SettingsRegenerateIntakeCaptureRequest;
+import com.nordlet.api.resources.capture.requests.SettingsUpdateCaptureRequest;
+import com.nordlet.api.resources.capture.types.DocumentsConfirmCaptureResponse;
+import com.nordlet.api.resources.capture.types.DocumentsDeleteCaptureResponse;
+import com.nordlet.api.resources.capture.types.DocumentsExtractCaptureResponse;
+import com.nordlet.api.resources.capture.types.DocumentsGetCaptureResponse;
+import com.nordlet.api.resources.capture.types.DocumentsListCaptureResponse;
+import com.nordlet.api.resources.capture.types.DocumentsUploadCaptureResponse;
+import com.nordlet.api.resources.capture.types.InboundEmailCaptureResponse;
+import com.nordlet.api.resources.capture.types.SettingsGetCaptureResponse;
+import com.nordlet.api.resources.capture.types.SettingsRegenerateIntakeCaptureResponse;
+import com.nordlet.api.resources.capture.types.SettingsUpdateCaptureResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -60,22 +62,22 @@ public class RawCaptureClient {
     this.clientOptions = clientOptions;
   }
 
-  public NordletApiHttpResponse<PostV1CaptureSettingsGetResponse> postV1CaptureSettingsGet() {
-    return postV1CaptureSettingsGet(PostV1CaptureSettingsGetRequest.builder().build());
+  public NordletApiHttpResponse<SettingsGetCaptureResponse> settingsGet() {
+    return settingsGet(SettingsGetCaptureRequest.builder().build());
   }
 
-  public NordletApiHttpResponse<PostV1CaptureSettingsGetResponse> postV1CaptureSettingsGet(
+  public NordletApiHttpResponse<SettingsGetCaptureResponse> settingsGet(
       RequestOptions requestOptions) {
-    return postV1CaptureSettingsGet(PostV1CaptureSettingsGetRequest.builder().build(),requestOptions);
+    return settingsGet(SettingsGetCaptureRequest.builder().build(),requestOptions);
   }
 
-  public NordletApiHttpResponse<PostV1CaptureSettingsGetResponse> postV1CaptureSettingsGet(
-      PostV1CaptureSettingsGetRequest request) {
-    return postV1CaptureSettingsGet(request,null);
+  public NordletApiHttpResponse<SettingsGetCaptureResponse> settingsGet(
+      SettingsGetCaptureRequest request) {
+    return settingsGet(request,null);
   }
 
-  public NordletApiHttpResponse<PostV1CaptureSettingsGetResponse> postV1CaptureSettingsGet(
-      PostV1CaptureSettingsGetRequest request, RequestOptions requestOptions) {
+  public NordletApiHttpResponse<SettingsGetCaptureResponse> settingsGet(
+      SettingsGetCaptureRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/capture/settings/get");if (requestOptions != null) {
@@ -108,15 +110,17 @@ public class RawCaptureClient {
         ResponseBody responseBody = response.body();
         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
         if (response.isSuccessful()) {
-          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CaptureSettingsGetResponse.class), response);
+          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettingsGetCaptureResponse.class), response);
         }
         try {
           switch (response.code()) {
             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -136,23 +140,22 @@ public class RawCaptureClient {
       }
     }
 
-    public NordletApiHttpResponse<PostV1CaptureSettingsUpdateResponse> postV1CaptureSettingsUpdate(
-        ) {
-      return postV1CaptureSettingsUpdate(PostV1CaptureSettingsUpdateRequest.builder().build());
+    public NordletApiHttpResponse<SettingsUpdateCaptureResponse> settingsUpdate() {
+      return settingsUpdate(SettingsUpdateCaptureRequest.builder().build());
     }
 
-    public NordletApiHttpResponse<PostV1CaptureSettingsUpdateResponse> postV1CaptureSettingsUpdate(
+    public NordletApiHttpResponse<SettingsUpdateCaptureResponse> settingsUpdate(
         RequestOptions requestOptions) {
-      return postV1CaptureSettingsUpdate(PostV1CaptureSettingsUpdateRequest.builder().build(),requestOptions);
+      return settingsUpdate(SettingsUpdateCaptureRequest.builder().build(),requestOptions);
     }
 
-    public NordletApiHttpResponse<PostV1CaptureSettingsUpdateResponse> postV1CaptureSettingsUpdate(
-        PostV1CaptureSettingsUpdateRequest request) {
-      return postV1CaptureSettingsUpdate(request,null);
+    public NordletApiHttpResponse<SettingsUpdateCaptureResponse> settingsUpdate(
+        SettingsUpdateCaptureRequest request) {
+      return settingsUpdate(request,null);
     }
 
-    public NordletApiHttpResponse<PostV1CaptureSettingsUpdateResponse> postV1CaptureSettingsUpdate(
-        PostV1CaptureSettingsUpdateRequest request, RequestOptions requestOptions) {
+    public NordletApiHttpResponse<SettingsUpdateCaptureResponse> settingsUpdate(
+        SettingsUpdateCaptureRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/capture/settings/update");if (requestOptions != null) {
@@ -185,15 +188,17 @@ public class RawCaptureClient {
           ResponseBody responseBody = response.body();
           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
           if (response.isSuccessful()) {
-            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CaptureSettingsUpdateResponse.class), response);
+            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettingsUpdateCaptureResponse.class), response);
           }
           try {
             switch (response.code()) {
               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -213,23 +218,23 @@ public class RawCaptureClient {
         }
       }
 
-      public NordletApiHttpResponse<PostV1CaptureSettingsRegenerateIntakeResponse> postV1CaptureSettingsRegenerateIntake(
+      public NordletApiHttpResponse<SettingsRegenerateIntakeCaptureResponse> settingsRegenerateIntake(
           ) {
-        return postV1CaptureSettingsRegenerateIntake(PostV1CaptureSettingsRegenerateIntakeRequest.builder().build());
+        return settingsRegenerateIntake(SettingsRegenerateIntakeCaptureRequest.builder().build());
       }
 
-      public NordletApiHttpResponse<PostV1CaptureSettingsRegenerateIntakeResponse> postV1CaptureSettingsRegenerateIntake(
+      public NordletApiHttpResponse<SettingsRegenerateIntakeCaptureResponse> settingsRegenerateIntake(
           RequestOptions requestOptions) {
-        return postV1CaptureSettingsRegenerateIntake(PostV1CaptureSettingsRegenerateIntakeRequest.builder().build(),requestOptions);
+        return settingsRegenerateIntake(SettingsRegenerateIntakeCaptureRequest.builder().build(),requestOptions);
       }
 
-      public NordletApiHttpResponse<PostV1CaptureSettingsRegenerateIntakeResponse> postV1CaptureSettingsRegenerateIntake(
-          PostV1CaptureSettingsRegenerateIntakeRequest request) {
-        return postV1CaptureSettingsRegenerateIntake(request,null);
+      public NordletApiHttpResponse<SettingsRegenerateIntakeCaptureResponse> settingsRegenerateIntake(
+          SettingsRegenerateIntakeCaptureRequest request) {
+        return settingsRegenerateIntake(request,null);
       }
 
-      public NordletApiHttpResponse<PostV1CaptureSettingsRegenerateIntakeResponse> postV1CaptureSettingsRegenerateIntake(
-          PostV1CaptureSettingsRegenerateIntakeRequest request, RequestOptions requestOptions) {
+      public NordletApiHttpResponse<SettingsRegenerateIntakeCaptureResponse> settingsRegenerateIntake(
+          SettingsRegenerateIntakeCaptureRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/capture/settings/regenerate-intake");if (requestOptions != null) {
@@ -262,15 +267,17 @@ public class RawCaptureClient {
             ResponseBody responseBody = response.body();
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CaptureSettingsRegenerateIntakeResponse.class), response);
+              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettingsRegenerateIntakeCaptureResponse.class), response);
             }
             try {
               switch (response.code()) {
                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -290,23 +297,22 @@ public class RawCaptureClient {
           }
         }
 
-        public NordletApiHttpResponse<PostV1CaptureInboundEmailResponse> receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
-            ) {
-          return receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(PostV1CaptureInboundEmailRequest.builder().build());
+        public NordletApiHttpResponse<InboundEmailCaptureResponse> inboundEmail() {
+          return inboundEmail(InboundEmailCaptureRequest.builder().build());
         }
 
-        public NordletApiHttpResponse<PostV1CaptureInboundEmailResponse> receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
+        public NordletApiHttpResponse<InboundEmailCaptureResponse> inboundEmail(
             RequestOptions requestOptions) {
-          return receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(PostV1CaptureInboundEmailRequest.builder().build(),requestOptions);
+          return inboundEmail(InboundEmailCaptureRequest.builder().build(),requestOptions);
         }
 
-        public NordletApiHttpResponse<PostV1CaptureInboundEmailResponse> receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
-            PostV1CaptureInboundEmailRequest request) {
-          return receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(request,null);
+        public NordletApiHttpResponse<InboundEmailCaptureResponse> inboundEmail(
+            InboundEmailCaptureRequest request) {
+          return inboundEmail(request,null);
         }
 
-        public NordletApiHttpResponse<PostV1CaptureInboundEmailResponse> receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
-            PostV1CaptureInboundEmailRequest request, RequestOptions requestOptions) {
+        public NordletApiHttpResponse<InboundEmailCaptureResponse> inboundEmail(
+            InboundEmailCaptureRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/capture/inbound-email");if (requestOptions != null) {
@@ -339,15 +345,17 @@ public class RawCaptureClient {
               ResponseBody responseBody = response.body();
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CaptureInboundEmailResponse.class), response);
+                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InboundEmailCaptureResponse.class), response);
               }
               try {
                 switch (response.code()) {
                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -367,13 +375,13 @@ public class RawCaptureClient {
             }
           }
 
-          public NordletApiHttpResponse<PostV1CaptureDocumentsUploadResponse> readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft(
-              PostV1CaptureDocumentsUploadRequest request) {
-            return readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft(request,null);
+          public NordletApiHttpResponse<DocumentsUploadCaptureResponse> documentsUpload(
+              DocumentsUploadCaptureRequest request) {
+            return documentsUpload(request,null);
           }
 
-          public NordletApiHttpResponse<PostV1CaptureDocumentsUploadResponse> readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft(
-              PostV1CaptureDocumentsUploadRequest request, RequestOptions requestOptions) {
+          public NordletApiHttpResponse<DocumentsUploadCaptureResponse> documentsUpload(
+              DocumentsUploadCaptureRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
               .addPathSegments("v1/capture/documents/upload");if (requestOptions != null) {
@@ -406,15 +414,17 @@ public class RawCaptureClient {
                 ResponseBody responseBody = response.body();
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CaptureDocumentsUploadResponse.class), response);
+                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsUploadCaptureResponse.class), response);
                 }
                 try {
                   switch (response.code()) {
                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -434,13 +444,13 @@ public class RawCaptureClient {
               }
             }
 
-            public NordletApiHttpResponse<PostV1CaptureDocumentsExtractResponse> reReadAStoredCaptureReplacingThePreviousDraft(
-                PostV1CaptureDocumentsExtractRequest request) {
-              return reReadAStoredCaptureReplacingThePreviousDraft(request,null);
+            public NordletApiHttpResponse<DocumentsExtractCaptureResponse> documentsExtract(
+                DocumentsExtractCaptureRequest request) {
+              return documentsExtract(request,null);
             }
 
-            public NordletApiHttpResponse<PostV1CaptureDocumentsExtractResponse> reReadAStoredCaptureReplacingThePreviousDraft(
-                PostV1CaptureDocumentsExtractRequest request, RequestOptions requestOptions) {
+            public NordletApiHttpResponse<DocumentsExtractCaptureResponse> documentsExtract(
+                DocumentsExtractCaptureRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/capture/documents/extract");if (requestOptions != null) {
@@ -473,15 +483,17 @@ public class RawCaptureClient {
                   ResponseBody responseBody = response.body();
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CaptureDocumentsExtractResponse.class), response);
+                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsExtractCaptureResponse.class), response);
                   }
                   try {
                     switch (response.code()) {
                       case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -501,13 +513,13 @@ public class RawCaptureClient {
                 }
               }
 
-              public NordletApiHttpResponse<PostV1CaptureDocumentsGetResponse> postV1CaptureDocumentsGet(
-                  PostV1CaptureDocumentsGetRequest request) {
-                return postV1CaptureDocumentsGet(request,null);
+              public NordletApiHttpResponse<DocumentsGetCaptureResponse> documentsGet(
+                  DocumentsGetCaptureRequest request) {
+                return documentsGet(request,null);
               }
 
-              public NordletApiHttpResponse<PostV1CaptureDocumentsGetResponse> postV1CaptureDocumentsGet(
-                  PostV1CaptureDocumentsGetRequest request, RequestOptions requestOptions) {
+              public NordletApiHttpResponse<DocumentsGetCaptureResponse> documentsGet(
+                  DocumentsGetCaptureRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                   .addPathSegments("v1/capture/documents/get");if (requestOptions != null) {
@@ -540,15 +552,17 @@ public class RawCaptureClient {
                     ResponseBody responseBody = response.body();
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CaptureDocumentsGetResponse.class), response);
+                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsGetCaptureResponse.class), response);
                     }
                     try {
                       switch (response.code()) {
                         case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -568,23 +582,22 @@ public class RawCaptureClient {
                   }
                 }
 
-                public NordletApiHttpResponse<PostV1CaptureDocumentsListResponse> postV1CaptureDocumentsList(
-                    ) {
-                  return postV1CaptureDocumentsList(PostV1CaptureDocumentsListRequest.builder().build());
+                public NordletApiHttpResponse<DocumentsListCaptureResponse> documentsList() {
+                  return documentsList(DocumentsListCaptureRequest.builder().build());
                 }
 
-                public NordletApiHttpResponse<PostV1CaptureDocumentsListResponse> postV1CaptureDocumentsList(
+                public NordletApiHttpResponse<DocumentsListCaptureResponse> documentsList(
                     RequestOptions requestOptions) {
-                  return postV1CaptureDocumentsList(PostV1CaptureDocumentsListRequest.builder().build(),requestOptions);
+                  return documentsList(DocumentsListCaptureRequest.builder().build(),requestOptions);
                 }
 
-                public NordletApiHttpResponse<PostV1CaptureDocumentsListResponse> postV1CaptureDocumentsList(
-                    PostV1CaptureDocumentsListRequest request) {
-                  return postV1CaptureDocumentsList(request,null);
+                public NordletApiHttpResponse<DocumentsListCaptureResponse> documentsList(
+                    DocumentsListCaptureRequest request) {
+                  return documentsList(request,null);
                 }
 
-                public NordletApiHttpResponse<PostV1CaptureDocumentsListResponse> postV1CaptureDocumentsList(
-                    PostV1CaptureDocumentsListRequest request, RequestOptions requestOptions) {
+                public NordletApiHttpResponse<DocumentsListCaptureResponse> documentsList(
+                    DocumentsListCaptureRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                     .addPathSegments("v1/capture/documents/list");if (requestOptions != null) {
@@ -617,15 +630,17 @@ public class RawCaptureClient {
                       ResponseBody responseBody = response.body();
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CaptureDocumentsListResponse.class), response);
+                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsListCaptureResponse.class), response);
                       }
                       try {
                         switch (response.code()) {
                           case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -645,13 +660,13 @@ public class RawCaptureClient {
                     }
                   }
 
-                  public NordletApiHttpResponse<PostV1CaptureDocumentsDeleteResponse> postV1CaptureDocumentsDelete(
-                      PostV1CaptureDocumentsDeleteRequest request) {
-                    return postV1CaptureDocumentsDelete(request,null);
+                  public NordletApiHttpResponse<DocumentsDeleteCaptureResponse> documentsDelete(
+                      DocumentsDeleteCaptureRequest request) {
+                    return documentsDelete(request,null);
                   }
 
-                  public NordletApiHttpResponse<PostV1CaptureDocumentsDeleteResponse> postV1CaptureDocumentsDelete(
-                      PostV1CaptureDocumentsDeleteRequest request, RequestOptions requestOptions) {
+                  public NordletApiHttpResponse<DocumentsDeleteCaptureResponse> documentsDelete(
+                      DocumentsDeleteCaptureRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                       .addPathSegments("v1/capture/documents/delete");if (requestOptions != null) {
@@ -684,15 +699,17 @@ public class RawCaptureClient {
                         ResponseBody responseBody = response.body();
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CaptureDocumentsDeleteResponse.class), response);
+                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsDeleteCaptureResponse.class), response);
                         }
                         try {
                           switch (response.code()) {
                             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -712,14 +729,13 @@ public class RawCaptureClient {
                       }
                     }
 
-                    public NordletApiHttpResponse<PostV1CaptureDocumentsConfirmResponse> saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocument(
-                        PostV1CaptureDocumentsConfirmRequest request) {
-                      return saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocument(request,null);
+                    public NordletApiHttpResponse<DocumentsConfirmCaptureResponse> documentsConfirm(
+                        DocumentsConfirmCaptureRequest request) {
+                      return documentsConfirm(request,null);
                     }
 
-                    public NordletApiHttpResponse<PostV1CaptureDocumentsConfirmResponse> saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocument(
-                        PostV1CaptureDocumentsConfirmRequest request,
-                        RequestOptions requestOptions) {
+                    public NordletApiHttpResponse<DocumentsConfirmCaptureResponse> documentsConfirm(
+                        DocumentsConfirmCaptureRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                         .addPathSegments("v1/capture/documents/confirm");if (requestOptions != null) {
@@ -752,15 +768,17 @@ public class RawCaptureClient {
                           ResponseBody responseBody = response.body();
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1CaptureDocumentsConfirmResponse.class), response);
+                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsConfirmCaptureResponse.class), response);
                           }
                           try {
                             switch (response.code()) {
                               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);

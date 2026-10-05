@@ -6,18 +6,18 @@ package com.nordlet.api.resources.billing;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.billing.requests.PostV1BillingAccountGetRequest;
-import com.nordlet.api.resources.billing.requests.PostV1BillingAccountSetPlanRequest;
-import com.nordlet.api.resources.billing.requests.PostV1BillingPortalCreateRequest;
-import com.nordlet.api.resources.billing.requests.PostV1BillingTopupCreateRequest;
-import com.nordlet.api.resources.billing.requests.PostV1BillingTransactionsListRequest;
-import com.nordlet.api.resources.billing.requests.PostV1BillingUsageListRequest;
-import com.nordlet.api.resources.billing.types.PostV1BillingAccountGetResponse;
-import com.nordlet.api.resources.billing.types.PostV1BillingAccountSetPlanResponse;
-import com.nordlet.api.resources.billing.types.PostV1BillingPortalCreateResponse;
-import com.nordlet.api.resources.billing.types.PostV1BillingTopupCreateResponse;
-import com.nordlet.api.resources.billing.types.PostV1BillingTransactionsListResponse;
-import com.nordlet.api.resources.billing.types.PostV1BillingUsageListResponse;
+import com.nordlet.api.resources.billing.requests.AccountGetBillingRequest;
+import com.nordlet.api.resources.billing.requests.AccountSetPlanBillingRequest;
+import com.nordlet.api.resources.billing.requests.PortalCreateBillingRequest;
+import com.nordlet.api.resources.billing.requests.TopupCreateBillingRequest;
+import com.nordlet.api.resources.billing.requests.TransactionsListBillingRequest;
+import com.nordlet.api.resources.billing.requests.UsageListBillingRequest;
+import com.nordlet.api.resources.billing.types.AccountGetBillingResponse;
+import com.nordlet.api.resources.billing.types.AccountSetPlanBillingResponse;
+import com.nordlet.api.resources.billing.types.PortalCreateBillingResponse;
+import com.nordlet.api.resources.billing.types.TopupCreateBillingResponse;
+import com.nordlet.api.resources.billing.types.TransactionsListBillingResponse;
+import com.nordlet.api.resources.billing.types.UsageListBillingResponse;
 
 public class BillingClient {
   protected final ClientOptions clientOptions;
@@ -36,89 +36,81 @@ public class BillingClient {
     return this.rawClient;
   }
 
-  public PostV1BillingAccountGetResponse postV1BillingAccountGet() {
-    return this.rawClient.postV1BillingAccountGet().body();
+  public AccountGetBillingResponse accountGet() {
+    return this.rawClient.accountGet().body();
   }
 
-  public PostV1BillingAccountGetResponse postV1BillingAccountGet(RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingAccountGet(requestOptions).body();
+  public AccountGetBillingResponse accountGet(RequestOptions requestOptions) {
+    return this.rawClient.accountGet(requestOptions).body();
   }
 
-  public PostV1BillingAccountGetResponse postV1BillingAccountGet(
-      PostV1BillingAccountGetRequest request) {
-    return this.rawClient.postV1BillingAccountGet(request).body();
+  public AccountGetBillingResponse accountGet(AccountGetBillingRequest request) {
+    return this.rawClient.accountGet(request).body();
   }
 
-  public PostV1BillingAccountGetResponse postV1BillingAccountGet(
-      PostV1BillingAccountGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingAccountGet(request, requestOptions).body();
-  }
-
-  public PostV1BillingAccountSetPlanResponse postV1BillingAccountSetPlan(
-      PostV1BillingAccountSetPlanRequest request) {
-    return this.rawClient.postV1BillingAccountSetPlan(request).body();
-  }
-
-  public PostV1BillingAccountSetPlanResponse postV1BillingAccountSetPlan(
-      PostV1BillingAccountSetPlanRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingAccountSetPlan(request, requestOptions).body();
-  }
-
-  public PostV1BillingTopupCreateResponse postV1BillingTopupCreate(
-      PostV1BillingTopupCreateRequest request) {
-    return this.rawClient.postV1BillingTopupCreate(request).body();
-  }
-
-  public PostV1BillingTopupCreateResponse postV1BillingTopupCreate(
-      PostV1BillingTopupCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingTopupCreate(request, requestOptions).body();
-  }
-
-  public PostV1BillingPortalCreateResponse postV1BillingPortalCreate() {
-    return this.rawClient.postV1BillingPortalCreate().body();
-  }
-
-  public PostV1BillingPortalCreateResponse postV1BillingPortalCreate(
+  public AccountGetBillingResponse accountGet(AccountGetBillingRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingPortalCreate(requestOptions).body();
+    return this.rawClient.accountGet(request, requestOptions).body();
   }
 
-  public PostV1BillingPortalCreateResponse postV1BillingPortalCreate(
-      PostV1BillingPortalCreateRequest request) {
-    return this.rawClient.postV1BillingPortalCreate(request).body();
+  public AccountSetPlanBillingResponse accountSetPlan(AccountSetPlanBillingRequest request) {
+    return this.rawClient.accountSetPlan(request).body();
   }
 
-  public PostV1BillingPortalCreateResponse postV1BillingPortalCreate(
-      PostV1BillingPortalCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingPortalCreate(request, requestOptions).body();
-  }
-
-  public PostV1BillingTransactionsListResponse postV1BillingTransactionsList() {
-    return this.rawClient.postV1BillingTransactionsList().body();
-  }
-
-  public PostV1BillingTransactionsListResponse postV1BillingTransactionsList(
+  public AccountSetPlanBillingResponse accountSetPlan(AccountSetPlanBillingRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingTransactionsList(requestOptions).body();
+    return this.rawClient.accountSetPlan(request, requestOptions).body();
   }
 
-  public PostV1BillingTransactionsListResponse postV1BillingTransactionsList(
-      PostV1BillingTransactionsListRequest request) {
-    return this.rawClient.postV1BillingTransactionsList(request).body();
+  public TopupCreateBillingResponse topupCreate(TopupCreateBillingRequest request) {
+    return this.rawClient.topupCreate(request).body();
   }
 
-  public PostV1BillingTransactionsListResponse postV1BillingTransactionsList(
-      PostV1BillingTransactionsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingTransactionsList(request, requestOptions).body();
+  public TopupCreateBillingResponse topupCreate(TopupCreateBillingRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.topupCreate(request, requestOptions).body();
   }
 
-  public PostV1BillingUsageListResponse postV1BillingUsageList(
-      PostV1BillingUsageListRequest request) {
-    return this.rawClient.postV1BillingUsageList(request).body();
+  public PortalCreateBillingResponse portalCreate() {
+    return this.rawClient.portalCreate().body();
   }
 
-  public PostV1BillingUsageListResponse postV1BillingUsageList(
-      PostV1BillingUsageListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingUsageList(request, requestOptions).body();
+  public PortalCreateBillingResponse portalCreate(RequestOptions requestOptions) {
+    return this.rawClient.portalCreate(requestOptions).body();
+  }
+
+  public PortalCreateBillingResponse portalCreate(PortalCreateBillingRequest request) {
+    return this.rawClient.portalCreate(request).body();
+  }
+
+  public PortalCreateBillingResponse portalCreate(PortalCreateBillingRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.portalCreate(request, requestOptions).body();
+  }
+
+  public TransactionsListBillingResponse transactionsList() {
+    return this.rawClient.transactionsList().body();
+  }
+
+  public TransactionsListBillingResponse transactionsList(RequestOptions requestOptions) {
+    return this.rawClient.transactionsList(requestOptions).body();
+  }
+
+  public TransactionsListBillingResponse transactionsList(TransactionsListBillingRequest request) {
+    return this.rawClient.transactionsList(request).body();
+  }
+
+  public TransactionsListBillingResponse transactionsList(TransactionsListBillingRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.transactionsList(request, requestOptions).body();
+  }
+
+  public UsageListBillingResponse usageList(UsageListBillingRequest request) {
+    return this.rawClient.usageList(request).body();
+  }
+
+  public UsageListBillingResponse usageList(UsageListBillingRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.usageList(request, requestOptions).body();
   }
 }

@@ -6,16 +6,16 @@ package com.nordlet.api.resources.cash;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.cash.requests.PostV1CashAdvanceHoldersBalancesRequest;
-import com.nordlet.api.resources.cash.requests.PostV1CashBalanceRequest;
-import com.nordlet.api.resources.cash.requests.PostV1CashOrdersCreateRequest;
-import com.nordlet.api.resources.cash.requests.PostV1CashOrdersGetRequest;
-import com.nordlet.api.resources.cash.requests.PostV1CashOrdersListRequest;
-import com.nordlet.api.resources.cash.types.PostV1CashAdvanceHoldersBalancesResponse;
-import com.nordlet.api.resources.cash.types.PostV1CashBalanceResponse;
-import com.nordlet.api.resources.cash.types.PostV1CashOrdersCreateResponse;
-import com.nordlet.api.resources.cash.types.PostV1CashOrdersGetResponse;
-import com.nordlet.api.resources.cash.types.PostV1CashOrdersListResponse;
+import com.nordlet.api.resources.cash.requests.AdvanceHoldersBalancesCashRequest;
+import com.nordlet.api.resources.cash.requests.BalanceCashRequest;
+import com.nordlet.api.resources.cash.requests.OrdersCreateCashRequest;
+import com.nordlet.api.resources.cash.requests.OrdersGetCashRequest;
+import com.nordlet.api.resources.cash.requests.OrdersListCashRequest;
+import com.nordlet.api.resources.cash.types.AdvanceHoldersBalancesCashResponse;
+import com.nordlet.api.resources.cash.types.BalanceCashResponse;
+import com.nordlet.api.resources.cash.types.OrdersCreateCashResponse;
+import com.nordlet.api.resources.cash.types.OrdersGetCashResponse;
+import com.nordlet.api.resources.cash.types.OrdersListCashResponse;
 
 public class CashClient {
   protected final ClientOptions clientOptions;
@@ -34,75 +34,72 @@ public class CashClient {
     return this.rawClient;
   }
 
-  public PostV1CashOrdersCreateResponse postV1CashOrdersCreate(
-      PostV1CashOrdersCreateRequest request) {
-    return this.rawClient.postV1CashOrdersCreate(request).body();
+  public OrdersCreateCashResponse ordersCreate(OrdersCreateCashRequest request) {
+    return this.rawClient.ordersCreate(request).body();
   }
 
-  public PostV1CashOrdersCreateResponse postV1CashOrdersCreate(
-      PostV1CashOrdersCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CashOrdersCreate(request, requestOptions).body();
-  }
-
-  public PostV1CashOrdersGetResponse postV1CashOrdersGet(PostV1CashOrdersGetRequest request) {
-    return this.rawClient.postV1CashOrdersGet(request).body();
-  }
-
-  public PostV1CashOrdersGetResponse postV1CashOrdersGet(PostV1CashOrdersGetRequest request,
+  public OrdersCreateCashResponse ordersCreate(OrdersCreateCashRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CashOrdersGet(request, requestOptions).body();
+    return this.rawClient.ordersCreate(request, requestOptions).body();
   }
 
-  public PostV1CashOrdersListResponse postV1CashOrdersList() {
-    return this.rawClient.postV1CashOrdersList().body();
+  public OrdersGetCashResponse ordersGet(OrdersGetCashRequest request) {
+    return this.rawClient.ordersGet(request).body();
   }
 
-  public PostV1CashOrdersListResponse postV1CashOrdersList(RequestOptions requestOptions) {
-    return this.rawClient.postV1CashOrdersList(requestOptions).body();
-  }
-
-  public PostV1CashOrdersListResponse postV1CashOrdersList(PostV1CashOrdersListRequest request) {
-    return this.rawClient.postV1CashOrdersList(request).body();
-  }
-
-  public PostV1CashOrdersListResponse postV1CashOrdersList(PostV1CashOrdersListRequest request,
+  public OrdersGetCashResponse ordersGet(OrdersGetCashRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CashOrdersList(request, requestOptions).body();
+    return this.rawClient.ordersGet(request, requestOptions).body();
   }
 
-  public PostV1CashBalanceResponse postV1CashBalance() {
-    return this.rawClient.postV1CashBalance().body();
+  public OrdersListCashResponse ordersList() {
+    return this.rawClient.ordersList().body();
   }
 
-  public PostV1CashBalanceResponse postV1CashBalance(RequestOptions requestOptions) {
-    return this.rawClient.postV1CashBalance(requestOptions).body();
+  public OrdersListCashResponse ordersList(RequestOptions requestOptions) {
+    return this.rawClient.ordersList(requestOptions).body();
   }
 
-  public PostV1CashBalanceResponse postV1CashBalance(PostV1CashBalanceRequest request) {
-    return this.rawClient.postV1CashBalance(request).body();
+  public OrdersListCashResponse ordersList(OrdersListCashRequest request) {
+    return this.rawClient.ordersList(request).body();
   }
 
-  public PostV1CashBalanceResponse postV1CashBalance(PostV1CashBalanceRequest request,
+  public OrdersListCashResponse ordersList(OrdersListCashRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CashBalance(request, requestOptions).body();
+    return this.rawClient.ordersList(request, requestOptions).body();
   }
 
-  public PostV1CashAdvanceHoldersBalancesResponse postV1CashAdvanceHoldersBalances() {
-    return this.rawClient.postV1CashAdvanceHoldersBalances().body();
+  public BalanceCashResponse balance() {
+    return this.rawClient.balance().body();
   }
 
-  public PostV1CashAdvanceHoldersBalancesResponse postV1CashAdvanceHoldersBalances(
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1CashAdvanceHoldersBalances(requestOptions).body();
+  public BalanceCashResponse balance(RequestOptions requestOptions) {
+    return this.rawClient.balance(requestOptions).body();
   }
 
-  public PostV1CashAdvanceHoldersBalancesResponse postV1CashAdvanceHoldersBalances(
-      PostV1CashAdvanceHoldersBalancesRequest request) {
-    return this.rawClient.postV1CashAdvanceHoldersBalances(request).body();
+  public BalanceCashResponse balance(BalanceCashRequest request) {
+    return this.rawClient.balance(request).body();
   }
 
-  public PostV1CashAdvanceHoldersBalancesResponse postV1CashAdvanceHoldersBalances(
-      PostV1CashAdvanceHoldersBalancesRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CashAdvanceHoldersBalances(request, requestOptions).body();
+  public BalanceCashResponse balance(BalanceCashRequest request, RequestOptions requestOptions) {
+    return this.rawClient.balance(request, requestOptions).body();
+  }
+
+  public AdvanceHoldersBalancesCashResponse advanceHoldersBalances() {
+    return this.rawClient.advanceHoldersBalances().body();
+  }
+
+  public AdvanceHoldersBalancesCashResponse advanceHoldersBalances(RequestOptions requestOptions) {
+    return this.rawClient.advanceHoldersBalances(requestOptions).body();
+  }
+
+  public AdvanceHoldersBalancesCashResponse advanceHoldersBalances(
+      AdvanceHoldersBalancesCashRequest request) {
+    return this.rawClient.advanceHoldersBalances(request).body();
+  }
+
+  public AdvanceHoldersBalancesCashResponse advanceHoldersBalances(
+      AdvanceHoldersBalancesCashRequest request, RequestOptions requestOptions) {
+    return this.rawClient.advanceHoldersBalances(request, requestOptions).body();
   }
 }

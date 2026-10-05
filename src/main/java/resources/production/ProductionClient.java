@@ -6,48 +6,48 @@ package com.nordlet.api.resources.production;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.production.requests.PostV1ProductionBomsCreateRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionBomsGetRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionBomsListRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionMaintenanceCancelRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionMaintenanceCompleteRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionMaintenanceCreateRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionMaintenanceListRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionOrdersCompleteRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionOrdersCreateRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionOrdersGetRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionOrdersListRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionOrdersRecordOperationRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionQualityChecksAddRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionQualityChecksListRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionQualityChecksRecordRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionRoutingsCreateRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionRoutingsGetRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionRoutingsListRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionWorkCentersCreateRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionWorkCentersListRequest;
-import com.nordlet.api.resources.production.requests.PostV1ProductionWorkCentersUpdateRequest;
-import com.nordlet.api.resources.production.types.PostV1ProductionBomsCreateResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionBomsGetResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionBomsListResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionMaintenanceCancelResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionMaintenanceCompleteResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionMaintenanceCreateResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionMaintenanceListResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionOrdersCompleteResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionOrdersCreateResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionOrdersGetResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionOrdersListResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionOrdersRecordOperationResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionQualityChecksAddResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionQualityChecksListResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionQualityChecksRecordResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionRoutingsCreateResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionRoutingsGetResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionRoutingsListResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionWorkCentersCreateResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionWorkCentersListResponse;
-import com.nordlet.api.resources.production.types.PostV1ProductionWorkCentersUpdateResponse;
+import com.nordlet.api.resources.production.requests.BomsCreateProductionRequest;
+import com.nordlet.api.resources.production.requests.BomsGetProductionRequest;
+import com.nordlet.api.resources.production.requests.BomsListProductionRequest;
+import com.nordlet.api.resources.production.requests.MaintenanceCancelProductionRequest;
+import com.nordlet.api.resources.production.requests.MaintenanceCompleteProductionRequest;
+import com.nordlet.api.resources.production.requests.MaintenanceCreateProductionRequest;
+import com.nordlet.api.resources.production.requests.MaintenanceListProductionRequest;
+import com.nordlet.api.resources.production.requests.OrdersCompleteProductionRequest;
+import com.nordlet.api.resources.production.requests.OrdersCreateProductionRequest;
+import com.nordlet.api.resources.production.requests.OrdersGetProductionRequest;
+import com.nordlet.api.resources.production.requests.OrdersListProductionRequest;
+import com.nordlet.api.resources.production.requests.OrdersRecordOperationProductionRequest;
+import com.nordlet.api.resources.production.requests.QualityChecksAddProductionRequest;
+import com.nordlet.api.resources.production.requests.QualityChecksListProductionRequest;
+import com.nordlet.api.resources.production.requests.QualityChecksRecordProductionRequest;
+import com.nordlet.api.resources.production.requests.RoutingsCreateProductionRequest;
+import com.nordlet.api.resources.production.requests.RoutingsGetProductionRequest;
+import com.nordlet.api.resources.production.requests.RoutingsListProductionRequest;
+import com.nordlet.api.resources.production.requests.WorkCentersCreateProductionRequest;
+import com.nordlet.api.resources.production.requests.WorkCentersListProductionRequest;
+import com.nordlet.api.resources.production.requests.WorkCentersUpdateProductionRequest;
+import com.nordlet.api.resources.production.types.BomsCreateProductionResponse;
+import com.nordlet.api.resources.production.types.BomsGetProductionResponse;
+import com.nordlet.api.resources.production.types.BomsListProductionResponse;
+import com.nordlet.api.resources.production.types.MaintenanceCancelProductionResponse;
+import com.nordlet.api.resources.production.types.MaintenanceCompleteProductionResponse;
+import com.nordlet.api.resources.production.types.MaintenanceCreateProductionResponse;
+import com.nordlet.api.resources.production.types.MaintenanceListProductionResponse;
+import com.nordlet.api.resources.production.types.OrdersCompleteProductionResponse;
+import com.nordlet.api.resources.production.types.OrdersCreateProductionResponse;
+import com.nordlet.api.resources.production.types.OrdersGetProductionResponse;
+import com.nordlet.api.resources.production.types.OrdersListProductionResponse;
+import com.nordlet.api.resources.production.types.OrdersRecordOperationProductionResponse;
+import com.nordlet.api.resources.production.types.QualityChecksAddProductionResponse;
+import com.nordlet.api.resources.production.types.QualityChecksListProductionResponse;
+import com.nordlet.api.resources.production.types.QualityChecksRecordProductionResponse;
+import com.nordlet.api.resources.production.types.RoutingsCreateProductionResponse;
+import com.nordlet.api.resources.production.types.RoutingsGetProductionResponse;
+import com.nordlet.api.resources.production.types.RoutingsListProductionResponse;
+import com.nordlet.api.resources.production.types.WorkCentersCreateProductionResponse;
+import com.nordlet.api.resources.production.types.WorkCentersListProductionResponse;
+import com.nordlet.api.resources.production.types.WorkCentersUpdateProductionResponse;
 
 public class ProductionClient {
   protected final ClientOptions clientOptions;
@@ -66,266 +66,251 @@ public class ProductionClient {
     return this.rawClient;
   }
 
-  public PostV1ProductionWorkCentersCreateResponse postV1ProductionWorkCentersCreate(
-      PostV1ProductionWorkCentersCreateRequest request) {
-    return this.rawClient.postV1ProductionWorkCentersCreate(request).body();
+  public WorkCentersCreateProductionResponse workCentersCreate(
+      WorkCentersCreateProductionRequest request) {
+    return this.rawClient.workCentersCreate(request).body();
   }
 
-  public PostV1ProductionWorkCentersCreateResponse postV1ProductionWorkCentersCreate(
-      PostV1ProductionWorkCentersCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionWorkCentersCreate(request, requestOptions).body();
+  public WorkCentersCreateProductionResponse workCentersCreate(
+      WorkCentersCreateProductionRequest request, RequestOptions requestOptions) {
+    return this.rawClient.workCentersCreate(request, requestOptions).body();
   }
 
-  public PostV1ProductionWorkCentersUpdateResponse postV1ProductionWorkCentersUpdate(
-      PostV1ProductionWorkCentersUpdateRequest request) {
-    return this.rawClient.postV1ProductionWorkCentersUpdate(request).body();
+  public WorkCentersUpdateProductionResponse workCentersUpdate(
+      WorkCentersUpdateProductionRequest request) {
+    return this.rawClient.workCentersUpdate(request).body();
   }
 
-  public PostV1ProductionWorkCentersUpdateResponse postV1ProductionWorkCentersUpdate(
-      PostV1ProductionWorkCentersUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionWorkCentersUpdate(request, requestOptions).body();
+  public WorkCentersUpdateProductionResponse workCentersUpdate(
+      WorkCentersUpdateProductionRequest request, RequestOptions requestOptions) {
+    return this.rawClient.workCentersUpdate(request, requestOptions).body();
   }
 
-  public PostV1ProductionWorkCentersListResponse postV1ProductionWorkCentersList() {
-    return this.rawClient.postV1ProductionWorkCentersList().body();
+  public WorkCentersListProductionResponse workCentersList() {
+    return this.rawClient.workCentersList().body();
   }
 
-  public PostV1ProductionWorkCentersListResponse postV1ProductionWorkCentersList(
+  public WorkCentersListProductionResponse workCentersList(RequestOptions requestOptions) {
+    return this.rawClient.workCentersList(requestOptions).body();
+  }
+
+  public WorkCentersListProductionResponse workCentersList(
+      WorkCentersListProductionRequest request) {
+    return this.rawClient.workCentersList(request).body();
+  }
+
+  public WorkCentersListProductionResponse workCentersList(WorkCentersListProductionRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionWorkCentersList(requestOptions).body();
+    return this.rawClient.workCentersList(request, requestOptions).body();
   }
 
-  public PostV1ProductionWorkCentersListResponse postV1ProductionWorkCentersList(
-      PostV1ProductionWorkCentersListRequest request) {
-    return this.rawClient.postV1ProductionWorkCentersList(request).body();
+  public RoutingsCreateProductionResponse routingsCreate(RoutingsCreateProductionRequest request) {
+    return this.rawClient.routingsCreate(request).body();
   }
 
-  public PostV1ProductionWorkCentersListResponse postV1ProductionWorkCentersList(
-      PostV1ProductionWorkCentersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionWorkCentersList(request, requestOptions).body();
-  }
-
-  public PostV1ProductionRoutingsCreateResponse postV1ProductionRoutingsCreate(
-      PostV1ProductionRoutingsCreateRequest request) {
-    return this.rawClient.postV1ProductionRoutingsCreate(request).body();
-  }
-
-  public PostV1ProductionRoutingsCreateResponse postV1ProductionRoutingsCreate(
-      PostV1ProductionRoutingsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionRoutingsCreate(request, requestOptions).body();
-  }
-
-  public PostV1ProductionRoutingsGetResponse postV1ProductionRoutingsGet(
-      PostV1ProductionRoutingsGetRequest request) {
-    return this.rawClient.postV1ProductionRoutingsGet(request).body();
-  }
-
-  public PostV1ProductionRoutingsGetResponse postV1ProductionRoutingsGet(
-      PostV1ProductionRoutingsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionRoutingsGet(request, requestOptions).body();
-  }
-
-  public PostV1ProductionRoutingsListResponse postV1ProductionRoutingsList() {
-    return this.rawClient.postV1ProductionRoutingsList().body();
-  }
-
-  public PostV1ProductionRoutingsListResponse postV1ProductionRoutingsList(
+  public RoutingsCreateProductionResponse routingsCreate(RoutingsCreateProductionRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionRoutingsList(requestOptions).body();
+    return this.rawClient.routingsCreate(request, requestOptions).body();
   }
 
-  public PostV1ProductionRoutingsListResponse postV1ProductionRoutingsList(
-      PostV1ProductionRoutingsListRequest request) {
-    return this.rawClient.postV1ProductionRoutingsList(request).body();
+  public RoutingsGetProductionResponse routingsGet(RoutingsGetProductionRequest request) {
+    return this.rawClient.routingsGet(request).body();
   }
 
-  public PostV1ProductionRoutingsListResponse postV1ProductionRoutingsList(
-      PostV1ProductionRoutingsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionRoutingsList(request, requestOptions).body();
-  }
-
-  public PostV1ProductionMaintenanceCreateResponse postV1ProductionMaintenanceCreate(
-      PostV1ProductionMaintenanceCreateRequest request) {
-    return this.rawClient.postV1ProductionMaintenanceCreate(request).body();
-  }
-
-  public PostV1ProductionMaintenanceCreateResponse postV1ProductionMaintenanceCreate(
-      PostV1ProductionMaintenanceCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionMaintenanceCreate(request, requestOptions).body();
-  }
-
-  public PostV1ProductionMaintenanceCompleteResponse postV1ProductionMaintenanceComplete(
-      PostV1ProductionMaintenanceCompleteRequest request) {
-    return this.rawClient.postV1ProductionMaintenanceComplete(request).body();
-  }
-
-  public PostV1ProductionMaintenanceCompleteResponse postV1ProductionMaintenanceComplete(
-      PostV1ProductionMaintenanceCompleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionMaintenanceComplete(request, requestOptions).body();
-  }
-
-  public PostV1ProductionMaintenanceCancelResponse postV1ProductionMaintenanceCancel(
-      PostV1ProductionMaintenanceCancelRequest request) {
-    return this.rawClient.postV1ProductionMaintenanceCancel(request).body();
-  }
-
-  public PostV1ProductionMaintenanceCancelResponse postV1ProductionMaintenanceCancel(
-      PostV1ProductionMaintenanceCancelRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionMaintenanceCancel(request, requestOptions).body();
-  }
-
-  public PostV1ProductionMaintenanceListResponse postV1ProductionMaintenanceList() {
-    return this.rawClient.postV1ProductionMaintenanceList().body();
-  }
-
-  public PostV1ProductionMaintenanceListResponse postV1ProductionMaintenanceList(
+  public RoutingsGetProductionResponse routingsGet(RoutingsGetProductionRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionMaintenanceList(requestOptions).body();
+    return this.rawClient.routingsGet(request, requestOptions).body();
   }
 
-  public PostV1ProductionMaintenanceListResponse postV1ProductionMaintenanceList(
-      PostV1ProductionMaintenanceListRequest request) {
-    return this.rawClient.postV1ProductionMaintenanceList(request).body();
+  public RoutingsListProductionResponse routingsList() {
+    return this.rawClient.routingsList().body();
   }
 
-  public PostV1ProductionMaintenanceListResponse postV1ProductionMaintenanceList(
-      PostV1ProductionMaintenanceListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionMaintenanceList(request, requestOptions).body();
+  public RoutingsListProductionResponse routingsList(RequestOptions requestOptions) {
+    return this.rawClient.routingsList(requestOptions).body();
   }
 
-  public PostV1ProductionBomsCreateResponse postV1ProductionBomsCreate(
-      PostV1ProductionBomsCreateRequest request) {
-    return this.rawClient.postV1ProductionBomsCreate(request).body();
+  public RoutingsListProductionResponse routingsList(RoutingsListProductionRequest request) {
+    return this.rawClient.routingsList(request).body();
   }
 
-  public PostV1ProductionBomsCreateResponse postV1ProductionBomsCreate(
-      PostV1ProductionBomsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionBomsCreate(request, requestOptions).body();
-  }
-
-  public PostV1ProductionBomsGetResponse postV1ProductionBomsGet(
-      PostV1ProductionBomsGetRequest request) {
-    return this.rawClient.postV1ProductionBomsGet(request).body();
-  }
-
-  public PostV1ProductionBomsGetResponse postV1ProductionBomsGet(
-      PostV1ProductionBomsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionBomsGet(request, requestOptions).body();
-  }
-
-  public PostV1ProductionBomsListResponse postV1ProductionBomsList() {
-    return this.rawClient.postV1ProductionBomsList().body();
-  }
-
-  public PostV1ProductionBomsListResponse postV1ProductionBomsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionBomsList(requestOptions).body();
-  }
-
-  public PostV1ProductionBomsListResponse postV1ProductionBomsList(
-      PostV1ProductionBomsListRequest request) {
-    return this.rawClient.postV1ProductionBomsList(request).body();
-  }
-
-  public PostV1ProductionBomsListResponse postV1ProductionBomsList(
-      PostV1ProductionBomsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionBomsList(request, requestOptions).body();
-  }
-
-  public PostV1ProductionOrdersCreateResponse postV1ProductionOrdersCreate(
-      PostV1ProductionOrdersCreateRequest request) {
-    return this.rawClient.postV1ProductionOrdersCreate(request).body();
-  }
-
-  public PostV1ProductionOrdersCreateResponse postV1ProductionOrdersCreate(
-      PostV1ProductionOrdersCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionOrdersCreate(request, requestOptions).body();
-  }
-
-  public PostV1ProductionOrdersRecordOperationResponse postV1ProductionOrdersRecordOperation(
-      PostV1ProductionOrdersRecordOperationRequest request) {
-    return this.rawClient.postV1ProductionOrdersRecordOperation(request).body();
-  }
-
-  public PostV1ProductionOrdersRecordOperationResponse postV1ProductionOrdersRecordOperation(
-      PostV1ProductionOrdersRecordOperationRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionOrdersRecordOperation(request, requestOptions).body();
-  }
-
-  public PostV1ProductionQualityChecksAddResponse postV1ProductionQualityChecksAdd(
-      PostV1ProductionQualityChecksAddRequest request) {
-    return this.rawClient.postV1ProductionQualityChecksAdd(request).body();
-  }
-
-  public PostV1ProductionQualityChecksAddResponse postV1ProductionQualityChecksAdd(
-      PostV1ProductionQualityChecksAddRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionQualityChecksAdd(request, requestOptions).body();
-  }
-
-  public PostV1ProductionQualityChecksRecordResponse postV1ProductionQualityChecksRecord(
-      PostV1ProductionQualityChecksRecordRequest request) {
-    return this.rawClient.postV1ProductionQualityChecksRecord(request).body();
-  }
-
-  public PostV1ProductionQualityChecksRecordResponse postV1ProductionQualityChecksRecord(
-      PostV1ProductionQualityChecksRecordRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionQualityChecksRecord(request, requestOptions).body();
-  }
-
-  public PostV1ProductionQualityChecksListResponse postV1ProductionQualityChecksList() {
-    return this.rawClient.postV1ProductionQualityChecksList().body();
-  }
-
-  public PostV1ProductionQualityChecksListResponse postV1ProductionQualityChecksList(
+  public RoutingsListProductionResponse routingsList(RoutingsListProductionRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionQualityChecksList(requestOptions).body();
+    return this.rawClient.routingsList(request, requestOptions).body();
   }
 
-  public PostV1ProductionQualityChecksListResponse postV1ProductionQualityChecksList(
-      PostV1ProductionQualityChecksListRequest request) {
-    return this.rawClient.postV1ProductionQualityChecksList(request).body();
+  public MaintenanceCreateProductionResponse maintenanceCreate(
+      MaintenanceCreateProductionRequest request) {
+    return this.rawClient.maintenanceCreate(request).body();
   }
 
-  public PostV1ProductionQualityChecksListResponse postV1ProductionQualityChecksList(
-      PostV1ProductionQualityChecksListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionQualityChecksList(request, requestOptions).body();
+  public MaintenanceCreateProductionResponse maintenanceCreate(
+      MaintenanceCreateProductionRequest request, RequestOptions requestOptions) {
+    return this.rawClient.maintenanceCreate(request, requestOptions).body();
   }
 
-  public PostV1ProductionOrdersCompleteResponse postV1ProductionOrdersComplete(
-      PostV1ProductionOrdersCompleteRequest request) {
-    return this.rawClient.postV1ProductionOrdersComplete(request).body();
+  public MaintenanceCompleteProductionResponse maintenanceComplete(
+      MaintenanceCompleteProductionRequest request) {
+    return this.rawClient.maintenanceComplete(request).body();
   }
 
-  public PostV1ProductionOrdersCompleteResponse postV1ProductionOrdersComplete(
-      PostV1ProductionOrdersCompleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionOrdersComplete(request, requestOptions).body();
+  public MaintenanceCompleteProductionResponse maintenanceComplete(
+      MaintenanceCompleteProductionRequest request, RequestOptions requestOptions) {
+    return this.rawClient.maintenanceComplete(request, requestOptions).body();
   }
 
-  public PostV1ProductionOrdersGetResponse postV1ProductionOrdersGet(
-      PostV1ProductionOrdersGetRequest request) {
-    return this.rawClient.postV1ProductionOrdersGet(request).body();
+  public MaintenanceCancelProductionResponse maintenanceCancel(
+      MaintenanceCancelProductionRequest request) {
+    return this.rawClient.maintenanceCancel(request).body();
   }
 
-  public PostV1ProductionOrdersGetResponse postV1ProductionOrdersGet(
-      PostV1ProductionOrdersGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionOrdersGet(request, requestOptions).body();
+  public MaintenanceCancelProductionResponse maintenanceCancel(
+      MaintenanceCancelProductionRequest request, RequestOptions requestOptions) {
+    return this.rawClient.maintenanceCancel(request, requestOptions).body();
   }
 
-  public PostV1ProductionOrdersListResponse postV1ProductionOrdersList() {
-    return this.rawClient.postV1ProductionOrdersList().body();
+  public MaintenanceListProductionResponse maintenanceList() {
+    return this.rawClient.maintenanceList().body();
   }
 
-  public PostV1ProductionOrdersListResponse postV1ProductionOrdersList(
+  public MaintenanceListProductionResponse maintenanceList(RequestOptions requestOptions) {
+    return this.rawClient.maintenanceList(requestOptions).body();
+  }
+
+  public MaintenanceListProductionResponse maintenanceList(
+      MaintenanceListProductionRequest request) {
+    return this.rawClient.maintenanceList(request).body();
+  }
+
+  public MaintenanceListProductionResponse maintenanceList(MaintenanceListProductionRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionOrdersList(requestOptions).body();
+    return this.rawClient.maintenanceList(request, requestOptions).body();
   }
 
-  public PostV1ProductionOrdersListResponse postV1ProductionOrdersList(
-      PostV1ProductionOrdersListRequest request) {
-    return this.rawClient.postV1ProductionOrdersList(request).body();
+  public BomsCreateProductionResponse bomsCreate(BomsCreateProductionRequest request) {
+    return this.rawClient.bomsCreate(request).body();
   }
 
-  public PostV1ProductionOrdersListResponse postV1ProductionOrdersList(
-      PostV1ProductionOrdersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProductionOrdersList(request, requestOptions).body();
+  public BomsCreateProductionResponse bomsCreate(BomsCreateProductionRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.bomsCreate(request, requestOptions).body();
+  }
+
+  public BomsGetProductionResponse bomsGet(BomsGetProductionRequest request) {
+    return this.rawClient.bomsGet(request).body();
+  }
+
+  public BomsGetProductionResponse bomsGet(BomsGetProductionRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.bomsGet(request, requestOptions).body();
+  }
+
+  public BomsListProductionResponse bomsList() {
+    return this.rawClient.bomsList().body();
+  }
+
+  public BomsListProductionResponse bomsList(RequestOptions requestOptions) {
+    return this.rawClient.bomsList(requestOptions).body();
+  }
+
+  public BomsListProductionResponse bomsList(BomsListProductionRequest request) {
+    return this.rawClient.bomsList(request).body();
+  }
+
+  public BomsListProductionResponse bomsList(BomsListProductionRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.bomsList(request, requestOptions).body();
+  }
+
+  public OrdersCreateProductionResponse ordersCreate(OrdersCreateProductionRequest request) {
+    return this.rawClient.ordersCreate(request).body();
+  }
+
+  public OrdersCreateProductionResponse ordersCreate(OrdersCreateProductionRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersCreate(request, requestOptions).body();
+  }
+
+  public OrdersRecordOperationProductionResponse ordersRecordOperation(
+      OrdersRecordOperationProductionRequest request) {
+    return this.rawClient.ordersRecordOperation(request).body();
+  }
+
+  public OrdersRecordOperationProductionResponse ordersRecordOperation(
+      OrdersRecordOperationProductionRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ordersRecordOperation(request, requestOptions).body();
+  }
+
+  public QualityChecksAddProductionResponse qualityChecksAdd(
+      QualityChecksAddProductionRequest request) {
+    return this.rawClient.qualityChecksAdd(request).body();
+  }
+
+  public QualityChecksAddProductionResponse qualityChecksAdd(
+      QualityChecksAddProductionRequest request, RequestOptions requestOptions) {
+    return this.rawClient.qualityChecksAdd(request, requestOptions).body();
+  }
+
+  public QualityChecksRecordProductionResponse qualityChecksRecord(
+      QualityChecksRecordProductionRequest request) {
+    return this.rawClient.qualityChecksRecord(request).body();
+  }
+
+  public QualityChecksRecordProductionResponse qualityChecksRecord(
+      QualityChecksRecordProductionRequest request, RequestOptions requestOptions) {
+    return this.rawClient.qualityChecksRecord(request, requestOptions).body();
+  }
+
+  public QualityChecksListProductionResponse qualityChecksList() {
+    return this.rawClient.qualityChecksList().body();
+  }
+
+  public QualityChecksListProductionResponse qualityChecksList(RequestOptions requestOptions) {
+    return this.rawClient.qualityChecksList(requestOptions).body();
+  }
+
+  public QualityChecksListProductionResponse qualityChecksList(
+      QualityChecksListProductionRequest request) {
+    return this.rawClient.qualityChecksList(request).body();
+  }
+
+  public QualityChecksListProductionResponse qualityChecksList(
+      QualityChecksListProductionRequest request, RequestOptions requestOptions) {
+    return this.rawClient.qualityChecksList(request, requestOptions).body();
+  }
+
+  public OrdersCompleteProductionResponse ordersComplete(OrdersCompleteProductionRequest request) {
+    return this.rawClient.ordersComplete(request).body();
+  }
+
+  public OrdersCompleteProductionResponse ordersComplete(OrdersCompleteProductionRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersComplete(request, requestOptions).body();
+  }
+
+  public OrdersGetProductionResponse ordersGet(OrdersGetProductionRequest request) {
+    return this.rawClient.ordersGet(request).body();
+  }
+
+  public OrdersGetProductionResponse ordersGet(OrdersGetProductionRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersGet(request, requestOptions).body();
+  }
+
+  public OrdersListProductionResponse ordersList() {
+    return this.rawClient.ordersList().body();
+  }
+
+  public OrdersListProductionResponse ordersList(RequestOptions requestOptions) {
+    return this.rawClient.ordersList(requestOptions).body();
+  }
+
+  public OrdersListProductionResponse ordersList(OrdersListProductionRequest request) {
+    return this.rawClient.ordersList(request).body();
+  }
+
+  public OrdersListProductionResponse ordersList(OrdersListProductionRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersList(request, requestOptions).body();
   }
 }

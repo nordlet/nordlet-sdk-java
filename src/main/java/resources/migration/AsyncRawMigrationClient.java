@@ -15,16 +15,18 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.migration.requests.PostV1MigrationBooksImportRequest;
-import com.nordlet.api.resources.migration.requests.PostV1MigrationBooksValidateRequest;
-import com.nordlet.api.resources.migration.types.PostV1MigrationBooksImportResponse;
-import com.nordlet.api.resources.migration.types.PostV1MigrationBooksValidateResponse;
+import com.nordlet.api.resources.migration.requests.BooksImportMigrationRequest;
+import com.nordlet.api.resources.migration.requests.BooksValidateMigrationRequest;
+import com.nordlet.api.resources.migration.types.BooksImportMigrationResponse;
+import com.nordlet.api.resources.migration.types.BooksValidateMigrationResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -52,16 +54,16 @@ public class AsyncRawMigrationClient {
   /**
    * Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored.
    */
-  public CompletableFuture<NordletApiHttpResponse<PostV1MigrationBooksValidateResponse>> checkAHistoricalBooksPackageWithoutWritingAnything(
-      PostV1MigrationBooksValidateRequest request) {
-    return checkAHistoricalBooksPackageWithoutWritingAnything(request,null);
+  public CompletableFuture<NordletApiHttpResponse<BooksValidateMigrationResponse>> booksValidate(
+      BooksValidateMigrationRequest request) {
+    return booksValidate(request,null);
   }
 
   /**
    * Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored.
    */
-  public CompletableFuture<NordletApiHttpResponse<PostV1MigrationBooksValidateResponse>> checkAHistoricalBooksPackageWithoutWritingAnything(
-      PostV1MigrationBooksValidateRequest request, RequestOptions requestOptions) {
+  public CompletableFuture<NordletApiHttpResponse<BooksValidateMigrationResponse>> booksValidate(
+      BooksValidateMigrationRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/migration/books/validate");if (requestOptions != null) {
@@ -90,14 +92,14 @@ public class AsyncRawMigrationClient {
       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
       }
-      CompletableFuture<NordletApiHttpResponse<PostV1MigrationBooksValidateResponse>> future = new CompletableFuture<>();
+      CompletableFuture<NordletApiHttpResponse<BooksValidateMigrationResponse>> future = new CompletableFuture<>();
       client.newCall(okhttpRequest).enqueue(new Callback() {
         @Override
         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
           try (ResponseBody responseBody = response.body()) {
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1MigrationBooksValidateResponse.class), response));
+              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, BooksValidateMigrationResponse.class), response));
               return;
             }
             try {
@@ -106,11 +108,15 @@ public class AsyncRawMigrationClient {
                 return;
                 case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
+                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
                 case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
+                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
@@ -146,16 +152,16 @@ public class AsyncRawMigrationClient {
     /**
      * Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction — if any row fails, nothing is stored.
      */
-    public CompletableFuture<NordletApiHttpResponse<PostV1MigrationBooksImportResponse>> importHistoricalBooksFromAPreviousAccountingSystem(
-        PostV1MigrationBooksImportRequest request) {
-      return importHistoricalBooksFromAPreviousAccountingSystem(request,null);
+    public CompletableFuture<NordletApiHttpResponse<BooksImportMigrationResponse>> booksImport(
+        BooksImportMigrationRequest request) {
+      return booksImport(request,null);
     }
 
     /**
      * Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction — if any row fails, nothing is stored.
      */
-    public CompletableFuture<NordletApiHttpResponse<PostV1MigrationBooksImportResponse>> importHistoricalBooksFromAPreviousAccountingSystem(
-        PostV1MigrationBooksImportRequest request, RequestOptions requestOptions) {
+    public CompletableFuture<NordletApiHttpResponse<BooksImportMigrationResponse>> booksImport(
+        BooksImportMigrationRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/migration/books/import");if (requestOptions != null) {
@@ -184,14 +190,14 @@ public class AsyncRawMigrationClient {
         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
         }
-        CompletableFuture<NordletApiHttpResponse<PostV1MigrationBooksImportResponse>> future = new CompletableFuture<>();
+        CompletableFuture<NordletApiHttpResponse<BooksImportMigrationResponse>> future = new CompletableFuture<>();
         client.newCall(okhttpRequest).enqueue(new Callback() {
           @Override
           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
             try (ResponseBody responseBody = response.body()) {
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1MigrationBooksImportResponse.class), response));
+                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, BooksImportMigrationResponse.class), response));
                 return;
               }
               try {
@@ -200,11 +206,15 @@ public class AsyncRawMigrationClient {
                   return;
                   case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
+                  case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
                   case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;

@@ -6,18 +6,18 @@ package com.nordlet.api.resources.pos;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.pos.requests.PostV1PosDevicesCreateRequest;
-import com.nordlet.api.resources.pos.requests.PostV1PosDevicesListRequest;
-import com.nordlet.api.resources.pos.requests.PostV1PosDevicesUpdateRequest;
-import com.nordlet.api.resources.pos.requests.PostV1PosReportsCreateRequest;
-import com.nordlet.api.resources.pos.requests.PostV1PosReportsGetRequest;
-import com.nordlet.api.resources.pos.requests.PostV1PosReportsListRequest;
-import com.nordlet.api.resources.pos.types.PostV1PosDevicesCreateResponse;
-import com.nordlet.api.resources.pos.types.PostV1PosDevicesListResponse;
-import com.nordlet.api.resources.pos.types.PostV1PosDevicesUpdateResponse;
-import com.nordlet.api.resources.pos.types.PostV1PosReportsCreateResponse;
-import com.nordlet.api.resources.pos.types.PostV1PosReportsGetResponse;
-import com.nordlet.api.resources.pos.types.PostV1PosReportsListResponse;
+import com.nordlet.api.resources.pos.requests.DevicesCreatePosRequest;
+import com.nordlet.api.resources.pos.requests.DevicesListPosRequest;
+import com.nordlet.api.resources.pos.requests.DevicesUpdatePosRequest;
+import com.nordlet.api.resources.pos.requests.ReportsCreatePosRequest;
+import com.nordlet.api.resources.pos.requests.ReportsGetPosRequest;
+import com.nordlet.api.resources.pos.requests.ReportsListPosRequest;
+import com.nordlet.api.resources.pos.types.DevicesCreatePosResponse;
+import com.nordlet.api.resources.pos.types.DevicesListPosResponse;
+import com.nordlet.api.resources.pos.types.DevicesUpdatePosResponse;
+import com.nordlet.api.resources.pos.types.ReportsCreatePosResponse;
+import com.nordlet.api.resources.pos.types.ReportsGetPosResponse;
+import com.nordlet.api.resources.pos.types.ReportsListPosResponse;
 
 public class PosClient {
   protected final ClientOptions clientOptions;
@@ -36,76 +36,73 @@ public class PosClient {
     return this.rawClient;
   }
 
-  public PostV1PosDevicesCreateResponse postV1PosDevicesCreate(
-      PostV1PosDevicesCreateRequest request) {
-    return this.rawClient.postV1PosDevicesCreate(request).body();
+  public DevicesCreatePosResponse devicesCreate(DevicesCreatePosRequest request) {
+    return this.rawClient.devicesCreate(request).body();
   }
 
-  public PostV1PosDevicesCreateResponse postV1PosDevicesCreate(
-      PostV1PosDevicesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PosDevicesCreate(request, requestOptions).body();
-  }
-
-  public PostV1PosDevicesUpdateResponse postV1PosDevicesUpdate(
-      PostV1PosDevicesUpdateRequest request) {
-    return this.rawClient.postV1PosDevicesUpdate(request).body();
-  }
-
-  public PostV1PosDevicesUpdateResponse postV1PosDevicesUpdate(
-      PostV1PosDevicesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PosDevicesUpdate(request, requestOptions).body();
-  }
-
-  public PostV1PosDevicesListResponse postV1PosDevicesList() {
-    return this.rawClient.postV1PosDevicesList().body();
-  }
-
-  public PostV1PosDevicesListResponse postV1PosDevicesList(RequestOptions requestOptions) {
-    return this.rawClient.postV1PosDevicesList(requestOptions).body();
-  }
-
-  public PostV1PosDevicesListResponse postV1PosDevicesList(PostV1PosDevicesListRequest request) {
-    return this.rawClient.postV1PosDevicesList(request).body();
-  }
-
-  public PostV1PosDevicesListResponse postV1PosDevicesList(PostV1PosDevicesListRequest request,
+  public DevicesCreatePosResponse devicesCreate(DevicesCreatePosRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PosDevicesList(request, requestOptions).body();
+    return this.rawClient.devicesCreate(request, requestOptions).body();
   }
 
-  public PostV1PosReportsCreateResponse postV1PosReportsCreate(
-      PostV1PosReportsCreateRequest request) {
-    return this.rawClient.postV1PosReportsCreate(request).body();
+  public DevicesUpdatePosResponse devicesUpdate(DevicesUpdatePosRequest request) {
+    return this.rawClient.devicesUpdate(request).body();
   }
 
-  public PostV1PosReportsCreateResponse postV1PosReportsCreate(
-      PostV1PosReportsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PosReportsCreate(request, requestOptions).body();
-  }
-
-  public PostV1PosReportsGetResponse postV1PosReportsGet(PostV1PosReportsGetRequest request) {
-    return this.rawClient.postV1PosReportsGet(request).body();
-  }
-
-  public PostV1PosReportsGetResponse postV1PosReportsGet(PostV1PosReportsGetRequest request,
+  public DevicesUpdatePosResponse devicesUpdate(DevicesUpdatePosRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PosReportsGet(request, requestOptions).body();
+    return this.rawClient.devicesUpdate(request, requestOptions).body();
   }
 
-  public PostV1PosReportsListResponse postV1PosReportsList() {
-    return this.rawClient.postV1PosReportsList().body();
+  public DevicesListPosResponse devicesList() {
+    return this.rawClient.devicesList().body();
   }
 
-  public PostV1PosReportsListResponse postV1PosReportsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1PosReportsList(requestOptions).body();
+  public DevicesListPosResponse devicesList(RequestOptions requestOptions) {
+    return this.rawClient.devicesList(requestOptions).body();
   }
 
-  public PostV1PosReportsListResponse postV1PosReportsList(PostV1PosReportsListRequest request) {
-    return this.rawClient.postV1PosReportsList(request).body();
+  public DevicesListPosResponse devicesList(DevicesListPosRequest request) {
+    return this.rawClient.devicesList(request).body();
   }
 
-  public PostV1PosReportsListResponse postV1PosReportsList(PostV1PosReportsListRequest request,
+  public DevicesListPosResponse devicesList(DevicesListPosRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PosReportsList(request, requestOptions).body();
+    return this.rawClient.devicesList(request, requestOptions).body();
+  }
+
+  public ReportsCreatePosResponse reportsCreate(ReportsCreatePosRequest request) {
+    return this.rawClient.reportsCreate(request).body();
+  }
+
+  public ReportsCreatePosResponse reportsCreate(ReportsCreatePosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.reportsCreate(request, requestOptions).body();
+  }
+
+  public ReportsGetPosResponse reportsGet(ReportsGetPosRequest request) {
+    return this.rawClient.reportsGet(request).body();
+  }
+
+  public ReportsGetPosResponse reportsGet(ReportsGetPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.reportsGet(request, requestOptions).body();
+  }
+
+  public ReportsListPosResponse reportsList() {
+    return this.rawClient.reportsList().body();
+  }
+
+  public ReportsListPosResponse reportsList(RequestOptions requestOptions) {
+    return this.rawClient.reportsList(requestOptions).body();
+  }
+
+  public ReportsListPosResponse reportsList(ReportsListPosRequest request) {
+    return this.rawClient.reportsList(request).body();
+  }
+
+  public ReportsListPosResponse reportsList(ReportsListPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.reportsList(request, requestOptions).body();
   }
 }

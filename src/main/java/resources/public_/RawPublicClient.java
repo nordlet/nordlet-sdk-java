@@ -15,15 +15,17 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.public_.requests.GetV1PublicPayTokenRequest;
-import com.nordlet.api.resources.public_.requests.PostV1PublicIntegrationRequestsRequest;
-import com.nordlet.api.resources.public_.types.PostV1PublicIntegrationRequestsResponse;
+import com.nordlet.api.resources.public_.requests.IntegrationRequestsPublicRequest;
+import com.nordlet.api.resources.public_.requests.PayPublicRequest;
+import com.nordlet.api.resources.public_.types.IntegrationRequestsPublicResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -44,13 +46,13 @@ public class RawPublicClient {
     this.clientOptions = clientOptions;
   }
 
-  public NordletApiHttpResponse<PostV1PublicIntegrationRequestsResponse> postV1PublicIntegrationRequests(
-      PostV1PublicIntegrationRequestsRequest request) {
-    return postV1PublicIntegrationRequests(request,null);
+  public NordletApiHttpResponse<IntegrationRequestsPublicResponse> integrationRequests(
+      IntegrationRequestsPublicRequest request) {
+    return integrationRequests(request,null);
   }
 
-  public NordletApiHttpResponse<PostV1PublicIntegrationRequestsResponse> postV1PublicIntegrationRequests(
-      PostV1PublicIntegrationRequestsRequest request, RequestOptions requestOptions) {
+  public NordletApiHttpResponse<IntegrationRequestsPublicResponse> integrationRequests(
+      IntegrationRequestsPublicRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/public/integration-requests");if (requestOptions != null) {
@@ -83,15 +85,17 @@ public class RawPublicClient {
         ResponseBody responseBody = response.body();
         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
         if (response.isSuccessful()) {
-          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PublicIntegrationRequestsResponse.class), response);
+          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, IntegrationRequestsPublicResponse.class), response);
         }
         try {
           switch (response.code()) {
             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -111,22 +115,20 @@ public class RawPublicClient {
       }
     }
 
-    public NordletApiHttpResponse<Void> getV1PublicPayToken(String token) {
-      return getV1PublicPayToken(token,GetV1PublicPayTokenRequest.builder().build());
+    public NordletApiHttpResponse<Void> pay(String token) {
+      return pay(token,PayPublicRequest.builder().build());
     }
 
-    public NordletApiHttpResponse<Void> getV1PublicPayToken(String token,
+    public NordletApiHttpResponse<Void> pay(String token, RequestOptions requestOptions) {
+      return pay(token,PayPublicRequest.builder().build(),requestOptions);
+    }
+
+    public NordletApiHttpResponse<Void> pay(String token, PayPublicRequest request) {
+      return pay(token,request,null);
+    }
+
+    public NordletApiHttpResponse<Void> pay(String token, PayPublicRequest request,
         RequestOptions requestOptions) {
-      return getV1PublicPayToken(token,GetV1PublicPayTokenRequest.builder().build(),requestOptions);
-    }
-
-    public NordletApiHttpResponse<Void> getV1PublicPayToken(String token,
-        GetV1PublicPayTokenRequest request) {
-      return getV1PublicPayToken(token,request,null);
-    }
-
-    public NordletApiHttpResponse<Void> getV1PublicPayToken(String token,
-        GetV1PublicPayTokenRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/public/pay")
@@ -158,9 +160,11 @@ public class RawPublicClient {
             switch (response.code()) {
               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);

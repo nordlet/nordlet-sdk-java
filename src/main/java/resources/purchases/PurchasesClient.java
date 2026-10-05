@@ -6,46 +6,46 @@ package com.nordlet.api.resources.purchases;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesInvoicesCreateRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesInvoicesDeleteRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesInvoicesGetRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesInvoicesListRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesInvoicesMatchRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesInvoicesRegisterRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesInvoicesUpdateRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersApproveRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersCancelRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersCloseRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersCreateRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersDeleteRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersGetRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersListRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersRejectRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersSubmitRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesOrdersUpdateRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesReceiptsCreateRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesReceiptsGetRequest;
-import com.nordlet.api.resources.purchases.requests.PostV1PurchasesReceiptsListRequest;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesInvoicesCreateResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesInvoicesDeleteResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesInvoicesGetResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesInvoicesListResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesInvoicesMatchResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesInvoicesRegisterResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesInvoicesUpdateResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersApproveResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersCancelResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersCloseResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersCreateResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersDeleteResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersGetResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersListResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersRejectResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersSubmitResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesOrdersUpdateResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesReceiptsCreateResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesReceiptsGetResponse;
-import com.nordlet.api.resources.purchases.types.PostV1PurchasesReceiptsListResponse;
+import com.nordlet.api.resources.purchases.requests.InvoicesCreatePurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.InvoicesDeletePurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.InvoicesGetPurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.InvoicesListPurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.InvoicesMatchPurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.InvoicesRegisterPurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.InvoicesUpdatePurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.OrdersApprovePurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.OrdersCancelPurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.OrdersClosePurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.OrdersCreatePurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.OrdersDeletePurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.OrdersGetPurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.OrdersListPurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.OrdersRejectPurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.OrdersSubmitPurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.OrdersUpdatePurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.ReceiptsCreatePurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.ReceiptsGetPurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.ReceiptsListPurchasesRequest;
+import com.nordlet.api.resources.purchases.types.InvoicesCreatePurchasesResponse;
+import com.nordlet.api.resources.purchases.types.InvoicesDeletePurchasesResponse;
+import com.nordlet.api.resources.purchases.types.InvoicesGetPurchasesResponse;
+import com.nordlet.api.resources.purchases.types.InvoicesListPurchasesResponse;
+import com.nordlet.api.resources.purchases.types.InvoicesMatchPurchasesResponse;
+import com.nordlet.api.resources.purchases.types.InvoicesRegisterPurchasesResponse;
+import com.nordlet.api.resources.purchases.types.InvoicesUpdatePurchasesResponse;
+import com.nordlet.api.resources.purchases.types.OrdersApprovePurchasesResponse;
+import com.nordlet.api.resources.purchases.types.OrdersCancelPurchasesResponse;
+import com.nordlet.api.resources.purchases.types.OrdersClosePurchasesResponse;
+import com.nordlet.api.resources.purchases.types.OrdersCreatePurchasesResponse;
+import com.nordlet.api.resources.purchases.types.OrdersDeletePurchasesResponse;
+import com.nordlet.api.resources.purchases.types.OrdersGetPurchasesResponse;
+import com.nordlet.api.resources.purchases.types.OrdersListPurchasesResponse;
+import com.nordlet.api.resources.purchases.types.OrdersRejectPurchasesResponse;
+import com.nordlet.api.resources.purchases.types.OrdersSubmitPurchasesResponse;
+import com.nordlet.api.resources.purchases.types.OrdersUpdatePurchasesResponse;
+import com.nordlet.api.resources.purchases.types.ReceiptsCreatePurchasesResponse;
+import com.nordlet.api.resources.purchases.types.ReceiptsGetPurchasesResponse;
+import com.nordlet.api.resources.purchases.types.ReceiptsListPurchasesResponse;
 
 public class PurchasesClient {
   protected final ClientOptions clientOptions;
@@ -64,230 +64,208 @@ public class PurchasesClient {
     return this.rawClient;
   }
 
-  public PostV1PurchasesInvoicesCreateResponse postV1PurchasesInvoicesCreate(
-      PostV1PurchasesInvoicesCreateRequest request) {
-    return this.rawClient.postV1PurchasesInvoicesCreate(request).body();
+  public InvoicesCreatePurchasesResponse invoicesCreate(InvoicesCreatePurchasesRequest request) {
+    return this.rawClient.invoicesCreate(request).body();
   }
 
-  public PostV1PurchasesInvoicesCreateResponse postV1PurchasesInvoicesCreate(
-      PostV1PurchasesInvoicesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesInvoicesCreate(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesInvoicesGetResponse postV1PurchasesInvoicesGet(
-      PostV1PurchasesInvoicesGetRequest request) {
-    return this.rawClient.postV1PurchasesInvoicesGet(request).body();
-  }
-
-  public PostV1PurchasesInvoicesGetResponse postV1PurchasesInvoicesGet(
-      PostV1PurchasesInvoicesGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesInvoicesGet(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesInvoicesUpdateResponse postV1PurchasesInvoicesUpdate(
-      PostV1PurchasesInvoicesUpdateRequest request) {
-    return this.rawClient.postV1PurchasesInvoicesUpdate(request).body();
-  }
-
-  public PostV1PurchasesInvoicesUpdateResponse postV1PurchasesInvoicesUpdate(
-      PostV1PurchasesInvoicesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesInvoicesUpdate(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesInvoicesDeleteResponse postV1PurchasesInvoicesDelete(
-      PostV1PurchasesInvoicesDeleteRequest request) {
-    return this.rawClient.postV1PurchasesInvoicesDelete(request).body();
-  }
-
-  public PostV1PurchasesInvoicesDeleteResponse postV1PurchasesInvoicesDelete(
-      PostV1PurchasesInvoicesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesInvoicesDelete(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesInvoicesRegisterResponse postV1PurchasesInvoicesRegister(
-      PostV1PurchasesInvoicesRegisterRequest request) {
-    return this.rawClient.postV1PurchasesInvoicesRegister(request).body();
-  }
-
-  public PostV1PurchasesInvoicesRegisterResponse postV1PurchasesInvoicesRegister(
-      PostV1PurchasesInvoicesRegisterRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesInvoicesRegister(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesInvoicesListResponse postV1PurchasesInvoicesList() {
-    return this.rawClient.postV1PurchasesInvoicesList().body();
-  }
-
-  public PostV1PurchasesInvoicesListResponse postV1PurchasesInvoicesList(
+  public InvoicesCreatePurchasesResponse invoicesCreate(InvoicesCreatePurchasesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesInvoicesList(requestOptions).body();
+    return this.rawClient.invoicesCreate(request, requestOptions).body();
   }
 
-  public PostV1PurchasesInvoicesListResponse postV1PurchasesInvoicesList(
-      PostV1PurchasesInvoicesListRequest request) {
-    return this.rawClient.postV1PurchasesInvoicesList(request).body();
+  public InvoicesGetPurchasesResponse invoicesGet(InvoicesGetPurchasesRequest request) {
+    return this.rawClient.invoicesGet(request).body();
   }
 
-  public PostV1PurchasesInvoicesListResponse postV1PurchasesInvoicesList(
-      PostV1PurchasesInvoicesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesInvoicesList(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesOrdersCreateResponse postV1PurchasesOrdersCreate(
-      PostV1PurchasesOrdersCreateRequest request) {
-    return this.rawClient.postV1PurchasesOrdersCreate(request).body();
-  }
-
-  public PostV1PurchasesOrdersCreateResponse postV1PurchasesOrdersCreate(
-      PostV1PurchasesOrdersCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesOrdersCreate(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesOrdersUpdateResponse postV1PurchasesOrdersUpdate(
-      PostV1PurchasesOrdersUpdateRequest request) {
-    return this.rawClient.postV1PurchasesOrdersUpdate(request).body();
-  }
-
-  public PostV1PurchasesOrdersUpdateResponse postV1PurchasesOrdersUpdate(
-      PostV1PurchasesOrdersUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesOrdersUpdate(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesOrdersGetResponse postV1PurchasesOrdersGet(
-      PostV1PurchasesOrdersGetRequest request) {
-    return this.rawClient.postV1PurchasesOrdersGet(request).body();
-  }
-
-  public PostV1PurchasesOrdersGetResponse postV1PurchasesOrdersGet(
-      PostV1PurchasesOrdersGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesOrdersGet(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesOrdersListResponse postV1PurchasesOrdersList() {
-    return this.rawClient.postV1PurchasesOrdersList().body();
-  }
-
-  public PostV1PurchasesOrdersListResponse postV1PurchasesOrdersList(
+  public InvoicesGetPurchasesResponse invoicesGet(InvoicesGetPurchasesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesOrdersList(requestOptions).body();
+    return this.rawClient.invoicesGet(request, requestOptions).body();
   }
 
-  public PostV1PurchasesOrdersListResponse postV1PurchasesOrdersList(
-      PostV1PurchasesOrdersListRequest request) {
-    return this.rawClient.postV1PurchasesOrdersList(request).body();
+  public InvoicesUpdatePurchasesResponse invoicesUpdate(InvoicesUpdatePurchasesRequest request) {
+    return this.rawClient.invoicesUpdate(request).body();
   }
 
-  public PostV1PurchasesOrdersListResponse postV1PurchasesOrdersList(
-      PostV1PurchasesOrdersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesOrdersList(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesOrdersSubmitResponse postV1PurchasesOrdersSubmit(
-      PostV1PurchasesOrdersSubmitRequest request) {
-    return this.rawClient.postV1PurchasesOrdersSubmit(request).body();
-  }
-
-  public PostV1PurchasesOrdersSubmitResponse postV1PurchasesOrdersSubmit(
-      PostV1PurchasesOrdersSubmitRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesOrdersSubmit(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesOrdersApproveResponse postV1PurchasesOrdersApprove(
-      PostV1PurchasesOrdersApproveRequest request) {
-    return this.rawClient.postV1PurchasesOrdersApprove(request).body();
-  }
-
-  public PostV1PurchasesOrdersApproveResponse postV1PurchasesOrdersApprove(
-      PostV1PurchasesOrdersApproveRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesOrdersApprove(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesOrdersRejectResponse postV1PurchasesOrdersReject(
-      PostV1PurchasesOrdersRejectRequest request) {
-    return this.rawClient.postV1PurchasesOrdersReject(request).body();
-  }
-
-  public PostV1PurchasesOrdersRejectResponse postV1PurchasesOrdersReject(
-      PostV1PurchasesOrdersRejectRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesOrdersReject(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesOrdersCancelResponse postV1PurchasesOrdersCancel(
-      PostV1PurchasesOrdersCancelRequest request) {
-    return this.rawClient.postV1PurchasesOrdersCancel(request).body();
-  }
-
-  public PostV1PurchasesOrdersCancelResponse postV1PurchasesOrdersCancel(
-      PostV1PurchasesOrdersCancelRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesOrdersCancel(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesOrdersCloseResponse postV1PurchasesOrdersClose(
-      PostV1PurchasesOrdersCloseRequest request) {
-    return this.rawClient.postV1PurchasesOrdersClose(request).body();
-  }
-
-  public PostV1PurchasesOrdersCloseResponse postV1PurchasesOrdersClose(
-      PostV1PurchasesOrdersCloseRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesOrdersClose(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesOrdersDeleteResponse postV1PurchasesOrdersDelete(
-      PostV1PurchasesOrdersDeleteRequest request) {
-    return this.rawClient.postV1PurchasesOrdersDelete(request).body();
-  }
-
-  public PostV1PurchasesOrdersDeleteResponse postV1PurchasesOrdersDelete(
-      PostV1PurchasesOrdersDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesOrdersDelete(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesReceiptsCreateResponse postV1PurchasesReceiptsCreate(
-      PostV1PurchasesReceiptsCreateRequest request) {
-    return this.rawClient.postV1PurchasesReceiptsCreate(request).body();
-  }
-
-  public PostV1PurchasesReceiptsCreateResponse postV1PurchasesReceiptsCreate(
-      PostV1PurchasesReceiptsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesReceiptsCreate(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesReceiptsGetResponse postV1PurchasesReceiptsGet(
-      PostV1PurchasesReceiptsGetRequest request) {
-    return this.rawClient.postV1PurchasesReceiptsGet(request).body();
-  }
-
-  public PostV1PurchasesReceiptsGetResponse postV1PurchasesReceiptsGet(
-      PostV1PurchasesReceiptsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesReceiptsGet(request, requestOptions).body();
-  }
-
-  public PostV1PurchasesReceiptsListResponse postV1PurchasesReceiptsList() {
-    return this.rawClient.postV1PurchasesReceiptsList().body();
-  }
-
-  public PostV1PurchasesReceiptsListResponse postV1PurchasesReceiptsList(
+  public InvoicesUpdatePurchasesResponse invoicesUpdate(InvoicesUpdatePurchasesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesReceiptsList(requestOptions).body();
+    return this.rawClient.invoicesUpdate(request, requestOptions).body();
   }
 
-  public PostV1PurchasesReceiptsListResponse postV1PurchasesReceiptsList(
-      PostV1PurchasesReceiptsListRequest request) {
-    return this.rawClient.postV1PurchasesReceiptsList(request).body();
+  public InvoicesDeletePurchasesResponse invoicesDelete(InvoicesDeletePurchasesRequest request) {
+    return this.rawClient.invoicesDelete(request).body();
   }
 
-  public PostV1PurchasesReceiptsListResponse postV1PurchasesReceiptsList(
-      PostV1PurchasesReceiptsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesReceiptsList(request, requestOptions).body();
+  public InvoicesDeletePurchasesResponse invoicesDelete(InvoicesDeletePurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesDelete(request, requestOptions).body();
   }
 
-  public PostV1PurchasesInvoicesMatchResponse postV1PurchasesInvoicesMatch(
-      PostV1PurchasesInvoicesMatchRequest request) {
-    return this.rawClient.postV1PurchasesInvoicesMatch(request).body();
+  public InvoicesRegisterPurchasesResponse invoicesRegister(
+      InvoicesRegisterPurchasesRequest request) {
+    return this.rawClient.invoicesRegister(request).body();
   }
 
-  public PostV1PurchasesInvoicesMatchResponse postV1PurchasesInvoicesMatch(
-      PostV1PurchasesInvoicesMatchRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PurchasesInvoicesMatch(request, requestOptions).body();
+  public InvoicesRegisterPurchasesResponse invoicesRegister(
+      InvoicesRegisterPurchasesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesRegister(request, requestOptions).body();
+  }
+
+  public InvoicesListPurchasesResponse invoicesList() {
+    return this.rawClient.invoicesList().body();
+  }
+
+  public InvoicesListPurchasesResponse invoicesList(RequestOptions requestOptions) {
+    return this.rawClient.invoicesList(requestOptions).body();
+  }
+
+  public InvoicesListPurchasesResponse invoicesList(InvoicesListPurchasesRequest request) {
+    return this.rawClient.invoicesList(request).body();
+  }
+
+  public InvoicesListPurchasesResponse invoicesList(InvoicesListPurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesList(request, requestOptions).body();
+  }
+
+  public OrdersCreatePurchasesResponse ordersCreate(OrdersCreatePurchasesRequest request) {
+    return this.rawClient.ordersCreate(request).body();
+  }
+
+  public OrdersCreatePurchasesResponse ordersCreate(OrdersCreatePurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersCreate(request, requestOptions).body();
+  }
+
+  public OrdersUpdatePurchasesResponse ordersUpdate(OrdersUpdatePurchasesRequest request) {
+    return this.rawClient.ordersUpdate(request).body();
+  }
+
+  public OrdersUpdatePurchasesResponse ordersUpdate(OrdersUpdatePurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersUpdate(request, requestOptions).body();
+  }
+
+  public OrdersGetPurchasesResponse ordersGet(OrdersGetPurchasesRequest request) {
+    return this.rawClient.ordersGet(request).body();
+  }
+
+  public OrdersGetPurchasesResponse ordersGet(OrdersGetPurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersGet(request, requestOptions).body();
+  }
+
+  public OrdersListPurchasesResponse ordersList() {
+    return this.rawClient.ordersList().body();
+  }
+
+  public OrdersListPurchasesResponse ordersList(RequestOptions requestOptions) {
+    return this.rawClient.ordersList(requestOptions).body();
+  }
+
+  public OrdersListPurchasesResponse ordersList(OrdersListPurchasesRequest request) {
+    return this.rawClient.ordersList(request).body();
+  }
+
+  public OrdersListPurchasesResponse ordersList(OrdersListPurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersList(request, requestOptions).body();
+  }
+
+  public OrdersSubmitPurchasesResponse ordersSubmit(OrdersSubmitPurchasesRequest request) {
+    return this.rawClient.ordersSubmit(request).body();
+  }
+
+  public OrdersSubmitPurchasesResponse ordersSubmit(OrdersSubmitPurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersSubmit(request, requestOptions).body();
+  }
+
+  public OrdersApprovePurchasesResponse ordersApprove(OrdersApprovePurchasesRequest request) {
+    return this.rawClient.ordersApprove(request).body();
+  }
+
+  public OrdersApprovePurchasesResponse ordersApprove(OrdersApprovePurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersApprove(request, requestOptions).body();
+  }
+
+  public OrdersRejectPurchasesResponse ordersReject(OrdersRejectPurchasesRequest request) {
+    return this.rawClient.ordersReject(request).body();
+  }
+
+  public OrdersRejectPurchasesResponse ordersReject(OrdersRejectPurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersReject(request, requestOptions).body();
+  }
+
+  public OrdersCancelPurchasesResponse ordersCancel(OrdersCancelPurchasesRequest request) {
+    return this.rawClient.ordersCancel(request).body();
+  }
+
+  public OrdersCancelPurchasesResponse ordersCancel(OrdersCancelPurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersCancel(request, requestOptions).body();
+  }
+
+  public OrdersClosePurchasesResponse ordersClose(OrdersClosePurchasesRequest request) {
+    return this.rawClient.ordersClose(request).body();
+  }
+
+  public OrdersClosePurchasesResponse ordersClose(OrdersClosePurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersClose(request, requestOptions).body();
+  }
+
+  public OrdersDeletePurchasesResponse ordersDelete(OrdersDeletePurchasesRequest request) {
+    return this.rawClient.ordersDelete(request).body();
+  }
+
+  public OrdersDeletePurchasesResponse ordersDelete(OrdersDeletePurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersDelete(request, requestOptions).body();
+  }
+
+  public ReceiptsCreatePurchasesResponse receiptsCreate(ReceiptsCreatePurchasesRequest request) {
+    return this.rawClient.receiptsCreate(request).body();
+  }
+
+  public ReceiptsCreatePurchasesResponse receiptsCreate(ReceiptsCreatePurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.receiptsCreate(request, requestOptions).body();
+  }
+
+  public ReceiptsGetPurchasesResponse receiptsGet(ReceiptsGetPurchasesRequest request) {
+    return this.rawClient.receiptsGet(request).body();
+  }
+
+  public ReceiptsGetPurchasesResponse receiptsGet(ReceiptsGetPurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.receiptsGet(request, requestOptions).body();
+  }
+
+  public ReceiptsListPurchasesResponse receiptsList() {
+    return this.rawClient.receiptsList().body();
+  }
+
+  public ReceiptsListPurchasesResponse receiptsList(RequestOptions requestOptions) {
+    return this.rawClient.receiptsList(requestOptions).body();
+  }
+
+  public ReceiptsListPurchasesResponse receiptsList(ReceiptsListPurchasesRequest request) {
+    return this.rawClient.receiptsList(request).body();
+  }
+
+  public ReceiptsListPurchasesResponse receiptsList(ReceiptsListPurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.receiptsList(request, requestOptions).body();
+  }
+
+  public InvoicesMatchPurchasesResponse invoicesMatch(InvoicesMatchPurchasesRequest request) {
+    return this.rawClient.invoicesMatch(request).body();
+  }
+
+  public InvoicesMatchPurchasesResponse invoicesMatch(InvoicesMatchPurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesMatch(request, requestOptions).body();
   }
 }

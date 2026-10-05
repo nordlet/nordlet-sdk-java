@@ -15,32 +15,36 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsCreateRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsGetRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsInputVatRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsListRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsModernizeRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsUpdateRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsDepreciationPostRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsDepreciationPreviewRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsGroupsCreateRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsGroupsListRequest;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsCreateResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsGetResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsInputVatResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsListResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsModernizeResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsUpdateResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsDepreciationPostResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsDepreciationPreviewResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsGroupsCreateResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsGroupsListResponse;
+import com.nordlet.api.resources.assets.requests.AssetsCreateAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsDisposeAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsGetAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsInputVatAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsListAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsModernizeAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsUpdateAssetsRequest;
+import com.nordlet.api.resources.assets.requests.DepreciationPostAssetsRequest;
+import com.nordlet.api.resources.assets.requests.DepreciationPreviewAssetsRequest;
+import com.nordlet.api.resources.assets.requests.GroupsCreateAssetsRequest;
+import com.nordlet.api.resources.assets.requests.GroupsListAssetsRequest;
+import com.nordlet.api.resources.assets.types.AssetsCreateAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsDisposeAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsGetAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsInputVatAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsListAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsModernizeAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsUpdateAssetsResponse;
+import com.nordlet.api.resources.assets.types.DepreciationPostAssetsResponse;
+import com.nordlet.api.resources.assets.types.DepreciationPreviewAssetsResponse;
+import com.nordlet.api.resources.assets.types.GroupsCreateAssetsResponse;
+import com.nordlet.api.resources.assets.types.GroupsListAssetsResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -60,13 +64,13 @@ public class RawAssetsClient {
     this.clientOptions = clientOptions;
   }
 
-  public NordletApiHttpResponse<PostV1AssetsGroupsCreateResponse> postV1AssetsGroupsCreate(
-      PostV1AssetsGroupsCreateRequest request) {
-    return postV1AssetsGroupsCreate(request,null);
+  public NordletApiHttpResponse<GroupsCreateAssetsResponse> groupsCreate(
+      GroupsCreateAssetsRequest request) {
+    return groupsCreate(request,null);
   }
 
-  public NordletApiHttpResponse<PostV1AssetsGroupsCreateResponse> postV1AssetsGroupsCreate(
-      PostV1AssetsGroupsCreateRequest request, RequestOptions requestOptions) {
+  public NordletApiHttpResponse<GroupsCreateAssetsResponse> groupsCreate(
+      GroupsCreateAssetsRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/assets/groups/create");if (requestOptions != null) {
@@ -99,15 +103,17 @@ public class RawAssetsClient {
         ResponseBody responseBody = response.body();
         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
         if (response.isSuccessful()) {
-          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsGroupsCreateResponse.class), response);
+          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsCreateAssetsResponse.class), response);
         }
         try {
           switch (response.code()) {
             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -127,22 +133,22 @@ public class RawAssetsClient {
       }
     }
 
-    public NordletApiHttpResponse<PostV1AssetsGroupsListResponse> postV1AssetsGroupsList() {
-      return postV1AssetsGroupsList(PostV1AssetsGroupsListRequest.builder().build());
+    public NordletApiHttpResponse<GroupsListAssetsResponse> groupsList() {
+      return groupsList(GroupsListAssetsRequest.builder().build());
     }
 
-    public NordletApiHttpResponse<PostV1AssetsGroupsListResponse> postV1AssetsGroupsList(
+    public NordletApiHttpResponse<GroupsListAssetsResponse> groupsList(
         RequestOptions requestOptions) {
-      return postV1AssetsGroupsList(PostV1AssetsGroupsListRequest.builder().build(),requestOptions);
+      return groupsList(GroupsListAssetsRequest.builder().build(),requestOptions);
     }
 
-    public NordletApiHttpResponse<PostV1AssetsGroupsListResponse> postV1AssetsGroupsList(
-        PostV1AssetsGroupsListRequest request) {
-      return postV1AssetsGroupsList(request,null);
+    public NordletApiHttpResponse<GroupsListAssetsResponse> groupsList(
+        GroupsListAssetsRequest request) {
+      return groupsList(request,null);
     }
 
-    public NordletApiHttpResponse<PostV1AssetsGroupsListResponse> postV1AssetsGroupsList(
-        PostV1AssetsGroupsListRequest request, RequestOptions requestOptions) {
+    public NordletApiHttpResponse<GroupsListAssetsResponse> groupsList(
+        GroupsListAssetsRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/assets/groups/list");if (requestOptions != null) {
@@ -175,15 +181,17 @@ public class RawAssetsClient {
           ResponseBody responseBody = response.body();
           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
           if (response.isSuccessful()) {
-            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsGroupsListResponse.class), response);
+            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsListAssetsResponse.class), response);
           }
           try {
             switch (response.code()) {
               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -203,13 +211,13 @@ public class RawAssetsClient {
         }
       }
 
-      public NordletApiHttpResponse<PostV1AssetsAssetsCreateResponse> postV1AssetsAssetsCreate(
-          PostV1AssetsAssetsCreateRequest request) {
-        return postV1AssetsAssetsCreate(request,null);
+      public NordletApiHttpResponse<AssetsCreateAssetsResponse> assetsCreate(
+          AssetsCreateAssetsRequest request) {
+        return assetsCreate(request,null);
       }
 
-      public NordletApiHttpResponse<PostV1AssetsAssetsCreateResponse> postV1AssetsAssetsCreate(
-          PostV1AssetsAssetsCreateRequest request, RequestOptions requestOptions) {
+      public NordletApiHttpResponse<AssetsCreateAssetsResponse> assetsCreate(
+          AssetsCreateAssetsRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/assets/assets/create");if (requestOptions != null) {
@@ -242,15 +250,17 @@ public class RawAssetsClient {
             ResponseBody responseBody = response.body();
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsAssetsCreateResponse.class), response);
+              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsCreateAssetsResponse.class), response);
             }
             try {
               switch (response.code()) {
                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -270,13 +280,13 @@ public class RawAssetsClient {
           }
         }
 
-        public NordletApiHttpResponse<PostV1AssetsAssetsUpdateResponse> postV1AssetsAssetsUpdate(
-            PostV1AssetsAssetsUpdateRequest request) {
-          return postV1AssetsAssetsUpdate(request,null);
+        public NordletApiHttpResponse<AssetsUpdateAssetsResponse> assetsUpdate(
+            AssetsUpdateAssetsRequest request) {
+          return assetsUpdate(request,null);
         }
 
-        public NordletApiHttpResponse<PostV1AssetsAssetsUpdateResponse> postV1AssetsAssetsUpdate(
-            PostV1AssetsAssetsUpdateRequest request, RequestOptions requestOptions) {
+        public NordletApiHttpResponse<AssetsUpdateAssetsResponse> assetsUpdate(
+            AssetsUpdateAssetsRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/assets/assets/update");if (requestOptions != null) {
@@ -309,15 +319,17 @@ public class RawAssetsClient {
               ResponseBody responseBody = response.body();
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsAssetsUpdateResponse.class), response);
+                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsUpdateAssetsResponse.class), response);
               }
               try {
                 switch (response.code()) {
                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -340,16 +352,16 @@ public class RawAssetsClient {
           /**
            * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
            */
-          public NordletApiHttpResponse<PostV1AssetsAssetsInputVatResponse> postV1AssetsAssetsInputVat(
-              PostV1AssetsAssetsInputVatRequest request) {
-            return postV1AssetsAssetsInputVat(request,null);
+          public NordletApiHttpResponse<AssetsInputVatAssetsResponse> assetsInputVat(
+              AssetsInputVatAssetsRequest request) {
+            return assetsInputVat(request,null);
           }
 
           /**
            * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
            */
-          public NordletApiHttpResponse<PostV1AssetsAssetsInputVatResponse> postV1AssetsAssetsInputVat(
-              PostV1AssetsAssetsInputVatRequest request, RequestOptions requestOptions) {
+          public NordletApiHttpResponse<AssetsInputVatAssetsResponse> assetsInputVat(
+              AssetsInputVatAssetsRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
               .addPathSegments("v1/assets/assets/input-vat");if (requestOptions != null) {
@@ -382,15 +394,17 @@ public class RawAssetsClient {
                 ResponseBody responseBody = response.body();
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsAssetsInputVatResponse.class), response);
+                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsInputVatAssetsResponse.class), response);
                 }
                 try {
                   switch (response.code()) {
                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -410,13 +424,13 @@ public class RawAssetsClient {
               }
             }
 
-            public NordletApiHttpResponse<PostV1AssetsAssetsGetResponse> postV1AssetsAssetsGet(
-                PostV1AssetsAssetsGetRequest request) {
-              return postV1AssetsAssetsGet(request,null);
+            public NordletApiHttpResponse<AssetsGetAssetsResponse> assetsGet(
+                AssetsGetAssetsRequest request) {
+              return assetsGet(request,null);
             }
 
-            public NordletApiHttpResponse<PostV1AssetsAssetsGetResponse> postV1AssetsAssetsGet(
-                PostV1AssetsAssetsGetRequest request, RequestOptions requestOptions) {
+            public NordletApiHttpResponse<AssetsGetAssetsResponse> assetsGet(
+                AssetsGetAssetsRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/assets/assets/get");if (requestOptions != null) {
@@ -449,15 +463,17 @@ public class RawAssetsClient {
                   ResponseBody responseBody = response.body();
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsAssetsGetResponse.class), response);
+                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsGetAssetsResponse.class), response);
                   }
                   try {
                     switch (response.code()) {
                       case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -477,23 +493,22 @@ public class RawAssetsClient {
                 }
               }
 
-              public NordletApiHttpResponse<PostV1AssetsAssetsListResponse> postV1AssetsAssetsList(
-                  ) {
-                return postV1AssetsAssetsList(PostV1AssetsAssetsListRequest.builder().build());
+              public NordletApiHttpResponse<AssetsListAssetsResponse> assetsList() {
+                return assetsList(AssetsListAssetsRequest.builder().build());
               }
 
-              public NordletApiHttpResponse<PostV1AssetsAssetsListResponse> postV1AssetsAssetsList(
+              public NordletApiHttpResponse<AssetsListAssetsResponse> assetsList(
                   RequestOptions requestOptions) {
-                return postV1AssetsAssetsList(PostV1AssetsAssetsListRequest.builder().build(),requestOptions);
+                return assetsList(AssetsListAssetsRequest.builder().build(),requestOptions);
               }
 
-              public NordletApiHttpResponse<PostV1AssetsAssetsListResponse> postV1AssetsAssetsList(
-                  PostV1AssetsAssetsListRequest request) {
-                return postV1AssetsAssetsList(request,null);
+              public NordletApiHttpResponse<AssetsListAssetsResponse> assetsList(
+                  AssetsListAssetsRequest request) {
+                return assetsList(request,null);
               }
 
-              public NordletApiHttpResponse<PostV1AssetsAssetsListResponse> postV1AssetsAssetsList(
-                  PostV1AssetsAssetsListRequest request, RequestOptions requestOptions) {
+              public NordletApiHttpResponse<AssetsListAssetsResponse> assetsList(
+                  AssetsListAssetsRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                   .addPathSegments("v1/assets/assets/list");if (requestOptions != null) {
@@ -526,15 +541,17 @@ public class RawAssetsClient {
                     ResponseBody responseBody = response.body();
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsAssetsListResponse.class), response);
+                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsListAssetsResponse.class), response);
                     }
                     try {
                       switch (response.code()) {
                         case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -554,13 +571,13 @@ public class RawAssetsClient {
                   }
                 }
 
-                public NordletApiHttpResponse<PostV1AssetsAssetsModernizeResponse> postV1AssetsAssetsModernize(
-                    PostV1AssetsAssetsModernizeRequest request) {
-                  return postV1AssetsAssetsModernize(request,null);
+                public NordletApiHttpResponse<AssetsModernizeAssetsResponse> assetsModernize(
+                    AssetsModernizeAssetsRequest request) {
+                  return assetsModernize(request,null);
                 }
 
-                public NordletApiHttpResponse<PostV1AssetsAssetsModernizeResponse> postV1AssetsAssetsModernize(
-                    PostV1AssetsAssetsModernizeRequest request, RequestOptions requestOptions) {
+                public NordletApiHttpResponse<AssetsModernizeAssetsResponse> assetsModernize(
+                    AssetsModernizeAssetsRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                     .addPathSegments("v1/assets/assets/modernize");if (requestOptions != null) {
@@ -593,15 +610,17 @@ public class RawAssetsClient {
                       ResponseBody responseBody = response.body();
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsAssetsModernizeResponse.class), response);
+                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsModernizeAssetsResponse.class), response);
                       }
                       try {
                         switch (response.code()) {
                           case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -621,17 +640,22 @@ public class RawAssetsClient {
                     }
                   }
 
-                  public NordletApiHttpResponse<PostV1AssetsDepreciationPreviewResponse> postV1AssetsDepreciationPreview(
-                      PostV1AssetsDepreciationPreviewRequest request) {
-                    return postV1AssetsDepreciationPreview(request,null);
+                  /**
+                   * Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+                   */
+                  public NordletApiHttpResponse<AssetsDisposeAssetsResponse> assetsDispose(
+                      AssetsDisposeAssetsRequest request) {
+                    return assetsDispose(request,null);
                   }
 
-                  public NordletApiHttpResponse<PostV1AssetsDepreciationPreviewResponse> postV1AssetsDepreciationPreview(
-                      PostV1AssetsDepreciationPreviewRequest request,
-                      RequestOptions requestOptions) {
+                  /**
+                   * Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+                   */
+                  public NordletApiHttpResponse<AssetsDisposeAssetsResponse> assetsDispose(
+                      AssetsDisposeAssetsRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                      .addPathSegments("v1/assets/depreciation/preview");if (requestOptions != null) {
+                      .addPathSegments("v1/assets/assets/dispose");if (requestOptions != null) {
                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                           httpUrl.addQueryParameter(_key, _value);
                         } );
@@ -661,15 +685,17 @@ public class RawAssetsClient {
                         ResponseBody responseBody = response.body();
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsDepreciationPreviewResponse.class), response);
+                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsDisposeAssetsResponse.class), response);
                         }
                         try {
                           switch (response.code()) {
                             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -689,17 +715,16 @@ public class RawAssetsClient {
                       }
                     }
 
-                    public NordletApiHttpResponse<PostV1AssetsDepreciationPostResponse> postV1AssetsDepreciationPost(
-                        PostV1AssetsDepreciationPostRequest request) {
-                      return postV1AssetsDepreciationPost(request,null);
+                    public NordletApiHttpResponse<DepreciationPreviewAssetsResponse> depreciationPreview(
+                        DepreciationPreviewAssetsRequest request) {
+                      return depreciationPreview(request,null);
                     }
 
-                    public NordletApiHttpResponse<PostV1AssetsDepreciationPostResponse> postV1AssetsDepreciationPost(
-                        PostV1AssetsDepreciationPostRequest request,
-                        RequestOptions requestOptions) {
+                    public NordletApiHttpResponse<DepreciationPreviewAssetsResponse> depreciationPreview(
+                        DepreciationPreviewAssetsRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                        .addPathSegments("v1/assets/depreciation/post");if (requestOptions != null) {
+                        .addPathSegments("v1/assets/depreciation/preview");if (requestOptions != null) {
                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                             httpUrl.addQueryParameter(_key, _value);
                           } );
@@ -729,15 +754,17 @@ public class RawAssetsClient {
                           ResponseBody responseBody = response.body();
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AssetsDepreciationPostResponse.class), response);
+                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DepreciationPreviewAssetsResponse.class), response);
                           }
                           try {
                             switch (response.code()) {
                               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -756,4 +783,73 @@ public class RawAssetsClient {
                           throw new NordletApiException("Network error executing HTTP request", e);
                         }
                       }
-                    }
+
+                      public NordletApiHttpResponse<DepreciationPostAssetsResponse> depreciationPost(
+                          DepreciationPostAssetsRequest request) {
+                        return depreciationPost(request,null);
+                      }
+
+                      public NordletApiHttpResponse<DepreciationPostAssetsResponse> depreciationPost(
+                          DepreciationPostAssetsRequest request, RequestOptions requestOptions) {
+                        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                          .addPathSegments("v1/assets/depreciation/post");if (requestOptions != null) {
+                            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                              httpUrl.addQueryParameter(_key, _value);
+                            } );
+                          }
+                          RequestBody body;
+                          try {
+                            body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                          }
+                          catch(JsonProcessingException e) {
+                            throw new NordletApiException("Failed to serialize request", e);
+                          }
+                          Request okhttpRequest = new Request.Builder()
+                            .url(httpUrl.build())
+                            .method("POST", body)
+                            .headers(Headers.of(clientOptions.headers(requestOptions)))
+                            .addHeader("Content-Type", "application/json")
+                            .addHeader("Accept", "application/json")
+                            .build();
+                          OkHttpClient client = clientOptions.httpClient();
+                          if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                            client = clientOptions.httpClientWithTimeout(requestOptions);
+                          }
+                          if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                            okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                          }
+                          try (Response response = client.newCall(okhttpRequest).execute()) {
+                            ResponseBody responseBody = response.body();
+                            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                            if (response.isSuccessful()) {
+                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DepreciationPostAssetsResponse.class), response);
+                            }
+                            try {
+                              switch (response.code()) {
+                                case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                              }
+                            }
+                            catch (JsonProcessingException ignored) {
+                              // unable to map error response, throwing generic error
+                            }
+                            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                            throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                          }
+                          catch (JsonProcessingException e) {
+                            throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                          }
+                          catch (IOException e) {
+                            throw new NordletApiException("Network error executing HTTP request", e);
+                          }
+                        }
+                      }

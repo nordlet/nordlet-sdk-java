@@ -6,56 +6,56 @@ package com.nordlet.api.resources.reference;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceBanksListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceBanksUpsertRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceCnCodesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceCnCodesUpsertRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceComplianceVersionsListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceCountriesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceCurrenciesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesSetOverridesRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesOverridesDeleteRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesOverridesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesSetRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesSyncRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceIntrastatThresholdsListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtCitiesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtCountiesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtMunicipalitiesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtRegionsListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceSeriesCreateRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceSeriesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceUnitsListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceVatClassifiersListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceVatClassifiersUpsertRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceVatResolveRequest;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceBanksListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceBanksUpsertResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceCnCodesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceCnCodesUpsertResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceComplianceVersionsListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceCountriesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceCurrenciesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesSetOverridesResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesOverridesDeleteResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesOverridesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesSetResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesSyncResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceIntrastatThresholdsListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceLtCitiesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceLtCountiesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceLtMunicipalitiesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceLtRegionsListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceSeriesCreateResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceSeriesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceUnitsListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceVatClassifiersListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceVatClassifiersUpsertResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceVatResolveResponse;
+import com.nordlet.api.resources.reference.requests.BanksListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.BanksUpsertReferenceRequest;
+import com.nordlet.api.resources.reference.requests.CnCodesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.CnCodesUpsertReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ComplianceVersionsListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.CountriesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.CurrenciesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.EuVatRatesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.EuVatRatesSetOverridesReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesOverridesDeleteReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesOverridesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesSetReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesSyncReferenceRequest;
+import com.nordlet.api.resources.reference.requests.IntrastatThresholdsListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.LtCitiesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.LtCountiesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.LtMunicipalitiesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.LtRegionsListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.SeriesCreateReferenceRequest;
+import com.nordlet.api.resources.reference.requests.SeriesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.UnitsListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.VatClassifiersListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.VatClassifiersUpsertReferenceRequest;
+import com.nordlet.api.resources.reference.requests.VatResolveReferenceRequest;
+import com.nordlet.api.resources.reference.types.BanksListReferenceResponse;
+import com.nordlet.api.resources.reference.types.BanksUpsertReferenceResponse;
+import com.nordlet.api.resources.reference.types.CnCodesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.CnCodesUpsertReferenceResponse;
+import com.nordlet.api.resources.reference.types.ComplianceVersionsListReferenceResponse;
+import com.nordlet.api.resources.reference.types.CountriesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.CurrenciesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.EuVatRatesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.EuVatRatesSetOverridesReferenceResponse;
+import com.nordlet.api.resources.reference.types.ExchangeRatesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.ExchangeRatesOverridesDeleteReferenceResponse;
+import com.nordlet.api.resources.reference.types.ExchangeRatesOverridesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.ExchangeRatesSetReferenceResponse;
+import com.nordlet.api.resources.reference.types.ExchangeRatesSyncReferenceResponse;
+import com.nordlet.api.resources.reference.types.IntrastatThresholdsListReferenceResponse;
+import com.nordlet.api.resources.reference.types.LtCitiesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.LtCountiesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.LtMunicipalitiesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.LtRegionsListReferenceResponse;
+import com.nordlet.api.resources.reference.types.SeriesCreateReferenceResponse;
+import com.nordlet.api.resources.reference.types.SeriesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.UnitsListReferenceResponse;
+import com.nordlet.api.resources.reference.types.VatClassifiersListReferenceResponse;
+import com.nordlet.api.resources.reference.types.VatClassifiersUpsertReferenceResponse;
+import com.nordlet.api.resources.reference.types.VatResolveReferenceResponse;
 
 public class ReferenceClient {
   protected final ClientOptions clientOptions;
@@ -74,432 +74,404 @@ public class ReferenceClient {
     return this.rawClient;
   }
 
-  public PostV1ReferenceExchangeRatesSyncResponse postV1ReferenceExchangeRatesSync() {
-    return this.rawClient.postV1ReferenceExchangeRatesSync().body();
+  public ExchangeRatesSyncReferenceResponse exchangeRatesSync() {
+    return this.rawClient.exchangeRatesSync().body();
   }
 
-  public PostV1ReferenceExchangeRatesSyncResponse postV1ReferenceExchangeRatesSync(
+  public ExchangeRatesSyncReferenceResponse exchangeRatesSync(RequestOptions requestOptions) {
+    return this.rawClient.exchangeRatesSync(requestOptions).body();
+  }
+
+  public ExchangeRatesSyncReferenceResponse exchangeRatesSync(
+      ExchangeRatesSyncReferenceRequest request) {
+    return this.rawClient.exchangeRatesSync(request).body();
+  }
+
+  public ExchangeRatesSyncReferenceResponse exchangeRatesSync(
+      ExchangeRatesSyncReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.exchangeRatesSync(request, requestOptions).body();
+  }
+
+  public ExchangeRatesListReferenceResponse exchangeRatesList() {
+    return this.rawClient.exchangeRatesList().body();
+  }
+
+  public ExchangeRatesListReferenceResponse exchangeRatesList(RequestOptions requestOptions) {
+    return this.rawClient.exchangeRatesList(requestOptions).body();
+  }
+
+  public ExchangeRatesListReferenceResponse exchangeRatesList(
+      ExchangeRatesListReferenceRequest request) {
+    return this.rawClient.exchangeRatesList(request).body();
+  }
+
+  public ExchangeRatesListReferenceResponse exchangeRatesList(
+      ExchangeRatesListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.exchangeRatesList(request, requestOptions).body();
+  }
+
+  public ExchangeRatesSetReferenceResponse exchangeRatesSet(
+      ExchangeRatesSetReferenceRequest request) {
+    return this.rawClient.exchangeRatesSet(request).body();
+  }
+
+  public ExchangeRatesSetReferenceResponse exchangeRatesSet(
+      ExchangeRatesSetReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.exchangeRatesSet(request, requestOptions).body();
+  }
+
+  public ExchangeRatesOverridesListReferenceResponse exchangeRatesOverridesList() {
+    return this.rawClient.exchangeRatesOverridesList().body();
+  }
+
+  public ExchangeRatesOverridesListReferenceResponse exchangeRatesOverridesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesSync(requestOptions).body();
+    return this.rawClient.exchangeRatesOverridesList(requestOptions).body();
   }
 
-  public PostV1ReferenceExchangeRatesSyncResponse postV1ReferenceExchangeRatesSync(
-      PostV1ReferenceExchangeRatesSyncRequest request) {
-    return this.rawClient.postV1ReferenceExchangeRatesSync(request).body();
+  public ExchangeRatesOverridesListReferenceResponse exchangeRatesOverridesList(
+      ExchangeRatesOverridesListReferenceRequest request) {
+    return this.rawClient.exchangeRatesOverridesList(request).body();
   }
 
-  public PostV1ReferenceExchangeRatesSyncResponse postV1ReferenceExchangeRatesSync(
-      PostV1ReferenceExchangeRatesSyncRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesSync(request, requestOptions).body();
+  public ExchangeRatesOverridesListReferenceResponse exchangeRatesOverridesList(
+      ExchangeRatesOverridesListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.exchangeRatesOverridesList(request, requestOptions).body();
   }
 
-  public PostV1ReferenceExchangeRatesListResponse postV1ReferenceExchangeRatesList() {
-    return this.rawClient.postV1ReferenceExchangeRatesList().body();
+  public ExchangeRatesOverridesDeleteReferenceResponse exchangeRatesOverridesDelete(
+      ExchangeRatesOverridesDeleteReferenceRequest request) {
+    return this.rawClient.exchangeRatesOverridesDelete(request).body();
   }
 
-  public PostV1ReferenceExchangeRatesListResponse postV1ReferenceExchangeRatesList(
+  public ExchangeRatesOverridesDeleteReferenceResponse exchangeRatesOverridesDelete(
+      ExchangeRatesOverridesDeleteReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.exchangeRatesOverridesDelete(request, requestOptions).body();
+  }
+
+  public CountriesListReferenceResponse countriesList() {
+    return this.rawClient.countriesList().body();
+  }
+
+  public CountriesListReferenceResponse countriesList(RequestOptions requestOptions) {
+    return this.rawClient.countriesList(requestOptions).body();
+  }
+
+  public CountriesListReferenceResponse countriesList(CountriesListReferenceRequest request) {
+    return this.rawClient.countriesList(request).body();
+  }
+
+  public CountriesListReferenceResponse countriesList(CountriesListReferenceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesList(requestOptions).body();
+    return this.rawClient.countriesList(request, requestOptions).body();
   }
 
-  public PostV1ReferenceExchangeRatesListResponse postV1ReferenceExchangeRatesList(
-      PostV1ReferenceExchangeRatesListRequest request) {
-    return this.rawClient.postV1ReferenceExchangeRatesList(request).body();
+  public LtCountiesListReferenceResponse ltCountiesList() {
+    return this.rawClient.ltCountiesList().body();
   }
 
-  public PostV1ReferenceExchangeRatesListResponse postV1ReferenceExchangeRatesList(
-      PostV1ReferenceExchangeRatesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesList(request, requestOptions).body();
+  public LtCountiesListReferenceResponse ltCountiesList(RequestOptions requestOptions) {
+    return this.rawClient.ltCountiesList(requestOptions).body();
   }
 
-  public PostV1ReferenceExchangeRatesSetResponse postV1ReferenceExchangeRatesSet(
-      PostV1ReferenceExchangeRatesSetRequest request) {
-    return this.rawClient.postV1ReferenceExchangeRatesSet(request).body();
+  public LtCountiesListReferenceResponse ltCountiesList(LtCountiesListReferenceRequest request) {
+    return this.rawClient.ltCountiesList(request).body();
   }
 
-  public PostV1ReferenceExchangeRatesSetResponse postV1ReferenceExchangeRatesSet(
-      PostV1ReferenceExchangeRatesSetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesSet(request, requestOptions).body();
-  }
-
-  public PostV1ReferenceExchangeRatesOverridesListResponse postV1ReferenceExchangeRatesOverridesList(
-      ) {
-    return this.rawClient.postV1ReferenceExchangeRatesOverridesList().body();
-  }
-
-  public PostV1ReferenceExchangeRatesOverridesListResponse postV1ReferenceExchangeRatesOverridesList(
+  public LtCountiesListReferenceResponse ltCountiesList(LtCountiesListReferenceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesOverridesList(requestOptions).body();
+    return this.rawClient.ltCountiesList(request, requestOptions).body();
   }
 
-  public PostV1ReferenceExchangeRatesOverridesListResponse postV1ReferenceExchangeRatesOverridesList(
-      PostV1ReferenceExchangeRatesOverridesListRequest request) {
-    return this.rawClient.postV1ReferenceExchangeRatesOverridesList(request).body();
+  public LtMunicipalitiesListReferenceResponse ltMunicipalitiesList() {
+    return this.rawClient.ltMunicipalitiesList().body();
   }
 
-  public PostV1ReferenceExchangeRatesOverridesListResponse postV1ReferenceExchangeRatesOverridesList(
-      PostV1ReferenceExchangeRatesOverridesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesOverridesList(request, requestOptions).body();
+  public LtMunicipalitiesListReferenceResponse ltMunicipalitiesList(RequestOptions requestOptions) {
+    return this.rawClient.ltMunicipalitiesList(requestOptions).body();
   }
 
-  public PostV1ReferenceExchangeRatesOverridesDeleteResponse postV1ReferenceExchangeRatesOverridesDelete(
-      PostV1ReferenceExchangeRatesOverridesDeleteRequest request) {
-    return this.rawClient.postV1ReferenceExchangeRatesOverridesDelete(request).body();
+  public LtMunicipalitiesListReferenceResponse ltMunicipalitiesList(
+      LtMunicipalitiesListReferenceRequest request) {
+    return this.rawClient.ltMunicipalitiesList(request).body();
   }
 
-  public PostV1ReferenceExchangeRatesOverridesDeleteResponse postV1ReferenceExchangeRatesOverridesDelete(
-      PostV1ReferenceExchangeRatesOverridesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesOverridesDelete(request, requestOptions).body();
+  public LtMunicipalitiesListReferenceResponse ltMunicipalitiesList(
+      LtMunicipalitiesListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltMunicipalitiesList(request, requestOptions).body();
   }
 
-  public PostV1ReferenceCountriesListResponse postV1ReferenceCountriesList() {
-    return this.rawClient.postV1ReferenceCountriesList().body();
+  public LtCitiesListReferenceResponse ltCitiesList() {
+    return this.rawClient.ltCitiesList().body();
   }
 
-  public PostV1ReferenceCountriesListResponse postV1ReferenceCountriesList(
+  public LtCitiesListReferenceResponse ltCitiesList(RequestOptions requestOptions) {
+    return this.rawClient.ltCitiesList(requestOptions).body();
+  }
+
+  public LtCitiesListReferenceResponse ltCitiesList(LtCitiesListReferenceRequest request) {
+    return this.rawClient.ltCitiesList(request).body();
+  }
+
+  public LtCitiesListReferenceResponse ltCitiesList(LtCitiesListReferenceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceCountriesList(requestOptions).body();
+    return this.rawClient.ltCitiesList(request, requestOptions).body();
   }
 
-  public PostV1ReferenceCountriesListResponse postV1ReferenceCountriesList(
-      PostV1ReferenceCountriesListRequest request) {
-    return this.rawClient.postV1ReferenceCountriesList(request).body();
+  public BanksListReferenceResponse banksList() {
+    return this.rawClient.banksList().body();
   }
 
-  public PostV1ReferenceCountriesListResponse postV1ReferenceCountriesList(
-      PostV1ReferenceCountriesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceCountriesList(request, requestOptions).body();
+  public BanksListReferenceResponse banksList(RequestOptions requestOptions) {
+    return this.rawClient.banksList(requestOptions).body();
   }
 
-  public PostV1ReferenceLtCountiesListResponse postV1ReferenceLtCountiesList() {
-    return this.rawClient.postV1ReferenceLtCountiesList().body();
+  public BanksListReferenceResponse banksList(BanksListReferenceRequest request) {
+    return this.rawClient.banksList(request).body();
   }
 
-  public PostV1ReferenceLtCountiesListResponse postV1ReferenceLtCountiesList(
+  public BanksListReferenceResponse banksList(BanksListReferenceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtCountiesList(requestOptions).body();
+    return this.rawClient.banksList(request, requestOptions).body();
   }
 
-  public PostV1ReferenceLtCountiesListResponse postV1ReferenceLtCountiesList(
-      PostV1ReferenceLtCountiesListRequest request) {
-    return this.rawClient.postV1ReferenceLtCountiesList(request).body();
+  public BanksUpsertReferenceResponse banksUpsert(BanksUpsertReferenceRequest request) {
+    return this.rawClient.banksUpsert(request).body();
   }
 
-  public PostV1ReferenceLtCountiesListResponse postV1ReferenceLtCountiesList(
-      PostV1ReferenceLtCountiesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtCountiesList(request, requestOptions).body();
-  }
-
-  public PostV1ReferenceLtMunicipalitiesListResponse postV1ReferenceLtMunicipalitiesList() {
-    return this.rawClient.postV1ReferenceLtMunicipalitiesList().body();
-  }
-
-  public PostV1ReferenceLtMunicipalitiesListResponse postV1ReferenceLtMunicipalitiesList(
+  public BanksUpsertReferenceResponse banksUpsert(BanksUpsertReferenceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtMunicipalitiesList(requestOptions).body();
+    return this.rawClient.banksUpsert(request, requestOptions).body();
   }
 
-  public PostV1ReferenceLtMunicipalitiesListResponse postV1ReferenceLtMunicipalitiesList(
-      PostV1ReferenceLtMunicipalitiesListRequest request) {
-    return this.rawClient.postV1ReferenceLtMunicipalitiesList(request).body();
+  public LtRegionsListReferenceResponse ltRegionsList() {
+    return this.rawClient.ltRegionsList().body();
   }
 
-  public PostV1ReferenceLtMunicipalitiesListResponse postV1ReferenceLtMunicipalitiesList(
-      PostV1ReferenceLtMunicipalitiesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtMunicipalitiesList(request, requestOptions).body();
+  public LtRegionsListReferenceResponse ltRegionsList(RequestOptions requestOptions) {
+    return this.rawClient.ltRegionsList(requestOptions).body();
   }
 
-  public PostV1ReferenceLtCitiesListResponse postV1ReferenceLtCitiesList() {
-    return this.rawClient.postV1ReferenceLtCitiesList().body();
+  public LtRegionsListReferenceResponse ltRegionsList(LtRegionsListReferenceRequest request) {
+    return this.rawClient.ltRegionsList(request).body();
   }
 
-  public PostV1ReferenceLtCitiesListResponse postV1ReferenceLtCitiesList(
+  public LtRegionsListReferenceResponse ltRegionsList(LtRegionsListReferenceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtCitiesList(requestOptions).body();
+    return this.rawClient.ltRegionsList(request, requestOptions).body();
   }
 
-  public PostV1ReferenceLtCitiesListResponse postV1ReferenceLtCitiesList(
-      PostV1ReferenceLtCitiesListRequest request) {
-    return this.rawClient.postV1ReferenceLtCitiesList(request).body();
+  public CurrenciesListReferenceResponse currenciesList() {
+    return this.rawClient.currenciesList().body();
   }
 
-  public PostV1ReferenceLtCitiesListResponse postV1ReferenceLtCitiesList(
-      PostV1ReferenceLtCitiesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtCitiesList(request, requestOptions).body();
+  public CurrenciesListReferenceResponse currenciesList(RequestOptions requestOptions) {
+    return this.rawClient.currenciesList(requestOptions).body();
   }
 
-  public PostV1ReferenceBanksListResponse postV1ReferenceBanksList() {
-    return this.rawClient.postV1ReferenceBanksList().body();
+  public CurrenciesListReferenceResponse currenciesList(CurrenciesListReferenceRequest request) {
+    return this.rawClient.currenciesList(request).body();
   }
 
-  public PostV1ReferenceBanksListResponse postV1ReferenceBanksList(RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceBanksList(requestOptions).body();
-  }
-
-  public PostV1ReferenceBanksListResponse postV1ReferenceBanksList(
-      PostV1ReferenceBanksListRequest request) {
-    return this.rawClient.postV1ReferenceBanksList(request).body();
-  }
-
-  public PostV1ReferenceBanksListResponse postV1ReferenceBanksList(
-      PostV1ReferenceBanksListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceBanksList(request, requestOptions).body();
-  }
-
-  public PostV1ReferenceBanksUpsertResponse postV1ReferenceBanksUpsert(
-      PostV1ReferenceBanksUpsertRequest request) {
-    return this.rawClient.postV1ReferenceBanksUpsert(request).body();
-  }
-
-  public PostV1ReferenceBanksUpsertResponse postV1ReferenceBanksUpsert(
-      PostV1ReferenceBanksUpsertRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceBanksUpsert(request, requestOptions).body();
-  }
-
-  public PostV1ReferenceLtRegionsListResponse postV1ReferenceLtRegionsList() {
-    return this.rawClient.postV1ReferenceLtRegionsList().body();
-  }
-
-  public PostV1ReferenceLtRegionsListResponse postV1ReferenceLtRegionsList(
+  public CurrenciesListReferenceResponse currenciesList(CurrenciesListReferenceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtRegionsList(requestOptions).body();
+    return this.rawClient.currenciesList(request, requestOptions).body();
   }
 
-  public PostV1ReferenceLtRegionsListResponse postV1ReferenceLtRegionsList(
-      PostV1ReferenceLtRegionsListRequest request) {
-    return this.rawClient.postV1ReferenceLtRegionsList(request).body();
+  public VatClassifiersListReferenceResponse vatClassifiersList() {
+    return this.rawClient.vatClassifiersList().body();
   }
 
-  public PostV1ReferenceLtRegionsListResponse postV1ReferenceLtRegionsList(
-      PostV1ReferenceLtRegionsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtRegionsList(request, requestOptions).body();
+  public VatClassifiersListReferenceResponse vatClassifiersList(RequestOptions requestOptions) {
+    return this.rawClient.vatClassifiersList(requestOptions).body();
   }
 
-  public PostV1ReferenceCurrenciesListResponse postV1ReferenceCurrenciesList() {
-    return this.rawClient.postV1ReferenceCurrenciesList().body();
+  public VatClassifiersListReferenceResponse vatClassifiersList(
+      VatClassifiersListReferenceRequest request) {
+    return this.rawClient.vatClassifiersList(request).body();
   }
 
-  public PostV1ReferenceCurrenciesListResponse postV1ReferenceCurrenciesList(
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceCurrenciesList(requestOptions).body();
+  public VatClassifiersListReferenceResponse vatClassifiersList(
+      VatClassifiersListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.vatClassifiersList(request, requestOptions).body();
   }
 
-  public PostV1ReferenceCurrenciesListResponse postV1ReferenceCurrenciesList(
-      PostV1ReferenceCurrenciesListRequest request) {
-    return this.rawClient.postV1ReferenceCurrenciesList(request).body();
+  public VatClassifiersUpsertReferenceResponse vatClassifiersUpsert(
+      VatClassifiersUpsertReferenceRequest request) {
+    return this.rawClient.vatClassifiersUpsert(request).body();
   }
 
-  public PostV1ReferenceCurrenciesListResponse postV1ReferenceCurrenciesList(
-      PostV1ReferenceCurrenciesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceCurrenciesList(request, requestOptions).body();
-  }
-
-  public PostV1ReferenceVatClassifiersListResponse postV1ReferenceVatClassifiersList() {
-    return this.rawClient.postV1ReferenceVatClassifiersList().body();
-  }
-
-  public PostV1ReferenceVatClassifiersListResponse postV1ReferenceVatClassifiersList(
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceVatClassifiersList(requestOptions).body();
-  }
-
-  public PostV1ReferenceVatClassifiersListResponse postV1ReferenceVatClassifiersList(
-      PostV1ReferenceVatClassifiersListRequest request) {
-    return this.rawClient.postV1ReferenceVatClassifiersList(request).body();
-  }
-
-  public PostV1ReferenceVatClassifiersListResponse postV1ReferenceVatClassifiersList(
-      PostV1ReferenceVatClassifiersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceVatClassifiersList(request, requestOptions).body();
-  }
-
-  public PostV1ReferenceVatClassifiersUpsertResponse postV1ReferenceVatClassifiersUpsert(
-      PostV1ReferenceVatClassifiersUpsertRequest request) {
-    return this.rawClient.postV1ReferenceVatClassifiersUpsert(request).body();
-  }
-
-  public PostV1ReferenceVatClassifiersUpsertResponse postV1ReferenceVatClassifiersUpsert(
-      PostV1ReferenceVatClassifiersUpsertRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceVatClassifiersUpsert(request, requestOptions).body();
+  public VatClassifiersUpsertReferenceResponse vatClassifiersUpsert(
+      VatClassifiersUpsertReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.vatClassifiersUpsert(request, requestOptions).body();
   }
 
   /**
    * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
    */
-  public PostV1ReferenceEuVatRatesListResponse postV1ReferenceEuVatRatesList() {
-    return this.rawClient.postV1ReferenceEuVatRatesList().body();
+  public EuVatRatesListReferenceResponse euVatRatesList() {
+    return this.rawClient.euVatRatesList().body();
   }
 
   /**
    * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
    */
-  public PostV1ReferenceEuVatRatesListResponse postV1ReferenceEuVatRatesList(
+  public EuVatRatesListReferenceResponse euVatRatesList(RequestOptions requestOptions) {
+    return this.rawClient.euVatRatesList(requestOptions).body();
+  }
+
+  /**
+   * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
+   */
+  public EuVatRatesListReferenceResponse euVatRatesList(EuVatRatesListReferenceRequest request) {
+    return this.rawClient.euVatRatesList(request).body();
+  }
+
+  /**
+   * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
+   */
+  public EuVatRatesListReferenceResponse euVatRatesList(EuVatRatesListReferenceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceEuVatRatesList(requestOptions).body();
-  }
-
-  /**
-   * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
-   */
-  public PostV1ReferenceEuVatRatesListResponse postV1ReferenceEuVatRatesList(
-      PostV1ReferenceEuVatRatesListRequest request) {
-    return this.rawClient.postV1ReferenceEuVatRatesList(request).body();
-  }
-
-  /**
-   * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
-   */
-  public PostV1ReferenceEuVatRatesListResponse postV1ReferenceEuVatRatesList(
-      PostV1ReferenceEuVatRatesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceEuVatRatesList(request, requestOptions).body();
+    return this.rawClient.euVatRatesList(request, requestOptions).body();
   }
 
   /**
    * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
    */
-  public PostV1ReferenceEuVatRatesSetOverridesResponse postV1ReferenceEuVatRatesSetOverrides(
-      PostV1ReferenceEuVatRatesSetOverridesRequest request) {
-    return this.rawClient.postV1ReferenceEuVatRatesSetOverrides(request).body();
+  public EuVatRatesSetOverridesReferenceResponse euVatRatesSetOverrides(
+      EuVatRatesSetOverridesReferenceRequest request) {
+    return this.rawClient.euVatRatesSetOverrides(request).body();
   }
 
   /**
    * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
    */
-  public PostV1ReferenceEuVatRatesSetOverridesResponse postV1ReferenceEuVatRatesSetOverrides(
-      PostV1ReferenceEuVatRatesSetOverridesRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceEuVatRatesSetOverrides(request, requestOptions).body();
+  public EuVatRatesSetOverridesReferenceResponse euVatRatesSetOverrides(
+      EuVatRatesSetOverridesReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.euVatRatesSetOverrides(request, requestOptions).body();
   }
 
-  public PostV1ReferenceVatResolveResponse postV1ReferenceVatResolve() {
-    return this.rawClient.postV1ReferenceVatResolve().body();
+  public VatResolveReferenceResponse vatResolve() {
+    return this.rawClient.vatResolve().body();
   }
 
-  public PostV1ReferenceVatResolveResponse postV1ReferenceVatResolve(
+  public VatResolveReferenceResponse vatResolve(RequestOptions requestOptions) {
+    return this.rawClient.vatResolve(requestOptions).body();
+  }
+
+  public VatResolveReferenceResponse vatResolve(VatResolveReferenceRequest request) {
+    return this.rawClient.vatResolve(request).body();
+  }
+
+  public VatResolveReferenceResponse vatResolve(VatResolveReferenceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceVatResolve(requestOptions).body();
+    return this.rawClient.vatResolve(request, requestOptions).body();
   }
 
-  public PostV1ReferenceVatResolveResponse postV1ReferenceVatResolve(
-      PostV1ReferenceVatResolveRequest request) {
-    return this.rawClient.postV1ReferenceVatResolve(request).body();
+  public CnCodesListReferenceResponse cnCodesList() {
+    return this.rawClient.cnCodesList().body();
   }
 
-  public PostV1ReferenceVatResolveResponse postV1ReferenceVatResolve(
-      PostV1ReferenceVatResolveRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceVatResolve(request, requestOptions).body();
+  public CnCodesListReferenceResponse cnCodesList(RequestOptions requestOptions) {
+    return this.rawClient.cnCodesList(requestOptions).body();
   }
 
-  public PostV1ReferenceCnCodesListResponse postV1ReferenceCnCodesList() {
-    return this.rawClient.postV1ReferenceCnCodesList().body();
+  public CnCodesListReferenceResponse cnCodesList(CnCodesListReferenceRequest request) {
+    return this.rawClient.cnCodesList(request).body();
   }
 
-  public PostV1ReferenceCnCodesListResponse postV1ReferenceCnCodesList(
+  public CnCodesListReferenceResponse cnCodesList(CnCodesListReferenceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceCnCodesList(requestOptions).body();
+    return this.rawClient.cnCodesList(request, requestOptions).body();
   }
 
-  public PostV1ReferenceCnCodesListResponse postV1ReferenceCnCodesList(
-      PostV1ReferenceCnCodesListRequest request) {
-    return this.rawClient.postV1ReferenceCnCodesList(request).body();
+  public CnCodesUpsertReferenceResponse cnCodesUpsert(CnCodesUpsertReferenceRequest request) {
+    return this.rawClient.cnCodesUpsert(request).body();
   }
 
-  public PostV1ReferenceCnCodesListResponse postV1ReferenceCnCodesList(
-      PostV1ReferenceCnCodesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceCnCodesList(request, requestOptions).body();
-  }
-
-  public PostV1ReferenceCnCodesUpsertResponse postV1ReferenceCnCodesUpsert(
-      PostV1ReferenceCnCodesUpsertRequest request) {
-    return this.rawClient.postV1ReferenceCnCodesUpsert(request).body();
-  }
-
-  public PostV1ReferenceCnCodesUpsertResponse postV1ReferenceCnCodesUpsert(
-      PostV1ReferenceCnCodesUpsertRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceCnCodesUpsert(request, requestOptions).body();
-  }
-
-  public PostV1ReferenceComplianceVersionsListResponse postV1ReferenceComplianceVersionsList() {
-    return this.rawClient.postV1ReferenceComplianceVersionsList().body();
-  }
-
-  public PostV1ReferenceComplianceVersionsListResponse postV1ReferenceComplianceVersionsList(
+  public CnCodesUpsertReferenceResponse cnCodesUpsert(CnCodesUpsertReferenceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceComplianceVersionsList(requestOptions).body();
+    return this.rawClient.cnCodesUpsert(request, requestOptions).body();
   }
 
-  public PostV1ReferenceComplianceVersionsListResponse postV1ReferenceComplianceVersionsList(
-      PostV1ReferenceComplianceVersionsListRequest request) {
-    return this.rawClient.postV1ReferenceComplianceVersionsList(request).body();
+  public ComplianceVersionsListReferenceResponse complianceVersionsList() {
+    return this.rawClient.complianceVersionsList().body();
   }
 
-  public PostV1ReferenceComplianceVersionsListResponse postV1ReferenceComplianceVersionsList(
-      PostV1ReferenceComplianceVersionsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceComplianceVersionsList(request, requestOptions).body();
-  }
-
-  public PostV1ReferenceIntrastatThresholdsListResponse postV1ReferenceIntrastatThresholdsList() {
-    return this.rawClient.postV1ReferenceIntrastatThresholdsList().body();
-  }
-
-  public PostV1ReferenceIntrastatThresholdsListResponse postV1ReferenceIntrastatThresholdsList(
+  public ComplianceVersionsListReferenceResponse complianceVersionsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceIntrastatThresholdsList(requestOptions).body();
+    return this.rawClient.complianceVersionsList(requestOptions).body();
   }
 
-  public PostV1ReferenceIntrastatThresholdsListResponse postV1ReferenceIntrastatThresholdsList(
-      PostV1ReferenceIntrastatThresholdsListRequest request) {
-    return this.rawClient.postV1ReferenceIntrastatThresholdsList(request).body();
+  public ComplianceVersionsListReferenceResponse complianceVersionsList(
+      ComplianceVersionsListReferenceRequest request) {
+    return this.rawClient.complianceVersionsList(request).body();
   }
 
-  public PostV1ReferenceIntrastatThresholdsListResponse postV1ReferenceIntrastatThresholdsList(
-      PostV1ReferenceIntrastatThresholdsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceIntrastatThresholdsList(request, requestOptions).body();
+  public ComplianceVersionsListReferenceResponse complianceVersionsList(
+      ComplianceVersionsListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.complianceVersionsList(request, requestOptions).body();
   }
 
-  public PostV1ReferenceUnitsListResponse postV1ReferenceUnitsList() {
-    return this.rawClient.postV1ReferenceUnitsList().body();
+  public IntrastatThresholdsListReferenceResponse intrastatThresholdsList() {
+    return this.rawClient.intrastatThresholdsList().body();
   }
 
-  public PostV1ReferenceUnitsListResponse postV1ReferenceUnitsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceUnitsList(requestOptions).body();
-  }
-
-  public PostV1ReferenceUnitsListResponse postV1ReferenceUnitsList(
-      PostV1ReferenceUnitsListRequest request) {
-    return this.rawClient.postV1ReferenceUnitsList(request).body();
-  }
-
-  public PostV1ReferenceUnitsListResponse postV1ReferenceUnitsList(
-      PostV1ReferenceUnitsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceUnitsList(request, requestOptions).body();
-  }
-
-  public PostV1ReferenceSeriesCreateResponse postV1ReferenceSeriesCreate(
-      PostV1ReferenceSeriesCreateRequest request) {
-    return this.rawClient.postV1ReferenceSeriesCreate(request).body();
-  }
-
-  public PostV1ReferenceSeriesCreateResponse postV1ReferenceSeriesCreate(
-      PostV1ReferenceSeriesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceSeriesCreate(request, requestOptions).body();
-  }
-
-  public PostV1ReferenceSeriesListResponse postV1ReferenceSeriesList() {
-    return this.rawClient.postV1ReferenceSeriesList().body();
-  }
-
-  public PostV1ReferenceSeriesListResponse postV1ReferenceSeriesList(
+  public IntrastatThresholdsListReferenceResponse intrastatThresholdsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceSeriesList(requestOptions).body();
+    return this.rawClient.intrastatThresholdsList(requestOptions).body();
   }
 
-  public PostV1ReferenceSeriesListResponse postV1ReferenceSeriesList(
-      PostV1ReferenceSeriesListRequest request) {
-    return this.rawClient.postV1ReferenceSeriesList(request).body();
+  public IntrastatThresholdsListReferenceResponse intrastatThresholdsList(
+      IntrastatThresholdsListReferenceRequest request) {
+    return this.rawClient.intrastatThresholdsList(request).body();
   }
 
-  public PostV1ReferenceSeriesListResponse postV1ReferenceSeriesList(
-      PostV1ReferenceSeriesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceSeriesList(request, requestOptions).body();
+  public IntrastatThresholdsListReferenceResponse intrastatThresholdsList(
+      IntrastatThresholdsListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.intrastatThresholdsList(request, requestOptions).body();
+  }
+
+  public UnitsListReferenceResponse unitsList() {
+    return this.rawClient.unitsList().body();
+  }
+
+  public UnitsListReferenceResponse unitsList(RequestOptions requestOptions) {
+    return this.rawClient.unitsList(requestOptions).body();
+  }
+
+  public UnitsListReferenceResponse unitsList(UnitsListReferenceRequest request) {
+    return this.rawClient.unitsList(request).body();
+  }
+
+  public UnitsListReferenceResponse unitsList(UnitsListReferenceRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.unitsList(request, requestOptions).body();
+  }
+
+  public SeriesCreateReferenceResponse seriesCreate(SeriesCreateReferenceRequest request) {
+    return this.rawClient.seriesCreate(request).body();
+  }
+
+  public SeriesCreateReferenceResponse seriesCreate(SeriesCreateReferenceRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.seriesCreate(request, requestOptions).body();
+  }
+
+  public SeriesListReferenceResponse seriesList() {
+    return this.rawClient.seriesList().body();
+  }
+
+  public SeriesListReferenceResponse seriesList(RequestOptions requestOptions) {
+    return this.rawClient.seriesList(requestOptions).body();
+  }
+
+  public SeriesListReferenceResponse seriesList(SeriesListReferenceRequest request) {
+    return this.rawClient.seriesList(request).body();
+  }
+
+  public SeriesListReferenceResponse seriesList(SeriesListReferenceRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.seriesList(request, requestOptions).body();
   }
 }

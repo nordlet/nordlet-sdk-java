@@ -6,18 +6,18 @@ package com.nordlet.api.resources.webhooks;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksDeliveriesListRequest;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksDeliveriesRedeliverRequest;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksSubscriptionsCreateRequest;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksSubscriptionsDeleteRequest;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksSubscriptionsListRequest;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksSubscriptionsUpdateRequest;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksDeliveriesListResponse;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksDeliveriesRedeliverResponse;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksSubscriptionsCreateResponse;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksSubscriptionsDeleteResponse;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksSubscriptionsListResponse;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksSubscriptionsUpdateResponse;
+import com.nordlet.api.resources.webhooks.requests.DeliveriesListWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.DeliveriesRedeliverWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.SubscriptionsCreateWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.SubscriptionsDeleteWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.SubscriptionsListWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.SubscriptionsUpdateWebhooksRequest;
+import com.nordlet.api.resources.webhooks.types.DeliveriesListWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.DeliveriesRedeliverWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.SubscriptionsCreateWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.SubscriptionsDeleteWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.SubscriptionsListWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.SubscriptionsUpdateWebhooksResponse;
 
 public class WebhooksClient {
   protected final ClientOptions clientOptions;
@@ -36,81 +36,78 @@ public class WebhooksClient {
     return this.rawClient;
   }
 
-  public PostV1WebhooksSubscriptionsCreateResponse postV1WebhooksSubscriptionsCreate(
-      PostV1WebhooksSubscriptionsCreateRequest request) {
-    return this.rawClient.postV1WebhooksSubscriptionsCreate(request).body();
+  public SubscriptionsCreateWebhooksResponse subscriptionsCreate(
+      SubscriptionsCreateWebhooksRequest request) {
+    return this.rawClient.subscriptionsCreate(request).body();
   }
 
-  public PostV1WebhooksSubscriptionsCreateResponse postV1WebhooksSubscriptionsCreate(
-      PostV1WebhooksSubscriptionsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksSubscriptionsCreate(request, requestOptions).body();
+  public SubscriptionsCreateWebhooksResponse subscriptionsCreate(
+      SubscriptionsCreateWebhooksRequest request, RequestOptions requestOptions) {
+    return this.rawClient.subscriptionsCreate(request, requestOptions).body();
   }
 
-  public PostV1WebhooksSubscriptionsListResponse postV1WebhooksSubscriptionsList() {
-    return this.rawClient.postV1WebhooksSubscriptionsList().body();
+  public SubscriptionsListWebhooksResponse subscriptionsList() {
+    return this.rawClient.subscriptionsList().body();
   }
 
-  public PostV1WebhooksSubscriptionsListResponse postV1WebhooksSubscriptionsList(
+  public SubscriptionsListWebhooksResponse subscriptionsList(RequestOptions requestOptions) {
+    return this.rawClient.subscriptionsList(requestOptions).body();
+  }
+
+  public SubscriptionsListWebhooksResponse subscriptionsList(
+      SubscriptionsListWebhooksRequest request) {
+    return this.rawClient.subscriptionsList(request).body();
+  }
+
+  public SubscriptionsListWebhooksResponse subscriptionsList(
+      SubscriptionsListWebhooksRequest request, RequestOptions requestOptions) {
+    return this.rawClient.subscriptionsList(request, requestOptions).body();
+  }
+
+  public SubscriptionsUpdateWebhooksResponse subscriptionsUpdate(
+      SubscriptionsUpdateWebhooksRequest request) {
+    return this.rawClient.subscriptionsUpdate(request).body();
+  }
+
+  public SubscriptionsUpdateWebhooksResponse subscriptionsUpdate(
+      SubscriptionsUpdateWebhooksRequest request, RequestOptions requestOptions) {
+    return this.rawClient.subscriptionsUpdate(request, requestOptions).body();
+  }
+
+  public SubscriptionsDeleteWebhooksResponse subscriptionsDelete(
+      SubscriptionsDeleteWebhooksRequest request) {
+    return this.rawClient.subscriptionsDelete(request).body();
+  }
+
+  public SubscriptionsDeleteWebhooksResponse subscriptionsDelete(
+      SubscriptionsDeleteWebhooksRequest request, RequestOptions requestOptions) {
+    return this.rawClient.subscriptionsDelete(request, requestOptions).body();
+  }
+
+  public DeliveriesListWebhooksResponse deliveriesList() {
+    return this.rawClient.deliveriesList().body();
+  }
+
+  public DeliveriesListWebhooksResponse deliveriesList(RequestOptions requestOptions) {
+    return this.rawClient.deliveriesList(requestOptions).body();
+  }
+
+  public DeliveriesListWebhooksResponse deliveriesList(DeliveriesListWebhooksRequest request) {
+    return this.rawClient.deliveriesList(request).body();
+  }
+
+  public DeliveriesListWebhooksResponse deliveriesList(DeliveriesListWebhooksRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksSubscriptionsList(requestOptions).body();
+    return this.rawClient.deliveriesList(request, requestOptions).body();
   }
 
-  public PostV1WebhooksSubscriptionsListResponse postV1WebhooksSubscriptionsList(
-      PostV1WebhooksSubscriptionsListRequest request) {
-    return this.rawClient.postV1WebhooksSubscriptionsList(request).body();
+  public DeliveriesRedeliverWebhooksResponse deliveriesRedeliver(
+      DeliveriesRedeliverWebhooksRequest request) {
+    return this.rawClient.deliveriesRedeliver(request).body();
   }
 
-  public PostV1WebhooksSubscriptionsListResponse postV1WebhooksSubscriptionsList(
-      PostV1WebhooksSubscriptionsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksSubscriptionsList(request, requestOptions).body();
-  }
-
-  public PostV1WebhooksSubscriptionsUpdateResponse postV1WebhooksSubscriptionsUpdate(
-      PostV1WebhooksSubscriptionsUpdateRequest request) {
-    return this.rawClient.postV1WebhooksSubscriptionsUpdate(request).body();
-  }
-
-  public PostV1WebhooksSubscriptionsUpdateResponse postV1WebhooksSubscriptionsUpdate(
-      PostV1WebhooksSubscriptionsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksSubscriptionsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1WebhooksSubscriptionsDeleteResponse postV1WebhooksSubscriptionsDelete(
-      PostV1WebhooksSubscriptionsDeleteRequest request) {
-    return this.rawClient.postV1WebhooksSubscriptionsDelete(request).body();
-  }
-
-  public PostV1WebhooksSubscriptionsDeleteResponse postV1WebhooksSubscriptionsDelete(
-      PostV1WebhooksSubscriptionsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksSubscriptionsDelete(request, requestOptions).body();
-  }
-
-  public PostV1WebhooksDeliveriesListResponse postV1WebhooksDeliveriesList() {
-    return this.rawClient.postV1WebhooksDeliveriesList().body();
-  }
-
-  public PostV1WebhooksDeliveriesListResponse postV1WebhooksDeliveriesList(
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksDeliveriesList(requestOptions).body();
-  }
-
-  public PostV1WebhooksDeliveriesListResponse postV1WebhooksDeliveriesList(
-      PostV1WebhooksDeliveriesListRequest request) {
-    return this.rawClient.postV1WebhooksDeliveriesList(request).body();
-  }
-
-  public PostV1WebhooksDeliveriesListResponse postV1WebhooksDeliveriesList(
-      PostV1WebhooksDeliveriesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksDeliveriesList(request, requestOptions).body();
-  }
-
-  public PostV1WebhooksDeliveriesRedeliverResponse postV1WebhooksDeliveriesRedeliver(
-      PostV1WebhooksDeliveriesRedeliverRequest request) {
-    return this.rawClient.postV1WebhooksDeliveriesRedeliver(request).body();
-  }
-
-  public PostV1WebhooksDeliveriesRedeliverResponse postV1WebhooksDeliveriesRedeliver(
-      PostV1WebhooksDeliveriesRedeliverRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksDeliveriesRedeliver(request, requestOptions).body();
+  public DeliveriesRedeliverWebhooksResponse deliveriesRedeliver(
+      DeliveriesRedeliverWebhooksRequest request, RequestOptions requestOptions) {
+    return this.rawClient.deliveriesRedeliver(request, requestOptions).body();
   }
 }

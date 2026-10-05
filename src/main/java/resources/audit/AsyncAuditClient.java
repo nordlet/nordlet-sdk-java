@@ -6,8 +6,8 @@ package com.nordlet.api.resources.audit;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.audit.requests.PostV1AuditListRequest;
-import com.nordlet.api.resources.audit.types.PostV1AuditListResponse;
+import com.nordlet.api.resources.audit.requests.ListAuditRequest;
+import com.nordlet.api.resources.audit.types.ListAuditResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncAuditClient {
@@ -27,21 +27,20 @@ public class AsyncAuditClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1AuditListResponse> postV1AuditList() {
-    return this.rawClient.postV1AuditList().thenApply(response -> response.body());
+  public CompletableFuture<ListAuditResponse> list() {
+    return this.rawClient.list().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AuditListResponse> postV1AuditList(RequestOptions requestOptions) {
-    return this.rawClient.postV1AuditList(requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ListAuditResponse> list(RequestOptions requestOptions) {
+    return this.rawClient.list(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AuditListResponse> postV1AuditList(
-      PostV1AuditListRequest request) {
-    return this.rawClient.postV1AuditList(request).thenApply(response -> response.body());
+  public CompletableFuture<ListAuditResponse> list(ListAuditRequest request) {
+    return this.rawClient.list(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AuditListResponse> postV1AuditList(PostV1AuditListRequest request,
+  public CompletableFuture<ListAuditResponse> list(ListAuditRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AuditList(request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.list(request, requestOptions).thenApply(response -> response.body());
   }
 }

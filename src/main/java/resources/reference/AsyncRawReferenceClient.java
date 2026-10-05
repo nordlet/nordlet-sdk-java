@@ -15,62 +15,64 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceBanksListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceBanksUpsertRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceCnCodesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceCnCodesUpsertRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceComplianceVersionsListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceCountriesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceCurrenciesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesSetOverridesRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesOverridesDeleteRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesOverridesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesSetRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesSyncRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceIntrastatThresholdsListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtCitiesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtCountiesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtMunicipalitiesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtRegionsListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceSeriesCreateRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceSeriesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceUnitsListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceVatClassifiersListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceVatClassifiersUpsertRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceVatResolveRequest;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceBanksListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceBanksUpsertResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceCnCodesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceCnCodesUpsertResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceComplianceVersionsListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceCountriesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceCurrenciesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesSetOverridesResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesOverridesDeleteResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesOverridesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesSetResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesSyncResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceIntrastatThresholdsListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceLtCitiesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceLtCountiesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceLtMunicipalitiesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceLtRegionsListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceSeriesCreateResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceSeriesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceUnitsListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceVatClassifiersListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceVatClassifiersUpsertResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceVatResolveResponse;
+import com.nordlet.api.resources.reference.requests.BanksListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.BanksUpsertReferenceRequest;
+import com.nordlet.api.resources.reference.requests.CnCodesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.CnCodesUpsertReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ComplianceVersionsListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.CountriesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.CurrenciesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.EuVatRatesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.EuVatRatesSetOverridesReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesOverridesDeleteReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesOverridesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesSetReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesSyncReferenceRequest;
+import com.nordlet.api.resources.reference.requests.IntrastatThresholdsListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.LtCitiesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.LtCountiesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.LtMunicipalitiesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.LtRegionsListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.SeriesCreateReferenceRequest;
+import com.nordlet.api.resources.reference.requests.SeriesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.UnitsListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.VatClassifiersListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.VatClassifiersUpsertReferenceRequest;
+import com.nordlet.api.resources.reference.requests.VatResolveReferenceRequest;
+import com.nordlet.api.resources.reference.types.BanksListReferenceResponse;
+import com.nordlet.api.resources.reference.types.BanksUpsertReferenceResponse;
+import com.nordlet.api.resources.reference.types.CnCodesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.CnCodesUpsertReferenceResponse;
+import com.nordlet.api.resources.reference.types.ComplianceVersionsListReferenceResponse;
+import com.nordlet.api.resources.reference.types.CountriesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.CurrenciesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.EuVatRatesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.EuVatRatesSetOverridesReferenceResponse;
+import com.nordlet.api.resources.reference.types.ExchangeRatesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.ExchangeRatesOverridesDeleteReferenceResponse;
+import com.nordlet.api.resources.reference.types.ExchangeRatesOverridesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.ExchangeRatesSetReferenceResponse;
+import com.nordlet.api.resources.reference.types.ExchangeRatesSyncReferenceResponse;
+import com.nordlet.api.resources.reference.types.IntrastatThresholdsListReferenceResponse;
+import com.nordlet.api.resources.reference.types.LtCitiesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.LtCountiesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.LtMunicipalitiesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.LtRegionsListReferenceResponse;
+import com.nordlet.api.resources.reference.types.SeriesCreateReferenceResponse;
+import com.nordlet.api.resources.reference.types.SeriesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.UnitsListReferenceResponse;
+import com.nordlet.api.resources.reference.types.VatClassifiersListReferenceResponse;
+import com.nordlet.api.resources.reference.types.VatClassifiersUpsertReferenceResponse;
+import com.nordlet.api.resources.reference.types.VatResolveReferenceResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -95,23 +97,23 @@ public class AsyncRawReferenceClient {
     this.clientOptions = clientOptions;
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesSyncResponse>> postV1ReferenceExchangeRatesSync(
+  public CompletableFuture<NordletApiHttpResponse<ExchangeRatesSyncReferenceResponse>> exchangeRatesSync(
       ) {
-    return postV1ReferenceExchangeRatesSync(PostV1ReferenceExchangeRatesSyncRequest.builder().build());
+    return exchangeRatesSync(ExchangeRatesSyncReferenceRequest.builder().build());
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesSyncResponse>> postV1ReferenceExchangeRatesSync(
+  public CompletableFuture<NordletApiHttpResponse<ExchangeRatesSyncReferenceResponse>> exchangeRatesSync(
       RequestOptions requestOptions) {
-    return postV1ReferenceExchangeRatesSync(PostV1ReferenceExchangeRatesSyncRequest.builder().build(),requestOptions);
+    return exchangeRatesSync(ExchangeRatesSyncReferenceRequest.builder().build(),requestOptions);
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesSyncResponse>> postV1ReferenceExchangeRatesSync(
-      PostV1ReferenceExchangeRatesSyncRequest request) {
-    return postV1ReferenceExchangeRatesSync(request,null);
+  public CompletableFuture<NordletApiHttpResponse<ExchangeRatesSyncReferenceResponse>> exchangeRatesSync(
+      ExchangeRatesSyncReferenceRequest request) {
+    return exchangeRatesSync(request,null);
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesSyncResponse>> postV1ReferenceExchangeRatesSync(
-      PostV1ReferenceExchangeRatesSyncRequest request, RequestOptions requestOptions) {
+  public CompletableFuture<NordletApiHttpResponse<ExchangeRatesSyncReferenceResponse>> exchangeRatesSync(
+      ExchangeRatesSyncReferenceRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/reference/exchange-rates/sync");if (requestOptions != null) {
@@ -140,14 +142,14 @@ public class AsyncRawReferenceClient {
       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
       }
-      CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesSyncResponse>> future = new CompletableFuture<>();
+      CompletableFuture<NordletApiHttpResponse<ExchangeRatesSyncReferenceResponse>> future = new CompletableFuture<>();
       client.newCall(okhttpRequest).enqueue(new Callback() {
         @Override
         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
           try (ResponseBody responseBody = response.body()) {
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceExchangeRatesSyncResponse.class), response));
+              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ExchangeRatesSyncReferenceResponse.class), response));
               return;
             }
             try {
@@ -156,11 +158,15 @@ public class AsyncRawReferenceClient {
                 return;
                 case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
+                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
                 case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
+                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
@@ -193,23 +199,23 @@ public class AsyncRawReferenceClient {
       return future;
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesListResponse>> postV1ReferenceExchangeRatesList(
+    public CompletableFuture<NordletApiHttpResponse<ExchangeRatesListReferenceResponse>> exchangeRatesList(
         ) {
-      return postV1ReferenceExchangeRatesList(PostV1ReferenceExchangeRatesListRequest.builder().build());
+      return exchangeRatesList(ExchangeRatesListReferenceRequest.builder().build());
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesListResponse>> postV1ReferenceExchangeRatesList(
+    public CompletableFuture<NordletApiHttpResponse<ExchangeRatesListReferenceResponse>> exchangeRatesList(
         RequestOptions requestOptions) {
-      return postV1ReferenceExchangeRatesList(PostV1ReferenceExchangeRatesListRequest.builder().build(),requestOptions);
+      return exchangeRatesList(ExchangeRatesListReferenceRequest.builder().build(),requestOptions);
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesListResponse>> postV1ReferenceExchangeRatesList(
-        PostV1ReferenceExchangeRatesListRequest request) {
-      return postV1ReferenceExchangeRatesList(request,null);
+    public CompletableFuture<NordletApiHttpResponse<ExchangeRatesListReferenceResponse>> exchangeRatesList(
+        ExchangeRatesListReferenceRequest request) {
+      return exchangeRatesList(request,null);
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesListResponse>> postV1ReferenceExchangeRatesList(
-        PostV1ReferenceExchangeRatesListRequest request, RequestOptions requestOptions) {
+    public CompletableFuture<NordletApiHttpResponse<ExchangeRatesListReferenceResponse>> exchangeRatesList(
+        ExchangeRatesListReferenceRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/reference/exchange-rates/list");if (requestOptions != null) {
@@ -238,14 +244,14 @@ public class AsyncRawReferenceClient {
         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
         }
-        CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesListResponse>> future = new CompletableFuture<>();
+        CompletableFuture<NordletApiHttpResponse<ExchangeRatesListReferenceResponse>> future = new CompletableFuture<>();
         client.newCall(okhttpRequest).enqueue(new Callback() {
           @Override
           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
             try (ResponseBody responseBody = response.body()) {
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceExchangeRatesListResponse.class), response));
+                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ExchangeRatesListReferenceResponse.class), response));
                 return;
               }
               try {
@@ -254,11 +260,15 @@ public class AsyncRawReferenceClient {
                   return;
                   case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
+                  case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
                   case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
@@ -291,13 +301,13 @@ public class AsyncRawReferenceClient {
         return future;
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesSetResponse>> postV1ReferenceExchangeRatesSet(
-          PostV1ReferenceExchangeRatesSetRequest request) {
-        return postV1ReferenceExchangeRatesSet(request,null);
+      public CompletableFuture<NordletApiHttpResponse<ExchangeRatesSetReferenceResponse>> exchangeRatesSet(
+          ExchangeRatesSetReferenceRequest request) {
+        return exchangeRatesSet(request,null);
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesSetResponse>> postV1ReferenceExchangeRatesSet(
-          PostV1ReferenceExchangeRatesSetRequest request, RequestOptions requestOptions) {
+      public CompletableFuture<NordletApiHttpResponse<ExchangeRatesSetReferenceResponse>> exchangeRatesSet(
+          ExchangeRatesSetReferenceRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/reference/exchange-rates/set");if (requestOptions != null) {
@@ -326,14 +336,14 @@ public class AsyncRawReferenceClient {
           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
           }
-          CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesSetResponse>> future = new CompletableFuture<>();
+          CompletableFuture<NordletApiHttpResponse<ExchangeRatesSetReferenceResponse>> future = new CompletableFuture<>();
           client.newCall(okhttpRequest).enqueue(new Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
               try (ResponseBody responseBody = response.body()) {
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceExchangeRatesSetResponse.class), response));
+                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ExchangeRatesSetReferenceResponse.class), response));
                   return;
                 }
                 try {
@@ -342,11 +352,15 @@ public class AsyncRawReferenceClient {
                     return;
                     case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
+                    case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                    return;
                     case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                    return;
+                    case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
@@ -379,24 +393,23 @@ public class AsyncRawReferenceClient {
           return future;
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesOverridesListResponse>> postV1ReferenceExchangeRatesOverridesList(
+        public CompletableFuture<NordletApiHttpResponse<ExchangeRatesOverridesListReferenceResponse>> exchangeRatesOverridesList(
             ) {
-          return postV1ReferenceExchangeRatesOverridesList(PostV1ReferenceExchangeRatesOverridesListRequest.builder().build());
+          return exchangeRatesOverridesList(ExchangeRatesOverridesListReferenceRequest.builder().build());
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesOverridesListResponse>> postV1ReferenceExchangeRatesOverridesList(
+        public CompletableFuture<NordletApiHttpResponse<ExchangeRatesOverridesListReferenceResponse>> exchangeRatesOverridesList(
             RequestOptions requestOptions) {
-          return postV1ReferenceExchangeRatesOverridesList(PostV1ReferenceExchangeRatesOverridesListRequest.builder().build(),requestOptions);
+          return exchangeRatesOverridesList(ExchangeRatesOverridesListReferenceRequest.builder().build(),requestOptions);
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesOverridesListResponse>> postV1ReferenceExchangeRatesOverridesList(
-            PostV1ReferenceExchangeRatesOverridesListRequest request) {
-          return postV1ReferenceExchangeRatesOverridesList(request,null);
+        public CompletableFuture<NordletApiHttpResponse<ExchangeRatesOverridesListReferenceResponse>> exchangeRatesOverridesList(
+            ExchangeRatesOverridesListReferenceRequest request) {
+          return exchangeRatesOverridesList(request,null);
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesOverridesListResponse>> postV1ReferenceExchangeRatesOverridesList(
-            PostV1ReferenceExchangeRatesOverridesListRequest request,
-            RequestOptions requestOptions) {
+        public CompletableFuture<NordletApiHttpResponse<ExchangeRatesOverridesListReferenceResponse>> exchangeRatesOverridesList(
+            ExchangeRatesOverridesListReferenceRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/reference/exchange-rates/overrides/list");if (requestOptions != null) {
@@ -425,14 +438,14 @@ public class AsyncRawReferenceClient {
             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
             }
-            CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesOverridesListResponse>> future = new CompletableFuture<>();
+            CompletableFuture<NordletApiHttpResponse<ExchangeRatesOverridesListReferenceResponse>> future = new CompletableFuture<>();
             client.newCall(okhttpRequest).enqueue(new Callback() {
               @Override
               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceExchangeRatesOverridesListResponse.class), response));
+                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ExchangeRatesOverridesListReferenceResponse.class), response));
                     return;
                   }
                   try {
@@ -441,11 +454,15 @@ public class AsyncRawReferenceClient {
                       return;
                       case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
+                      case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                      return;
                       case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                      return;
+                      case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
@@ -478,14 +495,13 @@ public class AsyncRawReferenceClient {
             return future;
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesOverridesDeleteResponse>> postV1ReferenceExchangeRatesOverridesDelete(
-              PostV1ReferenceExchangeRatesOverridesDeleteRequest request) {
-            return postV1ReferenceExchangeRatesOverridesDelete(request,null);
+          public CompletableFuture<NordletApiHttpResponse<ExchangeRatesOverridesDeleteReferenceResponse>> exchangeRatesOverridesDelete(
+              ExchangeRatesOverridesDeleteReferenceRequest request) {
+            return exchangeRatesOverridesDelete(request,null);
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesOverridesDeleteResponse>> postV1ReferenceExchangeRatesOverridesDelete(
-              PostV1ReferenceExchangeRatesOverridesDeleteRequest request,
-              RequestOptions requestOptions) {
+          public CompletableFuture<NordletApiHttpResponse<ExchangeRatesOverridesDeleteReferenceResponse>> exchangeRatesOverridesDelete(
+              ExchangeRatesOverridesDeleteReferenceRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
               .addPathSegments("v1/reference/exchange-rates/overrides/delete");if (requestOptions != null) {
@@ -514,14 +530,14 @@ public class AsyncRawReferenceClient {
               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
               }
-              CompletableFuture<NordletApiHttpResponse<PostV1ReferenceExchangeRatesOverridesDeleteResponse>> future = new CompletableFuture<>();
+              CompletableFuture<NordletApiHttpResponse<ExchangeRatesOverridesDeleteReferenceResponse>> future = new CompletableFuture<>();
               client.newCall(okhttpRequest).enqueue(new Callback() {
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                   try (ResponseBody responseBody = response.body()) {
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceExchangeRatesOverridesDeleteResponse.class), response));
+                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ExchangeRatesOverridesDeleteReferenceResponse.class), response));
                       return;
                     }
                     try {
@@ -530,11 +546,15 @@ public class AsyncRawReferenceClient {
                         return;
                         case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
+                        case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                        return;
                         case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                        return;
+                        case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
@@ -567,23 +587,23 @@ public class AsyncRawReferenceClient {
               return future;
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCountriesListResponse>> postV1ReferenceCountriesList(
+            public CompletableFuture<NordletApiHttpResponse<CountriesListReferenceResponse>> countriesList(
                 ) {
-              return postV1ReferenceCountriesList(PostV1ReferenceCountriesListRequest.builder().build());
+              return countriesList(CountriesListReferenceRequest.builder().build());
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCountriesListResponse>> postV1ReferenceCountriesList(
+            public CompletableFuture<NordletApiHttpResponse<CountriesListReferenceResponse>> countriesList(
                 RequestOptions requestOptions) {
-              return postV1ReferenceCountriesList(PostV1ReferenceCountriesListRequest.builder().build(),requestOptions);
+              return countriesList(CountriesListReferenceRequest.builder().build(),requestOptions);
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCountriesListResponse>> postV1ReferenceCountriesList(
-                PostV1ReferenceCountriesListRequest request) {
-              return postV1ReferenceCountriesList(request,null);
+            public CompletableFuture<NordletApiHttpResponse<CountriesListReferenceResponse>> countriesList(
+                CountriesListReferenceRequest request) {
+              return countriesList(request,null);
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCountriesListResponse>> postV1ReferenceCountriesList(
-                PostV1ReferenceCountriesListRequest request, RequestOptions requestOptions) {
+            public CompletableFuture<NordletApiHttpResponse<CountriesListReferenceResponse>> countriesList(
+                CountriesListReferenceRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/reference/countries/list");if (requestOptions != null) {
@@ -612,14 +632,14 @@ public class AsyncRawReferenceClient {
                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                 }
-                CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCountriesListResponse>> future = new CompletableFuture<>();
+                CompletableFuture<NordletApiHttpResponse<CountriesListReferenceResponse>> future = new CompletableFuture<>();
                 client.newCall(okhttpRequest).enqueue(new Callback() {
                   @Override
                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     try (ResponseBody responseBody = response.body()) {
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceCountriesListResponse.class), response));
+                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CountriesListReferenceResponse.class), response));
                         return;
                       }
                       try {
@@ -628,11 +648,15 @@ public class AsyncRawReferenceClient {
                           return;
                           case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
+                          case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
                           case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
+                          case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
@@ -665,23 +689,23 @@ public class AsyncRawReferenceClient {
                 return future;
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtCountiesListResponse>> postV1ReferenceLtCountiesList(
+              public CompletableFuture<NordletApiHttpResponse<LtCountiesListReferenceResponse>> ltCountiesList(
                   ) {
-                return postV1ReferenceLtCountiesList(PostV1ReferenceLtCountiesListRequest.builder().build());
+                return ltCountiesList(LtCountiesListReferenceRequest.builder().build());
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtCountiesListResponse>> postV1ReferenceLtCountiesList(
+              public CompletableFuture<NordletApiHttpResponse<LtCountiesListReferenceResponse>> ltCountiesList(
                   RequestOptions requestOptions) {
-                return postV1ReferenceLtCountiesList(PostV1ReferenceLtCountiesListRequest.builder().build(),requestOptions);
+                return ltCountiesList(LtCountiesListReferenceRequest.builder().build(),requestOptions);
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtCountiesListResponse>> postV1ReferenceLtCountiesList(
-                  PostV1ReferenceLtCountiesListRequest request) {
-                return postV1ReferenceLtCountiesList(request,null);
+              public CompletableFuture<NordletApiHttpResponse<LtCountiesListReferenceResponse>> ltCountiesList(
+                  LtCountiesListReferenceRequest request) {
+                return ltCountiesList(request,null);
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtCountiesListResponse>> postV1ReferenceLtCountiesList(
-                  PostV1ReferenceLtCountiesListRequest request, RequestOptions requestOptions) {
+              public CompletableFuture<NordletApiHttpResponse<LtCountiesListReferenceResponse>> ltCountiesList(
+                  LtCountiesListReferenceRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                   .addPathSegments("v1/reference/lt/counties/list");if (requestOptions != null) {
@@ -710,14 +734,14 @@ public class AsyncRawReferenceClient {
                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                   }
-                  CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtCountiesListResponse>> future = new CompletableFuture<>();
+                  CompletableFuture<NordletApiHttpResponse<LtCountiesListReferenceResponse>> future = new CompletableFuture<>();
                   client.newCall(okhttpRequest).enqueue(new Callback() {
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                       try (ResponseBody responseBody = response.body()) {
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceLtCountiesListResponse.class), response));
+                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LtCountiesListReferenceResponse.class), response));
                           return;
                         }
                         try {
@@ -726,11 +750,15 @@ public class AsyncRawReferenceClient {
                             return;
                             case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
+                            case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
                             case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
                             case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
                             case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
+                            case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
                             case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
@@ -763,24 +791,23 @@ public class AsyncRawReferenceClient {
                   return future;
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtMunicipalitiesListResponse>> postV1ReferenceLtMunicipalitiesList(
+                public CompletableFuture<NordletApiHttpResponse<LtMunicipalitiesListReferenceResponse>> ltMunicipalitiesList(
                     ) {
-                  return postV1ReferenceLtMunicipalitiesList(PostV1ReferenceLtMunicipalitiesListRequest.builder().build());
+                  return ltMunicipalitiesList(LtMunicipalitiesListReferenceRequest.builder().build());
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtMunicipalitiesListResponse>> postV1ReferenceLtMunicipalitiesList(
+                public CompletableFuture<NordletApiHttpResponse<LtMunicipalitiesListReferenceResponse>> ltMunicipalitiesList(
                     RequestOptions requestOptions) {
-                  return postV1ReferenceLtMunicipalitiesList(PostV1ReferenceLtMunicipalitiesListRequest.builder().build(),requestOptions);
+                  return ltMunicipalitiesList(LtMunicipalitiesListReferenceRequest.builder().build(),requestOptions);
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtMunicipalitiesListResponse>> postV1ReferenceLtMunicipalitiesList(
-                    PostV1ReferenceLtMunicipalitiesListRequest request) {
-                  return postV1ReferenceLtMunicipalitiesList(request,null);
+                public CompletableFuture<NordletApiHttpResponse<LtMunicipalitiesListReferenceResponse>> ltMunicipalitiesList(
+                    LtMunicipalitiesListReferenceRequest request) {
+                  return ltMunicipalitiesList(request,null);
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtMunicipalitiesListResponse>> postV1ReferenceLtMunicipalitiesList(
-                    PostV1ReferenceLtMunicipalitiesListRequest request,
-                    RequestOptions requestOptions) {
+                public CompletableFuture<NordletApiHttpResponse<LtMunicipalitiesListReferenceResponse>> ltMunicipalitiesList(
+                    LtMunicipalitiesListReferenceRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                     .addPathSegments("v1/reference/lt/municipalities/list");if (requestOptions != null) {
@@ -809,14 +836,14 @@ public class AsyncRawReferenceClient {
                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                     }
-                    CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtMunicipalitiesListResponse>> future = new CompletableFuture<>();
+                    CompletableFuture<NordletApiHttpResponse<LtMunicipalitiesListReferenceResponse>> future = new CompletableFuture<>();
                     client.newCall(okhttpRequest).enqueue(new Callback() {
                       @Override
                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         try (ResponseBody responseBody = response.body()) {
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceLtMunicipalitiesListResponse.class), response));
+                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LtMunicipalitiesListReferenceResponse.class), response));
                             return;
                           }
                           try {
@@ -825,11 +852,15 @@ public class AsyncRawReferenceClient {
                               return;
                               case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
+                              case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                              return;
                               case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
                               case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
                               case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                              return;
+                              case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
                               case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
@@ -862,23 +893,23 @@ public class AsyncRawReferenceClient {
                     return future;
                   }
 
-                  public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtCitiesListResponse>> postV1ReferenceLtCitiesList(
+                  public CompletableFuture<NordletApiHttpResponse<LtCitiesListReferenceResponse>> ltCitiesList(
                       ) {
-                    return postV1ReferenceLtCitiesList(PostV1ReferenceLtCitiesListRequest.builder().build());
+                    return ltCitiesList(LtCitiesListReferenceRequest.builder().build());
                   }
 
-                  public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtCitiesListResponse>> postV1ReferenceLtCitiesList(
+                  public CompletableFuture<NordletApiHttpResponse<LtCitiesListReferenceResponse>> ltCitiesList(
                       RequestOptions requestOptions) {
-                    return postV1ReferenceLtCitiesList(PostV1ReferenceLtCitiesListRequest.builder().build(),requestOptions);
+                    return ltCitiesList(LtCitiesListReferenceRequest.builder().build(),requestOptions);
                   }
 
-                  public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtCitiesListResponse>> postV1ReferenceLtCitiesList(
-                      PostV1ReferenceLtCitiesListRequest request) {
-                    return postV1ReferenceLtCitiesList(request,null);
+                  public CompletableFuture<NordletApiHttpResponse<LtCitiesListReferenceResponse>> ltCitiesList(
+                      LtCitiesListReferenceRequest request) {
+                    return ltCitiesList(request,null);
                   }
 
-                  public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtCitiesListResponse>> postV1ReferenceLtCitiesList(
-                      PostV1ReferenceLtCitiesListRequest request, RequestOptions requestOptions) {
+                  public CompletableFuture<NordletApiHttpResponse<LtCitiesListReferenceResponse>> ltCitiesList(
+                      LtCitiesListReferenceRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                       .addPathSegments("v1/reference/lt/cities/list");if (requestOptions != null) {
@@ -907,14 +938,14 @@ public class AsyncRawReferenceClient {
                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                       }
-                      CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtCitiesListResponse>> future = new CompletableFuture<>();
+                      CompletableFuture<NordletApiHttpResponse<LtCitiesListReferenceResponse>> future = new CompletableFuture<>();
                       client.newCall(okhttpRequest).enqueue(new Callback() {
                         @Override
                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                           try (ResponseBody responseBody = response.body()) {
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceLtCitiesListResponse.class), response));
+                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LtCitiesListReferenceResponse.class), response));
                               return;
                             }
                             try {
@@ -923,11 +954,15 @@ public class AsyncRawReferenceClient {
                                 return;
                                 case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                 return;
+                                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                return;
                                 case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                 return;
                                 case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                 return;
                                 case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                return;
+                                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                 return;
                                 case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                 return;
@@ -960,23 +995,23 @@ public class AsyncRawReferenceClient {
                       return future;
                     }
 
-                    public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceBanksListResponse>> postV1ReferenceBanksList(
+                    public CompletableFuture<NordletApiHttpResponse<BanksListReferenceResponse>> banksList(
                         ) {
-                      return postV1ReferenceBanksList(PostV1ReferenceBanksListRequest.builder().build());
+                      return banksList(BanksListReferenceRequest.builder().build());
                     }
 
-                    public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceBanksListResponse>> postV1ReferenceBanksList(
+                    public CompletableFuture<NordletApiHttpResponse<BanksListReferenceResponse>> banksList(
                         RequestOptions requestOptions) {
-                      return postV1ReferenceBanksList(PostV1ReferenceBanksListRequest.builder().build(),requestOptions);
+                      return banksList(BanksListReferenceRequest.builder().build(),requestOptions);
                     }
 
-                    public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceBanksListResponse>> postV1ReferenceBanksList(
-                        PostV1ReferenceBanksListRequest request) {
-                      return postV1ReferenceBanksList(request,null);
+                    public CompletableFuture<NordletApiHttpResponse<BanksListReferenceResponse>> banksList(
+                        BanksListReferenceRequest request) {
+                      return banksList(request,null);
                     }
 
-                    public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceBanksListResponse>> postV1ReferenceBanksList(
-                        PostV1ReferenceBanksListRequest request, RequestOptions requestOptions) {
+                    public CompletableFuture<NordletApiHttpResponse<BanksListReferenceResponse>> banksList(
+                        BanksListReferenceRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                         .addPathSegments("v1/reference/banks/list");if (requestOptions != null) {
@@ -1005,14 +1040,14 @@ public class AsyncRawReferenceClient {
                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                         }
-                        CompletableFuture<NordletApiHttpResponse<PostV1ReferenceBanksListResponse>> future = new CompletableFuture<>();
+                        CompletableFuture<NordletApiHttpResponse<BanksListReferenceResponse>> future = new CompletableFuture<>();
                         client.newCall(okhttpRequest).enqueue(new Callback() {
                           @Override
                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                             try (ResponseBody responseBody = response.body()) {
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceBanksListResponse.class), response));
+                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, BanksListReferenceResponse.class), response));
                                 return;
                               }
                               try {
@@ -1021,11 +1056,15 @@ public class AsyncRawReferenceClient {
                                   return;
                                   case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                   return;
+                                  case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                  return;
                                   case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                   return;
                                   case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                   return;
                                   case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                  return;
+                                  case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                   return;
                                   case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                   return;
@@ -1058,14 +1097,13 @@ public class AsyncRawReferenceClient {
                         return future;
                       }
 
-                      public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceBanksUpsertResponse>> postV1ReferenceBanksUpsert(
-                          PostV1ReferenceBanksUpsertRequest request) {
-                        return postV1ReferenceBanksUpsert(request,null);
+                      public CompletableFuture<NordletApiHttpResponse<BanksUpsertReferenceResponse>> banksUpsert(
+                          BanksUpsertReferenceRequest request) {
+                        return banksUpsert(request,null);
                       }
 
-                      public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceBanksUpsertResponse>> postV1ReferenceBanksUpsert(
-                          PostV1ReferenceBanksUpsertRequest request,
-                          RequestOptions requestOptions) {
+                      public CompletableFuture<NordletApiHttpResponse<BanksUpsertReferenceResponse>> banksUpsert(
+                          BanksUpsertReferenceRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                           .addPathSegments("v1/reference/banks/upsert");if (requestOptions != null) {
@@ -1094,14 +1132,14 @@ public class AsyncRawReferenceClient {
                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                           }
-                          CompletableFuture<NordletApiHttpResponse<PostV1ReferenceBanksUpsertResponse>> future = new CompletableFuture<>();
+                          CompletableFuture<NordletApiHttpResponse<BanksUpsertReferenceResponse>> future = new CompletableFuture<>();
                           client.newCall(okhttpRequest).enqueue(new Callback() {
                             @Override
                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                               try (ResponseBody responseBody = response.body()) {
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceBanksUpsertResponse.class), response));
+                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, BanksUpsertReferenceResponse.class), response));
                                   return;
                                 }
                                 try {
@@ -1110,11 +1148,15 @@ public class AsyncRawReferenceClient {
                                     return;
                                     case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                     return;
+                                    case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                    return;
                                     case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                     return;
                                     case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                     return;
                                     case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                    return;
+                                    case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                     return;
                                     case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                     return;
@@ -1147,24 +1189,23 @@ public class AsyncRawReferenceClient {
                           return future;
                         }
 
-                        public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtRegionsListResponse>> postV1ReferenceLtRegionsList(
+                        public CompletableFuture<NordletApiHttpResponse<LtRegionsListReferenceResponse>> ltRegionsList(
                             ) {
-                          return postV1ReferenceLtRegionsList(PostV1ReferenceLtRegionsListRequest.builder().build());
+                          return ltRegionsList(LtRegionsListReferenceRequest.builder().build());
                         }
 
-                        public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtRegionsListResponse>> postV1ReferenceLtRegionsList(
+                        public CompletableFuture<NordletApiHttpResponse<LtRegionsListReferenceResponse>> ltRegionsList(
                             RequestOptions requestOptions) {
-                          return postV1ReferenceLtRegionsList(PostV1ReferenceLtRegionsListRequest.builder().build(),requestOptions);
+                          return ltRegionsList(LtRegionsListReferenceRequest.builder().build(),requestOptions);
                         }
 
-                        public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtRegionsListResponse>> postV1ReferenceLtRegionsList(
-                            PostV1ReferenceLtRegionsListRequest request) {
-                          return postV1ReferenceLtRegionsList(request,null);
+                        public CompletableFuture<NordletApiHttpResponse<LtRegionsListReferenceResponse>> ltRegionsList(
+                            LtRegionsListReferenceRequest request) {
+                          return ltRegionsList(request,null);
                         }
 
-                        public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtRegionsListResponse>> postV1ReferenceLtRegionsList(
-                            PostV1ReferenceLtRegionsListRequest request,
-                            RequestOptions requestOptions) {
+                        public CompletableFuture<NordletApiHttpResponse<LtRegionsListReferenceResponse>> ltRegionsList(
+                            LtRegionsListReferenceRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                             .addPathSegments("v1/reference/lt/regions/list");if (requestOptions != null) {
@@ -1193,14 +1234,14 @@ public class AsyncRawReferenceClient {
                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                             }
-                            CompletableFuture<NordletApiHttpResponse<PostV1ReferenceLtRegionsListResponse>> future = new CompletableFuture<>();
+                            CompletableFuture<NordletApiHttpResponse<LtRegionsListReferenceResponse>> future = new CompletableFuture<>();
                             client.newCall(okhttpRequest).enqueue(new Callback() {
                               @Override
                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                 try (ResponseBody responseBody = response.body()) {
                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                   if (response.isSuccessful()) {
-                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceLtRegionsListResponse.class), response));
+                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LtRegionsListReferenceResponse.class), response));
                                     return;
                                   }
                                   try {
@@ -1209,11 +1250,15 @@ public class AsyncRawReferenceClient {
                                       return;
                                       case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                       return;
+                                      case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                      return;
                                       case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                       return;
                                       case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                       return;
                                       case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                      return;
+                                      case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                       return;
                                       case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                       return;
@@ -1246,23 +1291,23 @@ public class AsyncRawReferenceClient {
                             return future;
                           }
 
-                          public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCurrenciesListResponse>> postV1ReferenceCurrenciesList(
+                          public CompletableFuture<NordletApiHttpResponse<CurrenciesListReferenceResponse>> currenciesList(
                               ) {
-                            return postV1ReferenceCurrenciesList(PostV1ReferenceCurrenciesListRequest.builder().build());
+                            return currenciesList(CurrenciesListReferenceRequest.builder().build());
                           }
 
-                          public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCurrenciesListResponse>> postV1ReferenceCurrenciesList(
+                          public CompletableFuture<NordletApiHttpResponse<CurrenciesListReferenceResponse>> currenciesList(
                               RequestOptions requestOptions) {
-                            return postV1ReferenceCurrenciesList(PostV1ReferenceCurrenciesListRequest.builder().build(),requestOptions);
+                            return currenciesList(CurrenciesListReferenceRequest.builder().build(),requestOptions);
                           }
 
-                          public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCurrenciesListResponse>> postV1ReferenceCurrenciesList(
-                              PostV1ReferenceCurrenciesListRequest request) {
-                            return postV1ReferenceCurrenciesList(request,null);
+                          public CompletableFuture<NordletApiHttpResponse<CurrenciesListReferenceResponse>> currenciesList(
+                              CurrenciesListReferenceRequest request) {
+                            return currenciesList(request,null);
                           }
 
-                          public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCurrenciesListResponse>> postV1ReferenceCurrenciesList(
-                              PostV1ReferenceCurrenciesListRequest request,
+                          public CompletableFuture<NordletApiHttpResponse<CurrenciesListReferenceResponse>> currenciesList(
+                              CurrenciesListReferenceRequest request,
                               RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1292,14 +1337,14 @@ public class AsyncRawReferenceClient {
                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                               }
-                              CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCurrenciesListResponse>> future = new CompletableFuture<>();
+                              CompletableFuture<NordletApiHttpResponse<CurrenciesListReferenceResponse>> future = new CompletableFuture<>();
                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                 @Override
                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                   try (ResponseBody responseBody = response.body()) {
                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                     if (response.isSuccessful()) {
-                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceCurrenciesListResponse.class), response));
+                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CurrenciesListReferenceResponse.class), response));
                                       return;
                                     }
                                     try {
@@ -1308,11 +1353,15 @@ public class AsyncRawReferenceClient {
                                         return;
                                         case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                         return;
+                                        case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                        return;
                                         case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                         return;
                                         case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                         return;
                                         case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                        return;
+                                        case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                         return;
                                         case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                         return;
@@ -1345,23 +1394,23 @@ public class AsyncRawReferenceClient {
                               return future;
                             }
 
-                            public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceVatClassifiersListResponse>> postV1ReferenceVatClassifiersList(
+                            public CompletableFuture<NordletApiHttpResponse<VatClassifiersListReferenceResponse>> vatClassifiersList(
                                 ) {
-                              return postV1ReferenceVatClassifiersList(PostV1ReferenceVatClassifiersListRequest.builder().build());
+                              return vatClassifiersList(VatClassifiersListReferenceRequest.builder().build());
                             }
 
-                            public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceVatClassifiersListResponse>> postV1ReferenceVatClassifiersList(
+                            public CompletableFuture<NordletApiHttpResponse<VatClassifiersListReferenceResponse>> vatClassifiersList(
                                 RequestOptions requestOptions) {
-                              return postV1ReferenceVatClassifiersList(PostV1ReferenceVatClassifiersListRequest.builder().build(),requestOptions);
+                              return vatClassifiersList(VatClassifiersListReferenceRequest.builder().build(),requestOptions);
                             }
 
-                            public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceVatClassifiersListResponse>> postV1ReferenceVatClassifiersList(
-                                PostV1ReferenceVatClassifiersListRequest request) {
-                              return postV1ReferenceVatClassifiersList(request,null);
+                            public CompletableFuture<NordletApiHttpResponse<VatClassifiersListReferenceResponse>> vatClassifiersList(
+                                VatClassifiersListReferenceRequest request) {
+                              return vatClassifiersList(request,null);
                             }
 
-                            public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceVatClassifiersListResponse>> postV1ReferenceVatClassifiersList(
-                                PostV1ReferenceVatClassifiersListRequest request,
+                            public CompletableFuture<NordletApiHttpResponse<VatClassifiersListReferenceResponse>> vatClassifiersList(
+                                VatClassifiersListReferenceRequest request,
                                 RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1391,14 +1440,14 @@ public class AsyncRawReferenceClient {
                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                 }
-                                CompletableFuture<NordletApiHttpResponse<PostV1ReferenceVatClassifiersListResponse>> future = new CompletableFuture<>();
+                                CompletableFuture<NordletApiHttpResponse<VatClassifiersListReferenceResponse>> future = new CompletableFuture<>();
                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                   @Override
                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                     try (ResponseBody responseBody = response.body()) {
                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                       if (response.isSuccessful()) {
-                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceVatClassifiersListResponse.class), response));
+                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, VatClassifiersListReferenceResponse.class), response));
                                         return;
                                       }
                                       try {
@@ -1407,11 +1456,15 @@ public class AsyncRawReferenceClient {
                                           return;
                                           case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                           return;
+                                          case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                          return;
                                           case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                           return;
                                           case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                           return;
                                           case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                          return;
+                                          case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                           return;
                                           case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                           return;
@@ -1444,13 +1497,13 @@ public class AsyncRawReferenceClient {
                                 return future;
                               }
 
-                              public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceVatClassifiersUpsertResponse>> postV1ReferenceVatClassifiersUpsert(
-                                  PostV1ReferenceVatClassifiersUpsertRequest request) {
-                                return postV1ReferenceVatClassifiersUpsert(request,null);
+                              public CompletableFuture<NordletApiHttpResponse<VatClassifiersUpsertReferenceResponse>> vatClassifiersUpsert(
+                                  VatClassifiersUpsertReferenceRequest request) {
+                                return vatClassifiersUpsert(request,null);
                               }
 
-                              public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceVatClassifiersUpsertResponse>> postV1ReferenceVatClassifiersUpsert(
-                                  PostV1ReferenceVatClassifiersUpsertRequest request,
+                              public CompletableFuture<NordletApiHttpResponse<VatClassifiersUpsertReferenceResponse>> vatClassifiersUpsert(
+                                  VatClassifiersUpsertReferenceRequest request,
                                   RequestOptions requestOptions) {
                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1480,14 +1533,14 @@ public class AsyncRawReferenceClient {
                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                   }
-                                  CompletableFuture<NordletApiHttpResponse<PostV1ReferenceVatClassifiersUpsertResponse>> future = new CompletableFuture<>();
+                                  CompletableFuture<NordletApiHttpResponse<VatClassifiersUpsertReferenceResponse>> future = new CompletableFuture<>();
                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                     @Override
                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                       try (ResponseBody responseBody = response.body()) {
                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                         if (response.isSuccessful()) {
-                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceVatClassifiersUpsertResponse.class), response));
+                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, VatClassifiersUpsertReferenceResponse.class), response));
                                           return;
                                         }
                                         try {
@@ -1496,11 +1549,15 @@ public class AsyncRawReferenceClient {
                                             return;
                                             case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                             return;
+                                            case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                            return;
                                             case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                             return;
                                             case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                             return;
                                             case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                            return;
+                                            case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                             return;
                                             case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                             return;
@@ -1536,32 +1593,32 @@ public class AsyncRawReferenceClient {
                                 /**
                                  * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
                                  */
-                                public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceEuVatRatesListResponse>> postV1ReferenceEuVatRatesList(
+                                public CompletableFuture<NordletApiHttpResponse<EuVatRatesListReferenceResponse>> euVatRatesList(
                                     ) {
-                                  return postV1ReferenceEuVatRatesList(PostV1ReferenceEuVatRatesListRequest.builder().build());
+                                  return euVatRatesList(EuVatRatesListReferenceRequest.builder().build());
                                 }
 
                                 /**
                                  * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
                                  */
-                                public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceEuVatRatesListResponse>> postV1ReferenceEuVatRatesList(
+                                public CompletableFuture<NordletApiHttpResponse<EuVatRatesListReferenceResponse>> euVatRatesList(
                                     RequestOptions requestOptions) {
-                                  return postV1ReferenceEuVatRatesList(PostV1ReferenceEuVatRatesListRequest.builder().build(),requestOptions);
+                                  return euVatRatesList(EuVatRatesListReferenceRequest.builder().build(),requestOptions);
                                 }
 
                                 /**
                                  * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
                                  */
-                                public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceEuVatRatesListResponse>> postV1ReferenceEuVatRatesList(
-                                    PostV1ReferenceEuVatRatesListRequest request) {
-                                  return postV1ReferenceEuVatRatesList(request,null);
+                                public CompletableFuture<NordletApiHttpResponse<EuVatRatesListReferenceResponse>> euVatRatesList(
+                                    EuVatRatesListReferenceRequest request) {
+                                  return euVatRatesList(request,null);
                                 }
 
                                 /**
                                  * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
                                  */
-                                public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceEuVatRatesListResponse>> postV1ReferenceEuVatRatesList(
-                                    PostV1ReferenceEuVatRatesListRequest request,
+                                public CompletableFuture<NordletApiHttpResponse<EuVatRatesListReferenceResponse>> euVatRatesList(
+                                    EuVatRatesListReferenceRequest request,
                                     RequestOptions requestOptions) {
                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1591,14 +1648,14 @@ public class AsyncRawReferenceClient {
                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                     }
-                                    CompletableFuture<NordletApiHttpResponse<PostV1ReferenceEuVatRatesListResponse>> future = new CompletableFuture<>();
+                                    CompletableFuture<NordletApiHttpResponse<EuVatRatesListReferenceResponse>> future = new CompletableFuture<>();
                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                       @Override
                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                         try (ResponseBody responseBody = response.body()) {
                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                           if (response.isSuccessful()) {
-                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceEuVatRatesListResponse.class), response));
+                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuVatRatesListReferenceResponse.class), response));
                                             return;
                                           }
                                           try {
@@ -1607,11 +1664,15 @@ public class AsyncRawReferenceClient {
                                               return;
                                               case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                               return;
+                                              case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                              return;
                                               case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                               return;
                                               case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                               return;
                                               case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                              return;
+                                              case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                               return;
                                               case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                               return;
@@ -1647,16 +1708,16 @@ public class AsyncRawReferenceClient {
                                   /**
                                    * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
                                    */
-                                  public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceEuVatRatesSetOverridesResponse>> postV1ReferenceEuVatRatesSetOverrides(
-                                      PostV1ReferenceEuVatRatesSetOverridesRequest request) {
-                                    return postV1ReferenceEuVatRatesSetOverrides(request,null);
+                                  public CompletableFuture<NordletApiHttpResponse<EuVatRatesSetOverridesReferenceResponse>> euVatRatesSetOverrides(
+                                      EuVatRatesSetOverridesReferenceRequest request) {
+                                    return euVatRatesSetOverrides(request,null);
                                   }
 
                                   /**
                                    * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
                                    */
-                                  public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceEuVatRatesSetOverridesResponse>> postV1ReferenceEuVatRatesSetOverrides(
-                                      PostV1ReferenceEuVatRatesSetOverridesRequest request,
+                                  public CompletableFuture<NordletApiHttpResponse<EuVatRatesSetOverridesReferenceResponse>> euVatRatesSetOverrides(
+                                      EuVatRatesSetOverridesReferenceRequest request,
                                       RequestOptions requestOptions) {
                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1686,14 +1747,14 @@ public class AsyncRawReferenceClient {
                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                       }
-                                      CompletableFuture<NordletApiHttpResponse<PostV1ReferenceEuVatRatesSetOverridesResponse>> future = new CompletableFuture<>();
+                                      CompletableFuture<NordletApiHttpResponse<EuVatRatesSetOverridesReferenceResponse>> future = new CompletableFuture<>();
                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                         @Override
                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                           try (ResponseBody responseBody = response.body()) {
                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                             if (response.isSuccessful()) {
-                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceEuVatRatesSetOverridesResponse.class), response));
+                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuVatRatesSetOverridesReferenceResponse.class), response));
                                               return;
                                             }
                                             try {
@@ -1702,11 +1763,15 @@ public class AsyncRawReferenceClient {
                                                 return;
                                                 case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                 return;
+                                                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                return;
                                                 case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                 return;
                                                 case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                 return;
                                                 case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                return;
+                                                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                 return;
                                                 case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                 return;
@@ -1739,23 +1804,23 @@ public class AsyncRawReferenceClient {
                                       return future;
                                     }
 
-                                    public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceVatResolveResponse>> postV1ReferenceVatResolve(
+                                    public CompletableFuture<NordletApiHttpResponse<VatResolveReferenceResponse>> vatResolve(
                                         ) {
-                                      return postV1ReferenceVatResolve(PostV1ReferenceVatResolveRequest.builder().build());
+                                      return vatResolve(VatResolveReferenceRequest.builder().build());
                                     }
 
-                                    public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceVatResolveResponse>> postV1ReferenceVatResolve(
+                                    public CompletableFuture<NordletApiHttpResponse<VatResolveReferenceResponse>> vatResolve(
                                         RequestOptions requestOptions) {
-                                      return postV1ReferenceVatResolve(PostV1ReferenceVatResolveRequest.builder().build(),requestOptions);
+                                      return vatResolve(VatResolveReferenceRequest.builder().build(),requestOptions);
                                     }
 
-                                    public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceVatResolveResponse>> postV1ReferenceVatResolve(
-                                        PostV1ReferenceVatResolveRequest request) {
-                                      return postV1ReferenceVatResolve(request,null);
+                                    public CompletableFuture<NordletApiHttpResponse<VatResolveReferenceResponse>> vatResolve(
+                                        VatResolveReferenceRequest request) {
+                                      return vatResolve(request,null);
                                     }
 
-                                    public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceVatResolveResponse>> postV1ReferenceVatResolve(
-                                        PostV1ReferenceVatResolveRequest request,
+                                    public CompletableFuture<NordletApiHttpResponse<VatResolveReferenceResponse>> vatResolve(
+                                        VatResolveReferenceRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1785,14 +1850,14 @@ public class AsyncRawReferenceClient {
                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                         }
-                                        CompletableFuture<NordletApiHttpResponse<PostV1ReferenceVatResolveResponse>> future = new CompletableFuture<>();
+                                        CompletableFuture<NordletApiHttpResponse<VatResolveReferenceResponse>> future = new CompletableFuture<>();
                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                           @Override
                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                             try (ResponseBody responseBody = response.body()) {
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceVatResolveResponse.class), response));
+                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, VatResolveReferenceResponse.class), response));
                                                 return;
                                               }
                                               try {
@@ -1801,11 +1866,15 @@ public class AsyncRawReferenceClient {
                                                   return;
                                                   case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                   return;
+                                                  case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                  return;
                                                   case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                   return;
                                                   case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                   return;
                                                   case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                  return;
+                                                  case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                   return;
                                                   case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                   return;
@@ -1838,23 +1907,23 @@ public class AsyncRawReferenceClient {
                                         return future;
                                       }
 
-                                      public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCnCodesListResponse>> postV1ReferenceCnCodesList(
+                                      public CompletableFuture<NordletApiHttpResponse<CnCodesListReferenceResponse>> cnCodesList(
                                           ) {
-                                        return postV1ReferenceCnCodesList(PostV1ReferenceCnCodesListRequest.builder().build());
+                                        return cnCodesList(CnCodesListReferenceRequest.builder().build());
                                       }
 
-                                      public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCnCodesListResponse>> postV1ReferenceCnCodesList(
+                                      public CompletableFuture<NordletApiHttpResponse<CnCodesListReferenceResponse>> cnCodesList(
                                           RequestOptions requestOptions) {
-                                        return postV1ReferenceCnCodesList(PostV1ReferenceCnCodesListRequest.builder().build(),requestOptions);
+                                        return cnCodesList(CnCodesListReferenceRequest.builder().build(),requestOptions);
                                       }
 
-                                      public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCnCodesListResponse>> postV1ReferenceCnCodesList(
-                                          PostV1ReferenceCnCodesListRequest request) {
-                                        return postV1ReferenceCnCodesList(request,null);
+                                      public CompletableFuture<NordletApiHttpResponse<CnCodesListReferenceResponse>> cnCodesList(
+                                          CnCodesListReferenceRequest request) {
+                                        return cnCodesList(request,null);
                                       }
 
-                                      public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCnCodesListResponse>> postV1ReferenceCnCodesList(
-                                          PostV1ReferenceCnCodesListRequest request,
+                                      public CompletableFuture<NordletApiHttpResponse<CnCodesListReferenceResponse>> cnCodesList(
+                                          CnCodesListReferenceRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1884,14 +1953,14 @@ public class AsyncRawReferenceClient {
                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                           }
-                                          CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCnCodesListResponse>> future = new CompletableFuture<>();
+                                          CompletableFuture<NordletApiHttpResponse<CnCodesListReferenceResponse>> future = new CompletableFuture<>();
                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                             @Override
                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                               try (ResponseBody responseBody = response.body()) {
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceCnCodesListResponse.class), response));
+                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CnCodesListReferenceResponse.class), response));
                                                   return;
                                                 }
                                                 try {
@@ -1900,11 +1969,15 @@ public class AsyncRawReferenceClient {
                                                     return;
                                                     case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                     return;
+                                                    case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                    return;
                                                     case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                     return;
                                                     case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                     return;
                                                     case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                    return;
+                                                    case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                     return;
                                                     case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                     return;
@@ -1937,13 +2010,13 @@ public class AsyncRawReferenceClient {
                                           return future;
                                         }
 
-                                        public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCnCodesUpsertResponse>> postV1ReferenceCnCodesUpsert(
-                                            PostV1ReferenceCnCodesUpsertRequest request) {
-                                          return postV1ReferenceCnCodesUpsert(request,null);
+                                        public CompletableFuture<NordletApiHttpResponse<CnCodesUpsertReferenceResponse>> cnCodesUpsert(
+                                            CnCodesUpsertReferenceRequest request) {
+                                          return cnCodesUpsert(request,null);
                                         }
 
-                                        public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCnCodesUpsertResponse>> postV1ReferenceCnCodesUpsert(
-                                            PostV1ReferenceCnCodesUpsertRequest request,
+                                        public CompletableFuture<NordletApiHttpResponse<CnCodesUpsertReferenceResponse>> cnCodesUpsert(
+                                            CnCodesUpsertReferenceRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1973,14 +2046,14 @@ public class AsyncRawReferenceClient {
                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                             }
-                                            CompletableFuture<NordletApiHttpResponse<PostV1ReferenceCnCodesUpsertResponse>> future = new CompletableFuture<>();
+                                            CompletableFuture<NordletApiHttpResponse<CnCodesUpsertReferenceResponse>> future = new CompletableFuture<>();
                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                               @Override
                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                 try (ResponseBody responseBody = response.body()) {
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceCnCodesUpsertResponse.class), response));
+                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CnCodesUpsertReferenceResponse.class), response));
                                                     return;
                                                   }
                                                   try {
@@ -1989,11 +2062,15 @@ public class AsyncRawReferenceClient {
                                                       return;
                                                       case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                       return;
+                                                      case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                      return;
                                                       case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                       return;
                                                       case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                       return;
                                                       case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                      return;
+                                                      case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                       return;
                                                       case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                       return;
@@ -2026,23 +2103,23 @@ public class AsyncRawReferenceClient {
                                             return future;
                                           }
 
-                                          public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceComplianceVersionsListResponse>> postV1ReferenceComplianceVersionsList(
+                                          public CompletableFuture<NordletApiHttpResponse<ComplianceVersionsListReferenceResponse>> complianceVersionsList(
                                               ) {
-                                            return postV1ReferenceComplianceVersionsList(PostV1ReferenceComplianceVersionsListRequest.builder().build());
+                                            return complianceVersionsList(ComplianceVersionsListReferenceRequest.builder().build());
                                           }
 
-                                          public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceComplianceVersionsListResponse>> postV1ReferenceComplianceVersionsList(
+                                          public CompletableFuture<NordletApiHttpResponse<ComplianceVersionsListReferenceResponse>> complianceVersionsList(
                                               RequestOptions requestOptions) {
-                                            return postV1ReferenceComplianceVersionsList(PostV1ReferenceComplianceVersionsListRequest.builder().build(),requestOptions);
+                                            return complianceVersionsList(ComplianceVersionsListReferenceRequest.builder().build(),requestOptions);
                                           }
 
-                                          public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceComplianceVersionsListResponse>> postV1ReferenceComplianceVersionsList(
-                                              PostV1ReferenceComplianceVersionsListRequest request) {
-                                            return postV1ReferenceComplianceVersionsList(request,null);
+                                          public CompletableFuture<NordletApiHttpResponse<ComplianceVersionsListReferenceResponse>> complianceVersionsList(
+                                              ComplianceVersionsListReferenceRequest request) {
+                                            return complianceVersionsList(request,null);
                                           }
 
-                                          public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceComplianceVersionsListResponse>> postV1ReferenceComplianceVersionsList(
-                                              PostV1ReferenceComplianceVersionsListRequest request,
+                                          public CompletableFuture<NordletApiHttpResponse<ComplianceVersionsListReferenceResponse>> complianceVersionsList(
+                                              ComplianceVersionsListReferenceRequest request,
                                               RequestOptions requestOptions) {
                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -2072,14 +2149,14 @@ public class AsyncRawReferenceClient {
                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                               }
-                                              CompletableFuture<NordletApiHttpResponse<PostV1ReferenceComplianceVersionsListResponse>> future = new CompletableFuture<>();
+                                              CompletableFuture<NordletApiHttpResponse<ComplianceVersionsListReferenceResponse>> future = new CompletableFuture<>();
                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                 @Override
                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                   try (ResponseBody responseBody = response.body()) {
                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                     if (response.isSuccessful()) {
-                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceComplianceVersionsListResponse.class), response));
+                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ComplianceVersionsListReferenceResponse.class), response));
                                                       return;
                                                     }
                                                     try {
@@ -2088,11 +2165,15 @@ public class AsyncRawReferenceClient {
                                                         return;
                                                         case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                         return;
+                                                        case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                        return;
                                                         case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                         return;
                                                         case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                         return;
                                                         case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                        return;
+                                                        case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                         return;
                                                         case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                         return;
@@ -2125,23 +2206,23 @@ public class AsyncRawReferenceClient {
                                               return future;
                                             }
 
-                                            public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceIntrastatThresholdsListResponse>> postV1ReferenceIntrastatThresholdsList(
+                                            public CompletableFuture<NordletApiHttpResponse<IntrastatThresholdsListReferenceResponse>> intrastatThresholdsList(
                                                 ) {
-                                              return postV1ReferenceIntrastatThresholdsList(PostV1ReferenceIntrastatThresholdsListRequest.builder().build());
+                                              return intrastatThresholdsList(IntrastatThresholdsListReferenceRequest.builder().build());
                                             }
 
-                                            public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceIntrastatThresholdsListResponse>> postV1ReferenceIntrastatThresholdsList(
+                                            public CompletableFuture<NordletApiHttpResponse<IntrastatThresholdsListReferenceResponse>> intrastatThresholdsList(
                                                 RequestOptions requestOptions) {
-                                              return postV1ReferenceIntrastatThresholdsList(PostV1ReferenceIntrastatThresholdsListRequest.builder().build(),requestOptions);
+                                              return intrastatThresholdsList(IntrastatThresholdsListReferenceRequest.builder().build(),requestOptions);
                                             }
 
-                                            public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceIntrastatThresholdsListResponse>> postV1ReferenceIntrastatThresholdsList(
-                                                PostV1ReferenceIntrastatThresholdsListRequest request) {
-                                              return postV1ReferenceIntrastatThresholdsList(request,null);
+                                            public CompletableFuture<NordletApiHttpResponse<IntrastatThresholdsListReferenceResponse>> intrastatThresholdsList(
+                                                IntrastatThresholdsListReferenceRequest request) {
+                                              return intrastatThresholdsList(request,null);
                                             }
 
-                                            public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceIntrastatThresholdsListResponse>> postV1ReferenceIntrastatThresholdsList(
-                                                PostV1ReferenceIntrastatThresholdsListRequest request,
+                                            public CompletableFuture<NordletApiHttpResponse<IntrastatThresholdsListReferenceResponse>> intrastatThresholdsList(
+                                                IntrastatThresholdsListReferenceRequest request,
                                                 RequestOptions requestOptions) {
                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -2171,14 +2252,14 @@ public class AsyncRawReferenceClient {
                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                 }
-                                                CompletableFuture<NordletApiHttpResponse<PostV1ReferenceIntrastatThresholdsListResponse>> future = new CompletableFuture<>();
+                                                CompletableFuture<NordletApiHttpResponse<IntrastatThresholdsListReferenceResponse>> future = new CompletableFuture<>();
                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                   @Override
                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                     try (ResponseBody responseBody = response.body()) {
                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                       if (response.isSuccessful()) {
-                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceIntrastatThresholdsListResponse.class), response));
+                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, IntrastatThresholdsListReferenceResponse.class), response));
                                                         return;
                                                       }
                                                       try {
@@ -2187,11 +2268,15 @@ public class AsyncRawReferenceClient {
                                                           return;
                                                           case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                           return;
+                                                          case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
                                                           case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                           return;
                                                           case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                           return;
                                                           case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                           return;
                                                           case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                           return;
@@ -2224,23 +2309,23 @@ public class AsyncRawReferenceClient {
                                                 return future;
                                               }
 
-                                              public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceUnitsListResponse>> postV1ReferenceUnitsList(
+                                              public CompletableFuture<NordletApiHttpResponse<UnitsListReferenceResponse>> unitsList(
                                                   ) {
-                                                return postV1ReferenceUnitsList(PostV1ReferenceUnitsListRequest.builder().build());
+                                                return unitsList(UnitsListReferenceRequest.builder().build());
                                               }
 
-                                              public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceUnitsListResponse>> postV1ReferenceUnitsList(
+                                              public CompletableFuture<NordletApiHttpResponse<UnitsListReferenceResponse>> unitsList(
                                                   RequestOptions requestOptions) {
-                                                return postV1ReferenceUnitsList(PostV1ReferenceUnitsListRequest.builder().build(),requestOptions);
+                                                return unitsList(UnitsListReferenceRequest.builder().build(),requestOptions);
                                               }
 
-                                              public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceUnitsListResponse>> postV1ReferenceUnitsList(
-                                                  PostV1ReferenceUnitsListRequest request) {
-                                                return postV1ReferenceUnitsList(request,null);
+                                              public CompletableFuture<NordletApiHttpResponse<UnitsListReferenceResponse>> unitsList(
+                                                  UnitsListReferenceRequest request) {
+                                                return unitsList(request,null);
                                               }
 
-                                              public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceUnitsListResponse>> postV1ReferenceUnitsList(
-                                                  PostV1ReferenceUnitsListRequest request,
+                                              public CompletableFuture<NordletApiHttpResponse<UnitsListReferenceResponse>> unitsList(
+                                                  UnitsListReferenceRequest request,
                                                   RequestOptions requestOptions) {
                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -2270,14 +2355,14 @@ public class AsyncRawReferenceClient {
                                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                   }
-                                                  CompletableFuture<NordletApiHttpResponse<PostV1ReferenceUnitsListResponse>> future = new CompletableFuture<>();
+                                                  CompletableFuture<NordletApiHttpResponse<UnitsListReferenceResponse>> future = new CompletableFuture<>();
                                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                                     @Override
                                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                       try (ResponseBody responseBody = response.body()) {
                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                         if (response.isSuccessful()) {
-                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceUnitsListResponse.class), response));
+                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, UnitsListReferenceResponse.class), response));
                                                           return;
                                                         }
                                                         try {
@@ -2286,11 +2371,15 @@ public class AsyncRawReferenceClient {
                                                             return;
                                                             case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                             return;
+                                                            case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                            return;
                                                             case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                             return;
                                                             case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                             return;
                                                             case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                            return;
+                                                            case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                             return;
                                                             case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                             return;
@@ -2323,13 +2412,13 @@ public class AsyncRawReferenceClient {
                                                   return future;
                                                 }
 
-                                                public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceSeriesCreateResponse>> postV1ReferenceSeriesCreate(
-                                                    PostV1ReferenceSeriesCreateRequest request) {
-                                                  return postV1ReferenceSeriesCreate(request,null);
+                                                public CompletableFuture<NordletApiHttpResponse<SeriesCreateReferenceResponse>> seriesCreate(
+                                                    SeriesCreateReferenceRequest request) {
+                                                  return seriesCreate(request,null);
                                                 }
 
-                                                public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceSeriesCreateResponse>> postV1ReferenceSeriesCreate(
-                                                    PostV1ReferenceSeriesCreateRequest request,
+                                                public CompletableFuture<NordletApiHttpResponse<SeriesCreateReferenceResponse>> seriesCreate(
+                                                    SeriesCreateReferenceRequest request,
                                                     RequestOptions requestOptions) {
                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -2359,14 +2448,14 @@ public class AsyncRawReferenceClient {
                                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                     }
-                                                    CompletableFuture<NordletApiHttpResponse<PostV1ReferenceSeriesCreateResponse>> future = new CompletableFuture<>();
+                                                    CompletableFuture<NordletApiHttpResponse<SeriesCreateReferenceResponse>> future = new CompletableFuture<>();
                                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                                       @Override
                                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                         try (ResponseBody responseBody = response.body()) {
                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                           if (response.isSuccessful()) {
-                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceSeriesCreateResponse.class), response));
+                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SeriesCreateReferenceResponse.class), response));
                                                             return;
                                                           }
                                                           try {
@@ -2375,11 +2464,15 @@ public class AsyncRawReferenceClient {
                                                               return;
                                                               case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                               return;
+                                                              case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                              return;
                                                               case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                               return;
                                                               case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                               return;
                                                               case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                              return;
+                                                              case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                               return;
                                                               case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                               return;
@@ -2412,23 +2505,23 @@ public class AsyncRawReferenceClient {
                                                     return future;
                                                   }
 
-                                                  public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceSeriesListResponse>> postV1ReferenceSeriesList(
+                                                  public CompletableFuture<NordletApiHttpResponse<SeriesListReferenceResponse>> seriesList(
                                                       ) {
-                                                    return postV1ReferenceSeriesList(PostV1ReferenceSeriesListRequest.builder().build());
+                                                    return seriesList(SeriesListReferenceRequest.builder().build());
                                                   }
 
-                                                  public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceSeriesListResponse>> postV1ReferenceSeriesList(
+                                                  public CompletableFuture<NordletApiHttpResponse<SeriesListReferenceResponse>> seriesList(
                                                       RequestOptions requestOptions) {
-                                                    return postV1ReferenceSeriesList(PostV1ReferenceSeriesListRequest.builder().build(),requestOptions);
+                                                    return seriesList(SeriesListReferenceRequest.builder().build(),requestOptions);
                                                   }
 
-                                                  public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceSeriesListResponse>> postV1ReferenceSeriesList(
-                                                      PostV1ReferenceSeriesListRequest request) {
-                                                    return postV1ReferenceSeriesList(request,null);
+                                                  public CompletableFuture<NordletApiHttpResponse<SeriesListReferenceResponse>> seriesList(
+                                                      SeriesListReferenceRequest request) {
+                                                    return seriesList(request,null);
                                                   }
 
-                                                  public CompletableFuture<NordletApiHttpResponse<PostV1ReferenceSeriesListResponse>> postV1ReferenceSeriesList(
-                                                      PostV1ReferenceSeriesListRequest request,
+                                                  public CompletableFuture<NordletApiHttpResponse<SeriesListReferenceResponse>> seriesList(
+                                                      SeriesListReferenceRequest request,
                                                       RequestOptions requestOptions) {
                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -2458,14 +2551,14 @@ public class AsyncRawReferenceClient {
                                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                       }
-                                                      CompletableFuture<NordletApiHttpResponse<PostV1ReferenceSeriesListResponse>> future = new CompletableFuture<>();
+                                                      CompletableFuture<NordletApiHttpResponse<SeriesListReferenceResponse>> future = new CompletableFuture<>();
                                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                                         @Override
                                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                           try (ResponseBody responseBody = response.body()) {
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ReferenceSeriesListResponse.class), response));
+                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SeriesListReferenceResponse.class), response));
                                                               return;
                                                             }
                                                             try {
@@ -2474,11 +2567,15 @@ public class AsyncRawReferenceClient {
                                                                 return;
                                                                 case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                                 return;
+                                                                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                return;
                                                                 case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                                 return;
                                                                 case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                                 return;
                                                                 case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                return;
+                                                                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                                 return;
                                                                 case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                                                 return;

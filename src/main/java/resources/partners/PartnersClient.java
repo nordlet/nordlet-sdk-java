@@ -6,112 +6,82 @@ package com.nordlet.api.resources.partners;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.partners.requests.PostV1LeadsConvertRequest;
-import com.nordlet.api.resources.partners.requests.PostV1LeadsCreateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1LeadsDeleteRequest;
-import com.nordlet.api.resources.partners.requests.PostV1LeadsFilesListRequest;
-import com.nordlet.api.resources.partners.requests.PostV1LeadsGetRequest;
-import com.nordlet.api.resources.partners.requests.PostV1LeadsListRequest;
-import com.nordlet.api.resources.partners.requests.PostV1LeadsNotesCreateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1LeadsNotesDeleteRequest;
-import com.nordlet.api.resources.partners.requests.PostV1LeadsNotesListRequest;
-import com.nordlet.api.resources.partners.requests.PostV1LeadsSourcesCreateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1LeadsSourcesDeleteRequest;
-import com.nordlet.api.resources.partners.requests.PostV1LeadsSourcesListRequest;
-import com.nordlet.api.resources.partners.requests.PostV1LeadsSourcesOptionsRequest;
-import com.nordlet.api.resources.partners.requests.PostV1LeadsSourcesUpdateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1LeadsUpdateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersAddressesCreateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersAddressesDeleteRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersAddressesListRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersAddressesUpdateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersAnonymizeRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersBankAccountsCreateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersBankAccountsDeleteRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersBankAccountsListRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersBankAccountsUpdateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersContactsCreateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersContactsDeleteRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersContactsListRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersContactsUpdateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersCreateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersCreditCheckRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersDebtRemindersListRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersDebtRemindersPreviewRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersDeleteRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersFilesListRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersFindOrCreateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersGetRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersGroupsCreateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersGroupsDeleteRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersGroupsListRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersGroupsUpdateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersInquiriesCreateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersInquiriesGetRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersInquiriesListRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersInquiriesUpdateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersListRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersStatusesCreateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersStatusesDeleteRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersStatusesListRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersStatusesUpdateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersUpdateRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersValidateVatRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersVatReviewsListRequest;
-import com.nordlet.api.resources.partners.requests.PostV1PartnersVatReviewsResolveRequest;
-import com.nordlet.api.resources.partners.types.PostV1LeadsConvertResponse;
-import com.nordlet.api.resources.partners.types.PostV1LeadsCreateResponse;
-import com.nordlet.api.resources.partners.types.PostV1LeadsDeleteResponse;
-import com.nordlet.api.resources.partners.types.PostV1LeadsFilesListResponse;
-import com.nordlet.api.resources.partners.types.PostV1LeadsGetResponse;
-import com.nordlet.api.resources.partners.types.PostV1LeadsListResponse;
-import com.nordlet.api.resources.partners.types.PostV1LeadsNotesCreateResponse;
-import com.nordlet.api.resources.partners.types.PostV1LeadsNotesDeleteResponse;
-import com.nordlet.api.resources.partners.types.PostV1LeadsNotesListResponse;
-import com.nordlet.api.resources.partners.types.PostV1LeadsSourcesCreateResponse;
-import com.nordlet.api.resources.partners.types.PostV1LeadsSourcesDeleteResponse;
-import com.nordlet.api.resources.partners.types.PostV1LeadsSourcesListResponse;
-import com.nordlet.api.resources.partners.types.PostV1LeadsSourcesOptionsResponse;
-import com.nordlet.api.resources.partners.types.PostV1LeadsSourcesUpdateResponse;
-import com.nordlet.api.resources.partners.types.PostV1LeadsUpdateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersAddressesCreateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersAddressesDeleteResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersAddressesListResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersAddressesUpdateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersAnonymizeResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersBankAccountsCreateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersBankAccountsDeleteResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersBankAccountsListResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersBankAccountsUpdateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersContactsCreateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersContactsDeleteResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersContactsListResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersContactsUpdateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersCreateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersCreditCheckResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersDebtRemindersListResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersDebtRemindersPreviewResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersDeleteResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersFilesListResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersFindOrCreateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersGetResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersGroupsCreateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersGroupsDeleteResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersGroupsListResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersGroupsUpdateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersInquiriesCreateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersInquiriesGetResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersInquiriesListResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersInquiriesUpdateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersListResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersStatusesCreateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersStatusesDeleteResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersStatusesListResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersStatusesUpdateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersUpdateResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersValidateVatResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersVatReviewsListResponse;
-import com.nordlet.api.resources.partners.types.PostV1PartnersVatReviewsResolveResponse;
+import com.nordlet.api.resources.partners.requests.AddressesCreatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.AddressesDeletePartnersRequest;
+import com.nordlet.api.resources.partners.requests.AddressesListPartnersRequest;
+import com.nordlet.api.resources.partners.requests.AddressesUpdatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.AnonymizePartnersRequest;
+import com.nordlet.api.resources.partners.requests.BankAccountsCreatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.BankAccountsDeletePartnersRequest;
+import com.nordlet.api.resources.partners.requests.BankAccountsListPartnersRequest;
+import com.nordlet.api.resources.partners.requests.BankAccountsUpdatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.ContactsCreatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.ContactsDeletePartnersRequest;
+import com.nordlet.api.resources.partners.requests.ContactsListPartnersRequest;
+import com.nordlet.api.resources.partners.requests.ContactsUpdatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.CreatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.CreditCheckPartnersRequest;
+import com.nordlet.api.resources.partners.requests.DebtRemindersListPartnersRequest;
+import com.nordlet.api.resources.partners.requests.DebtRemindersPreviewPartnersRequest;
+import com.nordlet.api.resources.partners.requests.DeletePartnersRequest;
+import com.nordlet.api.resources.partners.requests.FilesListPartnersRequest;
+import com.nordlet.api.resources.partners.requests.FindOrCreatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.GetPartnersRequest;
+import com.nordlet.api.resources.partners.requests.GroupsCreatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.GroupsDeletePartnersRequest;
+import com.nordlet.api.resources.partners.requests.GroupsListPartnersRequest;
+import com.nordlet.api.resources.partners.requests.GroupsUpdatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.InquiriesCreatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.InquiriesGetPartnersRequest;
+import com.nordlet.api.resources.partners.requests.InquiriesListPartnersRequest;
+import com.nordlet.api.resources.partners.requests.InquiriesUpdatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.ListPartnersRequest;
+import com.nordlet.api.resources.partners.requests.StatusesCreatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.StatusesDeletePartnersRequest;
+import com.nordlet.api.resources.partners.requests.StatusesListPartnersRequest;
+import com.nordlet.api.resources.partners.requests.StatusesUpdatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.UpdatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.ValidateVatPartnersRequest;
+import com.nordlet.api.resources.partners.requests.VatReviewsListPartnersRequest;
+import com.nordlet.api.resources.partners.requests.VatReviewsResolvePartnersRequest;
+import com.nordlet.api.resources.partners.types.AddressesCreatePartnersResponse;
+import com.nordlet.api.resources.partners.types.AddressesDeletePartnersResponse;
+import com.nordlet.api.resources.partners.types.AddressesListPartnersResponse;
+import com.nordlet.api.resources.partners.types.AddressesUpdatePartnersResponse;
+import com.nordlet.api.resources.partners.types.AnonymizePartnersResponse;
+import com.nordlet.api.resources.partners.types.BankAccountsCreatePartnersResponse;
+import com.nordlet.api.resources.partners.types.BankAccountsDeletePartnersResponse;
+import com.nordlet.api.resources.partners.types.BankAccountsListPartnersResponse;
+import com.nordlet.api.resources.partners.types.BankAccountsUpdatePartnersResponse;
+import com.nordlet.api.resources.partners.types.ContactsCreatePartnersResponse;
+import com.nordlet.api.resources.partners.types.ContactsDeletePartnersResponse;
+import com.nordlet.api.resources.partners.types.ContactsListPartnersResponse;
+import com.nordlet.api.resources.partners.types.ContactsUpdatePartnersResponse;
+import com.nordlet.api.resources.partners.types.CreatePartnersResponse;
+import com.nordlet.api.resources.partners.types.CreditCheckPartnersResponse;
+import com.nordlet.api.resources.partners.types.DebtRemindersListPartnersResponse;
+import com.nordlet.api.resources.partners.types.DebtRemindersPreviewPartnersResponse;
+import com.nordlet.api.resources.partners.types.DeletePartnersResponse;
+import com.nordlet.api.resources.partners.types.FilesListPartnersResponse;
+import com.nordlet.api.resources.partners.types.FindOrCreatePartnersResponse;
+import com.nordlet.api.resources.partners.types.GetPartnersResponse;
+import com.nordlet.api.resources.partners.types.GroupsCreatePartnersResponse;
+import com.nordlet.api.resources.partners.types.GroupsDeletePartnersResponse;
+import com.nordlet.api.resources.partners.types.GroupsListPartnersResponse;
+import com.nordlet.api.resources.partners.types.GroupsUpdatePartnersResponse;
+import com.nordlet.api.resources.partners.types.InquiriesCreatePartnersResponse;
+import com.nordlet.api.resources.partners.types.InquiriesGetPartnersResponse;
+import com.nordlet.api.resources.partners.types.InquiriesListPartnersResponse;
+import com.nordlet.api.resources.partners.types.InquiriesUpdatePartnersResponse;
+import com.nordlet.api.resources.partners.types.ListPartnersResponse;
+import com.nordlet.api.resources.partners.types.StatusesCreatePartnersResponse;
+import com.nordlet.api.resources.partners.types.StatusesDeletePartnersResponse;
+import com.nordlet.api.resources.partners.types.StatusesListPartnersResponse;
+import com.nordlet.api.resources.partners.types.StatusesUpdatePartnersResponse;
+import com.nordlet.api.resources.partners.types.UpdatePartnersResponse;
+import com.nordlet.api.resources.partners.types.ValidateVatPartnersResponse;
+import com.nordlet.api.resources.partners.types.VatReviewsListPartnersResponse;
+import com.nordlet.api.resources.partners.types.VatReviewsResolvePartnersResponse;
 
 public class PartnersClient {
   protected final ClientOptions clientOptions;
@@ -130,655 +100,444 @@ public class PartnersClient {
     return this.rawClient;
   }
 
-  public PostV1PartnersAddressesCreateResponse postV1PartnersAddressesCreate(
-      PostV1PartnersAddressesCreateRequest request) {
-    return this.rawClient.postV1PartnersAddressesCreate(request).body();
+  public AddressesCreatePartnersResponse addressesCreate(AddressesCreatePartnersRequest request) {
+    return this.rawClient.addressesCreate(request).body();
   }
 
-  public PostV1PartnersAddressesCreateResponse postV1PartnersAddressesCreate(
-      PostV1PartnersAddressesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersAddressesCreate(request, requestOptions).body();
-  }
-
-  public PostV1PartnersAddressesUpdateResponse postV1PartnersAddressesUpdate(
-      PostV1PartnersAddressesUpdateRequest request) {
-    return this.rawClient.postV1PartnersAddressesUpdate(request).body();
-  }
-
-  public PostV1PartnersAddressesUpdateResponse postV1PartnersAddressesUpdate(
-      PostV1PartnersAddressesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersAddressesUpdate(request, requestOptions).body();
-  }
-
-  public PostV1PartnersAddressesDeleteResponse postV1PartnersAddressesDelete(
-      PostV1PartnersAddressesDeleteRequest request) {
-    return this.rawClient.postV1PartnersAddressesDelete(request).body();
-  }
-
-  public PostV1PartnersAddressesDeleteResponse postV1PartnersAddressesDelete(
-      PostV1PartnersAddressesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersAddressesDelete(request, requestOptions).body();
-  }
-
-  public PostV1PartnersAddressesListResponse postV1PartnersAddressesList() {
-    return this.rawClient.postV1PartnersAddressesList().body();
-  }
-
-  public PostV1PartnersAddressesListResponse postV1PartnersAddressesList(
+  public AddressesCreatePartnersResponse addressesCreate(AddressesCreatePartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersAddressesList(requestOptions).body();
+    return this.rawClient.addressesCreate(request, requestOptions).body();
   }
 
-  public PostV1PartnersAddressesListResponse postV1PartnersAddressesList(
-      PostV1PartnersAddressesListRequest request) {
-    return this.rawClient.postV1PartnersAddressesList(request).body();
+  public AddressesUpdatePartnersResponse addressesUpdate(AddressesUpdatePartnersRequest request) {
+    return this.rawClient.addressesUpdate(request).body();
   }
 
-  public PostV1PartnersAddressesListResponse postV1PartnersAddressesList(
-      PostV1PartnersAddressesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersAddressesList(request, requestOptions).body();
-  }
-
-  public PostV1PartnersContactsCreateResponse postV1PartnersContactsCreate(
-      PostV1PartnersContactsCreateRequest request) {
-    return this.rawClient.postV1PartnersContactsCreate(request).body();
-  }
-
-  public PostV1PartnersContactsCreateResponse postV1PartnersContactsCreate(
-      PostV1PartnersContactsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersContactsCreate(request, requestOptions).body();
-  }
-
-  public PostV1PartnersContactsUpdateResponse postV1PartnersContactsUpdate(
-      PostV1PartnersContactsUpdateRequest request) {
-    return this.rawClient.postV1PartnersContactsUpdate(request).body();
-  }
-
-  public PostV1PartnersContactsUpdateResponse postV1PartnersContactsUpdate(
-      PostV1PartnersContactsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersContactsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1PartnersContactsDeleteResponse postV1PartnersContactsDelete(
-      PostV1PartnersContactsDeleteRequest request) {
-    return this.rawClient.postV1PartnersContactsDelete(request).body();
-  }
-
-  public PostV1PartnersContactsDeleteResponse postV1PartnersContactsDelete(
-      PostV1PartnersContactsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersContactsDelete(request, requestOptions).body();
-  }
-
-  public PostV1PartnersContactsListResponse postV1PartnersContactsList() {
-    return this.rawClient.postV1PartnersContactsList().body();
-  }
-
-  public PostV1PartnersContactsListResponse postV1PartnersContactsList(
+  public AddressesUpdatePartnersResponse addressesUpdate(AddressesUpdatePartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersContactsList(requestOptions).body();
+    return this.rawClient.addressesUpdate(request, requestOptions).body();
   }
 
-  public PostV1PartnersContactsListResponse postV1PartnersContactsList(
-      PostV1PartnersContactsListRequest request) {
-    return this.rawClient.postV1PartnersContactsList(request).body();
+  public AddressesDeletePartnersResponse addressesDelete(AddressesDeletePartnersRequest request) {
+    return this.rawClient.addressesDelete(request).body();
   }
 
-  public PostV1PartnersContactsListResponse postV1PartnersContactsList(
-      PostV1PartnersContactsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersContactsList(request, requestOptions).body();
-  }
-
-  public PostV1PartnersBankAccountsCreateResponse postV1PartnersBankAccountsCreate(
-      PostV1PartnersBankAccountsCreateRequest request) {
-    return this.rawClient.postV1PartnersBankAccountsCreate(request).body();
-  }
-
-  public PostV1PartnersBankAccountsCreateResponse postV1PartnersBankAccountsCreate(
-      PostV1PartnersBankAccountsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersBankAccountsCreate(request, requestOptions).body();
-  }
-
-  public PostV1PartnersBankAccountsUpdateResponse postV1PartnersBankAccountsUpdate(
-      PostV1PartnersBankAccountsUpdateRequest request) {
-    return this.rawClient.postV1PartnersBankAccountsUpdate(request).body();
-  }
-
-  public PostV1PartnersBankAccountsUpdateResponse postV1PartnersBankAccountsUpdate(
-      PostV1PartnersBankAccountsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersBankAccountsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1PartnersBankAccountsDeleteResponse postV1PartnersBankAccountsDelete(
-      PostV1PartnersBankAccountsDeleteRequest request) {
-    return this.rawClient.postV1PartnersBankAccountsDelete(request).body();
-  }
-
-  public PostV1PartnersBankAccountsDeleteResponse postV1PartnersBankAccountsDelete(
-      PostV1PartnersBankAccountsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersBankAccountsDelete(request, requestOptions).body();
-  }
-
-  public PostV1PartnersBankAccountsListResponse postV1PartnersBankAccountsList() {
-    return this.rawClient.postV1PartnersBankAccountsList().body();
-  }
-
-  public PostV1PartnersBankAccountsListResponse postV1PartnersBankAccountsList(
+  public AddressesDeletePartnersResponse addressesDelete(AddressesDeletePartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersBankAccountsList(requestOptions).body();
+    return this.rawClient.addressesDelete(request, requestOptions).body();
   }
 
-  public PostV1PartnersBankAccountsListResponse postV1PartnersBankAccountsList(
-      PostV1PartnersBankAccountsListRequest request) {
-    return this.rawClient.postV1PartnersBankAccountsList(request).body();
+  public AddressesListPartnersResponse addressesList() {
+    return this.rawClient.addressesList().body();
   }
 
-  public PostV1PartnersBankAccountsListResponse postV1PartnersBankAccountsList(
-      PostV1PartnersBankAccountsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersBankAccountsList(request, requestOptions).body();
+  public AddressesListPartnersResponse addressesList(RequestOptions requestOptions) {
+    return this.rawClient.addressesList(requestOptions).body();
   }
 
-  public PostV1PartnersFilesListResponse postV1PartnersFilesList(
-      PostV1PartnersFilesListRequest request) {
-    return this.rawClient.postV1PartnersFilesList(request).body();
+  public AddressesListPartnersResponse addressesList(AddressesListPartnersRequest request) {
+    return this.rawClient.addressesList(request).body();
   }
 
-  public PostV1PartnersFilesListResponse postV1PartnersFilesList(
-      PostV1PartnersFilesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersFilesList(request, requestOptions).body();
-  }
-
-  public PostV1PartnersDebtRemindersPreviewResponse remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany(
-      ) {
-    return this.rawClient.remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany().body();
-  }
-
-  public PostV1PartnersDebtRemindersPreviewResponse remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany(
+  public AddressesListPartnersResponse addressesList(AddressesListPartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany(requestOptions).body();
+    return this.rawClient.addressesList(request, requestOptions).body();
   }
 
-  public PostV1PartnersDebtRemindersPreviewResponse remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany(
-      PostV1PartnersDebtRemindersPreviewRequest request) {
-    return this.rawClient.remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany(request).body();
+  public ContactsCreatePartnersResponse contactsCreate(ContactsCreatePartnersRequest request) {
+    return this.rawClient.contactsCreate(request).body();
   }
 
-  public PostV1PartnersDebtRemindersPreviewResponse remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany(
-      PostV1PartnersDebtRemindersPreviewRequest request, RequestOptions requestOptions) {
-    return this.rawClient.remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany(request, requestOptions).body();
-  }
-
-  public PostV1PartnersDebtRemindersListResponse postV1PartnersDebtRemindersList() {
-    return this.rawClient.postV1PartnersDebtRemindersList().body();
-  }
-
-  public PostV1PartnersDebtRemindersListResponse postV1PartnersDebtRemindersList(
+  public ContactsCreatePartnersResponse contactsCreate(ContactsCreatePartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersDebtRemindersList(requestOptions).body();
+    return this.rawClient.contactsCreate(request, requestOptions).body();
   }
 
-  public PostV1PartnersDebtRemindersListResponse postV1PartnersDebtRemindersList(
-      PostV1PartnersDebtRemindersListRequest request) {
-    return this.rawClient.postV1PartnersDebtRemindersList(request).body();
+  public ContactsUpdatePartnersResponse contactsUpdate(ContactsUpdatePartnersRequest request) {
+    return this.rawClient.contactsUpdate(request).body();
   }
 
-  public PostV1PartnersDebtRemindersListResponse postV1PartnersDebtRemindersList(
-      PostV1PartnersDebtRemindersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersDebtRemindersList(request, requestOptions).body();
-  }
-
-  public PostV1PartnersValidateVatResponse postV1PartnersValidateVat() {
-    return this.rawClient.postV1PartnersValidateVat().body();
-  }
-
-  public PostV1PartnersValidateVatResponse postV1PartnersValidateVat(
+  public ContactsUpdatePartnersResponse contactsUpdate(ContactsUpdatePartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersValidateVat(requestOptions).body();
+    return this.rawClient.contactsUpdate(request, requestOptions).body();
   }
 
-  public PostV1PartnersValidateVatResponse postV1PartnersValidateVat(
-      PostV1PartnersValidateVatRequest request) {
-    return this.rawClient.postV1PartnersValidateVat(request).body();
+  public ContactsDeletePartnersResponse contactsDelete(ContactsDeletePartnersRequest request) {
+    return this.rawClient.contactsDelete(request).body();
   }
 
-  public PostV1PartnersValidateVatResponse postV1PartnersValidateVat(
-      PostV1PartnersValidateVatRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersValidateVat(request, requestOptions).body();
-  }
-
-  public PostV1PartnersVatReviewsListResponse postV1PartnersVatReviewsList() {
-    return this.rawClient.postV1PartnersVatReviewsList().body();
-  }
-
-  public PostV1PartnersVatReviewsListResponse postV1PartnersVatReviewsList(
+  public ContactsDeletePartnersResponse contactsDelete(ContactsDeletePartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersVatReviewsList(requestOptions).body();
+    return this.rawClient.contactsDelete(request, requestOptions).body();
   }
 
-  public PostV1PartnersVatReviewsListResponse postV1PartnersVatReviewsList(
-      PostV1PartnersVatReviewsListRequest request) {
-    return this.rawClient.postV1PartnersVatReviewsList(request).body();
+  public ContactsListPartnersResponse contactsList() {
+    return this.rawClient.contactsList().body();
   }
 
-  public PostV1PartnersVatReviewsListResponse postV1PartnersVatReviewsList(
-      PostV1PartnersVatReviewsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersVatReviewsList(request, requestOptions).body();
+  public ContactsListPartnersResponse contactsList(RequestOptions requestOptions) {
+    return this.rawClient.contactsList(requestOptions).body();
   }
 
-  public PostV1PartnersVatReviewsResolveResponse postV1PartnersVatReviewsResolve(
-      PostV1PartnersVatReviewsResolveRequest request) {
-    return this.rawClient.postV1PartnersVatReviewsResolve(request).body();
+  public ContactsListPartnersResponse contactsList(ContactsListPartnersRequest request) {
+    return this.rawClient.contactsList(request).body();
   }
 
-  public PostV1PartnersVatReviewsResolveResponse postV1PartnersVatReviewsResolve(
-      PostV1PartnersVatReviewsResolveRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersVatReviewsResolve(request, requestOptions).body();
-  }
-
-  public PostV1PartnersCreateResponse postV1PartnersCreate(PostV1PartnersCreateRequest request) {
-    return this.rawClient.postV1PartnersCreate(request).body();
-  }
-
-  public PostV1PartnersCreateResponse postV1PartnersCreate(PostV1PartnersCreateRequest request,
+  public ContactsListPartnersResponse contactsList(ContactsListPartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersCreate(request, requestOptions).body();
+    return this.rawClient.contactsList(request, requestOptions).body();
   }
 
-  public PostV1PartnersFindOrCreateResponse postV1PartnersFindOrCreate(
-      PostV1PartnersFindOrCreateRequest request) {
-    return this.rawClient.postV1PartnersFindOrCreate(request).body();
+  public BankAccountsCreatePartnersResponse bankAccountsCreate(
+      BankAccountsCreatePartnersRequest request) {
+    return this.rawClient.bankAccountsCreate(request).body();
   }
 
-  public PostV1PartnersFindOrCreateResponse postV1PartnersFindOrCreate(
-      PostV1PartnersFindOrCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersFindOrCreate(request, requestOptions).body();
+  public BankAccountsCreatePartnersResponse bankAccountsCreate(
+      BankAccountsCreatePartnersRequest request, RequestOptions requestOptions) {
+    return this.rawClient.bankAccountsCreate(request, requestOptions).body();
   }
 
-  public PostV1PartnersGetResponse postV1PartnersGet(PostV1PartnersGetRequest request) {
-    return this.rawClient.postV1PartnersGet(request).body();
+  public BankAccountsUpdatePartnersResponse bankAccountsUpdate(
+      BankAccountsUpdatePartnersRequest request) {
+    return this.rawClient.bankAccountsUpdate(request).body();
   }
 
-  public PostV1PartnersGetResponse postV1PartnersGet(PostV1PartnersGetRequest request,
+  public BankAccountsUpdatePartnersResponse bankAccountsUpdate(
+      BankAccountsUpdatePartnersRequest request, RequestOptions requestOptions) {
+    return this.rawClient.bankAccountsUpdate(request, requestOptions).body();
+  }
+
+  public BankAccountsDeletePartnersResponse bankAccountsDelete(
+      BankAccountsDeletePartnersRequest request) {
+    return this.rawClient.bankAccountsDelete(request).body();
+  }
+
+  public BankAccountsDeletePartnersResponse bankAccountsDelete(
+      BankAccountsDeletePartnersRequest request, RequestOptions requestOptions) {
+    return this.rawClient.bankAccountsDelete(request, requestOptions).body();
+  }
+
+  public BankAccountsListPartnersResponse bankAccountsList() {
+    return this.rawClient.bankAccountsList().body();
+  }
+
+  public BankAccountsListPartnersResponse bankAccountsList(RequestOptions requestOptions) {
+    return this.rawClient.bankAccountsList(requestOptions).body();
+  }
+
+  public BankAccountsListPartnersResponse bankAccountsList(
+      BankAccountsListPartnersRequest request) {
+    return this.rawClient.bankAccountsList(request).body();
+  }
+
+  public BankAccountsListPartnersResponse bankAccountsList(BankAccountsListPartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersGet(request, requestOptions).body();
+    return this.rawClient.bankAccountsList(request, requestOptions).body();
   }
 
-  public PostV1PartnersUpdateResponse postV1PartnersUpdate(PostV1PartnersUpdateRequest request) {
-    return this.rawClient.postV1PartnersUpdate(request).body();
+  public FilesListPartnersResponse filesList(FilesListPartnersRequest request) {
+    return this.rawClient.filesList(request).body();
   }
 
-  public PostV1PartnersUpdateResponse postV1PartnersUpdate(PostV1PartnersUpdateRequest request,
+  public FilesListPartnersResponse filesList(FilesListPartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersUpdate(request, requestOptions).body();
+    return this.rawClient.filesList(request, requestOptions).body();
   }
 
-  public PostV1PartnersDeleteResponse postV1PartnersDelete(PostV1PartnersDeleteRequest request) {
-    return this.rawClient.postV1PartnersDelete(request).body();
+  public DebtRemindersPreviewPartnersResponse debtRemindersPreview() {
+    return this.rawClient.debtRemindersPreview().body();
   }
 
-  public PostV1PartnersDeleteResponse postV1PartnersDelete(PostV1PartnersDeleteRequest request,
+  public DebtRemindersPreviewPartnersResponse debtRemindersPreview(RequestOptions requestOptions) {
+    return this.rawClient.debtRemindersPreview(requestOptions).body();
+  }
+
+  public DebtRemindersPreviewPartnersResponse debtRemindersPreview(
+      DebtRemindersPreviewPartnersRequest request) {
+    return this.rawClient.debtRemindersPreview(request).body();
+  }
+
+  public DebtRemindersPreviewPartnersResponse debtRemindersPreview(
+      DebtRemindersPreviewPartnersRequest request, RequestOptions requestOptions) {
+    return this.rawClient.debtRemindersPreview(request, requestOptions).body();
+  }
+
+  public DebtRemindersListPartnersResponse debtRemindersList() {
+    return this.rawClient.debtRemindersList().body();
+  }
+
+  public DebtRemindersListPartnersResponse debtRemindersList(RequestOptions requestOptions) {
+    return this.rawClient.debtRemindersList(requestOptions).body();
+  }
+
+  public DebtRemindersListPartnersResponse debtRemindersList(
+      DebtRemindersListPartnersRequest request) {
+    return this.rawClient.debtRemindersList(request).body();
+  }
+
+  public DebtRemindersListPartnersResponse debtRemindersList(
+      DebtRemindersListPartnersRequest request, RequestOptions requestOptions) {
+    return this.rawClient.debtRemindersList(request, requestOptions).body();
+  }
+
+  public ValidateVatPartnersResponse validateVat() {
+    return this.rawClient.validateVat().body();
+  }
+
+  public ValidateVatPartnersResponse validateVat(RequestOptions requestOptions) {
+    return this.rawClient.validateVat(requestOptions).body();
+  }
+
+  public ValidateVatPartnersResponse validateVat(ValidateVatPartnersRequest request) {
+    return this.rawClient.validateVat(request).body();
+  }
+
+  public ValidateVatPartnersResponse validateVat(ValidateVatPartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersDelete(request, requestOptions).body();
+    return this.rawClient.validateVat(request, requestOptions).body();
+  }
+
+  public VatReviewsListPartnersResponse vatReviewsList() {
+    return this.rawClient.vatReviewsList().body();
+  }
+
+  public VatReviewsListPartnersResponse vatReviewsList(RequestOptions requestOptions) {
+    return this.rawClient.vatReviewsList(requestOptions).body();
+  }
+
+  public VatReviewsListPartnersResponse vatReviewsList(VatReviewsListPartnersRequest request) {
+    return this.rawClient.vatReviewsList(request).body();
+  }
+
+  public VatReviewsListPartnersResponse vatReviewsList(VatReviewsListPartnersRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.vatReviewsList(request, requestOptions).body();
+  }
+
+  public VatReviewsResolvePartnersResponse vatReviewsResolve(
+      VatReviewsResolvePartnersRequest request) {
+    return this.rawClient.vatReviewsResolve(request).body();
+  }
+
+  public VatReviewsResolvePartnersResponse vatReviewsResolve(
+      VatReviewsResolvePartnersRequest request, RequestOptions requestOptions) {
+    return this.rawClient.vatReviewsResolve(request, requestOptions).body();
+  }
+
+  public CreatePartnersResponse create(CreatePartnersRequest request) {
+    return this.rawClient.create(request).body();
+  }
+
+  public CreatePartnersResponse create(CreatePartnersRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.create(request, requestOptions).body();
+  }
+
+  public FindOrCreatePartnersResponse findOrCreate(FindOrCreatePartnersRequest request) {
+    return this.rawClient.findOrCreate(request).body();
+  }
+
+  public FindOrCreatePartnersResponse findOrCreate(FindOrCreatePartnersRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.findOrCreate(request, requestOptions).body();
+  }
+
+  public GetPartnersResponse get(GetPartnersRequest request) {
+    return this.rawClient.get(request).body();
+  }
+
+  public GetPartnersResponse get(GetPartnersRequest request, RequestOptions requestOptions) {
+    return this.rawClient.get(request, requestOptions).body();
+  }
+
+  public UpdatePartnersResponse update(UpdatePartnersRequest request) {
+    return this.rawClient.update(request).body();
+  }
+
+  public UpdatePartnersResponse update(UpdatePartnersRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.update(request, requestOptions).body();
+  }
+
+  public DeletePartnersResponse delete(DeletePartnersRequest request) {
+    return this.rawClient.delete(request).body();
+  }
+
+  public DeletePartnersResponse delete(DeletePartnersRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.delete(request, requestOptions).body();
   }
 
   /**
    * Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
    */
-  public PostV1PartnersAnonymizeResponse blankAPartnersPersonalDataAndHideTheRecord(
-      PostV1PartnersAnonymizeRequest request) {
-    return this.rawClient.blankAPartnersPersonalDataAndHideTheRecord(request).body();
+  public AnonymizePartnersResponse anonymize(AnonymizePartnersRequest request) {
+    return this.rawClient.anonymize(request).body();
   }
 
   /**
    * Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
    */
-  public PostV1PartnersAnonymizeResponse blankAPartnersPersonalDataAndHideTheRecord(
-      PostV1PartnersAnonymizeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.blankAPartnersPersonalDataAndHideTheRecord(request, requestOptions).body();
-  }
-
-  public PostV1PartnersListResponse postV1PartnersList() {
-    return this.rawClient.postV1PartnersList().body();
-  }
-
-  public PostV1PartnersListResponse postV1PartnersList(RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersList(requestOptions).body();
-  }
-
-  public PostV1PartnersListResponse postV1PartnersList(PostV1PartnersListRequest request) {
-    return this.rawClient.postV1PartnersList(request).body();
-  }
-
-  public PostV1PartnersListResponse postV1PartnersList(PostV1PartnersListRequest request,
+  public AnonymizePartnersResponse anonymize(AnonymizePartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersList(request, requestOptions).body();
+    return this.rawClient.anonymize(request, requestOptions).body();
   }
 
-  public PostV1PartnersGroupsCreateResponse postV1PartnersGroupsCreate(
-      PostV1PartnersGroupsCreateRequest request) {
-    return this.rawClient.postV1PartnersGroupsCreate(request).body();
+  public ListPartnersResponse list() {
+    return this.rawClient.list().body();
   }
 
-  public PostV1PartnersGroupsCreateResponse postV1PartnersGroupsCreate(
-      PostV1PartnersGroupsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersGroupsCreate(request, requestOptions).body();
+  public ListPartnersResponse list(RequestOptions requestOptions) {
+    return this.rawClient.list(requestOptions).body();
   }
 
-  public PostV1PartnersGroupsUpdateResponse postV1PartnersGroupsUpdate(
-      PostV1PartnersGroupsUpdateRequest request) {
-    return this.rawClient.postV1PartnersGroupsUpdate(request).body();
+  public ListPartnersResponse list(ListPartnersRequest request) {
+    return this.rawClient.list(request).body();
   }
 
-  public PostV1PartnersGroupsUpdateResponse postV1PartnersGroupsUpdate(
-      PostV1PartnersGroupsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersGroupsUpdate(request, requestOptions).body();
+  public ListPartnersResponse list(ListPartnersRequest request, RequestOptions requestOptions) {
+    return this.rawClient.list(request, requestOptions).body();
   }
 
-  public PostV1PartnersGroupsDeleteResponse postV1PartnersGroupsDelete(
-      PostV1PartnersGroupsDeleteRequest request) {
-    return this.rawClient.postV1PartnersGroupsDelete(request).body();
+  public GroupsCreatePartnersResponse groupsCreate(GroupsCreatePartnersRequest request) {
+    return this.rawClient.groupsCreate(request).body();
   }
 
-  public PostV1PartnersGroupsDeleteResponse postV1PartnersGroupsDelete(
-      PostV1PartnersGroupsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersGroupsDelete(request, requestOptions).body();
-  }
-
-  public PostV1PartnersGroupsListResponse postV1PartnersGroupsList() {
-    return this.rawClient.postV1PartnersGroupsList().body();
-  }
-
-  public PostV1PartnersGroupsListResponse postV1PartnersGroupsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersGroupsList(requestOptions).body();
-  }
-
-  public PostV1PartnersGroupsListResponse postV1PartnersGroupsList(
-      PostV1PartnersGroupsListRequest request) {
-    return this.rawClient.postV1PartnersGroupsList(request).body();
-  }
-
-  public PostV1PartnersGroupsListResponse postV1PartnersGroupsList(
-      PostV1PartnersGroupsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersGroupsList(request, requestOptions).body();
-  }
-
-  public PostV1PartnersStatusesCreateResponse postV1PartnersStatusesCreate(
-      PostV1PartnersStatusesCreateRequest request) {
-    return this.rawClient.postV1PartnersStatusesCreate(request).body();
-  }
-
-  public PostV1PartnersStatusesCreateResponse postV1PartnersStatusesCreate(
-      PostV1PartnersStatusesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersStatusesCreate(request, requestOptions).body();
-  }
-
-  public PostV1PartnersStatusesUpdateResponse postV1PartnersStatusesUpdate(
-      PostV1PartnersStatusesUpdateRequest request) {
-    return this.rawClient.postV1PartnersStatusesUpdate(request).body();
-  }
-
-  public PostV1PartnersStatusesUpdateResponse postV1PartnersStatusesUpdate(
-      PostV1PartnersStatusesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersStatusesUpdate(request, requestOptions).body();
-  }
-
-  public PostV1PartnersStatusesDeleteResponse postV1PartnersStatusesDelete(
-      PostV1PartnersStatusesDeleteRequest request) {
-    return this.rawClient.postV1PartnersStatusesDelete(request).body();
-  }
-
-  public PostV1PartnersStatusesDeleteResponse postV1PartnersStatusesDelete(
-      PostV1PartnersStatusesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersStatusesDelete(request, requestOptions).body();
-  }
-
-  public PostV1PartnersStatusesListResponse postV1PartnersStatusesList() {
-    return this.rawClient.postV1PartnersStatusesList().body();
-  }
-
-  public PostV1PartnersStatusesListResponse postV1PartnersStatusesList(
+  public GroupsCreatePartnersResponse groupsCreate(GroupsCreatePartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersStatusesList(requestOptions).body();
+    return this.rawClient.groupsCreate(request, requestOptions).body();
   }
 
-  public PostV1PartnersStatusesListResponse postV1PartnersStatusesList(
-      PostV1PartnersStatusesListRequest request) {
-    return this.rawClient.postV1PartnersStatusesList(request).body();
+  public GroupsUpdatePartnersResponse groupsUpdate(GroupsUpdatePartnersRequest request) {
+    return this.rawClient.groupsUpdate(request).body();
   }
 
-  public PostV1PartnersStatusesListResponse postV1PartnersStatusesList(
-      PostV1PartnersStatusesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersStatusesList(request, requestOptions).body();
-  }
-
-  public PostV1PartnersInquiriesCreateResponse postV1PartnersInquiriesCreate(
-      PostV1PartnersInquiriesCreateRequest request) {
-    return this.rawClient.postV1PartnersInquiriesCreate(request).body();
-  }
-
-  public PostV1PartnersInquiriesCreateResponse postV1PartnersInquiriesCreate(
-      PostV1PartnersInquiriesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersInquiriesCreate(request, requestOptions).body();
-  }
-
-  public PostV1PartnersInquiriesUpdateResponse postV1PartnersInquiriesUpdate(
-      PostV1PartnersInquiriesUpdateRequest request) {
-    return this.rawClient.postV1PartnersInquiriesUpdate(request).body();
-  }
-
-  public PostV1PartnersInquiriesUpdateResponse postV1PartnersInquiriesUpdate(
-      PostV1PartnersInquiriesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersInquiriesUpdate(request, requestOptions).body();
-  }
-
-  public PostV1PartnersInquiriesGetResponse postV1PartnersInquiriesGet(
-      PostV1PartnersInquiriesGetRequest request) {
-    return this.rawClient.postV1PartnersInquiriesGet(request).body();
-  }
-
-  public PostV1PartnersInquiriesGetResponse postV1PartnersInquiriesGet(
-      PostV1PartnersInquiriesGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersInquiriesGet(request, requestOptions).body();
-  }
-
-  public PostV1PartnersInquiriesListResponse postV1PartnersInquiriesList() {
-    return this.rawClient.postV1PartnersInquiriesList().body();
-  }
-
-  public PostV1PartnersInquiriesListResponse postV1PartnersInquiriesList(
+  public GroupsUpdatePartnersResponse groupsUpdate(GroupsUpdatePartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersInquiriesList(requestOptions).body();
+    return this.rawClient.groupsUpdate(request, requestOptions).body();
   }
 
-  public PostV1PartnersInquiriesListResponse postV1PartnersInquiriesList(
-      PostV1PartnersInquiriesListRequest request) {
-    return this.rawClient.postV1PartnersInquiriesList(request).body();
+  public GroupsDeletePartnersResponse groupsDelete(GroupsDeletePartnersRequest request) {
+    return this.rawClient.groupsDelete(request).body();
   }
 
-  public PostV1PartnersInquiriesListResponse postV1PartnersInquiriesList(
-      PostV1PartnersInquiriesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersInquiriesList(request, requestOptions).body();
-  }
-
-  public PostV1PartnersCreditCheckResponse postV1PartnersCreditCheck(
-      PostV1PartnersCreditCheckRequest request) {
-    return this.rawClient.postV1PartnersCreditCheck(request).body();
-  }
-
-  public PostV1PartnersCreditCheckResponse postV1PartnersCreditCheck(
-      PostV1PartnersCreditCheckRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PartnersCreditCheck(request, requestOptions).body();
-  }
-
-  public PostV1LeadsCreateResponse postV1LeadsCreate(PostV1LeadsCreateRequest request) {
-    return this.rawClient.postV1LeadsCreate(request).body();
-  }
-
-  public PostV1LeadsCreateResponse postV1LeadsCreate(PostV1LeadsCreateRequest request,
+  public GroupsDeletePartnersResponse groupsDelete(GroupsDeletePartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsCreate(request, requestOptions).body();
+    return this.rawClient.groupsDelete(request, requestOptions).body();
   }
 
-  public PostV1LeadsGetResponse postV1LeadsGet(PostV1LeadsGetRequest request) {
-    return this.rawClient.postV1LeadsGet(request).body();
+  public GroupsListPartnersResponse groupsList() {
+    return this.rawClient.groupsList().body();
   }
 
-  public PostV1LeadsGetResponse postV1LeadsGet(PostV1LeadsGetRequest request,
+  public GroupsListPartnersResponse groupsList(RequestOptions requestOptions) {
+    return this.rawClient.groupsList(requestOptions).body();
+  }
+
+  public GroupsListPartnersResponse groupsList(GroupsListPartnersRequest request) {
+    return this.rawClient.groupsList(request).body();
+  }
+
+  public GroupsListPartnersResponse groupsList(GroupsListPartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsGet(request, requestOptions).body();
+    return this.rawClient.groupsList(request, requestOptions).body();
   }
 
-  public PostV1LeadsUpdateResponse postV1LeadsUpdate(PostV1LeadsUpdateRequest request) {
-    return this.rawClient.postV1LeadsUpdate(request).body();
+  public StatusesCreatePartnersResponse statusesCreate(StatusesCreatePartnersRequest request) {
+    return this.rawClient.statusesCreate(request).body();
   }
 
-  public PostV1LeadsUpdateResponse postV1LeadsUpdate(PostV1LeadsUpdateRequest request,
+  public StatusesCreatePartnersResponse statusesCreate(StatusesCreatePartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsUpdate(request, requestOptions).body();
+    return this.rawClient.statusesCreate(request, requestOptions).body();
   }
 
-  public PostV1LeadsDeleteResponse postV1LeadsDelete(PostV1LeadsDeleteRequest request) {
-    return this.rawClient.postV1LeadsDelete(request).body();
+  public StatusesUpdatePartnersResponse statusesUpdate(StatusesUpdatePartnersRequest request) {
+    return this.rawClient.statusesUpdate(request).body();
   }
 
-  public PostV1LeadsDeleteResponse postV1LeadsDelete(PostV1LeadsDeleteRequest request,
+  public StatusesUpdatePartnersResponse statusesUpdate(StatusesUpdatePartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsDelete(request, requestOptions).body();
+    return this.rawClient.statusesUpdate(request, requestOptions).body();
   }
 
-  public PostV1LeadsListResponse postV1LeadsList() {
-    return this.rawClient.postV1LeadsList().body();
+  public StatusesDeletePartnersResponse statusesDelete(StatusesDeletePartnersRequest request) {
+    return this.rawClient.statusesDelete(request).body();
   }
 
-  public PostV1LeadsListResponse postV1LeadsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsList(requestOptions).body();
-  }
-
-  public PostV1LeadsListResponse postV1LeadsList(PostV1LeadsListRequest request) {
-    return this.rawClient.postV1LeadsList(request).body();
-  }
-
-  public PostV1LeadsListResponse postV1LeadsList(PostV1LeadsListRequest request,
+  public StatusesDeletePartnersResponse statusesDelete(StatusesDeletePartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsList(request, requestOptions).body();
+    return this.rawClient.statusesDelete(request, requestOptions).body();
   }
 
-  public PostV1LeadsNotesCreateResponse postV1LeadsNotesCreate(
-      PostV1LeadsNotesCreateRequest request) {
-    return this.rawClient.postV1LeadsNotesCreate(request).body();
+  public StatusesListPartnersResponse statusesList() {
+    return this.rawClient.statusesList().body();
   }
 
-  public PostV1LeadsNotesCreateResponse postV1LeadsNotesCreate(
-      PostV1LeadsNotesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsNotesCreate(request, requestOptions).body();
+  public StatusesListPartnersResponse statusesList(RequestOptions requestOptions) {
+    return this.rawClient.statusesList(requestOptions).body();
   }
 
-  public PostV1LeadsNotesDeleteResponse postV1LeadsNotesDelete(
-      PostV1LeadsNotesDeleteRequest request) {
-    return this.rawClient.postV1LeadsNotesDelete(request).body();
+  public StatusesListPartnersResponse statusesList(StatusesListPartnersRequest request) {
+    return this.rawClient.statusesList(request).body();
   }
 
-  public PostV1LeadsNotesDeleteResponse postV1LeadsNotesDelete(
-      PostV1LeadsNotesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsNotesDelete(request, requestOptions).body();
-  }
-
-  public PostV1LeadsNotesListResponse postV1LeadsNotesList(PostV1LeadsNotesListRequest request) {
-    return this.rawClient.postV1LeadsNotesList(request).body();
-  }
-
-  public PostV1LeadsNotesListResponse postV1LeadsNotesList(PostV1LeadsNotesListRequest request,
+  public StatusesListPartnersResponse statusesList(StatusesListPartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsNotesList(request, requestOptions).body();
+    return this.rawClient.statusesList(request, requestOptions).body();
   }
 
-  public PostV1LeadsFilesListResponse postV1LeadsFilesList(PostV1LeadsFilesListRequest request) {
-    return this.rawClient.postV1LeadsFilesList(request).body();
+  public InquiriesCreatePartnersResponse inquiriesCreate(InquiriesCreatePartnersRequest request) {
+    return this.rawClient.inquiriesCreate(request).body();
   }
 
-  public PostV1LeadsFilesListResponse postV1LeadsFilesList(PostV1LeadsFilesListRequest request,
+  public InquiriesCreatePartnersResponse inquiriesCreate(InquiriesCreatePartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsFilesList(request, requestOptions).body();
+    return this.rawClient.inquiriesCreate(request, requestOptions).body();
   }
 
-  public PostV1LeadsSourcesCreateResponse postV1LeadsSourcesCreate(
-      PostV1LeadsSourcesCreateRequest request) {
-    return this.rawClient.postV1LeadsSourcesCreate(request).body();
+  public InquiriesUpdatePartnersResponse inquiriesUpdate(InquiriesUpdatePartnersRequest request) {
+    return this.rawClient.inquiriesUpdate(request).body();
   }
 
-  public PostV1LeadsSourcesCreateResponse postV1LeadsSourcesCreate(
-      PostV1LeadsSourcesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsSourcesCreate(request, requestOptions).body();
-  }
-
-  public PostV1LeadsSourcesUpdateResponse postV1LeadsSourcesUpdate(
-      PostV1LeadsSourcesUpdateRequest request) {
-    return this.rawClient.postV1LeadsSourcesUpdate(request).body();
-  }
-
-  public PostV1LeadsSourcesUpdateResponse postV1LeadsSourcesUpdate(
-      PostV1LeadsSourcesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsSourcesUpdate(request, requestOptions).body();
-  }
-
-  public PostV1LeadsSourcesDeleteResponse postV1LeadsSourcesDelete(
-      PostV1LeadsSourcesDeleteRequest request) {
-    return this.rawClient.postV1LeadsSourcesDelete(request).body();
-  }
-
-  public PostV1LeadsSourcesDeleteResponse postV1LeadsSourcesDelete(
-      PostV1LeadsSourcesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsSourcesDelete(request, requestOptions).body();
-  }
-
-  public PostV1LeadsSourcesListResponse postV1LeadsSourcesList() {
-    return this.rawClient.postV1LeadsSourcesList().body();
-  }
-
-  public PostV1LeadsSourcesListResponse postV1LeadsSourcesList(RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsSourcesList(requestOptions).body();
-  }
-
-  public PostV1LeadsSourcesListResponse postV1LeadsSourcesList(
-      PostV1LeadsSourcesListRequest request) {
-    return this.rawClient.postV1LeadsSourcesList(request).body();
-  }
-
-  public PostV1LeadsSourcesListResponse postV1LeadsSourcesList(
-      PostV1LeadsSourcesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsSourcesList(request, requestOptions).body();
-  }
-
-  public PostV1LeadsSourcesOptionsResponse postV1LeadsSourcesOptions() {
-    return this.rawClient.postV1LeadsSourcesOptions().body();
-  }
-
-  public PostV1LeadsSourcesOptionsResponse postV1LeadsSourcesOptions(
+  public InquiriesUpdatePartnersResponse inquiriesUpdate(InquiriesUpdatePartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsSourcesOptions(requestOptions).body();
+    return this.rawClient.inquiriesUpdate(request, requestOptions).body();
   }
 
-  public PostV1LeadsSourcesOptionsResponse postV1LeadsSourcesOptions(
-      PostV1LeadsSourcesOptionsRequest request) {
-    return this.rawClient.postV1LeadsSourcesOptions(request).body();
+  public InquiriesGetPartnersResponse inquiriesGet(InquiriesGetPartnersRequest request) {
+    return this.rawClient.inquiriesGet(request).body();
   }
 
-  public PostV1LeadsSourcesOptionsResponse postV1LeadsSourcesOptions(
-      PostV1LeadsSourcesOptionsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsSourcesOptions(request, requestOptions).body();
-  }
-
-  /**
-   * Create a customer partner from the lead, move the lead files to the partner, copy the lead notes into the partner notes and mark the lead as converted.
-   */
-  public PostV1LeadsConvertResponse postV1LeadsConvert(PostV1LeadsConvertRequest request) {
-    return this.rawClient.postV1LeadsConvert(request).body();
-  }
-
-  /**
-   * Create a customer partner from the lead, move the lead files to the partner, copy the lead notes into the partner notes and mark the lead as converted.
-   */
-  public PostV1LeadsConvertResponse postV1LeadsConvert(PostV1LeadsConvertRequest request,
+  public InquiriesGetPartnersResponse inquiriesGet(InquiriesGetPartnersRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LeadsConvert(request, requestOptions).body();
+    return this.rawClient.inquiriesGet(request, requestOptions).body();
+  }
+
+  public InquiriesListPartnersResponse inquiriesList() {
+    return this.rawClient.inquiriesList().body();
+  }
+
+  public InquiriesListPartnersResponse inquiriesList(RequestOptions requestOptions) {
+    return this.rawClient.inquiriesList(requestOptions).body();
+  }
+
+  public InquiriesListPartnersResponse inquiriesList(InquiriesListPartnersRequest request) {
+    return this.rawClient.inquiriesList(request).body();
+  }
+
+  public InquiriesListPartnersResponse inquiriesList(InquiriesListPartnersRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.inquiriesList(request, requestOptions).body();
+  }
+
+  public CreditCheckPartnersResponse creditCheck(CreditCheckPartnersRequest request) {
+    return this.rawClient.creditCheck(request).body();
+  }
+
+  public CreditCheckPartnersResponse creditCheck(CreditCheckPartnersRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.creditCheck(request, requestOptions).body();
   }
 }

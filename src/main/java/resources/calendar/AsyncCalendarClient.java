@@ -6,20 +6,20 @@ package com.nordlet.api.resources.calendar;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.calendar.requests.PostV1CalendarCreateRequest;
-import com.nordlet.api.resources.calendar.requests.PostV1CalendarDeleteRequest;
-import com.nordlet.api.resources.calendar.requests.PostV1CalendarDownloadRequest;
-import com.nordlet.api.resources.calendar.requests.PostV1CalendarGetRequest;
-import com.nordlet.api.resources.calendar.requests.PostV1CalendarListRequest;
-import com.nordlet.api.resources.calendar.requests.PostV1CalendarSubmitRequest;
-import com.nordlet.api.resources.calendar.requests.PostV1CalendarUpdateRequest;
-import com.nordlet.api.resources.calendar.types.PostV1CalendarCreateResponse;
-import com.nordlet.api.resources.calendar.types.PostV1CalendarDeleteResponse;
-import com.nordlet.api.resources.calendar.types.PostV1CalendarDownloadResponse;
-import com.nordlet.api.resources.calendar.types.PostV1CalendarGetResponse;
-import com.nordlet.api.resources.calendar.types.PostV1CalendarListResponse;
-import com.nordlet.api.resources.calendar.types.PostV1CalendarSubmitResponse;
-import com.nordlet.api.resources.calendar.types.PostV1CalendarUpdateResponse;
+import com.nordlet.api.resources.calendar.requests.CreateCalendarRequest;
+import com.nordlet.api.resources.calendar.requests.DeleteCalendarRequest;
+import com.nordlet.api.resources.calendar.requests.DownloadCalendarRequest;
+import com.nordlet.api.resources.calendar.requests.GetCalendarRequest;
+import com.nordlet.api.resources.calendar.requests.ListCalendarRequest;
+import com.nordlet.api.resources.calendar.requests.SubmitCalendarRequest;
+import com.nordlet.api.resources.calendar.requests.UpdateCalendarRequest;
+import com.nordlet.api.resources.calendar.types.CreateCalendarResponse;
+import com.nordlet.api.resources.calendar.types.DeleteCalendarResponse;
+import com.nordlet.api.resources.calendar.types.DownloadCalendarResponse;
+import com.nordlet.api.resources.calendar.types.GetCalendarResponse;
+import com.nordlet.api.resources.calendar.types.ListCalendarResponse;
+import com.nordlet.api.resources.calendar.types.SubmitCalendarResponse;
+import com.nordlet.api.resources.calendar.types.UpdateCalendarResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncCalendarClient {
@@ -39,88 +39,86 @@ public class AsyncCalendarClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1CalendarListResponse> postV1CalendarList() {
-    return this.rawClient.postV1CalendarList().thenApply(response -> response.body());
+  public CompletableFuture<ListCalendarResponse> list() {
+    return this.rawClient.list().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CalendarListResponse> postV1CalendarList(
+  public CompletableFuture<ListCalendarResponse> list(RequestOptions requestOptions) {
+    return this.rawClient.list(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ListCalendarResponse> list(ListCalendarRequest request) {
+    return this.rawClient.list(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ListCalendarResponse> list(ListCalendarRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CalendarList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.list(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CalendarListResponse> postV1CalendarList(
-      PostV1CalendarListRequest request) {
-    return this.rawClient.postV1CalendarList(request).thenApply(response -> response.body());
+  public CompletableFuture<GetCalendarResponse> get(GetCalendarRequest request) {
+    return this.rawClient.get(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CalendarListResponse> postV1CalendarList(
-      PostV1CalendarListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CalendarList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<GetCalendarResponse> get(GetCalendarRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.get(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CalendarGetResponse> postV1CalendarGet(
-      PostV1CalendarGetRequest request) {
-    return this.rawClient.postV1CalendarGet(request).thenApply(response -> response.body());
+  /**
+   * With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only returns whose format has a correction mark accept it.
+   */
+  public CompletableFuture<SubmitCalendarResponse> submit(SubmitCalendarRequest request) {
+    return this.rawClient.submit(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CalendarGetResponse> postV1CalendarGet(
-      PostV1CalendarGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CalendarGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CalendarSubmitResponse> generateTheFilingForADeadlineAndSendItToTheAdministration(
-      PostV1CalendarSubmitRequest request) {
-    return this.rawClient.generateTheFilingForADeadlineAndSendItToTheAdministration(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CalendarSubmitResponse> generateTheFilingForADeadlineAndSendItToTheAdministration(
-      PostV1CalendarSubmitRequest request, RequestOptions requestOptions) {
-    return this.rawClient.generateTheFilingForADeadlineAndSendItToTheAdministration(request, requestOptions).thenApply(response -> response.body());
+  /**
+   * With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only returns whose format has a correction mark accept it.
+   */
+  public CompletableFuture<SubmitCalendarResponse> submit(SubmitCalendarRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.submit(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded.
    */
-  public CompletableFuture<PostV1CalendarDownloadResponse> generateTheFileOfADeadlineForTheCompanyToSendItself(
-      PostV1CalendarDownloadRequest request) {
-    return this.rawClient.generateTheFileOfADeadlineForTheCompanyToSendItself(request).thenApply(response -> response.body());
+  public CompletableFuture<DownloadCalendarResponse> download(DownloadCalendarRequest request) {
+    return this.rawClient.download(request).thenApply(response -> response.body());
   }
 
   /**
    * Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded.
    */
-  public CompletableFuture<PostV1CalendarDownloadResponse> generateTheFileOfADeadlineForTheCompanyToSendItself(
-      PostV1CalendarDownloadRequest request, RequestOptions requestOptions) {
-    return this.rawClient.generateTheFileOfADeadlineForTheCompanyToSendItself(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<DownloadCalendarResponse> download(DownloadCalendarRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.download(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CalendarCreateResponse> postV1CalendarCreate(
-      PostV1CalendarCreateRequest request) {
-    return this.rawClient.postV1CalendarCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<CreateCalendarResponse> create(CreateCalendarRequest request) {
+    return this.rawClient.create(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CalendarCreateResponse> postV1CalendarCreate(
-      PostV1CalendarCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CalendarCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CreateCalendarResponse> create(CreateCalendarRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.create(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CalendarUpdateResponse> postV1CalendarUpdate(
-      PostV1CalendarUpdateRequest request) {
-    return this.rawClient.postV1CalendarUpdate(request).thenApply(response -> response.body());
+  public CompletableFuture<UpdateCalendarResponse> update(UpdateCalendarRequest request) {
+    return this.rawClient.update(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CalendarUpdateResponse> postV1CalendarUpdate(
-      PostV1CalendarUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CalendarUpdate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<UpdateCalendarResponse> update(UpdateCalendarRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.update(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CalendarDeleteResponse> postV1CalendarDelete(
-      PostV1CalendarDeleteRequest request) {
-    return this.rawClient.postV1CalendarDelete(request).thenApply(response -> response.body());
+  public CompletableFuture<DeleteCalendarResponse> delete(DeleteCalendarRequest request) {
+    return this.rawClient.delete(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CalendarDeleteResponse> postV1CalendarDelete(
-      PostV1CalendarDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CalendarDelete(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<DeleteCalendarResponse> delete(DeleteCalendarRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.delete(request, requestOptions).thenApply(response -> response.body());
   }
 }

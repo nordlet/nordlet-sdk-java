@@ -6,26 +6,26 @@ package com.nordlet.api.resources.capture;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsConfirmRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsDeleteRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsExtractRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsGetRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsListRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureDocumentsUploadRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureInboundEmailRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureSettingsGetRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureSettingsRegenerateIntakeRequest;
-import com.nordlet.api.resources.capture.requests.PostV1CaptureSettingsUpdateRequest;
-import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsConfirmResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsDeleteResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsExtractResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsGetResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsListResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureDocumentsUploadResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureInboundEmailResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureSettingsGetResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureSettingsRegenerateIntakeResponse;
-import com.nordlet.api.resources.capture.types.PostV1CaptureSettingsUpdateResponse;
+import com.nordlet.api.resources.capture.requests.DocumentsConfirmCaptureRequest;
+import com.nordlet.api.resources.capture.requests.DocumentsDeleteCaptureRequest;
+import com.nordlet.api.resources.capture.requests.DocumentsExtractCaptureRequest;
+import com.nordlet.api.resources.capture.requests.DocumentsGetCaptureRequest;
+import com.nordlet.api.resources.capture.requests.DocumentsListCaptureRequest;
+import com.nordlet.api.resources.capture.requests.DocumentsUploadCaptureRequest;
+import com.nordlet.api.resources.capture.requests.InboundEmailCaptureRequest;
+import com.nordlet.api.resources.capture.requests.SettingsGetCaptureRequest;
+import com.nordlet.api.resources.capture.requests.SettingsRegenerateIntakeCaptureRequest;
+import com.nordlet.api.resources.capture.requests.SettingsUpdateCaptureRequest;
+import com.nordlet.api.resources.capture.types.DocumentsConfirmCaptureResponse;
+import com.nordlet.api.resources.capture.types.DocumentsDeleteCaptureResponse;
+import com.nordlet.api.resources.capture.types.DocumentsExtractCaptureResponse;
+import com.nordlet.api.resources.capture.types.DocumentsGetCaptureResponse;
+import com.nordlet.api.resources.capture.types.DocumentsListCaptureResponse;
+import com.nordlet.api.resources.capture.types.DocumentsUploadCaptureResponse;
+import com.nordlet.api.resources.capture.types.InboundEmailCaptureResponse;
+import com.nordlet.api.resources.capture.types.SettingsGetCaptureResponse;
+import com.nordlet.api.resources.capture.types.SettingsRegenerateIntakeCaptureResponse;
+import com.nordlet.api.resources.capture.types.SettingsUpdateCaptureResponse;
 
 public class CaptureClient {
   protected final ClientOptions clientOptions;
@@ -44,148 +44,135 @@ public class CaptureClient {
     return this.rawClient;
   }
 
-  public PostV1CaptureSettingsGetResponse postV1CaptureSettingsGet() {
-    return this.rawClient.postV1CaptureSettingsGet().body();
+  public SettingsGetCaptureResponse settingsGet() {
+    return this.rawClient.settingsGet().body();
   }
 
-  public PostV1CaptureSettingsGetResponse postV1CaptureSettingsGet(RequestOptions requestOptions) {
-    return this.rawClient.postV1CaptureSettingsGet(requestOptions).body();
+  public SettingsGetCaptureResponse settingsGet(RequestOptions requestOptions) {
+    return this.rawClient.settingsGet(requestOptions).body();
   }
 
-  public PostV1CaptureSettingsGetResponse postV1CaptureSettingsGet(
-      PostV1CaptureSettingsGetRequest request) {
-    return this.rawClient.postV1CaptureSettingsGet(request).body();
+  public SettingsGetCaptureResponse settingsGet(SettingsGetCaptureRequest request) {
+    return this.rawClient.settingsGet(request).body();
   }
 
-  public PostV1CaptureSettingsGetResponse postV1CaptureSettingsGet(
-      PostV1CaptureSettingsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CaptureSettingsGet(request, requestOptions).body();
-  }
-
-  public PostV1CaptureSettingsUpdateResponse postV1CaptureSettingsUpdate() {
-    return this.rawClient.postV1CaptureSettingsUpdate().body();
-  }
-
-  public PostV1CaptureSettingsUpdateResponse postV1CaptureSettingsUpdate(
+  public SettingsGetCaptureResponse settingsGet(SettingsGetCaptureRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CaptureSettingsUpdate(requestOptions).body();
+    return this.rawClient.settingsGet(request, requestOptions).body();
   }
 
-  public PostV1CaptureSettingsUpdateResponse postV1CaptureSettingsUpdate(
-      PostV1CaptureSettingsUpdateRequest request) {
-    return this.rawClient.postV1CaptureSettingsUpdate(request).body();
+  public SettingsUpdateCaptureResponse settingsUpdate() {
+    return this.rawClient.settingsUpdate().body();
   }
 
-  public PostV1CaptureSettingsUpdateResponse postV1CaptureSettingsUpdate(
-      PostV1CaptureSettingsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CaptureSettingsUpdate(request, requestOptions).body();
+  public SettingsUpdateCaptureResponse settingsUpdate(RequestOptions requestOptions) {
+    return this.rawClient.settingsUpdate(requestOptions).body();
   }
 
-  public PostV1CaptureSettingsRegenerateIntakeResponse postV1CaptureSettingsRegenerateIntake() {
-    return this.rawClient.postV1CaptureSettingsRegenerateIntake().body();
+  public SettingsUpdateCaptureResponse settingsUpdate(SettingsUpdateCaptureRequest request) {
+    return this.rawClient.settingsUpdate(request).body();
   }
 
-  public PostV1CaptureSettingsRegenerateIntakeResponse postV1CaptureSettingsRegenerateIntake(
+  public SettingsUpdateCaptureResponse settingsUpdate(SettingsUpdateCaptureRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CaptureSettingsRegenerateIntake(requestOptions).body();
+    return this.rawClient.settingsUpdate(request, requestOptions).body();
   }
 
-  public PostV1CaptureSettingsRegenerateIntakeResponse postV1CaptureSettingsRegenerateIntake(
-      PostV1CaptureSettingsRegenerateIntakeRequest request) {
-    return this.rawClient.postV1CaptureSettingsRegenerateIntake(request).body();
+  public SettingsRegenerateIntakeCaptureResponse settingsRegenerateIntake() {
+    return this.rawClient.settingsRegenerateIntake().body();
   }
 
-  public PostV1CaptureSettingsRegenerateIntakeResponse postV1CaptureSettingsRegenerateIntake(
-      PostV1CaptureSettingsRegenerateIntakeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CaptureSettingsRegenerateIntake(request, requestOptions).body();
-  }
-
-  public PostV1CaptureInboundEmailResponse receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
-      ) {
-    return this.rawClient.receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson().body();
-  }
-
-  public PostV1CaptureInboundEmailResponse receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
+  public SettingsRegenerateIntakeCaptureResponse settingsRegenerateIntake(
       RequestOptions requestOptions) {
-    return this.rawClient.receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(requestOptions).body();
+    return this.rawClient.settingsRegenerateIntake(requestOptions).body();
   }
 
-  public PostV1CaptureInboundEmailResponse receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
-      PostV1CaptureInboundEmailRequest request) {
-    return this.rawClient.receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(request).body();
+  public SettingsRegenerateIntakeCaptureResponse settingsRegenerateIntake(
+      SettingsRegenerateIntakeCaptureRequest request) {
+    return this.rawClient.settingsRegenerateIntake(request).body();
   }
 
-  public PostV1CaptureInboundEmailResponse receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
-      PostV1CaptureInboundEmailRequest request, RequestOptions requestOptions) {
-    return this.rawClient.receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(request, requestOptions).body();
+  public SettingsRegenerateIntakeCaptureResponse settingsRegenerateIntake(
+      SettingsRegenerateIntakeCaptureRequest request, RequestOptions requestOptions) {
+    return this.rawClient.settingsRegenerateIntake(request, requestOptions).body();
   }
 
-  public PostV1CaptureDocumentsUploadResponse readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft(
-      PostV1CaptureDocumentsUploadRequest request) {
-    return this.rawClient.readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft(request).body();
+  public InboundEmailCaptureResponse inboundEmail() {
+    return this.rawClient.inboundEmail().body();
   }
 
-  public PostV1CaptureDocumentsUploadResponse readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft(
-      PostV1CaptureDocumentsUploadRequest request, RequestOptions requestOptions) {
-    return this.rawClient.readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft(request, requestOptions).body();
+  public InboundEmailCaptureResponse inboundEmail(RequestOptions requestOptions) {
+    return this.rawClient.inboundEmail(requestOptions).body();
   }
 
-  public PostV1CaptureDocumentsExtractResponse reReadAStoredCaptureReplacingThePreviousDraft(
-      PostV1CaptureDocumentsExtractRequest request) {
-    return this.rawClient.reReadAStoredCaptureReplacingThePreviousDraft(request).body();
+  public InboundEmailCaptureResponse inboundEmail(InboundEmailCaptureRequest request) {
+    return this.rawClient.inboundEmail(request).body();
   }
 
-  public PostV1CaptureDocumentsExtractResponse reReadAStoredCaptureReplacingThePreviousDraft(
-      PostV1CaptureDocumentsExtractRequest request, RequestOptions requestOptions) {
-    return this.rawClient.reReadAStoredCaptureReplacingThePreviousDraft(request, requestOptions).body();
-  }
-
-  public PostV1CaptureDocumentsGetResponse postV1CaptureDocumentsGet(
-      PostV1CaptureDocumentsGetRequest request) {
-    return this.rawClient.postV1CaptureDocumentsGet(request).body();
-  }
-
-  public PostV1CaptureDocumentsGetResponse postV1CaptureDocumentsGet(
-      PostV1CaptureDocumentsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CaptureDocumentsGet(request, requestOptions).body();
-  }
-
-  public PostV1CaptureDocumentsListResponse postV1CaptureDocumentsList() {
-    return this.rawClient.postV1CaptureDocumentsList().body();
-  }
-
-  public PostV1CaptureDocumentsListResponse postV1CaptureDocumentsList(
+  public InboundEmailCaptureResponse inboundEmail(InboundEmailCaptureRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CaptureDocumentsList(requestOptions).body();
+    return this.rawClient.inboundEmail(request, requestOptions).body();
   }
 
-  public PostV1CaptureDocumentsListResponse postV1CaptureDocumentsList(
-      PostV1CaptureDocumentsListRequest request) {
-    return this.rawClient.postV1CaptureDocumentsList(request).body();
+  public DocumentsUploadCaptureResponse documentsUpload(DocumentsUploadCaptureRequest request) {
+    return this.rawClient.documentsUpload(request).body();
   }
 
-  public PostV1CaptureDocumentsListResponse postV1CaptureDocumentsList(
-      PostV1CaptureDocumentsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CaptureDocumentsList(request, requestOptions).body();
+  public DocumentsUploadCaptureResponse documentsUpload(DocumentsUploadCaptureRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.documentsUpload(request, requestOptions).body();
   }
 
-  public PostV1CaptureDocumentsDeleteResponse postV1CaptureDocumentsDelete(
-      PostV1CaptureDocumentsDeleteRequest request) {
-    return this.rawClient.postV1CaptureDocumentsDelete(request).body();
+  public DocumentsExtractCaptureResponse documentsExtract(DocumentsExtractCaptureRequest request) {
+    return this.rawClient.documentsExtract(request).body();
   }
 
-  public PostV1CaptureDocumentsDeleteResponse postV1CaptureDocumentsDelete(
-      PostV1CaptureDocumentsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CaptureDocumentsDelete(request, requestOptions).body();
+  public DocumentsExtractCaptureResponse documentsExtract(DocumentsExtractCaptureRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.documentsExtract(request, requestOptions).body();
   }
 
-  public PostV1CaptureDocumentsConfirmResponse saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocument(
-      PostV1CaptureDocumentsConfirmRequest request) {
-    return this.rawClient.saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocument(request).body();
+  public DocumentsGetCaptureResponse documentsGet(DocumentsGetCaptureRequest request) {
+    return this.rawClient.documentsGet(request).body();
   }
 
-  public PostV1CaptureDocumentsConfirmResponse saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocument(
-      PostV1CaptureDocumentsConfirmRequest request, RequestOptions requestOptions) {
-    return this.rawClient.saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocument(request, requestOptions).body();
+  public DocumentsGetCaptureResponse documentsGet(DocumentsGetCaptureRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.documentsGet(request, requestOptions).body();
+  }
+
+  public DocumentsListCaptureResponse documentsList() {
+    return this.rawClient.documentsList().body();
+  }
+
+  public DocumentsListCaptureResponse documentsList(RequestOptions requestOptions) {
+    return this.rawClient.documentsList(requestOptions).body();
+  }
+
+  public DocumentsListCaptureResponse documentsList(DocumentsListCaptureRequest request) {
+    return this.rawClient.documentsList(request).body();
+  }
+
+  public DocumentsListCaptureResponse documentsList(DocumentsListCaptureRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.documentsList(request, requestOptions).body();
+  }
+
+  public DocumentsDeleteCaptureResponse documentsDelete(DocumentsDeleteCaptureRequest request) {
+    return this.rawClient.documentsDelete(request).body();
+  }
+
+  public DocumentsDeleteCaptureResponse documentsDelete(DocumentsDeleteCaptureRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.documentsDelete(request, requestOptions).body();
+  }
+
+  public DocumentsConfirmCaptureResponse documentsConfirm(DocumentsConfirmCaptureRequest request) {
+    return this.rawClient.documentsConfirm(request).body();
+  }
+
+  public DocumentsConfirmCaptureResponse documentsConfirm(DocumentsConfirmCaptureRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.documentsConfirm(request, requestOptions).body();
   }
 }

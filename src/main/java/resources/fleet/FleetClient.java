@@ -6,22 +6,22 @@ package com.nordlet.api.resources.fleet;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetAssignmentsCreateRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetAssignmentsEndRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetAssignmentsListRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetNaturaPreviewRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetVehiclesCreateRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetVehiclesGetRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetVehiclesListRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetVehiclesUpdateRequest;
-import com.nordlet.api.resources.fleet.types.PostV1FleetAssignmentsCreateResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetAssignmentsEndResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetAssignmentsListResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetNaturaPreviewResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetVehiclesCreateResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetVehiclesGetResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetVehiclesListResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetVehiclesUpdateResponse;
+import com.nordlet.api.resources.fleet.requests.AssignmentsCreateFleetRequest;
+import com.nordlet.api.resources.fleet.requests.AssignmentsEndFleetRequest;
+import com.nordlet.api.resources.fleet.requests.AssignmentsListFleetRequest;
+import com.nordlet.api.resources.fleet.requests.NaturaPreviewFleetRequest;
+import com.nordlet.api.resources.fleet.requests.VehiclesCreateFleetRequest;
+import com.nordlet.api.resources.fleet.requests.VehiclesGetFleetRequest;
+import com.nordlet.api.resources.fleet.requests.VehiclesListFleetRequest;
+import com.nordlet.api.resources.fleet.requests.VehiclesUpdateFleetRequest;
+import com.nordlet.api.resources.fleet.types.AssignmentsCreateFleetResponse;
+import com.nordlet.api.resources.fleet.types.AssignmentsEndFleetResponse;
+import com.nordlet.api.resources.fleet.types.AssignmentsListFleetResponse;
+import com.nordlet.api.resources.fleet.types.NaturaPreviewFleetResponse;
+import com.nordlet.api.resources.fleet.types.VehiclesCreateFleetResponse;
+import com.nordlet.api.resources.fleet.types.VehiclesGetFleetResponse;
+import com.nordlet.api.resources.fleet.types.VehiclesListFleetResponse;
+import com.nordlet.api.resources.fleet.types.VehiclesUpdateFleetResponse;
 
 public class FleetClient {
   protected final ClientOptions clientOptions;
@@ -40,100 +40,91 @@ public class FleetClient {
     return this.rawClient;
   }
 
-  public PostV1FleetVehiclesCreateResponse postV1FleetVehiclesCreate(
-      PostV1FleetVehiclesCreateRequest request) {
-    return this.rawClient.postV1FleetVehiclesCreate(request).body();
+  public VehiclesCreateFleetResponse vehiclesCreate(VehiclesCreateFleetRequest request) {
+    return this.rawClient.vehiclesCreate(request).body();
   }
 
-  public PostV1FleetVehiclesCreateResponse postV1FleetVehiclesCreate(
-      PostV1FleetVehiclesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetVehiclesCreate(request, requestOptions).body();
-  }
-
-  public PostV1FleetVehiclesUpdateResponse postV1FleetVehiclesUpdate(
-      PostV1FleetVehiclesUpdateRequest request) {
-    return this.rawClient.postV1FleetVehiclesUpdate(request).body();
-  }
-
-  public PostV1FleetVehiclesUpdateResponse postV1FleetVehiclesUpdate(
-      PostV1FleetVehiclesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetVehiclesUpdate(request, requestOptions).body();
-  }
-
-  public PostV1FleetVehiclesGetResponse postV1FleetVehiclesGet(
-      PostV1FleetVehiclesGetRequest request) {
-    return this.rawClient.postV1FleetVehiclesGet(request).body();
-  }
-
-  public PostV1FleetVehiclesGetResponse postV1FleetVehiclesGet(
-      PostV1FleetVehiclesGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetVehiclesGet(request, requestOptions).body();
-  }
-
-  public PostV1FleetVehiclesListResponse postV1FleetVehiclesList() {
-    return this.rawClient.postV1FleetVehiclesList().body();
-  }
-
-  public PostV1FleetVehiclesListResponse postV1FleetVehiclesList(RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetVehiclesList(requestOptions).body();
-  }
-
-  public PostV1FleetVehiclesListResponse postV1FleetVehiclesList(
-      PostV1FleetVehiclesListRequest request) {
-    return this.rawClient.postV1FleetVehiclesList(request).body();
-  }
-
-  public PostV1FleetVehiclesListResponse postV1FleetVehiclesList(
-      PostV1FleetVehiclesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetVehiclesList(request, requestOptions).body();
-  }
-
-  public PostV1FleetAssignmentsCreateResponse postV1FleetAssignmentsCreate(
-      PostV1FleetAssignmentsCreateRequest request) {
-    return this.rawClient.postV1FleetAssignmentsCreate(request).body();
-  }
-
-  public PostV1FleetAssignmentsCreateResponse postV1FleetAssignmentsCreate(
-      PostV1FleetAssignmentsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetAssignmentsCreate(request, requestOptions).body();
-  }
-
-  public PostV1FleetAssignmentsEndResponse postV1FleetAssignmentsEnd(
-      PostV1FleetAssignmentsEndRequest request) {
-    return this.rawClient.postV1FleetAssignmentsEnd(request).body();
-  }
-
-  public PostV1FleetAssignmentsEndResponse postV1FleetAssignmentsEnd(
-      PostV1FleetAssignmentsEndRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetAssignmentsEnd(request, requestOptions).body();
-  }
-
-  public PostV1FleetAssignmentsListResponse postV1FleetAssignmentsList() {
-    return this.rawClient.postV1FleetAssignmentsList().body();
-  }
-
-  public PostV1FleetAssignmentsListResponse postV1FleetAssignmentsList(
+  public VehiclesCreateFleetResponse vehiclesCreate(VehiclesCreateFleetRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetAssignmentsList(requestOptions).body();
+    return this.rawClient.vehiclesCreate(request, requestOptions).body();
   }
 
-  public PostV1FleetAssignmentsListResponse postV1FleetAssignmentsList(
-      PostV1FleetAssignmentsListRequest request) {
-    return this.rawClient.postV1FleetAssignmentsList(request).body();
+  public VehiclesUpdateFleetResponse vehiclesUpdate(VehiclesUpdateFleetRequest request) {
+    return this.rawClient.vehiclesUpdate(request).body();
   }
 
-  public PostV1FleetAssignmentsListResponse postV1FleetAssignmentsList(
-      PostV1FleetAssignmentsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetAssignmentsList(request, requestOptions).body();
+  public VehiclesUpdateFleetResponse vehiclesUpdate(VehiclesUpdateFleetRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.vehiclesUpdate(request, requestOptions).body();
   }
 
-  public PostV1FleetNaturaPreviewResponse postV1FleetNaturaPreview(
-      PostV1FleetNaturaPreviewRequest request) {
-    return this.rawClient.postV1FleetNaturaPreview(request).body();
+  public VehiclesGetFleetResponse vehiclesGet(VehiclesGetFleetRequest request) {
+    return this.rawClient.vehiclesGet(request).body();
   }
 
-  public PostV1FleetNaturaPreviewResponse postV1FleetNaturaPreview(
-      PostV1FleetNaturaPreviewRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetNaturaPreview(request, requestOptions).body();
+  public VehiclesGetFleetResponse vehiclesGet(VehiclesGetFleetRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.vehiclesGet(request, requestOptions).body();
+  }
+
+  public VehiclesListFleetResponse vehiclesList() {
+    return this.rawClient.vehiclesList().body();
+  }
+
+  public VehiclesListFleetResponse vehiclesList(RequestOptions requestOptions) {
+    return this.rawClient.vehiclesList(requestOptions).body();
+  }
+
+  public VehiclesListFleetResponse vehiclesList(VehiclesListFleetRequest request) {
+    return this.rawClient.vehiclesList(request).body();
+  }
+
+  public VehiclesListFleetResponse vehiclesList(VehiclesListFleetRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.vehiclesList(request, requestOptions).body();
+  }
+
+  public AssignmentsCreateFleetResponse assignmentsCreate(AssignmentsCreateFleetRequest request) {
+    return this.rawClient.assignmentsCreate(request).body();
+  }
+
+  public AssignmentsCreateFleetResponse assignmentsCreate(AssignmentsCreateFleetRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.assignmentsCreate(request, requestOptions).body();
+  }
+
+  public AssignmentsEndFleetResponse assignmentsEnd(AssignmentsEndFleetRequest request) {
+    return this.rawClient.assignmentsEnd(request).body();
+  }
+
+  public AssignmentsEndFleetResponse assignmentsEnd(AssignmentsEndFleetRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.assignmentsEnd(request, requestOptions).body();
+  }
+
+  public AssignmentsListFleetResponse assignmentsList() {
+    return this.rawClient.assignmentsList().body();
+  }
+
+  public AssignmentsListFleetResponse assignmentsList(RequestOptions requestOptions) {
+    return this.rawClient.assignmentsList(requestOptions).body();
+  }
+
+  public AssignmentsListFleetResponse assignmentsList(AssignmentsListFleetRequest request) {
+    return this.rawClient.assignmentsList(request).body();
+  }
+
+  public AssignmentsListFleetResponse assignmentsList(AssignmentsListFleetRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.assignmentsList(request, requestOptions).body();
+  }
+
+  public NaturaPreviewFleetResponse naturaPreview(NaturaPreviewFleetRequest request) {
+    return this.rawClient.naturaPreview(request).body();
+  }
+
+  public NaturaPreviewFleetResponse naturaPreview(NaturaPreviewFleetRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.naturaPreview(request, requestOptions).body();
   }
 }

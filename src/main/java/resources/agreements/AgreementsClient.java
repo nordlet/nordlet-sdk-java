@@ -6,30 +6,30 @@ package com.nordlet.api.resources.agreements;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsBillingRunRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsCreateRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsDeleteRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsGenerateInvoiceRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsGetRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsListRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsUpdateRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsInsurancePoliciesCreateRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsInsurancePoliciesDeleteRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsInsurancePoliciesListRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsTypesCreateRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsTypesListRequest;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsBillingRunResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsCreateResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsDeleteResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsGenerateInvoiceResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsGetResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsListResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsUpdateResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsInsurancePoliciesCreateResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsInsurancePoliciesDeleteResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsInsurancePoliciesListResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsTypesCreateResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsTypesListResponse;
+import com.nordlet.api.resources.agreements.requests.AgreementsBillingRunAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsCreateAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsDeleteAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsGenerateInvoiceAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsGetAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsListAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsUpdateAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.InsurancePoliciesCreateAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.InsurancePoliciesDeleteAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.InsurancePoliciesListAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.TypesCreateAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.TypesListAgreementsRequest;
+import com.nordlet.api.resources.agreements.types.AgreementsBillingRunAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsCreateAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsDeleteAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsGenerateInvoiceAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsGetAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsListAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsUpdateAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.InsurancePoliciesCreateAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.InsurancePoliciesDeleteAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.InsurancePoliciesListAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.TypesCreateAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.TypesListAgreementsResponse;
 
 public class AgreementsClient {
   protected final ClientOptions clientOptions;
@@ -48,159 +48,153 @@ public class AgreementsClient {
     return this.rawClient;
   }
 
-  public PostV1AgreementsTypesCreateResponse postV1AgreementsTypesCreate(
-      PostV1AgreementsTypesCreateRequest request) {
-    return this.rawClient.postV1AgreementsTypesCreate(request).body();
+  public TypesCreateAgreementsResponse typesCreate(TypesCreateAgreementsRequest request) {
+    return this.rawClient.typesCreate(request).body();
   }
 
-  public PostV1AgreementsTypesCreateResponse postV1AgreementsTypesCreate(
-      PostV1AgreementsTypesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsTypesCreate(request, requestOptions).body();
-  }
-
-  public PostV1AgreementsTypesListResponse postV1AgreementsTypesList() {
-    return this.rawClient.postV1AgreementsTypesList().body();
-  }
-
-  public PostV1AgreementsTypesListResponse postV1AgreementsTypesList(
+  public TypesCreateAgreementsResponse typesCreate(TypesCreateAgreementsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsTypesList(requestOptions).body();
+    return this.rawClient.typesCreate(request, requestOptions).body();
   }
 
-  public PostV1AgreementsTypesListResponse postV1AgreementsTypesList(
-      PostV1AgreementsTypesListRequest request) {
-    return this.rawClient.postV1AgreementsTypesList(request).body();
+  public TypesListAgreementsResponse typesList() {
+    return this.rawClient.typesList().body();
   }
 
-  public PostV1AgreementsTypesListResponse postV1AgreementsTypesList(
-      PostV1AgreementsTypesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsTypesList(request, requestOptions).body();
+  public TypesListAgreementsResponse typesList(RequestOptions requestOptions) {
+    return this.rawClient.typesList(requestOptions).body();
   }
 
-  public PostV1AgreementsAgreementsCreateResponse postV1AgreementsAgreementsCreate(
-      PostV1AgreementsAgreementsCreateRequest request) {
-    return this.rawClient.postV1AgreementsAgreementsCreate(request).body();
+  public TypesListAgreementsResponse typesList(TypesListAgreementsRequest request) {
+    return this.rawClient.typesList(request).body();
   }
 
-  public PostV1AgreementsAgreementsCreateResponse postV1AgreementsAgreementsCreate(
-      PostV1AgreementsAgreementsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsCreate(request, requestOptions).body();
-  }
-
-  public PostV1AgreementsAgreementsGetResponse postV1AgreementsAgreementsGet(
-      PostV1AgreementsAgreementsGetRequest request) {
-    return this.rawClient.postV1AgreementsAgreementsGet(request).body();
-  }
-
-  public PostV1AgreementsAgreementsGetResponse postV1AgreementsAgreementsGet(
-      PostV1AgreementsAgreementsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsGet(request, requestOptions).body();
-  }
-
-  public PostV1AgreementsAgreementsUpdateResponse postV1AgreementsAgreementsUpdate(
-      PostV1AgreementsAgreementsUpdateRequest request) {
-    return this.rawClient.postV1AgreementsAgreementsUpdate(request).body();
-  }
-
-  public PostV1AgreementsAgreementsUpdateResponse postV1AgreementsAgreementsUpdate(
-      PostV1AgreementsAgreementsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1AgreementsAgreementsDeleteResponse postV1AgreementsAgreementsDelete(
-      PostV1AgreementsAgreementsDeleteRequest request) {
-    return this.rawClient.postV1AgreementsAgreementsDelete(request).body();
-  }
-
-  public PostV1AgreementsAgreementsDeleteResponse postV1AgreementsAgreementsDelete(
-      PostV1AgreementsAgreementsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsDelete(request, requestOptions).body();
-  }
-
-  public PostV1AgreementsAgreementsListResponse postV1AgreementsAgreementsList() {
-    return this.rawClient.postV1AgreementsAgreementsList().body();
-  }
-
-  public PostV1AgreementsAgreementsListResponse postV1AgreementsAgreementsList(
+  public TypesListAgreementsResponse typesList(TypesListAgreementsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsList(requestOptions).body();
+    return this.rawClient.typesList(request, requestOptions).body();
   }
 
-  public PostV1AgreementsAgreementsListResponse postV1AgreementsAgreementsList(
-      PostV1AgreementsAgreementsListRequest request) {
-    return this.rawClient.postV1AgreementsAgreementsList(request).body();
+  public AgreementsCreateAgreementsResponse agreementsCreate(
+      AgreementsCreateAgreementsRequest request) {
+    return this.rawClient.agreementsCreate(request).body();
   }
 
-  public PostV1AgreementsAgreementsListResponse postV1AgreementsAgreementsList(
-      PostV1AgreementsAgreementsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsList(request, requestOptions).body();
+  public AgreementsCreateAgreementsResponse agreementsCreate(
+      AgreementsCreateAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.agreementsCreate(request, requestOptions).body();
   }
 
-  public PostV1AgreementsAgreementsGenerateInvoiceResponse postV1AgreementsAgreementsGenerateInvoice(
-      PostV1AgreementsAgreementsGenerateInvoiceRequest request) {
-    return this.rawClient.postV1AgreementsAgreementsGenerateInvoice(request).body();
+  public AgreementsGetAgreementsResponse agreementsGet(AgreementsGetAgreementsRequest request) {
+    return this.rawClient.agreementsGet(request).body();
   }
 
-  public PostV1AgreementsAgreementsGenerateInvoiceResponse postV1AgreementsAgreementsGenerateInvoice(
-      PostV1AgreementsAgreementsGenerateInvoiceRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsGenerateInvoice(request, requestOptions).body();
-  }
-
-  public PostV1AgreementsAgreementsBillingRunResponse postV1AgreementsAgreementsBillingRun() {
-    return this.rawClient.postV1AgreementsAgreementsBillingRun().body();
-  }
-
-  public PostV1AgreementsAgreementsBillingRunResponse postV1AgreementsAgreementsBillingRun(
+  public AgreementsGetAgreementsResponse agreementsGet(AgreementsGetAgreementsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsBillingRun(requestOptions).body();
+    return this.rawClient.agreementsGet(request, requestOptions).body();
   }
 
-  public PostV1AgreementsAgreementsBillingRunResponse postV1AgreementsAgreementsBillingRun(
-      PostV1AgreementsAgreementsBillingRunRequest request) {
-    return this.rawClient.postV1AgreementsAgreementsBillingRun(request).body();
+  public AgreementsUpdateAgreementsResponse agreementsUpdate(
+      AgreementsUpdateAgreementsRequest request) {
+    return this.rawClient.agreementsUpdate(request).body();
   }
 
-  public PostV1AgreementsAgreementsBillingRunResponse postV1AgreementsAgreementsBillingRun(
-      PostV1AgreementsAgreementsBillingRunRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsBillingRun(request, requestOptions).body();
+  public AgreementsUpdateAgreementsResponse agreementsUpdate(
+      AgreementsUpdateAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.agreementsUpdate(request, requestOptions).body();
   }
 
-  public PostV1AgreementsInsurancePoliciesCreateResponse postV1AgreementsInsurancePoliciesCreate(
-      PostV1AgreementsInsurancePoliciesCreateRequest request) {
-    return this.rawClient.postV1AgreementsInsurancePoliciesCreate(request).body();
+  public AgreementsDeleteAgreementsResponse agreementsDelete(
+      AgreementsDeleteAgreementsRequest request) {
+    return this.rawClient.agreementsDelete(request).body();
   }
 
-  public PostV1AgreementsInsurancePoliciesCreateResponse postV1AgreementsInsurancePoliciesCreate(
-      PostV1AgreementsInsurancePoliciesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsInsurancePoliciesCreate(request, requestOptions).body();
+  public AgreementsDeleteAgreementsResponse agreementsDelete(
+      AgreementsDeleteAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.agreementsDelete(request, requestOptions).body();
   }
 
-  public PostV1AgreementsInsurancePoliciesListResponse postV1AgreementsInsurancePoliciesList() {
-    return this.rawClient.postV1AgreementsInsurancePoliciesList().body();
+  public AgreementsListAgreementsResponse agreementsList() {
+    return this.rawClient.agreementsList().body();
   }
 
-  public PostV1AgreementsInsurancePoliciesListResponse postV1AgreementsInsurancePoliciesList(
+  public AgreementsListAgreementsResponse agreementsList(RequestOptions requestOptions) {
+    return this.rawClient.agreementsList(requestOptions).body();
+  }
+
+  public AgreementsListAgreementsResponse agreementsList(AgreementsListAgreementsRequest request) {
+    return this.rawClient.agreementsList(request).body();
+  }
+
+  public AgreementsListAgreementsResponse agreementsList(AgreementsListAgreementsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsInsurancePoliciesList(requestOptions).body();
+    return this.rawClient.agreementsList(request, requestOptions).body();
   }
 
-  public PostV1AgreementsInsurancePoliciesListResponse postV1AgreementsInsurancePoliciesList(
-      PostV1AgreementsInsurancePoliciesListRequest request) {
-    return this.rawClient.postV1AgreementsInsurancePoliciesList(request).body();
+  public AgreementsGenerateInvoiceAgreementsResponse agreementsGenerateInvoice(
+      AgreementsGenerateInvoiceAgreementsRequest request) {
+    return this.rawClient.agreementsGenerateInvoice(request).body();
   }
 
-  public PostV1AgreementsInsurancePoliciesListResponse postV1AgreementsInsurancePoliciesList(
-      PostV1AgreementsInsurancePoliciesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsInsurancePoliciesList(request, requestOptions).body();
+  public AgreementsGenerateInvoiceAgreementsResponse agreementsGenerateInvoice(
+      AgreementsGenerateInvoiceAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.agreementsGenerateInvoice(request, requestOptions).body();
   }
 
-  public PostV1AgreementsInsurancePoliciesDeleteResponse postV1AgreementsInsurancePoliciesDelete(
-      PostV1AgreementsInsurancePoliciesDeleteRequest request) {
-    return this.rawClient.postV1AgreementsInsurancePoliciesDelete(request).body();
+  public AgreementsBillingRunAgreementsResponse agreementsBillingRun() {
+    return this.rawClient.agreementsBillingRun().body();
   }
 
-  public PostV1AgreementsInsurancePoliciesDeleteResponse postV1AgreementsInsurancePoliciesDelete(
-      PostV1AgreementsInsurancePoliciesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsInsurancePoliciesDelete(request, requestOptions).body();
+  public AgreementsBillingRunAgreementsResponse agreementsBillingRun(
+      RequestOptions requestOptions) {
+    return this.rawClient.agreementsBillingRun(requestOptions).body();
+  }
+
+  public AgreementsBillingRunAgreementsResponse agreementsBillingRun(
+      AgreementsBillingRunAgreementsRequest request) {
+    return this.rawClient.agreementsBillingRun(request).body();
+  }
+
+  public AgreementsBillingRunAgreementsResponse agreementsBillingRun(
+      AgreementsBillingRunAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.agreementsBillingRun(request, requestOptions).body();
+  }
+
+  public InsurancePoliciesCreateAgreementsResponse insurancePoliciesCreate(
+      InsurancePoliciesCreateAgreementsRequest request) {
+    return this.rawClient.insurancePoliciesCreate(request).body();
+  }
+
+  public InsurancePoliciesCreateAgreementsResponse insurancePoliciesCreate(
+      InsurancePoliciesCreateAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.insurancePoliciesCreate(request, requestOptions).body();
+  }
+
+  public InsurancePoliciesListAgreementsResponse insurancePoliciesList() {
+    return this.rawClient.insurancePoliciesList().body();
+  }
+
+  public InsurancePoliciesListAgreementsResponse insurancePoliciesList(
+      RequestOptions requestOptions) {
+    return this.rawClient.insurancePoliciesList(requestOptions).body();
+  }
+
+  public InsurancePoliciesListAgreementsResponse insurancePoliciesList(
+      InsurancePoliciesListAgreementsRequest request) {
+    return this.rawClient.insurancePoliciesList(request).body();
+  }
+
+  public InsurancePoliciesListAgreementsResponse insurancePoliciesList(
+      InsurancePoliciesListAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.insurancePoliciesList(request, requestOptions).body();
+  }
+
+  public InsurancePoliciesDeleteAgreementsResponse insurancePoliciesDelete(
+      InsurancePoliciesDeleteAgreementsRequest request) {
+    return this.rawClient.insurancePoliciesDelete(request).body();
+  }
+
+  public InsurancePoliciesDeleteAgreementsResponse insurancePoliciesDelete(
+      InsurancePoliciesDeleteAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.insurancePoliciesDelete(request, requestOptions).body();
   }
 }

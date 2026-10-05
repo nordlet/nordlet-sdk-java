@@ -12,6 +12,8 @@ import java.lang.String;
 public final class ErrorResponseErrorCode {
   public static final ErrorResponseErrorCode RATE_LIMITED = new ErrorResponseErrorCode(Value.RATE_LIMITED, "rate_limited");
 
+  public static final ErrorResponseErrorCode PAYMENT_REQUIRED = new ErrorResponseErrorCode(Value.PAYMENT_REQUIRED, "payment_required");
+
   public static final ErrorResponseErrorCode VALIDATION = new ErrorResponseErrorCode(Value.VALIDATION, "validation");
 
   public static final ErrorResponseErrorCode FORBIDDEN = new ErrorResponseErrorCode(Value.FORBIDDEN, "forbidden");
@@ -62,6 +64,8 @@ public final class ErrorResponseErrorCode {
     switch (value) {
       case RATE_LIMITED:
         return visitor.visitRateLimited();
+      case PAYMENT_REQUIRED:
+        return visitor.visitPaymentRequired();
       case VALIDATION:
         return visitor.visitValidation();
       case FORBIDDEN:
@@ -91,6 +95,8 @@ public final class ErrorResponseErrorCode {
     switch (value) {
       case "rate_limited":
         return RATE_LIMITED;
+      case "payment_required":
+        return PAYMENT_REQUIRED;
       case "validation":
         return VALIDATION;
       case "forbidden":
@@ -129,6 +135,8 @@ public final class ErrorResponseErrorCode {
 
     RATE_LIMITED,
 
+    PAYMENT_REQUIRED,
+
     INTERNAL,
 
     UNKNOWN
@@ -150,6 +158,8 @@ public final class ErrorResponseErrorCode {
     T visitIdempotencyInProgress();
 
     T visitRateLimited();
+
+    T visitPaymentRequired();
 
     T visitInternal();
 

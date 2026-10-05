@@ -6,62 +6,62 @@ package com.nordlet.api.resources.catalog;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemGroupsCreateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemGroupsDeleteRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemGroupsListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemGroupsUpdateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsCreateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsDeleteRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsFilesListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsGetRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsKindsCreateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsKindsDeleteRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsKindsListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsKindsUpdateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsSuppliersDeleteRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsSuppliersListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsSuppliersUpsertRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsUpdateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogPriceListsCreateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogPriceListsItemsDeleteRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogPriceListsItemsListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogPriceListsItemsSetRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogPriceListsListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogPriceListsUpdateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogUnitsCreateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogUnitsDeleteRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogUnitsListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogUnitsOptionsRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogUnitsUpdateRequest;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemGroupsCreateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemGroupsDeleteResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemGroupsListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemGroupsUpdateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsCreateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsDeleteResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsFilesListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsGetResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsKindsCreateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsKindsDeleteResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsKindsListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsKindsUpdateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsSuppliersDeleteResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsSuppliersListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsSuppliersUpsertResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsUpdateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogPriceListsCreateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogPriceListsItemsDeleteResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogPriceListsItemsListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogPriceListsItemsSetResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogPriceListsListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogPriceListsUpdateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogUnitsCreateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogUnitsDeleteResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogUnitsListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogUnitsOptionsResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogUnitsUpdateResponse;
+import com.nordlet.api.resources.catalog.requests.ItemGroupsCreateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemGroupsDeleteCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemGroupsListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemGroupsUpdateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsCreateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsDeleteCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsFilesListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsGetCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsKindsCreateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsKindsDeleteCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsKindsListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsKindsUpdateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsSuppliersDeleteCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsSuppliersListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsSuppliersUpsertCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsUpdateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.PriceListsCreateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.PriceListsItemsDeleteCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.PriceListsItemsListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.PriceListsItemsSetCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.PriceListsListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.PriceListsUpdateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.UnitsCreateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.UnitsDeleteCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.UnitsListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.UnitsOptionsCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.UnitsUpdateCatalogRequest;
+import com.nordlet.api.resources.catalog.types.ItemGroupsCreateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemGroupsDeleteCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemGroupsListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemGroupsUpdateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsCreateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsDeleteCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsFilesListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsGetCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsKindsCreateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsKindsDeleteCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsKindsListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsKindsUpdateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsSuppliersDeleteCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsSuppliersListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsSuppliersUpsertCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsUpdateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.PriceListsCreateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.PriceListsItemsDeleteCatalogResponse;
+import com.nordlet.api.resources.catalog.types.PriceListsItemsListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.PriceListsItemsSetCatalogResponse;
+import com.nordlet.api.resources.catalog.types.PriceListsListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.PriceListsUpdateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.UnitsCreateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.UnitsDeleteCatalogResponse;
+import com.nordlet.api.resources.catalog.types.UnitsListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.UnitsOptionsCatalogResponse;
+import com.nordlet.api.resources.catalog.types.UnitsUpdateCatalogResponse;
 
 public class CatalogClient {
   protected final ClientOptions clientOptions;
@@ -80,343 +80,317 @@ public class CatalogClient {
     return this.rawClient;
   }
 
-  public PostV1CatalogItemsCreateResponse postV1CatalogItemsCreate(
-      PostV1CatalogItemsCreateRequest request) {
-    return this.rawClient.postV1CatalogItemsCreate(request).body();
+  public ItemsCreateCatalogResponse itemsCreate(ItemsCreateCatalogRequest request) {
+    return this.rawClient.itemsCreate(request).body();
   }
 
-  public PostV1CatalogItemsCreateResponse postV1CatalogItemsCreate(
-      PostV1CatalogItemsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsCreate(request, requestOptions).body();
-  }
-
-  public PostV1CatalogItemsGetResponse postV1CatalogItemsGet(PostV1CatalogItemsGetRequest request) {
-    return this.rawClient.postV1CatalogItemsGet(request).body();
-  }
-
-  public PostV1CatalogItemsGetResponse postV1CatalogItemsGet(PostV1CatalogItemsGetRequest request,
+  public ItemsCreateCatalogResponse itemsCreate(ItemsCreateCatalogRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsGet(request, requestOptions).body();
+    return this.rawClient.itemsCreate(request, requestOptions).body();
   }
 
-  public PostV1CatalogItemsUpdateResponse postV1CatalogItemsUpdate(
-      PostV1CatalogItemsUpdateRequest request) {
-    return this.rawClient.postV1CatalogItemsUpdate(request).body();
+  public ItemsGetCatalogResponse itemsGet(ItemsGetCatalogRequest request) {
+    return this.rawClient.itemsGet(request).body();
   }
 
-  public PostV1CatalogItemsUpdateResponse postV1CatalogItemsUpdate(
-      PostV1CatalogItemsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1CatalogItemsDeleteResponse postV1CatalogItemsDelete(
-      PostV1CatalogItemsDeleteRequest request) {
-    return this.rawClient.postV1CatalogItemsDelete(request).body();
-  }
-
-  public PostV1CatalogItemsDeleteResponse postV1CatalogItemsDelete(
-      PostV1CatalogItemsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsDelete(request, requestOptions).body();
-  }
-
-  public PostV1CatalogItemsListResponse postV1CatalogItemsList() {
-    return this.rawClient.postV1CatalogItemsList().body();
-  }
-
-  public PostV1CatalogItemsListResponse postV1CatalogItemsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsList(requestOptions).body();
-  }
-
-  public PostV1CatalogItemsListResponse postV1CatalogItemsList(
-      PostV1CatalogItemsListRequest request) {
-    return this.rawClient.postV1CatalogItemsList(request).body();
-  }
-
-  public PostV1CatalogItemsListResponse postV1CatalogItemsList(
-      PostV1CatalogItemsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsList(request, requestOptions).body();
-  }
-
-  public PostV1CatalogItemsFilesListResponse postV1CatalogItemsFilesList(
-      PostV1CatalogItemsFilesListRequest request) {
-    return this.rawClient.postV1CatalogItemsFilesList(request).body();
-  }
-
-  public PostV1CatalogItemsFilesListResponse postV1CatalogItemsFilesList(
-      PostV1CatalogItemsFilesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsFilesList(request, requestOptions).body();
-  }
-
-  public PostV1CatalogItemsKindsCreateResponse postV1CatalogItemsKindsCreate(
-      PostV1CatalogItemsKindsCreateRequest request) {
-    return this.rawClient.postV1CatalogItemsKindsCreate(request).body();
-  }
-
-  public PostV1CatalogItemsKindsCreateResponse postV1CatalogItemsKindsCreate(
-      PostV1CatalogItemsKindsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsKindsCreate(request, requestOptions).body();
-  }
-
-  public PostV1CatalogItemsKindsUpdateResponse postV1CatalogItemsKindsUpdate(
-      PostV1CatalogItemsKindsUpdateRequest request) {
-    return this.rawClient.postV1CatalogItemsKindsUpdate(request).body();
-  }
-
-  public PostV1CatalogItemsKindsUpdateResponse postV1CatalogItemsKindsUpdate(
-      PostV1CatalogItemsKindsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsKindsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1CatalogItemsKindsDeleteResponse postV1CatalogItemsKindsDelete(
-      PostV1CatalogItemsKindsDeleteRequest request) {
-    return this.rawClient.postV1CatalogItemsKindsDelete(request).body();
-  }
-
-  public PostV1CatalogItemsKindsDeleteResponse postV1CatalogItemsKindsDelete(
-      PostV1CatalogItemsKindsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsKindsDelete(request, requestOptions).body();
-  }
-
-  public PostV1CatalogItemsKindsListResponse postV1CatalogItemsKindsList() {
-    return this.rawClient.postV1CatalogItemsKindsList().body();
-  }
-
-  public PostV1CatalogItemsKindsListResponse postV1CatalogItemsKindsList(
+  public ItemsGetCatalogResponse itemsGet(ItemsGetCatalogRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsKindsList(requestOptions).body();
+    return this.rawClient.itemsGet(request, requestOptions).body();
   }
 
-  public PostV1CatalogItemsKindsListResponse postV1CatalogItemsKindsList(
-      PostV1CatalogItemsKindsListRequest request) {
-    return this.rawClient.postV1CatalogItemsKindsList(request).body();
+  public ItemsUpdateCatalogResponse itemsUpdate(ItemsUpdateCatalogRequest request) {
+    return this.rawClient.itemsUpdate(request).body();
   }
 
-  public PostV1CatalogItemsKindsListResponse postV1CatalogItemsKindsList(
-      PostV1CatalogItemsKindsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsKindsList(request, requestOptions).body();
-  }
-
-  public PostV1CatalogUnitsCreateResponse postV1CatalogUnitsCreate(
-      PostV1CatalogUnitsCreateRequest request) {
-    return this.rawClient.postV1CatalogUnitsCreate(request).body();
-  }
-
-  public PostV1CatalogUnitsCreateResponse postV1CatalogUnitsCreate(
-      PostV1CatalogUnitsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogUnitsCreate(request, requestOptions).body();
-  }
-
-  public PostV1CatalogUnitsUpdateResponse postV1CatalogUnitsUpdate(
-      PostV1CatalogUnitsUpdateRequest request) {
-    return this.rawClient.postV1CatalogUnitsUpdate(request).body();
-  }
-
-  public PostV1CatalogUnitsUpdateResponse postV1CatalogUnitsUpdate(
-      PostV1CatalogUnitsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogUnitsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1CatalogUnitsDeleteResponse postV1CatalogUnitsDelete(
-      PostV1CatalogUnitsDeleteRequest request) {
-    return this.rawClient.postV1CatalogUnitsDelete(request).body();
-  }
-
-  public PostV1CatalogUnitsDeleteResponse postV1CatalogUnitsDelete(
-      PostV1CatalogUnitsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogUnitsDelete(request, requestOptions).body();
-  }
-
-  public PostV1CatalogUnitsListResponse postV1CatalogUnitsList() {
-    return this.rawClient.postV1CatalogUnitsList().body();
-  }
-
-  public PostV1CatalogUnitsListResponse postV1CatalogUnitsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogUnitsList(requestOptions).body();
-  }
-
-  public PostV1CatalogUnitsListResponse postV1CatalogUnitsList(
-      PostV1CatalogUnitsListRequest request) {
-    return this.rawClient.postV1CatalogUnitsList(request).body();
-  }
-
-  public PostV1CatalogUnitsListResponse postV1CatalogUnitsList(
-      PostV1CatalogUnitsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogUnitsList(request, requestOptions).body();
-  }
-
-  public PostV1CatalogUnitsOptionsResponse postV1CatalogUnitsOptions() {
-    return this.rawClient.postV1CatalogUnitsOptions().body();
-  }
-
-  public PostV1CatalogUnitsOptionsResponse postV1CatalogUnitsOptions(
+  public ItemsUpdateCatalogResponse itemsUpdate(ItemsUpdateCatalogRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogUnitsOptions(requestOptions).body();
+    return this.rawClient.itemsUpdate(request, requestOptions).body();
   }
 
-  public PostV1CatalogUnitsOptionsResponse postV1CatalogUnitsOptions(
-      PostV1CatalogUnitsOptionsRequest request) {
-    return this.rawClient.postV1CatalogUnitsOptions(request).body();
+  public ItemsDeleteCatalogResponse itemsDelete(ItemsDeleteCatalogRequest request) {
+    return this.rawClient.itemsDelete(request).body();
   }
 
-  public PostV1CatalogUnitsOptionsResponse postV1CatalogUnitsOptions(
-      PostV1CatalogUnitsOptionsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogUnitsOptions(request, requestOptions).body();
-  }
-
-  public PostV1CatalogItemGroupsCreateResponse postV1CatalogItemGroupsCreate(
-      PostV1CatalogItemGroupsCreateRequest request) {
-    return this.rawClient.postV1CatalogItemGroupsCreate(request).body();
-  }
-
-  public PostV1CatalogItemGroupsCreateResponse postV1CatalogItemGroupsCreate(
-      PostV1CatalogItemGroupsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemGroupsCreate(request, requestOptions).body();
-  }
-
-  public PostV1CatalogItemGroupsUpdateResponse postV1CatalogItemGroupsUpdate(
-      PostV1CatalogItemGroupsUpdateRequest request) {
-    return this.rawClient.postV1CatalogItemGroupsUpdate(request).body();
-  }
-
-  public PostV1CatalogItemGroupsUpdateResponse postV1CatalogItemGroupsUpdate(
-      PostV1CatalogItemGroupsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemGroupsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1CatalogItemGroupsDeleteResponse postV1CatalogItemGroupsDelete(
-      PostV1CatalogItemGroupsDeleteRequest request) {
-    return this.rawClient.postV1CatalogItemGroupsDelete(request).body();
-  }
-
-  public PostV1CatalogItemGroupsDeleteResponse postV1CatalogItemGroupsDelete(
-      PostV1CatalogItemGroupsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemGroupsDelete(request, requestOptions).body();
-  }
-
-  public PostV1CatalogItemGroupsListResponse postV1CatalogItemGroupsList() {
-    return this.rawClient.postV1CatalogItemGroupsList().body();
-  }
-
-  public PostV1CatalogItemGroupsListResponse postV1CatalogItemGroupsList(
+  public ItemsDeleteCatalogResponse itemsDelete(ItemsDeleteCatalogRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemGroupsList(requestOptions).body();
+    return this.rawClient.itemsDelete(request, requestOptions).body();
   }
 
-  public PostV1CatalogItemGroupsListResponse postV1CatalogItemGroupsList(
-      PostV1CatalogItemGroupsListRequest request) {
-    return this.rawClient.postV1CatalogItemGroupsList(request).body();
+  public ItemsListCatalogResponse itemsList() {
+    return this.rawClient.itemsList().body();
   }
 
-  public PostV1CatalogItemGroupsListResponse postV1CatalogItemGroupsList(
-      PostV1CatalogItemGroupsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemGroupsList(request, requestOptions).body();
+  public ItemsListCatalogResponse itemsList(RequestOptions requestOptions) {
+    return this.rawClient.itemsList(requestOptions).body();
   }
 
-  public PostV1CatalogItemsSuppliersUpsertResponse postV1CatalogItemsSuppliersUpsert(
-      PostV1CatalogItemsSuppliersUpsertRequest request) {
-    return this.rawClient.postV1CatalogItemsSuppliersUpsert(request).body();
+  public ItemsListCatalogResponse itemsList(ItemsListCatalogRequest request) {
+    return this.rawClient.itemsList(request).body();
   }
 
-  public PostV1CatalogItemsSuppliersUpsertResponse postV1CatalogItemsSuppliersUpsert(
-      PostV1CatalogItemsSuppliersUpsertRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsSuppliersUpsert(request, requestOptions).body();
-  }
-
-  public PostV1CatalogItemsSuppliersListResponse postV1CatalogItemsSuppliersList() {
-    return this.rawClient.postV1CatalogItemsSuppliersList().body();
-  }
-
-  public PostV1CatalogItemsSuppliersListResponse postV1CatalogItemsSuppliersList(
+  public ItemsListCatalogResponse itemsList(ItemsListCatalogRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsSuppliersList(requestOptions).body();
+    return this.rawClient.itemsList(request, requestOptions).body();
   }
 
-  public PostV1CatalogItemsSuppliersListResponse postV1CatalogItemsSuppliersList(
-      PostV1CatalogItemsSuppliersListRequest request) {
-    return this.rawClient.postV1CatalogItemsSuppliersList(request).body();
+  public ItemsFilesListCatalogResponse itemsFilesList(ItemsFilesListCatalogRequest request) {
+    return this.rawClient.itemsFilesList(request).body();
   }
 
-  public PostV1CatalogItemsSuppliersListResponse postV1CatalogItemsSuppliersList(
-      PostV1CatalogItemsSuppliersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsSuppliersList(request, requestOptions).body();
-  }
-
-  public PostV1CatalogItemsSuppliersDeleteResponse postV1CatalogItemsSuppliersDelete(
-      PostV1CatalogItemsSuppliersDeleteRequest request) {
-    return this.rawClient.postV1CatalogItemsSuppliersDelete(request).body();
-  }
-
-  public PostV1CatalogItemsSuppliersDeleteResponse postV1CatalogItemsSuppliersDelete(
-      PostV1CatalogItemsSuppliersDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsSuppliersDelete(request, requestOptions).body();
-  }
-
-  public PostV1CatalogPriceListsCreateResponse postV1CatalogPriceListsCreate(
-      PostV1CatalogPriceListsCreateRequest request) {
-    return this.rawClient.postV1CatalogPriceListsCreate(request).body();
-  }
-
-  public PostV1CatalogPriceListsCreateResponse postV1CatalogPriceListsCreate(
-      PostV1CatalogPriceListsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogPriceListsCreate(request, requestOptions).body();
-  }
-
-  public PostV1CatalogPriceListsUpdateResponse postV1CatalogPriceListsUpdate(
-      PostV1CatalogPriceListsUpdateRequest request) {
-    return this.rawClient.postV1CatalogPriceListsUpdate(request).body();
-  }
-
-  public PostV1CatalogPriceListsUpdateResponse postV1CatalogPriceListsUpdate(
-      PostV1CatalogPriceListsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogPriceListsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1CatalogPriceListsListResponse postV1CatalogPriceListsList() {
-    return this.rawClient.postV1CatalogPriceListsList().body();
-  }
-
-  public PostV1CatalogPriceListsListResponse postV1CatalogPriceListsList(
+  public ItemsFilesListCatalogResponse itemsFilesList(ItemsFilesListCatalogRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogPriceListsList(requestOptions).body();
+    return this.rawClient.itemsFilesList(request, requestOptions).body();
   }
 
-  public PostV1CatalogPriceListsListResponse postV1CatalogPriceListsList(
-      PostV1CatalogPriceListsListRequest request) {
-    return this.rawClient.postV1CatalogPriceListsList(request).body();
+  public ItemsKindsCreateCatalogResponse itemsKindsCreate(ItemsKindsCreateCatalogRequest request) {
+    return this.rawClient.itemsKindsCreate(request).body();
   }
 
-  public PostV1CatalogPriceListsListResponse postV1CatalogPriceListsList(
-      PostV1CatalogPriceListsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogPriceListsList(request, requestOptions).body();
+  public ItemsKindsCreateCatalogResponse itemsKindsCreate(ItemsKindsCreateCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.itemsKindsCreate(request, requestOptions).body();
   }
 
-  public PostV1CatalogPriceListsItemsSetResponse postV1CatalogPriceListsItemsSet(
-      PostV1CatalogPriceListsItemsSetRequest request) {
-    return this.rawClient.postV1CatalogPriceListsItemsSet(request).body();
+  public ItemsKindsUpdateCatalogResponse itemsKindsUpdate(ItemsKindsUpdateCatalogRequest request) {
+    return this.rawClient.itemsKindsUpdate(request).body();
   }
 
-  public PostV1CatalogPriceListsItemsSetResponse postV1CatalogPriceListsItemsSet(
-      PostV1CatalogPriceListsItemsSetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogPriceListsItemsSet(request, requestOptions).body();
+  public ItemsKindsUpdateCatalogResponse itemsKindsUpdate(ItemsKindsUpdateCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.itemsKindsUpdate(request, requestOptions).body();
   }
 
-  public PostV1CatalogPriceListsItemsListResponse postV1CatalogPriceListsItemsList(
-      PostV1CatalogPriceListsItemsListRequest request) {
-    return this.rawClient.postV1CatalogPriceListsItemsList(request).body();
+  public ItemsKindsDeleteCatalogResponse itemsKindsDelete(ItemsKindsDeleteCatalogRequest request) {
+    return this.rawClient.itemsKindsDelete(request).body();
   }
 
-  public PostV1CatalogPriceListsItemsListResponse postV1CatalogPriceListsItemsList(
-      PostV1CatalogPriceListsItemsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogPriceListsItemsList(request, requestOptions).body();
+  public ItemsKindsDeleteCatalogResponse itemsKindsDelete(ItemsKindsDeleteCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.itemsKindsDelete(request, requestOptions).body();
   }
 
-  public PostV1CatalogPriceListsItemsDeleteResponse postV1CatalogPriceListsItemsDelete(
-      PostV1CatalogPriceListsItemsDeleteRequest request) {
-    return this.rawClient.postV1CatalogPriceListsItemsDelete(request).body();
+  public ItemsKindsListCatalogResponse itemsKindsList() {
+    return this.rawClient.itemsKindsList().body();
   }
 
-  public PostV1CatalogPriceListsItemsDeleteResponse postV1CatalogPriceListsItemsDelete(
-      PostV1CatalogPriceListsItemsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogPriceListsItemsDelete(request, requestOptions).body();
+  public ItemsKindsListCatalogResponse itemsKindsList(RequestOptions requestOptions) {
+    return this.rawClient.itemsKindsList(requestOptions).body();
+  }
+
+  public ItemsKindsListCatalogResponse itemsKindsList(ItemsKindsListCatalogRequest request) {
+    return this.rawClient.itemsKindsList(request).body();
+  }
+
+  public ItemsKindsListCatalogResponse itemsKindsList(ItemsKindsListCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.itemsKindsList(request, requestOptions).body();
+  }
+
+  public UnitsCreateCatalogResponse unitsCreate(UnitsCreateCatalogRequest request) {
+    return this.rawClient.unitsCreate(request).body();
+  }
+
+  public UnitsCreateCatalogResponse unitsCreate(UnitsCreateCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.unitsCreate(request, requestOptions).body();
+  }
+
+  public UnitsUpdateCatalogResponse unitsUpdate(UnitsUpdateCatalogRequest request) {
+    return this.rawClient.unitsUpdate(request).body();
+  }
+
+  public UnitsUpdateCatalogResponse unitsUpdate(UnitsUpdateCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.unitsUpdate(request, requestOptions).body();
+  }
+
+  public UnitsDeleteCatalogResponse unitsDelete(UnitsDeleteCatalogRequest request) {
+    return this.rawClient.unitsDelete(request).body();
+  }
+
+  public UnitsDeleteCatalogResponse unitsDelete(UnitsDeleteCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.unitsDelete(request, requestOptions).body();
+  }
+
+  public UnitsListCatalogResponse unitsList() {
+    return this.rawClient.unitsList().body();
+  }
+
+  public UnitsListCatalogResponse unitsList(RequestOptions requestOptions) {
+    return this.rawClient.unitsList(requestOptions).body();
+  }
+
+  public UnitsListCatalogResponse unitsList(UnitsListCatalogRequest request) {
+    return this.rawClient.unitsList(request).body();
+  }
+
+  public UnitsListCatalogResponse unitsList(UnitsListCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.unitsList(request, requestOptions).body();
+  }
+
+  public UnitsOptionsCatalogResponse unitsOptions() {
+    return this.rawClient.unitsOptions().body();
+  }
+
+  public UnitsOptionsCatalogResponse unitsOptions(RequestOptions requestOptions) {
+    return this.rawClient.unitsOptions(requestOptions).body();
+  }
+
+  public UnitsOptionsCatalogResponse unitsOptions(UnitsOptionsCatalogRequest request) {
+    return this.rawClient.unitsOptions(request).body();
+  }
+
+  public UnitsOptionsCatalogResponse unitsOptions(UnitsOptionsCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.unitsOptions(request, requestOptions).body();
+  }
+
+  public ItemGroupsCreateCatalogResponse itemGroupsCreate(ItemGroupsCreateCatalogRequest request) {
+    return this.rawClient.itemGroupsCreate(request).body();
+  }
+
+  public ItemGroupsCreateCatalogResponse itemGroupsCreate(ItemGroupsCreateCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.itemGroupsCreate(request, requestOptions).body();
+  }
+
+  public ItemGroupsUpdateCatalogResponse itemGroupsUpdate(ItemGroupsUpdateCatalogRequest request) {
+    return this.rawClient.itemGroupsUpdate(request).body();
+  }
+
+  public ItemGroupsUpdateCatalogResponse itemGroupsUpdate(ItemGroupsUpdateCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.itemGroupsUpdate(request, requestOptions).body();
+  }
+
+  public ItemGroupsDeleteCatalogResponse itemGroupsDelete(ItemGroupsDeleteCatalogRequest request) {
+    return this.rawClient.itemGroupsDelete(request).body();
+  }
+
+  public ItemGroupsDeleteCatalogResponse itemGroupsDelete(ItemGroupsDeleteCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.itemGroupsDelete(request, requestOptions).body();
+  }
+
+  public ItemGroupsListCatalogResponse itemGroupsList() {
+    return this.rawClient.itemGroupsList().body();
+  }
+
+  public ItemGroupsListCatalogResponse itemGroupsList(RequestOptions requestOptions) {
+    return this.rawClient.itemGroupsList(requestOptions).body();
+  }
+
+  public ItemGroupsListCatalogResponse itemGroupsList(ItemGroupsListCatalogRequest request) {
+    return this.rawClient.itemGroupsList(request).body();
+  }
+
+  public ItemGroupsListCatalogResponse itemGroupsList(ItemGroupsListCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.itemGroupsList(request, requestOptions).body();
+  }
+
+  public ItemsSuppliersUpsertCatalogResponse itemsSuppliersUpsert(
+      ItemsSuppliersUpsertCatalogRequest request) {
+    return this.rawClient.itemsSuppliersUpsert(request).body();
+  }
+
+  public ItemsSuppliersUpsertCatalogResponse itemsSuppliersUpsert(
+      ItemsSuppliersUpsertCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsSuppliersUpsert(request, requestOptions).body();
+  }
+
+  public ItemsSuppliersListCatalogResponse itemsSuppliersList() {
+    return this.rawClient.itemsSuppliersList().body();
+  }
+
+  public ItemsSuppliersListCatalogResponse itemsSuppliersList(RequestOptions requestOptions) {
+    return this.rawClient.itemsSuppliersList(requestOptions).body();
+  }
+
+  public ItemsSuppliersListCatalogResponse itemsSuppliersList(
+      ItemsSuppliersListCatalogRequest request) {
+    return this.rawClient.itemsSuppliersList(request).body();
+  }
+
+  public ItemsSuppliersListCatalogResponse itemsSuppliersList(
+      ItemsSuppliersListCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsSuppliersList(request, requestOptions).body();
+  }
+
+  public ItemsSuppliersDeleteCatalogResponse itemsSuppliersDelete(
+      ItemsSuppliersDeleteCatalogRequest request) {
+    return this.rawClient.itemsSuppliersDelete(request).body();
+  }
+
+  public ItemsSuppliersDeleteCatalogResponse itemsSuppliersDelete(
+      ItemsSuppliersDeleteCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsSuppliersDelete(request, requestOptions).body();
+  }
+
+  public PriceListsCreateCatalogResponse priceListsCreate(PriceListsCreateCatalogRequest request) {
+    return this.rawClient.priceListsCreate(request).body();
+  }
+
+  public PriceListsCreateCatalogResponse priceListsCreate(PriceListsCreateCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.priceListsCreate(request, requestOptions).body();
+  }
+
+  public PriceListsUpdateCatalogResponse priceListsUpdate(PriceListsUpdateCatalogRequest request) {
+    return this.rawClient.priceListsUpdate(request).body();
+  }
+
+  public PriceListsUpdateCatalogResponse priceListsUpdate(PriceListsUpdateCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.priceListsUpdate(request, requestOptions).body();
+  }
+
+  public PriceListsListCatalogResponse priceListsList() {
+    return this.rawClient.priceListsList().body();
+  }
+
+  public PriceListsListCatalogResponse priceListsList(RequestOptions requestOptions) {
+    return this.rawClient.priceListsList(requestOptions).body();
+  }
+
+  public PriceListsListCatalogResponse priceListsList(PriceListsListCatalogRequest request) {
+    return this.rawClient.priceListsList(request).body();
+  }
+
+  public PriceListsListCatalogResponse priceListsList(PriceListsListCatalogRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.priceListsList(request, requestOptions).body();
+  }
+
+  public PriceListsItemsSetCatalogResponse priceListsItemsSet(
+      PriceListsItemsSetCatalogRequest request) {
+    return this.rawClient.priceListsItemsSet(request).body();
+  }
+
+  public PriceListsItemsSetCatalogResponse priceListsItemsSet(
+      PriceListsItemsSetCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.priceListsItemsSet(request, requestOptions).body();
+  }
+
+  public PriceListsItemsListCatalogResponse priceListsItemsList(
+      PriceListsItemsListCatalogRequest request) {
+    return this.rawClient.priceListsItemsList(request).body();
+  }
+
+  public PriceListsItemsListCatalogResponse priceListsItemsList(
+      PriceListsItemsListCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.priceListsItemsList(request, requestOptions).body();
+  }
+
+  public PriceListsItemsDeleteCatalogResponse priceListsItemsDelete(
+      PriceListsItemsDeleteCatalogRequest request) {
+    return this.rawClient.priceListsItemsDelete(request).body();
+  }
+
+  public PriceListsItemsDeleteCatalogResponse priceListsItemsDelete(
+      PriceListsItemsDeleteCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.priceListsItemsDelete(request, requestOptions).body();
   }
 }

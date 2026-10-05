@@ -6,18 +6,18 @@ package com.nordlet.api.resources.transport;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsCancelRequest;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsCreateRequest;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsGetRequest;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsIssueRequest;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsListRequest;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsUpdateRequest;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsCancelResponse;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsCreateResponse;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsGetResponse;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsIssueResponse;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsListResponse;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsUpdateResponse;
+import com.nordlet.api.resources.transport.requests.WaybillsCancelTransportRequest;
+import com.nordlet.api.resources.transport.requests.WaybillsCreateTransportRequest;
+import com.nordlet.api.resources.transport.requests.WaybillsGetTransportRequest;
+import com.nordlet.api.resources.transport.requests.WaybillsIssueTransportRequest;
+import com.nordlet.api.resources.transport.requests.WaybillsListTransportRequest;
+import com.nordlet.api.resources.transport.requests.WaybillsUpdateTransportRequest;
+import com.nordlet.api.resources.transport.types.WaybillsCancelTransportResponse;
+import com.nordlet.api.resources.transport.types.WaybillsCreateTransportResponse;
+import com.nordlet.api.resources.transport.types.WaybillsGetTransportResponse;
+import com.nordlet.api.resources.transport.types.WaybillsIssueTransportResponse;
+import com.nordlet.api.resources.transport.types.WaybillsListTransportResponse;
+import com.nordlet.api.resources.transport.types.WaybillsUpdateTransportResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncTransportClient {
@@ -37,72 +37,72 @@ public class AsyncTransportClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1TransportWaybillsCreateResponse> postV1TransportWaybillsCreate(
-      PostV1TransportWaybillsCreateRequest request) {
-    return this.rawClient.postV1TransportWaybillsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<WaybillsCreateTransportResponse> waybillsCreate(
+      WaybillsCreateTransportRequest request) {
+    return this.rawClient.waybillsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1TransportWaybillsCreateResponse> postV1TransportWaybillsCreate(
-      PostV1TransportWaybillsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1TransportWaybillsCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<WaybillsCreateTransportResponse> waybillsCreate(
+      WaybillsCreateTransportRequest request, RequestOptions requestOptions) {
+    return this.rawClient.waybillsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1TransportWaybillsUpdateResponse> postV1TransportWaybillsUpdate(
-      PostV1TransportWaybillsUpdateRequest request) {
-    return this.rawClient.postV1TransportWaybillsUpdate(request).thenApply(response -> response.body());
+  public CompletableFuture<WaybillsUpdateTransportResponse> waybillsUpdate(
+      WaybillsUpdateTransportRequest request) {
+    return this.rawClient.waybillsUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1TransportWaybillsUpdateResponse> postV1TransportWaybillsUpdate(
-      PostV1TransportWaybillsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1TransportWaybillsUpdate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<WaybillsUpdateTransportResponse> waybillsUpdate(
+      WaybillsUpdateTransportRequest request, RequestOptions requestOptions) {
+    return this.rawClient.waybillsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1TransportWaybillsIssueResponse> postV1TransportWaybillsIssue(
-      PostV1TransportWaybillsIssueRequest request) {
-    return this.rawClient.postV1TransportWaybillsIssue(request).thenApply(response -> response.body());
+  public CompletableFuture<WaybillsIssueTransportResponse> waybillsIssue(
+      WaybillsIssueTransportRequest request) {
+    return this.rawClient.waybillsIssue(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1TransportWaybillsIssueResponse> postV1TransportWaybillsIssue(
-      PostV1TransportWaybillsIssueRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1TransportWaybillsIssue(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<WaybillsIssueTransportResponse> waybillsIssue(
+      WaybillsIssueTransportRequest request, RequestOptions requestOptions) {
+    return this.rawClient.waybillsIssue(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1TransportWaybillsCancelResponse> postV1TransportWaybillsCancel(
-      PostV1TransportWaybillsCancelRequest request) {
-    return this.rawClient.postV1TransportWaybillsCancel(request).thenApply(response -> response.body());
+  public CompletableFuture<WaybillsCancelTransportResponse> waybillsCancel(
+      WaybillsCancelTransportRequest request) {
+    return this.rawClient.waybillsCancel(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1TransportWaybillsCancelResponse> postV1TransportWaybillsCancel(
-      PostV1TransportWaybillsCancelRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1TransportWaybillsCancel(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<WaybillsCancelTransportResponse> waybillsCancel(
+      WaybillsCancelTransportRequest request, RequestOptions requestOptions) {
+    return this.rawClient.waybillsCancel(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1TransportWaybillsGetResponse> postV1TransportWaybillsGet(
-      PostV1TransportWaybillsGetRequest request) {
-    return this.rawClient.postV1TransportWaybillsGet(request).thenApply(response -> response.body());
+  public CompletableFuture<WaybillsGetTransportResponse> waybillsGet(
+      WaybillsGetTransportRequest request) {
+    return this.rawClient.waybillsGet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1TransportWaybillsGetResponse> postV1TransportWaybillsGet(
-      PostV1TransportWaybillsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1TransportWaybillsGet(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<WaybillsGetTransportResponse> waybillsGet(
+      WaybillsGetTransportRequest request, RequestOptions requestOptions) {
+    return this.rawClient.waybillsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1TransportWaybillsListResponse> postV1TransportWaybillsList() {
-    return this.rawClient.postV1TransportWaybillsList().thenApply(response -> response.body());
+  public CompletableFuture<WaybillsListTransportResponse> waybillsList() {
+    return this.rawClient.waybillsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1TransportWaybillsListResponse> postV1TransportWaybillsList(
+  public CompletableFuture<WaybillsListTransportResponse> waybillsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1TransportWaybillsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.waybillsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1TransportWaybillsListResponse> postV1TransportWaybillsList(
-      PostV1TransportWaybillsListRequest request) {
-    return this.rawClient.postV1TransportWaybillsList(request).thenApply(response -> response.body());
+  public CompletableFuture<WaybillsListTransportResponse> waybillsList(
+      WaybillsListTransportRequest request) {
+    return this.rawClient.waybillsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1TransportWaybillsListResponse> postV1TransportWaybillsList(
-      PostV1TransportWaybillsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1TransportWaybillsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<WaybillsListTransportResponse> waybillsList(
+      WaybillsListTransportRequest request, RequestOptions requestOptions) {
+    return this.rawClient.waybillsList(request, requestOptions).thenApply(response -> response.body());
   }
 }

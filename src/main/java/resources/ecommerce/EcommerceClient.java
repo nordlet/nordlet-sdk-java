@@ -6,22 +6,22 @@ package com.nordlet.api.resources.ecommerce;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersCancelRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersCreateRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersFulfillRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersGetRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersListRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersReserveRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceProductsListRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceStockListRequest;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersCancelResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersCreateResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersFulfillResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersGetResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersListResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersReserveResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceProductsListResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceStockListResponse;
+import com.nordlet.api.resources.ecommerce.requests.OrdersCancelEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersCreateEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersFulfillEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersGetEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersListEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersReserveEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.ProductsListEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.StockListEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.types.OrdersCancelEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersCreateEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersFulfillEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersGetEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersListEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersReserveEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.ProductsListEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.StockListEcommerceResponse;
 
 public class EcommerceClient {
   protected final ClientOptions clientOptions;
@@ -40,109 +40,99 @@ public class EcommerceClient {
     return this.rawClient;
   }
 
-  public PostV1EcommerceOrdersCreateResponse postV1EcommerceOrdersCreate(
-      PostV1EcommerceOrdersCreateRequest request) {
-    return this.rawClient.postV1EcommerceOrdersCreate(request).body();
+  public OrdersCreateEcommerceResponse ordersCreate(OrdersCreateEcommerceRequest request) {
+    return this.rawClient.ordersCreate(request).body();
   }
 
-  public PostV1EcommerceOrdersCreateResponse postV1EcommerceOrdersCreate(
-      PostV1EcommerceOrdersCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceOrdersCreate(request, requestOptions).body();
-  }
-
-  public PostV1EcommerceOrdersGetResponse postV1EcommerceOrdersGet(
-      PostV1EcommerceOrdersGetRequest request) {
-    return this.rawClient.postV1EcommerceOrdersGet(request).body();
-  }
-
-  public PostV1EcommerceOrdersGetResponse postV1EcommerceOrdersGet(
-      PostV1EcommerceOrdersGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceOrdersGet(request, requestOptions).body();
-  }
-
-  public PostV1EcommerceOrdersListResponse postV1EcommerceOrdersList() {
-    return this.rawClient.postV1EcommerceOrdersList().body();
-  }
-
-  public PostV1EcommerceOrdersListResponse postV1EcommerceOrdersList(
+  public OrdersCreateEcommerceResponse ordersCreate(OrdersCreateEcommerceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceOrdersList(requestOptions).body();
+    return this.rawClient.ordersCreate(request, requestOptions).body();
   }
 
-  public PostV1EcommerceOrdersListResponse postV1EcommerceOrdersList(
-      PostV1EcommerceOrdersListRequest request) {
-    return this.rawClient.postV1EcommerceOrdersList(request).body();
+  public OrdersGetEcommerceResponse ordersGet(OrdersGetEcommerceRequest request) {
+    return this.rawClient.ordersGet(request).body();
   }
 
-  public PostV1EcommerceOrdersListResponse postV1EcommerceOrdersList(
-      PostV1EcommerceOrdersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceOrdersList(request, requestOptions).body();
-  }
-
-  public PostV1EcommerceOrdersReserveResponse postV1EcommerceOrdersReserve(
-      PostV1EcommerceOrdersReserveRequest request) {
-    return this.rawClient.postV1EcommerceOrdersReserve(request).body();
-  }
-
-  public PostV1EcommerceOrdersReserveResponse postV1EcommerceOrdersReserve(
-      PostV1EcommerceOrdersReserveRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceOrdersReserve(request, requestOptions).body();
-  }
-
-  public PostV1EcommerceOrdersFulfillResponse postV1EcommerceOrdersFulfill(
-      PostV1EcommerceOrdersFulfillRequest request) {
-    return this.rawClient.postV1EcommerceOrdersFulfill(request).body();
-  }
-
-  public PostV1EcommerceOrdersFulfillResponse postV1EcommerceOrdersFulfill(
-      PostV1EcommerceOrdersFulfillRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceOrdersFulfill(request, requestOptions).body();
-  }
-
-  public PostV1EcommerceOrdersCancelResponse postV1EcommerceOrdersCancel(
-      PostV1EcommerceOrdersCancelRequest request) {
-    return this.rawClient.postV1EcommerceOrdersCancel(request).body();
-  }
-
-  public PostV1EcommerceOrdersCancelResponse postV1EcommerceOrdersCancel(
-      PostV1EcommerceOrdersCancelRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceOrdersCancel(request, requestOptions).body();
-  }
-
-  public PostV1EcommerceProductsListResponse postV1EcommerceProductsList() {
-    return this.rawClient.postV1EcommerceProductsList().body();
-  }
-
-  public PostV1EcommerceProductsListResponse postV1EcommerceProductsList(
+  public OrdersGetEcommerceResponse ordersGet(OrdersGetEcommerceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceProductsList(requestOptions).body();
+    return this.rawClient.ordersGet(request, requestOptions).body();
   }
 
-  public PostV1EcommerceProductsListResponse postV1EcommerceProductsList(
-      PostV1EcommerceProductsListRequest request) {
-    return this.rawClient.postV1EcommerceProductsList(request).body();
+  public OrdersListEcommerceResponse ordersList() {
+    return this.rawClient.ordersList().body();
   }
 
-  public PostV1EcommerceProductsListResponse postV1EcommerceProductsList(
-      PostV1EcommerceProductsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceProductsList(request, requestOptions).body();
+  public OrdersListEcommerceResponse ordersList(RequestOptions requestOptions) {
+    return this.rawClient.ordersList(requestOptions).body();
   }
 
-  public PostV1EcommerceStockListResponse postV1EcommerceStockList() {
-    return this.rawClient.postV1EcommerceStockList().body();
+  public OrdersListEcommerceResponse ordersList(OrdersListEcommerceRequest request) {
+    return this.rawClient.ordersList(request).body();
   }
 
-  public PostV1EcommerceStockListResponse postV1EcommerceStockList(RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceStockList(requestOptions).body();
+  public OrdersListEcommerceResponse ordersList(OrdersListEcommerceRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersList(request, requestOptions).body();
   }
 
-  public PostV1EcommerceStockListResponse postV1EcommerceStockList(
-      PostV1EcommerceStockListRequest request) {
-    return this.rawClient.postV1EcommerceStockList(request).body();
+  public OrdersReserveEcommerceResponse ordersReserve(OrdersReserveEcommerceRequest request) {
+    return this.rawClient.ordersReserve(request).body();
   }
 
-  public PostV1EcommerceStockListResponse postV1EcommerceStockList(
-      PostV1EcommerceStockListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceStockList(request, requestOptions).body();
+  public OrdersReserveEcommerceResponse ordersReserve(OrdersReserveEcommerceRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersReserve(request, requestOptions).body();
+  }
+
+  public OrdersFulfillEcommerceResponse ordersFulfill(OrdersFulfillEcommerceRequest request) {
+    return this.rawClient.ordersFulfill(request).body();
+  }
+
+  public OrdersFulfillEcommerceResponse ordersFulfill(OrdersFulfillEcommerceRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersFulfill(request, requestOptions).body();
+  }
+
+  public OrdersCancelEcommerceResponse ordersCancel(OrdersCancelEcommerceRequest request) {
+    return this.rawClient.ordersCancel(request).body();
+  }
+
+  public OrdersCancelEcommerceResponse ordersCancel(OrdersCancelEcommerceRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ordersCancel(request, requestOptions).body();
+  }
+
+  public ProductsListEcommerceResponse productsList() {
+    return this.rawClient.productsList().body();
+  }
+
+  public ProductsListEcommerceResponse productsList(RequestOptions requestOptions) {
+    return this.rawClient.productsList(requestOptions).body();
+  }
+
+  public ProductsListEcommerceResponse productsList(ProductsListEcommerceRequest request) {
+    return this.rawClient.productsList(request).body();
+  }
+
+  public ProductsListEcommerceResponse productsList(ProductsListEcommerceRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.productsList(request, requestOptions).body();
+  }
+
+  public StockListEcommerceResponse stockList() {
+    return this.rawClient.stockList().body();
+  }
+
+  public StockListEcommerceResponse stockList(RequestOptions requestOptions) {
+    return this.rawClient.stockList(requestOptions).body();
+  }
+
+  public StockListEcommerceResponse stockList(StockListEcommerceRequest request) {
+    return this.rawClient.stockList(request).body();
+  }
+
+  public StockListEcommerceResponse stockList(StockListEcommerceRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.stockList(request, requestOptions).body();
   }
 }

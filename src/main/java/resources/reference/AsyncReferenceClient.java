@@ -6,56 +6,56 @@ package com.nordlet.api.resources.reference;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceBanksListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceBanksUpsertRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceCnCodesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceCnCodesUpsertRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceComplianceVersionsListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceCountriesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceCurrenciesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceEuVatRatesSetOverridesRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesOverridesDeleteRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesOverridesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesSetRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesSyncRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceIntrastatThresholdsListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtCitiesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtCountiesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtMunicipalitiesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceLtRegionsListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceSeriesCreateRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceSeriesListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceUnitsListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceVatClassifiersListRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceVatClassifiersUpsertRequest;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceVatResolveRequest;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceBanksListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceBanksUpsertResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceCnCodesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceCnCodesUpsertResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceComplianceVersionsListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceCountriesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceCurrenciesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceEuVatRatesSetOverridesResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesOverridesDeleteResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesOverridesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesSetResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceExchangeRatesSyncResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceIntrastatThresholdsListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceLtCitiesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceLtCountiesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceLtMunicipalitiesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceLtRegionsListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceSeriesCreateResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceSeriesListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceUnitsListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceVatClassifiersListResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceVatClassifiersUpsertResponse;
-import com.nordlet.api.resources.reference.types.PostV1ReferenceVatResolveResponse;
+import com.nordlet.api.resources.reference.requests.BanksListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.BanksUpsertReferenceRequest;
+import com.nordlet.api.resources.reference.requests.CnCodesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.CnCodesUpsertReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ComplianceVersionsListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.CountriesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.CurrenciesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.EuVatRatesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.EuVatRatesSetOverridesReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesOverridesDeleteReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesOverridesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesSetReferenceRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesSyncReferenceRequest;
+import com.nordlet.api.resources.reference.requests.IntrastatThresholdsListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.LtCitiesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.LtCountiesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.LtMunicipalitiesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.LtRegionsListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.SeriesCreateReferenceRequest;
+import com.nordlet.api.resources.reference.requests.SeriesListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.UnitsListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.VatClassifiersListReferenceRequest;
+import com.nordlet.api.resources.reference.requests.VatClassifiersUpsertReferenceRequest;
+import com.nordlet.api.resources.reference.requests.VatResolveReferenceRequest;
+import com.nordlet.api.resources.reference.types.BanksListReferenceResponse;
+import com.nordlet.api.resources.reference.types.BanksUpsertReferenceResponse;
+import com.nordlet.api.resources.reference.types.CnCodesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.CnCodesUpsertReferenceResponse;
+import com.nordlet.api.resources.reference.types.ComplianceVersionsListReferenceResponse;
+import com.nordlet.api.resources.reference.types.CountriesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.CurrenciesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.EuVatRatesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.EuVatRatesSetOverridesReferenceResponse;
+import com.nordlet.api.resources.reference.types.ExchangeRatesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.ExchangeRatesOverridesDeleteReferenceResponse;
+import com.nordlet.api.resources.reference.types.ExchangeRatesOverridesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.ExchangeRatesSetReferenceResponse;
+import com.nordlet.api.resources.reference.types.ExchangeRatesSyncReferenceResponse;
+import com.nordlet.api.resources.reference.types.IntrastatThresholdsListReferenceResponse;
+import com.nordlet.api.resources.reference.types.LtCitiesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.LtCountiesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.LtMunicipalitiesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.LtRegionsListReferenceResponse;
+import com.nordlet.api.resources.reference.types.SeriesCreateReferenceResponse;
+import com.nordlet.api.resources.reference.types.SeriesListReferenceResponse;
+import com.nordlet.api.resources.reference.types.UnitsListReferenceResponse;
+import com.nordlet.api.resources.reference.types.VatClassifiersListReferenceResponse;
+import com.nordlet.api.resources.reference.types.VatClassifiersUpsertReferenceResponse;
+import com.nordlet.api.resources.reference.types.VatResolveReferenceResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncReferenceClient {
@@ -75,440 +75,430 @@ public class AsyncReferenceClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1ReferenceExchangeRatesSyncResponse> postV1ReferenceExchangeRatesSync(
+  public CompletableFuture<ExchangeRatesSyncReferenceResponse> exchangeRatesSync() {
+    return this.rawClient.exchangeRatesSync().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExchangeRatesSyncReferenceResponse> exchangeRatesSync(
+      RequestOptions requestOptions) {
+    return this.rawClient.exchangeRatesSync(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExchangeRatesSyncReferenceResponse> exchangeRatesSync(
+      ExchangeRatesSyncReferenceRequest request) {
+    return this.rawClient.exchangeRatesSync(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExchangeRatesSyncReferenceResponse> exchangeRatesSync(
+      ExchangeRatesSyncReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.exchangeRatesSync(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExchangeRatesListReferenceResponse> exchangeRatesList() {
+    return this.rawClient.exchangeRatesList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExchangeRatesListReferenceResponse> exchangeRatesList(
+      RequestOptions requestOptions) {
+    return this.rawClient.exchangeRatesList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExchangeRatesListReferenceResponse> exchangeRatesList(
+      ExchangeRatesListReferenceRequest request) {
+    return this.rawClient.exchangeRatesList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExchangeRatesListReferenceResponse> exchangeRatesList(
+      ExchangeRatesListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.exchangeRatesList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExchangeRatesSetReferenceResponse> exchangeRatesSet(
+      ExchangeRatesSetReferenceRequest request) {
+    return this.rawClient.exchangeRatesSet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExchangeRatesSetReferenceResponse> exchangeRatesSet(
+      ExchangeRatesSetReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.exchangeRatesSet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExchangeRatesOverridesListReferenceResponse> exchangeRatesOverridesList(
       ) {
-    return this.rawClient.postV1ReferenceExchangeRatesSync().thenApply(response -> response.body());
+    return this.rawClient.exchangeRatesOverridesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceExchangeRatesSyncResponse> postV1ReferenceExchangeRatesSync(
+  public CompletableFuture<ExchangeRatesOverridesListReferenceResponse> exchangeRatesOverridesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesSync(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.exchangeRatesOverridesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceExchangeRatesSyncResponse> postV1ReferenceExchangeRatesSync(
-      PostV1ReferenceExchangeRatesSyncRequest request) {
-    return this.rawClient.postV1ReferenceExchangeRatesSync(request).thenApply(response -> response.body());
+  public CompletableFuture<ExchangeRatesOverridesListReferenceResponse> exchangeRatesOverridesList(
+      ExchangeRatesOverridesListReferenceRequest request) {
+    return this.rawClient.exchangeRatesOverridesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceExchangeRatesSyncResponse> postV1ReferenceExchangeRatesSync(
-      PostV1ReferenceExchangeRatesSyncRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesSync(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ExchangeRatesOverridesListReferenceResponse> exchangeRatesOverridesList(
+      ExchangeRatesOverridesListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.exchangeRatesOverridesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceExchangeRatesListResponse> postV1ReferenceExchangeRatesList(
-      ) {
-    return this.rawClient.postV1ReferenceExchangeRatesList().thenApply(response -> response.body());
+  public CompletableFuture<ExchangeRatesOverridesDeleteReferenceResponse> exchangeRatesOverridesDelete(
+      ExchangeRatesOverridesDeleteReferenceRequest request) {
+    return this.rawClient.exchangeRatesOverridesDelete(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceExchangeRatesListResponse> postV1ReferenceExchangeRatesList(
+  public CompletableFuture<ExchangeRatesOverridesDeleteReferenceResponse> exchangeRatesOverridesDelete(
+      ExchangeRatesOverridesDeleteReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.exchangeRatesOverridesDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CountriesListReferenceResponse> countriesList() {
+    return this.rawClient.countriesList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CountriesListReferenceResponse> countriesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.countriesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceExchangeRatesListResponse> postV1ReferenceExchangeRatesList(
-      PostV1ReferenceExchangeRatesListRequest request) {
-    return this.rawClient.postV1ReferenceExchangeRatesList(request).thenApply(response -> response.body());
+  public CompletableFuture<CountriesListReferenceResponse> countriesList(
+      CountriesListReferenceRequest request) {
+    return this.rawClient.countriesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceExchangeRatesListResponse> postV1ReferenceExchangeRatesList(
-      PostV1ReferenceExchangeRatesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CountriesListReferenceResponse> countriesList(
+      CountriesListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.countriesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceExchangeRatesSetResponse> postV1ReferenceExchangeRatesSet(
-      PostV1ReferenceExchangeRatesSetRequest request) {
-    return this.rawClient.postV1ReferenceExchangeRatesSet(request).thenApply(response -> response.body());
+  public CompletableFuture<LtCountiesListReferenceResponse> ltCountiesList() {
+    return this.rawClient.ltCountiesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceExchangeRatesSetResponse> postV1ReferenceExchangeRatesSet(
-      PostV1ReferenceExchangeRatesSetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesSet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceExchangeRatesOverridesListResponse> postV1ReferenceExchangeRatesOverridesList(
-      ) {
-    return this.rawClient.postV1ReferenceExchangeRatesOverridesList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceExchangeRatesOverridesListResponse> postV1ReferenceExchangeRatesOverridesList(
+  public CompletableFuture<LtCountiesListReferenceResponse> ltCountiesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesOverridesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.ltCountiesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceExchangeRatesOverridesListResponse> postV1ReferenceExchangeRatesOverridesList(
-      PostV1ReferenceExchangeRatesOverridesListRequest request) {
-    return this.rawClient.postV1ReferenceExchangeRatesOverridesList(request).thenApply(response -> response.body());
+  public CompletableFuture<LtCountiesListReferenceResponse> ltCountiesList(
+      LtCountiesListReferenceRequest request) {
+    return this.rawClient.ltCountiesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceExchangeRatesOverridesListResponse> postV1ReferenceExchangeRatesOverridesList(
-      PostV1ReferenceExchangeRatesOverridesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesOverridesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<LtCountiesListReferenceResponse> ltCountiesList(
+      LtCountiesListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltCountiesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceExchangeRatesOverridesDeleteResponse> postV1ReferenceExchangeRatesOverridesDelete(
-      PostV1ReferenceExchangeRatesOverridesDeleteRequest request) {
-    return this.rawClient.postV1ReferenceExchangeRatesOverridesDelete(request).thenApply(response -> response.body());
+  public CompletableFuture<LtMunicipalitiesListReferenceResponse> ltMunicipalitiesList() {
+    return this.rawClient.ltMunicipalitiesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceExchangeRatesOverridesDeleteResponse> postV1ReferenceExchangeRatesOverridesDelete(
-      PostV1ReferenceExchangeRatesOverridesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceExchangeRatesOverridesDelete(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceCountriesListResponse> postV1ReferenceCountriesList() {
-    return this.rawClient.postV1ReferenceCountriesList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceCountriesListResponse> postV1ReferenceCountriesList(
+  public CompletableFuture<LtMunicipalitiesListReferenceResponse> ltMunicipalitiesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceCountriesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.ltMunicipalitiesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceCountriesListResponse> postV1ReferenceCountriesList(
-      PostV1ReferenceCountriesListRequest request) {
-    return this.rawClient.postV1ReferenceCountriesList(request).thenApply(response -> response.body());
+  public CompletableFuture<LtMunicipalitiesListReferenceResponse> ltMunicipalitiesList(
+      LtMunicipalitiesListReferenceRequest request) {
+    return this.rawClient.ltMunicipalitiesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceCountriesListResponse> postV1ReferenceCountriesList(
-      PostV1ReferenceCountriesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceCountriesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<LtMunicipalitiesListReferenceResponse> ltMunicipalitiesList(
+      LtMunicipalitiesListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltMunicipalitiesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceLtCountiesListResponse> postV1ReferenceLtCountiesList() {
-    return this.rawClient.postV1ReferenceLtCountiesList().thenApply(response -> response.body());
+  public CompletableFuture<LtCitiesListReferenceResponse> ltCitiesList() {
+    return this.rawClient.ltCitiesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceLtCountiesListResponse> postV1ReferenceLtCountiesList(
+  public CompletableFuture<LtCitiesListReferenceResponse> ltCitiesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtCountiesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.ltCitiesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceLtCountiesListResponse> postV1ReferenceLtCountiesList(
-      PostV1ReferenceLtCountiesListRequest request) {
-    return this.rawClient.postV1ReferenceLtCountiesList(request).thenApply(response -> response.body());
+  public CompletableFuture<LtCitiesListReferenceResponse> ltCitiesList(
+      LtCitiesListReferenceRequest request) {
+    return this.rawClient.ltCitiesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceLtCountiesListResponse> postV1ReferenceLtCountiesList(
-      PostV1ReferenceLtCountiesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtCountiesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<LtCitiesListReferenceResponse> ltCitiesList(
+      LtCitiesListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltCitiesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceLtMunicipalitiesListResponse> postV1ReferenceLtMunicipalitiesList(
-      ) {
-    return this.rawClient.postV1ReferenceLtMunicipalitiesList().thenApply(response -> response.body());
+  public CompletableFuture<BanksListReferenceResponse> banksList() {
+    return this.rawClient.banksList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceLtMunicipalitiesListResponse> postV1ReferenceLtMunicipalitiesList(
+  public CompletableFuture<BanksListReferenceResponse> banksList(RequestOptions requestOptions) {
+    return this.rawClient.banksList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<BanksListReferenceResponse> banksList(
+      BanksListReferenceRequest request) {
+    return this.rawClient.banksList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<BanksListReferenceResponse> banksList(BanksListReferenceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtMunicipalitiesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.banksList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceLtMunicipalitiesListResponse> postV1ReferenceLtMunicipalitiesList(
-      PostV1ReferenceLtMunicipalitiesListRequest request) {
-    return this.rawClient.postV1ReferenceLtMunicipalitiesList(request).thenApply(response -> response.body());
+  public CompletableFuture<BanksUpsertReferenceResponse> banksUpsert(
+      BanksUpsertReferenceRequest request) {
+    return this.rawClient.banksUpsert(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceLtMunicipalitiesListResponse> postV1ReferenceLtMunicipalitiesList(
-      PostV1ReferenceLtMunicipalitiesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtMunicipalitiesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<BanksUpsertReferenceResponse> banksUpsert(
+      BanksUpsertReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.banksUpsert(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceLtCitiesListResponse> postV1ReferenceLtCitiesList() {
-    return this.rawClient.postV1ReferenceLtCitiesList().thenApply(response -> response.body());
+  public CompletableFuture<LtRegionsListReferenceResponse> ltRegionsList() {
+    return this.rawClient.ltRegionsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceLtCitiesListResponse> postV1ReferenceLtCitiesList(
+  public CompletableFuture<LtRegionsListReferenceResponse> ltRegionsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtCitiesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.ltRegionsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceLtCitiesListResponse> postV1ReferenceLtCitiesList(
-      PostV1ReferenceLtCitiesListRequest request) {
-    return this.rawClient.postV1ReferenceLtCitiesList(request).thenApply(response -> response.body());
+  public CompletableFuture<LtRegionsListReferenceResponse> ltRegionsList(
+      LtRegionsListReferenceRequest request) {
+    return this.rawClient.ltRegionsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceLtCitiesListResponse> postV1ReferenceLtCitiesList(
-      PostV1ReferenceLtCitiesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtCitiesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<LtRegionsListReferenceResponse> ltRegionsList(
+      LtRegionsListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltRegionsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceBanksListResponse> postV1ReferenceBanksList() {
-    return this.rawClient.postV1ReferenceBanksList().thenApply(response -> response.body());
+  public CompletableFuture<CurrenciesListReferenceResponse> currenciesList() {
+    return this.rawClient.currenciesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceBanksListResponse> postV1ReferenceBanksList(
+  public CompletableFuture<CurrenciesListReferenceResponse> currenciesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceBanksList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.currenciesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceBanksListResponse> postV1ReferenceBanksList(
-      PostV1ReferenceBanksListRequest request) {
-    return this.rawClient.postV1ReferenceBanksList(request).thenApply(response -> response.body());
+  public CompletableFuture<CurrenciesListReferenceResponse> currenciesList(
+      CurrenciesListReferenceRequest request) {
+    return this.rawClient.currenciesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceBanksListResponse> postV1ReferenceBanksList(
-      PostV1ReferenceBanksListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceBanksList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CurrenciesListReferenceResponse> currenciesList(
+      CurrenciesListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.currenciesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceBanksUpsertResponse> postV1ReferenceBanksUpsert(
-      PostV1ReferenceBanksUpsertRequest request) {
-    return this.rawClient.postV1ReferenceBanksUpsert(request).thenApply(response -> response.body());
+  public CompletableFuture<VatClassifiersListReferenceResponse> vatClassifiersList() {
+    return this.rawClient.vatClassifiersList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceBanksUpsertResponse> postV1ReferenceBanksUpsert(
-      PostV1ReferenceBanksUpsertRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceBanksUpsert(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceLtRegionsListResponse> postV1ReferenceLtRegionsList() {
-    return this.rawClient.postV1ReferenceLtRegionsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceLtRegionsListResponse> postV1ReferenceLtRegionsList(
+  public CompletableFuture<VatClassifiersListReferenceResponse> vatClassifiersList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtRegionsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.vatClassifiersList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceLtRegionsListResponse> postV1ReferenceLtRegionsList(
-      PostV1ReferenceLtRegionsListRequest request) {
-    return this.rawClient.postV1ReferenceLtRegionsList(request).thenApply(response -> response.body());
+  public CompletableFuture<VatClassifiersListReferenceResponse> vatClassifiersList(
+      VatClassifiersListReferenceRequest request) {
+    return this.rawClient.vatClassifiersList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceLtRegionsListResponse> postV1ReferenceLtRegionsList(
-      PostV1ReferenceLtRegionsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceLtRegionsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<VatClassifiersListReferenceResponse> vatClassifiersList(
+      VatClassifiersListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.vatClassifiersList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceCurrenciesListResponse> postV1ReferenceCurrenciesList() {
-    return this.rawClient.postV1ReferenceCurrenciesList().thenApply(response -> response.body());
+  public CompletableFuture<VatClassifiersUpsertReferenceResponse> vatClassifiersUpsert(
+      VatClassifiersUpsertReferenceRequest request) {
+    return this.rawClient.vatClassifiersUpsert(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceCurrenciesListResponse> postV1ReferenceCurrenciesList(
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceCurrenciesList(requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceCurrenciesListResponse> postV1ReferenceCurrenciesList(
-      PostV1ReferenceCurrenciesListRequest request) {
-    return this.rawClient.postV1ReferenceCurrenciesList(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceCurrenciesListResponse> postV1ReferenceCurrenciesList(
-      PostV1ReferenceCurrenciesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceCurrenciesList(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceVatClassifiersListResponse> postV1ReferenceVatClassifiersList(
-      ) {
-    return this.rawClient.postV1ReferenceVatClassifiersList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceVatClassifiersListResponse> postV1ReferenceVatClassifiersList(
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceVatClassifiersList(requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceVatClassifiersListResponse> postV1ReferenceVatClassifiersList(
-      PostV1ReferenceVatClassifiersListRequest request) {
-    return this.rawClient.postV1ReferenceVatClassifiersList(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceVatClassifiersListResponse> postV1ReferenceVatClassifiersList(
-      PostV1ReferenceVatClassifiersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceVatClassifiersList(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceVatClassifiersUpsertResponse> postV1ReferenceVatClassifiersUpsert(
-      PostV1ReferenceVatClassifiersUpsertRequest request) {
-    return this.rawClient.postV1ReferenceVatClassifiersUpsert(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceVatClassifiersUpsertResponse> postV1ReferenceVatClassifiersUpsert(
-      PostV1ReferenceVatClassifiersUpsertRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceVatClassifiersUpsert(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<VatClassifiersUpsertReferenceResponse> vatClassifiersUpsert(
+      VatClassifiersUpsertReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.vatClassifiersUpsert(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
    */
-  public CompletableFuture<PostV1ReferenceEuVatRatesListResponse> postV1ReferenceEuVatRatesList() {
-    return this.rawClient.postV1ReferenceEuVatRatesList().thenApply(response -> response.body());
+  public CompletableFuture<EuVatRatesListReferenceResponse> euVatRatesList() {
+    return this.rawClient.euVatRatesList().thenApply(response -> response.body());
   }
 
   /**
    * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
    */
-  public CompletableFuture<PostV1ReferenceEuVatRatesListResponse> postV1ReferenceEuVatRatesList(
+  public CompletableFuture<EuVatRatesListReferenceResponse> euVatRatesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceEuVatRatesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.euVatRatesList(requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
    */
-  public CompletableFuture<PostV1ReferenceEuVatRatesListResponse> postV1ReferenceEuVatRatesList(
-      PostV1ReferenceEuVatRatesListRequest request) {
-    return this.rawClient.postV1ReferenceEuVatRatesList(request).thenApply(response -> response.body());
+  public CompletableFuture<EuVatRatesListReferenceResponse> euVatRatesList(
+      EuVatRatesListReferenceRequest request) {
+    return this.rawClient.euVatRatesList(request).thenApply(response -> response.body());
   }
 
   /**
    * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
    */
-  public CompletableFuture<PostV1ReferenceEuVatRatesListResponse> postV1ReferenceEuVatRatesList(
-      PostV1ReferenceEuVatRatesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceEuVatRatesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<EuVatRatesListReferenceResponse> euVatRatesList(
+      EuVatRatesListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.euVatRatesList(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
    */
-  public CompletableFuture<PostV1ReferenceEuVatRatesSetOverridesResponse> postV1ReferenceEuVatRatesSetOverrides(
-      PostV1ReferenceEuVatRatesSetOverridesRequest request) {
-    return this.rawClient.postV1ReferenceEuVatRatesSetOverrides(request).thenApply(response -> response.body());
+  public CompletableFuture<EuVatRatesSetOverridesReferenceResponse> euVatRatesSetOverrides(
+      EuVatRatesSetOverridesReferenceRequest request) {
+    return this.rawClient.euVatRatesSetOverrides(request).thenApply(response -> response.body());
   }
 
   /**
    * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
    */
-  public CompletableFuture<PostV1ReferenceEuVatRatesSetOverridesResponse> postV1ReferenceEuVatRatesSetOverrides(
-      PostV1ReferenceEuVatRatesSetOverridesRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceEuVatRatesSetOverrides(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<EuVatRatesSetOverridesReferenceResponse> euVatRatesSetOverrides(
+      EuVatRatesSetOverridesReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.euVatRatesSetOverrides(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceVatResolveResponse> postV1ReferenceVatResolve() {
-    return this.rawClient.postV1ReferenceVatResolve().thenApply(response -> response.body());
+  public CompletableFuture<VatResolveReferenceResponse> vatResolve() {
+    return this.rawClient.vatResolve().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceVatResolveResponse> postV1ReferenceVatResolve(
+  public CompletableFuture<VatResolveReferenceResponse> vatResolve(RequestOptions requestOptions) {
+    return this.rawClient.vatResolve(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<VatResolveReferenceResponse> vatResolve(
+      VatResolveReferenceRequest request) {
+    return this.rawClient.vatResolve(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<VatResolveReferenceResponse> vatResolve(
+      VatResolveReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.vatResolve(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CnCodesListReferenceResponse> cnCodesList() {
+    return this.rawClient.cnCodesList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CnCodesListReferenceResponse> cnCodesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceVatResolve(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.cnCodesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceVatResolveResponse> postV1ReferenceVatResolve(
-      PostV1ReferenceVatResolveRequest request) {
-    return this.rawClient.postV1ReferenceVatResolve(request).thenApply(response -> response.body());
+  public CompletableFuture<CnCodesListReferenceResponse> cnCodesList(
+      CnCodesListReferenceRequest request) {
+    return this.rawClient.cnCodesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceVatResolveResponse> postV1ReferenceVatResolve(
-      PostV1ReferenceVatResolveRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceVatResolve(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CnCodesListReferenceResponse> cnCodesList(
+      CnCodesListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.cnCodesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceCnCodesListResponse> postV1ReferenceCnCodesList() {
-    return this.rawClient.postV1ReferenceCnCodesList().thenApply(response -> response.body());
+  public CompletableFuture<CnCodesUpsertReferenceResponse> cnCodesUpsert(
+      CnCodesUpsertReferenceRequest request) {
+    return this.rawClient.cnCodesUpsert(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceCnCodesListResponse> postV1ReferenceCnCodesList(
+  public CompletableFuture<CnCodesUpsertReferenceResponse> cnCodesUpsert(
+      CnCodesUpsertReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.cnCodesUpsert(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ComplianceVersionsListReferenceResponse> complianceVersionsList() {
+    return this.rawClient.complianceVersionsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ComplianceVersionsListReferenceResponse> complianceVersionsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceCnCodesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.complianceVersionsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceCnCodesListResponse> postV1ReferenceCnCodesList(
-      PostV1ReferenceCnCodesListRequest request) {
-    return this.rawClient.postV1ReferenceCnCodesList(request).thenApply(response -> response.body());
+  public CompletableFuture<ComplianceVersionsListReferenceResponse> complianceVersionsList(
+      ComplianceVersionsListReferenceRequest request) {
+    return this.rawClient.complianceVersionsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceCnCodesListResponse> postV1ReferenceCnCodesList(
-      PostV1ReferenceCnCodesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceCnCodesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ComplianceVersionsListReferenceResponse> complianceVersionsList(
+      ComplianceVersionsListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.complianceVersionsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceCnCodesUpsertResponse> postV1ReferenceCnCodesUpsert(
-      PostV1ReferenceCnCodesUpsertRequest request) {
-    return this.rawClient.postV1ReferenceCnCodesUpsert(request).thenApply(response -> response.body());
+  public CompletableFuture<IntrastatThresholdsListReferenceResponse> intrastatThresholdsList() {
+    return this.rawClient.intrastatThresholdsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceCnCodesUpsertResponse> postV1ReferenceCnCodesUpsert(
-      PostV1ReferenceCnCodesUpsertRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceCnCodesUpsert(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceComplianceVersionsListResponse> postV1ReferenceComplianceVersionsList(
-      ) {
-    return this.rawClient.postV1ReferenceComplianceVersionsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceComplianceVersionsListResponse> postV1ReferenceComplianceVersionsList(
+  public CompletableFuture<IntrastatThresholdsListReferenceResponse> intrastatThresholdsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceComplianceVersionsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.intrastatThresholdsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceComplianceVersionsListResponse> postV1ReferenceComplianceVersionsList(
-      PostV1ReferenceComplianceVersionsListRequest request) {
-    return this.rawClient.postV1ReferenceComplianceVersionsList(request).thenApply(response -> response.body());
+  public CompletableFuture<IntrastatThresholdsListReferenceResponse> intrastatThresholdsList(
+      IntrastatThresholdsListReferenceRequest request) {
+    return this.rawClient.intrastatThresholdsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceComplianceVersionsListResponse> postV1ReferenceComplianceVersionsList(
-      PostV1ReferenceComplianceVersionsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceComplianceVersionsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<IntrastatThresholdsListReferenceResponse> intrastatThresholdsList(
+      IntrastatThresholdsListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.intrastatThresholdsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceIntrastatThresholdsListResponse> postV1ReferenceIntrastatThresholdsList(
-      ) {
-    return this.rawClient.postV1ReferenceIntrastatThresholdsList().thenApply(response -> response.body());
+  public CompletableFuture<UnitsListReferenceResponse> unitsList() {
+    return this.rawClient.unitsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceIntrastatThresholdsListResponse> postV1ReferenceIntrastatThresholdsList(
+  public CompletableFuture<UnitsListReferenceResponse> unitsList(RequestOptions requestOptions) {
+    return this.rawClient.unitsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<UnitsListReferenceResponse> unitsList(
+      UnitsListReferenceRequest request) {
+    return this.rawClient.unitsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<UnitsListReferenceResponse> unitsList(UnitsListReferenceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceIntrastatThresholdsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.unitsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceIntrastatThresholdsListResponse> postV1ReferenceIntrastatThresholdsList(
-      PostV1ReferenceIntrastatThresholdsListRequest request) {
-    return this.rawClient.postV1ReferenceIntrastatThresholdsList(request).thenApply(response -> response.body());
+  public CompletableFuture<SeriesCreateReferenceResponse> seriesCreate(
+      SeriesCreateReferenceRequest request) {
+    return this.rawClient.seriesCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceIntrastatThresholdsListResponse> postV1ReferenceIntrastatThresholdsList(
-      PostV1ReferenceIntrastatThresholdsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceIntrastatThresholdsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<SeriesCreateReferenceResponse> seriesCreate(
+      SeriesCreateReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.seriesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceUnitsListResponse> postV1ReferenceUnitsList() {
-    return this.rawClient.postV1ReferenceUnitsList().thenApply(response -> response.body());
+  public CompletableFuture<SeriesListReferenceResponse> seriesList() {
+    return this.rawClient.seriesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceUnitsListResponse> postV1ReferenceUnitsList(
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceUnitsList(requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<SeriesListReferenceResponse> seriesList(RequestOptions requestOptions) {
+    return this.rawClient.seriesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceUnitsListResponse> postV1ReferenceUnitsList(
-      PostV1ReferenceUnitsListRequest request) {
-    return this.rawClient.postV1ReferenceUnitsList(request).thenApply(response -> response.body());
+  public CompletableFuture<SeriesListReferenceResponse> seriesList(
+      SeriesListReferenceRequest request) {
+    return this.rawClient.seriesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReferenceUnitsListResponse> postV1ReferenceUnitsList(
-      PostV1ReferenceUnitsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceUnitsList(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceSeriesCreateResponse> postV1ReferenceSeriesCreate(
-      PostV1ReferenceSeriesCreateRequest request) {
-    return this.rawClient.postV1ReferenceSeriesCreate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceSeriesCreateResponse> postV1ReferenceSeriesCreate(
-      PostV1ReferenceSeriesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceSeriesCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceSeriesListResponse> postV1ReferenceSeriesList() {
-    return this.rawClient.postV1ReferenceSeriesList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceSeriesListResponse> postV1ReferenceSeriesList(
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceSeriesList(requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceSeriesListResponse> postV1ReferenceSeriesList(
-      PostV1ReferenceSeriesListRequest request) {
-    return this.rawClient.postV1ReferenceSeriesList(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReferenceSeriesListResponse> postV1ReferenceSeriesList(
-      PostV1ReferenceSeriesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReferenceSeriesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<SeriesListReferenceResponse> seriesList(
+      SeriesListReferenceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.seriesList(request, requestOptions).thenApply(response -> response.body());
   }
 }

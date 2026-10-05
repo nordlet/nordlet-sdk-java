@@ -6,10 +6,10 @@ package com.nordlet.api.resources.migration;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.migration.requests.PostV1MigrationBooksImportRequest;
-import com.nordlet.api.resources.migration.requests.PostV1MigrationBooksValidateRequest;
-import com.nordlet.api.resources.migration.types.PostV1MigrationBooksImportResponse;
-import com.nordlet.api.resources.migration.types.PostV1MigrationBooksValidateResponse;
+import com.nordlet.api.resources.migration.requests.BooksImportMigrationRequest;
+import com.nordlet.api.resources.migration.requests.BooksValidateMigrationRequest;
+import com.nordlet.api.resources.migration.types.BooksImportMigrationResponse;
+import com.nordlet.api.resources.migration.types.BooksValidateMigrationResponse;
 
 public class MigrationClient {
   protected final ClientOptions clientOptions;
@@ -31,32 +31,30 @@ public class MigrationClient {
   /**
    * Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored.
    */
-  public PostV1MigrationBooksValidateResponse checkAHistoricalBooksPackageWithoutWritingAnything(
-      PostV1MigrationBooksValidateRequest request) {
-    return this.rawClient.checkAHistoricalBooksPackageWithoutWritingAnything(request).body();
+  public BooksValidateMigrationResponse booksValidate(BooksValidateMigrationRequest request) {
+    return this.rawClient.booksValidate(request).body();
   }
 
   /**
    * Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored.
    */
-  public PostV1MigrationBooksValidateResponse checkAHistoricalBooksPackageWithoutWritingAnything(
-      PostV1MigrationBooksValidateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.checkAHistoricalBooksPackageWithoutWritingAnything(request, requestOptions).body();
+  public BooksValidateMigrationResponse booksValidate(BooksValidateMigrationRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.booksValidate(request, requestOptions).body();
   }
 
   /**
    * Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction — if any row fails, nothing is stored.
    */
-  public PostV1MigrationBooksImportResponse importHistoricalBooksFromAPreviousAccountingSystem(
-      PostV1MigrationBooksImportRequest request) {
-    return this.rawClient.importHistoricalBooksFromAPreviousAccountingSystem(request).body();
+  public BooksImportMigrationResponse booksImport(BooksImportMigrationRequest request) {
+    return this.rawClient.booksImport(request).body();
   }
 
   /**
    * Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction — if any row fails, nothing is stored.
    */
-  public PostV1MigrationBooksImportResponse importHistoricalBooksFromAPreviousAccountingSystem(
-      PostV1MigrationBooksImportRequest request, RequestOptions requestOptions) {
-    return this.rawClient.importHistoricalBooksFromAPreviousAccountingSystem(request, requestOptions).body();
+  public BooksImportMigrationResponse booksImport(BooksImportMigrationRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.booksImport(request, requestOptions).body();
   }
 }

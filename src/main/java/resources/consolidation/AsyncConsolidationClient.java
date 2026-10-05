@@ -6,32 +6,32 @@ package com.nordlet.api.resources.consolidation;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationGroupsCreateRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationGroupsDeleteRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationGroupsGetRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationGroupsListRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationGroupsUpdateRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationIntercompanyCandidatesRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationIntercompanyLinksListRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationIntercompanyLinksRemoveRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationIntercompanyLinksSetRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationIntercompanyReportRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationMembersAddRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationMembersRemoveRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationReportRequest;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationGroupsCreateResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationGroupsDeleteResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationGroupsGetResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationGroupsListResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationGroupsUpdateResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationIntercompanyCandidatesResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationIntercompanyLinksListResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationIntercompanyLinksRemoveResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationIntercompanyLinksSetResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationIntercompanyReportResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationMembersAddResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationMembersRemoveResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationReportResponse;
+import com.nordlet.api.resources.consolidation.requests.GroupsCreateConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.GroupsDeleteConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.GroupsGetConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.GroupsListConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.GroupsUpdateConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.IntercompanyCandidatesConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.IntercompanyLinksListConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.IntercompanyLinksRemoveConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.IntercompanyLinksSetConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.IntercompanyReportConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.MembersAddConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.MembersRemoveConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.ReportConsolidationRequest;
+import com.nordlet.api.resources.consolidation.types.GroupsCreateConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.GroupsDeleteConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.GroupsGetConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.GroupsListConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.GroupsUpdateConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.IntercompanyCandidatesConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.IntercompanyLinksListConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.IntercompanyLinksRemoveConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.IntercompanyLinksSetConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.IntercompanyReportConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.MembersAddConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.MembersRemoveConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.ReportConsolidationResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncConsolidationClient {
@@ -51,160 +51,159 @@ public class AsyncConsolidationClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1ConsolidationGroupsCreateResponse> postV1ConsolidationGroupsCreate(
-      PostV1ConsolidationGroupsCreateRequest request) {
-    return this.rawClient.postV1ConsolidationGroupsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<GroupsCreateConsolidationResponse> groupsCreate(
+      GroupsCreateConsolidationRequest request) {
+    return this.rawClient.groupsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationGroupsCreateResponse> postV1ConsolidationGroupsCreate(
-      PostV1ConsolidationGroupsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ConsolidationGroupsCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<GroupsCreateConsolidationResponse> groupsCreate(
+      GroupsCreateConsolidationRequest request, RequestOptions requestOptions) {
+    return this.rawClient.groupsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationGroupsListResponse> postV1ConsolidationGroupsList() {
-    return this.rawClient.postV1ConsolidationGroupsList().thenApply(response -> response.body());
+  public CompletableFuture<GroupsListConsolidationResponse> groupsList() {
+    return this.rawClient.groupsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationGroupsListResponse> postV1ConsolidationGroupsList(
+  public CompletableFuture<GroupsListConsolidationResponse> groupsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ConsolidationGroupsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.groupsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationGroupsListResponse> postV1ConsolidationGroupsList(
-      PostV1ConsolidationGroupsListRequest request) {
-    return this.rawClient.postV1ConsolidationGroupsList(request).thenApply(response -> response.body());
+  public CompletableFuture<GroupsListConsolidationResponse> groupsList(
+      GroupsListConsolidationRequest request) {
+    return this.rawClient.groupsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationGroupsListResponse> postV1ConsolidationGroupsList(
-      PostV1ConsolidationGroupsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ConsolidationGroupsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<GroupsListConsolidationResponse> groupsList(
+      GroupsListConsolidationRequest request, RequestOptions requestOptions) {
+    return this.rawClient.groupsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationGroupsGetResponse> postV1ConsolidationGroupsGet(
-      PostV1ConsolidationGroupsGetRequest request) {
-    return this.rawClient.postV1ConsolidationGroupsGet(request).thenApply(response -> response.body());
+  public CompletableFuture<GroupsGetConsolidationResponse> groupsGet(
+      GroupsGetConsolidationRequest request) {
+    return this.rawClient.groupsGet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationGroupsGetResponse> postV1ConsolidationGroupsGet(
-      PostV1ConsolidationGroupsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ConsolidationGroupsGet(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<GroupsGetConsolidationResponse> groupsGet(
+      GroupsGetConsolidationRequest request, RequestOptions requestOptions) {
+    return this.rawClient.groupsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationGroupsUpdateResponse> postV1ConsolidationGroupsUpdate(
-      PostV1ConsolidationGroupsUpdateRequest request) {
-    return this.rawClient.postV1ConsolidationGroupsUpdate(request).thenApply(response -> response.body());
+  public CompletableFuture<GroupsUpdateConsolidationResponse> groupsUpdate(
+      GroupsUpdateConsolidationRequest request) {
+    return this.rawClient.groupsUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationGroupsUpdateResponse> postV1ConsolidationGroupsUpdate(
-      PostV1ConsolidationGroupsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ConsolidationGroupsUpdate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<GroupsUpdateConsolidationResponse> groupsUpdate(
+      GroupsUpdateConsolidationRequest request, RequestOptions requestOptions) {
+    return this.rawClient.groupsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationGroupsDeleteResponse> postV1ConsolidationGroupsDelete(
-      PostV1ConsolidationGroupsDeleteRequest request) {
-    return this.rawClient.postV1ConsolidationGroupsDelete(request).thenApply(response -> response.body());
+  public CompletableFuture<GroupsDeleteConsolidationResponse> groupsDelete(
+      GroupsDeleteConsolidationRequest request) {
+    return this.rawClient.groupsDelete(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationGroupsDeleteResponse> postV1ConsolidationGroupsDelete(
-      PostV1ConsolidationGroupsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ConsolidationGroupsDelete(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<GroupsDeleteConsolidationResponse> groupsDelete(
+      GroupsDeleteConsolidationRequest request, RequestOptions requestOptions) {
+    return this.rawClient.groupsDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationMembersAddResponse> postV1ConsolidationMembersAdd(
-      PostV1ConsolidationMembersAddRequest request) {
-    return this.rawClient.postV1ConsolidationMembersAdd(request).thenApply(response -> response.body());
+  public CompletableFuture<MembersAddConsolidationResponse> membersAdd(
+      MembersAddConsolidationRequest request) {
+    return this.rawClient.membersAdd(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationMembersAddResponse> postV1ConsolidationMembersAdd(
-      PostV1ConsolidationMembersAddRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ConsolidationMembersAdd(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<MembersAddConsolidationResponse> membersAdd(
+      MembersAddConsolidationRequest request, RequestOptions requestOptions) {
+    return this.rawClient.membersAdd(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationMembersRemoveResponse> postV1ConsolidationMembersRemove(
-      PostV1ConsolidationMembersRemoveRequest request) {
-    return this.rawClient.postV1ConsolidationMembersRemove(request).thenApply(response -> response.body());
+  public CompletableFuture<MembersRemoveConsolidationResponse> membersRemove(
+      MembersRemoveConsolidationRequest request) {
+    return this.rawClient.membersRemove(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationMembersRemoveResponse> postV1ConsolidationMembersRemove(
-      PostV1ConsolidationMembersRemoveRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ConsolidationMembersRemove(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  /**
-   * Partners in member companies that look like other members of the same group (matched on company code or VAT code), with any existing intercompany link. Confirming a candidate via intercompany/links/set enables invoice mirroring.
-   */
-  public CompletableFuture<PostV1ConsolidationIntercompanyCandidatesResponse> postV1ConsolidationIntercompanyCandidates(
-      PostV1ConsolidationIntercompanyCandidatesRequest request) {
-    return this.rawClient.postV1ConsolidationIntercompanyCandidates(request).thenApply(response -> response.body());
+  public CompletableFuture<MembersRemoveConsolidationResponse> membersRemove(
+      MembersRemoveConsolidationRequest request, RequestOptions requestOptions) {
+    return this.rawClient.membersRemove(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Partners in member companies that look like other members of the same group (matched on company code or VAT code), with any existing intercompany link. Confirming a candidate via intercompany/links/set enables invoice mirroring.
    */
-  public CompletableFuture<PostV1ConsolidationIntercompanyCandidatesResponse> postV1ConsolidationIntercompanyCandidates(
-      PostV1ConsolidationIntercompanyCandidatesRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ConsolidationIntercompanyCandidates(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<IntercompanyCandidatesConsolidationResponse> intercompanyCandidates(
+      IntercompanyCandidatesConsolidationRequest request) {
+    return this.rawClient.intercompanyCandidates(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Partners in member companies that look like other members of the same group (matched on company code or VAT code), with any existing intercompany link. Confirming a candidate via intercompany/links/set enables invoice mirroring.
+   */
+  public CompletableFuture<IntercompanyCandidatesConsolidationResponse> intercompanyCandidates(
+      IntercompanyCandidatesConsolidationRequest request, RequestOptions requestOptions) {
+    return this.rawClient.intercompanyCandidates(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Confirm that a partner record in one member company represents another member company of the group. Once links exist in both directions, issuing an intercompany sale invoice automatically creates the matching draft purchase invoice in the counterparty.
    */
-  public CompletableFuture<PostV1ConsolidationIntercompanyLinksSetResponse> postV1ConsolidationIntercompanyLinksSet(
-      PostV1ConsolidationIntercompanyLinksSetRequest request) {
-    return this.rawClient.postV1ConsolidationIntercompanyLinksSet(request).thenApply(response -> response.body());
+  public CompletableFuture<IntercompanyLinksSetConsolidationResponse> intercompanyLinksSet(
+      IntercompanyLinksSetConsolidationRequest request) {
+    return this.rawClient.intercompanyLinksSet(request).thenApply(response -> response.body());
   }
 
   /**
    * Confirm that a partner record in one member company represents another member company of the group. Once links exist in both directions, issuing an intercompany sale invoice automatically creates the matching draft purchase invoice in the counterparty.
    */
-  public CompletableFuture<PostV1ConsolidationIntercompanyLinksSetResponse> postV1ConsolidationIntercompanyLinksSet(
-      PostV1ConsolidationIntercompanyLinksSetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ConsolidationIntercompanyLinksSet(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<IntercompanyLinksSetConsolidationResponse> intercompanyLinksSet(
+      IntercompanyLinksSetConsolidationRequest request, RequestOptions requestOptions) {
+    return this.rawClient.intercompanyLinksSet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationIntercompanyLinksListResponse> postV1ConsolidationIntercompanyLinksList(
-      PostV1ConsolidationIntercompanyLinksListRequest request) {
-    return this.rawClient.postV1ConsolidationIntercompanyLinksList(request).thenApply(response -> response.body());
+  public CompletableFuture<IntercompanyLinksListConsolidationResponse> intercompanyLinksList(
+      IntercompanyLinksListConsolidationRequest request) {
+    return this.rawClient.intercompanyLinksList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationIntercompanyLinksListResponse> postV1ConsolidationIntercompanyLinksList(
-      PostV1ConsolidationIntercompanyLinksListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ConsolidationIntercompanyLinksList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<IntercompanyLinksListConsolidationResponse> intercompanyLinksList(
+      IntercompanyLinksListConsolidationRequest request, RequestOptions requestOptions) {
+    return this.rawClient.intercompanyLinksList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationIntercompanyLinksRemoveResponse> postV1ConsolidationIntercompanyLinksRemove(
-      PostV1ConsolidationIntercompanyLinksRemoveRequest request) {
-    return this.rawClient.postV1ConsolidationIntercompanyLinksRemove(request).thenApply(response -> response.body());
+  public CompletableFuture<IntercompanyLinksRemoveConsolidationResponse> intercompanyLinksRemove(
+      IntercompanyLinksRemoveConsolidationRequest request) {
+    return this.rawClient.intercompanyLinksRemove(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationIntercompanyLinksRemoveResponse> postV1ConsolidationIntercompanyLinksRemove(
-      PostV1ConsolidationIntercompanyLinksRemoveRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ConsolidationIntercompanyLinksRemove(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  /**
-   * Intercompany reconciliation for a period: every issued intercompany sale invoice with its mirrored or manually recorded counterpart, unmatched documents on both sides, and per-currency totals with differences. Confirmed pairs are the basis for consolidation eliminations.
-   */
-  public CompletableFuture<PostV1ConsolidationIntercompanyReportResponse> postV1ConsolidationIntercompanyReport(
-      PostV1ConsolidationIntercompanyReportRequest request) {
-    return this.rawClient.postV1ConsolidationIntercompanyReport(request).thenApply(response -> response.body());
+  public CompletableFuture<IntercompanyLinksRemoveConsolidationResponse> intercompanyLinksRemove(
+      IntercompanyLinksRemoveConsolidationRequest request, RequestOptions requestOptions) {
+    return this.rawClient.intercompanyLinksRemove(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Intercompany reconciliation for a period: every issued intercompany sale invoice with its mirrored or manually recorded counterpart, unmatched documents on both sides, and per-currency totals with differences. Confirmed pairs are the basis for consolidation eliminations.
    */
-  public CompletableFuture<PostV1ConsolidationIntercompanyReportResponse> postV1ConsolidationIntercompanyReport(
-      PostV1ConsolidationIntercompanyReportRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ConsolidationIntercompanyReport(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<IntercompanyReportConsolidationResponse> intercompanyReport(
+      IntercompanyReportConsolidationRequest request) {
+    return this.rawClient.intercompanyReport(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationReportResponse> postV1ConsolidationReport(
-      PostV1ConsolidationReportRequest request) {
-    return this.rawClient.postV1ConsolidationReport(request).thenApply(response -> response.body());
+  /**
+   * Intercompany reconciliation for a period: every issued intercompany sale invoice with its mirrored or manually recorded counterpart, unmatched documents on both sides, and per-currency totals with differences. Confirmed pairs are the basis for consolidation eliminations.
+   */
+  public CompletableFuture<IntercompanyReportConsolidationResponse> intercompanyReport(
+      IntercompanyReportConsolidationRequest request, RequestOptions requestOptions) {
+    return this.rawClient.intercompanyReport(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ConsolidationReportResponse> postV1ConsolidationReport(
-      PostV1ConsolidationReportRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ConsolidationReport(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ReportConsolidationResponse> report(ReportConsolidationRequest request) {
+    return this.rawClient.report(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReportConsolidationResponse> report(ReportConsolidationRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.report(request, requestOptions).thenApply(response -> response.body());
   }
 }

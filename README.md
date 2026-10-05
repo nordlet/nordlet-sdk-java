@@ -31,7 +31,7 @@ Instantiate and use the client with the following:
 package com.example.usage;
 
 import com.nordlet.api.NordletApiClient;
-import com.nordlet.api.resources.reference.requests.PostV1ReferenceExchangeRatesSyncRequest;
+import com.nordlet.api.resources.reference.requests.ExchangeRatesSyncReferenceRequest;
 
 public class Example {
     public static void main(String[] args) {
@@ -40,8 +40,8 @@ public class Example {
             .token("<token>")
             .build();
 
-        client.reference().postV1ReferenceExchangeRatesSync(
-            PostV1ReferenceExchangeRatesSyncRequest
+        client.reference().exchangeRatesSync(
+            ExchangeRatesSyncReferenceRequest
                 .builder()
                 .build()
         );
@@ -84,7 +84,7 @@ When the API returns a non-success status code (4xx or 5xx response), an API exc
 import com.nordlet.api.core.NordletApiApiException;
 
 try{
-    client.reference().postV1ReferenceExchangeRatesSync(...);
+    client.reference().exchangeRatesSync(...);
 } catch (NordletApiApiException e){
     // Do something with the API exception...
 }
@@ -156,7 +156,7 @@ NordletApiClient client = NordletApiClient
     .build();
 
 // Request level
-client.reference().postV1ReferenceExchangeRatesSync(
+client.reference().exchangeRatesSync(
     ...,
     RequestOptions
         .builder()
@@ -182,7 +182,7 @@ NordletApiClient client = NordletApiClient
 ;
 
 // Request level
-client.reference().postV1ReferenceExchangeRatesSync(
+client.reference().exchangeRatesSync(
     ...,
     RequestOptions
         .builder()
@@ -198,7 +198,7 @@ The `withRawResponse()` method returns a raw client that wraps all responses wit
 (A normal client's `response` is identical to a raw client's `response.body()`.)
 
 ```java
-NordletApiHttpResponse response = client.reference().withRawResponse().postV1ReferenceExchangeRatesSync(...);
+NordletApiHttpResponse response = client.reference().withRawResponse().exchangeRatesSync(...);
 
 System.out.println(response.body());
 System.out.println(response.headers().get("X-My-Header"));

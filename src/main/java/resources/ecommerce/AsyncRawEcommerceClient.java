@@ -15,28 +15,30 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersCancelRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersCreateRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersFulfillRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersGetRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersListRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersReserveRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceProductsListRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceStockListRequest;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersCancelResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersCreateResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersFulfillResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersGetResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersListResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersReserveResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceProductsListResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceStockListResponse;
+import com.nordlet.api.resources.ecommerce.requests.OrdersCancelEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersCreateEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersFulfillEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersGetEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersListEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersReserveEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.ProductsListEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.StockListEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.types.OrdersCancelEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersCreateEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersFulfillEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersGetEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersListEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersReserveEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.ProductsListEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.StockListEcommerceResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -61,13 +63,13 @@ public class AsyncRawEcommerceClient {
     this.clientOptions = clientOptions;
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersCreateResponse>> postV1EcommerceOrdersCreate(
-      PostV1EcommerceOrdersCreateRequest request) {
-    return postV1EcommerceOrdersCreate(request,null);
+  public CompletableFuture<NordletApiHttpResponse<OrdersCreateEcommerceResponse>> ordersCreate(
+      OrdersCreateEcommerceRequest request) {
+    return ordersCreate(request,null);
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersCreateResponse>> postV1EcommerceOrdersCreate(
-      PostV1EcommerceOrdersCreateRequest request, RequestOptions requestOptions) {
+  public CompletableFuture<NordletApiHttpResponse<OrdersCreateEcommerceResponse>> ordersCreate(
+      OrdersCreateEcommerceRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/ecommerce/orders/create");if (requestOptions != null) {
@@ -96,14 +98,14 @@ public class AsyncRawEcommerceClient {
       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
       }
-      CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersCreateResponse>> future = new CompletableFuture<>();
+      CompletableFuture<NordletApiHttpResponse<OrdersCreateEcommerceResponse>> future = new CompletableFuture<>();
       client.newCall(okhttpRequest).enqueue(new Callback() {
         @Override
         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
           try (ResponseBody responseBody = response.body()) {
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceOrdersCreateResponse.class), response));
+              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCreateEcommerceResponse.class), response));
               return;
             }
             try {
@@ -112,11 +114,15 @@ public class AsyncRawEcommerceClient {
                 return;
                 case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
+                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
                 case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
+                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
@@ -149,13 +155,13 @@ public class AsyncRawEcommerceClient {
       return future;
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersGetResponse>> postV1EcommerceOrdersGet(
-        PostV1EcommerceOrdersGetRequest request) {
-      return postV1EcommerceOrdersGet(request,null);
+    public CompletableFuture<NordletApiHttpResponse<OrdersGetEcommerceResponse>> ordersGet(
+        OrdersGetEcommerceRequest request) {
+      return ordersGet(request,null);
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersGetResponse>> postV1EcommerceOrdersGet(
-        PostV1EcommerceOrdersGetRequest request, RequestOptions requestOptions) {
+    public CompletableFuture<NordletApiHttpResponse<OrdersGetEcommerceResponse>> ordersGet(
+        OrdersGetEcommerceRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/ecommerce/orders/get");if (requestOptions != null) {
@@ -184,14 +190,14 @@ public class AsyncRawEcommerceClient {
         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
         }
-        CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersGetResponse>> future = new CompletableFuture<>();
+        CompletableFuture<NordletApiHttpResponse<OrdersGetEcommerceResponse>> future = new CompletableFuture<>();
         client.newCall(okhttpRequest).enqueue(new Callback() {
           @Override
           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
             try (ResponseBody responseBody = response.body()) {
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceOrdersGetResponse.class), response));
+                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersGetEcommerceResponse.class), response));
                 return;
               }
               try {
@@ -200,11 +206,15 @@ public class AsyncRawEcommerceClient {
                   return;
                   case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
+                  case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
                   case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
@@ -237,23 +247,22 @@ public class AsyncRawEcommerceClient {
         return future;
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersListResponse>> postV1EcommerceOrdersList(
-          ) {
-        return postV1EcommerceOrdersList(PostV1EcommerceOrdersListRequest.builder().build());
+      public CompletableFuture<NordletApiHttpResponse<OrdersListEcommerceResponse>> ordersList() {
+        return ordersList(OrdersListEcommerceRequest.builder().build());
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersListResponse>> postV1EcommerceOrdersList(
+      public CompletableFuture<NordletApiHttpResponse<OrdersListEcommerceResponse>> ordersList(
           RequestOptions requestOptions) {
-        return postV1EcommerceOrdersList(PostV1EcommerceOrdersListRequest.builder().build(),requestOptions);
+        return ordersList(OrdersListEcommerceRequest.builder().build(),requestOptions);
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersListResponse>> postV1EcommerceOrdersList(
-          PostV1EcommerceOrdersListRequest request) {
-        return postV1EcommerceOrdersList(request,null);
+      public CompletableFuture<NordletApiHttpResponse<OrdersListEcommerceResponse>> ordersList(
+          OrdersListEcommerceRequest request) {
+        return ordersList(request,null);
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersListResponse>> postV1EcommerceOrdersList(
-          PostV1EcommerceOrdersListRequest request, RequestOptions requestOptions) {
+      public CompletableFuture<NordletApiHttpResponse<OrdersListEcommerceResponse>> ordersList(
+          OrdersListEcommerceRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/ecommerce/orders/list");if (requestOptions != null) {
@@ -282,14 +291,14 @@ public class AsyncRawEcommerceClient {
           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
           }
-          CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersListResponse>> future = new CompletableFuture<>();
+          CompletableFuture<NordletApiHttpResponse<OrdersListEcommerceResponse>> future = new CompletableFuture<>();
           client.newCall(okhttpRequest).enqueue(new Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
               try (ResponseBody responseBody = response.body()) {
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceOrdersListResponse.class), response));
+                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersListEcommerceResponse.class), response));
                   return;
                 }
                 try {
@@ -298,11 +307,15 @@ public class AsyncRawEcommerceClient {
                     return;
                     case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
+                    case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                    return;
                     case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                    return;
+                    case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
@@ -335,13 +348,13 @@ public class AsyncRawEcommerceClient {
           return future;
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersReserveResponse>> postV1EcommerceOrdersReserve(
-            PostV1EcommerceOrdersReserveRequest request) {
-          return postV1EcommerceOrdersReserve(request,null);
+        public CompletableFuture<NordletApiHttpResponse<OrdersReserveEcommerceResponse>> ordersReserve(
+            OrdersReserveEcommerceRequest request) {
+          return ordersReserve(request,null);
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersReserveResponse>> postV1EcommerceOrdersReserve(
-            PostV1EcommerceOrdersReserveRequest request, RequestOptions requestOptions) {
+        public CompletableFuture<NordletApiHttpResponse<OrdersReserveEcommerceResponse>> ordersReserve(
+            OrdersReserveEcommerceRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/ecommerce/orders/reserve");if (requestOptions != null) {
@@ -370,14 +383,14 @@ public class AsyncRawEcommerceClient {
             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
             }
-            CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersReserveResponse>> future = new CompletableFuture<>();
+            CompletableFuture<NordletApiHttpResponse<OrdersReserveEcommerceResponse>> future = new CompletableFuture<>();
             client.newCall(okhttpRequest).enqueue(new Callback() {
               @Override
               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceOrdersReserveResponse.class), response));
+                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersReserveEcommerceResponse.class), response));
                     return;
                   }
                   try {
@@ -386,11 +399,15 @@ public class AsyncRawEcommerceClient {
                       return;
                       case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
+                      case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                      return;
                       case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                      return;
+                      case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
@@ -423,13 +440,13 @@ public class AsyncRawEcommerceClient {
             return future;
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersFulfillResponse>> postV1EcommerceOrdersFulfill(
-              PostV1EcommerceOrdersFulfillRequest request) {
-            return postV1EcommerceOrdersFulfill(request,null);
+          public CompletableFuture<NordletApiHttpResponse<OrdersFulfillEcommerceResponse>> ordersFulfill(
+              OrdersFulfillEcommerceRequest request) {
+            return ordersFulfill(request,null);
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersFulfillResponse>> postV1EcommerceOrdersFulfill(
-              PostV1EcommerceOrdersFulfillRequest request, RequestOptions requestOptions) {
+          public CompletableFuture<NordletApiHttpResponse<OrdersFulfillEcommerceResponse>> ordersFulfill(
+              OrdersFulfillEcommerceRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
               .addPathSegments("v1/ecommerce/orders/fulfill");if (requestOptions != null) {
@@ -458,14 +475,14 @@ public class AsyncRawEcommerceClient {
               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
               }
-              CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersFulfillResponse>> future = new CompletableFuture<>();
+              CompletableFuture<NordletApiHttpResponse<OrdersFulfillEcommerceResponse>> future = new CompletableFuture<>();
               client.newCall(okhttpRequest).enqueue(new Callback() {
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                   try (ResponseBody responseBody = response.body()) {
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceOrdersFulfillResponse.class), response));
+                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersFulfillEcommerceResponse.class), response));
                       return;
                     }
                     try {
@@ -474,11 +491,15 @@ public class AsyncRawEcommerceClient {
                         return;
                         case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
+                        case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                        return;
                         case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                        return;
+                        case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
@@ -511,13 +532,13 @@ public class AsyncRawEcommerceClient {
               return future;
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersCancelResponse>> postV1EcommerceOrdersCancel(
-                PostV1EcommerceOrdersCancelRequest request) {
-              return postV1EcommerceOrdersCancel(request,null);
+            public CompletableFuture<NordletApiHttpResponse<OrdersCancelEcommerceResponse>> ordersCancel(
+                OrdersCancelEcommerceRequest request) {
+              return ordersCancel(request,null);
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersCancelResponse>> postV1EcommerceOrdersCancel(
-                PostV1EcommerceOrdersCancelRequest request, RequestOptions requestOptions) {
+            public CompletableFuture<NordletApiHttpResponse<OrdersCancelEcommerceResponse>> ordersCancel(
+                OrdersCancelEcommerceRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/ecommerce/orders/cancel");if (requestOptions != null) {
@@ -546,14 +567,14 @@ public class AsyncRawEcommerceClient {
                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                 }
-                CompletableFuture<NordletApiHttpResponse<PostV1EcommerceOrdersCancelResponse>> future = new CompletableFuture<>();
+                CompletableFuture<NordletApiHttpResponse<OrdersCancelEcommerceResponse>> future = new CompletableFuture<>();
                 client.newCall(okhttpRequest).enqueue(new Callback() {
                   @Override
                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     try (ResponseBody responseBody = response.body()) {
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceOrdersCancelResponse.class), response));
+                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCancelEcommerceResponse.class), response));
                         return;
                       }
                       try {
@@ -562,11 +583,15 @@ public class AsyncRawEcommerceClient {
                           return;
                           case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
+                          case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
                           case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
+                          case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
@@ -599,23 +624,23 @@ public class AsyncRawEcommerceClient {
                 return future;
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceProductsListResponse>> postV1EcommerceProductsList(
+              public CompletableFuture<NordletApiHttpResponse<ProductsListEcommerceResponse>> productsList(
                   ) {
-                return postV1EcommerceProductsList(PostV1EcommerceProductsListRequest.builder().build());
+                return productsList(ProductsListEcommerceRequest.builder().build());
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceProductsListResponse>> postV1EcommerceProductsList(
+              public CompletableFuture<NordletApiHttpResponse<ProductsListEcommerceResponse>> productsList(
                   RequestOptions requestOptions) {
-                return postV1EcommerceProductsList(PostV1EcommerceProductsListRequest.builder().build(),requestOptions);
+                return productsList(ProductsListEcommerceRequest.builder().build(),requestOptions);
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceProductsListResponse>> postV1EcommerceProductsList(
-                  PostV1EcommerceProductsListRequest request) {
-                return postV1EcommerceProductsList(request,null);
+              public CompletableFuture<NordletApiHttpResponse<ProductsListEcommerceResponse>> productsList(
+                  ProductsListEcommerceRequest request) {
+                return productsList(request,null);
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceProductsListResponse>> postV1EcommerceProductsList(
-                  PostV1EcommerceProductsListRequest request, RequestOptions requestOptions) {
+              public CompletableFuture<NordletApiHttpResponse<ProductsListEcommerceResponse>> productsList(
+                  ProductsListEcommerceRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                   .addPathSegments("v1/ecommerce/products/list");if (requestOptions != null) {
@@ -644,14 +669,14 @@ public class AsyncRawEcommerceClient {
                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                   }
-                  CompletableFuture<NordletApiHttpResponse<PostV1EcommerceProductsListResponse>> future = new CompletableFuture<>();
+                  CompletableFuture<NordletApiHttpResponse<ProductsListEcommerceResponse>> future = new CompletableFuture<>();
                   client.newCall(okhttpRequest).enqueue(new Callback() {
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                       try (ResponseBody responseBody = response.body()) {
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceProductsListResponse.class), response));
+                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ProductsListEcommerceResponse.class), response));
                           return;
                         }
                         try {
@@ -660,11 +685,15 @@ public class AsyncRawEcommerceClient {
                             return;
                             case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
+                            case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
                             case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
                             case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
                             case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
+                            case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
                             case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
@@ -697,23 +726,23 @@ public class AsyncRawEcommerceClient {
                   return future;
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceStockListResponse>> postV1EcommerceStockList(
+                public CompletableFuture<NordletApiHttpResponse<StockListEcommerceResponse>> stockList(
                     ) {
-                  return postV1EcommerceStockList(PostV1EcommerceStockListRequest.builder().build());
+                  return stockList(StockListEcommerceRequest.builder().build());
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceStockListResponse>> postV1EcommerceStockList(
+                public CompletableFuture<NordletApiHttpResponse<StockListEcommerceResponse>> stockList(
                     RequestOptions requestOptions) {
-                  return postV1EcommerceStockList(PostV1EcommerceStockListRequest.builder().build(),requestOptions);
+                  return stockList(StockListEcommerceRequest.builder().build(),requestOptions);
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceStockListResponse>> postV1EcommerceStockList(
-                    PostV1EcommerceStockListRequest request) {
-                  return postV1EcommerceStockList(request,null);
+                public CompletableFuture<NordletApiHttpResponse<StockListEcommerceResponse>> stockList(
+                    StockListEcommerceRequest request) {
+                  return stockList(request,null);
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1EcommerceStockListResponse>> postV1EcommerceStockList(
-                    PostV1EcommerceStockListRequest request, RequestOptions requestOptions) {
+                public CompletableFuture<NordletApiHttpResponse<StockListEcommerceResponse>> stockList(
+                    StockListEcommerceRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                     .addPathSegments("v1/ecommerce/stock/list");if (requestOptions != null) {
@@ -742,14 +771,14 @@ public class AsyncRawEcommerceClient {
                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                     }
-                    CompletableFuture<NordletApiHttpResponse<PostV1EcommerceStockListResponse>> future = new CompletableFuture<>();
+                    CompletableFuture<NordletApiHttpResponse<StockListEcommerceResponse>> future = new CompletableFuture<>();
                     client.newCall(okhttpRequest).enqueue(new Callback() {
                       @Override
                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         try (ResponseBody responseBody = response.body()) {
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceStockListResponse.class), response));
+                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StockListEcommerceResponse.class), response));
                             return;
                           }
                           try {
@@ -758,11 +787,15 @@ public class AsyncRawEcommerceClient {
                               return;
                               case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
+                              case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                              return;
                               case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
                               case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
                               case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                              return;
+                              case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
                               case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;

@@ -1,6 +1,6 @@
 # Reference
-## Reference
-<details><summary><code>client.reference.postV1ReferenceExchangeRatesSync(request) -> PostV1ReferenceExchangeRatesSyncResponse</code></summary>
+## reference
+<details><summary><code>client.reference.exchangeRatesSync(request) -> ExchangeRatesSyncReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -13,8 +13,8 @@
 <dd>
 
 ```java
-client.reference().postV1ReferenceExchangeRatesSync(
-    PostV1ReferenceExchangeRatesSyncRequest
+client.reference().exchangeRatesSync(
+    ExchangeRatesSyncReferenceRequest
         .builder()
         .build()
 );
@@ -44,7 +44,7 @@ client.reference().postV1ReferenceExchangeRatesSync(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceExchangeRatesList(request) -> PostV1ReferenceExchangeRatesListResponse</code></summary>
+<details><summary><code>client.reference.exchangeRatesList(request) -> ExchangeRatesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -57,8 +57,8 @@ client.reference().postV1ReferenceExchangeRatesSync(
 <dd>
 
 ```java
-client.reference().postV1ReferenceExchangeRatesList(
-    PostV1ReferenceExchangeRatesListRequest
+client.reference().exchangeRatesList(
+    ExchangeRatesListReferenceRequest
         .builder()
         .build()
 );
@@ -92,7 +92,7 @@ client.reference().postV1ReferenceExchangeRatesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ReferenceExchangeRatesListRequestSortItem>>` 
+**sort:** `Optional<List<ExchangeRatesListReferenceRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -100,7 +100,7 @@ client.reference().postV1ReferenceExchangeRatesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ReferenceExchangeRatesListRequestFilterItem>>` 
+**filter:** `Optional<List<ExchangeRatesListReferenceRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -120,7 +120,7 @@ client.reference().postV1ReferenceExchangeRatesList(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceExchangeRatesSet(request) -> PostV1ReferenceExchangeRatesSetResponse</code></summary>
+<details><summary><code>client.reference.exchangeRatesSet(request) -> ExchangeRatesSetReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -133,12 +133,12 @@ client.reference().postV1ReferenceExchangeRatesList(
 <dd>
 
 ```java
-client.reference().postV1ReferenceExchangeRatesSet(
-    PostV1ReferenceExchangeRatesSetRequest
+client.reference().exchangeRatesSet(
+    ExchangeRatesSetReferenceRequest
         .builder()
         .currency("currency")
-        .date("date")
-        .rate("rate")
+        .date("2026-07-01")
+        .rate("121.00000000")
         .build()
 );
 ```
@@ -183,7 +183,7 @@ client.reference().postV1ReferenceExchangeRatesSet(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceExchangeRatesOverridesList(request) -> PostV1ReferenceExchangeRatesOverridesListResponse</code></summary>
+<details><summary><code>client.reference.exchangeRatesOverridesList(request) -> ExchangeRatesOverridesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -196,8 +196,8 @@ client.reference().postV1ReferenceExchangeRatesSet(
 <dd>
 
 ```java
-client.reference().postV1ReferenceExchangeRatesOverridesList(
-    PostV1ReferenceExchangeRatesOverridesListRequest
+client.reference().exchangeRatesOverridesList(
+    ExchangeRatesOverridesListReferenceRequest
         .builder()
         .build()
 );
@@ -231,7 +231,7 @@ client.reference().postV1ReferenceExchangeRatesOverridesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ReferenceExchangeRatesOverridesListRequestSortItem>>` 
+**sort:** `Optional<List<ExchangeRatesOverridesListReferenceRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -239,7 +239,7 @@ client.reference().postV1ReferenceExchangeRatesOverridesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ReferenceExchangeRatesOverridesListRequestFilterItem>>` 
+**filter:** `Optional<List<ExchangeRatesOverridesListReferenceRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -259,7 +259,7 @@ client.reference().postV1ReferenceExchangeRatesOverridesList(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceExchangeRatesOverridesDelete(request) -> PostV1ReferenceExchangeRatesOverridesDeleteResponse</code></summary>
+<details><summary><code>client.reference.exchangeRatesOverridesDelete(request) -> ExchangeRatesOverridesDeleteReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -272,11 +272,11 @@ client.reference().postV1ReferenceExchangeRatesOverridesList(
 <dd>
 
 ```java
-client.reference().postV1ReferenceExchangeRatesOverridesDelete(
-    PostV1ReferenceExchangeRatesOverridesDeleteRequest
+client.reference().exchangeRatesOverridesDelete(
+    ExchangeRatesOverridesDeleteReferenceRequest
         .builder()
         .currency("currency")
-        .date("date")
+        .date("2026-07-01")
         .build()
 );
 ```
@@ -313,7 +313,7 @@ client.reference().postV1ReferenceExchangeRatesOverridesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceCountriesList(request) -> PostV1ReferenceCountriesListResponse</code></summary>
+<details><summary><code>client.reference.countriesList(request) -> CountriesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -326,8 +326,8 @@ client.reference().postV1ReferenceExchangeRatesOverridesDelete(
 <dd>
 
 ```java
-client.reference().postV1ReferenceCountriesList(
-    PostV1ReferenceCountriesListRequest
+client.reference().countriesList(
+    CountriesListReferenceRequest
         .builder()
         .build()
 );
@@ -342,7 +342,7 @@ client.reference().postV1ReferenceCountriesList(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceLtCountiesList(request) -> PostV1ReferenceLtCountiesListResponse</code></summary>
+<details><summary><code>client.reference.ltCountiesList(request) -> LtCountiesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -355,8 +355,8 @@ client.reference().postV1ReferenceCountriesList(
 <dd>
 
 ```java
-client.reference().postV1ReferenceLtCountiesList(
-    PostV1ReferenceLtCountiesListRequest
+client.reference().ltCountiesList(
+    LtCountiesListReferenceRequest
         .builder()
         .build()
 );
@@ -371,7 +371,7 @@ client.reference().postV1ReferenceLtCountiesList(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceLtMunicipalitiesList(request) -> PostV1ReferenceLtMunicipalitiesListResponse</code></summary>
+<details><summary><code>client.reference.ltMunicipalitiesList(request) -> LtMunicipalitiesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -384,8 +384,8 @@ client.reference().postV1ReferenceLtCountiesList(
 <dd>
 
 ```java
-client.reference().postV1ReferenceLtMunicipalitiesList(
-    PostV1ReferenceLtMunicipalitiesListRequest
+client.reference().ltMunicipalitiesList(
+    LtMunicipalitiesListReferenceRequest
         .builder()
         .build()
 );
@@ -415,7 +415,7 @@ client.reference().postV1ReferenceLtMunicipalitiesList(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceLtCitiesList(request) -> PostV1ReferenceLtCitiesListResponse</code></summary>
+<details><summary><code>client.reference.ltCitiesList(request) -> LtCitiesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -428,8 +428,8 @@ client.reference().postV1ReferenceLtMunicipalitiesList(
 <dd>
 
 ```java
-client.reference().postV1ReferenceLtCitiesList(
-    PostV1ReferenceLtCitiesListRequest
+client.reference().ltCitiesList(
+    LtCitiesListReferenceRequest
         .builder()
         .build()
 );
@@ -467,7 +467,7 @@ client.reference().postV1ReferenceLtCitiesList(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceBanksList(request) -> PostV1ReferenceBanksListResponse</code></summary>
+<details><summary><code>client.reference.banksList(request) -> BanksListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -480,8 +480,8 @@ client.reference().postV1ReferenceLtCitiesList(
 <dd>
 
 ```java
-client.reference().postV1ReferenceBanksList(
-    PostV1ReferenceBanksListRequest
+client.reference().banksList(
+    BanksListReferenceRequest
         .builder()
         .build()
 );
@@ -515,7 +515,7 @@ client.reference().postV1ReferenceBanksList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ReferenceBanksListRequestSortItem>>` 
+**sort:** `Optional<List<BanksListReferenceRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -523,7 +523,7 @@ client.reference().postV1ReferenceBanksList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ReferenceBanksListRequestFilterItem>>` 
+**filter:** `Optional<List<BanksListReferenceRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -543,7 +543,7 @@ client.reference().postV1ReferenceBanksList(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceBanksUpsert(request) -> PostV1ReferenceBanksUpsertResponse</code></summary>
+<details><summary><code>client.reference.banksUpsert(request) -> BanksUpsertReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -556,8 +556,8 @@ client.reference().postV1ReferenceBanksList(
 <dd>
 
 ```java
-client.reference().postV1ReferenceBanksUpsert(
-    PostV1ReferenceBanksUpsertRequest
+client.reference().banksUpsert(
+    BanksUpsertReferenceRequest
         .builder()
         .countryCode("countryCode")
         .name("name")
@@ -622,7 +622,7 @@ client.reference().postV1ReferenceBanksUpsert(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceLtRegionsList(request) -> PostV1ReferenceLtRegionsListResponse</code></summary>
+<details><summary><code>client.reference.ltRegionsList(request) -> LtRegionsListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -635,8 +635,8 @@ client.reference().postV1ReferenceBanksUpsert(
 <dd>
 
 ```java
-client.reference().postV1ReferenceLtRegionsList(
-    PostV1ReferenceLtRegionsListRequest
+client.reference().ltRegionsList(
+    LtRegionsListReferenceRequest
         .builder()
         .build()
 );
@@ -651,7 +651,7 @@ client.reference().postV1ReferenceLtRegionsList(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceCurrenciesList(request) -> PostV1ReferenceCurrenciesListResponse</code></summary>
+<details><summary><code>client.reference.currenciesList(request) -> CurrenciesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -664,84 +664,8 @@ client.reference().postV1ReferenceLtRegionsList(
 <dd>
 
 ```java
-client.reference().postV1ReferenceCurrenciesList(
-    PostV1ReferenceCurrenciesListRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**page:** `Optional<Long>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Optional<Long>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sort:** `Optional<List<PostV1ReferenceCurrenciesListRequestSortItem>>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filter:** `Optional<List<PostV1ReferenceCurrenciesListRequestFilterItem>>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.reference.postV1ReferenceVatClassifiersList(request) -> PostV1ReferenceVatClassifiersListResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.reference().postV1ReferenceVatClassifiersList(
-    PostV1ReferenceVatClassifiersListRequest
+client.reference().currenciesList(
+    CurrenciesListReferenceRequest
         .builder()
         .build()
 );
@@ -775,7 +699,7 @@ client.reference().postV1ReferenceVatClassifiersList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ReferenceVatClassifiersListRequestSortItem>>` 
+**sort:** `Optional<List<CurrenciesListReferenceRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -783,7 +707,7 @@ client.reference().postV1ReferenceVatClassifiersList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ReferenceVatClassifiersListRequestFilterItem>>` 
+**filter:** `Optional<List<CurrenciesListReferenceRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -803,7 +727,7 @@ client.reference().postV1ReferenceVatClassifiersList(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceVatClassifiersUpsert(request) -> PostV1ReferenceVatClassifiersUpsertResponse</code></summary>
+<details><summary><code>client.reference.vatClassifiersList(request) -> VatClassifiersListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -816,12 +740,88 @@ client.reference().postV1ReferenceVatClassifiersList(
 <dd>
 
 ```java
-client.reference().postV1ReferenceVatClassifiersUpsert(
-    PostV1ReferenceVatClassifiersUpsertRequest
+client.reference().vatClassifiersList(
+    VatClassifiersListReferenceRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<VatClassifiersListReferenceRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<VatClassifiersListReferenceRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.reference.vatClassifiersUpsert(request) -> VatClassifiersUpsertReferenceResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.reference().vatClassifiersUpsert(
+    VatClassifiersUpsertReferenceRequest
         .builder()
         .rows(
             Arrays.asList(
-                PostV1ReferenceVatClassifiersUpsertRequestRowsItem
+                VatClassifiersUpsertReferenceRequestRowsItem
                     .builder()
                     .code("code")
                     .name("name")
@@ -844,7 +844,7 @@ client.reference().postV1ReferenceVatClassifiersUpsert(
 <dl>
 <dd>
 
-**rows:** `List<PostV1ReferenceVatClassifiersUpsertRequestRowsItem>` 
+**rows:** `List<VatClassifiersUpsertReferenceRequestRowsItem>` 
     
 </dd>
 </dl>
@@ -856,7 +856,7 @@ client.reference().postV1ReferenceVatClassifiersUpsert(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceEuVatRatesList(request) -> PostV1ReferenceEuVatRatesListResponse</code></summary>
+<details><summary><code>client.reference.euVatRatesList(request) -> EuVatRatesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -883,8 +883,8 @@ Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per c
 <dd>
 
 ```java
-client.reference().postV1ReferenceEuVatRatesList(
-    PostV1ReferenceEuVatRatesListRequest
+client.reference().euVatRatesList(
+    EuVatRatesListReferenceRequest
         .builder()
         .build()
 );
@@ -922,7 +922,7 @@ client.reference().postV1ReferenceEuVatRatesList(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceEuVatRatesSetOverrides(request) -> PostV1ReferenceEuVatRatesSetOverridesResponse</code></summary>
+<details><summary><code>client.reference.euVatRatesSetOverrides(request) -> EuVatRatesSetOverridesReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -949,16 +949,16 @@ Replace the VAT rate mapping this company uses for one EU country. Pass an empty
 <dd>
 
 ```java
-client.reference().postV1ReferenceEuVatRatesSetOverrides(
-    PostV1ReferenceEuVatRatesSetOverridesRequest
+client.reference().euVatRatesSetOverrides(
+    EuVatRatesSetOverridesReferenceRequest
         .builder()
         .countryCode("countryCode")
         .rates(
             Arrays.asList(
-                PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem
+                EuVatRatesSetOverridesReferenceRequestRatesItem
                     .builder()
-                    .category(PostV1ReferenceEuVatRatesSetOverridesRequestRatesItemCategory.STANDARD)
-                    .ratePercent("ratePercent")
+                    .category(EuVatRatesSetOverridesReferenceRequestRatesItemCategory.STANDARD)
+                    .ratePercent("121.00")
                     .build()
             )
         )
@@ -986,7 +986,7 @@ client.reference().postV1ReferenceEuVatRatesSetOverrides(
 <dl>
 <dd>
 
-**rates:** `List<PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem>` 
+**rates:** `List<EuVatRatesSetOverridesReferenceRequestRatesItem>` 
     
 </dd>
 </dl>
@@ -998,7 +998,7 @@ client.reference().postV1ReferenceEuVatRatesSetOverrides(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceVatResolve(request) -> PostV1ReferenceVatResolveResponse</code></summary>
+<details><summary><code>client.reference.vatResolve(request) -> VatResolveReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1011,8 +1011,8 @@ client.reference().postV1ReferenceEuVatRatesSetOverrides(
 <dd>
 
 ```java
-client.reference().postV1ReferenceVatResolve(
-    PostV1ReferenceVatResolveRequest
+client.reference().vatResolve(
+    VatResolveReferenceRequest
         .builder()
         .build()
 );
@@ -1054,7 +1054,7 @@ client.reference().postV1ReferenceVatResolve(
 <dl>
 <dd>
 
-**supplyType:** `Optional<PostV1ReferenceVatResolveRequestSupplyType>` 
+**supplyType:** `Optional<VatResolveReferenceRequestSupplyType>` 
     
 </dd>
 </dl>
@@ -1114,7 +1114,7 @@ client.reference().postV1ReferenceVatResolve(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceCnCodesList(request) -> PostV1ReferenceCnCodesListResponse</code></summary>
+<details><summary><code>client.reference.cnCodesList(request) -> CnCodesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1127,8 +1127,8 @@ client.reference().postV1ReferenceVatResolve(
 <dd>
 
 ```java
-client.reference().postV1ReferenceCnCodesList(
-    PostV1ReferenceCnCodesListRequest
+client.reference().cnCodesList(
+    CnCodesListReferenceRequest
         .builder()
         .build()
 );
@@ -1162,7 +1162,7 @@ client.reference().postV1ReferenceCnCodesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ReferenceCnCodesListRequestSortItem>>` 
+**sort:** `Optional<List<CnCodesListReferenceRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -1170,7 +1170,7 @@ client.reference().postV1ReferenceCnCodesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ReferenceCnCodesListRequestFilterItem>>` 
+**filter:** `Optional<List<CnCodesListReferenceRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -1190,7 +1190,7 @@ client.reference().postV1ReferenceCnCodesList(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceCnCodesUpsert(request) -> PostV1ReferenceCnCodesUpsertResponse</code></summary>
+<details><summary><code>client.reference.cnCodesUpsert(request) -> CnCodesUpsertReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1203,12 +1203,12 @@ client.reference().postV1ReferenceCnCodesList(
 <dd>
 
 ```java
-client.reference().postV1ReferenceCnCodesUpsert(
-    PostV1ReferenceCnCodesUpsertRequest
+client.reference().cnCodesUpsert(
+    CnCodesUpsertReferenceRequest
         .builder()
         .rows(
             Arrays.asList(
-                PostV1ReferenceCnCodesUpsertRequestRowsItem
+                CnCodesUpsertReferenceRequestRowsItem
                     .builder()
                     .code("code")
                     .name("name")
@@ -1231,7 +1231,7 @@ client.reference().postV1ReferenceCnCodesUpsert(
 <dl>
 <dd>
 
-**rows:** `List<PostV1ReferenceCnCodesUpsertRequestRowsItem>` 
+**rows:** `List<CnCodesUpsertReferenceRequestRowsItem>` 
     
 </dd>
 </dl>
@@ -1243,7 +1243,7 @@ client.reference().postV1ReferenceCnCodesUpsert(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceComplianceVersionsList(request) -> PostV1ReferenceComplianceVersionsListResponse</code></summary>
+<details><summary><code>client.reference.complianceVersionsList(request) -> ComplianceVersionsListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1256,8 +1256,8 @@ client.reference().postV1ReferenceCnCodesUpsert(
 <dd>
 
 ```java
-client.reference().postV1ReferenceComplianceVersionsList(
-    PostV1ReferenceComplianceVersionsListRequest
+client.reference().complianceVersionsList(
+    ComplianceVersionsListReferenceRequest
         .builder()
         .build()
 );
@@ -1287,7 +1287,7 @@ client.reference().postV1ReferenceComplianceVersionsList(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceIntrastatThresholdsList(request) -> PostV1ReferenceIntrastatThresholdsListResponse</code></summary>
+<details><summary><code>client.reference.intrastatThresholdsList(request) -> IntrastatThresholdsListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1300,8 +1300,8 @@ client.reference().postV1ReferenceComplianceVersionsList(
 <dd>
 
 ```java
-client.reference().postV1ReferenceIntrastatThresholdsList(
-    PostV1ReferenceIntrastatThresholdsListRequest
+client.reference().intrastatThresholdsList(
+    IntrastatThresholdsListReferenceRequest
         .builder()
         .build()
 );
@@ -1316,7 +1316,7 @@ client.reference().postV1ReferenceIntrastatThresholdsList(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceUnitsList(request) -> PostV1ReferenceUnitsListResponse</code></summary>
+<details><summary><code>client.reference.unitsList(request) -> UnitsListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1329,8 +1329,8 @@ client.reference().postV1ReferenceIntrastatThresholdsList(
 <dd>
 
 ```java
-client.reference().postV1ReferenceUnitsList(
-    PostV1ReferenceUnitsListRequest
+client.reference().unitsList(
+    UnitsListReferenceRequest
         .builder()
         .build()
 );
@@ -1364,7 +1364,7 @@ client.reference().postV1ReferenceUnitsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ReferenceUnitsListRequestSortItem>>` 
+**sort:** `Optional<List<UnitsListReferenceRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -1372,7 +1372,7 @@ client.reference().postV1ReferenceUnitsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ReferenceUnitsListRequestFilterItem>>` 
+**filter:** `Optional<List<UnitsListReferenceRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -1392,7 +1392,7 @@ client.reference().postV1ReferenceUnitsList(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceSeriesCreate(request) -> PostV1ReferenceSeriesCreateResponse</code></summary>
+<details><summary><code>client.reference.seriesCreate(request) -> SeriesCreateReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1405,8 +1405,8 @@ client.reference().postV1ReferenceUnitsList(
 <dd>
 
 ```java
-client.reference().postV1ReferenceSeriesCreate(
-    PostV1ReferenceSeriesCreateRequest
+client.reference().seriesCreate(
+    SeriesCreateReferenceRequest
         .builder()
         .documentType("documentType")
         .year(1000000L)
@@ -1462,7 +1462,7 @@ client.reference().postV1ReferenceSeriesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.reference.postV1ReferenceSeriesList(request) -> PostV1ReferenceSeriesListResponse</code></summary>
+<details><summary><code>client.reference.seriesList(request) -> SeriesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1475,8 +1475,8 @@ client.reference().postV1ReferenceSeriesCreate(
 <dd>
 
 ```java
-client.reference().postV1ReferenceSeriesList(
-    PostV1ReferenceSeriesListRequest
+client.reference().seriesList(
+    SeriesListReferenceRequest
         .builder()
         .build()
 );
@@ -1510,7 +1510,7 @@ client.reference().postV1ReferenceSeriesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ReferenceSeriesListRequestSortItem>>` 
+**sort:** `Optional<List<SeriesListReferenceRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -1518,7 +1518,7 @@ client.reference().postV1ReferenceSeriesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ReferenceSeriesListRequestFilterItem>>` 
+**filter:** `Optional<List<SeriesListReferenceRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -1538,8 +1538,8 @@ client.reference().postV1ReferenceSeriesList(
 </dl>
 </details>
 
-## Partners
-<details><summary><code>client.partners.postV1PartnersAddressesCreate(request) -> PostV1PartnersAddressesCreateResponse</code></summary>
+## partners
+<details><summary><code>client.partners.addressesCreate(request) -> AddressesCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -1552,8 +1552,8 @@ client.reference().postV1ReferenceSeriesList(
 <dd>
 
 ```java
-client.partners().postV1PartnersAddressesCreate(
-    PostV1PartnersAddressesCreateRequest
+client.partners().addressesCreate(
+    AddressesCreatePartnersRequest
         .builder()
         .partnerId("partnerId")
         .build()
@@ -1572,7 +1572,7 @@ client.partners().postV1PartnersAddressesCreate(
 <dl>
 <dd>
 
-**type:** `Optional<PostV1PartnersAddressesCreateRequestType>` 
+**type:** `Optional<AddressesCreatePartnersRequestType>` 
     
 </dd>
 </dl>
@@ -1632,7 +1632,7 @@ client.partners().postV1PartnersAddressesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersAddressesUpdate(request) -> PostV1PartnersAddressesUpdateResponse</code></summary>
+<details><summary><code>client.partners.addressesUpdate(request) -> AddressesUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -1645,8 +1645,8 @@ client.partners().postV1PartnersAddressesCreate(
 <dd>
 
 ```java
-client.partners().postV1PartnersAddressesUpdate(
-    PostV1PartnersAddressesUpdateRequest
+client.partners().addressesUpdate(
+    AddressesUpdatePartnersRequest
         .builder()
         .id("id")
         .build()
@@ -1665,7 +1665,7 @@ client.partners().postV1PartnersAddressesUpdate(
 <dl>
 <dd>
 
-**type:** `Optional<PostV1PartnersAddressesUpdateRequestType>` 
+**type:** `Optional<AddressesUpdatePartnersRequestType>` 
     
 </dd>
 </dl>
@@ -1725,7 +1725,7 @@ client.partners().postV1PartnersAddressesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersAddressesDelete(request) -> PostV1PartnersAddressesDeleteResponse</code></summary>
+<details><summary><code>client.partners.addressesDelete(request) -> AddressesDeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -1738,8 +1738,8 @@ client.partners().postV1PartnersAddressesUpdate(
 <dd>
 
 ```java
-client.partners().postV1PartnersAddressesDelete(
-    PostV1PartnersAddressesDeleteRequest
+client.partners().addressesDelete(
+    AddressesDeletePartnersRequest
         .builder()
         .id("id")
         .build()
@@ -1770,7 +1770,7 @@ client.partners().postV1PartnersAddressesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersAddressesList(request) -> PostV1PartnersAddressesListResponse</code></summary>
+<details><summary><code>client.partners.addressesList(request) -> AddressesListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -1783,8 +1783,8 @@ client.partners().postV1PartnersAddressesDelete(
 <dd>
 
 ```java
-client.partners().postV1PartnersAddressesList(
-    PostV1PartnersAddressesListRequest
+client.partners().addressesList(
+    AddressesListPartnersRequest
         .builder()
         .build()
 );
@@ -1818,7 +1818,7 @@ client.partners().postV1PartnersAddressesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1PartnersAddressesListRequestSortItem>>` 
+**sort:** `Optional<List<AddressesListPartnersRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -1826,7 +1826,7 @@ client.partners().postV1PartnersAddressesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1PartnersAddressesListRequestFilterItem>>` 
+**filter:** `Optional<List<AddressesListPartnersRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -1846,7 +1846,7 @@ client.partners().postV1PartnersAddressesList(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersContactsCreate(request) -> PostV1PartnersContactsCreateResponse</code></summary>
+<details><summary><code>client.partners.contactsCreate(request) -> ContactsCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -1859,8 +1859,8 @@ client.partners().postV1PartnersAddressesList(
 <dd>
 
 ```java
-client.partners().postV1PartnersContactsCreate(
-    PostV1PartnersContactsCreateRequest
+client.partners().contactsCreate(
+    ContactsCreatePartnersRequest
         .builder()
         .name("name")
         .partnerId("partnerId")
@@ -1932,7 +1932,7 @@ client.partners().postV1PartnersContactsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersContactsUpdate(request) -> PostV1PartnersContactsUpdateResponse</code></summary>
+<details><summary><code>client.partners.contactsUpdate(request) -> ContactsUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -1945,8 +1945,8 @@ client.partners().postV1PartnersContactsCreate(
 <dd>
 
 ```java
-client.partners().postV1PartnersContactsUpdate(
-    PostV1PartnersContactsUpdateRequest
+client.partners().contactsUpdate(
+    ContactsUpdatePartnersRequest
         .builder()
         .id("id")
         .build()
@@ -2017,7 +2017,7 @@ client.partners().postV1PartnersContactsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersContactsDelete(request) -> PostV1PartnersContactsDeleteResponse</code></summary>
+<details><summary><code>client.partners.contactsDelete(request) -> ContactsDeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2030,8 +2030,8 @@ client.partners().postV1PartnersContactsUpdate(
 <dd>
 
 ```java
-client.partners().postV1PartnersContactsDelete(
-    PostV1PartnersContactsDeleteRequest
+client.partners().contactsDelete(
+    ContactsDeletePartnersRequest
         .builder()
         .id("id")
         .build()
@@ -2062,7 +2062,7 @@ client.partners().postV1PartnersContactsDelete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersContactsList(request) -> PostV1PartnersContactsListResponse</code></summary>
+<details><summary><code>client.partners.contactsList(request) -> ContactsListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2075,8 +2075,8 @@ client.partners().postV1PartnersContactsDelete(
 <dd>
 
 ```java
-client.partners().postV1PartnersContactsList(
-    PostV1PartnersContactsListRequest
+client.partners().contactsList(
+    ContactsListPartnersRequest
         .builder()
         .build()
 );
@@ -2110,7 +2110,7 @@ client.partners().postV1PartnersContactsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1PartnersContactsListRequestSortItem>>` 
+**sort:** `Optional<List<ContactsListPartnersRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -2118,7 +2118,7 @@ client.partners().postV1PartnersContactsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1PartnersContactsListRequestFilterItem>>` 
+**filter:** `Optional<List<ContactsListPartnersRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -2138,7 +2138,7 @@ client.partners().postV1PartnersContactsList(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersBankAccountsCreate(request) -> PostV1PartnersBankAccountsCreateResponse</code></summary>
+<details><summary><code>client.partners.bankAccountsCreate(request) -> BankAccountsCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2151,8 +2151,8 @@ client.partners().postV1PartnersContactsList(
 <dd>
 
 ```java
-client.partners().postV1PartnersBankAccountsCreate(
-    PostV1PartnersBankAccountsCreateRequest
+client.partners().bankAccountsCreate(
+    BankAccountsCreatePartnersRequest
         .builder()
         .iban("iban")
         .partnerId("partnerId")
@@ -2224,7 +2224,7 @@ client.partners().postV1PartnersBankAccountsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersBankAccountsUpdate(request) -> PostV1PartnersBankAccountsUpdateResponse</code></summary>
+<details><summary><code>client.partners.bankAccountsUpdate(request) -> BankAccountsUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2237,8 +2237,8 @@ client.partners().postV1PartnersBankAccountsCreate(
 <dd>
 
 ```java
-client.partners().postV1PartnersBankAccountsUpdate(
-    PostV1PartnersBankAccountsUpdateRequest
+client.partners().bankAccountsUpdate(
+    BankAccountsUpdatePartnersRequest
         .builder()
         .id("id")
         .build()
@@ -2309,7 +2309,7 @@ client.partners().postV1PartnersBankAccountsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersBankAccountsDelete(request) -> PostV1PartnersBankAccountsDeleteResponse</code></summary>
+<details><summary><code>client.partners.bankAccountsDelete(request) -> BankAccountsDeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2322,8 +2322,8 @@ client.partners().postV1PartnersBankAccountsUpdate(
 <dd>
 
 ```java
-client.partners().postV1PartnersBankAccountsDelete(
-    PostV1PartnersBankAccountsDeleteRequest
+client.partners().bankAccountsDelete(
+    BankAccountsDeletePartnersRequest
         .builder()
         .id("id")
         .build()
@@ -2354,7 +2354,7 @@ client.partners().postV1PartnersBankAccountsDelete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersBankAccountsList(request) -> PostV1PartnersBankAccountsListResponse</code></summary>
+<details><summary><code>client.partners.bankAccountsList(request) -> BankAccountsListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2367,8 +2367,8 @@ client.partners().postV1PartnersBankAccountsDelete(
 <dd>
 
 ```java
-client.partners().postV1PartnersBankAccountsList(
-    PostV1PartnersBankAccountsListRequest
+client.partners().bankAccountsList(
+    BankAccountsListPartnersRequest
         .builder()
         .build()
 );
@@ -2402,7 +2402,7 @@ client.partners().postV1PartnersBankAccountsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1PartnersBankAccountsListRequestSortItem>>` 
+**sort:** `Optional<List<BankAccountsListPartnersRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -2410,7 +2410,7 @@ client.partners().postV1PartnersBankAccountsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1PartnersBankAccountsListRequestFilterItem>>` 
+**filter:** `Optional<List<BankAccountsListPartnersRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -2430,7 +2430,7 @@ client.partners().postV1PartnersBankAccountsList(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersFilesList(request) -> PostV1PartnersFilesListResponse</code></summary>
+<details><summary><code>client.partners.filesList(request) -> FilesListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2443,8 +2443,8 @@ client.partners().postV1PartnersBankAccountsList(
 <dd>
 
 ```java
-client.partners().postV1PartnersFilesList(
-    PostV1PartnersFilesListRequest
+client.partners().filesList(
+    FilesListPartnersRequest
         .builder()
         .partnerId("partnerId")
         .build()
@@ -2475,7 +2475,7 @@ client.partners().postV1PartnersFilesList(
 </dl>
 </details>
 
-<details><summary><code>client.partners.remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany(request) -> PostV1PartnersDebtRemindersPreviewResponse</code></summary>
+<details><summary><code>client.partners.debtRemindersPreview(request) -> DebtRemindersPreviewPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2488,8 +2488,8 @@ client.partners().postV1PartnersFilesList(
 <dd>
 
 ```java
-client.partners().remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany(
-    PostV1PartnersDebtRemindersPreviewRequest
+client.partners().debtRemindersPreview(
+    DebtRemindersPreviewPartnersRequest
         .builder()
         .build()
 );
@@ -2504,7 +2504,7 @@ client.partners().remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompa
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersDebtRemindersList(request) -> PostV1PartnersDebtRemindersListResponse</code></summary>
+<details><summary><code>client.partners.debtRemindersList(request) -> DebtRemindersListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2517,8 +2517,8 @@ client.partners().remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompa
 <dd>
 
 ```java
-client.partners().postV1PartnersDebtRemindersList(
-    PostV1PartnersDebtRemindersListRequest
+client.partners().debtRemindersList(
+    DebtRemindersListPartnersRequest
         .builder()
         .build()
 );
@@ -2552,7 +2552,7 @@ client.partners().postV1PartnersDebtRemindersList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1PartnersDebtRemindersListRequestSortItem>>` 
+**sort:** `Optional<List<DebtRemindersListPartnersRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -2560,7 +2560,7 @@ client.partners().postV1PartnersDebtRemindersList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1PartnersDebtRemindersListRequestFilterItem>>` 
+**filter:** `Optional<List<DebtRemindersListPartnersRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -2580,7 +2580,7 @@ client.partners().postV1PartnersDebtRemindersList(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersValidateVat(request) -> PostV1PartnersValidateVatResponse</code></summary>
+<details><summary><code>client.partners.validateVat(request) -> ValidateVatPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2593,8 +2593,8 @@ client.partners().postV1PartnersDebtRemindersList(
 <dd>
 
 ```java
-client.partners().postV1PartnersValidateVat(
-    PostV1PartnersValidateVatRequest
+client.partners().validateVat(
+    ValidateVatPartnersRequest
         .builder()
         .build()
 );
@@ -2632,7 +2632,7 @@ client.partners().postV1PartnersValidateVat(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersVatReviewsList(request) -> PostV1PartnersVatReviewsListResponse</code></summary>
+<details><summary><code>client.partners.vatReviewsList(request) -> VatReviewsListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2645,8 +2645,8 @@ client.partners().postV1PartnersValidateVat(
 <dd>
 
 ```java
-client.partners().postV1PartnersVatReviewsList(
-    PostV1PartnersVatReviewsListRequest
+client.partners().vatReviewsList(
+    VatReviewsListPartnersRequest
         .builder()
         .build()
 );
@@ -2680,7 +2680,7 @@ client.partners().postV1PartnersVatReviewsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1PartnersVatReviewsListRequestSortItem>>` 
+**sort:** `Optional<List<VatReviewsListPartnersRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -2688,7 +2688,7 @@ client.partners().postV1PartnersVatReviewsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1PartnersVatReviewsListRequestFilterItem>>` 
+**filter:** `Optional<List<VatReviewsListPartnersRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -2708,7 +2708,7 @@ client.partners().postV1PartnersVatReviewsList(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersVatReviewsResolve(request) -> PostV1PartnersVatReviewsResolveResponse</code></summary>
+<details><summary><code>client.partners.vatReviewsResolve(request) -> VatReviewsResolvePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2721,11 +2721,11 @@ client.partners().postV1PartnersVatReviewsList(
 <dd>
 
 ```java
-client.partners().postV1PartnersVatReviewsResolve(
-    PostV1PartnersVatReviewsResolveRequest
+client.partners().vatReviewsResolve(
+    VatReviewsResolvePartnersRequest
         .builder()
         .id("id")
-        .resolution(PostV1PartnersVatReviewsResolveRequestResolution.CONFIRMED_VALID)
+        .resolution(VatReviewsResolvePartnersRequestResolution.CONFIRMED_VALID)
         .build()
 );
 ```
@@ -2750,7 +2750,7 @@ client.partners().postV1PartnersVatReviewsResolve(
 <dl>
 <dd>
 
-**resolution:** `PostV1PartnersVatReviewsResolveRequestResolution` 
+**resolution:** `VatReviewsResolvePartnersRequestResolution` 
     
 </dd>
 </dl>
@@ -2770,7 +2770,7 @@ client.partners().postV1PartnersVatReviewsResolve(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersCreate(request) -> PostV1PartnersCreateResponse</code></summary>
+<details><summary><code>client.partners.create(request) -> CreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2783,8 +2783,8 @@ client.partners().postV1PartnersVatReviewsResolve(
 <dd>
 
 ```java
-client.partners().postV1PartnersCreate(
-    PostV1PartnersCreateRequest
+client.partners().create(
+    CreatePartnersRequest
         .builder()
         .name("name")
         .build()
@@ -2803,7 +2803,7 @@ client.partners().postV1PartnersCreate(
 <dl>
 <dd>
 
-**type:** `Optional<PostV1PartnersCreateRequestType>` 
+**type:** `Optional<CreatePartnersRequestType>` 
     
 </dd>
 </dl>
@@ -2931,7 +2931,7 @@ client.partners().postV1PartnersCreate(
 <dl>
 <dd>
 
-**address:** `Optional<PostV1PartnersCreateRequestAddress>` 
+**address:** `Optional<CreatePartnersRequestAddress>` 
     
 </dd>
 </dl>
@@ -2939,7 +2939,7 @@ client.partners().postV1PartnersCreate(
 <dl>
 <dd>
 
-**correspondenceAddress:** `Optional<PostV1PartnersCreateRequestCorrespondenceAddress>` 
+**correspondenceAddress:** `Optional<CreatePartnersRequestCorrespondenceAddress>` 
     
 </dd>
 </dl>
@@ -3083,7 +3083,7 @@ client.partners().postV1PartnersCreate(
 <dl>
 <dd>
 
-**legalCountryClass:** `Optional<PostV1PartnersCreateRequestLegalCountryClass>` 
+**legalCountryClass:** `Optional<CreatePartnersRequestLegalCountryClass>` 
     
 </dd>
 </dl>
@@ -3095,7 +3095,7 @@ client.partners().postV1PartnersCreate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersFindOrCreate(request) -> PostV1PartnersFindOrCreateResponse</code></summary>
+<details><summary><code>client.partners.findOrCreate(request) -> FindOrCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3108,8 +3108,8 @@ client.partners().postV1PartnersCreate(
 <dd>
 
 ```java
-client.partners().postV1PartnersFindOrCreate(
-    PostV1PartnersFindOrCreateRequest
+client.partners().findOrCreate(
+    FindOrCreatePartnersRequest
         .builder()
         .name("name")
         .build()
@@ -3128,7 +3128,7 @@ client.partners().postV1PartnersFindOrCreate(
 <dl>
 <dd>
 
-**type:** `Optional<PostV1PartnersFindOrCreateRequestType>` 
+**type:** `Optional<FindOrCreatePartnersRequestType>` 
     
 </dd>
 </dl>
@@ -3256,7 +3256,7 @@ client.partners().postV1PartnersFindOrCreate(
 <dl>
 <dd>
 
-**address:** `Optional<PostV1PartnersFindOrCreateRequestAddress>` 
+**address:** `Optional<FindOrCreatePartnersRequestAddress>` 
     
 </dd>
 </dl>
@@ -3264,7 +3264,7 @@ client.partners().postV1PartnersFindOrCreate(
 <dl>
 <dd>
 
-**correspondenceAddress:** `Optional<PostV1PartnersFindOrCreateRequestCorrespondenceAddress>` 
+**correspondenceAddress:** `Optional<FindOrCreatePartnersRequestCorrespondenceAddress>` 
     
 </dd>
 </dl>
@@ -3408,7 +3408,7 @@ client.partners().postV1PartnersFindOrCreate(
 <dl>
 <dd>
 
-**legalCountryClass:** `Optional<PostV1PartnersFindOrCreateRequestLegalCountryClass>` 
+**legalCountryClass:** `Optional<FindOrCreatePartnersRequestLegalCountryClass>` 
     
 </dd>
 </dl>
@@ -3420,7 +3420,7 @@ client.partners().postV1PartnersFindOrCreate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersGet(request) -> PostV1PartnersGetResponse</code></summary>
+<details><summary><code>client.partners.get(request) -> GetPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3433,8 +3433,8 @@ client.partners().postV1PartnersFindOrCreate(
 <dd>
 
 ```java
-client.partners().postV1PartnersGet(
-    PostV1PartnersGetRequest
+client.partners().get(
+    GetPartnersRequest
         .builder()
         .id("id")
         .build()
@@ -3465,7 +3465,7 @@ client.partners().postV1PartnersGet(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersUpdate(request) -> PostV1PartnersUpdateResponse</code></summary>
+<details><summary><code>client.partners.update(request) -> UpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3478,8 +3478,8 @@ client.partners().postV1PartnersGet(
 <dd>
 
 ```java
-client.partners().postV1PartnersUpdate(
-    PostV1PartnersUpdateRequest
+client.partners().update(
+    UpdatePartnersRequest
         .builder()
         .id("id")
         .build()
@@ -3506,7 +3506,7 @@ client.partners().postV1PartnersUpdate(
 <dl>
 <dd>
 
-**type:** `Optional<PostV1PartnersUpdateRequestType>` 
+**type:** `Optional<UpdatePartnersRequestType>` 
     
 </dd>
 </dl>
@@ -3634,7 +3634,7 @@ client.partners().postV1PartnersUpdate(
 <dl>
 <dd>
 
-**address:** `Optional<PostV1PartnersUpdateRequestAddress>` 
+**address:** `Optional<UpdatePartnersRequestAddress>` 
     
 </dd>
 </dl>
@@ -3642,7 +3642,7 @@ client.partners().postV1PartnersUpdate(
 <dl>
 <dd>
 
-**correspondenceAddress:** `Optional<PostV1PartnersUpdateRequestCorrespondenceAddress>` 
+**correspondenceAddress:** `Optional<UpdatePartnersRequestCorrespondenceAddress>` 
     
 </dd>
 </dl>
@@ -3786,7 +3786,7 @@ client.partners().postV1PartnersUpdate(
 <dl>
 <dd>
 
-**legalCountryClass:** `Optional<PostV1PartnersUpdateRequestLegalCountryClass>` 
+**legalCountryClass:** `Optional<UpdatePartnersRequestLegalCountryClass>` 
     
 </dd>
 </dl>
@@ -3798,7 +3798,7 @@ client.partners().postV1PartnersUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersDelete(request) -> PostV1PartnersDeleteResponse</code></summary>
+<details><summary><code>client.partners.delete(request) -> DeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3811,8 +3811,8 @@ client.partners().postV1PartnersUpdate(
 <dd>
 
 ```java
-client.partners().postV1PartnersDelete(
-    PostV1PartnersDeleteRequest
+client.partners().delete(
+    DeletePartnersRequest
         .builder()
         .id("id")
         .build()
@@ -3843,7 +3843,7 @@ client.partners().postV1PartnersDelete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.blankAPartnersPersonalDataAndHideTheRecord(request) -> PostV1PartnersAnonymizeResponse</code></summary>
+<details><summary><code>client.partners.anonymize(request) -> AnonymizePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3870,8 +3870,8 @@ Removes birth date, self-employment certificate number, email, phone, address, n
 <dd>
 
 ```java
-client.partners().blankAPartnersPersonalDataAndHideTheRecord(
-    PostV1PartnersAnonymizeRequest
+client.partners().anonymize(
+    AnonymizePartnersRequest
         .builder()
         .id("id")
         .build()
@@ -3902,7 +3902,7 @@ client.partners().blankAPartnersPersonalDataAndHideTheRecord(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersList(request) -> PostV1PartnersListResponse</code></summary>
+<details><summary><code>client.partners.list(request) -> ListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3915,8 +3915,8 @@ client.partners().blankAPartnersPersonalDataAndHideTheRecord(
 <dd>
 
 ```java
-client.partners().postV1PartnersList(
-    PostV1PartnersListRequest
+client.partners().list(
+    ListPartnersRequest
         .builder()
         .build()
 );
@@ -3950,7 +3950,7 @@ client.partners().postV1PartnersList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1PartnersListRequestSortItem>>` 
+**sort:** `Optional<List<ListPartnersRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -3958,7 +3958,7 @@ client.partners().postV1PartnersList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1PartnersListRequestFilterItem>>` 
+**filter:** `Optional<List<ListPartnersRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -3978,7 +3978,7 @@ client.partners().postV1PartnersList(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersGroupsCreate(request) -> PostV1PartnersGroupsCreateResponse</code></summary>
+<details><summary><code>client.partners.groupsCreate(request) -> GroupsCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3991,8 +3991,8 @@ client.partners().postV1PartnersList(
 <dd>
 
 ```java
-client.partners().postV1PartnersGroupsCreate(
-    PostV1PartnersGroupsCreateRequest
+client.partners().groupsCreate(
+    GroupsCreatePartnersRequest
         .builder()
         .code("code")
         .name("name")
@@ -4032,7 +4032,7 @@ client.partners().postV1PartnersGroupsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersGroupsUpdate(request) -> PostV1PartnersGroupsUpdateResponse</code></summary>
+<details><summary><code>client.partners.groupsUpdate(request) -> GroupsUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4045,8 +4045,8 @@ client.partners().postV1PartnersGroupsCreate(
 <dd>
 
 ```java
-client.partners().postV1PartnersGroupsUpdate(
-    PostV1PartnersGroupsUpdateRequest
+client.partners().groupsUpdate(
+    GroupsUpdatePartnersRequest
         .builder()
         .id("id")
         .build()
@@ -4093,7 +4093,7 @@ client.partners().postV1PartnersGroupsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersGroupsDelete(request) -> PostV1PartnersGroupsDeleteResponse</code></summary>
+<details><summary><code>client.partners.groupsDelete(request) -> GroupsDeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4106,8 +4106,8 @@ client.partners().postV1PartnersGroupsUpdate(
 <dd>
 
 ```java
-client.partners().postV1PartnersGroupsDelete(
-    PostV1PartnersGroupsDeleteRequest
+client.partners().groupsDelete(
+    GroupsDeletePartnersRequest
         .builder()
         .id("id")
         .build()
@@ -4138,7 +4138,7 @@ client.partners().postV1PartnersGroupsDelete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersGroupsList(request) -> PostV1PartnersGroupsListResponse</code></summary>
+<details><summary><code>client.partners.groupsList(request) -> GroupsListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4151,8 +4151,8 @@ client.partners().postV1PartnersGroupsDelete(
 <dd>
 
 ```java
-client.partners().postV1PartnersGroupsList(
-    PostV1PartnersGroupsListRequest
+client.partners().groupsList(
+    GroupsListPartnersRequest
         .builder()
         .build()
 );
@@ -4167,7 +4167,7 @@ client.partners().postV1PartnersGroupsList(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersStatusesCreate(request) -> PostV1PartnersStatusesCreateResponse</code></summary>
+<details><summary><code>client.partners.statusesCreate(request) -> StatusesCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4180,8 +4180,8 @@ client.partners().postV1PartnersGroupsList(
 <dd>
 
 ```java
-client.partners().postV1PartnersStatusesCreate(
-    PostV1PartnersStatusesCreateRequest
+client.partners().statusesCreate(
+    StatusesCreatePartnersRequest
         .builder()
         .code("code")
         .name("name")
@@ -4229,7 +4229,7 @@ client.partners().postV1PartnersStatusesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersStatusesUpdate(request) -> PostV1PartnersStatusesUpdateResponse</code></summary>
+<details><summary><code>client.partners.statusesUpdate(request) -> StatusesUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4242,8 +4242,8 @@ client.partners().postV1PartnersStatusesCreate(
 <dd>
 
 ```java
-client.partners().postV1PartnersStatusesUpdate(
-    PostV1PartnersStatusesUpdateRequest
+client.partners().statusesUpdate(
+    StatusesUpdatePartnersRequest
         .builder()
         .id("id")
         .build()
@@ -4298,7 +4298,7 @@ client.partners().postV1PartnersStatusesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersStatusesDelete(request) -> PostV1PartnersStatusesDeleteResponse</code></summary>
+<details><summary><code>client.partners.statusesDelete(request) -> StatusesDeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4311,8 +4311,8 @@ client.partners().postV1PartnersStatusesUpdate(
 <dd>
 
 ```java
-client.partners().postV1PartnersStatusesDelete(
-    PostV1PartnersStatusesDeleteRequest
+client.partners().statusesDelete(
+    StatusesDeletePartnersRequest
         .builder()
         .id("id")
         .build()
@@ -4343,7 +4343,7 @@ client.partners().postV1PartnersStatusesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersStatusesList(request) -> PostV1PartnersStatusesListResponse</code></summary>
+<details><summary><code>client.partners.statusesList(request) -> StatusesListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4356,8 +4356,8 @@ client.partners().postV1PartnersStatusesDelete(
 <dd>
 
 ```java
-client.partners().postV1PartnersStatusesList(
-    PostV1PartnersStatusesListRequest
+client.partners().statusesList(
+    StatusesListPartnersRequest
         .builder()
         .build()
 );
@@ -4372,7 +4372,7 @@ client.partners().postV1PartnersStatusesList(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersInquiriesCreate(request) -> PostV1PartnersInquiriesCreateResponse</code></summary>
+<details><summary><code>client.partners.inquiriesCreate(request) -> InquiriesCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4385,8 +4385,8 @@ client.partners().postV1PartnersStatusesList(
 <dd>
 
 ```java
-client.partners().postV1PartnersInquiriesCreate(
-    PostV1PartnersInquiriesCreateRequest
+client.partners().inquiriesCreate(
+    InquiriesCreatePartnersRequest
         .builder()
         .subject("subject")
         .build()
@@ -4481,7 +4481,7 @@ client.partners().postV1PartnersInquiriesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersInquiriesUpdate(request) -> PostV1PartnersInquiriesUpdateResponse</code></summary>
+<details><summary><code>client.partners.inquiriesUpdate(request) -> InquiriesUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4494,8 +4494,8 @@ client.partners().postV1PartnersInquiriesCreate(
 <dd>
 
 ```java
-client.partners().postV1PartnersInquiriesUpdate(
-    PostV1PartnersInquiriesUpdateRequest
+client.partners().inquiriesUpdate(
+    InquiriesUpdatePartnersRequest
         .builder()
         .id("id")
         .build()
@@ -4554,7 +4554,7 @@ client.partners().postV1PartnersInquiriesUpdate(
 <dl>
 <dd>
 
-**status:** `Optional<PostV1PartnersInquiriesUpdateRequestStatus>` 
+**status:** `Optional<InquiriesUpdatePartnersRequestStatus>` 
     
 </dd>
 </dl>
@@ -4582,7 +4582,7 @@ client.partners().postV1PartnersInquiriesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersInquiriesGet(request) -> PostV1PartnersInquiriesGetResponse</code></summary>
+<details><summary><code>client.partners.inquiriesGet(request) -> InquiriesGetPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4595,8 +4595,8 @@ client.partners().postV1PartnersInquiriesUpdate(
 <dd>
 
 ```java
-client.partners().postV1PartnersInquiriesGet(
-    PostV1PartnersInquiriesGetRequest
+client.partners().inquiriesGet(
+    InquiriesGetPartnersRequest
         .builder()
         .id("id")
         .build()
@@ -4627,7 +4627,7 @@ client.partners().postV1PartnersInquiriesGet(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersInquiriesList(request) -> PostV1PartnersInquiriesListResponse</code></summary>
+<details><summary><code>client.partners.inquiriesList(request) -> InquiriesListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4640,8 +4640,8 @@ client.partners().postV1PartnersInquiriesGet(
 <dd>
 
 ```java
-client.partners().postV1PartnersInquiriesList(
-    PostV1PartnersInquiriesListRequest
+client.partners().inquiriesList(
+    InquiriesListPartnersRequest
         .builder()
         .build()
 );
@@ -4675,7 +4675,7 @@ client.partners().postV1PartnersInquiriesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1PartnersInquiriesListRequestSortItem>>` 
+**sort:** `Optional<List<InquiriesListPartnersRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -4683,7 +4683,7 @@ client.partners().postV1PartnersInquiriesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1PartnersInquiriesListRequestFilterItem>>` 
+**filter:** `Optional<List<InquiriesListPartnersRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -4703,7 +4703,7 @@ client.partners().postV1PartnersInquiriesList(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1PartnersCreditCheck(request) -> PostV1PartnersCreditCheckResponse</code></summary>
+<details><summary><code>client.partners.creditCheck(request) -> CreditCheckPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4716,8 +4716,8 @@ client.partners().postV1PartnersInquiriesList(
 <dd>
 
 ```java
-client.partners().postV1PartnersCreditCheck(
-    PostV1PartnersCreditCheckRequest
+client.partners().creditCheck(
+    CreditCheckPartnersRequest
         .builder()
         .partnerId("partnerId")
         .build()
@@ -4756,7 +4756,8 @@ client.partners().postV1PartnersCreditCheck(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1LeadsCreate(request) -> PostV1LeadsCreateResponse</code></summary>
+## Leads
+<details><summary><code>client.leads.create(request) -> CreateLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -4769,8 +4770,8 @@ client.partners().postV1PartnersCreditCheck(
 <dd>
 
 ```java
-client.partners().postV1LeadsCreate(
-    PostV1LeadsCreateRequest
+client.leads().create(
+    CreateLeadsRequest
         .builder()
         .name("name")
         .build()
@@ -4845,7 +4846,7 @@ client.partners().postV1LeadsCreate(
 <dl>
 <dd>
 
-**status:** `Optional<PostV1LeadsCreateRequestStatus>` 
+**status:** `Optional<CreateLeadsRequestStatus>` 
     
 </dd>
 </dl>
@@ -4885,7 +4886,7 @@ client.partners().postV1LeadsCreate(
 <dl>
 <dd>
 
-**documents:** `Optional<List<PostV1LeadsCreateRequestDocumentsItem>>` 
+**documents:** `Optional<List<CreateLeadsRequestDocumentsItem>>` 
     
 </dd>
 </dl>
@@ -4905,7 +4906,7 @@ client.partners().postV1LeadsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1LeadsGet(request) -> PostV1LeadsGetResponse</code></summary>
+<details><summary><code>client.leads.get(request) -> GetLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -4918,8 +4919,8 @@ client.partners().postV1LeadsCreate(
 <dd>
 
 ```java
-client.partners().postV1LeadsGet(
-    PostV1LeadsGetRequest
+client.leads().get(
+    GetLeadsRequest
         .builder()
         .id("id")
         .build()
@@ -4950,7 +4951,7 @@ client.partners().postV1LeadsGet(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1LeadsUpdate(request) -> PostV1LeadsUpdateResponse</code></summary>
+<details><summary><code>client.leads.update(request) -> UpdateLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -4963,8 +4964,8 @@ client.partners().postV1LeadsGet(
 <dd>
 
 ```java
-client.partners().postV1LeadsUpdate(
-    PostV1LeadsUpdateRequest
+client.leads().update(
+    UpdateLeadsRequest
         .builder()
         .id("id")
         .build()
@@ -5047,7 +5048,7 @@ client.partners().postV1LeadsUpdate(
 <dl>
 <dd>
 
-**status:** `Optional<PostV1LeadsUpdateRequestStatus>` 
+**status:** `Optional<UpdateLeadsRequestStatus>` 
     
 </dd>
 </dl>
@@ -5087,7 +5088,7 @@ client.partners().postV1LeadsUpdate(
 <dl>
 <dd>
 
-**documents:** `Optional<List<PostV1LeadsUpdateRequestDocumentsItem>>` 
+**documents:** `Optional<List<UpdateLeadsRequestDocumentsItem>>` 
     
 </dd>
 </dl>
@@ -5099,7 +5100,7 @@ client.partners().postV1LeadsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1LeadsDelete(request) -> PostV1LeadsDeleteResponse</code></summary>
+<details><summary><code>client.leads.delete(request) -> DeleteLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5112,8 +5113,8 @@ client.partners().postV1LeadsUpdate(
 <dd>
 
 ```java
-client.partners().postV1LeadsDelete(
-    PostV1LeadsDeleteRequest
+client.leads().delete(
+    DeleteLeadsRequest
         .builder()
         .id("id")
         .build()
@@ -5144,7 +5145,7 @@ client.partners().postV1LeadsDelete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1LeadsList(request) -> PostV1LeadsListResponse</code></summary>
+<details><summary><code>client.leads.list(request) -> ListLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5157,8 +5158,8 @@ client.partners().postV1LeadsDelete(
 <dd>
 
 ```java
-client.partners().postV1LeadsList(
-    PostV1LeadsListRequest
+client.leads().list(
+    ListLeadsRequest
         .builder()
         .build()
 );
@@ -5192,7 +5193,7 @@ client.partners().postV1LeadsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1LeadsListRequestSortItem>>` 
+**sort:** `Optional<List<ListLeadsRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -5200,7 +5201,7 @@ client.partners().postV1LeadsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1LeadsListRequestFilterItem>>` 
+**filter:** `Optional<List<ListLeadsRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -5220,7 +5221,7 @@ client.partners().postV1LeadsList(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1LeadsNotesCreate(request) -> PostV1LeadsNotesCreateResponse</code></summary>
+<details><summary><code>client.leads.notesCreate(request) -> NotesCreateLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5233,8 +5234,8 @@ client.partners().postV1LeadsList(
 <dd>
 
 ```java
-client.partners().postV1LeadsNotesCreate(
-    PostV1LeadsNotesCreateRequest
+client.leads().notesCreate(
+    NotesCreateLeadsRequest
         .builder()
         .leadId("leadId")
         .body("body")
@@ -5274,7 +5275,7 @@ client.partners().postV1LeadsNotesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1LeadsNotesDelete(request) -> PostV1LeadsNotesDeleteResponse</code></summary>
+<details><summary><code>client.leads.notesDelete(request) -> NotesDeleteLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5287,8 +5288,8 @@ client.partners().postV1LeadsNotesCreate(
 <dd>
 
 ```java
-client.partners().postV1LeadsNotesDelete(
-    PostV1LeadsNotesDeleteRequest
+client.leads().notesDelete(
+    NotesDeleteLeadsRequest
         .builder()
         .id("id")
         .build()
@@ -5319,7 +5320,7 @@ client.partners().postV1LeadsNotesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1LeadsNotesList(request) -> PostV1LeadsNotesListResponse</code></summary>
+<details><summary><code>client.leads.notesList(request) -> NotesListLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5332,8 +5333,8 @@ client.partners().postV1LeadsNotesDelete(
 <dd>
 
 ```java
-client.partners().postV1LeadsNotesList(
-    PostV1LeadsNotesListRequest
+client.leads().notesList(
+    NotesListLeadsRequest
         .builder()
         .leadId("leadId")
         .build()
@@ -5364,7 +5365,7 @@ client.partners().postV1LeadsNotesList(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1LeadsFilesList(request) -> PostV1LeadsFilesListResponse</code></summary>
+<details><summary><code>client.leads.filesList(request) -> FilesListLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5377,8 +5378,8 @@ client.partners().postV1LeadsNotesList(
 <dd>
 
 ```java
-client.partners().postV1LeadsFilesList(
-    PostV1LeadsFilesListRequest
+client.leads().filesList(
+    FilesListLeadsRequest
         .builder()
         .leadId("leadId")
         .build()
@@ -5409,7 +5410,7 @@ client.partners().postV1LeadsFilesList(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1LeadsSourcesCreate(request) -> PostV1LeadsSourcesCreateResponse</code></summary>
+<details><summary><code>client.leads.sourcesCreate(request) -> SourcesCreateLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5422,8 +5423,8 @@ client.partners().postV1LeadsFilesList(
 <dd>
 
 ```java
-client.partners().postV1LeadsSourcesCreate(
-    PostV1LeadsSourcesCreateRequest
+client.leads().sourcesCreate(
+    SourcesCreateLeadsRequest
         .builder()
         .name("name")
         .build()
@@ -5462,7 +5463,7 @@ client.partners().postV1LeadsSourcesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1LeadsSourcesUpdate(request) -> PostV1LeadsSourcesUpdateResponse</code></summary>
+<details><summary><code>client.leads.sourcesUpdate(request) -> SourcesUpdateLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5475,8 +5476,8 @@ client.partners().postV1LeadsSourcesCreate(
 <dd>
 
 ```java
-client.partners().postV1LeadsSourcesUpdate(
-    PostV1LeadsSourcesUpdateRequest
+client.leads().sourcesUpdate(
+    SourcesUpdateLeadsRequest
         .builder()
         .id("id")
         .build()
@@ -5523,7 +5524,7 @@ client.partners().postV1LeadsSourcesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1LeadsSourcesDelete(request) -> PostV1LeadsSourcesDeleteResponse</code></summary>
+<details><summary><code>client.leads.sourcesDelete(request) -> SourcesDeleteLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5536,8 +5537,8 @@ client.partners().postV1LeadsSourcesUpdate(
 <dd>
 
 ```java
-client.partners().postV1LeadsSourcesDelete(
-    PostV1LeadsSourcesDeleteRequest
+client.leads().sourcesDelete(
+    SourcesDeleteLeadsRequest
         .builder()
         .id("id")
         .build()
@@ -5568,7 +5569,7 @@ client.partners().postV1LeadsSourcesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1LeadsSourcesList(request) -> PostV1LeadsSourcesListResponse</code></summary>
+<details><summary><code>client.leads.sourcesList(request) -> SourcesListLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5581,8 +5582,8 @@ client.partners().postV1LeadsSourcesDelete(
 <dd>
 
 ```java
-client.partners().postV1LeadsSourcesList(
-    PostV1LeadsSourcesListRequest
+client.leads().sourcesList(
+    SourcesListLeadsRequest
         .builder()
         .build()
 );
@@ -5597,7 +5598,7 @@ client.partners().postV1LeadsSourcesList(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1LeadsSourcesOptions(request) -> PostV1LeadsSourcesOptionsResponse</code></summary>
+<details><summary><code>client.leads.sourcesOptions(request) -> SourcesOptionsLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5610,8 +5611,8 @@ client.partners().postV1LeadsSourcesList(
 <dd>
 
 ```java
-client.partners().postV1LeadsSourcesOptions(
-    PostV1LeadsSourcesOptionsRequest
+client.leads().sourcesOptions(
+    SourcesOptionsLeadsRequest
         .builder()
         .build()
 );
@@ -5626,7 +5627,7 @@ client.partners().postV1LeadsSourcesOptions(
 </dl>
 </details>
 
-<details><summary><code>client.partners.postV1LeadsConvert(request) -> PostV1LeadsConvertResponse</code></summary>
+<details><summary><code>client.leads.convert(request) -> ConvertLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5653,8 +5654,8 @@ Create a customer partner from the lead, move the lead files to the partner, cop
 <dd>
 
 ```java
-client.partners().postV1LeadsConvert(
-    PostV1LeadsConvertRequest
+client.leads().convert(
+    ConvertLeadsRequest
         .builder()
         .id("id")
         .build()
@@ -5681,7 +5682,7 @@ client.partners().postV1LeadsConvert(
 <dl>
 <dd>
 
-**partnerType:** `Optional<PostV1LeadsConvertRequestPartnerType>` 
+**partnerType:** `Optional<ConvertLeadsRequestPartnerType>` 
     
 </dd>
 </dl>
@@ -5709,8 +5710,8 @@ client.partners().postV1LeadsConvert(
 </dl>
 </details>
 
-## Catalog
-<details><summary><code>client.catalog.postV1CatalogItemsCreate(request) -> PostV1CatalogItemsCreateResponse</code></summary>
+## catalog
+<details><summary><code>client.catalog.itemsCreate(request) -> ItemsCreateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -5723,8 +5724,8 @@ client.partners().postV1LeadsConvert(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemsCreate(
-    PostV1CatalogItemsCreateRequest
+client.catalog().itemsCreate(
+    ItemsCreateCatalogRequest
         .builder()
         .name("name")
         .build()
@@ -5743,7 +5744,7 @@ client.catalog().postV1CatalogItemsCreate(
 <dl>
 <dd>
 
-**type:** `Optional<PostV1CatalogItemsCreateRequestType>` 
+**type:** `Optional<ItemsCreateCatalogRequestType>` 
     
 </dd>
 </dl>
@@ -5751,7 +5752,7 @@ client.catalog().postV1CatalogItemsCreate(
 <dl>
 <dd>
 
-**tracking:** `Optional<PostV1CatalogItemsCreateRequestTracking>` 
+**tracking:** `Optional<ItemsCreateCatalogRequestTracking>` 
     
 </dd>
 </dl>
@@ -5895,7 +5896,7 @@ client.catalog().postV1CatalogItemsCreate(
 <dl>
 <dd>
 
-**translations:** `Optional<Map<String, PostV1CatalogItemsCreateRequestTranslationsValue>>` 
+**translations:** `Optional<Map<String, ItemsCreateCatalogRequestTranslationsValue>>` 
     
 </dd>
 </dl>
@@ -5903,7 +5904,7 @@ client.catalog().postV1CatalogItemsCreate(
 <dl>
 <dd>
 
-**components:** `Optional<List<PostV1CatalogItemsCreateRequestComponentsItem>>` 
+**components:** `Optional<List<ItemsCreateCatalogRequestComponentsItem>>` 
     
 </dd>
 </dl>
@@ -6131,7 +6132,7 @@ client.catalog().postV1CatalogItemsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemsGet(request) -> PostV1CatalogItemsGetResponse</code></summary>
+<details><summary><code>client.catalog.itemsGet(request) -> ItemsGetCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6144,8 +6145,8 @@ client.catalog().postV1CatalogItemsCreate(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemsGet(
-    PostV1CatalogItemsGetRequest
+client.catalog().itemsGet(
+    ItemsGetCatalogRequest
         .builder()
         .id("id")
         .build()
@@ -6176,7 +6177,7 @@ client.catalog().postV1CatalogItemsGet(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemsUpdate(request) -> PostV1CatalogItemsUpdateResponse</code></summary>
+<details><summary><code>client.catalog.itemsUpdate(request) -> ItemsUpdateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6189,8 +6190,8 @@ client.catalog().postV1CatalogItemsGet(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemsUpdate(
-    PostV1CatalogItemsUpdateRequest
+client.catalog().itemsUpdate(
+    ItemsUpdateCatalogRequest
         .builder()
         .id("id")
         .build()
@@ -6217,7 +6218,7 @@ client.catalog().postV1CatalogItemsUpdate(
 <dl>
 <dd>
 
-**type:** `Optional<PostV1CatalogItemsUpdateRequestType>` 
+**type:** `Optional<ItemsUpdateCatalogRequestType>` 
     
 </dd>
 </dl>
@@ -6225,7 +6226,7 @@ client.catalog().postV1CatalogItemsUpdate(
 <dl>
 <dd>
 
-**tracking:** `Optional<PostV1CatalogItemsUpdateRequestTracking>` 
+**tracking:** `Optional<ItemsUpdateCatalogRequestTracking>` 
     
 </dd>
 </dl>
@@ -6369,7 +6370,7 @@ client.catalog().postV1CatalogItemsUpdate(
 <dl>
 <dd>
 
-**translations:** `Optional<Map<String, Optional<PostV1CatalogItemsUpdateRequestTranslationsValue>>>` 
+**translations:** `Optional<Map<String, Optional<ItemsUpdateCatalogRequestTranslationsValue>>>` 
     
 </dd>
 </dl>
@@ -6377,7 +6378,7 @@ client.catalog().postV1CatalogItemsUpdate(
 <dl>
 <dd>
 
-**components:** `Optional<List<PostV1CatalogItemsUpdateRequestComponentsItem>>` 
+**components:** `Optional<List<ItemsUpdateCatalogRequestComponentsItem>>` 
     
 </dd>
 </dl>
@@ -6605,7 +6606,7 @@ client.catalog().postV1CatalogItemsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemsDelete(request) -> PostV1CatalogItemsDeleteResponse</code></summary>
+<details><summary><code>client.catalog.itemsDelete(request) -> ItemsDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6618,8 +6619,8 @@ client.catalog().postV1CatalogItemsUpdate(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemsDelete(
-    PostV1CatalogItemsDeleteRequest
+client.catalog().itemsDelete(
+    ItemsDeleteCatalogRequest
         .builder()
         .id("id")
         .build()
@@ -6650,7 +6651,7 @@ client.catalog().postV1CatalogItemsDelete(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemsList(request) -> PostV1CatalogItemsListResponse</code></summary>
+<details><summary><code>client.catalog.itemsList(request) -> ItemsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6663,8 +6664,8 @@ client.catalog().postV1CatalogItemsDelete(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemsList(
-    PostV1CatalogItemsListRequest
+client.catalog().itemsList(
+    ItemsListCatalogRequest
         .builder()
         .build()
 );
@@ -6698,7 +6699,7 @@ client.catalog().postV1CatalogItemsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1CatalogItemsListRequestSortItem>>` 
+**sort:** `Optional<List<ItemsListCatalogRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -6706,7 +6707,7 @@ client.catalog().postV1CatalogItemsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1CatalogItemsListRequestFilterItem>>` 
+**filter:** `Optional<List<ItemsListCatalogRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -6726,7 +6727,7 @@ client.catalog().postV1CatalogItemsList(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemsFilesList(request) -> PostV1CatalogItemsFilesListResponse</code></summary>
+<details><summary><code>client.catalog.itemsFilesList(request) -> ItemsFilesListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6739,8 +6740,8 @@ client.catalog().postV1CatalogItemsList(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemsFilesList(
-    PostV1CatalogItemsFilesListRequest
+client.catalog().itemsFilesList(
+    ItemsFilesListCatalogRequest
         .builder()
         .itemId("itemId")
         .build()
@@ -6771,7 +6772,7 @@ client.catalog().postV1CatalogItemsFilesList(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemsKindsCreate(request) -> PostV1CatalogItemsKindsCreateResponse</code></summary>
+<details><summary><code>client.catalog.itemsKindsCreate(request) -> ItemsKindsCreateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6784,8 +6785,8 @@ client.catalog().postV1CatalogItemsFilesList(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemsKindsCreate(
-    PostV1CatalogItemsKindsCreateRequest
+client.catalog().itemsKindsCreate(
+    ItemsKindsCreateCatalogRequest
         .builder()
         .code("code")
         .name("name")
@@ -6821,7 +6822,7 @@ client.catalog().postV1CatalogItemsKindsCreate(
 <dl>
 <dd>
 
-**saftType:** `Optional<PostV1CatalogItemsKindsCreateRequestSaftType>` 
+**saftType:** `Optional<ItemsKindsCreateCatalogRequestSaftType>` 
     
 </dd>
 </dl>
@@ -6849,7 +6850,7 @@ client.catalog().postV1CatalogItemsKindsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemsKindsUpdate(request) -> PostV1CatalogItemsKindsUpdateResponse</code></summary>
+<details><summary><code>client.catalog.itemsKindsUpdate(request) -> ItemsKindsUpdateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6862,8 +6863,8 @@ client.catalog().postV1CatalogItemsKindsCreate(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemsKindsUpdate(
-    PostV1CatalogItemsKindsUpdateRequest
+client.catalog().itemsKindsUpdate(
+    ItemsKindsUpdateCatalogRequest
         .builder()
         .id("id")
         .build()
@@ -6906,7 +6907,7 @@ client.catalog().postV1CatalogItemsKindsUpdate(
 <dl>
 <dd>
 
-**saftType:** `Optional<PostV1CatalogItemsKindsUpdateRequestSaftType>` 
+**saftType:** `Optional<ItemsKindsUpdateCatalogRequestSaftType>` 
     
 </dd>
 </dl>
@@ -6934,7 +6935,7 @@ client.catalog().postV1CatalogItemsKindsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemsKindsDelete(request) -> PostV1CatalogItemsKindsDeleteResponse</code></summary>
+<details><summary><code>client.catalog.itemsKindsDelete(request) -> ItemsKindsDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6947,8 +6948,8 @@ client.catalog().postV1CatalogItemsKindsUpdate(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemsKindsDelete(
-    PostV1CatalogItemsKindsDeleteRequest
+client.catalog().itemsKindsDelete(
+    ItemsKindsDeleteCatalogRequest
         .builder()
         .id("id")
         .build()
@@ -6979,7 +6980,7 @@ client.catalog().postV1CatalogItemsKindsDelete(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemsKindsList(request) -> PostV1CatalogItemsKindsListResponse</code></summary>
+<details><summary><code>client.catalog.itemsKindsList(request) -> ItemsKindsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6992,8 +6993,8 @@ client.catalog().postV1CatalogItemsKindsDelete(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemsKindsList(
-    PostV1CatalogItemsKindsListRequest
+client.catalog().itemsKindsList(
+    ItemsKindsListCatalogRequest
         .builder()
         .build()
 );
@@ -7008,7 +7009,7 @@ client.catalog().postV1CatalogItemsKindsList(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogUnitsCreate(request) -> PostV1CatalogUnitsCreateResponse</code></summary>
+<details><summary><code>client.catalog.unitsCreate(request) -> UnitsCreateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7021,8 +7022,8 @@ client.catalog().postV1CatalogItemsKindsList(
 <dd>
 
 ```java
-client.catalog().postV1CatalogUnitsCreate(
-    PostV1CatalogUnitsCreateRequest
+client.catalog().unitsCreate(
+    UnitsCreateCatalogRequest
         .builder()
         .code("code")
         .name("name")
@@ -7070,7 +7071,7 @@ client.catalog().postV1CatalogUnitsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogUnitsUpdate(request) -> PostV1CatalogUnitsUpdateResponse</code></summary>
+<details><summary><code>client.catalog.unitsUpdate(request) -> UnitsUpdateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7083,8 +7084,8 @@ client.catalog().postV1CatalogUnitsCreate(
 <dd>
 
 ```java
-client.catalog().postV1CatalogUnitsUpdate(
-    PostV1CatalogUnitsUpdateRequest
+client.catalog().unitsUpdate(
+    UnitsUpdateCatalogRequest
         .builder()
         .id("id")
         .build()
@@ -7139,7 +7140,7 @@ client.catalog().postV1CatalogUnitsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogUnitsDelete(request) -> PostV1CatalogUnitsDeleteResponse</code></summary>
+<details><summary><code>client.catalog.unitsDelete(request) -> UnitsDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7152,8 +7153,8 @@ client.catalog().postV1CatalogUnitsUpdate(
 <dd>
 
 ```java
-client.catalog().postV1CatalogUnitsDelete(
-    PostV1CatalogUnitsDeleteRequest
+client.catalog().unitsDelete(
+    UnitsDeleteCatalogRequest
         .builder()
         .id("id")
         .build()
@@ -7184,7 +7185,7 @@ client.catalog().postV1CatalogUnitsDelete(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogUnitsList(request) -> PostV1CatalogUnitsListResponse</code></summary>
+<details><summary><code>client.catalog.unitsList(request) -> UnitsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7197,8 +7198,8 @@ client.catalog().postV1CatalogUnitsDelete(
 <dd>
 
 ```java
-client.catalog().postV1CatalogUnitsList(
-    PostV1CatalogUnitsListRequest
+client.catalog().unitsList(
+    UnitsListCatalogRequest
         .builder()
         .build()
 );
@@ -7213,7 +7214,7 @@ client.catalog().postV1CatalogUnitsList(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogUnitsOptions(request) -> PostV1CatalogUnitsOptionsResponse</code></summary>
+<details><summary><code>client.catalog.unitsOptions(request) -> UnitsOptionsCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7226,8 +7227,8 @@ client.catalog().postV1CatalogUnitsList(
 <dd>
 
 ```java
-client.catalog().postV1CatalogUnitsOptions(
-    PostV1CatalogUnitsOptionsRequest
+client.catalog().unitsOptions(
+    UnitsOptionsCatalogRequest
         .builder()
         .build()
 );
@@ -7245,7 +7246,7 @@ client.catalog().postV1CatalogUnitsOptions(
 <dl>
 <dd>
 
-**locale:** `Optional<PostV1CatalogUnitsOptionsRequestLocale>` 
+**locale:** `Optional<UnitsOptionsCatalogRequestLocale>` 
     
 </dd>
 </dl>
@@ -7257,7 +7258,7 @@ client.catalog().postV1CatalogUnitsOptions(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemGroupsCreate(request) -> PostV1CatalogItemGroupsCreateResponse</code></summary>
+<details><summary><code>client.catalog.itemGroupsCreate(request) -> ItemGroupsCreateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7270,8 +7271,8 @@ client.catalog().postV1CatalogUnitsOptions(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemGroupsCreate(
-    PostV1CatalogItemGroupsCreateRequest
+client.catalog().itemGroupsCreate(
+    ItemGroupsCreateCatalogRequest
         .builder()
         .code("code")
         .name("name")
@@ -7319,7 +7320,7 @@ client.catalog().postV1CatalogItemGroupsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemGroupsUpdate(request) -> PostV1CatalogItemGroupsUpdateResponse</code></summary>
+<details><summary><code>client.catalog.itemGroupsUpdate(request) -> ItemGroupsUpdateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7332,8 +7333,8 @@ client.catalog().postV1CatalogItemGroupsCreate(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemGroupsUpdate(
-    PostV1CatalogItemGroupsUpdateRequest
+client.catalog().itemGroupsUpdate(
+    ItemGroupsUpdateCatalogRequest
         .builder()
         .id("id")
         .build()
@@ -7388,7 +7389,7 @@ client.catalog().postV1CatalogItemGroupsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemGroupsDelete(request) -> PostV1CatalogItemGroupsDeleteResponse</code></summary>
+<details><summary><code>client.catalog.itemGroupsDelete(request) -> ItemGroupsDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7401,8 +7402,8 @@ client.catalog().postV1CatalogItemGroupsUpdate(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemGroupsDelete(
-    PostV1CatalogItemGroupsDeleteRequest
+client.catalog().itemGroupsDelete(
+    ItemGroupsDeleteCatalogRequest
         .builder()
         .id("id")
         .build()
@@ -7433,7 +7434,7 @@ client.catalog().postV1CatalogItemGroupsDelete(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemGroupsList(request) -> PostV1CatalogItemGroupsListResponse</code></summary>
+<details><summary><code>client.catalog.itemGroupsList(request) -> ItemGroupsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7446,8 +7447,8 @@ client.catalog().postV1CatalogItemGroupsDelete(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemGroupsList(
-    PostV1CatalogItemGroupsListRequest
+client.catalog().itemGroupsList(
+    ItemGroupsListCatalogRequest
         .builder()
         .build()
 );
@@ -7462,7 +7463,7 @@ client.catalog().postV1CatalogItemGroupsList(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemsSuppliersUpsert(request) -> PostV1CatalogItemsSuppliersUpsertResponse</code></summary>
+<details><summary><code>client.catalog.itemsSuppliersUpsert(request) -> ItemsSuppliersUpsertCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7475,8 +7476,8 @@ client.catalog().postV1CatalogItemGroupsList(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemsSuppliersUpsert(
-    PostV1CatalogItemsSuppliersUpsertRequest
+client.catalog().itemsSuppliersUpsert(
+    ItemsSuppliersUpsertCatalogRequest
         .builder()
         .itemId("itemId")
         .partnerId("partnerId")
@@ -7548,7 +7549,7 @@ client.catalog().postV1CatalogItemsSuppliersUpsert(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemsSuppliersList(request) -> PostV1CatalogItemsSuppliersListResponse</code></summary>
+<details><summary><code>client.catalog.itemsSuppliersList(request) -> ItemsSuppliersListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7561,8 +7562,8 @@ client.catalog().postV1CatalogItemsSuppliersUpsert(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemsSuppliersList(
-    PostV1CatalogItemsSuppliersListRequest
+client.catalog().itemsSuppliersList(
+    ItemsSuppliersListCatalogRequest
         .builder()
         .build()
 );
@@ -7600,7 +7601,7 @@ client.catalog().postV1CatalogItemsSuppliersList(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogItemsSuppliersDelete(request) -> PostV1CatalogItemsSuppliersDeleteResponse</code></summary>
+<details><summary><code>client.catalog.itemsSuppliersDelete(request) -> ItemsSuppliersDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7613,8 +7614,8 @@ client.catalog().postV1CatalogItemsSuppliersList(
 <dd>
 
 ```java
-client.catalog().postV1CatalogItemsSuppliersDelete(
-    PostV1CatalogItemsSuppliersDeleteRequest
+client.catalog().itemsSuppliersDelete(
+    ItemsSuppliersDeleteCatalogRequest
         .builder()
         .id("id")
         .build()
@@ -7645,7 +7646,7 @@ client.catalog().postV1CatalogItemsSuppliersDelete(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogPriceListsCreate(request) -> PostV1CatalogPriceListsCreateResponse</code></summary>
+<details><summary><code>client.catalog.priceListsCreate(request) -> PriceListsCreateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7658,8 +7659,8 @@ client.catalog().postV1CatalogItemsSuppliersDelete(
 <dd>
 
 ```java
-client.catalog().postV1CatalogPriceListsCreate(
-    PostV1CatalogPriceListsCreateRequest
+client.catalog().priceListsCreate(
+    PriceListsCreateCatalogRequest
         .builder()
         .code("code")
         .name("name")
@@ -7715,7 +7716,7 @@ client.catalog().postV1CatalogPriceListsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogPriceListsUpdate(request) -> PostV1CatalogPriceListsUpdateResponse</code></summary>
+<details><summary><code>client.catalog.priceListsUpdate(request) -> PriceListsUpdateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7728,8 +7729,8 @@ client.catalog().postV1CatalogPriceListsCreate(
 <dd>
 
 ```java
-client.catalog().postV1CatalogPriceListsUpdate(
-    PostV1CatalogPriceListsUpdateRequest
+client.catalog().priceListsUpdate(
+    PriceListsUpdateCatalogRequest
         .builder()
         .id("id")
         .build()
@@ -7792,7 +7793,7 @@ client.catalog().postV1CatalogPriceListsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogPriceListsList(request) -> PostV1CatalogPriceListsListResponse</code></summary>
+<details><summary><code>client.catalog.priceListsList(request) -> PriceListsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7805,8 +7806,8 @@ client.catalog().postV1CatalogPriceListsUpdate(
 <dd>
 
 ```java
-client.catalog().postV1CatalogPriceListsList(
-    PostV1CatalogPriceListsListRequest
+client.catalog().priceListsList(
+    PriceListsListCatalogRequest
         .builder()
         .build()
 );
@@ -7821,7 +7822,7 @@ client.catalog().postV1CatalogPriceListsList(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogPriceListsItemsSet(request) -> PostV1CatalogPriceListsItemsSetResponse</code></summary>
+<details><summary><code>client.catalog.priceListsItemsSet(request) -> PriceListsItemsSetCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7834,16 +7835,16 @@ client.catalog().postV1CatalogPriceListsList(
 <dd>
 
 ```java
-client.catalog().postV1CatalogPriceListsItemsSet(
-    PostV1CatalogPriceListsItemsSetRequest
+client.catalog().priceListsItemsSet(
+    PriceListsItemsSetCatalogRequest
         .builder()
         .priceListId("priceListId")
         .items(
             Arrays.asList(
-                PostV1CatalogPriceListsItemsSetRequestItemsItem
+                PriceListsItemsSetCatalogRequestItemsItem
                     .builder()
                     .itemId("itemId")
-                    .unitPriceExclVat("unitPriceExclVat")
+                    .unitPriceExclVat("121.0000")
                     .build()
             )
         )
@@ -7871,7 +7872,7 @@ client.catalog().postV1CatalogPriceListsItemsSet(
 <dl>
 <dd>
 
-**items:** `List<PostV1CatalogPriceListsItemsSetRequestItemsItem>` 
+**items:** `List<PriceListsItemsSetCatalogRequestItemsItem>` 
     
 </dd>
 </dl>
@@ -7883,7 +7884,7 @@ client.catalog().postV1CatalogPriceListsItemsSet(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogPriceListsItemsList(request) -> PostV1CatalogPriceListsItemsListResponse</code></summary>
+<details><summary><code>client.catalog.priceListsItemsList(request) -> PriceListsItemsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7896,8 +7897,8 @@ client.catalog().postV1CatalogPriceListsItemsSet(
 <dd>
 
 ```java
-client.catalog().postV1CatalogPriceListsItemsList(
-    PostV1CatalogPriceListsItemsListRequest
+client.catalog().priceListsItemsList(
+    PriceListsItemsListCatalogRequest
         .builder()
         .priceListId("priceListId")
         .build()
@@ -7928,7 +7929,7 @@ client.catalog().postV1CatalogPriceListsItemsList(
 </dl>
 </details>
 
-<details><summary><code>client.catalog.postV1CatalogPriceListsItemsDelete(request) -> PostV1CatalogPriceListsItemsDeleteResponse</code></summary>
+<details><summary><code>client.catalog.priceListsItemsDelete(request) -> PriceListsItemsDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7941,8 +7942,8 @@ client.catalog().postV1CatalogPriceListsItemsList(
 <dd>
 
 ```java
-client.catalog().postV1CatalogPriceListsItemsDelete(
-    PostV1CatalogPriceListsItemsDeleteRequest
+client.catalog().priceListsItemsDelete(
+    PriceListsItemsDeleteCatalogRequest
         .builder()
         .priceListId("priceListId")
         .itemId("itemId")
@@ -7982,8 +7983,8 @@ client.catalog().postV1CatalogPriceListsItemsDelete(
 </dl>
 </details>
 
-## Sales
-<details><summary><code>client.sales.postV1SalesInvoicesCreate(request) -> PostV1SalesInvoicesCreateResponse</code></summary>
+## sales
+<details><summary><code>client.sales.invoicesCreate(request) -> InvoicesCreateSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -7996,13 +7997,13 @@ client.catalog().postV1CatalogPriceListsItemsDelete(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesCreate(
-    PostV1SalesInvoicesCreateRequest
+client.sales().invoicesCreate(
+    InvoicesCreateSalesRequest
         .builder()
         .partnerId("partnerId")
         .lines(
             Arrays.asList(
-                PostV1SalesInvoicesCreateRequestLinesItem
+                InvoicesCreateSalesRequestLinesItem
                     .builder()
                     .build()
             )
@@ -8031,7 +8032,7 @@ client.sales().postV1SalesInvoicesCreate(
 <dl>
 <dd>
 
-**type:** `Optional<PostV1SalesInvoicesCreateRequestType>` 
+**type:** `Optional<InvoicesCreateSalesRequestType>` 
     
 </dd>
 </dl>
@@ -8071,6 +8072,22 @@ client.sales().postV1SalesInvoicesCreate(
 <dl>
 <dd>
 
+**creditedInvoiceReference:** `Optional<String>` — Number of an original invoice issued outside Nordlet; give it with creditedInvoiceDate
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**creditedInvoiceDate:** `Optional<String>` — Issue date of the original invoice issued outside Nordlet
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **agreementId:** `Optional<String>` 
     
 </dd>
@@ -8079,7 +8096,7 @@ client.sales().postV1SalesInvoicesCreate(
 <dl>
 <dd>
 
-**vatScheme:** `Optional<PostV1SalesInvoicesCreateRequestVatScheme>` 
+**vatScheme:** `Optional<InvoicesCreateSalesRequestVatScheme>` 
     
 </dd>
 </dl>
@@ -8223,7 +8240,7 @@ client.sales().postV1SalesInvoicesCreate(
 <dl>
 <dd>
 
-**lines:** `List<PostV1SalesInvoicesCreateRequestLinesItem>` 
+**lines:** `List<InvoicesCreateSalesRequestLinesItem>` 
     
 </dd>
 </dl>
@@ -8235,7 +8252,7 @@ client.sales().postV1SalesInvoicesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesGet(request) -> PostV1SalesInvoicesGetResponse</code></summary>
+<details><summary><code>client.sales.invoicesGet(request) -> InvoicesGetSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8248,8 +8265,8 @@ client.sales().postV1SalesInvoicesCreate(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesGet(
-    PostV1SalesInvoicesGetRequest
+client.sales().invoicesGet(
+    InvoicesGetSalesRequest
         .builder()
         .id("id")
         .build()
@@ -8280,7 +8297,7 @@ client.sales().postV1SalesInvoicesGet(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesPdf(request) -> PostV1SalesInvoicesPdfResponse</code></summary>
+<details><summary><code>client.sales.invoicesPdf(request) -> InvoicesPdfSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8293,8 +8310,8 @@ client.sales().postV1SalesInvoicesGet(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesPdf(
-    PostV1SalesInvoicesPdfRequest
+client.sales().invoicesPdf(
+    InvoicesPdfSalesRequest
         .builder()
         .id("id")
         .build()
@@ -8321,7 +8338,7 @@ client.sales().postV1SalesInvoicesPdf(
 <dl>
 <dd>
 
-**locale:** `Optional<PostV1SalesInvoicesPdfRequestLocale>` 
+**locale:** `Optional<InvoicesPdfSalesRequestLocale>` 
     
 </dd>
 </dl>
@@ -8333,7 +8350,7 @@ client.sales().postV1SalesInvoicesPdf(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesSend(request) -> PostV1SalesInvoicesSendResponse</code></summary>
+<details><summary><code>client.sales.invoicesSend(request) -> InvoicesSendSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8346,8 +8363,8 @@ client.sales().postV1SalesInvoicesPdf(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesSend(
-    PostV1SalesInvoicesSendRequest
+client.sales().invoicesSend(
+    InvoicesSendSalesRequest
         .builder()
         .id("id")
         .build()
@@ -8382,7 +8399,7 @@ client.sales().postV1SalesInvoicesSend(
 <dl>
 <dd>
 
-**locale:** `Optional<PostV1SalesInvoicesSendRequestLocale>` 
+**locale:** `Optional<InvoicesSendSalesRequestLocale>` 
     
 </dd>
 </dl>
@@ -8394,7 +8411,7 @@ client.sales().postV1SalesInvoicesSend(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesPeppolXml(request) -> PostV1SalesInvoicesPeppolXmlResponse</code></summary>
+<details><summary><code>client.sales.invoicesPeppolXml(request) -> InvoicesPeppolXmlSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8407,8 +8424,8 @@ client.sales().postV1SalesInvoicesSend(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesPeppolXml(
-    PostV1SalesInvoicesPeppolXmlRequest
+client.sales().invoicesPeppolXml(
+    InvoicesPeppolXmlSalesRequest
         .builder()
         .id("id")
         .build()
@@ -8439,7 +8456,7 @@ client.sales().postV1SalesInvoicesPeppolXml(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesPeppolSend(request) -> PostV1SalesInvoicesPeppolSendResponse</code></summary>
+<details><summary><code>client.sales.invoicesPeppolSend(request) -> InvoicesPeppolSendSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8452,8 +8469,8 @@ client.sales().postV1SalesInvoicesPeppolXml(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesPeppolSend(
-    PostV1SalesInvoicesPeppolSendRequest
+client.sales().invoicesPeppolSend(
+    InvoicesPeppolSendSalesRequest
         .builder()
         .id("id")
         .build()
@@ -8484,7 +8501,7 @@ client.sales().postV1SalesInvoicesPeppolSend(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesEinvoiceXml(request) -> PostV1SalesInvoicesEinvoiceXmlResponse</code></summary>
+<details><summary><code>client.sales.invoicesEinvoiceXml(request) -> InvoicesEinvoiceXmlSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8511,8 +8528,8 @@ Render an issued invoice as the national e-invoicing payload for the company cou
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesEinvoiceXml(
-    PostV1SalesInvoicesEinvoiceXmlRequest
+client.sales().invoicesEinvoiceXml(
+    InvoicesEinvoiceXmlSalesRequest
         .builder()
         .id("id")
         .build()
@@ -8543,7 +8560,7 @@ client.sales().postV1SalesInvoicesEinvoiceXml(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesEinvoiceSend(request) -> PostV1SalesInvoicesEinvoiceSendResponse</code></summary>
+<details><summary><code>client.sales.invoicesEinvoiceSend(request) -> InvoicesEinvoiceSendSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8570,8 +8587,8 @@ Build the national e-invoicing payload and deliver it over the transport configu
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesEinvoiceSend(
-    PostV1SalesInvoicesEinvoiceSendRequest
+client.sales().invoicesEinvoiceSend(
+    InvoicesEinvoiceSendSalesRequest
         .builder()
         .id("id")
         .build()
@@ -8602,7 +8619,7 @@ client.sales().postV1SalesInvoicesEinvoiceSend(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesEinvoiceStatus(request) -> PostV1SalesInvoicesEinvoiceStatusResponse</code></summary>
+<details><summary><code>client.sales.invoicesEinvoiceStatus(request) -> InvoicesEinvoiceStatusSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8629,8 +8646,8 @@ Ask the national e-invoicing channel what happened to an invoice that was alread
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesEinvoiceStatus(
-    PostV1SalesInvoicesEinvoiceStatusRequest
+client.sales().invoicesEinvoiceStatus(
+    InvoicesEinvoiceStatusSalesRequest
         .builder()
         .id("id")
         .build()
@@ -8661,7 +8678,7 @@ client.sales().postV1SalesInvoicesEinvoiceStatus(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesUpdate(request) -> PostV1SalesInvoicesUpdateResponse</code></summary>
+<details><summary><code>client.sales.invoicesUpdate(request) -> InvoicesUpdateSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8674,8 +8691,8 @@ client.sales().postV1SalesInvoicesEinvoiceStatus(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesUpdate(
-    PostV1SalesInvoicesUpdateRequest
+client.sales().invoicesUpdate(
+    InvoicesUpdateSalesRequest
         .builder()
         .id("id")
         .build()
@@ -8742,7 +8759,7 @@ client.sales().postV1SalesInvoicesUpdate(
 <dl>
 <dd>
 
-**vatScheme:** `Optional<PostV1SalesInvoicesUpdateRequestVatScheme>` 
+**vatScheme:** `Optional<InvoicesUpdateSalesRequestVatScheme>` 
     
 </dd>
 </dl>
@@ -8878,7 +8895,7 @@ client.sales().postV1SalesInvoicesUpdate(
 <dl>
 <dd>
 
-**lines:** `Optional<List<PostV1SalesInvoicesUpdateRequestLinesItem>>` 
+**lines:** `Optional<List<InvoicesUpdateSalesRequestLinesItem>>` 
     
 </dd>
 </dl>
@@ -8890,7 +8907,7 @@ client.sales().postV1SalesInvoicesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesDelete(request) -> PostV1SalesInvoicesDeleteResponse</code></summary>
+<details><summary><code>client.sales.invoicesDelete(request) -> InvoicesDeleteSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8903,8 +8920,8 @@ client.sales().postV1SalesInvoicesUpdate(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesDelete(
-    PostV1SalesInvoicesDeleteRequest
+client.sales().invoicesDelete(
+    InvoicesDeleteSalesRequest
         .builder()
         .id("id")
         .build()
@@ -8935,7 +8952,7 @@ client.sales().postV1SalesInvoicesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesIssue(request) -> PostV1SalesInvoicesIssueResponse</code></summary>
+<details><summary><code>client.sales.invoicesIssue(request) -> InvoicesIssueSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8948,8 +8965,8 @@ client.sales().postV1SalesInvoicesDelete(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesIssue(
-    PostV1SalesInvoicesIssueRequest
+client.sales().invoicesIssue(
+    InvoicesIssueSalesRequest
         .builder()
         .id("id")
         .build()
@@ -9004,7 +9021,7 @@ client.sales().postV1SalesInvoicesIssue(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesLock(request) -> PostV1SalesInvoicesLockResponse</code></summary>
+<details><summary><code>client.sales.invoicesLock(request) -> InvoicesLockSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9017,8 +9034,8 @@ client.sales().postV1SalesInvoicesIssue(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesLock(
-    PostV1SalesInvoicesLockRequest
+client.sales().invoicesLock(
+    InvoicesLockSalesRequest
         .builder()
         .id("id")
         .build()
@@ -9049,7 +9066,7 @@ client.sales().postV1SalesInvoicesLock(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesUnlock(request) -> PostV1SalesInvoicesUnlockResponse</code></summary>
+<details><summary><code>client.sales.invoicesUnlock(request) -> InvoicesUnlockSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9062,8 +9079,8 @@ client.sales().postV1SalesInvoicesLock(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesUnlock(
-    PostV1SalesInvoicesUnlockRequest
+client.sales().invoicesUnlock(
+    InvoicesUnlockSalesRequest
         .builder()
         .id("id")
         .build()
@@ -9094,7 +9111,7 @@ client.sales().postV1SalesInvoicesUnlock(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesPaymentLink(request) -> PostV1SalesInvoicesPaymentLinkResponse</code></summary>
+<details><summary><code>client.sales.invoicesPaymentLink(request) -> InvoicesPaymentLinkSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9107,8 +9124,8 @@ client.sales().postV1SalesInvoicesUnlock(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesPaymentLink(
-    PostV1SalesInvoicesPaymentLinkRequest
+client.sales().invoicesPaymentLink(
+    InvoicesPaymentLinkSalesRequest
         .builder()
         .id("id")
         .build()
@@ -9139,7 +9156,7 @@ client.sales().postV1SalesInvoicesPaymentLink(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesPaymentSettingsGet(request) -> PostV1SalesInvoicesPaymentSettingsGetResponse</code></summary>
+<details><summary><code>client.sales.invoicesPaymentSettingsGet(request) -> InvoicesPaymentSettingsGetSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9152,8 +9169,8 @@ client.sales().postV1SalesInvoicesPaymentLink(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesPaymentSettingsGet(
-    PostV1SalesInvoicesPaymentSettingsGetRequest
+client.sales().invoicesPaymentSettingsGet(
+    InvoicesPaymentSettingsGetSalesRequest
         .builder()
         .build()
 );
@@ -9168,7 +9185,7 @@ client.sales().postV1SalesInvoicesPaymentSettingsGet(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesPaymentSettingsUpdate(request) -> PostV1SalesInvoicesPaymentSettingsUpdateResponse</code></summary>
+<details><summary><code>client.sales.invoicesPaymentSettingsUpdate(request) -> InvoicesPaymentSettingsUpdateSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9181,8 +9198,8 @@ client.sales().postV1SalesInvoicesPaymentSettingsGet(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesPaymentSettingsUpdate(
-    PostV1SalesInvoicesPaymentSettingsUpdateRequest
+client.sales().invoicesPaymentSettingsUpdate(
+    InvoicesPaymentSettingsUpdateSalesRequest
         .builder()
         .build()
 );
@@ -9212,7 +9229,7 @@ client.sales().postV1SalesInvoicesPaymentSettingsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesRecognitionSchedulesList(request) -> PostV1SalesRecognitionSchedulesListResponse</code></summary>
+<details><summary><code>client.sales.recognitionSchedulesList(request) -> RecognitionSchedulesListSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9225,8 +9242,8 @@ client.sales().postV1SalesInvoicesPaymentSettingsUpdate(
 <dd>
 
 ```java
-client.sales().postV1SalesRecognitionSchedulesList(
-    PostV1SalesRecognitionSchedulesListRequest
+client.sales().recognitionSchedulesList(
+    RecognitionSchedulesListSalesRequest
         .builder()
         .build()
 );
@@ -9260,7 +9277,7 @@ client.sales().postV1SalesRecognitionSchedulesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1SalesRecognitionSchedulesListRequestSortItem>>` 
+**sort:** `Optional<List<RecognitionSchedulesListSalesRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -9268,7 +9285,7 @@ client.sales().postV1SalesRecognitionSchedulesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1SalesRecognitionSchedulesListRequestFilterItem>>` 
+**filter:** `Optional<List<RecognitionSchedulesListSalesRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -9288,7 +9305,7 @@ client.sales().postV1SalesRecognitionSchedulesList(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesApplyAdvance(request) -> PostV1SalesInvoicesApplyAdvanceResponse</code></summary>
+<details><summary><code>client.sales.invoicesApplyAdvance(request) -> InvoicesApplyAdvanceSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9301,8 +9318,8 @@ client.sales().postV1SalesRecognitionSchedulesList(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesApplyAdvance(
-    PostV1SalesInvoicesApplyAdvanceRequest
+client.sales().invoicesApplyAdvance(
+    InvoicesApplyAdvanceSalesRequest
         .builder()
         .advanceId("advanceId")
         .invoiceId("invoiceId")
@@ -9350,7 +9367,7 @@ client.sales().postV1SalesInvoicesApplyAdvance(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesInvoicesList(request) -> PostV1SalesInvoicesListResponse</code></summary>
+<details><summary><code>client.sales.invoicesList(request) -> InvoicesListSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9363,8 +9380,8 @@ client.sales().postV1SalesInvoicesApplyAdvance(
 <dd>
 
 ```java
-client.sales().postV1SalesInvoicesList(
-    PostV1SalesInvoicesListRequest
+client.sales().invoicesList(
+    InvoicesListSalesRequest
         .builder()
         .build()
 );
@@ -9398,7 +9415,7 @@ client.sales().postV1SalesInvoicesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1SalesInvoicesListRequestSortItem>>` 
+**sort:** `Optional<List<InvoicesListSalesRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -9406,7 +9423,7 @@ client.sales().postV1SalesInvoicesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1SalesInvoicesListRequestFilterItem>>` 
+**filter:** `Optional<List<InvoicesListSalesRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -9426,7 +9443,7 @@ client.sales().postV1SalesInvoicesList(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesActsCreate(request) -> PostV1SalesActsCreateResponse</code></summary>
+<details><summary><code>client.sales.actsCreate(request) -> ActsCreateSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9439,8 +9456,8 @@ client.sales().postV1SalesInvoicesList(
 <dd>
 
 ```java
-client.sales().postV1SalesActsCreate(
-    PostV1SalesActsCreateRequest
+client.sales().actsCreate(
+    ActsCreateSalesRequest
         .builder()
         .partnerId("partnerId")
         .build()
@@ -9467,7 +9484,7 @@ client.sales().postV1SalesActsCreate(
 <dl>
 <dd>
 
-**type:** `Optional<PostV1SalesActsCreateRequestType>` 
+**type:** `Optional<ActsCreateSalesRequestType>` 
     
 </dd>
 </dl>
@@ -9539,7 +9556,7 @@ client.sales().postV1SalesActsCreate(
 <dl>
 <dd>
 
-**lines:** `Optional<List<PostV1SalesActsCreateRequestLinesItem>>` 
+**lines:** `Optional<List<ActsCreateSalesRequestLinesItem>>` 
     
 </dd>
 </dl>
@@ -9551,7 +9568,7 @@ client.sales().postV1SalesActsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesActsUpdate(request) -> PostV1SalesActsUpdateResponse</code></summary>
+<details><summary><code>client.sales.actsUpdate(request) -> ActsUpdateSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9564,8 +9581,8 @@ client.sales().postV1SalesActsCreate(
 <dd>
 
 ```java
-client.sales().postV1SalesActsUpdate(
-    PostV1SalesActsUpdateRequest
+client.sales().actsUpdate(
+    ActsUpdateSalesRequest
         .builder()
         .id("id")
         .build()
@@ -9592,7 +9609,7 @@ client.sales().postV1SalesActsUpdate(
 <dl>
 <dd>
 
-**type:** `Optional<PostV1SalesActsUpdateRequestType>` 
+**type:** `Optional<ActsUpdateSalesRequestType>` 
     
 </dd>
 </dl>
@@ -9664,7 +9681,7 @@ client.sales().postV1SalesActsUpdate(
 <dl>
 <dd>
 
-**lines:** `Optional<List<PostV1SalesActsUpdateRequestLinesItem>>` 
+**lines:** `Optional<List<ActsUpdateSalesRequestLinesItem>>` 
     
 </dd>
 </dl>
@@ -9684,7 +9701,7 @@ client.sales().postV1SalesActsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesActsIssue(request) -> PostV1SalesActsIssueResponse</code></summary>
+<details><summary><code>client.sales.actsIssue(request) -> ActsIssueSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9697,8 +9714,8 @@ client.sales().postV1SalesActsUpdate(
 <dd>
 
 ```java
-client.sales().postV1SalesActsIssue(
-    PostV1SalesActsIssueRequest
+client.sales().actsIssue(
+    ActsIssueSalesRequest
         .builder()
         .id("id")
         .build()
@@ -9729,7 +9746,7 @@ client.sales().postV1SalesActsIssue(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesActsCancel(request) -> PostV1SalesActsCancelResponse</code></summary>
+<details><summary><code>client.sales.actsCancel(request) -> ActsCancelSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9742,8 +9759,8 @@ client.sales().postV1SalesActsIssue(
 <dd>
 
 ```java
-client.sales().postV1SalesActsCancel(
-    PostV1SalesActsCancelRequest
+client.sales().actsCancel(
+    ActsCancelSalesRequest
         .builder()
         .id("id")
         .build()
@@ -9774,7 +9791,7 @@ client.sales().postV1SalesActsCancel(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesActsGet(request) -> PostV1SalesActsGetResponse</code></summary>
+<details><summary><code>client.sales.actsGet(request) -> ActsGetSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9787,8 +9804,8 @@ client.sales().postV1SalesActsCancel(
 <dd>
 
 ```java
-client.sales().postV1SalesActsGet(
-    PostV1SalesActsGetRequest
+client.sales().actsGet(
+    ActsGetSalesRequest
         .builder()
         .id("id")
         .build()
@@ -9819,7 +9836,7 @@ client.sales().postV1SalesActsGet(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesActsList(request) -> PostV1SalesActsListResponse</code></summary>
+<details><summary><code>client.sales.actsList(request) -> ActsListSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9832,8 +9849,8 @@ client.sales().postV1SalesActsGet(
 <dd>
 
 ```java
-client.sales().postV1SalesActsList(
-    PostV1SalesActsListRequest
+client.sales().actsList(
+    ActsListSalesRequest
         .builder()
         .build()
 );
@@ -9867,7 +9884,7 @@ client.sales().postV1SalesActsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1SalesActsListRequestSortItem>>` 
+**sort:** `Optional<List<ActsListSalesRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -9875,7 +9892,7 @@ client.sales().postV1SalesActsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1SalesActsListRequestFilterItem>>` 
+**filter:** `Optional<List<ActsListSalesRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -9895,7 +9912,7 @@ client.sales().postV1SalesActsList(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesActsPdf(request) -> PostV1SalesActsPdfResponse</code></summary>
+<details><summary><code>client.sales.actsPdf(request) -> ActsPdfSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9908,8 +9925,8 @@ client.sales().postV1SalesActsList(
 <dd>
 
 ```java
-client.sales().postV1SalesActsPdf(
-    PostV1SalesActsPdfRequest
+client.sales().actsPdf(
+    ActsPdfSalesRequest
         .builder()
         .id("id")
         .build()
@@ -9936,7 +9953,7 @@ client.sales().postV1SalesActsPdf(
 <dl>
 <dd>
 
-**locale:** `Optional<PostV1SalesActsPdfRequestLocale>` 
+**locale:** `Optional<ActsPdfSalesRequestLocale>` 
     
 </dd>
 </dl>
@@ -9948,7 +9965,7 @@ client.sales().postV1SalesActsPdf(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1OperationTypesCreate(request) -> PostV1OperationTypesCreateResponse</code></summary>
+<details><summary><code>client.sales.recognitionCompute(request) -> RecognitionComputeSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9961,8 +9978,525 @@ client.sales().postV1SalesActsPdf(
 <dd>
 
 ```java
-client.sales().postV1OperationTypesCreate(
-    PostV1OperationTypesCreateRequest
+client.sales().recognitionCompute(
+    RecognitionComputeSalesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**asOfDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.recognitionRun(request) -> RecognitionRunSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().recognitionRun(
+    RecognitionRunSalesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**asOfDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**postingDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scheduleIds:** `Optional<List<String>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.recognitionProgress(request) -> RecognitionProgressSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().recognitionProgress(
+    RecognitionProgressSalesRequest
+        .builder()
+        .invoiceLineId("invoiceLineId")
+        .percentComplete("121.00")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoiceLineId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**percentComplete:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.recognitionModify(request) -> RecognitionModifySalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().recognitionModify(
+    RecognitionModifySalesRequest
+        .builder()
+        .invoiceLineId("invoiceLineId")
+        .approach(RecognitionModifySalesRequestApproach.PROSPECTIVE)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoiceLineId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**approach:** `RecognitionModifySalesRequestApproach` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**newEndDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**newMilestones:** `Optional<List<RecognitionModifySalesRequestNewMilestonesItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.recognitionRunsList(request) -> RecognitionRunsListSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().recognitionRunsList(
+    RecognitionRunsListSalesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<RecognitionRunsListSalesRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<RecognitionRunsListSalesRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.recognitionSummary(request) -> RecognitionSummarySalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().recognitionSummary(
+    RecognitionSummarySalesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoiceId:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.refundLiabilityList(request) -> RefundLiabilityListSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().refundLiabilityList(
+    RefundLiabilityListSalesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<RefundLiabilityListSalesRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<RefundLiabilityListSalesRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.refundLiabilityTrueUp(request) -> RefundLiabilityTrueUpSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().refundLiabilityTrueUp(
+    RefundLiabilityTrueUpSalesRequest
+        .builder()
+        .invoiceId("invoiceId")
+        .estimatedTotal("121.0000")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoiceId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**estimatedTotal:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## OperationTypes
+<details><summary><code>client.operationTypes.create(request) -> CreateOperationTypesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.operationTypes().create(
+    CreateOperationTypesRequest
         .builder()
         .code("code")
         .name("name")
@@ -9998,7 +10532,7 @@ client.sales().postV1OperationTypesCreate(
 <dl>
 <dd>
 
-**invoiceType:** `Optional<PostV1OperationTypesCreateRequestInvoiceType>` 
+**invoiceType:** `Optional<CreateOperationTypesRequestInvoiceType>` 
     
 </dd>
 </dl>
@@ -10186,7 +10720,7 @@ client.sales().postV1OperationTypesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1OperationTypesUpdate(request) -> PostV1OperationTypesUpdateResponse</code></summary>
+<details><summary><code>client.operationTypes.update(request) -> UpdateOperationTypesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10199,8 +10733,8 @@ client.sales().postV1OperationTypesCreate(
 <dd>
 
 ```java
-client.sales().postV1OperationTypesUpdate(
-    PostV1OperationTypesUpdateRequest
+client.operationTypes().update(
+    UpdateOperationTypesRequest
         .builder()
         .id("id")
         .build()
@@ -10243,7 +10777,7 @@ client.sales().postV1OperationTypesUpdate(
 <dl>
 <dd>
 
-**invoiceType:** `Optional<PostV1OperationTypesUpdateRequestInvoiceType>` 
+**invoiceType:** `Optional<UpdateOperationTypesRequestInvoiceType>` 
     
 </dd>
 </dl>
@@ -10431,7 +10965,7 @@ client.sales().postV1OperationTypesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1OperationTypesGet(request) -> PostV1OperationTypesGetResponse</code></summary>
+<details><summary><code>client.operationTypes.get(request) -> GetOperationTypesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10444,8 +10978,8 @@ client.sales().postV1OperationTypesUpdate(
 <dd>
 
 ```java
-client.sales().postV1OperationTypesGet(
-    PostV1OperationTypesGetRequest
+client.operationTypes().get(
+    GetOperationTypesRequest
         .builder()
         .id("id")
         .build()
@@ -10476,7 +11010,7 @@ client.sales().postV1OperationTypesGet(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1OperationTypesDelete(request) -> PostV1OperationTypesDeleteResponse</code></summary>
+<details><summary><code>client.operationTypes.delete(request) -> DeleteOperationTypesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10489,8 +11023,8 @@ client.sales().postV1OperationTypesGet(
 <dd>
 
 ```java
-client.sales().postV1OperationTypesDelete(
-    PostV1OperationTypesDeleteRequest
+client.operationTypes().delete(
+    DeleteOperationTypesRequest
         .builder()
         .id("id")
         .build()
@@ -10521,7 +11055,7 @@ client.sales().postV1OperationTypesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1OperationTypesList(request) -> PostV1OperationTypesListResponse</code></summary>
+<details><summary><code>client.operationTypes.list(request) -> ListOperationTypesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10534,8 +11068,8 @@ client.sales().postV1OperationTypesDelete(
 <dd>
 
 ```java
-client.sales().postV1OperationTypesList(
-    PostV1OperationTypesListRequest
+client.operationTypes().list(
+    ListOperationTypesRequest
         .builder()
         .build()
 );
@@ -10569,7 +11103,7 @@ client.sales().postV1OperationTypesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1OperationTypesListRequestSortItem>>` 
+**sort:** `Optional<List<ListOperationTypesRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -10577,7 +11111,7 @@ client.sales().postV1OperationTypesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1OperationTypesListRequestFilterItem>>` 
+**filter:** `Optional<List<ListOperationTypesRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -10597,7 +11131,8 @@ client.sales().postV1OperationTypesList(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1DocumentSeriesCreate(request) -> PostV1DocumentSeriesCreateResponse</code></summary>
+## DocumentSeries
+<details><summary><code>client.documentSeries.create(request) -> CreateDocumentSeriesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10610,8 +11145,8 @@ client.sales().postV1OperationTypesList(
 <dd>
 
 ```java
-client.sales().postV1DocumentSeriesCreate(
-    PostV1DocumentSeriesCreateRequest
+client.documentSeries().create(
+    CreateDocumentSeriesRequest
         .builder()
         .prefix("prefix")
         .build()
@@ -10630,7 +11165,7 @@ client.sales().postV1DocumentSeriesCreate(
 <dl>
 <dd>
 
-**documentType:** `Optional<PostV1DocumentSeriesCreateRequestDocumentType>` 
+**documentType:** `Optional<CreateDocumentSeriesRequestDocumentType>` 
     
 </dd>
 </dl>
@@ -10738,7 +11273,7 @@ client.sales().postV1DocumentSeriesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1DocumentSeriesUpdate(request) -> PostV1DocumentSeriesUpdateResponse</code></summary>
+<details><summary><code>client.documentSeries.update(request) -> UpdateDocumentSeriesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10751,8 +11286,8 @@ client.sales().postV1DocumentSeriesCreate(
 <dd>
 
 ```java
-client.sales().postV1DocumentSeriesUpdate(
-    PostV1DocumentSeriesUpdateRequest
+client.documentSeries().update(
+    UpdateDocumentSeriesRequest
         .builder()
         .id("id")
         .build()
@@ -10779,7 +11314,7 @@ client.sales().postV1DocumentSeriesUpdate(
 <dl>
 <dd>
 
-**documentType:** `Optional<PostV1DocumentSeriesUpdateRequestDocumentType>` 
+**documentType:** `Optional<UpdateDocumentSeriesRequestDocumentType>` 
     
 </dd>
 </dl>
@@ -10887,7 +11422,7 @@ client.sales().postV1DocumentSeriesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1DocumentSeriesGet(request) -> PostV1DocumentSeriesGetResponse</code></summary>
+<details><summary><code>client.documentSeries.get(request) -> GetDocumentSeriesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10900,8 +11435,8 @@ client.sales().postV1DocumentSeriesUpdate(
 <dd>
 
 ```java
-client.sales().postV1DocumentSeriesGet(
-    PostV1DocumentSeriesGetRequest
+client.documentSeries().get(
+    GetDocumentSeriesRequest
         .builder()
         .id("id")
         .build()
@@ -10932,7 +11467,7 @@ client.sales().postV1DocumentSeriesGet(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1DocumentSeriesDelete(request) -> PostV1DocumentSeriesDeleteResponse</code></summary>
+<details><summary><code>client.documentSeries.delete(request) -> DeleteDocumentSeriesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10945,8 +11480,8 @@ client.sales().postV1DocumentSeriesGet(
 <dd>
 
 ```java
-client.sales().postV1DocumentSeriesDelete(
-    PostV1DocumentSeriesDeleteRequest
+client.documentSeries().delete(
+    DeleteDocumentSeriesRequest
         .builder()
         .id("id")
         .build()
@@ -10977,7 +11512,7 @@ client.sales().postV1DocumentSeriesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1DocumentSeriesList(request) -> PostV1DocumentSeriesListResponse</code></summary>
+<details><summary><code>client.documentSeries.list(request) -> ListDocumentSeriesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10990,8 +11525,8 @@ client.sales().postV1DocumentSeriesDelete(
 <dd>
 
 ```java
-client.sales().postV1DocumentSeriesList(
-    PostV1DocumentSeriesListRequest
+client.documentSeries().list(
+    ListDocumentSeriesRequest
         .builder()
         .build()
 );
@@ -11025,7 +11560,7 @@ client.sales().postV1DocumentSeriesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1DocumentSeriesListRequestSortItem>>` 
+**sort:** `Optional<List<ListDocumentSeriesRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -11033,341 +11568,7 @@ client.sales().postV1DocumentSeriesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1DocumentSeriesListRequestFilterItem>>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.sales.postV1SalesRecognitionCompute(request) -> PostV1SalesRecognitionComputeResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.sales().postV1SalesRecognitionCompute(
-    PostV1SalesRecognitionComputeRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**asOfDate:** `Optional<String>` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.sales.postV1SalesRecognitionRun(request) -> PostV1SalesRecognitionRunResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.sales().postV1SalesRecognitionRun(
-    PostV1SalesRecognitionRunRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**asOfDate:** `Optional<String>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**postingDate:** `Optional<String>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**scheduleIds:** `Optional<List<String>>` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.sales.postV1SalesRecognitionProgress(request) -> PostV1SalesRecognitionProgressResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.sales().postV1SalesRecognitionProgress(
-    PostV1SalesRecognitionProgressRequest
-        .builder()
-        .invoiceLineId("invoiceLineId")
-        .percentComplete("percentComplete")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**invoiceLineId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**percentComplete:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**date:** `Optional<String>` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.sales.postV1SalesRecognitionModify(request) -> PostV1SalesRecognitionModifyResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.sales().postV1SalesRecognitionModify(
-    PostV1SalesRecognitionModifyRequest
-        .builder()
-        .invoiceLineId("invoiceLineId")
-        .approach(PostV1SalesRecognitionModifyRequestApproach.PROSPECTIVE)
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**invoiceLineId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**approach:** `PostV1SalesRecognitionModifyRequestApproach` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**date:** `Optional<String>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**newEndDate:** `Optional<String>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**newMilestones:** `Optional<List<PostV1SalesRecognitionModifyRequestNewMilestonesItem>>` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.sales.postV1SalesRecognitionRunsList(request) -> PostV1SalesRecognitionRunsListResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.sales().postV1SalesRecognitionRunsList(
-    PostV1SalesRecognitionRunsListRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**page:** `Optional<Long>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Optional<Long>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sort:** `Optional<List<PostV1SalesRecognitionRunsListRequestSortItem>>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filter:** `Optional<List<PostV1SalesRecognitionRunsListRequestFilterItem>>` 
+**filter:** `Optional<List<ListDocumentSeriesRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -11387,7 +11588,8 @@ client.sales().postV1SalesRecognitionRunsList(
 </dl>
 </details>
 
-<details><summary><code>client.sales.postV1SalesRecognitionSummary(request) -> PostV1SalesRecognitionSummaryResponse</code></summary>
+## purchases
+<details><summary><code>client.purchases.invoicesCreate(request) -> InvoicesCreatePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11400,198 +11602,15 @@ client.sales().postV1SalesRecognitionRunsList(
 <dd>
 
 ```java
-client.sales().postV1SalesRecognitionSummary(
-    PostV1SalesRecognitionSummaryRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**invoiceId:** `Optional<String>` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.sales.postV1SalesRefundLiabilityList(request) -> PostV1SalesRefundLiabilityListResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.sales().postV1SalesRefundLiabilityList(
-    PostV1SalesRefundLiabilityListRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**page:** `Optional<Long>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Optional<Long>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sort:** `Optional<List<PostV1SalesRefundLiabilityListRequestSortItem>>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filter:** `Optional<List<PostV1SalesRefundLiabilityListRequestFilterItem>>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.sales.postV1SalesRefundLiabilityTrueUp(request) -> PostV1SalesRefundLiabilityTrueUpResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.sales().postV1SalesRefundLiabilityTrueUp(
-    PostV1SalesRefundLiabilityTrueUpRequest
-        .builder()
-        .invoiceId("invoiceId")
-        .estimatedTotal("estimatedTotal")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**invoiceId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**estimatedTotal:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**date:** `Optional<String>` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Purchases
-<details><summary><code>client.purchases.postV1PurchasesInvoicesCreate(request) -> PostV1PurchasesInvoicesCreateResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.purchases().postV1PurchasesInvoicesCreate(
-    PostV1PurchasesInvoicesCreateRequest
+client.purchases().invoicesCreate(
+    InvoicesCreatePurchasesRequest
         .builder()
         .partnerId("partnerId")
         .documentNumber("documentNumber")
-        .documentDate("documentDate")
+        .documentDate("2026-07-01")
         .lines(
             Arrays.asList(
-                PostV1PurchasesInvoicesCreateRequestLinesItem
+                InvoicesCreatePurchasesRequestLinesItem
                     .builder()
                     .build()
             )
@@ -11620,7 +11639,7 @@ client.purchases().postV1PurchasesInvoicesCreate(
 <dl>
 <dd>
 
-**type:** `Optional<PostV1PurchasesInvoicesCreateRequestType>` 
+**type:** `Optional<InvoicesCreatePurchasesRequestType>` 
     
 </dd>
 </dl>
@@ -11740,7 +11759,7 @@ client.purchases().postV1PurchasesInvoicesCreate(
 <dl>
 <dd>
 
-**lines:** `List<PostV1PurchasesInvoicesCreateRequestLinesItem>` 
+**lines:** `List<InvoicesCreatePurchasesRequestLinesItem>` 
     
 </dd>
 </dl>
@@ -11752,7 +11771,7 @@ client.purchases().postV1PurchasesInvoicesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesInvoicesGet(request) -> PostV1PurchasesInvoicesGetResponse</code></summary>
+<details><summary><code>client.purchases.invoicesGet(request) -> InvoicesGetPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11765,8 +11784,8 @@ client.purchases().postV1PurchasesInvoicesCreate(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesInvoicesGet(
-    PostV1PurchasesInvoicesGetRequest
+client.purchases().invoicesGet(
+    InvoicesGetPurchasesRequest
         .builder()
         .id("id")
         .build()
@@ -11797,7 +11816,7 @@ client.purchases().postV1PurchasesInvoicesGet(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesInvoicesUpdate(request) -> PostV1PurchasesInvoicesUpdateResponse</code></summary>
+<details><summary><code>client.purchases.invoicesUpdate(request) -> InvoicesUpdatePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11810,8 +11829,8 @@ client.purchases().postV1PurchasesInvoicesGet(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesInvoicesUpdate(
-    PostV1PurchasesInvoicesUpdateRequest
+client.purchases().invoicesUpdate(
+    InvoicesUpdatePurchasesRequest
         .builder()
         .id("id")
         .build()
@@ -11942,7 +11961,7 @@ client.purchases().postV1PurchasesInvoicesUpdate(
 <dl>
 <dd>
 
-**lines:** `Optional<List<PostV1PurchasesInvoicesUpdateRequestLinesItem>>` 
+**lines:** `Optional<List<InvoicesUpdatePurchasesRequestLinesItem>>` 
     
 </dd>
 </dl>
@@ -11954,7 +11973,7 @@ client.purchases().postV1PurchasesInvoicesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesInvoicesDelete(request) -> PostV1PurchasesInvoicesDeleteResponse</code></summary>
+<details><summary><code>client.purchases.invoicesDelete(request) -> InvoicesDeletePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11967,8 +11986,8 @@ client.purchases().postV1PurchasesInvoicesUpdate(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesInvoicesDelete(
-    PostV1PurchasesInvoicesDeleteRequest
+client.purchases().invoicesDelete(
+    InvoicesDeletePurchasesRequest
         .builder()
         .id("id")
         .build()
@@ -11999,7 +12018,7 @@ client.purchases().postV1PurchasesInvoicesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesInvoicesRegister(request) -> PostV1PurchasesInvoicesRegisterResponse</code></summary>
+<details><summary><code>client.purchases.invoicesRegister(request) -> InvoicesRegisterPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12012,8 +12031,8 @@ client.purchases().postV1PurchasesInvoicesDelete(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesInvoicesRegister(
-    PostV1PurchasesInvoicesRegisterRequest
+client.purchases().invoicesRegister(
+    InvoicesRegisterPurchasesRequest
         .builder()
         .id("id")
         .build()
@@ -12060,7 +12079,7 @@ client.purchases().postV1PurchasesInvoicesRegister(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesInvoicesList(request) -> PostV1PurchasesInvoicesListResponse</code></summary>
+<details><summary><code>client.purchases.invoicesList(request) -> InvoicesListPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12073,8 +12092,8 @@ client.purchases().postV1PurchasesInvoicesRegister(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesInvoicesList(
-    PostV1PurchasesInvoicesListRequest
+client.purchases().invoicesList(
+    InvoicesListPurchasesRequest
         .builder()
         .build()
 );
@@ -12108,7 +12127,7 @@ client.purchases().postV1PurchasesInvoicesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1PurchasesInvoicesListRequestSortItem>>` 
+**sort:** `Optional<List<InvoicesListPurchasesRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -12116,7 +12135,7 @@ client.purchases().postV1PurchasesInvoicesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1PurchasesInvoicesListRequestFilterItem>>` 
+**filter:** `Optional<List<InvoicesListPurchasesRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -12136,7 +12155,7 @@ client.purchases().postV1PurchasesInvoicesList(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesOrdersCreate(request) -> PostV1PurchasesOrdersCreateResponse</code></summary>
+<details><summary><code>client.purchases.ordersCreate(request) -> OrdersCreatePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12149,14 +12168,14 @@ client.purchases().postV1PurchasesInvoicesList(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesOrdersCreate(
-    PostV1PurchasesOrdersCreateRequest
+client.purchases().ordersCreate(
+    OrdersCreatePurchasesRequest
         .builder()
         .partnerId("partnerId")
-        .orderDate("orderDate")
+        .orderDate("2026-07-01")
         .lines(
             Arrays.asList(
-                PostV1PurchasesOrdersCreateRequestLinesItem
+                OrdersCreatePurchasesRequestLinesItem
                     .builder()
                     .build()
             )
@@ -12241,7 +12260,7 @@ client.purchases().postV1PurchasesOrdersCreate(
 <dl>
 <dd>
 
-**lines:** `List<PostV1PurchasesOrdersCreateRequestLinesItem>` 
+**lines:** `List<OrdersCreatePurchasesRequestLinesItem>` 
     
 </dd>
 </dl>
@@ -12253,7 +12272,7 @@ client.purchases().postV1PurchasesOrdersCreate(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesOrdersUpdate(request) -> PostV1PurchasesOrdersUpdateResponse</code></summary>
+<details><summary><code>client.purchases.ordersUpdate(request) -> OrdersUpdatePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12266,8 +12285,8 @@ client.purchases().postV1PurchasesOrdersCreate(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesOrdersUpdate(
-    PostV1PurchasesOrdersUpdateRequest
+client.purchases().ordersUpdate(
+    OrdersUpdatePurchasesRequest
         .builder()
         .id("id")
         .build()
@@ -12342,7 +12361,7 @@ client.purchases().postV1PurchasesOrdersUpdate(
 <dl>
 <dd>
 
-**lines:** `Optional<List<PostV1PurchasesOrdersUpdateRequestLinesItem>>` 
+**lines:** `Optional<List<OrdersUpdatePurchasesRequestLinesItem>>` 
     
 </dd>
 </dl>
@@ -12354,7 +12373,7 @@ client.purchases().postV1PurchasesOrdersUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesOrdersGet(request) -> PostV1PurchasesOrdersGetResponse</code></summary>
+<details><summary><code>client.purchases.ordersGet(request) -> OrdersGetPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12367,8 +12386,8 @@ client.purchases().postV1PurchasesOrdersUpdate(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesOrdersGet(
-    PostV1PurchasesOrdersGetRequest
+client.purchases().ordersGet(
+    OrdersGetPurchasesRequest
         .builder()
         .id("id")
         .build()
@@ -12399,7 +12418,7 @@ client.purchases().postV1PurchasesOrdersGet(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesOrdersList(request) -> PostV1PurchasesOrdersListResponse</code></summary>
+<details><summary><code>client.purchases.ordersList(request) -> OrdersListPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12412,8 +12431,8 @@ client.purchases().postV1PurchasesOrdersGet(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesOrdersList(
-    PostV1PurchasesOrdersListRequest
+client.purchases().ordersList(
+    OrdersListPurchasesRequest
         .builder()
         .build()
 );
@@ -12447,7 +12466,7 @@ client.purchases().postV1PurchasesOrdersList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1PurchasesOrdersListRequestSortItem>>` 
+**sort:** `Optional<List<OrdersListPurchasesRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -12455,7 +12474,7 @@ client.purchases().postV1PurchasesOrdersList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1PurchasesOrdersListRequestFilterItem>>` 
+**filter:** `Optional<List<OrdersListPurchasesRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -12475,7 +12494,7 @@ client.purchases().postV1PurchasesOrdersList(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesOrdersSubmit(request) -> PostV1PurchasesOrdersSubmitResponse</code></summary>
+<details><summary><code>client.purchases.ordersSubmit(request) -> OrdersSubmitPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12488,8 +12507,8 @@ client.purchases().postV1PurchasesOrdersList(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesOrdersSubmit(
-    PostV1PurchasesOrdersSubmitRequest
+client.purchases().ordersSubmit(
+    OrdersSubmitPurchasesRequest
         .builder()
         .id("id")
         .build()
@@ -12528,7 +12547,7 @@ client.purchases().postV1PurchasesOrdersSubmit(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesOrdersApprove(request) -> PostV1PurchasesOrdersApproveResponse</code></summary>
+<details><summary><code>client.purchases.ordersApprove(request) -> OrdersApprovePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12541,8 +12560,8 @@ client.purchases().postV1PurchasesOrdersSubmit(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesOrdersApprove(
-    PostV1PurchasesOrdersApproveRequest
+client.purchases().ordersApprove(
+    OrdersApprovePurchasesRequest
         .builder()
         .id("id")
         .build()
@@ -12581,7 +12600,7 @@ client.purchases().postV1PurchasesOrdersApprove(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesOrdersReject(request) -> PostV1PurchasesOrdersRejectResponse</code></summary>
+<details><summary><code>client.purchases.ordersReject(request) -> OrdersRejectPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12594,8 +12613,8 @@ client.purchases().postV1PurchasesOrdersApprove(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesOrdersReject(
-    PostV1PurchasesOrdersRejectRequest
+client.purchases().ordersReject(
+    OrdersRejectPurchasesRequest
         .builder()
         .id("id")
         .build()
@@ -12634,7 +12653,7 @@ client.purchases().postV1PurchasesOrdersReject(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesOrdersCancel(request) -> PostV1PurchasesOrdersCancelResponse</code></summary>
+<details><summary><code>client.purchases.ordersCancel(request) -> OrdersCancelPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12647,8 +12666,8 @@ client.purchases().postV1PurchasesOrdersReject(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesOrdersCancel(
-    PostV1PurchasesOrdersCancelRequest
+client.purchases().ordersCancel(
+    OrdersCancelPurchasesRequest
         .builder()
         .id("id")
         .build()
@@ -12687,7 +12706,7 @@ client.purchases().postV1PurchasesOrdersCancel(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesOrdersClose(request) -> PostV1PurchasesOrdersCloseResponse</code></summary>
+<details><summary><code>client.purchases.ordersClose(request) -> OrdersClosePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12700,8 +12719,8 @@ client.purchases().postV1PurchasesOrdersCancel(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesOrdersClose(
-    PostV1PurchasesOrdersCloseRequest
+client.purchases().ordersClose(
+    OrdersClosePurchasesRequest
         .builder()
         .id("id")
         .build()
@@ -12740,7 +12759,7 @@ client.purchases().postV1PurchasesOrdersClose(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesOrdersDelete(request) -> PostV1PurchasesOrdersDeleteResponse</code></summary>
+<details><summary><code>client.purchases.ordersDelete(request) -> OrdersDeletePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12753,8 +12772,8 @@ client.purchases().postV1PurchasesOrdersClose(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesOrdersDelete(
-    PostV1PurchasesOrdersDeleteRequest
+client.purchases().ordersDelete(
+    OrdersDeletePurchasesRequest
         .builder()
         .id("id")
         .build()
@@ -12785,7 +12804,7 @@ client.purchases().postV1PurchasesOrdersDelete(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesReceiptsCreate(request) -> PostV1PurchasesReceiptsCreateResponse</code></summary>
+<details><summary><code>client.purchases.receiptsCreate(request) -> ReceiptsCreatePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12798,17 +12817,17 @@ client.purchases().postV1PurchasesOrdersDelete(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesReceiptsCreate(
-    PostV1PurchasesReceiptsCreateRequest
+client.purchases().receiptsCreate(
+    ReceiptsCreatePurchasesRequest
         .builder()
         .orderId("orderId")
-        .receiptDate("receiptDate")
+        .receiptDate("2026-07-01")
         .lines(
             Arrays.asList(
-                PostV1PurchasesReceiptsCreateRequestLinesItem
+                ReceiptsCreatePurchasesRequestLinesItem
                     .builder()
                     .orderLineId("orderLineId")
-                    .quantity("quantity")
+                    .quantity("121.0000")
                     .build()
             )
         )
@@ -12860,7 +12879,7 @@ client.purchases().postV1PurchasesReceiptsCreate(
 <dl>
 <dd>
 
-**lines:** `List<PostV1PurchasesReceiptsCreateRequestLinesItem>` 
+**lines:** `List<ReceiptsCreatePurchasesRequestLinesItem>` 
     
 </dd>
 </dl>
@@ -12872,7 +12891,7 @@ client.purchases().postV1PurchasesReceiptsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesReceiptsGet(request) -> PostV1PurchasesReceiptsGetResponse</code></summary>
+<details><summary><code>client.purchases.receiptsGet(request) -> ReceiptsGetPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12885,8 +12904,8 @@ client.purchases().postV1PurchasesReceiptsCreate(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesReceiptsGet(
-    PostV1PurchasesReceiptsGetRequest
+client.purchases().receiptsGet(
+    ReceiptsGetPurchasesRequest
         .builder()
         .id("id")
         .build()
@@ -12917,7 +12936,7 @@ client.purchases().postV1PurchasesReceiptsGet(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesReceiptsList(request) -> PostV1PurchasesReceiptsListResponse</code></summary>
+<details><summary><code>client.purchases.receiptsList(request) -> ReceiptsListPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12930,8 +12949,8 @@ client.purchases().postV1PurchasesReceiptsGet(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesReceiptsList(
-    PostV1PurchasesReceiptsListRequest
+client.purchases().receiptsList(
+    ReceiptsListPurchasesRequest
         .builder()
         .build()
 );
@@ -12965,7 +12984,7 @@ client.purchases().postV1PurchasesReceiptsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1PurchasesReceiptsListRequestSortItem>>` 
+**sort:** `Optional<List<ReceiptsListPurchasesRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -12973,7 +12992,7 @@ client.purchases().postV1PurchasesReceiptsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1PurchasesReceiptsListRequestFilterItem>>` 
+**filter:** `Optional<List<ReceiptsListPurchasesRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -12993,7 +13012,7 @@ client.purchases().postV1PurchasesReceiptsList(
 </dl>
 </details>
 
-<details><summary><code>client.purchases.postV1PurchasesInvoicesMatch(request) -> PostV1PurchasesInvoicesMatchResponse</code></summary>
+<details><summary><code>client.purchases.invoicesMatch(request) -> InvoicesMatchPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -13006,8 +13025,8 @@ client.purchases().postV1PurchasesReceiptsList(
 <dd>
 
 ```java
-client.purchases().postV1PurchasesInvoicesMatch(
-    PostV1PurchasesInvoicesMatchRequest
+client.purchases().invoicesMatch(
+    InvoicesMatchPurchasesRequest
         .builder()
         .invoiceId("invoiceId")
         .build()
@@ -13046,8 +13065,8 @@ client.purchases().postV1PurchasesInvoicesMatch(
 </dl>
 </details>
 
-## Capture
-<details><summary><code>client.capture.postV1CaptureSettingsGet(request) -> PostV1CaptureSettingsGetResponse</code></summary>
+## capture
+<details><summary><code>client.capture.settingsGet(request) -> SettingsGetCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13060,8 +13079,8 @@ client.purchases().postV1PurchasesInvoicesMatch(
 <dd>
 
 ```java
-client.capture().postV1CaptureSettingsGet(
-    PostV1CaptureSettingsGetRequest
+client.capture().settingsGet(
+    SettingsGetCaptureRequest
         .builder()
         .build()
 );
@@ -13076,7 +13095,7 @@ client.capture().postV1CaptureSettingsGet(
 </dl>
 </details>
 
-<details><summary><code>client.capture.postV1CaptureSettingsUpdate(request) -> PostV1CaptureSettingsUpdateResponse</code></summary>
+<details><summary><code>client.capture.settingsUpdate(request) -> SettingsUpdateCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13089,8 +13108,8 @@ client.capture().postV1CaptureSettingsGet(
 <dd>
 
 ```java
-client.capture().postV1CaptureSettingsUpdate(
-    PostV1CaptureSettingsUpdateRequest
+client.capture().settingsUpdate(
+    SettingsUpdateCaptureRequest
         .builder()
         .build()
 );
@@ -13128,7 +13147,7 @@ client.capture().postV1CaptureSettingsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.capture.postV1CaptureSettingsRegenerateIntake(request) -> PostV1CaptureSettingsRegenerateIntakeResponse</code></summary>
+<details><summary><code>client.capture.settingsRegenerateIntake(request) -> SettingsRegenerateIntakeCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13141,8 +13160,8 @@ client.capture().postV1CaptureSettingsUpdate(
 <dd>
 
 ```java
-client.capture().postV1CaptureSettingsRegenerateIntake(
-    PostV1CaptureSettingsRegenerateIntakeRequest
+client.capture().settingsRegenerateIntake(
+    SettingsRegenerateIntakeCaptureRequest
         .builder()
         .build()
 );
@@ -13157,7 +13176,7 @@ client.capture().postV1CaptureSettingsRegenerateIntake(
 </dl>
 </details>
 
-<details><summary><code>client.capture.receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(request) -> PostV1CaptureInboundEmailResponse</code></summary>
+<details><summary><code>client.capture.inboundEmail(request) -> InboundEmailCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13170,8 +13189,8 @@ client.capture().postV1CaptureSettingsRegenerateIntake(
 <dd>
 
 ```java
-client.capture().receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
-    PostV1CaptureInboundEmailRequest
+client.capture().inboundEmail(
+    InboundEmailCaptureRequest
         .builder()
         .build()
 );
@@ -13197,7 +13216,7 @@ client.capture().receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyle
 <dl>
 <dd>
 
-**toFull:** `Optional<List<PostV1CaptureInboundEmailRequestToFullItem>>` 
+**toFull:** `Optional<List<InboundEmailCaptureRequestToFullItem>>` 
     
 </dd>
 </dl>
@@ -13221,7 +13240,7 @@ client.capture().receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyle
 <dl>
 <dd>
 
-**postmarkAttachments:** `Optional<List<PostV1CaptureInboundEmailRequestAttachmentsItem>>` 
+**postmarkAttachments:** `Optional<List<InboundEmailCaptureRequestAttachmentsItem>>` 
     
 </dd>
 </dl>
@@ -13229,7 +13248,7 @@ client.capture().receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyle
 <dl>
 <dd>
 
-**to:** `Optional<PostV1CaptureInboundEmailRequestTo>` 
+**to:** `Optional<InboundEmailCaptureRequestTo>` 
     
 </dd>
 </dl>
@@ -13253,7 +13272,7 @@ client.capture().receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyle
 <dl>
 <dd>
 
-**attachments:** `Optional<List<PostV1CaptureInboundEmailRequestAttachmentsItem>>` 
+**attachments:** `Optional<List<InboundEmailCaptureRequestAttachmentsItem>>` 
     
 </dd>
 </dl>
@@ -13265,7 +13284,7 @@ client.capture().receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyle
 </dl>
 </details>
 
-<details><summary><code>client.capture.readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft(request) -> PostV1CaptureDocumentsUploadResponse</code></summary>
+<details><summary><code>client.capture.documentsUpload(request) -> DocumentsUploadCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13278,8 +13297,8 @@ client.capture().receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyle
 <dd>
 
 ```java
-client.capture().readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft(
-    PostV1CaptureDocumentsUploadRequest
+client.capture().documentsUpload(
+    DocumentsUploadCaptureRequest
         .builder()
         .fileName("fileName")
         .mimeType("mimeType")
@@ -13328,7 +13347,7 @@ client.capture().readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft
 </dl>
 </details>
 
-<details><summary><code>client.capture.reReadAStoredCaptureReplacingThePreviousDraft(request) -> PostV1CaptureDocumentsExtractResponse</code></summary>
+<details><summary><code>client.capture.documentsExtract(request) -> DocumentsExtractCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13341,8 +13360,8 @@ client.capture().readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft
 <dd>
 
 ```java
-client.capture().reReadAStoredCaptureReplacingThePreviousDraft(
-    PostV1CaptureDocumentsExtractRequest
+client.capture().documentsExtract(
+    DocumentsExtractCaptureRequest
         .builder()
         .id("id")
         .build()
@@ -13373,7 +13392,7 @@ client.capture().reReadAStoredCaptureReplacingThePreviousDraft(
 </dl>
 </details>
 
-<details><summary><code>client.capture.postV1CaptureDocumentsGet(request) -> PostV1CaptureDocumentsGetResponse</code></summary>
+<details><summary><code>client.capture.documentsGet(request) -> DocumentsGetCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13386,8 +13405,8 @@ client.capture().reReadAStoredCaptureReplacingThePreviousDraft(
 <dd>
 
 ```java
-client.capture().postV1CaptureDocumentsGet(
-    PostV1CaptureDocumentsGetRequest
+client.capture().documentsGet(
+    DocumentsGetCaptureRequest
         .builder()
         .id("id")
         .build()
@@ -13418,7 +13437,7 @@ client.capture().postV1CaptureDocumentsGet(
 </dl>
 </details>
 
-<details><summary><code>client.capture.postV1CaptureDocumentsList(request) -> PostV1CaptureDocumentsListResponse</code></summary>
+<details><summary><code>client.capture.documentsList(request) -> DocumentsListCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13431,8 +13450,8 @@ client.capture().postV1CaptureDocumentsGet(
 <dd>
 
 ```java
-client.capture().postV1CaptureDocumentsList(
-    PostV1CaptureDocumentsListRequest
+client.capture().documentsList(
+    DocumentsListCaptureRequest
         .builder()
         .build()
 );
@@ -13466,7 +13485,7 @@ client.capture().postV1CaptureDocumentsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1CaptureDocumentsListRequestSortItem>>` 
+**sort:** `Optional<List<DocumentsListCaptureRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -13474,7 +13493,7 @@ client.capture().postV1CaptureDocumentsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1CaptureDocumentsListRequestFilterItem>>` 
+**filter:** `Optional<List<DocumentsListCaptureRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -13494,7 +13513,7 @@ client.capture().postV1CaptureDocumentsList(
 </dl>
 </details>
 
-<details><summary><code>client.capture.postV1CaptureDocumentsDelete(request) -> PostV1CaptureDocumentsDeleteResponse</code></summary>
+<details><summary><code>client.capture.documentsDelete(request) -> DocumentsDeleteCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13507,8 +13526,8 @@ client.capture().postV1CaptureDocumentsList(
 <dd>
 
 ```java
-client.capture().postV1CaptureDocumentsDelete(
-    PostV1CaptureDocumentsDeleteRequest
+client.capture().documentsDelete(
+    DocumentsDeleteCaptureRequest
         .builder()
         .id("id")
         .build()
@@ -13539,7 +13558,7 @@ client.capture().postV1CaptureDocumentsDelete(
 </dl>
 </details>
 
-<details><summary><code>client.capture.saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocument(request) -> PostV1CaptureDocumentsConfirmResponse</code></summary>
+<details><summary><code>client.capture.documentsConfirm(request) -> DocumentsConfirmCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13552,15 +13571,15 @@ client.capture().postV1CaptureDocumentsDelete(
 <dd>
 
 ```java
-client.capture().saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocument(
-    PostV1CaptureDocumentsConfirmRequest
+client.capture().documentsConfirm(
+    DocumentsConfirmCaptureRequest
         .builder()
         .id("id")
         .documentNumber("documentNumber")
-        .documentDate("documentDate")
+        .documentDate("2026-07-01")
         .lines(
             Arrays.asList(
-                PostV1CaptureDocumentsConfirmRequestLinesItem
+                DocumentsConfirmCaptureRequestLinesItem
                     .builder()
                     .build()
             )
@@ -13597,7 +13616,7 @@ client.capture().saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocum
 <dl>
 <dd>
 
-**newSupplier:** `Optional<PostV1CaptureDocumentsConfirmRequestNewSupplier>` 
+**newSupplier:** `Optional<DocumentsConfirmCaptureRequestNewSupplier>` 
     
 </dd>
 </dl>
@@ -13645,7 +13664,7 @@ client.capture().saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocum
 <dl>
 <dd>
 
-**lines:** `List<PostV1CaptureDocumentsConfirmRequestLinesItem>` 
+**lines:** `List<DocumentsConfirmCaptureRequestLinesItem>` 
     
 </dd>
 </dl>
@@ -13657,8 +13676,8 @@ client.capture().saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocum
 </dl>
 </details>
 
-## Declarations
-<details><summary><code>client.declarations.postV1DeclarationsLtIntrastatCompute(request) -> PostV1DeclarationsLtIntrastatComputeResponse</code></summary>
+## declarations
+<details><summary><code>client.declarations.ltIntrastatCompute(request) -> LtIntrastatComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -13671,12 +13690,12 @@ client.capture().saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocum
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtIntrastatCompute(
-    PostV1DeclarationsLtIntrastatComputeRequest
+client.declarations().ltIntrastatCompute(
+    LtIntrastatComputeDeclarationsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
-        .flow(PostV1DeclarationsLtIntrastatComputeRequestFlow.ARRIVALS)
+        .flow(LtIntrastatComputeDeclarationsRequestFlow.ARRIVALS)
         .build()
 );
 ```
@@ -13709,7 +13728,7 @@ client.declarations().postV1DeclarationsLtIntrastatCompute(
 <dl>
 <dd>
 
-**flow:** `PostV1DeclarationsLtIntrastatComputeRequestFlow` 
+**flow:** `LtIntrastatComputeDeclarationsRequestFlow` 
     
 </dd>
 </dl>
@@ -13733,7 +13752,7 @@ client.declarations().postV1DeclarationsLtIntrastatCompute(
 <dl>
 <dd>
 
-**transportMode:** `Optional<PostV1DeclarationsLtIntrastatComputeRequestTransportMode>` 
+**transportMode:** `Optional<LtIntrastatComputeDeclarationsRequestTransportMode>` 
     
 </dd>
 </dl>
@@ -13785,7 +13804,7 @@ client.declarations().postV1DeclarationsLtIntrastatCompute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtIvazGenerate(request) -> PostV1DeclarationsLtIvazGenerateResponse</code></summary>
+<details><summary><code>client.declarations.ltIvazGenerate(request) -> LtIvazGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -13798,8 +13817,8 @@ client.declarations().postV1DeclarationsLtIntrastatCompute(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtIvazGenerate(
-    PostV1DeclarationsLtIvazGenerateRequest
+client.declarations().ltIvazGenerate(
+    LtIvazGenerateDeclarationsRequest
         .builder()
         .waybillIds(
             Arrays.asList("waybillIds")
@@ -13840,7 +13859,7 @@ client.declarations().postV1DeclarationsLtIvazGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtIntrastatObligation(request) -> PostV1DeclarationsLtIntrastatObligationResponse</code></summary>
+<details><summary><code>client.declarations.ltIntrastatObligation(request) -> LtIntrastatObligationDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -13853,8 +13872,8 @@ client.declarations().postV1DeclarationsLtIvazGenerate(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtIntrastatObligation(
-    PostV1DeclarationsLtIntrastatObligationRequest
+client.declarations().ltIntrastatObligation(
+    LtIntrastatObligationDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -13885,7 +13904,7 @@ client.declarations().postV1DeclarationsLtIntrastatObligation(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtIsafGenerate(request) -> PostV1DeclarationsLtIsafGenerateResponse</code></summary>
+<details><summary><code>client.declarations.ltIsafGenerate(request) -> LtIsafGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -13898,8 +13917,8 @@ client.declarations().postV1DeclarationsLtIntrastatObligation(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtIsafGenerate(
-    PostV1DeclarationsLtIsafGenerateRequest
+client.declarations().ltIsafGenerate(
+    LtIsafGenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -13935,7 +13954,7 @@ client.declarations().postV1DeclarationsLtIsafGenerate(
 <dl>
 <dd>
 
-**dataType:** `Optional<PostV1DeclarationsLtIsafGenerateRequestDataType>` 
+**dataType:** `Optional<LtIsafGenerateDeclarationsRequestDataType>` 
     
 </dd>
 </dl>
@@ -13947,7 +13966,7 @@ client.declarations().postV1DeclarationsLtIsafGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtFr0600Compute(request) -> PostV1DeclarationsLtFr0600ComputeResponse</code></summary>
+<details><summary><code>client.declarations.ltFr0600Compute(request) -> LtFr0600ComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -13960,8 +13979,8 @@ client.declarations().postV1DeclarationsLtIsafGenerate(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtFr0600Compute(
-    PostV1DeclarationsLtFr0600ComputeRequest
+client.declarations().ltFr0600Compute(
+    LtFr0600ComputeDeclarationsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -14017,7 +14036,7 @@ client.declarations().postV1DeclarationsLtFr0600Compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtGpm313Compute(request) -> PostV1DeclarationsLtGpm313ComputeResponse</code></summary>
+<details><summary><code>client.declarations.ltGpm313Compute(request) -> LtGpm313ComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14030,8 +14049,8 @@ client.declarations().postV1DeclarationsLtFr0600Compute(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtGpm313Compute(
-    PostV1DeclarationsLtGpm313ComputeRequest
+client.declarations().ltGpm313Compute(
+    LtGpm313ComputeDeclarationsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -14067,7 +14086,7 @@ client.declarations().postV1DeclarationsLtGpm313Compute(
 <dl>
 <dd>
 
-**payoutTiming:** `Optional<PostV1DeclarationsLtGpm313ComputeRequestPayoutTiming>` 
+**payoutTiming:** `Optional<LtGpm313ComputeDeclarationsRequestPayoutTiming>` 
     
 </dd>
 </dl>
@@ -14087,7 +14106,7 @@ client.declarations().postV1DeclarationsLtGpm313Compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtSamCompute(request) -> PostV1DeclarationsLtSamComputeResponse</code></summary>
+<details><summary><code>client.declarations.ltSamCompute(request) -> LtSamComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14100,8 +14119,8 @@ client.declarations().postV1DeclarationsLtGpm313Compute(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtSamCompute(
-    PostV1DeclarationsLtSamComputeRequest
+client.declarations().ltSamCompute(
+    LtSamComputeDeclarationsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -14141,7 +14160,7 @@ client.declarations().postV1DeclarationsLtSamCompute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtSdGenerate(request) -> PostV1DeclarationsLtSdGenerateResponse</code></summary>
+<details><summary><code>client.declarations.ltSdGenerate(request) -> LtSdGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14154,12 +14173,12 @@ client.declarations().postV1DeclarationsLtSamCompute(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtSdGenerate(
-    PostV1DeclarationsLtSdGenerateRequest
+client.declarations().ltSdGenerate(
+    LtSdGenerateDeclarationsRequest
         .builder()
-        .type(PostV1DeclarationsLtSdGenerateRequestType.ONE_SD)
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .type(LtSdGenerateDeclarationsRequestType.ONE_SD)
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -14176,7 +14195,7 @@ client.declarations().postV1DeclarationsLtSdGenerate(
 <dl>
 <dd>
 
-**type:** `PostV1DeclarationsLtSdGenerateRequestType` 
+**type:** `LtSdGenerateDeclarationsRequestType` 
     
 </dd>
 </dl>
@@ -14204,7 +14223,7 @@ client.declarations().postV1DeclarationsLtSdGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtSaftGenerate(request) -> PostV1DeclarationsLtSaftGenerateResponse</code></summary>
+<details><summary><code>client.declarations.ltSaftGenerate(request) -> LtSaftGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14217,11 +14236,11 @@ client.declarations().postV1DeclarationsLtSdGenerate(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtSaftGenerate(
-    PostV1DeclarationsLtSaftGenerateRequest
+client.declarations().ltSaftGenerate(
+    LtSaftGenerateDeclarationsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -14254,7 +14273,7 @@ client.declarations().postV1DeclarationsLtSaftGenerate(
 <dl>
 <dd>
 
-**dataType:** `Optional<PostV1DeclarationsLtSaftGenerateRequestDataType>` 
+**dataType:** `Optional<LtSaftGenerateDeclarationsRequestDataType>` 
     
 </dd>
 </dl>
@@ -14274,7 +14293,7 @@ client.declarations().postV1DeclarationsLtSaftGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtIvazAmend(request) -> PostV1DeclarationsLtIvazAmendResponse</code></summary>
+<details><summary><code>client.declarations.ltIvazAmend(request) -> LtIvazAmendDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14287,8 +14306,8 @@ client.declarations().postV1DeclarationsLtSaftGenerate(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtIvazAmend(
-    PostV1DeclarationsLtIvazAmendRequest
+client.declarations().ltIvazAmend(
+    LtIvazAmendDeclarationsRequest
         .builder()
         .waybillIds(
             Arrays.asList("waybillIds")
@@ -14329,7 +14348,7 @@ client.declarations().postV1DeclarationsLtIvazAmend(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtIvazCancel(request) -> PostV1DeclarationsLtIvazCancelResponse</code></summary>
+<details><summary><code>client.declarations.ltIvazCancel(request) -> LtIvazCancelDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14342,15 +14361,15 @@ client.declarations().postV1DeclarationsLtIvazAmend(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtIvazCancel(
-    PostV1DeclarationsLtIvazCancelRequest
+client.declarations().ltIvazCancel(
+    LtIvazCancelDeclarationsRequest
         .builder()
         .entries(
             Arrays.asList(
-                PostV1DeclarationsLtIvazCancelRequestEntriesItem
+                LtIvazCancelDeclarationsRequestEntriesItem
                     .builder()
                     .waybillId("waybillId")
-                    .reason(PostV1DeclarationsLtIvazCancelRequestEntriesItemReason.ONE)
+                    .reason(LtIvazCancelDeclarationsRequestEntriesItemReason.ONE)
                     .build()
             )
         )
@@ -14370,7 +14389,7 @@ client.declarations().postV1DeclarationsLtIvazCancel(
 <dl>
 <dd>
 
-**entries:** `List<PostV1DeclarationsLtIvazCancelRequestEntriesItem>` 
+**entries:** `List<LtIvazCancelDeclarationsRequestEntriesItem>` 
     
 </dd>
 </dl>
@@ -14390,7 +14409,7 @@ client.declarations().postV1DeclarationsLtIvazCancel(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtFr0564Compute(request) -> PostV1DeclarationsLtFr0564ComputeResponse</code></summary>
+<details><summary><code>client.declarations.ltFr0564Compute(request) -> LtFr0564ComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14403,8 +14422,8 @@ client.declarations().postV1DeclarationsLtIvazCancel(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtFr0564Compute(
-    PostV1DeclarationsLtFr0564ComputeRequest
+client.declarations().ltFr0564Compute(
+    LtFr0564ComputeDeclarationsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -14444,7 +14463,7 @@ client.declarations().postV1DeclarationsLtFr0564Compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtGpm312Compute(request) -> PostV1DeclarationsLtGpm312ComputeResponse</code></summary>
+<details><summary><code>client.declarations.ltGpm312Compute(request) -> LtGpm312ComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14457,8 +14476,8 @@ client.declarations().postV1DeclarationsLtFr0564Compute(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtGpm312Compute(
-    PostV1DeclarationsLtGpm312ComputeRequest
+client.declarations().ltGpm312Compute(
+    LtGpm312ComputeDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -14485,7 +14504,7 @@ client.declarations().postV1DeclarationsLtGpm312Compute(
 <dl>
 <dd>
 
-**payoutTiming:** `Optional<PostV1DeclarationsLtGpm312ComputeRequestPayoutTiming>` 
+**payoutTiming:** `Optional<LtGpm312ComputeDeclarationsRequestPayoutTiming>` 
     
 </dd>
 </dl>
@@ -14497,7 +14516,7 @@ client.declarations().postV1DeclarationsLtGpm312Compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtPln204Compute(request) -> PostV1DeclarationsLtPln204ComputeResponse</code></summary>
+<details><summary><code>client.declarations.ltPln204Compute(request) -> LtPln204ComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14510,8 +14529,8 @@ client.declarations().postV1DeclarationsLtGpm312Compute(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtPln204Compute(
-    PostV1DeclarationsLtPln204ComputeRequest
+client.declarations().ltPln204Compute(
+    LtPln204ComputeDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -14542,7 +14561,7 @@ client.declarations().postV1DeclarationsLtPln204Compute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsEuOssCompute(request) -> PostV1DeclarationsEuOssComputeResponse</code></summary>
+<details><summary><code>client.declarations.euOssCompute(request) -> EuOssComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14555,8 +14574,8 @@ client.declarations().postV1DeclarationsLtPln204Compute(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsEuOssCompute(
-    PostV1DeclarationsEuOssComputeRequest
+client.declarations().euOssCompute(
+    EuOssComputeDeclarationsRequest
         .builder()
         .year(1000000L)
         .quarter(1000000L)
@@ -14596,7 +14615,7 @@ client.declarations().postV1DeclarationsEuOssCompute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsEuIossCompute(request) -> PostV1DeclarationsEuIossComputeResponse</code></summary>
+<details><summary><code>client.declarations.euIossCompute(request) -> EuIossComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14609,8 +14628,8 @@ client.declarations().postV1DeclarationsEuOssCompute(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsEuIossCompute(
-    PostV1DeclarationsEuIossComputeRequest
+client.declarations().euIossCompute(
+    EuIossComputeDeclarationsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -14650,7 +14669,7 @@ client.declarations().postV1DeclarationsEuIossCompute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsEuDistanceSalesThresholdGet(request) -> PostV1DeclarationsEuDistanceSalesThresholdGetResponse</code></summary>
+<details><summary><code>client.declarations.euDistanceSalesThresholdGet(request) -> EuDistanceSalesThresholdGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14663,8 +14682,8 @@ client.declarations().postV1DeclarationsEuIossCompute(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsEuDistanceSalesThresholdGet(
-    PostV1DeclarationsEuDistanceSalesThresholdGetRequest
+client.declarations().euDistanceSalesThresholdGet(
+    EuDistanceSalesThresholdGetDeclarationsRequest
         .builder()
         .build()
 );
@@ -14694,7 +14713,7 @@ client.declarations().postV1DeclarationsEuDistanceSalesThresholdGet(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsEuUnionTurnoverGet(request) -> PostV1DeclarationsEuUnionTurnoverGetResponse</code></summary>
+<details><summary><code>client.declarations.euUnionTurnoverGet(request) -> EuUnionTurnoverGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14707,8 +14726,8 @@ client.declarations().postV1DeclarationsEuDistanceSalesThresholdGet(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsEuUnionTurnoverGet(
-    PostV1DeclarationsEuUnionTurnoverGetRequest
+client.declarations().euUnionTurnoverGet(
+    EuUnionTurnoverGetDeclarationsRequest
         .builder()
         .build()
 );
@@ -14738,7 +14757,7 @@ client.declarations().postV1DeclarationsEuUnionTurnoverGet(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsEuSmeCrossBorderReportCompute(request) -> PostV1DeclarationsEuSmeCrossBorderReportComputeResponse</code></summary>
+<details><summary><code>client.declarations.euSmeCrossBorderReportCompute(request) -> EuSmeCrossBorderReportComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14751,8 +14770,8 @@ client.declarations().postV1DeclarationsEuUnionTurnoverGet(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsEuSmeCrossBorderReportCompute(
-    PostV1DeclarationsEuSmeCrossBorderReportComputeRequest
+client.declarations().euSmeCrossBorderReportCompute(
+    EuSmeCrossBorderReportComputeDeclarationsRequest
         .builder()
         .year(1000000L)
         .quarter(1000000L)
@@ -14792,7 +14811,7 @@ client.declarations().postV1DeclarationsEuSmeCrossBorderReportCompute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsEuSmeThresholdsList(request) -> PostV1DeclarationsEuSmeThresholdsListResponse</code></summary>
+<details><summary><code>client.declarations.euSmeThresholdsList(request) -> EuSmeThresholdsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14805,8 +14824,8 @@ client.declarations().postV1DeclarationsEuSmeCrossBorderReportCompute(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsEuSmeThresholdsList(
-    PostV1DeclarationsEuSmeThresholdsListRequest
+client.declarations().euSmeThresholdsList(
+    EuSmeThresholdsListDeclarationsRequest
         .builder()
         .build()
 );
@@ -14821,7 +14840,7 @@ client.declarations().postV1DeclarationsEuSmeThresholdsList(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsEuSmeThresholdGet(request) -> PostV1DeclarationsEuSmeThresholdGetResponse</code></summary>
+<details><summary><code>client.declarations.euSmeThresholdGet(request) -> EuSmeThresholdGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14834,8 +14853,8 @@ client.declarations().postV1DeclarationsEuSmeThresholdsList(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsEuSmeThresholdGet(
-    PostV1DeclarationsEuSmeThresholdGetRequest
+client.declarations().euSmeThresholdGet(
+    EuSmeThresholdGetDeclarationsRequest
         .builder()
         .build()
 );
@@ -14865,7 +14884,7 @@ client.declarations().postV1DeclarationsEuSmeThresholdGet(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsEuVatReturnPacksList(request) -> PostV1DeclarationsEuVatReturnPacksListResponse</code></summary>
+<details><summary><code>client.declarations.euVatReturnPacksList(request) -> EuVatReturnPacksListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14878,8 +14897,8 @@ client.declarations().postV1DeclarationsEuSmeThresholdGet(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsEuVatReturnPacksList(
-    PostV1DeclarationsEuVatReturnPacksListRequest
+client.declarations().euVatReturnPacksList(
+    EuVatReturnPacksListDeclarationsRequest
         .builder()
         .build()
 );
@@ -14894,7 +14913,7 @@ client.declarations().postV1DeclarationsEuVatReturnPacksList(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsEuVatReturnCompute(request) -> PostV1DeclarationsEuVatReturnComputeResponse</code></summary>
+<details><summary><code>client.declarations.euVatReturnCompute(request) -> EuVatReturnComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14907,8 +14926,8 @@ client.declarations().postV1DeclarationsEuVatReturnPacksList(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsEuVatReturnCompute(
-    PostV1DeclarationsEuVatReturnComputeRequest
+client.declarations().euVatReturnCompute(
+    EuVatReturnComputeDeclarationsRequest
         .builder()
         .countryCode("countryCode")
         .year(1000000L)
@@ -14965,7 +14984,7 @@ client.declarations().postV1DeclarationsEuVatReturnCompute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsPlJpkV7MGenerate(request) -> PostV1DeclarationsPlJpkV7MGenerateResponse</code></summary>
+<details><summary><code>client.declarations.plJpkV7MGenerate(request) -> PlJpkV7MGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14992,8 +15011,8 @@ Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month,
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsPlJpkV7MGenerate(
-    PostV1DeclarationsPlJpkV7MGenerateRequest
+client.declarations().plJpkV7MGenerate(
+    PlJpkV7MGenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -15059,7 +15078,7 @@ client.declarations().postV1DeclarationsPlJpkV7MGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsPlVatUeGenerate(request) -> PostV1DeclarationsPlVatUeGenerateResponse</code></summary>
+<details><summary><code>client.declarations.plVatUeGenerate(request) -> PlVatUeGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15086,8 +15105,8 @@ Build the rows of the Polish recapitulative statement VAT-UE for a month: sectio
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsPlVatUeGenerate(
-    PostV1DeclarationsPlVatUeGenerateRequest
+client.declarations().plVatUeGenerate(
+    PlVatUeGenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -15127,7 +15146,7 @@ client.declarations().postV1DeclarationsPlVatUeGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsPlIntrastatGenerate(request) -> PostV1DeclarationsPlIntrastatGenerateResponse</code></summary>
+<details><summary><code>client.declarations.plIntrastatGenerate(request) -> PlIntrastatGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15154,12 +15173,12 @@ Build the rows of the Polish INTRASTAT declaration for a month, arrivals or disp
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsPlIntrastatGenerate(
-    PostV1DeclarationsPlIntrastatGenerateRequest
+client.declarations().plIntrastatGenerate(
+    PlIntrastatGenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
-        .flow(PostV1DeclarationsPlIntrastatGenerateRequestFlow.ARRIVALS)
+        .flow(PlIntrastatGenerateDeclarationsRequestFlow.ARRIVALS)
         .build()
 );
 ```
@@ -15192,7 +15211,7 @@ client.declarations().postV1DeclarationsPlIntrastatGenerate(
 <dl>
 <dd>
 
-**flow:** `PostV1DeclarationsPlIntrastatGenerateRequestFlow` 
+**flow:** `PlIntrastatGenerateDeclarationsRequestFlow` 
     
 </dd>
 </dl>
@@ -15212,7 +15231,7 @@ client.declarations().postV1DeclarationsPlIntrastatGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsPlKsefReceivedList(request) -> PostV1DeclarationsPlKsefReceivedListResponse</code></summary>
+<details><summary><code>client.declarations.plKsefReceivedList(request) -> PlKsefReceivedListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15239,8 +15258,8 @@ List the invoices KSeF holds for this company as the buyer, for a window of acqu
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsPlKsefReceivedList(
-    PostV1DeclarationsPlKsefReceivedListRequest
+client.declarations().plKsefReceivedList(
+    PlKsefReceivedListDeclarationsRequest
         .builder()
         .from(OffsetDateTime.parse("2024-01-15T09:30:00Z"))
         .to(OffsetDateTime.parse("2024-01-15T09:30:00Z"))
@@ -15296,7 +15315,7 @@ client.declarations().postV1DeclarationsPlKsefReceivedList(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsPlKsefReceivedFetch(request) -> PostV1DeclarationsPlKsefReceivedFetchResponse</code></summary>
+<details><summary><code>client.declarations.plKsefReceivedFetch(request) -> PlKsefReceivedFetchDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15323,8 +15342,8 @@ Read one invoice out of KSeF by its national number. With a purchase invoice giv
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsPlKsefReceivedFetch(
-    PostV1DeclarationsPlKsefReceivedFetchRequest
+client.declarations().plKsefReceivedFetch(
+    PlKsefReceivedFetchDeclarationsRequest
         .builder()
         .ksefNumber("ksefNumber")
         .build()
@@ -15363,7 +15382,7 @@ client.declarations().postV1DeclarationsPlKsefReceivedFetch(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsPlKsefReceipt(request) -> PostV1DeclarationsPlKsefReceiptResponse</code></summary>
+<details><summary><code>client.declarations.plKsefReceipt(request) -> PlKsefReceiptDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15390,8 +15409,8 @@ The UPO for a KSeF session. KSeF issues one receipt per session rather than per 
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsPlKsefReceipt(
-    PostV1DeclarationsPlKsefReceiptRequest
+client.declarations().plKsefReceipt(
+    PlKsefReceiptDeclarationsRequest
         .builder()
         .build()
 );
@@ -15421,7 +15440,7 @@ client.declarations().postV1DeclarationsPlKsefReceipt(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.taxAdjustmentsRecordedForATaxYear(request) -> PostV1DeclarationsTaxAdjustmentsListResponse</code></summary>
+<details><summary><code>client.declarations.taxAdjustmentsList(request) -> TaxAdjustmentsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15448,8 +15467,8 @@ The differences between the accounting result and the taxable profit: non-deduct
 <dd>
 
 ```java
-client.declarations().taxAdjustmentsRecordedForATaxYear(
-    PostV1DeclarationsTaxAdjustmentsListRequest
+client.declarations().taxAdjustmentsList(
+    TaxAdjustmentsListDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -15480,7 +15499,7 @@ client.declarations().taxAdjustmentsRecordedForATaxYear(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.recordATaxAdjustmentForATaxYear(request) -> PostV1DeclarationsTaxAdjustmentsCreateResponse</code></summary>
+<details><summary><code>client.declarations.taxAdjustmentsCreate(request) -> TaxAdjustmentsCreateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15493,12 +15512,12 @@ client.declarations().taxAdjustmentsRecordedForATaxYear(
 <dd>
 
 ```java
-client.declarations().recordATaxAdjustmentForATaxYear(
-    PostV1DeclarationsTaxAdjustmentsCreateRequest
+client.declarations().taxAdjustmentsCreate(
+    TaxAdjustmentsCreateDeclarationsRequest
         .builder()
         .year(1000000L)
-        .kind(PostV1DeclarationsTaxAdjustmentsCreateRequestKind.NON_DEDUCTIBLE)
-        .amount("amount")
+        .kind(TaxAdjustmentsCreateDeclarationsRequestKind.NON_DEDUCTIBLE)
+        .amount("121.00")
         .description("description")
         .build()
 );
@@ -15524,7 +15543,7 @@ client.declarations().recordATaxAdjustmentForATaxYear(
 <dl>
 <dd>
 
-**kind:** `PostV1DeclarationsTaxAdjustmentsCreateRequestKind` 
+**kind:** `TaxAdjustmentsCreateDeclarationsRequestKind` 
     
 </dd>
 </dl>
@@ -15560,7 +15579,7 @@ client.declarations().recordATaxAdjustmentForATaxYear(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.changeARecordedTaxAdjustment(request) -> PostV1DeclarationsTaxAdjustmentsUpdateResponse</code></summary>
+<details><summary><code>client.declarations.taxAdjustmentsUpdate(request) -> TaxAdjustmentsUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15573,8 +15592,8 @@ client.declarations().recordATaxAdjustmentForATaxYear(
 <dd>
 
 ```java
-client.declarations().changeARecordedTaxAdjustment(
-    PostV1DeclarationsTaxAdjustmentsUpdateRequest
+client.declarations().taxAdjustmentsUpdate(
+    TaxAdjustmentsUpdateDeclarationsRequest
         .builder()
         .id("id")
         .build()
@@ -15601,7 +15620,7 @@ client.declarations().changeARecordedTaxAdjustment(
 <dl>
 <dd>
 
-**kind:** `Optional<PostV1DeclarationsTaxAdjustmentsUpdateRequestKind>` 
+**kind:** `Optional<TaxAdjustmentsUpdateDeclarationsRequestKind>` 
     
 </dd>
 </dl>
@@ -15637,7 +15656,7 @@ client.declarations().changeARecordedTaxAdjustment(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.removeARecordedTaxAdjustment(request) -> PostV1DeclarationsTaxAdjustmentsDeleteResponse</code></summary>
+<details><summary><code>client.declarations.taxAdjustmentsDelete(request) -> TaxAdjustmentsDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15650,8 +15669,8 @@ client.declarations().changeARecordedTaxAdjustment(
 <dd>
 
 ```java
-client.declarations().removeARecordedTaxAdjustment(
-    PostV1DeclarationsTaxAdjustmentsDeleteRequest
+client.declarations().taxAdjustmentsDelete(
+    TaxAdjustmentsDeleteDeclarationsRequest
         .builder()
         .id("id")
         .build()
@@ -15682,7 +15701,7 @@ client.declarations().removeARecordedTaxAdjustment(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.paymentsAlreadyMadeTowardsATaxOfAYear(request) -> PostV1DeclarationsTaxPaymentsListResponse</code></summary>
+<details><summary><code>client.declarations.taxPaymentsList(request) -> TaxPaymentsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15709,10 +15728,10 @@ What the company has paid the administration towards a tax before the return is 
 <dd>
 
 ```java
-client.declarations().paymentsAlreadyMadeTowardsATaxOfAYear(
-    PostV1DeclarationsTaxPaymentsListRequest
+client.declarations().taxPaymentsList(
+    TaxPaymentsListDeclarationsRequest
         .builder()
-        .tax(PostV1DeclarationsTaxPaymentsListRequestTax.CORPORATE_INCOME_TAX)
+        .tax(TaxPaymentsListDeclarationsRequestTax.CORPORATE_INCOME_TAX)
         .year(1000000L)
         .build()
 );
@@ -15730,7 +15749,7 @@ client.declarations().paymentsAlreadyMadeTowardsATaxOfAYear(
 <dl>
 <dd>
 
-**tax:** `PostV1DeclarationsTaxPaymentsListRequestTax` 
+**tax:** `TaxPaymentsListDeclarationsRequestTax` 
     
 </dd>
 </dl>
@@ -15758,7 +15777,7 @@ client.declarations().paymentsAlreadyMadeTowardsATaxOfAYear(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.recordAPaymentMadeTowardsATax(request) -> PostV1DeclarationsTaxPaymentsCreateResponse</code></summary>
+<details><summary><code>client.declarations.taxPaymentsCreate(request) -> TaxPaymentsCreateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15771,14 +15790,14 @@ client.declarations().paymentsAlreadyMadeTowardsATaxOfAYear(
 <dd>
 
 ```java
-client.declarations().recordAPaymentMadeTowardsATax(
-    PostV1DeclarationsTaxPaymentsCreateRequest
+client.declarations().taxPaymentsCreate(
+    TaxPaymentsCreateDeclarationsRequest
         .builder()
-        .tax(PostV1DeclarationsTaxPaymentsCreateRequestTax.CORPORATE_INCOME_TAX)
+        .tax(TaxPaymentsCreateDeclarationsRequestTax.CORPORATE_INCOME_TAX)
         .year(1000000L)
-        .kind(PostV1DeclarationsTaxPaymentsCreateRequestKind.ADVANCE)
-        .amount("amount")
-        .paidOn("paidOn")
+        .kind(TaxPaymentsCreateDeclarationsRequestKind.ADVANCE)
+        .amount("121.00")
+        .paidOn("2026-07-01")
         .description("description")
         .build()
 );
@@ -15796,7 +15815,7 @@ client.declarations().recordAPaymentMadeTowardsATax(
 <dl>
 <dd>
 
-**tax:** `PostV1DeclarationsTaxPaymentsCreateRequestTax` 
+**tax:** `TaxPaymentsCreateDeclarationsRequestTax` 
     
 </dd>
 </dl>
@@ -15820,7 +15839,7 @@ client.declarations().recordAPaymentMadeTowardsATax(
 <dl>
 <dd>
 
-**kind:** `PostV1DeclarationsTaxPaymentsCreateRequestKind` 
+**kind:** `TaxPaymentsCreateDeclarationsRequestKind` 
     
 </dd>
 </dl>
@@ -15864,7 +15883,7 @@ client.declarations().recordAPaymentMadeTowardsATax(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.changeARecordedTaxPayment(request) -> PostV1DeclarationsTaxPaymentsUpdateResponse</code></summary>
+<details><summary><code>client.declarations.taxPaymentsUpdate(request) -> TaxPaymentsUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15877,8 +15896,8 @@ client.declarations().recordAPaymentMadeTowardsATax(
 <dd>
 
 ```java
-client.declarations().changeARecordedTaxPayment(
-    PostV1DeclarationsTaxPaymentsUpdateRequest
+client.declarations().taxPaymentsUpdate(
+    TaxPaymentsUpdateDeclarationsRequest
         .builder()
         .id("id")
         .build()
@@ -15905,7 +15924,7 @@ client.declarations().changeARecordedTaxPayment(
 <dl>
 <dd>
 
-**kind:** `Optional<PostV1DeclarationsTaxPaymentsUpdateRequestKind>` 
+**kind:** `Optional<TaxPaymentsUpdateDeclarationsRequestKind>` 
     
 </dd>
 </dl>
@@ -15949,7 +15968,7 @@ client.declarations().changeARecordedTaxPayment(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.removeARecordedTaxPayment(request) -> PostV1DeclarationsTaxPaymentsDeleteResponse</code></summary>
+<details><summary><code>client.declarations.taxPaymentsDelete(request) -> TaxPaymentsDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15962,8 +15981,8 @@ client.declarations().changeARecordedTaxPayment(
 <dd>
 
 ```java
-client.declarations().removeARecordedTaxPayment(
-    PostV1DeclarationsTaxPaymentsDeleteRequest
+client.declarations().taxPaymentsDelete(
+    TaxPaymentsDeleteDeclarationsRequest
         .builder()
         .id("id")
         .build()
@@ -15994,7 +16013,7 @@ client.declarations().removeARecordedTaxPayment(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.adoptionAndSigningFactsOfTheAnnualAccountsOfAYear(request) -> PostV1DeclarationsAnnualAccountsGetResponse</code></summary>
+<details><summary><code>client.declarations.annualAccountsGet(request) -> AnnualAccountsGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16021,8 +16040,8 @@ Whether the general meeting adopted the annual accounts and on which date, the d
 <dd>
 
 ```java
-client.declarations().adoptionAndSigningFactsOfTheAnnualAccountsOfAYear(
-    PostV1DeclarationsAnnualAccountsGetRequest
+client.declarations().annualAccountsGet(
+    AnnualAccountsGetDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -16053,7 +16072,7 @@ client.declarations().adoptionAndSigningFactsOfTheAnnualAccountsOfAYear(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear(request) -> PostV1DeclarationsAnnualAccountsSetResponse</code></summary>
+<details><summary><code>client.declarations.annualAccountsSet(request) -> AnnualAccountsSetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16066,12 +16085,12 @@ client.declarations().adoptionAndSigningFactsOfTheAnnualAccountsOfAYear(
 <dd>
 
 ```java
-client.declarations().recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear(
-    PostV1DeclarationsAnnualAccountsSetRequest
+client.declarations().annualAccountsSet(
+    AnnualAccountsSetDeclarationsRequest
         .builder()
         .year(1000000L)
         .adopted(true)
-        .dateOfPreparation("dateOfPreparation")
+        .dateOfPreparation("2026-07-01")
         .build()
 );
 ```
@@ -16204,7 +16223,7 @@ client.declarations().recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.recordWhetherADirectorSignedTheAnnualAccountsOfAYear(request) -> PostV1DeclarationsAnnualAccountsSignaturesCreateResponse</code></summary>
+<details><summary><code>client.declarations.annualAccountsSignaturesCreate(request) -> AnnualAccountsSignaturesCreateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16217,12 +16236,12 @@ client.declarations().recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear(
 <dd>
 
 ```java
-client.declarations().recordWhetherADirectorSignedTheAnnualAccountsOfAYear(
-    PostV1DeclarationsAnnualAccountsSignaturesCreateRequest
+client.declarations().annualAccountsSignaturesCreate(
+    AnnualAccountsSignaturesCreateDeclarationsRequest
         .builder()
         .year(1000000L)
         .directorName("directorName")
-        .directorType(PostV1DeclarationsAnnualAccountsSignaturesCreateRequestDirectorType.MANAGING_CURRENT)
+        .directorType(AnnualAccountsSignaturesCreateDeclarationsRequestDirectorType.MANAGING_CURRENT)
         .signed(true)
         .build()
 );
@@ -16256,7 +16275,7 @@ client.declarations().recordWhetherADirectorSignedTheAnnualAccountsOfAYear(
 <dl>
 <dd>
 
-**directorType:** `PostV1DeclarationsAnnualAccountsSignaturesCreateRequestDirectorType` 
+**directorType:** `AnnualAccountsSignaturesCreateDeclarationsRequestDirectorType` 
     
 </dd>
 </dl>
@@ -16280,7 +16299,7 @@ client.declarations().recordWhetherADirectorSignedTheAnnualAccountsOfAYear(
 <dl>
 <dd>
 
-**signedAt:** `Optional<String>` 
+**signedAt:** `Optional<OffsetDateTime>` 
     
 </dd>
 </dl>
@@ -16300,7 +16319,7 @@ client.declarations().recordWhetherADirectorSignedTheAnnualAccountsOfAYear(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.changeARecordedDirectorSignature(request) -> PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse</code></summary>
+<details><summary><code>client.declarations.annualAccountsSignaturesUpdate(request) -> AnnualAccountsSignaturesUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16313,12 +16332,12 @@ client.declarations().recordWhetherADirectorSignedTheAnnualAccountsOfAYear(
 <dd>
 
 ```java
-client.declarations().changeARecordedDirectorSignature(
-    PostV1DeclarationsAnnualAccountsSignaturesUpdateRequest
+client.declarations().annualAccountsSignaturesUpdate(
+    AnnualAccountsSignaturesUpdateDeclarationsRequest
         .builder()
         .id("id")
         .directorName("directorName")
-        .directorType(PostV1DeclarationsAnnualAccountsSignaturesUpdateRequestDirectorType.MANAGING_CURRENT)
+        .directorType(AnnualAccountsSignaturesUpdateDeclarationsRequestDirectorType.MANAGING_CURRENT)
         .signed(true)
         .build()
 );
@@ -16352,7 +16371,7 @@ client.declarations().changeARecordedDirectorSignature(
 <dl>
 <dd>
 
-**directorType:** `PostV1DeclarationsAnnualAccountsSignaturesUpdateRequestDirectorType` 
+**directorType:** `AnnualAccountsSignaturesUpdateDeclarationsRequestDirectorType` 
     
 </dd>
 </dl>
@@ -16376,7 +16395,7 @@ client.declarations().changeARecordedDirectorSignature(
 <dl>
 <dd>
 
-**signedAt:** `Optional<String>` 
+**signedAt:** `Optional<OffsetDateTime>` 
     
 </dd>
 </dl>
@@ -16396,7 +16415,7 @@ client.declarations().changeARecordedDirectorSignature(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.removeARecordedDirectorSignature(request) -> PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse</code></summary>
+<details><summary><code>client.declarations.annualAccountsSignaturesDelete(request) -> AnnualAccountsSignaturesDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16409,8 +16428,8 @@ client.declarations().changeARecordedDirectorSignature(
 <dd>
 
 ```java
-client.declarations().removeARecordedDirectorSignature(
-    PostV1DeclarationsAnnualAccountsSignaturesDeleteRequest
+client.declarations().annualAccountsSignaturesDelete(
+    AnnualAccountsSignaturesDeleteDeclarationsRequest
         .builder()
         .id("id")
         .build()
@@ -16441,7 +16460,7 @@ client.declarations().removeARecordedDirectorSignature(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.recordADecisionToDistributeProfitADividendAnInterimDividendOrAPaymentTreatedAsOne(request) -> PostV1DeclarationsAnnualAccountsDistributionsCreateResponse</code></summary>
+<details><summary><code>client.declarations.annualAccountsDistributionsCreate(request) -> AnnualAccountsDistributionsCreateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16454,13 +16473,13 @@ client.declarations().removeARecordedDirectorSignature(
 <dd>
 
 ```java
-client.declarations().recordADecisionToDistributeProfitADividendAnInterimDividendOrAPaymentTreatedAsOne(
-    PostV1DeclarationsAnnualAccountsDistributionsCreateRequest
+client.declarations().annualAccountsDistributionsCreate(
+    AnnualAccountsDistributionsCreateDeclarationsRequest
         .builder()
         .year(1000000L)
-        .decidedOn("decidedOn")
-        .kind(PostV1DeclarationsAnnualAccountsDistributionsCreateRequestKind.DIVIDEND)
-        .amount("amount")
+        .decidedOn("2026-07-01")
+        .kind(AnnualAccountsDistributionsCreateDeclarationsRequestKind.DIVIDEND)
+        .amount("121.00")
         .build()
 );
 ```
@@ -16493,7 +16512,7 @@ client.declarations().recordADecisionToDistributeProfitADividendAnInterimDividen
 <dl>
 <dd>
 
-**kind:** `PostV1DeclarationsAnnualAccountsDistributionsCreateRequestKind` 
+**kind:** `AnnualAccountsDistributionsCreateDeclarationsRequestKind` 
     
 </dd>
 </dl>
@@ -16521,7 +16540,7 @@ client.declarations().recordADecisionToDistributeProfitADividendAnInterimDividen
 </dl>
 </details>
 
-<details><summary><code>client.declarations.changeARecordedProfitDistribution(request) -> PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse</code></summary>
+<details><summary><code>client.declarations.annualAccountsDistributionsUpdate(request) -> AnnualAccountsDistributionsUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16534,13 +16553,13 @@ client.declarations().recordADecisionToDistributeProfitADividendAnInterimDividen
 <dd>
 
 ```java
-client.declarations().changeARecordedProfitDistribution(
-    PostV1DeclarationsAnnualAccountsDistributionsUpdateRequest
+client.declarations().annualAccountsDistributionsUpdate(
+    AnnualAccountsDistributionsUpdateDeclarationsRequest
         .builder()
         .id("id")
-        .decidedOn("decidedOn")
-        .kind(PostV1DeclarationsAnnualAccountsDistributionsUpdateRequestKind.DIVIDEND)
-        .amount("amount")
+        .decidedOn("2026-07-01")
+        .kind(AnnualAccountsDistributionsUpdateDeclarationsRequestKind.DIVIDEND)
+        .amount("121.00")
         .build()
 );
 ```
@@ -16573,7 +16592,7 @@ client.declarations().changeARecordedProfitDistribution(
 <dl>
 <dd>
 
-**kind:** `PostV1DeclarationsAnnualAccountsDistributionsUpdateRequestKind` 
+**kind:** `AnnualAccountsDistributionsUpdateDeclarationsRequestKind` 
     
 </dd>
 </dl>
@@ -16601,7 +16620,7 @@ client.declarations().changeARecordedProfitDistribution(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.removeARecordedProfitDistribution(request) -> PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse</code></summary>
+<details><summary><code>client.declarations.annualAccountsDistributionsDelete(request) -> AnnualAccountsDistributionsDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16614,8 +16633,8 @@ client.declarations().changeARecordedProfitDistribution(
 <dd>
 
 ```java
-client.declarations().removeARecordedProfitDistribution(
-    PostV1DeclarationsAnnualAccountsDistributionsDeleteRequest
+client.declarations().annualAccountsDistributionsDelete(
+    AnnualAccountsDistributionsDeleteDeclarationsRequest
         .builder()
         .id("id")
         .build()
@@ -16646,7 +16665,7 @@ client.declarations().removeARecordedProfitDistribution(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.attachAnUploadedDocumentToTheAnnualAccountsOfAYear(request) -> PostV1DeclarationsAnnualAccountsAttachmentsAddResponse</code></summary>
+<details><summary><code>client.declarations.annualAccountsAttachmentsAdd(request) -> AnnualAccountsAttachmentsAddDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16673,11 +16692,11 @@ Links a file uploaded through files/upload (its storageKey) to the annual accoun
 <dd>
 
 ```java
-client.declarations().attachAnUploadedDocumentToTheAnnualAccountsOfAYear(
-    PostV1DeclarationsAnnualAccountsAttachmentsAddRequest
+client.declarations().annualAccountsAttachmentsAdd(
+    AnnualAccountsAttachmentsAddDeclarationsRequest
         .builder()
         .year(1000000L)
-        .kind(PostV1DeclarationsAnnualAccountsAttachmentsAddRequestKind.FULL_REPORT)
+        .kind(AnnualAccountsAttachmentsAddDeclarationsRequestKind.FULL_REPORT)
         .ref("ref")
         .build()
 );
@@ -16703,7 +16722,7 @@ client.declarations().attachAnUploadedDocumentToTheAnnualAccountsOfAYear(
 <dl>
 <dd>
 
-**kind:** `PostV1DeclarationsAnnualAccountsAttachmentsAddRequestKind` 
+**kind:** `AnnualAccountsAttachmentsAddDeclarationsRequestKind` 
     
 </dd>
 </dl>
@@ -16731,7 +16750,7 @@ client.declarations().attachAnUploadedDocumentToTheAnnualAccountsOfAYear(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.removeADocumentAttachedToTheAnnualAccountsAndDeleteItsFile(request) -> PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse</code></summary>
+<details><summary><code>client.declarations.annualAccountsAttachmentsDelete(request) -> AnnualAccountsAttachmentsDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16744,8 +16763,8 @@ client.declarations().attachAnUploadedDocumentToTheAnnualAccountsOfAYear(
 <dd>
 
 ```java
-client.declarations().removeADocumentAttachedToTheAnnualAccountsAndDeleteItsFile(
-    PostV1DeclarationsAnnualAccountsAttachmentsDeleteRequest
+client.declarations().annualAccountsAttachmentsDelete(
+    AnnualAccountsAttachmentsDeleteDeclarationsRequest
         .builder()
         .id("id")
         .build()
@@ -16776,7 +16795,7 @@ client.declarations().removeADocumentAttachedToTheAnnualAccountsAndDeleteItsFile
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsCyTd4Generate(request) -> PostV1DeclarationsCyTd4GenerateResponse</code></summary>
+<details><summary><code>client.declarations.cyTd4Generate(request) -> CyTd4GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16803,8 +16822,8 @@ Compute the company income tax return TD4 of a tax year from the ledger and the 
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsCyTd4Generate(
-    PostV1DeclarationsCyTd4GenerateRequest
+client.declarations().cyTd4Generate(
+    CyTd4GenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -16835,7 +16854,7 @@ client.declarations().postV1DeclarationsCyTd4Generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsCyHe32Generate(request) -> PostV1DeclarationsCyHe32GenerateResponse</code></summary>
+<details><summary><code>client.declarations.cyHe32Generate(request) -> CyHe32GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16862,8 +16881,8 @@ Build the annual return HE32 of a year: the figures the Registrar’s e-filing s
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsCyHe32Generate(
-    PostV1DeclarationsCyHe32GenerateRequest
+client.declarations().cyHe32Generate(
+    CyHe32GenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -16894,7 +16913,7 @@ client.declarations().postV1DeclarationsCyHe32Generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsDeReturnsGenerate(request) -> PostV1DeclarationsDeReturnsGenerateResponse</code></summary>
+<details><summary><code>client.declarations.deReturnsGenerate(request) -> DeReturnsGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16921,10 +16940,10 @@ Build one of the German returns that ELSTER accepts only through a licensed ERiC
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsDeReturnsGenerate(
-    PostV1DeclarationsDeReturnsGenerateRequest
+client.declarations().deReturnsGenerate(
+    DeReturnsGenerateDeclarationsRequest
         .builder()
-        .ruleKey(PostV1DeclarationsDeReturnsGenerateRequestRuleKey.DE_E_BILANZ)
+        .ruleKey(DeReturnsGenerateDeclarationsRequestRuleKey.DE_E_BILANZ)
         .period("period")
         .build()
 );
@@ -16942,7 +16961,7 @@ client.declarations().postV1DeclarationsDeReturnsGenerate(
 <dl>
 <dd>
 
-**ruleKey:** `PostV1DeclarationsDeReturnsGenerateRequestRuleKey` 
+**ruleKey:** `DeReturnsGenerateDeclarationsRequestRuleKey` 
     
 </dd>
 </dl>
@@ -16962,7 +16981,7 @@ client.declarations().postV1DeclarationsDeReturnsGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsDeReturnFactsGet(request) -> PostV1DeclarationsDeReturnFactsGetResponse</code></summary>
+<details><summary><code>client.declarations.deReturnFactsGet(request) -> DeReturnFactsGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16989,8 +17008,8 @@ The facts of one year that the German annual returns (Körperschaftsteuer, Gewer
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsDeReturnFactsGet(
-    PostV1DeclarationsDeReturnFactsGetRequest
+client.declarations().deReturnFactsGet(
+    DeReturnFactsGetDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -17021,7 +17040,7 @@ client.declarations().postV1DeclarationsDeReturnFactsGet(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsDeReturnFactsSet(request) -> PostV1DeclarationsDeReturnFactsSetResponse</code></summary>
+<details><summary><code>client.declarations.deReturnFactsSet(request) -> DeReturnFactsSetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17048,12 +17067,12 @@ Replace the facts of one year for the German annual returns. The returns built a
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsDeReturnFactsSet(
-    PostV1DeclarationsDeReturnFactsSetRequest
+client.declarations().deReturnFactsSet(
+    DeReturnFactsSetDeclarationsRequest
         .builder()
         .year(1000000L)
         .facts(
-            PostV1DeclarationsDeReturnFactsSetRequestFacts
+            DeReturnFactsSetDeclarationsRequestFacts
                 .builder()
                 .build()
         )
@@ -17081,7 +17100,7 @@ client.declarations().postV1DeclarationsDeReturnFactsSet(
 <dl>
 <dd>
 
-**facts:** `PostV1DeclarationsDeReturnFactsSetRequestFacts` 
+**facts:** `DeReturnFactsSetDeclarationsRequestFacts` 
     
 </dd>
 </dl>
@@ -17093,7 +17112,7 @@ client.declarations().postV1DeclarationsDeReturnFactsSet(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsDeDeuevGenerate(request) -> PostV1DeclarationsDeDeuevGenerateResponse</code></summary>
+<details><summary><code>client.declarations.deDeuevGenerate(request) -> DeDeuevGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17120,8 +17139,8 @@ Build the DEÜV notifications of a month (Anmeldung for every start, Abmeldung f
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsDeDeuevGenerate(
-    PostV1DeclarationsDeDeuevGenerateRequest
+client.declarations().deDeuevGenerate(
+    DeDeuevGenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -17161,7 +17180,7 @@ client.declarations().postV1DeclarationsDeDeuevGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsDeBeitragsnachweisGenerate(request) -> PostV1DeclarationsDeBeitragsnachweisGenerateResponse</code></summary>
+<details><summary><code>client.declarations.deBeitragsnachweisGenerate(request) -> DeBeitragsnachweisGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17188,8 +17207,8 @@ Build the monthly contribution statement to the health insurers (Beitragsnachwei
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsDeBeitragsnachweisGenerate(
-    PostV1DeclarationsDeBeitragsnachweisGenerateRequest
+client.declarations().deBeitragsnachweisGenerate(
+    DeBeitragsnachweisGenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -17229,7 +17248,7 @@ client.declarations().postV1DeclarationsDeBeitragsnachweisGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsDkSelskabsskatGenerate(request) -> PostV1DeclarationsDkSelskabsskatGenerateResponse</code></summary>
+<details><summary><code>client.declarations.dkSelskabsskatGenerate(request) -> DkSelskabsskatGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17256,8 +17275,8 @@ Compute the oplysningsskema for selskaber (selskabsselvangivelsen) of an income 
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsDkSelskabsskatGenerate(
-    PostV1DeclarationsDkSelskabsskatGenerateRequest
+client.declarations().dkSelskabsskatGenerate(
+    DkSelskabsskatGenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -17288,7 +17307,7 @@ client.declarations().postV1DeclarationsDkSelskabsskatGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsEeEmploymentRegisterSend(request) -> PostV1DeclarationsEeEmploymentRegisterSendResponse</code></summary>
+<details><summary><code>client.declarations.eeEmploymentRegisterSend(request) -> EeEmploymentRegisterSendDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17315,11 +17334,11 @@ Send one employment register (töötamise register) entry for an employment cont
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsEeEmploymentRegisterSend(
-    PostV1DeclarationsEeEmploymentRegisterSendRequest
+client.declarations().eeEmploymentRegisterSend(
+    EeEmploymentRegisterSendDeclarationsRequest
         .builder()
         .contractId("contractId")
-        .event(PostV1DeclarationsEeEmploymentRegisterSendRequestEvent.START)
+        .event(EeEmploymentRegisterSendDeclarationsRequestEvent.START)
         .build()
 );
 ```
@@ -17344,7 +17363,7 @@ client.declarations().postV1DeclarationsEeEmploymentRegisterSend(
 <dl>
 <dd>
 
-**event:** `PostV1DeclarationsEeEmploymentRegisterSendRequestEvent` 
+**event:** `EeEmploymentRegisterSendDeclarationsRequestEvent` 
     
 </dd>
 </dl>
@@ -17356,7 +17375,7 @@ client.declarations().postV1DeclarationsEeEmploymentRegisterSend(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsEsVerifactuDeclaracionResponsable(request) -> PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse</code></summary>
+<details><summary><code>client.declarations.esVerifactuDeclaracionResponsable(request) -> EsVerifactuDeclaracionResponsableDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17383,8 +17402,8 @@ Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HA
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsEsVerifactuDeclaracionResponsable(
-    PostV1DeclarationsEsVerifactuDeclaracionResponsableRequest
+client.declarations().esVerifactuDeclaracionResponsable(
+    EsVerifactuDeclaracionResponsableDeclarationsRequest
         .builder()
         .build()
 );
@@ -17399,7 +17418,7 @@ client.declarations().postV1DeclarationsEsVerifactuDeclaracionResponsable(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsIeCt1Generate(request) -> PostV1DeclarationsIeCt1GenerateResponse</code></summary>
+<details><summary><code>client.declarations.ieCt1Generate(request) -> IeCt1GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17426,8 +17445,8 @@ Build the Form CT1 of an accounting year as the ROS version 26 XML and the accom
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsIeCt1Generate(
-    PostV1DeclarationsIeCt1GenerateRequest
+client.declarations().ieCt1Generate(
+    IeCt1GenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -17458,7 +17477,7 @@ client.declarations().postV1DeclarationsIeCt1Generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsIeB1Generate(request) -> PostV1DeclarationsIeB1GenerateResponse</code></summary>
+<details><summary><code>client.declarations.ieB1Generate(request) -> IeB1GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17485,8 +17504,8 @@ Build the working paper for the Form B1 annual return of a financial year — co
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsIeB1Generate(
-    PostV1DeclarationsIeB1GenerateRequest
+client.declarations().ieB1Generate(
+    IeB1GenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -17517,7 +17536,7 @@ client.declarations().postV1DeclarationsIeB1Generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsItSdiPurchaseSend(request) -> PostV1DeclarationsItSdiPurchaseSendResponse</code></summary>
+<details><summary><code>client.declarations.itSdiPurchaseSend(request) -> ItSdiPurchaseSendDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17544,8 +17563,8 @@ Build the TD16-TD19 integration document for a registered purchase invoice and s
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsItSdiPurchaseSend(
-    PostV1DeclarationsItSdiPurchaseSendRequest
+client.declarations().itSdiPurchaseSend(
+    ItSdiPurchaseSendDeclarationsRequest
         .builder()
         .purchaseInvoiceId("purchaseInvoiceId")
         .build()
@@ -17580,7 +17599,7 @@ client.declarations().postV1DeclarationsItSdiPurchaseSend(
 <dl>
 <dd>
 
-**tipoDocumento:** `Optional<PostV1DeclarationsItSdiPurchaseSendRequestTipoDocumento>` 
+**tipoDocumento:** `Optional<ItSdiPurchaseSendDeclarationsRequestTipoDocumento>` 
     
 </dd>
 </dl>
@@ -17592,7 +17611,7 @@ client.declarations().postV1DeclarationsItSdiPurchaseSend(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsItSdiPurchasePreview(request) -> PostV1DeclarationsItSdiPurchasePreviewResponse</code></summary>
+<details><summary><code>client.declarations.itSdiPurchasePreview(request) -> ItSdiPurchasePreviewDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17619,8 +17638,8 @@ Render the TD16-TD19 integration document for a registered purchase invoice with
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsItSdiPurchasePreview(
-    PostV1DeclarationsItSdiPurchasePreviewRequest
+client.declarations().itSdiPurchasePreview(
+    ItSdiPurchasePreviewDeclarationsRequest
         .builder()
         .purchaseInvoiceId("purchaseInvoiceId")
         .build()
@@ -17655,7 +17674,7 @@ client.declarations().postV1DeclarationsItSdiPurchasePreview(
 <dl>
 <dd>
 
-**tipoDocumento:** `Optional<PostV1DeclarationsItSdiPurchasePreviewRequestTipoDocumento>` 
+**tipoDocumento:** `Optional<ItSdiPurchasePreviewDeclarationsRequestTipoDocumento>` 
     
 </dd>
 </dl>
@@ -17667,7 +17686,7 @@ client.declarations().postV1DeclarationsItSdiPurchasePreview(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtSaftSend(request) -> PostV1DeclarationsLtSaftSendResponse</code></summary>
+<details><summary><code>client.declarations.ltSaftSend(request) -> LtSaftSendDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17679,7 +17698,7 @@ client.declarations().postV1DeclarationsItSdiPurchasePreview(
 <dl>
 <dd>
 
-Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected.
+Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The file, the case reference and the status are kept as a declaration submission (submissionId), whose outcome Nordlet then checks with i.SAF-T. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected. A range and data type already sent is sent again only with amend: true.
 </dd>
 </dl>
 </dd>
@@ -17694,11 +17713,11 @@ Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and s
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtSaftSend(
-    PostV1DeclarationsLtSaftSendRequest
+client.declarations().ltSaftSend(
+    LtSaftSendDeclarationsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -17731,7 +17750,7 @@ client.declarations().postV1DeclarationsLtSaftSend(
 <dl>
 <dd>
 
-**dataType:** `Optional<PostV1DeclarationsLtSaftSendRequestDataType>` 
+**dataType:** `Optional<LtSaftSendDeclarationsRequestDataType>` 
     
 </dd>
 </dl>
@@ -17743,6 +17762,14 @@ client.declarations().postV1DeclarationsLtSaftSend(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**amend:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -17751,7 +17778,7 @@ client.declarations().postV1DeclarationsLtSaftSend(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtSdFfdata(request) -> PostV1DeclarationsLtSdFfdataResponse</code></summary>
+<details><summary><code>client.declarations.ltSdFfdata(request) -> LtSdFfdataDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17778,12 +17805,12 @@ Render the Sodra 1-SD or 2-SD notice for the contracts starting or ending in the
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtSdFfdata(
-    PostV1DeclarationsLtSdFfdataRequest
+client.declarations().ltSdFfdata(
+    LtSdFfdataDeclarationsRequest
         .builder()
-        .type(PostV1DeclarationsLtSdFfdataRequestType.ONE_SD)
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .type(LtSdFfdataDeclarationsRequestType.ONE_SD)
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -17800,7 +17827,7 @@ client.declarations().postV1DeclarationsLtSdFfdata(
 <dl>
 <dd>
 
-**type:** `PostV1DeclarationsLtSdFfdataRequestType` 
+**type:** `LtSdFfdataDeclarationsRequestType` 
     
 </dd>
 </dl>
@@ -17844,7 +17871,7 @@ client.declarations().postV1DeclarationsLtSdFfdata(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLtPln204Ffdata(request) -> PostV1DeclarationsLtPln204FfdataResponse</code></summary>
+<details><summary><code>client.declarations.ltPln204Ffdata(request) -> LtPln204FfdataDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17871,8 +17898,8 @@ Render the annual corporate income tax return PLN204 as an .ffdata document, inc
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLtPln204Ffdata(
-    PostV1DeclarationsLtPln204FfdataRequest
+client.declarations().ltPln204Ffdata(
+    LtPln204FfdataDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -17903,7 +17930,7 @@ client.declarations().postV1DeclarationsLtPln204Ffdata(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsMtCompanyTaxGenerate(request) -> PostV1DeclarationsMtCompanyTaxGenerateResponse</code></summary>
+<details><summary><code>client.declarations.mtCompanyTaxGenerate(request) -> MtCompanyTaxGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17930,8 +17957,8 @@ Compute the company income tax return and self-assessment of a year of assessmen
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsMtCompanyTaxGenerate(
-    PostV1DeclarationsMtCompanyTaxGenerateRequest
+client.declarations().mtCompanyTaxGenerate(
+    MtCompanyTaxGenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -17962,7 +17989,7 @@ client.declarations().postV1DeclarationsMtCompanyTaxGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsMtAnnualReturnGenerate(request) -> PostV1DeclarationsMtAnnualReturnGenerateResponse</code></summary>
+<details><summary><code>client.declarations.mtAnnualReturnGenerate(request) -> MtAnnualReturnGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17989,8 +18016,8 @@ Build the annual return of a year: the company number, registered office and mad
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsMtAnnualReturnGenerate(
-    PostV1DeclarationsMtAnnualReturnGenerateRequest
+client.declarations().mtAnnualReturnGenerate(
+    MtAnnualReturnGenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -18021,7 +18048,7 @@ client.declarations().postV1DeclarationsMtAnnualReturnGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsPlJpkFaGenerate(request) -> PostV1DeclarationsPlJpkFaGenerateResponse</code></summary>
+<details><summary><code>client.declarations.plJpkFaGenerate(request) -> PlJpkFaGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18048,11 +18075,11 @@ Generate JPK_FA(4), the on-demand structure with every sales invoice issued in a
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsPlJpkFaGenerate(
-    PostV1DeclarationsPlJpkFaGenerateRequest
+client.declarations().plJpkFaGenerate(
+    PlJpkFaGenerateDeclarationsRequest
         .builder()
-        .dateFrom("dateFrom")
-        .dateTo("dateTo")
+        .dateFrom("2026-07-01")
+        .dateTo("2026-07-01")
         .build()
 );
 ```
@@ -18089,7 +18116,7 @@ client.declarations().postV1DeclarationsPlJpkFaGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsPlJpkKrGenerate(request) -> PostV1DeclarationsPlJpkKrGenerateResponse</code></summary>
+<details><summary><code>client.declarations.plJpkKrGenerate(request) -> PlJpkKrGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18116,11 +18143,11 @@ Generate JPK_KR(1), the on-demand structure with the chart of accounts and its o
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsPlJpkKrGenerate(
-    PostV1DeclarationsPlJpkKrGenerateRequest
+client.declarations().plJpkKrGenerate(
+    PlJpkKrGenerateDeclarationsRequest
         .builder()
-        .dateFrom("dateFrom")
-        .dateTo("dateTo")
+        .dateFrom("2026-07-01")
+        .dateTo("2026-07-01")
         .build()
 );
 ```
@@ -18157,7 +18184,7 @@ client.declarations().postV1DeclarationsPlJpkKrGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsPlJpkMagGenerate(request) -> PostV1DeclarationsPlJpkMagGenerateResponse</code></summary>
+<details><summary><code>client.declarations.plJpkMagGenerate(request) -> PlJpkMagGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18184,11 +18211,11 @@ Generate JPK_MAG(2), the on-demand structure with the warehouse documents of one
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsPlJpkMagGenerate(
-    PostV1DeclarationsPlJpkMagGenerateRequest
+client.declarations().plJpkMagGenerate(
+    PlJpkMagGenerateDeclarationsRequest
         .builder()
-        .dateFrom("dateFrom")
-        .dateTo("dateTo")
+        .dateFrom("2026-07-01")
+        .dateTo("2026-07-01")
         .build()
 );
 ```
@@ -18233,7 +18260,7 @@ client.declarations().postV1DeclarationsPlJpkMagGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsPlPit11Generate(request) -> PostV1DeclarationsPlPit11GenerateResponse</code></summary>
+<details><summary><code>client.declarations.plPit11Generate(request) -> PlPit11GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18260,8 +18287,8 @@ Generate PIT-11(29) for every person on the payroll of one year: the pay, the de
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsPlPit11Generate(
-    PostV1DeclarationsPlPit11GenerateRequest
+client.declarations().plPit11Generate(
+    PlPit11GenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -18292,7 +18319,7 @@ client.declarations().postV1DeclarationsPlPit11Generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsPlCit8Generate(request) -> PostV1DeclarationsPlCit8GenerateResponse</code></summary>
+<details><summary><code>client.declarations.plCit8Generate(request) -> PlCit8GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18319,8 +18346,8 @@ Generate CIT-8(34), the annual corporate income tax return, from the ledger of t
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsPlCit8Generate(
-    PostV1DeclarationsPlCit8GenerateRequest
+client.declarations().plCit8Generate(
+    PlCit8GenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -18351,7 +18378,7 @@ client.declarations().postV1DeclarationsPlCit8Generate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsPlZusDraCompute(request) -> PostV1DeclarationsPlZusDraComputeResponse</code></summary>
+<details><summary><code>client.declarations.plZusDraCompute(request) -> PlZusDraComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18378,8 +18405,8 @@ Compute the monthly ZUS DRA settlement from the payroll run of one month: the pe
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsPlZusDraCompute(
-    PostV1DeclarationsPlZusDraComputeRequest
+client.declarations().plZusDraCompute(
+    PlZusDraComputeDeclarationsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -18419,7 +18446,7 @@ client.declarations().postV1DeclarationsPlZusDraCompute(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsPlZusDraKedu(request) -> PostV1DeclarationsPlZusDraKeduResponse</code></summary>
+<details><summary><code>client.declarations.plZusDraKedu(request) -> PlZusDraKeduDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18446,8 +18473,8 @@ Build the KEDU file for one month: the ZUS DRA settlement and one ZUS RCA report
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsPlZusDraKedu(
-    PostV1DeclarationsPlZusDraKeduRequest
+client.declarations().plZusDraKedu(
+    PlZusDraKeduDeclarationsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -18487,7 +18514,7 @@ client.declarations().postV1DeclarationsPlZusDraKedu(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsPlZusDraPdf(request) -> PostV1DeclarationsPlZusDraPdfResponse</code></summary>
+<details><summary><code>client.declarations.plZusDraPdf(request) -> PlZusDraPdfDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18514,8 +18541,8 @@ Fill the published ZUS DRA form for one month and return it as a PDF. The amount
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsPlZusDraPdf(
-    PostV1DeclarationsPlZusDraPdfRequest
+client.declarations().plZusDraPdf(
+    PlZusDraPdfDeclarationsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -18555,7 +18582,7 @@ client.declarations().postV1DeclarationsPlZusDraPdf(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsRoEtransportBuild(request) -> PostV1DeclarationsRoEtransportBuildResponse</code></summary>
+<details><summary><code>client.declarations.roEtransportBuild(request) -> RoEtransportBuildDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18582,8 +18609,8 @@ Build the RO e-Transport declaration for an issued waybill: goods with their tar
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsRoEtransportBuild(
-    PostV1DeclarationsRoEtransportBuildRequest
+client.declarations().roEtransportBuild(
+    RoEtransportBuildDeclarationsRequest
         .builder()
         .waybillId("waybillId")
         .build()
@@ -18614,7 +18641,7 @@ client.declarations().postV1DeclarationsRoEtransportBuild(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsRoEtransportSubmit(request) -> PostV1DeclarationsRoEtransportSubmitResponse</code></summary>
+<details><summary><code>client.declarations.roEtransportSubmit(request) -> RoEtransportSubmitDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18641,8 +18668,8 @@ Hand the RO e-Transport declaration for an issued waybill to ANAF under the SPV 
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsRoEtransportSubmit(
-    PostV1DeclarationsRoEtransportSubmitRequest
+client.declarations().roEtransportSubmit(
+    RoEtransportSubmitDeclarationsRequest
         .builder()
         .waybillId("waybillId")
         .build()
@@ -18673,7 +18700,7 @@ client.declarations().postV1DeclarationsRoEtransportSubmit(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsRoEtransportStatus(request) -> PostV1DeclarationsRoEtransportStatusResponse</code></summary>
+<details><summary><code>client.declarations.roEtransportStatus(request) -> RoEtransportStatusDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18700,8 +18727,8 @@ Read the outcome of an e-Transport declaration from ANAF by its upload index, un
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsRoEtransportStatus(
-    PostV1DeclarationsRoEtransportStatusRequest
+client.declarations().roEtransportStatus(
+    RoEtransportStatusDeclarationsRequest
         .builder()
         .reference("reference")
         .build()
@@ -18732,7 +18759,7 @@ client.declarations().postV1DeclarationsRoEtransportStatus(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLiLohndeklarationGenerate(request) -> PostV1DeclarationsLiLohndeklarationGenerateResponse</code></summary>
+<details><summary><code>client.declarations.liLohndeklarationGenerate(request) -> LiLohndeklarationGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18759,8 +18786,8 @@ Build the annual wage declaration (Lohndeklaration) to the AHV-IV-FAK from the a
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLiLohndeklarationGenerate(
-    PostV1DeclarationsLiLohndeklarationGenerateRequest
+client.declarations().liLohndeklarationGenerate(
+    LiLohndeklarationGenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -18791,7 +18818,7 @@ client.declarations().postV1DeclarationsLiLohndeklarationGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsLiLohnlistenGenerate(request) -> PostV1DeclarationsLiLohnlistenGenerateResponse</code></summary>
+<details><summary><code>client.declarations.liLohnlistenGenerate(request) -> LiLohnlistenGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18818,8 +18845,8 @@ Build the annual wage list (Lohnliste) of a Liechtenstein employer from the appr
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsLiLohnlistenGenerate(
-    PostV1DeclarationsLiLohnlistenGenerateRequest
+client.declarations().liLohnlistenGenerate(
+    LiLohnlistenGenerateDeclarationsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -18850,7 +18877,7 @@ client.declarations().postV1DeclarationsLiLohnlistenGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsConfigsList(request) -> PostV1DeclarationsConfigsListResponse</code></summary>
+<details><summary><code>client.declarations.configsList(request) -> ConfigsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18863,8 +18890,8 @@ client.declarations().postV1DeclarationsLiLohnlistenGenerate(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsConfigsList(
-    PostV1DeclarationsConfigsListRequest
+client.declarations().configsList(
+    ConfigsListDeclarationsRequest
         .builder()
         .build()
 );
@@ -18879,7 +18906,7 @@ client.declarations().postV1DeclarationsConfigsList(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsConfigsUpdate(request) -> PostV1DeclarationsConfigsUpdateResponse</code></summary>
+<details><summary><code>client.declarations.configsUpdate(request) -> ConfigsUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18892,8 +18919,8 @@ client.declarations().postV1DeclarationsConfigsList(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsConfigsUpdate(
-    PostV1DeclarationsConfigsUpdateRequest
+client.declarations().configsUpdate(
+    ConfigsUpdateDeclarationsRequest
         .builder()
         .system("system")
         .config(
@@ -18937,7 +18964,7 @@ client.declarations().postV1DeclarationsConfigsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.storeTheCertificateOrPrivateKeyAFilingSystemAuthenticatesWith(request) -> PostV1DeclarationsCertificatesUploadResponse</code></summary>
+<details><summary><code>client.declarations.certificatesUpload(request) -> CertificatesUploadDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18950,8 +18977,8 @@ client.declarations().postV1DeclarationsConfigsUpdate(
 <dd>
 
 ```java
-client.declarations().storeTheCertificateOrPrivateKeyAFilingSystemAuthenticatesWith(
-    PostV1DeclarationsCertificatesUploadRequest
+client.declarations().certificatesUpload(
+    CertificatesUploadDeclarationsRequest
         .builder()
         .system("system")
         .fileName("fileName")
@@ -19008,7 +19035,7 @@ client.declarations().storeTheCertificateOrPrivateKeyAFilingSystemAuthenticatesW
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsCertificatesList(request) -> PostV1DeclarationsCertificatesListResponse</code></summary>
+<details><summary><code>client.declarations.certificatesList(request) -> CertificatesListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19021,8 +19048,8 @@ client.declarations().storeTheCertificateOrPrivateKeyAFilingSystemAuthenticatesW
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsCertificatesList(
-    PostV1DeclarationsCertificatesListRequest
+client.declarations().certificatesList(
+    CertificatesListDeclarationsRequest
         .builder()
         .build()
 );
@@ -19037,7 +19064,7 @@ client.declarations().postV1DeclarationsCertificatesList(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsCertificatesDelete(request) -> PostV1DeclarationsCertificatesDeleteResponse</code></summary>
+<details><summary><code>client.declarations.certificatesDelete(request) -> CertificatesDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19050,11 +19077,11 @@ client.declarations().postV1DeclarationsCertificatesList(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsCertificatesDelete(
-    PostV1DeclarationsCertificatesDeleteRequest
+client.declarations().certificatesDelete(
+    CertificatesDeleteDeclarationsRequest
         .builder()
         .system("system")
-        .fieldKey(PostV1DeclarationsCertificatesDeleteRequestFieldKey.CERTIFICATE)
+        .fieldKey(CertificatesDeleteDeclarationsRequestFieldKey.CERTIFICATE)
         .build()
 );
 ```
@@ -19079,7 +19106,7 @@ client.declarations().postV1DeclarationsCertificatesDelete(
 <dl>
 <dd>
 
-**fieldKey:** `PostV1DeclarationsCertificatesDeleteRequestFieldKey` 
+**fieldKey:** `CertificatesDeleteDeclarationsRequestFieldKey` 
     
 </dd>
 </dl>
@@ -19091,7 +19118,7 @@ client.declarations().postV1DeclarationsCertificatesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhichAreSwitchedOn(request) -> PostV1DeclarationsAutomationListResponse</code></summary>
+<details><summary><code>client.declarations.automationList(request) -> AutomationListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19104,8 +19131,8 @@ client.declarations().postV1DeclarationsCertificatesDelete(
 <dd>
 
 ```java
-client.declarations().whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhichAreSwitchedOn(
-    PostV1DeclarationsAutomationListRequest
+client.declarations().automationList(
+    AutomationListDeclarationsRequest
         .builder()
         .build()
 );
@@ -19120,7 +19147,7 @@ client.declarations().whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhich
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsAutomationUpdate(request) -> PostV1DeclarationsAutomationUpdateResponse</code></summary>
+<details><summary><code>client.declarations.automationUpdate(request) -> AutomationUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19133,8 +19160,8 @@ client.declarations().whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhich
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsAutomationUpdate(
-    PostV1DeclarationsAutomationUpdateRequest
+client.declarations().automationUpdate(
+    AutomationUpdateDeclarationsRequest
         .builder()
         .ruleKey("ruleKey")
         .enabled(true)
@@ -19174,7 +19201,7 @@ client.declarations().postV1DeclarationsAutomationUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.sendAFilingWhoseDeliveryFailedOnceMoreWithTheBytesThatWereGenerated(request) -> PostV1DeclarationsSubmissionsRetryResponse</code></summary>
+<details><summary><code>client.declarations.submissionsRetry(request) -> SubmissionsRetryDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19187,8 +19214,8 @@ client.declarations().postV1DeclarationsAutomationUpdate(
 <dd>
 
 ```java
-client.declarations().sendAFilingWhoseDeliveryFailedOnceMoreWithTheBytesThatWereGenerated(
-    PostV1DeclarationsSubmissionsRetryRequest
+client.declarations().submissionsRetry(
+    SubmissionsRetryDeclarationsRequest
         .builder()
         .id("id")
         .build()
@@ -19219,7 +19246,7 @@ client.declarations().sendAFilingWhoseDeliveryFailedOnceMoreWithTheBytesThatWere
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsSubmissionsCreate(request) -> PostV1DeclarationsSubmissionsCreateResponse</code></summary>
+<details><summary><code>client.declarations.submissionsCreate(request) -> SubmissionsCreateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19232,10 +19259,10 @@ client.declarations().sendAFilingWhoseDeliveryFailedOnceMoreWithTheBytesThatWere
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsSubmissionsCreate(
-    PostV1DeclarationsSubmissionsCreateRequest
+client.declarations().submissionsCreate(
+    SubmissionsCreateDeclarationsRequest
         .builder()
-        .obligation(PostV1DeclarationsSubmissionsCreateRequestObligation.LT_ISAF)
+        .obligation(SubmissionsCreateDeclarationsRequestObligation.LT_ISAF)
         .year(1000000L)
         .month(1000000L)
         .build()
@@ -19254,7 +19281,7 @@ client.declarations().postV1DeclarationsSubmissionsCreate(
 <dl>
 <dd>
 
-**obligation:** `PostV1DeclarationsSubmissionsCreateRequestObligation` 
+**obligation:** `SubmissionsCreateDeclarationsRequestObligation` 
     
 </dd>
 </dl>
@@ -19278,7 +19305,7 @@ client.declarations().postV1DeclarationsSubmissionsCreate(
 <dl>
 <dd>
 
-**dataType:** `Optional<PostV1DeclarationsSubmissionsCreateRequestDataType>` 
+**dataType:** `Optional<SubmissionsCreateDeclarationsRequestDataType>` 
     
 </dd>
 </dl>
@@ -19290,7 +19317,7 @@ client.declarations().postV1DeclarationsSubmissionsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsSubmissionsMark(request) -> PostV1DeclarationsSubmissionsMarkResponse</code></summary>
+<details><summary><code>client.declarations.submissionsMark(request) -> SubmissionsMarkDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19303,11 +19330,11 @@ client.declarations().postV1DeclarationsSubmissionsCreate(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsSubmissionsMark(
-    PostV1DeclarationsSubmissionsMarkRequest
+client.declarations().submissionsMark(
+    SubmissionsMarkDeclarationsRequest
         .builder()
         .id("id")
-        .status(PostV1DeclarationsSubmissionsMarkRequestStatus.SUBMITTED)
+        .status(SubmissionsMarkDeclarationsRequestStatus.SUBMITTED)
         .build()
 );
 ```
@@ -19332,7 +19359,7 @@ client.declarations().postV1DeclarationsSubmissionsMark(
 <dl>
 <dd>
 
-**status:** `PostV1DeclarationsSubmissionsMarkRequestStatus` 
+**status:** `SubmissionsMarkDeclarationsRequestStatus` 
     
 </dd>
 </dl>
@@ -19360,7 +19387,7 @@ client.declarations().postV1DeclarationsSubmissionsMark(
 </dl>
 </details>
 
-<details><summary><code>client.declarations.postV1DeclarationsSubmissionsList(request) -> PostV1DeclarationsSubmissionsListResponse</code></summary>
+<details><summary><code>client.declarations.submissionsList(request) -> SubmissionsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -19373,8 +19400,8 @@ client.declarations().postV1DeclarationsSubmissionsMark(
 <dd>
 
 ```java
-client.declarations().postV1DeclarationsSubmissionsList(
-    PostV1DeclarationsSubmissionsListRequest
+client.declarations().submissionsList(
+    SubmissionsListDeclarationsRequest
         .builder()
         .build()
 );
@@ -19408,7 +19435,7 @@ client.declarations().postV1DeclarationsSubmissionsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1DeclarationsSubmissionsListRequestSortItem>>` 
+**sort:** `Optional<List<SubmissionsListDeclarationsRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -19416,7 +19443,7 @@ client.declarations().postV1DeclarationsSubmissionsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1DeclarationsSubmissionsListRequestFilterItem>>` 
+**filter:** `Optional<List<SubmissionsListDeclarationsRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -19436,8 +19463,8 @@ client.declarations().postV1DeclarationsSubmissionsList(
 </dl>
 </details>
 
-## Ledger
-<details><summary><code>client.ledger.postV1LedgerAccountsList(request) -> PostV1LedgerAccountsListResponse</code></summary>
+## ledger
+<details><summary><code>client.ledger.accountsList(request) -> AccountsListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19450,8 +19477,8 @@ client.declarations().postV1DeclarationsSubmissionsList(
 <dd>
 
 ```java
-client.ledger().postV1LedgerAccountsList(
-    PostV1LedgerAccountsListRequest
+client.ledger().accountsList(
+    AccountsListLedgerRequest
         .builder()
         .build()
 );
@@ -19485,7 +19512,7 @@ client.ledger().postV1LedgerAccountsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1LedgerAccountsListRequestSortItem>>` 
+**sort:** `Optional<List<AccountsListLedgerRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -19493,7 +19520,7 @@ client.ledger().postV1LedgerAccountsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1LedgerAccountsListRequestFilterItem>>` 
+**filter:** `Optional<List<AccountsListLedgerRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -19513,7 +19540,7 @@ client.ledger().postV1LedgerAccountsList(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerAccountsCreate(request) -> PostV1LedgerAccountsCreateResponse</code></summary>
+<details><summary><code>client.ledger.accountsCreate(request) -> AccountsCreateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19526,12 +19553,12 @@ client.ledger().postV1LedgerAccountsList(
 <dd>
 
 ```java
-client.ledger().postV1LedgerAccountsCreate(
-    PostV1LedgerAccountsCreateRequest
+client.ledger().accountsCreate(
+    AccountsCreateLedgerRequest
         .builder()
         .code("code")
         .name("name")
-        .type(PostV1LedgerAccountsCreateRequestType.ASSET)
+        .type(AccountsCreateLedgerRequestType.ASSET)
         .build()
 );
 ```
@@ -19564,7 +19591,7 @@ client.ledger().postV1LedgerAccountsCreate(
 <dl>
 <dd>
 
-**translations:** `Optional<Map<String, PostV1LedgerAccountsCreateRequestTranslationsValue>>` 
+**translations:** `Optional<Map<String, AccountsCreateLedgerRequestTranslationsValue>>` 
     
 </dd>
 </dl>
@@ -19572,7 +19599,7 @@ client.ledger().postV1LedgerAccountsCreate(
 <dl>
 <dd>
 
-**type:** `PostV1LedgerAccountsCreateRequestType` 
+**type:** `AccountsCreateLedgerRequestType` 
     
 </dd>
 </dl>
@@ -19600,7 +19627,7 @@ client.ledger().postV1LedgerAccountsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerAccountsUpdate(request) -> PostV1LedgerAccountsUpdateResponse</code></summary>
+<details><summary><code>client.ledger.accountsUpdate(request) -> AccountsUpdateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19613,8 +19640,8 @@ client.ledger().postV1LedgerAccountsCreate(
 <dd>
 
 ```java
-client.ledger().postV1LedgerAccountsUpdate(
-    PostV1LedgerAccountsUpdateRequest
+client.ledger().accountsUpdate(
+    AccountsUpdateLedgerRequest
         .builder()
         .id("id")
         .build()
@@ -19649,7 +19676,7 @@ client.ledger().postV1LedgerAccountsUpdate(
 <dl>
 <dd>
 
-**translations:** `Optional<Map<String, Optional<PostV1LedgerAccountsUpdateRequestTranslationsValue>>>` 
+**translations:** `Optional<Map<String, Optional<AccountsUpdateLedgerRequestTranslationsValue>>>` 
     
 </dd>
 </dl>
@@ -19677,7 +19704,7 @@ client.ledger().postV1LedgerAccountsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerAccountsApplyTemplate(request) -> PostV1LedgerAccountsApplyTemplateResponse</code></summary>
+<details><summary><code>client.ledger.accountsApplyTemplate(request) -> AccountsApplyTemplateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19690,8 +19717,8 @@ client.ledger().postV1LedgerAccountsUpdate(
 <dd>
 
 ```java
-client.ledger().postV1LedgerAccountsApplyTemplate(
-    PostV1LedgerAccountsApplyTemplateRequest
+client.ledger().accountsApplyTemplate(
+    AccountsApplyTemplateLedgerRequest
         .builder()
         .build()
 );
@@ -19706,7 +19733,7 @@ client.ledger().postV1LedgerAccountsApplyTemplate(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(request) -> PostV1LedgerAccountsSwitchChartResponse</code></summary>
+<details><summary><code>client.ledger.accountsSwitchChart(request) -> AccountsSwitchChartLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19733,8 +19760,8 @@ Replaces the seeded chart with the chart template of the company country (the Ro
 <dd>
 
 ```java
-client.ledger().moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
-    PostV1LedgerAccountsSwitchChartRequest
+client.ledger().accountsSwitchChart(
+    AccountsSwitchChartLedgerRequest
         .builder()
         .build()
 );
@@ -19749,7 +19776,7 @@ client.ledger().moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCoun
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerPeriodsList(request) -> PostV1LedgerPeriodsListResponse</code></summary>
+<details><summary><code>client.ledger.periodsList(request) -> PeriodsListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19762,8 +19789,8 @@ client.ledger().moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCoun
 <dd>
 
 ```java
-client.ledger().postV1LedgerPeriodsList(
-    PostV1LedgerPeriodsListRequest
+client.ledger().periodsList(
+    PeriodsListLedgerRequest
         .builder()
         .build()
 );
@@ -19797,7 +19824,7 @@ client.ledger().postV1LedgerPeriodsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1LedgerPeriodsListRequestSortItem>>` 
+**sort:** `Optional<List<PeriodsListLedgerRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -19805,7 +19832,7 @@ client.ledger().postV1LedgerPeriodsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1LedgerPeriodsListRequestFilterItem>>` 
+**filter:** `Optional<List<PeriodsListLedgerRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -19825,7 +19852,7 @@ client.ledger().postV1LedgerPeriodsList(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerPeriodsLock(request) -> PostV1LedgerPeriodsLockResponse</code></summary>
+<details><summary><code>client.ledger.periodsLock(request) -> PeriodsLockLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19838,8 +19865,8 @@ client.ledger().postV1LedgerPeriodsList(
 <dd>
 
 ```java
-client.ledger().postV1LedgerPeriodsLock(
-    PostV1LedgerPeriodsLockRequest
+client.ledger().periodsLock(
+    PeriodsLockLedgerRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -19879,7 +19906,7 @@ client.ledger().postV1LedgerPeriodsLock(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerPeriodsUnlock(request) -> PostV1LedgerPeriodsUnlockResponse</code></summary>
+<details><summary><code>client.ledger.periodsUnlock(request) -> PeriodsUnlockLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19892,8 +19919,8 @@ client.ledger().postV1LedgerPeriodsLock(
 <dd>
 
 ```java
-client.ledger().postV1LedgerPeriodsUnlock(
-    PostV1LedgerPeriodsUnlockRequest
+client.ledger().periodsUnlock(
+    PeriodsUnlockLedgerRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -19933,7 +19960,7 @@ client.ledger().postV1LedgerPeriodsUnlock(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerJournalTransactionsList(request) -> PostV1LedgerJournalTransactionsListResponse</code></summary>
+<details><summary><code>client.ledger.journalTransactionsList(request) -> JournalTransactionsListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19946,8 +19973,8 @@ client.ledger().postV1LedgerPeriodsUnlock(
 <dd>
 
 ```java
-client.ledger().postV1LedgerJournalTransactionsList(
-    PostV1LedgerJournalTransactionsListRequest
+client.ledger().journalTransactionsList(
+    JournalTransactionsListLedgerRequest
         .builder()
         .build()
 );
@@ -19981,7 +20008,7 @@ client.ledger().postV1LedgerJournalTransactionsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1LedgerJournalTransactionsListRequestSortItem>>` 
+**sort:** `Optional<List<JournalTransactionsListLedgerRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -19989,7 +20016,7 @@ client.ledger().postV1LedgerJournalTransactionsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1LedgerJournalTransactionsListRequestFilterItem>>` 
+**filter:** `Optional<List<JournalTransactionsListLedgerRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -20009,7 +20036,7 @@ client.ledger().postV1LedgerJournalTransactionsList(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerCostCentersCreate(request) -> PostV1LedgerCostCentersCreateResponse</code></summary>
+<details><summary><code>client.ledger.costCentersCreate(request) -> CostCentersCreateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20022,8 +20049,8 @@ client.ledger().postV1LedgerJournalTransactionsList(
 <dd>
 
 ```java
-client.ledger().postV1LedgerCostCentersCreate(
-    PostV1LedgerCostCentersCreateRequest
+client.ledger().costCentersCreate(
+    CostCentersCreateLedgerRequest
         .builder()
         .code("code")
         .name("name")
@@ -20071,7 +20098,7 @@ client.ledger().postV1LedgerCostCentersCreate(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerCostCentersUpdate(request) -> PostV1LedgerCostCentersUpdateResponse</code></summary>
+<details><summary><code>client.ledger.costCentersUpdate(request) -> CostCentersUpdateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20084,8 +20111,8 @@ client.ledger().postV1LedgerCostCentersCreate(
 <dd>
 
 ```java
-client.ledger().postV1LedgerCostCentersUpdate(
-    PostV1LedgerCostCentersUpdateRequest
+client.ledger().costCentersUpdate(
+    CostCentersUpdateLedgerRequest
         .builder()
         .id("id")
         .build()
@@ -20140,7 +20167,7 @@ client.ledger().postV1LedgerCostCentersUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerCostCentersList(request) -> PostV1LedgerCostCentersListResponse</code></summary>
+<details><summary><code>client.ledger.costCentersList(request) -> CostCentersListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20153,8 +20180,8 @@ client.ledger().postV1LedgerCostCentersUpdate(
 <dd>
 
 ```java
-client.ledger().postV1LedgerCostCentersList(
-    PostV1LedgerCostCentersListRequest
+client.ledger().costCentersList(
+    CostCentersListLedgerRequest
         .builder()
         .build()
 );
@@ -20188,7 +20215,7 @@ client.ledger().postV1LedgerCostCentersList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1LedgerCostCentersListRequestSortItem>>` 
+**sort:** `Optional<List<CostCentersListLedgerRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -20196,7 +20223,7 @@ client.ledger().postV1LedgerCostCentersList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1LedgerCostCentersListRequestFilterItem>>` 
+**filter:** `Optional<List<CostCentersListLedgerRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -20216,7 +20243,7 @@ client.ledger().postV1LedgerCostCentersList(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerCostCenterGroupsCreate(request) -> PostV1LedgerCostCenterGroupsCreateResponse</code></summary>
+<details><summary><code>client.ledger.costCenterGroupsCreate(request) -> CostCenterGroupsCreateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20229,8 +20256,8 @@ client.ledger().postV1LedgerCostCentersList(
 <dd>
 
 ```java
-client.ledger().postV1LedgerCostCenterGroupsCreate(
-    PostV1LedgerCostCenterGroupsCreateRequest
+client.ledger().costCenterGroupsCreate(
+    CostCenterGroupsCreateLedgerRequest
         .builder()
         .code("code")
         .name("name")
@@ -20270,7 +20297,7 @@ client.ledger().postV1LedgerCostCenterGroupsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerCostCenterGroupsUpdate(request) -> PostV1LedgerCostCenterGroupsUpdateResponse</code></summary>
+<details><summary><code>client.ledger.costCenterGroupsUpdate(request) -> CostCenterGroupsUpdateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20283,8 +20310,8 @@ client.ledger().postV1LedgerCostCenterGroupsCreate(
 <dd>
 
 ```java
-client.ledger().postV1LedgerCostCenterGroupsUpdate(
-    PostV1LedgerCostCenterGroupsUpdateRequest
+client.ledger().costCenterGroupsUpdate(
+    CostCenterGroupsUpdateLedgerRequest
         .builder()
         .id("id")
         .build()
@@ -20331,7 +20358,7 @@ client.ledger().postV1LedgerCostCenterGroupsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerCostCenterGroupsDelete(request) -> PostV1LedgerCostCenterGroupsDeleteResponse</code></summary>
+<details><summary><code>client.ledger.costCenterGroupsDelete(request) -> CostCenterGroupsDeleteLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20344,8 +20371,8 @@ client.ledger().postV1LedgerCostCenterGroupsUpdate(
 <dd>
 
 ```java
-client.ledger().postV1LedgerCostCenterGroupsDelete(
-    PostV1LedgerCostCenterGroupsDeleteRequest
+client.ledger().costCenterGroupsDelete(
+    CostCenterGroupsDeleteLedgerRequest
         .builder()
         .id("id")
         .build()
@@ -20376,7 +20403,7 @@ client.ledger().postV1LedgerCostCenterGroupsDelete(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerCostCenterGroupsList(request) -> PostV1LedgerCostCenterGroupsListResponse</code></summary>
+<details><summary><code>client.ledger.costCenterGroupsList(request) -> CostCenterGroupsListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20389,8 +20416,8 @@ client.ledger().postV1LedgerCostCenterGroupsDelete(
 <dd>
 
 ```java
-client.ledger().postV1LedgerCostCenterGroupsList(
-    PostV1LedgerCostCenterGroupsListRequest
+client.ledger().costCenterGroupsList(
+    CostCenterGroupsListLedgerRequest
         .builder()
         .build()
 );
@@ -20424,7 +20451,7 @@ client.ledger().postV1LedgerCostCenterGroupsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1LedgerCostCenterGroupsListRequestSortItem>>` 
+**sort:** `Optional<List<CostCenterGroupsListLedgerRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -20432,7 +20459,7 @@ client.ledger().postV1LedgerCostCenterGroupsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1LedgerCostCenterGroupsListRequestFilterItem>>` 
+**filter:** `Optional<List<CostCenterGroupsListLedgerRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -20452,7 +20479,7 @@ client.ledger().postV1LedgerCostCenterGroupsList(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerPostingRulesList(request) -> PostV1LedgerPostingRulesListResponse</code></summary>
+<details><summary><code>client.ledger.postingRulesList(request) -> PostingRulesListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20465,8 +20492,8 @@ client.ledger().postV1LedgerCostCenterGroupsList(
 <dd>
 
 ```java
-client.ledger().postV1LedgerPostingRulesList(
-    PostV1LedgerPostingRulesListRequest
+client.ledger().postingRulesList(
+    PostingRulesListLedgerRequest
         .builder()
         .build()
 );
@@ -20481,7 +20508,7 @@ client.ledger().postV1LedgerPostingRulesList(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerPostingRulesUpdate(request) -> PostV1LedgerPostingRulesUpdateResponse</code></summary>
+<details><summary><code>client.ledger.postingRulesUpdate(request) -> PostingRulesUpdateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20494,14 +20521,14 @@ client.ledger().postV1LedgerPostingRulesList(
 <dd>
 
 ```java
-client.ledger().postV1LedgerPostingRulesUpdate(
-    PostV1LedgerPostingRulesUpdateRequest
+client.ledger().postingRulesUpdate(
+    PostingRulesUpdateLedgerRequest
         .builder()
         .rules(
             Arrays.asList(
-                PostV1LedgerPostingRulesUpdateRequestRulesItem
+                PostingRulesUpdateLedgerRequestRulesItem
                     .builder()
-                    .key(PostV1LedgerPostingRulesUpdateRequestRulesItemKey.SALES_RECEIVABLE)
+                    .key(PostingRulesUpdateLedgerRequestRulesItemKey.SALES_RECEIVABLE)
                     .accountCode(
                         Nullable.ofNull()
                     )
@@ -20524,7 +20551,7 @@ client.ledger().postV1LedgerPostingRulesUpdate(
 <dl>
 <dd>
 
-**rules:** `List<PostV1LedgerPostingRulesUpdateRequestRulesItem>` 
+**rules:** `List<PostingRulesUpdateLedgerRequestRulesItem>` 
     
 </dd>
 </dl>
@@ -20536,7 +20563,7 @@ client.ledger().postV1LedgerPostingRulesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerOwnersCreate(request) -> PostV1LedgerOwnersCreateResponse</code></summary>
+<details><summary><code>client.ledger.ownersCreate(request) -> OwnersCreateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20549,8 +20576,8 @@ client.ledger().postV1LedgerPostingRulesUpdate(
 <dd>
 
 ```java
-client.ledger().postV1LedgerOwnersCreate(
-    PostV1LedgerOwnersCreateRequest
+client.ledger().ownersCreate(
+    OwnersCreateLedgerRequest
         .builder()
         .name("name")
         .build()
@@ -20609,7 +20636,7 @@ client.ledger().postV1LedgerOwnersCreate(
 <dl>
 <dd>
 
-**sharesType:** `Optional<PostV1LedgerOwnersCreateRequestSharesType>` 
+**sharesType:** `Optional<OwnersCreateLedgerRequestSharesType>` 
     
 </dd>
 </dl>
@@ -20633,7 +20660,7 @@ client.ledger().postV1LedgerOwnersCreate(
 <dl>
 <dd>
 
-**partnerLiability:** `Optional<PostV1LedgerOwnersCreateRequestPartnerLiability>` 
+**partnerLiability:** `Optional<OwnersCreateLedgerRequestPartnerLiability>` 
     
 </dd>
 </dl>
@@ -20657,7 +20684,7 @@ client.ledger().postV1LedgerOwnersCreate(
 <dl>
 <dd>
 
-**address:** `Optional<PostV1LedgerOwnersCreateRequestAddress>` 
+**address:** `Optional<OwnersCreateLedgerRequestAddress>` 
     
 </dd>
 </dl>
@@ -20669,7 +20696,7 @@ client.ledger().postV1LedgerOwnersCreate(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerOwnersUpdate(request) -> PostV1LedgerOwnersUpdateResponse</code></summary>
+<details><summary><code>client.ledger.ownersUpdate(request) -> OwnersUpdateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20682,8 +20709,8 @@ client.ledger().postV1LedgerOwnersCreate(
 <dd>
 
 ```java
-client.ledger().postV1LedgerOwnersUpdate(
-    PostV1LedgerOwnersUpdateRequest
+client.ledger().ownersUpdate(
+    OwnersUpdateLedgerRequest
         .builder()
         .id("id")
         .build()
@@ -20750,7 +20777,7 @@ client.ledger().postV1LedgerOwnersUpdate(
 <dl>
 <dd>
 
-**sharesType:** `Optional<PostV1LedgerOwnersUpdateRequestSharesType>` 
+**sharesType:** `Optional<OwnersUpdateLedgerRequestSharesType>` 
     
 </dd>
 </dl>
@@ -20774,7 +20801,7 @@ client.ledger().postV1LedgerOwnersUpdate(
 <dl>
 <dd>
 
-**partnerLiability:** `Optional<PostV1LedgerOwnersUpdateRequestPartnerLiability>` 
+**partnerLiability:** `Optional<OwnersUpdateLedgerRequestPartnerLiability>` 
     
 </dd>
 </dl>
@@ -20798,7 +20825,7 @@ client.ledger().postV1LedgerOwnersUpdate(
 <dl>
 <dd>
 
-**address:** `Optional<PostV1LedgerOwnersUpdateRequestAddress>` 
+**address:** `Optional<OwnersUpdateLedgerRequestAddress>` 
     
 </dd>
 </dl>
@@ -20810,7 +20837,7 @@ client.ledger().postV1LedgerOwnersUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerOwnersDelete(request) -> PostV1LedgerOwnersDeleteResponse</code></summary>
+<details><summary><code>client.ledger.ownersDelete(request) -> OwnersDeleteLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20823,8 +20850,8 @@ client.ledger().postV1LedgerOwnersUpdate(
 <dd>
 
 ```java
-client.ledger().postV1LedgerOwnersDelete(
-    PostV1LedgerOwnersDeleteRequest
+client.ledger().ownersDelete(
+    OwnersDeleteLedgerRequest
         .builder()
         .id("id")
         .build()
@@ -20855,7 +20882,7 @@ client.ledger().postV1LedgerOwnersDelete(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerOwnersList(request) -> PostV1LedgerOwnersListResponse</code></summary>
+<details><summary><code>client.ledger.ownersList(request) -> OwnersListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20868,8 +20895,8 @@ client.ledger().postV1LedgerOwnersDelete(
 <dd>
 
 ```java
-client.ledger().postV1LedgerOwnersList(
-    PostV1LedgerOwnersListRequest
+client.ledger().ownersList(
+    OwnersListLedgerRequest
         .builder()
         .build()
 );
@@ -20903,7 +20930,7 @@ client.ledger().postV1LedgerOwnersList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1LedgerOwnersListRequestSortItem>>` 
+**sort:** `Optional<List<OwnersListLedgerRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -20911,7 +20938,7 @@ client.ledger().postV1LedgerOwnersList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1LedgerOwnersListRequestFilterItem>>` 
+**filter:** `Optional<List<OwnersListLedgerRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -20931,7 +20958,7 @@ client.ledger().postV1LedgerOwnersList(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerJournalTransactionsGet(request) -> PostV1LedgerJournalTransactionsGetResponse</code></summary>
+<details><summary><code>client.ledger.journalTransactionsGet(request) -> JournalTransactionsGetLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20944,8 +20971,8 @@ client.ledger().postV1LedgerOwnersList(
 <dd>
 
 ```java
-client.ledger().postV1LedgerJournalTransactionsGet(
-    PostV1LedgerJournalTransactionsGetRequest
+client.ledger().journalTransactionsGet(
+    JournalTransactionsGetLedgerRequest
         .builder()
         .id("id")
         .build()
@@ -20976,7 +21003,7 @@ client.ledger().postV1LedgerJournalTransactionsGet(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.postV1LedgerJournalTransactionsCreate(request) -> PostV1LedgerJournalTransactionsCreateResponse</code></summary>
+<details><summary><code>client.ledger.journalTransactionsCreate(request) -> JournalTransactionsCreateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20989,13 +21016,13 @@ client.ledger().postV1LedgerJournalTransactionsGet(
 <dd>
 
 ```java
-client.ledger().postV1LedgerJournalTransactionsCreate(
-    PostV1LedgerJournalTransactionsCreateRequest
+client.ledger().journalTransactionsCreate(
+    JournalTransactionsCreateLedgerRequest
         .builder()
-        .date("date")
+        .date("2026-07-01")
         .entries(
             Arrays.asList(
-                PostV1LedgerJournalTransactionsCreateRequestEntriesItem
+                JournalTransactionsCreateLedgerRequestEntriesItem
                     .builder()
                     .accountCode("accountCode")
                     .build()
@@ -21033,7 +21060,7 @@ client.ledger().postV1LedgerJournalTransactionsCreate(
 <dl>
 <dd>
 
-**entries:** `List<PostV1LedgerJournalTransactionsCreateRequestEntriesItem>` 
+**entries:** `List<JournalTransactionsCreateLedgerRequestEntriesItem>` 
     
 </dd>
 </dl>
@@ -21045,7 +21072,7 @@ client.ledger().postV1LedgerJournalTransactionsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.nationalStatementLayoutsAvailableToTheCompany(request) -> PostV1LedgerStatementRowsSchemesResponse</code></summary>
+<details><summary><code>client.ledger.statementRowsSchemes(request) -> StatementRowsSchemesLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -21072,8 +21099,8 @@ The rows or codes of each return or registry deposit of the company country that
 <dd>
 
 ```java
-client.ledger().nationalStatementLayoutsAvailableToTheCompany(
-    PostV1LedgerStatementRowsSchemesRequest
+client.ledger().statementRowsSchemes(
+    StatementRowsSchemesLedgerRequest
         .builder()
         .build()
 );
@@ -21088,7 +21115,7 @@ client.ledger().nationalStatementLayoutsAvailableToTheCompany(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(request) -> PostV1LedgerStatementRowsListResponse</code></summary>
+<details><summary><code>client.ledger.statementRowsList(request) -> StatementRowsListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -21101,8 +21128,8 @@ client.ledger().nationalStatementLayoutsAvailableToTheCompany(
 <dd>
 
 ```java
-client.ledger().accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(
-    PostV1LedgerStatementRowsListRequest
+client.ledger().statementRowsList(
+    StatementRowsListLedgerRequest
         .builder()
         .scheme("scheme")
         .build()
@@ -21149,7 +21176,7 @@ client.ledger().accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeri
 </dl>
 </details>
 
-<details><summary><code>client.ledger.mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(request) -> PostV1LedgerStatementRowsSetResponse</code></summary>
+<details><summary><code>client.ledger.statementRowsSet(request) -> StatementRowsSetLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -21176,8 +21203,8 @@ A mapping on a code prefix covers every account whose code starts with it; the l
 <dd>
 
 ```java
-client.ledger().mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(
-    PostV1LedgerStatementRowsSetRequest
+client.ledger().statementRowsSet(
+    StatementRowsSetLedgerRequest
         .builder()
         .scheme("scheme")
         .accountCode("accountCode")
@@ -21225,7 +21252,8 @@ client.ledger().mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.officersOfTheCompany(request) -> PostV1OfficersListResponse</code></summary>
+## Officers
+<details><summary><code>client.officers.list(request) -> ListOfficersResponse</code></summary>
 <dl>
 <dd>
 
@@ -21252,8 +21280,8 @@ Directors, board members, the company secretary, representatives and liquidators
 <dd>
 
 ```java
-client.ledger().officersOfTheCompany(
-    PostV1OfficersListRequest
+client.officers().list(
+    ListOfficersRequest
         .builder()
         .build()
 );
@@ -21268,7 +21296,7 @@ client.ledger().officersOfTheCompany(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.recordAnOfficerOfTheCompany(request) -> PostV1OfficersCreateResponse</code></summary>
+<details><summary><code>client.officers.create(request) -> CreateOfficersResponse</code></summary>
 <dl>
 <dd>
 
@@ -21281,11 +21309,11 @@ client.ledger().officersOfTheCompany(
 <dd>
 
 ```java
-client.ledger().recordAnOfficerOfTheCompany(
-    PostV1OfficersCreateRequest
+client.officers().create(
+    CreateOfficersRequest
         .builder()
         .name("name")
-        .role(PostV1OfficersCreateRequestRole.DIRECTOR)
+        .role(CreateOfficersRequestRole.DIRECTOR)
         .build()
 );
 ```
@@ -21310,7 +21338,7 @@ client.ledger().recordAnOfficerOfTheCompany(
 <dl>
 <dd>
 
-**role:** `PostV1OfficersCreateRequestRole` 
+**role:** `CreateOfficersRequestRole` 
     
 </dd>
 </dl>
@@ -21370,7 +21398,7 @@ client.ledger().recordAnOfficerOfTheCompany(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.changeARecordedOfficer(request) -> PostV1OfficersUpdateResponse</code></summary>
+<details><summary><code>client.officers.update(request) -> UpdateOfficersResponse</code></summary>
 <dl>
 <dd>
 
@@ -21383,12 +21411,12 @@ client.ledger().recordAnOfficerOfTheCompany(
 <dd>
 
 ```java
-client.ledger().changeARecordedOfficer(
-    PostV1OfficersUpdateRequest
+client.officers().update(
+    UpdateOfficersRequest
         .builder()
         .id("id")
         .name("name")
-        .role(PostV1OfficersUpdateRequestRole.DIRECTOR)
+        .role(UpdateOfficersRequestRole.DIRECTOR)
         .build()
 );
 ```
@@ -21421,7 +21449,7 @@ client.ledger().changeARecordedOfficer(
 <dl>
 <dd>
 
-**role:** `PostV1OfficersUpdateRequestRole` 
+**role:** `UpdateOfficersRequestRole` 
     
 </dd>
 </dl>
@@ -21481,7 +21509,7 @@ client.ledger().changeARecordedOfficer(
 </dl>
 </details>
 
-<details><summary><code>client.ledger.removeARecordedOfficer(request) -> PostV1OfficersDeleteResponse</code></summary>
+<details><summary><code>client.officers.delete(request) -> DeleteOfficersResponse</code></summary>
 <dl>
 <dd>
 
@@ -21494,8 +21522,8 @@ client.ledger().changeARecordedOfficer(
 <dd>
 
 ```java
-client.ledger().removeARecordedOfficer(
-    PostV1OfficersDeleteRequest
+client.officers().delete(
+    DeleteOfficersRequest
         .builder()
         .id("id")
         .build()
@@ -21526,8 +21554,8 @@ client.ledger().removeARecordedOfficer(
 </dl>
 </details>
 
-## Migration
-<details><summary><code>client.migration.checkAHistoricalBooksPackageWithoutWritingAnything(request) -> PostV1MigrationBooksValidateResponse</code></summary>
+## migration
+<details><summary><code>client.migration.booksValidate(request) -> BooksValidateMigrationResponse</code></summary>
 <dl>
 <dd>
 
@@ -21554,10 +21582,10 @@ Runs every check the import runs (accounts, partners, balances, open invoices, a
 <dd>
 
 ```java
-client.migration().checkAHistoricalBooksPackageWithoutWritingAnything(
-    PostV1MigrationBooksValidateRequest
+client.migration().booksValidate(
+    BooksValidateMigrationRequest
         .builder()
-        .cutoverDate("cutoverDate")
+        .cutoverDate("2026-07-01")
         .build()
 );
 ```
@@ -21590,7 +21618,7 @@ client.migration().checkAHistoricalBooksPackageWithoutWritingAnything(
 <dl>
 <dd>
 
-**accounts:** `Optional<List<PostV1MigrationBooksValidateRequestAccountsItem>>` 
+**accounts:** `Optional<List<BooksValidateMigrationRequestAccountsItem>>` 
     
 </dd>
 </dl>
@@ -21598,7 +21626,7 @@ client.migration().checkAHistoricalBooksPackageWithoutWritingAnything(
 <dl>
 <dd>
 
-**partners:** `Optional<List<PostV1MigrationBooksValidateRequestPartnersItem>>` 
+**partners:** `Optional<List<BooksValidateMigrationRequestPartnersItem>>` 
     
 </dd>
 </dl>
@@ -21606,7 +21634,7 @@ client.migration().checkAHistoricalBooksPackageWithoutWritingAnything(
 <dl>
 <dd>
 
-**items:** `Optional<List<PostV1MigrationBooksValidateRequestItemsItem>>` 
+**items:** `Optional<List<BooksValidateMigrationRequestItemsItem>>` 
     
 </dd>
 </dl>
@@ -21614,7 +21642,7 @@ client.migration().checkAHistoricalBooksPackageWithoutWritingAnything(
 <dl>
 <dd>
 
-**openingBalances:** `Optional<PostV1MigrationBooksValidateRequestOpeningBalances>` 
+**openingBalances:** `Optional<BooksValidateMigrationRequestOpeningBalances>` 
     
 </dd>
 </dl>
@@ -21622,7 +21650,7 @@ client.migration().checkAHistoricalBooksPackageWithoutWritingAnything(
 <dl>
 <dd>
 
-**journal:** `Optional<List<PostV1MigrationBooksValidateRequestJournalItem>>` 
+**journal:** `Optional<List<BooksValidateMigrationRequestJournalItem>>` 
     
 </dd>
 </dl>
@@ -21630,7 +21658,7 @@ client.migration().checkAHistoricalBooksPackageWithoutWritingAnything(
 <dl>
 <dd>
 
-**openReceivables:** `Optional<List<PostV1MigrationBooksValidateRequestOpenReceivablesItem>>` 
+**openReceivables:** `Optional<List<BooksValidateMigrationRequestOpenReceivablesItem>>` 
     
 </dd>
 </dl>
@@ -21638,7 +21666,7 @@ client.migration().checkAHistoricalBooksPackageWithoutWritingAnything(
 <dl>
 <dd>
 
-**openPayables:** `Optional<List<PostV1MigrationBooksValidateRequestOpenPayablesItem>>` 
+**openPayables:** `Optional<List<BooksValidateMigrationRequestOpenPayablesItem>>` 
     
 </dd>
 </dl>
@@ -21646,7 +21674,7 @@ client.migration().checkAHistoricalBooksPackageWithoutWritingAnything(
 <dl>
 <dd>
 
-**assetGroups:** `Optional<List<PostV1MigrationBooksValidateRequestAssetGroupsItem>>` 
+**assetGroups:** `Optional<List<BooksValidateMigrationRequestAssetGroupsItem>>` 
     
 </dd>
 </dl>
@@ -21654,7 +21682,7 @@ client.migration().checkAHistoricalBooksPackageWithoutWritingAnything(
 <dl>
 <dd>
 
-**fixedAssets:** `Optional<List<PostV1MigrationBooksValidateRequestFixedAssetsItem>>` 
+**fixedAssets:** `Optional<List<BooksValidateMigrationRequestFixedAssetsItem>>` 
     
 </dd>
 </dl>
@@ -21662,7 +21690,7 @@ client.migration().checkAHistoricalBooksPackageWithoutWritingAnything(
 <dl>
 <dd>
 
-**stock:** `Optional<List<PostV1MigrationBooksValidateRequestStockItem>>` 
+**stock:** `Optional<List<BooksValidateMigrationRequestStockItem>>` 
     
 </dd>
 </dl>
@@ -21674,7 +21702,7 @@ client.migration().checkAHistoricalBooksPackageWithoutWritingAnything(
 </dl>
 </details>
 
-<details><summary><code>client.migration.importHistoricalBooksFromAPreviousAccountingSystem(request) -> PostV1MigrationBooksImportResponse</code></summary>
+<details><summary><code>client.migration.booksImport(request) -> BooksImportMigrationResponse</code></summary>
 <dl>
 <dd>
 
@@ -21701,10 +21729,10 @@ Brings a company over from another system in one call: chart of accounts, partne
 <dd>
 
 ```java
-client.migration().importHistoricalBooksFromAPreviousAccountingSystem(
-    PostV1MigrationBooksImportRequest
+client.migration().booksImport(
+    BooksImportMigrationRequest
         .builder()
-        .cutoverDate("cutoverDate")
+        .cutoverDate("2026-07-01")
         .build()
 );
 ```
@@ -21737,7 +21765,7 @@ client.migration().importHistoricalBooksFromAPreviousAccountingSystem(
 <dl>
 <dd>
 
-**accounts:** `Optional<List<PostV1MigrationBooksImportRequestAccountsItem>>` 
+**accounts:** `Optional<List<BooksImportMigrationRequestAccountsItem>>` 
     
 </dd>
 </dl>
@@ -21745,7 +21773,7 @@ client.migration().importHistoricalBooksFromAPreviousAccountingSystem(
 <dl>
 <dd>
 
-**partners:** `Optional<List<PostV1MigrationBooksImportRequestPartnersItem>>` 
+**partners:** `Optional<List<BooksImportMigrationRequestPartnersItem>>` 
     
 </dd>
 </dl>
@@ -21753,7 +21781,7 @@ client.migration().importHistoricalBooksFromAPreviousAccountingSystem(
 <dl>
 <dd>
 
-**items:** `Optional<List<PostV1MigrationBooksImportRequestItemsItem>>` 
+**items:** `Optional<List<BooksImportMigrationRequestItemsItem>>` 
     
 </dd>
 </dl>
@@ -21761,7 +21789,7 @@ client.migration().importHistoricalBooksFromAPreviousAccountingSystem(
 <dl>
 <dd>
 
-**openingBalances:** `Optional<PostV1MigrationBooksImportRequestOpeningBalances>` 
+**openingBalances:** `Optional<BooksImportMigrationRequestOpeningBalances>` 
     
 </dd>
 </dl>
@@ -21769,7 +21797,7 @@ client.migration().importHistoricalBooksFromAPreviousAccountingSystem(
 <dl>
 <dd>
 
-**journal:** `Optional<List<PostV1MigrationBooksImportRequestJournalItem>>` 
+**journal:** `Optional<List<BooksImportMigrationRequestJournalItem>>` 
     
 </dd>
 </dl>
@@ -21777,7 +21805,7 @@ client.migration().importHistoricalBooksFromAPreviousAccountingSystem(
 <dl>
 <dd>
 
-**openReceivables:** `Optional<List<PostV1MigrationBooksImportRequestOpenReceivablesItem>>` 
+**openReceivables:** `Optional<List<BooksImportMigrationRequestOpenReceivablesItem>>` 
     
 </dd>
 </dl>
@@ -21785,7 +21813,7 @@ client.migration().importHistoricalBooksFromAPreviousAccountingSystem(
 <dl>
 <dd>
 
-**openPayables:** `Optional<List<PostV1MigrationBooksImportRequestOpenPayablesItem>>` 
+**openPayables:** `Optional<List<BooksImportMigrationRequestOpenPayablesItem>>` 
     
 </dd>
 </dl>
@@ -21793,7 +21821,7 @@ client.migration().importHistoricalBooksFromAPreviousAccountingSystem(
 <dl>
 <dd>
 
-**assetGroups:** `Optional<List<PostV1MigrationBooksImportRequestAssetGroupsItem>>` 
+**assetGroups:** `Optional<List<BooksImportMigrationRequestAssetGroupsItem>>` 
     
 </dd>
 </dl>
@@ -21801,7 +21829,7 @@ client.migration().importHistoricalBooksFromAPreviousAccountingSystem(
 <dl>
 <dd>
 
-**fixedAssets:** `Optional<List<PostV1MigrationBooksImportRequestFixedAssetsItem>>` 
+**fixedAssets:** `Optional<List<BooksImportMigrationRequestFixedAssetsItem>>` 
     
 </dd>
 </dl>
@@ -21809,7 +21837,7 @@ client.migration().importHistoricalBooksFromAPreviousAccountingSystem(
 <dl>
 <dd>
 
-**stock:** `Optional<List<PostV1MigrationBooksImportRequestStockItem>>` 
+**stock:** `Optional<List<BooksImportMigrationRequestStockItem>>` 
     
 </dd>
 </dl>
@@ -21821,8 +21849,8 @@ client.migration().importHistoricalBooksFromAPreviousAccountingSystem(
 </dl>
 </details>
 
-## Assets
-<details><summary><code>client.assets.postV1AssetsGroupsCreate(request) -> PostV1AssetsGroupsCreateResponse</code></summary>
+## assets
+<details><summary><code>client.assets.groupsCreate(request) -> GroupsCreateAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21835,8 +21863,8 @@ client.migration().importHistoricalBooksFromAPreviousAccountingSystem(
 <dd>
 
 ```java
-client.assets().postV1AssetsGroupsCreate(
-    PostV1AssetsGroupsCreateRequest
+client.assets().groupsCreate(
+    GroupsCreateAssetsRequest
         .builder()
         .code("code")
         .name("name")
@@ -21910,7 +21938,7 @@ client.assets().postV1AssetsGroupsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.assets.postV1AssetsGroupsList(request) -> PostV1AssetsGroupsListResponse</code></summary>
+<details><summary><code>client.assets.groupsList(request) -> GroupsListAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21923,8 +21951,8 @@ client.assets().postV1AssetsGroupsCreate(
 <dd>
 
 ```java
-client.assets().postV1AssetsGroupsList(
-    PostV1AssetsGroupsListRequest
+client.assets().groupsList(
+    GroupsListAssetsRequest
         .builder()
         .build()
 );
@@ -21958,7 +21986,7 @@ client.assets().postV1AssetsGroupsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1AssetsGroupsListRequestSortItem>>` 
+**sort:** `Optional<List<GroupsListAssetsRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -21966,7 +21994,7 @@ client.assets().postV1AssetsGroupsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1AssetsGroupsListRequestFilterItem>>` 
+**filter:** `Optional<List<GroupsListAssetsRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -21986,7 +22014,7 @@ client.assets().postV1AssetsGroupsList(
 </dl>
 </details>
 
-<details><summary><code>client.assets.postV1AssetsAssetsCreate(request) -> PostV1AssetsAssetsCreateResponse</code></summary>
+<details><summary><code>client.assets.assetsCreate(request) -> AssetsCreateAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21999,14 +22027,14 @@ client.assets().postV1AssetsGroupsList(
 <dd>
 
 ```java
-client.assets().postV1AssetsAssetsCreate(
-    PostV1AssetsAssetsCreateRequest
+client.assets().assetsCreate(
+    AssetsCreateAssetsRequest
         .builder()
         .groupId("groupId")
         .code("code")
         .name("name")
-        .acquisitionDate("acquisitionDate")
-        .acquisitionCost("acquisitionCost")
+        .acquisitionDate("2026-07-01")
+        .acquisitionCost("121.0000")
         .build()
 );
 ```
@@ -22095,7 +22123,7 @@ client.assets().postV1AssetsAssetsCreate(
 <dl>
 <dd>
 
-**documents:** `Optional<List<PostV1AssetsAssetsCreateRequestDocumentsItem>>` 
+**documents:** `Optional<List<AssetsCreateAssetsRequestDocumentsItem>>` 
     
 </dd>
 </dl>
@@ -22107,7 +22135,7 @@ client.assets().postV1AssetsAssetsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.assets.postV1AssetsAssetsUpdate(request) -> PostV1AssetsAssetsUpdateResponse</code></summary>
+<details><summary><code>client.assets.assetsUpdate(request) -> AssetsUpdateAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22120,8 +22148,8 @@ client.assets().postV1AssetsAssetsCreate(
 <dd>
 
 ```java
-client.assets().postV1AssetsAssetsUpdate(
-    PostV1AssetsAssetsUpdateRequest
+client.assets().assetsUpdate(
+    AssetsUpdateAssetsRequest
         .builder()
         .id("id")
         .build()
@@ -22212,7 +22240,7 @@ client.assets().postV1AssetsAssetsUpdate(
 <dl>
 <dd>
 
-**documents:** `Optional<List<PostV1AssetsAssetsUpdateRequestDocumentsItem>>` 
+**documents:** `Optional<List<AssetsUpdateAssetsRequestDocumentsItem>>` 
     
 </dd>
 </dl>
@@ -22232,7 +22260,7 @@ client.assets().postV1AssetsAssetsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.assets.postV1AssetsAssetsInputVat(request) -> PostV1AssetsAssetsInputVatResponse</code></summary>
+<details><summary><code>client.assets.assetsInputVat(request) -> AssetsInputVatAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22259,18 +22287,18 @@ Record the input VAT facts of a capital good that the annual VAT return needs fo
 <dd>
 
 ```java
-client.assets().postV1AssetsAssetsInputVat(
-    PostV1AssetsAssetsInputVatRequest
+client.assets().assetsInputVat(
+    AssetsInputVatAssetsRequest
         .builder()
         .id("id")
         .inputVatRealEstate(true)
         .inputVatUseChanges(
             Arrays.asList(
-                PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem
+                AssetsInputVatAssetsRequestInputVatUseChangesItem
                     .builder()
                     .year(1000000L)
-                    .percent("percent")
-                    .reason(PostV1AssetsAssetsInputVatRequestInputVatUseChangesItemReason.USE_CHANGE)
+                    .percent("121.00")
+                    .reason(AssetsInputVatAssetsRequestInputVatUseChangesItemReason.USE_CHANGE)
                     .build()
             )
         )
@@ -22330,7 +22358,7 @@ client.assets().postV1AssetsAssetsInputVat(
 <dl>
 <dd>
 
-**inputVatUseChanges:** `List<PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem>` 
+**inputVatUseChanges:** `List<AssetsInputVatAssetsRequestInputVatUseChangesItem>` 
     
 </dd>
 </dl>
@@ -22342,7 +22370,7 @@ client.assets().postV1AssetsAssetsInputVat(
 </dl>
 </details>
 
-<details><summary><code>client.assets.postV1AssetsAssetsGet(request) -> PostV1AssetsAssetsGetResponse</code></summary>
+<details><summary><code>client.assets.assetsGet(request) -> AssetsGetAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22355,8 +22383,8 @@ client.assets().postV1AssetsAssetsInputVat(
 <dd>
 
 ```java
-client.assets().postV1AssetsAssetsGet(
-    PostV1AssetsAssetsGetRequest
+client.assets().assetsGet(
+    AssetsGetAssetsRequest
         .builder()
         .id("id")
         .build()
@@ -22387,7 +22415,7 @@ client.assets().postV1AssetsAssetsGet(
 </dl>
 </details>
 
-<details><summary><code>client.assets.postV1AssetsAssetsList(request) -> PostV1AssetsAssetsListResponse</code></summary>
+<details><summary><code>client.assets.assetsList(request) -> AssetsListAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22400,8 +22428,8 @@ client.assets().postV1AssetsAssetsGet(
 <dd>
 
 ```java
-client.assets().postV1AssetsAssetsList(
-    PostV1AssetsAssetsListRequest
+client.assets().assetsList(
+    AssetsListAssetsRequest
         .builder()
         .build()
 );
@@ -22435,7 +22463,7 @@ client.assets().postV1AssetsAssetsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1AssetsAssetsListRequestSortItem>>` 
+**sort:** `Optional<List<AssetsListAssetsRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -22443,7 +22471,7 @@ client.assets().postV1AssetsAssetsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1AssetsAssetsListRequestFilterItem>>` 
+**filter:** `Optional<List<AssetsListAssetsRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -22463,7 +22491,7 @@ client.assets().postV1AssetsAssetsList(
 </dl>
 </details>
 
-<details><summary><code>client.assets.postV1AssetsAssetsModernize(request) -> PostV1AssetsAssetsModernizeResponse</code></summary>
+<details><summary><code>client.assets.assetsModernize(request) -> AssetsModernizeAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22476,12 +22504,12 @@ client.assets().postV1AssetsAssetsList(
 <dd>
 
 ```java
-client.assets().postV1AssetsAssetsModernize(
-    PostV1AssetsAssetsModernizeRequest
+client.assets().assetsModernize(
+    AssetsModernizeAssetsRequest
         .builder()
         .id("id")
-        .date("date")
-        .amount("amount")
+        .date("2026-07-01")
+        .amount("121.0000")
         .build()
 );
 ```
@@ -22542,7 +22570,100 @@ client.assets().postV1AssetsAssetsModernize(
 </dl>
 </details>
 
-<details><summary><code>client.assets.postV1AssetsDepreciationPreview(request) -> PostV1AssetsDepreciationPreviewResponse</code></summary>
+<details><summary><code>client.assets.assetsDispose(request) -> AssetsDisposeAssetsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().assetsDispose(
+    AssetsDisposeAssetsRequest
+        .builder()
+        .id("id")
+        .date("2026-07-01")
+        .reason(AssetsDisposeAssetsRequestReason.SOLD)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reason:** `AssetsDisposeAssetsRequestReason` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**proceeds:** `Optional<String>` — Sale price excluding VAT; 0 when scrapped or written off
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.assets.depreciationPreview(request) -> DepreciationPreviewAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22555,8 +22676,8 @@ client.assets().postV1AssetsAssetsModernize(
 <dd>
 
 ```java
-client.assets().postV1AssetsDepreciationPreview(
-    PostV1AssetsDepreciationPreviewRequest
+client.assets().depreciationPreview(
+    DepreciationPreviewAssetsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -22596,7 +22717,7 @@ client.assets().postV1AssetsDepreciationPreview(
 </dl>
 </details>
 
-<details><summary><code>client.assets.postV1AssetsDepreciationPost(request) -> PostV1AssetsDepreciationPostResponse</code></summary>
+<details><summary><code>client.assets.depreciationPost(request) -> DepreciationPostAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22609,8 +22730,8 @@ client.assets().postV1AssetsDepreciationPreview(
 <dd>
 
 ```java
-client.assets().postV1AssetsDepreciationPost(
-    PostV1AssetsDepreciationPostRequest
+client.assets().depreciationPost(
+    DepreciationPostAssetsRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -22650,8 +22771,8 @@ client.assets().postV1AssetsDepreciationPost(
 </dl>
 </details>
 
-## Hr
-<details><summary><code>client.hr.postV1HrPositionsCreate(request) -> PostV1HrPositionsCreateResponse</code></summary>
+## hr
+<details><summary><code>client.hr.positionsCreate(request) -> PositionsCreateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -22664,8 +22785,8 @@ client.assets().postV1AssetsDepreciationPost(
 <dd>
 
 ```java
-client.hr().postV1HrPositionsCreate(
-    PostV1HrPositionsCreateRequest
+client.hr().positionsCreate(
+    PositionsCreateHrRequest
         .builder()
         .name("name")
         .build()
@@ -22700,7 +22821,7 @@ client.hr().postV1HrPositionsCreate(
 <dl>
 <dd>
 
-**translations:** `Optional<Map<String, PostV1HrPositionsCreateRequestTranslationsValue>>` 
+**translations:** `Optional<Map<String, PositionsCreateHrRequestTranslationsValue>>` 
     
 </dd>
 </dl>
@@ -22712,7 +22833,7 @@ client.hr().postV1HrPositionsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrPositionsUpdate(request) -> PostV1HrPositionsUpdateResponse</code></summary>
+<details><summary><code>client.hr.positionsUpdate(request) -> PositionsUpdateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -22725,8 +22846,8 @@ client.hr().postV1HrPositionsCreate(
 <dd>
 
 ```java
-client.hr().postV1HrPositionsUpdate(
-    PostV1HrPositionsUpdateRequest
+client.hr().positionsUpdate(
+    PositionsUpdateHrRequest
         .builder()
         .id("id")
         .build()
@@ -22769,7 +22890,7 @@ client.hr().postV1HrPositionsUpdate(
 <dl>
 <dd>
 
-**translations:** `Optional<Map<String, Optional<PostV1HrPositionsUpdateRequestTranslationsValue>>>` 
+**translations:** `Optional<Map<String, Optional<PositionsUpdateHrRequestTranslationsValue>>>` 
     
 </dd>
 </dl>
@@ -22781,7 +22902,7 @@ client.hr().postV1HrPositionsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrPositionsList(request) -> PostV1HrPositionsListResponse</code></summary>
+<details><summary><code>client.hr.positionsList(request) -> PositionsListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -22794,8 +22915,8 @@ client.hr().postV1HrPositionsUpdate(
 <dd>
 
 ```java
-client.hr().postV1HrPositionsList(
-    PostV1HrPositionsListRequest
+client.hr().positionsList(
+    PositionsListHrRequest
         .builder()
         .build()
 );
@@ -22829,7 +22950,7 @@ client.hr().postV1HrPositionsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1HrPositionsListRequestSortItem>>` 
+**sort:** `Optional<List<PositionsListHrRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -22837,7 +22958,7 @@ client.hr().postV1HrPositionsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1HrPositionsListRequestFilterItem>>` 
+**filter:** `Optional<List<PositionsListHrRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -22857,7 +22978,7 @@ client.hr().postV1HrPositionsList(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrEmployeesCreate(request) -> PostV1HrEmployeesCreateResponse</code></summary>
+<details><summary><code>client.hr.employeesCreate(request) -> EmployeesCreateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -22870,8 +22991,8 @@ client.hr().postV1HrPositionsList(
 <dd>
 
 ```java
-client.hr().postV1HrEmployeesCreate(
-    PostV1HrEmployeesCreateRequest
+client.hr().employeesCreate(
+    EmployeesCreateHrRequest
         .builder()
         .firstName("firstName")
         .lastName("lastName")
@@ -22947,7 +23068,7 @@ client.hr().postV1HrEmployeesCreate(
 <dl>
 <dd>
 
-**address:** `Optional<PostV1HrEmployeesCreateRequestAddress>` 
+**address:** `Optional<EmployeesCreateHrRequestAddress>` 
     
 </dd>
 </dl>
@@ -23027,7 +23148,7 @@ client.hr().postV1HrEmployeesCreate(
 <dl>
 <dd>
 
-**attributes:** `Optional<List<PostV1HrEmployeesCreateRequestAttributesItem>>` 
+**attributes:** `Optional<List<EmployeesCreateHrRequestAttributesItem>>` 
     
 </dd>
 </dl>
@@ -23039,7 +23160,7 @@ client.hr().postV1HrEmployeesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrEmployeesUpdate(request) -> PostV1HrEmployeesUpdateResponse</code></summary>
+<details><summary><code>client.hr.employeesUpdate(request) -> EmployeesUpdateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23052,8 +23173,8 @@ client.hr().postV1HrEmployeesCreate(
 <dd>
 
 ```java
-client.hr().postV1HrEmployeesUpdate(
-    PostV1HrEmployeesUpdateRequest
+client.hr().employeesUpdate(
+    EmployeesUpdateHrRequest
         .builder()
         .id("id")
         .build()
@@ -23128,7 +23249,7 @@ client.hr().postV1HrEmployeesUpdate(
 <dl>
 <dd>
 
-**address:** `Optional<PostV1HrEmployeesUpdateRequestAddress>` 
+**address:** `Optional<EmployeesUpdateHrRequestAddress>` 
     
 </dd>
 </dl>
@@ -23208,7 +23329,7 @@ client.hr().postV1HrEmployeesUpdate(
 <dl>
 <dd>
 
-**attributes:** `Optional<List<PostV1HrEmployeesUpdateRequestAttributesItem>>` 
+**attributes:** `Optional<List<EmployeesUpdateHrRequestAttributesItem>>` 
     
 </dd>
 </dl>
@@ -23232,7 +23353,7 @@ client.hr().postV1HrEmployeesUpdate(
 <dl>
 <dd>
 
-**status:** `Optional<PostV1HrEmployeesUpdateRequestStatus>` 
+**status:** `Optional<EmployeesUpdateHrRequestStatus>` 
     
 </dd>
 </dl>
@@ -23244,7 +23365,7 @@ client.hr().postV1HrEmployeesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrEmployeesGet(request) -> PostV1HrEmployeesGetResponse</code></summary>
+<details><summary><code>client.hr.employeesGet(request) -> EmployeesGetHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23257,8 +23378,8 @@ client.hr().postV1HrEmployeesUpdate(
 <dd>
 
 ```java
-client.hr().postV1HrEmployeesGet(
-    PostV1HrEmployeesGetRequest
+client.hr().employeesGet(
+    EmployeesGetHrRequest
         .builder()
         .id("id")
         .build()
@@ -23289,7 +23410,7 @@ client.hr().postV1HrEmployeesGet(
 </dl>
 </details>
 
-<details><summary><code>client.hr.extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(request) -> PostV1HrEmployeesFieldsResponse</code></summary>
+<details><summary><code>client.hr.employeesFields(request) -> EmployeesFieldsHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23316,8 +23437,8 @@ Attributes a filing of the company country needs about a person that the shared 
 <dd>
 
 ```java
-client.hr().extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(
-    PostV1HrEmployeesFieldsRequest
+client.hr().employeesFields(
+    EmployeesFieldsHrRequest
         .builder()
         .build()
 );
@@ -23332,7 +23453,7 @@ client.hr().extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrEmployeesList(request) -> PostV1HrEmployeesListResponse</code></summary>
+<details><summary><code>client.hr.employeesList(request) -> EmployeesListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23345,8 +23466,8 @@ client.hr().extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(
 <dd>
 
 ```java
-client.hr().postV1HrEmployeesList(
-    PostV1HrEmployeesListRequest
+client.hr().employeesList(
+    EmployeesListHrRequest
         .builder()
         .build()
 );
@@ -23380,7 +23501,7 @@ client.hr().postV1HrEmployeesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1HrEmployeesListRequestSortItem>>` 
+**sort:** `Optional<List<EmployeesListHrRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -23388,7 +23509,7 @@ client.hr().postV1HrEmployeesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1HrEmployeesListRequestFilterItem>>` 
+**filter:** `Optional<List<EmployeesListHrRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -23408,7 +23529,7 @@ client.hr().postV1HrEmployeesList(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrEmployeesDelete(request) -> PostV1HrEmployeesDeleteResponse</code></summary>
+<details><summary><code>client.hr.employeesDelete(request) -> EmployeesDeleteHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23421,8 +23542,8 @@ client.hr().postV1HrEmployeesList(
 <dd>
 
 ```java
-client.hr().postV1HrEmployeesDelete(
-    PostV1HrEmployeesDeleteRequest
+client.hr().employeesDelete(
+    EmployeesDeleteHrRequest
         .builder()
         .id("id")
         .build()
@@ -23453,7 +23574,7 @@ client.hr().postV1HrEmployeesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.hr.blankAnEmployeesPersonalDataAndHideTheRecord(request) -> PostV1HrEmployeesAnonymizeResponse</code></summary>
+<details><summary><code>client.hr.employeesAnonymize(request) -> EmployeesAnonymizeHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23480,8 +23601,8 @@ Replaces the name with a placeholder and removes personal code, birth date, cont
 <dd>
 
 ```java
-client.hr().blankAnEmployeesPersonalDataAndHideTheRecord(
-    PostV1HrEmployeesAnonymizeRequest
+client.hr().employeesAnonymize(
+    EmployeesAnonymizeHrRequest
         .builder()
         .id("id")
         .build()
@@ -23512,7 +23633,7 @@ client.hr().blankAnEmployeesPersonalDataAndHideTheRecord(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrContractsCreate(request) -> PostV1HrContractsCreateResponse</code></summary>
+<details><summary><code>client.hr.contractsCreate(request) -> ContractsCreateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23525,12 +23646,12 @@ client.hr().blankAnEmployeesPersonalDataAndHideTheRecord(
 <dd>
 
 ```java
-client.hr().postV1HrContractsCreate(
-    PostV1HrContractsCreateRequest
+client.hr().contractsCreate(
+    ContractsCreateHrRequest
         .builder()
         .employeeId("employeeId")
-        .startDate("startDate")
-        .baseSalary("baseSalary")
+        .startDate("2026-07-01")
+        .baseSalary("121.0000")
         .build()
 );
 ```
@@ -23595,7 +23716,7 @@ client.hr().postV1HrContractsCreate(
 <dl>
 <dd>
 
-**type:** `Optional<PostV1HrContractsCreateRequestType>` 
+**type:** `Optional<ContractsCreateHrRequestType>` 
     
 </dd>
 </dl>
@@ -23627,7 +23748,7 @@ client.hr().postV1HrContractsCreate(
 <dl>
 <dd>
 
-**salaryType:** `Optional<PostV1HrContractsCreateRequestSalaryType>` 
+**salaryType:** `Optional<ContractsCreateHrRequestSalaryType>` 
     
 </dd>
 </dl>
@@ -23655,7 +23776,7 @@ client.hr().postV1HrContractsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrContractsEnd(request) -> PostV1HrContractsEndResponse</code></summary>
+<details><summary><code>client.hr.contractsEnd(request) -> ContractsEndHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23668,11 +23789,11 @@ client.hr().postV1HrContractsCreate(
 <dd>
 
 ```java
-client.hr().postV1HrContractsEnd(
-    PostV1HrContractsEndRequest
+client.hr().contractsEnd(
+    ContractsEndHrRequest
         .builder()
         .id("id")
-        .endDate("endDate")
+        .endDate("2026-07-01")
         .build()
 );
 ```
@@ -23717,7 +23838,7 @@ client.hr().postV1HrContractsEnd(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrContractsList(request) -> PostV1HrContractsListResponse</code></summary>
+<details><summary><code>client.hr.contractsList(request) -> ContractsListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23730,8 +23851,8 @@ client.hr().postV1HrContractsEnd(
 <dd>
 
 ```java
-client.hr().postV1HrContractsList(
-    PostV1HrContractsListRequest
+client.hr().contractsList(
+    ContractsListHrRequest
         .builder()
         .build()
 );
@@ -23765,7 +23886,7 @@ client.hr().postV1HrContractsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1HrContractsListRequestSortItem>>` 
+**sort:** `Optional<List<ContractsListHrRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -23773,7 +23894,7 @@ client.hr().postV1HrContractsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1HrContractsListRequestFilterItem>>` 
+**filter:** `Optional<List<ContractsListHrRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -23793,7 +23914,7 @@ client.hr().postV1HrContractsList(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrLeaveBalancesSet(request) -> PostV1HrLeaveBalancesSetResponse</code></summary>
+<details><summary><code>client.hr.leaveBalancesSet(request) -> LeaveBalancesSetHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23806,12 +23927,12 @@ client.hr().postV1HrContractsList(
 <dd>
 
 ```java
-client.hr().postV1HrLeaveBalancesSet(
-    PostV1HrLeaveBalancesSetRequest
+client.hr().leaveBalancesSet(
+    LeaveBalancesSetHrRequest
         .builder()
         .employeeId("employeeId")
         .year(1000000L)
-        .entitledDays("entitledDays")
+        .entitledDays("121.00")
         .build()
 );
 ```
@@ -23864,7 +23985,7 @@ client.hr().postV1HrLeaveBalancesSet(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrLeaveBalancesList(request) -> PostV1HrLeaveBalancesListResponse</code></summary>
+<details><summary><code>client.hr.leaveBalancesList(request) -> LeaveBalancesListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23877,8 +23998,8 @@ client.hr().postV1HrLeaveBalancesSet(
 <dd>
 
 ```java
-client.hr().postV1HrLeaveBalancesList(
-    PostV1HrLeaveBalancesListRequest
+client.hr().leaveBalancesList(
+    LeaveBalancesListHrRequest
         .builder()
         .build()
 );
@@ -23916,7 +24037,7 @@ client.hr().postV1HrLeaveBalancesList(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrIncapacityCertificatesCreate(request) -> PostV1HrIncapacityCertificatesCreateResponse</code></summary>
+<details><summary><code>client.hr.incapacityCertificatesCreate(request) -> IncapacityCertificatesCreateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23929,13 +24050,13 @@ client.hr().postV1HrLeaveBalancesList(
 <dd>
 
 ```java
-client.hr().postV1HrIncapacityCertificatesCreate(
-    PostV1HrIncapacityCertificatesCreateRequest
+client.hr().incapacityCertificatesCreate(
+    IncapacityCertificatesCreateHrRequest
         .builder()
         .employeeId("employeeId")
         .number("number")
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -24012,7 +24133,7 @@ client.hr().postV1HrIncapacityCertificatesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrIncapacityCertificatesList(request) -> PostV1HrIncapacityCertificatesListResponse</code></summary>
+<details><summary><code>client.hr.incapacityCertificatesList(request) -> IncapacityCertificatesListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -24025,8 +24146,8 @@ client.hr().postV1HrIncapacityCertificatesCreate(
 <dd>
 
 ```java
-client.hr().postV1HrIncapacityCertificatesList(
-    PostV1HrIncapacityCertificatesListRequest
+client.hr().incapacityCertificatesList(
+    IncapacityCertificatesListHrRequest
         .builder()
         .build()
 );
@@ -24060,7 +24181,7 @@ client.hr().postV1HrIncapacityCertificatesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1HrIncapacityCertificatesListRequestSortItem>>` 
+**sort:** `Optional<List<IncapacityCertificatesListHrRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -24068,7 +24189,7 @@ client.hr().postV1HrIncapacityCertificatesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1HrIncapacityCertificatesListRequestFilterItem>>` 
+**filter:** `Optional<List<IncapacityCertificatesListHrRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -24088,7 +24209,7 @@ client.hr().postV1HrIncapacityCertificatesList(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrEmployeesRecordsCreate(request) -> PostV1HrEmployeesRecordsCreateResponse</code></summary>
+<details><summary><code>client.hr.employeesRecordsCreate(request) -> EmployeesRecordsCreateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -24101,11 +24222,11 @@ client.hr().postV1HrIncapacityCertificatesList(
 <dd>
 
 ```java
-client.hr().postV1HrEmployeesRecordsCreate(
-    PostV1HrEmployeesRecordsCreateRequest
+client.hr().employeesRecordsCreate(
+    EmployeesRecordsCreateHrRequest
         .builder()
         .employeeId("employeeId")
-        .type(PostV1HrEmployeesRecordsCreateRequestType.EDUCATION)
+        .type(EmployeesRecordsCreateHrRequestType.EDUCATION)
         .title("title")
         .build()
 );
@@ -24131,7 +24252,7 @@ client.hr().postV1HrEmployeesRecordsCreate(
 <dl>
 <dd>
 
-**type:** `PostV1HrEmployeesRecordsCreateRequestType` 
+**type:** `EmployeesRecordsCreateHrRequestType` 
     
 </dd>
 </dl>
@@ -24191,7 +24312,7 @@ client.hr().postV1HrEmployeesRecordsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrEmployeesRecordsUpdate(request) -> PostV1HrEmployeesRecordsUpdateResponse</code></summary>
+<details><summary><code>client.hr.employeesRecordsUpdate(request) -> EmployeesRecordsUpdateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -24204,8 +24325,8 @@ client.hr().postV1HrEmployeesRecordsCreate(
 <dd>
 
 ```java
-client.hr().postV1HrEmployeesRecordsUpdate(
-    PostV1HrEmployeesRecordsUpdateRequest
+client.hr().employeesRecordsUpdate(
+    EmployeesRecordsUpdateHrRequest
         .builder()
         .id("id")
         .build()
@@ -24232,7 +24353,7 @@ client.hr().postV1HrEmployeesRecordsUpdate(
 <dl>
 <dd>
 
-**type:** `Optional<PostV1HrEmployeesRecordsUpdateRequestType>` 
+**type:** `Optional<EmployeesRecordsUpdateHrRequestType>` 
     
 </dd>
 </dl>
@@ -24292,7 +24413,7 @@ client.hr().postV1HrEmployeesRecordsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrEmployeesRecordsDelete(request) -> PostV1HrEmployeesRecordsDeleteResponse</code></summary>
+<details><summary><code>client.hr.employeesRecordsDelete(request) -> EmployeesRecordsDeleteHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -24305,8 +24426,8 @@ client.hr().postV1HrEmployeesRecordsUpdate(
 <dd>
 
 ```java
-client.hr().postV1HrEmployeesRecordsDelete(
-    PostV1HrEmployeesRecordsDeleteRequest
+client.hr().employeesRecordsDelete(
+    EmployeesRecordsDeleteHrRequest
         .builder()
         .id("id")
         .build()
@@ -24337,7 +24458,7 @@ client.hr().postV1HrEmployeesRecordsDelete(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrEmployeesRecordsList(request) -> PostV1HrEmployeesRecordsListResponse</code></summary>
+<details><summary><code>client.hr.employeesRecordsList(request) -> EmployeesRecordsListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -24350,8 +24471,8 @@ client.hr().postV1HrEmployeesRecordsDelete(
 <dd>
 
 ```java
-client.hr().postV1HrEmployeesRecordsList(
-    PostV1HrEmployeesRecordsListRequest
+client.hr().employeesRecordsList(
+    EmployeesRecordsListHrRequest
         .builder()
         .build()
 );
@@ -24385,7 +24506,7 @@ client.hr().postV1HrEmployeesRecordsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1HrEmployeesRecordsListRequestSortItem>>` 
+**sort:** `Optional<List<EmployeesRecordsListHrRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -24393,7 +24514,7 @@ client.hr().postV1HrEmployeesRecordsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1HrEmployeesRecordsListRequestFilterItem>>` 
+**filter:** `Optional<List<EmployeesRecordsListHrRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -24413,7 +24534,7 @@ client.hr().postV1HrEmployeesRecordsList(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrEmployeesAttachmentsList(request) -> PostV1HrEmployeesAttachmentsListResponse</code></summary>
+<details><summary><code>client.hr.employeesAttachmentsList(request) -> EmployeesAttachmentsListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -24426,8 +24547,8 @@ client.hr().postV1HrEmployeesRecordsList(
 <dd>
 
 ```java
-client.hr().postV1HrEmployeesAttachmentsList(
-    PostV1HrEmployeesAttachmentsListRequest
+client.hr().employeesAttachmentsList(
+    EmployeesAttachmentsListHrRequest
         .builder()
         .employeeId("employeeId")
         .build()
@@ -24458,7 +24579,7 @@ client.hr().postV1HrEmployeesAttachmentsList(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrTimesheetsGenerate(request) -> PostV1HrTimesheetsGenerateResponse</code></summary>
+<details><summary><code>client.hr.timesheetsGenerate(request) -> TimesheetsGenerateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -24471,8 +24592,8 @@ client.hr().postV1HrEmployeesAttachmentsList(
 <dd>
 
 ```java
-client.hr().postV1HrTimesheetsGenerate(
-    PostV1HrTimesheetsGenerateRequest
+client.hr().timesheetsGenerate(
+    TimesheetsGenerateHrRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -24520,7 +24641,7 @@ client.hr().postV1HrTimesheetsGenerate(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrTimesheetsUpsert(request) -> PostV1HrTimesheetsUpsertResponse</code></summary>
+<details><summary><code>client.hr.timesheetsUpsert(request) -> TimesheetsUpsertHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -24533,19 +24654,19 @@ client.hr().postV1HrTimesheetsGenerate(
 <dd>
 
 ```java
-client.hr().postV1HrTimesheetsUpsert(
-    PostV1HrTimesheetsUpsertRequest
+client.hr().timesheetsUpsert(
+    TimesheetsUpsertHrRequest
         .builder()
         .employeeId("employeeId")
         .year(1000000L)
         .month(1000000L)
         .days(
             Arrays.asList(
-                PostV1HrTimesheetsUpsertRequestDaysItem
+                TimesheetsUpsertHrRequestDaysItem
                     .builder()
                     .day(1000000L)
-                    .hours("hours")
-                    .type(PostV1HrTimesheetsUpsertRequestDaysItemType.WORK)
+                    .hours("121.00")
+                    .type(TimesheetsUpsertHrRequestDaysItemType.WORK)
                     .build()
             )
         )
@@ -24589,7 +24710,7 @@ client.hr().postV1HrTimesheetsUpsert(
 <dl>
 <dd>
 
-**days:** `List<PostV1HrTimesheetsUpsertRequestDaysItem>` 
+**days:** `List<TimesheetsUpsertHrRequestDaysItem>` 
     
 </dd>
 </dl>
@@ -24601,7 +24722,7 @@ client.hr().postV1HrTimesheetsUpsert(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrTimesheetsGet(request) -> PostV1HrTimesheetsGetResponse</code></summary>
+<details><summary><code>client.hr.timesheetsGet(request) -> TimesheetsGetHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -24614,8 +24735,8 @@ client.hr().postV1HrTimesheetsUpsert(
 <dd>
 
 ```java
-client.hr().postV1HrTimesheetsGet(
-    PostV1HrTimesheetsGetRequest
+client.hr().timesheetsGet(
+    TimesheetsGetHrRequest
         .builder()
         .employeeId("employeeId")
         .year(1000000L)
@@ -24664,7 +24785,7 @@ client.hr().postV1HrTimesheetsGet(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrTimesheetsList(request) -> PostV1HrTimesheetsListResponse</code></summary>
+<details><summary><code>client.hr.timesheetsList(request) -> TimesheetsListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -24677,8 +24798,8 @@ client.hr().postV1HrTimesheetsGet(
 <dd>
 
 ```java
-client.hr().postV1HrTimesheetsList(
-    PostV1HrTimesheetsListRequest
+client.hr().timesheetsList(
+    TimesheetsListHrRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -24718,7 +24839,7 @@ client.hr().postV1HrTimesheetsList(
 </dl>
 </details>
 
-<details><summary><code>client.hr.postV1HrTimesheetsDelete(request) -> PostV1HrTimesheetsDeleteResponse</code></summary>
+<details><summary><code>client.hr.timesheetsDelete(request) -> TimesheetsDeleteHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -24731,8 +24852,8 @@ client.hr().postV1HrTimesheetsList(
 <dd>
 
 ```java
-client.hr().postV1HrTimesheetsDelete(
-    PostV1HrTimesheetsDeleteRequest
+client.hr().timesheetsDelete(
+    TimesheetsDeleteHrRequest
         .builder()
         .id("id")
         .build()
@@ -24763,8 +24884,8 @@ client.hr().postV1HrTimesheetsDelete(
 </dl>
 </details>
 
-## Fleet
-<details><summary><code>client.fleet.postV1FleetVehiclesCreate(request) -> PostV1FleetVehiclesCreateResponse</code></summary>
+## fleet
+<details><summary><code>client.fleet.vehiclesCreate(request) -> VehiclesCreateFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -24777,8 +24898,8 @@ client.hr().postV1HrTimesheetsDelete(
 <dd>
 
 ```java
-client.fleet().postV1FleetVehiclesCreate(
-    PostV1FleetVehiclesCreateRequest
+client.fleet().vehiclesCreate(
+    VehiclesCreateFleetRequest
         .builder()
         .plateNumber("plateNumber")
         .make("make")
@@ -24839,7 +24960,7 @@ client.fleet().postV1FleetVehiclesCreate(
 <dl>
 <dd>
 
-**fuelType:** `Optional<PostV1FleetVehiclesCreateRequestFuelType>` 
+**fuelType:** `Optional<VehiclesCreateFleetRequestFuelType>` 
     
 </dd>
 </dl>
@@ -24895,7 +25016,7 @@ client.fleet().postV1FleetVehiclesCreate(
 <dl>
 <dd>
 
-**documents:** `Optional<List<PostV1FleetVehiclesCreateRequestDocumentsItem>>` 
+**documents:** `Optional<List<VehiclesCreateFleetRequestDocumentsItem>>` 
     
 </dd>
 </dl>
@@ -24907,7 +25028,7 @@ client.fleet().postV1FleetVehiclesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.fleet.postV1FleetVehiclesUpdate(request) -> PostV1FleetVehiclesUpdateResponse</code></summary>
+<details><summary><code>client.fleet.vehiclesUpdate(request) -> VehiclesUpdateFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -24920,8 +25041,8 @@ client.fleet().postV1FleetVehiclesCreate(
 <dd>
 
 ```java
-client.fleet().postV1FleetVehiclesUpdate(
-    PostV1FleetVehiclesUpdateRequest
+client.fleet().vehiclesUpdate(
+    VehiclesUpdateFleetRequest
         .builder()
         .id("id")
         .build()
@@ -24988,7 +25109,7 @@ client.fleet().postV1FleetVehiclesUpdate(
 <dl>
 <dd>
 
-**fuelType:** `Optional<PostV1FleetVehiclesUpdateRequestFuelType>` 
+**fuelType:** `Optional<VehiclesUpdateFleetRequestFuelType>` 
     
 </dd>
 </dl>
@@ -25036,7 +25157,7 @@ client.fleet().postV1FleetVehiclesUpdate(
 <dl>
 <dd>
 
-**status:** `Optional<PostV1FleetVehiclesUpdateRequestStatus>` 
+**status:** `Optional<VehiclesUpdateFleetRequestStatus>` 
     
 </dd>
 </dl>
@@ -25056,7 +25177,7 @@ client.fleet().postV1FleetVehiclesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.fleet.postV1FleetVehiclesGet(request) -> PostV1FleetVehiclesGetResponse</code></summary>
+<details><summary><code>client.fleet.vehiclesGet(request) -> VehiclesGetFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -25069,8 +25190,8 @@ client.fleet().postV1FleetVehiclesUpdate(
 <dd>
 
 ```java
-client.fleet().postV1FleetVehiclesGet(
-    PostV1FleetVehiclesGetRequest
+client.fleet().vehiclesGet(
+    VehiclesGetFleetRequest
         .builder()
         .id("id")
         .build()
@@ -25101,7 +25222,7 @@ client.fleet().postV1FleetVehiclesGet(
 </dl>
 </details>
 
-<details><summary><code>client.fleet.postV1FleetVehiclesList(request) -> PostV1FleetVehiclesListResponse</code></summary>
+<details><summary><code>client.fleet.vehiclesList(request) -> VehiclesListFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -25114,8 +25235,8 @@ client.fleet().postV1FleetVehiclesGet(
 <dd>
 
 ```java
-client.fleet().postV1FleetVehiclesList(
-    PostV1FleetVehiclesListRequest
+client.fleet().vehiclesList(
+    VehiclesListFleetRequest
         .builder()
         .build()
 );
@@ -25149,7 +25270,7 @@ client.fleet().postV1FleetVehiclesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1FleetVehiclesListRequestSortItem>>` 
+**sort:** `Optional<List<VehiclesListFleetRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -25157,7 +25278,7 @@ client.fleet().postV1FleetVehiclesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1FleetVehiclesListRequestFilterItem>>` 
+**filter:** `Optional<List<VehiclesListFleetRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -25177,7 +25298,7 @@ client.fleet().postV1FleetVehiclesList(
 </dl>
 </details>
 
-<details><summary><code>client.fleet.postV1FleetAssignmentsCreate(request) -> PostV1FleetAssignmentsCreateResponse</code></summary>
+<details><summary><code>client.fleet.assignmentsCreate(request) -> AssignmentsCreateFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -25190,12 +25311,12 @@ client.fleet().postV1FleetVehiclesList(
 <dd>
 
 ```java
-client.fleet().postV1FleetAssignmentsCreate(
-    PostV1FleetAssignmentsCreateRequest
+client.fleet().assignmentsCreate(
+    AssignmentsCreateFleetRequest
         .builder()
         .vehicleId("vehicleId")
         .employeeId("employeeId")
-        .fromDate("fromDate")
+        .fromDate("2026-07-01")
         .build()
 );
 ```
@@ -25272,7 +25393,7 @@ client.fleet().postV1FleetAssignmentsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.fleet.postV1FleetAssignmentsEnd(request) -> PostV1FleetAssignmentsEndResponse</code></summary>
+<details><summary><code>client.fleet.assignmentsEnd(request) -> AssignmentsEndFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -25285,11 +25406,11 @@ client.fleet().postV1FleetAssignmentsCreate(
 <dd>
 
 ```java
-client.fleet().postV1FleetAssignmentsEnd(
-    PostV1FleetAssignmentsEndRequest
+client.fleet().assignmentsEnd(
+    AssignmentsEndFleetRequest
         .builder()
         .id("id")
-        .toDate("toDate")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -25326,7 +25447,7 @@ client.fleet().postV1FleetAssignmentsEnd(
 </dl>
 </details>
 
-<details><summary><code>client.fleet.postV1FleetAssignmentsList(request) -> PostV1FleetAssignmentsListResponse</code></summary>
+<details><summary><code>client.fleet.assignmentsList(request) -> AssignmentsListFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -25339,8 +25460,8 @@ client.fleet().postV1FleetAssignmentsEnd(
 <dd>
 
 ```java
-client.fleet().postV1FleetAssignmentsList(
-    PostV1FleetAssignmentsListRequest
+client.fleet().assignmentsList(
+    AssignmentsListFleetRequest
         .builder()
         .build()
 );
@@ -25374,7 +25495,7 @@ client.fleet().postV1FleetAssignmentsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1FleetAssignmentsListRequestSortItem>>` 
+**sort:** `Optional<List<AssignmentsListFleetRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -25382,7 +25503,7 @@ client.fleet().postV1FleetAssignmentsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1FleetAssignmentsListRequestFilterItem>>` 
+**filter:** `Optional<List<AssignmentsListFleetRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -25402,7 +25523,7 @@ client.fleet().postV1FleetAssignmentsList(
 </dl>
 </details>
 
-<details><summary><code>client.fleet.postV1FleetNaturaPreview(request) -> PostV1FleetNaturaPreviewResponse</code></summary>
+<details><summary><code>client.fleet.naturaPreview(request) -> NaturaPreviewFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -25415,8 +25536,8 @@ client.fleet().postV1FleetAssignmentsList(
 <dd>
 
 ```java
-client.fleet().postV1FleetNaturaPreview(
-    PostV1FleetNaturaPreviewRequest
+client.fleet().naturaPreview(
+    NaturaPreviewFleetRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -25456,8 +25577,8 @@ client.fleet().postV1FleetNaturaPreview(
 </dl>
 </details>
 
-## Payroll
-<details><summary><code>client.payroll.postV1PayrollDepartmentsCreate(request) -> PostV1PayrollDepartmentsCreateResponse</code></summary>
+## payroll
+<details><summary><code>client.payroll.departmentsCreate(request) -> DepartmentsCreatePayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25470,8 +25591,8 @@ client.fleet().postV1FleetNaturaPreview(
 <dd>
 
 ```java
-client.payroll().postV1PayrollDepartmentsCreate(
-    PostV1PayrollDepartmentsCreateRequest
+client.payroll().departmentsCreate(
+    DepartmentsCreatePayrollRequest
         .builder()
         .code("code")
         .name("name")
@@ -25511,7 +25632,7 @@ client.payroll().postV1PayrollDepartmentsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.postV1PayrollDepartmentsList(request) -> PostV1PayrollDepartmentsListResponse</code></summary>
+<details><summary><code>client.payroll.departmentsList(request) -> DepartmentsListPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25524,8 +25645,8 @@ client.payroll().postV1PayrollDepartmentsCreate(
 <dd>
 
 ```java
-client.payroll().postV1PayrollDepartmentsList(
-    PostV1PayrollDepartmentsListRequest
+client.payroll().departmentsList(
+    DepartmentsListPayrollRequest
         .builder()
         .build()
 );
@@ -25540,7 +25661,7 @@ client.payroll().postV1PayrollDepartmentsList(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.postV1PayrollSchedulesCreate(request) -> PostV1PayrollSchedulesCreateResponse</code></summary>
+<details><summary><code>client.payroll.schedulesCreate(request) -> SchedulesCreatePayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25553,8 +25674,8 @@ client.payroll().postV1PayrollDepartmentsList(
 <dd>
 
 ```java
-client.payroll().postV1PayrollSchedulesCreate(
-    PostV1PayrollSchedulesCreateRequest
+client.payroll().schedulesCreate(
+    SchedulesCreatePayrollRequest
         .builder()
         .code("code")
         .name("name")
@@ -25602,7 +25723,7 @@ client.payroll().postV1PayrollSchedulesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.postV1PayrollSchedulesList(request) -> PostV1PayrollSchedulesListResponse</code></summary>
+<details><summary><code>client.payroll.schedulesList(request) -> SchedulesListPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25615,8 +25736,8 @@ client.payroll().postV1PayrollSchedulesCreate(
 <dd>
 
 ```java
-client.payroll().postV1PayrollSchedulesList(
-    PostV1PayrollSchedulesListRequest
+client.payroll().schedulesList(
+    SchedulesListPayrollRequest
         .builder()
         .build()
 );
@@ -25631,7 +25752,7 @@ client.payroll().postV1PayrollSchedulesList(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(request) -> PostV1PayrollCalcResponse</code></summary>
+<details><summary><code>client.payroll.calc(request) -> CalcPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25644,11 +25765,11 @@ client.payroll().postV1PayrollSchedulesList(
 <dd>
 
 ```java
-client.payroll().calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
-    PostV1PayrollCalcRequest
+client.payroll().calc(
+    CalcPayrollRequest
         .builder()
-        .taxableBase("taxableBase")
-        .date("date")
+        .taxableBase("121.00")
+        .date("2026-07-01")
         .build()
 );
 ```
@@ -25733,7 +25854,7 @@ client.payroll().calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.postV1PayrollRunsCreate(request) -> PostV1PayrollRunsCreateResponse</code></summary>
+<details><summary><code>client.payroll.runsCreate(request) -> RunsCreatePayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25746,8 +25867,8 @@ client.payroll().calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
 <dd>
 
 ```java
-client.payroll().postV1PayrollRunsCreate(
-    PostV1PayrollRunsCreateRequest
+client.payroll().runsCreate(
+    RunsCreatePayrollRequest
         .builder()
         .year(1000000L)
         .month(1000000L)
@@ -25791,7 +25912,7 @@ client.payroll().postV1PayrollRunsCreate(
 <dl>
 <dd>
 
-**grossOverrides:** `Optional<List<PostV1PayrollRunsCreateRequestGrossOverridesItem>>` 
+**grossOverrides:** `Optional<List<RunsCreatePayrollRequestGrossOverridesItem>>` 
     
 </dd>
 </dl>
@@ -25799,7 +25920,7 @@ client.payroll().postV1PayrollRunsCreate(
 <dl>
 <dd>
 
-**lines:** `Optional<List<PostV1PayrollRunsCreateRequestLinesItem>>` 
+**lines:** `Optional<List<RunsCreatePayrollRequestLinesItem>>` 
     
 </dd>
 </dl>
@@ -25819,7 +25940,7 @@ client.payroll().postV1PayrollRunsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.postV1PayrollRunsGet(request) -> PostV1PayrollRunsGetResponse</code></summary>
+<details><summary><code>client.payroll.runsGet(request) -> RunsGetPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25832,8 +25953,8 @@ client.payroll().postV1PayrollRunsCreate(
 <dd>
 
 ```java
-client.payroll().postV1PayrollRunsGet(
-    PostV1PayrollRunsGetRequest
+client.payroll().runsGet(
+    RunsGetPayrollRequest
         .builder()
         .id("id")
         .build()
@@ -25864,7 +25985,7 @@ client.payroll().postV1PayrollRunsGet(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.postV1PayrollRunsList(request) -> PostV1PayrollRunsListResponse</code></summary>
+<details><summary><code>client.payroll.runsList(request) -> RunsListPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25877,8 +25998,8 @@ client.payroll().postV1PayrollRunsGet(
 <dd>
 
 ```java
-client.payroll().postV1PayrollRunsList(
-    PostV1PayrollRunsListRequest
+client.payroll().runsList(
+    RunsListPayrollRequest
         .builder()
         .build()
 );
@@ -25912,7 +26033,7 @@ client.payroll().postV1PayrollRunsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1PayrollRunsListRequestSortItem>>` 
+**sort:** `Optional<List<RunsListPayrollRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -25920,7 +26041,7 @@ client.payroll().postV1PayrollRunsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1PayrollRunsListRequestFilterItem>>` 
+**filter:** `Optional<List<RunsListPayrollRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -25940,7 +26061,7 @@ client.payroll().postV1PayrollRunsList(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.recordTheTimeAPersonWorkedInAPayrollLine(request) -> PostV1PayrollLinesAttendanceResponse</code></summary>
+<details><summary><code>client.payroll.linesAttendance(request) -> LinesAttendancePayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25967,8 +26088,8 @@ The days and hours worked, the days on the register and the average hourly earni
 <dd>
 
 ```java
-client.payroll().recordTheTimeAPersonWorkedInAPayrollLine(
-    PostV1PayrollLinesAttendanceRequest
+client.payroll().linesAttendance(
+    LinesAttendancePayrollRequest
         .builder()
         .id("id")
         .build()
@@ -26031,7 +26152,7 @@ client.payroll().recordTheTimeAPersonWorkedInAPayrollLine(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.postV1PayrollRunsApprove(request) -> PostV1PayrollRunsApproveResponse</code></summary>
+<details><summary><code>client.payroll.runsApprove(request) -> RunsApprovePayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -26044,8 +26165,8 @@ client.payroll().recordTheTimeAPersonWorkedInAPayrollLine(
 <dd>
 
 ```java
-client.payroll().postV1PayrollRunsApprove(
-    PostV1PayrollRunsApproveRequest
+client.payroll().runsApprove(
+    RunsApprovePayrollRequest
         .builder()
         .id("id")
         .build()
@@ -26132,7 +26253,7 @@ client.payroll().postV1PayrollRunsApprove(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.postV1PayrollRunsCancel(request) -> PostV1PayrollRunsCancelResponse</code></summary>
+<details><summary><code>client.payroll.runsCancel(request) -> RunsCancelPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -26145,8 +26266,8 @@ client.payroll().postV1PayrollRunsApprove(
 <dd>
 
 ```java
-client.payroll().postV1PayrollRunsCancel(
-    PostV1PayrollRunsCancelRequest
+client.payroll().runsCancel(
+    RunsCancelPayrollRequest
         .builder()
         .id("id")
         .build()
@@ -26177,7 +26298,7 @@ client.payroll().postV1PayrollRunsCancel(
 </dl>
 </details>
 
-<details><summary><code>client.payroll.postV1PayrollPaymentsExport(request) -> PostV1PayrollPaymentsExportResponse</code></summary>
+<details><summary><code>client.payroll.paymentsExport(request) -> PaymentsExportPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -26190,8 +26311,8 @@ client.payroll().postV1PayrollRunsCancel(
 <dd>
 
 ```java
-client.payroll().postV1PayrollPaymentsExport(
-    PostV1PayrollPaymentsExportRequest
+client.payroll().paymentsExport(
+    PaymentsExportPayrollRequest
         .builder()
         .runId("runId")
         .bankAccountId("bankAccountId")
@@ -26231,6 +26352,14 @@ client.payroll().postV1PayrollPaymentsExport(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**locale:** `Optional<PaymentsExportPayrollRequestLocale>` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -26239,8 +26368,8 @@ client.payroll().postV1PayrollPaymentsExport(
 </dl>
 </details>
 
-## Agreements
-<details><summary><code>client.agreements.postV1AgreementsTypesCreate(request) -> PostV1AgreementsTypesCreateResponse</code></summary>
+## agreements
+<details><summary><code>client.agreements.typesCreate(request) -> TypesCreateAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26253,8 +26382,8 @@ client.payroll().postV1PayrollPaymentsExport(
 <dd>
 
 ```java
-client.agreements().postV1AgreementsTypesCreate(
-    PostV1AgreementsTypesCreateRequest
+client.agreements().typesCreate(
+    TypesCreateAgreementsRequest
         .builder()
         .code("code")
         .name("name")
@@ -26294,7 +26423,7 @@ client.agreements().postV1AgreementsTypesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.postV1AgreementsTypesList(request) -> PostV1AgreementsTypesListResponse</code></summary>
+<details><summary><code>client.agreements.typesList(request) -> TypesListAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26307,8 +26436,8 @@ client.agreements().postV1AgreementsTypesCreate(
 <dd>
 
 ```java
-client.agreements().postV1AgreementsTypesList(
-    PostV1AgreementsTypesListRequest
+client.agreements().typesList(
+    TypesListAgreementsRequest
         .builder()
         .build()
 );
@@ -26342,7 +26471,7 @@ client.agreements().postV1AgreementsTypesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1AgreementsTypesListRequestSortItem>>` 
+**sort:** `Optional<List<TypesListAgreementsRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -26350,7 +26479,7 @@ client.agreements().postV1AgreementsTypesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1AgreementsTypesListRequestFilterItem>>` 
+**filter:** `Optional<List<TypesListAgreementsRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -26370,7 +26499,7 @@ client.agreements().postV1AgreementsTypesList(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.postV1AgreementsAgreementsCreate(request) -> PostV1AgreementsAgreementsCreateResponse</code></summary>
+<details><summary><code>client.agreements.agreementsCreate(request) -> AgreementsCreateAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26383,11 +26512,11 @@ client.agreements().postV1AgreementsTypesList(
 <dd>
 
 ```java
-client.agreements().postV1AgreementsAgreementsCreate(
-    PostV1AgreementsAgreementsCreateRequest
+client.agreements().agreementsCreate(
+    AgreementsCreateAgreementsRequest
         .builder()
         .number("number")
-        .startDate("startDate")
+        .startDate("2026-07-01")
         .build()
 );
 ```
@@ -26412,7 +26541,7 @@ client.agreements().postV1AgreementsAgreementsCreate(
 <dl>
 <dd>
 
-**kind:** `Optional<PostV1AgreementsAgreementsCreateRequestKind>` 
+**kind:** `Optional<AgreementsCreateAgreementsRequestKind>` 
     
 </dd>
 </dl>
@@ -26492,7 +26621,7 @@ client.agreements().postV1AgreementsAgreementsCreate(
 <dl>
 <dd>
 
-**billingPeriod:** `Optional<PostV1AgreementsAgreementsCreateRequestBillingPeriod>` 
+**billingPeriod:** `Optional<AgreementsCreateAgreementsRequestBillingPeriod>` 
     
 </dd>
 </dl>
@@ -26508,7 +26637,7 @@ client.agreements().postV1AgreementsAgreementsCreate(
 <dl>
 <dd>
 
-**status:** `Optional<PostV1AgreementsAgreementsCreateRequestStatus>` 
+**status:** `Optional<AgreementsCreateAgreementsRequestStatus>` 
     
 </dd>
 </dl>
@@ -26532,7 +26661,7 @@ client.agreements().postV1AgreementsAgreementsCreate(
 <dl>
 <dd>
 
-**items:** `Optional<List<PostV1AgreementsAgreementsCreateRequestItemsItem>>` 
+**items:** `Optional<List<AgreementsCreateAgreementsRequestItemsItem>>` 
     
 </dd>
 </dl>
@@ -26544,7 +26673,7 @@ client.agreements().postV1AgreementsAgreementsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.postV1AgreementsAgreementsGet(request) -> PostV1AgreementsAgreementsGetResponse</code></summary>
+<details><summary><code>client.agreements.agreementsGet(request) -> AgreementsGetAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26557,8 +26686,8 @@ client.agreements().postV1AgreementsAgreementsCreate(
 <dd>
 
 ```java
-client.agreements().postV1AgreementsAgreementsGet(
-    PostV1AgreementsAgreementsGetRequest
+client.agreements().agreementsGet(
+    AgreementsGetAgreementsRequest
         .builder()
         .id("id")
         .build()
@@ -26589,7 +26718,7 @@ client.agreements().postV1AgreementsAgreementsGet(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.postV1AgreementsAgreementsUpdate(request) -> PostV1AgreementsAgreementsUpdateResponse</code></summary>
+<details><summary><code>client.agreements.agreementsUpdate(request) -> AgreementsUpdateAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26602,8 +26731,8 @@ client.agreements().postV1AgreementsAgreementsGet(
 <dd>
 
 ```java
-client.agreements().postV1AgreementsAgreementsUpdate(
-    PostV1AgreementsAgreementsUpdateRequest
+client.agreements().agreementsUpdate(
+    AgreementsUpdateAgreementsRequest
         .builder()
         .id("id")
         .build()
@@ -26638,7 +26767,7 @@ client.agreements().postV1AgreementsAgreementsUpdate(
 <dl>
 <dd>
 
-**kind:** `Optional<PostV1AgreementsAgreementsUpdateRequestKind>` 
+**kind:** `Optional<AgreementsUpdateAgreementsRequestKind>` 
     
 </dd>
 </dl>
@@ -26678,7 +26807,7 @@ client.agreements().postV1AgreementsAgreementsUpdate(
 <dl>
 <dd>
 
-**billingPeriod:** `Optional<PostV1AgreementsAgreementsUpdateRequestBillingPeriod>` 
+**billingPeriod:** `Optional<AgreementsUpdateAgreementsRequestBillingPeriod>` 
     
 </dd>
 </dl>
@@ -26686,7 +26815,7 @@ client.agreements().postV1AgreementsAgreementsUpdate(
 <dl>
 <dd>
 
-**status:** `Optional<PostV1AgreementsAgreementsUpdateRequestStatus>` 
+**status:** `Optional<AgreementsUpdateAgreementsRequestStatus>` 
     
 </dd>
 </dl>
@@ -26714,7 +26843,7 @@ client.agreements().postV1AgreementsAgreementsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.postV1AgreementsAgreementsDelete(request) -> PostV1AgreementsAgreementsDeleteResponse</code></summary>
+<details><summary><code>client.agreements.agreementsDelete(request) -> AgreementsDeleteAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26727,8 +26856,8 @@ client.agreements().postV1AgreementsAgreementsUpdate(
 <dd>
 
 ```java
-client.agreements().postV1AgreementsAgreementsDelete(
-    PostV1AgreementsAgreementsDeleteRequest
+client.agreements().agreementsDelete(
+    AgreementsDeleteAgreementsRequest
         .builder()
         .id("id")
         .build()
@@ -26759,7 +26888,7 @@ client.agreements().postV1AgreementsAgreementsDelete(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.postV1AgreementsAgreementsList(request) -> PostV1AgreementsAgreementsListResponse</code></summary>
+<details><summary><code>client.agreements.agreementsList(request) -> AgreementsListAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26772,8 +26901,8 @@ client.agreements().postV1AgreementsAgreementsDelete(
 <dd>
 
 ```java
-client.agreements().postV1AgreementsAgreementsList(
-    PostV1AgreementsAgreementsListRequest
+client.agreements().agreementsList(
+    AgreementsListAgreementsRequest
         .builder()
         .build()
 );
@@ -26807,7 +26936,7 @@ client.agreements().postV1AgreementsAgreementsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1AgreementsAgreementsListRequestSortItem>>` 
+**sort:** `Optional<List<AgreementsListAgreementsRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -26815,7 +26944,7 @@ client.agreements().postV1AgreementsAgreementsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1AgreementsAgreementsListRequestFilterItem>>` 
+**filter:** `Optional<List<AgreementsListAgreementsRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -26835,7 +26964,7 @@ client.agreements().postV1AgreementsAgreementsList(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.postV1AgreementsAgreementsGenerateInvoice(request) -> PostV1AgreementsAgreementsGenerateInvoiceResponse</code></summary>
+<details><summary><code>client.agreements.agreementsGenerateInvoice(request) -> AgreementsGenerateInvoiceAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26848,8 +26977,8 @@ client.agreements().postV1AgreementsAgreementsList(
 <dd>
 
 ```java
-client.agreements().postV1AgreementsAgreementsGenerateInvoice(
-    PostV1AgreementsAgreementsGenerateInvoiceRequest
+client.agreements().agreementsGenerateInvoice(
+    AgreementsGenerateInvoiceAgreementsRequest
         .builder()
         .id("id")
         .build()
@@ -26888,7 +27017,7 @@ client.agreements().postV1AgreementsAgreementsGenerateInvoice(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.postV1AgreementsAgreementsBillingRun(request) -> PostV1AgreementsAgreementsBillingRunResponse</code></summary>
+<details><summary><code>client.agreements.agreementsBillingRun(request) -> AgreementsBillingRunAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26901,8 +27030,8 @@ client.agreements().postV1AgreementsAgreementsGenerateInvoice(
 <dd>
 
 ```java
-client.agreements().postV1AgreementsAgreementsBillingRun(
-    PostV1AgreementsAgreementsBillingRunRequest
+client.agreements().agreementsBillingRun(
+    AgreementsBillingRunAgreementsRequest
         .builder()
         .build()
 );
@@ -26932,7 +27061,7 @@ client.agreements().postV1AgreementsAgreementsBillingRun(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.postV1AgreementsInsurancePoliciesCreate(request) -> PostV1AgreementsInsurancePoliciesCreateResponse</code></summary>
+<details><summary><code>client.agreements.insurancePoliciesCreate(request) -> InsurancePoliciesCreateAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26945,13 +27074,13 @@ client.agreements().postV1AgreementsAgreementsBillingRun(
 <dd>
 
 ```java
-client.agreements().postV1AgreementsInsurancePoliciesCreate(
-    PostV1AgreementsInsurancePoliciesCreateRequest
+client.agreements().insurancePoliciesCreate(
+    InsurancePoliciesCreateAgreementsRequest
         .builder()
         .policyNumber("policyNumber")
         .insuredObject("insuredObject")
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -27036,7 +27165,7 @@ client.agreements().postV1AgreementsInsurancePoliciesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.postV1AgreementsInsurancePoliciesList(request) -> PostV1AgreementsInsurancePoliciesListResponse</code></summary>
+<details><summary><code>client.agreements.insurancePoliciesList(request) -> InsurancePoliciesListAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -27049,8 +27178,8 @@ client.agreements().postV1AgreementsInsurancePoliciesCreate(
 <dd>
 
 ```java
-client.agreements().postV1AgreementsInsurancePoliciesList(
-    PostV1AgreementsInsurancePoliciesListRequest
+client.agreements().insurancePoliciesList(
+    InsurancePoliciesListAgreementsRequest
         .builder()
         .build()
 );
@@ -27084,7 +27213,7 @@ client.agreements().postV1AgreementsInsurancePoliciesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1AgreementsInsurancePoliciesListRequestSortItem>>` 
+**sort:** `Optional<List<InsurancePoliciesListAgreementsRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -27092,7 +27221,7 @@ client.agreements().postV1AgreementsInsurancePoliciesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1AgreementsInsurancePoliciesListRequestFilterItem>>` 
+**filter:** `Optional<List<InsurancePoliciesListAgreementsRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -27112,7 +27241,7 @@ client.agreements().postV1AgreementsInsurancePoliciesList(
 </dl>
 </details>
 
-<details><summary><code>client.agreements.postV1AgreementsInsurancePoliciesDelete(request) -> PostV1AgreementsInsurancePoliciesDeleteResponse</code></summary>
+<details><summary><code>client.agreements.insurancePoliciesDelete(request) -> InsurancePoliciesDeleteAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -27125,8 +27254,8 @@ client.agreements().postV1AgreementsInsurancePoliciesList(
 <dd>
 
 ```java
-client.agreements().postV1AgreementsInsurancePoliciesDelete(
-    PostV1AgreementsInsurancePoliciesDeleteRequest
+client.agreements().insurancePoliciesDelete(
+    InsurancePoliciesDeleteAgreementsRequest
         .builder()
         .id("id")
         .build()
@@ -27157,8 +27286,8 @@ client.agreements().postV1AgreementsInsurancePoliciesDelete(
 </dl>
 </details>
 
-## Inventory
-<details><summary><code>client.inventory.postV1InventorySettingsGet(request) -> PostV1InventorySettingsGetResponse</code></summary>
+## inventory
+<details><summary><code>client.inventory.settingsGet(request) -> SettingsGetInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27171,8 +27300,8 @@ client.agreements().postV1AgreementsInsurancePoliciesDelete(
 <dd>
 
 ```java
-client.inventory().postV1InventorySettingsGet(
-    PostV1InventorySettingsGetRequest
+client.inventory().settingsGet(
+    SettingsGetInventoryRequest
         .builder()
         .build()
 );
@@ -27187,7 +27316,7 @@ client.inventory().postV1InventorySettingsGet(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventorySettingsUpdate(request) -> PostV1InventorySettingsUpdateResponse</code></summary>
+<details><summary><code>client.inventory.settingsUpdate(request) -> SettingsUpdateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27200,10 +27329,10 @@ client.inventory().postV1InventorySettingsGet(
 <dd>
 
 ```java
-client.inventory().postV1InventorySettingsUpdate(
-    PostV1InventorySettingsUpdateRequest
+client.inventory().settingsUpdate(
+    SettingsUpdateInventoryRequest
         .builder()
-        .negativeStockPolicy(PostV1InventorySettingsUpdateRequestNegativeStockPolicy.REJECT)
+        .negativeStockPolicy(SettingsUpdateInventoryRequestNegativeStockPolicy.REJECT)
         .build()
 );
 ```
@@ -27220,7 +27349,7 @@ client.inventory().postV1InventorySettingsUpdate(
 <dl>
 <dd>
 
-**negativeStockPolicy:** `PostV1InventorySettingsUpdateRequestNegativeStockPolicy` 
+**negativeStockPolicy:** `SettingsUpdateInventoryRequestNegativeStockPolicy` 
     
 </dd>
 </dl>
@@ -27232,7 +27361,7 @@ client.inventory().postV1InventorySettingsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryWarehousesCreate(request) -> PostV1InventoryWarehousesCreateResponse</code></summary>
+<details><summary><code>client.inventory.warehousesCreate(request) -> WarehousesCreateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27245,8 +27374,8 @@ client.inventory().postV1InventorySettingsUpdate(
 <dd>
 
 ```java
-client.inventory().postV1InventoryWarehousesCreate(
-    PostV1InventoryWarehousesCreateRequest
+client.inventory().warehousesCreate(
+    WarehousesCreateInventoryRequest
         .builder()
         .code("code")
         .name("name")
@@ -27294,7 +27423,7 @@ client.inventory().postV1InventoryWarehousesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryWarehousesList(request) -> PostV1InventoryWarehousesListResponse</code></summary>
+<details><summary><code>client.inventory.warehousesList(request) -> WarehousesListInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27307,8 +27436,8 @@ client.inventory().postV1InventoryWarehousesCreate(
 <dd>
 
 ```java
-client.inventory().postV1InventoryWarehousesList(
-    PostV1InventoryWarehousesListRequest
+client.inventory().warehousesList(
+    WarehousesListInventoryRequest
         .builder()
         .build()
 );
@@ -27342,7 +27471,7 @@ client.inventory().postV1InventoryWarehousesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1InventoryWarehousesListRequestSortItem>>` 
+**sort:** `Optional<List<WarehousesListInventoryRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -27350,7 +27479,7 @@ client.inventory().postV1InventoryWarehousesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1InventoryWarehousesListRequestFilterItem>>` 
+**filter:** `Optional<List<WarehousesListInventoryRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -27370,7 +27499,7 @@ client.inventory().postV1InventoryWarehousesList(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryStockReceive(request) -> PostV1InventoryStockReceiveResponse</code></summary>
+<details><summary><code>client.inventory.stockReceive(request) -> StockReceiveInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27383,14 +27512,14 @@ client.inventory().postV1InventoryWarehousesList(
 <dd>
 
 ```java
-client.inventory().postV1InventoryStockReceive(
-    PostV1InventoryStockReceiveRequest
+client.inventory().stockReceive(
+    StockReceiveInventoryRequest
         .builder()
         .warehouseId("warehouseId")
         .itemId("itemId")
-        .date("date")
-        .quantity("quantity")
-        .unitCost("unitCost")
+        .date("2026-07-01")
+        .quantity("121.0000")
+        .unitCost("121.000000")
         .build()
 );
 ```
@@ -27475,7 +27604,7 @@ client.inventory().postV1InventoryStockReceive(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryStockWriteOff(request) -> PostV1InventoryStockWriteOffResponse</code></summary>
+<details><summary><code>client.inventory.stockWriteOff(request) -> StockWriteOffInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27488,13 +27617,13 @@ client.inventory().postV1InventoryStockReceive(
 <dd>
 
 ```java
-client.inventory().postV1InventoryStockWriteOff(
-    PostV1InventoryStockWriteOffRequest
+client.inventory().stockWriteOff(
+    StockWriteOffInventoryRequest
         .builder()
         .warehouseId("warehouseId")
         .itemId("itemId")
-        .date("date")
-        .quantity("quantity")
+        .date("2026-07-01")
+        .quantity("121.0000")
         .build()
 );
 ```
@@ -27579,7 +27708,7 @@ client.inventory().postV1InventoryStockWriteOff(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryStockTransfer(request) -> PostV1InventoryStockTransferResponse</code></summary>
+<details><summary><code>client.inventory.stockTransfer(request) -> StockTransferInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27592,14 +27721,14 @@ client.inventory().postV1InventoryStockWriteOff(
 <dd>
 
 ```java
-client.inventory().postV1InventoryStockTransfer(
-    PostV1InventoryStockTransferRequest
+client.inventory().stockTransfer(
+    StockTransferInventoryRequest
         .builder()
         .fromWarehouseId("fromWarehouseId")
         .toWarehouseId("toWarehouseId")
         .itemId("itemId")
-        .date("date")
-        .quantity("quantity")
+        .date("2026-07-01")
+        .quantity("121.0000")
         .build()
 );
 ```
@@ -27676,7 +27805,7 @@ client.inventory().postV1InventoryStockTransfer(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryStockTake(request) -> PostV1InventoryStockTakeResponse</code></summary>
+<details><summary><code>client.inventory.stockTake(request) -> StockTakeInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27689,16 +27818,16 @@ client.inventory().postV1InventoryStockTransfer(
 <dd>
 
 ```java
-client.inventory().postV1InventoryStockTake(
-    PostV1InventoryStockTakeRequest
+client.inventory().stockTake(
+    StockTakeInventoryRequest
         .builder()
         .warehouseId("warehouseId")
-        .date("date")
+        .date("2026-07-01")
         .lines(
             Arrays.asList(
-                PostV1InventoryStockTakeRequestLinesItem
+                StockTakeInventoryRequestLinesItem
                     .builder()
-                    .countedQty("countedQty")
+                    .countedQty("121.0000")
                     .build()
             )
         )
@@ -27750,7 +27879,7 @@ client.inventory().postV1InventoryStockTake(
 <dl>
 <dd>
 
-**lines:** `List<PostV1InventoryStockTakeRequestLinesItem>` 
+**lines:** `List<StockTakeInventoryRequestLinesItem>` 
     
 </dd>
 </dl>
@@ -27762,7 +27891,7 @@ client.inventory().postV1InventoryStockTake(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryStockLevels(request) -> PostV1InventoryStockLevelsResponse</code></summary>
+<details><summary><code>client.inventory.stockLevels(request) -> StockLevelsInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27775,8 +27904,8 @@ client.inventory().postV1InventoryStockTake(
 <dd>
 
 ```java
-client.inventory().postV1InventoryStockLevels(
-    PostV1InventoryStockLevelsRequest
+client.inventory().stockLevels(
+    StockLevelsInventoryRequest
         .builder()
         .build()
 );
@@ -27814,7 +27943,7 @@ client.inventory().postV1InventoryStockLevels(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryStockMovementsList(request) -> PostV1InventoryStockMovementsListResponse</code></summary>
+<details><summary><code>client.inventory.stockMovementsList(request) -> StockMovementsListInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27827,8 +27956,8 @@ client.inventory().postV1InventoryStockLevels(
 <dd>
 
 ```java
-client.inventory().postV1InventoryStockMovementsList(
-    PostV1InventoryStockMovementsListRequest
+client.inventory().stockMovementsList(
+    StockMovementsListInventoryRequest
         .builder()
         .build()
 );
@@ -27862,7 +27991,7 @@ client.inventory().postV1InventoryStockMovementsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1InventoryStockMovementsListRequestSortItem>>` 
+**sort:** `Optional<List<StockMovementsListInventoryRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -27870,7 +27999,7 @@ client.inventory().postV1InventoryStockMovementsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1InventoryStockMovementsListRequestFilterItem>>` 
+**filter:** `Optional<List<StockMovementsListInventoryRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -27890,7 +28019,7 @@ client.inventory().postV1InventoryStockMovementsList(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryLotsList(request) -> PostV1InventoryLotsListResponse</code></summary>
+<details><summary><code>client.inventory.lotsList(request) -> LotsListInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27903,8 +28032,8 @@ client.inventory().postV1InventoryStockMovementsList(
 <dd>
 
 ```java
-client.inventory().postV1InventoryLotsList(
-    PostV1InventoryLotsListRequest
+client.inventory().lotsList(
+    LotsListInventoryRequest
         .builder()
         .build()
 );
@@ -27938,7 +28067,7 @@ client.inventory().postV1InventoryLotsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1InventoryLotsListRequestSortItem>>` 
+**sort:** `Optional<List<LotsListInventoryRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -27946,7 +28075,7 @@ client.inventory().postV1InventoryLotsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1InventoryLotsListRequestFilterItem>>` 
+**filter:** `Optional<List<LotsListInventoryRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -27966,7 +28095,7 @@ client.inventory().postV1InventoryLotsList(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryLotsGet(request) -> PostV1InventoryLotsGetResponse</code></summary>
+<details><summary><code>client.inventory.lotsGet(request) -> LotsGetInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27979,8 +28108,8 @@ client.inventory().postV1InventoryLotsList(
 <dd>
 
 ```java
-client.inventory().postV1InventoryLotsGet(
-    PostV1InventoryLotsGetRequest
+client.inventory().lotsGet(
+    LotsGetInventoryRequest
         .builder()
         .id("id")
         .build()
@@ -28011,7 +28140,7 @@ client.inventory().postV1InventoryLotsGet(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryLotsUpdate(request) -> PostV1InventoryLotsUpdateResponse</code></summary>
+<details><summary><code>client.inventory.lotsUpdate(request) -> LotsUpdateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -28024,8 +28153,8 @@ client.inventory().postV1InventoryLotsGet(
 <dd>
 
 ```java
-client.inventory().postV1InventoryLotsUpdate(
-    PostV1InventoryLotsUpdateRequest
+client.inventory().lotsUpdate(
+    LotsUpdateInventoryRequest
         .builder()
         .id("id")
         .build()
@@ -28072,7 +28201,7 @@ client.inventory().postV1InventoryLotsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryLandedCostsCreate(request) -> PostV1InventoryLandedCostsCreateResponse</code></summary>
+<details><summary><code>client.inventory.landedCostsCreate(request) -> LandedCostsCreateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -28085,11 +28214,11 @@ client.inventory().postV1InventoryLotsUpdate(
 <dd>
 
 ```java
-client.inventory().postV1InventoryLandedCostsCreate(
-    PostV1InventoryLandedCostsCreateRequest
+client.inventory().landedCostsCreate(
+    LandedCostsCreateInventoryRequest
         .builder()
-        .date("date")
-        .amount("amount")
+        .date("2026-07-01")
+        .amount("121.000000")
         .build()
 );
 ```
@@ -28122,7 +28251,7 @@ client.inventory().postV1InventoryLandedCostsCreate(
 <dl>
 <dd>
 
-**method:** `Optional<PostV1InventoryLandedCostsCreateRequestMethod>` 
+**method:** `Optional<LandedCostsCreateInventoryRequestMethod>` 
     
 </dd>
 </dl>
@@ -28166,7 +28295,7 @@ client.inventory().postV1InventoryLandedCostsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryLandedCostsGet(request) -> PostV1InventoryLandedCostsGetResponse</code></summary>
+<details><summary><code>client.inventory.landedCostsGet(request) -> LandedCostsGetInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -28179,8 +28308,8 @@ client.inventory().postV1InventoryLandedCostsCreate(
 <dd>
 
 ```java
-client.inventory().postV1InventoryLandedCostsGet(
-    PostV1InventoryLandedCostsGetRequest
+client.inventory().landedCostsGet(
+    LandedCostsGetInventoryRequest
         .builder()
         .id("id")
         .build()
@@ -28211,7 +28340,7 @@ client.inventory().postV1InventoryLandedCostsGet(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryLandedCostsList(request) -> PostV1InventoryLandedCostsListResponse</code></summary>
+<details><summary><code>client.inventory.landedCostsList(request) -> LandedCostsListInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -28224,8 +28353,8 @@ client.inventory().postV1InventoryLandedCostsGet(
 <dd>
 
 ```java
-client.inventory().postV1InventoryLandedCostsList(
-    PostV1InventoryLandedCostsListRequest
+client.inventory().landedCostsList(
+    LandedCostsListInventoryRequest
         .builder()
         .build()
 );
@@ -28259,7 +28388,7 @@ client.inventory().postV1InventoryLandedCostsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1InventoryLandedCostsListRequestSortItem>>` 
+**sort:** `Optional<List<LandedCostsListInventoryRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -28267,7 +28396,7 @@ client.inventory().postV1InventoryLandedCostsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1InventoryLandedCostsListRequestFilterItem>>` 
+**filter:** `Optional<List<LandedCostsListInventoryRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -28287,7 +28416,7 @@ client.inventory().postV1InventoryLandedCostsList(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryReorderRulesCreate(request) -> PostV1InventoryReorderRulesCreateResponse</code></summary>
+<details><summary><code>client.inventory.reorderRulesCreate(request) -> ReorderRulesCreateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -28300,11 +28429,11 @@ client.inventory().postV1InventoryLandedCostsList(
 <dd>
 
 ```java
-client.inventory().postV1InventoryReorderRulesCreate(
-    PostV1InventoryReorderRulesCreateRequest
+client.inventory().reorderRulesCreate(
+    ReorderRulesCreateInventoryRequest
         .builder()
         .itemId("itemId")
-        .minQty("minQty")
+        .minQty("121.0000")
         .build()
 );
 ```
@@ -28373,7 +28502,7 @@ client.inventory().postV1InventoryReorderRulesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryReorderRulesUpdate(request) -> PostV1InventoryReorderRulesUpdateResponse</code></summary>
+<details><summary><code>client.inventory.reorderRulesUpdate(request) -> ReorderRulesUpdateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -28386,8 +28515,8 @@ client.inventory().postV1InventoryReorderRulesCreate(
 <dd>
 
 ```java
-client.inventory().postV1InventoryReorderRulesUpdate(
-    PostV1InventoryReorderRulesUpdateRequest
+client.inventory().reorderRulesUpdate(
+    ReorderRulesUpdateInventoryRequest
         .builder()
         .id("id")
         .build()
@@ -28450,7 +28579,7 @@ client.inventory().postV1InventoryReorderRulesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryReorderRulesDelete(request) -> PostV1InventoryReorderRulesDeleteResponse</code></summary>
+<details><summary><code>client.inventory.reorderRulesDelete(request) -> ReorderRulesDeleteInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -28463,8 +28592,8 @@ client.inventory().postV1InventoryReorderRulesUpdate(
 <dd>
 
 ```java
-client.inventory().postV1InventoryReorderRulesDelete(
-    PostV1InventoryReorderRulesDeleteRequest
+client.inventory().reorderRulesDelete(
+    ReorderRulesDeleteInventoryRequest
         .builder()
         .id("id")
         .build()
@@ -28495,7 +28624,7 @@ client.inventory().postV1InventoryReorderRulesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryReorderRulesList(request) -> PostV1InventoryReorderRulesListResponse</code></summary>
+<details><summary><code>client.inventory.reorderRulesList(request) -> ReorderRulesListInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -28508,8 +28637,8 @@ client.inventory().postV1InventoryReorderRulesDelete(
 <dd>
 
 ```java
-client.inventory().postV1InventoryReorderRulesList(
-    PostV1InventoryReorderRulesListRequest
+client.inventory().reorderRulesList(
+    ReorderRulesListInventoryRequest
         .builder()
         .build()
 );
@@ -28543,7 +28672,7 @@ client.inventory().postV1InventoryReorderRulesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1InventoryReorderRulesListRequestSortItem>>` 
+**sort:** `Optional<List<ReorderRulesListInventoryRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -28551,7 +28680,7 @@ client.inventory().postV1InventoryReorderRulesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1InventoryReorderRulesListRequestFilterItem>>` 
+**filter:** `Optional<List<ReorderRulesListInventoryRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -28571,7 +28700,7 @@ client.inventory().postV1InventoryReorderRulesList(
 </dl>
 </details>
 
-<details><summary><code>client.inventory.postV1InventoryReorderRulesCheck(request) -> PostV1InventoryReorderRulesCheckResponse</code></summary>
+<details><summary><code>client.inventory.reorderRulesCheck(request) -> ReorderRulesCheckInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -28584,8 +28713,8 @@ client.inventory().postV1InventoryReorderRulesList(
 <dd>
 
 ```java
-client.inventory().postV1InventoryReorderRulesCheck(
-    PostV1InventoryReorderRulesCheckRequest
+client.inventory().reorderRulesCheck(
+    ReorderRulesCheckInventoryRequest
         .builder()
         .build()
 );
@@ -28600,8 +28729,8 @@ client.inventory().postV1InventoryReorderRulesCheck(
 </dl>
 </details>
 
-## Production
-<details><summary><code>client.production.postV1ProductionWorkCentersCreate(request) -> PostV1ProductionWorkCentersCreateResponse</code></summary>
+## production
+<details><summary><code>client.production.workCentersCreate(request) -> WorkCentersCreateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28614,8 +28743,8 @@ client.inventory().postV1InventoryReorderRulesCheck(
 <dd>
 
 ```java
-client.production().postV1ProductionWorkCentersCreate(
-    PostV1ProductionWorkCentersCreateRequest
+client.production().workCentersCreate(
+    WorkCentersCreateProductionRequest
         .builder()
         .code("code")
         .name("name")
@@ -28687,7 +28816,7 @@ client.production().postV1ProductionWorkCentersCreate(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionWorkCentersUpdate(request) -> PostV1ProductionWorkCentersUpdateResponse</code></summary>
+<details><summary><code>client.production.workCentersUpdate(request) -> WorkCentersUpdateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28700,8 +28829,8 @@ client.production().postV1ProductionWorkCentersCreate(
 <dd>
 
 ```java
-client.production().postV1ProductionWorkCentersUpdate(
-    PostV1ProductionWorkCentersUpdateRequest
+client.production().workCentersUpdate(
+    WorkCentersUpdateProductionRequest
         .builder()
         .id("id")
         .build()
@@ -28788,7 +28917,7 @@ client.production().postV1ProductionWorkCentersUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionWorkCentersList(request) -> PostV1ProductionWorkCentersListResponse</code></summary>
+<details><summary><code>client.production.workCentersList(request) -> WorkCentersListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28801,8 +28930,8 @@ client.production().postV1ProductionWorkCentersUpdate(
 <dd>
 
 ```java
-client.production().postV1ProductionWorkCentersList(
-    PostV1ProductionWorkCentersListRequest
+client.production().workCentersList(
+    WorkCentersListProductionRequest
         .builder()
         .build()
 );
@@ -28836,7 +28965,7 @@ client.production().postV1ProductionWorkCentersList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ProductionWorkCentersListRequestSortItem>>` 
+**sort:** `Optional<List<WorkCentersListProductionRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -28844,7 +28973,7 @@ client.production().postV1ProductionWorkCentersList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ProductionWorkCentersListRequestFilterItem>>` 
+**filter:** `Optional<List<WorkCentersListProductionRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -28864,7 +28993,7 @@ client.production().postV1ProductionWorkCentersList(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionRoutingsCreate(request) -> PostV1ProductionRoutingsCreateResponse</code></summary>
+<details><summary><code>client.production.routingsCreate(request) -> RoutingsCreateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28877,14 +29006,14 @@ client.production().postV1ProductionWorkCentersList(
 <dd>
 
 ```java
-client.production().postV1ProductionRoutingsCreate(
-    PostV1ProductionRoutingsCreateRequest
+client.production().routingsCreate(
+    RoutingsCreateProductionRequest
         .builder()
         .code("code")
         .name("name")
         .operations(
             Arrays.asList(
-                PostV1ProductionRoutingsCreateRequestOperationsItem
+                RoutingsCreateProductionRequestOperationsItem
                     .builder()
                     .sequence(1000000L)
                     .name("name")
@@ -28932,7 +29061,7 @@ client.production().postV1ProductionRoutingsCreate(
 <dl>
 <dd>
 
-**operations:** `List<PostV1ProductionRoutingsCreateRequestOperationsItem>` 
+**operations:** `List<RoutingsCreateProductionRequestOperationsItem>` 
     
 </dd>
 </dl>
@@ -28944,7 +29073,7 @@ client.production().postV1ProductionRoutingsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionRoutingsGet(request) -> PostV1ProductionRoutingsGetResponse</code></summary>
+<details><summary><code>client.production.routingsGet(request) -> RoutingsGetProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28957,8 +29086,8 @@ client.production().postV1ProductionRoutingsCreate(
 <dd>
 
 ```java
-client.production().postV1ProductionRoutingsGet(
-    PostV1ProductionRoutingsGetRequest
+client.production().routingsGet(
+    RoutingsGetProductionRequest
         .builder()
         .id("id")
         .build()
@@ -28989,7 +29118,7 @@ client.production().postV1ProductionRoutingsGet(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionRoutingsList(request) -> PostV1ProductionRoutingsListResponse</code></summary>
+<details><summary><code>client.production.routingsList(request) -> RoutingsListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29002,8 +29131,8 @@ client.production().postV1ProductionRoutingsGet(
 <dd>
 
 ```java
-client.production().postV1ProductionRoutingsList(
-    PostV1ProductionRoutingsListRequest
+client.production().routingsList(
+    RoutingsListProductionRequest
         .builder()
         .build()
 );
@@ -29037,7 +29166,7 @@ client.production().postV1ProductionRoutingsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ProductionRoutingsListRequestSortItem>>` 
+**sort:** `Optional<List<RoutingsListProductionRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -29045,7 +29174,7 @@ client.production().postV1ProductionRoutingsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ProductionRoutingsListRequestFilterItem>>` 
+**filter:** `Optional<List<RoutingsListProductionRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -29065,7 +29194,7 @@ client.production().postV1ProductionRoutingsList(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionMaintenanceCreate(request) -> PostV1ProductionMaintenanceCreateResponse</code></summary>
+<details><summary><code>client.production.maintenanceCreate(request) -> MaintenanceCreateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29078,12 +29207,12 @@ client.production().postV1ProductionRoutingsList(
 <dd>
 
 ```java
-client.production().postV1ProductionMaintenanceCreate(
-    PostV1ProductionMaintenanceCreateRequest
+client.production().maintenanceCreate(
+    MaintenanceCreateProductionRequest
         .builder()
         .workCenterId("workCenterId")
-        .type(PostV1ProductionMaintenanceCreateRequestType.PREVENTIVE)
-        .plannedDate("plannedDate")
+        .type(MaintenanceCreateProductionRequestType.PREVENTIVE)
+        .plannedDate("2026-07-01")
         .build()
 );
 ```
@@ -29108,7 +29237,7 @@ client.production().postV1ProductionMaintenanceCreate(
 <dl>
 <dd>
 
-**type:** `PostV1ProductionMaintenanceCreateRequestType` 
+**type:** `MaintenanceCreateProductionRequestType` 
     
 </dd>
 </dl>
@@ -29144,7 +29273,7 @@ client.production().postV1ProductionMaintenanceCreate(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionMaintenanceComplete(request) -> PostV1ProductionMaintenanceCompleteResponse</code></summary>
+<details><summary><code>client.production.maintenanceComplete(request) -> MaintenanceCompleteProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29157,11 +29286,11 @@ client.production().postV1ProductionMaintenanceCreate(
 <dd>
 
 ```java
-client.production().postV1ProductionMaintenanceComplete(
-    PostV1ProductionMaintenanceCompleteRequest
+client.production().maintenanceComplete(
+    MaintenanceCompleteProductionRequest
         .builder()
         .id("id")
-        .completedDate("completedDate")
+        .completedDate("2026-07-01")
         .build()
 );
 ```
@@ -29222,7 +29351,7 @@ client.production().postV1ProductionMaintenanceComplete(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionMaintenanceCancel(request) -> PostV1ProductionMaintenanceCancelResponse</code></summary>
+<details><summary><code>client.production.maintenanceCancel(request) -> MaintenanceCancelProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29235,8 +29364,8 @@ client.production().postV1ProductionMaintenanceComplete(
 <dd>
 
 ```java
-client.production().postV1ProductionMaintenanceCancel(
-    PostV1ProductionMaintenanceCancelRequest
+client.production().maintenanceCancel(
+    MaintenanceCancelProductionRequest
         .builder()
         .id("id")
         .build()
@@ -29267,7 +29396,7 @@ client.production().postV1ProductionMaintenanceCancel(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionMaintenanceList(request) -> PostV1ProductionMaintenanceListResponse</code></summary>
+<details><summary><code>client.production.maintenanceList(request) -> MaintenanceListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29280,8 +29409,8 @@ client.production().postV1ProductionMaintenanceCancel(
 <dd>
 
 ```java
-client.production().postV1ProductionMaintenanceList(
-    PostV1ProductionMaintenanceListRequest
+client.production().maintenanceList(
+    MaintenanceListProductionRequest
         .builder()
         .build()
 );
@@ -29315,7 +29444,7 @@ client.production().postV1ProductionMaintenanceList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ProductionMaintenanceListRequestSortItem>>` 
+**sort:** `Optional<List<MaintenanceListProductionRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -29323,7 +29452,7 @@ client.production().postV1ProductionMaintenanceList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ProductionMaintenanceListRequestFilterItem>>` 
+**filter:** `Optional<List<MaintenanceListProductionRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -29343,7 +29472,7 @@ client.production().postV1ProductionMaintenanceList(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionBomsCreate(request) -> PostV1ProductionBomsCreateResponse</code></summary>
+<details><summary><code>client.production.bomsCreate(request) -> BomsCreateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29356,18 +29485,18 @@ client.production().postV1ProductionMaintenanceList(
 <dd>
 
 ```java
-client.production().postV1ProductionBomsCreate(
-    PostV1ProductionBomsCreateRequest
+client.production().bomsCreate(
+    BomsCreateProductionRequest
         .builder()
         .code("code")
         .name("name")
         .finishedItemId("finishedItemId")
         .lines(
             Arrays.asList(
-                PostV1ProductionBomsCreateRequestLinesItem
+                BomsCreateProductionRequestLinesItem
                     .builder()
                     .componentItemId("componentItemId")
-                    .quantity("quantity")
+                    .quantity("121.0000")
                     .build()
             )
         )
@@ -29427,7 +29556,7 @@ client.production().postV1ProductionBomsCreate(
 <dl>
 <dd>
 
-**lines:** `List<PostV1ProductionBomsCreateRequestLinesItem>` 
+**lines:** `List<BomsCreateProductionRequestLinesItem>` 
     
 </dd>
 </dl>
@@ -29439,7 +29568,7 @@ client.production().postV1ProductionBomsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionBomsGet(request) -> PostV1ProductionBomsGetResponse</code></summary>
+<details><summary><code>client.production.bomsGet(request) -> BomsGetProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29452,8 +29581,8 @@ client.production().postV1ProductionBomsCreate(
 <dd>
 
 ```java
-client.production().postV1ProductionBomsGet(
-    PostV1ProductionBomsGetRequest
+client.production().bomsGet(
+    BomsGetProductionRequest
         .builder()
         .id("id")
         .build()
@@ -29484,7 +29613,7 @@ client.production().postV1ProductionBomsGet(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionBomsList(request) -> PostV1ProductionBomsListResponse</code></summary>
+<details><summary><code>client.production.bomsList(request) -> BomsListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29497,8 +29626,8 @@ client.production().postV1ProductionBomsGet(
 <dd>
 
 ```java
-client.production().postV1ProductionBomsList(
-    PostV1ProductionBomsListRequest
+client.production().bomsList(
+    BomsListProductionRequest
         .builder()
         .build()
 );
@@ -29532,7 +29661,7 @@ client.production().postV1ProductionBomsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ProductionBomsListRequestSortItem>>` 
+**sort:** `Optional<List<BomsListProductionRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -29540,7 +29669,7 @@ client.production().postV1ProductionBomsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ProductionBomsListRequestFilterItem>>` 
+**filter:** `Optional<List<BomsListProductionRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -29560,7 +29689,7 @@ client.production().postV1ProductionBomsList(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionOrdersCreate(request) -> PostV1ProductionOrdersCreateResponse</code></summary>
+<details><summary><code>client.production.ordersCreate(request) -> OrdersCreateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29573,13 +29702,13 @@ client.production().postV1ProductionBomsList(
 <dd>
 
 ```java
-client.production().postV1ProductionOrdersCreate(
-    PostV1ProductionOrdersCreateRequest
+client.production().ordersCreate(
+    OrdersCreateProductionRequest
         .builder()
         .bomId("bomId")
         .warehouseId("warehouseId")
-        .quantity("quantity")
-        .date("date")
+        .quantity("121.0000")
+        .date("2026-07-01")
         .build()
 );
 ```
@@ -29596,7 +29725,7 @@ client.production().postV1ProductionOrdersCreate(
 <dl>
 <dd>
 
-**type:** `Optional<PostV1ProductionOrdersCreateRequestType>` 
+**type:** `Optional<OrdersCreateProductionRequestType>` 
     
 </dd>
 </dl>
@@ -29656,7 +29785,7 @@ client.production().postV1ProductionOrdersCreate(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionOrdersRecordOperation(request) -> PostV1ProductionOrdersRecordOperationResponse</code></summary>
+<details><summary><code>client.production.ordersRecordOperation(request) -> OrdersRecordOperationProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29669,11 +29798,11 @@ client.production().postV1ProductionOrdersCreate(
 <dd>
 
 ```java
-client.production().postV1ProductionOrdersRecordOperation(
-    PostV1ProductionOrdersRecordOperationRequest
+client.production().ordersRecordOperation(
+    OrdersRecordOperationProductionRequest
         .builder()
         .id("id")
-        .actualMinutes("actualMinutes")
+        .actualMinutes("121.00")
         .build()
 );
 ```
@@ -29710,7 +29839,7 @@ client.production().postV1ProductionOrdersRecordOperation(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionQualityChecksAdd(request) -> PostV1ProductionQualityChecksAddResponse</code></summary>
+<details><summary><code>client.production.qualityChecksAdd(request) -> QualityChecksAddProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29723,8 +29852,8 @@ client.production().postV1ProductionOrdersRecordOperation(
 <dd>
 
 ```java
-client.production().postV1ProductionQualityChecksAdd(
-    PostV1ProductionQualityChecksAddRequest
+client.production().qualityChecksAdd(
+    QualityChecksAddProductionRequest
         .builder()
         .orderId("orderId")
         .name("name")
@@ -29772,7 +29901,7 @@ client.production().postV1ProductionQualityChecksAdd(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionQualityChecksRecord(request) -> PostV1ProductionQualityChecksRecordResponse</code></summary>
+<details><summary><code>client.production.qualityChecksRecord(request) -> QualityChecksRecordProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29785,11 +29914,11 @@ client.production().postV1ProductionQualityChecksAdd(
 <dd>
 
 ```java
-client.production().postV1ProductionQualityChecksRecord(
-    PostV1ProductionQualityChecksRecordRequest
+client.production().qualityChecksRecord(
+    QualityChecksRecordProductionRequest
         .builder()
         .id("id")
-        .result(PostV1ProductionQualityChecksRecordRequestResult.PASSED)
+        .result(QualityChecksRecordProductionRequestResult.PASSED)
         .build()
 );
 ```
@@ -29814,7 +29943,7 @@ client.production().postV1ProductionQualityChecksRecord(
 <dl>
 <dd>
 
-**result:** `PostV1ProductionQualityChecksRecordRequestResult` 
+**result:** `QualityChecksRecordProductionRequestResult` 
     
 </dd>
 </dl>
@@ -29834,7 +29963,7 @@ client.production().postV1ProductionQualityChecksRecord(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionQualityChecksList(request) -> PostV1ProductionQualityChecksListResponse</code></summary>
+<details><summary><code>client.production.qualityChecksList(request) -> QualityChecksListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29847,8 +29976,8 @@ client.production().postV1ProductionQualityChecksRecord(
 <dd>
 
 ```java
-client.production().postV1ProductionQualityChecksList(
-    PostV1ProductionQualityChecksListRequest
+client.production().qualityChecksList(
+    QualityChecksListProductionRequest
         .builder()
         .build()
 );
@@ -29882,7 +30011,7 @@ client.production().postV1ProductionQualityChecksList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ProductionQualityChecksListRequestSortItem>>` 
+**sort:** `Optional<List<QualityChecksListProductionRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -29890,7 +30019,7 @@ client.production().postV1ProductionQualityChecksList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ProductionQualityChecksListRequestFilterItem>>` 
+**filter:** `Optional<List<QualityChecksListProductionRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -29910,7 +30039,7 @@ client.production().postV1ProductionQualityChecksList(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionOrdersComplete(request) -> PostV1ProductionOrdersCompleteResponse</code></summary>
+<details><summary><code>client.production.ordersComplete(request) -> OrdersCompleteProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29923,8 +30052,8 @@ client.production().postV1ProductionQualityChecksList(
 <dd>
 
 ```java
-client.production().postV1ProductionOrdersComplete(
-    PostV1ProductionOrdersCompleteRequest
+client.production().ordersComplete(
+    OrdersCompleteProductionRequest
         .builder()
         .id("id")
         .build()
@@ -29979,7 +30108,7 @@ client.production().postV1ProductionOrdersComplete(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionOrdersGet(request) -> PostV1ProductionOrdersGetResponse</code></summary>
+<details><summary><code>client.production.ordersGet(request) -> OrdersGetProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29992,8 +30121,8 @@ client.production().postV1ProductionOrdersComplete(
 <dd>
 
 ```java
-client.production().postV1ProductionOrdersGet(
-    PostV1ProductionOrdersGetRequest
+client.production().ordersGet(
+    OrdersGetProductionRequest
         .builder()
         .id("id")
         .build()
@@ -30024,7 +30153,7 @@ client.production().postV1ProductionOrdersGet(
 </dl>
 </details>
 
-<details><summary><code>client.production.postV1ProductionOrdersList(request) -> PostV1ProductionOrdersListResponse</code></summary>
+<details><summary><code>client.production.ordersList(request) -> OrdersListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -30037,8 +30166,8 @@ client.production().postV1ProductionOrdersGet(
 <dd>
 
 ```java
-client.production().postV1ProductionOrdersList(
-    PostV1ProductionOrdersListRequest
+client.production().ordersList(
+    OrdersListProductionRequest
         .builder()
         .build()
 );
@@ -30072,7 +30201,7 @@ client.production().postV1ProductionOrdersList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ProductionOrdersListRequestSortItem>>` 
+**sort:** `Optional<List<OrdersListProductionRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -30080,7 +30209,7 @@ client.production().postV1ProductionOrdersList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ProductionOrdersListRequestFilterItem>>` 
+**filter:** `Optional<List<OrdersListProductionRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -30100,8 +30229,8 @@ client.production().postV1ProductionOrdersList(
 </dl>
 </details>
 
-## Ecommerce
-<details><summary><code>client.ecommerce.postV1EcommerceOrdersCreate(request) -> PostV1EcommerceOrdersCreateResponse</code></summary>
+## ecommerce
+<details><summary><code>client.ecommerce.ordersCreate(request) -> OrdersCreateEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -30114,16 +30243,16 @@ client.production().postV1ProductionOrdersList(
 <dd>
 
 ```java
-client.ecommerce().postV1EcommerceOrdersCreate(
-    PostV1EcommerceOrdersCreateRequest
+client.ecommerce().ordersCreate(
+    OrdersCreateEcommerceRequest
         .builder()
         .lines(
             Arrays.asList(
-                PostV1EcommerceOrdersCreateRequestLinesItem
+                OrdersCreateEcommerceRequestLinesItem
                     .builder()
                     .description("description")
-                    .quantity("quantity")
-                    .unitPriceExclVat("unitPriceExclVat")
+                    .quantity("121.0000")
+                    .unitPriceExclVat("121.0000")
                     .build()
             )
         )
@@ -30167,7 +30296,7 @@ client.ecommerce().postV1EcommerceOrdersCreate(
 <dl>
 <dd>
 
-**partner:** `Optional<PostV1EcommerceOrdersCreateRequestPartner>` 
+**partner:** `Optional<OrdersCreateEcommerceRequestPartner>` 
     
 </dd>
 </dl>
@@ -30215,7 +30344,7 @@ client.ecommerce().postV1EcommerceOrdersCreate(
 <dl>
 <dd>
 
-**lines:** `List<PostV1EcommerceOrdersCreateRequestLinesItem>` 
+**lines:** `List<OrdersCreateEcommerceRequestLinesItem>` 
     
 </dd>
 </dl>
@@ -30227,7 +30356,7 @@ client.ecommerce().postV1EcommerceOrdersCreate(
 </dl>
 </details>
 
-<details><summary><code>client.ecommerce.postV1EcommerceOrdersGet(request) -> PostV1EcommerceOrdersGetResponse</code></summary>
+<details><summary><code>client.ecommerce.ordersGet(request) -> OrdersGetEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -30240,8 +30369,8 @@ client.ecommerce().postV1EcommerceOrdersCreate(
 <dd>
 
 ```java
-client.ecommerce().postV1EcommerceOrdersGet(
-    PostV1EcommerceOrdersGetRequest
+client.ecommerce().ordersGet(
+    OrdersGetEcommerceRequest
         .builder()
         .id("id")
         .build()
@@ -30272,7 +30401,7 @@ client.ecommerce().postV1EcommerceOrdersGet(
 </dl>
 </details>
 
-<details><summary><code>client.ecommerce.postV1EcommerceOrdersList(request) -> PostV1EcommerceOrdersListResponse</code></summary>
+<details><summary><code>client.ecommerce.ordersList(request) -> OrdersListEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -30285,8 +30414,8 @@ client.ecommerce().postV1EcommerceOrdersGet(
 <dd>
 
 ```java
-client.ecommerce().postV1EcommerceOrdersList(
-    PostV1EcommerceOrdersListRequest
+client.ecommerce().ordersList(
+    OrdersListEcommerceRequest
         .builder()
         .build()
 );
@@ -30320,7 +30449,7 @@ client.ecommerce().postV1EcommerceOrdersList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1EcommerceOrdersListRequestSortItem>>` 
+**sort:** `Optional<List<OrdersListEcommerceRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -30328,7 +30457,7 @@ client.ecommerce().postV1EcommerceOrdersList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1EcommerceOrdersListRequestFilterItem>>` 
+**filter:** `Optional<List<OrdersListEcommerceRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -30348,7 +30477,7 @@ client.ecommerce().postV1EcommerceOrdersList(
 </dl>
 </details>
 
-<details><summary><code>client.ecommerce.postV1EcommerceOrdersReserve(request) -> PostV1EcommerceOrdersReserveResponse</code></summary>
+<details><summary><code>client.ecommerce.ordersReserve(request) -> OrdersReserveEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -30361,8 +30490,8 @@ client.ecommerce().postV1EcommerceOrdersList(
 <dd>
 
 ```java
-client.ecommerce().postV1EcommerceOrdersReserve(
-    PostV1EcommerceOrdersReserveRequest
+client.ecommerce().ordersReserve(
+    OrdersReserveEcommerceRequest
         .builder()
         .id("id")
         .build()
@@ -30401,7 +30530,7 @@ client.ecommerce().postV1EcommerceOrdersReserve(
 </dl>
 </details>
 
-<details><summary><code>client.ecommerce.postV1EcommerceOrdersFulfill(request) -> PostV1EcommerceOrdersFulfillResponse</code></summary>
+<details><summary><code>client.ecommerce.ordersFulfill(request) -> OrdersFulfillEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -30414,8 +30543,8 @@ client.ecommerce().postV1EcommerceOrdersReserve(
 <dd>
 
 ```java
-client.ecommerce().postV1EcommerceOrdersFulfill(
-    PostV1EcommerceOrdersFulfillRequest
+client.ecommerce().ordersFulfill(
+    OrdersFulfillEcommerceRequest
         .builder()
         .id("id")
         .build()
@@ -30470,7 +30599,7 @@ client.ecommerce().postV1EcommerceOrdersFulfill(
 </dl>
 </details>
 
-<details><summary><code>client.ecommerce.postV1EcommerceOrdersCancel(request) -> PostV1EcommerceOrdersCancelResponse</code></summary>
+<details><summary><code>client.ecommerce.ordersCancel(request) -> OrdersCancelEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -30483,8 +30612,8 @@ client.ecommerce().postV1EcommerceOrdersFulfill(
 <dd>
 
 ```java
-client.ecommerce().postV1EcommerceOrdersCancel(
-    PostV1EcommerceOrdersCancelRequest
+client.ecommerce().ordersCancel(
+    OrdersCancelEcommerceRequest
         .builder()
         .id("id")
         .build()
@@ -30515,7 +30644,7 @@ client.ecommerce().postV1EcommerceOrdersCancel(
 </dl>
 </details>
 
-<details><summary><code>client.ecommerce.postV1EcommerceProductsList(request) -> PostV1EcommerceProductsListResponse</code></summary>
+<details><summary><code>client.ecommerce.productsList(request) -> ProductsListEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -30528,8 +30657,8 @@ client.ecommerce().postV1EcommerceOrdersCancel(
 <dd>
 
 ```java
-client.ecommerce().postV1EcommerceProductsList(
-    PostV1EcommerceProductsListRequest
+client.ecommerce().productsList(
+    ProductsListEcommerceRequest
         .builder()
         .build()
 );
@@ -30591,7 +30720,7 @@ client.ecommerce().postV1EcommerceProductsList(
 </dl>
 </details>
 
-<details><summary><code>client.ecommerce.postV1EcommerceStockList(request) -> PostV1EcommerceStockListResponse</code></summary>
+<details><summary><code>client.ecommerce.stockList(request) -> StockListEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -30604,8 +30733,8 @@ client.ecommerce().postV1EcommerceProductsList(
 <dd>
 
 ```java
-client.ecommerce().postV1EcommerceStockList(
-    PostV1EcommerceStockListRequest
+client.ecommerce().stockList(
+    StockListEcommerceRequest
         .builder()
         .build()
 );
@@ -30635,8 +30764,8 @@ client.ecommerce().postV1EcommerceStockList(
 </dl>
 </details>
 
-## Cash
-<details><summary><code>client.cash.postV1CashOrdersCreate(request) -> PostV1CashOrdersCreateResponse</code></summary>
+## cash
+<details><summary><code>client.cash.ordersCreate(request) -> OrdersCreateCashResponse</code></summary>
 <dl>
 <dd>
 
@@ -30649,12 +30778,12 @@ client.ecommerce().postV1EcommerceStockList(
 <dd>
 
 ```java
-client.cash().postV1CashOrdersCreate(
-    PostV1CashOrdersCreateRequest
+client.cash().ordersCreate(
+    OrdersCreateCashRequest
         .builder()
-        .type(PostV1CashOrdersCreateRequestType.RECEIPT)
-        .date("date")
-        .amount("amount")
+        .type(OrdersCreateCashRequestType.RECEIPT)
+        .date("2026-07-01")
+        .amount("121.0000")
         .purpose("purpose")
         .counterAccountCode("counterAccountCode")
         .build()
@@ -30673,7 +30802,7 @@ client.cash().postV1CashOrdersCreate(
 <dl>
 <dd>
 
-**type:** `PostV1CashOrdersCreateRequestType` 
+**type:** `OrdersCreateCashRequestType` 
     
 </dd>
 </dl>
@@ -30757,7 +30886,7 @@ client.cash().postV1CashOrdersCreate(
 </dl>
 </details>
 
-<details><summary><code>client.cash.postV1CashOrdersGet(request) -> PostV1CashOrdersGetResponse</code></summary>
+<details><summary><code>client.cash.ordersGet(request) -> OrdersGetCashResponse</code></summary>
 <dl>
 <dd>
 
@@ -30770,8 +30899,8 @@ client.cash().postV1CashOrdersCreate(
 <dd>
 
 ```java
-client.cash().postV1CashOrdersGet(
-    PostV1CashOrdersGetRequest
+client.cash().ordersGet(
+    OrdersGetCashRequest
         .builder()
         .id("id")
         .build()
@@ -30802,7 +30931,7 @@ client.cash().postV1CashOrdersGet(
 </dl>
 </details>
 
-<details><summary><code>client.cash.postV1CashOrdersList(request) -> PostV1CashOrdersListResponse</code></summary>
+<details><summary><code>client.cash.ordersList(request) -> OrdersListCashResponse</code></summary>
 <dl>
 <dd>
 
@@ -30815,8 +30944,8 @@ client.cash().postV1CashOrdersGet(
 <dd>
 
 ```java
-client.cash().postV1CashOrdersList(
-    PostV1CashOrdersListRequest
+client.cash().ordersList(
+    OrdersListCashRequest
         .builder()
         .build()
 );
@@ -30850,7 +30979,7 @@ client.cash().postV1CashOrdersList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1CashOrdersListRequestSortItem>>` 
+**sort:** `Optional<List<OrdersListCashRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -30858,7 +30987,7 @@ client.cash().postV1CashOrdersList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1CashOrdersListRequestFilterItem>>` 
+**filter:** `Optional<List<OrdersListCashRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -30878,7 +31007,7 @@ client.cash().postV1CashOrdersList(
 </dl>
 </details>
 
-<details><summary><code>client.cash.postV1CashBalance(request) -> PostV1CashBalanceResponse</code></summary>
+<details><summary><code>client.cash.balance(request) -> BalanceCashResponse</code></summary>
 <dl>
 <dd>
 
@@ -30891,8 +31020,8 @@ client.cash().postV1CashOrdersList(
 <dd>
 
 ```java
-client.cash().postV1CashBalance(
-    PostV1CashBalanceRequest
+client.cash().balance(
+    BalanceCashRequest
         .builder()
         .build()
 );
@@ -30930,7 +31059,7 @@ client.cash().postV1CashBalance(
 </dl>
 </details>
 
-<details><summary><code>client.cash.postV1CashAdvanceHoldersBalances(request) -> PostV1CashAdvanceHoldersBalancesResponse</code></summary>
+<details><summary><code>client.cash.advanceHoldersBalances(request) -> AdvanceHoldersBalancesCashResponse</code></summary>
 <dl>
 <dd>
 
@@ -30943,8 +31072,8 @@ client.cash().postV1CashBalance(
 <dd>
 
 ```java
-client.cash().postV1CashAdvanceHoldersBalances(
-    PostV1CashAdvanceHoldersBalancesRequest
+client.cash().advanceHoldersBalances(
+    AdvanceHoldersBalancesCashRequest
         .builder()
         .build()
 );
@@ -30959,8 +31088,8 @@ client.cash().postV1CashAdvanceHoldersBalances(
 </dl>
 </details>
 
-## Projects
-<details><summary><code>client.projects.postV1ProjectsCreate(request) -> PostV1ProjectsCreateResponse</code></summary>
+## projects
+<details><summary><code>client.projects.create(request) -> CreateProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -30973,8 +31102,8 @@ client.cash().postV1CashAdvanceHoldersBalances(
 <dd>
 
 ```java
-client.projects().postV1ProjectsCreate(
-    PostV1ProjectsCreateRequest
+client.projects().create(
+    CreateProjectsRequest
         .builder()
         .code("code")
         .name("name")
@@ -31030,7 +31159,7 @@ client.projects().postV1ProjectsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.projects.postV1ProjectsUpdate(request) -> PostV1ProjectsUpdateResponse</code></summary>
+<details><summary><code>client.projects.update(request) -> UpdateProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31043,8 +31172,8 @@ client.projects().postV1ProjectsCreate(
 <dd>
 
 ```java
-client.projects().postV1ProjectsUpdate(
-    PostV1ProjectsUpdateRequest
+client.projects().update(
+    UpdateProjectsRequest
         .builder()
         .id("id")
         .build()
@@ -31087,7 +31216,7 @@ client.projects().postV1ProjectsUpdate(
 <dl>
 <dd>
 
-**status:** `Optional<PostV1ProjectsUpdateRequestStatus>` 
+**status:** `Optional<UpdateProjectsRequestStatus>` 
     
 </dd>
 </dl>
@@ -31107,7 +31236,7 @@ client.projects().postV1ProjectsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.projects.postV1ProjectsGet(request) -> PostV1ProjectsGetResponse</code></summary>
+<details><summary><code>client.projects.get(request) -> GetProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31120,8 +31249,8 @@ client.projects().postV1ProjectsUpdate(
 <dd>
 
 ```java
-client.projects().postV1ProjectsGet(
-    PostV1ProjectsGetRequest
+client.projects().get(
+    GetProjectsRequest
         .builder()
         .id("id")
         .build()
@@ -31152,7 +31281,7 @@ client.projects().postV1ProjectsGet(
 </dl>
 </details>
 
-<details><summary><code>client.projects.postV1ProjectsList(request) -> PostV1ProjectsListResponse</code></summary>
+<details><summary><code>client.projects.list(request) -> ListProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31165,8 +31294,8 @@ client.projects().postV1ProjectsGet(
 <dd>
 
 ```java
-client.projects().postV1ProjectsList(
-    PostV1ProjectsListRequest
+client.projects().list(
+    ListProjectsRequest
         .builder()
         .build()
 );
@@ -31200,7 +31329,7 @@ client.projects().postV1ProjectsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ProjectsListRequestSortItem>>` 
+**sort:** `Optional<List<ListProjectsRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -31208,7 +31337,7 @@ client.projects().postV1ProjectsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ProjectsListRequestFilterItem>>` 
+**filter:** `Optional<List<ListProjectsRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -31228,7 +31357,7 @@ client.projects().postV1ProjectsList(
 </dl>
 </details>
 
-<details><summary><code>client.projects.postV1ProjectsTimeEntriesCreate(request) -> PostV1ProjectsTimeEntriesCreateResponse</code></summary>
+<details><summary><code>client.projects.timeEntriesCreate(request) -> TimeEntriesCreateProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31241,12 +31370,12 @@ client.projects().postV1ProjectsList(
 <dd>
 
 ```java
-client.projects().postV1ProjectsTimeEntriesCreate(
-    PostV1ProjectsTimeEntriesCreateRequest
+client.projects().timeEntriesCreate(
+    TimeEntriesCreateProjectsRequest
         .builder()
         .projectId("projectId")
-        .date("date")
-        .hours("hours")
+        .date("2026-07-01")
+        .hours("121.00")
         .build()
 );
 ```
@@ -31323,7 +31452,7 @@ client.projects().postV1ProjectsTimeEntriesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.projects.postV1ProjectsTimeEntriesUpdate(request) -> PostV1ProjectsTimeEntriesUpdateResponse</code></summary>
+<details><summary><code>client.projects.timeEntriesUpdate(request) -> TimeEntriesUpdateProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31336,8 +31465,8 @@ client.projects().postV1ProjectsTimeEntriesCreate(
 <dd>
 
 ```java
-client.projects().postV1ProjectsTimeEntriesUpdate(
-    PostV1ProjectsTimeEntriesUpdateRequest
+client.projects().timeEntriesUpdate(
+    TimeEntriesUpdateProjectsRequest
         .builder()
         .id("id")
         .build()
@@ -31408,7 +31537,7 @@ client.projects().postV1ProjectsTimeEntriesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.projects.postV1ProjectsTimeEntriesDelete(request) -> PostV1ProjectsTimeEntriesDeleteResponse</code></summary>
+<details><summary><code>client.projects.timeEntriesDelete(request) -> TimeEntriesDeleteProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31421,8 +31550,8 @@ client.projects().postV1ProjectsTimeEntriesUpdate(
 <dd>
 
 ```java
-client.projects().postV1ProjectsTimeEntriesDelete(
-    PostV1ProjectsTimeEntriesDeleteRequest
+client.projects().timeEntriesDelete(
+    TimeEntriesDeleteProjectsRequest
         .builder()
         .id("id")
         .build()
@@ -31453,7 +31582,7 @@ client.projects().postV1ProjectsTimeEntriesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.projects.postV1ProjectsTimeEntriesList(request) -> PostV1ProjectsTimeEntriesListResponse</code></summary>
+<details><summary><code>client.projects.timeEntriesList(request) -> TimeEntriesListProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31466,8 +31595,8 @@ client.projects().postV1ProjectsTimeEntriesDelete(
 <dd>
 
 ```java
-client.projects().postV1ProjectsTimeEntriesList(
-    PostV1ProjectsTimeEntriesListRequest
+client.projects().timeEntriesList(
+    TimeEntriesListProjectsRequest
         .builder()
         .build()
 );
@@ -31501,7 +31630,7 @@ client.projects().postV1ProjectsTimeEntriesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ProjectsTimeEntriesListRequestSortItem>>` 
+**sort:** `Optional<List<TimeEntriesListProjectsRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -31509,7 +31638,7 @@ client.projects().postV1ProjectsTimeEntriesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ProjectsTimeEntriesListRequestFilterItem>>` 
+**filter:** `Optional<List<TimeEntriesListProjectsRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -31529,7 +31658,7 @@ client.projects().postV1ProjectsTimeEntriesList(
 </dl>
 </details>
 
-<details><summary><code>client.projects.postV1ProjectsTimeEntriesBill(request) -> PostV1ProjectsTimeEntriesBillResponse</code></summary>
+<details><summary><code>client.projects.timeEntriesBill(request) -> TimeEntriesBillProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31542,8 +31671,8 @@ client.projects().postV1ProjectsTimeEntriesList(
 <dd>
 
 ```java
-client.projects().postV1ProjectsTimeEntriesBill(
-    PostV1ProjectsTimeEntriesBillRequest
+client.projects().timeEntriesBill(
+    TimeEntriesBillProjectsRequest
         .builder()
         .projectId("projectId")
         .build()
@@ -31642,7 +31771,7 @@ client.projects().postV1ProjectsTimeEntriesBill(
 <dl>
 <dd>
 
-**groupBy:** `Optional<PostV1ProjectsTimeEntriesBillRequestGroupBy>` 
+**groupBy:** `Optional<TimeEntriesBillProjectsRequestGroupBy>` 
     
 </dd>
 </dl>
@@ -31662,7 +31791,7 @@ client.projects().postV1ProjectsTimeEntriesBill(
 </dl>
 </details>
 
-<details><summary><code>client.projects.postV1ProjectsReport(request) -> PostV1ProjectsReportResponse</code></summary>
+<details><summary><code>client.projects.report(request) -> ReportProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31675,8 +31804,8 @@ client.projects().postV1ProjectsTimeEntriesBill(
 <dd>
 
 ```java
-client.projects().postV1ProjectsReport(
-    PostV1ProjectsReportRequest
+client.projects().report(
+    ReportProjectsRequest
         .builder()
         .build()
 );
@@ -31722,8 +31851,8 @@ client.projects().postV1ProjectsReport(
 </dl>
 </details>
 
-## Transport
-<details><summary><code>client.transport.postV1TransportWaybillsCreate(request) -> PostV1TransportWaybillsCreateResponse</code></summary>
+## transport
+<details><summary><code>client.transport.waybillsCreate(request) -> WaybillsCreateTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -31736,8 +31865,8 @@ client.projects().postV1ProjectsReport(
 <dd>
 
 ```java
-client.transport().postV1TransportWaybillsCreate(
-    PostV1TransportWaybillsCreateRequest
+client.transport().waybillsCreate(
+    WaybillsCreateTransportRequest
         .builder()
         .consigneePartnerId("consigneePartnerId")
         .dispatchAt(OffsetDateTime.parse("2024-01-15T09:30:00Z"))
@@ -31887,7 +32016,7 @@ client.transport().postV1TransportWaybillsCreate(
 <dl>
 <dd>
 
-**lines:** `Optional<List<PostV1TransportWaybillsCreateRequestLinesItem>>` 
+**lines:** `Optional<List<WaybillsCreateTransportRequestLinesItem>>` 
     
 </dd>
 </dl>
@@ -31899,7 +32028,7 @@ client.transport().postV1TransportWaybillsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.transport.postV1TransportWaybillsUpdate(request) -> PostV1TransportWaybillsUpdateResponse</code></summary>
+<details><summary><code>client.transport.waybillsUpdate(request) -> WaybillsUpdateTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -31912,8 +32041,8 @@ client.transport().postV1TransportWaybillsCreate(
 <dd>
 
 ```java
-client.transport().postV1TransportWaybillsUpdate(
-    PostV1TransportWaybillsUpdateRequest
+client.transport().waybillsUpdate(
+    WaybillsUpdateTransportRequest
         .builder()
         .id("id")
         .build()
@@ -32060,7 +32189,7 @@ client.transport().postV1TransportWaybillsUpdate(
 <dl>
 <dd>
 
-**lines:** `Optional<List<PostV1TransportWaybillsUpdateRequestLinesItem>>` 
+**lines:** `Optional<List<WaybillsUpdateTransportRequestLinesItem>>` 
     
 </dd>
 </dl>
@@ -32080,7 +32209,7 @@ client.transport().postV1TransportWaybillsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.transport.postV1TransportWaybillsIssue(request) -> PostV1TransportWaybillsIssueResponse</code></summary>
+<details><summary><code>client.transport.waybillsIssue(request) -> WaybillsIssueTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -32093,8 +32222,8 @@ client.transport().postV1TransportWaybillsUpdate(
 <dd>
 
 ```java
-client.transport().postV1TransportWaybillsIssue(
-    PostV1TransportWaybillsIssueRequest
+client.transport().waybillsIssue(
+    WaybillsIssueTransportRequest
         .builder()
         .id("id")
         .build()
@@ -32125,7 +32254,7 @@ client.transport().postV1TransportWaybillsIssue(
 </dl>
 </details>
 
-<details><summary><code>client.transport.postV1TransportWaybillsCancel(request) -> PostV1TransportWaybillsCancelResponse</code></summary>
+<details><summary><code>client.transport.waybillsCancel(request) -> WaybillsCancelTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -32138,8 +32267,8 @@ client.transport().postV1TransportWaybillsIssue(
 <dd>
 
 ```java
-client.transport().postV1TransportWaybillsCancel(
-    PostV1TransportWaybillsCancelRequest
+client.transport().waybillsCancel(
+    WaybillsCancelTransportRequest
         .builder()
         .id("id")
         .build()
@@ -32170,7 +32299,7 @@ client.transport().postV1TransportWaybillsCancel(
 </dl>
 </details>
 
-<details><summary><code>client.transport.postV1TransportWaybillsGet(request) -> PostV1TransportWaybillsGetResponse</code></summary>
+<details><summary><code>client.transport.waybillsGet(request) -> WaybillsGetTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -32183,8 +32312,8 @@ client.transport().postV1TransportWaybillsCancel(
 <dd>
 
 ```java
-client.transport().postV1TransportWaybillsGet(
-    PostV1TransportWaybillsGetRequest
+client.transport().waybillsGet(
+    WaybillsGetTransportRequest
         .builder()
         .id("id")
         .build()
@@ -32215,7 +32344,7 @@ client.transport().postV1TransportWaybillsGet(
 </dl>
 </details>
 
-<details><summary><code>client.transport.postV1TransportWaybillsList(request) -> PostV1TransportWaybillsListResponse</code></summary>
+<details><summary><code>client.transport.waybillsList(request) -> WaybillsListTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -32228,8 +32357,8 @@ client.transport().postV1TransportWaybillsGet(
 <dd>
 
 ```java
-client.transport().postV1TransportWaybillsList(
-    PostV1TransportWaybillsListRequest
+client.transport().waybillsList(
+    WaybillsListTransportRequest
         .builder()
         .build()
 );
@@ -32263,7 +32392,7 @@ client.transport().postV1TransportWaybillsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1TransportWaybillsListRequestSortItem>>` 
+**sort:** `Optional<List<WaybillsListTransportRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -32271,7 +32400,7 @@ client.transport().postV1TransportWaybillsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1TransportWaybillsListRequestFilterItem>>` 
+**filter:** `Optional<List<WaybillsListTransportRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -32291,8 +32420,8 @@ client.transport().postV1TransportWaybillsList(
 </dl>
 </details>
 
-## Pos
-<details><summary><code>client.pos.postV1PosDevicesCreate(request) -> PostV1PosDevicesCreateResponse</code></summary>
+## pos
+<details><summary><code>client.pos.devicesCreate(request) -> DevicesCreatePosResponse</code></summary>
 <dl>
 <dd>
 
@@ -32305,8 +32434,8 @@ client.transport().postV1TransportWaybillsList(
 <dd>
 
 ```java
-client.pos().postV1PosDevicesCreate(
-    PostV1PosDevicesCreateRequest
+client.pos().devicesCreate(
+    DevicesCreatePosRequest
         .builder()
         .name("name")
         .serialNumber("serialNumber")
@@ -32370,7 +32499,7 @@ client.pos().postV1PosDevicesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.pos.postV1PosDevicesUpdate(request) -> PostV1PosDevicesUpdateResponse</code></summary>
+<details><summary><code>client.pos.devicesUpdate(request) -> DevicesUpdatePosResponse</code></summary>
 <dl>
 <dd>
 
@@ -32383,8 +32512,8 @@ client.pos().postV1PosDevicesCreate(
 <dd>
 
 ```java
-client.pos().postV1PosDevicesUpdate(
-    PostV1PosDevicesUpdateRequest
+client.pos().devicesUpdate(
+    DevicesUpdatePosRequest
         .builder()
         .id("id")
         .build()
@@ -32463,7 +32592,7 @@ client.pos().postV1PosDevicesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.pos.postV1PosDevicesList(request) -> PostV1PosDevicesListResponse</code></summary>
+<details><summary><code>client.pos.devicesList(request) -> DevicesListPosResponse</code></summary>
 <dl>
 <dd>
 
@@ -32476,8 +32605,8 @@ client.pos().postV1PosDevicesUpdate(
 <dd>
 
 ```java
-client.pos().postV1PosDevicesList(
-    PostV1PosDevicesListRequest
+client.pos().devicesList(
+    DevicesListPosRequest
         .builder()
         .build()
 );
@@ -32511,7 +32640,7 @@ client.pos().postV1PosDevicesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1PosDevicesListRequestSortItem>>` 
+**sort:** `Optional<List<DevicesListPosRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -32519,7 +32648,7 @@ client.pos().postV1PosDevicesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1PosDevicesListRequestFilterItem>>` 
+**filter:** `Optional<List<DevicesListPosRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -32539,7 +32668,7 @@ client.pos().postV1PosDevicesList(
 </dl>
 </details>
 
-<details><summary><code>client.pos.postV1PosReportsCreate(request) -> PostV1PosReportsCreateResponse</code></summary>
+<details><summary><code>client.pos.reportsCreate(request) -> ReportsCreatePosResponse</code></summary>
 <dl>
 <dd>
 
@@ -32552,18 +32681,18 @@ client.pos().postV1PosDevicesList(
 <dd>
 
 ```java
-client.pos().postV1PosReportsCreate(
-    PostV1PosReportsCreateRequest
+client.pos().reportsCreate(
+    ReportsCreatePosRequest
         .builder()
         .reportNumber("reportNumber")
-        .date("date")
+        .date("2026-07-01")
         .vatLines(
             Arrays.asList(
-                PostV1PosReportsCreateRequestVatLinesItem
+                ReportsCreatePosRequestVatLinesItem
                     .builder()
-                    .vatRatePercent("vatRatePercent")
-                    .netAmount("netAmount")
-                    .vatAmount("vatAmount")
+                    .vatRatePercent("121.00")
+                    .netAmount("121.0000")
+                    .vatAmount("121.0000")
                     .build()
             )
         )
@@ -32615,7 +32744,7 @@ client.pos().postV1PosReportsCreate(
 <dl>
 <dd>
 
-**vatLines:** `List<PostV1PosReportsCreateRequestVatLinesItem>` 
+**vatLines:** `List<ReportsCreatePosRequestVatLinesItem>` 
     
 </dd>
 </dl>
@@ -32639,7 +32768,7 @@ client.pos().postV1PosReportsCreate(
 <dl>
 <dd>
 
-**itemLines:** `Optional<List<PostV1PosReportsCreateRequestItemLinesItem>>` 
+**itemLines:** `Optional<List<ReportsCreatePosRequestItemLinesItem>>` 
     
 </dd>
 </dl>
@@ -32707,7 +32836,7 @@ client.pos().postV1PosReportsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.pos.postV1PosReportsGet(request) -> PostV1PosReportsGetResponse</code></summary>
+<details><summary><code>client.pos.reportsGet(request) -> ReportsGetPosResponse</code></summary>
 <dl>
 <dd>
 
@@ -32720,8 +32849,8 @@ client.pos().postV1PosReportsCreate(
 <dd>
 
 ```java
-client.pos().postV1PosReportsGet(
-    PostV1PosReportsGetRequest
+client.pos().reportsGet(
+    ReportsGetPosRequest
         .builder()
         .id("id")
         .build()
@@ -32752,7 +32881,7 @@ client.pos().postV1PosReportsGet(
 </dl>
 </details>
 
-<details><summary><code>client.pos.postV1PosReportsList(request) -> PostV1PosReportsListResponse</code></summary>
+<details><summary><code>client.pos.reportsList(request) -> ReportsListPosResponse</code></summary>
 <dl>
 <dd>
 
@@ -32765,8 +32894,8 @@ client.pos().postV1PosReportsGet(
 <dd>
 
 ```java
-client.pos().postV1PosReportsList(
-    PostV1PosReportsListRequest
+client.pos().reportsList(
+    ReportsListPosRequest
         .builder()
         .build()
 );
@@ -32800,7 +32929,7 @@ client.pos().postV1PosReportsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1PosReportsListRequestSortItem>>` 
+**sort:** `Optional<List<ReportsListPosRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -32808,7 +32937,7 @@ client.pos().postV1PosReportsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1PosReportsListRequestFilterItem>>` 
+**filter:** `Optional<List<ReportsListPosRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -32828,8 +32957,8 @@ client.pos().postV1PosReportsList(
 </dl>
 </details>
 
-## Calendar
-<details><summary><code>client.calendar.postV1CalendarList(request) -> PostV1CalendarListResponse</code></summary>
+## calendar
+<details><summary><code>client.calendar.list(request) -> ListCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -32842,8 +32971,8 @@ client.pos().postV1PosReportsList(
 <dd>
 
 ```java
-client.calendar().postV1CalendarList(
-    PostV1CalendarListRequest
+client.calendar().list(
+    ListCalendarRequest
         .builder()
         .build()
 );
@@ -32889,7 +33018,7 @@ client.calendar().postV1CalendarList(
 </dl>
 </details>
 
-<details><summary><code>client.calendar.postV1CalendarGet(request) -> PostV1CalendarGetResponse</code></summary>
+<details><summary><code>client.calendar.get(request) -> GetCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -32902,8 +33031,8 @@ client.calendar().postV1CalendarList(
 <dd>
 
 ```java
-client.calendar().postV1CalendarGet(
-    PostV1CalendarGetRequest
+client.calendar().get(
+    GetCalendarRequest
         .builder()
         .key("key")
         .build()
@@ -32934,9 +33063,23 @@ client.calendar().postV1CalendarGet(
 </dl>
 </details>
 
-<details><summary><code>client.calendar.generateTheFilingForADeadlineAndSendItToTheAdministration(request) -> PostV1CalendarSubmitResponse</code></summary>
+<details><summary><code>client.calendar.submit(request) -> SubmitCalendarResponse</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only returns whose format has a correction mark accept it.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -32947,8 +33090,8 @@ client.calendar().postV1CalendarGet(
 <dd>
 
 ```java
-client.calendar().generateTheFilingForADeadlineAndSendItToTheAdministration(
-    PostV1CalendarSubmitRequest
+client.calendar().submit(
+    SubmitCalendarRequest
         .builder()
         .key("key")
         .build()
@@ -32971,6 +33114,14 @@ client.calendar().generateTheFilingForADeadlineAndSendItToTheAdministration(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**amend:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -32979,7 +33130,7 @@ client.calendar().generateTheFilingForADeadlineAndSendItToTheAdministration(
 </dl>
 </details>
 
-<details><summary><code>client.calendar.generateTheFileOfADeadlineForTheCompanyToSendItself(request) -> PostV1CalendarDownloadResponse</code></summary>
+<details><summary><code>client.calendar.download(request) -> DownloadCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -33006,8 +33157,8 @@ Builds the file of a deadline whose format Nordlet produces but whose administra
 <dd>
 
 ```java
-client.calendar().generateTheFileOfADeadlineForTheCompanyToSendItself(
-    PostV1CalendarDownloadRequest
+client.calendar().download(
+    DownloadCalendarRequest
         .builder()
         .key("key")
         .build()
@@ -33038,7 +33189,7 @@ client.calendar().generateTheFileOfADeadlineForTheCompanyToSendItself(
 </dl>
 </details>
 
-<details><summary><code>client.calendar.postV1CalendarCreate(request) -> PostV1CalendarCreateResponse</code></summary>
+<details><summary><code>client.calendar.create(request) -> CreateCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -33051,11 +33202,11 @@ client.calendar().generateTheFileOfADeadlineForTheCompanyToSendItself(
 <dd>
 
 ```java
-client.calendar().postV1CalendarCreate(
-    PostV1CalendarCreateRequest
+client.calendar().create(
+    CreateCalendarRequest
         .builder()
         .title("title")
-        .dueDate("dueDate")
+        .dueDate("2026-07-01")
         .build()
 );
 ```
@@ -33108,7 +33259,7 @@ client.calendar().postV1CalendarCreate(
 </dl>
 </details>
 
-<details><summary><code>client.calendar.postV1CalendarUpdate(request) -> PostV1CalendarUpdateResponse</code></summary>
+<details><summary><code>client.calendar.update(request) -> UpdateCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -33121,8 +33272,8 @@ client.calendar().postV1CalendarCreate(
 <dd>
 
 ```java
-client.calendar().postV1CalendarUpdate(
-    PostV1CalendarUpdateRequest
+client.calendar().update(
+    UpdateCalendarRequest
         .builder()
         .key("key")
         .build()
@@ -33185,7 +33336,7 @@ client.calendar().postV1CalendarUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.calendar.postV1CalendarDelete(request) -> PostV1CalendarDeleteResponse</code></summary>
+<details><summary><code>client.calendar.delete(request) -> DeleteCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -33198,8 +33349,8 @@ client.calendar().postV1CalendarUpdate(
 <dd>
 
 ```java
-client.calendar().postV1CalendarDelete(
-    PostV1CalendarDeleteRequest
+client.calendar().delete(
+    DeleteCalendarRequest
         .builder()
         .key("key")
         .build()
@@ -33230,8 +33381,8 @@ client.calendar().postV1CalendarDelete(
 </dl>
 </details>
 
-## Audit
-<details><summary><code>client.audit.postV1AuditList(request) -> PostV1AuditListResponse</code></summary>
+## audit
+<details><summary><code>client.audit.list(request) -> ListAuditResponse</code></summary>
 <dl>
 <dd>
 
@@ -33244,8 +33395,8 @@ client.calendar().postV1CalendarDelete(
 <dd>
 
 ```java
-client.audit().postV1AuditList(
-    PostV1AuditListRequest
+client.audit().list(
+    ListAuditRequest
         .builder()
         .build()
 );
@@ -33279,7 +33430,7 @@ client.audit().postV1AuditList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1AuditListRequestSortItem>>` 
+**sort:** `Optional<List<ListAuditRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -33287,7 +33438,7 @@ client.audit().postV1AuditList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1AuditListRequestFilterItem>>` 
+**filter:** `Optional<List<ListAuditRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -33307,8 +33458,8 @@ client.audit().postV1AuditList(
 </dl>
 </details>
 
-## Webhooks
-<details><summary><code>client.webhooks.postV1WebhooksSubscriptionsCreate(request) -> PostV1WebhooksSubscriptionsCreateResponse</code></summary>
+## webhooks
+<details><summary><code>client.webhooks.subscriptionsCreate(request) -> SubscriptionsCreateWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -33321,12 +33472,12 @@ client.audit().postV1AuditList(
 <dd>
 
 ```java
-client.webhooks().postV1WebhooksSubscriptionsCreate(
-    PostV1WebhooksSubscriptionsCreateRequest
+client.webhooks().subscriptionsCreate(
+    SubscriptionsCreateWebhooksRequest
         .builder()
         .url("url")
         .events(
-            Arrays.asList("events")
+            Arrays.asList(SubscriptionsCreateWebhooksRequestEventsItem.AGREEMENT_INVOICE_GENERATED)
         )
         .build()
 );
@@ -33352,7 +33503,7 @@ client.webhooks().postV1WebhooksSubscriptionsCreate(
 <dl>
 <dd>
 
-**events:** `List<String>` 
+**events:** `List<SubscriptionsCreateWebhooksRequestEventsItem>` 
     
 </dd>
 </dl>
@@ -33372,7 +33523,7 @@ client.webhooks().postV1WebhooksSubscriptionsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.postV1WebhooksSubscriptionsList(request) -> PostV1WebhooksSubscriptionsListResponse</code></summary>
+<details><summary><code>client.webhooks.subscriptionsList(request) -> SubscriptionsListWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -33385,8 +33536,8 @@ client.webhooks().postV1WebhooksSubscriptionsCreate(
 <dd>
 
 ```java
-client.webhooks().postV1WebhooksSubscriptionsList(
-    PostV1WebhooksSubscriptionsListRequest
+client.webhooks().subscriptionsList(
+    SubscriptionsListWebhooksRequest
         .builder()
         .build()
 );
@@ -33420,7 +33571,7 @@ client.webhooks().postV1WebhooksSubscriptionsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1WebhooksSubscriptionsListRequestSortItem>>` 
+**sort:** `Optional<List<SubscriptionsListWebhooksRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -33428,7 +33579,7 @@ client.webhooks().postV1WebhooksSubscriptionsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1WebhooksSubscriptionsListRequestFilterItem>>` 
+**filter:** `Optional<List<SubscriptionsListWebhooksRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -33448,7 +33599,7 @@ client.webhooks().postV1WebhooksSubscriptionsList(
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.postV1WebhooksSubscriptionsUpdate(request) -> PostV1WebhooksSubscriptionsUpdateResponse</code></summary>
+<details><summary><code>client.webhooks.subscriptionsUpdate(request) -> SubscriptionsUpdateWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -33461,8 +33612,8 @@ client.webhooks().postV1WebhooksSubscriptionsList(
 <dd>
 
 ```java
-client.webhooks().postV1WebhooksSubscriptionsUpdate(
-    PostV1WebhooksSubscriptionsUpdateRequest
+client.webhooks().subscriptionsUpdate(
+    SubscriptionsUpdateWebhooksRequest
         .builder()
         .id("id")
         .build()
@@ -33497,7 +33648,7 @@ client.webhooks().postV1WebhooksSubscriptionsUpdate(
 <dl>
 <dd>
 
-**events:** `Optional<List<String>>` 
+**events:** `Optional<List<SubscriptionsUpdateWebhooksRequestEventsItem>>` 
     
 </dd>
 </dl>
@@ -33517,7 +33668,7 @@ client.webhooks().postV1WebhooksSubscriptionsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.postV1WebhooksSubscriptionsDelete(request) -> PostV1WebhooksSubscriptionsDeleteResponse</code></summary>
+<details><summary><code>client.webhooks.subscriptionsDelete(request) -> SubscriptionsDeleteWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -33530,8 +33681,8 @@ client.webhooks().postV1WebhooksSubscriptionsUpdate(
 <dd>
 
 ```java
-client.webhooks().postV1WebhooksSubscriptionsDelete(
-    PostV1WebhooksSubscriptionsDeleteRequest
+client.webhooks().subscriptionsDelete(
+    SubscriptionsDeleteWebhooksRequest
         .builder()
         .id("id")
         .build()
@@ -33562,7 +33713,7 @@ client.webhooks().postV1WebhooksSubscriptionsDelete(
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.postV1WebhooksDeliveriesList(request) -> PostV1WebhooksDeliveriesListResponse</code></summary>
+<details><summary><code>client.webhooks.deliveriesList(request) -> DeliveriesListWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -33575,8 +33726,8 @@ client.webhooks().postV1WebhooksSubscriptionsDelete(
 <dd>
 
 ```java
-client.webhooks().postV1WebhooksDeliveriesList(
-    PostV1WebhooksDeliveriesListRequest
+client.webhooks().deliveriesList(
+    DeliveriesListWebhooksRequest
         .builder()
         .build()
 );
@@ -33610,7 +33761,7 @@ client.webhooks().postV1WebhooksDeliveriesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1WebhooksDeliveriesListRequestSortItem>>` 
+**sort:** `Optional<List<DeliveriesListWebhooksRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -33618,7 +33769,7 @@ client.webhooks().postV1WebhooksDeliveriesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1WebhooksDeliveriesListRequestFilterItem>>` 
+**filter:** `Optional<List<DeliveriesListWebhooksRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -33638,7 +33789,7 @@ client.webhooks().postV1WebhooksDeliveriesList(
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.postV1WebhooksDeliveriesRedeliver(request) -> PostV1WebhooksDeliveriesRedeliverResponse</code></summary>
+<details><summary><code>client.webhooks.deliveriesRedeliver(request) -> DeliveriesRedeliverWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -33651,8 +33802,8 @@ client.webhooks().postV1WebhooksDeliveriesList(
 <dd>
 
 ```java
-client.webhooks().postV1WebhooksDeliveriesRedeliver(
-    PostV1WebhooksDeliveriesRedeliverRequest
+client.webhooks().deliveriesRedeliver(
+    DeliveriesRedeliverWebhooksRequest
         .builder()
         .id("id")
         .build()
@@ -33683,8 +33834,8 @@ client.webhooks().postV1WebhooksDeliveriesRedeliver(
 </dl>
 </details>
 
-## Bank
-<details><summary><code>client.bank.postV1BankAccountsCreate(request) -> PostV1BankAccountsCreateResponse</code></summary>
+## bank
+<details><summary><code>client.bank.accountsCreate(request) -> AccountsCreateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33697,8 +33848,8 @@ client.webhooks().postV1WebhooksDeliveriesRedeliver(
 <dd>
 
 ```java
-client.bank().postV1BankAccountsCreate(
-    PostV1BankAccountsCreateRequest
+client.bank().accountsCreate(
+    AccountsCreateBankRequest
         .builder()
         .name("name")
         .build()
@@ -33761,7 +33912,7 @@ client.bank().postV1BankAccountsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankAccountsList(request) -> PostV1BankAccountsListResponse</code></summary>
+<details><summary><code>client.bank.accountsList(request) -> AccountsListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33774,8 +33925,8 @@ client.bank().postV1BankAccountsCreate(
 <dd>
 
 ```java
-client.bank().postV1BankAccountsList(
-    PostV1BankAccountsListRequest
+client.bank().accountsList(
+    AccountsListBankRequest
         .builder()
         .build()
 );
@@ -33809,7 +33960,7 @@ client.bank().postV1BankAccountsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1BankAccountsListRequestSortItem>>` 
+**sort:** `Optional<List<AccountsListBankRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -33817,7 +33968,7 @@ client.bank().postV1BankAccountsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1BankAccountsListRequestFilterItem>>` 
+**filter:** `Optional<List<AccountsListBankRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -33837,7 +33988,7 @@ client.bank().postV1BankAccountsList(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankAccountsUpdate(request) -> PostV1BankAccountsUpdateResponse</code></summary>
+<details><summary><code>client.bank.accountsUpdate(request) -> AccountsUpdateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33850,8 +34001,8 @@ client.bank().postV1BankAccountsList(
 <dd>
 
 ```java
-client.bank().postV1BankAccountsUpdate(
-    PostV1BankAccountsUpdateRequest
+client.bank().accountsUpdate(
+    AccountsUpdateBankRequest
         .builder()
         .id("id")
         .build()
@@ -33914,7 +34065,7 @@ client.bank().postV1BankAccountsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankTransactionsImport(request) -> PostV1BankTransactionsImportResponse</code></summary>
+<details><summary><code>client.bank.transactionsImport(request) -> TransactionsImportBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33927,16 +34078,16 @@ client.bank().postV1BankAccountsUpdate(
 <dd>
 
 ```java
-client.bank().postV1BankTransactionsImport(
-    PostV1BankTransactionsImportRequest
+client.bank().transactionsImport(
+    TransactionsImportBankRequest
         .builder()
         .bankAccountId("bankAccountId")
         .transactions(
             Arrays.asList(
-                PostV1BankTransactionsImportRequestTransactionsItem
+                TransactionsImportBankRequestTransactionsItem
                     .builder()
-                    .date("date")
-                    .amount("amount")
+                    .date("2026-07-01")
+                    .amount("-121.0000")
                     .build()
             )
         )
@@ -33964,7 +34115,7 @@ client.bank().postV1BankTransactionsImport(
 <dl>
 <dd>
 
-**transactions:** `List<PostV1BankTransactionsImportRequestTransactionsItem>` 
+**transactions:** `List<TransactionsImportBankRequestTransactionsItem>` 
     
 </dd>
 </dl>
@@ -33976,7 +34127,7 @@ client.bank().postV1BankTransactionsImport(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankStatementsImport(request) -> PostV1BankStatementsImportResponse</code></summary>
+<details><summary><code>client.bank.statementsImport(request) -> StatementsImportBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33989,8 +34140,8 @@ client.bank().postV1BankTransactionsImport(
 <dd>
 
 ```java
-client.bank().postV1BankStatementsImport(
-    PostV1BankStatementsImportRequest
+client.bank().statementsImport(
+    StatementsImportBankRequest
         .builder()
         .bankAccountId("bankAccountId")
         .content("content")
@@ -34026,7 +34177,7 @@ client.bank().postV1BankStatementsImport(
 <dl>
 <dd>
 
-**format:** `Optional<PostV1BankStatementsImportRequestFormat>` 
+**format:** `Optional<StatementsImportBankRequestFormat>` 
     
 </dd>
 </dl>
@@ -34054,7 +34205,7 @@ client.bank().postV1BankStatementsImport(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankTransactionsList(request) -> PostV1BankTransactionsListResponse</code></summary>
+<details><summary><code>client.bank.transactionsList(request) -> TransactionsListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34067,8 +34218,8 @@ client.bank().postV1BankStatementsImport(
 <dd>
 
 ```java
-client.bank().postV1BankTransactionsList(
-    PostV1BankTransactionsListRequest
+client.bank().transactionsList(
+    TransactionsListBankRequest
         .builder()
         .build()
 );
@@ -34102,7 +34253,7 @@ client.bank().postV1BankTransactionsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1BankTransactionsListRequestSortItem>>` 
+**sort:** `Optional<List<TransactionsListBankRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -34110,7 +34261,7 @@ client.bank().postV1BankTransactionsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1BankTransactionsListRequestFilterItem>>` 
+**filter:** `Optional<List<TransactionsListBankRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -34130,7 +34281,7 @@ client.bank().postV1BankTransactionsList(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankTransactionsMatch(request) -> PostV1BankTransactionsMatchResponse</code></summary>
+<details><summary><code>client.bank.transactionsMatch(request) -> TransactionsMatchBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34143,11 +34294,11 @@ client.bank().postV1BankTransactionsList(
 <dd>
 
 ```java
-client.bank().postV1BankTransactionsMatch(
-    PostV1BankTransactionsMatchRequest
+client.bank().transactionsMatch(
+    TransactionsMatchBankRequest
         .builder()
         .transactionId("transactionId")
-        .documentType(PostV1BankTransactionsMatchRequestDocumentType.SALE_INVOICE)
+        .documentType(TransactionsMatchBankRequestDocumentType.SALE_INVOICE)
         .documentId("documentId")
         .build()
 );
@@ -34173,7 +34324,7 @@ client.bank().postV1BankTransactionsMatch(
 <dl>
 <dd>
 
-**documentType:** `PostV1BankTransactionsMatchRequestDocumentType` 
+**documentType:** `TransactionsMatchBankRequestDocumentType` 
     
 </dd>
 </dl>
@@ -34185,6 +34336,14 @@ client.bank().postV1BankTransactionsMatch(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**invoiceAmount:** `Optional<String>` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -34193,7 +34352,74 @@ client.bank().postV1BankTransactionsMatch(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankTransactionsRecord(request) -> PostV1BankTransactionsRecordResponse</code></summary>
+<details><summary><code>client.bank.transactionsUnmatch(request) -> TransactionsUnmatchBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Undo a match. A payment matched to an invoice, or a line posted by an import template, gets a reversing journal transaction dated date (default: today) and the invoice paid amount and payment status are restored; a line linked to a payment-provider settlement is only unlinked. The line returns to status new.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().transactionsUnmatch(
+    TransactionsUnmatchBankRequest
+        .builder()
+        .transactionId("transactionId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**transactionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.transactionsRecord(request) -> TransactionsRecordBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34206,13 +34432,13 @@ client.bank().postV1BankTransactionsMatch(
 <dd>
 
 ```java
-client.bank().postV1BankTransactionsRecord(
-    PostV1BankTransactionsRecordRequest
+client.bank().transactionsRecord(
+    TransactionsRecordBankRequest
         .builder()
         .bankAccountId("bankAccountId")
-        .date("date")
-        .amount("amount")
-        .documentType(PostV1BankTransactionsRecordRequestDocumentType.SALE_INVOICE)
+        .date("2026-07-01")
+        .amount("121.0000")
+        .documentType(TransactionsRecordBankRequestDocumentType.SALE_INVOICE)
         .documentId("documentId")
         .build()
 );
@@ -34262,7 +34488,7 @@ client.bank().postV1BankTransactionsRecord(
 <dl>
 <dd>
 
-**documentType:** `PostV1BankTransactionsRecordRequestDocumentType` 
+**documentType:** `TransactionsRecordBankRequestDocumentType` 
     
 </dd>
 </dl>
@@ -34282,7 +34508,7 @@ client.bank().postV1BankTransactionsRecord(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankPaymentsExport(request) -> PostV1BankPaymentsExportResponse</code></summary>
+<details><summary><code>client.bank.paymentsExport(request) -> PaymentsExportBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34295,8 +34521,8 @@ client.bank().postV1BankTransactionsRecord(
 <dd>
 
 ```java
-client.bank().postV1BankPaymentsExport(
-    PostV1BankPaymentsExportRequest
+client.bank().paymentsExport(
+    PaymentsExportBankRequest
         .builder()
         .bankAccountId("bankAccountId")
         .purchaseInvoiceIds(
@@ -34346,7 +34572,7 @@ client.bank().postV1BankPaymentsExport(
 </dl>
 </details>
 
-<details><summary><code>client.bank.createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(request) -> PostV1BankImportTemplatesCreateResponse</code></summary>
+<details><summary><code>client.bank.importTemplatesCreate(request) -> ImportTemplatesCreateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34359,11 +34585,11 @@ client.bank().postV1BankPaymentsExport(
 <dd>
 
 ```java
-client.bank().createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(
-    PostV1BankImportTemplatesCreateRequest
+client.bank().importTemplatesCreate(
+    ImportTemplatesCreateBankRequest
         .builder()
         .name("name")
-        .type(PostV1BankImportTemplatesCreateRequestType.STRIPE)
+        .type(ImportTemplatesCreateBankRequestType.STRIPE)
         .build()
 );
 ```
@@ -34388,7 +34614,7 @@ client.bank().createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(
 <dl>
 <dd>
 
-**type:** `PostV1BankImportTemplatesCreateRequestType` 
+**type:** `ImportTemplatesCreateBankRequestType` 
     
 </dd>
 </dl>
@@ -34396,7 +34622,7 @@ client.bank().createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(
 <dl>
 <dd>
 
-**fields:** `Optional<List<PostV1BankImportTemplatesCreateRequestFieldsItem>>` 
+**fields:** `Optional<List<ImportTemplatesCreateBankRequestFieldsItem>>` 
     
 </dd>
 </dl>
@@ -34504,7 +34730,7 @@ client.bank().createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankImportTemplatesUpdate(request) -> PostV1BankImportTemplatesUpdateResponse</code></summary>
+<details><summary><code>client.bank.importTemplatesUpdate(request) -> ImportTemplatesUpdateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34517,8 +34743,8 @@ client.bank().createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(
 <dd>
 
 ```java
-client.bank().postV1BankImportTemplatesUpdate(
-    PostV1BankImportTemplatesUpdateRequest
+client.bank().importTemplatesUpdate(
+    ImportTemplatesUpdateBankRequest
         .builder()
         .id("id")
         .build()
@@ -34545,7 +34771,7 @@ client.bank().postV1BankImportTemplatesUpdate(
 <dl>
 <dd>
 
-**type:** `Optional<PostV1BankImportTemplatesUpdateRequestType>` 
+**type:** `Optional<ImportTemplatesUpdateBankRequestType>` 
     
 </dd>
 </dl>
@@ -34553,7 +34779,7 @@ client.bank().postV1BankImportTemplatesUpdate(
 <dl>
 <dd>
 
-**fields:** `Optional<List<PostV1BankImportTemplatesUpdateRequestFieldsItem>>` 
+**fields:** `Optional<List<ImportTemplatesUpdateBankRequestFieldsItem>>` 
     
 </dd>
 </dl>
@@ -34669,7 +34895,7 @@ client.bank().postV1BankImportTemplatesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankImportTemplatesDelete(request) -> PostV1BankImportTemplatesDeleteResponse</code></summary>
+<details><summary><code>client.bank.importTemplatesDelete(request) -> ImportTemplatesDeleteBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34682,8 +34908,8 @@ client.bank().postV1BankImportTemplatesUpdate(
 <dd>
 
 ```java
-client.bank().postV1BankImportTemplatesDelete(
-    PostV1BankImportTemplatesDeleteRequest
+client.bank().importTemplatesDelete(
+    ImportTemplatesDeleteBankRequest
         .builder()
         .id("id")
         .build()
@@ -34714,7 +34940,7 @@ client.bank().postV1BankImportTemplatesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankImportTemplatesGet(request) -> PostV1BankImportTemplatesGetResponse</code></summary>
+<details><summary><code>client.bank.importTemplatesGet(request) -> ImportTemplatesGetBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34727,8 +34953,8 @@ client.bank().postV1BankImportTemplatesDelete(
 <dd>
 
 ```java
-client.bank().postV1BankImportTemplatesGet(
-    PostV1BankImportTemplatesGetRequest
+client.bank().importTemplatesGet(
+    ImportTemplatesGetBankRequest
         .builder()
         .id("id")
         .build()
@@ -34759,7 +34985,7 @@ client.bank().postV1BankImportTemplatesGet(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankImportTemplatesList(request) -> PostV1BankImportTemplatesListResponse</code></summary>
+<details><summary><code>client.bank.importTemplatesList(request) -> ImportTemplatesListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34772,8 +34998,8 @@ client.bank().postV1BankImportTemplatesGet(
 <dd>
 
 ```java
-client.bank().postV1BankImportTemplatesList(
-    PostV1BankImportTemplatesListRequest
+client.bank().importTemplatesList(
+    ImportTemplatesListBankRequest
         .builder()
         .build()
 );
@@ -34807,7 +35033,7 @@ client.bank().postV1BankImportTemplatesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1BankImportTemplatesListRequestSortItem>>` 
+**sort:** `Optional<List<ImportTemplatesListBankRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -34815,7 +35041,7 @@ client.bank().postV1BankImportTemplatesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1BankImportTemplatesListRequestFilterItem>>` 
+**filter:** `Optional<List<ImportTemplatesListBankRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -34835,7 +35061,7 @@ client.bank().postV1BankImportTemplatesList(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankMatchRulesCreate(request) -> PostV1BankMatchRulesCreateResponse</code></summary>
+<details><summary><code>client.bank.matchRulesCreate(request) -> MatchRulesCreateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34848,8 +35074,8 @@ client.bank().postV1BankImportTemplatesList(
 <dd>
 
 ```java
-client.bank().postV1BankMatchRulesCreate(
-    PostV1BankMatchRulesCreateRequest
+client.bank().matchRulesCreate(
+    MatchRulesCreateBankRequest
         .builder()
         .name("name")
         .pattern("pattern")
@@ -34929,7 +35155,7 @@ client.bank().postV1BankMatchRulesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankMatchRulesUpdate(request) -> PostV1BankMatchRulesUpdateResponse</code></summary>
+<details><summary><code>client.bank.matchRulesUpdate(request) -> MatchRulesUpdateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34942,8 +35168,8 @@ client.bank().postV1BankMatchRulesCreate(
 <dd>
 
 ```java
-client.bank().postV1BankMatchRulesUpdate(
-    PostV1BankMatchRulesUpdateRequest
+client.bank().matchRulesUpdate(
+    MatchRulesUpdateBankRequest
         .builder()
         .id("id")
         .build()
@@ -35030,7 +35256,7 @@ client.bank().postV1BankMatchRulesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankMatchRulesDelete(request) -> PostV1BankMatchRulesDeleteResponse</code></summary>
+<details><summary><code>client.bank.matchRulesDelete(request) -> MatchRulesDeleteBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35043,8 +35269,8 @@ client.bank().postV1BankMatchRulesUpdate(
 <dd>
 
 ```java
-client.bank().postV1BankMatchRulesDelete(
-    PostV1BankMatchRulesDeleteRequest
+client.bank().matchRulesDelete(
+    MatchRulesDeleteBankRequest
         .builder()
         .id("id")
         .build()
@@ -35075,7 +35301,7 @@ client.bank().postV1BankMatchRulesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankMatchRulesList(request) -> PostV1BankMatchRulesListResponse</code></summary>
+<details><summary><code>client.bank.matchRulesList(request) -> MatchRulesListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35088,8 +35314,8 @@ client.bank().postV1BankMatchRulesDelete(
 <dd>
 
 ```java
-client.bank().postV1BankMatchRulesList(
-    PostV1BankMatchRulesListRequest
+client.bank().matchRulesList(
+    MatchRulesListBankRequest
         .builder()
         .build()
 );
@@ -35104,7 +35330,7 @@ client.bank().postV1BankMatchRulesList(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankMandatesCreate(request) -> PostV1BankMandatesCreateResponse</code></summary>
+<details><summary><code>client.bank.mandatesCreate(request) -> MandatesCreateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35117,12 +35343,12 @@ client.bank().postV1BankMatchRulesList(
 <dd>
 
 ```java
-client.bank().postV1BankMandatesCreate(
-    PostV1BankMandatesCreateRequest
+client.bank().mandatesCreate(
+    MandatesCreateBankRequest
         .builder()
         .partnerId("partnerId")
         .iban("iban")
-        .signatureDate("signatureDate")
+        .signatureDate("2026-07-01")
         .build()
 );
 ```
@@ -35163,7 +35389,7 @@ client.bank().postV1BankMandatesCreate(
 <dl>
 <dd>
 
-**scheme:** `Optional<PostV1BankMandatesCreateRequestScheme>` 
+**scheme:** `Optional<MandatesCreateBankRequestScheme>` 
     
 </dd>
 </dl>
@@ -35171,7 +35397,7 @@ client.bank().postV1BankMandatesCreate(
 <dl>
 <dd>
 
-**sequenceType:** `Optional<PostV1BankMandatesCreateRequestSequenceType>` 
+**sequenceType:** `Optional<MandatesCreateBankRequestSequenceType>` 
     
 </dd>
 </dl>
@@ -35215,7 +35441,7 @@ client.bank().postV1BankMandatesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankMandatesUpdate(request) -> PostV1BankMandatesUpdateResponse</code></summary>
+<details><summary><code>client.bank.mandatesUpdate(request) -> MandatesUpdateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35228,8 +35454,8 @@ client.bank().postV1BankMandatesCreate(
 <dd>
 
 ```java
-client.bank().postV1BankMandatesUpdate(
-    PostV1BankMandatesUpdateRequest
+client.bank().mandatesUpdate(
+    MandatesUpdateBankRequest
         .builder()
         .id("id")
         .build()
@@ -35284,7 +35510,7 @@ client.bank().postV1BankMandatesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankMandatesCancel(request) -> PostV1BankMandatesCancelResponse</code></summary>
+<details><summary><code>client.bank.mandatesCancel(request) -> MandatesCancelBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35297,8 +35523,8 @@ client.bank().postV1BankMandatesUpdate(
 <dd>
 
 ```java
-client.bank().postV1BankMandatesCancel(
-    PostV1BankMandatesCancelRequest
+client.bank().mandatesCancel(
+    MandatesCancelBankRequest
         .builder()
         .id("id")
         .build()
@@ -35329,7 +35555,7 @@ client.bank().postV1BankMandatesCancel(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankMandatesGet(request) -> PostV1BankMandatesGetResponse</code></summary>
+<details><summary><code>client.bank.mandatesGet(request) -> MandatesGetBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35342,8 +35568,8 @@ client.bank().postV1BankMandatesCancel(
 <dd>
 
 ```java
-client.bank().postV1BankMandatesGet(
-    PostV1BankMandatesGetRequest
+client.bank().mandatesGet(
+    MandatesGetBankRequest
         .builder()
         .id("id")
         .build()
@@ -35374,7 +35600,7 @@ client.bank().postV1BankMandatesGet(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankMandatesList(request) -> PostV1BankMandatesListResponse</code></summary>
+<details><summary><code>client.bank.mandatesList(request) -> MandatesListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35387,8 +35613,8 @@ client.bank().postV1BankMandatesGet(
 <dd>
 
 ```java
-client.bank().postV1BankMandatesList(
-    PostV1BankMandatesListRequest
+client.bank().mandatesList(
+    MandatesListBankRequest
         .builder()
         .build()
 );
@@ -35422,7 +35648,7 @@ client.bank().postV1BankMandatesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1BankMandatesListRequestSortItem>>` 
+**sort:** `Optional<List<MandatesListBankRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -35430,7 +35656,7 @@ client.bank().postV1BankMandatesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1BankMandatesListRequestFilterItem>>` 
+**filter:** `Optional<List<MandatesListBankRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -35450,7 +35676,7 @@ client.bank().postV1BankMandatesList(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankDirectDebitsExport(request) -> PostV1BankDirectDebitsExportResponse</code></summary>
+<details><summary><code>client.bank.directDebitsExport(request) -> DirectDebitsExportBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35463,8 +35689,8 @@ client.bank().postV1BankMandatesList(
 <dd>
 
 ```java
-client.bank().postV1BankDirectDebitsExport(
-    PostV1BankDirectDebitsExportRequest
+client.bank().directDebitsExport(
+    DirectDebitsExportBankRequest
         .builder()
         .bankAccountId("bankAccountId")
         .saleInvoiceIds(
@@ -35514,7 +35740,7 @@ client.bank().postV1BankDirectDebitsExport(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankTransactionsSuggestMatches(request) -> PostV1BankTransactionsSuggestMatchesResponse</code></summary>
+<details><summary><code>client.bank.transactionsSuggestMatches(request) -> TransactionsSuggestMatchesBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35527,8 +35753,8 @@ client.bank().postV1BankDirectDebitsExport(
 <dd>
 
 ```java
-client.bank().postV1BankTransactionsSuggestMatches(
-    PostV1BankTransactionsSuggestMatchesRequest
+client.bank().transactionsSuggestMatches(
+    TransactionsSuggestMatchesBankRequest
         .builder()
         .transactionId("transactionId")
         .build()
@@ -35567,7 +35793,7 @@ client.bank().postV1BankTransactionsSuggestMatches(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankSettlementsImport(request) -> PostV1BankSettlementsImportResponse</code></summary>
+<details><summary><code>client.bank.settlementsImport(request) -> SettlementsImportBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35580,8 +35806,8 @@ client.bank().postV1BankTransactionsSuggestMatches(
 <dd>
 
 ```java
-client.bank().postV1BankSettlementsImport(
-    PostV1BankSettlementsImportRequest
+client.bank().settlementsImport(
+    SettlementsImportBankRequest
         .builder()
         .bankAccountId("bankAccountId")
         .content("content")
@@ -35609,7 +35835,7 @@ client.bank().postV1BankSettlementsImport(
 <dl>
 <dd>
 
-**provider:** `Optional<PostV1BankSettlementsImportRequestProvider>` 
+**provider:** `Optional<SettlementsImportBankRequestProvider>` 
     
 </dd>
 </dl>
@@ -35629,7 +35855,7 @@ client.bank().postV1BankSettlementsImport(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankSettlementsList(request) -> PostV1BankSettlementsListResponse</code></summary>
+<details><summary><code>client.bank.settlementsList(request) -> SettlementsListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35642,8 +35868,8 @@ client.bank().postV1BankSettlementsImport(
 <dd>
 
 ```java
-client.bank().postV1BankSettlementsList(
-    PostV1BankSettlementsListRequest
+client.bank().settlementsList(
+    SettlementsListBankRequest
         .builder()
         .build()
 );
@@ -35677,7 +35903,7 @@ client.bank().postV1BankSettlementsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1BankSettlementsListRequestSortItem>>` 
+**sort:** `Optional<List<SettlementsListBankRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -35685,7 +35911,7 @@ client.bank().postV1BankSettlementsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1BankSettlementsListRequestFilterItem>>` 
+**filter:** `Optional<List<SettlementsListBankRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -35705,7 +35931,7 @@ client.bank().postV1BankSettlementsList(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankSettlementsGet(request) -> PostV1BankSettlementsGetResponse</code></summary>
+<details><summary><code>client.bank.settlementsGet(request) -> SettlementsGetBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35718,8 +35944,8 @@ client.bank().postV1BankSettlementsList(
 <dd>
 
 ```java
-client.bank().postV1BankSettlementsGet(
-    PostV1BankSettlementsGetRequest
+client.bank().settlementsGet(
+    SettlementsGetBankRequest
         .builder()
         .id("id")
         .build()
@@ -35750,7 +35976,7 @@ client.bank().postV1BankSettlementsGet(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankSettlementsMatch(request) -> PostV1BankSettlementsMatchResponse</code></summary>
+<details><summary><code>client.bank.settlementsMatch(request) -> SettlementsMatchBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35763,8 +35989,8 @@ client.bank().postV1BankSettlementsGet(
 <dd>
 
 ```java
-client.bank().postV1BankSettlementsMatch(
-    PostV1BankSettlementsMatchRequest
+client.bank().settlementsMatch(
+    SettlementsMatchBankRequest
         .builder()
         .lineId("lineId")
         .build()
@@ -35803,7 +36029,7 @@ client.bank().postV1BankSettlementsMatch(
 </dl>
 </details>
 
-<details><summary><code>client.bank.setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(request) -> PostV1BankSettlementsCommissionResponse</code></summary>
+<details><summary><code>client.bank.settlementsCommission(request) -> SettlementsCommissionBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35830,8 +36056,8 @@ A line with its own rate or amount is split with that value when the batch is po
 <dd>
 
 ```java
-client.bank().setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(
-    PostV1BankSettlementsCommissionRequest
+client.bank().settlementsCommission(
+    SettlementsCommissionBankRequest
         .builder()
         .lineId("lineId")
         .build()
@@ -35878,7 +36104,7 @@ client.bank().setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankSettlementsLink(request) -> PostV1BankSettlementsLinkResponse</code></summary>
+<details><summary><code>client.bank.settlementsLink(request) -> SettlementsLinkBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35905,8 +36131,8 @@ Attach the incoming bank-statement line that carries this payout to the settleme
 <dd>
 
 ```java
-client.bank().postV1BankSettlementsLink(
-    PostV1BankSettlementsLinkRequest
+client.bank().settlementsLink(
+    SettlementsLinkBankRequest
         .builder()
         .id("id")
         .bankTransactionId("bankTransactionId")
@@ -35946,7 +36172,7 @@ client.bank().postV1BankSettlementsLink(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankSettlementsUnlink(request) -> PostV1BankSettlementsUnlinkResponse</code></summary>
+<details><summary><code>client.bank.settlementsUnlink(request) -> SettlementsUnlinkBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35973,8 +36199,8 @@ Detach the bank-statement line from the settlement batch and return the line to 
 <dd>
 
 ```java
-client.bank().postV1BankSettlementsUnlink(
-    PostV1BankSettlementsUnlinkRequest
+client.bank().settlementsUnlink(
+    SettlementsUnlinkBankRequest
         .builder()
         .id("id")
         .build()
@@ -36005,7 +36231,7 @@ client.bank().postV1BankSettlementsUnlink(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankSettlementsPost(request) -> PostV1BankSettlementsPostResponse</code></summary>
+<details><summary><code>client.bank.settlementsPost(request) -> SettlementsPostBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -36018,8 +36244,8 @@ client.bank().postV1BankSettlementsUnlink(
 <dd>
 
 ```java
-client.bank().postV1BankSettlementsPost(
-    PostV1BankSettlementsPostRequest
+client.bank().settlementsPost(
+    SettlementsPostBankRequest
         .builder()
         .id("id")
         .build()
@@ -36066,7 +36292,7 @@ client.bank().postV1BankSettlementsPost(
 </dl>
 </details>
 
-<details><summary><code>client.bank.listThePsd2BanksAspsPsAvailableToConnect(request) -> PostV1BankFeedsBanksListResponse</code></summary>
+<details><summary><code>client.bank.feedsBanksList(request) -> FeedsBanksListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -36079,8 +36305,8 @@ client.bank().postV1BankSettlementsPost(
 <dd>
 
 ```java
-client.bank().listThePsd2BanksAspsPsAvailableToConnect(
-    PostV1BankFeedsBanksListRequest
+client.bank().feedsBanksList(
+    FeedsBanksListBankRequest
         .builder()
         .build()
 );
@@ -36110,7 +36336,7 @@ client.bank().listThePsd2BanksAspsPsAvailableToConnect(
 </dl>
 </details>
 
-<details><summary><code>client.bank.beginBankAuthorizationRedirectTheUserToTheReturnedUrl(request) -> PostV1BankFeedsConnectionsStartResponse</code></summary>
+<details><summary><code>client.bank.feedsConnectionsStart(request) -> FeedsConnectionsStartBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -36123,8 +36349,8 @@ client.bank().listThePsd2BanksAspsPsAvailableToConnect(
 <dd>
 
 ```java
-client.bank().beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
-    PostV1BankFeedsConnectionsStartRequest
+client.bank().feedsConnectionsStart(
+    FeedsConnectionsStartBankRequest
         .builder()
         .aspspName("aspspName")
         .aspspCountry("aspspCountry")
@@ -36160,7 +36386,7 @@ client.bank().beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
 <dl>
 <dd>
 
-**psuType:** `Optional<PostV1BankFeedsConnectionsStartRequestPsuType>` 
+**psuType:** `Optional<FeedsConnectionsStartBankRequestPsuType>` 
     
 </dd>
 </dl>
@@ -36196,7 +36422,7 @@ client.bank().beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
 </dl>
 </details>
 
-<details><summary><code>client.bank.exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(request) -> PostV1BankFeedsConnectionsCompleteResponse</code></summary>
+<details><summary><code>client.bank.feedsConnectionsComplete(request) -> FeedsConnectionsCompleteBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -36209,8 +36435,8 @@ client.bank().beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
 <dd>
 
 ```java
-client.bank().exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(
-    PostV1BankFeedsConnectionsCompleteRequest
+client.bank().feedsConnectionsComplete(
+    FeedsConnectionsCompleteBankRequest
         .builder()
         .reference("reference")
         .code("code")
@@ -36250,7 +36476,7 @@ client.bank().exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankFeedsConnectionsGet(request) -> PostV1BankFeedsConnectionsGetResponse</code></summary>
+<details><summary><code>client.bank.feedsConnectionsGet(request) -> FeedsConnectionsGetBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -36263,8 +36489,8 @@ client.bank().exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes
 <dd>
 
 ```java
-client.bank().postV1BankFeedsConnectionsGet(
-    PostV1BankFeedsConnectionsGetRequest
+client.bank().feedsConnectionsGet(
+    FeedsConnectionsGetBankRequest
         .builder()
         .id("id")
         .build()
@@ -36295,7 +36521,7 @@ client.bank().postV1BankFeedsConnectionsGet(
 </dl>
 </details>
 
-<details><summary><code>client.bank.postV1BankFeedsConnectionsList(request) -> PostV1BankFeedsConnectionsListResponse</code></summary>
+<details><summary><code>client.bank.feedsConnectionsList(request) -> FeedsConnectionsListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -36308,8 +36534,8 @@ client.bank().postV1BankFeedsConnectionsGet(
 <dd>
 
 ```java
-client.bank().postV1BankFeedsConnectionsList(
-    PostV1BankFeedsConnectionsListRequest
+client.bank().feedsConnectionsList(
+    FeedsConnectionsListBankRequest
         .builder()
         .build()
 );
@@ -36343,7 +36569,7 @@ client.bank().postV1BankFeedsConnectionsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1BankFeedsConnectionsListRequestSortItem>>` 
+**sort:** `Optional<List<FeedsConnectionsListBankRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -36351,7 +36577,7 @@ client.bank().postV1BankFeedsConnectionsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1BankFeedsConnectionsListRequestFilterItem>>` 
+**filter:** `Optional<List<FeedsConnectionsListBankRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -36371,7 +36597,7 @@ client.bank().postV1BankFeedsConnectionsList(
 </dl>
 </details>
 
-<details><summary><code>client.bank.revokeTheConsentAtTheBankAndDropTheStoredConnection(request) -> PostV1BankFeedsConnectionsDeleteResponse</code></summary>
+<details><summary><code>client.bank.feedsConnectionsDelete(request) -> FeedsConnectionsDeleteBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -36384,8 +36610,8 @@ client.bank().postV1BankFeedsConnectionsList(
 <dd>
 
 ```java
-client.bank().revokeTheConsentAtTheBankAndDropTheStoredConnection(
-    PostV1BankFeedsConnectionsDeleteRequest
+client.bank().feedsConnectionsDelete(
+    FeedsConnectionsDeleteBankRequest
         .builder()
         .id("id")
         .build()
@@ -36416,7 +36642,7 @@ client.bank().revokeTheConsentAtTheBankAndDropTheStoredConnection(
 </dl>
 </details>
 
-<details><summary><code>client.bank.pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(request) -> PostV1BankFeedsAccountsLinkResponse</code></summary>
+<details><summary><code>client.bank.feedsAccountsLink(request) -> FeedsAccountsLinkBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -36429,8 +36655,8 @@ client.bank().revokeTheConsentAtTheBankAndDropTheStoredConnection(
 <dd>
 
 ```java
-client.bank().pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(
-    PostV1BankFeedsAccountsLinkRequest
+client.bank().feedsAccountsLink(
+    FeedsAccountsLinkBankRequest
         .builder()
         .id("id")
         .build()
@@ -36465,7 +36691,7 @@ client.bank().pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSyn
 <dl>
 <dd>
 
-**createBankAccount:** `Optional<PostV1BankFeedsAccountsLinkRequestCreateBankAccount>` 
+**createBankAccount:** `Optional<FeedsAccountsLinkBankRequestCreateBankAccount>` 
     
 </dd>
 </dl>
@@ -36485,7 +36711,7 @@ client.bank().pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSyn
 </dl>
 </details>
 
-<details><summary><code>client.bank.chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(request) -> PostV1BankFeedsAccountsConfigureResponse</code></summary>
+<details><summary><code>client.bank.feedsAccountsConfigure(request) -> FeedsAccountsConfigureBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -36498,8 +36724,8 @@ client.bank().pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSyn
 <dd>
 
 ```java
-client.bank().chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(
-    PostV1BankFeedsAccountsConfigureRequest
+client.bank().feedsAccountsConfigure(
+    FeedsAccountsConfigureBankRequest
         .builder()
         .id("id")
         .build()
@@ -36534,7 +36760,7 @@ client.bank().chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedA
 <dl>
 <dd>
 
-**syncSchedule:** `Optional<PostV1BankFeedsAccountsConfigureRequestSyncSchedule>` 
+**syncSchedule:** `Optional<FeedsAccountsConfigureBankRequestSyncSchedule>` 
     
 </dd>
 </dl>
@@ -36546,7 +36772,7 @@ client.bank().chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedA
 </dl>
 </details>
 
-<details><summary><code>client.bank.pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(request) -> PostV1BankFeedsSyncResponse</code></summary>
+<details><summary><code>client.bank.feedsSync(request) -> FeedsSyncBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -36559,8 +36785,8 @@ client.bank().chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedA
 <dd>
 
 ```java
-client.bank().pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
-    PostV1BankFeedsSyncRequest
+client.bank().feedsSync(
+    FeedsSyncBankRequest
         .builder()
         .connectionId("connectionId")
         .build()
@@ -36615,8 +36841,8 @@ client.bank().pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
 </dl>
 </details>
 
-## Files
-<details><summary><code>client.files.postV1FilesUpload(request) -> PostV1FilesUploadResponse</code></summary>
+## files
+<details><summary><code>client.files.upload(request) -> UploadFilesResponse</code></summary>
 <dl>
 <dd>
 
@@ -36629,8 +36855,8 @@ client.bank().pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
 <dd>
 
 ```java
-client.files().postV1FilesUpload(
-    PostV1FilesUploadRequest
+client.files().upload(
+    UploadFilesRequest
         .builder()
         .entity("entity")
         .fileName("fileName")
@@ -36676,7 +36902,7 @@ client.files().postV1FilesUpload(
 <dl>
 <dd>
 
-**mimeType:** `String` 
+**mimeType:** `String` — Stored as the bare media type; only PNG, JPEG, GIF, WebP and PDF files are shown in the browser, every other type is downloaded
     
 </dd>
 </dl>
@@ -36696,7 +36922,7 @@ client.files().postV1FilesUpload(
 </dl>
 </details>
 
-<details><summary><code>client.files.postV1FilesGet(request) -> PostV1FilesGetResponse</code></summary>
+<details><summary><code>client.files.get(request) -> GetFilesResponse</code></summary>
 <dl>
 <dd>
 
@@ -36709,8 +36935,8 @@ client.files().postV1FilesUpload(
 <dd>
 
 ```java
-client.files().postV1FilesGet(
-    PostV1FilesGetRequest
+client.files().get(
+    GetFilesRequest
         .builder()
         .id("id")
         .build()
@@ -36741,7 +36967,7 @@ client.files().postV1FilesGet(
 </dl>
 </details>
 
-<details><summary><code>client.files.postV1FilesList(request) -> PostV1FilesListResponse</code></summary>
+<details><summary><code>client.files.list(request) -> ListFilesResponse</code></summary>
 <dl>
 <dd>
 
@@ -36754,8 +36980,8 @@ client.files().postV1FilesGet(
 <dd>
 
 ```java
-client.files().postV1FilesList(
-    PostV1FilesListRequest
+client.files().list(
+    ListFilesRequest
         .builder()
         .build()
 );
@@ -36789,7 +37015,7 @@ client.files().postV1FilesList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1FilesListRequestSortItem>>` 
+**sort:** `Optional<List<ListFilesRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -36797,7 +37023,7 @@ client.files().postV1FilesList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1FilesListRequestFilterItem>>` 
+**filter:** `Optional<List<ListFilesRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -36817,7 +37043,7 @@ client.files().postV1FilesList(
 </dl>
 </details>
 
-<details><summary><code>client.files.postV1FilesDelete(request) -> PostV1FilesDeleteResponse</code></summary>
+<details><summary><code>client.files.delete(request) -> DeleteFilesResponse</code></summary>
 <dl>
 <dd>
 
@@ -36830,8 +37056,8 @@ client.files().postV1FilesList(
 <dd>
 
 ```java
-client.files().postV1FilesDelete(
-    PostV1FilesDeleteRequest
+client.files().delete(
+    DeleteFilesRequest
         .builder()
         .id("id")
         .build()
@@ -36862,8 +37088,8 @@ client.files().postV1FilesDelete(
 </dl>
 </details>
 
-## Reports
-<details><summary><code>client.reports.postV1ReportsTrialBalance(request) -> PostV1ReportsTrialBalanceResponse</code></summary>
+## reports
+<details><summary><code>client.reports.trialBalance(request) -> TrialBalanceReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36876,11 +37102,11 @@ client.files().postV1FilesDelete(
 <dd>
 
 ```java
-client.reports().postV1ReportsTrialBalance(
-    PostV1ReportsTrialBalanceRequest
+client.reports().trialBalance(
+    TrialBalanceReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -36917,7 +37143,7 @@ client.reports().postV1ReportsTrialBalance(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsSizeCategory(request) -> PostV1ReportsSizeCategoryResponse</code></summary>
+<details><summary><code>client.reports.sizeCategory(request) -> SizeCategoryReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36930,8 +37156,8 @@ client.reports().postV1ReportsTrialBalance(
 <dd>
 
 ```java
-client.reports().postV1ReportsSizeCategory(
-    PostV1ReportsSizeCategoryRequest
+client.reports().sizeCategory(
+    SizeCategoryReportsRequest
         .builder()
         .year(1000000L)
         .build()
@@ -36962,7 +37188,7 @@ client.reports().postV1ReportsSizeCategory(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsFinancialStatements(request) -> PostV1ReportsFinancialStatementsResponse</code></summary>
+<details><summary><code>client.reports.financialStatements(request) -> FinancialStatementsReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36975,11 +37201,11 @@ client.reports().postV1ReportsSizeCategory(
 <dd>
 
 ```java
-client.reports().postV1ReportsFinancialStatements(
-    PostV1ReportsFinancialStatementsRequest
+client.reports().financialStatements(
+    FinancialStatementsReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -37012,7 +37238,7 @@ client.reports().postV1ReportsFinancialStatements(
 <dl>
 <dd>
 
-**category:** `Optional<PostV1ReportsFinancialStatementsRequestCategory>` 
+**category:** `Optional<FinancialStatementsReportsRequestCategory>` 
     
 </dd>
 </dl>
@@ -37024,7 +37250,7 @@ client.reports().postV1ReportsFinancialStatements(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsGeneralJournal(request) -> PostV1ReportsGeneralJournalResponse</code></summary>
+<details><summary><code>client.reports.generalJournal(request) -> GeneralJournalReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37037,11 +37263,11 @@ client.reports().postV1ReportsFinancialStatements(
 <dd>
 
 ```java
-client.reports().postV1ReportsGeneralJournal(
-    PostV1ReportsGeneralJournalRequest
+client.reports().generalJournal(
+    GeneralJournalReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -37094,7 +37320,7 @@ client.reports().postV1ReportsGeneralJournal(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsGlDetail(request) -> PostV1ReportsGlDetailResponse</code></summary>
+<details><summary><code>client.reports.glDetail(request) -> GlDetailReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37107,12 +37333,12 @@ client.reports().postV1ReportsGeneralJournal(
 <dd>
 
 ```java
-client.reports().postV1ReportsGlDetail(
-    PostV1ReportsGlDetailRequest
+client.reports().glDetail(
+    GlDetailReportsRequest
         .builder()
         .accountCode("accountCode")
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -37157,7 +37383,7 @@ client.reports().postV1ReportsGlDetail(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsPartnerBalances(request) -> PostV1ReportsPartnerBalancesResponse</code></summary>
+<details><summary><code>client.reports.partnerBalances(request) -> PartnerBalancesReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37170,8 +37396,8 @@ client.reports().postV1ReportsGlDetail(
 <dd>
 
 ```java
-client.reports().postV1ReportsPartnerBalances(
-    PostV1ReportsPartnerBalancesRequest
+client.reports().partnerBalances(
+    PartnerBalancesReportsRequest
         .builder()
         .build()
 );
@@ -37186,7 +37412,7 @@ client.reports().postV1ReportsPartnerBalances(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsDebtAging(request) -> PostV1ReportsDebtAgingResponse</code></summary>
+<details><summary><code>client.reports.debtAging(request) -> DebtAgingReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37199,8 +37425,8 @@ client.reports().postV1ReportsPartnerBalances(
 <dd>
 
 ```java
-client.reports().postV1ReportsDebtAging(
-    PostV1ReportsDebtAgingRequest
+client.reports().debtAging(
+    DebtAgingReportsRequest
         .builder()
         .build()
 );
@@ -37218,7 +37444,7 @@ client.reports().postV1ReportsDebtAging(
 <dl>
 <dd>
 
-**side:** `Optional<PostV1ReportsDebtAgingRequestSide>` 
+**side:** `Optional<DebtAgingReportsRequestSide>` 
     
 </dd>
 </dl>
@@ -37238,7 +37464,7 @@ client.reports().postV1ReportsDebtAging(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsMonthlySummary(request) -> PostV1ReportsMonthlySummaryResponse</code></summary>
+<details><summary><code>client.reports.monthlySummary(request) -> MonthlySummaryReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37251,8 +37477,8 @@ client.reports().postV1ReportsDebtAging(
 <dd>
 
 ```java
-client.reports().postV1ReportsMonthlySummary(
-    PostV1ReportsMonthlySummaryRequest
+client.reports().monthlySummary(
+    MonthlySummaryReportsRequest
         .builder()
         .build()
 );
@@ -37282,7 +37508,7 @@ client.reports().postV1ReportsMonthlySummary(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsStockBalance(request) -> PostV1ReportsStockBalanceResponse</code></summary>
+<details><summary><code>client.reports.stockBalance(request) -> StockBalanceReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37295,10 +37521,10 @@ client.reports().postV1ReportsMonthlySummary(
 <dd>
 
 ```java
-client.reports().postV1ReportsStockBalance(
-    PostV1ReportsStockBalanceRequest
+client.reports().stockBalance(
+    StockBalanceReportsRequest
         .builder()
-        .asOf("asOf")
+        .asOf("2026-07-01")
         .build()
 );
 ```
@@ -37335,7 +37561,7 @@ client.reports().postV1ReportsStockBalance(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsStockMovement(request) -> PostV1ReportsStockMovementResponse</code></summary>
+<details><summary><code>client.reports.stockMovement(request) -> StockMovementReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37348,11 +37574,11 @@ client.reports().postV1ReportsStockBalance(
 <dd>
 
 ```java
-client.reports().postV1ReportsStockMovement(
-    PostV1ReportsStockMovementRequest
+client.reports().stockMovement(
+    StockMovementReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -37405,7 +37631,7 @@ client.reports().postV1ReportsStockMovement(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsVatSummary(request) -> PostV1ReportsVatSummaryResponse</code></summary>
+<details><summary><code>client.reports.vatSummary(request) -> VatSummaryReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37418,11 +37644,11 @@ client.reports().postV1ReportsStockMovement(
 <dd>
 
 ```java
-client.reports().postV1ReportsVatSummary(
-    PostV1ReportsVatSummaryRequest
+client.reports().vatSummary(
+    VatSummaryReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -37455,7 +37681,7 @@ client.reports().postV1ReportsVatSummary(
 <dl>
 <dd>
 
-**side:** `Optional<PostV1ReportsVatSummaryRequestSide>` 
+**side:** `Optional<VatSummaryReportsRequestSide>` 
     
 </dd>
 </dl>
@@ -37467,7 +37693,7 @@ client.reports().postV1ReportsVatSummary(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsCashFlow(request) -> PostV1ReportsCashFlowResponse</code></summary>
+<details><summary><code>client.reports.cashFlow(request) -> CashFlowReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37480,11 +37706,11 @@ client.reports().postV1ReportsVatSummary(
 <dd>
 
 ```java
-client.reports().postV1ReportsCashFlow(
-    PostV1ReportsCashFlowRequest
+client.reports().cashFlow(
+    CashFlowReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -37521,7 +37747,7 @@ client.reports().postV1ReportsCashFlow(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsStockAging(request) -> PostV1ReportsStockAgingResponse</code></summary>
+<details><summary><code>client.reports.stockAging(request) -> StockAgingReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37534,10 +37760,10 @@ client.reports().postV1ReportsCashFlow(
 <dd>
 
 ```java
-client.reports().postV1ReportsStockAging(
-    PostV1ReportsStockAgingRequest
+client.reports().stockAging(
+    StockAgingReportsRequest
         .builder()
-        .asOf("asOf")
+        .asOf("2026-07-01")
         .build()
 );
 ```
@@ -37574,7 +37800,7 @@ client.reports().postV1ReportsStockAging(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsStockShortage(request) -> PostV1ReportsStockShortageResponse</code></summary>
+<details><summary><code>client.reports.stockShortage(request) -> StockShortageReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37587,8 +37813,8 @@ client.reports().postV1ReportsStockAging(
 <dd>
 
 ```java
-client.reports().postV1ReportsStockShortage(
-    PostV1ReportsStockShortageRequest
+client.reports().stockShortage(
+    StockShortageReportsRequest
         .builder()
         .build()
 );
@@ -37618,7 +37844,7 @@ client.reports().postV1ReportsStockShortage(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsSie(request) -> PostV1ReportsSieResponse</code></summary>
+<details><summary><code>client.reports.sie(request) -> SieReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37645,11 +37871,11 @@ Export the ledger of one financial year as an SIE file (the Swedish standard acc
 <dd>
 
 ```java
-client.reports().postV1ReportsSie(
-    PostV1ReportsSieRequest
+client.reports().sie(
+    SieReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -37694,7 +37920,7 @@ client.reports().postV1ReportsSie(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsDatev(request) -> PostV1ReportsDatevResponse</code></summary>
+<details><summary><code>client.reports.datev(request) -> DatevReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37721,11 +37947,11 @@ Export the posted ledger of a period as a DATEV Buchungsstapel file (DATEV forma
 <dd>
 
 ```java
-client.reports().postV1ReportsDatev(
-    PostV1ReportsDatevRequest
+client.reports().datev(
+    DatevReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -37778,7 +38004,7 @@ client.reports().postV1ReportsDatev(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsFec(request) -> PostV1ReportsFecResponse</code></summary>
+<details><summary><code>client.reports.fec(request) -> FecReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37805,11 +38031,11 @@ Export the posted ledger of a period as a French FEC file (fichier des écriture
 <dd>
 
 ```java
-client.reports().postV1ReportsFec(
-    PostV1ReportsFecRequest
+client.reports().fec(
+    FecReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -37846,7 +38072,7 @@ client.reports().postV1ReportsFec(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsEuPurchases(request) -> PostV1ReportsEuPurchasesResponse</code></summary>
+<details><summary><code>client.reports.euPurchases(request) -> EuPurchasesReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37859,11 +38085,11 @@ client.reports().postV1ReportsFec(
 <dd>
 
 ```java
-client.reports().postV1ReportsEuPurchases(
-    PostV1ReportsEuPurchasesRequest
+client.reports().euPurchases(
+    EuPurchasesReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -37900,7 +38126,7 @@ client.reports().postV1ReportsEuPurchases(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsVatDetail(request) -> PostV1ReportsVatDetailResponse</code></summary>
+<details><summary><code>client.reports.vatDetail(request) -> VatDetailReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37913,11 +38139,11 @@ client.reports().postV1ReportsEuPurchases(
 <dd>
 
 ```java
-client.reports().postV1ReportsVatDetail(
-    PostV1ReportsVatDetailRequest
+client.reports().vatDetail(
+    VatDetailReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -37950,7 +38176,7 @@ client.reports().postV1ReportsVatDetail(
 <dl>
 <dd>
 
-**side:** `Optional<PostV1ReportsVatDetailRequestSide>` 
+**side:** `Optional<VatDetailReportsRequestSide>` 
     
 </dd>
 </dl>
@@ -37962,7 +38188,7 @@ client.reports().postV1ReportsVatDetail(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsPosSales(request) -> PostV1ReportsPosSalesResponse</code></summary>
+<details><summary><code>client.reports.posSales(request) -> PosSalesReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37975,65 +38201,11 @@ client.reports().postV1ReportsVatDetail(
 <dd>
 
 ```java
-client.reports().postV1ReportsPosSales(
-    PostV1ReportsPosSalesRequest
+client.reports().posSales(
+    PosSalesReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**fromDate:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**toDate:** `String` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.reports.postV1ReportsOnlineSales(request) -> PostV1ReportsOnlineSalesResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.reports().postV1ReportsOnlineSales(
-    PostV1ReportsOnlineSalesRequest
-        .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -38070,7 +38242,7 @@ client.reports().postV1ReportsOnlineSales(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsOss(request) -> PostV1ReportsOssResponse</code></summary>
+<details><summary><code>client.reports.onlineSales(request) -> OnlineSalesReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -38083,11 +38255,11 @@ client.reports().postV1ReportsOnlineSales(
 <dd>
 
 ```java
-client.reports().postV1ReportsOss(
-    PostV1ReportsOssRequest
+client.reports().onlineSales(
+    OnlineSalesReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -38124,7 +38296,7 @@ client.reports().postV1ReportsOss(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsAdvanceReconciliation(request) -> PostV1ReportsAdvanceReconciliationResponse</code></summary>
+<details><summary><code>client.reports.oss(request) -> OssReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -38137,11 +38309,11 @@ client.reports().postV1ReportsOss(
 <dd>
 
 ```java
-client.reports().postV1ReportsAdvanceReconciliation(
-    PostV1ReportsAdvanceReconciliationRequest
+client.reports().oss(
+    OssReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -38178,7 +38350,7 @@ client.reports().postV1ReportsAdvanceReconciliation(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsWriteOffActs(request) -> PostV1ReportsWriteOffActsResponse</code></summary>
+<details><summary><code>client.reports.advanceReconciliation(request) -> AdvanceReconciliationReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -38191,11 +38363,65 @@ client.reports().postV1ReportsAdvanceReconciliation(
 <dd>
 
 ```java
-client.reports().postV1ReportsWriteOffActs(
-    PostV1ReportsWriteOffActsRequest
+client.reports().advanceReconciliation(
+    AdvanceReconciliationReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fromDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**toDate:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.reports.writeOffActs(request) -> WriteOffActsReportsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.reports().writeOffActs(
+    WriteOffActsReportsRequest
+        .builder()
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -38240,7 +38466,7 @@ client.reports().postV1ReportsWriteOffActs(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsCostCenters(request) -> PostV1ReportsCostCentersResponse</code></summary>
+<details><summary><code>client.reports.costCenters(request) -> CostCentersReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -38253,11 +38479,11 @@ client.reports().postV1ReportsWriteOffActs(
 <dd>
 
 ```java
-client.reports().postV1ReportsCostCenters(
-    PostV1ReportsCostCentersRequest
+client.reports().costCenters(
+    CostCentersReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -38294,7 +38520,7 @@ client.reports().postV1ReportsCostCenters(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsCostCenterActivity(request) -> PostV1ReportsCostCenterActivityResponse</code></summary>
+<details><summary><code>client.reports.costCenterActivity(request) -> CostCenterActivityReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -38307,11 +38533,11 @@ client.reports().postV1ReportsCostCenters(
 <dd>
 
 ```java
-client.reports().postV1ReportsCostCenterActivity(
-    PostV1ReportsCostCenterActivityRequest
+client.reports().costCenterActivity(
+    CostCenterActivityReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .costCenterId("costCenterId")
         .build()
 );
@@ -38357,7 +38583,7 @@ client.reports().postV1ReportsCostCenterActivity(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsCostCenterItems(request) -> PostV1ReportsCostCenterItemsResponse</code></summary>
+<details><summary><code>client.reports.costCenterItems(request) -> CostCenterItemsReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -38370,11 +38596,11 @@ client.reports().postV1ReportsCostCenterActivity(
 <dd>
 
 ```java
-client.reports().postV1ReportsCostCenterItems(
-    PostV1ReportsCostCenterItemsRequest
+client.reports().costCenterItems(
+    CostCenterItemsReportsRequest
         .builder()
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -38419,7 +38645,7 @@ client.reports().postV1ReportsCostCenterItems(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsJobsCreate(request) -> PostV1ReportsJobsCreateResponse</code></summary>
+<details><summary><code>client.reports.jobsCreate(request) -> JobsCreateReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -38432,8 +38658,8 @@ client.reports().postV1ReportsCostCenterItems(
 <dd>
 
 ```java
-client.reports().postV1ReportsJobsCreate(
-    PostV1ReportsJobsCreateRequest
+client.reports().jobsCreate(
+    JobsCreateReportsRequest
         .builder()
         .reportType("reportType")
         .build()
@@ -38468,7 +38694,7 @@ client.reports().postV1ReportsJobsCreate(
 <dl>
 <dd>
 
-**formats:** `Optional<List<PostV1ReportsJobsCreateRequestFormatsItem>>` 
+**formats:** `Optional<List<JobsCreateReportsRequestFormatsItem>>` 
     
 </dd>
 </dl>
@@ -38480,7 +38706,7 @@ client.reports().postV1ReportsJobsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsJobsGet(request) -> PostV1ReportsJobsGetResponse</code></summary>
+<details><summary><code>client.reports.jobsGet(request) -> JobsGetReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -38493,8 +38719,8 @@ client.reports().postV1ReportsJobsCreate(
 <dd>
 
 ```java
-client.reports().postV1ReportsJobsGet(
-    PostV1ReportsJobsGetRequest
+client.reports().jobsGet(
+    JobsGetReportsRequest
         .builder()
         .id("id")
         .build()
@@ -38525,7 +38751,7 @@ client.reports().postV1ReportsJobsGet(
 </dl>
 </details>
 
-<details><summary><code>client.reports.postV1ReportsJobsList(request) -> PostV1ReportsJobsListResponse</code></summary>
+<details><summary><code>client.reports.jobsList(request) -> JobsListReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -38538,8 +38764,8 @@ client.reports().postV1ReportsJobsGet(
 <dd>
 
 ```java
-client.reports().postV1ReportsJobsList(
-    PostV1ReportsJobsListRequest
+client.reports().jobsList(
+    JobsListReportsRequest
         .builder()
         .build()
 );
@@ -38573,7 +38799,7 @@ client.reports().postV1ReportsJobsList(
 <dl>
 <dd>
 
-**sort:** `Optional<List<PostV1ReportsJobsListRequestSortItem>>` 
+**sort:** `Optional<List<JobsListReportsRequestSortItem>>` 
     
 </dd>
 </dl>
@@ -38581,7 +38807,7 @@ client.reports().postV1ReportsJobsList(
 <dl>
 <dd>
 
-**filter:** `Optional<List<PostV1ReportsJobsListRequestFilterItem>>` 
+**filter:** `Optional<List<JobsListReportsRequestFilterItem>>` 
     
 </dd>
 </dl>
@@ -38601,8 +38827,8 @@ client.reports().postV1ReportsJobsList(
 </dl>
 </details>
 
-## Consolidation
-<details><summary><code>client.consolidation.postV1ConsolidationGroupsCreate(request) -> PostV1ConsolidationGroupsCreateResponse</code></summary>
+## consolidation
+<details><summary><code>client.consolidation.groupsCreate(request) -> GroupsCreateConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38615,8 +38841,8 @@ client.reports().postV1ReportsJobsList(
 <dd>
 
 ```java
-client.consolidation().postV1ConsolidationGroupsCreate(
-    PostV1ConsolidationGroupsCreateRequest
+client.consolidation().groupsCreate(
+    GroupsCreateConsolidationRequest
         .builder()
         .name("name")
         .build()
@@ -38655,7 +38881,7 @@ client.consolidation().postV1ConsolidationGroupsCreate(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.postV1ConsolidationGroupsList(request) -> PostV1ConsolidationGroupsListResponse</code></summary>
+<details><summary><code>client.consolidation.groupsList(request) -> GroupsListConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38668,8 +38894,8 @@ client.consolidation().postV1ConsolidationGroupsCreate(
 <dd>
 
 ```java
-client.consolidation().postV1ConsolidationGroupsList(
-    PostV1ConsolidationGroupsListRequest
+client.consolidation().groupsList(
+    GroupsListConsolidationRequest
         .builder()
         .build()
 );
@@ -38684,7 +38910,7 @@ client.consolidation().postV1ConsolidationGroupsList(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.postV1ConsolidationGroupsGet(request) -> PostV1ConsolidationGroupsGetResponse</code></summary>
+<details><summary><code>client.consolidation.groupsGet(request) -> GroupsGetConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38697,8 +38923,8 @@ client.consolidation().postV1ConsolidationGroupsList(
 <dd>
 
 ```java
-client.consolidation().postV1ConsolidationGroupsGet(
-    PostV1ConsolidationGroupsGetRequest
+client.consolidation().groupsGet(
+    GroupsGetConsolidationRequest
         .builder()
         .groupId("groupId")
         .build()
@@ -38729,7 +38955,7 @@ client.consolidation().postV1ConsolidationGroupsGet(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.postV1ConsolidationGroupsUpdate(request) -> PostV1ConsolidationGroupsUpdateResponse</code></summary>
+<details><summary><code>client.consolidation.groupsUpdate(request) -> GroupsUpdateConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38742,8 +38968,8 @@ client.consolidation().postV1ConsolidationGroupsGet(
 <dd>
 
 ```java
-client.consolidation().postV1ConsolidationGroupsUpdate(
-    PostV1ConsolidationGroupsUpdateRequest
+client.consolidation().groupsUpdate(
+    GroupsUpdateConsolidationRequest
         .builder()
         .groupId("groupId")
         .build()
@@ -38790,7 +39016,7 @@ client.consolidation().postV1ConsolidationGroupsUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.postV1ConsolidationGroupsDelete(request) -> PostV1ConsolidationGroupsDeleteResponse</code></summary>
+<details><summary><code>client.consolidation.groupsDelete(request) -> GroupsDeleteConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38803,8 +39029,8 @@ client.consolidation().postV1ConsolidationGroupsUpdate(
 <dd>
 
 ```java
-client.consolidation().postV1ConsolidationGroupsDelete(
-    PostV1ConsolidationGroupsDeleteRequest
+client.consolidation().groupsDelete(
+    GroupsDeleteConsolidationRequest
         .builder()
         .groupId("groupId")
         .build()
@@ -38835,7 +39061,7 @@ client.consolidation().postV1ConsolidationGroupsDelete(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.postV1ConsolidationMembersAdd(request) -> PostV1ConsolidationMembersAddResponse</code></summary>
+<details><summary><code>client.consolidation.membersAdd(request) -> MembersAddConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38848,8 +39074,8 @@ client.consolidation().postV1ConsolidationGroupsDelete(
 <dd>
 
 ```java
-client.consolidation().postV1ConsolidationMembersAdd(
-    PostV1ConsolidationMembersAddRequest
+client.consolidation().membersAdd(
+    MembersAddConsolidationRequest
         .builder()
         .groupId("groupId")
         .memberCompanyId("memberCompanyId")
@@ -38893,7 +39119,7 @@ client.consolidation().postV1ConsolidationMembersAdd(
 <dl>
 <dd>
 
-**method:** `Optional<PostV1ConsolidationMembersAddRequestMethod>` 
+**method:** `Optional<MembersAddConsolidationRequestMethod>` 
     
 </dd>
 </dl>
@@ -38905,7 +39131,7 @@ client.consolidation().postV1ConsolidationMembersAdd(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.postV1ConsolidationMembersRemove(request) -> PostV1ConsolidationMembersRemoveResponse</code></summary>
+<details><summary><code>client.consolidation.membersRemove(request) -> MembersRemoveConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38918,8 +39144,8 @@ client.consolidation().postV1ConsolidationMembersAdd(
 <dd>
 
 ```java
-client.consolidation().postV1ConsolidationMembersRemove(
-    PostV1ConsolidationMembersRemoveRequest
+client.consolidation().membersRemove(
+    MembersRemoveConsolidationRequest
         .builder()
         .groupId("groupId")
         .memberCompanyId("memberCompanyId")
@@ -38959,7 +39185,7 @@ client.consolidation().postV1ConsolidationMembersRemove(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.postV1ConsolidationIntercompanyCandidates(request) -> PostV1ConsolidationIntercompanyCandidatesResponse</code></summary>
+<details><summary><code>client.consolidation.intercompanyCandidates(request) -> IntercompanyCandidatesConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38986,8 +39212,8 @@ Partners in member companies that look like other members of the same group (mat
 <dd>
 
 ```java
-client.consolidation().postV1ConsolidationIntercompanyCandidates(
-    PostV1ConsolidationIntercompanyCandidatesRequest
+client.consolidation().intercompanyCandidates(
+    IntercompanyCandidatesConsolidationRequest
         .builder()
         .groupId("groupId")
         .build()
@@ -39018,7 +39244,7 @@ client.consolidation().postV1ConsolidationIntercompanyCandidates(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.postV1ConsolidationIntercompanyLinksSet(request) -> PostV1ConsolidationIntercompanyLinksSetResponse</code></summary>
+<details><summary><code>client.consolidation.intercompanyLinksSet(request) -> IntercompanyLinksSetConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -39045,8 +39271,8 @@ Confirm that a partner record in one member company represents another member co
 <dd>
 
 ```java
-client.consolidation().postV1ConsolidationIntercompanyLinksSet(
-    PostV1ConsolidationIntercompanyLinksSetRequest
+client.consolidation().intercompanyLinksSet(
+    IntercompanyLinksSetConsolidationRequest
         .builder()
         .groupId("groupId")
         .partnerId("partnerId")
@@ -39095,7 +39321,7 @@ client.consolidation().postV1ConsolidationIntercompanyLinksSet(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.postV1ConsolidationIntercompanyLinksList(request) -> PostV1ConsolidationIntercompanyLinksListResponse</code></summary>
+<details><summary><code>client.consolidation.intercompanyLinksList(request) -> IntercompanyLinksListConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -39108,8 +39334,8 @@ client.consolidation().postV1ConsolidationIntercompanyLinksSet(
 <dd>
 
 ```java
-client.consolidation().postV1ConsolidationIntercompanyLinksList(
-    PostV1ConsolidationIntercompanyLinksListRequest
+client.consolidation().intercompanyLinksList(
+    IntercompanyLinksListConsolidationRequest
         .builder()
         .groupId("groupId")
         .build()
@@ -39140,7 +39366,7 @@ client.consolidation().postV1ConsolidationIntercompanyLinksList(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.postV1ConsolidationIntercompanyLinksRemove(request) -> PostV1ConsolidationIntercompanyLinksRemoveResponse</code></summary>
+<details><summary><code>client.consolidation.intercompanyLinksRemove(request) -> IntercompanyLinksRemoveConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -39153,8 +39379,8 @@ client.consolidation().postV1ConsolidationIntercompanyLinksList(
 <dd>
 
 ```java
-client.consolidation().postV1ConsolidationIntercompanyLinksRemove(
-    PostV1ConsolidationIntercompanyLinksRemoveRequest
+client.consolidation().intercompanyLinksRemove(
+    IntercompanyLinksRemoveConsolidationRequest
         .builder()
         .groupId("groupId")
         .id("id")
@@ -39194,7 +39420,7 @@ client.consolidation().postV1ConsolidationIntercompanyLinksRemove(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.postV1ConsolidationIntercompanyReport(request) -> PostV1ConsolidationIntercompanyReportResponse</code></summary>
+<details><summary><code>client.consolidation.intercompanyReport(request) -> IntercompanyReportConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -39221,12 +39447,12 @@ Intercompany reconciliation for a period: every issued intercompany sale invoice
 <dd>
 
 ```java
-client.consolidation().postV1ConsolidationIntercompanyReport(
-    PostV1ConsolidationIntercompanyReportRequest
+client.consolidation().intercompanyReport(
+    IntercompanyReportConsolidationRequest
         .builder()
         .groupId("groupId")
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -39271,7 +39497,7 @@ client.consolidation().postV1ConsolidationIntercompanyReport(
 </dl>
 </details>
 
-<details><summary><code>client.consolidation.postV1ConsolidationReport(request) -> PostV1ConsolidationReportResponse</code></summary>
+<details><summary><code>client.consolidation.report(request) -> ReportConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -39284,12 +39510,12 @@ client.consolidation().postV1ConsolidationIntercompanyReport(
 <dd>
 
 ```java
-client.consolidation().postV1ConsolidationReport(
-    PostV1ConsolidationReportRequest
+client.consolidation().report(
+    ReportConsolidationRequest
         .builder()
         .groupId("groupId")
-        .fromDate("fromDate")
-        .toDate("toDate")
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
         .build()
 );
 ```
@@ -39330,7 +39556,7 @@ client.consolidation().postV1ConsolidationReport(
 <dl>
 <dd>
 
-**category:** `Optional<PostV1ConsolidationReportRequestCategory>` 
+**category:** `Optional<ReportConsolidationRequestCategory>` 
     
 </dd>
 </dl>
@@ -39338,7 +39564,7 @@ client.consolidation().postV1ConsolidationReport(
 <dl>
 <dd>
 
-**eliminations:** `Optional<List<PostV1ConsolidationReportRequestEliminationsItem>>` 
+**eliminations:** `Optional<List<ReportConsolidationRequestEliminationsItem>>` 
     
 </dd>
 </dl>
@@ -39350,8 +39576,8 @@ client.consolidation().postV1ConsolidationReport(
 </dl>
 </details>
 
-## Public
-<details><summary><code>client.public_.postV1PublicIntegrationRequests(request) -> PostV1PublicIntegrationRequestsResponse</code></summary>
+## public
+<details><summary><code>client.public_.integrationRequests(request) -> IntegrationRequestsPublicResponse</code></summary>
 <dl>
 <dd>
 
@@ -39364,8 +39590,8 @@ client.consolidation().postV1ConsolidationReport(
 <dd>
 
 ```java
-client.public_().postV1PublicIntegrationRequests(
-    PostV1PublicIntegrationRequestsRequest
+client.public_().integrationRequests(
+    IntegrationRequestsPublicRequest
         .builder()
         .integration("integration")
         .name("name")
@@ -39438,7 +39664,7 @@ client.public_().postV1PublicIntegrationRequests(
 </dl>
 </details>
 
-<details><summary><code>client.public_.getV1PublicPayToken(token)</code></summary>
+<details><summary><code>client.public_.pay(token)</code></summary>
 <dl>
 <dd>
 
@@ -39451,9 +39677,9 @@ client.public_().postV1PublicIntegrationRequests(
 <dd>
 
 ```java
-client.public_().getV1PublicPayToken(
+client.public_().pay(
     "token",
-    GetV1PublicPayTokenRequest
+    PayPublicRequest
         .builder()
         .build()
 );
@@ -39483,8 +39709,8 @@ client.public_().getV1PublicPayToken(
 </dl>
 </details>
 
-## Billing
-<details><summary><code>client.billing.postV1BillingAccountGet(request) -> PostV1BillingAccountGetResponse</code></summary>
+## billing
+<details><summary><code>client.billing.accountGet(request) -> AccountGetBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -39497,8 +39723,8 @@ client.public_().getV1PublicPayToken(
 <dd>
 
 ```java
-client.billing().postV1BillingAccountGet(
-    PostV1BillingAccountGetRequest
+client.billing().accountGet(
+    AccountGetBillingRequest
         .builder()
         .build()
 );
@@ -39513,7 +39739,7 @@ client.billing().postV1BillingAccountGet(
 </dl>
 </details>
 
-<details><summary><code>client.billing.postV1BillingAccountSetPlan(request) -> PostV1BillingAccountSetPlanResponse</code></summary>
+<details><summary><code>client.billing.accountSetPlan(request) -> AccountSetPlanBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -39526,10 +39752,10 @@ client.billing().postV1BillingAccountGet(
 <dd>
 
 ```java
-client.billing().postV1BillingAccountSetPlan(
-    PostV1BillingAccountSetPlanRequest
+client.billing().accountSetPlan(
+    AccountSetPlanBillingRequest
         .builder()
-        .plan(PostV1BillingAccountSetPlanRequestPlan.STARTER)
+        .plan(AccountSetPlanBillingRequestPlan.STARTER)
         .build()
 );
 ```
@@ -39546,7 +39772,7 @@ client.billing().postV1BillingAccountSetPlan(
 <dl>
 <dd>
 
-**plan:** `PostV1BillingAccountSetPlanRequestPlan` 
+**plan:** `AccountSetPlanBillingRequestPlan` 
     
 </dd>
 </dl>
@@ -39558,7 +39784,7 @@ client.billing().postV1BillingAccountSetPlan(
 </dl>
 </details>
 
-<details><summary><code>client.billing.postV1BillingTopupCreate(request) -> PostV1BillingTopupCreateResponse</code></summary>
+<details><summary><code>client.billing.topupCreate(request) -> TopupCreateBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -39571,8 +39797,8 @@ client.billing().postV1BillingAccountSetPlan(
 <dd>
 
 ```java
-client.billing().postV1BillingTopupCreate(
-    PostV1BillingTopupCreateRequest
+client.billing().topupCreate(
+    TopupCreateBillingRequest
         .builder()
         .amountCents(1000000L)
         .build()
@@ -39599,7 +39825,7 @@ client.billing().postV1BillingTopupCreate(
 <dl>
 <dd>
 
-**locale:** `Optional<PostV1BillingTopupCreateRequestLocale>` 
+**locale:** `Optional<TopupCreateBillingRequestLocale>` 
     
 </dd>
 </dl>
@@ -39611,7 +39837,7 @@ client.billing().postV1BillingTopupCreate(
 </dl>
 </details>
 
-<details><summary><code>client.billing.postV1BillingPortalCreate(request) -> PostV1BillingPortalCreateResponse</code></summary>
+<details><summary><code>client.billing.portalCreate(request) -> PortalCreateBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -39624,8 +39850,8 @@ client.billing().postV1BillingTopupCreate(
 <dd>
 
 ```java
-client.billing().postV1BillingPortalCreate(
-    PostV1BillingPortalCreateRequest
+client.billing().portalCreate(
+    PortalCreateBillingRequest
         .builder()
         .build()
 );
@@ -39643,7 +39869,7 @@ client.billing().postV1BillingPortalCreate(
 <dl>
 <dd>
 
-**locale:** `Optional<PostV1BillingPortalCreateRequestLocale>` 
+**locale:** `Optional<PortalCreateBillingRequestLocale>` 
     
 </dd>
 </dl>
@@ -39655,7 +39881,7 @@ client.billing().postV1BillingPortalCreate(
 </dl>
 </details>
 
-<details><summary><code>client.billing.postV1BillingTransactionsList(request) -> PostV1BillingTransactionsListResponse</code></summary>
+<details><summary><code>client.billing.transactionsList(request) -> TransactionsListBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -39668,8 +39894,8 @@ client.billing().postV1BillingPortalCreate(
 <dd>
 
 ```java
-client.billing().postV1BillingTransactionsList(
-    PostV1BillingTransactionsListRequest
+client.billing().transactionsList(
+    TransactionsListBillingRequest
         .builder()
         .build()
 );
@@ -39699,7 +39925,7 @@ client.billing().postV1BillingTransactionsList(
 </dl>
 </details>
 
-<details><summary><code>client.billing.postV1BillingUsageList(request) -> PostV1BillingUsageListResponse</code></summary>
+<details><summary><code>client.billing.usageList(request) -> UsageListBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -39712,11 +39938,11 @@ client.billing().postV1BillingTransactionsList(
 <dd>
 
 ```java
-client.billing().postV1BillingUsageList(
-    PostV1BillingUsageListRequest
+client.billing().usageList(
+    UsageListBillingRequest
         .builder()
-        .from("from")
-        .to("to")
+        .from("2026-07-01")
+        .to("2026-07-01")
         .build()
 );
 ```
@@ -39753,8 +39979,8 @@ client.billing().postV1BillingUsageList(
 </dl>
 </details>
 
-## Account
-<details><summary><code>client.account.postV1AccountLoginLinkRequest(request) -> PostV1AccountLoginLinkRequestResponse</code></summary>
+## account
+<details><summary><code>client.account.loginLinkRequest(request) -> LoginLinkRequestAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39767,8 +39993,8 @@ client.billing().postV1BillingUsageList(
 <dd>
 
 ```java
-client.account().postV1AccountLoginLinkRequest(
-    PostV1AccountLoginLinkRequestRequest
+client.account().loginLinkRequest(
+    LoginLinkRequestAccountRequest
         .builder()
         .email("email")
         .build()
@@ -39795,7 +40021,7 @@ client.account().postV1AccountLoginLinkRequest(
 <dl>
 <dd>
 
-**locale:** `Optional<PostV1AccountLoginLinkRequestRequestLocale>` 
+**locale:** `Optional<LoginLinkRequestAccountRequestLocale>` 
     
 </dd>
 </dl>
@@ -39831,7 +40057,7 @@ client.account().postV1AccountLoginLinkRequest(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountLoginLinkConsume(request) -> PostV1AccountLoginLinkConsumeResponse</code></summary>
+<details><summary><code>client.account.loginLinkConsume(request) -> LoginLinkConsumeAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39844,8 +40070,8 @@ client.account().postV1AccountLoginLinkRequest(
 <dd>
 
 ```java
-client.account().postV1AccountLoginLinkConsume(
-    PostV1AccountLoginLinkConsumeRequest
+client.account().loginLinkConsume(
+    LoginLinkConsumeAccountRequest
         .builder()
         .token("token")
         .build()
@@ -39876,7 +40102,7 @@ client.account().postV1AccountLoginLinkConsume(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountLogout(request) -> PostV1AccountLogoutResponse</code></summary>
+<details><summary><code>client.account.logout(request) -> LogoutAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39889,8 +40115,8 @@ client.account().postV1AccountLoginLinkConsume(
 <dd>
 
 ```java
-client.account().postV1AccountLogout(
-    PostV1AccountLogoutRequest
+client.account().logout(
+    LogoutAccountRequest
         .builder()
         .build()
 );
@@ -39905,7 +40131,7 @@ client.account().postV1AccountLogout(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountMe(request) -> PostV1AccountMeResponse</code></summary>
+<details><summary><code>client.account.me(request) -> MeAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39918,8 +40144,8 @@ client.account().postV1AccountLogout(
 <dd>
 
 ```java
-client.account().postV1AccountMe(
-    PostV1AccountMeRequest
+client.account().me(
+    MeAccountRequest
         .builder()
         .build()
 );
@@ -39934,7 +40160,7 @@ client.account().postV1AccountMe(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountMembersList(request) -> PostV1AccountMembersListResponse</code></summary>
+<details><summary><code>client.account.membersList(request) -> MembersListAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39947,8 +40173,8 @@ client.account().postV1AccountMe(
 <dd>
 
 ```java
-client.account().postV1AccountMembersList(
-    PostV1AccountMembersListRequest
+client.account().membersList(
+    MembersListAccountRequest
         .builder()
         .build()
 );
@@ -39963,7 +40189,7 @@ client.account().postV1AccountMembersList(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountMembersSetRole(request) -> PostV1AccountMembersSetRoleResponse</code></summary>
+<details><summary><code>client.account.membersSetRole(request) -> MembersSetRoleAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39976,11 +40202,11 @@ client.account().postV1AccountMembersList(
 <dd>
 
 ```java
-client.account().postV1AccountMembersSetRole(
-    PostV1AccountMembersSetRoleRequest
+client.account().membersSetRole(
+    MembersSetRoleAccountRequest
         .builder()
         .userId("userId")
-        .role(PostV1AccountMembersSetRoleRequestRole.ADMIN)
+        .role(MembersSetRoleAccountRequestRole.ADMIN)
         .build()
 );
 ```
@@ -40005,7 +40231,7 @@ client.account().postV1AccountMembersSetRole(
 <dl>
 <dd>
 
-**role:** `PostV1AccountMembersSetRoleRequestRole` 
+**role:** `MembersSetRoleAccountRequestRole` 
     
 </dd>
 </dl>
@@ -40017,7 +40243,7 @@ client.account().postV1AccountMembersSetRole(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountMembersTransferOwnership(request) -> PostV1AccountMembersTransferOwnershipResponse</code></summary>
+<details><summary><code>client.account.membersTransferOwnership(request) -> MembersTransferOwnershipAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40030,8 +40256,8 @@ client.account().postV1AccountMembersSetRole(
 <dd>
 
 ```java
-client.account().postV1AccountMembersTransferOwnership(
-    PostV1AccountMembersTransferOwnershipRequest
+client.account().membersTransferOwnership(
+    MembersTransferOwnershipAccountRequest
         .builder()
         .userId("userId")
         .build()
@@ -40070,7 +40296,7 @@ client.account().postV1AccountMembersTransferOwnership(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountMembersRemove(request) -> PostV1AccountMembersRemoveResponse</code></summary>
+<details><summary><code>client.account.membersRemove(request) -> MembersRemoveAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40083,8 +40309,8 @@ client.account().postV1AccountMembersTransferOwnership(
 <dd>
 
 ```java
-client.account().postV1AccountMembersRemove(
-    PostV1AccountMembersRemoveRequest
+client.account().membersRemove(
+    MembersRemoveAccountRequest
         .builder()
         .userId("userId")
         .build()
@@ -40115,7 +40341,7 @@ client.account().postV1AccountMembersRemove(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountInvitesCreate(request) -> PostV1AccountInvitesCreateResponse</code></summary>
+<details><summary><code>client.account.invitesCreate(request) -> InvitesCreateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40128,11 +40354,11 @@ client.account().postV1AccountMembersRemove(
 <dd>
 
 ```java
-client.account().postV1AccountInvitesCreate(
-    PostV1AccountInvitesCreateRequest
+client.account().invitesCreate(
+    InvitesCreateAccountRequest
         .builder()
         .email("email")
-        .role(PostV1AccountInvitesCreateRequestRole.ADMIN)
+        .role(InvitesCreateAccountRequestRole.ADMIN)
         .build()
 );
 ```
@@ -40157,7 +40383,7 @@ client.account().postV1AccountInvitesCreate(
 <dl>
 <dd>
 
-**role:** `PostV1AccountInvitesCreateRequestRole` 
+**role:** `InvitesCreateAccountRequestRole` 
     
 </dd>
 </dl>
@@ -40165,7 +40391,7 @@ client.account().postV1AccountInvitesCreate(
 <dl>
 <dd>
 
-**locale:** `Optional<PostV1AccountInvitesCreateRequestLocale>` 
+**locale:** `Optional<InvitesCreateAccountRequestLocale>` 
     
 </dd>
 </dl>
@@ -40177,7 +40403,7 @@ client.account().postV1AccountInvitesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountInvitesList(request) -> PostV1AccountInvitesListResponse</code></summary>
+<details><summary><code>client.account.invitesList(request) -> InvitesListAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40190,8 +40416,8 @@ client.account().postV1AccountInvitesCreate(
 <dd>
 
 ```java
-client.account().postV1AccountInvitesList(
-    PostV1AccountInvitesListRequest
+client.account().invitesList(
+    InvitesListAccountRequest
         .builder()
         .build()
 );
@@ -40206,7 +40432,7 @@ client.account().postV1AccountInvitesList(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountInvitesRevoke(request) -> PostV1AccountInvitesRevokeResponse</code></summary>
+<details><summary><code>client.account.invitesRevoke(request) -> InvitesRevokeAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40219,8 +40445,8 @@ client.account().postV1AccountInvitesList(
 <dd>
 
 ```java
-client.account().postV1AccountInvitesRevoke(
-    PostV1AccountInvitesRevokeRequest
+client.account().invitesRevoke(
+    InvitesRevokeAccountRequest
         .builder()
         .id("id")
         .build()
@@ -40251,7 +40477,7 @@ client.account().postV1AccountInvitesRevoke(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountInvitesGet(request) -> PostV1AccountInvitesGetResponse</code></summary>
+<details><summary><code>client.account.invitesGet(request) -> InvitesGetAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40264,8 +40490,8 @@ client.account().postV1AccountInvitesRevoke(
 <dd>
 
 ```java
-client.account().postV1AccountInvitesGet(
-    PostV1AccountInvitesGetRequest
+client.account().invitesGet(
+    InvitesGetAccountRequest
         .builder()
         .token("token")
         .build()
@@ -40296,7 +40522,7 @@ client.account().postV1AccountInvitesGet(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountInvitesAccept(request) -> PostV1AccountInvitesAcceptResponse</code></summary>
+<details><summary><code>client.account.invitesAccept(request) -> InvitesAcceptAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40309,8 +40535,8 @@ client.account().postV1AccountInvitesGet(
 <dd>
 
 ```java
-client.account().postV1AccountInvitesAccept(
-    PostV1AccountInvitesAcceptRequest
+client.account().invitesAccept(
+    InvitesAcceptAccountRequest
         .builder()
         .token("token")
         .build()
@@ -40345,7 +40571,7 @@ client.account().postV1AccountInvitesAccept(
 <dl>
 <dd>
 
-**locale:** `Optional<PostV1AccountInvitesAcceptRequestLocale>` 
+**locale:** `Optional<InvitesAcceptAccountRequestLocale>` 
     
 </dd>
 </dl>
@@ -40373,7 +40599,7 @@ client.account().postV1AccountInvitesAccept(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountLocaleSet(request) -> PostV1AccountLocaleSetResponse</code></summary>
+<details><summary><code>client.account.localeSet(request) -> LocaleSetAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40386,10 +40612,10 @@ client.account().postV1AccountInvitesAccept(
 <dd>
 
 ```java
-client.account().postV1AccountLocaleSet(
-    PostV1AccountLocaleSetRequest
+client.account().localeSet(
+    LocaleSetAccountRequest
         .builder()
-        .locale(PostV1AccountLocaleSetRequestLocale.EN)
+        .locale(LocaleSetAccountRequestLocale.EN)
         .build()
 );
 ```
@@ -40406,7 +40632,7 @@ client.account().postV1AccountLocaleSet(
 <dl>
 <dd>
 
-**locale:** `PostV1AccountLocaleSetRequestLocale` 
+**locale:** `LocaleSetAccountRequestLocale` 
     
 </dd>
 </dl>
@@ -40418,7 +40644,7 @@ client.account().postV1AccountLocaleSet(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountCompaniesCreate(request) -> PostV1AccountCompaniesCreateResponse</code></summary>
+<details><summary><code>client.account.companiesCreate(request) -> CompaniesCreateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40431,8 +40657,8 @@ client.account().postV1AccountLocaleSet(
 <dd>
 
 ```java
-client.account().postV1AccountCompaniesCreate(
-    PostV1AccountCompaniesCreateRequest
+client.account().companiesCreate(
+    CompaniesCreateAccountRequest
         .builder()
         .name("name")
         .build()
@@ -40491,7 +40717,7 @@ client.account().postV1AccountCompaniesCreate(
 <dl>
 <dd>
 
-**vatPeriod:** `Optional<PostV1AccountCompaniesCreateRequestVatPeriod>` 
+**vatPeriod:** `Optional<CompaniesCreateAccountRequestVatPeriod>` 
     
 </dd>
 </dl>
@@ -40523,7 +40749,7 @@ client.account().postV1AccountCompaniesCreate(
 <dl>
 <dd>
 
-**address:** `Optional<PostV1AccountCompaniesCreateRequestAddress>` 
+**address:** `Optional<CompaniesCreateAccountRequestAddress>` 
     
 </dd>
 </dl>
@@ -40619,7 +40845,7 @@ client.account().postV1AccountCompaniesCreate(
 <dl>
 <dd>
 
-**accountsKeptBy:** `Optional<PostV1AccountCompaniesCreateRequestAccountsKeptBy>` 
+**accountsKeptBy:** `Optional<CompaniesCreateAccountRequestAccountsKeptBy>` 
     
 </dd>
 </dl>
@@ -40659,7 +40885,15 @@ client.account().postV1AccountCompaniesCreate(
 <dl>
 <dd>
 
-**countryCode:** `Optional<PostV1AccountCompaniesCreateRequestCountryCode>` — Jurisdiction the company is registered in (immutable after creation)
+**countryCode:** `Optional<CompaniesCreateAccountRequestCountryCode>` — Jurisdiction the company is registered in (immutable after creation)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**baseCurrency:** `Optional<String>` — Currency the ledger is kept in; defaults to the national currency of countryCode (immutable after creation)
     
 </dd>
 </dl>
@@ -40679,7 +40913,7 @@ client.account().postV1AccountCompaniesCreate(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountCompaniesSelect(request) -> PostV1AccountCompaniesSelectResponse</code></summary>
+<details><summary><code>client.account.companiesSelect(request) -> CompaniesSelectAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40692,8 +40926,8 @@ client.account().postV1AccountCompaniesCreate(
 <dd>
 
 ```java
-client.account().postV1AccountCompaniesSelect(
-    PostV1AccountCompaniesSelectRequest
+client.account().companiesSelect(
+    CompaniesSelectAccountRequest
         .builder()
         .companyId("companyId")
         .build()
@@ -40724,7 +40958,7 @@ client.account().postV1AccountCompaniesSelect(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountCompaniesProfile(request) -> PostV1AccountCompaniesProfileResponse</code></summary>
+<details><summary><code>client.account.companiesProfile(request) -> CompaniesProfileAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40737,8 +40971,8 @@ client.account().postV1AccountCompaniesSelect(
 <dd>
 
 ```java
-client.account().postV1AccountCompaniesProfile(
-    PostV1AccountCompaniesProfileRequest
+client.account().companiesProfile(
+    CompaniesProfileAccountRequest
         .builder()
         .build()
 );
@@ -40753,7 +40987,7 @@ client.account().postV1AccountCompaniesProfile(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountCompaniesUpdate(request) -> PostV1AccountCompaniesUpdateResponse</code></summary>
+<details><summary><code>client.account.companiesUpdate(request) -> CompaniesUpdateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40766,8 +41000,8 @@ client.account().postV1AccountCompaniesProfile(
 <dd>
 
 ```java
-client.account().postV1AccountCompaniesUpdate(
-    PostV1AccountCompaniesUpdateRequest
+client.account().companiesUpdate(
+    CompaniesUpdateAccountRequest
         .builder()
         .build()
 );
@@ -40825,7 +41059,7 @@ client.account().postV1AccountCompaniesUpdate(
 <dl>
 <dd>
 
-**vatPeriod:** `Optional<PostV1AccountCompaniesUpdateRequestVatPeriod>` 
+**vatPeriod:** `Optional<CompaniesUpdateAccountRequestVatPeriod>` 
     
 </dd>
 </dl>
@@ -40857,7 +41091,7 @@ client.account().postV1AccountCompaniesUpdate(
 <dl>
 <dd>
 
-**address:** `Optional<PostV1AccountCompaniesUpdateRequestAddress>` 
+**address:** `Optional<CompaniesUpdateAccountRequestAddress>` 
     
 </dd>
 </dl>
@@ -40953,7 +41187,7 @@ client.account().postV1AccountCompaniesUpdate(
 <dl>
 <dd>
 
-**accountsKeptBy:** `Optional<PostV1AccountCompaniesUpdateRequestAccountsKeptBy>` 
+**accountsKeptBy:** `Optional<CompaniesUpdateAccountRequestAccountsKeptBy>` 
     
 </dd>
 </dl>
@@ -40993,7 +41227,7 @@ client.account().postV1AccountCompaniesUpdate(
 <dl>
 <dd>
 
-**logo:** `Optional<PostV1AccountCompaniesUpdateRequestLogo>` 
+**logo:** `Optional<CompaniesUpdateAccountRequestLogo>` 
     
 </dd>
 </dl>
@@ -41005,7 +41239,7 @@ client.account().postV1AccountCompaniesUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountCompaniesArchive(request) -> PostV1AccountCompaniesArchiveResponse</code></summary>
+<details><summary><code>client.account.companiesArchive(request) -> CompaniesArchiveAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41018,8 +41252,8 @@ client.account().postV1AccountCompaniesUpdate(
 <dd>
 
 ```java
-client.account().postV1AccountCompaniesArchive(
-    PostV1AccountCompaniesArchiveRequest
+client.account().companiesArchive(
+    CompaniesArchiveAccountRequest
         .builder()
         .companyId("companyId")
         .build()
@@ -41050,7 +41284,7 @@ client.account().postV1AccountCompaniesArchive(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountCompaniesDelete(request) -> PostV1AccountCompaniesDeleteResponse</code></summary>
+<details><summary><code>client.account.companiesDelete(request) -> CompaniesDeleteAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41063,8 +41297,8 @@ client.account().postV1AccountCompaniesArchive(
 <dd>
 
 ```java
-client.account().postV1AccountCompaniesDelete(
-    PostV1AccountCompaniesDeleteRequest
+client.account().companiesDelete(
+    CompaniesDeleteAccountRequest
         .builder()
         .companyId("companyId")
         .build()
@@ -41095,7 +41329,7 @@ client.account().postV1AccountCompaniesDelete(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountCompaniesActivate(request) -> PostV1AccountCompaniesActivateResponse</code></summary>
+<details><summary><code>client.account.companiesActivate(request) -> CompaniesActivateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41108,8 +41342,8 @@ client.account().postV1AccountCompaniesDelete(
 <dd>
 
 ```java
-client.account().postV1AccountCompaniesActivate(
-    PostV1AccountCompaniesActivateRequest
+client.account().companiesActivate(
+    CompaniesActivateAccountRequest
         .builder()
         .companyId("companyId")
         .build()
@@ -41140,7 +41374,7 @@ client.account().postV1AccountCompaniesActivate(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountApiKeysCreate(request) -> PostV1AccountApiKeysCreateResponse</code></summary>
+<details><summary><code>client.account.apiKeysCreate(request) -> ApiKeysCreateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41153,8 +41387,8 @@ client.account().postV1AccountCompaniesActivate(
 <dd>
 
 ```java
-client.account().postV1AccountApiKeysCreate(
-    PostV1AccountApiKeysCreateRequest
+client.account().apiKeysCreate(
+    ApiKeysCreateAccountRequest
         .builder()
         .name("name")
         .build()
@@ -41201,7 +41435,7 @@ client.account().postV1AccountApiKeysCreate(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountApiKeysList(request) -> PostV1AccountApiKeysListResponse</code></summary>
+<details><summary><code>client.account.apiKeysList(request) -> ApiKeysListAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41214,8 +41448,8 @@ client.account().postV1AccountApiKeysCreate(
 <dd>
 
 ```java
-client.account().postV1AccountApiKeysList(
-    PostV1AccountApiKeysListRequest
+client.account().apiKeysList(
+    ApiKeysListAccountRequest
         .builder()
         .build()
 );
@@ -41230,7 +41464,7 @@ client.account().postV1AccountApiKeysList(
 </dl>
 </details>
 
-<details><summary><code>client.account.issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(request) -> PostV1AccountApiKeysRotateResponse</code></summary>
+<details><summary><code>client.account.apiKeysRotate(request) -> ApiKeysRotateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41243,8 +41477,8 @@ client.account().postV1AccountApiKeysList(
 <dd>
 
 ```java
-client.account().issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(
-    PostV1AccountApiKeysRotateRequest
+client.account().apiKeysRotate(
+    ApiKeysRotateAccountRequest
         .builder()
         .id("id")
         .build()
@@ -41291,7 +41525,7 @@ client.account().issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAS
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountApiKeysRevoke(request) -> PostV1AccountApiKeysRevokeResponse</code></summary>
+<details><summary><code>client.account.apiKeysRevoke(request) -> ApiKeysRevokeAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41304,8 +41538,8 @@ client.account().issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAS
 <dd>
 
 ```java
-client.account().postV1AccountApiKeysRevoke(
-    PostV1AccountApiKeysRevokeRequest
+client.account().apiKeysRevoke(
+    ApiKeysRevokeAccountRequest
         .builder()
         .id("id")
         .build()
@@ -41336,7 +41570,7 @@ client.account().postV1AccountApiKeysRevoke(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountConsentAccept(request) -> PostV1AccountConsentAcceptResponse</code></summary>
+<details><summary><code>client.account.consentAccept(request) -> ConsentAcceptAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41349,8 +41583,8 @@ client.account().postV1AccountApiKeysRevoke(
 <dd>
 
 ```java
-client.account().postV1AccountConsentAccept(
-    PostV1AccountConsentAcceptRequest
+client.account().consentAccept(
+    ConsentAcceptAccountRequest
         .builder()
         .acceptTerms(true)
         .acceptDpa(true)
@@ -41390,7 +41624,7 @@ client.account().postV1AccountConsentAccept(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountProfileUpdate(request) -> PostV1AccountProfileUpdateResponse</code></summary>
+<details><summary><code>client.account.profileUpdate(request) -> ProfileUpdateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41403,8 +41637,8 @@ client.account().postV1AccountConsentAccept(
 <dd>
 
 ```java
-client.account().postV1AccountProfileUpdate(
-    PostV1AccountProfileUpdateRequest
+client.account().profileUpdate(
+    ProfileUpdateAccountRequest
         .builder()
         .build()
 );
@@ -41434,7 +41668,7 @@ client.account().postV1AccountProfileUpdate(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountEmailChangeRequest(request) -> PostV1AccountEmailChangeRequestResponse</code></summary>
+<details><summary><code>client.account.emailChangeRequest(request) -> EmailChangeRequestAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41447,8 +41681,8 @@ client.account().postV1AccountProfileUpdate(
 <dd>
 
 ```java
-client.account().postV1AccountEmailChangeRequest(
-    PostV1AccountEmailChangeRequestRequest
+client.account().emailChangeRequest(
+    EmailChangeRequestAccountRequest
         .builder()
         .newEmail("newEmail")
         .build()
@@ -41475,7 +41709,7 @@ client.account().postV1AccountEmailChangeRequest(
 <dl>
 <dd>
 
-**locale:** `Optional<PostV1AccountEmailChangeRequestRequestLocale>` 
+**locale:** `Optional<EmailChangeRequestAccountRequestLocale>` 
     
 </dd>
 </dl>
@@ -41487,7 +41721,7 @@ client.account().postV1AccountEmailChangeRequest(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountSessionsList(request) -> PostV1AccountSessionsListResponse</code></summary>
+<details><summary><code>client.account.sessionsList(request) -> SessionsListAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41500,8 +41734,8 @@ client.account().postV1AccountEmailChangeRequest(
 <dd>
 
 ```java
-client.account().postV1AccountSessionsList(
-    PostV1AccountSessionsListRequest
+client.account().sessionsList(
+    SessionsListAccountRequest
         .builder()
         .build()
 );
@@ -41516,7 +41750,7 @@ client.account().postV1AccountSessionsList(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountSessionsRevoke(request) -> PostV1AccountSessionsRevokeResponse</code></summary>
+<details><summary><code>client.account.sessionsRevoke(request) -> SessionsRevokeAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41529,8 +41763,8 @@ client.account().postV1AccountSessionsList(
 <dd>
 
 ```java
-client.account().postV1AccountSessionsRevoke(
-    PostV1AccountSessionsRevokeRequest
+client.account().sessionsRevoke(
+    SessionsRevokeAccountRequest
         .builder()
         .id("id")
         .build()
@@ -41561,7 +41795,7 @@ client.account().postV1AccountSessionsRevoke(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountSessionsRevokeOthers(request) -> PostV1AccountSessionsRevokeOthersResponse</code></summary>
+<details><summary><code>client.account.sessionsRevokeOthers(request) -> SessionsRevokeOthersAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41574,8 +41808,8 @@ client.account().postV1AccountSessionsRevoke(
 <dd>
 
 ```java
-client.account().postV1AccountSessionsRevokeOthers(
-    PostV1AccountSessionsRevokeOthersRequest
+client.account().sessionsRevokeOthers(
+    SessionsRevokeOthersAccountRequest
         .builder()
         .build()
 );
@@ -41590,7 +41824,7 @@ client.account().postV1AccountSessionsRevokeOthers(
 </dl>
 </details>
 
-<details><summary><code>client.account.downloadEverythingNordletStoresAboutTheSignedInUser(request) -> PostV1AccountExportResponse</code></summary>
+<details><summary><code>client.account.export(request) -> ExportAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41603,8 +41837,8 @@ client.account().postV1AccountSessionsRevokeOthers(
 <dd>
 
 ```java
-client.account().downloadEverythingNordletStoresAboutTheSignedInUser(
-    PostV1AccountExportRequest
+client.account().export(
+    ExportAccountRequest
         .builder()
         .build()
 );
@@ -41619,7 +41853,7 @@ client.account().downloadEverythingNordletStoresAboutTheSignedInUser(
 </dl>
 </details>
 
-<details><summary><code>client.account.deleteTheSignedInUserAccount(request) -> PostV1AccountDeleteResponse</code></summary>
+<details><summary><code>client.account.delete(request) -> DeleteAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41646,8 +41880,8 @@ Removes the user: sessions, sign-in links, memberships and pending invitations a
 <dd>
 
 ```java
-client.account().deleteTheSignedInUserAccount(
-    PostV1AccountDeleteRequest
+client.account().delete(
+    DeleteAccountRequest
         .builder()
         .confirmEmail("confirmEmail")
         .build()
@@ -41678,7 +41912,7 @@ client.account().deleteTheSignedInUserAccount(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountReferralGet(request) -> PostV1AccountReferralGetResponse</code></summary>
+<details><summary><code>client.account.referralGet(request) -> ReferralGetAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41691,8 +41925,8 @@ client.account().deleteTheSignedInUserAccount(
 <dd>
 
 ```java
-client.account().postV1AccountReferralGet(
-    PostV1AccountReferralGetRequest
+client.account().referralGet(
+    ReferralGetAccountRequest
         .builder()
         .build()
 );
@@ -41707,7 +41941,7 @@ client.account().postV1AccountReferralGet(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountReferralConvert(request) -> PostV1AccountReferralConvertResponse</code></summary>
+<details><summary><code>client.account.referralConvert(request) -> ReferralConvertAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41720,8 +41954,8 @@ client.account().postV1AccountReferralGet(
 <dd>
 
 ```java
-client.account().postV1AccountReferralConvert(
-    PostV1AccountReferralConvertRequest
+client.account().referralConvert(
+    ReferralConvertAccountRequest
         .builder()
         .points(1000000L)
         .build()
@@ -41752,7 +41986,7 @@ client.account().postV1AccountReferralConvert(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountTableSettingsGet(request) -> PostV1AccountTableSettingsGetResponse</code></summary>
+<details><summary><code>client.account.tableSettingsGet(request) -> TableSettingsGetAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41765,8 +41999,8 @@ client.account().postV1AccountReferralConvert(
 <dd>
 
 ```java
-client.account().postV1AccountTableSettingsGet(
-    PostV1AccountTableSettingsGetRequest
+client.account().tableSettingsGet(
+    TableSettingsGetAccountRequest
         .builder()
         .tableKey("tableKey")
         .build()
@@ -41797,7 +42031,7 @@ client.account().postV1AccountTableSettingsGet(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountTableSettingsSet(request) -> PostV1AccountTableSettingsSetResponse</code></summary>
+<details><summary><code>client.account.tableSettingsSet(request) -> TableSettingsSetAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41810,8 +42044,8 @@ client.account().postV1AccountTableSettingsGet(
 <dd>
 
 ```java
-client.account().postV1AccountTableSettingsSet(
-    PostV1AccountTableSettingsSetRequest
+client.account().tableSettingsSet(
+    TableSettingsSetAccountRequest
         .builder()
         .tableKey("tableKey")
         .build()
@@ -41858,7 +42092,7 @@ client.account().postV1AccountTableSettingsSet(
 </dl>
 </details>
 
-<details><summary><code>client.account.postV1AccountTableSettingsList(request) -> PostV1AccountTableSettingsListResponse</code></summary>
+<details><summary><code>client.account.tableSettingsList(request) -> TableSettingsListAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41871,8 +42105,8 @@ client.account().postV1AccountTableSettingsSet(
 <dd>
 
 ```java
-client.account().postV1AccountTableSettingsList(
-    PostV1AccountTableSettingsListRequest
+client.account().tableSettingsList(
+    TableSettingsListAccountRequest
         .builder()
         .build()
 );

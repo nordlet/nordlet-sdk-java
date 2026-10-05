@@ -6,14 +6,14 @@ package com.nordlet.api.resources.files;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.files.requests.PostV1FilesDeleteRequest;
-import com.nordlet.api.resources.files.requests.PostV1FilesGetRequest;
-import com.nordlet.api.resources.files.requests.PostV1FilesListRequest;
-import com.nordlet.api.resources.files.requests.PostV1FilesUploadRequest;
-import com.nordlet.api.resources.files.types.PostV1FilesDeleteResponse;
-import com.nordlet.api.resources.files.types.PostV1FilesGetResponse;
-import com.nordlet.api.resources.files.types.PostV1FilesListResponse;
-import com.nordlet.api.resources.files.types.PostV1FilesUploadResponse;
+import com.nordlet.api.resources.files.requests.DeleteFilesRequest;
+import com.nordlet.api.resources.files.requests.GetFilesRequest;
+import com.nordlet.api.resources.files.requests.ListFilesRequest;
+import com.nordlet.api.resources.files.requests.UploadFilesRequest;
+import com.nordlet.api.resources.files.types.DeleteFilesResponse;
+import com.nordlet.api.resources.files.types.GetFilesResponse;
+import com.nordlet.api.resources.files.types.ListFilesResponse;
+import com.nordlet.api.resources.files.types.UploadFilesResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncFilesClient {
@@ -33,50 +33,47 @@ public class AsyncFilesClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1FilesUploadResponse> postV1FilesUpload(
-      PostV1FilesUploadRequest request) {
-    return this.rawClient.postV1FilesUpload(request).thenApply(response -> response.body());
+  public CompletableFuture<UploadFilesResponse> upload(UploadFilesRequest request) {
+    return this.rawClient.upload(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FilesUploadResponse> postV1FilesUpload(
-      PostV1FilesUploadRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FilesUpload(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1FilesGetResponse> postV1FilesGet(PostV1FilesGetRequest request) {
-    return this.rawClient.postV1FilesGet(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1FilesGetResponse> postV1FilesGet(PostV1FilesGetRequest request,
+  public CompletableFuture<UploadFilesResponse> upload(UploadFilesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1FilesGet(request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.upload(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FilesListResponse> postV1FilesList() {
-    return this.rawClient.postV1FilesList().thenApply(response -> response.body());
+  public CompletableFuture<GetFilesResponse> get(GetFilesRequest request) {
+    return this.rawClient.get(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FilesListResponse> postV1FilesList(RequestOptions requestOptions) {
-    return this.rawClient.postV1FilesList(requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1FilesListResponse> postV1FilesList(
-      PostV1FilesListRequest request) {
-    return this.rawClient.postV1FilesList(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1FilesListResponse> postV1FilesList(PostV1FilesListRequest request,
+  public CompletableFuture<GetFilesResponse> get(GetFilesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1FilesList(request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.get(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FilesDeleteResponse> postV1FilesDelete(
-      PostV1FilesDeleteRequest request) {
-    return this.rawClient.postV1FilesDelete(request).thenApply(response -> response.body());
+  public CompletableFuture<ListFilesResponse> list() {
+    return this.rawClient.list().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FilesDeleteResponse> postV1FilesDelete(
-      PostV1FilesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FilesDelete(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ListFilesResponse> list(RequestOptions requestOptions) {
+    return this.rawClient.list(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ListFilesResponse> list(ListFilesRequest request) {
+    return this.rawClient.list(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ListFilesResponse> list(ListFilesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.list(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<DeleteFilesResponse> delete(DeleteFilesRequest request) {
+    return this.rawClient.delete(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<DeleteFilesResponse> delete(DeleteFilesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.delete(request, requestOptions).thenApply(response -> response.body());
   }
 }

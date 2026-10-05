@@ -6,22 +6,22 @@ package com.nordlet.api.resources.fleet;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetAssignmentsCreateRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetAssignmentsEndRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetAssignmentsListRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetNaturaPreviewRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetVehiclesCreateRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetVehiclesGetRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetVehiclesListRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetVehiclesUpdateRequest;
-import com.nordlet.api.resources.fleet.types.PostV1FleetAssignmentsCreateResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetAssignmentsEndResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetAssignmentsListResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetNaturaPreviewResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetVehiclesCreateResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetVehiclesGetResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetVehiclesListResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetVehiclesUpdateResponse;
+import com.nordlet.api.resources.fleet.requests.AssignmentsCreateFleetRequest;
+import com.nordlet.api.resources.fleet.requests.AssignmentsEndFleetRequest;
+import com.nordlet.api.resources.fleet.requests.AssignmentsListFleetRequest;
+import com.nordlet.api.resources.fleet.requests.NaturaPreviewFleetRequest;
+import com.nordlet.api.resources.fleet.requests.VehiclesCreateFleetRequest;
+import com.nordlet.api.resources.fleet.requests.VehiclesGetFleetRequest;
+import com.nordlet.api.resources.fleet.requests.VehiclesListFleetRequest;
+import com.nordlet.api.resources.fleet.requests.VehiclesUpdateFleetRequest;
+import com.nordlet.api.resources.fleet.types.AssignmentsCreateFleetResponse;
+import com.nordlet.api.resources.fleet.types.AssignmentsEndFleetResponse;
+import com.nordlet.api.resources.fleet.types.AssignmentsListFleetResponse;
+import com.nordlet.api.resources.fleet.types.NaturaPreviewFleetResponse;
+import com.nordlet.api.resources.fleet.types.VehiclesCreateFleetResponse;
+import com.nordlet.api.resources.fleet.types.VehiclesGetFleetResponse;
+import com.nordlet.api.resources.fleet.types.VehiclesListFleetResponse;
+import com.nordlet.api.resources.fleet.types.VehiclesUpdateFleetResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncFleetClient {
@@ -41,101 +41,99 @@ public class AsyncFleetClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1FleetVehiclesCreateResponse> postV1FleetVehiclesCreate(
-      PostV1FleetVehiclesCreateRequest request) {
-    return this.rawClient.postV1FleetVehiclesCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<VehiclesCreateFleetResponse> vehiclesCreate(
+      VehiclesCreateFleetRequest request) {
+    return this.rawClient.vehiclesCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FleetVehiclesCreateResponse> postV1FleetVehiclesCreate(
-      PostV1FleetVehiclesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetVehiclesCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<VehiclesCreateFleetResponse> vehiclesCreate(
+      VehiclesCreateFleetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.vehiclesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FleetVehiclesUpdateResponse> postV1FleetVehiclesUpdate(
-      PostV1FleetVehiclesUpdateRequest request) {
-    return this.rawClient.postV1FleetVehiclesUpdate(request).thenApply(response -> response.body());
+  public CompletableFuture<VehiclesUpdateFleetResponse> vehiclesUpdate(
+      VehiclesUpdateFleetRequest request) {
+    return this.rawClient.vehiclesUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FleetVehiclesUpdateResponse> postV1FleetVehiclesUpdate(
-      PostV1FleetVehiclesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetVehiclesUpdate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<VehiclesUpdateFleetResponse> vehiclesUpdate(
+      VehiclesUpdateFleetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.vehiclesUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FleetVehiclesGetResponse> postV1FleetVehiclesGet(
-      PostV1FleetVehiclesGetRequest request) {
-    return this.rawClient.postV1FleetVehiclesGet(request).thenApply(response -> response.body());
+  public CompletableFuture<VehiclesGetFleetResponse> vehiclesGet(VehiclesGetFleetRequest request) {
+    return this.rawClient.vehiclesGet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FleetVehiclesGetResponse> postV1FleetVehiclesGet(
-      PostV1FleetVehiclesGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetVehiclesGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1FleetVehiclesListResponse> postV1FleetVehiclesList() {
-    return this.rawClient.postV1FleetVehiclesList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1FleetVehiclesListResponse> postV1FleetVehiclesList(
+  public CompletableFuture<VehiclesGetFleetResponse> vehiclesGet(VehiclesGetFleetRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetVehiclesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.vehiclesGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FleetVehiclesListResponse> postV1FleetVehiclesList(
-      PostV1FleetVehiclesListRequest request) {
-    return this.rawClient.postV1FleetVehiclesList(request).thenApply(response -> response.body());
+  public CompletableFuture<VehiclesListFleetResponse> vehiclesList() {
+    return this.rawClient.vehiclesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FleetVehiclesListResponse> postV1FleetVehiclesList(
-      PostV1FleetVehiclesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetVehiclesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<VehiclesListFleetResponse> vehiclesList(RequestOptions requestOptions) {
+    return this.rawClient.vehiclesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FleetAssignmentsCreateResponse> postV1FleetAssignmentsCreate(
-      PostV1FleetAssignmentsCreateRequest request) {
-    return this.rawClient.postV1FleetAssignmentsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<VehiclesListFleetResponse> vehiclesList(
+      VehiclesListFleetRequest request) {
+    return this.rawClient.vehiclesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FleetAssignmentsCreateResponse> postV1FleetAssignmentsCreate(
-      PostV1FleetAssignmentsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetAssignmentsCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1FleetAssignmentsEndResponse> postV1FleetAssignmentsEnd(
-      PostV1FleetAssignmentsEndRequest request) {
-    return this.rawClient.postV1FleetAssignmentsEnd(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1FleetAssignmentsEndResponse> postV1FleetAssignmentsEnd(
-      PostV1FleetAssignmentsEndRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetAssignmentsEnd(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1FleetAssignmentsListResponse> postV1FleetAssignmentsList() {
-    return this.rawClient.postV1FleetAssignmentsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1FleetAssignmentsListResponse> postV1FleetAssignmentsList(
+  public CompletableFuture<VehiclesListFleetResponse> vehiclesList(VehiclesListFleetRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetAssignmentsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.vehiclesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FleetAssignmentsListResponse> postV1FleetAssignmentsList(
-      PostV1FleetAssignmentsListRequest request) {
-    return this.rawClient.postV1FleetAssignmentsList(request).thenApply(response -> response.body());
+  public CompletableFuture<AssignmentsCreateFleetResponse> assignmentsCreate(
+      AssignmentsCreateFleetRequest request) {
+    return this.rawClient.assignmentsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FleetAssignmentsListResponse> postV1FleetAssignmentsList(
-      PostV1FleetAssignmentsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetAssignmentsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<AssignmentsCreateFleetResponse> assignmentsCreate(
+      AssignmentsCreateFleetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.assignmentsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FleetNaturaPreviewResponse> postV1FleetNaturaPreview(
-      PostV1FleetNaturaPreviewRequest request) {
-    return this.rawClient.postV1FleetNaturaPreview(request).thenApply(response -> response.body());
+  public CompletableFuture<AssignmentsEndFleetResponse> assignmentsEnd(
+      AssignmentsEndFleetRequest request) {
+    return this.rawClient.assignmentsEnd(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1FleetNaturaPreviewResponse> postV1FleetNaturaPreview(
-      PostV1FleetNaturaPreviewRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1FleetNaturaPreview(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<AssignmentsEndFleetResponse> assignmentsEnd(
+      AssignmentsEndFleetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.assignmentsEnd(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AssignmentsListFleetResponse> assignmentsList() {
+    return this.rawClient.assignmentsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AssignmentsListFleetResponse> assignmentsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.assignmentsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AssignmentsListFleetResponse> assignmentsList(
+      AssignmentsListFleetRequest request) {
+    return this.rawClient.assignmentsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AssignmentsListFleetResponse> assignmentsList(
+      AssignmentsListFleetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.assignmentsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<NaturaPreviewFleetResponse> naturaPreview(
+      NaturaPreviewFleetRequest request) {
+    return this.rawClient.naturaPreview(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<NaturaPreviewFleetResponse> naturaPreview(
+      NaturaPreviewFleetRequest request, RequestOptions requestOptions) {
+    return this.rawClient.naturaPreview(request, requestOptions).thenApply(response -> response.body());
   }
 }

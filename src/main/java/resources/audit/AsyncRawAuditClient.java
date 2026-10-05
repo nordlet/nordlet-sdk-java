@@ -15,14 +15,16 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.audit.requests.PostV1AuditListRequest;
-import com.nordlet.api.resources.audit.types.PostV1AuditListResponse;
+import com.nordlet.api.resources.audit.requests.ListAuditRequest;
+import com.nordlet.api.resources.audit.types.ListAuditResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -47,22 +49,22 @@ public class AsyncRawAuditClient {
     this.clientOptions = clientOptions;
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1AuditListResponse>> postV1AuditList() {
-    return postV1AuditList(PostV1AuditListRequest.builder().build());
+  public CompletableFuture<NordletApiHttpResponse<ListAuditResponse>> list() {
+    return list(ListAuditRequest.builder().build());
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1AuditListResponse>> postV1AuditList(
+  public CompletableFuture<NordletApiHttpResponse<ListAuditResponse>> list(
       RequestOptions requestOptions) {
-    return postV1AuditList(PostV1AuditListRequest.builder().build(),requestOptions);
+    return list(ListAuditRequest.builder().build(),requestOptions);
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1AuditListResponse>> postV1AuditList(
-      PostV1AuditListRequest request) {
-    return postV1AuditList(request,null);
+  public CompletableFuture<NordletApiHttpResponse<ListAuditResponse>> list(
+      ListAuditRequest request) {
+    return list(request,null);
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1AuditListResponse>> postV1AuditList(
-      PostV1AuditListRequest request, RequestOptions requestOptions) {
+  public CompletableFuture<NordletApiHttpResponse<ListAuditResponse>> list(ListAuditRequest request,
+      RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/audit/list");if (requestOptions != null) {
@@ -91,14 +93,14 @@ public class AsyncRawAuditClient {
       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
       }
-      CompletableFuture<NordletApiHttpResponse<PostV1AuditListResponse>> future = new CompletableFuture<>();
+      CompletableFuture<NordletApiHttpResponse<ListAuditResponse>> future = new CompletableFuture<>();
       client.newCall(okhttpRequest).enqueue(new Callback() {
         @Override
         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
           try (ResponseBody responseBody = response.body()) {
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AuditListResponse.class), response));
+              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ListAuditResponse.class), response));
               return;
             }
             try {
@@ -107,11 +109,15 @@ public class AsyncRawAuditClient {
                 return;
                 case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
+                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
                 case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
+                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;

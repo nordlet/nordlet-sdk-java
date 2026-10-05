@@ -6,60 +6,60 @@ package com.nordlet.api.resources.hr;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.hr.requests.PostV1HrContractsCreateRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrContractsEndRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrContractsListRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesAnonymizeRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesAttachmentsListRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesCreateRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesDeleteRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesFieldsRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesGetRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesListRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesRecordsCreateRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesRecordsDeleteRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesRecordsListRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesRecordsUpdateRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrEmployeesUpdateRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrIncapacityCertificatesCreateRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrIncapacityCertificatesListRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrLeaveBalancesListRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrLeaveBalancesSetRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrPositionsCreateRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrPositionsListRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrPositionsUpdateRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrTimesheetsDeleteRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrTimesheetsGenerateRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrTimesheetsGetRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrTimesheetsListRequest;
-import com.nordlet.api.resources.hr.requests.PostV1HrTimesheetsUpsertRequest;
-import com.nordlet.api.resources.hr.types.PostV1HrContractsCreateResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrContractsEndResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrContractsListResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrEmployeesAnonymizeResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrEmployeesAttachmentsListResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrEmployeesCreateResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrEmployeesDeleteResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrEmployeesFieldsResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrEmployeesGetResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrEmployeesListResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrEmployeesRecordsCreateResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrEmployeesRecordsDeleteResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrEmployeesRecordsListResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrEmployeesRecordsUpdateResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrEmployeesUpdateResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrIncapacityCertificatesCreateResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrIncapacityCertificatesListResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrLeaveBalancesListResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrLeaveBalancesSetResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrPositionsCreateResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrPositionsListResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrPositionsUpdateResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrTimesheetsDeleteResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrTimesheetsGenerateResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrTimesheetsGetResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrTimesheetsListResponse;
-import com.nordlet.api.resources.hr.types.PostV1HrTimesheetsUpsertResponse;
+import com.nordlet.api.resources.hr.requests.ContractsCreateHrRequest;
+import com.nordlet.api.resources.hr.requests.ContractsEndHrRequest;
+import com.nordlet.api.resources.hr.requests.ContractsListHrRequest;
+import com.nordlet.api.resources.hr.requests.EmployeesAnonymizeHrRequest;
+import com.nordlet.api.resources.hr.requests.EmployeesAttachmentsListHrRequest;
+import com.nordlet.api.resources.hr.requests.EmployeesCreateHrRequest;
+import com.nordlet.api.resources.hr.requests.EmployeesDeleteHrRequest;
+import com.nordlet.api.resources.hr.requests.EmployeesFieldsHrRequest;
+import com.nordlet.api.resources.hr.requests.EmployeesGetHrRequest;
+import com.nordlet.api.resources.hr.requests.EmployeesListHrRequest;
+import com.nordlet.api.resources.hr.requests.EmployeesRecordsCreateHrRequest;
+import com.nordlet.api.resources.hr.requests.EmployeesRecordsDeleteHrRequest;
+import com.nordlet.api.resources.hr.requests.EmployeesRecordsListHrRequest;
+import com.nordlet.api.resources.hr.requests.EmployeesRecordsUpdateHrRequest;
+import com.nordlet.api.resources.hr.requests.EmployeesUpdateHrRequest;
+import com.nordlet.api.resources.hr.requests.IncapacityCertificatesCreateHrRequest;
+import com.nordlet.api.resources.hr.requests.IncapacityCertificatesListHrRequest;
+import com.nordlet.api.resources.hr.requests.LeaveBalancesListHrRequest;
+import com.nordlet.api.resources.hr.requests.LeaveBalancesSetHrRequest;
+import com.nordlet.api.resources.hr.requests.PositionsCreateHrRequest;
+import com.nordlet.api.resources.hr.requests.PositionsListHrRequest;
+import com.nordlet.api.resources.hr.requests.PositionsUpdateHrRequest;
+import com.nordlet.api.resources.hr.requests.TimesheetsDeleteHrRequest;
+import com.nordlet.api.resources.hr.requests.TimesheetsGenerateHrRequest;
+import com.nordlet.api.resources.hr.requests.TimesheetsGetHrRequest;
+import com.nordlet.api.resources.hr.requests.TimesheetsListHrRequest;
+import com.nordlet.api.resources.hr.requests.TimesheetsUpsertHrRequest;
+import com.nordlet.api.resources.hr.types.ContractsCreateHrResponse;
+import com.nordlet.api.resources.hr.types.ContractsEndHrResponse;
+import com.nordlet.api.resources.hr.types.ContractsListHrResponse;
+import com.nordlet.api.resources.hr.types.EmployeesAnonymizeHrResponse;
+import com.nordlet.api.resources.hr.types.EmployeesAttachmentsListHrResponse;
+import com.nordlet.api.resources.hr.types.EmployeesCreateHrResponse;
+import com.nordlet.api.resources.hr.types.EmployeesDeleteHrResponse;
+import com.nordlet.api.resources.hr.types.EmployeesFieldsHrResponse;
+import com.nordlet.api.resources.hr.types.EmployeesGetHrResponse;
+import com.nordlet.api.resources.hr.types.EmployeesListHrResponse;
+import com.nordlet.api.resources.hr.types.EmployeesRecordsCreateHrResponse;
+import com.nordlet.api.resources.hr.types.EmployeesRecordsDeleteHrResponse;
+import com.nordlet.api.resources.hr.types.EmployeesRecordsListHrResponse;
+import com.nordlet.api.resources.hr.types.EmployeesRecordsUpdateHrResponse;
+import com.nordlet.api.resources.hr.types.EmployeesUpdateHrResponse;
+import com.nordlet.api.resources.hr.types.IncapacityCertificatesCreateHrResponse;
+import com.nordlet.api.resources.hr.types.IncapacityCertificatesListHrResponse;
+import com.nordlet.api.resources.hr.types.LeaveBalancesListHrResponse;
+import com.nordlet.api.resources.hr.types.LeaveBalancesSetHrResponse;
+import com.nordlet.api.resources.hr.types.PositionsCreateHrResponse;
+import com.nordlet.api.resources.hr.types.PositionsListHrResponse;
+import com.nordlet.api.resources.hr.types.PositionsUpdateHrResponse;
+import com.nordlet.api.resources.hr.types.TimesheetsDeleteHrResponse;
+import com.nordlet.api.resources.hr.types.TimesheetsGenerateHrResponse;
+import com.nordlet.api.resources.hr.types.TimesheetsGetHrResponse;
+import com.nordlet.api.resources.hr.types.TimesheetsListHrResponse;
+import com.nordlet.api.resources.hr.types.TimesheetsUpsertHrResponse;
 
 public class HrClient {
   protected final ClientOptions clientOptions;
@@ -78,345 +78,328 @@ public class HrClient {
     return this.rawClient;
   }
 
-  public PostV1HrPositionsCreateResponse postV1HrPositionsCreate(
-      PostV1HrPositionsCreateRequest request) {
-    return this.rawClient.postV1HrPositionsCreate(request).body();
+  public PositionsCreateHrResponse positionsCreate(PositionsCreateHrRequest request) {
+    return this.rawClient.positionsCreate(request).body();
   }
 
-  public PostV1HrPositionsCreateResponse postV1HrPositionsCreate(
-      PostV1HrPositionsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrPositionsCreate(request, requestOptions).body();
-  }
-
-  public PostV1HrPositionsUpdateResponse postV1HrPositionsUpdate(
-      PostV1HrPositionsUpdateRequest request) {
-    return this.rawClient.postV1HrPositionsUpdate(request).body();
-  }
-
-  public PostV1HrPositionsUpdateResponse postV1HrPositionsUpdate(
-      PostV1HrPositionsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrPositionsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1HrPositionsListResponse postV1HrPositionsList() {
-    return this.rawClient.postV1HrPositionsList().body();
-  }
-
-  public PostV1HrPositionsListResponse postV1HrPositionsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1HrPositionsList(requestOptions).body();
-  }
-
-  public PostV1HrPositionsListResponse postV1HrPositionsList(PostV1HrPositionsListRequest request) {
-    return this.rawClient.postV1HrPositionsList(request).body();
-  }
-
-  public PostV1HrPositionsListResponse postV1HrPositionsList(PostV1HrPositionsListRequest request,
+  public PositionsCreateHrResponse positionsCreate(PositionsCreateHrRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1HrPositionsList(request, requestOptions).body();
+    return this.rawClient.positionsCreate(request, requestOptions).body();
   }
 
-  public PostV1HrEmployeesCreateResponse postV1HrEmployeesCreate(
-      PostV1HrEmployeesCreateRequest request) {
-    return this.rawClient.postV1HrEmployeesCreate(request).body();
+  public PositionsUpdateHrResponse positionsUpdate(PositionsUpdateHrRequest request) {
+    return this.rawClient.positionsUpdate(request).body();
   }
 
-  public PostV1HrEmployeesCreateResponse postV1HrEmployeesCreate(
-      PostV1HrEmployeesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrEmployeesCreate(request, requestOptions).body();
-  }
-
-  public PostV1HrEmployeesUpdateResponse postV1HrEmployeesUpdate(
-      PostV1HrEmployeesUpdateRequest request) {
-    return this.rawClient.postV1HrEmployeesUpdate(request).body();
-  }
-
-  public PostV1HrEmployeesUpdateResponse postV1HrEmployeesUpdate(
-      PostV1HrEmployeesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrEmployeesUpdate(request, requestOptions).body();
-  }
-
-  public PostV1HrEmployeesGetResponse postV1HrEmployeesGet(PostV1HrEmployeesGetRequest request) {
-    return this.rawClient.postV1HrEmployeesGet(request).body();
-  }
-
-  public PostV1HrEmployeesGetResponse postV1HrEmployeesGet(PostV1HrEmployeesGetRequest request,
+  public PositionsUpdateHrResponse positionsUpdate(PositionsUpdateHrRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1HrEmployeesGet(request, requestOptions).body();
+    return this.rawClient.positionsUpdate(request, requestOptions).body();
+  }
+
+  public PositionsListHrResponse positionsList() {
+    return this.rawClient.positionsList().body();
+  }
+
+  public PositionsListHrResponse positionsList(RequestOptions requestOptions) {
+    return this.rawClient.positionsList(requestOptions).body();
+  }
+
+  public PositionsListHrResponse positionsList(PositionsListHrRequest request) {
+    return this.rawClient.positionsList(request).body();
+  }
+
+  public PositionsListHrResponse positionsList(PositionsListHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.positionsList(request, requestOptions).body();
+  }
+
+  public EmployeesCreateHrResponse employeesCreate(EmployeesCreateHrRequest request) {
+    return this.rawClient.employeesCreate(request).body();
+  }
+
+  public EmployeesCreateHrResponse employeesCreate(EmployeesCreateHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.employeesCreate(request, requestOptions).body();
+  }
+
+  public EmployeesUpdateHrResponse employeesUpdate(EmployeesUpdateHrRequest request) {
+    return this.rawClient.employeesUpdate(request).body();
+  }
+
+  public EmployeesUpdateHrResponse employeesUpdate(EmployeesUpdateHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.employeesUpdate(request, requestOptions).body();
+  }
+
+  public EmployeesGetHrResponse employeesGet(EmployeesGetHrRequest request) {
+    return this.rawClient.employeesGet(request).body();
+  }
+
+  public EmployeesGetHrResponse employeesGet(EmployeesGetHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.employeesGet(request, requestOptions).body();
   }
 
   /**
    * Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
    */
-  public PostV1HrEmployeesFieldsResponse extraEmployeeDetailsTheCountryOfTheCompanyAsksFor() {
-    return this.rawClient.extraEmployeeDetailsTheCountryOfTheCompanyAsksFor().body();
+  public EmployeesFieldsHrResponse employeesFields() {
+    return this.rawClient.employeesFields().body();
   }
 
   /**
    * Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
    */
-  public PostV1HrEmployeesFieldsResponse extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(
+  public EmployeesFieldsHrResponse employeesFields(RequestOptions requestOptions) {
+    return this.rawClient.employeesFields(requestOptions).body();
+  }
+
+  /**
+   * Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
+   */
+  public EmployeesFieldsHrResponse employeesFields(EmployeesFieldsHrRequest request) {
+    return this.rawClient.employeesFields(request).body();
+  }
+
+  /**
+   * Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
+   */
+  public EmployeesFieldsHrResponse employeesFields(EmployeesFieldsHrRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(requestOptions).body();
+    return this.rawClient.employeesFields(request, requestOptions).body();
   }
 
-  /**
-   * Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
-   */
-  public PostV1HrEmployeesFieldsResponse extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(
-      PostV1HrEmployeesFieldsRequest request) {
-    return this.rawClient.extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(request).body();
+  public EmployeesListHrResponse employeesList() {
+    return this.rawClient.employeesList().body();
   }
 
-  /**
-   * Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
-   */
-  public PostV1HrEmployeesFieldsResponse extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(
-      PostV1HrEmployeesFieldsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(request, requestOptions).body();
+  public EmployeesListHrResponse employeesList(RequestOptions requestOptions) {
+    return this.rawClient.employeesList(requestOptions).body();
   }
 
-  public PostV1HrEmployeesListResponse postV1HrEmployeesList() {
-    return this.rawClient.postV1HrEmployeesList().body();
+  public EmployeesListHrResponse employeesList(EmployeesListHrRequest request) {
+    return this.rawClient.employeesList(request).body();
   }
 
-  public PostV1HrEmployeesListResponse postV1HrEmployeesList(RequestOptions requestOptions) {
-    return this.rawClient.postV1HrEmployeesList(requestOptions).body();
-  }
-
-  public PostV1HrEmployeesListResponse postV1HrEmployeesList(PostV1HrEmployeesListRequest request) {
-    return this.rawClient.postV1HrEmployeesList(request).body();
-  }
-
-  public PostV1HrEmployeesListResponse postV1HrEmployeesList(PostV1HrEmployeesListRequest request,
+  public EmployeesListHrResponse employeesList(EmployeesListHrRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1HrEmployeesList(request, requestOptions).body();
+    return this.rawClient.employeesList(request, requestOptions).body();
   }
 
-  public PostV1HrEmployeesDeleteResponse postV1HrEmployeesDelete(
-      PostV1HrEmployeesDeleteRequest request) {
-    return this.rawClient.postV1HrEmployeesDelete(request).body();
+  public EmployeesDeleteHrResponse employeesDelete(EmployeesDeleteHrRequest request) {
+    return this.rawClient.employeesDelete(request).body();
   }
 
-  public PostV1HrEmployeesDeleteResponse postV1HrEmployeesDelete(
-      PostV1HrEmployeesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrEmployeesDelete(request, requestOptions).body();
+  public EmployeesDeleteHrResponse employeesDelete(EmployeesDeleteHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.employeesDelete(request, requestOptions).body();
   }
 
   /**
    * Replaces the name with a placeholder and removes personal code, birth date, contact details, address, bank account, social-insurance number, notes and sick-leave reasons. Payroll and contract rows stay linked to the record for the statutory retention period.
    */
-  public PostV1HrEmployeesAnonymizeResponse blankAnEmployeesPersonalDataAndHideTheRecord(
-      PostV1HrEmployeesAnonymizeRequest request) {
-    return this.rawClient.blankAnEmployeesPersonalDataAndHideTheRecord(request).body();
+  public EmployeesAnonymizeHrResponse employeesAnonymize(EmployeesAnonymizeHrRequest request) {
+    return this.rawClient.employeesAnonymize(request).body();
   }
 
   /**
    * Replaces the name with a placeholder and removes personal code, birth date, contact details, address, bank account, social-insurance number, notes and sick-leave reasons. Payroll and contract rows stay linked to the record for the statutory retention period.
    */
-  public PostV1HrEmployeesAnonymizeResponse blankAnEmployeesPersonalDataAndHideTheRecord(
-      PostV1HrEmployeesAnonymizeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.blankAnEmployeesPersonalDataAndHideTheRecord(request, requestOptions).body();
-  }
-
-  public PostV1HrContractsCreateResponse postV1HrContractsCreate(
-      PostV1HrContractsCreateRequest request) {
-    return this.rawClient.postV1HrContractsCreate(request).body();
-  }
-
-  public PostV1HrContractsCreateResponse postV1HrContractsCreate(
-      PostV1HrContractsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrContractsCreate(request, requestOptions).body();
-  }
-
-  public PostV1HrContractsEndResponse postV1HrContractsEnd(PostV1HrContractsEndRequest request) {
-    return this.rawClient.postV1HrContractsEnd(request).body();
-  }
-
-  public PostV1HrContractsEndResponse postV1HrContractsEnd(PostV1HrContractsEndRequest request,
+  public EmployeesAnonymizeHrResponse employeesAnonymize(EmployeesAnonymizeHrRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1HrContractsEnd(request, requestOptions).body();
+    return this.rawClient.employeesAnonymize(request, requestOptions).body();
   }
 
-  public PostV1HrContractsListResponse postV1HrContractsList() {
-    return this.rawClient.postV1HrContractsList().body();
+  public ContractsCreateHrResponse contractsCreate(ContractsCreateHrRequest request) {
+    return this.rawClient.contractsCreate(request).body();
   }
 
-  public PostV1HrContractsListResponse postV1HrContractsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1HrContractsList(requestOptions).body();
-  }
-
-  public PostV1HrContractsListResponse postV1HrContractsList(PostV1HrContractsListRequest request) {
-    return this.rawClient.postV1HrContractsList(request).body();
-  }
-
-  public PostV1HrContractsListResponse postV1HrContractsList(PostV1HrContractsListRequest request,
+  public ContractsCreateHrResponse contractsCreate(ContractsCreateHrRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1HrContractsList(request, requestOptions).body();
+    return this.rawClient.contractsCreate(request, requestOptions).body();
   }
 
-  public PostV1HrLeaveBalancesSetResponse postV1HrLeaveBalancesSet(
-      PostV1HrLeaveBalancesSetRequest request) {
-    return this.rawClient.postV1HrLeaveBalancesSet(request).body();
+  public ContractsEndHrResponse contractsEnd(ContractsEndHrRequest request) {
+    return this.rawClient.contractsEnd(request).body();
   }
 
-  public PostV1HrLeaveBalancesSetResponse postV1HrLeaveBalancesSet(
-      PostV1HrLeaveBalancesSetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrLeaveBalancesSet(request, requestOptions).body();
-  }
-
-  public PostV1HrLeaveBalancesListResponse postV1HrLeaveBalancesList() {
-    return this.rawClient.postV1HrLeaveBalancesList().body();
-  }
-
-  public PostV1HrLeaveBalancesListResponse postV1HrLeaveBalancesList(
+  public ContractsEndHrResponse contractsEnd(ContractsEndHrRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1HrLeaveBalancesList(requestOptions).body();
+    return this.rawClient.contractsEnd(request, requestOptions).body();
   }
 
-  public PostV1HrLeaveBalancesListResponse postV1HrLeaveBalancesList(
-      PostV1HrLeaveBalancesListRequest request) {
-    return this.rawClient.postV1HrLeaveBalancesList(request).body();
+  public ContractsListHrResponse contractsList() {
+    return this.rawClient.contractsList().body();
   }
 
-  public PostV1HrLeaveBalancesListResponse postV1HrLeaveBalancesList(
-      PostV1HrLeaveBalancesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrLeaveBalancesList(request, requestOptions).body();
+  public ContractsListHrResponse contractsList(RequestOptions requestOptions) {
+    return this.rawClient.contractsList(requestOptions).body();
   }
 
-  public PostV1HrIncapacityCertificatesCreateResponse postV1HrIncapacityCertificatesCreate(
-      PostV1HrIncapacityCertificatesCreateRequest request) {
-    return this.rawClient.postV1HrIncapacityCertificatesCreate(request).body();
+  public ContractsListHrResponse contractsList(ContractsListHrRequest request) {
+    return this.rawClient.contractsList(request).body();
   }
 
-  public PostV1HrIncapacityCertificatesCreateResponse postV1HrIncapacityCertificatesCreate(
-      PostV1HrIncapacityCertificatesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrIncapacityCertificatesCreate(request, requestOptions).body();
-  }
-
-  public PostV1HrIncapacityCertificatesListResponse postV1HrIncapacityCertificatesList() {
-    return this.rawClient.postV1HrIncapacityCertificatesList().body();
-  }
-
-  public PostV1HrIncapacityCertificatesListResponse postV1HrIncapacityCertificatesList(
+  public ContractsListHrResponse contractsList(ContractsListHrRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1HrIncapacityCertificatesList(requestOptions).body();
+    return this.rawClient.contractsList(request, requestOptions).body();
   }
 
-  public PostV1HrIncapacityCertificatesListResponse postV1HrIncapacityCertificatesList(
-      PostV1HrIncapacityCertificatesListRequest request) {
-    return this.rawClient.postV1HrIncapacityCertificatesList(request).body();
+  public LeaveBalancesSetHrResponse leaveBalancesSet(LeaveBalancesSetHrRequest request) {
+    return this.rawClient.leaveBalancesSet(request).body();
   }
 
-  public PostV1HrIncapacityCertificatesListResponse postV1HrIncapacityCertificatesList(
-      PostV1HrIncapacityCertificatesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrIncapacityCertificatesList(request, requestOptions).body();
-  }
-
-  public PostV1HrEmployeesRecordsCreateResponse postV1HrEmployeesRecordsCreate(
-      PostV1HrEmployeesRecordsCreateRequest request) {
-    return this.rawClient.postV1HrEmployeesRecordsCreate(request).body();
-  }
-
-  public PostV1HrEmployeesRecordsCreateResponse postV1HrEmployeesRecordsCreate(
-      PostV1HrEmployeesRecordsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrEmployeesRecordsCreate(request, requestOptions).body();
-  }
-
-  public PostV1HrEmployeesRecordsUpdateResponse postV1HrEmployeesRecordsUpdate(
-      PostV1HrEmployeesRecordsUpdateRequest request) {
-    return this.rawClient.postV1HrEmployeesRecordsUpdate(request).body();
-  }
-
-  public PostV1HrEmployeesRecordsUpdateResponse postV1HrEmployeesRecordsUpdate(
-      PostV1HrEmployeesRecordsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrEmployeesRecordsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1HrEmployeesRecordsDeleteResponse postV1HrEmployeesRecordsDelete(
-      PostV1HrEmployeesRecordsDeleteRequest request) {
-    return this.rawClient.postV1HrEmployeesRecordsDelete(request).body();
-  }
-
-  public PostV1HrEmployeesRecordsDeleteResponse postV1HrEmployeesRecordsDelete(
-      PostV1HrEmployeesRecordsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrEmployeesRecordsDelete(request, requestOptions).body();
-  }
-
-  public PostV1HrEmployeesRecordsListResponse postV1HrEmployeesRecordsList() {
-    return this.rawClient.postV1HrEmployeesRecordsList().body();
-  }
-
-  public PostV1HrEmployeesRecordsListResponse postV1HrEmployeesRecordsList(
+  public LeaveBalancesSetHrResponse leaveBalancesSet(LeaveBalancesSetHrRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1HrEmployeesRecordsList(requestOptions).body();
+    return this.rawClient.leaveBalancesSet(request, requestOptions).body();
   }
 
-  public PostV1HrEmployeesRecordsListResponse postV1HrEmployeesRecordsList(
-      PostV1HrEmployeesRecordsListRequest request) {
-    return this.rawClient.postV1HrEmployeesRecordsList(request).body();
+  public LeaveBalancesListHrResponse leaveBalancesList() {
+    return this.rawClient.leaveBalancesList().body();
   }
 
-  public PostV1HrEmployeesRecordsListResponse postV1HrEmployeesRecordsList(
-      PostV1HrEmployeesRecordsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrEmployeesRecordsList(request, requestOptions).body();
+  public LeaveBalancesListHrResponse leaveBalancesList(RequestOptions requestOptions) {
+    return this.rawClient.leaveBalancesList(requestOptions).body();
   }
 
-  public PostV1HrEmployeesAttachmentsListResponse postV1HrEmployeesAttachmentsList(
-      PostV1HrEmployeesAttachmentsListRequest request) {
-    return this.rawClient.postV1HrEmployeesAttachmentsList(request).body();
+  public LeaveBalancesListHrResponse leaveBalancesList(LeaveBalancesListHrRequest request) {
+    return this.rawClient.leaveBalancesList(request).body();
   }
 
-  public PostV1HrEmployeesAttachmentsListResponse postV1HrEmployeesAttachmentsList(
-      PostV1HrEmployeesAttachmentsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrEmployeesAttachmentsList(request, requestOptions).body();
-  }
-
-  public PostV1HrTimesheetsGenerateResponse postV1HrTimesheetsGenerate(
-      PostV1HrTimesheetsGenerateRequest request) {
-    return this.rawClient.postV1HrTimesheetsGenerate(request).body();
-  }
-
-  public PostV1HrTimesheetsGenerateResponse postV1HrTimesheetsGenerate(
-      PostV1HrTimesheetsGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrTimesheetsGenerate(request, requestOptions).body();
-  }
-
-  public PostV1HrTimesheetsUpsertResponse postV1HrTimesheetsUpsert(
-      PostV1HrTimesheetsUpsertRequest request) {
-    return this.rawClient.postV1HrTimesheetsUpsert(request).body();
-  }
-
-  public PostV1HrTimesheetsUpsertResponse postV1HrTimesheetsUpsert(
-      PostV1HrTimesheetsUpsertRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrTimesheetsUpsert(request, requestOptions).body();
-  }
-
-  public PostV1HrTimesheetsGetResponse postV1HrTimesheetsGet(PostV1HrTimesheetsGetRequest request) {
-    return this.rawClient.postV1HrTimesheetsGet(request).body();
-  }
-
-  public PostV1HrTimesheetsGetResponse postV1HrTimesheetsGet(PostV1HrTimesheetsGetRequest request,
+  public LeaveBalancesListHrResponse leaveBalancesList(LeaveBalancesListHrRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1HrTimesheetsGet(request, requestOptions).body();
+    return this.rawClient.leaveBalancesList(request, requestOptions).body();
   }
 
-  public PostV1HrTimesheetsListResponse postV1HrTimesheetsList(
-      PostV1HrTimesheetsListRequest request) {
-    return this.rawClient.postV1HrTimesheetsList(request).body();
+  public IncapacityCertificatesCreateHrResponse incapacityCertificatesCreate(
+      IncapacityCertificatesCreateHrRequest request) {
+    return this.rawClient.incapacityCertificatesCreate(request).body();
   }
 
-  public PostV1HrTimesheetsListResponse postV1HrTimesheetsList(
-      PostV1HrTimesheetsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrTimesheetsList(request, requestOptions).body();
+  public IncapacityCertificatesCreateHrResponse incapacityCertificatesCreate(
+      IncapacityCertificatesCreateHrRequest request, RequestOptions requestOptions) {
+    return this.rawClient.incapacityCertificatesCreate(request, requestOptions).body();
   }
 
-  public PostV1HrTimesheetsDeleteResponse postV1HrTimesheetsDelete(
-      PostV1HrTimesheetsDeleteRequest request) {
-    return this.rawClient.postV1HrTimesheetsDelete(request).body();
+  public IncapacityCertificatesListHrResponse incapacityCertificatesList() {
+    return this.rawClient.incapacityCertificatesList().body();
   }
 
-  public PostV1HrTimesheetsDeleteResponse postV1HrTimesheetsDelete(
-      PostV1HrTimesheetsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1HrTimesheetsDelete(request, requestOptions).body();
+  public IncapacityCertificatesListHrResponse incapacityCertificatesList(
+      RequestOptions requestOptions) {
+    return this.rawClient.incapacityCertificatesList(requestOptions).body();
+  }
+
+  public IncapacityCertificatesListHrResponse incapacityCertificatesList(
+      IncapacityCertificatesListHrRequest request) {
+    return this.rawClient.incapacityCertificatesList(request).body();
+  }
+
+  public IncapacityCertificatesListHrResponse incapacityCertificatesList(
+      IncapacityCertificatesListHrRequest request, RequestOptions requestOptions) {
+    return this.rawClient.incapacityCertificatesList(request, requestOptions).body();
+  }
+
+  public EmployeesRecordsCreateHrResponse employeesRecordsCreate(
+      EmployeesRecordsCreateHrRequest request) {
+    return this.rawClient.employeesRecordsCreate(request).body();
+  }
+
+  public EmployeesRecordsCreateHrResponse employeesRecordsCreate(
+      EmployeesRecordsCreateHrRequest request, RequestOptions requestOptions) {
+    return this.rawClient.employeesRecordsCreate(request, requestOptions).body();
+  }
+
+  public EmployeesRecordsUpdateHrResponse employeesRecordsUpdate(
+      EmployeesRecordsUpdateHrRequest request) {
+    return this.rawClient.employeesRecordsUpdate(request).body();
+  }
+
+  public EmployeesRecordsUpdateHrResponse employeesRecordsUpdate(
+      EmployeesRecordsUpdateHrRequest request, RequestOptions requestOptions) {
+    return this.rawClient.employeesRecordsUpdate(request, requestOptions).body();
+  }
+
+  public EmployeesRecordsDeleteHrResponse employeesRecordsDelete(
+      EmployeesRecordsDeleteHrRequest request) {
+    return this.rawClient.employeesRecordsDelete(request).body();
+  }
+
+  public EmployeesRecordsDeleteHrResponse employeesRecordsDelete(
+      EmployeesRecordsDeleteHrRequest request, RequestOptions requestOptions) {
+    return this.rawClient.employeesRecordsDelete(request, requestOptions).body();
+  }
+
+  public EmployeesRecordsListHrResponse employeesRecordsList() {
+    return this.rawClient.employeesRecordsList().body();
+  }
+
+  public EmployeesRecordsListHrResponse employeesRecordsList(RequestOptions requestOptions) {
+    return this.rawClient.employeesRecordsList(requestOptions).body();
+  }
+
+  public EmployeesRecordsListHrResponse employeesRecordsList(
+      EmployeesRecordsListHrRequest request) {
+    return this.rawClient.employeesRecordsList(request).body();
+  }
+
+  public EmployeesRecordsListHrResponse employeesRecordsList(EmployeesRecordsListHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.employeesRecordsList(request, requestOptions).body();
+  }
+
+  public EmployeesAttachmentsListHrResponse employeesAttachmentsList(
+      EmployeesAttachmentsListHrRequest request) {
+    return this.rawClient.employeesAttachmentsList(request).body();
+  }
+
+  public EmployeesAttachmentsListHrResponse employeesAttachmentsList(
+      EmployeesAttachmentsListHrRequest request, RequestOptions requestOptions) {
+    return this.rawClient.employeesAttachmentsList(request, requestOptions).body();
+  }
+
+  public TimesheetsGenerateHrResponse timesheetsGenerate(TimesheetsGenerateHrRequest request) {
+    return this.rawClient.timesheetsGenerate(request).body();
+  }
+
+  public TimesheetsGenerateHrResponse timesheetsGenerate(TimesheetsGenerateHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.timesheetsGenerate(request, requestOptions).body();
+  }
+
+  public TimesheetsUpsertHrResponse timesheetsUpsert(TimesheetsUpsertHrRequest request) {
+    return this.rawClient.timesheetsUpsert(request).body();
+  }
+
+  public TimesheetsUpsertHrResponse timesheetsUpsert(TimesheetsUpsertHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.timesheetsUpsert(request, requestOptions).body();
+  }
+
+  public TimesheetsGetHrResponse timesheetsGet(TimesheetsGetHrRequest request) {
+    return this.rawClient.timesheetsGet(request).body();
+  }
+
+  public TimesheetsGetHrResponse timesheetsGet(TimesheetsGetHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.timesheetsGet(request, requestOptions).body();
+  }
+
+  public TimesheetsListHrResponse timesheetsList(TimesheetsListHrRequest request) {
+    return this.rawClient.timesheetsList(request).body();
+  }
+
+  public TimesheetsListHrResponse timesheetsList(TimesheetsListHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.timesheetsList(request, requestOptions).body();
+  }
+
+  public TimesheetsDeleteHrResponse timesheetsDelete(TimesheetsDeleteHrRequest request) {
+    return this.rawClient.timesheetsDelete(request).body();
+  }
+
+  public TimesheetsDeleteHrResponse timesheetsDelete(TimesheetsDeleteHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.timesheetsDelete(request, requestOptions).body();
   }
 }

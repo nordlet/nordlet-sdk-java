@@ -6,22 +6,22 @@ package com.nordlet.api.resources.ecommerce;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersCancelRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersCreateRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersFulfillRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersGetRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersListRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersReserveRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceProductsListRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceStockListRequest;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersCancelResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersCreateResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersFulfillResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersGetResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersListResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersReserveResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceProductsListResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceStockListResponse;
+import com.nordlet.api.resources.ecommerce.requests.OrdersCancelEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersCreateEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersFulfillEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersGetEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersListEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersReserveEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.ProductsListEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.StockListEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.types.OrdersCancelEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersCreateEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersFulfillEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersGetEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersListEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersReserveEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.ProductsListEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.StockListEcommerceResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncEcommerceClient {
@@ -41,110 +41,108 @@ public class AsyncEcommerceClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1EcommerceOrdersCreateResponse> postV1EcommerceOrdersCreate(
-      PostV1EcommerceOrdersCreateRequest request) {
-    return this.rawClient.postV1EcommerceOrdersCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<OrdersCreateEcommerceResponse> ordersCreate(
+      OrdersCreateEcommerceRequest request) {
+    return this.rawClient.ordersCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceOrdersCreateResponse> postV1EcommerceOrdersCreate(
-      PostV1EcommerceOrdersCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceOrdersCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<OrdersCreateEcommerceResponse> ordersCreate(
+      OrdersCreateEcommerceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ordersCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceOrdersGetResponse> postV1EcommerceOrdersGet(
-      PostV1EcommerceOrdersGetRequest request) {
-    return this.rawClient.postV1EcommerceOrdersGet(request).thenApply(response -> response.body());
+  public CompletableFuture<OrdersGetEcommerceResponse> ordersGet(
+      OrdersGetEcommerceRequest request) {
+    return this.rawClient.ordersGet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceOrdersGetResponse> postV1EcommerceOrdersGet(
-      PostV1EcommerceOrdersGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceOrdersGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1EcommerceOrdersListResponse> postV1EcommerceOrdersList() {
-    return this.rawClient.postV1EcommerceOrdersList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1EcommerceOrdersListResponse> postV1EcommerceOrdersList(
+  public CompletableFuture<OrdersGetEcommerceResponse> ordersGet(OrdersGetEcommerceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceOrdersList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.ordersGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceOrdersListResponse> postV1EcommerceOrdersList(
-      PostV1EcommerceOrdersListRequest request) {
-    return this.rawClient.postV1EcommerceOrdersList(request).thenApply(response -> response.body());
+  public CompletableFuture<OrdersListEcommerceResponse> ordersList() {
+    return this.rawClient.ordersList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceOrdersListResponse> postV1EcommerceOrdersList(
-      PostV1EcommerceOrdersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceOrdersList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<OrdersListEcommerceResponse> ordersList(RequestOptions requestOptions) {
+    return this.rawClient.ordersList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceOrdersReserveResponse> postV1EcommerceOrdersReserve(
-      PostV1EcommerceOrdersReserveRequest request) {
-    return this.rawClient.postV1EcommerceOrdersReserve(request).thenApply(response -> response.body());
+  public CompletableFuture<OrdersListEcommerceResponse> ordersList(
+      OrdersListEcommerceRequest request) {
+    return this.rawClient.ordersList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceOrdersReserveResponse> postV1EcommerceOrdersReserve(
-      PostV1EcommerceOrdersReserveRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceOrdersReserve(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<OrdersListEcommerceResponse> ordersList(
+      OrdersListEcommerceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ordersList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceOrdersFulfillResponse> postV1EcommerceOrdersFulfill(
-      PostV1EcommerceOrdersFulfillRequest request) {
-    return this.rawClient.postV1EcommerceOrdersFulfill(request).thenApply(response -> response.body());
+  public CompletableFuture<OrdersReserveEcommerceResponse> ordersReserve(
+      OrdersReserveEcommerceRequest request) {
+    return this.rawClient.ordersReserve(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceOrdersFulfillResponse> postV1EcommerceOrdersFulfill(
-      PostV1EcommerceOrdersFulfillRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceOrdersFulfill(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<OrdersReserveEcommerceResponse> ordersReserve(
+      OrdersReserveEcommerceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ordersReserve(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceOrdersCancelResponse> postV1EcommerceOrdersCancel(
-      PostV1EcommerceOrdersCancelRequest request) {
-    return this.rawClient.postV1EcommerceOrdersCancel(request).thenApply(response -> response.body());
+  public CompletableFuture<OrdersFulfillEcommerceResponse> ordersFulfill(
+      OrdersFulfillEcommerceRequest request) {
+    return this.rawClient.ordersFulfill(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceOrdersCancelResponse> postV1EcommerceOrdersCancel(
-      PostV1EcommerceOrdersCancelRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceOrdersCancel(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<OrdersFulfillEcommerceResponse> ordersFulfill(
+      OrdersFulfillEcommerceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ordersFulfill(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceProductsListResponse> postV1EcommerceProductsList() {
-    return this.rawClient.postV1EcommerceProductsList().thenApply(response -> response.body());
+  public CompletableFuture<OrdersCancelEcommerceResponse> ordersCancel(
+      OrdersCancelEcommerceRequest request) {
+    return this.rawClient.ordersCancel(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceProductsListResponse> postV1EcommerceProductsList(
+  public CompletableFuture<OrdersCancelEcommerceResponse> ordersCancel(
+      OrdersCancelEcommerceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ordersCancel(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ProductsListEcommerceResponse> productsList() {
+    return this.rawClient.productsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ProductsListEcommerceResponse> productsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceProductsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.productsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceProductsListResponse> postV1EcommerceProductsList(
-      PostV1EcommerceProductsListRequest request) {
-    return this.rawClient.postV1EcommerceProductsList(request).thenApply(response -> response.body());
+  public CompletableFuture<ProductsListEcommerceResponse> productsList(
+      ProductsListEcommerceRequest request) {
+    return this.rawClient.productsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceProductsListResponse> postV1EcommerceProductsList(
-      PostV1EcommerceProductsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceProductsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ProductsListEcommerceResponse> productsList(
+      ProductsListEcommerceRequest request, RequestOptions requestOptions) {
+    return this.rawClient.productsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceStockListResponse> postV1EcommerceStockList() {
-    return this.rawClient.postV1EcommerceStockList().thenApply(response -> response.body());
+  public CompletableFuture<StockListEcommerceResponse> stockList() {
+    return this.rawClient.stockList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1EcommerceStockListResponse> postV1EcommerceStockList(
+  public CompletableFuture<StockListEcommerceResponse> stockList(RequestOptions requestOptions) {
+    return this.rawClient.stockList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<StockListEcommerceResponse> stockList(
+      StockListEcommerceRequest request) {
+    return this.rawClient.stockList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<StockListEcommerceResponse> stockList(StockListEcommerceRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceStockList(requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1EcommerceStockListResponse> postV1EcommerceStockList(
-      PostV1EcommerceStockListRequest request) {
-    return this.rawClient.postV1EcommerceStockList(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1EcommerceStockListResponse> postV1EcommerceStockList(
-      PostV1EcommerceStockListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1EcommerceStockList(request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.stockList(request, requestOptions).thenApply(response -> response.body());
   }
 }

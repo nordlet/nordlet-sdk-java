@@ -15,14 +15,16 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.audit.requests.PostV1AuditListRequest;
-import com.nordlet.api.resources.audit.types.PostV1AuditListResponse;
+import com.nordlet.api.resources.audit.requests.ListAuditRequest;
+import com.nordlet.api.resources.audit.types.ListAuditResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -42,22 +44,20 @@ public class RawAuditClient {
     this.clientOptions = clientOptions;
   }
 
-  public NordletApiHttpResponse<PostV1AuditListResponse> postV1AuditList() {
-    return postV1AuditList(PostV1AuditListRequest.builder().build());
+  public NordletApiHttpResponse<ListAuditResponse> list() {
+    return list(ListAuditRequest.builder().build());
   }
 
-  public NordletApiHttpResponse<PostV1AuditListResponse> postV1AuditList(
+  public NordletApiHttpResponse<ListAuditResponse> list(RequestOptions requestOptions) {
+    return list(ListAuditRequest.builder().build(),requestOptions);
+  }
+
+  public NordletApiHttpResponse<ListAuditResponse> list(ListAuditRequest request) {
+    return list(request,null);
+  }
+
+  public NordletApiHttpResponse<ListAuditResponse> list(ListAuditRequest request,
       RequestOptions requestOptions) {
-    return postV1AuditList(PostV1AuditListRequest.builder().build(),requestOptions);
-  }
-
-  public NordletApiHttpResponse<PostV1AuditListResponse> postV1AuditList(
-      PostV1AuditListRequest request) {
-    return postV1AuditList(request,null);
-  }
-
-  public NordletApiHttpResponse<PostV1AuditListResponse> postV1AuditList(
-      PostV1AuditListRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/audit/list");if (requestOptions != null) {
@@ -90,15 +90,17 @@ public class RawAuditClient {
         ResponseBody responseBody = response.body();
         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
         if (response.isSuccessful()) {
-          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1AuditListResponse.class), response);
+          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ListAuditResponse.class), response);
         }
         try {
           switch (response.code()) {
             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);

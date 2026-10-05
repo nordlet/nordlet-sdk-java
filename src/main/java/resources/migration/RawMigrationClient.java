@@ -15,16 +15,18 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.migration.requests.PostV1MigrationBooksImportRequest;
-import com.nordlet.api.resources.migration.requests.PostV1MigrationBooksValidateRequest;
-import com.nordlet.api.resources.migration.types.PostV1MigrationBooksImportResponse;
-import com.nordlet.api.resources.migration.types.PostV1MigrationBooksValidateResponse;
+import com.nordlet.api.resources.migration.requests.BooksImportMigrationRequest;
+import com.nordlet.api.resources.migration.requests.BooksValidateMigrationRequest;
+import com.nordlet.api.resources.migration.types.BooksImportMigrationResponse;
+import com.nordlet.api.resources.migration.types.BooksValidateMigrationResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -47,16 +49,16 @@ public class RawMigrationClient {
   /**
    * Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored.
    */
-  public NordletApiHttpResponse<PostV1MigrationBooksValidateResponse> checkAHistoricalBooksPackageWithoutWritingAnything(
-      PostV1MigrationBooksValidateRequest request) {
-    return checkAHistoricalBooksPackageWithoutWritingAnything(request,null);
+  public NordletApiHttpResponse<BooksValidateMigrationResponse> booksValidate(
+      BooksValidateMigrationRequest request) {
+    return booksValidate(request,null);
   }
 
   /**
    * Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored.
    */
-  public NordletApiHttpResponse<PostV1MigrationBooksValidateResponse> checkAHistoricalBooksPackageWithoutWritingAnything(
-      PostV1MigrationBooksValidateRequest request, RequestOptions requestOptions) {
+  public NordletApiHttpResponse<BooksValidateMigrationResponse> booksValidate(
+      BooksValidateMigrationRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/migration/books/validate");if (requestOptions != null) {
@@ -89,15 +91,17 @@ public class RawMigrationClient {
         ResponseBody responseBody = response.body();
         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
         if (response.isSuccessful()) {
-          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1MigrationBooksValidateResponse.class), response);
+          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, BooksValidateMigrationResponse.class), response);
         }
         try {
           switch (response.code()) {
             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -120,16 +124,16 @@ public class RawMigrationClient {
     /**
      * Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction — if any row fails, nothing is stored.
      */
-    public NordletApiHttpResponse<PostV1MigrationBooksImportResponse> importHistoricalBooksFromAPreviousAccountingSystem(
-        PostV1MigrationBooksImportRequest request) {
-      return importHistoricalBooksFromAPreviousAccountingSystem(request,null);
+    public NordletApiHttpResponse<BooksImportMigrationResponse> booksImport(
+        BooksImportMigrationRequest request) {
+      return booksImport(request,null);
     }
 
     /**
      * Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction — if any row fails, nothing is stored.
      */
-    public NordletApiHttpResponse<PostV1MigrationBooksImportResponse> importHistoricalBooksFromAPreviousAccountingSystem(
-        PostV1MigrationBooksImportRequest request, RequestOptions requestOptions) {
+    public NordletApiHttpResponse<BooksImportMigrationResponse> booksImport(
+        BooksImportMigrationRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/migration/books/import");if (requestOptions != null) {
@@ -162,15 +166,17 @@ public class RawMigrationClient {
           ResponseBody responseBody = response.body();
           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
           if (response.isSuccessful()) {
-            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1MigrationBooksImportResponse.class), response);
+            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, BooksImportMigrationResponse.class), response);
           }
           try {
             switch (response.code()) {
               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);

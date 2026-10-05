@@ -6,26 +6,26 @@ package com.nordlet.api.resources.projects;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsCreateRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsGetRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsListRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsReportRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsTimeEntriesBillRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsTimeEntriesCreateRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsTimeEntriesDeleteRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsTimeEntriesListRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsTimeEntriesUpdateRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsUpdateRequest;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsCreateResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsGetResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsListResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsReportResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsTimeEntriesBillResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsTimeEntriesCreateResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsTimeEntriesDeleteResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsTimeEntriesListResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsTimeEntriesUpdateResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsUpdateResponse;
+import com.nordlet.api.resources.projects.requests.CreateProjectsRequest;
+import com.nordlet.api.resources.projects.requests.GetProjectsRequest;
+import com.nordlet.api.resources.projects.requests.ListProjectsRequest;
+import com.nordlet.api.resources.projects.requests.ReportProjectsRequest;
+import com.nordlet.api.resources.projects.requests.TimeEntriesBillProjectsRequest;
+import com.nordlet.api.resources.projects.requests.TimeEntriesCreateProjectsRequest;
+import com.nordlet.api.resources.projects.requests.TimeEntriesDeleteProjectsRequest;
+import com.nordlet.api.resources.projects.requests.TimeEntriesListProjectsRequest;
+import com.nordlet.api.resources.projects.requests.TimeEntriesUpdateProjectsRequest;
+import com.nordlet.api.resources.projects.requests.UpdateProjectsRequest;
+import com.nordlet.api.resources.projects.types.CreateProjectsResponse;
+import com.nordlet.api.resources.projects.types.GetProjectsResponse;
+import com.nordlet.api.resources.projects.types.ListProjectsResponse;
+import com.nordlet.api.resources.projects.types.ReportProjectsResponse;
+import com.nordlet.api.resources.projects.types.TimeEntriesBillProjectsResponse;
+import com.nordlet.api.resources.projects.types.TimeEntriesCreateProjectsResponse;
+import com.nordlet.api.resources.projects.types.TimeEntriesDeleteProjectsResponse;
+import com.nordlet.api.resources.projects.types.TimeEntriesListProjectsResponse;
+import com.nordlet.api.resources.projects.types.TimeEntriesUpdateProjectsResponse;
+import com.nordlet.api.resources.projects.types.UpdateProjectsResponse;
 
 public class ProjectsClient {
   protected final ClientOptions clientOptions;
@@ -44,123 +44,118 @@ public class ProjectsClient {
     return this.rawClient;
   }
 
-  public PostV1ProjectsCreateResponse postV1ProjectsCreate(PostV1ProjectsCreateRequest request) {
-    return this.rawClient.postV1ProjectsCreate(request).body();
+  public CreateProjectsResponse create(CreateProjectsRequest request) {
+    return this.rawClient.create(request).body();
   }
 
-  public PostV1ProjectsCreateResponse postV1ProjectsCreate(PostV1ProjectsCreateRequest request,
+  public CreateProjectsResponse create(CreateProjectsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsCreate(request, requestOptions).body();
+    return this.rawClient.create(request, requestOptions).body();
   }
 
-  public PostV1ProjectsUpdateResponse postV1ProjectsUpdate(PostV1ProjectsUpdateRequest request) {
-    return this.rawClient.postV1ProjectsUpdate(request).body();
+  public UpdateProjectsResponse update(UpdateProjectsRequest request) {
+    return this.rawClient.update(request).body();
   }
 
-  public PostV1ProjectsUpdateResponse postV1ProjectsUpdate(PostV1ProjectsUpdateRequest request,
+  public UpdateProjectsResponse update(UpdateProjectsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsUpdate(request, requestOptions).body();
+    return this.rawClient.update(request, requestOptions).body();
   }
 
-  public PostV1ProjectsGetResponse postV1ProjectsGet(PostV1ProjectsGetRequest request) {
-    return this.rawClient.postV1ProjectsGet(request).body();
+  public GetProjectsResponse get(GetProjectsRequest request) {
+    return this.rawClient.get(request).body();
   }
 
-  public PostV1ProjectsGetResponse postV1ProjectsGet(PostV1ProjectsGetRequest request,
+  public GetProjectsResponse get(GetProjectsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.get(request, requestOptions).body();
+  }
+
+  public ListProjectsResponse list() {
+    return this.rawClient.list().body();
+  }
+
+  public ListProjectsResponse list(RequestOptions requestOptions) {
+    return this.rawClient.list(requestOptions).body();
+  }
+
+  public ListProjectsResponse list(ListProjectsRequest request) {
+    return this.rawClient.list(request).body();
+  }
+
+  public ListProjectsResponse list(ListProjectsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.list(request, requestOptions).body();
+  }
+
+  public TimeEntriesCreateProjectsResponse timeEntriesCreate(
+      TimeEntriesCreateProjectsRequest request) {
+    return this.rawClient.timeEntriesCreate(request).body();
+  }
+
+  public TimeEntriesCreateProjectsResponse timeEntriesCreate(
+      TimeEntriesCreateProjectsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.timeEntriesCreate(request, requestOptions).body();
+  }
+
+  public TimeEntriesUpdateProjectsResponse timeEntriesUpdate(
+      TimeEntriesUpdateProjectsRequest request) {
+    return this.rawClient.timeEntriesUpdate(request).body();
+  }
+
+  public TimeEntriesUpdateProjectsResponse timeEntriesUpdate(
+      TimeEntriesUpdateProjectsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.timeEntriesUpdate(request, requestOptions).body();
+  }
+
+  public TimeEntriesDeleteProjectsResponse timeEntriesDelete(
+      TimeEntriesDeleteProjectsRequest request) {
+    return this.rawClient.timeEntriesDelete(request).body();
+  }
+
+  public TimeEntriesDeleteProjectsResponse timeEntriesDelete(
+      TimeEntriesDeleteProjectsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.timeEntriesDelete(request, requestOptions).body();
+  }
+
+  public TimeEntriesListProjectsResponse timeEntriesList() {
+    return this.rawClient.timeEntriesList().body();
+  }
+
+  public TimeEntriesListProjectsResponse timeEntriesList(RequestOptions requestOptions) {
+    return this.rawClient.timeEntriesList(requestOptions).body();
+  }
+
+  public TimeEntriesListProjectsResponse timeEntriesList(TimeEntriesListProjectsRequest request) {
+    return this.rawClient.timeEntriesList(request).body();
+  }
+
+  public TimeEntriesListProjectsResponse timeEntriesList(TimeEntriesListProjectsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsGet(request, requestOptions).body();
+    return this.rawClient.timeEntriesList(request, requestOptions).body();
   }
 
-  public PostV1ProjectsListResponse postV1ProjectsList() {
-    return this.rawClient.postV1ProjectsList().body();
+  public TimeEntriesBillProjectsResponse timeEntriesBill(TimeEntriesBillProjectsRequest request) {
+    return this.rawClient.timeEntriesBill(request).body();
   }
 
-  public PostV1ProjectsListResponse postV1ProjectsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsList(requestOptions).body();
-  }
-
-  public PostV1ProjectsListResponse postV1ProjectsList(PostV1ProjectsListRequest request) {
-    return this.rawClient.postV1ProjectsList(request).body();
-  }
-
-  public PostV1ProjectsListResponse postV1ProjectsList(PostV1ProjectsListRequest request,
+  public TimeEntriesBillProjectsResponse timeEntriesBill(TimeEntriesBillProjectsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsList(request, requestOptions).body();
+    return this.rawClient.timeEntriesBill(request, requestOptions).body();
   }
 
-  public PostV1ProjectsTimeEntriesCreateResponse postV1ProjectsTimeEntriesCreate(
-      PostV1ProjectsTimeEntriesCreateRequest request) {
-    return this.rawClient.postV1ProjectsTimeEntriesCreate(request).body();
+  public ReportProjectsResponse report() {
+    return this.rawClient.report().body();
   }
 
-  public PostV1ProjectsTimeEntriesCreateResponse postV1ProjectsTimeEntriesCreate(
-      PostV1ProjectsTimeEntriesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsTimeEntriesCreate(request, requestOptions).body();
+  public ReportProjectsResponse report(RequestOptions requestOptions) {
+    return this.rawClient.report(requestOptions).body();
   }
 
-  public PostV1ProjectsTimeEntriesUpdateResponse postV1ProjectsTimeEntriesUpdate(
-      PostV1ProjectsTimeEntriesUpdateRequest request) {
-    return this.rawClient.postV1ProjectsTimeEntriesUpdate(request).body();
+  public ReportProjectsResponse report(ReportProjectsRequest request) {
+    return this.rawClient.report(request).body();
   }
 
-  public PostV1ProjectsTimeEntriesUpdateResponse postV1ProjectsTimeEntriesUpdate(
-      PostV1ProjectsTimeEntriesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsTimeEntriesUpdate(request, requestOptions).body();
-  }
-
-  public PostV1ProjectsTimeEntriesDeleteResponse postV1ProjectsTimeEntriesDelete(
-      PostV1ProjectsTimeEntriesDeleteRequest request) {
-    return this.rawClient.postV1ProjectsTimeEntriesDelete(request).body();
-  }
-
-  public PostV1ProjectsTimeEntriesDeleteResponse postV1ProjectsTimeEntriesDelete(
-      PostV1ProjectsTimeEntriesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsTimeEntriesDelete(request, requestOptions).body();
-  }
-
-  public PostV1ProjectsTimeEntriesListResponse postV1ProjectsTimeEntriesList() {
-    return this.rawClient.postV1ProjectsTimeEntriesList().body();
-  }
-
-  public PostV1ProjectsTimeEntriesListResponse postV1ProjectsTimeEntriesList(
+  public ReportProjectsResponse report(ReportProjectsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsTimeEntriesList(requestOptions).body();
-  }
-
-  public PostV1ProjectsTimeEntriesListResponse postV1ProjectsTimeEntriesList(
-      PostV1ProjectsTimeEntriesListRequest request) {
-    return this.rawClient.postV1ProjectsTimeEntriesList(request).body();
-  }
-
-  public PostV1ProjectsTimeEntriesListResponse postV1ProjectsTimeEntriesList(
-      PostV1ProjectsTimeEntriesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsTimeEntriesList(request, requestOptions).body();
-  }
-
-  public PostV1ProjectsTimeEntriesBillResponse postV1ProjectsTimeEntriesBill(
-      PostV1ProjectsTimeEntriesBillRequest request) {
-    return this.rawClient.postV1ProjectsTimeEntriesBill(request).body();
-  }
-
-  public PostV1ProjectsTimeEntriesBillResponse postV1ProjectsTimeEntriesBill(
-      PostV1ProjectsTimeEntriesBillRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsTimeEntriesBill(request, requestOptions).body();
-  }
-
-  public PostV1ProjectsReportResponse postV1ProjectsReport() {
-    return this.rawClient.postV1ProjectsReport().body();
-  }
-
-  public PostV1ProjectsReportResponse postV1ProjectsReport(RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsReport(requestOptions).body();
-  }
-
-  public PostV1ProjectsReportResponse postV1ProjectsReport(PostV1ProjectsReportRequest request) {
-    return this.rawClient.postV1ProjectsReport(request).body();
-  }
-
-  public PostV1ProjectsReportResponse postV1ProjectsReport(PostV1ProjectsReportRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsReport(request, requestOptions).body();
+    return this.rawClient.report(request, requestOptions).body();
   }
 }

@@ -6,26 +6,28 @@ package com.nordlet.api.resources.assets;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsCreateRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsGetRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsInputVatRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsListRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsModernizeRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsUpdateRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsDepreciationPostRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsDepreciationPreviewRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsGroupsCreateRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsGroupsListRequest;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsCreateResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsGetResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsInputVatResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsListResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsModernizeResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsUpdateResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsDepreciationPostResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsDepreciationPreviewResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsGroupsCreateResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsGroupsListResponse;
+import com.nordlet.api.resources.assets.requests.AssetsCreateAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsDisposeAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsGetAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsInputVatAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsListAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsModernizeAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsUpdateAssetsRequest;
+import com.nordlet.api.resources.assets.requests.DepreciationPostAssetsRequest;
+import com.nordlet.api.resources.assets.requests.DepreciationPreviewAssetsRequest;
+import com.nordlet.api.resources.assets.requests.GroupsCreateAssetsRequest;
+import com.nordlet.api.resources.assets.requests.GroupsListAssetsRequest;
+import com.nordlet.api.resources.assets.types.AssetsCreateAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsDisposeAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsGetAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsInputVatAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsListAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsModernizeAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsUpdateAssetsResponse;
+import com.nordlet.api.resources.assets.types.DepreciationPostAssetsResponse;
+import com.nordlet.api.resources.assets.types.DepreciationPreviewAssetsResponse;
+import com.nordlet.api.resources.assets.types.GroupsCreateAssetsResponse;
+import com.nordlet.api.resources.assets.types.GroupsListAssetsResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncAssetsClient {
@@ -45,127 +47,138 @@ public class AsyncAssetsClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1AssetsGroupsCreateResponse> postV1AssetsGroupsCreate(
-      PostV1AssetsGroupsCreateRequest request) {
-    return this.rawClient.postV1AssetsGroupsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<GroupsCreateAssetsResponse> groupsCreate(
+      GroupsCreateAssetsRequest request) {
+    return this.rawClient.groupsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsGroupsCreateResponse> postV1AssetsGroupsCreate(
-      PostV1AssetsGroupsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsGroupsCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<GroupsCreateAssetsResponse> groupsCreate(
+      GroupsCreateAssetsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.groupsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsGroupsListResponse> postV1AssetsGroupsList() {
-    return this.rawClient.postV1AssetsGroupsList().thenApply(response -> response.body());
+  public CompletableFuture<GroupsListAssetsResponse> groupsList() {
+    return this.rawClient.groupsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsGroupsListResponse> postV1AssetsGroupsList(
+  public CompletableFuture<GroupsListAssetsResponse> groupsList(RequestOptions requestOptions) {
+    return this.rawClient.groupsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<GroupsListAssetsResponse> groupsList(GroupsListAssetsRequest request) {
+    return this.rawClient.groupsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<GroupsListAssetsResponse> groupsList(GroupsListAssetsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsGroupsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.groupsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsGroupsListResponse> postV1AssetsGroupsList(
-      PostV1AssetsGroupsListRequest request) {
-    return this.rawClient.postV1AssetsGroupsList(request).thenApply(response -> response.body());
+  public CompletableFuture<AssetsCreateAssetsResponse> assetsCreate(
+      AssetsCreateAssetsRequest request) {
+    return this.rawClient.assetsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsGroupsListResponse> postV1AssetsGroupsList(
-      PostV1AssetsGroupsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsGroupsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<AssetsCreateAssetsResponse> assetsCreate(
+      AssetsCreateAssetsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.assetsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsAssetsCreateResponse> postV1AssetsAssetsCreate(
-      PostV1AssetsAssetsCreateRequest request) {
-    return this.rawClient.postV1AssetsAssetsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<AssetsUpdateAssetsResponse> assetsUpdate(
+      AssetsUpdateAssetsRequest request) {
+    return this.rawClient.assetsUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsAssetsCreateResponse> postV1AssetsAssetsCreate(
-      PostV1AssetsAssetsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsAssetsCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AssetsAssetsUpdateResponse> postV1AssetsAssetsUpdate(
-      PostV1AssetsAssetsUpdateRequest request) {
-    return this.rawClient.postV1AssetsAssetsUpdate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AssetsAssetsUpdateResponse> postV1AssetsAssetsUpdate(
-      PostV1AssetsAssetsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsAssetsUpdate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<AssetsUpdateAssetsResponse> assetsUpdate(
+      AssetsUpdateAssetsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.assetsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
    */
-  public CompletableFuture<PostV1AssetsAssetsInputVatResponse> postV1AssetsAssetsInputVat(
-      PostV1AssetsAssetsInputVatRequest request) {
-    return this.rawClient.postV1AssetsAssetsInputVat(request).thenApply(response -> response.body());
+  public CompletableFuture<AssetsInputVatAssetsResponse> assetsInputVat(
+      AssetsInputVatAssetsRequest request) {
+    return this.rawClient.assetsInputVat(request).thenApply(response -> response.body());
   }
 
   /**
    * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
    */
-  public CompletableFuture<PostV1AssetsAssetsInputVatResponse> postV1AssetsAssetsInputVat(
-      PostV1AssetsAssetsInputVatRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsAssetsInputVat(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<AssetsInputVatAssetsResponse> assetsInputVat(
+      AssetsInputVatAssetsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.assetsInputVat(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsAssetsGetResponse> postV1AssetsAssetsGet(
-      PostV1AssetsAssetsGetRequest request) {
-    return this.rawClient.postV1AssetsAssetsGet(request).thenApply(response -> response.body());
+  public CompletableFuture<AssetsGetAssetsResponse> assetsGet(AssetsGetAssetsRequest request) {
+    return this.rawClient.assetsGet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsAssetsGetResponse> postV1AssetsAssetsGet(
-      PostV1AssetsAssetsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsAssetsGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AssetsAssetsListResponse> postV1AssetsAssetsList() {
-    return this.rawClient.postV1AssetsAssetsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AssetsAssetsListResponse> postV1AssetsAssetsList(
+  public CompletableFuture<AssetsGetAssetsResponse> assetsGet(AssetsGetAssetsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsAssetsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.assetsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsAssetsListResponse> postV1AssetsAssetsList(
-      PostV1AssetsAssetsListRequest request) {
-    return this.rawClient.postV1AssetsAssetsList(request).thenApply(response -> response.body());
+  public CompletableFuture<AssetsListAssetsResponse> assetsList() {
+    return this.rawClient.assetsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsAssetsListResponse> postV1AssetsAssetsList(
-      PostV1AssetsAssetsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsAssetsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<AssetsListAssetsResponse> assetsList(RequestOptions requestOptions) {
+    return this.rawClient.assetsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsAssetsModernizeResponse> postV1AssetsAssetsModernize(
-      PostV1AssetsAssetsModernizeRequest request) {
-    return this.rawClient.postV1AssetsAssetsModernize(request).thenApply(response -> response.body());
+  public CompletableFuture<AssetsListAssetsResponse> assetsList(AssetsListAssetsRequest request) {
+    return this.rawClient.assetsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsAssetsModernizeResponse> postV1AssetsAssetsModernize(
-      PostV1AssetsAssetsModernizeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsAssetsModernize(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<AssetsListAssetsResponse> assetsList(AssetsListAssetsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.assetsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsDepreciationPreviewResponse> postV1AssetsDepreciationPreview(
-      PostV1AssetsDepreciationPreviewRequest request) {
-    return this.rawClient.postV1AssetsDepreciationPreview(request).thenApply(response -> response.body());
+  public CompletableFuture<AssetsModernizeAssetsResponse> assetsModernize(
+      AssetsModernizeAssetsRequest request) {
+    return this.rawClient.assetsModernize(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsDepreciationPreviewResponse> postV1AssetsDepreciationPreview(
-      PostV1AssetsDepreciationPreviewRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsDepreciationPreview(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<AssetsModernizeAssetsResponse> assetsModernize(
+      AssetsModernizeAssetsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.assetsModernize(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsDepreciationPostResponse> postV1AssetsDepreciationPost(
-      PostV1AssetsDepreciationPostRequest request) {
-    return this.rawClient.postV1AssetsDepreciationPost(request).thenApply(response -> response.body());
+  /**
+   * Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+   */
+  public CompletableFuture<AssetsDisposeAssetsResponse> assetsDispose(
+      AssetsDisposeAssetsRequest request) {
+    return this.rawClient.assetsDispose(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AssetsDepreciationPostResponse> postV1AssetsDepreciationPost(
-      PostV1AssetsDepreciationPostRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsDepreciationPost(request, requestOptions).thenApply(response -> response.body());
+  /**
+   * Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+   */
+  public CompletableFuture<AssetsDisposeAssetsResponse> assetsDispose(
+      AssetsDisposeAssetsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.assetsDispose(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<DepreciationPreviewAssetsResponse> depreciationPreview(
+      DepreciationPreviewAssetsRequest request) {
+    return this.rawClient.depreciationPreview(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<DepreciationPreviewAssetsResponse> depreciationPreview(
+      DepreciationPreviewAssetsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.depreciationPreview(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<DepreciationPostAssetsResponse> depreciationPost(
+      DepreciationPostAssetsRequest request) {
+    return this.rawClient.depreciationPost(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<DepreciationPostAssetsResponse> depreciationPost(
+      DepreciationPostAssetsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.depreciationPost(request, requestOptions).thenApply(response -> response.body());
   }
 }

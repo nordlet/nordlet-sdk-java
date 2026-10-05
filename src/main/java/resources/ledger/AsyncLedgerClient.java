@@ -6,68 +6,60 @@ package com.nordlet.api.resources.ledger;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsApplyTemplateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsSwitchChartRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsUpdateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsDeleteRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsUpdateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCentersCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCentersListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCentersUpdateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerJournalTransactionsCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerJournalTransactionsGetRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerJournalTransactionsListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerOwnersCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerOwnersDeleteRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerOwnersListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerOwnersUpdateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerPeriodsListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerPeriodsLockRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerPeriodsUnlockRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerPostingRulesListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerPostingRulesUpdateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerStatementRowsListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerStatementRowsSchemesRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerStatementRowsSetRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1OfficersCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1OfficersDeleteRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1OfficersListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1OfficersUpdateRequest;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsApplyTemplateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsSwitchChartResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsUpdateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsDeleteResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsUpdateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCentersCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCentersListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCentersUpdateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerJournalTransactionsCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerJournalTransactionsGetResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerJournalTransactionsListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerOwnersCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerOwnersDeleteResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerOwnersListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerOwnersUpdateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerPeriodsListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerPeriodsLockResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerPeriodsUnlockResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerPostingRulesListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerPostingRulesUpdateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerStatementRowsListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerStatementRowsSchemesResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerStatementRowsSetResponse;
-import com.nordlet.api.resources.ledger.types.PostV1OfficersCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1OfficersDeleteResponse;
-import com.nordlet.api.resources.ledger.types.PostV1OfficersListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1OfficersUpdateResponse;
+import com.nordlet.api.resources.ledger.requests.AccountsApplyTemplateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.AccountsCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.AccountsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.AccountsSwitchChartLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.AccountsUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCenterGroupsCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCenterGroupsDeleteLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCenterGroupsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCenterGroupsUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCentersCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCentersListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCentersUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.JournalTransactionsCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.JournalTransactionsGetLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.JournalTransactionsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.OwnersCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.OwnersDeleteLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.OwnersListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.OwnersUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.PeriodsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.PeriodsLockLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.PeriodsUnlockLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.PostingRulesListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.PostingRulesUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.StatementRowsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.StatementRowsSchemesLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.StatementRowsSetLedgerRequest;
+import com.nordlet.api.resources.ledger.types.AccountsApplyTemplateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.AccountsCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.AccountsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.AccountsSwitchChartLedgerResponse;
+import com.nordlet.api.resources.ledger.types.AccountsUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCenterGroupsCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCenterGroupsDeleteLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCenterGroupsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCenterGroupsUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCentersCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCentersListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCentersUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.JournalTransactionsCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.JournalTransactionsGetLedgerResponse;
+import com.nordlet.api.resources.ledger.types.JournalTransactionsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.OwnersCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.OwnersDeleteLedgerResponse;
+import com.nordlet.api.resources.ledger.types.OwnersListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.OwnersUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.PeriodsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.PeriodsLockLedgerResponse;
+import com.nordlet.api.resources.ledger.types.PeriodsUnlockLedgerResponse;
+import com.nordlet.api.resources.ledger.types.PostingRulesListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.PostingRulesUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.StatementRowsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.StatementRowsSchemesLedgerResponse;
+import com.nordlet.api.resources.ledger.types.StatementRowsSetLedgerResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncLedgerClient {
@@ -87,459 +79,389 @@ public class AsyncLedgerClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1LedgerAccountsListResponse> postV1LedgerAccountsList() {
-    return this.rawClient.postV1LedgerAccountsList().thenApply(response -> response.body());
+  public CompletableFuture<AccountsListLedgerResponse> accountsList() {
+    return this.rawClient.accountsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerAccountsListResponse> postV1LedgerAccountsList(
+  public CompletableFuture<AccountsListLedgerResponse> accountsList(RequestOptions requestOptions) {
+    return this.rawClient.accountsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AccountsListLedgerResponse> accountsList(
+      AccountsListLedgerRequest request) {
+    return this.rawClient.accountsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AccountsListLedgerResponse> accountsList(
+      AccountsListLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.accountsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AccountsCreateLedgerResponse> accountsCreate(
+      AccountsCreateLedgerRequest request) {
+    return this.rawClient.accountsCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AccountsCreateLedgerResponse> accountsCreate(
+      AccountsCreateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.accountsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AccountsUpdateLedgerResponse> accountsUpdate(
+      AccountsUpdateLedgerRequest request) {
+    return this.rawClient.accountsUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AccountsUpdateLedgerResponse> accountsUpdate(
+      AccountsUpdateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.accountsUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate() {
+    return this.rawClient.accountsApplyTemplate().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerAccountsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.accountsApplyTemplate(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerAccountsListResponse> postV1LedgerAccountsList(
-      PostV1LedgerAccountsListRequest request) {
-    return this.rawClient.postV1LedgerAccountsList(request).thenApply(response -> response.body());
+  public CompletableFuture<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate(
+      AccountsApplyTemplateLedgerRequest request) {
+    return this.rawClient.accountsApplyTemplate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerAccountsListResponse> postV1LedgerAccountsList(
-      PostV1LedgerAccountsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerAccountsList(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerAccountsCreateResponse> postV1LedgerAccountsCreate(
-      PostV1LedgerAccountsCreateRequest request) {
-    return this.rawClient.postV1LedgerAccountsCreate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerAccountsCreateResponse> postV1LedgerAccountsCreate(
-      PostV1LedgerAccountsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerAccountsCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerAccountsUpdateResponse> postV1LedgerAccountsUpdate(
-      PostV1LedgerAccountsUpdateRequest request) {
-    return this.rawClient.postV1LedgerAccountsUpdate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerAccountsUpdateResponse> postV1LedgerAccountsUpdate(
-      PostV1LedgerAccountsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerAccountsUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerAccountsApplyTemplateResponse> postV1LedgerAccountsApplyTemplate(
-      ) {
-    return this.rawClient.postV1LedgerAccountsApplyTemplate().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerAccountsApplyTemplateResponse> postV1LedgerAccountsApplyTemplate(
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerAccountsApplyTemplate(requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerAccountsApplyTemplateResponse> postV1LedgerAccountsApplyTemplate(
-      PostV1LedgerAccountsApplyTemplateRequest request) {
-    return this.rawClient.postV1LedgerAccountsApplyTemplate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerAccountsApplyTemplateResponse> postV1LedgerAccountsApplyTemplate(
-      PostV1LedgerAccountsApplyTemplateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerAccountsApplyTemplate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate(
+      AccountsApplyTemplateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.accountsApplyTemplate(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
    */
-  public CompletableFuture<PostV1LedgerAccountsSwitchChartResponse> moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
-      ) {
-    return this.rawClient.moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry().thenApply(response -> response.body());
+  public CompletableFuture<AccountsSwitchChartLedgerResponse> accountsSwitchChart() {
+    return this.rawClient.accountsSwitchChart().thenApply(response -> response.body());
   }
 
   /**
    * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
    */
-  public CompletableFuture<PostV1LedgerAccountsSwitchChartResponse> moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
+  public CompletableFuture<AccountsSwitchChartLedgerResponse> accountsSwitchChart(
       RequestOptions requestOptions) {
-    return this.rawClient.moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.accountsSwitchChart(requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
    */
-  public CompletableFuture<PostV1LedgerAccountsSwitchChartResponse> moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
-      PostV1LedgerAccountsSwitchChartRequest request) {
-    return this.rawClient.moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(request).thenApply(response -> response.body());
+  public CompletableFuture<AccountsSwitchChartLedgerResponse> accountsSwitchChart(
+      AccountsSwitchChartLedgerRequest request) {
+    return this.rawClient.accountsSwitchChart(request).thenApply(response -> response.body());
   }
 
   /**
    * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
    */
-  public CompletableFuture<PostV1LedgerAccountsSwitchChartResponse> moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
-      PostV1LedgerAccountsSwitchChartRequest request, RequestOptions requestOptions) {
-    return this.rawClient.moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<AccountsSwitchChartLedgerResponse> accountsSwitchChart(
+      AccountsSwitchChartLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.accountsSwitchChart(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList() {
-    return this.rawClient.postV1LedgerPeriodsList().thenApply(response -> response.body());
+  public CompletableFuture<PeriodsListLedgerResponse> periodsList() {
+    return this.rawClient.periodsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList(
+  public CompletableFuture<PeriodsListLedgerResponse> periodsList(RequestOptions requestOptions) {
+    return this.rawClient.periodsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PeriodsListLedgerResponse> periodsList(
+      PeriodsListLedgerRequest request) {
+    return this.rawClient.periodsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PeriodsListLedgerResponse> periodsList(PeriodsListLedgerRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerPeriodsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.periodsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList(
-      PostV1LedgerPeriodsListRequest request) {
-    return this.rawClient.postV1LedgerPeriodsList(request).thenApply(response -> response.body());
+  public CompletableFuture<PeriodsLockLedgerResponse> periodsLock(
+      PeriodsLockLedgerRequest request) {
+    return this.rawClient.periodsLock(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList(
-      PostV1LedgerPeriodsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerPeriodsList(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerPeriodsLockResponse> postV1LedgerPeriodsLock(
-      PostV1LedgerPeriodsLockRequest request) {
-    return this.rawClient.postV1LedgerPeriodsLock(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerPeriodsLockResponse> postV1LedgerPeriodsLock(
-      PostV1LedgerPeriodsLockRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerPeriodsLock(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerPeriodsUnlockResponse> postV1LedgerPeriodsUnlock(
-      PostV1LedgerPeriodsUnlockRequest request) {
-    return this.rawClient.postV1LedgerPeriodsUnlock(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerPeriodsUnlockResponse> postV1LedgerPeriodsUnlock(
-      PostV1LedgerPeriodsUnlockRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerPeriodsUnlock(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
-      ) {
-    return this.rawClient.postV1LedgerJournalTransactionsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
+  public CompletableFuture<PeriodsLockLedgerResponse> periodsLock(PeriodsLockLedgerRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerJournalTransactionsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.periodsLock(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
-      PostV1LedgerJournalTransactionsListRequest request) {
-    return this.rawClient.postV1LedgerJournalTransactionsList(request).thenApply(response -> response.body());
+  public CompletableFuture<PeriodsUnlockLedgerResponse> periodsUnlock(
+      PeriodsUnlockLedgerRequest request) {
+    return this.rawClient.periodsUnlock(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
-      PostV1LedgerJournalTransactionsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerJournalTransactionsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<PeriodsUnlockLedgerResponse> periodsUnlock(
+      PeriodsUnlockLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.periodsUnlock(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerCostCentersCreateResponse> postV1LedgerCostCentersCreate(
-      PostV1LedgerCostCentersCreateRequest request) {
-    return this.rawClient.postV1LedgerCostCentersCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<JournalTransactionsListLedgerResponse> journalTransactionsList() {
+    return this.rawClient.journalTransactionsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerCostCentersCreateResponse> postV1LedgerCostCentersCreate(
-      PostV1LedgerCostCentersCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCentersCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerCostCentersUpdateResponse> postV1LedgerCostCentersUpdate(
-      PostV1LedgerCostCentersUpdateRequest request) {
-    return this.rawClient.postV1LedgerCostCentersUpdate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerCostCentersUpdateResponse> postV1LedgerCostCentersUpdate(
-      PostV1LedgerCostCentersUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCentersUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList() {
-    return this.rawClient.postV1LedgerCostCentersList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList(
+  public CompletableFuture<JournalTransactionsListLedgerResponse> journalTransactionsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCentersList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.journalTransactionsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList(
-      PostV1LedgerCostCentersListRequest request) {
-    return this.rawClient.postV1LedgerCostCentersList(request).thenApply(response -> response.body());
+  public CompletableFuture<JournalTransactionsListLedgerResponse> journalTransactionsList(
+      JournalTransactionsListLedgerRequest request) {
+    return this.rawClient.journalTransactionsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList(
-      PostV1LedgerCostCentersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCentersList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<JournalTransactionsListLedgerResponse> journalTransactionsList(
+      JournalTransactionsListLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.journalTransactionsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerCostCenterGroupsCreateResponse> postV1LedgerCostCenterGroupsCreate(
-      PostV1LedgerCostCenterGroupsCreateRequest request) {
-    return this.rawClient.postV1LedgerCostCenterGroupsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<CostCentersCreateLedgerResponse> costCentersCreate(
+      CostCentersCreateLedgerRequest request) {
+    return this.rawClient.costCentersCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerCostCenterGroupsCreateResponse> postV1LedgerCostCenterGroupsCreate(
-      PostV1LedgerCostCenterGroupsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCenterGroupsCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CostCentersCreateLedgerResponse> costCentersCreate(
+      CostCentersCreateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.costCentersCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerCostCenterGroupsUpdateResponse> postV1LedgerCostCenterGroupsUpdate(
-      PostV1LedgerCostCenterGroupsUpdateRequest request) {
-    return this.rawClient.postV1LedgerCostCenterGroupsUpdate(request).thenApply(response -> response.body());
+  public CompletableFuture<CostCentersUpdateLedgerResponse> costCentersUpdate(
+      CostCentersUpdateLedgerRequest request) {
+    return this.rawClient.costCentersUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerCostCenterGroupsUpdateResponse> postV1LedgerCostCenterGroupsUpdate(
-      PostV1LedgerCostCenterGroupsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCenterGroupsUpdate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CostCentersUpdateLedgerResponse> costCentersUpdate(
+      CostCentersUpdateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.costCentersUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerCostCenterGroupsDeleteResponse> postV1LedgerCostCenterGroupsDelete(
-      PostV1LedgerCostCenterGroupsDeleteRequest request) {
-    return this.rawClient.postV1LedgerCostCenterGroupsDelete(request).thenApply(response -> response.body());
+  public CompletableFuture<CostCentersListLedgerResponse> costCentersList() {
+    return this.rawClient.costCentersList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerCostCenterGroupsDeleteResponse> postV1LedgerCostCenterGroupsDelete(
-      PostV1LedgerCostCenterGroupsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCenterGroupsDelete(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
-      ) {
-    return this.rawClient.postV1LedgerCostCenterGroupsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
+  public CompletableFuture<CostCentersListLedgerResponse> costCentersList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCenterGroupsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.costCentersList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
-      PostV1LedgerCostCenterGroupsListRequest request) {
-    return this.rawClient.postV1LedgerCostCenterGroupsList(request).thenApply(response -> response.body());
+  public CompletableFuture<CostCentersListLedgerResponse> costCentersList(
+      CostCentersListLedgerRequest request) {
+    return this.rawClient.costCentersList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
-      PostV1LedgerCostCenterGroupsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerCostCenterGroupsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CostCentersListLedgerResponse> costCentersList(
+      CostCentersListLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.costCentersList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList() {
-    return this.rawClient.postV1LedgerPostingRulesList().thenApply(response -> response.body());
+  public CompletableFuture<CostCenterGroupsCreateLedgerResponse> costCenterGroupsCreate(
+      CostCenterGroupsCreateLedgerRequest request) {
+    return this.rawClient.costCenterGroupsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList(
+  public CompletableFuture<CostCenterGroupsCreateLedgerResponse> costCenterGroupsCreate(
+      CostCenterGroupsCreateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.costCenterGroupsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CostCenterGroupsUpdateLedgerResponse> costCenterGroupsUpdate(
+      CostCenterGroupsUpdateLedgerRequest request) {
+    return this.rawClient.costCenterGroupsUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CostCenterGroupsUpdateLedgerResponse> costCenterGroupsUpdate(
+      CostCenterGroupsUpdateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.costCenterGroupsUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CostCenterGroupsDeleteLedgerResponse> costCenterGroupsDelete(
+      CostCenterGroupsDeleteLedgerRequest request) {
+    return this.rawClient.costCenterGroupsDelete(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CostCenterGroupsDeleteLedgerResponse> costCenterGroupsDelete(
+      CostCenterGroupsDeleteLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.costCenterGroupsDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CostCenterGroupsListLedgerResponse> costCenterGroupsList() {
+    return this.rawClient.costCenterGroupsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CostCenterGroupsListLedgerResponse> costCenterGroupsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerPostingRulesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.costCenterGroupsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList(
-      PostV1LedgerPostingRulesListRequest request) {
-    return this.rawClient.postV1LedgerPostingRulesList(request).thenApply(response -> response.body());
+  public CompletableFuture<CostCenterGroupsListLedgerResponse> costCenterGroupsList(
+      CostCenterGroupsListLedgerRequest request) {
+    return this.rawClient.costCenterGroupsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList(
-      PostV1LedgerPostingRulesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerPostingRulesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CostCenterGroupsListLedgerResponse> costCenterGroupsList(
+      CostCenterGroupsListLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.costCenterGroupsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerPostingRulesUpdateResponse> postV1LedgerPostingRulesUpdate(
-      PostV1LedgerPostingRulesUpdateRequest request) {
-    return this.rawClient.postV1LedgerPostingRulesUpdate(request).thenApply(response -> response.body());
+  public CompletableFuture<PostingRulesListLedgerResponse> postingRulesList() {
+    return this.rawClient.postingRulesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerPostingRulesUpdateResponse> postV1LedgerPostingRulesUpdate(
-      PostV1LedgerPostingRulesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerPostingRulesUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerOwnersCreateResponse> postV1LedgerOwnersCreate(
-      PostV1LedgerOwnersCreateRequest request) {
-    return this.rawClient.postV1LedgerOwnersCreate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerOwnersCreateResponse> postV1LedgerOwnersCreate(
-      PostV1LedgerOwnersCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerOwnersCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerOwnersUpdateResponse> postV1LedgerOwnersUpdate(
-      PostV1LedgerOwnersUpdateRequest request) {
-    return this.rawClient.postV1LedgerOwnersUpdate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerOwnersUpdateResponse> postV1LedgerOwnersUpdate(
-      PostV1LedgerOwnersUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerOwnersUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerOwnersDeleteResponse> postV1LedgerOwnersDelete(
-      PostV1LedgerOwnersDeleteRequest request) {
-    return this.rawClient.postV1LedgerOwnersDelete(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerOwnersDeleteResponse> postV1LedgerOwnersDelete(
-      PostV1LedgerOwnersDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerOwnersDelete(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList() {
-    return this.rawClient.postV1LedgerOwnersList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList(
+  public CompletableFuture<PostingRulesListLedgerResponse> postingRulesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerOwnersList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.postingRulesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList(
-      PostV1LedgerOwnersListRequest request) {
-    return this.rawClient.postV1LedgerOwnersList(request).thenApply(response -> response.body());
+  public CompletableFuture<PostingRulesListLedgerResponse> postingRulesList(
+      PostingRulesListLedgerRequest request) {
+    return this.rawClient.postingRulesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList(
-      PostV1LedgerOwnersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerOwnersList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<PostingRulesListLedgerResponse> postingRulesList(
+      PostingRulesListLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postingRulesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerJournalTransactionsGetResponse> postV1LedgerJournalTransactionsGet(
-      PostV1LedgerJournalTransactionsGetRequest request) {
-    return this.rawClient.postV1LedgerJournalTransactionsGet(request).thenApply(response -> response.body());
+  public CompletableFuture<PostingRulesUpdateLedgerResponse> postingRulesUpdate(
+      PostingRulesUpdateLedgerRequest request) {
+    return this.rawClient.postingRulesUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerJournalTransactionsGetResponse> postV1LedgerJournalTransactionsGet(
-      PostV1LedgerJournalTransactionsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerJournalTransactionsGet(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<PostingRulesUpdateLedgerResponse> postingRulesUpdate(
+      PostingRulesUpdateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postingRulesUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerJournalTransactionsCreateResponse> postV1LedgerJournalTransactionsCreate(
-      PostV1LedgerJournalTransactionsCreateRequest request) {
-    return this.rawClient.postV1LedgerJournalTransactionsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<OwnersCreateLedgerResponse> ownersCreate(
+      OwnersCreateLedgerRequest request) {
+    return this.rawClient.ownersCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerJournalTransactionsCreateResponse> postV1LedgerJournalTransactionsCreate(
-      PostV1LedgerJournalTransactionsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1LedgerJournalTransactionsCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<OwnersCreateLedgerResponse> ownersCreate(
+      OwnersCreateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ownersCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<OwnersUpdateLedgerResponse> ownersUpdate(
+      OwnersUpdateLedgerRequest request) {
+    return this.rawClient.ownersUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<OwnersUpdateLedgerResponse> ownersUpdate(
+      OwnersUpdateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ownersUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<OwnersDeleteLedgerResponse> ownersDelete(
+      OwnersDeleteLedgerRequest request) {
+    return this.rawClient.ownersDelete(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<OwnersDeleteLedgerResponse> ownersDelete(
+      OwnersDeleteLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ownersDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<OwnersListLedgerResponse> ownersList() {
+    return this.rawClient.ownersList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<OwnersListLedgerResponse> ownersList(RequestOptions requestOptions) {
+    return this.rawClient.ownersList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<OwnersListLedgerResponse> ownersList(OwnersListLedgerRequest request) {
+    return this.rawClient.ownersList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<OwnersListLedgerResponse> ownersList(OwnersListLedgerRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ownersList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<JournalTransactionsGetLedgerResponse> journalTransactionsGet(
+      JournalTransactionsGetLedgerRequest request) {
+    return this.rawClient.journalTransactionsGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<JournalTransactionsGetLedgerResponse> journalTransactionsGet(
+      JournalTransactionsGetLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.journalTransactionsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<JournalTransactionsCreateLedgerResponse> journalTransactionsCreate(
+      JournalTransactionsCreateLedgerRequest request) {
+    return this.rawClient.journalTransactionsCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<JournalTransactionsCreateLedgerResponse> journalTransactionsCreate(
+      JournalTransactionsCreateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.journalTransactionsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
    */
-  public CompletableFuture<PostV1LedgerStatementRowsSchemesResponse> nationalStatementLayoutsAvailableToTheCompany(
-      ) {
-    return this.rawClient.nationalStatementLayoutsAvailableToTheCompany().thenApply(response -> response.body());
+  public CompletableFuture<StatementRowsSchemesLedgerResponse> statementRowsSchemes() {
+    return this.rawClient.statementRowsSchemes().thenApply(response -> response.body());
   }
 
   /**
    * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
    */
-  public CompletableFuture<PostV1LedgerStatementRowsSchemesResponse> nationalStatementLayoutsAvailableToTheCompany(
+  public CompletableFuture<StatementRowsSchemesLedgerResponse> statementRowsSchemes(
       RequestOptions requestOptions) {
-    return this.rawClient.nationalStatementLayoutsAvailableToTheCompany(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.statementRowsSchemes(requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
    */
-  public CompletableFuture<PostV1LedgerStatementRowsSchemesResponse> nationalStatementLayoutsAvailableToTheCompany(
-      PostV1LedgerStatementRowsSchemesRequest request) {
-    return this.rawClient.nationalStatementLayoutsAvailableToTheCompany(request).thenApply(response -> response.body());
+  public CompletableFuture<StatementRowsSchemesLedgerResponse> statementRowsSchemes(
+      StatementRowsSchemesLedgerRequest request) {
+    return this.rawClient.statementRowsSchemes(request).thenApply(response -> response.body());
   }
 
   /**
    * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
    */
-  public CompletableFuture<PostV1LedgerStatementRowsSchemesResponse> nationalStatementLayoutsAvailableToTheCompany(
-      PostV1LedgerStatementRowsSchemesRequest request, RequestOptions requestOptions) {
-    return this.rawClient.nationalStatementLayoutsAvailableToTheCompany(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<StatementRowsSchemesLedgerResponse> statementRowsSchemes(
+      StatementRowsSchemesLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.statementRowsSchemes(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerStatementRowsListResponse> accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(
-      PostV1LedgerStatementRowsListRequest request) {
-    return this.rawClient.accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(request).thenApply(response -> response.body());
+  public CompletableFuture<StatementRowsListLedgerResponse> statementRowsList(
+      StatementRowsListLedgerRequest request) {
+    return this.rawClient.statementRowsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1LedgerStatementRowsListResponse> accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(
-      PostV1LedgerStatementRowsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<StatementRowsListLedgerResponse> statementRowsList(
+      StatementRowsListLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.statementRowsList(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
    */
-  public CompletableFuture<PostV1LedgerStatementRowsSetResponse> mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(
-      PostV1LedgerStatementRowsSetRequest request) {
-    return this.rawClient.mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(request).thenApply(response -> response.body());
+  public CompletableFuture<StatementRowsSetLedgerResponse> statementRowsSet(
+      StatementRowsSetLedgerRequest request) {
+    return this.rawClient.statementRowsSet(request).thenApply(response -> response.body());
   }
 
   /**
    * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
    */
-  public CompletableFuture<PostV1LedgerStatementRowsSetResponse> mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(
-      PostV1LedgerStatementRowsSetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  /**
-   * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
-   */
-  public CompletableFuture<PostV1OfficersListResponse> officersOfTheCompany() {
-    return this.rawClient.officersOfTheCompany().thenApply(response -> response.body());
-  }
-
-  /**
-   * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
-   */
-  public CompletableFuture<PostV1OfficersListResponse> officersOfTheCompany(
-      RequestOptions requestOptions) {
-    return this.rawClient.officersOfTheCompany(requestOptions).thenApply(response -> response.body());
-  }
-
-  /**
-   * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
-   */
-  public CompletableFuture<PostV1OfficersListResponse> officersOfTheCompany(
-      PostV1OfficersListRequest request) {
-    return this.rawClient.officersOfTheCompany(request).thenApply(response -> response.body());
-  }
-
-  /**
-   * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
-   */
-  public CompletableFuture<PostV1OfficersListResponse> officersOfTheCompany(
-      PostV1OfficersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.officersOfTheCompany(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OfficersCreateResponse> recordAnOfficerOfTheCompany(
-      PostV1OfficersCreateRequest request) {
-    return this.rawClient.recordAnOfficerOfTheCompany(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OfficersCreateResponse> recordAnOfficerOfTheCompany(
-      PostV1OfficersCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.recordAnOfficerOfTheCompany(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OfficersUpdateResponse> changeARecordedOfficer(
-      PostV1OfficersUpdateRequest request) {
-    return this.rawClient.changeARecordedOfficer(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OfficersUpdateResponse> changeARecordedOfficer(
-      PostV1OfficersUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.changeARecordedOfficer(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OfficersDeleteResponse> removeARecordedOfficer(
-      PostV1OfficersDeleteRequest request) {
-    return this.rawClient.removeARecordedOfficer(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OfficersDeleteResponse> removeARecordedOfficer(
-      PostV1OfficersDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.removeARecordedOfficer(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<StatementRowsSetLedgerResponse> statementRowsSet(
+      StatementRowsSetLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.statementRowsSet(request, requestOptions).thenApply(response -> response.body());
   }
 }

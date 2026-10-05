@@ -6,30 +6,30 @@ package com.nordlet.api.resources.payroll;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollCalcRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollDepartmentsCreateRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollDepartmentsListRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollLinesAttendanceRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollPaymentsExportRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsApproveRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsCancelRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsCreateRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsGetRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsListRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollSchedulesCreateRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollSchedulesListRequest;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollCalcResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollDepartmentsCreateResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollDepartmentsListResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollLinesAttendanceResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollPaymentsExportResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsApproveResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsCancelResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsCreateResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsGetResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsListResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollSchedulesCreateResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollSchedulesListResponse;
+import com.nordlet.api.resources.payroll.requests.CalcPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.DepartmentsCreatePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.DepartmentsListPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.LinesAttendancePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.PaymentsExportPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsApprovePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsCancelPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsCreatePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsGetPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsListPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.SchedulesCreatePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.SchedulesListPayrollRequest;
+import com.nordlet.api.resources.payroll.types.CalcPayrollResponse;
+import com.nordlet.api.resources.payroll.types.DepartmentsCreatePayrollResponse;
+import com.nordlet.api.resources.payroll.types.DepartmentsListPayrollResponse;
+import com.nordlet.api.resources.payroll.types.LinesAttendancePayrollResponse;
+import com.nordlet.api.resources.payroll.types.PaymentsExportPayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsApprovePayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsCancelPayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsCreatePayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsGetPayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsListPayrollResponse;
+import com.nordlet.api.resources.payroll.types.SchedulesCreatePayrollResponse;
+import com.nordlet.api.resources.payroll.types.SchedulesListPayrollResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncPayrollClient {
@@ -49,156 +49,150 @@ public class AsyncPayrollClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1PayrollDepartmentsCreateResponse> postV1PayrollDepartmentsCreate(
-      PostV1PayrollDepartmentsCreateRequest request) {
-    return this.rawClient.postV1PayrollDepartmentsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<DepartmentsCreatePayrollResponse> departmentsCreate(
+      DepartmentsCreatePayrollRequest request) {
+    return this.rawClient.departmentsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollDepartmentsCreateResponse> postV1PayrollDepartmentsCreate(
-      PostV1PayrollDepartmentsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PayrollDepartmentsCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<DepartmentsCreatePayrollResponse> departmentsCreate(
+      DepartmentsCreatePayrollRequest request, RequestOptions requestOptions) {
+    return this.rawClient.departmentsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollDepartmentsListResponse> postV1PayrollDepartmentsList() {
-    return this.rawClient.postV1PayrollDepartmentsList().thenApply(response -> response.body());
+  public CompletableFuture<DepartmentsListPayrollResponse> departmentsList() {
+    return this.rawClient.departmentsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollDepartmentsListResponse> postV1PayrollDepartmentsList(
+  public CompletableFuture<DepartmentsListPayrollResponse> departmentsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PayrollDepartmentsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.departmentsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollDepartmentsListResponse> postV1PayrollDepartmentsList(
-      PostV1PayrollDepartmentsListRequest request) {
-    return this.rawClient.postV1PayrollDepartmentsList(request).thenApply(response -> response.body());
+  public CompletableFuture<DepartmentsListPayrollResponse> departmentsList(
+      DepartmentsListPayrollRequest request) {
+    return this.rawClient.departmentsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollDepartmentsListResponse> postV1PayrollDepartmentsList(
-      PostV1PayrollDepartmentsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PayrollDepartmentsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<DepartmentsListPayrollResponse> departmentsList(
+      DepartmentsListPayrollRequest request, RequestOptions requestOptions) {
+    return this.rawClient.departmentsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollSchedulesCreateResponse> postV1PayrollSchedulesCreate(
-      PostV1PayrollSchedulesCreateRequest request) {
-    return this.rawClient.postV1PayrollSchedulesCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<SchedulesCreatePayrollResponse> schedulesCreate(
+      SchedulesCreatePayrollRequest request) {
+    return this.rawClient.schedulesCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollSchedulesCreateResponse> postV1PayrollSchedulesCreate(
-      PostV1PayrollSchedulesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PayrollSchedulesCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<SchedulesCreatePayrollResponse> schedulesCreate(
+      SchedulesCreatePayrollRequest request, RequestOptions requestOptions) {
+    return this.rawClient.schedulesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollSchedulesListResponse> postV1PayrollSchedulesList() {
-    return this.rawClient.postV1PayrollSchedulesList().thenApply(response -> response.body());
+  public CompletableFuture<SchedulesListPayrollResponse> schedulesList() {
+    return this.rawClient.schedulesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollSchedulesListResponse> postV1PayrollSchedulesList(
+  public CompletableFuture<SchedulesListPayrollResponse> schedulesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PayrollSchedulesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.schedulesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollSchedulesListResponse> postV1PayrollSchedulesList(
-      PostV1PayrollSchedulesListRequest request) {
-    return this.rawClient.postV1PayrollSchedulesList(request).thenApply(response -> response.body());
+  public CompletableFuture<SchedulesListPayrollResponse> schedulesList(
+      SchedulesListPayrollRequest request) {
+    return this.rawClient.schedulesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollSchedulesListResponse> postV1PayrollSchedulesList(
-      PostV1PayrollSchedulesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PayrollSchedulesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<SchedulesListPayrollResponse> schedulesList(
+      SchedulesListPayrollRequest request, RequestOptions requestOptions) {
+    return this.rawClient.schedulesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollCalcResponse> calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
-      PostV1PayrollCalcRequest request) {
-    return this.rawClient.calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(request).thenApply(response -> response.body());
+  public CompletableFuture<CalcPayrollResponse> calc(CalcPayrollRequest request) {
+    return this.rawClient.calc(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollCalcResponse> calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
-      PostV1PayrollCalcRequest request, RequestOptions requestOptions) {
-    return this.rawClient.calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PayrollRunsCreateResponse> postV1PayrollRunsCreate(
-      PostV1PayrollRunsCreateRequest request) {
-    return this.rawClient.postV1PayrollRunsCreate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PayrollRunsCreateResponse> postV1PayrollRunsCreate(
-      PostV1PayrollRunsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PayrollRunsCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PayrollRunsGetResponse> postV1PayrollRunsGet(
-      PostV1PayrollRunsGetRequest request) {
-    return this.rawClient.postV1PayrollRunsGet(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PayrollRunsGetResponse> postV1PayrollRunsGet(
-      PostV1PayrollRunsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PayrollRunsGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PayrollRunsListResponse> postV1PayrollRunsList() {
-    return this.rawClient.postV1PayrollRunsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PayrollRunsListResponse> postV1PayrollRunsList(
+  public CompletableFuture<CalcPayrollResponse> calc(CalcPayrollRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PayrollRunsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.calc(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollRunsListResponse> postV1PayrollRunsList(
-      PostV1PayrollRunsListRequest request) {
-    return this.rawClient.postV1PayrollRunsList(request).thenApply(response -> response.body());
+  public CompletableFuture<RunsCreatePayrollResponse> runsCreate(RunsCreatePayrollRequest request) {
+    return this.rawClient.runsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollRunsListResponse> postV1PayrollRunsList(
-      PostV1PayrollRunsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PayrollRunsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<RunsCreatePayrollResponse> runsCreate(RunsCreatePayrollRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.runsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RunsGetPayrollResponse> runsGet(RunsGetPayrollRequest request) {
+    return this.rawClient.runsGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RunsGetPayrollResponse> runsGet(RunsGetPayrollRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.runsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RunsListPayrollResponse> runsList() {
+    return this.rawClient.runsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RunsListPayrollResponse> runsList(RequestOptions requestOptions) {
+    return this.rawClient.runsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RunsListPayrollResponse> runsList(RunsListPayrollRequest request) {
+    return this.rawClient.runsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RunsListPayrollResponse> runsList(RunsListPayrollRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.runsList(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * The days and hours worked, the days on the register and the average hourly earnings that some countries report per employment. The Czech monthly employer report asks for all four. They can be set while the run is a draft.
    */
-  public CompletableFuture<PostV1PayrollLinesAttendanceResponse> recordTheTimeAPersonWorkedInAPayrollLine(
-      PostV1PayrollLinesAttendanceRequest request) {
-    return this.rawClient.recordTheTimeAPersonWorkedInAPayrollLine(request).thenApply(response -> response.body());
+  public CompletableFuture<LinesAttendancePayrollResponse> linesAttendance(
+      LinesAttendancePayrollRequest request) {
+    return this.rawClient.linesAttendance(request).thenApply(response -> response.body());
   }
 
   /**
    * The days and hours worked, the days on the register and the average hourly earnings that some countries report per employment. The Czech monthly employer report asks for all four. They can be set while the run is a draft.
    */
-  public CompletableFuture<PostV1PayrollLinesAttendanceResponse> recordTheTimeAPersonWorkedInAPayrollLine(
-      PostV1PayrollLinesAttendanceRequest request, RequestOptions requestOptions) {
-    return this.rawClient.recordTheTimeAPersonWorkedInAPayrollLine(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<LinesAttendancePayrollResponse> linesAttendance(
+      LinesAttendancePayrollRequest request, RequestOptions requestOptions) {
+    return this.rawClient.linesAttendance(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollRunsApproveResponse> postV1PayrollRunsApprove(
-      PostV1PayrollRunsApproveRequest request) {
-    return this.rawClient.postV1PayrollRunsApprove(request).thenApply(response -> response.body());
+  public CompletableFuture<RunsApprovePayrollResponse> runsApprove(
+      RunsApprovePayrollRequest request) {
+    return this.rawClient.runsApprove(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollRunsApproveResponse> postV1PayrollRunsApprove(
-      PostV1PayrollRunsApproveRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PayrollRunsApprove(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<RunsApprovePayrollResponse> runsApprove(
+      RunsApprovePayrollRequest request, RequestOptions requestOptions) {
+    return this.rawClient.runsApprove(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollRunsCancelResponse> postV1PayrollRunsCancel(
-      PostV1PayrollRunsCancelRequest request) {
-    return this.rawClient.postV1PayrollRunsCancel(request).thenApply(response -> response.body());
+  public CompletableFuture<RunsCancelPayrollResponse> runsCancel(RunsCancelPayrollRequest request) {
+    return this.rawClient.runsCancel(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollRunsCancelResponse> postV1PayrollRunsCancel(
-      PostV1PayrollRunsCancelRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PayrollRunsCancel(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<RunsCancelPayrollResponse> runsCancel(RunsCancelPayrollRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.runsCancel(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollPaymentsExportResponse> postV1PayrollPaymentsExport(
-      PostV1PayrollPaymentsExportRequest request) {
-    return this.rawClient.postV1PayrollPaymentsExport(request).thenApply(response -> response.body());
+  public CompletableFuture<PaymentsExportPayrollResponse> paymentsExport(
+      PaymentsExportPayrollRequest request) {
+    return this.rawClient.paymentsExport(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PayrollPaymentsExportResponse> postV1PayrollPaymentsExport(
-      PostV1PayrollPaymentsExportRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PayrollPaymentsExport(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<PaymentsExportPayrollResponse> paymentsExport(
+      PaymentsExportPayrollRequest request, RequestOptions requestOptions) {
+    return this.rawClient.paymentsExport(request, requestOptions).thenApply(response -> response.body());
   }
 }

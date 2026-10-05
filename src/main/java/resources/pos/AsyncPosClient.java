@@ -6,18 +6,18 @@ package com.nordlet.api.resources.pos;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.pos.requests.PostV1PosDevicesCreateRequest;
-import com.nordlet.api.resources.pos.requests.PostV1PosDevicesListRequest;
-import com.nordlet.api.resources.pos.requests.PostV1PosDevicesUpdateRequest;
-import com.nordlet.api.resources.pos.requests.PostV1PosReportsCreateRequest;
-import com.nordlet.api.resources.pos.requests.PostV1PosReportsGetRequest;
-import com.nordlet.api.resources.pos.requests.PostV1PosReportsListRequest;
-import com.nordlet.api.resources.pos.types.PostV1PosDevicesCreateResponse;
-import com.nordlet.api.resources.pos.types.PostV1PosDevicesListResponse;
-import com.nordlet.api.resources.pos.types.PostV1PosDevicesUpdateResponse;
-import com.nordlet.api.resources.pos.types.PostV1PosReportsCreateResponse;
-import com.nordlet.api.resources.pos.types.PostV1PosReportsGetResponse;
-import com.nordlet.api.resources.pos.types.PostV1PosReportsListResponse;
+import com.nordlet.api.resources.pos.requests.DevicesCreatePosRequest;
+import com.nordlet.api.resources.pos.requests.DevicesListPosRequest;
+import com.nordlet.api.resources.pos.requests.DevicesUpdatePosRequest;
+import com.nordlet.api.resources.pos.requests.ReportsCreatePosRequest;
+import com.nordlet.api.resources.pos.requests.ReportsGetPosRequest;
+import com.nordlet.api.resources.pos.requests.ReportsListPosRequest;
+import com.nordlet.api.resources.pos.types.DevicesCreatePosResponse;
+import com.nordlet.api.resources.pos.types.DevicesListPosResponse;
+import com.nordlet.api.resources.pos.types.DevicesUpdatePosResponse;
+import com.nordlet.api.resources.pos.types.ReportsCreatePosResponse;
+import com.nordlet.api.resources.pos.types.ReportsGetPosResponse;
+import com.nordlet.api.resources.pos.types.ReportsListPosResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncPosClient {
@@ -37,81 +37,76 @@ public class AsyncPosClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1PosDevicesCreateResponse> postV1PosDevicesCreate(
-      PostV1PosDevicesCreateRequest request) {
-    return this.rawClient.postV1PosDevicesCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<DevicesCreatePosResponse> devicesCreate(
+      DevicesCreatePosRequest request) {
+    return this.rawClient.devicesCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PosDevicesCreateResponse> postV1PosDevicesCreate(
-      PostV1PosDevicesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PosDevicesCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PosDevicesUpdateResponse> postV1PosDevicesUpdate(
-      PostV1PosDevicesUpdateRequest request) {
-    return this.rawClient.postV1PosDevicesUpdate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PosDevicesUpdateResponse> postV1PosDevicesUpdate(
-      PostV1PosDevicesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PosDevicesUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PosDevicesListResponse> postV1PosDevicesList() {
-    return this.rawClient.postV1PosDevicesList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PosDevicesListResponse> postV1PosDevicesList(
+  public CompletableFuture<DevicesCreatePosResponse> devicesCreate(DevicesCreatePosRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PosDevicesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.devicesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PosDevicesListResponse> postV1PosDevicesList(
-      PostV1PosDevicesListRequest request) {
-    return this.rawClient.postV1PosDevicesList(request).thenApply(response -> response.body());
+  public CompletableFuture<DevicesUpdatePosResponse> devicesUpdate(
+      DevicesUpdatePosRequest request) {
+    return this.rawClient.devicesUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PosDevicesListResponse> postV1PosDevicesList(
-      PostV1PosDevicesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PosDevicesList(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PosReportsCreateResponse> postV1PosReportsCreate(
-      PostV1PosReportsCreateRequest request) {
-    return this.rawClient.postV1PosReportsCreate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PosReportsCreateResponse> postV1PosReportsCreate(
-      PostV1PosReportsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PosReportsCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PosReportsGetResponse> postV1PosReportsGet(
-      PostV1PosReportsGetRequest request) {
-    return this.rawClient.postV1PosReportsGet(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PosReportsGetResponse> postV1PosReportsGet(
-      PostV1PosReportsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PosReportsGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PosReportsListResponse> postV1PosReportsList() {
-    return this.rawClient.postV1PosReportsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1PosReportsListResponse> postV1PosReportsList(
+  public CompletableFuture<DevicesUpdatePosResponse> devicesUpdate(DevicesUpdatePosRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1PosReportsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.devicesUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PosReportsListResponse> postV1PosReportsList(
-      PostV1PosReportsListRequest request) {
-    return this.rawClient.postV1PosReportsList(request).thenApply(response -> response.body());
+  public CompletableFuture<DevicesListPosResponse> devicesList() {
+    return this.rawClient.devicesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PosReportsListResponse> postV1PosReportsList(
-      PostV1PosReportsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PosReportsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<DevicesListPosResponse> devicesList(RequestOptions requestOptions) {
+    return this.rawClient.devicesList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<DevicesListPosResponse> devicesList(DevicesListPosRequest request) {
+    return this.rawClient.devicesList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<DevicesListPosResponse> devicesList(DevicesListPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.devicesList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReportsCreatePosResponse> reportsCreate(
+      ReportsCreatePosRequest request) {
+    return this.rawClient.reportsCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReportsCreatePosResponse> reportsCreate(ReportsCreatePosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.reportsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReportsGetPosResponse> reportsGet(ReportsGetPosRequest request) {
+    return this.rawClient.reportsGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReportsGetPosResponse> reportsGet(ReportsGetPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.reportsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReportsListPosResponse> reportsList() {
+    return this.rawClient.reportsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReportsListPosResponse> reportsList(RequestOptions requestOptions) {
+    return this.rawClient.reportsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReportsListPosResponse> reportsList(ReportsListPosRequest request) {
+    return this.rawClient.reportsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReportsListPosResponse> reportsList(ReportsListPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.reportsList(request, requestOptions).thenApply(response -> response.body());
   }
 }

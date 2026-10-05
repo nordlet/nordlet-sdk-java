@@ -6,18 +6,18 @@ package com.nordlet.api.resources.webhooks;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksDeliveriesListRequest;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksDeliveriesRedeliverRequest;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksSubscriptionsCreateRequest;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksSubscriptionsDeleteRequest;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksSubscriptionsListRequest;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksSubscriptionsUpdateRequest;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksDeliveriesListResponse;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksDeliveriesRedeliverResponse;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksSubscriptionsCreateResponse;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksSubscriptionsDeleteResponse;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksSubscriptionsListResponse;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksSubscriptionsUpdateResponse;
+import com.nordlet.api.resources.webhooks.requests.DeliveriesListWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.DeliveriesRedeliverWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.SubscriptionsCreateWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.SubscriptionsDeleteWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.SubscriptionsListWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.SubscriptionsUpdateWebhooksRequest;
+import com.nordlet.api.resources.webhooks.types.DeliveriesListWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.DeliveriesRedeliverWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.SubscriptionsCreateWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.SubscriptionsDeleteWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.SubscriptionsListWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.SubscriptionsUpdateWebhooksResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncWebhooksClient {
@@ -37,82 +37,81 @@ public class AsyncWebhooksClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1WebhooksSubscriptionsCreateResponse> postV1WebhooksSubscriptionsCreate(
-      PostV1WebhooksSubscriptionsCreateRequest request) {
-    return this.rawClient.postV1WebhooksSubscriptionsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<SubscriptionsCreateWebhooksResponse> subscriptionsCreate(
+      SubscriptionsCreateWebhooksRequest request) {
+    return this.rawClient.subscriptionsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1WebhooksSubscriptionsCreateResponse> postV1WebhooksSubscriptionsCreate(
-      PostV1WebhooksSubscriptionsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksSubscriptionsCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<SubscriptionsCreateWebhooksResponse> subscriptionsCreate(
+      SubscriptionsCreateWebhooksRequest request, RequestOptions requestOptions) {
+    return this.rawClient.subscriptionsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1WebhooksSubscriptionsListResponse> postV1WebhooksSubscriptionsList(
-      ) {
-    return this.rawClient.postV1WebhooksSubscriptionsList().thenApply(response -> response.body());
+  public CompletableFuture<SubscriptionsListWebhooksResponse> subscriptionsList() {
+    return this.rawClient.subscriptionsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1WebhooksSubscriptionsListResponse> postV1WebhooksSubscriptionsList(
+  public CompletableFuture<SubscriptionsListWebhooksResponse> subscriptionsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksSubscriptionsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.subscriptionsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1WebhooksSubscriptionsListResponse> postV1WebhooksSubscriptionsList(
-      PostV1WebhooksSubscriptionsListRequest request) {
-    return this.rawClient.postV1WebhooksSubscriptionsList(request).thenApply(response -> response.body());
+  public CompletableFuture<SubscriptionsListWebhooksResponse> subscriptionsList(
+      SubscriptionsListWebhooksRequest request) {
+    return this.rawClient.subscriptionsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1WebhooksSubscriptionsListResponse> postV1WebhooksSubscriptionsList(
-      PostV1WebhooksSubscriptionsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksSubscriptionsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<SubscriptionsListWebhooksResponse> subscriptionsList(
+      SubscriptionsListWebhooksRequest request, RequestOptions requestOptions) {
+    return this.rawClient.subscriptionsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1WebhooksSubscriptionsUpdateResponse> postV1WebhooksSubscriptionsUpdate(
-      PostV1WebhooksSubscriptionsUpdateRequest request) {
-    return this.rawClient.postV1WebhooksSubscriptionsUpdate(request).thenApply(response -> response.body());
+  public CompletableFuture<SubscriptionsUpdateWebhooksResponse> subscriptionsUpdate(
+      SubscriptionsUpdateWebhooksRequest request) {
+    return this.rawClient.subscriptionsUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1WebhooksSubscriptionsUpdateResponse> postV1WebhooksSubscriptionsUpdate(
-      PostV1WebhooksSubscriptionsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksSubscriptionsUpdate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<SubscriptionsUpdateWebhooksResponse> subscriptionsUpdate(
+      SubscriptionsUpdateWebhooksRequest request, RequestOptions requestOptions) {
+    return this.rawClient.subscriptionsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1WebhooksSubscriptionsDeleteResponse> postV1WebhooksSubscriptionsDelete(
-      PostV1WebhooksSubscriptionsDeleteRequest request) {
-    return this.rawClient.postV1WebhooksSubscriptionsDelete(request).thenApply(response -> response.body());
+  public CompletableFuture<SubscriptionsDeleteWebhooksResponse> subscriptionsDelete(
+      SubscriptionsDeleteWebhooksRequest request) {
+    return this.rawClient.subscriptionsDelete(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1WebhooksSubscriptionsDeleteResponse> postV1WebhooksSubscriptionsDelete(
-      PostV1WebhooksSubscriptionsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksSubscriptionsDelete(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<SubscriptionsDeleteWebhooksResponse> subscriptionsDelete(
+      SubscriptionsDeleteWebhooksRequest request, RequestOptions requestOptions) {
+    return this.rawClient.subscriptionsDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1WebhooksDeliveriesListResponse> postV1WebhooksDeliveriesList() {
-    return this.rawClient.postV1WebhooksDeliveriesList().thenApply(response -> response.body());
+  public CompletableFuture<DeliveriesListWebhooksResponse> deliveriesList() {
+    return this.rawClient.deliveriesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1WebhooksDeliveriesListResponse> postV1WebhooksDeliveriesList(
+  public CompletableFuture<DeliveriesListWebhooksResponse> deliveriesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksDeliveriesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.deliveriesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1WebhooksDeliveriesListResponse> postV1WebhooksDeliveriesList(
-      PostV1WebhooksDeliveriesListRequest request) {
-    return this.rawClient.postV1WebhooksDeliveriesList(request).thenApply(response -> response.body());
+  public CompletableFuture<DeliveriesListWebhooksResponse> deliveriesList(
+      DeliveriesListWebhooksRequest request) {
+    return this.rawClient.deliveriesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1WebhooksDeliveriesListResponse> postV1WebhooksDeliveriesList(
-      PostV1WebhooksDeliveriesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksDeliveriesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<DeliveriesListWebhooksResponse> deliveriesList(
+      DeliveriesListWebhooksRequest request, RequestOptions requestOptions) {
+    return this.rawClient.deliveriesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1WebhooksDeliveriesRedeliverResponse> postV1WebhooksDeliveriesRedeliver(
-      PostV1WebhooksDeliveriesRedeliverRequest request) {
-    return this.rawClient.postV1WebhooksDeliveriesRedeliver(request).thenApply(response -> response.body());
+  public CompletableFuture<DeliveriesRedeliverWebhooksResponse> deliveriesRedeliver(
+      DeliveriesRedeliverWebhooksRequest request) {
+    return this.rawClient.deliveriesRedeliver(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1WebhooksDeliveriesRedeliverResponse> postV1WebhooksDeliveriesRedeliver(
-      PostV1WebhooksDeliveriesRedeliverRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1WebhooksDeliveriesRedeliver(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<DeliveriesRedeliverWebhooksResponse> deliveriesRedeliver(
+      DeliveriesRedeliverWebhooksRequest request, RequestOptions requestOptions) {
+    return this.rawClient.deliveriesRedeliver(request, requestOptions).thenApply(response -> response.body());
   }
 }

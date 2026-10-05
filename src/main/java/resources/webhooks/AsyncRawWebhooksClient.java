@@ -15,24 +15,26 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksDeliveriesListRequest;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksDeliveriesRedeliverRequest;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksSubscriptionsCreateRequest;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksSubscriptionsDeleteRequest;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksSubscriptionsListRequest;
-import com.nordlet.api.resources.webhooks.requests.PostV1WebhooksSubscriptionsUpdateRequest;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksDeliveriesListResponse;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksDeliveriesRedeliverResponse;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksSubscriptionsCreateResponse;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksSubscriptionsDeleteResponse;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksSubscriptionsListResponse;
-import com.nordlet.api.resources.webhooks.types.PostV1WebhooksSubscriptionsUpdateResponse;
+import com.nordlet.api.resources.webhooks.requests.DeliveriesListWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.DeliveriesRedeliverWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.SubscriptionsCreateWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.SubscriptionsDeleteWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.SubscriptionsListWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.SubscriptionsUpdateWebhooksRequest;
+import com.nordlet.api.resources.webhooks.types.DeliveriesListWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.DeliveriesRedeliverWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.SubscriptionsCreateWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.SubscriptionsDeleteWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.SubscriptionsListWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.SubscriptionsUpdateWebhooksResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -57,13 +59,13 @@ public class AsyncRawWebhooksClient {
     this.clientOptions = clientOptions;
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksSubscriptionsCreateResponse>> postV1WebhooksSubscriptionsCreate(
-      PostV1WebhooksSubscriptionsCreateRequest request) {
-    return postV1WebhooksSubscriptionsCreate(request,null);
+  public CompletableFuture<NordletApiHttpResponse<SubscriptionsCreateWebhooksResponse>> subscriptionsCreate(
+      SubscriptionsCreateWebhooksRequest request) {
+    return subscriptionsCreate(request,null);
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksSubscriptionsCreateResponse>> postV1WebhooksSubscriptionsCreate(
-      PostV1WebhooksSubscriptionsCreateRequest request, RequestOptions requestOptions) {
+  public CompletableFuture<NordletApiHttpResponse<SubscriptionsCreateWebhooksResponse>> subscriptionsCreate(
+      SubscriptionsCreateWebhooksRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/webhooks/subscriptions/create");if (requestOptions != null) {
@@ -92,14 +94,14 @@ public class AsyncRawWebhooksClient {
       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
       }
-      CompletableFuture<NordletApiHttpResponse<PostV1WebhooksSubscriptionsCreateResponse>> future = new CompletableFuture<>();
+      CompletableFuture<NordletApiHttpResponse<SubscriptionsCreateWebhooksResponse>> future = new CompletableFuture<>();
       client.newCall(okhttpRequest).enqueue(new Callback() {
         @Override
         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
           try (ResponseBody responseBody = response.body()) {
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1WebhooksSubscriptionsCreateResponse.class), response));
+              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubscriptionsCreateWebhooksResponse.class), response));
               return;
             }
             try {
@@ -108,11 +110,15 @@ public class AsyncRawWebhooksClient {
                 return;
                 case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
+                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
                 case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
+                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
@@ -145,23 +151,23 @@ public class AsyncRawWebhooksClient {
       return future;
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksSubscriptionsListResponse>> postV1WebhooksSubscriptionsList(
+    public CompletableFuture<NordletApiHttpResponse<SubscriptionsListWebhooksResponse>> subscriptionsList(
         ) {
-      return postV1WebhooksSubscriptionsList(PostV1WebhooksSubscriptionsListRequest.builder().build());
+      return subscriptionsList(SubscriptionsListWebhooksRequest.builder().build());
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksSubscriptionsListResponse>> postV1WebhooksSubscriptionsList(
+    public CompletableFuture<NordletApiHttpResponse<SubscriptionsListWebhooksResponse>> subscriptionsList(
         RequestOptions requestOptions) {
-      return postV1WebhooksSubscriptionsList(PostV1WebhooksSubscriptionsListRequest.builder().build(),requestOptions);
+      return subscriptionsList(SubscriptionsListWebhooksRequest.builder().build(),requestOptions);
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksSubscriptionsListResponse>> postV1WebhooksSubscriptionsList(
-        PostV1WebhooksSubscriptionsListRequest request) {
-      return postV1WebhooksSubscriptionsList(request,null);
+    public CompletableFuture<NordletApiHttpResponse<SubscriptionsListWebhooksResponse>> subscriptionsList(
+        SubscriptionsListWebhooksRequest request) {
+      return subscriptionsList(request,null);
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksSubscriptionsListResponse>> postV1WebhooksSubscriptionsList(
-        PostV1WebhooksSubscriptionsListRequest request, RequestOptions requestOptions) {
+    public CompletableFuture<NordletApiHttpResponse<SubscriptionsListWebhooksResponse>> subscriptionsList(
+        SubscriptionsListWebhooksRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/webhooks/subscriptions/list");if (requestOptions != null) {
@@ -190,14 +196,14 @@ public class AsyncRawWebhooksClient {
         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
         }
-        CompletableFuture<NordletApiHttpResponse<PostV1WebhooksSubscriptionsListResponse>> future = new CompletableFuture<>();
+        CompletableFuture<NordletApiHttpResponse<SubscriptionsListWebhooksResponse>> future = new CompletableFuture<>();
         client.newCall(okhttpRequest).enqueue(new Callback() {
           @Override
           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
             try (ResponseBody responseBody = response.body()) {
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1WebhooksSubscriptionsListResponse.class), response));
+                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubscriptionsListWebhooksResponse.class), response));
                 return;
               }
               try {
@@ -206,11 +212,15 @@ public class AsyncRawWebhooksClient {
                   return;
                   case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
+                  case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
                   case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
@@ -243,13 +253,13 @@ public class AsyncRawWebhooksClient {
         return future;
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksSubscriptionsUpdateResponse>> postV1WebhooksSubscriptionsUpdate(
-          PostV1WebhooksSubscriptionsUpdateRequest request) {
-        return postV1WebhooksSubscriptionsUpdate(request,null);
+      public CompletableFuture<NordletApiHttpResponse<SubscriptionsUpdateWebhooksResponse>> subscriptionsUpdate(
+          SubscriptionsUpdateWebhooksRequest request) {
+        return subscriptionsUpdate(request,null);
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksSubscriptionsUpdateResponse>> postV1WebhooksSubscriptionsUpdate(
-          PostV1WebhooksSubscriptionsUpdateRequest request, RequestOptions requestOptions) {
+      public CompletableFuture<NordletApiHttpResponse<SubscriptionsUpdateWebhooksResponse>> subscriptionsUpdate(
+          SubscriptionsUpdateWebhooksRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/webhooks/subscriptions/update");if (requestOptions != null) {
@@ -278,14 +288,14 @@ public class AsyncRawWebhooksClient {
           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
           }
-          CompletableFuture<NordletApiHttpResponse<PostV1WebhooksSubscriptionsUpdateResponse>> future = new CompletableFuture<>();
+          CompletableFuture<NordletApiHttpResponse<SubscriptionsUpdateWebhooksResponse>> future = new CompletableFuture<>();
           client.newCall(okhttpRequest).enqueue(new Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
               try (ResponseBody responseBody = response.body()) {
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1WebhooksSubscriptionsUpdateResponse.class), response));
+                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubscriptionsUpdateWebhooksResponse.class), response));
                   return;
                 }
                 try {
@@ -294,11 +304,15 @@ public class AsyncRawWebhooksClient {
                     return;
                     case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
+                    case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                    return;
                     case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                    return;
+                    case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
@@ -331,13 +345,13 @@ public class AsyncRawWebhooksClient {
           return future;
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksSubscriptionsDeleteResponse>> postV1WebhooksSubscriptionsDelete(
-            PostV1WebhooksSubscriptionsDeleteRequest request) {
-          return postV1WebhooksSubscriptionsDelete(request,null);
+        public CompletableFuture<NordletApiHttpResponse<SubscriptionsDeleteWebhooksResponse>> subscriptionsDelete(
+            SubscriptionsDeleteWebhooksRequest request) {
+          return subscriptionsDelete(request,null);
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksSubscriptionsDeleteResponse>> postV1WebhooksSubscriptionsDelete(
-            PostV1WebhooksSubscriptionsDeleteRequest request, RequestOptions requestOptions) {
+        public CompletableFuture<NordletApiHttpResponse<SubscriptionsDeleteWebhooksResponse>> subscriptionsDelete(
+            SubscriptionsDeleteWebhooksRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/webhooks/subscriptions/delete");if (requestOptions != null) {
@@ -366,14 +380,14 @@ public class AsyncRawWebhooksClient {
             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
             }
-            CompletableFuture<NordletApiHttpResponse<PostV1WebhooksSubscriptionsDeleteResponse>> future = new CompletableFuture<>();
+            CompletableFuture<NordletApiHttpResponse<SubscriptionsDeleteWebhooksResponse>> future = new CompletableFuture<>();
             client.newCall(okhttpRequest).enqueue(new Callback() {
               @Override
               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1WebhooksSubscriptionsDeleteResponse.class), response));
+                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubscriptionsDeleteWebhooksResponse.class), response));
                     return;
                   }
                   try {
@@ -382,11 +396,15 @@ public class AsyncRawWebhooksClient {
                       return;
                       case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
+                      case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                      return;
                       case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                      return;
+                      case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
@@ -419,23 +437,23 @@ public class AsyncRawWebhooksClient {
             return future;
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksDeliveriesListResponse>> postV1WebhooksDeliveriesList(
+          public CompletableFuture<NordletApiHttpResponse<DeliveriesListWebhooksResponse>> deliveriesList(
               ) {
-            return postV1WebhooksDeliveriesList(PostV1WebhooksDeliveriesListRequest.builder().build());
+            return deliveriesList(DeliveriesListWebhooksRequest.builder().build());
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksDeliveriesListResponse>> postV1WebhooksDeliveriesList(
+          public CompletableFuture<NordletApiHttpResponse<DeliveriesListWebhooksResponse>> deliveriesList(
               RequestOptions requestOptions) {
-            return postV1WebhooksDeliveriesList(PostV1WebhooksDeliveriesListRequest.builder().build(),requestOptions);
+            return deliveriesList(DeliveriesListWebhooksRequest.builder().build(),requestOptions);
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksDeliveriesListResponse>> postV1WebhooksDeliveriesList(
-              PostV1WebhooksDeliveriesListRequest request) {
-            return postV1WebhooksDeliveriesList(request,null);
+          public CompletableFuture<NordletApiHttpResponse<DeliveriesListWebhooksResponse>> deliveriesList(
+              DeliveriesListWebhooksRequest request) {
+            return deliveriesList(request,null);
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksDeliveriesListResponse>> postV1WebhooksDeliveriesList(
-              PostV1WebhooksDeliveriesListRequest request, RequestOptions requestOptions) {
+          public CompletableFuture<NordletApiHttpResponse<DeliveriesListWebhooksResponse>> deliveriesList(
+              DeliveriesListWebhooksRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
               .addPathSegments("v1/webhooks/deliveries/list");if (requestOptions != null) {
@@ -464,14 +482,14 @@ public class AsyncRawWebhooksClient {
               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
               }
-              CompletableFuture<NordletApiHttpResponse<PostV1WebhooksDeliveriesListResponse>> future = new CompletableFuture<>();
+              CompletableFuture<NordletApiHttpResponse<DeliveriesListWebhooksResponse>> future = new CompletableFuture<>();
               client.newCall(okhttpRequest).enqueue(new Callback() {
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                   try (ResponseBody responseBody = response.body()) {
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1WebhooksDeliveriesListResponse.class), response));
+                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeliveriesListWebhooksResponse.class), response));
                       return;
                     }
                     try {
@@ -480,11 +498,15 @@ public class AsyncRawWebhooksClient {
                         return;
                         case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
+                        case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                        return;
                         case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                        return;
+                        case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
@@ -517,13 +539,13 @@ public class AsyncRawWebhooksClient {
               return future;
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksDeliveriesRedeliverResponse>> postV1WebhooksDeliveriesRedeliver(
-                PostV1WebhooksDeliveriesRedeliverRequest request) {
-              return postV1WebhooksDeliveriesRedeliver(request,null);
+            public CompletableFuture<NordletApiHttpResponse<DeliveriesRedeliverWebhooksResponse>> deliveriesRedeliver(
+                DeliveriesRedeliverWebhooksRequest request) {
+              return deliveriesRedeliver(request,null);
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1WebhooksDeliveriesRedeliverResponse>> postV1WebhooksDeliveriesRedeliver(
-                PostV1WebhooksDeliveriesRedeliverRequest request, RequestOptions requestOptions) {
+            public CompletableFuture<NordletApiHttpResponse<DeliveriesRedeliverWebhooksResponse>> deliveriesRedeliver(
+                DeliveriesRedeliverWebhooksRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/webhooks/deliveries/redeliver");if (requestOptions != null) {
@@ -552,14 +574,14 @@ public class AsyncRawWebhooksClient {
                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                 }
-                CompletableFuture<NordletApiHttpResponse<PostV1WebhooksDeliveriesRedeliverResponse>> future = new CompletableFuture<>();
+                CompletableFuture<NordletApiHttpResponse<DeliveriesRedeliverWebhooksResponse>> future = new CompletableFuture<>();
                 client.newCall(okhttpRequest).enqueue(new Callback() {
                   @Override
                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     try (ResponseBody responseBody = response.body()) {
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1WebhooksDeliveriesRedeliverResponse.class), response));
+                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeliveriesRedeliverWebhooksResponse.class), response));
                         return;
                       }
                       try {
@@ -568,11 +590,15 @@ public class AsyncRawWebhooksClient {
                           return;
                           case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
+                          case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
                           case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
+                          case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;

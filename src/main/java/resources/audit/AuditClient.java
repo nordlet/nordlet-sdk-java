@@ -6,8 +6,8 @@ package com.nordlet.api.resources.audit;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.audit.requests.PostV1AuditListRequest;
-import com.nordlet.api.resources.audit.types.PostV1AuditListResponse;
+import com.nordlet.api.resources.audit.requests.ListAuditRequest;
+import com.nordlet.api.resources.audit.types.ListAuditResponse;
 
 public class AuditClient {
   protected final ClientOptions clientOptions;
@@ -26,20 +26,19 @@ public class AuditClient {
     return this.rawClient;
   }
 
-  public PostV1AuditListResponse postV1AuditList() {
-    return this.rawClient.postV1AuditList().body();
+  public ListAuditResponse list() {
+    return this.rawClient.list().body();
   }
 
-  public PostV1AuditListResponse postV1AuditList(RequestOptions requestOptions) {
-    return this.rawClient.postV1AuditList(requestOptions).body();
+  public ListAuditResponse list(RequestOptions requestOptions) {
+    return this.rawClient.list(requestOptions).body();
   }
 
-  public PostV1AuditListResponse postV1AuditList(PostV1AuditListRequest request) {
-    return this.rawClient.postV1AuditList(request).body();
+  public ListAuditResponse list(ListAuditRequest request) {
+    return this.rawClient.list(request).body();
   }
 
-  public PostV1AuditListResponse postV1AuditList(PostV1AuditListRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1AuditList(request, requestOptions).body();
+  public ListAuditResponse list(ListAuditRequest request, RequestOptions requestOptions) {
+    return this.rawClient.list(request, requestOptions).body();
   }
 }

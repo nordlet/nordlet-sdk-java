@@ -15,28 +15,30 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetAssignmentsCreateRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetAssignmentsEndRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetAssignmentsListRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetNaturaPreviewRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetVehiclesCreateRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetVehiclesGetRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetVehiclesListRequest;
-import com.nordlet.api.resources.fleet.requests.PostV1FleetVehiclesUpdateRequest;
-import com.nordlet.api.resources.fleet.types.PostV1FleetAssignmentsCreateResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetAssignmentsEndResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetAssignmentsListResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetNaturaPreviewResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetVehiclesCreateResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetVehiclesGetResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetVehiclesListResponse;
-import com.nordlet.api.resources.fleet.types.PostV1FleetVehiclesUpdateResponse;
+import com.nordlet.api.resources.fleet.requests.AssignmentsCreateFleetRequest;
+import com.nordlet.api.resources.fleet.requests.AssignmentsEndFleetRequest;
+import com.nordlet.api.resources.fleet.requests.AssignmentsListFleetRequest;
+import com.nordlet.api.resources.fleet.requests.NaturaPreviewFleetRequest;
+import com.nordlet.api.resources.fleet.requests.VehiclesCreateFleetRequest;
+import com.nordlet.api.resources.fleet.requests.VehiclesGetFleetRequest;
+import com.nordlet.api.resources.fleet.requests.VehiclesListFleetRequest;
+import com.nordlet.api.resources.fleet.requests.VehiclesUpdateFleetRequest;
+import com.nordlet.api.resources.fleet.types.AssignmentsCreateFleetResponse;
+import com.nordlet.api.resources.fleet.types.AssignmentsEndFleetResponse;
+import com.nordlet.api.resources.fleet.types.AssignmentsListFleetResponse;
+import com.nordlet.api.resources.fleet.types.NaturaPreviewFleetResponse;
+import com.nordlet.api.resources.fleet.types.VehiclesCreateFleetResponse;
+import com.nordlet.api.resources.fleet.types.VehiclesGetFleetResponse;
+import com.nordlet.api.resources.fleet.types.VehiclesListFleetResponse;
+import com.nordlet.api.resources.fleet.types.VehiclesUpdateFleetResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -61,13 +63,13 @@ public class AsyncRawFleetClient {
     this.clientOptions = clientOptions;
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1FleetVehiclesCreateResponse>> postV1FleetVehiclesCreate(
-      PostV1FleetVehiclesCreateRequest request) {
-    return postV1FleetVehiclesCreate(request,null);
+  public CompletableFuture<NordletApiHttpResponse<VehiclesCreateFleetResponse>> vehiclesCreate(
+      VehiclesCreateFleetRequest request) {
+    return vehiclesCreate(request,null);
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1FleetVehiclesCreateResponse>> postV1FleetVehiclesCreate(
-      PostV1FleetVehiclesCreateRequest request, RequestOptions requestOptions) {
+  public CompletableFuture<NordletApiHttpResponse<VehiclesCreateFleetResponse>> vehiclesCreate(
+      VehiclesCreateFleetRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/fleet/vehicles/create");if (requestOptions != null) {
@@ -96,14 +98,14 @@ public class AsyncRawFleetClient {
       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
       }
-      CompletableFuture<NordletApiHttpResponse<PostV1FleetVehiclesCreateResponse>> future = new CompletableFuture<>();
+      CompletableFuture<NordletApiHttpResponse<VehiclesCreateFleetResponse>> future = new CompletableFuture<>();
       client.newCall(okhttpRequest).enqueue(new Callback() {
         @Override
         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
           try (ResponseBody responseBody = response.body()) {
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FleetVehiclesCreateResponse.class), response));
+              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, VehiclesCreateFleetResponse.class), response));
               return;
             }
             try {
@@ -112,11 +114,15 @@ public class AsyncRawFleetClient {
                 return;
                 case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
+                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
                 case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
+                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
@@ -149,13 +155,13 @@ public class AsyncRawFleetClient {
       return future;
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1FleetVehiclesUpdateResponse>> postV1FleetVehiclesUpdate(
-        PostV1FleetVehiclesUpdateRequest request) {
-      return postV1FleetVehiclesUpdate(request,null);
+    public CompletableFuture<NordletApiHttpResponse<VehiclesUpdateFleetResponse>> vehiclesUpdate(
+        VehiclesUpdateFleetRequest request) {
+      return vehiclesUpdate(request,null);
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1FleetVehiclesUpdateResponse>> postV1FleetVehiclesUpdate(
-        PostV1FleetVehiclesUpdateRequest request, RequestOptions requestOptions) {
+    public CompletableFuture<NordletApiHttpResponse<VehiclesUpdateFleetResponse>> vehiclesUpdate(
+        VehiclesUpdateFleetRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/fleet/vehicles/update");if (requestOptions != null) {
@@ -184,14 +190,14 @@ public class AsyncRawFleetClient {
         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
         }
-        CompletableFuture<NordletApiHttpResponse<PostV1FleetVehiclesUpdateResponse>> future = new CompletableFuture<>();
+        CompletableFuture<NordletApiHttpResponse<VehiclesUpdateFleetResponse>> future = new CompletableFuture<>();
         client.newCall(okhttpRequest).enqueue(new Callback() {
           @Override
           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
             try (ResponseBody responseBody = response.body()) {
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FleetVehiclesUpdateResponse.class), response));
+                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, VehiclesUpdateFleetResponse.class), response));
                 return;
               }
               try {
@@ -200,11 +206,15 @@ public class AsyncRawFleetClient {
                   return;
                   case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
+                  case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
                   case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
@@ -237,13 +247,13 @@ public class AsyncRawFleetClient {
         return future;
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1FleetVehiclesGetResponse>> postV1FleetVehiclesGet(
-          PostV1FleetVehiclesGetRequest request) {
-        return postV1FleetVehiclesGet(request,null);
+      public CompletableFuture<NordletApiHttpResponse<VehiclesGetFleetResponse>> vehiclesGet(
+          VehiclesGetFleetRequest request) {
+        return vehiclesGet(request,null);
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1FleetVehiclesGetResponse>> postV1FleetVehiclesGet(
-          PostV1FleetVehiclesGetRequest request, RequestOptions requestOptions) {
+      public CompletableFuture<NordletApiHttpResponse<VehiclesGetFleetResponse>> vehiclesGet(
+          VehiclesGetFleetRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/fleet/vehicles/get");if (requestOptions != null) {
@@ -272,14 +282,14 @@ public class AsyncRawFleetClient {
           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
           }
-          CompletableFuture<NordletApiHttpResponse<PostV1FleetVehiclesGetResponse>> future = new CompletableFuture<>();
+          CompletableFuture<NordletApiHttpResponse<VehiclesGetFleetResponse>> future = new CompletableFuture<>();
           client.newCall(okhttpRequest).enqueue(new Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
               try (ResponseBody responseBody = response.body()) {
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FleetVehiclesGetResponse.class), response));
+                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, VehiclesGetFleetResponse.class), response));
                   return;
                 }
                 try {
@@ -288,11 +298,15 @@ public class AsyncRawFleetClient {
                     return;
                     case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
+                    case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                    return;
                     case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                    return;
+                    case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
@@ -325,23 +339,22 @@ public class AsyncRawFleetClient {
           return future;
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1FleetVehiclesListResponse>> postV1FleetVehiclesList(
-            ) {
-          return postV1FleetVehiclesList(PostV1FleetVehiclesListRequest.builder().build());
+        public CompletableFuture<NordletApiHttpResponse<VehiclesListFleetResponse>> vehiclesList() {
+          return vehiclesList(VehiclesListFleetRequest.builder().build());
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1FleetVehiclesListResponse>> postV1FleetVehiclesList(
+        public CompletableFuture<NordletApiHttpResponse<VehiclesListFleetResponse>> vehiclesList(
             RequestOptions requestOptions) {
-          return postV1FleetVehiclesList(PostV1FleetVehiclesListRequest.builder().build(),requestOptions);
+          return vehiclesList(VehiclesListFleetRequest.builder().build(),requestOptions);
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1FleetVehiclesListResponse>> postV1FleetVehiclesList(
-            PostV1FleetVehiclesListRequest request) {
-          return postV1FleetVehiclesList(request,null);
+        public CompletableFuture<NordletApiHttpResponse<VehiclesListFleetResponse>> vehiclesList(
+            VehiclesListFleetRequest request) {
+          return vehiclesList(request,null);
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1FleetVehiclesListResponse>> postV1FleetVehiclesList(
-            PostV1FleetVehiclesListRequest request, RequestOptions requestOptions) {
+        public CompletableFuture<NordletApiHttpResponse<VehiclesListFleetResponse>> vehiclesList(
+            VehiclesListFleetRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/fleet/vehicles/list");if (requestOptions != null) {
@@ -370,14 +383,14 @@ public class AsyncRawFleetClient {
             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
             }
-            CompletableFuture<NordletApiHttpResponse<PostV1FleetVehiclesListResponse>> future = new CompletableFuture<>();
+            CompletableFuture<NordletApiHttpResponse<VehiclesListFleetResponse>> future = new CompletableFuture<>();
             client.newCall(okhttpRequest).enqueue(new Callback() {
               @Override
               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FleetVehiclesListResponse.class), response));
+                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, VehiclesListFleetResponse.class), response));
                     return;
                   }
                   try {
@@ -386,11 +399,15 @@ public class AsyncRawFleetClient {
                       return;
                       case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
+                      case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                      return;
                       case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                      return;
+                      case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
@@ -423,13 +440,13 @@ public class AsyncRawFleetClient {
             return future;
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1FleetAssignmentsCreateResponse>> postV1FleetAssignmentsCreate(
-              PostV1FleetAssignmentsCreateRequest request) {
-            return postV1FleetAssignmentsCreate(request,null);
+          public CompletableFuture<NordletApiHttpResponse<AssignmentsCreateFleetResponse>> assignmentsCreate(
+              AssignmentsCreateFleetRequest request) {
+            return assignmentsCreate(request,null);
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1FleetAssignmentsCreateResponse>> postV1FleetAssignmentsCreate(
-              PostV1FleetAssignmentsCreateRequest request, RequestOptions requestOptions) {
+          public CompletableFuture<NordletApiHttpResponse<AssignmentsCreateFleetResponse>> assignmentsCreate(
+              AssignmentsCreateFleetRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
               .addPathSegments("v1/fleet/assignments/create");if (requestOptions != null) {
@@ -458,14 +475,14 @@ public class AsyncRawFleetClient {
               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
               }
-              CompletableFuture<NordletApiHttpResponse<PostV1FleetAssignmentsCreateResponse>> future = new CompletableFuture<>();
+              CompletableFuture<NordletApiHttpResponse<AssignmentsCreateFleetResponse>> future = new CompletableFuture<>();
               client.newCall(okhttpRequest).enqueue(new Callback() {
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                   try (ResponseBody responseBody = response.body()) {
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FleetAssignmentsCreateResponse.class), response));
+                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssignmentsCreateFleetResponse.class), response));
                       return;
                     }
                     try {
@@ -474,11 +491,15 @@ public class AsyncRawFleetClient {
                         return;
                         case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
+                        case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                        return;
                         case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                        return;
+                        case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
@@ -511,13 +532,13 @@ public class AsyncRawFleetClient {
               return future;
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1FleetAssignmentsEndResponse>> postV1FleetAssignmentsEnd(
-                PostV1FleetAssignmentsEndRequest request) {
-              return postV1FleetAssignmentsEnd(request,null);
+            public CompletableFuture<NordletApiHttpResponse<AssignmentsEndFleetResponse>> assignmentsEnd(
+                AssignmentsEndFleetRequest request) {
+              return assignmentsEnd(request,null);
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1FleetAssignmentsEndResponse>> postV1FleetAssignmentsEnd(
-                PostV1FleetAssignmentsEndRequest request, RequestOptions requestOptions) {
+            public CompletableFuture<NordletApiHttpResponse<AssignmentsEndFleetResponse>> assignmentsEnd(
+                AssignmentsEndFleetRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/fleet/assignments/end");if (requestOptions != null) {
@@ -546,14 +567,14 @@ public class AsyncRawFleetClient {
                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                 }
-                CompletableFuture<NordletApiHttpResponse<PostV1FleetAssignmentsEndResponse>> future = new CompletableFuture<>();
+                CompletableFuture<NordletApiHttpResponse<AssignmentsEndFleetResponse>> future = new CompletableFuture<>();
                 client.newCall(okhttpRequest).enqueue(new Callback() {
                   @Override
                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     try (ResponseBody responseBody = response.body()) {
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FleetAssignmentsEndResponse.class), response));
+                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssignmentsEndFleetResponse.class), response));
                         return;
                       }
                       try {
@@ -562,11 +583,15 @@ public class AsyncRawFleetClient {
                           return;
                           case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
+                          case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
                           case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
+                          case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
@@ -599,23 +624,23 @@ public class AsyncRawFleetClient {
                 return future;
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1FleetAssignmentsListResponse>> postV1FleetAssignmentsList(
+              public CompletableFuture<NordletApiHttpResponse<AssignmentsListFleetResponse>> assignmentsList(
                   ) {
-                return postV1FleetAssignmentsList(PostV1FleetAssignmentsListRequest.builder().build());
+                return assignmentsList(AssignmentsListFleetRequest.builder().build());
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1FleetAssignmentsListResponse>> postV1FleetAssignmentsList(
+              public CompletableFuture<NordletApiHttpResponse<AssignmentsListFleetResponse>> assignmentsList(
                   RequestOptions requestOptions) {
-                return postV1FleetAssignmentsList(PostV1FleetAssignmentsListRequest.builder().build(),requestOptions);
+                return assignmentsList(AssignmentsListFleetRequest.builder().build(),requestOptions);
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1FleetAssignmentsListResponse>> postV1FleetAssignmentsList(
-                  PostV1FleetAssignmentsListRequest request) {
-                return postV1FleetAssignmentsList(request,null);
+              public CompletableFuture<NordletApiHttpResponse<AssignmentsListFleetResponse>> assignmentsList(
+                  AssignmentsListFleetRequest request) {
+                return assignmentsList(request,null);
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1FleetAssignmentsListResponse>> postV1FleetAssignmentsList(
-                  PostV1FleetAssignmentsListRequest request, RequestOptions requestOptions) {
+              public CompletableFuture<NordletApiHttpResponse<AssignmentsListFleetResponse>> assignmentsList(
+                  AssignmentsListFleetRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                   .addPathSegments("v1/fleet/assignments/list");if (requestOptions != null) {
@@ -644,14 +669,14 @@ public class AsyncRawFleetClient {
                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                   }
-                  CompletableFuture<NordletApiHttpResponse<PostV1FleetAssignmentsListResponse>> future = new CompletableFuture<>();
+                  CompletableFuture<NordletApiHttpResponse<AssignmentsListFleetResponse>> future = new CompletableFuture<>();
                   client.newCall(okhttpRequest).enqueue(new Callback() {
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                       try (ResponseBody responseBody = response.body()) {
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FleetAssignmentsListResponse.class), response));
+                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssignmentsListFleetResponse.class), response));
                           return;
                         }
                         try {
@@ -660,11 +685,15 @@ public class AsyncRawFleetClient {
                             return;
                             case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
+                            case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
                             case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
                             case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
                             case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
+                            case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
                             case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
@@ -697,13 +726,13 @@ public class AsyncRawFleetClient {
                   return future;
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1FleetNaturaPreviewResponse>> postV1FleetNaturaPreview(
-                    PostV1FleetNaturaPreviewRequest request) {
-                  return postV1FleetNaturaPreview(request,null);
+                public CompletableFuture<NordletApiHttpResponse<NaturaPreviewFleetResponse>> naturaPreview(
+                    NaturaPreviewFleetRequest request) {
+                  return naturaPreview(request,null);
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1FleetNaturaPreviewResponse>> postV1FleetNaturaPreview(
-                    PostV1FleetNaturaPreviewRequest request, RequestOptions requestOptions) {
+                public CompletableFuture<NordletApiHttpResponse<NaturaPreviewFleetResponse>> naturaPreview(
+                    NaturaPreviewFleetRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                     .addPathSegments("v1/fleet/natura/preview");if (requestOptions != null) {
@@ -732,14 +761,14 @@ public class AsyncRawFleetClient {
                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                     }
-                    CompletableFuture<NordletApiHttpResponse<PostV1FleetNaturaPreviewResponse>> future = new CompletableFuture<>();
+                    CompletableFuture<NordletApiHttpResponse<NaturaPreviewFleetResponse>> future = new CompletableFuture<>();
                     client.newCall(okhttpRequest).enqueue(new Callback() {
                       @Override
                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         try (ResponseBody responseBody = response.body()) {
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FleetNaturaPreviewResponse.class), response));
+                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, NaturaPreviewFleetResponse.class), response));
                             return;
                           }
                           try {
@@ -748,11 +777,15 @@ public class AsyncRawFleetClient {
                               return;
                               case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
+                              case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                              return;
                               case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
                               case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
                               case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                              return;
+                              case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
                               case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;

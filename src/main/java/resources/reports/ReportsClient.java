@@ -6,66 +6,66 @@ package com.nordlet.api.resources.reports;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsAdvanceReconciliationRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsCashFlowRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsCostCenterActivityRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsCostCenterItemsRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsCostCentersRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsDatevRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsDebtAgingRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsEuPurchasesRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsFecRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsFinancialStatementsRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsGeneralJournalRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsGlDetailRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsJobsCreateRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsJobsGetRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsJobsListRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsMonthlySummaryRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsOnlineSalesRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsOssRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsPartnerBalancesRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsPosSalesRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsSieRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsSizeCategoryRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsStockAgingRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsStockBalanceRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsStockMovementRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsStockShortageRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsTrialBalanceRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsVatDetailRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsVatSummaryRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsWriteOffActsRequest;
-import com.nordlet.api.resources.reports.types.PostV1ReportsAdvanceReconciliationResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsCashFlowResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsCostCenterActivityResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsCostCenterItemsResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsCostCentersResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsDatevResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsDebtAgingResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsEuPurchasesResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsFecResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsFinancialStatementsResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsGeneralJournalResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsGlDetailResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsJobsCreateResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsJobsGetResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsJobsListResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsMonthlySummaryResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsOnlineSalesResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsOssResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsPartnerBalancesResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsPosSalesResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsSieResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsSizeCategoryResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsStockAgingResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsStockBalanceResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsStockMovementResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsStockShortageResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsTrialBalanceResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsVatDetailResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsVatSummaryResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsWriteOffActsResponse;
+import com.nordlet.api.resources.reports.requests.AdvanceReconciliationReportsRequest;
+import com.nordlet.api.resources.reports.requests.CashFlowReportsRequest;
+import com.nordlet.api.resources.reports.requests.CostCenterActivityReportsRequest;
+import com.nordlet.api.resources.reports.requests.CostCenterItemsReportsRequest;
+import com.nordlet.api.resources.reports.requests.CostCentersReportsRequest;
+import com.nordlet.api.resources.reports.requests.DatevReportsRequest;
+import com.nordlet.api.resources.reports.requests.DebtAgingReportsRequest;
+import com.nordlet.api.resources.reports.requests.EuPurchasesReportsRequest;
+import com.nordlet.api.resources.reports.requests.FecReportsRequest;
+import com.nordlet.api.resources.reports.requests.FinancialStatementsReportsRequest;
+import com.nordlet.api.resources.reports.requests.GeneralJournalReportsRequest;
+import com.nordlet.api.resources.reports.requests.GlDetailReportsRequest;
+import com.nordlet.api.resources.reports.requests.JobsCreateReportsRequest;
+import com.nordlet.api.resources.reports.requests.JobsGetReportsRequest;
+import com.nordlet.api.resources.reports.requests.JobsListReportsRequest;
+import com.nordlet.api.resources.reports.requests.MonthlySummaryReportsRequest;
+import com.nordlet.api.resources.reports.requests.OnlineSalesReportsRequest;
+import com.nordlet.api.resources.reports.requests.OssReportsRequest;
+import com.nordlet.api.resources.reports.requests.PartnerBalancesReportsRequest;
+import com.nordlet.api.resources.reports.requests.PosSalesReportsRequest;
+import com.nordlet.api.resources.reports.requests.SieReportsRequest;
+import com.nordlet.api.resources.reports.requests.SizeCategoryReportsRequest;
+import com.nordlet.api.resources.reports.requests.StockAgingReportsRequest;
+import com.nordlet.api.resources.reports.requests.StockBalanceReportsRequest;
+import com.nordlet.api.resources.reports.requests.StockMovementReportsRequest;
+import com.nordlet.api.resources.reports.requests.StockShortageReportsRequest;
+import com.nordlet.api.resources.reports.requests.TrialBalanceReportsRequest;
+import com.nordlet.api.resources.reports.requests.VatDetailReportsRequest;
+import com.nordlet.api.resources.reports.requests.VatSummaryReportsRequest;
+import com.nordlet.api.resources.reports.requests.WriteOffActsReportsRequest;
+import com.nordlet.api.resources.reports.types.AdvanceReconciliationReportsResponse;
+import com.nordlet.api.resources.reports.types.CashFlowReportsResponse;
+import com.nordlet.api.resources.reports.types.CostCenterActivityReportsResponse;
+import com.nordlet.api.resources.reports.types.CostCenterItemsReportsResponse;
+import com.nordlet.api.resources.reports.types.CostCentersReportsResponse;
+import com.nordlet.api.resources.reports.types.DatevReportsResponse;
+import com.nordlet.api.resources.reports.types.DebtAgingReportsResponse;
+import com.nordlet.api.resources.reports.types.EuPurchasesReportsResponse;
+import com.nordlet.api.resources.reports.types.FecReportsResponse;
+import com.nordlet.api.resources.reports.types.FinancialStatementsReportsResponse;
+import com.nordlet.api.resources.reports.types.GeneralJournalReportsResponse;
+import com.nordlet.api.resources.reports.types.GlDetailReportsResponse;
+import com.nordlet.api.resources.reports.types.JobsCreateReportsResponse;
+import com.nordlet.api.resources.reports.types.JobsGetReportsResponse;
+import com.nordlet.api.resources.reports.types.JobsListReportsResponse;
+import com.nordlet.api.resources.reports.types.MonthlySummaryReportsResponse;
+import com.nordlet.api.resources.reports.types.OnlineSalesReportsResponse;
+import com.nordlet.api.resources.reports.types.OssReportsResponse;
+import com.nordlet.api.resources.reports.types.PartnerBalancesReportsResponse;
+import com.nordlet.api.resources.reports.types.PosSalesReportsResponse;
+import com.nordlet.api.resources.reports.types.SieReportsResponse;
+import com.nordlet.api.resources.reports.types.SizeCategoryReportsResponse;
+import com.nordlet.api.resources.reports.types.StockAgingReportsResponse;
+import com.nordlet.api.resources.reports.types.StockBalanceReportsResponse;
+import com.nordlet.api.resources.reports.types.StockMovementReportsResponse;
+import com.nordlet.api.resources.reports.types.StockShortageReportsResponse;
+import com.nordlet.api.resources.reports.types.TrialBalanceReportsResponse;
+import com.nordlet.api.resources.reports.types.VatDetailReportsResponse;
+import com.nordlet.api.resources.reports.types.VatSummaryReportsResponse;
+import com.nordlet.api.resources.reports.types.WriteOffActsReportsResponse;
 
 public class ReportsClient {
   protected final ClientOptions clientOptions;
@@ -84,355 +84,330 @@ public class ReportsClient {
     return this.rawClient;
   }
 
-  public PostV1ReportsTrialBalanceResponse postV1ReportsTrialBalance(
-      PostV1ReportsTrialBalanceRequest request) {
-    return this.rawClient.postV1ReportsTrialBalance(request).body();
+  public TrialBalanceReportsResponse trialBalance(TrialBalanceReportsRequest request) {
+    return this.rawClient.trialBalance(request).body();
   }
 
-  public PostV1ReportsTrialBalanceResponse postV1ReportsTrialBalance(
-      PostV1ReportsTrialBalanceRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsTrialBalance(request, requestOptions).body();
-  }
-
-  public PostV1ReportsSizeCategoryResponse postV1ReportsSizeCategory(
-      PostV1ReportsSizeCategoryRequest request) {
-    return this.rawClient.postV1ReportsSizeCategory(request).body();
-  }
-
-  public PostV1ReportsSizeCategoryResponse postV1ReportsSizeCategory(
-      PostV1ReportsSizeCategoryRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsSizeCategory(request, requestOptions).body();
-  }
-
-  public PostV1ReportsFinancialStatementsResponse postV1ReportsFinancialStatements(
-      PostV1ReportsFinancialStatementsRequest request) {
-    return this.rawClient.postV1ReportsFinancialStatements(request).body();
-  }
-
-  public PostV1ReportsFinancialStatementsResponse postV1ReportsFinancialStatements(
-      PostV1ReportsFinancialStatementsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsFinancialStatements(request, requestOptions).body();
-  }
-
-  public PostV1ReportsGeneralJournalResponse postV1ReportsGeneralJournal(
-      PostV1ReportsGeneralJournalRequest request) {
-    return this.rawClient.postV1ReportsGeneralJournal(request).body();
-  }
-
-  public PostV1ReportsGeneralJournalResponse postV1ReportsGeneralJournal(
-      PostV1ReportsGeneralJournalRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsGeneralJournal(request, requestOptions).body();
-  }
-
-  public PostV1ReportsGlDetailResponse postV1ReportsGlDetail(PostV1ReportsGlDetailRequest request) {
-    return this.rawClient.postV1ReportsGlDetail(request).body();
-  }
-
-  public PostV1ReportsGlDetailResponse postV1ReportsGlDetail(PostV1ReportsGlDetailRequest request,
+  public TrialBalanceReportsResponse trialBalance(TrialBalanceReportsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsGlDetail(request, requestOptions).body();
+    return this.rawClient.trialBalance(request, requestOptions).body();
   }
 
-  public PostV1ReportsPartnerBalancesResponse postV1ReportsPartnerBalances() {
-    return this.rawClient.postV1ReportsPartnerBalances().body();
+  public SizeCategoryReportsResponse sizeCategory(SizeCategoryReportsRequest request) {
+    return this.rawClient.sizeCategory(request).body();
   }
 
-  public PostV1ReportsPartnerBalancesResponse postV1ReportsPartnerBalances(
+  public SizeCategoryReportsResponse sizeCategory(SizeCategoryReportsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsPartnerBalances(requestOptions).body();
+    return this.rawClient.sizeCategory(request, requestOptions).body();
   }
 
-  public PostV1ReportsPartnerBalancesResponse postV1ReportsPartnerBalances(
-      PostV1ReportsPartnerBalancesRequest request) {
-    return this.rawClient.postV1ReportsPartnerBalances(request).body();
+  public FinancialStatementsReportsResponse financialStatements(
+      FinancialStatementsReportsRequest request) {
+    return this.rawClient.financialStatements(request).body();
   }
 
-  public PostV1ReportsPartnerBalancesResponse postV1ReportsPartnerBalances(
-      PostV1ReportsPartnerBalancesRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsPartnerBalances(request, requestOptions).body();
+  public FinancialStatementsReportsResponse financialStatements(
+      FinancialStatementsReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.financialStatements(request, requestOptions).body();
   }
 
-  public PostV1ReportsDebtAgingResponse postV1ReportsDebtAging() {
-    return this.rawClient.postV1ReportsDebtAging().body();
+  public GeneralJournalReportsResponse generalJournal(GeneralJournalReportsRequest request) {
+    return this.rawClient.generalJournal(request).body();
   }
 
-  public PostV1ReportsDebtAgingResponse postV1ReportsDebtAging(RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsDebtAging(requestOptions).body();
-  }
-
-  public PostV1ReportsDebtAgingResponse postV1ReportsDebtAging(
-      PostV1ReportsDebtAgingRequest request) {
-    return this.rawClient.postV1ReportsDebtAging(request).body();
-  }
-
-  public PostV1ReportsDebtAgingResponse postV1ReportsDebtAging(
-      PostV1ReportsDebtAgingRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsDebtAging(request, requestOptions).body();
-  }
-
-  public PostV1ReportsMonthlySummaryResponse postV1ReportsMonthlySummary() {
-    return this.rawClient.postV1ReportsMonthlySummary().body();
-  }
-
-  public PostV1ReportsMonthlySummaryResponse postV1ReportsMonthlySummary(
+  public GeneralJournalReportsResponse generalJournal(GeneralJournalReportsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsMonthlySummary(requestOptions).body();
+    return this.rawClient.generalJournal(request, requestOptions).body();
   }
 
-  public PostV1ReportsMonthlySummaryResponse postV1ReportsMonthlySummary(
-      PostV1ReportsMonthlySummaryRequest request) {
-    return this.rawClient.postV1ReportsMonthlySummary(request).body();
+  public GlDetailReportsResponse glDetail(GlDetailReportsRequest request) {
+    return this.rawClient.glDetail(request).body();
   }
 
-  public PostV1ReportsMonthlySummaryResponse postV1ReportsMonthlySummary(
-      PostV1ReportsMonthlySummaryRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsMonthlySummary(request, requestOptions).body();
-  }
-
-  public PostV1ReportsStockBalanceResponse postV1ReportsStockBalance(
-      PostV1ReportsStockBalanceRequest request) {
-    return this.rawClient.postV1ReportsStockBalance(request).body();
-  }
-
-  public PostV1ReportsStockBalanceResponse postV1ReportsStockBalance(
-      PostV1ReportsStockBalanceRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsStockBalance(request, requestOptions).body();
-  }
-
-  public PostV1ReportsStockMovementResponse postV1ReportsStockMovement(
-      PostV1ReportsStockMovementRequest request) {
-    return this.rawClient.postV1ReportsStockMovement(request).body();
-  }
-
-  public PostV1ReportsStockMovementResponse postV1ReportsStockMovement(
-      PostV1ReportsStockMovementRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsStockMovement(request, requestOptions).body();
-  }
-
-  public PostV1ReportsVatSummaryResponse postV1ReportsVatSummary(
-      PostV1ReportsVatSummaryRequest request) {
-    return this.rawClient.postV1ReportsVatSummary(request).body();
-  }
-
-  public PostV1ReportsVatSummaryResponse postV1ReportsVatSummary(
-      PostV1ReportsVatSummaryRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsVatSummary(request, requestOptions).body();
-  }
-
-  public PostV1ReportsCashFlowResponse postV1ReportsCashFlow(PostV1ReportsCashFlowRequest request) {
-    return this.rawClient.postV1ReportsCashFlow(request).body();
-  }
-
-  public PostV1ReportsCashFlowResponse postV1ReportsCashFlow(PostV1ReportsCashFlowRequest request,
+  public GlDetailReportsResponse glDetail(GlDetailReportsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsCashFlow(request, requestOptions).body();
+    return this.rawClient.glDetail(request, requestOptions).body();
   }
 
-  public PostV1ReportsStockAgingResponse postV1ReportsStockAging(
-      PostV1ReportsStockAgingRequest request) {
-    return this.rawClient.postV1ReportsStockAging(request).body();
+  public PartnerBalancesReportsResponse partnerBalances() {
+    return this.rawClient.partnerBalances().body();
   }
 
-  public PostV1ReportsStockAgingResponse postV1ReportsStockAging(
-      PostV1ReportsStockAgingRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsStockAging(request, requestOptions).body();
+  public PartnerBalancesReportsResponse partnerBalances(RequestOptions requestOptions) {
+    return this.rawClient.partnerBalances(requestOptions).body();
   }
 
-  public PostV1ReportsStockShortageResponse postV1ReportsStockShortage() {
-    return this.rawClient.postV1ReportsStockShortage().body();
+  public PartnerBalancesReportsResponse partnerBalances(PartnerBalancesReportsRequest request) {
+    return this.rawClient.partnerBalances(request).body();
   }
 
-  public PostV1ReportsStockShortageResponse postV1ReportsStockShortage(
+  public PartnerBalancesReportsResponse partnerBalances(PartnerBalancesReportsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsStockShortage(requestOptions).body();
+    return this.rawClient.partnerBalances(request, requestOptions).body();
   }
 
-  public PostV1ReportsStockShortageResponse postV1ReportsStockShortage(
-      PostV1ReportsStockShortageRequest request) {
-    return this.rawClient.postV1ReportsStockShortage(request).body();
+  public DebtAgingReportsResponse debtAging() {
+    return this.rawClient.debtAging().body();
   }
 
-  public PostV1ReportsStockShortageResponse postV1ReportsStockShortage(
-      PostV1ReportsStockShortageRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsStockShortage(request, requestOptions).body();
+  public DebtAgingReportsResponse debtAging(RequestOptions requestOptions) {
+    return this.rawClient.debtAging(requestOptions).body();
+  }
+
+  public DebtAgingReportsResponse debtAging(DebtAgingReportsRequest request) {
+    return this.rawClient.debtAging(request).body();
+  }
+
+  public DebtAgingReportsResponse debtAging(DebtAgingReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.debtAging(request, requestOptions).body();
+  }
+
+  public MonthlySummaryReportsResponse monthlySummary() {
+    return this.rawClient.monthlySummary().body();
+  }
+
+  public MonthlySummaryReportsResponse monthlySummary(RequestOptions requestOptions) {
+    return this.rawClient.monthlySummary(requestOptions).body();
+  }
+
+  public MonthlySummaryReportsResponse monthlySummary(MonthlySummaryReportsRequest request) {
+    return this.rawClient.monthlySummary(request).body();
+  }
+
+  public MonthlySummaryReportsResponse monthlySummary(MonthlySummaryReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.monthlySummary(request, requestOptions).body();
+  }
+
+  public StockBalanceReportsResponse stockBalance(StockBalanceReportsRequest request) {
+    return this.rawClient.stockBalance(request).body();
+  }
+
+  public StockBalanceReportsResponse stockBalance(StockBalanceReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.stockBalance(request, requestOptions).body();
+  }
+
+  public StockMovementReportsResponse stockMovement(StockMovementReportsRequest request) {
+    return this.rawClient.stockMovement(request).body();
+  }
+
+  public StockMovementReportsResponse stockMovement(StockMovementReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.stockMovement(request, requestOptions).body();
+  }
+
+  public VatSummaryReportsResponse vatSummary(VatSummaryReportsRequest request) {
+    return this.rawClient.vatSummary(request).body();
+  }
+
+  public VatSummaryReportsResponse vatSummary(VatSummaryReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.vatSummary(request, requestOptions).body();
+  }
+
+  public CashFlowReportsResponse cashFlow(CashFlowReportsRequest request) {
+    return this.rawClient.cashFlow(request).body();
+  }
+
+  public CashFlowReportsResponse cashFlow(CashFlowReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.cashFlow(request, requestOptions).body();
+  }
+
+  public StockAgingReportsResponse stockAging(StockAgingReportsRequest request) {
+    return this.rawClient.stockAging(request).body();
+  }
+
+  public StockAgingReportsResponse stockAging(StockAgingReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.stockAging(request, requestOptions).body();
+  }
+
+  public StockShortageReportsResponse stockShortage() {
+    return this.rawClient.stockShortage().body();
+  }
+
+  public StockShortageReportsResponse stockShortage(RequestOptions requestOptions) {
+    return this.rawClient.stockShortage(requestOptions).body();
+  }
+
+  public StockShortageReportsResponse stockShortage(StockShortageReportsRequest request) {
+    return this.rawClient.stockShortage(request).body();
+  }
+
+  public StockShortageReportsResponse stockShortage(StockShortageReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.stockShortage(request, requestOptions).body();
   }
 
   /**
    * Export the ledger of one financial year as an SIE file (the Swedish standard accounting interchange format, specification 4B). The file carries the chart of accounts, the opening and closing balance of every balance sheet account and the turnover of every result account for the year and the year before it, and, when asked for, every posted voucher of the year with its lines. Cost centres travel as dimension 1 and projects as dimension 6. Services that build a Swedish annual report read this file.
    */
-  public PostV1ReportsSieResponse postV1ReportsSie(PostV1ReportsSieRequest request) {
-    return this.rawClient.postV1ReportsSie(request).body();
+  public SieReportsResponse sie(SieReportsRequest request) {
+    return this.rawClient.sie(request).body();
   }
 
   /**
    * Export the ledger of one financial year as an SIE file (the Swedish standard accounting interchange format, specification 4B). The file carries the chart of accounts, the opening and closing balance of every balance sheet account and the turnover of every result account for the year and the year before it, and, when asked for, every posted voucher of the year with its lines. Cost centres travel as dimension 1 and projects as dimension 6. Services that build a Swedish annual report read this file.
    */
-  public PostV1ReportsSieResponse postV1ReportsSie(PostV1ReportsSieRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsSie(request, requestOptions).body();
+  public SieReportsResponse sie(SieReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.sie(request, requestOptions).body();
   }
 
   /**
    * Export the posted ledger of a period as a DATEV Buchungsstapel file (DATEV format, category 21, version 700). Every transaction becomes one or more bookings of an amount between an account and a contra account; a transaction with more than two lines is split into pairs whose totals match it. The file is semicolon separated and written in the Windows-1252 character set DATEV expects.
    */
-  public PostV1ReportsDatevResponse postV1ReportsDatev(PostV1ReportsDatevRequest request) {
-    return this.rawClient.postV1ReportsDatev(request).body();
+  public DatevReportsResponse datev(DatevReportsRequest request) {
+    return this.rawClient.datev(request).body();
   }
 
   /**
    * Export the posted ledger of a period as a DATEV Buchungsstapel file (DATEV format, category 21, version 700). Every transaction becomes one or more bookings of an amount between an account and a contra account; a transaction with more than two lines is split into pairs whose totals match it. The file is semicolon separated and written in the Windows-1252 character set DATEV expects.
    */
-  public PostV1ReportsDatevResponse postV1ReportsDatev(PostV1ReportsDatevRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsDatev(request, requestOptions).body();
+  public DatevReportsResponse datev(DatevReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.datev(request, requestOptions).body();
   }
 
   /**
    * Export the posted ledger of a period as a French FEC file (fichier des écritures comptables, order of 29 July 2013). One line per journal entry line, with the eighteen fields the order names, in their order, after a header line. Tab separated, UTF-8, comma as the decimal separator.
    */
-  public PostV1ReportsFecResponse postV1ReportsFec(PostV1ReportsFecRequest request) {
-    return this.rawClient.postV1ReportsFec(request).body();
+  public FecReportsResponse fec(FecReportsRequest request) {
+    return this.rawClient.fec(request).body();
   }
 
   /**
    * Export the posted ledger of a period as a French FEC file (fichier des écritures comptables, order of 29 July 2013). One line per journal entry line, with the eighteen fields the order names, in their order, after a header line. Tab separated, UTF-8, comma as the decimal separator.
    */
-  public PostV1ReportsFecResponse postV1ReportsFec(PostV1ReportsFecRequest request,
+  public FecReportsResponse fec(FecReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.fec(request, requestOptions).body();
+  }
+
+  public EuPurchasesReportsResponse euPurchases(EuPurchasesReportsRequest request) {
+    return this.rawClient.euPurchases(request).body();
+  }
+
+  public EuPurchasesReportsResponse euPurchases(EuPurchasesReportsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsFec(request, requestOptions).body();
+    return this.rawClient.euPurchases(request, requestOptions).body();
   }
 
-  public PostV1ReportsEuPurchasesResponse postV1ReportsEuPurchases(
-      PostV1ReportsEuPurchasesRequest request) {
-    return this.rawClient.postV1ReportsEuPurchases(request).body();
+  public VatDetailReportsResponse vatDetail(VatDetailReportsRequest request) {
+    return this.rawClient.vatDetail(request).body();
   }
 
-  public PostV1ReportsEuPurchasesResponse postV1ReportsEuPurchases(
-      PostV1ReportsEuPurchasesRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsEuPurchases(request, requestOptions).body();
-  }
-
-  public PostV1ReportsVatDetailResponse postV1ReportsVatDetail(
-      PostV1ReportsVatDetailRequest request) {
-    return this.rawClient.postV1ReportsVatDetail(request).body();
-  }
-
-  public PostV1ReportsVatDetailResponse postV1ReportsVatDetail(
-      PostV1ReportsVatDetailRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsVatDetail(request, requestOptions).body();
-  }
-
-  public PostV1ReportsPosSalesResponse postV1ReportsPosSales(PostV1ReportsPosSalesRequest request) {
-    return this.rawClient.postV1ReportsPosSales(request).body();
-  }
-
-  public PostV1ReportsPosSalesResponse postV1ReportsPosSales(PostV1ReportsPosSalesRequest request,
+  public VatDetailReportsResponse vatDetail(VatDetailReportsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsPosSales(request, requestOptions).body();
+    return this.rawClient.vatDetail(request, requestOptions).body();
   }
 
-  public PostV1ReportsOnlineSalesResponse postV1ReportsOnlineSales(
-      PostV1ReportsOnlineSalesRequest request) {
-    return this.rawClient.postV1ReportsOnlineSales(request).body();
+  public PosSalesReportsResponse posSales(PosSalesReportsRequest request) {
+    return this.rawClient.posSales(request).body();
   }
 
-  public PostV1ReportsOnlineSalesResponse postV1ReportsOnlineSales(
-      PostV1ReportsOnlineSalesRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsOnlineSales(request, requestOptions).body();
-  }
-
-  public PostV1ReportsOssResponse postV1ReportsOss(PostV1ReportsOssRequest request) {
-    return this.rawClient.postV1ReportsOss(request).body();
-  }
-
-  public PostV1ReportsOssResponse postV1ReportsOss(PostV1ReportsOssRequest request,
+  public PosSalesReportsResponse posSales(PosSalesReportsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsOss(request, requestOptions).body();
+    return this.rawClient.posSales(request, requestOptions).body();
   }
 
-  public PostV1ReportsAdvanceReconciliationResponse postV1ReportsAdvanceReconciliation(
-      PostV1ReportsAdvanceReconciliationRequest request) {
-    return this.rawClient.postV1ReportsAdvanceReconciliation(request).body();
+  public OnlineSalesReportsResponse onlineSales(OnlineSalesReportsRequest request) {
+    return this.rawClient.onlineSales(request).body();
   }
 
-  public PostV1ReportsAdvanceReconciliationResponse postV1ReportsAdvanceReconciliation(
-      PostV1ReportsAdvanceReconciliationRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsAdvanceReconciliation(request, requestOptions).body();
-  }
-
-  public PostV1ReportsWriteOffActsResponse postV1ReportsWriteOffActs(
-      PostV1ReportsWriteOffActsRequest request) {
-    return this.rawClient.postV1ReportsWriteOffActs(request).body();
-  }
-
-  public PostV1ReportsWriteOffActsResponse postV1ReportsWriteOffActs(
-      PostV1ReportsWriteOffActsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsWriteOffActs(request, requestOptions).body();
-  }
-
-  public PostV1ReportsCostCentersResponse postV1ReportsCostCenters(
-      PostV1ReportsCostCentersRequest request) {
-    return this.rawClient.postV1ReportsCostCenters(request).body();
-  }
-
-  public PostV1ReportsCostCentersResponse postV1ReportsCostCenters(
-      PostV1ReportsCostCentersRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsCostCenters(request, requestOptions).body();
-  }
-
-  public PostV1ReportsCostCenterActivityResponse postV1ReportsCostCenterActivity(
-      PostV1ReportsCostCenterActivityRequest request) {
-    return this.rawClient.postV1ReportsCostCenterActivity(request).body();
-  }
-
-  public PostV1ReportsCostCenterActivityResponse postV1ReportsCostCenterActivity(
-      PostV1ReportsCostCenterActivityRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsCostCenterActivity(request, requestOptions).body();
-  }
-
-  public PostV1ReportsCostCenterItemsResponse postV1ReportsCostCenterItems(
-      PostV1ReportsCostCenterItemsRequest request) {
-    return this.rawClient.postV1ReportsCostCenterItems(request).body();
-  }
-
-  public PostV1ReportsCostCenterItemsResponse postV1ReportsCostCenterItems(
-      PostV1ReportsCostCenterItemsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsCostCenterItems(request, requestOptions).body();
-  }
-
-  public PostV1ReportsJobsCreateResponse postV1ReportsJobsCreate(
-      PostV1ReportsJobsCreateRequest request) {
-    return this.rawClient.postV1ReportsJobsCreate(request).body();
-  }
-
-  public PostV1ReportsJobsCreateResponse postV1ReportsJobsCreate(
-      PostV1ReportsJobsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsJobsCreate(request, requestOptions).body();
-  }
-
-  public PostV1ReportsJobsGetResponse postV1ReportsJobsGet(PostV1ReportsJobsGetRequest request) {
-    return this.rawClient.postV1ReportsJobsGet(request).body();
-  }
-
-  public PostV1ReportsJobsGetResponse postV1ReportsJobsGet(PostV1ReportsJobsGetRequest request,
+  public OnlineSalesReportsResponse onlineSales(OnlineSalesReportsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsJobsGet(request, requestOptions).body();
+    return this.rawClient.onlineSales(request, requestOptions).body();
   }
 
-  public PostV1ReportsJobsListResponse postV1ReportsJobsList() {
-    return this.rawClient.postV1ReportsJobsList().body();
+  public OssReportsResponse oss(OssReportsRequest request) {
+    return this.rawClient.oss(request).body();
   }
 
-  public PostV1ReportsJobsListResponse postV1ReportsJobsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsJobsList(requestOptions).body();
+  public OssReportsResponse oss(OssReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.oss(request, requestOptions).body();
   }
 
-  public PostV1ReportsJobsListResponse postV1ReportsJobsList(PostV1ReportsJobsListRequest request) {
-    return this.rawClient.postV1ReportsJobsList(request).body();
+  public AdvanceReconciliationReportsResponse advanceReconciliation(
+      AdvanceReconciliationReportsRequest request) {
+    return this.rawClient.advanceReconciliation(request).body();
   }
 
-  public PostV1ReportsJobsListResponse postV1ReportsJobsList(PostV1ReportsJobsListRequest request,
+  public AdvanceReconciliationReportsResponse advanceReconciliation(
+      AdvanceReconciliationReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.advanceReconciliation(request, requestOptions).body();
+  }
+
+  public WriteOffActsReportsResponse writeOffActs(WriteOffActsReportsRequest request) {
+    return this.rawClient.writeOffActs(request).body();
+  }
+
+  public WriteOffActsReportsResponse writeOffActs(WriteOffActsReportsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsJobsList(request, requestOptions).body();
+    return this.rawClient.writeOffActs(request, requestOptions).body();
+  }
+
+  public CostCentersReportsResponse costCenters(CostCentersReportsRequest request) {
+    return this.rawClient.costCenters(request).body();
+  }
+
+  public CostCentersReportsResponse costCenters(CostCentersReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.costCenters(request, requestOptions).body();
+  }
+
+  public CostCenterActivityReportsResponse costCenterActivity(
+      CostCenterActivityReportsRequest request) {
+    return this.rawClient.costCenterActivity(request).body();
+  }
+
+  public CostCenterActivityReportsResponse costCenterActivity(
+      CostCenterActivityReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.costCenterActivity(request, requestOptions).body();
+  }
+
+  public CostCenterItemsReportsResponse costCenterItems(CostCenterItemsReportsRequest request) {
+    return this.rawClient.costCenterItems(request).body();
+  }
+
+  public CostCenterItemsReportsResponse costCenterItems(CostCenterItemsReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.costCenterItems(request, requestOptions).body();
+  }
+
+  public JobsCreateReportsResponse jobsCreate(JobsCreateReportsRequest request) {
+    return this.rawClient.jobsCreate(request).body();
+  }
+
+  public JobsCreateReportsResponse jobsCreate(JobsCreateReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.jobsCreate(request, requestOptions).body();
+  }
+
+  public JobsGetReportsResponse jobsGet(JobsGetReportsRequest request) {
+    return this.rawClient.jobsGet(request).body();
+  }
+
+  public JobsGetReportsResponse jobsGet(JobsGetReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.jobsGet(request, requestOptions).body();
+  }
+
+  public JobsListReportsResponse jobsList() {
+    return this.rawClient.jobsList().body();
+  }
+
+  public JobsListReportsResponse jobsList(RequestOptions requestOptions) {
+    return this.rawClient.jobsList(requestOptions).body();
+  }
+
+  public JobsListReportsResponse jobsList(JobsListReportsRequest request) {
+    return this.rawClient.jobsList(request).body();
+  }
+
+  public JobsListReportsResponse jobsList(JobsListReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.jobsList(request, requestOptions).body();
   }
 }

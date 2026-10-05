@@ -6,186 +6,186 @@ package com.nordlet.api.resources.declarations;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsAnnualAccountsAttachmentsAddRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsAnnualAccountsAttachmentsDeleteRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsAnnualAccountsDistributionsCreateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsAnnualAccountsDistributionsDeleteRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsAnnualAccountsDistributionsUpdateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsAnnualAccountsGetRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsAnnualAccountsSetRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsAnnualAccountsSignaturesCreateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsAnnualAccountsSignaturesDeleteRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsAnnualAccountsSignaturesUpdateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsAutomationListRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsAutomationUpdateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsCertificatesDeleteRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsCertificatesListRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsCertificatesUploadRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsConfigsListRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsConfigsUpdateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsCyHe32GenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsCyTd4GenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsDeBeitragsnachweisGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsDeDeuevGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsDeReturnFactsGetRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsDeReturnFactsSetRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsDeReturnsGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsDkSelskabsskatGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEeEmploymentRegisterSendRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEsVerifactuDeclaracionResponsableRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuDistanceSalesThresholdGetRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuIossComputeRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuOssComputeRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuSmeCrossBorderReportComputeRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuSmeThresholdGetRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuSmeThresholdsListRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuUnionTurnoverGetRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuVatReturnComputeRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsEuVatReturnPacksListRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsIeB1GenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsIeCt1GenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsItSdiPurchasePreviewRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsItSdiPurchaseSendRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLiLohndeklarationGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLiLohnlistenGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtFr0564ComputeRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtFr0600ComputeRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtGpm312ComputeRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtGpm313ComputeRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtIntrastatComputeRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtIntrastatObligationRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtIsafGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtIvazAmendRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtIvazCancelRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtIvazGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtPln204ComputeRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtPln204FfdataRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtSaftGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtSaftSendRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtSamComputeRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtSdFfdataRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsLtSdGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsMtAnnualReturnGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsMtCompanyTaxGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsPlCit8GenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsPlIntrastatGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsPlJpkFaGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsPlJpkKrGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsPlJpkMagGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsPlJpkV7MGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsPlKsefReceiptRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsPlKsefReceivedFetchRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsPlKsefReceivedListRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsPlPit11GenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsPlVatUeGenerateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsPlZusDraComputeRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsPlZusDraKeduRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsPlZusDraPdfRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsRoEtransportBuildRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsRoEtransportStatusRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsRoEtransportSubmitRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsSubmissionsCreateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsSubmissionsListRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsSubmissionsMarkRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsSubmissionsRetryRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsTaxAdjustmentsCreateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsTaxAdjustmentsDeleteRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsTaxAdjustmentsListRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsTaxAdjustmentsUpdateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsTaxPaymentsCreateRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsTaxPaymentsDeleteRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsTaxPaymentsListRequest;
-import com.nordlet.api.resources.declarations.requests.PostV1DeclarationsTaxPaymentsUpdateRequest;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsAnnualAccountsAttachmentsAddResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsAnnualAccountsDistributionsCreateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsAnnualAccountsGetResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsAnnualAccountsSetResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsAnnualAccountsSignaturesCreateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsAutomationListResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsAutomationUpdateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsCertificatesDeleteResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsCertificatesListResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsCertificatesUploadResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsConfigsListResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsConfigsUpdateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsCyHe32GenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsCyTd4GenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsDeBeitragsnachweisGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsDeDeuevGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsDeReturnFactsGetResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsDeReturnFactsSetResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsDeReturnsGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsDkSelskabsskatGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEeEmploymentRegisterSendResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuDistanceSalesThresholdGetResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuIossComputeResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuOssComputeResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuSmeCrossBorderReportComputeResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuSmeThresholdGetResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuSmeThresholdsListResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuUnionTurnoverGetResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuVatReturnComputeResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsEuVatReturnPacksListResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsIeB1GenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsIeCt1GenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsItSdiPurchasePreviewResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsItSdiPurchaseSendResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLiLohndeklarationGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLiLohnlistenGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtFr0564ComputeResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtFr0600ComputeResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtGpm312ComputeResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtGpm313ComputeResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtIntrastatComputeResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtIntrastatObligationResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtIsafGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtIvazAmendResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtIvazCancelResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtIvazGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtPln204ComputeResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtPln204FfdataResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtSaftGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtSaftSendResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtSamComputeResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtSdFfdataResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsLtSdGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsMtAnnualReturnGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsMtCompanyTaxGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsPlCit8GenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsPlIntrastatGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsPlJpkFaGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsPlJpkKrGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsPlJpkMagGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsPlJpkV7MGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsPlKsefReceiptResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsPlKsefReceivedFetchResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsPlKsefReceivedListResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsPlPit11GenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsPlVatUeGenerateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsPlZusDraComputeResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsPlZusDraKeduResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsPlZusDraPdfResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsRoEtransportBuildResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsRoEtransportStatusResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsRoEtransportSubmitResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsSubmissionsCreateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsSubmissionsListResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsSubmissionsMarkResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsSubmissionsRetryResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsTaxAdjustmentsCreateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsTaxAdjustmentsDeleteResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsTaxAdjustmentsListResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsTaxAdjustmentsUpdateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsTaxPaymentsCreateResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsTaxPaymentsDeleteResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsTaxPaymentsListResponse;
-import com.nordlet.api.resources.declarations.types.PostV1DeclarationsTaxPaymentsUpdateResponse;
+import com.nordlet.api.resources.declarations.requests.AnnualAccountsAttachmentsAddDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.AnnualAccountsAttachmentsDeleteDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.AnnualAccountsDistributionsCreateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.AnnualAccountsDistributionsDeleteDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.AnnualAccountsDistributionsUpdateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.AnnualAccountsGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.AnnualAccountsSetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.AnnualAccountsSignaturesCreateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.AnnualAccountsSignaturesDeleteDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.AnnualAccountsSignaturesUpdateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.AutomationListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.AutomationUpdateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.CertificatesDeleteDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.CertificatesListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.CertificatesUploadDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.ConfigsListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.ConfigsUpdateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.CyHe32GenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.CyTd4GenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.DeBeitragsnachweisGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.DeDeuevGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.DeReturnFactsGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.DeReturnFactsSetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.DeReturnsGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.DkSelskabsskatGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EeEmploymentRegisterSendDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EsVerifactuDeclaracionResponsableDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuDistanceSalesThresholdGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuIossComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuOssComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuSmeCrossBorderReportComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuSmeThresholdGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuSmeThresholdsListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuUnionTurnoverGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuVatReturnComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuVatReturnPacksListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.IeB1GenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.IeCt1GenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.ItSdiPurchasePreviewDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.ItSdiPurchaseSendDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LiLohndeklarationGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LiLohnlistenGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtFr0564ComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtFr0600ComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtGpm312ComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtGpm313ComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtIntrastatComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtIntrastatObligationDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtIsafGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtIvazAmendDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtIvazCancelDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtIvazGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtPln204ComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtPln204FfdataDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtSaftGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtSaftSendDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtSamComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtSdFfdataDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LtSdGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.MtAnnualReturnGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.MtCompanyTaxGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.PlCit8GenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.PlIntrastatGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.PlJpkFaGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.PlJpkKrGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.PlJpkMagGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.PlJpkV7MGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.PlKsefReceiptDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.PlKsefReceivedFetchDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.PlKsefReceivedListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.PlPit11GenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.PlVatUeGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.PlZusDraComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.PlZusDraKeduDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.PlZusDraPdfDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.RoEtransportBuildDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.RoEtransportStatusDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.RoEtransportSubmitDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.SubmissionsCreateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.SubmissionsListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.SubmissionsMarkDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.SubmissionsRetryDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.TaxAdjustmentsCreateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.TaxAdjustmentsDeleteDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.TaxAdjustmentsListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.TaxAdjustmentsUpdateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.TaxPaymentsCreateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.TaxPaymentsDeleteDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.TaxPaymentsListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.TaxPaymentsUpdateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.types.AnnualAccountsAttachmentsAddDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.AnnualAccountsAttachmentsDeleteDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.AnnualAccountsDistributionsCreateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.AnnualAccountsDistributionsDeleteDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.AnnualAccountsDistributionsUpdateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.AnnualAccountsGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.AnnualAccountsSetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.AnnualAccountsSignaturesCreateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.AnnualAccountsSignaturesDeleteDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.AnnualAccountsSignaturesUpdateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.AutomationListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.AutomationUpdateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.CertificatesDeleteDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.CertificatesListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.CertificatesUploadDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.ConfigsListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.ConfigsUpdateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.CyHe32GenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.CyTd4GenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.DeBeitragsnachweisGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.DeDeuevGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.DeReturnFactsGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.DeReturnFactsSetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.DeReturnsGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.DkSelskabsskatGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EeEmploymentRegisterSendDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EsVerifactuDeclaracionResponsableDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuDistanceSalesThresholdGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuIossComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuOssComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuSmeCrossBorderReportComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuSmeThresholdGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuSmeThresholdsListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuUnionTurnoverGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuVatReturnComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuVatReturnPacksListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.IeB1GenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.IeCt1GenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.ItSdiPurchasePreviewDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.ItSdiPurchaseSendDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LiLohndeklarationGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LiLohnlistenGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtFr0564ComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtFr0600ComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtGpm312ComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtGpm313ComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtIntrastatComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtIntrastatObligationDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtIsafGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtIvazAmendDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtIvazCancelDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtIvazGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtPln204ComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtPln204FfdataDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtSaftGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtSaftSendDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtSamComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtSdFfdataDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LtSdGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.MtAnnualReturnGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.MtCompanyTaxGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.PlCit8GenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.PlIntrastatGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.PlJpkFaGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.PlJpkKrGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.PlJpkMagGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.PlJpkV7MGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.PlKsefReceiptDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.PlKsefReceivedFetchDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.PlKsefReceivedListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.PlPit11GenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.PlVatUeGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.PlZusDraComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.PlZusDraKeduDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.PlZusDraPdfDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.RoEtransportBuildDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.RoEtransportStatusDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.RoEtransportSubmitDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.SubmissionsCreateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.SubmissionsListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.SubmissionsMarkDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.SubmissionsRetryDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.TaxAdjustmentsCreateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.TaxAdjustmentsDeleteDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.TaxAdjustmentsListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.TaxAdjustmentsUpdateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.TaxPaymentsCreateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.TaxPaymentsDeleteDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.TaxPaymentsListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.TaxPaymentsUpdateDeclarationsResponse;
 
 public class DeclarationsClient {
   protected final ClientOptions clientOptions;
@@ -204,1279 +204,1243 @@ public class DeclarationsClient {
     return this.rawClient;
   }
 
-  public PostV1DeclarationsLtIntrastatComputeResponse postV1DeclarationsLtIntrastatCompute(
-      PostV1DeclarationsLtIntrastatComputeRequest request) {
-    return this.rawClient.postV1DeclarationsLtIntrastatCompute(request).body();
+  public LtIntrastatComputeDeclarationsResponse ltIntrastatCompute(
+      LtIntrastatComputeDeclarationsRequest request) {
+    return this.rawClient.ltIntrastatCompute(request).body();
   }
 
-  public PostV1DeclarationsLtIntrastatComputeResponse postV1DeclarationsLtIntrastatCompute(
-      PostV1DeclarationsLtIntrastatComputeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtIntrastatCompute(request, requestOptions).body();
+  public LtIntrastatComputeDeclarationsResponse ltIntrastatCompute(
+      LtIntrastatComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltIntrastatCompute(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsLtIvazGenerateResponse postV1DeclarationsLtIvazGenerate(
-      PostV1DeclarationsLtIvazGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsLtIvazGenerate(request).body();
+  public LtIvazGenerateDeclarationsResponse ltIvazGenerate(
+      LtIvazGenerateDeclarationsRequest request) {
+    return this.rawClient.ltIvazGenerate(request).body();
   }
 
-  public PostV1DeclarationsLtIvazGenerateResponse postV1DeclarationsLtIvazGenerate(
-      PostV1DeclarationsLtIvazGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtIvazGenerate(request, requestOptions).body();
+  public LtIvazGenerateDeclarationsResponse ltIvazGenerate(
+      LtIvazGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltIvazGenerate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsLtIntrastatObligationResponse postV1DeclarationsLtIntrastatObligation(
-      PostV1DeclarationsLtIntrastatObligationRequest request) {
-    return this.rawClient.postV1DeclarationsLtIntrastatObligation(request).body();
+  public LtIntrastatObligationDeclarationsResponse ltIntrastatObligation(
+      LtIntrastatObligationDeclarationsRequest request) {
+    return this.rawClient.ltIntrastatObligation(request).body();
   }
 
-  public PostV1DeclarationsLtIntrastatObligationResponse postV1DeclarationsLtIntrastatObligation(
-      PostV1DeclarationsLtIntrastatObligationRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtIntrastatObligation(request, requestOptions).body();
+  public LtIntrastatObligationDeclarationsResponse ltIntrastatObligation(
+      LtIntrastatObligationDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltIntrastatObligation(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsLtIsafGenerateResponse postV1DeclarationsLtIsafGenerate(
-      PostV1DeclarationsLtIsafGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsLtIsafGenerate(request).body();
+  public LtIsafGenerateDeclarationsResponse ltIsafGenerate(
+      LtIsafGenerateDeclarationsRequest request) {
+    return this.rawClient.ltIsafGenerate(request).body();
   }
 
-  public PostV1DeclarationsLtIsafGenerateResponse postV1DeclarationsLtIsafGenerate(
-      PostV1DeclarationsLtIsafGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtIsafGenerate(request, requestOptions).body();
+  public LtIsafGenerateDeclarationsResponse ltIsafGenerate(
+      LtIsafGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltIsafGenerate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsLtFr0600ComputeResponse postV1DeclarationsLtFr0600Compute(
-      PostV1DeclarationsLtFr0600ComputeRequest request) {
-    return this.rawClient.postV1DeclarationsLtFr0600Compute(request).body();
+  public LtFr0600ComputeDeclarationsResponse ltFr0600Compute(
+      LtFr0600ComputeDeclarationsRequest request) {
+    return this.rawClient.ltFr0600Compute(request).body();
   }
 
-  public PostV1DeclarationsLtFr0600ComputeResponse postV1DeclarationsLtFr0600Compute(
-      PostV1DeclarationsLtFr0600ComputeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtFr0600Compute(request, requestOptions).body();
+  public LtFr0600ComputeDeclarationsResponse ltFr0600Compute(
+      LtFr0600ComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltFr0600Compute(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsLtGpm313ComputeResponse postV1DeclarationsLtGpm313Compute(
-      PostV1DeclarationsLtGpm313ComputeRequest request) {
-    return this.rawClient.postV1DeclarationsLtGpm313Compute(request).body();
+  public LtGpm313ComputeDeclarationsResponse ltGpm313Compute(
+      LtGpm313ComputeDeclarationsRequest request) {
+    return this.rawClient.ltGpm313Compute(request).body();
   }
 
-  public PostV1DeclarationsLtGpm313ComputeResponse postV1DeclarationsLtGpm313Compute(
-      PostV1DeclarationsLtGpm313ComputeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtGpm313Compute(request, requestOptions).body();
+  public LtGpm313ComputeDeclarationsResponse ltGpm313Compute(
+      LtGpm313ComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltGpm313Compute(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsLtSamComputeResponse postV1DeclarationsLtSamCompute(
-      PostV1DeclarationsLtSamComputeRequest request) {
-    return this.rawClient.postV1DeclarationsLtSamCompute(request).body();
+  public LtSamComputeDeclarationsResponse ltSamCompute(LtSamComputeDeclarationsRequest request) {
+    return this.rawClient.ltSamCompute(request).body();
   }
 
-  public PostV1DeclarationsLtSamComputeResponse postV1DeclarationsLtSamCompute(
-      PostV1DeclarationsLtSamComputeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtSamCompute(request, requestOptions).body();
-  }
-
-  public PostV1DeclarationsLtSdGenerateResponse postV1DeclarationsLtSdGenerate(
-      PostV1DeclarationsLtSdGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsLtSdGenerate(request).body();
-  }
-
-  public PostV1DeclarationsLtSdGenerateResponse postV1DeclarationsLtSdGenerate(
-      PostV1DeclarationsLtSdGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtSdGenerate(request, requestOptions).body();
-  }
-
-  public PostV1DeclarationsLtSaftGenerateResponse postV1DeclarationsLtSaftGenerate(
-      PostV1DeclarationsLtSaftGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsLtSaftGenerate(request).body();
-  }
-
-  public PostV1DeclarationsLtSaftGenerateResponse postV1DeclarationsLtSaftGenerate(
-      PostV1DeclarationsLtSaftGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtSaftGenerate(request, requestOptions).body();
-  }
-
-  public PostV1DeclarationsLtIvazAmendResponse postV1DeclarationsLtIvazAmend(
-      PostV1DeclarationsLtIvazAmendRequest request) {
-    return this.rawClient.postV1DeclarationsLtIvazAmend(request).body();
-  }
-
-  public PostV1DeclarationsLtIvazAmendResponse postV1DeclarationsLtIvazAmend(
-      PostV1DeclarationsLtIvazAmendRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtIvazAmend(request, requestOptions).body();
-  }
-
-  public PostV1DeclarationsLtIvazCancelResponse postV1DeclarationsLtIvazCancel(
-      PostV1DeclarationsLtIvazCancelRequest request) {
-    return this.rawClient.postV1DeclarationsLtIvazCancel(request).body();
-  }
-
-  public PostV1DeclarationsLtIvazCancelResponse postV1DeclarationsLtIvazCancel(
-      PostV1DeclarationsLtIvazCancelRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtIvazCancel(request, requestOptions).body();
-  }
-
-  public PostV1DeclarationsLtFr0564ComputeResponse postV1DeclarationsLtFr0564Compute(
-      PostV1DeclarationsLtFr0564ComputeRequest request) {
-    return this.rawClient.postV1DeclarationsLtFr0564Compute(request).body();
-  }
-
-  public PostV1DeclarationsLtFr0564ComputeResponse postV1DeclarationsLtFr0564Compute(
-      PostV1DeclarationsLtFr0564ComputeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtFr0564Compute(request, requestOptions).body();
-  }
-
-  public PostV1DeclarationsLtGpm312ComputeResponse postV1DeclarationsLtGpm312Compute(
-      PostV1DeclarationsLtGpm312ComputeRequest request) {
-    return this.rawClient.postV1DeclarationsLtGpm312Compute(request).body();
-  }
-
-  public PostV1DeclarationsLtGpm312ComputeResponse postV1DeclarationsLtGpm312Compute(
-      PostV1DeclarationsLtGpm312ComputeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtGpm312Compute(request, requestOptions).body();
-  }
-
-  public PostV1DeclarationsLtPln204ComputeResponse postV1DeclarationsLtPln204Compute(
-      PostV1DeclarationsLtPln204ComputeRequest request) {
-    return this.rawClient.postV1DeclarationsLtPln204Compute(request).body();
-  }
-
-  public PostV1DeclarationsLtPln204ComputeResponse postV1DeclarationsLtPln204Compute(
-      PostV1DeclarationsLtPln204ComputeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtPln204Compute(request, requestOptions).body();
-  }
-
-  public PostV1DeclarationsEuOssComputeResponse postV1DeclarationsEuOssCompute(
-      PostV1DeclarationsEuOssComputeRequest request) {
-    return this.rawClient.postV1DeclarationsEuOssCompute(request).body();
-  }
-
-  public PostV1DeclarationsEuOssComputeResponse postV1DeclarationsEuOssCompute(
-      PostV1DeclarationsEuOssComputeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEuOssCompute(request, requestOptions).body();
-  }
-
-  public PostV1DeclarationsEuIossComputeResponse postV1DeclarationsEuIossCompute(
-      PostV1DeclarationsEuIossComputeRequest request) {
-    return this.rawClient.postV1DeclarationsEuIossCompute(request).body();
-  }
-
-  public PostV1DeclarationsEuIossComputeResponse postV1DeclarationsEuIossCompute(
-      PostV1DeclarationsEuIossComputeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEuIossCompute(request, requestOptions).body();
-  }
-
-  public PostV1DeclarationsEuDistanceSalesThresholdGetResponse postV1DeclarationsEuDistanceSalesThresholdGet(
-      ) {
-    return this.rawClient.postV1DeclarationsEuDistanceSalesThresholdGet().body();
-  }
-
-  public PostV1DeclarationsEuDistanceSalesThresholdGetResponse postV1DeclarationsEuDistanceSalesThresholdGet(
+  public LtSamComputeDeclarationsResponse ltSamCompute(LtSamComputeDeclarationsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEuDistanceSalesThresholdGet(requestOptions).body();
+    return this.rawClient.ltSamCompute(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsEuDistanceSalesThresholdGetResponse postV1DeclarationsEuDistanceSalesThresholdGet(
-      PostV1DeclarationsEuDistanceSalesThresholdGetRequest request) {
-    return this.rawClient.postV1DeclarationsEuDistanceSalesThresholdGet(request).body();
+  public LtSdGenerateDeclarationsResponse ltSdGenerate(LtSdGenerateDeclarationsRequest request) {
+    return this.rawClient.ltSdGenerate(request).body();
   }
 
-  public PostV1DeclarationsEuDistanceSalesThresholdGetResponse postV1DeclarationsEuDistanceSalesThresholdGet(
-      PostV1DeclarationsEuDistanceSalesThresholdGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEuDistanceSalesThresholdGet(request, requestOptions).body();
-  }
-
-  public PostV1DeclarationsEuUnionTurnoverGetResponse postV1DeclarationsEuUnionTurnoverGet() {
-    return this.rawClient.postV1DeclarationsEuUnionTurnoverGet().body();
-  }
-
-  public PostV1DeclarationsEuUnionTurnoverGetResponse postV1DeclarationsEuUnionTurnoverGet(
+  public LtSdGenerateDeclarationsResponse ltSdGenerate(LtSdGenerateDeclarationsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEuUnionTurnoverGet(requestOptions).body();
+    return this.rawClient.ltSdGenerate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsEuUnionTurnoverGetResponse postV1DeclarationsEuUnionTurnoverGet(
-      PostV1DeclarationsEuUnionTurnoverGetRequest request) {
-    return this.rawClient.postV1DeclarationsEuUnionTurnoverGet(request).body();
+  public LtSaftGenerateDeclarationsResponse ltSaftGenerate(
+      LtSaftGenerateDeclarationsRequest request) {
+    return this.rawClient.ltSaftGenerate(request).body();
   }
 
-  public PostV1DeclarationsEuUnionTurnoverGetResponse postV1DeclarationsEuUnionTurnoverGet(
-      PostV1DeclarationsEuUnionTurnoverGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEuUnionTurnoverGet(request, requestOptions).body();
+  public LtSaftGenerateDeclarationsResponse ltSaftGenerate(
+      LtSaftGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltSaftGenerate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsEuSmeCrossBorderReportComputeResponse postV1DeclarationsEuSmeCrossBorderReportCompute(
-      PostV1DeclarationsEuSmeCrossBorderReportComputeRequest request) {
-    return this.rawClient.postV1DeclarationsEuSmeCrossBorderReportCompute(request).body();
+  public LtIvazAmendDeclarationsResponse ltIvazAmend(LtIvazAmendDeclarationsRequest request) {
+    return this.rawClient.ltIvazAmend(request).body();
   }
 
-  public PostV1DeclarationsEuSmeCrossBorderReportComputeResponse postV1DeclarationsEuSmeCrossBorderReportCompute(
-      PostV1DeclarationsEuSmeCrossBorderReportComputeRequest request,
+  public LtIvazAmendDeclarationsResponse ltIvazAmend(LtIvazAmendDeclarationsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEuSmeCrossBorderReportCompute(request, requestOptions).body();
+    return this.rawClient.ltIvazAmend(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsEuSmeThresholdsListResponse postV1DeclarationsEuSmeThresholdsList() {
-    return this.rawClient.postV1DeclarationsEuSmeThresholdsList().body();
+  public LtIvazCancelDeclarationsResponse ltIvazCancel(LtIvazCancelDeclarationsRequest request) {
+    return this.rawClient.ltIvazCancel(request).body();
   }
 
-  public PostV1DeclarationsEuSmeThresholdsListResponse postV1DeclarationsEuSmeThresholdsList(
+  public LtIvazCancelDeclarationsResponse ltIvazCancel(LtIvazCancelDeclarationsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEuSmeThresholdsList(requestOptions).body();
+    return this.rawClient.ltIvazCancel(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsEuSmeThresholdsListResponse postV1DeclarationsEuSmeThresholdsList(
-      PostV1DeclarationsEuSmeThresholdsListRequest request) {
-    return this.rawClient.postV1DeclarationsEuSmeThresholdsList(request).body();
+  public LtFr0564ComputeDeclarationsResponse ltFr0564Compute(
+      LtFr0564ComputeDeclarationsRequest request) {
+    return this.rawClient.ltFr0564Compute(request).body();
   }
 
-  public PostV1DeclarationsEuSmeThresholdsListResponse postV1DeclarationsEuSmeThresholdsList(
-      PostV1DeclarationsEuSmeThresholdsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEuSmeThresholdsList(request, requestOptions).body();
+  public LtFr0564ComputeDeclarationsResponse ltFr0564Compute(
+      LtFr0564ComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltFr0564Compute(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsEuSmeThresholdGetResponse postV1DeclarationsEuSmeThresholdGet() {
-    return this.rawClient.postV1DeclarationsEuSmeThresholdGet().body();
+  public LtGpm312ComputeDeclarationsResponse ltGpm312Compute(
+      LtGpm312ComputeDeclarationsRequest request) {
+    return this.rawClient.ltGpm312Compute(request).body();
   }
 
-  public PostV1DeclarationsEuSmeThresholdGetResponse postV1DeclarationsEuSmeThresholdGet(
+  public LtGpm312ComputeDeclarationsResponse ltGpm312Compute(
+      LtGpm312ComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltGpm312Compute(request, requestOptions).body();
+  }
+
+  public LtPln204ComputeDeclarationsResponse ltPln204Compute(
+      LtPln204ComputeDeclarationsRequest request) {
+    return this.rawClient.ltPln204Compute(request).body();
+  }
+
+  public LtPln204ComputeDeclarationsResponse ltPln204Compute(
+      LtPln204ComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltPln204Compute(request, requestOptions).body();
+  }
+
+  public EuOssComputeDeclarationsResponse euOssCompute(EuOssComputeDeclarationsRequest request) {
+    return this.rawClient.euOssCompute(request).body();
+  }
+
+  public EuOssComputeDeclarationsResponse euOssCompute(EuOssComputeDeclarationsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEuSmeThresholdGet(requestOptions).body();
+    return this.rawClient.euOssCompute(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsEuSmeThresholdGetResponse postV1DeclarationsEuSmeThresholdGet(
-      PostV1DeclarationsEuSmeThresholdGetRequest request) {
-    return this.rawClient.postV1DeclarationsEuSmeThresholdGet(request).body();
+  public EuIossComputeDeclarationsResponse euIossCompute(EuIossComputeDeclarationsRequest request) {
+    return this.rawClient.euIossCompute(request).body();
   }
 
-  public PostV1DeclarationsEuSmeThresholdGetResponse postV1DeclarationsEuSmeThresholdGet(
-      PostV1DeclarationsEuSmeThresholdGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEuSmeThresholdGet(request, requestOptions).body();
-  }
-
-  public PostV1DeclarationsEuVatReturnPacksListResponse postV1DeclarationsEuVatReturnPacksList() {
-    return this.rawClient.postV1DeclarationsEuVatReturnPacksList().body();
-  }
-
-  public PostV1DeclarationsEuVatReturnPacksListResponse postV1DeclarationsEuVatReturnPacksList(
+  public EuIossComputeDeclarationsResponse euIossCompute(EuIossComputeDeclarationsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEuVatReturnPacksList(requestOptions).body();
+    return this.rawClient.euIossCompute(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsEuVatReturnPacksListResponse postV1DeclarationsEuVatReturnPacksList(
-      PostV1DeclarationsEuVatReturnPacksListRequest request) {
-    return this.rawClient.postV1DeclarationsEuVatReturnPacksList(request).body();
+  public EuDistanceSalesThresholdGetDeclarationsResponse euDistanceSalesThresholdGet() {
+    return this.rawClient.euDistanceSalesThresholdGet().body();
   }
 
-  public PostV1DeclarationsEuVatReturnPacksListResponse postV1DeclarationsEuVatReturnPacksList(
-      PostV1DeclarationsEuVatReturnPacksListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEuVatReturnPacksList(request, requestOptions).body();
+  public EuDistanceSalesThresholdGetDeclarationsResponse euDistanceSalesThresholdGet(
+      RequestOptions requestOptions) {
+    return this.rawClient.euDistanceSalesThresholdGet(requestOptions).body();
   }
 
-  public PostV1DeclarationsEuVatReturnComputeResponse postV1DeclarationsEuVatReturnCompute(
-      PostV1DeclarationsEuVatReturnComputeRequest request) {
-    return this.rawClient.postV1DeclarationsEuVatReturnCompute(request).body();
+  public EuDistanceSalesThresholdGetDeclarationsResponse euDistanceSalesThresholdGet(
+      EuDistanceSalesThresholdGetDeclarationsRequest request) {
+    return this.rawClient.euDistanceSalesThresholdGet(request).body();
   }
 
-  public PostV1DeclarationsEuVatReturnComputeResponse postV1DeclarationsEuVatReturnCompute(
-      PostV1DeclarationsEuVatReturnComputeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEuVatReturnCompute(request, requestOptions).body();
+  public EuDistanceSalesThresholdGetDeclarationsResponse euDistanceSalesThresholdGet(
+      EuDistanceSalesThresholdGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.euDistanceSalesThresholdGet(request, requestOptions).body();
+  }
+
+  public EuUnionTurnoverGetDeclarationsResponse euUnionTurnoverGet() {
+    return this.rawClient.euUnionTurnoverGet().body();
+  }
+
+  public EuUnionTurnoverGetDeclarationsResponse euUnionTurnoverGet(RequestOptions requestOptions) {
+    return this.rawClient.euUnionTurnoverGet(requestOptions).body();
+  }
+
+  public EuUnionTurnoverGetDeclarationsResponse euUnionTurnoverGet(
+      EuUnionTurnoverGetDeclarationsRequest request) {
+    return this.rawClient.euUnionTurnoverGet(request).body();
+  }
+
+  public EuUnionTurnoverGetDeclarationsResponse euUnionTurnoverGet(
+      EuUnionTurnoverGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.euUnionTurnoverGet(request, requestOptions).body();
+  }
+
+  public EuSmeCrossBorderReportComputeDeclarationsResponse euSmeCrossBorderReportCompute(
+      EuSmeCrossBorderReportComputeDeclarationsRequest request) {
+    return this.rawClient.euSmeCrossBorderReportCompute(request).body();
+  }
+
+  public EuSmeCrossBorderReportComputeDeclarationsResponse euSmeCrossBorderReportCompute(
+      EuSmeCrossBorderReportComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.euSmeCrossBorderReportCompute(request, requestOptions).body();
+  }
+
+  public EuSmeThresholdsListDeclarationsResponse euSmeThresholdsList() {
+    return this.rawClient.euSmeThresholdsList().body();
+  }
+
+  public EuSmeThresholdsListDeclarationsResponse euSmeThresholdsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.euSmeThresholdsList(requestOptions).body();
+  }
+
+  public EuSmeThresholdsListDeclarationsResponse euSmeThresholdsList(
+      EuSmeThresholdsListDeclarationsRequest request) {
+    return this.rawClient.euSmeThresholdsList(request).body();
+  }
+
+  public EuSmeThresholdsListDeclarationsResponse euSmeThresholdsList(
+      EuSmeThresholdsListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.euSmeThresholdsList(request, requestOptions).body();
+  }
+
+  public EuSmeThresholdGetDeclarationsResponse euSmeThresholdGet() {
+    return this.rawClient.euSmeThresholdGet().body();
+  }
+
+  public EuSmeThresholdGetDeclarationsResponse euSmeThresholdGet(RequestOptions requestOptions) {
+    return this.rawClient.euSmeThresholdGet(requestOptions).body();
+  }
+
+  public EuSmeThresholdGetDeclarationsResponse euSmeThresholdGet(
+      EuSmeThresholdGetDeclarationsRequest request) {
+    return this.rawClient.euSmeThresholdGet(request).body();
+  }
+
+  public EuSmeThresholdGetDeclarationsResponse euSmeThresholdGet(
+      EuSmeThresholdGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.euSmeThresholdGet(request, requestOptions).body();
+  }
+
+  public EuVatReturnPacksListDeclarationsResponse euVatReturnPacksList() {
+    return this.rawClient.euVatReturnPacksList().body();
+  }
+
+  public EuVatReturnPacksListDeclarationsResponse euVatReturnPacksList(
+      RequestOptions requestOptions) {
+    return this.rawClient.euVatReturnPacksList(requestOptions).body();
+  }
+
+  public EuVatReturnPacksListDeclarationsResponse euVatReturnPacksList(
+      EuVatReturnPacksListDeclarationsRequest request) {
+    return this.rawClient.euVatReturnPacksList(request).body();
+  }
+
+  public EuVatReturnPacksListDeclarationsResponse euVatReturnPacksList(
+      EuVatReturnPacksListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.euVatReturnPacksList(request, requestOptions).body();
+  }
+
+  public EuVatReturnComputeDeclarationsResponse euVatReturnCompute(
+      EuVatReturnComputeDeclarationsRequest request) {
+    return this.rawClient.euVatReturnCompute(request).body();
+  }
+
+  public EuVatReturnComputeDeclarationsResponse euVatReturnCompute(
+      EuVatReturnComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.euVatReturnCompute(request, requestOptions).body();
   }
 
   /**
    * Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
    */
-  public PostV1DeclarationsPlJpkV7MGenerateResponse postV1DeclarationsPlJpkV7MGenerate(
-      PostV1DeclarationsPlJpkV7MGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsPlJpkV7MGenerate(request).body();
+  public PlJpkV7MGenerateDeclarationsResponse plJpkV7MGenerate(
+      PlJpkV7MGenerateDeclarationsRequest request) {
+    return this.rawClient.plJpkV7MGenerate(request).body();
   }
 
   /**
    * Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
    */
-  public PostV1DeclarationsPlJpkV7MGenerateResponse postV1DeclarationsPlJpkV7MGenerate(
-      PostV1DeclarationsPlJpkV7MGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsPlJpkV7MGenerate(request, requestOptions).body();
+  public PlJpkV7MGenerateDeclarationsResponse plJpkV7MGenerate(
+      PlJpkV7MGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.plJpkV7MGenerate(request, requestOptions).body();
   }
 
   /**
    * Build the rows of the Polish recapitulative statement VAT-UE for a month: section C intra-Community supplies of goods, section D intra-Community acquisitions, section E services taxed where the customer is established. Amounts are full złoty per counterparty. The VAT-UE(5) file itself goes out from the EU sales list deadline in the calendar.
    */
-  public PostV1DeclarationsPlVatUeGenerateResponse postV1DeclarationsPlVatUeGenerate(
-      PostV1DeclarationsPlVatUeGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsPlVatUeGenerate(request).body();
+  public PlVatUeGenerateDeclarationsResponse plVatUeGenerate(
+      PlVatUeGenerateDeclarationsRequest request) {
+    return this.rawClient.plVatUeGenerate(request).body();
   }
 
   /**
    * Build the rows of the Polish recapitulative statement VAT-UE for a month: section C intra-Community supplies of goods, section D intra-Community acquisitions, section E services taxed where the customer is established. Amounts are full złoty per counterparty. The VAT-UE(5) file itself goes out from the EU sales list deadline in the calendar.
    */
-  public PostV1DeclarationsPlVatUeGenerateResponse postV1DeclarationsPlVatUeGenerate(
-      PostV1DeclarationsPlVatUeGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsPlVatUeGenerate(request, requestOptions).body();
+  public PlVatUeGenerateDeclarationsResponse plVatUeGenerate(
+      PlVatUeGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.plVatUeGenerate(request, requestOptions).body();
   }
 
   /**
    * Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Goods without a CN code are left out and named in the warnings. The IST message itself goes out from the Intrastat deadline in the calendar.
    */
-  public PostV1DeclarationsPlIntrastatGenerateResponse postV1DeclarationsPlIntrastatGenerate(
-      PostV1DeclarationsPlIntrastatGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsPlIntrastatGenerate(request).body();
+  public PlIntrastatGenerateDeclarationsResponse plIntrastatGenerate(
+      PlIntrastatGenerateDeclarationsRequest request) {
+    return this.rawClient.plIntrastatGenerate(request).body();
   }
 
   /**
    * Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Goods without a CN code are left out and named in the warnings. The IST message itself goes out from the Intrastat deadline in the calendar.
    */
-  public PostV1DeclarationsPlIntrastatGenerateResponse postV1DeclarationsPlIntrastatGenerate(
-      PostV1DeclarationsPlIntrastatGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsPlIntrastatGenerate(request, requestOptions).body();
+  public PlIntrastatGenerateDeclarationsResponse plIntrastatGenerate(
+      PlIntrastatGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.plIntrastatGenerate(request, requestOptions).body();
   }
 
   /**
    * List the invoices KSeF holds for this company as the buyer, for a window of acquisition timestamps. Each row carries the KSeF number and, when the document number matches a registered purchase invoice, the invoice it belongs to.
    */
-  public PostV1DeclarationsPlKsefReceivedListResponse postV1DeclarationsPlKsefReceivedList(
-      PostV1DeclarationsPlKsefReceivedListRequest request) {
-    return this.rawClient.postV1DeclarationsPlKsefReceivedList(request).body();
+  public PlKsefReceivedListDeclarationsResponse plKsefReceivedList(
+      PlKsefReceivedListDeclarationsRequest request) {
+    return this.rawClient.plKsefReceivedList(request).body();
   }
 
   /**
    * List the invoices KSeF holds for this company as the buyer, for a window of acquisition timestamps. Each row carries the KSeF number and, when the document number matches a registered purchase invoice, the invoice it belongs to.
    */
-  public PostV1DeclarationsPlKsefReceivedListResponse postV1DeclarationsPlKsefReceivedList(
-      PostV1DeclarationsPlKsefReceivedListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsPlKsefReceivedList(request, requestOptions).body();
+  public PlKsefReceivedListDeclarationsResponse plKsefReceivedList(
+      PlKsefReceivedListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.plKsefReceivedList(request, requestOptions).body();
   }
 
   /**
    * Read one invoice out of KSeF by its national number. With a purchase invoice given, the KSeF number is written onto that invoice, which is what makes the purchase row of JPK_V7M carry NrKSeF instead of the BFK marker.
    */
-  public PostV1DeclarationsPlKsefReceivedFetchResponse postV1DeclarationsPlKsefReceivedFetch(
-      PostV1DeclarationsPlKsefReceivedFetchRequest request) {
-    return this.rawClient.postV1DeclarationsPlKsefReceivedFetch(request).body();
+  public PlKsefReceivedFetchDeclarationsResponse plKsefReceivedFetch(
+      PlKsefReceivedFetchDeclarationsRequest request) {
+    return this.rawClient.plKsefReceivedFetch(request).body();
   }
 
   /**
    * Read one invoice out of KSeF by its national number. With a purchase invoice given, the KSeF number is written onto that invoice, which is what makes the purchase row of JPK_V7M carry NrKSeF instead of the BFK marker.
    */
-  public PostV1DeclarationsPlKsefReceivedFetchResponse postV1DeclarationsPlKsefReceivedFetch(
-      PostV1DeclarationsPlKsefReceivedFetchRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsPlKsefReceivedFetch(request, requestOptions).body();
+  public PlKsefReceivedFetchDeclarationsResponse plKsefReceivedFetch(
+      PlKsefReceivedFetchDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.plKsefReceivedFetch(request, requestOptions).body();
   }
 
   /**
    * The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
    */
-  public PostV1DeclarationsPlKsefReceiptResponse postV1DeclarationsPlKsefReceipt() {
-    return this.rawClient.postV1DeclarationsPlKsefReceipt().body();
+  public PlKsefReceiptDeclarationsResponse plKsefReceipt() {
+    return this.rawClient.plKsefReceipt().body();
   }
 
   /**
    * The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
    */
-  public PostV1DeclarationsPlKsefReceiptResponse postV1DeclarationsPlKsefReceipt(
+  public PlKsefReceiptDeclarationsResponse plKsefReceipt(RequestOptions requestOptions) {
+    return this.rawClient.plKsefReceipt(requestOptions).body();
+  }
+
+  /**
+   * The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
+   */
+  public PlKsefReceiptDeclarationsResponse plKsefReceipt(PlKsefReceiptDeclarationsRequest request) {
+    return this.rawClient.plKsefReceipt(request).body();
+  }
+
+  /**
+   * The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
+   */
+  public PlKsefReceiptDeclarationsResponse plKsefReceipt(PlKsefReceiptDeclarationsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsPlKsefReceipt(requestOptions).body();
-  }
-
-  /**
-   * The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
-   */
-  public PostV1DeclarationsPlKsefReceiptResponse postV1DeclarationsPlKsefReceipt(
-      PostV1DeclarationsPlKsefReceiptRequest request) {
-    return this.rawClient.postV1DeclarationsPlKsefReceipt(request).body();
-  }
-
-  /**
-   * The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
-   */
-  public PostV1DeclarationsPlKsefReceiptResponse postV1DeclarationsPlKsefReceipt(
-      PostV1DeclarationsPlKsefReceiptRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsPlKsefReceipt(request, requestOptions).body();
+    return this.rawClient.plKsefReceipt(request, requestOptions).body();
   }
 
   /**
    * The differences between the accounting result and the taxable profit: non-deductible expenses, income added to or left out of the tax base, extra deductible expenses, donations, losses carried forward, reliefs and tax credits. The annual corporate income tax return is built from them.
    */
-  public PostV1DeclarationsTaxAdjustmentsListResponse taxAdjustmentsRecordedForATaxYear(
-      PostV1DeclarationsTaxAdjustmentsListRequest request) {
-    return this.rawClient.taxAdjustmentsRecordedForATaxYear(request).body();
+  public TaxAdjustmentsListDeclarationsResponse taxAdjustmentsList(
+      TaxAdjustmentsListDeclarationsRequest request) {
+    return this.rawClient.taxAdjustmentsList(request).body();
   }
 
   /**
    * The differences between the accounting result and the taxable profit: non-deductible expenses, income added to or left out of the tax base, extra deductible expenses, donations, losses carried forward, reliefs and tax credits. The annual corporate income tax return is built from them.
    */
-  public PostV1DeclarationsTaxAdjustmentsListResponse taxAdjustmentsRecordedForATaxYear(
-      PostV1DeclarationsTaxAdjustmentsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.taxAdjustmentsRecordedForATaxYear(request, requestOptions).body();
+  public TaxAdjustmentsListDeclarationsResponse taxAdjustmentsList(
+      TaxAdjustmentsListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.taxAdjustmentsList(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsTaxAdjustmentsCreateResponse recordATaxAdjustmentForATaxYear(
-      PostV1DeclarationsTaxAdjustmentsCreateRequest request) {
-    return this.rawClient.recordATaxAdjustmentForATaxYear(request).body();
+  public TaxAdjustmentsCreateDeclarationsResponse taxAdjustmentsCreate(
+      TaxAdjustmentsCreateDeclarationsRequest request) {
+    return this.rawClient.taxAdjustmentsCreate(request).body();
   }
 
-  public PostV1DeclarationsTaxAdjustmentsCreateResponse recordATaxAdjustmentForATaxYear(
-      PostV1DeclarationsTaxAdjustmentsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.recordATaxAdjustmentForATaxYear(request, requestOptions).body();
+  public TaxAdjustmentsCreateDeclarationsResponse taxAdjustmentsCreate(
+      TaxAdjustmentsCreateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.taxAdjustmentsCreate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsTaxAdjustmentsUpdateResponse changeARecordedTaxAdjustment(
-      PostV1DeclarationsTaxAdjustmentsUpdateRequest request) {
-    return this.rawClient.changeARecordedTaxAdjustment(request).body();
+  public TaxAdjustmentsUpdateDeclarationsResponse taxAdjustmentsUpdate(
+      TaxAdjustmentsUpdateDeclarationsRequest request) {
+    return this.rawClient.taxAdjustmentsUpdate(request).body();
   }
 
-  public PostV1DeclarationsTaxAdjustmentsUpdateResponse changeARecordedTaxAdjustment(
-      PostV1DeclarationsTaxAdjustmentsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.changeARecordedTaxAdjustment(request, requestOptions).body();
+  public TaxAdjustmentsUpdateDeclarationsResponse taxAdjustmentsUpdate(
+      TaxAdjustmentsUpdateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.taxAdjustmentsUpdate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsTaxAdjustmentsDeleteResponse removeARecordedTaxAdjustment(
-      PostV1DeclarationsTaxAdjustmentsDeleteRequest request) {
-    return this.rawClient.removeARecordedTaxAdjustment(request).body();
+  public TaxAdjustmentsDeleteDeclarationsResponse taxAdjustmentsDelete(
+      TaxAdjustmentsDeleteDeclarationsRequest request) {
+    return this.rawClient.taxAdjustmentsDelete(request).body();
   }
 
-  public PostV1DeclarationsTaxAdjustmentsDeleteResponse removeARecordedTaxAdjustment(
-      PostV1DeclarationsTaxAdjustmentsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.removeARecordedTaxAdjustment(request, requestOptions).body();
-  }
-
-  /**
-   * What the company has paid the administration towards a tax before the return is filed: payments on account, tax withheld at source by others, a final settlement, and a refund received. Returns report these on their own lines, so the amount they ask for is the balance.
-   */
-  public PostV1DeclarationsTaxPaymentsListResponse paymentsAlreadyMadeTowardsATaxOfAYear(
-      PostV1DeclarationsTaxPaymentsListRequest request) {
-    return this.rawClient.paymentsAlreadyMadeTowardsATaxOfAYear(request).body();
+  public TaxAdjustmentsDeleteDeclarationsResponse taxAdjustmentsDelete(
+      TaxAdjustmentsDeleteDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.taxAdjustmentsDelete(request, requestOptions).body();
   }
 
   /**
    * What the company has paid the administration towards a tax before the return is filed: payments on account, tax withheld at source by others, a final settlement, and a refund received. Returns report these on their own lines, so the amount they ask for is the balance.
    */
-  public PostV1DeclarationsTaxPaymentsListResponse paymentsAlreadyMadeTowardsATaxOfAYear(
-      PostV1DeclarationsTaxPaymentsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.paymentsAlreadyMadeTowardsATaxOfAYear(request, requestOptions).body();
+  public TaxPaymentsListDeclarationsResponse taxPaymentsList(
+      TaxPaymentsListDeclarationsRequest request) {
+    return this.rawClient.taxPaymentsList(request).body();
   }
 
-  public PostV1DeclarationsTaxPaymentsCreateResponse recordAPaymentMadeTowardsATax(
-      PostV1DeclarationsTaxPaymentsCreateRequest request) {
-    return this.rawClient.recordAPaymentMadeTowardsATax(request).body();
+  /**
+   * What the company has paid the administration towards a tax before the return is filed: payments on account, tax withheld at source by others, a final settlement, and a refund received. Returns report these on their own lines, so the amount they ask for is the balance.
+   */
+  public TaxPaymentsListDeclarationsResponse taxPaymentsList(
+      TaxPaymentsListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.taxPaymentsList(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsTaxPaymentsCreateResponse recordAPaymentMadeTowardsATax(
-      PostV1DeclarationsTaxPaymentsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.recordAPaymentMadeTowardsATax(request, requestOptions).body();
+  public TaxPaymentsCreateDeclarationsResponse taxPaymentsCreate(
+      TaxPaymentsCreateDeclarationsRequest request) {
+    return this.rawClient.taxPaymentsCreate(request).body();
   }
 
-  public PostV1DeclarationsTaxPaymentsUpdateResponse changeARecordedTaxPayment(
-      PostV1DeclarationsTaxPaymentsUpdateRequest request) {
-    return this.rawClient.changeARecordedTaxPayment(request).body();
+  public TaxPaymentsCreateDeclarationsResponse taxPaymentsCreate(
+      TaxPaymentsCreateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.taxPaymentsCreate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsTaxPaymentsUpdateResponse changeARecordedTaxPayment(
-      PostV1DeclarationsTaxPaymentsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.changeARecordedTaxPayment(request, requestOptions).body();
+  public TaxPaymentsUpdateDeclarationsResponse taxPaymentsUpdate(
+      TaxPaymentsUpdateDeclarationsRequest request) {
+    return this.rawClient.taxPaymentsUpdate(request).body();
   }
 
-  public PostV1DeclarationsTaxPaymentsDeleteResponse removeARecordedTaxPayment(
-      PostV1DeclarationsTaxPaymentsDeleteRequest request) {
-    return this.rawClient.removeARecordedTaxPayment(request).body();
+  public TaxPaymentsUpdateDeclarationsResponse taxPaymentsUpdate(
+      TaxPaymentsUpdateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.taxPaymentsUpdate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsTaxPaymentsDeleteResponse removeARecordedTaxPayment(
-      PostV1DeclarationsTaxPaymentsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.removeARecordedTaxPayment(request, requestOptions).body();
+  public TaxPaymentsDeleteDeclarationsResponse taxPaymentsDelete(
+      TaxPaymentsDeleteDeclarationsRequest request) {
+    return this.rawClient.taxPaymentsDelete(request).body();
+  }
+
+  public TaxPaymentsDeleteDeclarationsResponse taxPaymentsDelete(
+      TaxPaymentsDeleteDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.taxPaymentsDelete(request, requestOptions).body();
   }
 
   /**
    * Whether the general meeting adopted the annual accounts and on which date, the date the accounts were prepared, and which directors signed them. The annual accounts filed with the trade register are built from these facts.
    */
-  public PostV1DeclarationsAnnualAccountsGetResponse adoptionAndSigningFactsOfTheAnnualAccountsOfAYear(
-      PostV1DeclarationsAnnualAccountsGetRequest request) {
-    return this.rawClient.adoptionAndSigningFactsOfTheAnnualAccountsOfAYear(request).body();
+  public AnnualAccountsGetDeclarationsResponse annualAccountsGet(
+      AnnualAccountsGetDeclarationsRequest request) {
+    return this.rawClient.annualAccountsGet(request).body();
   }
 
   /**
    * Whether the general meeting adopted the annual accounts and on which date, the date the accounts were prepared, and which directors signed them. The annual accounts filed with the trade register are built from these facts.
    */
-  public PostV1DeclarationsAnnualAccountsGetResponse adoptionAndSigningFactsOfTheAnnualAccountsOfAYear(
-      PostV1DeclarationsAnnualAccountsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.adoptionAndSigningFactsOfTheAnnualAccountsOfAYear(request, requestOptions).body();
+  public AnnualAccountsGetDeclarationsResponse annualAccountsGet(
+      AnnualAccountsGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.annualAccountsGet(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsSetResponse recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear(
-      PostV1DeclarationsAnnualAccountsSetRequest request) {
-    return this.rawClient.recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear(request).body();
+  public AnnualAccountsSetDeclarationsResponse annualAccountsSet(
+      AnnualAccountsSetDeclarationsRequest request) {
+    return this.rawClient.annualAccountsSet(request).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsSetResponse recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear(
-      PostV1DeclarationsAnnualAccountsSetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear(request, requestOptions).body();
+  public AnnualAccountsSetDeclarationsResponse annualAccountsSet(
+      AnnualAccountsSetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.annualAccountsSet(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsSignaturesCreateResponse recordWhetherADirectorSignedTheAnnualAccountsOfAYear(
-      PostV1DeclarationsAnnualAccountsSignaturesCreateRequest request) {
-    return this.rawClient.recordWhetherADirectorSignedTheAnnualAccountsOfAYear(request).body();
+  public AnnualAccountsSignaturesCreateDeclarationsResponse annualAccountsSignaturesCreate(
+      AnnualAccountsSignaturesCreateDeclarationsRequest request) {
+    return this.rawClient.annualAccountsSignaturesCreate(request).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsSignaturesCreateResponse recordWhetherADirectorSignedTheAnnualAccountsOfAYear(
-      PostV1DeclarationsAnnualAccountsSignaturesCreateRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.recordWhetherADirectorSignedTheAnnualAccountsOfAYear(request, requestOptions).body();
+  public AnnualAccountsSignaturesCreateDeclarationsResponse annualAccountsSignaturesCreate(
+      AnnualAccountsSignaturesCreateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.annualAccountsSignaturesCreate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse changeARecordedDirectorSignature(
-      PostV1DeclarationsAnnualAccountsSignaturesUpdateRequest request) {
-    return this.rawClient.changeARecordedDirectorSignature(request).body();
+  public AnnualAccountsSignaturesUpdateDeclarationsResponse annualAccountsSignaturesUpdate(
+      AnnualAccountsSignaturesUpdateDeclarationsRequest request) {
+    return this.rawClient.annualAccountsSignaturesUpdate(request).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse changeARecordedDirectorSignature(
-      PostV1DeclarationsAnnualAccountsSignaturesUpdateRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.changeARecordedDirectorSignature(request, requestOptions).body();
+  public AnnualAccountsSignaturesUpdateDeclarationsResponse annualAccountsSignaturesUpdate(
+      AnnualAccountsSignaturesUpdateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.annualAccountsSignaturesUpdate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse removeARecordedDirectorSignature(
-      PostV1DeclarationsAnnualAccountsSignaturesDeleteRequest request) {
-    return this.rawClient.removeARecordedDirectorSignature(request).body();
+  public AnnualAccountsSignaturesDeleteDeclarationsResponse annualAccountsSignaturesDelete(
+      AnnualAccountsSignaturesDeleteDeclarationsRequest request) {
+    return this.rawClient.annualAccountsSignaturesDelete(request).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse removeARecordedDirectorSignature(
-      PostV1DeclarationsAnnualAccountsSignaturesDeleteRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.removeARecordedDirectorSignature(request, requestOptions).body();
+  public AnnualAccountsSignaturesDeleteDeclarationsResponse annualAccountsSignaturesDelete(
+      AnnualAccountsSignaturesDeleteDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.annualAccountsSignaturesDelete(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsDistributionsCreateResponse recordADecisionToDistributeProfitADividendAnInterimDividendOrAPaymentTreatedAsOne(
-      PostV1DeclarationsAnnualAccountsDistributionsCreateRequest request) {
-    return this.rawClient.recordADecisionToDistributeProfitADividendAnInterimDividendOrAPaymentTreatedAsOne(request).body();
+  public AnnualAccountsDistributionsCreateDeclarationsResponse annualAccountsDistributionsCreate(
+      AnnualAccountsDistributionsCreateDeclarationsRequest request) {
+    return this.rawClient.annualAccountsDistributionsCreate(request).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsDistributionsCreateResponse recordADecisionToDistributeProfitADividendAnInterimDividendOrAPaymentTreatedAsOne(
-      PostV1DeclarationsAnnualAccountsDistributionsCreateRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.recordADecisionToDistributeProfitADividendAnInterimDividendOrAPaymentTreatedAsOne(request, requestOptions).body();
+  public AnnualAccountsDistributionsCreateDeclarationsResponse annualAccountsDistributionsCreate(
+      AnnualAccountsDistributionsCreateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.annualAccountsDistributionsCreate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse changeARecordedProfitDistribution(
-      PostV1DeclarationsAnnualAccountsDistributionsUpdateRequest request) {
-    return this.rawClient.changeARecordedProfitDistribution(request).body();
+  public AnnualAccountsDistributionsUpdateDeclarationsResponse annualAccountsDistributionsUpdate(
+      AnnualAccountsDistributionsUpdateDeclarationsRequest request) {
+    return this.rawClient.annualAccountsDistributionsUpdate(request).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse changeARecordedProfitDistribution(
-      PostV1DeclarationsAnnualAccountsDistributionsUpdateRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.changeARecordedProfitDistribution(request, requestOptions).body();
+  public AnnualAccountsDistributionsUpdateDeclarationsResponse annualAccountsDistributionsUpdate(
+      AnnualAccountsDistributionsUpdateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.annualAccountsDistributionsUpdate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse removeARecordedProfitDistribution(
-      PostV1DeclarationsAnnualAccountsDistributionsDeleteRequest request) {
-    return this.rawClient.removeARecordedProfitDistribution(request).body();
+  public AnnualAccountsDistributionsDeleteDeclarationsResponse annualAccountsDistributionsDelete(
+      AnnualAccountsDistributionsDeleteDeclarationsRequest request) {
+    return this.rawClient.annualAccountsDistributionsDelete(request).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse removeARecordedProfitDistribution(
-      PostV1DeclarationsAnnualAccountsDistributionsDeleteRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.removeARecordedProfitDistribution(request, requestOptions).body();
+  public AnnualAccountsDistributionsDeleteDeclarationsResponse annualAccountsDistributionsDelete(
+      AnnualAccountsDistributionsDeleteDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.annualAccountsDistributionsDelete(request, requestOptions).body();
   }
 
   /**
    * Links a file uploaded through files/upload (its storageKey) to the annual accounts of the year as the notes, the management report, the auditor statement, the profit appropriation resolution, the approval certificate, the general data sheet, the full report as a pdf, or another document. Deposits that must carry these documents take them from here.
    */
-  public PostV1DeclarationsAnnualAccountsAttachmentsAddResponse attachAnUploadedDocumentToTheAnnualAccountsOfAYear(
-      PostV1DeclarationsAnnualAccountsAttachmentsAddRequest request) {
-    return this.rawClient.attachAnUploadedDocumentToTheAnnualAccountsOfAYear(request).body();
+  public AnnualAccountsAttachmentsAddDeclarationsResponse annualAccountsAttachmentsAdd(
+      AnnualAccountsAttachmentsAddDeclarationsRequest request) {
+    return this.rawClient.annualAccountsAttachmentsAdd(request).body();
   }
 
   /**
    * Links a file uploaded through files/upload (its storageKey) to the annual accounts of the year as the notes, the management report, the auditor statement, the profit appropriation resolution, the approval certificate, the general data sheet, the full report as a pdf, or another document. Deposits that must carry these documents take them from here.
    */
-  public PostV1DeclarationsAnnualAccountsAttachmentsAddResponse attachAnUploadedDocumentToTheAnnualAccountsOfAYear(
-      PostV1DeclarationsAnnualAccountsAttachmentsAddRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.attachAnUploadedDocumentToTheAnnualAccountsOfAYear(request, requestOptions).body();
+  public AnnualAccountsAttachmentsAddDeclarationsResponse annualAccountsAttachmentsAdd(
+      AnnualAccountsAttachmentsAddDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.annualAccountsAttachmentsAdd(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse removeADocumentAttachedToTheAnnualAccountsAndDeleteItsFile(
-      PostV1DeclarationsAnnualAccountsAttachmentsDeleteRequest request) {
-    return this.rawClient.removeADocumentAttachedToTheAnnualAccountsAndDeleteItsFile(request).body();
+  public AnnualAccountsAttachmentsDeleteDeclarationsResponse annualAccountsAttachmentsDelete(
+      AnnualAccountsAttachmentsDeleteDeclarationsRequest request) {
+    return this.rawClient.annualAccountsAttachmentsDelete(request).body();
   }
 
-  public PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse removeADocumentAttachedToTheAnnualAccountsAndDeleteItsFile(
-      PostV1DeclarationsAnnualAccountsAttachmentsDeleteRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.removeADocumentAttachedToTheAnnualAccountsAndDeleteItsFile(request, requestOptions).body();
-  }
-
-  /**
-   * Compute the company income tax return TD4 of a tax year from the ledger and the recorded tax adjustments: the accounting profit, the add-backs, deductions, capital allowances and losses brought forward, the chargeable income, the corporation tax at the rate of the year and the double tax relief, as the fields the company keys into TAXISnet or Tax For All. The Tax Department publishes no upload layout for the TD4; the XML is a working file.
-   */
-  public PostV1DeclarationsCyTd4GenerateResponse postV1DeclarationsCyTd4Generate(
-      PostV1DeclarationsCyTd4GenerateRequest request) {
-    return this.rawClient.postV1DeclarationsCyTd4Generate(request).body();
+  public AnnualAccountsAttachmentsDeleteDeclarationsResponse annualAccountsAttachmentsDelete(
+      AnnualAccountsAttachmentsDeleteDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.annualAccountsAttachmentsDelete(request, requestOptions).body();
   }
 
   /**
    * Compute the company income tax return TD4 of a tax year from the ledger and the recorded tax adjustments: the accounting profit, the add-backs, deductions, capital allowances and losses brought forward, the chargeable income, the corporation tax at the rate of the year and the double tax relief, as the fields the company keys into TAXISnet or Tax For All. The Tax Department publishes no upload layout for the TD4; the XML is a working file.
    */
-  public PostV1DeclarationsCyTd4GenerateResponse postV1DeclarationsCyTd4Generate(
-      PostV1DeclarationsCyTd4GenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsCyTd4Generate(request, requestOptions).body();
+  public CyTd4GenerateDeclarationsResponse cyTd4Generate(CyTd4GenerateDeclarationsRequest request) {
+    return this.rawClient.cyTd4Generate(request).body();
+  }
+
+  /**
+   * Compute the company income tax return TD4 of a tax year from the ledger and the recorded tax adjustments: the accounting profit, the add-backs, deductions, capital allowances and losses brought forward, the chargeable income, the corporation tax at the rate of the year and the double tax relief, as the fields the company keys into TAXISnet or Tax For All. The Tax Department publishes no upload layout for the TD4; the XML is a working file.
+   */
+  public CyTd4GenerateDeclarationsResponse cyTd4Generate(CyTd4GenerateDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.cyTd4Generate(request, requestOptions).body();
   }
 
   /**
    * Build the annual return HE32 of a year: the figures the Registrar’s e-filing screens ask for (company number, registered office, made-up-to date, share capital, register of members, directors and secretary, annual general meeting date, the accounts summary), the working file, and the printed form HE32(I) filled in as a PDF for signing and for keying into the Registrar’s system, which takes the return only through its own screens.
    */
-  public PostV1DeclarationsCyHe32GenerateResponse postV1DeclarationsCyHe32Generate(
-      PostV1DeclarationsCyHe32GenerateRequest request) {
-    return this.rawClient.postV1DeclarationsCyHe32Generate(request).body();
+  public CyHe32GenerateDeclarationsResponse cyHe32Generate(
+      CyHe32GenerateDeclarationsRequest request) {
+    return this.rawClient.cyHe32Generate(request).body();
   }
 
   /**
    * Build the annual return HE32 of a year: the figures the Registrar’s e-filing screens ask for (company number, registered office, made-up-to date, share capital, register of members, directors and secretary, annual general meeting date, the accounts summary), the working file, and the printed form HE32(I) filled in as a PDF for signing and for keying into the Registrar’s system, which takes the return only through its own screens.
    */
-  public PostV1DeclarationsCyHe32GenerateResponse postV1DeclarationsCyHe32Generate(
-      PostV1DeclarationsCyHe32GenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsCyHe32Generate(request, requestOptions).body();
+  public CyHe32GenerateDeclarationsResponse cyHe32Generate(
+      CyHe32GenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.cyHe32Generate(request, requestOptions).body();
   }
 
   /**
    * Build one of the German returns that ELSTER accepts only through a licensed ERiC transmission (E-Bilanz, Körperschaftsteuer, Gewerbesteuer with its Zerlegungserklärung, annual VAT return, Lohnsteuer-Anmeldung, Lohnsteuerbescheinigung) for the company to send through its own ELSTER-capable program. The period is the year, or YYYY-MM for the monthly Lohnsteuer-Anmeldung.
    */
-  public PostV1DeclarationsDeReturnsGenerateResponse postV1DeclarationsDeReturnsGenerate(
-      PostV1DeclarationsDeReturnsGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsDeReturnsGenerate(request).body();
+  public DeReturnsGenerateDeclarationsResponse deReturnsGenerate(
+      DeReturnsGenerateDeclarationsRequest request) {
+    return this.rawClient.deReturnsGenerate(request).body();
   }
 
   /**
    * Build one of the German returns that ELSTER accepts only through a licensed ERiC transmission (E-Bilanz, Körperschaftsteuer, Gewerbesteuer with its Zerlegungserklärung, annual VAT return, Lohnsteuer-Anmeldung, Lohnsteuerbescheinigung) for the company to send through its own ELSTER-capable program. The period is the year, or YYYY-MM for the monthly Lohnsteuer-Anmeldung.
    */
-  public PostV1DeclarationsDeReturnsGenerateResponse postV1DeclarationsDeReturnsGenerate(
-      PostV1DeclarationsDeReturnsGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsDeReturnsGenerate(request, requestOptions).body();
+  public DeReturnsGenerateDeclarationsResponse deReturnsGenerate(
+      DeReturnsGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.deReturnsGenerate(request, requestOptions).body();
   }
 
   /**
    * The facts of one year that the German annual returns (Körperschaftsteuer, Gewerbesteuer, Umsatzsteuererklärung) need and the ledger does not hold: changes of shareholders, contracts with shareholders, the tax contribution account, loss carry-back, the donation carry-forward, the business premises with the municipalities for the apportionment of the trade tax, the land values or property tax and the participations for the trade tax additions and reductions, the foreign income per country for the Anlage AESt, the date of leaving the small-business scheme and the Anlage UN answers of a company seated abroad. A key that is absent has not been answered.
    */
-  public PostV1DeclarationsDeReturnFactsGetResponse postV1DeclarationsDeReturnFactsGet(
-      PostV1DeclarationsDeReturnFactsGetRequest request) {
-    return this.rawClient.postV1DeclarationsDeReturnFactsGet(request).body();
+  public DeReturnFactsGetDeclarationsResponse deReturnFactsGet(
+      DeReturnFactsGetDeclarationsRequest request) {
+    return this.rawClient.deReturnFactsGet(request).body();
   }
 
   /**
    * The facts of one year that the German annual returns (Körperschaftsteuer, Gewerbesteuer, Umsatzsteuererklärung) need and the ledger does not hold: changes of shareholders, contracts with shareholders, the tax contribution account, loss carry-back, the donation carry-forward, the business premises with the municipalities for the apportionment of the trade tax, the land values or property tax and the participations for the trade tax additions and reductions, the foreign income per country for the Anlage AESt, the date of leaving the small-business scheme and the Anlage UN answers of a company seated abroad. A key that is absent has not been answered.
    */
-  public PostV1DeclarationsDeReturnFactsGetResponse postV1DeclarationsDeReturnFactsGet(
-      PostV1DeclarationsDeReturnFactsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsDeReturnFactsGet(request, requestOptions).body();
+  public DeReturnFactsGetDeclarationsResponse deReturnFactsGet(
+      DeReturnFactsGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.deReturnFactsGet(request, requestOptions).body();
   }
 
   /**
    * Replace the facts of one year for the German annual returns. The returns built afterwards read them; a key left out stays unanswered.
    */
-  public PostV1DeclarationsDeReturnFactsSetResponse postV1DeclarationsDeReturnFactsSet(
-      PostV1DeclarationsDeReturnFactsSetRequest request) {
-    return this.rawClient.postV1DeclarationsDeReturnFactsSet(request).body();
+  public DeReturnFactsSetDeclarationsResponse deReturnFactsSet(
+      DeReturnFactsSetDeclarationsRequest request) {
+    return this.rawClient.deReturnFactsSet(request).body();
   }
 
   /**
    * Replace the facts of one year for the German annual returns. The returns built afterwards read them; a key left out stays unanswered.
    */
-  public PostV1DeclarationsDeReturnFactsSetResponse postV1DeclarationsDeReturnFactsSet(
-      PostV1DeclarationsDeReturnFactsSetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsDeReturnFactsSet(request, requestOptions).body();
+  public DeReturnFactsSetDeclarationsResponse deReturnFactsSet(
+      DeReturnFactsSetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.deReturnFactsSet(request, requestOptions).body();
   }
 
   /**
    * Build the DEÜV notifications of a month (Anmeldung for every start, Abmeldung for every leaving, in December the Jahresmeldung for everyone employed on 31 December) as DSME records with the DBME, DBNA, DBGB and DBAN blocks of Anlage 4 in force from 2026, from the approved payroll runs and the employee record, for the company's own transmission channel.
    */
-  public PostV1DeclarationsDeDeuevGenerateResponse postV1DeclarationsDeDeuevGenerate(
-      PostV1DeclarationsDeDeuevGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsDeDeuevGenerate(request).body();
+  public DeDeuevGenerateDeclarationsResponse deDeuevGenerate(
+      DeDeuevGenerateDeclarationsRequest request) {
+    return this.rawClient.deDeuevGenerate(request).body();
   }
 
   /**
    * Build the DEÜV notifications of a month (Anmeldung for every start, Abmeldung for every leaving, in December the Jahresmeldung for everyone employed on 31 December) as DSME records with the DBME, DBNA, DBGB and DBAN blocks of Anlage 4 in force from 2026, from the approved payroll runs and the employee record, for the company's own transmission channel.
    */
-  public PostV1DeclarationsDeDeuevGenerateResponse postV1DeclarationsDeDeuevGenerate(
-      PostV1DeclarationsDeDeuevGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsDeDeuevGenerate(request, requestOptions).body();
+  public DeDeuevGenerateDeclarationsResponse deDeuevGenerate(
+      DeDeuevGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.deDeuevGenerate(request, requestOptions).body();
   }
 
   /**
    * Build the monthly contribution statement to the health insurers (Beitragsnachweis) from the payroll run: one fixed-length record BW02 per insurer, in the record layout in force from 2026, ready for the company's own transmission channel.
    */
-  public PostV1DeclarationsDeBeitragsnachweisGenerateResponse postV1DeclarationsDeBeitragsnachweisGenerate(
-      PostV1DeclarationsDeBeitragsnachweisGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsDeBeitragsnachweisGenerate(request).body();
+  public DeBeitragsnachweisGenerateDeclarationsResponse deBeitragsnachweisGenerate(
+      DeBeitragsnachweisGenerateDeclarationsRequest request) {
+    return this.rawClient.deBeitragsnachweisGenerate(request).body();
   }
 
   /**
    * Build the monthly contribution statement to the health insurers (Beitragsnachweis) from the payroll run: one fixed-length record BW02 per insurer, in the record layout in force from 2026, ready for the company's own transmission channel.
    */
-  public PostV1DeclarationsDeBeitragsnachweisGenerateResponse postV1DeclarationsDeBeitragsnachweisGenerate(
-      PostV1DeclarationsDeBeitragsnachweisGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsDeBeitragsnachweisGenerate(request, requestOptions).body();
+  public DeBeitragsnachweisGenerateDeclarationsResponse deBeitragsnachweisGenerate(
+      DeBeitragsnachweisGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.deBeitragsnachweisGenerate(request, requestOptions).body();
   }
 
   /**
    * Compute the oplysningsskema for selskaber (selskabsselvangivelsen) of an income year from the ledger and the recorded tax adjustments: accounting result before tax, tax adjustments, losses carried forward, taxable income, the 22 % corporation tax, reliefs and the balance, as the rubrikker the company keys into TastSelv Selskabsskat (DIAS). Skatteforvaltningen publishes no file format for the return; the XML is a working file.
    */
-  public PostV1DeclarationsDkSelskabsskatGenerateResponse postV1DeclarationsDkSelskabsskatGenerate(
-      PostV1DeclarationsDkSelskabsskatGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsDkSelskabsskatGenerate(request).body();
+  public DkSelskabsskatGenerateDeclarationsResponse dkSelskabsskatGenerate(
+      DkSelskabsskatGenerateDeclarationsRequest request) {
+    return this.rawClient.dkSelskabsskatGenerate(request).body();
   }
 
   /**
    * Compute the oplysningsskema for selskaber (selskabsselvangivelsen) of an income year from the ledger and the recorded tax adjustments: accounting result before tax, tax adjustments, losses carried forward, taxable income, the 22 % corporation tax, reliefs and the balance, as the rubrikker the company keys into TastSelv Selskabsskat (DIAS). Skatteforvaltningen publishes no file format for the return; the XML is a working file.
    */
-  public PostV1DeclarationsDkSelskabsskatGenerateResponse postV1DeclarationsDkSelskabsskatGenerate(
-      PostV1DeclarationsDkSelskabsskatGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsDkSelskabsskatGenerate(request, requestOptions).body();
+  public DkSelskabsskatGenerateDeclarationsResponse dkSelskabsskatGenerate(
+      DkSelskabsskatGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.dkSelskabsskatGenerate(request, requestOptions).body();
   }
 
   /**
    * Send one employment register (töötamise register) entry for an employment contract to e-MTA over X-tee: the start of work, or its end with the reason recorded on the contract.
    */
-  public PostV1DeclarationsEeEmploymentRegisterSendResponse postV1DeclarationsEeEmploymentRegisterSend(
-      PostV1DeclarationsEeEmploymentRegisterSendRequest request) {
-    return this.rawClient.postV1DeclarationsEeEmploymentRegisterSend(request).body();
+  public EeEmploymentRegisterSendDeclarationsResponse eeEmploymentRegisterSend(
+      EeEmploymentRegisterSendDeclarationsRequest request) {
+    return this.rawClient.eeEmploymentRegisterSend(request).body();
   }
 
   /**
    * Send one employment register (töötamise register) entry for an employment contract to e-MTA over X-tee: the start of work, or its end with the reason recorded on the contract.
    */
-  public PostV1DeclarationsEeEmploymentRegisterSendResponse postV1DeclarationsEeEmploymentRegisterSend(
-      PostV1DeclarationsEeEmploymentRegisterSendRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEeEmploymentRegisterSend(request, requestOptions).body();
+  public EeEmploymentRegisterSendDeclarationsResponse eeEmploymentRegisterSend(
+      EeEmploymentRegisterSendDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.eeEmploymentRegisterSend(request, requestOptions).body();
   }
 
   /**
    * Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
    */
-  public PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse postV1DeclarationsEsVerifactuDeclaracionResponsable(
-      ) {
-    return this.rawClient.postV1DeclarationsEsVerifactuDeclaracionResponsable().body();
+  public EsVerifactuDeclaracionResponsableDeclarationsResponse esVerifactuDeclaracionResponsable() {
+    return this.rawClient.esVerifactuDeclaracionResponsable().body();
   }
 
   /**
    * Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
    */
-  public PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse postV1DeclarationsEsVerifactuDeclaracionResponsable(
+  public EsVerifactuDeclaracionResponsableDeclarationsResponse esVerifactuDeclaracionResponsable(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEsVerifactuDeclaracionResponsable(requestOptions).body();
+    return this.rawClient.esVerifactuDeclaracionResponsable(requestOptions).body();
   }
 
   /**
    * Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
    */
-  public PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse postV1DeclarationsEsVerifactuDeclaracionResponsable(
-      PostV1DeclarationsEsVerifactuDeclaracionResponsableRequest request) {
-    return this.rawClient.postV1DeclarationsEsVerifactuDeclaracionResponsable(request).body();
+  public EsVerifactuDeclaracionResponsableDeclarationsResponse esVerifactuDeclaracionResponsable(
+      EsVerifactuDeclaracionResponsableDeclarationsRequest request) {
+    return this.rawClient.esVerifactuDeclaracionResponsable(request).body();
   }
 
   /**
    * Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
    */
-  public PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse postV1DeclarationsEsVerifactuDeclaracionResponsable(
-      PostV1DeclarationsEsVerifactuDeclaracionResponsableRequest request,
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsEsVerifactuDeclaracionResponsable(request, requestOptions).body();
+  public EsVerifactuDeclaracionResponsableDeclarationsResponse esVerifactuDeclaracionResponsable(
+      EsVerifactuDeclaracionResponsableDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.esVerifactuDeclaracionResponsable(request, requestOptions).body();
   }
 
   /**
    * Build the Form CT1 of an accounting year as the ROS version 26 XML and the accompanying financial statements as inline XBRL on the FRS 102 Irish Extension 2026 taxonomy Revenue accepts, both from the ledger, the recorded tax adjustments, the annual accounts record and the officers, for upload through the company’s own ROS account. Says whether the company is above the iXBRL deferral limits (balance sheet total €4.4 million, turnover €8.8 million, 50 employees).
    */
-  public PostV1DeclarationsIeCt1GenerateResponse postV1DeclarationsIeCt1Generate(
-      PostV1DeclarationsIeCt1GenerateRequest request) {
-    return this.rawClient.postV1DeclarationsIeCt1Generate(request).body();
+  public IeCt1GenerateDeclarationsResponse ieCt1Generate(IeCt1GenerateDeclarationsRequest request) {
+    return this.rawClient.ieCt1Generate(request).body();
   }
 
   /**
    * Build the Form CT1 of an accounting year as the ROS version 26 XML and the accompanying financial statements as inline XBRL on the FRS 102 Irish Extension 2026 taxonomy Revenue accepts, both from the ledger, the recorded tax adjustments, the annual accounts record and the officers, for upload through the company’s own ROS account. Says whether the company is above the iXBRL deferral limits (balance sheet total €4.4 million, turnover €8.8 million, 50 employees).
    */
-  public PostV1DeclarationsIeCt1GenerateResponse postV1DeclarationsIeCt1Generate(
-      PostV1DeclarationsIeCt1GenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsIeCt1Generate(request, requestOptions).body();
+  public IeCt1GenerateDeclarationsResponse ieCt1Generate(IeCt1GenerateDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ieCt1Generate(request, requestOptions).body();
   }
 
   /**
    * Build the working paper for the Form B1 annual return of a financial year — company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements — in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
    */
-  public PostV1DeclarationsIeB1GenerateResponse postV1DeclarationsIeB1Generate(
-      PostV1DeclarationsIeB1GenerateRequest request) {
-    return this.rawClient.postV1DeclarationsIeB1Generate(request).body();
+  public IeB1GenerateDeclarationsResponse ieB1Generate(IeB1GenerateDeclarationsRequest request) {
+    return this.rawClient.ieB1Generate(request).body();
   }
 
   /**
    * Build the working paper for the Form B1 annual return of a financial year — company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements — in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
    */
-  public PostV1DeclarationsIeB1GenerateResponse postV1DeclarationsIeB1Generate(
-      PostV1DeclarationsIeB1GenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsIeB1Generate(request, requestOptions).body();
+  public IeB1GenerateDeclarationsResponse ieB1Generate(IeB1GenerateDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ieB1Generate(request, requestOptions).body();
   }
 
   /**
    * Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed.
    */
-  public PostV1DeclarationsItSdiPurchaseSendResponse postV1DeclarationsItSdiPurchaseSend(
-      PostV1DeclarationsItSdiPurchaseSendRequest request) {
-    return this.rawClient.postV1DeclarationsItSdiPurchaseSend(request).body();
+  public ItSdiPurchaseSendDeclarationsResponse itSdiPurchaseSend(
+      ItSdiPurchaseSendDeclarationsRequest request) {
+    return this.rawClient.itSdiPurchaseSend(request).body();
   }
 
   /**
    * Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed.
    */
-  public PostV1DeclarationsItSdiPurchaseSendResponse postV1DeclarationsItSdiPurchaseSend(
-      PostV1DeclarationsItSdiPurchaseSendRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsItSdiPurchaseSend(request, requestOptions).body();
+  public ItSdiPurchaseSendDeclarationsResponse itSdiPurchaseSend(
+      ItSdiPurchaseSendDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itSdiPurchaseSend(request, requestOptions).body();
   }
 
   /**
    * Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first.
    */
-  public PostV1DeclarationsItSdiPurchasePreviewResponse postV1DeclarationsItSdiPurchasePreview(
-      PostV1DeclarationsItSdiPurchasePreviewRequest request) {
-    return this.rawClient.postV1DeclarationsItSdiPurchasePreview(request).body();
+  public ItSdiPurchasePreviewDeclarationsResponse itSdiPurchasePreview(
+      ItSdiPurchasePreviewDeclarationsRequest request) {
+    return this.rawClient.itSdiPurchasePreview(request).body();
   }
 
   /**
    * Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first.
    */
-  public PostV1DeclarationsItSdiPurchasePreviewResponse postV1DeclarationsItSdiPurchasePreview(
-      PostV1DeclarationsItSdiPurchasePreviewRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsItSdiPurchasePreview(request, requestOptions).body();
+  public ItSdiPurchasePreviewDeclarationsResponse itSdiPurchasePreview(
+      ItSdiPurchasePreviewDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itSdiPurchasePreview(request, requestOptions).body();
   }
 
   /**
-   * Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected.
+   * Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The file, the case reference and the status are kept as a declaration submission (submissionId), whose outcome Nordlet then checks with i.SAF-T. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected. A range and data type already sent is sent again only with amend: true.
    */
-  public PostV1DeclarationsLtSaftSendResponse postV1DeclarationsLtSaftSend(
-      PostV1DeclarationsLtSaftSendRequest request) {
-    return this.rawClient.postV1DeclarationsLtSaftSend(request).body();
+  public LtSaftSendDeclarationsResponse ltSaftSend(LtSaftSendDeclarationsRequest request) {
+    return this.rawClient.ltSaftSend(request).body();
   }
 
   /**
-   * Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected.
+   * Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The file, the case reference and the status are kept as a declaration submission (submissionId), whose outcome Nordlet then checks with i.SAF-T. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected. A range and data type already sent is sent again only with amend: true.
    */
-  public PostV1DeclarationsLtSaftSendResponse postV1DeclarationsLtSaftSend(
-      PostV1DeclarationsLtSaftSendRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtSaftSend(request, requestOptions).body();
+  public LtSaftSendDeclarationsResponse ltSaftSend(LtSaftSendDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ltSaftSend(request, requestOptions).body();
   }
 
   /**
    * Render the Sodra 1-SD or 2-SD notice for the contracts starting or ending in the range as an .ffdata document for EDAS.
    */
-  public PostV1DeclarationsLtSdFfdataResponse postV1DeclarationsLtSdFfdata(
-      PostV1DeclarationsLtSdFfdataRequest request) {
-    return this.rawClient.postV1DeclarationsLtSdFfdata(request).body();
+  public LtSdFfdataDeclarationsResponse ltSdFfdata(LtSdFfdataDeclarationsRequest request) {
+    return this.rawClient.ltSdFfdata(request).body();
   }
 
   /**
    * Render the Sodra 1-SD or 2-SD notice for the contracts starting or ending in the range as an .ffdata document for EDAS.
    */
-  public PostV1DeclarationsLtSdFfdataResponse postV1DeclarationsLtSdFfdata(
-      PostV1DeclarationsLtSdFfdataRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtSdFfdata(request, requestOptions).body();
+  public LtSdFfdataDeclarationsResponse ltSdFfdata(LtSdFfdataDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ltSdFfdata(request, requestOptions).body();
   }
 
   /**
    * Render the annual corporate income tax return PLN204 as an .ffdata document, including the PLN204S and PLN204Z annexes, from the ledger and the tax adjustments recorded for that year.
    */
-  public PostV1DeclarationsLtPln204FfdataResponse postV1DeclarationsLtPln204Ffdata(
-      PostV1DeclarationsLtPln204FfdataRequest request) {
-    return this.rawClient.postV1DeclarationsLtPln204Ffdata(request).body();
+  public LtPln204FfdataDeclarationsResponse ltPln204Ffdata(
+      LtPln204FfdataDeclarationsRequest request) {
+    return this.rawClient.ltPln204Ffdata(request).body();
   }
 
   /**
    * Render the annual corporate income tax return PLN204 as an .ffdata document, including the PLN204S and PLN204Z annexes, from the ledger and the tax adjustments recorded for that year.
    */
-  public PostV1DeclarationsLtPln204FfdataResponse postV1DeclarationsLtPln204Ffdata(
-      PostV1DeclarationsLtPln204FfdataRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLtPln204Ffdata(request, requestOptions).body();
+  public LtPln204FfdataDeclarationsResponse ltPln204Ffdata(
+      LtPln204FfdataDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.ltPln204Ffdata(request, requestOptions).body();
   }
 
   /**
    * Compute the company income tax return and self-assessment of a year of assessment from the ledger and the recorded tax adjustments: the accounting profit before tax, the add-backs and deductions, the approved donations, capital allowances and losses carried forward, the chargeable income, the 35 % charge, the relief against the tax and the allocation of the distributable profit to the five tax accounts. The Malta Tax and Customs Administration issues the return as a personalised spreadsheet to the registered tax practitioner and publishes no layout, so the XML is a working file and the figures are keyed into that spreadsheet.
    */
-  public PostV1DeclarationsMtCompanyTaxGenerateResponse postV1DeclarationsMtCompanyTaxGenerate(
-      PostV1DeclarationsMtCompanyTaxGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsMtCompanyTaxGenerate(request).body();
+  public MtCompanyTaxGenerateDeclarationsResponse mtCompanyTaxGenerate(
+      MtCompanyTaxGenerateDeclarationsRequest request) {
+    return this.rawClient.mtCompanyTaxGenerate(request).body();
   }
 
   /**
    * Compute the company income tax return and self-assessment of a year of assessment from the ledger and the recorded tax adjustments: the accounting profit before tax, the add-backs and deductions, the approved donations, capital allowances and losses carried forward, the chargeable income, the 35 % charge, the relief against the tax and the allocation of the distributable profit to the five tax accounts. The Malta Tax and Customs Administration issues the return as a personalised spreadsheet to the registered tax practitioner and publishes no layout, so the XML is a working file and the figures are keyed into that spreadsheet.
    */
-  public PostV1DeclarationsMtCompanyTaxGenerateResponse postV1DeclarationsMtCompanyTaxGenerate(
-      PostV1DeclarationsMtCompanyTaxGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsMtCompanyTaxGenerate(request, requestOptions).body();
+  public MtCompanyTaxGenerateDeclarationsResponse mtCompanyTaxGenerate(
+      MtCompanyTaxGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.mtCompanyTaxGenerate(request, requestOptions).body();
   }
 
   /**
    * Build the annual return of a year: the company number, registered office and made-up-to date, the share capital, the register of members, the directors and the company secretary and the accounts summary, as the figures the Malta Business Registry asks for on its own screens, plus the printed Annual Return Form of the Seventh Schedule filled in as a PDF for signing.
    */
-  public PostV1DeclarationsMtAnnualReturnGenerateResponse postV1DeclarationsMtAnnualReturnGenerate(
-      PostV1DeclarationsMtAnnualReturnGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsMtAnnualReturnGenerate(request).body();
+  public MtAnnualReturnGenerateDeclarationsResponse mtAnnualReturnGenerate(
+      MtAnnualReturnGenerateDeclarationsRequest request) {
+    return this.rawClient.mtAnnualReturnGenerate(request).body();
   }
 
   /**
    * Build the annual return of a year: the company number, registered office and made-up-to date, the share capital, the register of members, the directors and the company secretary and the accounts summary, as the figures the Malta Business Registry asks for on its own screens, plus the printed Annual Return Form of the Seventh Schedule filled in as a PDF for signing.
    */
-  public PostV1DeclarationsMtAnnualReturnGenerateResponse postV1DeclarationsMtAnnualReturnGenerate(
-      PostV1DeclarationsMtAnnualReturnGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsMtAnnualReturnGenerate(request, requestOptions).body();
+  public MtAnnualReturnGenerateDeclarationsResponse mtAnnualReturnGenerate(
+      MtAnnualReturnGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.mtAnnualReturnGenerate(request, requestOptions).body();
   }
 
   /**
    * Generate JPK_FA(4), the on-demand structure with every sales invoice issued in a period, its VAT bases per rate and one row per invoice line. Filed only when the tax office asks for it.
    */
-  public PostV1DeclarationsPlJpkFaGenerateResponse postV1DeclarationsPlJpkFaGenerate(
-      PostV1DeclarationsPlJpkFaGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsPlJpkFaGenerate(request).body();
+  public PlJpkFaGenerateDeclarationsResponse plJpkFaGenerate(
+      PlJpkFaGenerateDeclarationsRequest request) {
+    return this.rawClient.plJpkFaGenerate(request).body();
   }
 
   /**
    * Generate JPK_FA(4), the on-demand structure with every sales invoice issued in a period, its VAT bases per rate and one row per invoice line. Filed only when the tax office asks for it.
    */
-  public PostV1DeclarationsPlJpkFaGenerateResponse postV1DeclarationsPlJpkFaGenerate(
-      PostV1DeclarationsPlJpkFaGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsPlJpkFaGenerate(request, requestOptions).body();
+  public PlJpkFaGenerateDeclarationsResponse plJpkFaGenerate(
+      PlJpkFaGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.plJpkFaGenerate(request, requestOptions).body();
   }
 
   /**
    * Generate JPK_KR(1), the on-demand structure with the chart of accounts and its opening balances and turnover, the journal and the double entries behind it. Filed only when the tax office asks for it.
    */
-  public PostV1DeclarationsPlJpkKrGenerateResponse postV1DeclarationsPlJpkKrGenerate(
-      PostV1DeclarationsPlJpkKrGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsPlJpkKrGenerate(request).body();
+  public PlJpkKrGenerateDeclarationsResponse plJpkKrGenerate(
+      PlJpkKrGenerateDeclarationsRequest request) {
+    return this.rawClient.plJpkKrGenerate(request).body();
   }
 
   /**
    * Generate JPK_KR(1), the on-demand structure with the chart of accounts and its opening balances and turnover, the journal and the double entries behind it. Filed only when the tax office asks for it.
    */
-  public PostV1DeclarationsPlJpkKrGenerateResponse postV1DeclarationsPlJpkKrGenerate(
-      PostV1DeclarationsPlJpkKrGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsPlJpkKrGenerate(request, requestOptions).body();
+  public PlJpkKrGenerateDeclarationsResponse plJpkKrGenerate(
+      PlJpkKrGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.plJpkKrGenerate(request, requestOptions).body();
   }
 
   /**
    * Generate JPK_MAG(2), the on-demand structure with the warehouse documents of one warehouse: goods received from outside (PZ) or internally (PW) and issued to a customer (WZ) or internally (RW). Filed only when the tax office asks for it.
    */
-  public PostV1DeclarationsPlJpkMagGenerateResponse postV1DeclarationsPlJpkMagGenerate(
-      PostV1DeclarationsPlJpkMagGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsPlJpkMagGenerate(request).body();
+  public PlJpkMagGenerateDeclarationsResponse plJpkMagGenerate(
+      PlJpkMagGenerateDeclarationsRequest request) {
+    return this.rawClient.plJpkMagGenerate(request).body();
   }
 
   /**
    * Generate JPK_MAG(2), the on-demand structure with the warehouse documents of one warehouse: goods received from outside (PZ) or internally (PW) and issued to a customer (WZ) or internally (RW). Filed only when the tax office asks for it.
    */
-  public PostV1DeclarationsPlJpkMagGenerateResponse postV1DeclarationsPlJpkMagGenerate(
-      PostV1DeclarationsPlJpkMagGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsPlJpkMagGenerate(request, requestOptions).body();
+  public PlJpkMagGenerateDeclarationsResponse plJpkMagGenerate(
+      PlJpkMagGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.plJpkMagGenerate(request, requestOptions).body();
   }
 
   /**
    * Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
    */
-  public PostV1DeclarationsPlPit11GenerateResponse postV1DeclarationsPlPit11Generate(
-      PostV1DeclarationsPlPit11GenerateRequest request) {
-    return this.rawClient.postV1DeclarationsPlPit11Generate(request).body();
+  public PlPit11GenerateDeclarationsResponse plPit11Generate(
+      PlPit11GenerateDeclarationsRequest request) {
+    return this.rawClient.plPit11Generate(request).body();
   }
 
   /**
    * Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
    */
-  public PostV1DeclarationsPlPit11GenerateResponse postV1DeclarationsPlPit11Generate(
-      PostV1DeclarationsPlPit11GenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsPlPit11Generate(request, requestOptions).body();
+  public PlPit11GenerateDeclarationsResponse plPit11Generate(
+      PlPit11GenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.plPit11Generate(request, requestOptions).body();
   }
 
   /**
    * Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
    */
-  public PostV1DeclarationsPlCit8GenerateResponse postV1DeclarationsPlCit8Generate(
-      PostV1DeclarationsPlCit8GenerateRequest request) {
-    return this.rawClient.postV1DeclarationsPlCit8Generate(request).body();
+  public PlCit8GenerateDeclarationsResponse plCit8Generate(
+      PlCit8GenerateDeclarationsRequest request) {
+    return this.rawClient.plCit8Generate(request).body();
   }
 
   /**
    * Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
    */
-  public PostV1DeclarationsPlCit8GenerateResponse postV1DeclarationsPlCit8Generate(
-      PostV1DeclarationsPlCit8GenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsPlCit8Generate(request, requestOptions).body();
+  public PlCit8GenerateDeclarationsResponse plCit8Generate(
+      PlCit8GenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.plCit8Generate(request, requestOptions).body();
   }
 
   /**
    * Compute the monthly ZUS DRA settlement from the payroll run of one month: the pension, disability, sickness, accident and health insurance contributions and the Labour Fund, Solidarity Fund and guaranteed benefits fund charges, each split between the insured person and the payer. The amounts are carried into Płatnik or ePłatnik by hand.
    */
-  public PostV1DeclarationsPlZusDraComputeResponse postV1DeclarationsPlZusDraCompute(
-      PostV1DeclarationsPlZusDraComputeRequest request) {
-    return this.rawClient.postV1DeclarationsPlZusDraCompute(request).body();
+  public PlZusDraComputeDeclarationsResponse plZusDraCompute(
+      PlZusDraComputeDeclarationsRequest request) {
+    return this.rawClient.plZusDraCompute(request).body();
   }
 
   /**
    * Compute the monthly ZUS DRA settlement from the payroll run of one month: the pension, disability, sickness, accident and health insurance contributions and the Labour Fund, Solidarity Fund and guaranteed benefits fund charges, each split between the insured person and the payer. The amounts are carried into Płatnik or ePłatnik by hand.
    */
-  public PostV1DeclarationsPlZusDraComputeResponse postV1DeclarationsPlZusDraCompute(
-      PostV1DeclarationsPlZusDraComputeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsPlZusDraCompute(request, requestOptions).body();
+  public PlZusDraComputeDeclarationsResponse plZusDraCompute(
+      PlZusDraComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.plZusDraCompute(request, requestOptions).body();
   }
 
   /**
    * Build the KEDU file for one month: the ZUS DRA settlement and one ZUS RCA report per person on the payroll, in the schema kedu_5_4 that Płatnik and ePłatnik import. The payer REGON, short name and declaration deadline code come from the ZUS compliance settings; the insurance title code and working time of each person from the employee record.
    */
-  public PostV1DeclarationsPlZusDraKeduResponse postV1DeclarationsPlZusDraKedu(
-      PostV1DeclarationsPlZusDraKeduRequest request) {
-    return this.rawClient.postV1DeclarationsPlZusDraKedu(request).body();
+  public PlZusDraKeduDeclarationsResponse plZusDraKedu(PlZusDraKeduDeclarationsRequest request) {
+    return this.rawClient.plZusDraKedu(request).body();
   }
 
   /**
    * Build the KEDU file for one month: the ZUS DRA settlement and one ZUS RCA report per person on the payroll, in the schema kedu_5_4 that Płatnik and ePłatnik import. The payer REGON, short name and declaration deadline code come from the ZUS compliance settings; the insurance title code and working time of each person from the employee record.
    */
-  public PostV1DeclarationsPlZusDraKeduResponse postV1DeclarationsPlZusDraKedu(
-      PostV1DeclarationsPlZusDraKeduRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsPlZusDraKedu(request, requestOptions).body();
+  public PlZusDraKeduDeclarationsResponse plZusDraKedu(PlZusDraKeduDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.plZusDraKedu(request, requestOptions).body();
   }
 
   /**
    * Fill the published ZUS DRA form for one month and return it as a PDF. The amounts, the payer identity and the deadline code are the same ones the KEDU file carries; blocks the payroll does not hold (paid benefits, bridging pensions, income declaration of a self-paying person) stay empty.
    */
-  public PostV1DeclarationsPlZusDraPdfResponse postV1DeclarationsPlZusDraPdf(
-      PostV1DeclarationsPlZusDraPdfRequest request) {
-    return this.rawClient.postV1DeclarationsPlZusDraPdf(request).body();
+  public PlZusDraPdfDeclarationsResponse plZusDraPdf(PlZusDraPdfDeclarationsRequest request) {
+    return this.rawClient.plZusDraPdf(request).body();
   }
 
   /**
    * Fill the published ZUS DRA form for one month and return it as a PDF. The amounts, the payer identity and the deadline code are the same ones the KEDU file carries; blocks the payroll does not hold (paid benefits, bridging pensions, income declaration of a self-paying person) stay empty.
    */
-  public PostV1DeclarationsPlZusDraPdfResponse postV1DeclarationsPlZusDraPdf(
-      PostV1DeclarationsPlZusDraPdfRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsPlZusDraPdf(request, requestOptions).body();
+  public PlZusDraPdfDeclarationsResponse plZusDraPdf(PlZusDraPdfDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.plZusDraPdf(request, requestOptions).body();
   }
 
   /**
    * Build the RO e-Transport declaration for an issued waybill: goods with their tariff codes and masses, the commercial partner, the route and the vehicle. The XML follows the ANAF eTransport v2 schema and is kept as a file on the waybill. Anything listed in blockers has to be filled in before /etransport/send will accept it.
    */
-  public PostV1DeclarationsRoEtransportBuildResponse postV1DeclarationsRoEtransportBuild(
-      PostV1DeclarationsRoEtransportBuildRequest request) {
-    return this.rawClient.postV1DeclarationsRoEtransportBuild(request).body();
+  public RoEtransportBuildDeclarationsResponse roEtransportBuild(
+      RoEtransportBuildDeclarationsRequest request) {
+    return this.rawClient.roEtransportBuild(request).body();
   }
 
   /**
    * Build the RO e-Transport declaration for an issued waybill: goods with their tariff codes and masses, the commercial partner, the route and the vehicle. The XML follows the ANAF eTransport v2 schema and is kept as a file on the waybill. Anything listed in blockers has to be filled in before /etransport/send will accept it.
    */
-  public PostV1DeclarationsRoEtransportBuildResponse postV1DeclarationsRoEtransportBuild(
-      PostV1DeclarationsRoEtransportBuildRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsRoEtransportBuild(request, requestOptions).body();
+  public RoEtransportBuildDeclarationsResponse roEtransportBuild(
+      RoEtransportBuildDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.roEtransportBuild(request, requestOptions).body();
   }
 
   /**
    * Hand the RO e-Transport declaration for an issued waybill to ANAF under the SPV OAuth token in compliance settings, and return the upload index the UIT is read back with. Answers 422 while any field the ANAF validator requires is still missing.
    */
-  public PostV1DeclarationsRoEtransportSubmitResponse postV1DeclarationsRoEtransportSubmit(
-      PostV1DeclarationsRoEtransportSubmitRequest request) {
-    return this.rawClient.postV1DeclarationsRoEtransportSubmit(request).body();
+  public RoEtransportSubmitDeclarationsResponse roEtransportSubmit(
+      RoEtransportSubmitDeclarationsRequest request) {
+    return this.rawClient.roEtransportSubmit(request).body();
   }
 
   /**
    * Hand the RO e-Transport declaration for an issued waybill to ANAF under the SPV OAuth token in compliance settings, and return the upload index the UIT is read back with. Answers 422 while any field the ANAF validator requires is still missing.
    */
-  public PostV1DeclarationsRoEtransportSubmitResponse postV1DeclarationsRoEtransportSubmit(
-      PostV1DeclarationsRoEtransportSubmitRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsRoEtransportSubmit(request, requestOptions).body();
+  public RoEtransportSubmitDeclarationsResponse roEtransportSubmit(
+      RoEtransportSubmitDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.roEtransportSubmit(request, requestOptions).body();
   }
 
   /**
    * Read the outcome of an e-Transport declaration from ANAF by its upload index, under the SPV OAuth token in compliance settings. Returns the UIT code once the declaration validates.
    */
-  public PostV1DeclarationsRoEtransportStatusResponse postV1DeclarationsRoEtransportStatus(
-      PostV1DeclarationsRoEtransportStatusRequest request) {
-    return this.rawClient.postV1DeclarationsRoEtransportStatus(request).body();
+  public RoEtransportStatusDeclarationsResponse roEtransportStatus(
+      RoEtransportStatusDeclarationsRequest request) {
+    return this.rawClient.roEtransportStatus(request).body();
   }
 
   /**
    * Read the outcome of an e-Transport declaration from ANAF by its upload index, under the SPV OAuth token in compliance settings. Returns the UIT code once the declaration validates.
    */
-  public PostV1DeclarationsRoEtransportStatusResponse postV1DeclarationsRoEtransportStatus(
-      PostV1DeclarationsRoEtransportStatusRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsRoEtransportStatus(request, requestOptions).body();
+  public RoEtransportStatusDeclarationsResponse roEtransportStatus(
+      RoEtransportStatusDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.roEtransportStatus(request, requestOptions).body();
   }
 
   /**
    * Build the annual wage declaration (Lohndeklaration) to the AHV-IV-FAK from the approved payroll runs of the year as the CSV that AHVeasy imports under Lohndeklaration → CSV-Import der Lohndaten: one row per employee with the 18 columns of the AHVeasy template, the AHV-liable wage and the ALV wage.
    */
-  public PostV1DeclarationsLiLohndeklarationGenerateResponse postV1DeclarationsLiLohndeklarationGenerate(
-      PostV1DeclarationsLiLohndeklarationGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsLiLohndeklarationGenerate(request).body();
+  public LiLohndeklarationGenerateDeclarationsResponse liLohndeklarationGenerate(
+      LiLohndeklarationGenerateDeclarationsRequest request) {
+    return this.rawClient.liLohndeklarationGenerate(request).body();
   }
 
   /**
    * Build the annual wage declaration (Lohndeklaration) to the AHV-IV-FAK from the approved payroll runs of the year as the CSV that AHVeasy imports under Lohndeklaration → CSV-Import der Lohndaten: one row per employee with the 18 columns of the AHVeasy template, the AHV-liable wage and the ALV wage.
    */
-  public PostV1DeclarationsLiLohndeklarationGenerateResponse postV1DeclarationsLiLohndeklarationGenerate(
-      PostV1DeclarationsLiLohndeklarationGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLiLohndeklarationGenerate(request, requestOptions).body();
+  public LiLohndeklarationGenerateDeclarationsResponse liLohndeklarationGenerate(
+      LiLohndeklarationGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.liLohndeklarationGenerate(request, requestOptions).body();
   }
 
   /**
    * Build the annual wage list (Lohnliste) of a Liechtenstein employer from the approved payroll runs of the year as the XLSX file the tax administration's eLohnausweis / eLohnlisten application imports: one row per employee with PEID, name, birth date, address, gross wage, wage tax withheld and the settlement period.
    */
-  public PostV1DeclarationsLiLohnlistenGenerateResponse postV1DeclarationsLiLohnlistenGenerate(
-      PostV1DeclarationsLiLohnlistenGenerateRequest request) {
-    return this.rawClient.postV1DeclarationsLiLohnlistenGenerate(request).body();
+  public LiLohnlistenGenerateDeclarationsResponse liLohnlistenGenerate(
+      LiLohnlistenGenerateDeclarationsRequest request) {
+    return this.rawClient.liLohnlistenGenerate(request).body();
   }
 
   /**
    * Build the annual wage list (Lohnliste) of a Liechtenstein employer from the approved payroll runs of the year as the XLSX file the tax administration's eLohnausweis / eLohnlisten application imports: one row per employee with PEID, name, birth date, address, gross wage, wage tax withheld and the settlement period.
    */
-  public PostV1DeclarationsLiLohnlistenGenerateResponse postV1DeclarationsLiLohnlistenGenerate(
-      PostV1DeclarationsLiLohnlistenGenerateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsLiLohnlistenGenerate(request, requestOptions).body();
+  public LiLohnlistenGenerateDeclarationsResponse liLohnlistenGenerate(
+      LiLohnlistenGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.liLohnlistenGenerate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsConfigsListResponse postV1DeclarationsConfigsList() {
-    return this.rawClient.postV1DeclarationsConfigsList().body();
+  public ConfigsListDeclarationsResponse configsList() {
+    return this.rawClient.configsList().body();
   }
 
-  public PostV1DeclarationsConfigsListResponse postV1DeclarationsConfigsList(
+  public ConfigsListDeclarationsResponse configsList(RequestOptions requestOptions) {
+    return this.rawClient.configsList(requestOptions).body();
+  }
+
+  public ConfigsListDeclarationsResponse configsList(ConfigsListDeclarationsRequest request) {
+    return this.rawClient.configsList(request).body();
+  }
+
+  public ConfigsListDeclarationsResponse configsList(ConfigsListDeclarationsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsConfigsList(requestOptions).body();
+    return this.rawClient.configsList(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsConfigsListResponse postV1DeclarationsConfigsList(
-      PostV1DeclarationsConfigsListRequest request) {
-    return this.rawClient.postV1DeclarationsConfigsList(request).body();
+  public ConfigsUpdateDeclarationsResponse configsUpdate(ConfigsUpdateDeclarationsRequest request) {
+    return this.rawClient.configsUpdate(request).body();
   }
 
-  public PostV1DeclarationsConfigsListResponse postV1DeclarationsConfigsList(
-      PostV1DeclarationsConfigsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsConfigsList(request, requestOptions).body();
-  }
-
-  public PostV1DeclarationsConfigsUpdateResponse postV1DeclarationsConfigsUpdate(
-      PostV1DeclarationsConfigsUpdateRequest request) {
-    return this.rawClient.postV1DeclarationsConfigsUpdate(request).body();
-  }
-
-  public PostV1DeclarationsConfigsUpdateResponse postV1DeclarationsConfigsUpdate(
-      PostV1DeclarationsConfigsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsConfigsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1DeclarationsCertificatesUploadResponse storeTheCertificateOrPrivateKeyAFilingSystemAuthenticatesWith(
-      PostV1DeclarationsCertificatesUploadRequest request) {
-    return this.rawClient.storeTheCertificateOrPrivateKeyAFilingSystemAuthenticatesWith(request).body();
-  }
-
-  public PostV1DeclarationsCertificatesUploadResponse storeTheCertificateOrPrivateKeyAFilingSystemAuthenticatesWith(
-      PostV1DeclarationsCertificatesUploadRequest request, RequestOptions requestOptions) {
-    return this.rawClient.storeTheCertificateOrPrivateKeyAFilingSystemAuthenticatesWith(request, requestOptions).body();
-  }
-
-  public PostV1DeclarationsCertificatesListResponse postV1DeclarationsCertificatesList() {
-    return this.rawClient.postV1DeclarationsCertificatesList().body();
-  }
-
-  public PostV1DeclarationsCertificatesListResponse postV1DeclarationsCertificatesList(
+  public ConfigsUpdateDeclarationsResponse configsUpdate(ConfigsUpdateDeclarationsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsCertificatesList(requestOptions).body();
+    return this.rawClient.configsUpdate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsCertificatesListResponse postV1DeclarationsCertificatesList(
-      PostV1DeclarationsCertificatesListRequest request) {
-    return this.rawClient.postV1DeclarationsCertificatesList(request).body();
+  public CertificatesUploadDeclarationsResponse certificatesUpload(
+      CertificatesUploadDeclarationsRequest request) {
+    return this.rawClient.certificatesUpload(request).body();
   }
 
-  public PostV1DeclarationsCertificatesListResponse postV1DeclarationsCertificatesList(
-      PostV1DeclarationsCertificatesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsCertificatesList(request, requestOptions).body();
+  public CertificatesUploadDeclarationsResponse certificatesUpload(
+      CertificatesUploadDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.certificatesUpload(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsCertificatesDeleteResponse postV1DeclarationsCertificatesDelete(
-      PostV1DeclarationsCertificatesDeleteRequest request) {
-    return this.rawClient.postV1DeclarationsCertificatesDelete(request).body();
+  public CertificatesListDeclarationsResponse certificatesList() {
+    return this.rawClient.certificatesList().body();
   }
 
-  public PostV1DeclarationsCertificatesDeleteResponse postV1DeclarationsCertificatesDelete(
-      PostV1DeclarationsCertificatesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsCertificatesDelete(request, requestOptions).body();
+  public CertificatesListDeclarationsResponse certificatesList(RequestOptions requestOptions) {
+    return this.rawClient.certificatesList(requestOptions).body();
   }
 
-  public PostV1DeclarationsAutomationListResponse whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhichAreSwitchedOn(
-      ) {
-    return this.rawClient.whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhichAreSwitchedOn().body();
+  public CertificatesListDeclarationsResponse certificatesList(
+      CertificatesListDeclarationsRequest request) {
+    return this.rawClient.certificatesList(request).body();
   }
 
-  public PostV1DeclarationsAutomationListResponse whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhichAreSwitchedOn(
-      RequestOptions requestOptions) {
-    return this.rawClient.whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhichAreSwitchedOn(requestOptions).body();
+  public CertificatesListDeclarationsResponse certificatesList(
+      CertificatesListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.certificatesList(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsAutomationListResponse whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhichAreSwitchedOn(
-      PostV1DeclarationsAutomationListRequest request) {
-    return this.rawClient.whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhichAreSwitchedOn(request).body();
+  public CertificatesDeleteDeclarationsResponse certificatesDelete(
+      CertificatesDeleteDeclarationsRequest request) {
+    return this.rawClient.certificatesDelete(request).body();
   }
 
-  public PostV1DeclarationsAutomationListResponse whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhichAreSwitchedOn(
-      PostV1DeclarationsAutomationListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhichAreSwitchedOn(request, requestOptions).body();
+  public CertificatesDeleteDeclarationsResponse certificatesDelete(
+      CertificatesDeleteDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.certificatesDelete(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsAutomationUpdateResponse postV1DeclarationsAutomationUpdate(
-      PostV1DeclarationsAutomationUpdateRequest request) {
-    return this.rawClient.postV1DeclarationsAutomationUpdate(request).body();
+  public AutomationListDeclarationsResponse automationList() {
+    return this.rawClient.automationList().body();
   }
 
-  public PostV1DeclarationsAutomationUpdateResponse postV1DeclarationsAutomationUpdate(
-      PostV1DeclarationsAutomationUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsAutomationUpdate(request, requestOptions).body();
+  public AutomationListDeclarationsResponse automationList(RequestOptions requestOptions) {
+    return this.rawClient.automationList(requestOptions).body();
   }
 
-  public PostV1DeclarationsSubmissionsRetryResponse sendAFilingWhoseDeliveryFailedOnceMoreWithTheBytesThatWereGenerated(
-      PostV1DeclarationsSubmissionsRetryRequest request) {
-    return this.rawClient.sendAFilingWhoseDeliveryFailedOnceMoreWithTheBytesThatWereGenerated(request).body();
+  public AutomationListDeclarationsResponse automationList(
+      AutomationListDeclarationsRequest request) {
+    return this.rawClient.automationList(request).body();
   }
 
-  public PostV1DeclarationsSubmissionsRetryResponse sendAFilingWhoseDeliveryFailedOnceMoreWithTheBytesThatWereGenerated(
-      PostV1DeclarationsSubmissionsRetryRequest request, RequestOptions requestOptions) {
-    return this.rawClient.sendAFilingWhoseDeliveryFailedOnceMoreWithTheBytesThatWereGenerated(request, requestOptions).body();
+  public AutomationListDeclarationsResponse automationList(
+      AutomationListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.automationList(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsSubmissionsCreateResponse postV1DeclarationsSubmissionsCreate(
-      PostV1DeclarationsSubmissionsCreateRequest request) {
-    return this.rawClient.postV1DeclarationsSubmissionsCreate(request).body();
+  public AutomationUpdateDeclarationsResponse automationUpdate(
+      AutomationUpdateDeclarationsRequest request) {
+    return this.rawClient.automationUpdate(request).body();
   }
 
-  public PostV1DeclarationsSubmissionsCreateResponse postV1DeclarationsSubmissionsCreate(
-      PostV1DeclarationsSubmissionsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsSubmissionsCreate(request, requestOptions).body();
+  public AutomationUpdateDeclarationsResponse automationUpdate(
+      AutomationUpdateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.automationUpdate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsSubmissionsMarkResponse postV1DeclarationsSubmissionsMark(
-      PostV1DeclarationsSubmissionsMarkRequest request) {
-    return this.rawClient.postV1DeclarationsSubmissionsMark(request).body();
+  public SubmissionsRetryDeclarationsResponse submissionsRetry(
+      SubmissionsRetryDeclarationsRequest request) {
+    return this.rawClient.submissionsRetry(request).body();
   }
 
-  public PostV1DeclarationsSubmissionsMarkResponse postV1DeclarationsSubmissionsMark(
-      PostV1DeclarationsSubmissionsMarkRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsSubmissionsMark(request, requestOptions).body();
+  public SubmissionsRetryDeclarationsResponse submissionsRetry(
+      SubmissionsRetryDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.submissionsRetry(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsSubmissionsListResponse postV1DeclarationsSubmissionsList() {
-    return this.rawClient.postV1DeclarationsSubmissionsList().body();
+  public SubmissionsCreateDeclarationsResponse submissionsCreate(
+      SubmissionsCreateDeclarationsRequest request) {
+    return this.rawClient.submissionsCreate(request).body();
   }
 
-  public PostV1DeclarationsSubmissionsListResponse postV1DeclarationsSubmissionsList(
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsSubmissionsList(requestOptions).body();
+  public SubmissionsCreateDeclarationsResponse submissionsCreate(
+      SubmissionsCreateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.submissionsCreate(request, requestOptions).body();
   }
 
-  public PostV1DeclarationsSubmissionsListResponse postV1DeclarationsSubmissionsList(
-      PostV1DeclarationsSubmissionsListRequest request) {
-    return this.rawClient.postV1DeclarationsSubmissionsList(request).body();
+  public SubmissionsMarkDeclarationsResponse submissionsMark(
+      SubmissionsMarkDeclarationsRequest request) {
+    return this.rawClient.submissionsMark(request).body();
   }
 
-  public PostV1DeclarationsSubmissionsListResponse postV1DeclarationsSubmissionsList(
-      PostV1DeclarationsSubmissionsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DeclarationsSubmissionsList(request, requestOptions).body();
+  public SubmissionsMarkDeclarationsResponse submissionsMark(
+      SubmissionsMarkDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.submissionsMark(request, requestOptions).body();
+  }
+
+  public SubmissionsListDeclarationsResponse submissionsList() {
+    return this.rawClient.submissionsList().body();
+  }
+
+  public SubmissionsListDeclarationsResponse submissionsList(RequestOptions requestOptions) {
+    return this.rawClient.submissionsList(requestOptions).body();
+  }
+
+  public SubmissionsListDeclarationsResponse submissionsList(
+      SubmissionsListDeclarationsRequest request) {
+    return this.rawClient.submissionsList(request).body();
+  }
+
+  public SubmissionsListDeclarationsResponse submissionsList(
+      SubmissionsListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.submissionsList(request, requestOptions).body();
   }
 }

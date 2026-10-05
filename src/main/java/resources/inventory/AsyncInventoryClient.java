@@ -6,48 +6,48 @@ package com.nordlet.api.resources.inventory;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryLandedCostsCreateRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryLandedCostsGetRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryLandedCostsListRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryLotsGetRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryLotsListRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryLotsUpdateRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryReorderRulesCheckRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryReorderRulesCreateRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryReorderRulesDeleteRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryReorderRulesListRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryReorderRulesUpdateRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventorySettingsGetRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventorySettingsUpdateRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryStockLevelsRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryStockMovementsListRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryStockReceiveRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryStockTakeRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryStockTransferRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryStockWriteOffRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryWarehousesCreateRequest;
-import com.nordlet.api.resources.inventory.requests.PostV1InventoryWarehousesListRequest;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryLandedCostsCreateResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryLandedCostsGetResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryLandedCostsListResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryLotsGetResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryLotsListResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryLotsUpdateResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryReorderRulesCheckResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryReorderRulesCreateResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryReorderRulesDeleteResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryReorderRulesListResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryReorderRulesUpdateResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventorySettingsGetResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventorySettingsUpdateResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryStockLevelsResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryStockMovementsListResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryStockReceiveResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryStockTakeResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryStockTransferResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryStockWriteOffResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryWarehousesCreateResponse;
-import com.nordlet.api.resources.inventory.types.PostV1InventoryWarehousesListResponse;
+import com.nordlet.api.resources.inventory.requests.LandedCostsCreateInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.LandedCostsGetInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.LandedCostsListInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.LotsGetInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.LotsListInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.LotsUpdateInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.ReorderRulesCheckInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.ReorderRulesCreateInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.ReorderRulesDeleteInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.ReorderRulesListInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.ReorderRulesUpdateInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.SettingsGetInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.SettingsUpdateInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.StockLevelsInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.StockMovementsListInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.StockReceiveInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.StockTakeInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.StockTransferInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.StockWriteOffInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.WarehousesCreateInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.WarehousesListInventoryRequest;
+import com.nordlet.api.resources.inventory.types.LandedCostsCreateInventoryResponse;
+import com.nordlet.api.resources.inventory.types.LandedCostsGetInventoryResponse;
+import com.nordlet.api.resources.inventory.types.LandedCostsListInventoryResponse;
+import com.nordlet.api.resources.inventory.types.LotsGetInventoryResponse;
+import com.nordlet.api.resources.inventory.types.LotsListInventoryResponse;
+import com.nordlet.api.resources.inventory.types.LotsUpdateInventoryResponse;
+import com.nordlet.api.resources.inventory.types.ReorderRulesCheckInventoryResponse;
+import com.nordlet.api.resources.inventory.types.ReorderRulesCreateInventoryResponse;
+import com.nordlet.api.resources.inventory.types.ReorderRulesDeleteInventoryResponse;
+import com.nordlet.api.resources.inventory.types.ReorderRulesListInventoryResponse;
+import com.nordlet.api.resources.inventory.types.ReorderRulesUpdateInventoryResponse;
+import com.nordlet.api.resources.inventory.types.SettingsGetInventoryResponse;
+import com.nordlet.api.resources.inventory.types.SettingsUpdateInventoryResponse;
+import com.nordlet.api.resources.inventory.types.StockLevelsInventoryResponse;
+import com.nordlet.api.resources.inventory.types.StockMovementsListInventoryResponse;
+import com.nordlet.api.resources.inventory.types.StockReceiveInventoryResponse;
+import com.nordlet.api.resources.inventory.types.StockTakeInventoryResponse;
+import com.nordlet.api.resources.inventory.types.StockTransferInventoryResponse;
+import com.nordlet.api.resources.inventory.types.StockWriteOffInventoryResponse;
+import com.nordlet.api.resources.inventory.types.WarehousesCreateInventoryResponse;
+import com.nordlet.api.resources.inventory.types.WarehousesListInventoryResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncInventoryClient {
@@ -67,289 +67,282 @@ public class AsyncInventoryClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1InventorySettingsGetResponse> postV1InventorySettingsGet() {
-    return this.rawClient.postV1InventorySettingsGet().thenApply(response -> response.body());
+  public CompletableFuture<SettingsGetInventoryResponse> settingsGet() {
+    return this.rawClient.settingsGet().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventorySettingsGetResponse> postV1InventorySettingsGet(
+  public CompletableFuture<SettingsGetInventoryResponse> settingsGet(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1InventorySettingsGet(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.settingsGet(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventorySettingsGetResponse> postV1InventorySettingsGet(
-      PostV1InventorySettingsGetRequest request) {
-    return this.rawClient.postV1InventorySettingsGet(request).thenApply(response -> response.body());
+  public CompletableFuture<SettingsGetInventoryResponse> settingsGet(
+      SettingsGetInventoryRequest request) {
+    return this.rawClient.settingsGet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventorySettingsGetResponse> postV1InventorySettingsGet(
-      PostV1InventorySettingsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventorySettingsGet(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<SettingsGetInventoryResponse> settingsGet(
+      SettingsGetInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.settingsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventorySettingsUpdateResponse> postV1InventorySettingsUpdate(
-      PostV1InventorySettingsUpdateRequest request) {
-    return this.rawClient.postV1InventorySettingsUpdate(request).thenApply(response -> response.body());
+  public CompletableFuture<SettingsUpdateInventoryResponse> settingsUpdate(
+      SettingsUpdateInventoryRequest request) {
+    return this.rawClient.settingsUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventorySettingsUpdateResponse> postV1InventorySettingsUpdate(
-      PostV1InventorySettingsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventorySettingsUpdate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<SettingsUpdateInventoryResponse> settingsUpdate(
+      SettingsUpdateInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.settingsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryWarehousesCreateResponse> postV1InventoryWarehousesCreate(
-      PostV1InventoryWarehousesCreateRequest request) {
-    return this.rawClient.postV1InventoryWarehousesCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<WarehousesCreateInventoryResponse> warehousesCreate(
+      WarehousesCreateInventoryRequest request) {
+    return this.rawClient.warehousesCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryWarehousesCreateResponse> postV1InventoryWarehousesCreate(
-      PostV1InventoryWarehousesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryWarehousesCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<WarehousesCreateInventoryResponse> warehousesCreate(
+      WarehousesCreateInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.warehousesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryWarehousesListResponse> postV1InventoryWarehousesList() {
-    return this.rawClient.postV1InventoryWarehousesList().thenApply(response -> response.body());
+  public CompletableFuture<WarehousesListInventoryResponse> warehousesList() {
+    return this.rawClient.warehousesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryWarehousesListResponse> postV1InventoryWarehousesList(
+  public CompletableFuture<WarehousesListInventoryResponse> warehousesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryWarehousesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.warehousesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryWarehousesListResponse> postV1InventoryWarehousesList(
-      PostV1InventoryWarehousesListRequest request) {
-    return this.rawClient.postV1InventoryWarehousesList(request).thenApply(response -> response.body());
+  public CompletableFuture<WarehousesListInventoryResponse> warehousesList(
+      WarehousesListInventoryRequest request) {
+    return this.rawClient.warehousesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryWarehousesListResponse> postV1InventoryWarehousesList(
-      PostV1InventoryWarehousesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryWarehousesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<WarehousesListInventoryResponse> warehousesList(
+      WarehousesListInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.warehousesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryStockReceiveResponse> postV1InventoryStockReceive(
-      PostV1InventoryStockReceiveRequest request) {
-    return this.rawClient.postV1InventoryStockReceive(request).thenApply(response -> response.body());
+  public CompletableFuture<StockReceiveInventoryResponse> stockReceive(
+      StockReceiveInventoryRequest request) {
+    return this.rawClient.stockReceive(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryStockReceiveResponse> postV1InventoryStockReceive(
-      PostV1InventoryStockReceiveRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryStockReceive(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<StockReceiveInventoryResponse> stockReceive(
+      StockReceiveInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.stockReceive(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryStockWriteOffResponse> postV1InventoryStockWriteOff(
-      PostV1InventoryStockWriteOffRequest request) {
-    return this.rawClient.postV1InventoryStockWriteOff(request).thenApply(response -> response.body());
+  public CompletableFuture<StockWriteOffInventoryResponse> stockWriteOff(
+      StockWriteOffInventoryRequest request) {
+    return this.rawClient.stockWriteOff(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryStockWriteOffResponse> postV1InventoryStockWriteOff(
-      PostV1InventoryStockWriteOffRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryStockWriteOff(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<StockWriteOffInventoryResponse> stockWriteOff(
+      StockWriteOffInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.stockWriteOff(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryStockTransferResponse> postV1InventoryStockTransfer(
-      PostV1InventoryStockTransferRequest request) {
-    return this.rawClient.postV1InventoryStockTransfer(request).thenApply(response -> response.body());
+  public CompletableFuture<StockTransferInventoryResponse> stockTransfer(
+      StockTransferInventoryRequest request) {
+    return this.rawClient.stockTransfer(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryStockTransferResponse> postV1InventoryStockTransfer(
-      PostV1InventoryStockTransferRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryStockTransfer(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<StockTransferInventoryResponse> stockTransfer(
+      StockTransferInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.stockTransfer(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryStockTakeResponse> postV1InventoryStockTake(
-      PostV1InventoryStockTakeRequest request) {
-    return this.rawClient.postV1InventoryStockTake(request).thenApply(response -> response.body());
+  public CompletableFuture<StockTakeInventoryResponse> stockTake(
+      StockTakeInventoryRequest request) {
+    return this.rawClient.stockTake(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryStockTakeResponse> postV1InventoryStockTake(
-      PostV1InventoryStockTakeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryStockTake(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryStockLevelsResponse> postV1InventoryStockLevels() {
-    return this.rawClient.postV1InventoryStockLevels().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryStockLevelsResponse> postV1InventoryStockLevels(
+  public CompletableFuture<StockTakeInventoryResponse> stockTake(StockTakeInventoryRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryStockLevels(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.stockTake(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryStockLevelsResponse> postV1InventoryStockLevels(
-      PostV1InventoryStockLevelsRequest request) {
-    return this.rawClient.postV1InventoryStockLevels(request).thenApply(response -> response.body());
+  public CompletableFuture<StockLevelsInventoryResponse> stockLevels() {
+    return this.rawClient.stockLevels().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryStockLevelsResponse> postV1InventoryStockLevels(
-      PostV1InventoryStockLevelsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryStockLevels(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryStockMovementsListResponse> postV1InventoryStockMovementsList(
-      ) {
-    return this.rawClient.postV1InventoryStockMovementsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryStockMovementsListResponse> postV1InventoryStockMovementsList(
+  public CompletableFuture<StockLevelsInventoryResponse> stockLevels(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryStockMovementsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.stockLevels(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryStockMovementsListResponse> postV1InventoryStockMovementsList(
-      PostV1InventoryStockMovementsListRequest request) {
-    return this.rawClient.postV1InventoryStockMovementsList(request).thenApply(response -> response.body());
+  public CompletableFuture<StockLevelsInventoryResponse> stockLevels(
+      StockLevelsInventoryRequest request) {
+    return this.rawClient.stockLevels(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryStockMovementsListResponse> postV1InventoryStockMovementsList(
-      PostV1InventoryStockMovementsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryStockMovementsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<StockLevelsInventoryResponse> stockLevels(
+      StockLevelsInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.stockLevels(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryLotsListResponse> postV1InventoryLotsList() {
-    return this.rawClient.postV1InventoryLotsList().thenApply(response -> response.body());
+  public CompletableFuture<StockMovementsListInventoryResponse> stockMovementsList() {
+    return this.rawClient.stockMovementsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryLotsListResponse> postV1InventoryLotsList(
+  public CompletableFuture<StockMovementsListInventoryResponse> stockMovementsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryLotsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.stockMovementsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryLotsListResponse> postV1InventoryLotsList(
-      PostV1InventoryLotsListRequest request) {
-    return this.rawClient.postV1InventoryLotsList(request).thenApply(response -> response.body());
+  public CompletableFuture<StockMovementsListInventoryResponse> stockMovementsList(
+      StockMovementsListInventoryRequest request) {
+    return this.rawClient.stockMovementsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryLotsListResponse> postV1InventoryLotsList(
-      PostV1InventoryLotsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryLotsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<StockMovementsListInventoryResponse> stockMovementsList(
+      StockMovementsListInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.stockMovementsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryLotsGetResponse> postV1InventoryLotsGet(
-      PostV1InventoryLotsGetRequest request) {
-    return this.rawClient.postV1InventoryLotsGet(request).thenApply(response -> response.body());
+  public CompletableFuture<LotsListInventoryResponse> lotsList() {
+    return this.rawClient.lotsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryLotsGetResponse> postV1InventoryLotsGet(
-      PostV1InventoryLotsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryLotsGet(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<LotsListInventoryResponse> lotsList(RequestOptions requestOptions) {
+    return this.rawClient.lotsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryLotsUpdateResponse> postV1InventoryLotsUpdate(
-      PostV1InventoryLotsUpdateRequest request) {
-    return this.rawClient.postV1InventoryLotsUpdate(request).thenApply(response -> response.body());
+  public CompletableFuture<LotsListInventoryResponse> lotsList(LotsListInventoryRequest request) {
+    return this.rawClient.lotsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryLotsUpdateResponse> postV1InventoryLotsUpdate(
-      PostV1InventoryLotsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryLotsUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryLandedCostsCreateResponse> postV1InventoryLandedCostsCreate(
-      PostV1InventoryLandedCostsCreateRequest request) {
-    return this.rawClient.postV1InventoryLandedCostsCreate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryLandedCostsCreateResponse> postV1InventoryLandedCostsCreate(
-      PostV1InventoryLandedCostsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryLandedCostsCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryLandedCostsGetResponse> postV1InventoryLandedCostsGet(
-      PostV1InventoryLandedCostsGetRequest request) {
-    return this.rawClient.postV1InventoryLandedCostsGet(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryLandedCostsGetResponse> postV1InventoryLandedCostsGet(
-      PostV1InventoryLandedCostsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryLandedCostsGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryLandedCostsListResponse> postV1InventoryLandedCostsList(
-      ) {
-    return this.rawClient.postV1InventoryLandedCostsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryLandedCostsListResponse> postV1InventoryLandedCostsList(
+  public CompletableFuture<LotsListInventoryResponse> lotsList(LotsListInventoryRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryLandedCostsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.lotsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryLandedCostsListResponse> postV1InventoryLandedCostsList(
-      PostV1InventoryLandedCostsListRequest request) {
-    return this.rawClient.postV1InventoryLandedCostsList(request).thenApply(response -> response.body());
+  public CompletableFuture<LotsGetInventoryResponse> lotsGet(LotsGetInventoryRequest request) {
+    return this.rawClient.lotsGet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryLandedCostsListResponse> postV1InventoryLandedCostsList(
-      PostV1InventoryLandedCostsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryLandedCostsList(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryReorderRulesCreateResponse> postV1InventoryReorderRulesCreate(
-      PostV1InventoryReorderRulesCreateRequest request) {
-    return this.rawClient.postV1InventoryReorderRulesCreate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryReorderRulesCreateResponse> postV1InventoryReorderRulesCreate(
-      PostV1InventoryReorderRulesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryReorderRulesCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryReorderRulesUpdateResponse> postV1InventoryReorderRulesUpdate(
-      PostV1InventoryReorderRulesUpdateRequest request) {
-    return this.rawClient.postV1InventoryReorderRulesUpdate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryReorderRulesUpdateResponse> postV1InventoryReorderRulesUpdate(
-      PostV1InventoryReorderRulesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryReorderRulesUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryReorderRulesDeleteResponse> postV1InventoryReorderRulesDelete(
-      PostV1InventoryReorderRulesDeleteRequest request) {
-    return this.rawClient.postV1InventoryReorderRulesDelete(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryReorderRulesDeleteResponse> postV1InventoryReorderRulesDelete(
-      PostV1InventoryReorderRulesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryReorderRulesDelete(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryReorderRulesListResponse> postV1InventoryReorderRulesList(
-      ) {
-    return this.rawClient.postV1InventoryReorderRulesList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1InventoryReorderRulesListResponse> postV1InventoryReorderRulesList(
+  public CompletableFuture<LotsGetInventoryResponse> lotsGet(LotsGetInventoryRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryReorderRulesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.lotsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryReorderRulesListResponse> postV1InventoryReorderRulesList(
-      PostV1InventoryReorderRulesListRequest request) {
-    return this.rawClient.postV1InventoryReorderRulesList(request).thenApply(response -> response.body());
+  public CompletableFuture<LotsUpdateInventoryResponse> lotsUpdate(
+      LotsUpdateInventoryRequest request) {
+    return this.rawClient.lotsUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryReorderRulesListResponse> postV1InventoryReorderRulesList(
-      PostV1InventoryReorderRulesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryReorderRulesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<LotsUpdateInventoryResponse> lotsUpdate(
+      LotsUpdateInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.lotsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryReorderRulesCheckResponse> postV1InventoryReorderRulesCheck(
-      ) {
-    return this.rawClient.postV1InventoryReorderRulesCheck().thenApply(response -> response.body());
+  public CompletableFuture<LandedCostsCreateInventoryResponse> landedCostsCreate(
+      LandedCostsCreateInventoryRequest request) {
+    return this.rawClient.landedCostsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryReorderRulesCheckResponse> postV1InventoryReorderRulesCheck(
+  public CompletableFuture<LandedCostsCreateInventoryResponse> landedCostsCreate(
+      LandedCostsCreateInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.landedCostsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<LandedCostsGetInventoryResponse> landedCostsGet(
+      LandedCostsGetInventoryRequest request) {
+    return this.rawClient.landedCostsGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<LandedCostsGetInventoryResponse> landedCostsGet(
+      LandedCostsGetInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.landedCostsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<LandedCostsListInventoryResponse> landedCostsList() {
+    return this.rawClient.landedCostsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<LandedCostsListInventoryResponse> landedCostsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryReorderRulesCheck(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.landedCostsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryReorderRulesCheckResponse> postV1InventoryReorderRulesCheck(
-      PostV1InventoryReorderRulesCheckRequest request) {
-    return this.rawClient.postV1InventoryReorderRulesCheck(request).thenApply(response -> response.body());
+  public CompletableFuture<LandedCostsListInventoryResponse> landedCostsList(
+      LandedCostsListInventoryRequest request) {
+    return this.rawClient.landedCostsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1InventoryReorderRulesCheckResponse> postV1InventoryReorderRulesCheck(
-      PostV1InventoryReorderRulesCheckRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1InventoryReorderRulesCheck(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<LandedCostsListInventoryResponse> landedCostsList(
+      LandedCostsListInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.landedCostsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReorderRulesCreateInventoryResponse> reorderRulesCreate(
+      ReorderRulesCreateInventoryRequest request) {
+    return this.rawClient.reorderRulesCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReorderRulesCreateInventoryResponse> reorderRulesCreate(
+      ReorderRulesCreateInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.reorderRulesCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReorderRulesUpdateInventoryResponse> reorderRulesUpdate(
+      ReorderRulesUpdateInventoryRequest request) {
+    return this.rawClient.reorderRulesUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReorderRulesUpdateInventoryResponse> reorderRulesUpdate(
+      ReorderRulesUpdateInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.reorderRulesUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReorderRulesDeleteInventoryResponse> reorderRulesDelete(
+      ReorderRulesDeleteInventoryRequest request) {
+    return this.rawClient.reorderRulesDelete(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReorderRulesDeleteInventoryResponse> reorderRulesDelete(
+      ReorderRulesDeleteInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.reorderRulesDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReorderRulesListInventoryResponse> reorderRulesList() {
+    return this.rawClient.reorderRulesList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReorderRulesListInventoryResponse> reorderRulesList(
+      RequestOptions requestOptions) {
+    return this.rawClient.reorderRulesList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReorderRulesListInventoryResponse> reorderRulesList(
+      ReorderRulesListInventoryRequest request) {
+    return this.rawClient.reorderRulesList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReorderRulesListInventoryResponse> reorderRulesList(
+      ReorderRulesListInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.reorderRulesList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReorderRulesCheckInventoryResponse> reorderRulesCheck() {
+    return this.rawClient.reorderRulesCheck().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReorderRulesCheckInventoryResponse> reorderRulesCheck(
+      RequestOptions requestOptions) {
+    return this.rawClient.reorderRulesCheck(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReorderRulesCheckInventoryResponse> reorderRulesCheck(
+      ReorderRulesCheckInventoryRequest request) {
+    return this.rawClient.reorderRulesCheck(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReorderRulesCheckInventoryResponse> reorderRulesCheck(
+      ReorderRulesCheckInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.reorderRulesCheck(request, requestOptions).thenApply(response -> response.body());
   }
 }

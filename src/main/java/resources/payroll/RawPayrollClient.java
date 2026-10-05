@@ -15,36 +15,38 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollCalcRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollDepartmentsCreateRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollDepartmentsListRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollLinesAttendanceRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollPaymentsExportRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsApproveRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsCancelRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsCreateRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsGetRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsListRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollSchedulesCreateRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollSchedulesListRequest;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollCalcResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollDepartmentsCreateResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollDepartmentsListResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollLinesAttendanceResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollPaymentsExportResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsApproveResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsCancelResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsCreateResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsGetResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsListResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollSchedulesCreateResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollSchedulesListResponse;
+import com.nordlet.api.resources.payroll.requests.CalcPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.DepartmentsCreatePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.DepartmentsListPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.LinesAttendancePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.PaymentsExportPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsApprovePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsCancelPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsCreatePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsGetPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsListPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.SchedulesCreatePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.SchedulesListPayrollRequest;
+import com.nordlet.api.resources.payroll.types.CalcPayrollResponse;
+import com.nordlet.api.resources.payroll.types.DepartmentsCreatePayrollResponse;
+import com.nordlet.api.resources.payroll.types.DepartmentsListPayrollResponse;
+import com.nordlet.api.resources.payroll.types.LinesAttendancePayrollResponse;
+import com.nordlet.api.resources.payroll.types.PaymentsExportPayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsApprovePayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsCancelPayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsCreatePayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsGetPayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsListPayrollResponse;
+import com.nordlet.api.resources.payroll.types.SchedulesCreatePayrollResponse;
+import com.nordlet.api.resources.payroll.types.SchedulesListPayrollResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -64,13 +66,13 @@ public class RawPayrollClient {
     this.clientOptions = clientOptions;
   }
 
-  public NordletApiHttpResponse<PostV1PayrollDepartmentsCreateResponse> postV1PayrollDepartmentsCreate(
-      PostV1PayrollDepartmentsCreateRequest request) {
-    return postV1PayrollDepartmentsCreate(request,null);
+  public NordletApiHttpResponse<DepartmentsCreatePayrollResponse> departmentsCreate(
+      DepartmentsCreatePayrollRequest request) {
+    return departmentsCreate(request,null);
   }
 
-  public NordletApiHttpResponse<PostV1PayrollDepartmentsCreateResponse> postV1PayrollDepartmentsCreate(
-      PostV1PayrollDepartmentsCreateRequest request, RequestOptions requestOptions) {
+  public NordletApiHttpResponse<DepartmentsCreatePayrollResponse> departmentsCreate(
+      DepartmentsCreatePayrollRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/payroll/departments/create");if (requestOptions != null) {
@@ -103,15 +105,17 @@ public class RawPayrollClient {
         ResponseBody responseBody = response.body();
         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
         if (response.isSuccessful()) {
-          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollDepartmentsCreateResponse.class), response);
+          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DepartmentsCreatePayrollResponse.class), response);
         }
         try {
           switch (response.code()) {
             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -131,23 +135,22 @@ public class RawPayrollClient {
       }
     }
 
-    public NordletApiHttpResponse<PostV1PayrollDepartmentsListResponse> postV1PayrollDepartmentsList(
-        ) {
-      return postV1PayrollDepartmentsList(PostV1PayrollDepartmentsListRequest.builder().build());
+    public NordletApiHttpResponse<DepartmentsListPayrollResponse> departmentsList() {
+      return departmentsList(DepartmentsListPayrollRequest.builder().build());
     }
 
-    public NordletApiHttpResponse<PostV1PayrollDepartmentsListResponse> postV1PayrollDepartmentsList(
+    public NordletApiHttpResponse<DepartmentsListPayrollResponse> departmentsList(
         RequestOptions requestOptions) {
-      return postV1PayrollDepartmentsList(PostV1PayrollDepartmentsListRequest.builder().build(),requestOptions);
+      return departmentsList(DepartmentsListPayrollRequest.builder().build(),requestOptions);
     }
 
-    public NordletApiHttpResponse<PostV1PayrollDepartmentsListResponse> postV1PayrollDepartmentsList(
-        PostV1PayrollDepartmentsListRequest request) {
-      return postV1PayrollDepartmentsList(request,null);
+    public NordletApiHttpResponse<DepartmentsListPayrollResponse> departmentsList(
+        DepartmentsListPayrollRequest request) {
+      return departmentsList(request,null);
     }
 
-    public NordletApiHttpResponse<PostV1PayrollDepartmentsListResponse> postV1PayrollDepartmentsList(
-        PostV1PayrollDepartmentsListRequest request, RequestOptions requestOptions) {
+    public NordletApiHttpResponse<DepartmentsListPayrollResponse> departmentsList(
+        DepartmentsListPayrollRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/payroll/departments/list");if (requestOptions != null) {
@@ -180,15 +183,17 @@ public class RawPayrollClient {
           ResponseBody responseBody = response.body();
           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
           if (response.isSuccessful()) {
-            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollDepartmentsListResponse.class), response);
+            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DepartmentsListPayrollResponse.class), response);
           }
           try {
             switch (response.code()) {
               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -208,13 +213,13 @@ public class RawPayrollClient {
         }
       }
 
-      public NordletApiHttpResponse<PostV1PayrollSchedulesCreateResponse> postV1PayrollSchedulesCreate(
-          PostV1PayrollSchedulesCreateRequest request) {
-        return postV1PayrollSchedulesCreate(request,null);
+      public NordletApiHttpResponse<SchedulesCreatePayrollResponse> schedulesCreate(
+          SchedulesCreatePayrollRequest request) {
+        return schedulesCreate(request,null);
       }
 
-      public NordletApiHttpResponse<PostV1PayrollSchedulesCreateResponse> postV1PayrollSchedulesCreate(
-          PostV1PayrollSchedulesCreateRequest request, RequestOptions requestOptions) {
+      public NordletApiHttpResponse<SchedulesCreatePayrollResponse> schedulesCreate(
+          SchedulesCreatePayrollRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/payroll/schedules/create");if (requestOptions != null) {
@@ -247,15 +252,17 @@ public class RawPayrollClient {
             ResponseBody responseBody = response.body();
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollSchedulesCreateResponse.class), response);
+              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SchedulesCreatePayrollResponse.class), response);
             }
             try {
               switch (response.code()) {
                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -275,23 +282,22 @@ public class RawPayrollClient {
           }
         }
 
-        public NordletApiHttpResponse<PostV1PayrollSchedulesListResponse> postV1PayrollSchedulesList(
-            ) {
-          return postV1PayrollSchedulesList(PostV1PayrollSchedulesListRequest.builder().build());
+        public NordletApiHttpResponse<SchedulesListPayrollResponse> schedulesList() {
+          return schedulesList(SchedulesListPayrollRequest.builder().build());
         }
 
-        public NordletApiHttpResponse<PostV1PayrollSchedulesListResponse> postV1PayrollSchedulesList(
+        public NordletApiHttpResponse<SchedulesListPayrollResponse> schedulesList(
             RequestOptions requestOptions) {
-          return postV1PayrollSchedulesList(PostV1PayrollSchedulesListRequest.builder().build(),requestOptions);
+          return schedulesList(SchedulesListPayrollRequest.builder().build(),requestOptions);
         }
 
-        public NordletApiHttpResponse<PostV1PayrollSchedulesListResponse> postV1PayrollSchedulesList(
-            PostV1PayrollSchedulesListRequest request) {
-          return postV1PayrollSchedulesList(request,null);
+        public NordletApiHttpResponse<SchedulesListPayrollResponse> schedulesList(
+            SchedulesListPayrollRequest request) {
+          return schedulesList(request,null);
         }
 
-        public NordletApiHttpResponse<PostV1PayrollSchedulesListResponse> postV1PayrollSchedulesList(
-            PostV1PayrollSchedulesListRequest request, RequestOptions requestOptions) {
+        public NordletApiHttpResponse<SchedulesListPayrollResponse> schedulesList(
+            SchedulesListPayrollRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/payroll/schedules/list");if (requestOptions != null) {
@@ -324,15 +330,17 @@ public class RawPayrollClient {
               ResponseBody responseBody = response.body();
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollSchedulesListResponse.class), response);
+                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SchedulesListPayrollResponse.class), response);
               }
               try {
                 switch (response.code()) {
                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -352,13 +360,12 @@ public class RawPayrollClient {
             }
           }
 
-          public NordletApiHttpResponse<PostV1PayrollCalcResponse> calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
-              PostV1PayrollCalcRequest request) {
-            return calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(request,null);
+          public NordletApiHttpResponse<CalcPayrollResponse> calc(CalcPayrollRequest request) {
+            return calc(request,null);
           }
 
-          public NordletApiHttpResponse<PostV1PayrollCalcResponse> calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
-              PostV1PayrollCalcRequest request, RequestOptions requestOptions) {
+          public NordletApiHttpResponse<CalcPayrollResponse> calc(CalcPayrollRequest request,
+              RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
               .addPathSegments("v1/payroll/calc");if (requestOptions != null) {
@@ -391,15 +398,17 @@ public class RawPayrollClient {
                 ResponseBody responseBody = response.body();
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollCalcResponse.class), response);
+                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CalcPayrollResponse.class), response);
                 }
                 try {
                   switch (response.code()) {
                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -419,13 +428,13 @@ public class RawPayrollClient {
               }
             }
 
-            public NordletApiHttpResponse<PostV1PayrollRunsCreateResponse> postV1PayrollRunsCreate(
-                PostV1PayrollRunsCreateRequest request) {
-              return postV1PayrollRunsCreate(request,null);
+            public NordletApiHttpResponse<RunsCreatePayrollResponse> runsCreate(
+                RunsCreatePayrollRequest request) {
+              return runsCreate(request,null);
             }
 
-            public NordletApiHttpResponse<PostV1PayrollRunsCreateResponse> postV1PayrollRunsCreate(
-                PostV1PayrollRunsCreateRequest request, RequestOptions requestOptions) {
+            public NordletApiHttpResponse<RunsCreatePayrollResponse> runsCreate(
+                RunsCreatePayrollRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/payroll/runs/create");if (requestOptions != null) {
@@ -458,15 +467,17 @@ public class RawPayrollClient {
                   ResponseBody responseBody = response.body();
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollRunsCreateResponse.class), response);
+                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RunsCreatePayrollResponse.class), response);
                   }
                   try {
                     switch (response.code()) {
                       case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -486,13 +497,13 @@ public class RawPayrollClient {
                 }
               }
 
-              public NordletApiHttpResponse<PostV1PayrollRunsGetResponse> postV1PayrollRunsGet(
-                  PostV1PayrollRunsGetRequest request) {
-                return postV1PayrollRunsGet(request,null);
+              public NordletApiHttpResponse<RunsGetPayrollResponse> runsGet(
+                  RunsGetPayrollRequest request) {
+                return runsGet(request,null);
               }
 
-              public NordletApiHttpResponse<PostV1PayrollRunsGetResponse> postV1PayrollRunsGet(
-                  PostV1PayrollRunsGetRequest request, RequestOptions requestOptions) {
+              public NordletApiHttpResponse<RunsGetPayrollResponse> runsGet(
+                  RunsGetPayrollRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                   .addPathSegments("v1/payroll/runs/get");if (requestOptions != null) {
@@ -525,15 +536,17 @@ public class RawPayrollClient {
                     ResponseBody responseBody = response.body();
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollRunsGetResponse.class), response);
+                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RunsGetPayrollResponse.class), response);
                     }
                     try {
                       switch (response.code()) {
                         case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -553,23 +566,22 @@ public class RawPayrollClient {
                   }
                 }
 
-                public NordletApiHttpResponse<PostV1PayrollRunsListResponse> postV1PayrollRunsList(
-                    ) {
-                  return postV1PayrollRunsList(PostV1PayrollRunsListRequest.builder().build());
+                public NordletApiHttpResponse<RunsListPayrollResponse> runsList() {
+                  return runsList(RunsListPayrollRequest.builder().build());
                 }
 
-                public NordletApiHttpResponse<PostV1PayrollRunsListResponse> postV1PayrollRunsList(
+                public NordletApiHttpResponse<RunsListPayrollResponse> runsList(
                     RequestOptions requestOptions) {
-                  return postV1PayrollRunsList(PostV1PayrollRunsListRequest.builder().build(),requestOptions);
+                  return runsList(RunsListPayrollRequest.builder().build(),requestOptions);
                 }
 
-                public NordletApiHttpResponse<PostV1PayrollRunsListResponse> postV1PayrollRunsList(
-                    PostV1PayrollRunsListRequest request) {
-                  return postV1PayrollRunsList(request,null);
+                public NordletApiHttpResponse<RunsListPayrollResponse> runsList(
+                    RunsListPayrollRequest request) {
+                  return runsList(request,null);
                 }
 
-                public NordletApiHttpResponse<PostV1PayrollRunsListResponse> postV1PayrollRunsList(
-                    PostV1PayrollRunsListRequest request, RequestOptions requestOptions) {
+                public NordletApiHttpResponse<RunsListPayrollResponse> runsList(
+                    RunsListPayrollRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                     .addPathSegments("v1/payroll/runs/list");if (requestOptions != null) {
@@ -602,15 +614,17 @@ public class RawPayrollClient {
                       ResponseBody responseBody = response.body();
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollRunsListResponse.class), response);
+                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RunsListPayrollResponse.class), response);
                       }
                       try {
                         switch (response.code()) {
                           case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -633,16 +647,16 @@ public class RawPayrollClient {
                   /**
                    * The days and hours worked, the days on the register and the average hourly earnings that some countries report per employment. The Czech monthly employer report asks for all four. They can be set while the run is a draft.
                    */
-                  public NordletApiHttpResponse<PostV1PayrollLinesAttendanceResponse> recordTheTimeAPersonWorkedInAPayrollLine(
-                      PostV1PayrollLinesAttendanceRequest request) {
-                    return recordTheTimeAPersonWorkedInAPayrollLine(request,null);
+                  public NordletApiHttpResponse<LinesAttendancePayrollResponse> linesAttendance(
+                      LinesAttendancePayrollRequest request) {
+                    return linesAttendance(request,null);
                   }
 
                   /**
                    * The days and hours worked, the days on the register and the average hourly earnings that some countries report per employment. The Czech monthly employer report asks for all four. They can be set while the run is a draft.
                    */
-                  public NordletApiHttpResponse<PostV1PayrollLinesAttendanceResponse> recordTheTimeAPersonWorkedInAPayrollLine(
-                      PostV1PayrollLinesAttendanceRequest request, RequestOptions requestOptions) {
+                  public NordletApiHttpResponse<LinesAttendancePayrollResponse> linesAttendance(
+                      LinesAttendancePayrollRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                       .addPathSegments("v1/payroll/lines/attendance");if (requestOptions != null) {
@@ -675,15 +689,17 @@ public class RawPayrollClient {
                         ResponseBody responseBody = response.body();
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollLinesAttendanceResponse.class), response);
+                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LinesAttendancePayrollResponse.class), response);
                         }
                         try {
                           switch (response.code()) {
                             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -703,13 +719,13 @@ public class RawPayrollClient {
                       }
                     }
 
-                    public NordletApiHttpResponse<PostV1PayrollRunsApproveResponse> postV1PayrollRunsApprove(
-                        PostV1PayrollRunsApproveRequest request) {
-                      return postV1PayrollRunsApprove(request,null);
+                    public NordletApiHttpResponse<RunsApprovePayrollResponse> runsApprove(
+                        RunsApprovePayrollRequest request) {
+                      return runsApprove(request,null);
                     }
 
-                    public NordletApiHttpResponse<PostV1PayrollRunsApproveResponse> postV1PayrollRunsApprove(
-                        PostV1PayrollRunsApproveRequest request, RequestOptions requestOptions) {
+                    public NordletApiHttpResponse<RunsApprovePayrollResponse> runsApprove(
+                        RunsApprovePayrollRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                         .addPathSegments("v1/payroll/runs/approve");if (requestOptions != null) {
@@ -742,15 +758,17 @@ public class RawPayrollClient {
                           ResponseBody responseBody = response.body();
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollRunsApproveResponse.class), response);
+                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RunsApprovePayrollResponse.class), response);
                           }
                           try {
                             switch (response.code()) {
                               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -770,13 +788,13 @@ public class RawPayrollClient {
                         }
                       }
 
-                      public NordletApiHttpResponse<PostV1PayrollRunsCancelResponse> postV1PayrollRunsCancel(
-                          PostV1PayrollRunsCancelRequest request) {
-                        return postV1PayrollRunsCancel(request,null);
+                      public NordletApiHttpResponse<RunsCancelPayrollResponse> runsCancel(
+                          RunsCancelPayrollRequest request) {
+                        return runsCancel(request,null);
                       }
 
-                      public NordletApiHttpResponse<PostV1PayrollRunsCancelResponse> postV1PayrollRunsCancel(
-                          PostV1PayrollRunsCancelRequest request, RequestOptions requestOptions) {
+                      public NordletApiHttpResponse<RunsCancelPayrollResponse> runsCancel(
+                          RunsCancelPayrollRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                           .addPathSegments("v1/payroll/runs/cancel");if (requestOptions != null) {
@@ -809,15 +827,17 @@ public class RawPayrollClient {
                             ResponseBody responseBody = response.body();
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollRunsCancelResponse.class), response);
+                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RunsCancelPayrollResponse.class), response);
                             }
                             try {
                               switch (response.code()) {
                                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -837,14 +857,13 @@ public class RawPayrollClient {
                           }
                         }
 
-                        public NordletApiHttpResponse<PostV1PayrollPaymentsExportResponse> postV1PayrollPaymentsExport(
-                            PostV1PayrollPaymentsExportRequest request) {
-                          return postV1PayrollPaymentsExport(request,null);
+                        public NordletApiHttpResponse<PaymentsExportPayrollResponse> paymentsExport(
+                            PaymentsExportPayrollRequest request) {
+                          return paymentsExport(request,null);
                         }
 
-                        public NordletApiHttpResponse<PostV1PayrollPaymentsExportResponse> postV1PayrollPaymentsExport(
-                            PostV1PayrollPaymentsExportRequest request,
-                            RequestOptions requestOptions) {
+                        public NordletApiHttpResponse<PaymentsExportPayrollResponse> paymentsExport(
+                            PaymentsExportPayrollRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                             .addPathSegments("v1/payroll/payments/export");if (requestOptions != null) {
@@ -877,15 +896,17 @@ public class RawPayrollClient {
                               ResponseBody responseBody = response.body();
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollPaymentsExportResponse.class), response);
+                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaymentsExportPayrollResponse.class), response);
                               }
                               try {
                                 switch (response.code()) {
                                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);

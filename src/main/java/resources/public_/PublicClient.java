@@ -6,9 +6,9 @@ package com.nordlet.api.resources.public_;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.public_.requests.GetV1PublicPayTokenRequest;
-import com.nordlet.api.resources.public_.requests.PostV1PublicIntegrationRequestsRequest;
-import com.nordlet.api.resources.public_.types.PostV1PublicIntegrationRequestsResponse;
+import com.nordlet.api.resources.public_.requests.IntegrationRequestsPublicRequest;
+import com.nordlet.api.resources.public_.requests.PayPublicRequest;
+import com.nordlet.api.resources.public_.types.IntegrationRequestsPublicResponse;
 import java.lang.String;
 
 public class PublicClient {
@@ -28,30 +28,29 @@ public class PublicClient {
     return this.rawClient;
   }
 
-  public PostV1PublicIntegrationRequestsResponse postV1PublicIntegrationRequests(
-      PostV1PublicIntegrationRequestsRequest request) {
-    return this.rawClient.postV1PublicIntegrationRequests(request).body();
+  public IntegrationRequestsPublicResponse integrationRequests(
+      IntegrationRequestsPublicRequest request) {
+    return this.rawClient.integrationRequests(request).body();
   }
 
-  public PostV1PublicIntegrationRequestsResponse postV1PublicIntegrationRequests(
-      PostV1PublicIntegrationRequestsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PublicIntegrationRequests(request, requestOptions).body();
+  public IntegrationRequestsPublicResponse integrationRequests(
+      IntegrationRequestsPublicRequest request, RequestOptions requestOptions) {
+    return this.rawClient.integrationRequests(request, requestOptions).body();
   }
 
-  public void getV1PublicPayToken(String token) {
-    this.rawClient.getV1PublicPayToken(token).body();
+  public void pay(String token) {
+    this.rawClient.pay(token).body();
   }
 
-  public void getV1PublicPayToken(String token, RequestOptions requestOptions) {
-    this.rawClient.getV1PublicPayToken(token, requestOptions).body();
+  public void pay(String token, RequestOptions requestOptions) {
+    this.rawClient.pay(token, requestOptions).body();
   }
 
-  public void getV1PublicPayToken(String token, GetV1PublicPayTokenRequest request) {
-    this.rawClient.getV1PublicPayToken(token, request).body();
+  public void pay(String token, PayPublicRequest request) {
+    this.rawClient.pay(token, request).body();
   }
 
-  public void getV1PublicPayToken(String token, GetV1PublicPayTokenRequest request,
-      RequestOptions requestOptions) {
-    this.rawClient.getV1PublicPayToken(token, request, requestOptions).body();
+  public void pay(String token, PayPublicRequest request, RequestOptions requestOptions) {
+    this.rawClient.pay(token, request, requestOptions).body();
   }
 }

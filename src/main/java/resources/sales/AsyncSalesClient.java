@@ -6,96 +6,76 @@ package com.nordlet.api.resources.sales;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.sales.requests.PostV1DocumentSeriesCreateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1DocumentSeriesDeleteRequest;
-import com.nordlet.api.resources.sales.requests.PostV1DocumentSeriesGetRequest;
-import com.nordlet.api.resources.sales.requests.PostV1DocumentSeriesListRequest;
-import com.nordlet.api.resources.sales.requests.PostV1DocumentSeriesUpdateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1OperationTypesCreateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1OperationTypesDeleteRequest;
-import com.nordlet.api.resources.sales.requests.PostV1OperationTypesGetRequest;
-import com.nordlet.api.resources.sales.requests.PostV1OperationTypesListRequest;
-import com.nordlet.api.resources.sales.requests.PostV1OperationTypesUpdateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesActsCancelRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesActsCreateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesActsGetRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesActsIssueRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesActsListRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesActsPdfRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesActsUpdateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesApplyAdvanceRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesCreateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesDeleteRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesEinvoiceSendRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesEinvoiceStatusRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesEinvoiceXmlRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesGetRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesIssueRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesListRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesLockRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesPaymentLinkRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesPaymentSettingsGetRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesPaymentSettingsUpdateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesPdfRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesPeppolSendRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesPeppolXmlRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesSendRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesUnlockRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesInvoicesUpdateRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionComputeRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionModifyRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionProgressRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionRunRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionRunsListRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionSchedulesListRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRecognitionSummaryRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRefundLiabilityListRequest;
-import com.nordlet.api.resources.sales.requests.PostV1SalesRefundLiabilityTrueUpRequest;
-import com.nordlet.api.resources.sales.types.PostV1DocumentSeriesCreateResponse;
-import com.nordlet.api.resources.sales.types.PostV1DocumentSeriesDeleteResponse;
-import com.nordlet.api.resources.sales.types.PostV1DocumentSeriesGetResponse;
-import com.nordlet.api.resources.sales.types.PostV1DocumentSeriesListResponse;
-import com.nordlet.api.resources.sales.types.PostV1DocumentSeriesUpdateResponse;
-import com.nordlet.api.resources.sales.types.PostV1OperationTypesCreateResponse;
-import com.nordlet.api.resources.sales.types.PostV1OperationTypesDeleteResponse;
-import com.nordlet.api.resources.sales.types.PostV1OperationTypesGetResponse;
-import com.nordlet.api.resources.sales.types.PostV1OperationTypesListResponse;
-import com.nordlet.api.resources.sales.types.PostV1OperationTypesUpdateResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesActsCancelResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesActsCreateResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesActsGetResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesActsIssueResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesActsListResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesActsPdfResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesActsUpdateResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesApplyAdvanceResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesCreateResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesDeleteResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesEinvoiceSendResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesEinvoiceStatusResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesEinvoiceXmlResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesGetResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesIssueResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesListResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesLockResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesPaymentLinkResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesPaymentSettingsGetResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesPaymentSettingsUpdateResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesPdfResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesPeppolSendResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesPeppolXmlResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesSendResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesUnlockResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesInvoicesUpdateResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionComputeResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionModifyResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionProgressResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionRunResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionRunsListResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionSchedulesListResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRecognitionSummaryResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRefundLiabilityListResponse;
-import com.nordlet.api.resources.sales.types.PostV1SalesRefundLiabilityTrueUpResponse;
+import com.nordlet.api.resources.sales.requests.ActsCancelSalesRequest;
+import com.nordlet.api.resources.sales.requests.ActsCreateSalesRequest;
+import com.nordlet.api.resources.sales.requests.ActsGetSalesRequest;
+import com.nordlet.api.resources.sales.requests.ActsIssueSalesRequest;
+import com.nordlet.api.resources.sales.requests.ActsListSalesRequest;
+import com.nordlet.api.resources.sales.requests.ActsPdfSalesRequest;
+import com.nordlet.api.resources.sales.requests.ActsUpdateSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesApplyAdvanceSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesCreateSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesDeleteSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesEinvoiceSendSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesEinvoiceStatusSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesEinvoiceXmlSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesGetSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesIssueSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesListSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesLockSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesPaymentLinkSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesPaymentSettingsGetSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesPaymentSettingsUpdateSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesPdfSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesPeppolSendSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesPeppolXmlSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesSendSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesUnlockSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesUpdateSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecognitionComputeSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecognitionModifySalesRequest;
+import com.nordlet.api.resources.sales.requests.RecognitionProgressSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecognitionRunSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecognitionRunsListSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecognitionSchedulesListSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecognitionSummarySalesRequest;
+import com.nordlet.api.resources.sales.requests.RefundLiabilityListSalesRequest;
+import com.nordlet.api.resources.sales.requests.RefundLiabilityTrueUpSalesRequest;
+import com.nordlet.api.resources.sales.types.ActsCancelSalesResponse;
+import com.nordlet.api.resources.sales.types.ActsCreateSalesResponse;
+import com.nordlet.api.resources.sales.types.ActsGetSalesResponse;
+import com.nordlet.api.resources.sales.types.ActsIssueSalesResponse;
+import com.nordlet.api.resources.sales.types.ActsListSalesResponse;
+import com.nordlet.api.resources.sales.types.ActsPdfSalesResponse;
+import com.nordlet.api.resources.sales.types.ActsUpdateSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesApplyAdvanceSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesCreateSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesDeleteSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesEinvoiceSendSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesEinvoiceStatusSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesEinvoiceXmlSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesGetSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesIssueSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesListSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesLockSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesPaymentLinkSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesPaymentSettingsGetSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesPaymentSettingsUpdateSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesPdfSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesPeppolSendSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesPeppolXmlSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesSendSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesUnlockSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesUpdateSalesResponse;
+import com.nordlet.api.resources.sales.types.RecognitionComputeSalesResponse;
+import com.nordlet.api.resources.sales.types.RecognitionModifySalesResponse;
+import com.nordlet.api.resources.sales.types.RecognitionProgressSalesResponse;
+import com.nordlet.api.resources.sales.types.RecognitionRunSalesResponse;
+import com.nordlet.api.resources.sales.types.RecognitionRunsListSalesResponse;
+import com.nordlet.api.resources.sales.types.RecognitionSchedulesListSalesResponse;
+import com.nordlet.api.resources.sales.types.RecognitionSummarySalesResponse;
+import com.nordlet.api.resources.sales.types.RefundLiabilityListSalesResponse;
+import com.nordlet.api.resources.sales.types.RefundLiabilityTrueUpSalesResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncSalesClient {
@@ -115,580 +95,447 @@ public class AsyncSalesClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1SalesInvoicesCreateResponse> postV1SalesInvoicesCreate(
-      PostV1SalesInvoicesCreateRequest request) {
-    return this.rawClient.postV1SalesInvoicesCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesCreateSalesResponse> invoicesCreate(
+      InvoicesCreateSalesRequest request) {
+    return this.rawClient.invoicesCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesCreateResponse> postV1SalesInvoicesCreate(
-      PostV1SalesInvoicesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesCreateSalesResponse> invoicesCreate(
+      InvoicesCreateSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesGetResponse> postV1SalesInvoicesGet(
-      PostV1SalesInvoicesGetRequest request) {
-    return this.rawClient.postV1SalesInvoicesGet(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesGetSalesResponse> invoicesGet(InvoicesGetSalesRequest request) {
+    return this.rawClient.invoicesGet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesGetResponse> postV1SalesInvoicesGet(
-      PostV1SalesInvoicesGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesGet(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesGetSalesResponse> invoicesGet(InvoicesGetSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesPdfResponse> postV1SalesInvoicesPdf(
-      PostV1SalesInvoicesPdfRequest request) {
-    return this.rawClient.postV1SalesInvoicesPdf(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesPdfSalesResponse> invoicesPdf(InvoicesPdfSalesRequest request) {
+    return this.rawClient.invoicesPdf(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesPdfResponse> postV1SalesInvoicesPdf(
-      PostV1SalesInvoicesPdfRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesPdf(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesPdfSalesResponse> invoicesPdf(InvoicesPdfSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesPdf(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesSendResponse> postV1SalesInvoicesSend(
-      PostV1SalesInvoicesSendRequest request) {
-    return this.rawClient.postV1SalesInvoicesSend(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesSendSalesResponse> invoicesSend(
+      InvoicesSendSalesRequest request) {
+    return this.rawClient.invoicesSend(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesSendResponse> postV1SalesInvoicesSend(
-      PostV1SalesInvoicesSendRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesSend(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesSendSalesResponse> invoicesSend(InvoicesSendSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesSend(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesPeppolXmlResponse> postV1SalesInvoicesPeppolXml(
-      PostV1SalesInvoicesPeppolXmlRequest request) {
-    return this.rawClient.postV1SalesInvoicesPeppolXml(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesPeppolXmlSalesResponse> invoicesPeppolXml(
+      InvoicesPeppolXmlSalesRequest request) {
+    return this.rawClient.invoicesPeppolXml(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesPeppolXmlResponse> postV1SalesInvoicesPeppolXml(
-      PostV1SalesInvoicesPeppolXmlRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesPeppolXml(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesPeppolXmlSalesResponse> invoicesPeppolXml(
+      InvoicesPeppolXmlSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesPeppolXml(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesPeppolSendResponse> postV1SalesInvoicesPeppolSend(
-      PostV1SalesInvoicesPeppolSendRequest request) {
-    return this.rawClient.postV1SalesInvoicesPeppolSend(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesPeppolSendSalesResponse> invoicesPeppolSend(
+      InvoicesPeppolSendSalesRequest request) {
+    return this.rawClient.invoicesPeppolSend(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesPeppolSendResponse> postV1SalesInvoicesPeppolSend(
-      PostV1SalesInvoicesPeppolSendRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesPeppolSend(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesPeppolSendSalesResponse> invoicesPeppolSend(
+      InvoicesPeppolSendSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesPeppolSend(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
    */
-  public CompletableFuture<PostV1SalesInvoicesEinvoiceXmlResponse> postV1SalesInvoicesEinvoiceXml(
-      PostV1SalesInvoicesEinvoiceXmlRequest request) {
-    return this.rawClient.postV1SalesInvoicesEinvoiceXml(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesEinvoiceXmlSalesResponse> invoicesEinvoiceXml(
+      InvoicesEinvoiceXmlSalesRequest request) {
+    return this.rawClient.invoicesEinvoiceXml(request).thenApply(response -> response.body());
   }
 
   /**
    * Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
    */
-  public CompletableFuture<PostV1SalesInvoicesEinvoiceXmlResponse> postV1SalesInvoicesEinvoiceXml(
-      PostV1SalesInvoicesEinvoiceXmlRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesEinvoiceXml(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesEinvoiceXmlSalesResponse> invoicesEinvoiceXml(
+      InvoicesEinvoiceXmlSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesEinvoiceXml(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
    */
-  public CompletableFuture<PostV1SalesInvoicesEinvoiceSendResponse> postV1SalesInvoicesEinvoiceSend(
-      PostV1SalesInvoicesEinvoiceSendRequest request) {
-    return this.rawClient.postV1SalesInvoicesEinvoiceSend(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesEinvoiceSendSalesResponse> invoicesEinvoiceSend(
+      InvoicesEinvoiceSendSalesRequest request) {
+    return this.rawClient.invoicesEinvoiceSend(request).thenApply(response -> response.body());
   }
 
   /**
    * Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
    */
-  public CompletableFuture<PostV1SalesInvoicesEinvoiceSendResponse> postV1SalesInvoicesEinvoiceSend(
-      PostV1SalesInvoicesEinvoiceSendRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesEinvoiceSend(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesEinvoiceSendSalesResponse> invoicesEinvoiceSend(
+      InvoicesEinvoiceSendSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesEinvoiceSend(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
    */
-  public CompletableFuture<PostV1SalesInvoicesEinvoiceStatusResponse> postV1SalesInvoicesEinvoiceStatus(
-      PostV1SalesInvoicesEinvoiceStatusRequest request) {
-    return this.rawClient.postV1SalesInvoicesEinvoiceStatus(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesEinvoiceStatusSalesResponse> invoicesEinvoiceStatus(
+      InvoicesEinvoiceStatusSalesRequest request) {
+    return this.rawClient.invoicesEinvoiceStatus(request).thenApply(response -> response.body());
   }
 
   /**
    * Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
    */
-  public CompletableFuture<PostV1SalesInvoicesEinvoiceStatusResponse> postV1SalesInvoicesEinvoiceStatus(
-      PostV1SalesInvoicesEinvoiceStatusRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesEinvoiceStatus(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesEinvoiceStatusSalesResponse> invoicesEinvoiceStatus(
+      InvoicesEinvoiceStatusSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesEinvoiceStatus(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesUpdateResponse> postV1SalesInvoicesUpdate(
-      PostV1SalesInvoicesUpdateRequest request) {
-    return this.rawClient.postV1SalesInvoicesUpdate(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesUpdateSalesResponse> invoicesUpdate(
+      InvoicesUpdateSalesRequest request) {
+    return this.rawClient.invoicesUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesUpdateResponse> postV1SalesInvoicesUpdate(
-      PostV1SalesInvoicesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesUpdate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesUpdateSalesResponse> invoicesUpdate(
+      InvoicesUpdateSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesDeleteResponse> postV1SalesInvoicesDelete(
-      PostV1SalesInvoicesDeleteRequest request) {
-    return this.rawClient.postV1SalesInvoicesDelete(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesDeleteSalesResponse> invoicesDelete(
+      InvoicesDeleteSalesRequest request) {
+    return this.rawClient.invoicesDelete(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesDeleteResponse> postV1SalesInvoicesDelete(
-      PostV1SalesInvoicesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesDelete(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesDeleteSalesResponse> invoicesDelete(
+      InvoicesDeleteSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesIssueResponse> postV1SalesInvoicesIssue(
-      PostV1SalesInvoicesIssueRequest request) {
-    return this.rawClient.postV1SalesInvoicesIssue(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesIssueSalesResponse> invoicesIssue(
+      InvoicesIssueSalesRequest request) {
+    return this.rawClient.invoicesIssue(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesIssueResponse> postV1SalesInvoicesIssue(
-      PostV1SalesInvoicesIssueRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesIssue(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesIssueSalesResponse> invoicesIssue(
+      InvoicesIssueSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesIssue(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesLockResponse> postV1SalesInvoicesLock(
-      PostV1SalesInvoicesLockRequest request) {
-    return this.rawClient.postV1SalesInvoicesLock(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesLockSalesResponse> invoicesLock(
+      InvoicesLockSalesRequest request) {
+    return this.rawClient.invoicesLock(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesLockResponse> postV1SalesInvoicesLock(
-      PostV1SalesInvoicesLockRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesLock(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesInvoicesUnlockResponse> postV1SalesInvoicesUnlock(
-      PostV1SalesInvoicesUnlockRequest request) {
-    return this.rawClient.postV1SalesInvoicesUnlock(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesInvoicesUnlockResponse> postV1SalesInvoicesUnlock(
-      PostV1SalesInvoicesUnlockRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesUnlock(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesInvoicesPaymentLinkResponse> postV1SalesInvoicesPaymentLink(
-      PostV1SalesInvoicesPaymentLinkRequest request) {
-    return this.rawClient.postV1SalesInvoicesPaymentLink(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesInvoicesPaymentLinkResponse> postV1SalesInvoicesPaymentLink(
-      PostV1SalesInvoicesPaymentLinkRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesPaymentLink(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesInvoicesPaymentSettingsGetResponse> postV1SalesInvoicesPaymentSettingsGet(
-      ) {
-    return this.rawClient.postV1SalesInvoicesPaymentSettingsGet().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesInvoicesPaymentSettingsGetResponse> postV1SalesInvoicesPaymentSettingsGet(
+  public CompletableFuture<InvoicesLockSalesResponse> invoicesLock(InvoicesLockSalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesPaymentSettingsGet(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.invoicesLock(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesPaymentSettingsGetResponse> postV1SalesInvoicesPaymentSettingsGet(
-      PostV1SalesInvoicesPaymentSettingsGetRequest request) {
-    return this.rawClient.postV1SalesInvoicesPaymentSettingsGet(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesUnlockSalesResponse> invoicesUnlock(
+      InvoicesUnlockSalesRequest request) {
+    return this.rawClient.invoicesUnlock(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesPaymentSettingsGetResponse> postV1SalesInvoicesPaymentSettingsGet(
-      PostV1SalesInvoicesPaymentSettingsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesPaymentSettingsGet(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesUnlockSalesResponse> invoicesUnlock(
+      InvoicesUnlockSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesUnlock(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesPaymentSettingsUpdateResponse> postV1SalesInvoicesPaymentSettingsUpdate(
-      PostV1SalesInvoicesPaymentSettingsUpdateRequest request) {
-    return this.rawClient.postV1SalesInvoicesPaymentSettingsUpdate(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesPaymentLinkSalesResponse> invoicesPaymentLink(
+      InvoicesPaymentLinkSalesRequest request) {
+    return this.rawClient.invoicesPaymentLink(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesPaymentSettingsUpdateResponse> postV1SalesInvoicesPaymentSettingsUpdate(
-      PostV1SalesInvoicesPaymentSettingsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesPaymentSettingsUpdate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesPaymentLinkSalesResponse> invoicesPaymentLink(
+      InvoicesPaymentLinkSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesPaymentLink(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionSchedulesListResponse> postV1SalesRecognitionSchedulesList(
-      ) {
-    return this.rawClient.postV1SalesRecognitionSchedulesList().thenApply(response -> response.body());
+  public CompletableFuture<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet() {
+    return this.rawClient.invoicesPaymentSettingsGet().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionSchedulesListResponse> postV1SalesRecognitionSchedulesList(
+  public CompletableFuture<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionSchedulesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.invoicesPaymentSettingsGet(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionSchedulesListResponse> postV1SalesRecognitionSchedulesList(
-      PostV1SalesRecognitionSchedulesListRequest request) {
-    return this.rawClient.postV1SalesRecognitionSchedulesList(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet(
+      InvoicesPaymentSettingsGetSalesRequest request) {
+    return this.rawClient.invoicesPaymentSettingsGet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionSchedulesListResponse> postV1SalesRecognitionSchedulesList(
-      PostV1SalesRecognitionSchedulesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionSchedulesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet(
+      InvoicesPaymentSettingsGetSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesPaymentSettingsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesApplyAdvanceResponse> postV1SalesInvoicesApplyAdvance(
-      PostV1SalesInvoicesApplyAdvanceRequest request) {
-    return this.rawClient.postV1SalesInvoicesApplyAdvance(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesPaymentSettingsUpdateSalesResponse> invoicesPaymentSettingsUpdate(
+      InvoicesPaymentSettingsUpdateSalesRequest request) {
+    return this.rawClient.invoicesPaymentSettingsUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesApplyAdvanceResponse> postV1SalesInvoicesApplyAdvance(
-      PostV1SalesInvoicesApplyAdvanceRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesApplyAdvance(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesPaymentSettingsUpdateSalesResponse> invoicesPaymentSettingsUpdate(
+      InvoicesPaymentSettingsUpdateSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesPaymentSettingsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesListResponse> postV1SalesInvoicesList() {
-    return this.rawClient.postV1SalesInvoicesList().thenApply(response -> response.body());
+  public CompletableFuture<RecognitionSchedulesListSalesResponse> recognitionSchedulesList() {
+    return this.rawClient.recognitionSchedulesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesListResponse> postV1SalesInvoicesList(
+  public CompletableFuture<RecognitionSchedulesListSalesResponse> recognitionSchedulesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.recognitionSchedulesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesListResponse> postV1SalesInvoicesList(
-      PostV1SalesInvoicesListRequest request) {
-    return this.rawClient.postV1SalesInvoicesList(request).thenApply(response -> response.body());
+  public CompletableFuture<RecognitionSchedulesListSalesResponse> recognitionSchedulesList(
+      RecognitionSchedulesListSalesRequest request) {
+    return this.rawClient.recognitionSchedulesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesInvoicesListResponse> postV1SalesInvoicesList(
-      PostV1SalesInvoicesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesInvoicesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<RecognitionSchedulesListSalesResponse> recognitionSchedulesList(
+      RecognitionSchedulesListSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.recognitionSchedulesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesActsCreateResponse> postV1SalesActsCreate(
-      PostV1SalesActsCreateRequest request) {
-    return this.rawClient.postV1SalesActsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesApplyAdvanceSalesResponse> invoicesApplyAdvance(
+      InvoicesApplyAdvanceSalesRequest request) {
+    return this.rawClient.invoicesApplyAdvance(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesActsCreateResponse> postV1SalesActsCreate(
-      PostV1SalesActsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesApplyAdvanceSalesResponse> invoicesApplyAdvance(
+      InvoicesApplyAdvanceSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesApplyAdvance(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesActsUpdateResponse> postV1SalesActsUpdate(
-      PostV1SalesActsUpdateRequest request) {
-    return this.rawClient.postV1SalesActsUpdate(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesListSalesResponse> invoicesList() {
+    return this.rawClient.invoicesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesActsUpdateResponse> postV1SalesActsUpdate(
-      PostV1SalesActsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsUpdate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesListSalesResponse> invoicesList(RequestOptions requestOptions) {
+    return this.rawClient.invoicesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesActsIssueResponse> postV1SalesActsIssue(
-      PostV1SalesActsIssueRequest request) {
-    return this.rawClient.postV1SalesActsIssue(request).thenApply(response -> response.body());
+  public CompletableFuture<InvoicesListSalesResponse> invoicesList(
+      InvoicesListSalesRequest request) {
+    return this.rawClient.invoicesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesActsIssueResponse> postV1SalesActsIssue(
-      PostV1SalesActsIssueRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsIssue(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesActsCancelResponse> postV1SalesActsCancel(
-      PostV1SalesActsCancelRequest request) {
-    return this.rawClient.postV1SalesActsCancel(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesActsCancelResponse> postV1SalesActsCancel(
-      PostV1SalesActsCancelRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsCancel(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesActsGetResponse> postV1SalesActsGet(
-      PostV1SalesActsGetRequest request) {
-    return this.rawClient.postV1SalesActsGet(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesActsGetResponse> postV1SalesActsGet(
-      PostV1SalesActsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesActsListResponse> postV1SalesActsList() {
-    return this.rawClient.postV1SalesActsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesActsListResponse> postV1SalesActsList(
+  public CompletableFuture<InvoicesListSalesResponse> invoicesList(InvoicesListSalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.invoicesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesActsListResponse> postV1SalesActsList(
-      PostV1SalesActsListRequest request) {
-    return this.rawClient.postV1SalesActsList(request).thenApply(response -> response.body());
+  public CompletableFuture<ActsCreateSalesResponse> actsCreate(ActsCreateSalesRequest request) {
+    return this.rawClient.actsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesActsListResponse> postV1SalesActsList(
-      PostV1SalesActsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsList(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesActsPdfResponse> postV1SalesActsPdf(
-      PostV1SalesActsPdfRequest request) {
-    return this.rawClient.postV1SalesActsPdf(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesActsPdfResponse> postV1SalesActsPdf(
-      PostV1SalesActsPdfRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesActsPdf(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OperationTypesCreateResponse> postV1OperationTypesCreate(
-      PostV1OperationTypesCreateRequest request) {
-    return this.rawClient.postV1OperationTypesCreate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OperationTypesCreateResponse> postV1OperationTypesCreate(
-      PostV1OperationTypesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1OperationTypesCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OperationTypesUpdateResponse> postV1OperationTypesUpdate(
-      PostV1OperationTypesUpdateRequest request) {
-    return this.rawClient.postV1OperationTypesUpdate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OperationTypesUpdateResponse> postV1OperationTypesUpdate(
-      PostV1OperationTypesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1OperationTypesUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OperationTypesGetResponse> postV1OperationTypesGet(
-      PostV1OperationTypesGetRequest request) {
-    return this.rawClient.postV1OperationTypesGet(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OperationTypesGetResponse> postV1OperationTypesGet(
-      PostV1OperationTypesGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1OperationTypesGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OperationTypesDeleteResponse> postV1OperationTypesDelete(
-      PostV1OperationTypesDeleteRequest request) {
-    return this.rawClient.postV1OperationTypesDelete(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OperationTypesDeleteResponse> postV1OperationTypesDelete(
-      PostV1OperationTypesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1OperationTypesDelete(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OperationTypesListResponse> postV1OperationTypesList() {
-    return this.rawClient.postV1OperationTypesList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1OperationTypesListResponse> postV1OperationTypesList(
+  public CompletableFuture<ActsCreateSalesResponse> actsCreate(ActsCreateSalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1OperationTypesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.actsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1OperationTypesListResponse> postV1OperationTypesList(
-      PostV1OperationTypesListRequest request) {
-    return this.rawClient.postV1OperationTypesList(request).thenApply(response -> response.body());
+  public CompletableFuture<ActsUpdateSalesResponse> actsUpdate(ActsUpdateSalesRequest request) {
+    return this.rawClient.actsUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1OperationTypesListResponse> postV1OperationTypesList(
-      PostV1OperationTypesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1OperationTypesList(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1DocumentSeriesCreateResponse> postV1DocumentSeriesCreate(
-      PostV1DocumentSeriesCreateRequest request) {
-    return this.rawClient.postV1DocumentSeriesCreate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1DocumentSeriesCreateResponse> postV1DocumentSeriesCreate(
-      PostV1DocumentSeriesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DocumentSeriesCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1DocumentSeriesUpdateResponse> postV1DocumentSeriesUpdate(
-      PostV1DocumentSeriesUpdateRequest request) {
-    return this.rawClient.postV1DocumentSeriesUpdate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1DocumentSeriesUpdateResponse> postV1DocumentSeriesUpdate(
-      PostV1DocumentSeriesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DocumentSeriesUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1DocumentSeriesGetResponse> postV1DocumentSeriesGet(
-      PostV1DocumentSeriesGetRequest request) {
-    return this.rawClient.postV1DocumentSeriesGet(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1DocumentSeriesGetResponse> postV1DocumentSeriesGet(
-      PostV1DocumentSeriesGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DocumentSeriesGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1DocumentSeriesDeleteResponse> postV1DocumentSeriesDelete(
-      PostV1DocumentSeriesDeleteRequest request) {
-    return this.rawClient.postV1DocumentSeriesDelete(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1DocumentSeriesDeleteResponse> postV1DocumentSeriesDelete(
-      PostV1DocumentSeriesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DocumentSeriesDelete(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1DocumentSeriesListResponse> postV1DocumentSeriesList() {
-    return this.rawClient.postV1DocumentSeriesList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1DocumentSeriesListResponse> postV1DocumentSeriesList(
+  public CompletableFuture<ActsUpdateSalesResponse> actsUpdate(ActsUpdateSalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1DocumentSeriesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.actsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1DocumentSeriesListResponse> postV1DocumentSeriesList(
-      PostV1DocumentSeriesListRequest request) {
-    return this.rawClient.postV1DocumentSeriesList(request).thenApply(response -> response.body());
+  public CompletableFuture<ActsIssueSalesResponse> actsIssue(ActsIssueSalesRequest request) {
+    return this.rawClient.actsIssue(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1DocumentSeriesListResponse> postV1DocumentSeriesList(
-      PostV1DocumentSeriesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1DocumentSeriesList(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesRecognitionComputeResponse> postV1SalesRecognitionCompute() {
-    return this.rawClient.postV1SalesRecognitionCompute().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesRecognitionComputeResponse> postV1SalesRecognitionCompute(
+  public CompletableFuture<ActsIssueSalesResponse> actsIssue(ActsIssueSalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionCompute(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.actsIssue(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionComputeResponse> postV1SalesRecognitionCompute(
-      PostV1SalesRecognitionComputeRequest request) {
-    return this.rawClient.postV1SalesRecognitionCompute(request).thenApply(response -> response.body());
+  public CompletableFuture<ActsCancelSalesResponse> actsCancel(ActsCancelSalesRequest request) {
+    return this.rawClient.actsCancel(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionComputeResponse> postV1SalesRecognitionCompute(
-      PostV1SalesRecognitionComputeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionCompute(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesRecognitionRunResponse> postV1SalesRecognitionRun() {
-    return this.rawClient.postV1SalesRecognitionRun().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1SalesRecognitionRunResponse> postV1SalesRecognitionRun(
+  public CompletableFuture<ActsCancelSalesResponse> actsCancel(ActsCancelSalesRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionRun(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.actsCancel(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionRunResponse> postV1SalesRecognitionRun(
-      PostV1SalesRecognitionRunRequest request) {
-    return this.rawClient.postV1SalesRecognitionRun(request).thenApply(response -> response.body());
+  public CompletableFuture<ActsGetSalesResponse> actsGet(ActsGetSalesRequest request) {
+    return this.rawClient.actsGet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionRunResponse> postV1SalesRecognitionRun(
-      PostV1SalesRecognitionRunRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionRun(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ActsGetSalesResponse> actsGet(ActsGetSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.actsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionProgressResponse> postV1SalesRecognitionProgress(
-      PostV1SalesRecognitionProgressRequest request) {
-    return this.rawClient.postV1SalesRecognitionProgress(request).thenApply(response -> response.body());
+  public CompletableFuture<ActsListSalesResponse> actsList() {
+    return this.rawClient.actsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionProgressResponse> postV1SalesRecognitionProgress(
-      PostV1SalesRecognitionProgressRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionProgress(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ActsListSalesResponse> actsList(RequestOptions requestOptions) {
+    return this.rawClient.actsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ActsListSalesResponse> actsList(ActsListSalesRequest request) {
+    return this.rawClient.actsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ActsListSalesResponse> actsList(ActsListSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.actsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ActsPdfSalesResponse> actsPdf(ActsPdfSalesRequest request) {
+    return this.rawClient.actsPdf(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ActsPdfSalesResponse> actsPdf(ActsPdfSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.actsPdf(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RecognitionComputeSalesResponse> recognitionCompute() {
+    return this.rawClient.recognitionCompute().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RecognitionComputeSalesResponse> recognitionCompute(
+      RequestOptions requestOptions) {
+    return this.rawClient.recognitionCompute(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RecognitionComputeSalesResponse> recognitionCompute(
+      RecognitionComputeSalesRequest request) {
+    return this.rawClient.recognitionCompute(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RecognitionComputeSalesResponse> recognitionCompute(
+      RecognitionComputeSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.recognitionCompute(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RecognitionRunSalesResponse> recognitionRun() {
+    return this.rawClient.recognitionRun().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RecognitionRunSalesResponse> recognitionRun(
+      RequestOptions requestOptions) {
+    return this.rawClient.recognitionRun(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RecognitionRunSalesResponse> recognitionRun(
+      RecognitionRunSalesRequest request) {
+    return this.rawClient.recognitionRun(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RecognitionRunSalesResponse> recognitionRun(
+      RecognitionRunSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.recognitionRun(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RecognitionProgressSalesResponse> recognitionProgress(
+      RecognitionProgressSalesRequest request) {
+    return this.rawClient.recognitionProgress(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RecognitionProgressSalesResponse> recognitionProgress(
+      RecognitionProgressSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.recognitionProgress(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
    */
-  public CompletableFuture<PostV1SalesRecognitionModifyResponse> postV1SalesRecognitionModify(
-      PostV1SalesRecognitionModifyRequest request) {
-    return this.rawClient.postV1SalesRecognitionModify(request).thenApply(response -> response.body());
+  public CompletableFuture<RecognitionModifySalesResponse> recognitionModify(
+      RecognitionModifySalesRequest request) {
+    return this.rawClient.recognitionModify(request).thenApply(response -> response.body());
   }
 
   /**
    * Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
    */
-  public CompletableFuture<PostV1SalesRecognitionModifyResponse> postV1SalesRecognitionModify(
-      PostV1SalesRecognitionModifyRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionModify(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<RecognitionModifySalesResponse> recognitionModify(
+      RecognitionModifySalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.recognitionModify(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionRunsListResponse> postV1SalesRecognitionRunsList(
-      ) {
-    return this.rawClient.postV1SalesRecognitionRunsList().thenApply(response -> response.body());
+  public CompletableFuture<RecognitionRunsListSalesResponse> recognitionRunsList() {
+    return this.rawClient.recognitionRunsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionRunsListResponse> postV1SalesRecognitionRunsList(
+  public CompletableFuture<RecognitionRunsListSalesResponse> recognitionRunsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionRunsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.recognitionRunsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionRunsListResponse> postV1SalesRecognitionRunsList(
-      PostV1SalesRecognitionRunsListRequest request) {
-    return this.rawClient.postV1SalesRecognitionRunsList(request).thenApply(response -> response.body());
+  public CompletableFuture<RecognitionRunsListSalesResponse> recognitionRunsList(
+      RecognitionRunsListSalesRequest request) {
+    return this.rawClient.recognitionRunsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionRunsListResponse> postV1SalesRecognitionRunsList(
-      PostV1SalesRecognitionRunsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionRunsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<RecognitionRunsListSalesResponse> recognitionRunsList(
+      RecognitionRunsListSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.recognitionRunsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionSummaryResponse> postV1SalesRecognitionSummary() {
-    return this.rawClient.postV1SalesRecognitionSummary().thenApply(response -> response.body());
+  public CompletableFuture<RecognitionSummarySalesResponse> recognitionSummary() {
+    return this.rawClient.recognitionSummary().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionSummaryResponse> postV1SalesRecognitionSummary(
+  public CompletableFuture<RecognitionSummarySalesResponse> recognitionSummary(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionSummary(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.recognitionSummary(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionSummaryResponse> postV1SalesRecognitionSummary(
-      PostV1SalesRecognitionSummaryRequest request) {
-    return this.rawClient.postV1SalesRecognitionSummary(request).thenApply(response -> response.body());
+  public CompletableFuture<RecognitionSummarySalesResponse> recognitionSummary(
+      RecognitionSummarySalesRequest request) {
+    return this.rawClient.recognitionSummary(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRecognitionSummaryResponse> postV1SalesRecognitionSummary(
-      PostV1SalesRecognitionSummaryRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRecognitionSummary(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<RecognitionSummarySalesResponse> recognitionSummary(
+      RecognitionSummarySalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.recognitionSummary(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRefundLiabilityListResponse> postV1SalesRefundLiabilityList(
-      ) {
-    return this.rawClient.postV1SalesRefundLiabilityList().thenApply(response -> response.body());
+  public CompletableFuture<RefundLiabilityListSalesResponse> refundLiabilityList() {
+    return this.rawClient.refundLiabilityList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRefundLiabilityListResponse> postV1SalesRefundLiabilityList(
+  public CompletableFuture<RefundLiabilityListSalesResponse> refundLiabilityList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRefundLiabilityList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.refundLiabilityList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRefundLiabilityListResponse> postV1SalesRefundLiabilityList(
-      PostV1SalesRefundLiabilityListRequest request) {
-    return this.rawClient.postV1SalesRefundLiabilityList(request).thenApply(response -> response.body());
+  public CompletableFuture<RefundLiabilityListSalesResponse> refundLiabilityList(
+      RefundLiabilityListSalesRequest request) {
+    return this.rawClient.refundLiabilityList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRefundLiabilityListResponse> postV1SalesRefundLiabilityList(
-      PostV1SalesRefundLiabilityListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRefundLiabilityList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<RefundLiabilityListSalesResponse> refundLiabilityList(
+      RefundLiabilityListSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.refundLiabilityList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRefundLiabilityTrueUpResponse> postV1SalesRefundLiabilityTrueUp(
-      PostV1SalesRefundLiabilityTrueUpRequest request) {
-    return this.rawClient.postV1SalesRefundLiabilityTrueUp(request).thenApply(response -> response.body());
+  public CompletableFuture<RefundLiabilityTrueUpSalesResponse> refundLiabilityTrueUp(
+      RefundLiabilityTrueUpSalesRequest request) {
+    return this.rawClient.refundLiabilityTrueUp(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1SalesRefundLiabilityTrueUpResponse> postV1SalesRefundLiabilityTrueUp(
-      PostV1SalesRefundLiabilityTrueUpRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1SalesRefundLiabilityTrueUp(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<RefundLiabilityTrueUpSalesResponse> refundLiabilityTrueUp(
+      RefundLiabilityTrueUpSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.refundLiabilityTrueUp(request, requestOptions).thenApply(response -> response.body());
   }
 }

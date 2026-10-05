@@ -6,9 +6,9 @@ package com.nordlet.api.resources.public_;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.public_.requests.GetV1PublicPayTokenRequest;
-import com.nordlet.api.resources.public_.requests.PostV1PublicIntegrationRequestsRequest;
-import com.nordlet.api.resources.public_.types.PostV1PublicIntegrationRequestsResponse;
+import com.nordlet.api.resources.public_.requests.IntegrationRequestsPublicRequest;
+import com.nordlet.api.resources.public_.requests.PayPublicRequest;
+import com.nordlet.api.resources.public_.types.IntegrationRequestsPublicResponse;
 import java.lang.String;
 import java.lang.Void;
 import java.util.concurrent.CompletableFuture;
@@ -30,31 +30,30 @@ public class AsyncPublicClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1PublicIntegrationRequestsResponse> postV1PublicIntegrationRequests(
-      PostV1PublicIntegrationRequestsRequest request) {
-    return this.rawClient.postV1PublicIntegrationRequests(request).thenApply(response -> response.body());
+  public CompletableFuture<IntegrationRequestsPublicResponse> integrationRequests(
+      IntegrationRequestsPublicRequest request) {
+    return this.rawClient.integrationRequests(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1PublicIntegrationRequestsResponse> postV1PublicIntegrationRequests(
-      PostV1PublicIntegrationRequestsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1PublicIntegrationRequests(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<IntegrationRequestsPublicResponse> integrationRequests(
+      IntegrationRequestsPublicRequest request, RequestOptions requestOptions) {
+    return this.rawClient.integrationRequests(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<Void> getV1PublicPayToken(String token) {
-    return this.rawClient.getV1PublicPayToken(token).thenApply(response -> response.body());
+  public CompletableFuture<Void> pay(String token) {
+    return this.rawClient.pay(token).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<Void> getV1PublicPayToken(String token, RequestOptions requestOptions) {
-    return this.rawClient.getV1PublicPayToken(token, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<Void> pay(String token, RequestOptions requestOptions) {
+    return this.rawClient.pay(token, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<Void> getV1PublicPayToken(String token,
-      GetV1PublicPayTokenRequest request) {
-    return this.rawClient.getV1PublicPayToken(token, request).thenApply(response -> response.body());
+  public CompletableFuture<Void> pay(String token, PayPublicRequest request) {
+    return this.rawClient.pay(token, request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<Void> getV1PublicPayToken(String token,
-      GetV1PublicPayTokenRequest request, RequestOptions requestOptions) {
-    return this.rawClient.getV1PublicPayToken(token, request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<Void> pay(String token, PayPublicRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.pay(token, request, requestOptions).thenApply(response -> response.body());
   }
 }

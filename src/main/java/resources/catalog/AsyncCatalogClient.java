@@ -6,62 +6,62 @@ package com.nordlet.api.resources.catalog;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemGroupsCreateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemGroupsDeleteRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemGroupsListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemGroupsUpdateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsCreateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsDeleteRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsFilesListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsGetRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsKindsCreateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsKindsDeleteRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsKindsListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsKindsUpdateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsSuppliersDeleteRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsSuppliersListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsSuppliersUpsertRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogItemsUpdateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogPriceListsCreateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogPriceListsItemsDeleteRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogPriceListsItemsListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogPriceListsItemsSetRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogPriceListsListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogPriceListsUpdateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogUnitsCreateRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogUnitsDeleteRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogUnitsListRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogUnitsOptionsRequest;
-import com.nordlet.api.resources.catalog.requests.PostV1CatalogUnitsUpdateRequest;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemGroupsCreateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemGroupsDeleteResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemGroupsListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemGroupsUpdateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsCreateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsDeleteResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsFilesListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsGetResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsKindsCreateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsKindsDeleteResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsKindsListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsKindsUpdateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsSuppliersDeleteResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsSuppliersListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsSuppliersUpsertResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogItemsUpdateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogPriceListsCreateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogPriceListsItemsDeleteResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogPriceListsItemsListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogPriceListsItemsSetResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogPriceListsListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogPriceListsUpdateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogUnitsCreateResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogUnitsDeleteResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogUnitsListResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogUnitsOptionsResponse;
-import com.nordlet.api.resources.catalog.types.PostV1CatalogUnitsUpdateResponse;
+import com.nordlet.api.resources.catalog.requests.ItemGroupsCreateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemGroupsDeleteCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemGroupsListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemGroupsUpdateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsCreateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsDeleteCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsFilesListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsGetCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsKindsCreateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsKindsDeleteCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsKindsListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsKindsUpdateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsSuppliersDeleteCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsSuppliersListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsSuppliersUpsertCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsUpdateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.PriceListsCreateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.PriceListsItemsDeleteCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.PriceListsItemsListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.PriceListsItemsSetCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.PriceListsListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.PriceListsUpdateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.UnitsCreateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.UnitsDeleteCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.UnitsListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.UnitsOptionsCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.UnitsUpdateCatalogRequest;
+import com.nordlet.api.resources.catalog.types.ItemGroupsCreateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemGroupsDeleteCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemGroupsListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemGroupsUpdateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsCreateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsDeleteCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsFilesListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsGetCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsKindsCreateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsKindsDeleteCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsKindsListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsKindsUpdateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsSuppliersDeleteCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsSuppliersListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsSuppliersUpsertCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsUpdateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.PriceListsCreateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.PriceListsItemsDeleteCatalogResponse;
+import com.nordlet.api.resources.catalog.types.PriceListsItemsListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.PriceListsItemsSetCatalogResponse;
+import com.nordlet.api.resources.catalog.types.PriceListsListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.PriceListsUpdateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.UnitsCreateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.UnitsDeleteCatalogResponse;
+import com.nordlet.api.resources.catalog.types.UnitsListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.UnitsOptionsCatalogResponse;
+import com.nordlet.api.resources.catalog.types.UnitsUpdateCatalogResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncCatalogClient {
@@ -81,347 +81,341 @@ public class AsyncCatalogClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1CatalogItemsCreateResponse> postV1CatalogItemsCreate(
-      PostV1CatalogItemsCreateRequest request) {
-    return this.rawClient.postV1CatalogItemsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemsCreateCatalogResponse> itemsCreate(
+      ItemsCreateCatalogRequest request) {
+    return this.rawClient.itemsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsCreateResponse> postV1CatalogItemsCreate(
-      PostV1CatalogItemsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ItemsCreateCatalogResponse> itemsCreate(
+      ItemsCreateCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsGetResponse> postV1CatalogItemsGet(
-      PostV1CatalogItemsGetRequest request) {
-    return this.rawClient.postV1CatalogItemsGet(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemsGetCatalogResponse> itemsGet(ItemsGetCatalogRequest request) {
+    return this.rawClient.itemsGet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsGetResponse> postV1CatalogItemsGet(
-      PostV1CatalogItemsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemsUpdateResponse> postV1CatalogItemsUpdate(
-      PostV1CatalogItemsUpdateRequest request) {
-    return this.rawClient.postV1CatalogItemsUpdate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemsUpdateResponse> postV1CatalogItemsUpdate(
-      PostV1CatalogItemsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemsDeleteResponse> postV1CatalogItemsDelete(
-      PostV1CatalogItemsDeleteRequest request) {
-    return this.rawClient.postV1CatalogItemsDelete(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemsDeleteResponse> postV1CatalogItemsDelete(
-      PostV1CatalogItemsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsDelete(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemsListResponse> postV1CatalogItemsList() {
-    return this.rawClient.postV1CatalogItemsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemsListResponse> postV1CatalogItemsList(
+  public CompletableFuture<ItemsGetCatalogResponse> itemsGet(ItemsGetCatalogRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.itemsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsListResponse> postV1CatalogItemsList(
-      PostV1CatalogItemsListRequest request) {
-    return this.rawClient.postV1CatalogItemsList(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemsUpdateCatalogResponse> itemsUpdate(
+      ItemsUpdateCatalogRequest request) {
+    return this.rawClient.itemsUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsListResponse> postV1CatalogItemsList(
-      PostV1CatalogItemsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ItemsUpdateCatalogResponse> itemsUpdate(
+      ItemsUpdateCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsFilesListResponse> postV1CatalogItemsFilesList(
-      PostV1CatalogItemsFilesListRequest request) {
-    return this.rawClient.postV1CatalogItemsFilesList(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemsDeleteCatalogResponse> itemsDelete(
+      ItemsDeleteCatalogRequest request) {
+    return this.rawClient.itemsDelete(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsFilesListResponse> postV1CatalogItemsFilesList(
-      PostV1CatalogItemsFilesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsFilesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ItemsDeleteCatalogResponse> itemsDelete(
+      ItemsDeleteCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsKindsCreateResponse> postV1CatalogItemsKindsCreate(
-      PostV1CatalogItemsKindsCreateRequest request) {
-    return this.rawClient.postV1CatalogItemsKindsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemsListCatalogResponse> itemsList() {
+    return this.rawClient.itemsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsKindsCreateResponse> postV1CatalogItemsKindsCreate(
-      PostV1CatalogItemsKindsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsKindsCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ItemsListCatalogResponse> itemsList(RequestOptions requestOptions) {
+    return this.rawClient.itemsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsKindsUpdateResponse> postV1CatalogItemsKindsUpdate(
-      PostV1CatalogItemsKindsUpdateRequest request) {
-    return this.rawClient.postV1CatalogItemsKindsUpdate(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemsListCatalogResponse> itemsList(ItemsListCatalogRequest request) {
+    return this.rawClient.itemsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsKindsUpdateResponse> postV1CatalogItemsKindsUpdate(
-      PostV1CatalogItemsKindsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsKindsUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemsKindsDeleteResponse> postV1CatalogItemsKindsDelete(
-      PostV1CatalogItemsKindsDeleteRequest request) {
-    return this.rawClient.postV1CatalogItemsKindsDelete(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemsKindsDeleteResponse> postV1CatalogItemsKindsDelete(
-      PostV1CatalogItemsKindsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsKindsDelete(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemsKindsListResponse> postV1CatalogItemsKindsList() {
-    return this.rawClient.postV1CatalogItemsKindsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemsKindsListResponse> postV1CatalogItemsKindsList(
+  public CompletableFuture<ItemsListCatalogResponse> itemsList(ItemsListCatalogRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsKindsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.itemsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsKindsListResponse> postV1CatalogItemsKindsList(
-      PostV1CatalogItemsKindsListRequest request) {
-    return this.rawClient.postV1CatalogItemsKindsList(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemsFilesListCatalogResponse> itemsFilesList(
+      ItemsFilesListCatalogRequest request) {
+    return this.rawClient.itemsFilesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsKindsListResponse> postV1CatalogItemsKindsList(
-      PostV1CatalogItemsKindsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsKindsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ItemsFilesListCatalogResponse> itemsFilesList(
+      ItemsFilesListCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsFilesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogUnitsCreateResponse> postV1CatalogUnitsCreate(
-      PostV1CatalogUnitsCreateRequest request) {
-    return this.rawClient.postV1CatalogUnitsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemsKindsCreateCatalogResponse> itemsKindsCreate(
+      ItemsKindsCreateCatalogRequest request) {
+    return this.rawClient.itemsKindsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogUnitsCreateResponse> postV1CatalogUnitsCreate(
-      PostV1CatalogUnitsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogUnitsCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ItemsKindsCreateCatalogResponse> itemsKindsCreate(
+      ItemsKindsCreateCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsKindsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogUnitsUpdateResponse> postV1CatalogUnitsUpdate(
-      PostV1CatalogUnitsUpdateRequest request) {
-    return this.rawClient.postV1CatalogUnitsUpdate(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemsKindsUpdateCatalogResponse> itemsKindsUpdate(
+      ItemsKindsUpdateCatalogRequest request) {
+    return this.rawClient.itemsKindsUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogUnitsUpdateResponse> postV1CatalogUnitsUpdate(
-      PostV1CatalogUnitsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogUnitsUpdate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ItemsKindsUpdateCatalogResponse> itemsKindsUpdate(
+      ItemsKindsUpdateCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsKindsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogUnitsDeleteResponse> postV1CatalogUnitsDelete(
-      PostV1CatalogUnitsDeleteRequest request) {
-    return this.rawClient.postV1CatalogUnitsDelete(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemsKindsDeleteCatalogResponse> itemsKindsDelete(
+      ItemsKindsDeleteCatalogRequest request) {
+    return this.rawClient.itemsKindsDelete(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogUnitsDeleteResponse> postV1CatalogUnitsDelete(
-      PostV1CatalogUnitsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogUnitsDelete(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ItemsKindsDeleteCatalogResponse> itemsKindsDelete(
+      ItemsKindsDeleteCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsKindsDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogUnitsListResponse> postV1CatalogUnitsList() {
-    return this.rawClient.postV1CatalogUnitsList().thenApply(response -> response.body());
+  public CompletableFuture<ItemsKindsListCatalogResponse> itemsKindsList() {
+    return this.rawClient.itemsKindsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogUnitsListResponse> postV1CatalogUnitsList(
+  public CompletableFuture<ItemsKindsListCatalogResponse> itemsKindsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogUnitsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.itemsKindsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogUnitsListResponse> postV1CatalogUnitsList(
-      PostV1CatalogUnitsListRequest request) {
-    return this.rawClient.postV1CatalogUnitsList(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemsKindsListCatalogResponse> itemsKindsList(
+      ItemsKindsListCatalogRequest request) {
+    return this.rawClient.itemsKindsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogUnitsListResponse> postV1CatalogUnitsList(
-      PostV1CatalogUnitsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogUnitsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ItemsKindsListCatalogResponse> itemsKindsList(
+      ItemsKindsListCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsKindsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogUnitsOptionsResponse> postV1CatalogUnitsOptions() {
-    return this.rawClient.postV1CatalogUnitsOptions().thenApply(response -> response.body());
+  public CompletableFuture<UnitsCreateCatalogResponse> unitsCreate(
+      UnitsCreateCatalogRequest request) {
+    return this.rawClient.unitsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogUnitsOptionsResponse> postV1CatalogUnitsOptions(
+  public CompletableFuture<UnitsCreateCatalogResponse> unitsCreate(
+      UnitsCreateCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.unitsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<UnitsUpdateCatalogResponse> unitsUpdate(
+      UnitsUpdateCatalogRequest request) {
+    return this.rawClient.unitsUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<UnitsUpdateCatalogResponse> unitsUpdate(
+      UnitsUpdateCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.unitsUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<UnitsDeleteCatalogResponse> unitsDelete(
+      UnitsDeleteCatalogRequest request) {
+    return this.rawClient.unitsDelete(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<UnitsDeleteCatalogResponse> unitsDelete(
+      UnitsDeleteCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.unitsDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<UnitsListCatalogResponse> unitsList() {
+    return this.rawClient.unitsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<UnitsListCatalogResponse> unitsList(RequestOptions requestOptions) {
+    return this.rawClient.unitsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<UnitsListCatalogResponse> unitsList(UnitsListCatalogRequest request) {
+    return this.rawClient.unitsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<UnitsListCatalogResponse> unitsList(UnitsListCatalogRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogUnitsOptions(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.unitsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogUnitsOptionsResponse> postV1CatalogUnitsOptions(
-      PostV1CatalogUnitsOptionsRequest request) {
-    return this.rawClient.postV1CatalogUnitsOptions(request).thenApply(response -> response.body());
+  public CompletableFuture<UnitsOptionsCatalogResponse> unitsOptions() {
+    return this.rawClient.unitsOptions().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogUnitsOptionsResponse> postV1CatalogUnitsOptions(
-      PostV1CatalogUnitsOptionsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogUnitsOptions(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemGroupsCreateResponse> postV1CatalogItemGroupsCreate(
-      PostV1CatalogItemGroupsCreateRequest request) {
-    return this.rawClient.postV1CatalogItemGroupsCreate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemGroupsCreateResponse> postV1CatalogItemGroupsCreate(
-      PostV1CatalogItemGroupsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemGroupsCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemGroupsUpdateResponse> postV1CatalogItemGroupsUpdate(
-      PostV1CatalogItemGroupsUpdateRequest request) {
-    return this.rawClient.postV1CatalogItemGroupsUpdate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemGroupsUpdateResponse> postV1CatalogItemGroupsUpdate(
-      PostV1CatalogItemGroupsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemGroupsUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemGroupsDeleteResponse> postV1CatalogItemGroupsDelete(
-      PostV1CatalogItemGroupsDeleteRequest request) {
-    return this.rawClient.postV1CatalogItemGroupsDelete(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemGroupsDeleteResponse> postV1CatalogItemGroupsDelete(
-      PostV1CatalogItemGroupsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemGroupsDelete(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemGroupsListResponse> postV1CatalogItemGroupsList() {
-    return this.rawClient.postV1CatalogItemGroupsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogItemGroupsListResponse> postV1CatalogItemGroupsList(
+  public CompletableFuture<UnitsOptionsCatalogResponse> unitsOptions(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemGroupsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.unitsOptions(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemGroupsListResponse> postV1CatalogItemGroupsList(
-      PostV1CatalogItemGroupsListRequest request) {
-    return this.rawClient.postV1CatalogItemGroupsList(request).thenApply(response -> response.body());
+  public CompletableFuture<UnitsOptionsCatalogResponse> unitsOptions(
+      UnitsOptionsCatalogRequest request) {
+    return this.rawClient.unitsOptions(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemGroupsListResponse> postV1CatalogItemGroupsList(
-      PostV1CatalogItemGroupsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemGroupsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<UnitsOptionsCatalogResponse> unitsOptions(
+      UnitsOptionsCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.unitsOptions(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsSuppliersUpsertResponse> postV1CatalogItemsSuppliersUpsert(
-      PostV1CatalogItemsSuppliersUpsertRequest request) {
-    return this.rawClient.postV1CatalogItemsSuppliersUpsert(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemGroupsCreateCatalogResponse> itemGroupsCreate(
+      ItemGroupsCreateCatalogRequest request) {
+    return this.rawClient.itemGroupsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsSuppliersUpsertResponse> postV1CatalogItemsSuppliersUpsert(
-      PostV1CatalogItemsSuppliersUpsertRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsSuppliersUpsert(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ItemGroupsCreateCatalogResponse> itemGroupsCreate(
+      ItemGroupsCreateCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemGroupsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsSuppliersListResponse> postV1CatalogItemsSuppliersList(
-      ) {
-    return this.rawClient.postV1CatalogItemsSuppliersList().thenApply(response -> response.body());
+  public CompletableFuture<ItemGroupsUpdateCatalogResponse> itemGroupsUpdate(
+      ItemGroupsUpdateCatalogRequest request) {
+    return this.rawClient.itemGroupsUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsSuppliersListResponse> postV1CatalogItemsSuppliersList(
+  public CompletableFuture<ItemGroupsUpdateCatalogResponse> itemGroupsUpdate(
+      ItemGroupsUpdateCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemGroupsUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ItemGroupsDeleteCatalogResponse> itemGroupsDelete(
+      ItemGroupsDeleteCatalogRequest request) {
+    return this.rawClient.itemGroupsDelete(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ItemGroupsDeleteCatalogResponse> itemGroupsDelete(
+      ItemGroupsDeleteCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemGroupsDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ItemGroupsListCatalogResponse> itemGroupsList() {
+    return this.rawClient.itemGroupsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ItemGroupsListCatalogResponse> itemGroupsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsSuppliersList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.itemGroupsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsSuppliersListResponse> postV1CatalogItemsSuppliersList(
-      PostV1CatalogItemsSuppliersListRequest request) {
-    return this.rawClient.postV1CatalogItemsSuppliersList(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemGroupsListCatalogResponse> itemGroupsList(
+      ItemGroupsListCatalogRequest request) {
+    return this.rawClient.itemGroupsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsSuppliersListResponse> postV1CatalogItemsSuppliersList(
-      PostV1CatalogItemsSuppliersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsSuppliersList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ItemGroupsListCatalogResponse> itemGroupsList(
+      ItemGroupsListCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemGroupsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsSuppliersDeleteResponse> postV1CatalogItemsSuppliersDelete(
-      PostV1CatalogItemsSuppliersDeleteRequest request) {
-    return this.rawClient.postV1CatalogItemsSuppliersDelete(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemsSuppliersUpsertCatalogResponse> itemsSuppliersUpsert(
+      ItemsSuppliersUpsertCatalogRequest request) {
+    return this.rawClient.itemsSuppliersUpsert(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogItemsSuppliersDeleteResponse> postV1CatalogItemsSuppliersDelete(
-      PostV1CatalogItemsSuppliersDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogItemsSuppliersDelete(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ItemsSuppliersUpsertCatalogResponse> itemsSuppliersUpsert(
+      ItemsSuppliersUpsertCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsSuppliersUpsert(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogPriceListsCreateResponse> postV1CatalogPriceListsCreate(
-      PostV1CatalogPriceListsCreateRequest request) {
-    return this.rawClient.postV1CatalogPriceListsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemsSuppliersListCatalogResponse> itemsSuppliersList() {
+    return this.rawClient.itemsSuppliersList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogPriceListsCreateResponse> postV1CatalogPriceListsCreate(
-      PostV1CatalogPriceListsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogPriceListsCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogPriceListsUpdateResponse> postV1CatalogPriceListsUpdate(
-      PostV1CatalogPriceListsUpdateRequest request) {
-    return this.rawClient.postV1CatalogPriceListsUpdate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogPriceListsUpdateResponse> postV1CatalogPriceListsUpdate(
-      PostV1CatalogPriceListsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogPriceListsUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogPriceListsListResponse> postV1CatalogPriceListsList() {
-    return this.rawClient.postV1CatalogPriceListsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CatalogPriceListsListResponse> postV1CatalogPriceListsList(
+  public CompletableFuture<ItemsSuppliersListCatalogResponse> itemsSuppliersList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogPriceListsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.itemsSuppliersList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogPriceListsListResponse> postV1CatalogPriceListsList(
-      PostV1CatalogPriceListsListRequest request) {
-    return this.rawClient.postV1CatalogPriceListsList(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemsSuppliersListCatalogResponse> itemsSuppliersList(
+      ItemsSuppliersListCatalogRequest request) {
+    return this.rawClient.itemsSuppliersList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogPriceListsListResponse> postV1CatalogPriceListsList(
-      PostV1CatalogPriceListsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogPriceListsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ItemsSuppliersListCatalogResponse> itemsSuppliersList(
+      ItemsSuppliersListCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsSuppliersList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogPriceListsItemsSetResponse> postV1CatalogPriceListsItemsSet(
-      PostV1CatalogPriceListsItemsSetRequest request) {
-    return this.rawClient.postV1CatalogPriceListsItemsSet(request).thenApply(response -> response.body());
+  public CompletableFuture<ItemsSuppliersDeleteCatalogResponse> itemsSuppliersDelete(
+      ItemsSuppliersDeleteCatalogRequest request) {
+    return this.rawClient.itemsSuppliersDelete(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogPriceListsItemsSetResponse> postV1CatalogPriceListsItemsSet(
-      PostV1CatalogPriceListsItemsSetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogPriceListsItemsSet(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ItemsSuppliersDeleteCatalogResponse> itemsSuppliersDelete(
+      ItemsSuppliersDeleteCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsSuppliersDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogPriceListsItemsListResponse> postV1CatalogPriceListsItemsList(
-      PostV1CatalogPriceListsItemsListRequest request) {
-    return this.rawClient.postV1CatalogPriceListsItemsList(request).thenApply(response -> response.body());
+  public CompletableFuture<PriceListsCreateCatalogResponse> priceListsCreate(
+      PriceListsCreateCatalogRequest request) {
+    return this.rawClient.priceListsCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogPriceListsItemsListResponse> postV1CatalogPriceListsItemsList(
-      PostV1CatalogPriceListsItemsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogPriceListsItemsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<PriceListsCreateCatalogResponse> priceListsCreate(
+      PriceListsCreateCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.priceListsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogPriceListsItemsDeleteResponse> postV1CatalogPriceListsItemsDelete(
-      PostV1CatalogPriceListsItemsDeleteRequest request) {
-    return this.rawClient.postV1CatalogPriceListsItemsDelete(request).thenApply(response -> response.body());
+  public CompletableFuture<PriceListsUpdateCatalogResponse> priceListsUpdate(
+      PriceListsUpdateCatalogRequest request) {
+    return this.rawClient.priceListsUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CatalogPriceListsItemsDeleteResponse> postV1CatalogPriceListsItemsDelete(
-      PostV1CatalogPriceListsItemsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CatalogPriceListsItemsDelete(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<PriceListsUpdateCatalogResponse> priceListsUpdate(
+      PriceListsUpdateCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.priceListsUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PriceListsListCatalogResponse> priceListsList() {
+    return this.rawClient.priceListsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PriceListsListCatalogResponse> priceListsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.priceListsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PriceListsListCatalogResponse> priceListsList(
+      PriceListsListCatalogRequest request) {
+    return this.rawClient.priceListsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PriceListsListCatalogResponse> priceListsList(
+      PriceListsListCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.priceListsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PriceListsItemsSetCatalogResponse> priceListsItemsSet(
+      PriceListsItemsSetCatalogRequest request) {
+    return this.rawClient.priceListsItemsSet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PriceListsItemsSetCatalogResponse> priceListsItemsSet(
+      PriceListsItemsSetCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.priceListsItemsSet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PriceListsItemsListCatalogResponse> priceListsItemsList(
+      PriceListsItemsListCatalogRequest request) {
+    return this.rawClient.priceListsItemsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PriceListsItemsListCatalogResponse> priceListsItemsList(
+      PriceListsItemsListCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.priceListsItemsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PriceListsItemsDeleteCatalogResponse> priceListsItemsDelete(
+      PriceListsItemsDeleteCatalogRequest request) {
+    return this.rawClient.priceListsItemsDelete(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PriceListsItemsDeleteCatalogResponse> priceListsItemsDelete(
+      PriceListsItemsDeleteCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.priceListsItemsDelete(request, requestOptions).thenApply(response -> response.body());
   }
 }

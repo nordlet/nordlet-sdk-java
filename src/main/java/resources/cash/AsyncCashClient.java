@@ -6,16 +6,16 @@ package com.nordlet.api.resources.cash;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.cash.requests.PostV1CashAdvanceHoldersBalancesRequest;
-import com.nordlet.api.resources.cash.requests.PostV1CashBalanceRequest;
-import com.nordlet.api.resources.cash.requests.PostV1CashOrdersCreateRequest;
-import com.nordlet.api.resources.cash.requests.PostV1CashOrdersGetRequest;
-import com.nordlet.api.resources.cash.requests.PostV1CashOrdersListRequest;
-import com.nordlet.api.resources.cash.types.PostV1CashAdvanceHoldersBalancesResponse;
-import com.nordlet.api.resources.cash.types.PostV1CashBalanceResponse;
-import com.nordlet.api.resources.cash.types.PostV1CashOrdersCreateResponse;
-import com.nordlet.api.resources.cash.types.PostV1CashOrdersGetResponse;
-import com.nordlet.api.resources.cash.types.PostV1CashOrdersListResponse;
+import com.nordlet.api.resources.cash.requests.AdvanceHoldersBalancesCashRequest;
+import com.nordlet.api.resources.cash.requests.BalanceCashRequest;
+import com.nordlet.api.resources.cash.requests.OrdersCreateCashRequest;
+import com.nordlet.api.resources.cash.requests.OrdersGetCashRequest;
+import com.nordlet.api.resources.cash.requests.OrdersListCashRequest;
+import com.nordlet.api.resources.cash.types.AdvanceHoldersBalancesCashResponse;
+import com.nordlet.api.resources.cash.types.BalanceCashResponse;
+import com.nordlet.api.resources.cash.types.OrdersCreateCashResponse;
+import com.nordlet.api.resources.cash.types.OrdersGetCashResponse;
+import com.nordlet.api.resources.cash.types.OrdersListCashResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncCashClient {
@@ -35,81 +35,74 @@ public class AsyncCashClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1CashOrdersCreateResponse> postV1CashOrdersCreate(
-      PostV1CashOrdersCreateRequest request) {
-    return this.rawClient.postV1CashOrdersCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<OrdersCreateCashResponse> ordersCreate(OrdersCreateCashRequest request) {
+    return this.rawClient.ordersCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CashOrdersCreateResponse> postV1CashOrdersCreate(
-      PostV1CashOrdersCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CashOrdersCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CashOrdersGetResponse> postV1CashOrdersGet(
-      PostV1CashOrdersGetRequest request) {
-    return this.rawClient.postV1CashOrdersGet(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CashOrdersGetResponse> postV1CashOrdersGet(
-      PostV1CashOrdersGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CashOrdersGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CashOrdersListResponse> postV1CashOrdersList() {
-    return this.rawClient.postV1CashOrdersList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CashOrdersListResponse> postV1CashOrdersList(
+  public CompletableFuture<OrdersCreateCashResponse> ordersCreate(OrdersCreateCashRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CashOrdersList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.ordersCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CashOrdersListResponse> postV1CashOrdersList(
-      PostV1CashOrdersListRequest request) {
-    return this.rawClient.postV1CashOrdersList(request).thenApply(response -> response.body());
+  public CompletableFuture<OrdersGetCashResponse> ordersGet(OrdersGetCashRequest request) {
+    return this.rawClient.ordersGet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CashOrdersListResponse> postV1CashOrdersList(
-      PostV1CashOrdersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CashOrdersList(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CashBalanceResponse> postV1CashBalance() {
-    return this.rawClient.postV1CashBalance().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1CashBalanceResponse> postV1CashBalance(
+  public CompletableFuture<OrdersGetCashResponse> ordersGet(OrdersGetCashRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CashBalance(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.ordersGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CashBalanceResponse> postV1CashBalance(
-      PostV1CashBalanceRequest request) {
-    return this.rawClient.postV1CashBalance(request).thenApply(response -> response.body());
+  public CompletableFuture<OrdersListCashResponse> ordersList() {
+    return this.rawClient.ordersList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CashBalanceResponse> postV1CashBalance(
-      PostV1CashBalanceRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CashBalance(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<OrdersListCashResponse> ordersList(RequestOptions requestOptions) {
+    return this.rawClient.ordersList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CashAdvanceHoldersBalancesResponse> postV1CashAdvanceHoldersBalances(
-      ) {
-    return this.rawClient.postV1CashAdvanceHoldersBalances().thenApply(response -> response.body());
+  public CompletableFuture<OrdersListCashResponse> ordersList(OrdersListCashRequest request) {
+    return this.rawClient.ordersList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CashAdvanceHoldersBalancesResponse> postV1CashAdvanceHoldersBalances(
+  public CompletableFuture<OrdersListCashResponse> ordersList(OrdersListCashRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1CashAdvanceHoldersBalances(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.ordersList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CashAdvanceHoldersBalancesResponse> postV1CashAdvanceHoldersBalances(
-      PostV1CashAdvanceHoldersBalancesRequest request) {
-    return this.rawClient.postV1CashAdvanceHoldersBalances(request).thenApply(response -> response.body());
+  public CompletableFuture<BalanceCashResponse> balance() {
+    return this.rawClient.balance().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1CashAdvanceHoldersBalancesResponse> postV1CashAdvanceHoldersBalances(
-      PostV1CashAdvanceHoldersBalancesRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1CashAdvanceHoldersBalances(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<BalanceCashResponse> balance(RequestOptions requestOptions) {
+    return this.rawClient.balance(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<BalanceCashResponse> balance(BalanceCashRequest request) {
+    return this.rawClient.balance(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<BalanceCashResponse> balance(BalanceCashRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.balance(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AdvanceHoldersBalancesCashResponse> advanceHoldersBalances() {
+    return this.rawClient.advanceHoldersBalances().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AdvanceHoldersBalancesCashResponse> advanceHoldersBalances(
+      RequestOptions requestOptions) {
+    return this.rawClient.advanceHoldersBalances(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AdvanceHoldersBalancesCashResponse> advanceHoldersBalances(
+      AdvanceHoldersBalancesCashRequest request) {
+    return this.rawClient.advanceHoldersBalances(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AdvanceHoldersBalancesCashResponse> advanceHoldersBalances(
+      AdvanceHoldersBalancesCashRequest request, RequestOptions requestOptions) {
+    return this.rawClient.advanceHoldersBalances(request, requestOptions).thenApply(response -> response.body());
   }
 }

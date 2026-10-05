@@ -6,66 +6,66 @@ package com.nordlet.api.resources.reports;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsAdvanceReconciliationRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsCashFlowRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsCostCenterActivityRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsCostCenterItemsRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsCostCentersRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsDatevRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsDebtAgingRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsEuPurchasesRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsFecRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsFinancialStatementsRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsGeneralJournalRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsGlDetailRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsJobsCreateRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsJobsGetRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsJobsListRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsMonthlySummaryRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsOnlineSalesRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsOssRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsPartnerBalancesRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsPosSalesRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsSieRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsSizeCategoryRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsStockAgingRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsStockBalanceRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsStockMovementRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsStockShortageRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsTrialBalanceRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsVatDetailRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsVatSummaryRequest;
-import com.nordlet.api.resources.reports.requests.PostV1ReportsWriteOffActsRequest;
-import com.nordlet.api.resources.reports.types.PostV1ReportsAdvanceReconciliationResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsCashFlowResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsCostCenterActivityResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsCostCenterItemsResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsCostCentersResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsDatevResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsDebtAgingResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsEuPurchasesResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsFecResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsFinancialStatementsResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsGeneralJournalResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsGlDetailResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsJobsCreateResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsJobsGetResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsJobsListResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsMonthlySummaryResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsOnlineSalesResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsOssResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsPartnerBalancesResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsPosSalesResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsSieResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsSizeCategoryResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsStockAgingResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsStockBalanceResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsStockMovementResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsStockShortageResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsTrialBalanceResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsVatDetailResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsVatSummaryResponse;
-import com.nordlet.api.resources.reports.types.PostV1ReportsWriteOffActsResponse;
+import com.nordlet.api.resources.reports.requests.AdvanceReconciliationReportsRequest;
+import com.nordlet.api.resources.reports.requests.CashFlowReportsRequest;
+import com.nordlet.api.resources.reports.requests.CostCenterActivityReportsRequest;
+import com.nordlet.api.resources.reports.requests.CostCenterItemsReportsRequest;
+import com.nordlet.api.resources.reports.requests.CostCentersReportsRequest;
+import com.nordlet.api.resources.reports.requests.DatevReportsRequest;
+import com.nordlet.api.resources.reports.requests.DebtAgingReportsRequest;
+import com.nordlet.api.resources.reports.requests.EuPurchasesReportsRequest;
+import com.nordlet.api.resources.reports.requests.FecReportsRequest;
+import com.nordlet.api.resources.reports.requests.FinancialStatementsReportsRequest;
+import com.nordlet.api.resources.reports.requests.GeneralJournalReportsRequest;
+import com.nordlet.api.resources.reports.requests.GlDetailReportsRequest;
+import com.nordlet.api.resources.reports.requests.JobsCreateReportsRequest;
+import com.nordlet.api.resources.reports.requests.JobsGetReportsRequest;
+import com.nordlet.api.resources.reports.requests.JobsListReportsRequest;
+import com.nordlet.api.resources.reports.requests.MonthlySummaryReportsRequest;
+import com.nordlet.api.resources.reports.requests.OnlineSalesReportsRequest;
+import com.nordlet.api.resources.reports.requests.OssReportsRequest;
+import com.nordlet.api.resources.reports.requests.PartnerBalancesReportsRequest;
+import com.nordlet.api.resources.reports.requests.PosSalesReportsRequest;
+import com.nordlet.api.resources.reports.requests.SieReportsRequest;
+import com.nordlet.api.resources.reports.requests.SizeCategoryReportsRequest;
+import com.nordlet.api.resources.reports.requests.StockAgingReportsRequest;
+import com.nordlet.api.resources.reports.requests.StockBalanceReportsRequest;
+import com.nordlet.api.resources.reports.requests.StockMovementReportsRequest;
+import com.nordlet.api.resources.reports.requests.StockShortageReportsRequest;
+import com.nordlet.api.resources.reports.requests.TrialBalanceReportsRequest;
+import com.nordlet.api.resources.reports.requests.VatDetailReportsRequest;
+import com.nordlet.api.resources.reports.requests.VatSummaryReportsRequest;
+import com.nordlet.api.resources.reports.requests.WriteOffActsReportsRequest;
+import com.nordlet.api.resources.reports.types.AdvanceReconciliationReportsResponse;
+import com.nordlet.api.resources.reports.types.CashFlowReportsResponse;
+import com.nordlet.api.resources.reports.types.CostCenterActivityReportsResponse;
+import com.nordlet.api.resources.reports.types.CostCenterItemsReportsResponse;
+import com.nordlet.api.resources.reports.types.CostCentersReportsResponse;
+import com.nordlet.api.resources.reports.types.DatevReportsResponse;
+import com.nordlet.api.resources.reports.types.DebtAgingReportsResponse;
+import com.nordlet.api.resources.reports.types.EuPurchasesReportsResponse;
+import com.nordlet.api.resources.reports.types.FecReportsResponse;
+import com.nordlet.api.resources.reports.types.FinancialStatementsReportsResponse;
+import com.nordlet.api.resources.reports.types.GeneralJournalReportsResponse;
+import com.nordlet.api.resources.reports.types.GlDetailReportsResponse;
+import com.nordlet.api.resources.reports.types.JobsCreateReportsResponse;
+import com.nordlet.api.resources.reports.types.JobsGetReportsResponse;
+import com.nordlet.api.resources.reports.types.JobsListReportsResponse;
+import com.nordlet.api.resources.reports.types.MonthlySummaryReportsResponse;
+import com.nordlet.api.resources.reports.types.OnlineSalesReportsResponse;
+import com.nordlet.api.resources.reports.types.OssReportsResponse;
+import com.nordlet.api.resources.reports.types.PartnerBalancesReportsResponse;
+import com.nordlet.api.resources.reports.types.PosSalesReportsResponse;
+import com.nordlet.api.resources.reports.types.SieReportsResponse;
+import com.nordlet.api.resources.reports.types.SizeCategoryReportsResponse;
+import com.nordlet.api.resources.reports.types.StockAgingReportsResponse;
+import com.nordlet.api.resources.reports.types.StockBalanceReportsResponse;
+import com.nordlet.api.resources.reports.types.StockMovementReportsResponse;
+import com.nordlet.api.resources.reports.types.StockShortageReportsResponse;
+import com.nordlet.api.resources.reports.types.TrialBalanceReportsResponse;
+import com.nordlet.api.resources.reports.types.VatDetailReportsResponse;
+import com.nordlet.api.resources.reports.types.VatSummaryReportsResponse;
+import com.nordlet.api.resources.reports.types.WriteOffActsReportsResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncReportsClient {
@@ -85,366 +85,350 @@ public class AsyncReportsClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1ReportsTrialBalanceResponse> postV1ReportsTrialBalance(
-      PostV1ReportsTrialBalanceRequest request) {
-    return this.rawClient.postV1ReportsTrialBalance(request).thenApply(response -> response.body());
+  public CompletableFuture<TrialBalanceReportsResponse> trialBalance(
+      TrialBalanceReportsRequest request) {
+    return this.rawClient.trialBalance(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsTrialBalanceResponse> postV1ReportsTrialBalance(
-      PostV1ReportsTrialBalanceRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsTrialBalance(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<TrialBalanceReportsResponse> trialBalance(
+      TrialBalanceReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.trialBalance(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsSizeCategoryResponse> postV1ReportsSizeCategory(
-      PostV1ReportsSizeCategoryRequest request) {
-    return this.rawClient.postV1ReportsSizeCategory(request).thenApply(response -> response.body());
+  public CompletableFuture<SizeCategoryReportsResponse> sizeCategory(
+      SizeCategoryReportsRequest request) {
+    return this.rawClient.sizeCategory(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsSizeCategoryResponse> postV1ReportsSizeCategory(
-      PostV1ReportsSizeCategoryRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsSizeCategory(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<SizeCategoryReportsResponse> sizeCategory(
+      SizeCategoryReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.sizeCategory(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsFinancialStatementsResponse> postV1ReportsFinancialStatements(
-      PostV1ReportsFinancialStatementsRequest request) {
-    return this.rawClient.postV1ReportsFinancialStatements(request).thenApply(response -> response.body());
+  public CompletableFuture<FinancialStatementsReportsResponse> financialStatements(
+      FinancialStatementsReportsRequest request) {
+    return this.rawClient.financialStatements(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsFinancialStatementsResponse> postV1ReportsFinancialStatements(
-      PostV1ReportsFinancialStatementsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsFinancialStatements(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<FinancialStatementsReportsResponse> financialStatements(
+      FinancialStatementsReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.financialStatements(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsGeneralJournalResponse> postV1ReportsGeneralJournal(
-      PostV1ReportsGeneralJournalRequest request) {
-    return this.rawClient.postV1ReportsGeneralJournal(request).thenApply(response -> response.body());
+  public CompletableFuture<GeneralJournalReportsResponse> generalJournal(
+      GeneralJournalReportsRequest request) {
+    return this.rawClient.generalJournal(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsGeneralJournalResponse> postV1ReportsGeneralJournal(
-      PostV1ReportsGeneralJournalRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsGeneralJournal(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<GeneralJournalReportsResponse> generalJournal(
+      GeneralJournalReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.generalJournal(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsGlDetailResponse> postV1ReportsGlDetail(
-      PostV1ReportsGlDetailRequest request) {
-    return this.rawClient.postV1ReportsGlDetail(request).thenApply(response -> response.body());
+  public CompletableFuture<GlDetailReportsResponse> glDetail(GlDetailReportsRequest request) {
+    return this.rawClient.glDetail(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsGlDetailResponse> postV1ReportsGlDetail(
-      PostV1ReportsGlDetailRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsGlDetail(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsPartnerBalancesResponse> postV1ReportsPartnerBalances() {
-    return this.rawClient.postV1ReportsPartnerBalances().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsPartnerBalancesResponse> postV1ReportsPartnerBalances(
+  public CompletableFuture<GlDetailReportsResponse> glDetail(GlDetailReportsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsPartnerBalances(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.glDetail(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsPartnerBalancesResponse> postV1ReportsPartnerBalances(
-      PostV1ReportsPartnerBalancesRequest request) {
-    return this.rawClient.postV1ReportsPartnerBalances(request).thenApply(response -> response.body());
+  public CompletableFuture<PartnerBalancesReportsResponse> partnerBalances() {
+    return this.rawClient.partnerBalances().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsPartnerBalancesResponse> postV1ReportsPartnerBalances(
-      PostV1ReportsPartnerBalancesRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsPartnerBalances(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsDebtAgingResponse> postV1ReportsDebtAging() {
-    return this.rawClient.postV1ReportsDebtAging().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsDebtAgingResponse> postV1ReportsDebtAging(
+  public CompletableFuture<PartnerBalancesReportsResponse> partnerBalances(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsDebtAging(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.partnerBalances(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsDebtAgingResponse> postV1ReportsDebtAging(
-      PostV1ReportsDebtAgingRequest request) {
-    return this.rawClient.postV1ReportsDebtAging(request).thenApply(response -> response.body());
+  public CompletableFuture<PartnerBalancesReportsResponse> partnerBalances(
+      PartnerBalancesReportsRequest request) {
+    return this.rawClient.partnerBalances(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsDebtAgingResponse> postV1ReportsDebtAging(
-      PostV1ReportsDebtAgingRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsDebtAging(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<PartnerBalancesReportsResponse> partnerBalances(
+      PartnerBalancesReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.partnerBalances(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsMonthlySummaryResponse> postV1ReportsMonthlySummary() {
-    return this.rawClient.postV1ReportsMonthlySummary().thenApply(response -> response.body());
+  public CompletableFuture<DebtAgingReportsResponse> debtAging() {
+    return this.rawClient.debtAging().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsMonthlySummaryResponse> postV1ReportsMonthlySummary(
+  public CompletableFuture<DebtAgingReportsResponse> debtAging(RequestOptions requestOptions) {
+    return this.rawClient.debtAging(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<DebtAgingReportsResponse> debtAging(DebtAgingReportsRequest request) {
+    return this.rawClient.debtAging(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<DebtAgingReportsResponse> debtAging(DebtAgingReportsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsMonthlySummary(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.debtAging(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsMonthlySummaryResponse> postV1ReportsMonthlySummary(
-      PostV1ReportsMonthlySummaryRequest request) {
-    return this.rawClient.postV1ReportsMonthlySummary(request).thenApply(response -> response.body());
+  public CompletableFuture<MonthlySummaryReportsResponse> monthlySummary() {
+    return this.rawClient.monthlySummary().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsMonthlySummaryResponse> postV1ReportsMonthlySummary(
-      PostV1ReportsMonthlySummaryRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsMonthlySummary(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsStockBalanceResponse> postV1ReportsStockBalance(
-      PostV1ReportsStockBalanceRequest request) {
-    return this.rawClient.postV1ReportsStockBalance(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsStockBalanceResponse> postV1ReportsStockBalance(
-      PostV1ReportsStockBalanceRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsStockBalance(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsStockMovementResponse> postV1ReportsStockMovement(
-      PostV1ReportsStockMovementRequest request) {
-    return this.rawClient.postV1ReportsStockMovement(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsStockMovementResponse> postV1ReportsStockMovement(
-      PostV1ReportsStockMovementRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsStockMovement(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsVatSummaryResponse> postV1ReportsVatSummary(
-      PostV1ReportsVatSummaryRequest request) {
-    return this.rawClient.postV1ReportsVatSummary(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsVatSummaryResponse> postV1ReportsVatSummary(
-      PostV1ReportsVatSummaryRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsVatSummary(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsCashFlowResponse> postV1ReportsCashFlow(
-      PostV1ReportsCashFlowRequest request) {
-    return this.rawClient.postV1ReportsCashFlow(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsCashFlowResponse> postV1ReportsCashFlow(
-      PostV1ReportsCashFlowRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsCashFlow(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsStockAgingResponse> postV1ReportsStockAging(
-      PostV1ReportsStockAgingRequest request) {
-    return this.rawClient.postV1ReportsStockAging(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsStockAgingResponse> postV1ReportsStockAging(
-      PostV1ReportsStockAgingRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsStockAging(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsStockShortageResponse> postV1ReportsStockShortage() {
-    return this.rawClient.postV1ReportsStockShortage().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsStockShortageResponse> postV1ReportsStockShortage(
+  public CompletableFuture<MonthlySummaryReportsResponse> monthlySummary(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsStockShortage(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.monthlySummary(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsStockShortageResponse> postV1ReportsStockShortage(
-      PostV1ReportsStockShortageRequest request) {
-    return this.rawClient.postV1ReportsStockShortage(request).thenApply(response -> response.body());
+  public CompletableFuture<MonthlySummaryReportsResponse> monthlySummary(
+      MonthlySummaryReportsRequest request) {
+    return this.rawClient.monthlySummary(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsStockShortageResponse> postV1ReportsStockShortage(
-      PostV1ReportsStockShortageRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsStockShortage(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<MonthlySummaryReportsResponse> monthlySummary(
+      MonthlySummaryReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.monthlySummary(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<StockBalanceReportsResponse> stockBalance(
+      StockBalanceReportsRequest request) {
+    return this.rawClient.stockBalance(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<StockBalanceReportsResponse> stockBalance(
+      StockBalanceReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.stockBalance(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<StockMovementReportsResponse> stockMovement(
+      StockMovementReportsRequest request) {
+    return this.rawClient.stockMovement(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<StockMovementReportsResponse> stockMovement(
+      StockMovementReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.stockMovement(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<VatSummaryReportsResponse> vatSummary(VatSummaryReportsRequest request) {
+    return this.rawClient.vatSummary(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<VatSummaryReportsResponse> vatSummary(VatSummaryReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.vatSummary(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CashFlowReportsResponse> cashFlow(CashFlowReportsRequest request) {
+    return this.rawClient.cashFlow(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CashFlowReportsResponse> cashFlow(CashFlowReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.cashFlow(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<StockAgingReportsResponse> stockAging(StockAgingReportsRequest request) {
+    return this.rawClient.stockAging(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<StockAgingReportsResponse> stockAging(StockAgingReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.stockAging(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<StockShortageReportsResponse> stockShortage() {
+    return this.rawClient.stockShortage().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<StockShortageReportsResponse> stockShortage(
+      RequestOptions requestOptions) {
+    return this.rawClient.stockShortage(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<StockShortageReportsResponse> stockShortage(
+      StockShortageReportsRequest request) {
+    return this.rawClient.stockShortage(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<StockShortageReportsResponse> stockShortage(
+      StockShortageReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.stockShortage(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Export the ledger of one financial year as an SIE file (the Swedish standard accounting interchange format, specification 4B). The file carries the chart of accounts, the opening and closing balance of every balance sheet account and the turnover of every result account for the year and the year before it, and, when asked for, every posted voucher of the year with its lines. Cost centres travel as dimension 1 and projects as dimension 6. Services that build a Swedish annual report read this file.
    */
-  public CompletableFuture<PostV1ReportsSieResponse> postV1ReportsSie(
-      PostV1ReportsSieRequest request) {
-    return this.rawClient.postV1ReportsSie(request).thenApply(response -> response.body());
+  public CompletableFuture<SieReportsResponse> sie(SieReportsRequest request) {
+    return this.rawClient.sie(request).thenApply(response -> response.body());
   }
 
   /**
    * Export the ledger of one financial year as an SIE file (the Swedish standard accounting interchange format, specification 4B). The file carries the chart of accounts, the opening and closing balance of every balance sheet account and the turnover of every result account for the year and the year before it, and, when asked for, every posted voucher of the year with its lines. Cost centres travel as dimension 1 and projects as dimension 6. Services that build a Swedish annual report read this file.
    */
-  public CompletableFuture<PostV1ReportsSieResponse> postV1ReportsSie(
-      PostV1ReportsSieRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsSie(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  /**
-   * Export the posted ledger of a period as a DATEV Buchungsstapel file (DATEV format, category 21, version 700). Every transaction becomes one or more bookings of an amount between an account and a contra account; a transaction with more than two lines is split into pairs whose totals match it. The file is semicolon separated and written in the Windows-1252 character set DATEV expects.
-   */
-  public CompletableFuture<PostV1ReportsDatevResponse> postV1ReportsDatev(
-      PostV1ReportsDatevRequest request) {
-    return this.rawClient.postV1ReportsDatev(request).thenApply(response -> response.body());
-  }
-
-  /**
-   * Export the posted ledger of a period as a DATEV Buchungsstapel file (DATEV format, category 21, version 700). Every transaction becomes one or more bookings of an amount between an account and a contra account; a transaction with more than two lines is split into pairs whose totals match it. The file is semicolon separated and written in the Windows-1252 character set DATEV expects.
-   */
-  public CompletableFuture<PostV1ReportsDatevResponse> postV1ReportsDatev(
-      PostV1ReportsDatevRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsDatev(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  /**
-   * Export the posted ledger of a period as a French FEC file (fichier des écritures comptables, order of 29 July 2013). One line per journal entry line, with the eighteen fields the order names, in their order, after a header line. Tab separated, UTF-8, comma as the decimal separator.
-   */
-  public CompletableFuture<PostV1ReportsFecResponse> postV1ReportsFec(
-      PostV1ReportsFecRequest request) {
-    return this.rawClient.postV1ReportsFec(request).thenApply(response -> response.body());
-  }
-
-  /**
-   * Export the posted ledger of a period as a French FEC file (fichier des écritures comptables, order of 29 July 2013). One line per journal entry line, with the eighteen fields the order names, in their order, after a header line. Tab separated, UTF-8, comma as the decimal separator.
-   */
-  public CompletableFuture<PostV1ReportsFecResponse> postV1ReportsFec(
-      PostV1ReportsFecRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsFec(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsEuPurchasesResponse> postV1ReportsEuPurchases(
-      PostV1ReportsEuPurchasesRequest request) {
-    return this.rawClient.postV1ReportsEuPurchases(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsEuPurchasesResponse> postV1ReportsEuPurchases(
-      PostV1ReportsEuPurchasesRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsEuPurchases(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsVatDetailResponse> postV1ReportsVatDetail(
-      PostV1ReportsVatDetailRequest request) {
-    return this.rawClient.postV1ReportsVatDetail(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsVatDetailResponse> postV1ReportsVatDetail(
-      PostV1ReportsVatDetailRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsVatDetail(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsPosSalesResponse> postV1ReportsPosSales(
-      PostV1ReportsPosSalesRequest request) {
-    return this.rawClient.postV1ReportsPosSales(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsPosSalesResponse> postV1ReportsPosSales(
-      PostV1ReportsPosSalesRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsPosSales(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsOnlineSalesResponse> postV1ReportsOnlineSales(
-      PostV1ReportsOnlineSalesRequest request) {
-    return this.rawClient.postV1ReportsOnlineSales(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsOnlineSalesResponse> postV1ReportsOnlineSales(
-      PostV1ReportsOnlineSalesRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsOnlineSales(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsOssResponse> postV1ReportsOss(
-      PostV1ReportsOssRequest request) {
-    return this.rawClient.postV1ReportsOss(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsOssResponse> postV1ReportsOss(
-      PostV1ReportsOssRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsOss(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsAdvanceReconciliationResponse> postV1ReportsAdvanceReconciliation(
-      PostV1ReportsAdvanceReconciliationRequest request) {
-    return this.rawClient.postV1ReportsAdvanceReconciliation(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsAdvanceReconciliationResponse> postV1ReportsAdvanceReconciliation(
-      PostV1ReportsAdvanceReconciliationRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsAdvanceReconciliation(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsWriteOffActsResponse> postV1ReportsWriteOffActs(
-      PostV1ReportsWriteOffActsRequest request) {
-    return this.rawClient.postV1ReportsWriteOffActs(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsWriteOffActsResponse> postV1ReportsWriteOffActs(
-      PostV1ReportsWriteOffActsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsWriteOffActs(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsCostCentersResponse> postV1ReportsCostCenters(
-      PostV1ReportsCostCentersRequest request) {
-    return this.rawClient.postV1ReportsCostCenters(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsCostCentersResponse> postV1ReportsCostCenters(
-      PostV1ReportsCostCentersRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsCostCenters(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsCostCenterActivityResponse> postV1ReportsCostCenterActivity(
-      PostV1ReportsCostCenterActivityRequest request) {
-    return this.rawClient.postV1ReportsCostCenterActivity(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsCostCenterActivityResponse> postV1ReportsCostCenterActivity(
-      PostV1ReportsCostCenterActivityRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsCostCenterActivity(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsCostCenterItemsResponse> postV1ReportsCostCenterItems(
-      PostV1ReportsCostCenterItemsRequest request) {
-    return this.rawClient.postV1ReportsCostCenterItems(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsCostCenterItemsResponse> postV1ReportsCostCenterItems(
-      PostV1ReportsCostCenterItemsRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsCostCenterItems(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsJobsCreateResponse> postV1ReportsJobsCreate(
-      PostV1ReportsJobsCreateRequest request) {
-    return this.rawClient.postV1ReportsJobsCreate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsJobsCreateResponse> postV1ReportsJobsCreate(
-      PostV1ReportsJobsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsJobsCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsJobsGetResponse> postV1ReportsJobsGet(
-      PostV1ReportsJobsGetRequest request) {
-    return this.rawClient.postV1ReportsJobsGet(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsJobsGetResponse> postV1ReportsJobsGet(
-      PostV1ReportsJobsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsJobsGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsJobsListResponse> postV1ReportsJobsList() {
-    return this.rawClient.postV1ReportsJobsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ReportsJobsListResponse> postV1ReportsJobsList(
+  public CompletableFuture<SieReportsResponse> sie(SieReportsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsJobsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.sie(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsJobsListResponse> postV1ReportsJobsList(
-      PostV1ReportsJobsListRequest request) {
-    return this.rawClient.postV1ReportsJobsList(request).thenApply(response -> response.body());
+  /**
+   * Export the posted ledger of a period as a DATEV Buchungsstapel file (DATEV format, category 21, version 700). Every transaction becomes one or more bookings of an amount between an account and a contra account; a transaction with more than two lines is split into pairs whose totals match it. The file is semicolon separated and written in the Windows-1252 character set DATEV expects.
+   */
+  public CompletableFuture<DatevReportsResponse> datev(DatevReportsRequest request) {
+    return this.rawClient.datev(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ReportsJobsListResponse> postV1ReportsJobsList(
-      PostV1ReportsJobsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ReportsJobsList(request, requestOptions).thenApply(response -> response.body());
+  /**
+   * Export the posted ledger of a period as a DATEV Buchungsstapel file (DATEV format, category 21, version 700). Every transaction becomes one or more bookings of an amount between an account and a contra account; a transaction with more than two lines is split into pairs whose totals match it. The file is semicolon separated and written in the Windows-1252 character set DATEV expects.
+   */
+  public CompletableFuture<DatevReportsResponse> datev(DatevReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.datev(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Export the posted ledger of a period as a French FEC file (fichier des écritures comptables, order of 29 July 2013). One line per journal entry line, with the eighteen fields the order names, in their order, after a header line. Tab separated, UTF-8, comma as the decimal separator.
+   */
+  public CompletableFuture<FecReportsResponse> fec(FecReportsRequest request) {
+    return this.rawClient.fec(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Export the posted ledger of a period as a French FEC file (fichier des écritures comptables, order of 29 July 2013). One line per journal entry line, with the eighteen fields the order names, in their order, after a header line. Tab separated, UTF-8, comma as the decimal separator.
+   */
+  public CompletableFuture<FecReportsResponse> fec(FecReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.fec(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<EuPurchasesReportsResponse> euPurchases(
+      EuPurchasesReportsRequest request) {
+    return this.rawClient.euPurchases(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<EuPurchasesReportsResponse> euPurchases(
+      EuPurchasesReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.euPurchases(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<VatDetailReportsResponse> vatDetail(VatDetailReportsRequest request) {
+    return this.rawClient.vatDetail(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<VatDetailReportsResponse> vatDetail(VatDetailReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.vatDetail(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PosSalesReportsResponse> posSales(PosSalesReportsRequest request) {
+    return this.rawClient.posSales(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PosSalesReportsResponse> posSales(PosSalesReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.posSales(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<OnlineSalesReportsResponse> onlineSales(
+      OnlineSalesReportsRequest request) {
+    return this.rawClient.onlineSales(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<OnlineSalesReportsResponse> onlineSales(
+      OnlineSalesReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.onlineSales(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<OssReportsResponse> oss(OssReportsRequest request) {
+    return this.rawClient.oss(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<OssReportsResponse> oss(OssReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.oss(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AdvanceReconciliationReportsResponse> advanceReconciliation(
+      AdvanceReconciliationReportsRequest request) {
+    return this.rawClient.advanceReconciliation(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AdvanceReconciliationReportsResponse> advanceReconciliation(
+      AdvanceReconciliationReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.advanceReconciliation(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<WriteOffActsReportsResponse> writeOffActs(
+      WriteOffActsReportsRequest request) {
+    return this.rawClient.writeOffActs(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<WriteOffActsReportsResponse> writeOffActs(
+      WriteOffActsReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.writeOffActs(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CostCentersReportsResponse> costCenters(
+      CostCentersReportsRequest request) {
+    return this.rawClient.costCenters(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CostCentersReportsResponse> costCenters(
+      CostCentersReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.costCenters(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CostCenterActivityReportsResponse> costCenterActivity(
+      CostCenterActivityReportsRequest request) {
+    return this.rawClient.costCenterActivity(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CostCenterActivityReportsResponse> costCenterActivity(
+      CostCenterActivityReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.costCenterActivity(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CostCenterItemsReportsResponse> costCenterItems(
+      CostCenterItemsReportsRequest request) {
+    return this.rawClient.costCenterItems(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<CostCenterItemsReportsResponse> costCenterItems(
+      CostCenterItemsReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.costCenterItems(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<JobsCreateReportsResponse> jobsCreate(JobsCreateReportsRequest request) {
+    return this.rawClient.jobsCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<JobsCreateReportsResponse> jobsCreate(JobsCreateReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.jobsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<JobsGetReportsResponse> jobsGet(JobsGetReportsRequest request) {
+    return this.rawClient.jobsGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<JobsGetReportsResponse> jobsGet(JobsGetReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.jobsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<JobsListReportsResponse> jobsList() {
+    return this.rawClient.jobsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<JobsListReportsResponse> jobsList(RequestOptions requestOptions) {
+    return this.rawClient.jobsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<JobsListReportsResponse> jobsList(JobsListReportsRequest request) {
+    return this.rawClient.jobsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<JobsListReportsResponse> jobsList(JobsListReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.jobsList(request, requestOptions).thenApply(response -> response.body());
   }
 }

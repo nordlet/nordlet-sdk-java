@@ -18,13 +18,17 @@ import com.nordlet.api.resources.cash.AsyncCashClient;
 import com.nordlet.api.resources.catalog.AsyncCatalogClient;
 import com.nordlet.api.resources.consolidation.AsyncConsolidationClient;
 import com.nordlet.api.resources.declarations.AsyncDeclarationsClient;
+import com.nordlet.api.resources.documentseries.AsyncDocumentSeriesClient;
 import com.nordlet.api.resources.ecommerce.AsyncEcommerceClient;
 import com.nordlet.api.resources.files.AsyncFilesClient;
 import com.nordlet.api.resources.fleet.AsyncFleetClient;
 import com.nordlet.api.resources.hr.AsyncHrClient;
 import com.nordlet.api.resources.inventory.AsyncInventoryClient;
+import com.nordlet.api.resources.leads.AsyncLeadsClient;
 import com.nordlet.api.resources.ledger.AsyncLedgerClient;
 import com.nordlet.api.resources.migration.AsyncMigrationClient;
+import com.nordlet.api.resources.officers.AsyncOfficersClient;
+import com.nordlet.api.resources.operationtypes.AsyncOperationTypesClient;
 import com.nordlet.api.resources.partners.AsyncPartnersClient;
 import com.nordlet.api.resources.payroll.AsyncPayrollClient;
 import com.nordlet.api.resources.pos.AsyncPosClient;
@@ -46,9 +50,15 @@ public class AsyncNordletApiClient {
 
   protected final Supplier<AsyncPartnersClient> partnersClient;
 
+  protected final Supplier<AsyncLeadsClient> leadsClient;
+
   protected final Supplier<AsyncCatalogClient> catalogClient;
 
   protected final Supplier<AsyncSalesClient> salesClient;
+
+  protected final Supplier<AsyncOperationTypesClient> operationTypesClient;
+
+  protected final Supplier<AsyncDocumentSeriesClient> documentSeriesClient;
 
   protected final Supplier<AsyncPurchasesClient> purchasesClient;
 
@@ -57,6 +67,8 @@ public class AsyncNordletApiClient {
   protected final Supplier<AsyncDeclarationsClient> declarationsClient;
 
   protected final Supplier<AsyncLedgerClient> ledgerClient;
+
+  protected final Supplier<AsyncOfficersClient> officersClient;
 
   protected final Supplier<AsyncMigrationClient> migrationClient;
 
@@ -108,12 +120,16 @@ public class AsyncNordletApiClient {
     this.clientOptions = clientOptions;
     this.referenceClient = Suppliers.memoize(() -> new AsyncReferenceClient(clientOptions));
     this.partnersClient = Suppliers.memoize(() -> new AsyncPartnersClient(clientOptions));
+    this.leadsClient = Suppliers.memoize(() -> new AsyncLeadsClient(clientOptions));
     this.catalogClient = Suppliers.memoize(() -> new AsyncCatalogClient(clientOptions));
     this.salesClient = Suppliers.memoize(() -> new AsyncSalesClient(clientOptions));
+    this.operationTypesClient = Suppliers.memoize(() -> new AsyncOperationTypesClient(clientOptions));
+    this.documentSeriesClient = Suppliers.memoize(() -> new AsyncDocumentSeriesClient(clientOptions));
     this.purchasesClient = Suppliers.memoize(() -> new AsyncPurchasesClient(clientOptions));
     this.captureClient = Suppliers.memoize(() -> new AsyncCaptureClient(clientOptions));
     this.declarationsClient = Suppliers.memoize(() -> new AsyncDeclarationsClient(clientOptions));
     this.ledgerClient = Suppliers.memoize(() -> new AsyncLedgerClient(clientOptions));
+    this.officersClient = Suppliers.memoize(() -> new AsyncOfficersClient(clientOptions));
     this.migrationClient = Suppliers.memoize(() -> new AsyncMigrationClient(clientOptions));
     this.assetsClient = Suppliers.memoize(() -> new AsyncAssetsClient(clientOptions));
     this.hrClient = Suppliers.memoize(() -> new AsyncHrClient(clientOptions));
@@ -147,12 +163,24 @@ public class AsyncNordletApiClient {
     return this.partnersClient.get();
   }
 
+  public AsyncLeadsClient leads() {
+    return this.leadsClient.get();
+  }
+
   public AsyncCatalogClient catalog() {
     return this.catalogClient.get();
   }
 
   public AsyncSalesClient sales() {
     return this.salesClient.get();
+  }
+
+  public AsyncOperationTypesClient operationTypes() {
+    return this.operationTypesClient.get();
+  }
+
+  public AsyncDocumentSeriesClient documentSeries() {
+    return this.documentSeriesClient.get();
   }
 
   public AsyncPurchasesClient purchases() {
@@ -169,6 +197,10 @@ public class AsyncNordletApiClient {
 
   public AsyncLedgerClient ledger() {
     return this.ledgerClient.get();
+  }
+
+  public AsyncOfficersClient officers() {
+    return this.officersClient.get();
   }
 
   public AsyncMigrationClient migration() {

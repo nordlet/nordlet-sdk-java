@@ -15,96 +15,100 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.bank.requests.PostV1BankAccountsCreateRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankAccountsListRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankAccountsUpdateRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankDirectDebitsExportRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankFeedsAccountsConfigureRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankFeedsAccountsLinkRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankFeedsBanksListRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankFeedsConnectionsCompleteRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankFeedsConnectionsDeleteRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankFeedsConnectionsGetRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankFeedsConnectionsListRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankFeedsConnectionsStartRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankFeedsSyncRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankImportTemplatesCreateRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankImportTemplatesDeleteRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankImportTemplatesGetRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankImportTemplatesListRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankImportTemplatesUpdateRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankMandatesCancelRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankMandatesCreateRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankMandatesGetRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankMandatesListRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankMandatesUpdateRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankMatchRulesCreateRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankMatchRulesDeleteRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankMatchRulesListRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankMatchRulesUpdateRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankPaymentsExportRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsCommissionRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsGetRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsImportRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsLinkRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsListRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsMatchRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsPostRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankSettlementsUnlinkRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankStatementsImportRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankTransactionsImportRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankTransactionsListRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankTransactionsMatchRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankTransactionsRecordRequest;
-import com.nordlet.api.resources.bank.requests.PostV1BankTransactionsSuggestMatchesRequest;
-import com.nordlet.api.resources.bank.types.PostV1BankAccountsCreateResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankAccountsListResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankAccountsUpdateResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankDirectDebitsExportResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankFeedsAccountsConfigureResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankFeedsAccountsLinkResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankFeedsBanksListResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankFeedsConnectionsCompleteResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankFeedsConnectionsDeleteResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankFeedsConnectionsGetResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankFeedsConnectionsListResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankFeedsConnectionsStartResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankFeedsSyncResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankImportTemplatesCreateResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankImportTemplatesDeleteResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankImportTemplatesGetResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankImportTemplatesListResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankImportTemplatesUpdateResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankMandatesCancelResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankMandatesCreateResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankMandatesGetResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankMandatesListResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankMandatesUpdateResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankMatchRulesCreateResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankMatchRulesDeleteResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankMatchRulesListResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankMatchRulesUpdateResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankPaymentsExportResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankSettlementsCommissionResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankSettlementsGetResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankSettlementsImportResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankSettlementsLinkResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankSettlementsListResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankSettlementsMatchResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankSettlementsPostResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankSettlementsUnlinkResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankStatementsImportResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankTransactionsImportResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankTransactionsListResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankTransactionsMatchResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankTransactionsRecordResponse;
-import com.nordlet.api.resources.bank.types.PostV1BankTransactionsSuggestMatchesResponse;
+import com.nordlet.api.resources.bank.requests.AccountsCreateBankRequest;
+import com.nordlet.api.resources.bank.requests.AccountsListBankRequest;
+import com.nordlet.api.resources.bank.requests.AccountsUpdateBankRequest;
+import com.nordlet.api.resources.bank.requests.DirectDebitsExportBankRequest;
+import com.nordlet.api.resources.bank.requests.FeedsAccountsConfigureBankRequest;
+import com.nordlet.api.resources.bank.requests.FeedsAccountsLinkBankRequest;
+import com.nordlet.api.resources.bank.requests.FeedsBanksListBankRequest;
+import com.nordlet.api.resources.bank.requests.FeedsConnectionsCompleteBankRequest;
+import com.nordlet.api.resources.bank.requests.FeedsConnectionsDeleteBankRequest;
+import com.nordlet.api.resources.bank.requests.FeedsConnectionsGetBankRequest;
+import com.nordlet.api.resources.bank.requests.FeedsConnectionsListBankRequest;
+import com.nordlet.api.resources.bank.requests.FeedsConnectionsStartBankRequest;
+import com.nordlet.api.resources.bank.requests.FeedsSyncBankRequest;
+import com.nordlet.api.resources.bank.requests.ImportTemplatesCreateBankRequest;
+import com.nordlet.api.resources.bank.requests.ImportTemplatesDeleteBankRequest;
+import com.nordlet.api.resources.bank.requests.ImportTemplatesGetBankRequest;
+import com.nordlet.api.resources.bank.requests.ImportTemplatesListBankRequest;
+import com.nordlet.api.resources.bank.requests.ImportTemplatesUpdateBankRequest;
+import com.nordlet.api.resources.bank.requests.MandatesCancelBankRequest;
+import com.nordlet.api.resources.bank.requests.MandatesCreateBankRequest;
+import com.nordlet.api.resources.bank.requests.MandatesGetBankRequest;
+import com.nordlet.api.resources.bank.requests.MandatesListBankRequest;
+import com.nordlet.api.resources.bank.requests.MandatesUpdateBankRequest;
+import com.nordlet.api.resources.bank.requests.MatchRulesCreateBankRequest;
+import com.nordlet.api.resources.bank.requests.MatchRulesDeleteBankRequest;
+import com.nordlet.api.resources.bank.requests.MatchRulesListBankRequest;
+import com.nordlet.api.resources.bank.requests.MatchRulesUpdateBankRequest;
+import com.nordlet.api.resources.bank.requests.PaymentsExportBankRequest;
+import com.nordlet.api.resources.bank.requests.SettlementsCommissionBankRequest;
+import com.nordlet.api.resources.bank.requests.SettlementsGetBankRequest;
+import com.nordlet.api.resources.bank.requests.SettlementsImportBankRequest;
+import com.nordlet.api.resources.bank.requests.SettlementsLinkBankRequest;
+import com.nordlet.api.resources.bank.requests.SettlementsListBankRequest;
+import com.nordlet.api.resources.bank.requests.SettlementsMatchBankRequest;
+import com.nordlet.api.resources.bank.requests.SettlementsPostBankRequest;
+import com.nordlet.api.resources.bank.requests.SettlementsUnlinkBankRequest;
+import com.nordlet.api.resources.bank.requests.StatementsImportBankRequest;
+import com.nordlet.api.resources.bank.requests.TransactionsImportBankRequest;
+import com.nordlet.api.resources.bank.requests.TransactionsListBankRequest;
+import com.nordlet.api.resources.bank.requests.TransactionsMatchBankRequest;
+import com.nordlet.api.resources.bank.requests.TransactionsRecordBankRequest;
+import com.nordlet.api.resources.bank.requests.TransactionsSuggestMatchesBankRequest;
+import com.nordlet.api.resources.bank.requests.TransactionsUnmatchBankRequest;
+import com.nordlet.api.resources.bank.types.AccountsCreateBankResponse;
+import com.nordlet.api.resources.bank.types.AccountsListBankResponse;
+import com.nordlet.api.resources.bank.types.AccountsUpdateBankResponse;
+import com.nordlet.api.resources.bank.types.DirectDebitsExportBankResponse;
+import com.nordlet.api.resources.bank.types.FeedsAccountsConfigureBankResponse;
+import com.nordlet.api.resources.bank.types.FeedsAccountsLinkBankResponse;
+import com.nordlet.api.resources.bank.types.FeedsBanksListBankResponse;
+import com.nordlet.api.resources.bank.types.FeedsConnectionsCompleteBankResponse;
+import com.nordlet.api.resources.bank.types.FeedsConnectionsDeleteBankResponse;
+import com.nordlet.api.resources.bank.types.FeedsConnectionsGetBankResponse;
+import com.nordlet.api.resources.bank.types.FeedsConnectionsListBankResponse;
+import com.nordlet.api.resources.bank.types.FeedsConnectionsStartBankResponse;
+import com.nordlet.api.resources.bank.types.FeedsSyncBankResponse;
+import com.nordlet.api.resources.bank.types.ImportTemplatesCreateBankResponse;
+import com.nordlet.api.resources.bank.types.ImportTemplatesDeleteBankResponse;
+import com.nordlet.api.resources.bank.types.ImportTemplatesGetBankResponse;
+import com.nordlet.api.resources.bank.types.ImportTemplatesListBankResponse;
+import com.nordlet.api.resources.bank.types.ImportTemplatesUpdateBankResponse;
+import com.nordlet.api.resources.bank.types.MandatesCancelBankResponse;
+import com.nordlet.api.resources.bank.types.MandatesCreateBankResponse;
+import com.nordlet.api.resources.bank.types.MandatesGetBankResponse;
+import com.nordlet.api.resources.bank.types.MandatesListBankResponse;
+import com.nordlet.api.resources.bank.types.MandatesUpdateBankResponse;
+import com.nordlet.api.resources.bank.types.MatchRulesCreateBankResponse;
+import com.nordlet.api.resources.bank.types.MatchRulesDeleteBankResponse;
+import com.nordlet.api.resources.bank.types.MatchRulesListBankResponse;
+import com.nordlet.api.resources.bank.types.MatchRulesUpdateBankResponse;
+import com.nordlet.api.resources.bank.types.PaymentsExportBankResponse;
+import com.nordlet.api.resources.bank.types.SettlementsCommissionBankResponse;
+import com.nordlet.api.resources.bank.types.SettlementsGetBankResponse;
+import com.nordlet.api.resources.bank.types.SettlementsImportBankResponse;
+import com.nordlet.api.resources.bank.types.SettlementsLinkBankResponse;
+import com.nordlet.api.resources.bank.types.SettlementsListBankResponse;
+import com.nordlet.api.resources.bank.types.SettlementsMatchBankResponse;
+import com.nordlet.api.resources.bank.types.SettlementsPostBankResponse;
+import com.nordlet.api.resources.bank.types.SettlementsUnlinkBankResponse;
+import com.nordlet.api.resources.bank.types.StatementsImportBankResponse;
+import com.nordlet.api.resources.bank.types.TransactionsImportBankResponse;
+import com.nordlet.api.resources.bank.types.TransactionsListBankResponse;
+import com.nordlet.api.resources.bank.types.TransactionsMatchBankResponse;
+import com.nordlet.api.resources.bank.types.TransactionsRecordBankResponse;
+import com.nordlet.api.resources.bank.types.TransactionsSuggestMatchesBankResponse;
+import com.nordlet.api.resources.bank.types.TransactionsUnmatchBankResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -124,13 +128,13 @@ public class RawBankClient {
     this.clientOptions = clientOptions;
   }
 
-  public NordletApiHttpResponse<PostV1BankAccountsCreateResponse> postV1BankAccountsCreate(
-      PostV1BankAccountsCreateRequest request) {
-    return postV1BankAccountsCreate(request,null);
+  public NordletApiHttpResponse<AccountsCreateBankResponse> accountsCreate(
+      AccountsCreateBankRequest request) {
+    return accountsCreate(request,null);
   }
 
-  public NordletApiHttpResponse<PostV1BankAccountsCreateResponse> postV1BankAccountsCreate(
-      PostV1BankAccountsCreateRequest request, RequestOptions requestOptions) {
+  public NordletApiHttpResponse<AccountsCreateBankResponse> accountsCreate(
+      AccountsCreateBankRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/bank/accounts/create");if (requestOptions != null) {
@@ -163,15 +167,17 @@ public class RawBankClient {
         ResponseBody responseBody = response.body();
         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
         if (response.isSuccessful()) {
-          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankAccountsCreateResponse.class), response);
+          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AccountsCreateBankResponse.class), response);
         }
         try {
           switch (response.code()) {
             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -191,22 +197,22 @@ public class RawBankClient {
       }
     }
 
-    public NordletApiHttpResponse<PostV1BankAccountsListResponse> postV1BankAccountsList() {
-      return postV1BankAccountsList(PostV1BankAccountsListRequest.builder().build());
+    public NordletApiHttpResponse<AccountsListBankResponse> accountsList() {
+      return accountsList(AccountsListBankRequest.builder().build());
     }
 
-    public NordletApiHttpResponse<PostV1BankAccountsListResponse> postV1BankAccountsList(
+    public NordletApiHttpResponse<AccountsListBankResponse> accountsList(
         RequestOptions requestOptions) {
-      return postV1BankAccountsList(PostV1BankAccountsListRequest.builder().build(),requestOptions);
+      return accountsList(AccountsListBankRequest.builder().build(),requestOptions);
     }
 
-    public NordletApiHttpResponse<PostV1BankAccountsListResponse> postV1BankAccountsList(
-        PostV1BankAccountsListRequest request) {
-      return postV1BankAccountsList(request,null);
+    public NordletApiHttpResponse<AccountsListBankResponse> accountsList(
+        AccountsListBankRequest request) {
+      return accountsList(request,null);
     }
 
-    public NordletApiHttpResponse<PostV1BankAccountsListResponse> postV1BankAccountsList(
-        PostV1BankAccountsListRequest request, RequestOptions requestOptions) {
+    public NordletApiHttpResponse<AccountsListBankResponse> accountsList(
+        AccountsListBankRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/bank/accounts/list");if (requestOptions != null) {
@@ -239,15 +245,17 @@ public class RawBankClient {
           ResponseBody responseBody = response.body();
           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
           if (response.isSuccessful()) {
-            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankAccountsListResponse.class), response);
+            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AccountsListBankResponse.class), response);
           }
           try {
             switch (response.code()) {
               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -267,13 +275,13 @@ public class RawBankClient {
         }
       }
 
-      public NordletApiHttpResponse<PostV1BankAccountsUpdateResponse> postV1BankAccountsUpdate(
-          PostV1BankAccountsUpdateRequest request) {
-        return postV1BankAccountsUpdate(request,null);
+      public NordletApiHttpResponse<AccountsUpdateBankResponse> accountsUpdate(
+          AccountsUpdateBankRequest request) {
+        return accountsUpdate(request,null);
       }
 
-      public NordletApiHttpResponse<PostV1BankAccountsUpdateResponse> postV1BankAccountsUpdate(
-          PostV1BankAccountsUpdateRequest request, RequestOptions requestOptions) {
+      public NordletApiHttpResponse<AccountsUpdateBankResponse> accountsUpdate(
+          AccountsUpdateBankRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/bank/accounts/update");if (requestOptions != null) {
@@ -306,15 +314,17 @@ public class RawBankClient {
             ResponseBody responseBody = response.body();
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankAccountsUpdateResponse.class), response);
+              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AccountsUpdateBankResponse.class), response);
             }
             try {
               switch (response.code()) {
                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -334,13 +344,13 @@ public class RawBankClient {
           }
         }
 
-        public NordletApiHttpResponse<PostV1BankTransactionsImportResponse> postV1BankTransactionsImport(
-            PostV1BankTransactionsImportRequest request) {
-          return postV1BankTransactionsImport(request,null);
+        public NordletApiHttpResponse<TransactionsImportBankResponse> transactionsImport(
+            TransactionsImportBankRequest request) {
+          return transactionsImport(request,null);
         }
 
-        public NordletApiHttpResponse<PostV1BankTransactionsImportResponse> postV1BankTransactionsImport(
-            PostV1BankTransactionsImportRequest request, RequestOptions requestOptions) {
+        public NordletApiHttpResponse<TransactionsImportBankResponse> transactionsImport(
+            TransactionsImportBankRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/bank/transactions/import");if (requestOptions != null) {
@@ -373,15 +383,17 @@ public class RawBankClient {
               ResponseBody responseBody = response.body();
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankTransactionsImportResponse.class), response);
+                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TransactionsImportBankResponse.class), response);
               }
               try {
                 switch (response.code()) {
                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -401,13 +413,13 @@ public class RawBankClient {
             }
           }
 
-          public NordletApiHttpResponse<PostV1BankStatementsImportResponse> postV1BankStatementsImport(
-              PostV1BankStatementsImportRequest request) {
-            return postV1BankStatementsImport(request,null);
+          public NordletApiHttpResponse<StatementsImportBankResponse> statementsImport(
+              StatementsImportBankRequest request) {
+            return statementsImport(request,null);
           }
 
-          public NordletApiHttpResponse<PostV1BankStatementsImportResponse> postV1BankStatementsImport(
-              PostV1BankStatementsImportRequest request, RequestOptions requestOptions) {
+          public NordletApiHttpResponse<StatementsImportBankResponse> statementsImport(
+              StatementsImportBankRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
               .addPathSegments("v1/bank/statements/import");if (requestOptions != null) {
@@ -440,15 +452,17 @@ public class RawBankClient {
                 ResponseBody responseBody = response.body();
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankStatementsImportResponse.class), response);
+                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementsImportBankResponse.class), response);
                 }
                 try {
                   switch (response.code()) {
                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -468,23 +482,22 @@ public class RawBankClient {
               }
             }
 
-            public NordletApiHttpResponse<PostV1BankTransactionsListResponse> postV1BankTransactionsList(
-                ) {
-              return postV1BankTransactionsList(PostV1BankTransactionsListRequest.builder().build());
+            public NordletApiHttpResponse<TransactionsListBankResponse> transactionsList() {
+              return transactionsList(TransactionsListBankRequest.builder().build());
             }
 
-            public NordletApiHttpResponse<PostV1BankTransactionsListResponse> postV1BankTransactionsList(
+            public NordletApiHttpResponse<TransactionsListBankResponse> transactionsList(
                 RequestOptions requestOptions) {
-              return postV1BankTransactionsList(PostV1BankTransactionsListRequest.builder().build(),requestOptions);
+              return transactionsList(TransactionsListBankRequest.builder().build(),requestOptions);
             }
 
-            public NordletApiHttpResponse<PostV1BankTransactionsListResponse> postV1BankTransactionsList(
-                PostV1BankTransactionsListRequest request) {
-              return postV1BankTransactionsList(request,null);
+            public NordletApiHttpResponse<TransactionsListBankResponse> transactionsList(
+                TransactionsListBankRequest request) {
+              return transactionsList(request,null);
             }
 
-            public NordletApiHttpResponse<PostV1BankTransactionsListResponse> postV1BankTransactionsList(
-                PostV1BankTransactionsListRequest request, RequestOptions requestOptions) {
+            public NordletApiHttpResponse<TransactionsListBankResponse> transactionsList(
+                TransactionsListBankRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/bank/transactions/list");if (requestOptions != null) {
@@ -517,15 +530,17 @@ public class RawBankClient {
                   ResponseBody responseBody = response.body();
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankTransactionsListResponse.class), response);
+                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TransactionsListBankResponse.class), response);
                   }
                   try {
                     switch (response.code()) {
                       case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -545,13 +560,13 @@ public class RawBankClient {
                 }
               }
 
-              public NordletApiHttpResponse<PostV1BankTransactionsMatchResponse> postV1BankTransactionsMatch(
-                  PostV1BankTransactionsMatchRequest request) {
-                return postV1BankTransactionsMatch(request,null);
+              public NordletApiHttpResponse<TransactionsMatchBankResponse> transactionsMatch(
+                  TransactionsMatchBankRequest request) {
+                return transactionsMatch(request,null);
               }
 
-              public NordletApiHttpResponse<PostV1BankTransactionsMatchResponse> postV1BankTransactionsMatch(
-                  PostV1BankTransactionsMatchRequest request, RequestOptions requestOptions) {
+              public NordletApiHttpResponse<TransactionsMatchBankResponse> transactionsMatch(
+                  TransactionsMatchBankRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                   .addPathSegments("v1/bank/transactions/match");if (requestOptions != null) {
@@ -584,15 +599,17 @@ public class RawBankClient {
                     ResponseBody responseBody = response.body();
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankTransactionsMatchResponse.class), response);
+                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TransactionsMatchBankResponse.class), response);
                     }
                     try {
                       switch (response.code()) {
                         case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -612,16 +629,22 @@ public class RawBankClient {
                   }
                 }
 
-                public NordletApiHttpResponse<PostV1BankTransactionsRecordResponse> postV1BankTransactionsRecord(
-                    PostV1BankTransactionsRecordRequest request) {
-                  return postV1BankTransactionsRecord(request,null);
+                /**
+                 * Undo a match. A payment matched to an invoice, or a line posted by an import template, gets a reversing journal transaction dated date (default: today) and the invoice paid amount and payment status are restored; a line linked to a payment-provider settlement is only unlinked. The line returns to status new.
+                 */
+                public NordletApiHttpResponse<TransactionsUnmatchBankResponse> transactionsUnmatch(
+                    TransactionsUnmatchBankRequest request) {
+                  return transactionsUnmatch(request,null);
                 }
 
-                public NordletApiHttpResponse<PostV1BankTransactionsRecordResponse> postV1BankTransactionsRecord(
-                    PostV1BankTransactionsRecordRequest request, RequestOptions requestOptions) {
+                /**
+                 * Undo a match. A payment matched to an invoice, or a line posted by an import template, gets a reversing journal transaction dated date (default: today) and the invoice paid amount and payment status are restored; a line linked to a payment-provider settlement is only unlinked. The line returns to status new.
+                 */
+                public NordletApiHttpResponse<TransactionsUnmatchBankResponse> transactionsUnmatch(
+                    TransactionsUnmatchBankRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                    .addPathSegments("v1/bank/transactions/record");if (requestOptions != null) {
+                    .addPathSegments("v1/bank/transactions/unmatch");if (requestOptions != null) {
                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                         httpUrl.addQueryParameter(_key, _value);
                       } );
@@ -651,15 +674,17 @@ public class RawBankClient {
                       ResponseBody responseBody = response.body();
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankTransactionsRecordResponse.class), response);
+                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TransactionsUnmatchBankResponse.class), response);
                       }
                       try {
                         switch (response.code()) {
                           case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -679,16 +704,16 @@ public class RawBankClient {
                     }
                   }
 
-                  public NordletApiHttpResponse<PostV1BankPaymentsExportResponse> postV1BankPaymentsExport(
-                      PostV1BankPaymentsExportRequest request) {
-                    return postV1BankPaymentsExport(request,null);
+                  public NordletApiHttpResponse<TransactionsRecordBankResponse> transactionsRecord(
+                      TransactionsRecordBankRequest request) {
+                    return transactionsRecord(request,null);
                   }
 
-                  public NordletApiHttpResponse<PostV1BankPaymentsExportResponse> postV1BankPaymentsExport(
-                      PostV1BankPaymentsExportRequest request, RequestOptions requestOptions) {
+                  public NordletApiHttpResponse<TransactionsRecordBankResponse> transactionsRecord(
+                      TransactionsRecordBankRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                      .addPathSegments("v1/bank/payments/export");if (requestOptions != null) {
+                      .addPathSegments("v1/bank/transactions/record");if (requestOptions != null) {
                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                           httpUrl.addQueryParameter(_key, _value);
                         } );
@@ -718,15 +743,17 @@ public class RawBankClient {
                         ResponseBody responseBody = response.body();
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankPaymentsExportResponse.class), response);
+                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TransactionsRecordBankResponse.class), response);
                         }
                         try {
                           switch (response.code()) {
                             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -746,17 +773,16 @@ public class RawBankClient {
                       }
                     }
 
-                    public NordletApiHttpResponse<PostV1BankImportTemplatesCreateResponse> createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(
-                        PostV1BankImportTemplatesCreateRequest request) {
-                      return createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(request,null);
+                    public NordletApiHttpResponse<PaymentsExportBankResponse> paymentsExport(
+                        PaymentsExportBankRequest request) {
+                      return paymentsExport(request,null);
                     }
 
-                    public NordletApiHttpResponse<PostV1BankImportTemplatesCreateResponse> createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(
-                        PostV1BankImportTemplatesCreateRequest request,
-                        RequestOptions requestOptions) {
+                    public NordletApiHttpResponse<PaymentsExportBankResponse> paymentsExport(
+                        PaymentsExportBankRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                        .addPathSegments("v1/bank/import-templates/create");if (requestOptions != null) {
+                        .addPathSegments("v1/bank/payments/export");if (requestOptions != null) {
                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                             httpUrl.addQueryParameter(_key, _value);
                           } );
@@ -786,15 +812,17 @@ public class RawBankClient {
                           ResponseBody responseBody = response.body();
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankImportTemplatesCreateResponse.class), response);
+                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaymentsExportBankResponse.class), response);
                           }
                           try {
                             switch (response.code()) {
                               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -814,17 +842,16 @@ public class RawBankClient {
                         }
                       }
 
-                      public NordletApiHttpResponse<PostV1BankImportTemplatesUpdateResponse> postV1BankImportTemplatesUpdate(
-                          PostV1BankImportTemplatesUpdateRequest request) {
-                        return postV1BankImportTemplatesUpdate(request,null);
+                      public NordletApiHttpResponse<ImportTemplatesCreateBankResponse> importTemplatesCreate(
+                          ImportTemplatesCreateBankRequest request) {
+                        return importTemplatesCreate(request,null);
                       }
 
-                      public NordletApiHttpResponse<PostV1BankImportTemplatesUpdateResponse> postV1BankImportTemplatesUpdate(
-                          PostV1BankImportTemplatesUpdateRequest request,
-                          RequestOptions requestOptions) {
+                      public NordletApiHttpResponse<ImportTemplatesCreateBankResponse> importTemplatesCreate(
+                          ImportTemplatesCreateBankRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                          .addPathSegments("v1/bank/import-templates/update");if (requestOptions != null) {
+                          .addPathSegments("v1/bank/import-templates/create");if (requestOptions != null) {
                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                               httpUrl.addQueryParameter(_key, _value);
                             } );
@@ -854,15 +881,17 @@ public class RawBankClient {
                             ResponseBody responseBody = response.body();
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankImportTemplatesUpdateResponse.class), response);
+                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ImportTemplatesCreateBankResponse.class), response);
                             }
                             try {
                               switch (response.code()) {
                                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -882,17 +911,17 @@ public class RawBankClient {
                           }
                         }
 
-                        public NordletApiHttpResponse<PostV1BankImportTemplatesDeleteResponse> postV1BankImportTemplatesDelete(
-                            PostV1BankImportTemplatesDeleteRequest request) {
-                          return postV1BankImportTemplatesDelete(request,null);
+                        public NordletApiHttpResponse<ImportTemplatesUpdateBankResponse> importTemplatesUpdate(
+                            ImportTemplatesUpdateBankRequest request) {
+                          return importTemplatesUpdate(request,null);
                         }
 
-                        public NordletApiHttpResponse<PostV1BankImportTemplatesDeleteResponse> postV1BankImportTemplatesDelete(
-                            PostV1BankImportTemplatesDeleteRequest request,
+                        public NordletApiHttpResponse<ImportTemplatesUpdateBankResponse> importTemplatesUpdate(
+                            ImportTemplatesUpdateBankRequest request,
                             RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                            .addPathSegments("v1/bank/import-templates/delete");if (requestOptions != null) {
+                            .addPathSegments("v1/bank/import-templates/update");if (requestOptions != null) {
                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                 httpUrl.addQueryParameter(_key, _value);
                               } );
@@ -922,15 +951,17 @@ public class RawBankClient {
                               ResponseBody responseBody = response.body();
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankImportTemplatesDeleteResponse.class), response);
+                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ImportTemplatesUpdateBankResponse.class), response);
                               }
                               try {
                                 switch (response.code()) {
                                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -950,17 +981,17 @@ public class RawBankClient {
                             }
                           }
 
-                          public NordletApiHttpResponse<PostV1BankImportTemplatesGetResponse> postV1BankImportTemplatesGet(
-                              PostV1BankImportTemplatesGetRequest request) {
-                            return postV1BankImportTemplatesGet(request,null);
+                          public NordletApiHttpResponse<ImportTemplatesDeleteBankResponse> importTemplatesDelete(
+                              ImportTemplatesDeleteBankRequest request) {
+                            return importTemplatesDelete(request,null);
                           }
 
-                          public NordletApiHttpResponse<PostV1BankImportTemplatesGetResponse> postV1BankImportTemplatesGet(
-                              PostV1BankImportTemplatesGetRequest request,
+                          public NordletApiHttpResponse<ImportTemplatesDeleteBankResponse> importTemplatesDelete(
+                              ImportTemplatesDeleteBankRequest request,
                               RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                              .addPathSegments("v1/bank/import-templates/get");if (requestOptions != null) {
+                              .addPathSegments("v1/bank/import-templates/delete");if (requestOptions != null) {
                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                   httpUrl.addQueryParameter(_key, _value);
                                 } );
@@ -990,15 +1021,17 @@ public class RawBankClient {
                                 ResponseBody responseBody = response.body();
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankImportTemplatesGetResponse.class), response);
+                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ImportTemplatesDeleteBankResponse.class), response);
                                 }
                                 try {
                                   switch (response.code()) {
                                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1018,27 +1051,17 @@ public class RawBankClient {
                               }
                             }
 
-                            public NordletApiHttpResponse<PostV1BankImportTemplatesListResponse> postV1BankImportTemplatesList(
-                                ) {
-                              return postV1BankImportTemplatesList(PostV1BankImportTemplatesListRequest.builder().build());
+                            public NordletApiHttpResponse<ImportTemplatesGetBankResponse> importTemplatesGet(
+                                ImportTemplatesGetBankRequest request) {
+                              return importTemplatesGet(request,null);
                             }
 
-                            public NordletApiHttpResponse<PostV1BankImportTemplatesListResponse> postV1BankImportTemplatesList(
-                                RequestOptions requestOptions) {
-                              return postV1BankImportTemplatesList(PostV1BankImportTemplatesListRequest.builder().build(),requestOptions);
-                            }
-
-                            public NordletApiHttpResponse<PostV1BankImportTemplatesListResponse> postV1BankImportTemplatesList(
-                                PostV1BankImportTemplatesListRequest request) {
-                              return postV1BankImportTemplatesList(request,null);
-                            }
-
-                            public NordletApiHttpResponse<PostV1BankImportTemplatesListResponse> postV1BankImportTemplatesList(
-                                PostV1BankImportTemplatesListRequest request,
+                            public NordletApiHttpResponse<ImportTemplatesGetBankResponse> importTemplatesGet(
+                                ImportTemplatesGetBankRequest request,
                                 RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                .addPathSegments("v1/bank/import-templates/list");if (requestOptions != null) {
+                                .addPathSegments("v1/bank/import-templates/get");if (requestOptions != null) {
                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                     httpUrl.addQueryParameter(_key, _value);
                                   } );
@@ -1068,15 +1091,17 @@ public class RawBankClient {
                                   ResponseBody responseBody = response.body();
                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                   if (response.isSuccessful()) {
-                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankImportTemplatesListResponse.class), response);
+                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ImportTemplatesGetBankResponse.class), response);
                                   }
                                   try {
                                     switch (response.code()) {
                                       case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                       case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                       case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                       case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                       case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                       case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                       case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                       case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1096,17 +1121,27 @@ public class RawBankClient {
                                 }
                               }
 
-                              public NordletApiHttpResponse<PostV1BankMatchRulesCreateResponse> postV1BankMatchRulesCreate(
-                                  PostV1BankMatchRulesCreateRequest request) {
-                                return postV1BankMatchRulesCreate(request,null);
+                              public NordletApiHttpResponse<ImportTemplatesListBankResponse> importTemplatesList(
+                                  ) {
+                                return importTemplatesList(ImportTemplatesListBankRequest.builder().build());
                               }
 
-                              public NordletApiHttpResponse<PostV1BankMatchRulesCreateResponse> postV1BankMatchRulesCreate(
-                                  PostV1BankMatchRulesCreateRequest request,
+                              public NordletApiHttpResponse<ImportTemplatesListBankResponse> importTemplatesList(
+                                  RequestOptions requestOptions) {
+                                return importTemplatesList(ImportTemplatesListBankRequest.builder().build(),requestOptions);
+                              }
+
+                              public NordletApiHttpResponse<ImportTemplatesListBankResponse> importTemplatesList(
+                                  ImportTemplatesListBankRequest request) {
+                                return importTemplatesList(request,null);
+                              }
+
+                              public NordletApiHttpResponse<ImportTemplatesListBankResponse> importTemplatesList(
+                                  ImportTemplatesListBankRequest request,
                                   RequestOptions requestOptions) {
                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                  .addPathSegments("v1/bank/match-rules/create");if (requestOptions != null) {
+                                  .addPathSegments("v1/bank/import-templates/list");if (requestOptions != null) {
                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                       httpUrl.addQueryParameter(_key, _value);
                                     } );
@@ -1136,15 +1171,17 @@ public class RawBankClient {
                                     ResponseBody responseBody = response.body();
                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                     if (response.isSuccessful()) {
-                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankMatchRulesCreateResponse.class), response);
+                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ImportTemplatesListBankResponse.class), response);
                                     }
                                     try {
                                       switch (response.code()) {
                                         case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                         case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                         case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                         case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                         case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                         case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                         case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                         case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1164,17 +1201,17 @@ public class RawBankClient {
                                   }
                                 }
 
-                                public NordletApiHttpResponse<PostV1BankMatchRulesUpdateResponse> postV1BankMatchRulesUpdate(
-                                    PostV1BankMatchRulesUpdateRequest request) {
-                                  return postV1BankMatchRulesUpdate(request,null);
+                                public NordletApiHttpResponse<MatchRulesCreateBankResponse> matchRulesCreate(
+                                    MatchRulesCreateBankRequest request) {
+                                  return matchRulesCreate(request,null);
                                 }
 
-                                public NordletApiHttpResponse<PostV1BankMatchRulesUpdateResponse> postV1BankMatchRulesUpdate(
-                                    PostV1BankMatchRulesUpdateRequest request,
+                                public NordletApiHttpResponse<MatchRulesCreateBankResponse> matchRulesCreate(
+                                    MatchRulesCreateBankRequest request,
                                     RequestOptions requestOptions) {
                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                    .addPathSegments("v1/bank/match-rules/update");if (requestOptions != null) {
+                                    .addPathSegments("v1/bank/match-rules/create");if (requestOptions != null) {
                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                         httpUrl.addQueryParameter(_key, _value);
                                       } );
@@ -1204,15 +1241,17 @@ public class RawBankClient {
                                       ResponseBody responseBody = response.body();
                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                       if (response.isSuccessful()) {
-                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankMatchRulesUpdateResponse.class), response);
+                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MatchRulesCreateBankResponse.class), response);
                                       }
                                       try {
                                         switch (response.code()) {
                                           case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                           case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                           case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                           case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                           case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                           case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                           case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                           case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1232,17 +1271,17 @@ public class RawBankClient {
                                     }
                                   }
 
-                                  public NordletApiHttpResponse<PostV1BankMatchRulesDeleteResponse> postV1BankMatchRulesDelete(
-                                      PostV1BankMatchRulesDeleteRequest request) {
-                                    return postV1BankMatchRulesDelete(request,null);
+                                  public NordletApiHttpResponse<MatchRulesUpdateBankResponse> matchRulesUpdate(
+                                      MatchRulesUpdateBankRequest request) {
+                                    return matchRulesUpdate(request,null);
                                   }
 
-                                  public NordletApiHttpResponse<PostV1BankMatchRulesDeleteResponse> postV1BankMatchRulesDelete(
-                                      PostV1BankMatchRulesDeleteRequest request,
+                                  public NordletApiHttpResponse<MatchRulesUpdateBankResponse> matchRulesUpdate(
+                                      MatchRulesUpdateBankRequest request,
                                       RequestOptions requestOptions) {
                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                      .addPathSegments("v1/bank/match-rules/delete");if (requestOptions != null) {
+                                      .addPathSegments("v1/bank/match-rules/update");if (requestOptions != null) {
                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                           httpUrl.addQueryParameter(_key, _value);
                                         } );
@@ -1272,15 +1311,17 @@ public class RawBankClient {
                                         ResponseBody responseBody = response.body();
                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                         if (response.isSuccessful()) {
-                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankMatchRulesDeleteResponse.class), response);
+                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MatchRulesUpdateBankResponse.class), response);
                                         }
                                         try {
                                           switch (response.code()) {
                                             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1300,27 +1341,17 @@ public class RawBankClient {
                                       }
                                     }
 
-                                    public NordletApiHttpResponse<PostV1BankMatchRulesListResponse> postV1BankMatchRulesList(
-                                        ) {
-                                      return postV1BankMatchRulesList(PostV1BankMatchRulesListRequest.builder().build());
+                                    public NordletApiHttpResponse<MatchRulesDeleteBankResponse> matchRulesDelete(
+                                        MatchRulesDeleteBankRequest request) {
+                                      return matchRulesDelete(request,null);
                                     }
 
-                                    public NordletApiHttpResponse<PostV1BankMatchRulesListResponse> postV1BankMatchRulesList(
-                                        RequestOptions requestOptions) {
-                                      return postV1BankMatchRulesList(PostV1BankMatchRulesListRequest.builder().build(),requestOptions);
-                                    }
-
-                                    public NordletApiHttpResponse<PostV1BankMatchRulesListResponse> postV1BankMatchRulesList(
-                                        PostV1BankMatchRulesListRequest request) {
-                                      return postV1BankMatchRulesList(request,null);
-                                    }
-
-                                    public NordletApiHttpResponse<PostV1BankMatchRulesListResponse> postV1BankMatchRulesList(
-                                        PostV1BankMatchRulesListRequest request,
+                                    public NordletApiHttpResponse<MatchRulesDeleteBankResponse> matchRulesDelete(
+                                        MatchRulesDeleteBankRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                        .addPathSegments("v1/bank/match-rules/list");if (requestOptions != null) {
+                                        .addPathSegments("v1/bank/match-rules/delete");if (requestOptions != null) {
                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                             httpUrl.addQueryParameter(_key, _value);
                                           } );
@@ -1350,15 +1381,17 @@ public class RawBankClient {
                                           ResponseBody responseBody = response.body();
                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                           if (response.isSuccessful()) {
-                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankMatchRulesListResponse.class), response);
+                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MatchRulesDeleteBankResponse.class), response);
                                           }
                                           try {
                                             switch (response.code()) {
                                               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1378,17 +1411,27 @@ public class RawBankClient {
                                         }
                                       }
 
-                                      public NordletApiHttpResponse<PostV1BankMandatesCreateResponse> postV1BankMandatesCreate(
-                                          PostV1BankMandatesCreateRequest request) {
-                                        return postV1BankMandatesCreate(request,null);
+                                      public NordletApiHttpResponse<MatchRulesListBankResponse> matchRulesList(
+                                          ) {
+                                        return matchRulesList(MatchRulesListBankRequest.builder().build());
                                       }
 
-                                      public NordletApiHttpResponse<PostV1BankMandatesCreateResponse> postV1BankMandatesCreate(
-                                          PostV1BankMandatesCreateRequest request,
+                                      public NordletApiHttpResponse<MatchRulesListBankResponse> matchRulesList(
+                                          RequestOptions requestOptions) {
+                                        return matchRulesList(MatchRulesListBankRequest.builder().build(),requestOptions);
+                                      }
+
+                                      public NordletApiHttpResponse<MatchRulesListBankResponse> matchRulesList(
+                                          MatchRulesListBankRequest request) {
+                                        return matchRulesList(request,null);
+                                      }
+
+                                      public NordletApiHttpResponse<MatchRulesListBankResponse> matchRulesList(
+                                          MatchRulesListBankRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                          .addPathSegments("v1/bank/mandates/create");if (requestOptions != null) {
+                                          .addPathSegments("v1/bank/match-rules/list");if (requestOptions != null) {
                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                               httpUrl.addQueryParameter(_key, _value);
                                             } );
@@ -1418,15 +1461,17 @@ public class RawBankClient {
                                             ResponseBody responseBody = response.body();
                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                             if (response.isSuccessful()) {
-                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankMandatesCreateResponse.class), response);
+                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MatchRulesListBankResponse.class), response);
                                             }
                                             try {
                                               switch (response.code()) {
                                                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1446,17 +1491,17 @@ public class RawBankClient {
                                           }
                                         }
 
-                                        public NordletApiHttpResponse<PostV1BankMandatesUpdateResponse> postV1BankMandatesUpdate(
-                                            PostV1BankMandatesUpdateRequest request) {
-                                          return postV1BankMandatesUpdate(request,null);
+                                        public NordletApiHttpResponse<MandatesCreateBankResponse> mandatesCreate(
+                                            MandatesCreateBankRequest request) {
+                                          return mandatesCreate(request,null);
                                         }
 
-                                        public NordletApiHttpResponse<PostV1BankMandatesUpdateResponse> postV1BankMandatesUpdate(
-                                            PostV1BankMandatesUpdateRequest request,
+                                        public NordletApiHttpResponse<MandatesCreateBankResponse> mandatesCreate(
+                                            MandatesCreateBankRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                            .addPathSegments("v1/bank/mandates/update");if (requestOptions != null) {
+                                            .addPathSegments("v1/bank/mandates/create");if (requestOptions != null) {
                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                 httpUrl.addQueryParameter(_key, _value);
                                               } );
@@ -1486,15 +1531,17 @@ public class RawBankClient {
                                               ResponseBody responseBody = response.body();
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankMandatesUpdateResponse.class), response);
+                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesCreateBankResponse.class), response);
                                               }
                                               try {
                                                 switch (response.code()) {
                                                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1514,17 +1561,17 @@ public class RawBankClient {
                                             }
                                           }
 
-                                          public NordletApiHttpResponse<PostV1BankMandatesCancelResponse> postV1BankMandatesCancel(
-                                              PostV1BankMandatesCancelRequest request) {
-                                            return postV1BankMandatesCancel(request,null);
+                                          public NordletApiHttpResponse<MandatesUpdateBankResponse> mandatesUpdate(
+                                              MandatesUpdateBankRequest request) {
+                                            return mandatesUpdate(request,null);
                                           }
 
-                                          public NordletApiHttpResponse<PostV1BankMandatesCancelResponse> postV1BankMandatesCancel(
-                                              PostV1BankMandatesCancelRequest request,
+                                          public NordletApiHttpResponse<MandatesUpdateBankResponse> mandatesUpdate(
+                                              MandatesUpdateBankRequest request,
                                               RequestOptions requestOptions) {
                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                              .addPathSegments("v1/bank/mandates/cancel");if (requestOptions != null) {
+                                              .addPathSegments("v1/bank/mandates/update");if (requestOptions != null) {
                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                   httpUrl.addQueryParameter(_key, _value);
                                                 } );
@@ -1554,15 +1601,17 @@ public class RawBankClient {
                                                 ResponseBody responseBody = response.body();
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankMandatesCancelResponse.class), response);
+                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesUpdateBankResponse.class), response);
                                                 }
                                                 try {
                                                   switch (response.code()) {
                                                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1582,17 +1631,17 @@ public class RawBankClient {
                                               }
                                             }
 
-                                            public NordletApiHttpResponse<PostV1BankMandatesGetResponse> postV1BankMandatesGet(
-                                                PostV1BankMandatesGetRequest request) {
-                                              return postV1BankMandatesGet(request,null);
+                                            public NordletApiHttpResponse<MandatesCancelBankResponse> mandatesCancel(
+                                                MandatesCancelBankRequest request) {
+                                              return mandatesCancel(request,null);
                                             }
 
-                                            public NordletApiHttpResponse<PostV1BankMandatesGetResponse> postV1BankMandatesGet(
-                                                PostV1BankMandatesGetRequest request,
+                                            public NordletApiHttpResponse<MandatesCancelBankResponse> mandatesCancel(
+                                                MandatesCancelBankRequest request,
                                                 RequestOptions requestOptions) {
                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                .addPathSegments("v1/bank/mandates/get");if (requestOptions != null) {
+                                                .addPathSegments("v1/bank/mandates/cancel");if (requestOptions != null) {
                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                     httpUrl.addQueryParameter(_key, _value);
                                                   } );
@@ -1622,15 +1671,17 @@ public class RawBankClient {
                                                   ResponseBody responseBody = response.body();
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankMandatesGetResponse.class), response);
+                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesCancelBankResponse.class), response);
                                                   }
                                                   try {
                                                     switch (response.code()) {
                                                       case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                       case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                       case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                       case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                       case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                       case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                       case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                       case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1650,27 +1701,17 @@ public class RawBankClient {
                                                 }
                                               }
 
-                                              public NordletApiHttpResponse<PostV1BankMandatesListResponse> postV1BankMandatesList(
-                                                  ) {
-                                                return postV1BankMandatesList(PostV1BankMandatesListRequest.builder().build());
+                                              public NordletApiHttpResponse<MandatesGetBankResponse> mandatesGet(
+                                                  MandatesGetBankRequest request) {
+                                                return mandatesGet(request,null);
                                               }
 
-                                              public NordletApiHttpResponse<PostV1BankMandatesListResponse> postV1BankMandatesList(
-                                                  RequestOptions requestOptions) {
-                                                return postV1BankMandatesList(PostV1BankMandatesListRequest.builder().build(),requestOptions);
-                                              }
-
-                                              public NordletApiHttpResponse<PostV1BankMandatesListResponse> postV1BankMandatesList(
-                                                  PostV1BankMandatesListRequest request) {
-                                                return postV1BankMandatesList(request,null);
-                                              }
-
-                                              public NordletApiHttpResponse<PostV1BankMandatesListResponse> postV1BankMandatesList(
-                                                  PostV1BankMandatesListRequest request,
+                                              public NordletApiHttpResponse<MandatesGetBankResponse> mandatesGet(
+                                                  MandatesGetBankRequest request,
                                                   RequestOptions requestOptions) {
                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                  .addPathSegments("v1/bank/mandates/list");if (requestOptions != null) {
+                                                  .addPathSegments("v1/bank/mandates/get");if (requestOptions != null) {
                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                       httpUrl.addQueryParameter(_key, _value);
                                                     } );
@@ -1700,15 +1741,17 @@ public class RawBankClient {
                                                     ResponseBody responseBody = response.body();
                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                     if (response.isSuccessful()) {
-                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankMandatesListResponse.class), response);
+                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesGetBankResponse.class), response);
                                                     }
                                                     try {
                                                       switch (response.code()) {
                                                         case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                         case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                         case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                         case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                         case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                         case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                         case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                         case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1728,17 +1771,27 @@ public class RawBankClient {
                                                   }
                                                 }
 
-                                                public NordletApiHttpResponse<PostV1BankDirectDebitsExportResponse> postV1BankDirectDebitsExport(
-                                                    PostV1BankDirectDebitsExportRequest request) {
-                                                  return postV1BankDirectDebitsExport(request,null);
+                                                public NordletApiHttpResponse<MandatesListBankResponse> mandatesList(
+                                                    ) {
+                                                  return mandatesList(MandatesListBankRequest.builder().build());
                                                 }
 
-                                                public NordletApiHttpResponse<PostV1BankDirectDebitsExportResponse> postV1BankDirectDebitsExport(
-                                                    PostV1BankDirectDebitsExportRequest request,
+                                                public NordletApiHttpResponse<MandatesListBankResponse> mandatesList(
+                                                    RequestOptions requestOptions) {
+                                                  return mandatesList(MandatesListBankRequest.builder().build(),requestOptions);
+                                                }
+
+                                                public NordletApiHttpResponse<MandatesListBankResponse> mandatesList(
+                                                    MandatesListBankRequest request) {
+                                                  return mandatesList(request,null);
+                                                }
+
+                                                public NordletApiHttpResponse<MandatesListBankResponse> mandatesList(
+                                                    MandatesListBankRequest request,
                                                     RequestOptions requestOptions) {
                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                    .addPathSegments("v1/bank/direct-debits/export");if (requestOptions != null) {
+                                                    .addPathSegments("v1/bank/mandates/list");if (requestOptions != null) {
                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                         httpUrl.addQueryParameter(_key, _value);
                                                       } );
@@ -1768,15 +1821,17 @@ public class RawBankClient {
                                                       ResponseBody responseBody = response.body();
                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                       if (response.isSuccessful()) {
-                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankDirectDebitsExportResponse.class), response);
+                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesListBankResponse.class), response);
                                                       }
                                                       try {
                                                         switch (response.code()) {
                                                           case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                           case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                           case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                           case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                           case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                           case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                           case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                           case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1796,17 +1851,17 @@ public class RawBankClient {
                                                     }
                                                   }
 
-                                                  public NordletApiHttpResponse<PostV1BankTransactionsSuggestMatchesResponse> postV1BankTransactionsSuggestMatches(
-                                                      PostV1BankTransactionsSuggestMatchesRequest request) {
-                                                    return postV1BankTransactionsSuggestMatches(request,null);
+                                                  public NordletApiHttpResponse<DirectDebitsExportBankResponse> directDebitsExport(
+                                                      DirectDebitsExportBankRequest request) {
+                                                    return directDebitsExport(request,null);
                                                   }
 
-                                                  public NordletApiHttpResponse<PostV1BankTransactionsSuggestMatchesResponse> postV1BankTransactionsSuggestMatches(
-                                                      PostV1BankTransactionsSuggestMatchesRequest request,
+                                                  public NordletApiHttpResponse<DirectDebitsExportBankResponse> directDebitsExport(
+                                                      DirectDebitsExportBankRequest request,
                                                       RequestOptions requestOptions) {
                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                      .addPathSegments("v1/bank/transactions/suggest-matches");if (requestOptions != null) {
+                                                      .addPathSegments("v1/bank/direct-debits/export");if (requestOptions != null) {
                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                           httpUrl.addQueryParameter(_key, _value);
                                                         } );
@@ -1836,15 +1891,17 @@ public class RawBankClient {
                                                         ResponseBody responseBody = response.body();
                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                         if (response.isSuccessful()) {
-                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankTransactionsSuggestMatchesResponse.class), response);
+                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DirectDebitsExportBankResponse.class), response);
                                                         }
                                                         try {
                                                           switch (response.code()) {
                                                             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1864,17 +1921,17 @@ public class RawBankClient {
                                                       }
                                                     }
 
-                                                    public NordletApiHttpResponse<PostV1BankSettlementsImportResponse> postV1BankSettlementsImport(
-                                                        PostV1BankSettlementsImportRequest request) {
-                                                      return postV1BankSettlementsImport(request,null);
+                                                    public NordletApiHttpResponse<TransactionsSuggestMatchesBankResponse> transactionsSuggestMatches(
+                                                        TransactionsSuggestMatchesBankRequest request) {
+                                                      return transactionsSuggestMatches(request,null);
                                                     }
 
-                                                    public NordletApiHttpResponse<PostV1BankSettlementsImportResponse> postV1BankSettlementsImport(
-                                                        PostV1BankSettlementsImportRequest request,
+                                                    public NordletApiHttpResponse<TransactionsSuggestMatchesBankResponse> transactionsSuggestMatches(
+                                                        TransactionsSuggestMatchesBankRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                        .addPathSegments("v1/bank/settlements/import");if (requestOptions != null) {
+                                                        .addPathSegments("v1/bank/transactions/suggest-matches");if (requestOptions != null) {
                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                             httpUrl.addQueryParameter(_key, _value);
                                                           } );
@@ -1904,15 +1961,17 @@ public class RawBankClient {
                                                           ResponseBody responseBody = response.body();
                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                           if (response.isSuccessful()) {
-                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankSettlementsImportResponse.class), response);
+                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TransactionsSuggestMatchesBankResponse.class), response);
                                                           }
                                                           try {
                                                             switch (response.code()) {
                                                               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1932,27 +1991,17 @@ public class RawBankClient {
                                                         }
                                                       }
 
-                                                      public NordletApiHttpResponse<PostV1BankSettlementsListResponse> postV1BankSettlementsList(
-                                                          ) {
-                                                        return postV1BankSettlementsList(PostV1BankSettlementsListRequest.builder().build());
+                                                      public NordletApiHttpResponse<SettlementsImportBankResponse> settlementsImport(
+                                                          SettlementsImportBankRequest request) {
+                                                        return settlementsImport(request,null);
                                                       }
 
-                                                      public NordletApiHttpResponse<PostV1BankSettlementsListResponse> postV1BankSettlementsList(
-                                                          RequestOptions requestOptions) {
-                                                        return postV1BankSettlementsList(PostV1BankSettlementsListRequest.builder().build(),requestOptions);
-                                                      }
-
-                                                      public NordletApiHttpResponse<PostV1BankSettlementsListResponse> postV1BankSettlementsList(
-                                                          PostV1BankSettlementsListRequest request) {
-                                                        return postV1BankSettlementsList(request,null);
-                                                      }
-
-                                                      public NordletApiHttpResponse<PostV1BankSettlementsListResponse> postV1BankSettlementsList(
-                                                          PostV1BankSettlementsListRequest request,
+                                                      public NordletApiHttpResponse<SettlementsImportBankResponse> settlementsImport(
+                                                          SettlementsImportBankRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                          .addPathSegments("v1/bank/settlements/list");if (requestOptions != null) {
+                                                          .addPathSegments("v1/bank/settlements/import");if (requestOptions != null) {
                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                               httpUrl.addQueryParameter(_key, _value);
                                                             } );
@@ -1982,15 +2031,17 @@ public class RawBankClient {
                                                             ResponseBody responseBody = response.body();
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankSettlementsListResponse.class), response);
+                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsImportBankResponse.class), response);
                                                             }
                                                             try {
                                                               switch (response.code()) {
                                                                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -2010,17 +2061,27 @@ public class RawBankClient {
                                                           }
                                                         }
 
-                                                        public NordletApiHttpResponse<PostV1BankSettlementsGetResponse> postV1BankSettlementsGet(
-                                                            PostV1BankSettlementsGetRequest request) {
-                                                          return postV1BankSettlementsGet(request,null);
+                                                        public NordletApiHttpResponse<SettlementsListBankResponse> settlementsList(
+                                                            ) {
+                                                          return settlementsList(SettlementsListBankRequest.builder().build());
                                                         }
 
-                                                        public NordletApiHttpResponse<PostV1BankSettlementsGetResponse> postV1BankSettlementsGet(
-                                                            PostV1BankSettlementsGetRequest request,
+                                                        public NordletApiHttpResponse<SettlementsListBankResponse> settlementsList(
+                                                            RequestOptions requestOptions) {
+                                                          return settlementsList(SettlementsListBankRequest.builder().build(),requestOptions);
+                                                        }
+
+                                                        public NordletApiHttpResponse<SettlementsListBankResponse> settlementsList(
+                                                            SettlementsListBankRequest request) {
+                                                          return settlementsList(request,null);
+                                                        }
+
+                                                        public NordletApiHttpResponse<SettlementsListBankResponse> settlementsList(
+                                                            SettlementsListBankRequest request,
                                                             RequestOptions requestOptions) {
                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                            .addPathSegments("v1/bank/settlements/get");if (requestOptions != null) {
+                                                            .addPathSegments("v1/bank/settlements/list");if (requestOptions != null) {
                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                 httpUrl.addQueryParameter(_key, _value);
                                                               } );
@@ -2050,15 +2111,17 @@ public class RawBankClient {
                                                               ResponseBody responseBody = response.body();
                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                               if (response.isSuccessful()) {
-                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankSettlementsGetResponse.class), response);
+                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsListBankResponse.class), response);
                                                               }
                                                               try {
                                                                 switch (response.code()) {
                                                                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -2078,17 +2141,17 @@ public class RawBankClient {
                                                             }
                                                           }
 
-                                                          public NordletApiHttpResponse<PostV1BankSettlementsMatchResponse> postV1BankSettlementsMatch(
-                                                              PostV1BankSettlementsMatchRequest request) {
-                                                            return postV1BankSettlementsMatch(request,null);
+                                                          public NordletApiHttpResponse<SettlementsGetBankResponse> settlementsGet(
+                                                              SettlementsGetBankRequest request) {
+                                                            return settlementsGet(request,null);
                                                           }
 
-                                                          public NordletApiHttpResponse<PostV1BankSettlementsMatchResponse> postV1BankSettlementsMatch(
-                                                              PostV1BankSettlementsMatchRequest request,
+                                                          public NordletApiHttpResponse<SettlementsGetBankResponse> settlementsGet(
+                                                              SettlementsGetBankRequest request,
                                                               RequestOptions requestOptions) {
                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                              .addPathSegments("v1/bank/settlements/match");if (requestOptions != null) {
+                                                              .addPathSegments("v1/bank/settlements/get");if (requestOptions != null) {
                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                 } );
@@ -2118,15 +2181,17 @@ public class RawBankClient {
                                                                 ResponseBody responseBody = response.body();
                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                 if (response.isSuccessful()) {
-                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankSettlementsMatchResponse.class), response);
+                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsGetBankResponse.class), response);
                                                                 }
                                                                 try {
                                                                   switch (response.code()) {
                                                                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -2146,23 +2211,17 @@ public class RawBankClient {
                                                               }
                                                             }
 
-                                                            /**
-                                                             * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
-                                                             */
-                                                            public NordletApiHttpResponse<PostV1BankSettlementsCommissionResponse> setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(
-                                                                PostV1BankSettlementsCommissionRequest request) {
-                                                              return setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(request,null);
+                                                            public NordletApiHttpResponse<SettlementsMatchBankResponse> settlementsMatch(
+                                                                SettlementsMatchBankRequest request) {
+                                                              return settlementsMatch(request,null);
                                                             }
 
-                                                            /**
-                                                             * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
-                                                             */
-                                                            public NordletApiHttpResponse<PostV1BankSettlementsCommissionResponse> setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(
-                                                                PostV1BankSettlementsCommissionRequest request,
+                                                            public NordletApiHttpResponse<SettlementsMatchBankResponse> settlementsMatch(
+                                                                SettlementsMatchBankRequest request,
                                                                 RequestOptions requestOptions) {
                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                .addPathSegments("v1/bank/settlements/commission");if (requestOptions != null) {
+                                                                .addPathSegments("v1/bank/settlements/match");if (requestOptions != null) {
                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                   } );
@@ -2192,15 +2251,17 @@ public class RawBankClient {
                                                                   ResponseBody responseBody = response.body();
                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                   if (response.isSuccessful()) {
-                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankSettlementsCommissionResponse.class), response);
+                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsMatchBankResponse.class), response);
                                                                   }
                                                                   try {
                                                                     switch (response.code()) {
                                                                       case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                       case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                       case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                       case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                       case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                       case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                       case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                       case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -2221,22 +2282,22 @@ public class RawBankClient {
                                                               }
 
                                                               /**
-                                                               * Attach the incoming bank-statement line that carries this payout to the settlement batch.
+                                                               * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
                                                                */
-                                                              public NordletApiHttpResponse<PostV1BankSettlementsLinkResponse> postV1BankSettlementsLink(
-                                                                  PostV1BankSettlementsLinkRequest request) {
-                                                                return postV1BankSettlementsLink(request,null);
+                                                              public NordletApiHttpResponse<SettlementsCommissionBankResponse> settlementsCommission(
+                                                                  SettlementsCommissionBankRequest request) {
+                                                                return settlementsCommission(request,null);
                                                               }
 
                                                               /**
-                                                               * Attach the incoming bank-statement line that carries this payout to the settlement batch.
+                                                               * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
                                                                */
-                                                              public NordletApiHttpResponse<PostV1BankSettlementsLinkResponse> postV1BankSettlementsLink(
-                                                                  PostV1BankSettlementsLinkRequest request,
+                                                              public NordletApiHttpResponse<SettlementsCommissionBankResponse> settlementsCommission(
+                                                                  SettlementsCommissionBankRequest request,
                                                                   RequestOptions requestOptions) {
                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                  .addPathSegments("v1/bank/settlements/link");if (requestOptions != null) {
+                                                                  .addPathSegments("v1/bank/settlements/commission");if (requestOptions != null) {
                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                     } );
@@ -2266,15 +2327,17 @@ public class RawBankClient {
                                                                     ResponseBody responseBody = response.body();
                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                     if (response.isSuccessful()) {
-                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankSettlementsLinkResponse.class), response);
+                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsCommissionBankResponse.class), response);
                                                                     }
                                                                     try {
                                                                       switch (response.code()) {
                                                                         case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                         case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                         case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                         case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                         case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                         case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                         case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                         case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -2295,22 +2358,22 @@ public class RawBankClient {
                                                                 }
 
                                                                 /**
-                                                                 * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+                                                                 * Attach the incoming bank-statement line that carries this payout to the settlement batch.
                                                                  */
-                                                                public NordletApiHttpResponse<PostV1BankSettlementsUnlinkResponse> postV1BankSettlementsUnlink(
-                                                                    PostV1BankSettlementsUnlinkRequest request) {
-                                                                  return postV1BankSettlementsUnlink(request,null);
+                                                                public NordletApiHttpResponse<SettlementsLinkBankResponse> settlementsLink(
+                                                                    SettlementsLinkBankRequest request) {
+                                                                  return settlementsLink(request,null);
                                                                 }
 
                                                                 /**
-                                                                 * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+                                                                 * Attach the incoming bank-statement line that carries this payout to the settlement batch.
                                                                  */
-                                                                public NordletApiHttpResponse<PostV1BankSettlementsUnlinkResponse> postV1BankSettlementsUnlink(
-                                                                    PostV1BankSettlementsUnlinkRequest request,
+                                                                public NordletApiHttpResponse<SettlementsLinkBankResponse> settlementsLink(
+                                                                    SettlementsLinkBankRequest request,
                                                                     RequestOptions requestOptions) {
                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                    .addPathSegments("v1/bank/settlements/unlink");if (requestOptions != null) {
+                                                                    .addPathSegments("v1/bank/settlements/link");if (requestOptions != null) {
                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                       } );
@@ -2340,15 +2403,17 @@ public class RawBankClient {
                                                                       ResponseBody responseBody = response.body();
                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                       if (response.isSuccessful()) {
-                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankSettlementsUnlinkResponse.class), response);
+                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsLinkBankResponse.class), response);
                                                                       }
                                                                       try {
                                                                         switch (response.code()) {
                                                                           case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                           case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                           case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                           case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                           case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                           case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                           case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                           case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -2368,17 +2433,23 @@ public class RawBankClient {
                                                                     }
                                                                   }
 
-                                                                  public NordletApiHttpResponse<PostV1BankSettlementsPostResponse> postV1BankSettlementsPost(
-                                                                      PostV1BankSettlementsPostRequest request) {
-                                                                    return postV1BankSettlementsPost(request,null);
+                                                                  /**
+                                                                   * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+                                                                   */
+                                                                  public NordletApiHttpResponse<SettlementsUnlinkBankResponse> settlementsUnlink(
+                                                                      SettlementsUnlinkBankRequest request) {
+                                                                    return settlementsUnlink(request,null);
                                                                   }
 
-                                                                  public NordletApiHttpResponse<PostV1BankSettlementsPostResponse> postV1BankSettlementsPost(
-                                                                      PostV1BankSettlementsPostRequest request,
+                                                                  /**
+                                                                   * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+                                                                   */
+                                                                  public NordletApiHttpResponse<SettlementsUnlinkBankResponse> settlementsUnlink(
+                                                                      SettlementsUnlinkBankRequest request,
                                                                       RequestOptions requestOptions) {
                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                      .addPathSegments("v1/bank/settlements/post");if (requestOptions != null) {
+                                                                      .addPathSegments("v1/bank/settlements/unlink");if (requestOptions != null) {
                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                         } );
@@ -2408,15 +2479,17 @@ public class RawBankClient {
                                                                         ResponseBody responseBody = response.body();
                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                         if (response.isSuccessful()) {
-                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankSettlementsPostResponse.class), response);
+                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsUnlinkBankResponse.class), response);
                                                                         }
                                                                         try {
                                                                           switch (response.code()) {
                                                                             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -2436,27 +2509,17 @@ public class RawBankClient {
                                                                       }
                                                                     }
 
-                                                                    public NordletApiHttpResponse<PostV1BankFeedsBanksListResponse> listThePsd2BanksAspsPsAvailableToConnect(
-                                                                        ) {
-                                                                      return listThePsd2BanksAspsPsAvailableToConnect(PostV1BankFeedsBanksListRequest.builder().build());
+                                                                    public NordletApiHttpResponse<SettlementsPostBankResponse> settlementsPost(
+                                                                        SettlementsPostBankRequest request) {
+                                                                      return settlementsPost(request,null);
                                                                     }
 
-                                                                    public NordletApiHttpResponse<PostV1BankFeedsBanksListResponse> listThePsd2BanksAspsPsAvailableToConnect(
-                                                                        RequestOptions requestOptions) {
-                                                                      return listThePsd2BanksAspsPsAvailableToConnect(PostV1BankFeedsBanksListRequest.builder().build(),requestOptions);
-                                                                    }
-
-                                                                    public NordletApiHttpResponse<PostV1BankFeedsBanksListResponse> listThePsd2BanksAspsPsAvailableToConnect(
-                                                                        PostV1BankFeedsBanksListRequest request) {
-                                                                      return listThePsd2BanksAspsPsAvailableToConnect(request,null);
-                                                                    }
-
-                                                                    public NordletApiHttpResponse<PostV1BankFeedsBanksListResponse> listThePsd2BanksAspsPsAvailableToConnect(
-                                                                        PostV1BankFeedsBanksListRequest request,
+                                                                    public NordletApiHttpResponse<SettlementsPostBankResponse> settlementsPost(
+                                                                        SettlementsPostBankRequest request,
                                                                         RequestOptions requestOptions) {
                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                        .addPathSegments("v1/bank/feeds/banks/list");if (requestOptions != null) {
+                                                                        .addPathSegments("v1/bank/settlements/post");if (requestOptions != null) {
                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                           } );
@@ -2486,15 +2549,17 @@ public class RawBankClient {
                                                                           ResponseBody responseBody = response.body();
                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                           if (response.isSuccessful()) {
-                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsBanksListResponse.class), response);
+                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsPostBankResponse.class), response);
                                                                           }
                                                                           try {
                                                                             switch (response.code()) {
                                                                               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -2514,17 +2579,27 @@ public class RawBankClient {
                                                                         }
                                                                       }
 
-                                                                      public NordletApiHttpResponse<PostV1BankFeedsConnectionsStartResponse> beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
-                                                                          PostV1BankFeedsConnectionsStartRequest request) {
-                                                                        return beginBankAuthorizationRedirectTheUserToTheReturnedUrl(request,null);
+                                                                      public NordletApiHttpResponse<FeedsBanksListBankResponse> feedsBanksList(
+                                                                          ) {
+                                                                        return feedsBanksList(FeedsBanksListBankRequest.builder().build());
                                                                       }
 
-                                                                      public NordletApiHttpResponse<PostV1BankFeedsConnectionsStartResponse> beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
-                                                                          PostV1BankFeedsConnectionsStartRequest request,
+                                                                      public NordletApiHttpResponse<FeedsBanksListBankResponse> feedsBanksList(
+                                                                          RequestOptions requestOptions) {
+                                                                        return feedsBanksList(FeedsBanksListBankRequest.builder().build(),requestOptions);
+                                                                      }
+
+                                                                      public NordletApiHttpResponse<FeedsBanksListBankResponse> feedsBanksList(
+                                                                          FeedsBanksListBankRequest request) {
+                                                                        return feedsBanksList(request,null);
+                                                                      }
+
+                                                                      public NordletApiHttpResponse<FeedsBanksListBankResponse> feedsBanksList(
+                                                                          FeedsBanksListBankRequest request,
                                                                           RequestOptions requestOptions) {
                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                          .addPathSegments("v1/bank/feeds/connections/start");if (requestOptions != null) {
+                                                                          .addPathSegments("v1/bank/feeds/banks/list");if (requestOptions != null) {
                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                             } );
@@ -2554,15 +2629,17 @@ public class RawBankClient {
                                                                             ResponseBody responseBody = response.body();
                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                             if (response.isSuccessful()) {
-                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsConnectionsStartResponse.class), response);
+                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsBanksListBankResponse.class), response);
                                                                             }
                                                                             try {
                                                                               switch (response.code()) {
                                                                                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -2582,17 +2659,17 @@ public class RawBankClient {
                                                                           }
                                                                         }
 
-                                                                        public NordletApiHttpResponse<PostV1BankFeedsConnectionsCompleteResponse> exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(
-                                                                            PostV1BankFeedsConnectionsCompleteRequest request) {
-                                                                          return exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(request,null);
+                                                                        public NordletApiHttpResponse<FeedsConnectionsStartBankResponse> feedsConnectionsStart(
+                                                                            FeedsConnectionsStartBankRequest request) {
+                                                                          return feedsConnectionsStart(request,null);
                                                                         }
 
-                                                                        public NordletApiHttpResponse<PostV1BankFeedsConnectionsCompleteResponse> exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(
-                                                                            PostV1BankFeedsConnectionsCompleteRequest request,
+                                                                        public NordletApiHttpResponse<FeedsConnectionsStartBankResponse> feedsConnectionsStart(
+                                                                            FeedsConnectionsStartBankRequest request,
                                                                             RequestOptions requestOptions) {
                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                            .addPathSegments("v1/bank/feeds/connections/complete");if (requestOptions != null) {
+                                                                            .addPathSegments("v1/bank/feeds/connections/start");if (requestOptions != null) {
                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                               } );
@@ -2622,15 +2699,17 @@ public class RawBankClient {
                                                                               ResponseBody responseBody = response.body();
                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                               if (response.isSuccessful()) {
-                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsConnectionsCompleteResponse.class), response);
+                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsStartBankResponse.class), response);
                                                                               }
                                                                               try {
                                                                                 switch (response.code()) {
                                                                                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -2650,17 +2729,17 @@ public class RawBankClient {
                                                                             }
                                                                           }
 
-                                                                          public NordletApiHttpResponse<PostV1BankFeedsConnectionsGetResponse> postV1BankFeedsConnectionsGet(
-                                                                              PostV1BankFeedsConnectionsGetRequest request) {
-                                                                            return postV1BankFeedsConnectionsGet(request,null);
+                                                                          public NordletApiHttpResponse<FeedsConnectionsCompleteBankResponse> feedsConnectionsComplete(
+                                                                              FeedsConnectionsCompleteBankRequest request) {
+                                                                            return feedsConnectionsComplete(request,null);
                                                                           }
 
-                                                                          public NordletApiHttpResponse<PostV1BankFeedsConnectionsGetResponse> postV1BankFeedsConnectionsGet(
-                                                                              PostV1BankFeedsConnectionsGetRequest request,
+                                                                          public NordletApiHttpResponse<FeedsConnectionsCompleteBankResponse> feedsConnectionsComplete(
+                                                                              FeedsConnectionsCompleteBankRequest request,
                                                                               RequestOptions requestOptions) {
                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                              .addPathSegments("v1/bank/feeds/connections/get");if (requestOptions != null) {
+                                                                              .addPathSegments("v1/bank/feeds/connections/complete");if (requestOptions != null) {
                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                 } );
@@ -2690,15 +2769,17 @@ public class RawBankClient {
                                                                                 ResponseBody responseBody = response.body();
                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                 if (response.isSuccessful()) {
-                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsConnectionsGetResponse.class), response);
+                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsCompleteBankResponse.class), response);
                                                                                 }
                                                                                 try {
                                                                                   switch (response.code()) {
                                                                                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -2718,27 +2799,17 @@ public class RawBankClient {
                                                                               }
                                                                             }
 
-                                                                            public NordletApiHttpResponse<PostV1BankFeedsConnectionsListResponse> postV1BankFeedsConnectionsList(
-                                                                                ) {
-                                                                              return postV1BankFeedsConnectionsList(PostV1BankFeedsConnectionsListRequest.builder().build());
+                                                                            public NordletApiHttpResponse<FeedsConnectionsGetBankResponse> feedsConnectionsGet(
+                                                                                FeedsConnectionsGetBankRequest request) {
+                                                                              return feedsConnectionsGet(request,null);
                                                                             }
 
-                                                                            public NordletApiHttpResponse<PostV1BankFeedsConnectionsListResponse> postV1BankFeedsConnectionsList(
-                                                                                RequestOptions requestOptions) {
-                                                                              return postV1BankFeedsConnectionsList(PostV1BankFeedsConnectionsListRequest.builder().build(),requestOptions);
-                                                                            }
-
-                                                                            public NordletApiHttpResponse<PostV1BankFeedsConnectionsListResponse> postV1BankFeedsConnectionsList(
-                                                                                PostV1BankFeedsConnectionsListRequest request) {
-                                                                              return postV1BankFeedsConnectionsList(request,null);
-                                                                            }
-
-                                                                            public NordletApiHttpResponse<PostV1BankFeedsConnectionsListResponse> postV1BankFeedsConnectionsList(
-                                                                                PostV1BankFeedsConnectionsListRequest request,
+                                                                            public NordletApiHttpResponse<FeedsConnectionsGetBankResponse> feedsConnectionsGet(
+                                                                                FeedsConnectionsGetBankRequest request,
                                                                                 RequestOptions requestOptions) {
                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                .addPathSegments("v1/bank/feeds/connections/list");if (requestOptions != null) {
+                                                                                .addPathSegments("v1/bank/feeds/connections/get");if (requestOptions != null) {
                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                   } );
@@ -2768,15 +2839,17 @@ public class RawBankClient {
                                                                                   ResponseBody responseBody = response.body();
                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                   if (response.isSuccessful()) {
-                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsConnectionsListResponse.class), response);
+                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsGetBankResponse.class), response);
                                                                                   }
                                                                                   try {
                                                                                     switch (response.code()) {
                                                                                       case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                       case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                       case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                       case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                       case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                       case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                       case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                       case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -2796,17 +2869,27 @@ public class RawBankClient {
                                                                                 }
                                                                               }
 
-                                                                              public NordletApiHttpResponse<PostV1BankFeedsConnectionsDeleteResponse> revokeTheConsentAtTheBankAndDropTheStoredConnection(
-                                                                                  PostV1BankFeedsConnectionsDeleteRequest request) {
-                                                                                return revokeTheConsentAtTheBankAndDropTheStoredConnection(request,null);
+                                                                              public NordletApiHttpResponse<FeedsConnectionsListBankResponse> feedsConnectionsList(
+                                                                                  ) {
+                                                                                return feedsConnectionsList(FeedsConnectionsListBankRequest.builder().build());
                                                                               }
 
-                                                                              public NordletApiHttpResponse<PostV1BankFeedsConnectionsDeleteResponse> revokeTheConsentAtTheBankAndDropTheStoredConnection(
-                                                                                  PostV1BankFeedsConnectionsDeleteRequest request,
+                                                                              public NordletApiHttpResponse<FeedsConnectionsListBankResponse> feedsConnectionsList(
+                                                                                  RequestOptions requestOptions) {
+                                                                                return feedsConnectionsList(FeedsConnectionsListBankRequest.builder().build(),requestOptions);
+                                                                              }
+
+                                                                              public NordletApiHttpResponse<FeedsConnectionsListBankResponse> feedsConnectionsList(
+                                                                                  FeedsConnectionsListBankRequest request) {
+                                                                                return feedsConnectionsList(request,null);
+                                                                              }
+
+                                                                              public NordletApiHttpResponse<FeedsConnectionsListBankResponse> feedsConnectionsList(
+                                                                                  FeedsConnectionsListBankRequest request,
                                                                                   RequestOptions requestOptions) {
                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                  .addPathSegments("v1/bank/feeds/connections/delete");if (requestOptions != null) {
+                                                                                  .addPathSegments("v1/bank/feeds/connections/list");if (requestOptions != null) {
                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                     } );
@@ -2836,15 +2919,17 @@ public class RawBankClient {
                                                                                     ResponseBody responseBody = response.body();
                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                     if (response.isSuccessful()) {
-                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsConnectionsDeleteResponse.class), response);
+                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsListBankResponse.class), response);
                                                                                     }
                                                                                     try {
                                                                                       switch (response.code()) {
                                                                                         case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                         case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                         case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                         case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                         case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                         case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                         case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                         case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -2864,17 +2949,17 @@ public class RawBankClient {
                                                                                   }
                                                                                 }
 
-                                                                                public NordletApiHttpResponse<PostV1BankFeedsAccountsLinkResponse> pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(
-                                                                                    PostV1BankFeedsAccountsLinkRequest request) {
-                                                                                  return pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(request,null);
+                                                                                public NordletApiHttpResponse<FeedsConnectionsDeleteBankResponse> feedsConnectionsDelete(
+                                                                                    FeedsConnectionsDeleteBankRequest request) {
+                                                                                  return feedsConnectionsDelete(request,null);
                                                                                 }
 
-                                                                                public NordletApiHttpResponse<PostV1BankFeedsAccountsLinkResponse> pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(
-                                                                                    PostV1BankFeedsAccountsLinkRequest request,
+                                                                                public NordletApiHttpResponse<FeedsConnectionsDeleteBankResponse> feedsConnectionsDelete(
+                                                                                    FeedsConnectionsDeleteBankRequest request,
                                                                                     RequestOptions requestOptions) {
                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                    .addPathSegments("v1/bank/feeds/accounts/link");if (requestOptions != null) {
+                                                                                    .addPathSegments("v1/bank/feeds/connections/delete");if (requestOptions != null) {
                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                       } );
@@ -2904,15 +2989,17 @@ public class RawBankClient {
                                                                                       ResponseBody responseBody = response.body();
                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                       if (response.isSuccessful()) {
-                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsAccountsLinkResponse.class), response);
+                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsDeleteBankResponse.class), response);
                                                                                       }
                                                                                       try {
                                                                                         switch (response.code()) {
                                                                                           case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                           case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                           case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                           case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                           case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                           case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                           case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                           case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -2932,17 +3019,17 @@ public class RawBankClient {
                                                                                     }
                                                                                   }
 
-                                                                                  public NordletApiHttpResponse<PostV1BankFeedsAccountsConfigureResponse> chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(
-                                                                                      PostV1BankFeedsAccountsConfigureRequest request) {
-                                                                                    return chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(request,null);
+                                                                                  public NordletApiHttpResponse<FeedsAccountsLinkBankResponse> feedsAccountsLink(
+                                                                                      FeedsAccountsLinkBankRequest request) {
+                                                                                    return feedsAccountsLink(request,null);
                                                                                   }
 
-                                                                                  public NordletApiHttpResponse<PostV1BankFeedsAccountsConfigureResponse> chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(
-                                                                                      PostV1BankFeedsAccountsConfigureRequest request,
+                                                                                  public NordletApiHttpResponse<FeedsAccountsLinkBankResponse> feedsAccountsLink(
+                                                                                      FeedsAccountsLinkBankRequest request,
                                                                                       RequestOptions requestOptions) {
                                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                      .addPathSegments("v1/bank/feeds/accounts/configure");if (requestOptions != null) {
+                                                                                      .addPathSegments("v1/bank/feeds/accounts/link");if (requestOptions != null) {
                                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                                         } );
@@ -2972,15 +3059,17 @@ public class RawBankClient {
                                                                                         ResponseBody responseBody = response.body();
                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                         if (response.isSuccessful()) {
-                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsAccountsConfigureResponse.class), response);
+                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsAccountsLinkBankResponse.class), response);
                                                                                         }
                                                                                         try {
                                                                                           switch (response.code()) {
                                                                                             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -3000,17 +3089,17 @@ public class RawBankClient {
                                                                                       }
                                                                                     }
 
-                                                                                    public NordletApiHttpResponse<PostV1BankFeedsSyncResponse> pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
-                                                                                        PostV1BankFeedsSyncRequest request) {
-                                                                                      return pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(request,null);
+                                                                                    public NordletApiHttpResponse<FeedsAccountsConfigureBankResponse> feedsAccountsConfigure(
+                                                                                        FeedsAccountsConfigureBankRequest request) {
+                                                                                      return feedsAccountsConfigure(request,null);
                                                                                     }
 
-                                                                                    public NordletApiHttpResponse<PostV1BankFeedsSyncResponse> pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
-                                                                                        PostV1BankFeedsSyncRequest request,
+                                                                                    public NordletApiHttpResponse<FeedsAccountsConfigureBankResponse> feedsAccountsConfigure(
+                                                                                        FeedsAccountsConfigureBankRequest request,
                                                                                         RequestOptions requestOptions) {
                                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                        .addPathSegments("v1/bank/feeds/sync");if (requestOptions != null) {
+                                                                                        .addPathSegments("v1/bank/feeds/accounts/configure");if (requestOptions != null) {
                                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                                           } );
@@ -3040,15 +3129,17 @@ public class RawBankClient {
                                                                                           ResponseBody responseBody = response.body();
                                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                           if (response.isSuccessful()) {
-                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BankFeedsSyncResponse.class), response);
+                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsAccountsConfigureBankResponse.class), response);
                                                                                           }
                                                                                           try {
                                                                                             switch (response.code()) {
                                                                                               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                                               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -3067,4 +3158,74 @@ public class RawBankClient {
                                                                                           throw new NordletApiException("Network error executing HTTP request", e);
                                                                                         }
                                                                                       }
-                                                                                    }
+
+                                                                                      public NordletApiHttpResponse<FeedsSyncBankResponse> feedsSync(
+                                                                                          FeedsSyncBankRequest request) {
+                                                                                        return feedsSync(request,null);
+                                                                                      }
+
+                                                                                      public NordletApiHttpResponse<FeedsSyncBankResponse> feedsSync(
+                                                                                          FeedsSyncBankRequest request,
+                                                                                          RequestOptions requestOptions) {
+                                                                                        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                          .addPathSegments("v1/bank/feeds/sync");if (requestOptions != null) {
+                                                                                            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                              httpUrl.addQueryParameter(_key, _value);
+                                                                                            } );
+                                                                                          }
+                                                                                          RequestBody body;
+                                                                                          try {
+                                                                                            body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                          }
+                                                                                          catch(JsonProcessingException e) {
+                                                                                            throw new NordletApiException("Failed to serialize request", e);
+                                                                                          }
+                                                                                          Request okhttpRequest = new Request.Builder()
+                                                                                            .url(httpUrl.build())
+                                                                                            .method("POST", body)
+                                                                                            .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                            .addHeader("Content-Type", "application/json")
+                                                                                            .addHeader("Accept", "application/json")
+                                                                                            .build();
+                                                                                          OkHttpClient client = clientOptions.httpClient();
+                                                                                          if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                            client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                          }
+                                                                                          if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                            okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                          }
+                                                                                          try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                            ResponseBody responseBody = response.body();
+                                                                                            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                            if (response.isSuccessful()) {
+                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsSyncBankResponse.class), response);
+                                                                                            }
+                                                                                            try {
+                                                                                              switch (response.code()) {
+                                                                                                case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              }
+                                                                                            }
+                                                                                            catch (JsonProcessingException ignored) {
+                                                                                              // unable to map error response, throwing generic error
+                                                                                            }
+                                                                                            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                            throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                          }
+                                                                                          catch (JsonProcessingException e) {
+                                                                                            throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                          }
+                                                                                          catch (IOException e) {
+                                                                                            throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                          }
+                                                                                        }
+                                                                                      }

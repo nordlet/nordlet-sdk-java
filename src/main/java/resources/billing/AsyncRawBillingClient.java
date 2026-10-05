@@ -15,24 +15,26 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.billing.requests.PostV1BillingAccountGetRequest;
-import com.nordlet.api.resources.billing.requests.PostV1BillingAccountSetPlanRequest;
-import com.nordlet.api.resources.billing.requests.PostV1BillingPortalCreateRequest;
-import com.nordlet.api.resources.billing.requests.PostV1BillingTopupCreateRequest;
-import com.nordlet.api.resources.billing.requests.PostV1BillingTransactionsListRequest;
-import com.nordlet.api.resources.billing.requests.PostV1BillingUsageListRequest;
-import com.nordlet.api.resources.billing.types.PostV1BillingAccountGetResponse;
-import com.nordlet.api.resources.billing.types.PostV1BillingAccountSetPlanResponse;
-import com.nordlet.api.resources.billing.types.PostV1BillingPortalCreateResponse;
-import com.nordlet.api.resources.billing.types.PostV1BillingTopupCreateResponse;
-import com.nordlet.api.resources.billing.types.PostV1BillingTransactionsListResponse;
-import com.nordlet.api.resources.billing.types.PostV1BillingUsageListResponse;
+import com.nordlet.api.resources.billing.requests.AccountGetBillingRequest;
+import com.nordlet.api.resources.billing.requests.AccountSetPlanBillingRequest;
+import com.nordlet.api.resources.billing.requests.PortalCreateBillingRequest;
+import com.nordlet.api.resources.billing.requests.TopupCreateBillingRequest;
+import com.nordlet.api.resources.billing.requests.TransactionsListBillingRequest;
+import com.nordlet.api.resources.billing.requests.UsageListBillingRequest;
+import com.nordlet.api.resources.billing.types.AccountGetBillingResponse;
+import com.nordlet.api.resources.billing.types.AccountSetPlanBillingResponse;
+import com.nordlet.api.resources.billing.types.PortalCreateBillingResponse;
+import com.nordlet.api.resources.billing.types.TopupCreateBillingResponse;
+import com.nordlet.api.resources.billing.types.TransactionsListBillingResponse;
+import com.nordlet.api.resources.billing.types.UsageListBillingResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -57,23 +59,22 @@ public class AsyncRawBillingClient {
     this.clientOptions = clientOptions;
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1BillingAccountGetResponse>> postV1BillingAccountGet(
-      ) {
-    return postV1BillingAccountGet(PostV1BillingAccountGetRequest.builder().build());
+  public CompletableFuture<NordletApiHttpResponse<AccountGetBillingResponse>> accountGet() {
+    return accountGet(AccountGetBillingRequest.builder().build());
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1BillingAccountGetResponse>> postV1BillingAccountGet(
+  public CompletableFuture<NordletApiHttpResponse<AccountGetBillingResponse>> accountGet(
       RequestOptions requestOptions) {
-    return postV1BillingAccountGet(PostV1BillingAccountGetRequest.builder().build(),requestOptions);
+    return accountGet(AccountGetBillingRequest.builder().build(),requestOptions);
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1BillingAccountGetResponse>> postV1BillingAccountGet(
-      PostV1BillingAccountGetRequest request) {
-    return postV1BillingAccountGet(request,null);
+  public CompletableFuture<NordletApiHttpResponse<AccountGetBillingResponse>> accountGet(
+      AccountGetBillingRequest request) {
+    return accountGet(request,null);
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1BillingAccountGetResponse>> postV1BillingAccountGet(
-      PostV1BillingAccountGetRequest request, RequestOptions requestOptions) {
+  public CompletableFuture<NordletApiHttpResponse<AccountGetBillingResponse>> accountGet(
+      AccountGetBillingRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/billing/account/get");if (requestOptions != null) {
@@ -102,14 +103,14 @@ public class AsyncRawBillingClient {
       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
       }
-      CompletableFuture<NordletApiHttpResponse<PostV1BillingAccountGetResponse>> future = new CompletableFuture<>();
+      CompletableFuture<NordletApiHttpResponse<AccountGetBillingResponse>> future = new CompletableFuture<>();
       client.newCall(okhttpRequest).enqueue(new Callback() {
         @Override
         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
           try (ResponseBody responseBody = response.body()) {
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BillingAccountGetResponse.class), response));
+              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AccountGetBillingResponse.class), response));
               return;
             }
             try {
@@ -118,11 +119,15 @@ public class AsyncRawBillingClient {
                 return;
                 case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
+                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
                 case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
+                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
@@ -155,13 +160,13 @@ public class AsyncRawBillingClient {
       return future;
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1BillingAccountSetPlanResponse>> postV1BillingAccountSetPlan(
-        PostV1BillingAccountSetPlanRequest request) {
-      return postV1BillingAccountSetPlan(request,null);
+    public CompletableFuture<NordletApiHttpResponse<AccountSetPlanBillingResponse>> accountSetPlan(
+        AccountSetPlanBillingRequest request) {
+      return accountSetPlan(request,null);
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1BillingAccountSetPlanResponse>> postV1BillingAccountSetPlan(
-        PostV1BillingAccountSetPlanRequest request, RequestOptions requestOptions) {
+    public CompletableFuture<NordletApiHttpResponse<AccountSetPlanBillingResponse>> accountSetPlan(
+        AccountSetPlanBillingRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/billing/account/set-plan");if (requestOptions != null) {
@@ -190,14 +195,14 @@ public class AsyncRawBillingClient {
         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
         }
-        CompletableFuture<NordletApiHttpResponse<PostV1BillingAccountSetPlanResponse>> future = new CompletableFuture<>();
+        CompletableFuture<NordletApiHttpResponse<AccountSetPlanBillingResponse>> future = new CompletableFuture<>();
         client.newCall(okhttpRequest).enqueue(new Callback() {
           @Override
           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
             try (ResponseBody responseBody = response.body()) {
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BillingAccountSetPlanResponse.class), response));
+                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AccountSetPlanBillingResponse.class), response));
                 return;
               }
               try {
@@ -206,11 +211,15 @@ public class AsyncRawBillingClient {
                   return;
                   case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
+                  case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
                   case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
@@ -243,13 +252,13 @@ public class AsyncRawBillingClient {
         return future;
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1BillingTopupCreateResponse>> postV1BillingTopupCreate(
-          PostV1BillingTopupCreateRequest request) {
-        return postV1BillingTopupCreate(request,null);
+      public CompletableFuture<NordletApiHttpResponse<TopupCreateBillingResponse>> topupCreate(
+          TopupCreateBillingRequest request) {
+        return topupCreate(request,null);
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1BillingTopupCreateResponse>> postV1BillingTopupCreate(
-          PostV1BillingTopupCreateRequest request, RequestOptions requestOptions) {
+      public CompletableFuture<NordletApiHttpResponse<TopupCreateBillingResponse>> topupCreate(
+          TopupCreateBillingRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/billing/topup/create");if (requestOptions != null) {
@@ -278,14 +287,14 @@ public class AsyncRawBillingClient {
           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
           }
-          CompletableFuture<NordletApiHttpResponse<PostV1BillingTopupCreateResponse>> future = new CompletableFuture<>();
+          CompletableFuture<NordletApiHttpResponse<TopupCreateBillingResponse>> future = new CompletableFuture<>();
           client.newCall(okhttpRequest).enqueue(new Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
               try (ResponseBody responseBody = response.body()) {
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BillingTopupCreateResponse.class), response));
+                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TopupCreateBillingResponse.class), response));
                   return;
                 }
                 try {
@@ -294,11 +303,15 @@ public class AsyncRawBillingClient {
                     return;
                     case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
+                    case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                    return;
                     case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                    return;
+                    case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
@@ -331,23 +344,23 @@ public class AsyncRawBillingClient {
           return future;
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1BillingPortalCreateResponse>> postV1BillingPortalCreate(
+        public CompletableFuture<NordletApiHttpResponse<PortalCreateBillingResponse>> portalCreate(
             ) {
-          return postV1BillingPortalCreate(PostV1BillingPortalCreateRequest.builder().build());
+          return portalCreate(PortalCreateBillingRequest.builder().build());
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1BillingPortalCreateResponse>> postV1BillingPortalCreate(
+        public CompletableFuture<NordletApiHttpResponse<PortalCreateBillingResponse>> portalCreate(
             RequestOptions requestOptions) {
-          return postV1BillingPortalCreate(PostV1BillingPortalCreateRequest.builder().build(),requestOptions);
+          return portalCreate(PortalCreateBillingRequest.builder().build(),requestOptions);
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1BillingPortalCreateResponse>> postV1BillingPortalCreate(
-            PostV1BillingPortalCreateRequest request) {
-          return postV1BillingPortalCreate(request,null);
+        public CompletableFuture<NordletApiHttpResponse<PortalCreateBillingResponse>> portalCreate(
+            PortalCreateBillingRequest request) {
+          return portalCreate(request,null);
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1BillingPortalCreateResponse>> postV1BillingPortalCreate(
-            PostV1BillingPortalCreateRequest request, RequestOptions requestOptions) {
+        public CompletableFuture<NordletApiHttpResponse<PortalCreateBillingResponse>> portalCreate(
+            PortalCreateBillingRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/billing/portal/create");if (requestOptions != null) {
@@ -376,14 +389,14 @@ public class AsyncRawBillingClient {
             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
             }
-            CompletableFuture<NordletApiHttpResponse<PostV1BillingPortalCreateResponse>> future = new CompletableFuture<>();
+            CompletableFuture<NordletApiHttpResponse<PortalCreateBillingResponse>> future = new CompletableFuture<>();
             client.newCall(okhttpRequest).enqueue(new Callback() {
               @Override
               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BillingPortalCreateResponse.class), response));
+                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PortalCreateBillingResponse.class), response));
                     return;
                   }
                   try {
@@ -392,11 +405,15 @@ public class AsyncRawBillingClient {
                       return;
                       case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
+                      case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                      return;
                       case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                      return;
+                      case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
@@ -429,23 +446,23 @@ public class AsyncRawBillingClient {
             return future;
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1BillingTransactionsListResponse>> postV1BillingTransactionsList(
+          public CompletableFuture<NordletApiHttpResponse<TransactionsListBillingResponse>> transactionsList(
               ) {
-            return postV1BillingTransactionsList(PostV1BillingTransactionsListRequest.builder().build());
+            return transactionsList(TransactionsListBillingRequest.builder().build());
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1BillingTransactionsListResponse>> postV1BillingTransactionsList(
+          public CompletableFuture<NordletApiHttpResponse<TransactionsListBillingResponse>> transactionsList(
               RequestOptions requestOptions) {
-            return postV1BillingTransactionsList(PostV1BillingTransactionsListRequest.builder().build(),requestOptions);
+            return transactionsList(TransactionsListBillingRequest.builder().build(),requestOptions);
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1BillingTransactionsListResponse>> postV1BillingTransactionsList(
-              PostV1BillingTransactionsListRequest request) {
-            return postV1BillingTransactionsList(request,null);
+          public CompletableFuture<NordletApiHttpResponse<TransactionsListBillingResponse>> transactionsList(
+              TransactionsListBillingRequest request) {
+            return transactionsList(request,null);
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1BillingTransactionsListResponse>> postV1BillingTransactionsList(
-              PostV1BillingTransactionsListRequest request, RequestOptions requestOptions) {
+          public CompletableFuture<NordletApiHttpResponse<TransactionsListBillingResponse>> transactionsList(
+              TransactionsListBillingRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
               .addPathSegments("v1/billing/transactions/list");if (requestOptions != null) {
@@ -474,14 +491,14 @@ public class AsyncRawBillingClient {
               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
               }
-              CompletableFuture<NordletApiHttpResponse<PostV1BillingTransactionsListResponse>> future = new CompletableFuture<>();
+              CompletableFuture<NordletApiHttpResponse<TransactionsListBillingResponse>> future = new CompletableFuture<>();
               client.newCall(okhttpRequest).enqueue(new Callback() {
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                   try (ResponseBody responseBody = response.body()) {
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BillingTransactionsListResponse.class), response));
+                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TransactionsListBillingResponse.class), response));
                       return;
                     }
                     try {
@@ -490,11 +507,15 @@ public class AsyncRawBillingClient {
                         return;
                         case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
+                        case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                        return;
                         case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                        return;
+                        case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
@@ -527,13 +548,13 @@ public class AsyncRawBillingClient {
               return future;
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1BillingUsageListResponse>> postV1BillingUsageList(
-                PostV1BillingUsageListRequest request) {
-              return postV1BillingUsageList(request,null);
+            public CompletableFuture<NordletApiHttpResponse<UsageListBillingResponse>> usageList(
+                UsageListBillingRequest request) {
+              return usageList(request,null);
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1BillingUsageListResponse>> postV1BillingUsageList(
-                PostV1BillingUsageListRequest request, RequestOptions requestOptions) {
+            public CompletableFuture<NordletApiHttpResponse<UsageListBillingResponse>> usageList(
+                UsageListBillingRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/billing/usage/list");if (requestOptions != null) {
@@ -562,14 +583,14 @@ public class AsyncRawBillingClient {
                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                 }
-                CompletableFuture<NordletApiHttpResponse<PostV1BillingUsageListResponse>> future = new CompletableFuture<>();
+                CompletableFuture<NordletApiHttpResponse<UsageListBillingResponse>> future = new CompletableFuture<>();
                 client.newCall(okhttpRequest).enqueue(new Callback() {
                   @Override
                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     try (ResponseBody responseBody = response.body()) {
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1BillingUsageListResponse.class), response));
+                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, UsageListBillingResponse.class), response));
                         return;
                       }
                       try {
@@ -578,11 +599,15 @@ public class AsyncRawBillingClient {
                           return;
                           case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
+                          case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
                           case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
+                          case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;

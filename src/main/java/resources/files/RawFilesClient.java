@@ -15,20 +15,22 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.files.requests.PostV1FilesDeleteRequest;
-import com.nordlet.api.resources.files.requests.PostV1FilesGetRequest;
-import com.nordlet.api.resources.files.requests.PostV1FilesListRequest;
-import com.nordlet.api.resources.files.requests.PostV1FilesUploadRequest;
-import com.nordlet.api.resources.files.types.PostV1FilesDeleteResponse;
-import com.nordlet.api.resources.files.types.PostV1FilesGetResponse;
-import com.nordlet.api.resources.files.types.PostV1FilesListResponse;
-import com.nordlet.api.resources.files.types.PostV1FilesUploadResponse;
+import com.nordlet.api.resources.files.requests.DeleteFilesRequest;
+import com.nordlet.api.resources.files.requests.GetFilesRequest;
+import com.nordlet.api.resources.files.requests.ListFilesRequest;
+import com.nordlet.api.resources.files.requests.UploadFilesRequest;
+import com.nordlet.api.resources.files.types.DeleteFilesResponse;
+import com.nordlet.api.resources.files.types.GetFilesResponse;
+import com.nordlet.api.resources.files.types.ListFilesResponse;
+import com.nordlet.api.resources.files.types.UploadFilesResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -48,13 +50,12 @@ public class RawFilesClient {
     this.clientOptions = clientOptions;
   }
 
-  public NordletApiHttpResponse<PostV1FilesUploadResponse> postV1FilesUpload(
-      PostV1FilesUploadRequest request) {
-    return postV1FilesUpload(request,null);
+  public NordletApiHttpResponse<UploadFilesResponse> upload(UploadFilesRequest request) {
+    return upload(request,null);
   }
 
-  public NordletApiHttpResponse<PostV1FilesUploadResponse> postV1FilesUpload(
-      PostV1FilesUploadRequest request, RequestOptions requestOptions) {
+  public NordletApiHttpResponse<UploadFilesResponse> upload(UploadFilesRequest request,
+      RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/files/upload");if (requestOptions != null) {
@@ -87,15 +88,17 @@ public class RawFilesClient {
         ResponseBody responseBody = response.body();
         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
         if (response.isSuccessful()) {
-          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FilesUploadResponse.class), response);
+          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, UploadFilesResponse.class), response);
         }
         try {
           switch (response.code()) {
             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -115,13 +118,12 @@ public class RawFilesClient {
       }
     }
 
-    public NordletApiHttpResponse<PostV1FilesGetResponse> postV1FilesGet(
-        PostV1FilesGetRequest request) {
-      return postV1FilesGet(request,null);
+    public NordletApiHttpResponse<GetFilesResponse> get(GetFilesRequest request) {
+      return get(request,null);
     }
 
-    public NordletApiHttpResponse<PostV1FilesGetResponse> postV1FilesGet(
-        PostV1FilesGetRequest request, RequestOptions requestOptions) {
+    public NordletApiHttpResponse<GetFilesResponse> get(GetFilesRequest request,
+        RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/files/get");if (requestOptions != null) {
@@ -154,15 +156,17 @@ public class RawFilesClient {
           ResponseBody responseBody = response.body();
           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
           if (response.isSuccessful()) {
-            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FilesGetResponse.class), response);
+            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GetFilesResponse.class), response);
           }
           try {
             switch (response.code()) {
               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -182,22 +186,20 @@ public class RawFilesClient {
         }
       }
 
-      public NordletApiHttpResponse<PostV1FilesListResponse> postV1FilesList() {
-        return postV1FilesList(PostV1FilesListRequest.builder().build());
+      public NordletApiHttpResponse<ListFilesResponse> list() {
+        return list(ListFilesRequest.builder().build());
       }
 
-      public NordletApiHttpResponse<PostV1FilesListResponse> postV1FilesList(
+      public NordletApiHttpResponse<ListFilesResponse> list(RequestOptions requestOptions) {
+        return list(ListFilesRequest.builder().build(),requestOptions);
+      }
+
+      public NordletApiHttpResponse<ListFilesResponse> list(ListFilesRequest request) {
+        return list(request,null);
+      }
+
+      public NordletApiHttpResponse<ListFilesResponse> list(ListFilesRequest request,
           RequestOptions requestOptions) {
-        return postV1FilesList(PostV1FilesListRequest.builder().build(),requestOptions);
-      }
-
-      public NordletApiHttpResponse<PostV1FilesListResponse> postV1FilesList(
-          PostV1FilesListRequest request) {
-        return postV1FilesList(request,null);
-      }
-
-      public NordletApiHttpResponse<PostV1FilesListResponse> postV1FilesList(
-          PostV1FilesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/files/list");if (requestOptions != null) {
@@ -230,15 +232,17 @@ public class RawFilesClient {
             ResponseBody responseBody = response.body();
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FilesListResponse.class), response);
+              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ListFilesResponse.class), response);
             }
             try {
               switch (response.code()) {
                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -258,13 +262,12 @@ public class RawFilesClient {
           }
         }
 
-        public NordletApiHttpResponse<PostV1FilesDeleteResponse> postV1FilesDelete(
-            PostV1FilesDeleteRequest request) {
-          return postV1FilesDelete(request,null);
+        public NordletApiHttpResponse<DeleteFilesResponse> delete(DeleteFilesRequest request) {
+          return delete(request,null);
         }
 
-        public NordletApiHttpResponse<PostV1FilesDeleteResponse> postV1FilesDelete(
-            PostV1FilesDeleteRequest request, RequestOptions requestOptions) {
+        public NordletApiHttpResponse<DeleteFilesResponse> delete(DeleteFilesRequest request,
+            RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/files/delete");if (requestOptions != null) {
@@ -297,15 +300,17 @@ public class RawFilesClient {
               ResponseBody responseBody = response.body();
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FilesDeleteResponse.class), response);
+                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeleteFilesResponse.class), response);
               }
               try {
                 switch (response.code()) {
                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);

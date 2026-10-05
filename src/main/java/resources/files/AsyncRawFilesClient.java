@@ -15,20 +15,22 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.files.requests.PostV1FilesDeleteRequest;
-import com.nordlet.api.resources.files.requests.PostV1FilesGetRequest;
-import com.nordlet.api.resources.files.requests.PostV1FilesListRequest;
-import com.nordlet.api.resources.files.requests.PostV1FilesUploadRequest;
-import com.nordlet.api.resources.files.types.PostV1FilesDeleteResponse;
-import com.nordlet.api.resources.files.types.PostV1FilesGetResponse;
-import com.nordlet.api.resources.files.types.PostV1FilesListResponse;
-import com.nordlet.api.resources.files.types.PostV1FilesUploadResponse;
+import com.nordlet.api.resources.files.requests.DeleteFilesRequest;
+import com.nordlet.api.resources.files.requests.GetFilesRequest;
+import com.nordlet.api.resources.files.requests.ListFilesRequest;
+import com.nordlet.api.resources.files.requests.UploadFilesRequest;
+import com.nordlet.api.resources.files.types.DeleteFilesResponse;
+import com.nordlet.api.resources.files.types.GetFilesResponse;
+import com.nordlet.api.resources.files.types.ListFilesResponse;
+import com.nordlet.api.resources.files.types.UploadFilesResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -53,13 +55,13 @@ public class AsyncRawFilesClient {
     this.clientOptions = clientOptions;
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1FilesUploadResponse>> postV1FilesUpload(
-      PostV1FilesUploadRequest request) {
-    return postV1FilesUpload(request,null);
+  public CompletableFuture<NordletApiHttpResponse<UploadFilesResponse>> upload(
+      UploadFilesRequest request) {
+    return upload(request,null);
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1FilesUploadResponse>> postV1FilesUpload(
-      PostV1FilesUploadRequest request, RequestOptions requestOptions) {
+  public CompletableFuture<NordletApiHttpResponse<UploadFilesResponse>> upload(
+      UploadFilesRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/files/upload");if (requestOptions != null) {
@@ -88,14 +90,14 @@ public class AsyncRawFilesClient {
       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
       }
-      CompletableFuture<NordletApiHttpResponse<PostV1FilesUploadResponse>> future = new CompletableFuture<>();
+      CompletableFuture<NordletApiHttpResponse<UploadFilesResponse>> future = new CompletableFuture<>();
       client.newCall(okhttpRequest).enqueue(new Callback() {
         @Override
         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
           try (ResponseBody responseBody = response.body()) {
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FilesUploadResponse.class), response));
+              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, UploadFilesResponse.class), response));
               return;
             }
             try {
@@ -104,11 +106,15 @@ public class AsyncRawFilesClient {
                 return;
                 case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
+                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
                 case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
+                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
@@ -141,13 +147,13 @@ public class AsyncRawFilesClient {
       return future;
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1FilesGetResponse>> postV1FilesGet(
-        PostV1FilesGetRequest request) {
-      return postV1FilesGet(request,null);
+    public CompletableFuture<NordletApiHttpResponse<GetFilesResponse>> get(
+        GetFilesRequest request) {
+      return get(request,null);
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1FilesGetResponse>> postV1FilesGet(
-        PostV1FilesGetRequest request, RequestOptions requestOptions) {
+    public CompletableFuture<NordletApiHttpResponse<GetFilesResponse>> get(GetFilesRequest request,
+        RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/files/get");if (requestOptions != null) {
@@ -176,14 +182,14 @@ public class AsyncRawFilesClient {
         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
         }
-        CompletableFuture<NordletApiHttpResponse<PostV1FilesGetResponse>> future = new CompletableFuture<>();
+        CompletableFuture<NordletApiHttpResponse<GetFilesResponse>> future = new CompletableFuture<>();
         client.newCall(okhttpRequest).enqueue(new Callback() {
           @Override
           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
             try (ResponseBody responseBody = response.body()) {
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FilesGetResponse.class), response));
+                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GetFilesResponse.class), response));
                 return;
               }
               try {
@@ -192,11 +198,15 @@ public class AsyncRawFilesClient {
                   return;
                   case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
+                  case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
                   case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
@@ -229,22 +239,22 @@ public class AsyncRawFilesClient {
         return future;
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1FilesListResponse>> postV1FilesList() {
-        return postV1FilesList(PostV1FilesListRequest.builder().build());
+      public CompletableFuture<NordletApiHttpResponse<ListFilesResponse>> list() {
+        return list(ListFilesRequest.builder().build());
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1FilesListResponse>> postV1FilesList(
+      public CompletableFuture<NordletApiHttpResponse<ListFilesResponse>> list(
           RequestOptions requestOptions) {
-        return postV1FilesList(PostV1FilesListRequest.builder().build(),requestOptions);
+        return list(ListFilesRequest.builder().build(),requestOptions);
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1FilesListResponse>> postV1FilesList(
-          PostV1FilesListRequest request) {
-        return postV1FilesList(request,null);
+      public CompletableFuture<NordletApiHttpResponse<ListFilesResponse>> list(
+          ListFilesRequest request) {
+        return list(request,null);
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1FilesListResponse>> postV1FilesList(
-          PostV1FilesListRequest request, RequestOptions requestOptions) {
+      public CompletableFuture<NordletApiHttpResponse<ListFilesResponse>> list(
+          ListFilesRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/files/list");if (requestOptions != null) {
@@ -273,14 +283,14 @@ public class AsyncRawFilesClient {
           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
           }
-          CompletableFuture<NordletApiHttpResponse<PostV1FilesListResponse>> future = new CompletableFuture<>();
+          CompletableFuture<NordletApiHttpResponse<ListFilesResponse>> future = new CompletableFuture<>();
           client.newCall(okhttpRequest).enqueue(new Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
               try (ResponseBody responseBody = response.body()) {
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FilesListResponse.class), response));
+                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ListFilesResponse.class), response));
                   return;
                 }
                 try {
@@ -289,11 +299,15 @@ public class AsyncRawFilesClient {
                     return;
                     case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
+                    case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                    return;
                     case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                    return;
+                    case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
@@ -326,13 +340,13 @@ public class AsyncRawFilesClient {
           return future;
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1FilesDeleteResponse>> postV1FilesDelete(
-            PostV1FilesDeleteRequest request) {
-          return postV1FilesDelete(request,null);
+        public CompletableFuture<NordletApiHttpResponse<DeleteFilesResponse>> delete(
+            DeleteFilesRequest request) {
+          return delete(request,null);
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1FilesDeleteResponse>> postV1FilesDelete(
-            PostV1FilesDeleteRequest request, RequestOptions requestOptions) {
+        public CompletableFuture<NordletApiHttpResponse<DeleteFilesResponse>> delete(
+            DeleteFilesRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/files/delete");if (requestOptions != null) {
@@ -361,14 +375,14 @@ public class AsyncRawFilesClient {
             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
             }
-            CompletableFuture<NordletApiHttpResponse<PostV1FilesDeleteResponse>> future = new CompletableFuture<>();
+            CompletableFuture<NordletApiHttpResponse<DeleteFilesResponse>> future = new CompletableFuture<>();
             client.newCall(okhttpRequest).enqueue(new Callback() {
               @Override
               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1FilesDeleteResponse.class), response));
+                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeleteFilesResponse.class), response));
                     return;
                   }
                   try {
@@ -377,11 +391,15 @@ public class AsyncRawFilesClient {
                       return;
                       case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
+                      case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                      return;
                       case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                      return;
+                      case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;

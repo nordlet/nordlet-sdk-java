@@ -6,82 +6,82 @@ package com.nordlet.api.resources.account;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysCreateRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysListRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysRevokeRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysRotateRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesActivateRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesArchiveRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesCreateRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesDeleteRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesProfileRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesSelectRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesUpdateRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountConsentAcceptRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountDeleteRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountEmailChangeRequestRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountExportRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountInvitesAcceptRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountInvitesCreateRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountInvitesGetRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountInvitesListRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountInvitesRevokeRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountLocaleSetRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountLoginLinkConsumeRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountLoginLinkRequestRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountLogoutRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountMeRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountMembersListRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountMembersRemoveRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountMembersSetRoleRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountMembersTransferOwnershipRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountProfileUpdateRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountReferralConvertRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountReferralGetRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountSessionsListRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountSessionsRevokeOthersRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountSessionsRevokeRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountTableSettingsGetRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountTableSettingsListRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountTableSettingsSetRequest;
-import com.nordlet.api.resources.account.types.PostV1AccountApiKeysCreateResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountApiKeysListResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountApiKeysRevokeResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountApiKeysRotateResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountCompaniesActivateResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountCompaniesArchiveResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountCompaniesCreateResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountCompaniesDeleteResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountCompaniesProfileResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountCompaniesSelectResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountCompaniesUpdateResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountConsentAcceptResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountDeleteResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountEmailChangeRequestResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountExportResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountInvitesAcceptResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountInvitesCreateResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountInvitesGetResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountInvitesListResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountInvitesRevokeResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountLocaleSetResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountLoginLinkConsumeResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountLoginLinkRequestResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountLogoutResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountMeResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountMembersListResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountMembersRemoveResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountMembersSetRoleResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountMembersTransferOwnershipResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountProfileUpdateResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountReferralConvertResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountReferralGetResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountSessionsListResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountSessionsRevokeOthersResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountSessionsRevokeResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountTableSettingsGetResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountTableSettingsListResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountTableSettingsSetResponse;
+import com.nordlet.api.resources.account.requests.ApiKeysCreateAccountRequest;
+import com.nordlet.api.resources.account.requests.ApiKeysListAccountRequest;
+import com.nordlet.api.resources.account.requests.ApiKeysRevokeAccountRequest;
+import com.nordlet.api.resources.account.requests.ApiKeysRotateAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesActivateAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesArchiveAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesCreateAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesDeleteAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesProfileAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesSelectAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesUpdateAccountRequest;
+import com.nordlet.api.resources.account.requests.ConsentAcceptAccountRequest;
+import com.nordlet.api.resources.account.requests.DeleteAccountRequest;
+import com.nordlet.api.resources.account.requests.EmailChangeRequestAccountRequest;
+import com.nordlet.api.resources.account.requests.ExportAccountRequest;
+import com.nordlet.api.resources.account.requests.InvitesAcceptAccountRequest;
+import com.nordlet.api.resources.account.requests.InvitesCreateAccountRequest;
+import com.nordlet.api.resources.account.requests.InvitesGetAccountRequest;
+import com.nordlet.api.resources.account.requests.InvitesListAccountRequest;
+import com.nordlet.api.resources.account.requests.InvitesRevokeAccountRequest;
+import com.nordlet.api.resources.account.requests.LocaleSetAccountRequest;
+import com.nordlet.api.resources.account.requests.LoginLinkConsumeAccountRequest;
+import com.nordlet.api.resources.account.requests.LoginLinkRequestAccountRequest;
+import com.nordlet.api.resources.account.requests.LogoutAccountRequest;
+import com.nordlet.api.resources.account.requests.MeAccountRequest;
+import com.nordlet.api.resources.account.requests.MembersListAccountRequest;
+import com.nordlet.api.resources.account.requests.MembersRemoveAccountRequest;
+import com.nordlet.api.resources.account.requests.MembersSetRoleAccountRequest;
+import com.nordlet.api.resources.account.requests.MembersTransferOwnershipAccountRequest;
+import com.nordlet.api.resources.account.requests.ProfileUpdateAccountRequest;
+import com.nordlet.api.resources.account.requests.ReferralConvertAccountRequest;
+import com.nordlet.api.resources.account.requests.ReferralGetAccountRequest;
+import com.nordlet.api.resources.account.requests.SessionsListAccountRequest;
+import com.nordlet.api.resources.account.requests.SessionsRevokeAccountRequest;
+import com.nordlet.api.resources.account.requests.SessionsRevokeOthersAccountRequest;
+import com.nordlet.api.resources.account.requests.TableSettingsGetAccountRequest;
+import com.nordlet.api.resources.account.requests.TableSettingsListAccountRequest;
+import com.nordlet.api.resources.account.requests.TableSettingsSetAccountRequest;
+import com.nordlet.api.resources.account.types.ApiKeysCreateAccountResponse;
+import com.nordlet.api.resources.account.types.ApiKeysListAccountResponse;
+import com.nordlet.api.resources.account.types.ApiKeysRevokeAccountResponse;
+import com.nordlet.api.resources.account.types.ApiKeysRotateAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesActivateAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesArchiveAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesCreateAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesDeleteAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesProfileAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesSelectAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesUpdateAccountResponse;
+import com.nordlet.api.resources.account.types.ConsentAcceptAccountResponse;
+import com.nordlet.api.resources.account.types.DeleteAccountResponse;
+import com.nordlet.api.resources.account.types.EmailChangeRequestAccountResponse;
+import com.nordlet.api.resources.account.types.ExportAccountResponse;
+import com.nordlet.api.resources.account.types.InvitesAcceptAccountResponse;
+import com.nordlet.api.resources.account.types.InvitesCreateAccountResponse;
+import com.nordlet.api.resources.account.types.InvitesGetAccountResponse;
+import com.nordlet.api.resources.account.types.InvitesListAccountResponse;
+import com.nordlet.api.resources.account.types.InvitesRevokeAccountResponse;
+import com.nordlet.api.resources.account.types.LocaleSetAccountResponse;
+import com.nordlet.api.resources.account.types.LoginLinkConsumeAccountResponse;
+import com.nordlet.api.resources.account.types.LoginLinkRequestAccountResponse;
+import com.nordlet.api.resources.account.types.LogoutAccountResponse;
+import com.nordlet.api.resources.account.types.MeAccountResponse;
+import com.nordlet.api.resources.account.types.MembersListAccountResponse;
+import com.nordlet.api.resources.account.types.MembersRemoveAccountResponse;
+import com.nordlet.api.resources.account.types.MembersSetRoleAccountResponse;
+import com.nordlet.api.resources.account.types.MembersTransferOwnershipAccountResponse;
+import com.nordlet.api.resources.account.types.ProfileUpdateAccountResponse;
+import com.nordlet.api.resources.account.types.ReferralConvertAccountResponse;
+import com.nordlet.api.resources.account.types.ReferralGetAccountResponse;
+import com.nordlet.api.resources.account.types.SessionsListAccountResponse;
+import com.nordlet.api.resources.account.types.SessionsRevokeAccountResponse;
+import com.nordlet.api.resources.account.types.SessionsRevokeOthersAccountResponse;
+import com.nordlet.api.resources.account.types.TableSettingsGetAccountResponse;
+import com.nordlet.api.resources.account.types.TableSettingsListAccountResponse;
+import com.nordlet.api.resources.account.types.TableSettingsSetAccountResponse;
 
 public class AccountClient {
   protected final ClientOptions clientOptions;
@@ -100,489 +100,448 @@ public class AccountClient {
     return this.rawClient;
   }
 
-  public PostV1AccountLoginLinkRequestResponse postV1AccountLoginLinkRequest(
-      PostV1AccountLoginLinkRequestRequest request) {
-    return this.rawClient.postV1AccountLoginLinkRequest(request).body();
+  public LoginLinkRequestAccountResponse loginLinkRequest(LoginLinkRequestAccountRequest request) {
+    return this.rawClient.loginLinkRequest(request).body();
   }
 
-  public PostV1AccountLoginLinkRequestResponse postV1AccountLoginLinkRequest(
-      PostV1AccountLoginLinkRequestRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountLoginLinkRequest(request, requestOptions).body();
-  }
-
-  public PostV1AccountLoginLinkConsumeResponse postV1AccountLoginLinkConsume(
-      PostV1AccountLoginLinkConsumeRequest request) {
-    return this.rawClient.postV1AccountLoginLinkConsume(request).body();
-  }
-
-  public PostV1AccountLoginLinkConsumeResponse postV1AccountLoginLinkConsume(
-      PostV1AccountLoginLinkConsumeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountLoginLinkConsume(request, requestOptions).body();
-  }
-
-  public PostV1AccountLogoutResponse postV1AccountLogout() {
-    return this.rawClient.postV1AccountLogout().body();
-  }
-
-  public PostV1AccountLogoutResponse postV1AccountLogout(RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountLogout(requestOptions).body();
-  }
-
-  public PostV1AccountLogoutResponse postV1AccountLogout(PostV1AccountLogoutRequest request) {
-    return this.rawClient.postV1AccountLogout(request).body();
-  }
-
-  public PostV1AccountLogoutResponse postV1AccountLogout(PostV1AccountLogoutRequest request,
+  public LoginLinkRequestAccountResponse loginLinkRequest(LoginLinkRequestAccountRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountLogout(request, requestOptions).body();
+    return this.rawClient.loginLinkRequest(request, requestOptions).body();
   }
 
-  public PostV1AccountMeResponse postV1AccountMe() {
-    return this.rawClient.postV1AccountMe().body();
+  public LoginLinkConsumeAccountResponse loginLinkConsume(LoginLinkConsumeAccountRequest request) {
+    return this.rawClient.loginLinkConsume(request).body();
   }
 
-  public PostV1AccountMeResponse postV1AccountMe(RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountMe(requestOptions).body();
-  }
-
-  public PostV1AccountMeResponse postV1AccountMe(PostV1AccountMeRequest request) {
-    return this.rawClient.postV1AccountMe(request).body();
-  }
-
-  public PostV1AccountMeResponse postV1AccountMe(PostV1AccountMeRequest request,
+  public LoginLinkConsumeAccountResponse loginLinkConsume(LoginLinkConsumeAccountRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountMe(request, requestOptions).body();
+    return this.rawClient.loginLinkConsume(request, requestOptions).body();
   }
 
-  public PostV1AccountMembersListResponse postV1AccountMembersList() {
-    return this.rawClient.postV1AccountMembersList().body();
+  public LogoutAccountResponse logout() {
+    return this.rawClient.logout().body();
   }
 
-  public PostV1AccountMembersListResponse postV1AccountMembersList(RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountMembersList(requestOptions).body();
+  public LogoutAccountResponse logout(RequestOptions requestOptions) {
+    return this.rawClient.logout(requestOptions).body();
   }
 
-  public PostV1AccountMembersListResponse postV1AccountMembersList(
-      PostV1AccountMembersListRequest request) {
-    return this.rawClient.postV1AccountMembersList(request).body();
+  public LogoutAccountResponse logout(LogoutAccountRequest request) {
+    return this.rawClient.logout(request).body();
   }
 
-  public PostV1AccountMembersListResponse postV1AccountMembersList(
-      PostV1AccountMembersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountMembersList(request, requestOptions).body();
+  public LogoutAccountResponse logout(LogoutAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.logout(request, requestOptions).body();
   }
 
-  public PostV1AccountMembersSetRoleResponse postV1AccountMembersSetRole(
-      PostV1AccountMembersSetRoleRequest request) {
-    return this.rawClient.postV1AccountMembersSetRole(request).body();
+  public MeAccountResponse me() {
+    return this.rawClient.me().body();
   }
 
-  public PostV1AccountMembersSetRoleResponse postV1AccountMembersSetRole(
-      PostV1AccountMembersSetRoleRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountMembersSetRole(request, requestOptions).body();
+  public MeAccountResponse me(RequestOptions requestOptions) {
+    return this.rawClient.me(requestOptions).body();
   }
 
-  public PostV1AccountMembersTransferOwnershipResponse postV1AccountMembersTransferOwnership(
-      PostV1AccountMembersTransferOwnershipRequest request) {
-    return this.rawClient.postV1AccountMembersTransferOwnership(request).body();
+  public MeAccountResponse me(MeAccountRequest request) {
+    return this.rawClient.me(request).body();
   }
 
-  public PostV1AccountMembersTransferOwnershipResponse postV1AccountMembersTransferOwnership(
-      PostV1AccountMembersTransferOwnershipRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountMembersTransferOwnership(request, requestOptions).body();
+  public MeAccountResponse me(MeAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.me(request, requestOptions).body();
   }
 
-  public PostV1AccountMembersRemoveResponse postV1AccountMembersRemove(
-      PostV1AccountMembersRemoveRequest request) {
-    return this.rawClient.postV1AccountMembersRemove(request).body();
+  public MembersListAccountResponse membersList() {
+    return this.rawClient.membersList().body();
   }
 
-  public PostV1AccountMembersRemoveResponse postV1AccountMembersRemove(
-      PostV1AccountMembersRemoveRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountMembersRemove(request, requestOptions).body();
+  public MembersListAccountResponse membersList(RequestOptions requestOptions) {
+    return this.rawClient.membersList(requestOptions).body();
   }
 
-  public PostV1AccountInvitesCreateResponse postV1AccountInvitesCreate(
-      PostV1AccountInvitesCreateRequest request) {
-    return this.rawClient.postV1AccountInvitesCreate(request).body();
+  public MembersListAccountResponse membersList(MembersListAccountRequest request) {
+    return this.rawClient.membersList(request).body();
   }
 
-  public PostV1AccountInvitesCreateResponse postV1AccountInvitesCreate(
-      PostV1AccountInvitesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountInvitesCreate(request, requestOptions).body();
-  }
-
-  public PostV1AccountInvitesListResponse postV1AccountInvitesList() {
-    return this.rawClient.postV1AccountInvitesList().body();
-  }
-
-  public PostV1AccountInvitesListResponse postV1AccountInvitesList(RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountInvitesList(requestOptions).body();
-  }
-
-  public PostV1AccountInvitesListResponse postV1AccountInvitesList(
-      PostV1AccountInvitesListRequest request) {
-    return this.rawClient.postV1AccountInvitesList(request).body();
-  }
-
-  public PostV1AccountInvitesListResponse postV1AccountInvitesList(
-      PostV1AccountInvitesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountInvitesList(request, requestOptions).body();
-  }
-
-  public PostV1AccountInvitesRevokeResponse postV1AccountInvitesRevoke(
-      PostV1AccountInvitesRevokeRequest request) {
-    return this.rawClient.postV1AccountInvitesRevoke(request).body();
-  }
-
-  public PostV1AccountInvitesRevokeResponse postV1AccountInvitesRevoke(
-      PostV1AccountInvitesRevokeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountInvitesRevoke(request, requestOptions).body();
-  }
-
-  public PostV1AccountInvitesGetResponse postV1AccountInvitesGet(
-      PostV1AccountInvitesGetRequest request) {
-    return this.rawClient.postV1AccountInvitesGet(request).body();
-  }
-
-  public PostV1AccountInvitesGetResponse postV1AccountInvitesGet(
-      PostV1AccountInvitesGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountInvitesGet(request, requestOptions).body();
-  }
-
-  public PostV1AccountInvitesAcceptResponse postV1AccountInvitesAccept(
-      PostV1AccountInvitesAcceptRequest request) {
-    return this.rawClient.postV1AccountInvitesAccept(request).body();
-  }
-
-  public PostV1AccountInvitesAcceptResponse postV1AccountInvitesAccept(
-      PostV1AccountInvitesAcceptRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountInvitesAccept(request, requestOptions).body();
-  }
-
-  public PostV1AccountLocaleSetResponse postV1AccountLocaleSet(
-      PostV1AccountLocaleSetRequest request) {
-    return this.rawClient.postV1AccountLocaleSet(request).body();
-  }
-
-  public PostV1AccountLocaleSetResponse postV1AccountLocaleSet(
-      PostV1AccountLocaleSetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountLocaleSet(request, requestOptions).body();
-  }
-
-  public PostV1AccountCompaniesCreateResponse postV1AccountCompaniesCreate(
-      PostV1AccountCompaniesCreateRequest request) {
-    return this.rawClient.postV1AccountCompaniesCreate(request).body();
-  }
-
-  public PostV1AccountCompaniesCreateResponse postV1AccountCompaniesCreate(
-      PostV1AccountCompaniesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesCreate(request, requestOptions).body();
-  }
-
-  public PostV1AccountCompaniesSelectResponse postV1AccountCompaniesSelect(
-      PostV1AccountCompaniesSelectRequest request) {
-    return this.rawClient.postV1AccountCompaniesSelect(request).body();
-  }
-
-  public PostV1AccountCompaniesSelectResponse postV1AccountCompaniesSelect(
-      PostV1AccountCompaniesSelectRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesSelect(request, requestOptions).body();
-  }
-
-  public PostV1AccountCompaniesProfileResponse postV1AccountCompaniesProfile() {
-    return this.rawClient.postV1AccountCompaniesProfile().body();
-  }
-
-  public PostV1AccountCompaniesProfileResponse postV1AccountCompaniesProfile(
+  public MembersListAccountResponse membersList(MembersListAccountRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesProfile(requestOptions).body();
+    return this.rawClient.membersList(request, requestOptions).body();
   }
 
-  public PostV1AccountCompaniesProfileResponse postV1AccountCompaniesProfile(
-      PostV1AccountCompaniesProfileRequest request) {
-    return this.rawClient.postV1AccountCompaniesProfile(request).body();
+  public MembersSetRoleAccountResponse membersSetRole(MembersSetRoleAccountRequest request) {
+    return this.rawClient.membersSetRole(request).body();
   }
 
-  public PostV1AccountCompaniesProfileResponse postV1AccountCompaniesProfile(
-      PostV1AccountCompaniesProfileRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesProfile(request, requestOptions).body();
-  }
-
-  public PostV1AccountCompaniesUpdateResponse postV1AccountCompaniesUpdate() {
-    return this.rawClient.postV1AccountCompaniesUpdate().body();
-  }
-
-  public PostV1AccountCompaniesUpdateResponse postV1AccountCompaniesUpdate(
+  public MembersSetRoleAccountResponse membersSetRole(MembersSetRoleAccountRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesUpdate(requestOptions).body();
+    return this.rawClient.membersSetRole(request, requestOptions).body();
   }
 
-  public PostV1AccountCompaniesUpdateResponse postV1AccountCompaniesUpdate(
-      PostV1AccountCompaniesUpdateRequest request) {
-    return this.rawClient.postV1AccountCompaniesUpdate(request).body();
+  public MembersTransferOwnershipAccountResponse membersTransferOwnership(
+      MembersTransferOwnershipAccountRequest request) {
+    return this.rawClient.membersTransferOwnership(request).body();
   }
 
-  public PostV1AccountCompaniesUpdateResponse postV1AccountCompaniesUpdate(
-      PostV1AccountCompaniesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesUpdate(request, requestOptions).body();
+  public MembersTransferOwnershipAccountResponse membersTransferOwnership(
+      MembersTransferOwnershipAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.membersTransferOwnership(request, requestOptions).body();
   }
 
-  public PostV1AccountCompaniesArchiveResponse postV1AccountCompaniesArchive(
-      PostV1AccountCompaniesArchiveRequest request) {
-    return this.rawClient.postV1AccountCompaniesArchive(request).body();
+  public MembersRemoveAccountResponse membersRemove(MembersRemoveAccountRequest request) {
+    return this.rawClient.membersRemove(request).body();
   }
 
-  public PostV1AccountCompaniesArchiveResponse postV1AccountCompaniesArchive(
-      PostV1AccountCompaniesArchiveRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesArchive(request, requestOptions).body();
-  }
-
-  public PostV1AccountCompaniesDeleteResponse postV1AccountCompaniesDelete(
-      PostV1AccountCompaniesDeleteRequest request) {
-    return this.rawClient.postV1AccountCompaniesDelete(request).body();
-  }
-
-  public PostV1AccountCompaniesDeleteResponse postV1AccountCompaniesDelete(
-      PostV1AccountCompaniesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesDelete(request, requestOptions).body();
-  }
-
-  public PostV1AccountCompaniesActivateResponse postV1AccountCompaniesActivate(
-      PostV1AccountCompaniesActivateRequest request) {
-    return this.rawClient.postV1AccountCompaniesActivate(request).body();
-  }
-
-  public PostV1AccountCompaniesActivateResponse postV1AccountCompaniesActivate(
-      PostV1AccountCompaniesActivateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesActivate(request, requestOptions).body();
-  }
-
-  public PostV1AccountApiKeysCreateResponse postV1AccountApiKeysCreate(
-      PostV1AccountApiKeysCreateRequest request) {
-    return this.rawClient.postV1AccountApiKeysCreate(request).body();
-  }
-
-  public PostV1AccountApiKeysCreateResponse postV1AccountApiKeysCreate(
-      PostV1AccountApiKeysCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountApiKeysCreate(request, requestOptions).body();
-  }
-
-  public PostV1AccountApiKeysListResponse postV1AccountApiKeysList() {
-    return this.rawClient.postV1AccountApiKeysList().body();
-  }
-
-  public PostV1AccountApiKeysListResponse postV1AccountApiKeysList(RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountApiKeysList(requestOptions).body();
-  }
-
-  public PostV1AccountApiKeysListResponse postV1AccountApiKeysList(
-      PostV1AccountApiKeysListRequest request) {
-    return this.rawClient.postV1AccountApiKeysList(request).body();
-  }
-
-  public PostV1AccountApiKeysListResponse postV1AccountApiKeysList(
-      PostV1AccountApiKeysListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountApiKeysList(request, requestOptions).body();
-  }
-
-  public PostV1AccountApiKeysRotateResponse issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(
-      PostV1AccountApiKeysRotateRequest request) {
-    return this.rawClient.issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(request).body();
-  }
-
-  public PostV1AccountApiKeysRotateResponse issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(
-      PostV1AccountApiKeysRotateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(request, requestOptions).body();
-  }
-
-  public PostV1AccountApiKeysRevokeResponse postV1AccountApiKeysRevoke(
-      PostV1AccountApiKeysRevokeRequest request) {
-    return this.rawClient.postV1AccountApiKeysRevoke(request).body();
-  }
-
-  public PostV1AccountApiKeysRevokeResponse postV1AccountApiKeysRevoke(
-      PostV1AccountApiKeysRevokeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountApiKeysRevoke(request, requestOptions).body();
-  }
-
-  public PostV1AccountConsentAcceptResponse postV1AccountConsentAccept(
-      PostV1AccountConsentAcceptRequest request) {
-    return this.rawClient.postV1AccountConsentAccept(request).body();
-  }
-
-  public PostV1AccountConsentAcceptResponse postV1AccountConsentAccept(
-      PostV1AccountConsentAcceptRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountConsentAccept(request, requestOptions).body();
-  }
-
-  public PostV1AccountProfileUpdateResponse postV1AccountProfileUpdate(
-      PostV1AccountProfileUpdateRequest request) {
-    return this.rawClient.postV1AccountProfileUpdate(request).body();
-  }
-
-  public PostV1AccountProfileUpdateResponse postV1AccountProfileUpdate(
-      PostV1AccountProfileUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountProfileUpdate(request, requestOptions).body();
-  }
-
-  public PostV1AccountEmailChangeRequestResponse postV1AccountEmailChangeRequest(
-      PostV1AccountEmailChangeRequestRequest request) {
-    return this.rawClient.postV1AccountEmailChangeRequest(request).body();
-  }
-
-  public PostV1AccountEmailChangeRequestResponse postV1AccountEmailChangeRequest(
-      PostV1AccountEmailChangeRequestRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountEmailChangeRequest(request, requestOptions).body();
-  }
-
-  public PostV1AccountSessionsListResponse postV1AccountSessionsList() {
-    return this.rawClient.postV1AccountSessionsList().body();
-  }
-
-  public PostV1AccountSessionsListResponse postV1AccountSessionsList(
+  public MembersRemoveAccountResponse membersRemove(MembersRemoveAccountRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountSessionsList(requestOptions).body();
+    return this.rawClient.membersRemove(request, requestOptions).body();
   }
 
-  public PostV1AccountSessionsListResponse postV1AccountSessionsList(
-      PostV1AccountSessionsListRequest request) {
-    return this.rawClient.postV1AccountSessionsList(request).body();
+  public InvitesCreateAccountResponse invitesCreate(InvitesCreateAccountRequest request) {
+    return this.rawClient.invitesCreate(request).body();
   }
 
-  public PostV1AccountSessionsListResponse postV1AccountSessionsList(
-      PostV1AccountSessionsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountSessionsList(request, requestOptions).body();
-  }
-
-  public PostV1AccountSessionsRevokeResponse postV1AccountSessionsRevoke(
-      PostV1AccountSessionsRevokeRequest request) {
-    return this.rawClient.postV1AccountSessionsRevoke(request).body();
-  }
-
-  public PostV1AccountSessionsRevokeResponse postV1AccountSessionsRevoke(
-      PostV1AccountSessionsRevokeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountSessionsRevoke(request, requestOptions).body();
-  }
-
-  public PostV1AccountSessionsRevokeOthersResponse postV1AccountSessionsRevokeOthers() {
-    return this.rawClient.postV1AccountSessionsRevokeOthers().body();
-  }
-
-  public PostV1AccountSessionsRevokeOthersResponse postV1AccountSessionsRevokeOthers(
+  public InvitesCreateAccountResponse invitesCreate(InvitesCreateAccountRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountSessionsRevokeOthers(requestOptions).body();
+    return this.rawClient.invitesCreate(request, requestOptions).body();
   }
 
-  public PostV1AccountSessionsRevokeOthersResponse postV1AccountSessionsRevokeOthers(
-      PostV1AccountSessionsRevokeOthersRequest request) {
-    return this.rawClient.postV1AccountSessionsRevokeOthers(request).body();
+  public InvitesListAccountResponse invitesList() {
+    return this.rawClient.invitesList().body();
   }
 
-  public PostV1AccountSessionsRevokeOthersResponse postV1AccountSessionsRevokeOthers(
-      PostV1AccountSessionsRevokeOthersRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountSessionsRevokeOthers(request, requestOptions).body();
+  public InvitesListAccountResponse invitesList(RequestOptions requestOptions) {
+    return this.rawClient.invitesList(requestOptions).body();
   }
 
-  public PostV1AccountExportResponse downloadEverythingNordletStoresAboutTheSignedInUser() {
-    return this.rawClient.downloadEverythingNordletStoresAboutTheSignedInUser().body();
+  public InvitesListAccountResponse invitesList(InvitesListAccountRequest request) {
+    return this.rawClient.invitesList(request).body();
   }
 
-  public PostV1AccountExportResponse downloadEverythingNordletStoresAboutTheSignedInUser(
+  public InvitesListAccountResponse invitesList(InvitesListAccountRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.downloadEverythingNordletStoresAboutTheSignedInUser(requestOptions).body();
+    return this.rawClient.invitesList(request, requestOptions).body();
   }
 
-  public PostV1AccountExportResponse downloadEverythingNordletStoresAboutTheSignedInUser(
-      PostV1AccountExportRequest request) {
-    return this.rawClient.downloadEverythingNordletStoresAboutTheSignedInUser(request).body();
+  public InvitesRevokeAccountResponse invitesRevoke(InvitesRevokeAccountRequest request) {
+    return this.rawClient.invitesRevoke(request).body();
   }
 
-  public PostV1AccountExportResponse downloadEverythingNordletStoresAboutTheSignedInUser(
-      PostV1AccountExportRequest request, RequestOptions requestOptions) {
-    return this.rawClient.downloadEverythingNordletStoresAboutTheSignedInUser(request, requestOptions).body();
+  public InvitesRevokeAccountResponse invitesRevoke(InvitesRevokeAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invitesRevoke(request, requestOptions).body();
+  }
+
+  public InvitesGetAccountResponse invitesGet(InvitesGetAccountRequest request) {
+    return this.rawClient.invitesGet(request).body();
+  }
+
+  public InvitesGetAccountResponse invitesGet(InvitesGetAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invitesGet(request, requestOptions).body();
+  }
+
+  public InvitesAcceptAccountResponse invitesAccept(InvitesAcceptAccountRequest request) {
+    return this.rawClient.invitesAccept(request).body();
+  }
+
+  public InvitesAcceptAccountResponse invitesAccept(InvitesAcceptAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invitesAccept(request, requestOptions).body();
+  }
+
+  public LocaleSetAccountResponse localeSet(LocaleSetAccountRequest request) {
+    return this.rawClient.localeSet(request).body();
+  }
+
+  public LocaleSetAccountResponse localeSet(LocaleSetAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.localeSet(request, requestOptions).body();
+  }
+
+  public CompaniesCreateAccountResponse companiesCreate(CompaniesCreateAccountRequest request) {
+    return this.rawClient.companiesCreate(request).body();
+  }
+
+  public CompaniesCreateAccountResponse companiesCreate(CompaniesCreateAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.companiesCreate(request, requestOptions).body();
+  }
+
+  public CompaniesSelectAccountResponse companiesSelect(CompaniesSelectAccountRequest request) {
+    return this.rawClient.companiesSelect(request).body();
+  }
+
+  public CompaniesSelectAccountResponse companiesSelect(CompaniesSelectAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.companiesSelect(request, requestOptions).body();
+  }
+
+  public CompaniesProfileAccountResponse companiesProfile() {
+    return this.rawClient.companiesProfile().body();
+  }
+
+  public CompaniesProfileAccountResponse companiesProfile(RequestOptions requestOptions) {
+    return this.rawClient.companiesProfile(requestOptions).body();
+  }
+
+  public CompaniesProfileAccountResponse companiesProfile(CompaniesProfileAccountRequest request) {
+    return this.rawClient.companiesProfile(request).body();
+  }
+
+  public CompaniesProfileAccountResponse companiesProfile(CompaniesProfileAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.companiesProfile(request, requestOptions).body();
+  }
+
+  public CompaniesUpdateAccountResponse companiesUpdate() {
+    return this.rawClient.companiesUpdate().body();
+  }
+
+  public CompaniesUpdateAccountResponse companiesUpdate(RequestOptions requestOptions) {
+    return this.rawClient.companiesUpdate(requestOptions).body();
+  }
+
+  public CompaniesUpdateAccountResponse companiesUpdate(CompaniesUpdateAccountRequest request) {
+    return this.rawClient.companiesUpdate(request).body();
+  }
+
+  public CompaniesUpdateAccountResponse companiesUpdate(CompaniesUpdateAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.companiesUpdate(request, requestOptions).body();
+  }
+
+  public CompaniesArchiveAccountResponse companiesArchive(CompaniesArchiveAccountRequest request) {
+    return this.rawClient.companiesArchive(request).body();
+  }
+
+  public CompaniesArchiveAccountResponse companiesArchive(CompaniesArchiveAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.companiesArchive(request, requestOptions).body();
+  }
+
+  public CompaniesDeleteAccountResponse companiesDelete(CompaniesDeleteAccountRequest request) {
+    return this.rawClient.companiesDelete(request).body();
+  }
+
+  public CompaniesDeleteAccountResponse companiesDelete(CompaniesDeleteAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.companiesDelete(request, requestOptions).body();
+  }
+
+  public CompaniesActivateAccountResponse companiesActivate(
+      CompaniesActivateAccountRequest request) {
+    return this.rawClient.companiesActivate(request).body();
+  }
+
+  public CompaniesActivateAccountResponse companiesActivate(CompaniesActivateAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.companiesActivate(request, requestOptions).body();
+  }
+
+  public ApiKeysCreateAccountResponse apiKeysCreate(ApiKeysCreateAccountRequest request) {
+    return this.rawClient.apiKeysCreate(request).body();
+  }
+
+  public ApiKeysCreateAccountResponse apiKeysCreate(ApiKeysCreateAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.apiKeysCreate(request, requestOptions).body();
+  }
+
+  public ApiKeysListAccountResponse apiKeysList() {
+    return this.rawClient.apiKeysList().body();
+  }
+
+  public ApiKeysListAccountResponse apiKeysList(RequestOptions requestOptions) {
+    return this.rawClient.apiKeysList(requestOptions).body();
+  }
+
+  public ApiKeysListAccountResponse apiKeysList(ApiKeysListAccountRequest request) {
+    return this.rawClient.apiKeysList(request).body();
+  }
+
+  public ApiKeysListAccountResponse apiKeysList(ApiKeysListAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.apiKeysList(request, requestOptions).body();
+  }
+
+  public ApiKeysRotateAccountResponse apiKeysRotate(ApiKeysRotateAccountRequest request) {
+    return this.rawClient.apiKeysRotate(request).body();
+  }
+
+  public ApiKeysRotateAccountResponse apiKeysRotate(ApiKeysRotateAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.apiKeysRotate(request, requestOptions).body();
+  }
+
+  public ApiKeysRevokeAccountResponse apiKeysRevoke(ApiKeysRevokeAccountRequest request) {
+    return this.rawClient.apiKeysRevoke(request).body();
+  }
+
+  public ApiKeysRevokeAccountResponse apiKeysRevoke(ApiKeysRevokeAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.apiKeysRevoke(request, requestOptions).body();
+  }
+
+  public ConsentAcceptAccountResponse consentAccept(ConsentAcceptAccountRequest request) {
+    return this.rawClient.consentAccept(request).body();
+  }
+
+  public ConsentAcceptAccountResponse consentAccept(ConsentAcceptAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.consentAccept(request, requestOptions).body();
+  }
+
+  public ProfileUpdateAccountResponse profileUpdate(ProfileUpdateAccountRequest request) {
+    return this.rawClient.profileUpdate(request).body();
+  }
+
+  public ProfileUpdateAccountResponse profileUpdate(ProfileUpdateAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.profileUpdate(request, requestOptions).body();
+  }
+
+  public EmailChangeRequestAccountResponse emailChangeRequest(
+      EmailChangeRequestAccountRequest request) {
+    return this.rawClient.emailChangeRequest(request).body();
+  }
+
+  public EmailChangeRequestAccountResponse emailChangeRequest(
+      EmailChangeRequestAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.emailChangeRequest(request, requestOptions).body();
+  }
+
+  public SessionsListAccountResponse sessionsList() {
+    return this.rawClient.sessionsList().body();
+  }
+
+  public SessionsListAccountResponse sessionsList(RequestOptions requestOptions) {
+    return this.rawClient.sessionsList(requestOptions).body();
+  }
+
+  public SessionsListAccountResponse sessionsList(SessionsListAccountRequest request) {
+    return this.rawClient.sessionsList(request).body();
+  }
+
+  public SessionsListAccountResponse sessionsList(SessionsListAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.sessionsList(request, requestOptions).body();
+  }
+
+  public SessionsRevokeAccountResponse sessionsRevoke(SessionsRevokeAccountRequest request) {
+    return this.rawClient.sessionsRevoke(request).body();
+  }
+
+  public SessionsRevokeAccountResponse sessionsRevoke(SessionsRevokeAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.sessionsRevoke(request, requestOptions).body();
+  }
+
+  public SessionsRevokeOthersAccountResponse sessionsRevokeOthers() {
+    return this.rawClient.sessionsRevokeOthers().body();
+  }
+
+  public SessionsRevokeOthersAccountResponse sessionsRevokeOthers(RequestOptions requestOptions) {
+    return this.rawClient.sessionsRevokeOthers(requestOptions).body();
+  }
+
+  public SessionsRevokeOthersAccountResponse sessionsRevokeOthers(
+      SessionsRevokeOthersAccountRequest request) {
+    return this.rawClient.sessionsRevokeOthers(request).body();
+  }
+
+  public SessionsRevokeOthersAccountResponse sessionsRevokeOthers(
+      SessionsRevokeOthersAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.sessionsRevokeOthers(request, requestOptions).body();
+  }
+
+  public ExportAccountResponse export() {
+    return this.rawClient.export().body();
+  }
+
+  public ExportAccountResponse export(RequestOptions requestOptions) {
+    return this.rawClient.export(requestOptions).body();
+  }
+
+  public ExportAccountResponse export(ExportAccountRequest request) {
+    return this.rawClient.export(request).body();
+  }
+
+  public ExportAccountResponse export(ExportAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.export(request, requestOptions).body();
   }
 
   /**
    * Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
    */
-  public PostV1AccountDeleteResponse deleteTheSignedInUserAccount(
-      PostV1AccountDeleteRequest request) {
-    return this.rawClient.deleteTheSignedInUserAccount(request).body();
+  public DeleteAccountResponse delete(DeleteAccountRequest request) {
+    return this.rawClient.delete(request).body();
   }
 
   /**
    * Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
    */
-  public PostV1AccountDeleteResponse deleteTheSignedInUserAccount(
-      PostV1AccountDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.deleteTheSignedInUserAccount(request, requestOptions).body();
+  public DeleteAccountResponse delete(DeleteAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.delete(request, requestOptions).body();
   }
 
-  public PostV1AccountReferralGetResponse postV1AccountReferralGet() {
-    return this.rawClient.postV1AccountReferralGet().body();
+  public ReferralGetAccountResponse referralGet() {
+    return this.rawClient.referralGet().body();
   }
 
-  public PostV1AccountReferralGetResponse postV1AccountReferralGet(RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountReferralGet(requestOptions).body();
+  public ReferralGetAccountResponse referralGet(RequestOptions requestOptions) {
+    return this.rawClient.referralGet(requestOptions).body();
   }
 
-  public PostV1AccountReferralGetResponse postV1AccountReferralGet(
-      PostV1AccountReferralGetRequest request) {
-    return this.rawClient.postV1AccountReferralGet(request).body();
+  public ReferralGetAccountResponse referralGet(ReferralGetAccountRequest request) {
+    return this.rawClient.referralGet(request).body();
   }
 
-  public PostV1AccountReferralGetResponse postV1AccountReferralGet(
-      PostV1AccountReferralGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountReferralGet(request, requestOptions).body();
-  }
-
-  public PostV1AccountReferralConvertResponse postV1AccountReferralConvert(
-      PostV1AccountReferralConvertRequest request) {
-    return this.rawClient.postV1AccountReferralConvert(request).body();
-  }
-
-  public PostV1AccountReferralConvertResponse postV1AccountReferralConvert(
-      PostV1AccountReferralConvertRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountReferralConvert(request, requestOptions).body();
-  }
-
-  public PostV1AccountTableSettingsGetResponse postV1AccountTableSettingsGet(
-      PostV1AccountTableSettingsGetRequest request) {
-    return this.rawClient.postV1AccountTableSettingsGet(request).body();
-  }
-
-  public PostV1AccountTableSettingsGetResponse postV1AccountTableSettingsGet(
-      PostV1AccountTableSettingsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountTableSettingsGet(request, requestOptions).body();
-  }
-
-  public PostV1AccountTableSettingsSetResponse postV1AccountTableSettingsSet(
-      PostV1AccountTableSettingsSetRequest request) {
-    return this.rawClient.postV1AccountTableSettingsSet(request).body();
-  }
-
-  public PostV1AccountTableSettingsSetResponse postV1AccountTableSettingsSet(
-      PostV1AccountTableSettingsSetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountTableSettingsSet(request, requestOptions).body();
-  }
-
-  public PostV1AccountTableSettingsListResponse postV1AccountTableSettingsList() {
-    return this.rawClient.postV1AccountTableSettingsList().body();
-  }
-
-  public PostV1AccountTableSettingsListResponse postV1AccountTableSettingsList(
+  public ReferralGetAccountResponse referralGet(ReferralGetAccountRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountTableSettingsList(requestOptions).body();
+    return this.rawClient.referralGet(request, requestOptions).body();
   }
 
-  public PostV1AccountTableSettingsListResponse postV1AccountTableSettingsList(
-      PostV1AccountTableSettingsListRequest request) {
-    return this.rawClient.postV1AccountTableSettingsList(request).body();
+  public ReferralConvertAccountResponse referralConvert(ReferralConvertAccountRequest request) {
+    return this.rawClient.referralConvert(request).body();
   }
 
-  public PostV1AccountTableSettingsListResponse postV1AccountTableSettingsList(
-      PostV1AccountTableSettingsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountTableSettingsList(request, requestOptions).body();
+  public ReferralConvertAccountResponse referralConvert(ReferralConvertAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.referralConvert(request, requestOptions).body();
+  }
+
+  public TableSettingsGetAccountResponse tableSettingsGet(TableSettingsGetAccountRequest request) {
+    return this.rawClient.tableSettingsGet(request).body();
+  }
+
+  public TableSettingsGetAccountResponse tableSettingsGet(TableSettingsGetAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.tableSettingsGet(request, requestOptions).body();
+  }
+
+  public TableSettingsSetAccountResponse tableSettingsSet(TableSettingsSetAccountRequest request) {
+    return this.rawClient.tableSettingsSet(request).body();
+  }
+
+  public TableSettingsSetAccountResponse tableSettingsSet(TableSettingsSetAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.tableSettingsSet(request, requestOptions).body();
+  }
+
+  public TableSettingsListAccountResponse tableSettingsList() {
+    return this.rawClient.tableSettingsList().body();
+  }
+
+  public TableSettingsListAccountResponse tableSettingsList(RequestOptions requestOptions) {
+    return this.rawClient.tableSettingsList(requestOptions).body();
+  }
+
+  public TableSettingsListAccountResponse tableSettingsList(
+      TableSettingsListAccountRequest request) {
+    return this.rawClient.tableSettingsList(request).body();
+  }
+
+  public TableSettingsListAccountResponse tableSettingsList(TableSettingsListAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.tableSettingsList(request, requestOptions).body();
   }
 }

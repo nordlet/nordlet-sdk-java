@@ -6,18 +6,18 @@ package com.nordlet.api.resources.billing;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.billing.requests.PostV1BillingAccountGetRequest;
-import com.nordlet.api.resources.billing.requests.PostV1BillingAccountSetPlanRequest;
-import com.nordlet.api.resources.billing.requests.PostV1BillingPortalCreateRequest;
-import com.nordlet.api.resources.billing.requests.PostV1BillingTopupCreateRequest;
-import com.nordlet.api.resources.billing.requests.PostV1BillingTransactionsListRequest;
-import com.nordlet.api.resources.billing.requests.PostV1BillingUsageListRequest;
-import com.nordlet.api.resources.billing.types.PostV1BillingAccountGetResponse;
-import com.nordlet.api.resources.billing.types.PostV1BillingAccountSetPlanResponse;
-import com.nordlet.api.resources.billing.types.PostV1BillingPortalCreateResponse;
-import com.nordlet.api.resources.billing.types.PostV1BillingTopupCreateResponse;
-import com.nordlet.api.resources.billing.types.PostV1BillingTransactionsListResponse;
-import com.nordlet.api.resources.billing.types.PostV1BillingUsageListResponse;
+import com.nordlet.api.resources.billing.requests.AccountGetBillingRequest;
+import com.nordlet.api.resources.billing.requests.AccountSetPlanBillingRequest;
+import com.nordlet.api.resources.billing.requests.PortalCreateBillingRequest;
+import com.nordlet.api.resources.billing.requests.TopupCreateBillingRequest;
+import com.nordlet.api.resources.billing.requests.TransactionsListBillingRequest;
+import com.nordlet.api.resources.billing.requests.UsageListBillingRequest;
+import com.nordlet.api.resources.billing.types.AccountGetBillingResponse;
+import com.nordlet.api.resources.billing.types.AccountSetPlanBillingResponse;
+import com.nordlet.api.resources.billing.types.PortalCreateBillingResponse;
+import com.nordlet.api.resources.billing.types.TopupCreateBillingResponse;
+import com.nordlet.api.resources.billing.types.TransactionsListBillingResponse;
+import com.nordlet.api.resources.billing.types.UsageListBillingResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncBillingClient {
@@ -37,90 +37,87 @@ public class AsyncBillingClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1BillingAccountGetResponse> postV1BillingAccountGet() {
-    return this.rawClient.postV1BillingAccountGet().thenApply(response -> response.body());
+  public CompletableFuture<AccountGetBillingResponse> accountGet() {
+    return this.rawClient.accountGet().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1BillingAccountGetResponse> postV1BillingAccountGet(
+  public CompletableFuture<AccountGetBillingResponse> accountGet(RequestOptions requestOptions) {
+    return this.rawClient.accountGet(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AccountGetBillingResponse> accountGet(AccountGetBillingRequest request) {
+    return this.rawClient.accountGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AccountGetBillingResponse> accountGet(AccountGetBillingRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingAccountGet(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.accountGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1BillingAccountGetResponse> postV1BillingAccountGet(
-      PostV1BillingAccountGetRequest request) {
-    return this.rawClient.postV1BillingAccountGet(request).thenApply(response -> response.body());
+  public CompletableFuture<AccountSetPlanBillingResponse> accountSetPlan(
+      AccountSetPlanBillingRequest request) {
+    return this.rawClient.accountSetPlan(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1BillingAccountGetResponse> postV1BillingAccountGet(
-      PostV1BillingAccountGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingAccountGet(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<AccountSetPlanBillingResponse> accountSetPlan(
+      AccountSetPlanBillingRequest request, RequestOptions requestOptions) {
+    return this.rawClient.accountSetPlan(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1BillingAccountSetPlanResponse> postV1BillingAccountSetPlan(
-      PostV1BillingAccountSetPlanRequest request) {
-    return this.rawClient.postV1BillingAccountSetPlan(request).thenApply(response -> response.body());
+  public CompletableFuture<TopupCreateBillingResponse> topupCreate(
+      TopupCreateBillingRequest request) {
+    return this.rawClient.topupCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1BillingAccountSetPlanResponse> postV1BillingAccountSetPlan(
-      PostV1BillingAccountSetPlanRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingAccountSetPlan(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<TopupCreateBillingResponse> topupCreate(
+      TopupCreateBillingRequest request, RequestOptions requestOptions) {
+    return this.rawClient.topupCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1BillingTopupCreateResponse> postV1BillingTopupCreate(
-      PostV1BillingTopupCreateRequest request) {
-    return this.rawClient.postV1BillingTopupCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<PortalCreateBillingResponse> portalCreate() {
+    return this.rawClient.portalCreate().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1BillingTopupCreateResponse> postV1BillingTopupCreate(
-      PostV1BillingTopupCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingTopupCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1BillingPortalCreateResponse> postV1BillingPortalCreate() {
-    return this.rawClient.postV1BillingPortalCreate().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1BillingPortalCreateResponse> postV1BillingPortalCreate(
+  public CompletableFuture<PortalCreateBillingResponse> portalCreate(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingPortalCreate(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.portalCreate(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1BillingPortalCreateResponse> postV1BillingPortalCreate(
-      PostV1BillingPortalCreateRequest request) {
-    return this.rawClient.postV1BillingPortalCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<PortalCreateBillingResponse> portalCreate(
+      PortalCreateBillingRequest request) {
+    return this.rawClient.portalCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1BillingPortalCreateResponse> postV1BillingPortalCreate(
-      PostV1BillingPortalCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingPortalCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<PortalCreateBillingResponse> portalCreate(
+      PortalCreateBillingRequest request, RequestOptions requestOptions) {
+    return this.rawClient.portalCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1BillingTransactionsListResponse> postV1BillingTransactionsList() {
-    return this.rawClient.postV1BillingTransactionsList().thenApply(response -> response.body());
+  public CompletableFuture<TransactionsListBillingResponse> transactionsList() {
+    return this.rawClient.transactionsList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1BillingTransactionsListResponse> postV1BillingTransactionsList(
+  public CompletableFuture<TransactionsListBillingResponse> transactionsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingTransactionsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.transactionsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1BillingTransactionsListResponse> postV1BillingTransactionsList(
-      PostV1BillingTransactionsListRequest request) {
-    return this.rawClient.postV1BillingTransactionsList(request).thenApply(response -> response.body());
+  public CompletableFuture<TransactionsListBillingResponse> transactionsList(
+      TransactionsListBillingRequest request) {
+    return this.rawClient.transactionsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1BillingTransactionsListResponse> postV1BillingTransactionsList(
-      PostV1BillingTransactionsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingTransactionsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<TransactionsListBillingResponse> transactionsList(
+      TransactionsListBillingRequest request, RequestOptions requestOptions) {
+    return this.rawClient.transactionsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1BillingUsageListResponse> postV1BillingUsageList(
-      PostV1BillingUsageListRequest request) {
-    return this.rawClient.postV1BillingUsageList(request).thenApply(response -> response.body());
+  public CompletableFuture<UsageListBillingResponse> usageList(UsageListBillingRequest request) {
+    return this.rawClient.usageList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1BillingUsageListResponse> postV1BillingUsageList(
-      PostV1BillingUsageListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1BillingUsageList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<UsageListBillingResponse> usageList(UsageListBillingRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.usageList(request, requestOptions).thenApply(response -> response.body());
   }
 }

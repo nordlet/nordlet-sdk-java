@@ -15,24 +15,26 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsCancelRequest;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsCreateRequest;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsGetRequest;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsIssueRequest;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsListRequest;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsUpdateRequest;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsCancelResponse;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsCreateResponse;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsGetResponse;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsIssueResponse;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsListResponse;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsUpdateResponse;
+import com.nordlet.api.resources.transport.requests.WaybillsCancelTransportRequest;
+import com.nordlet.api.resources.transport.requests.WaybillsCreateTransportRequest;
+import com.nordlet.api.resources.transport.requests.WaybillsGetTransportRequest;
+import com.nordlet.api.resources.transport.requests.WaybillsIssueTransportRequest;
+import com.nordlet.api.resources.transport.requests.WaybillsListTransportRequest;
+import com.nordlet.api.resources.transport.requests.WaybillsUpdateTransportRequest;
+import com.nordlet.api.resources.transport.types.WaybillsCancelTransportResponse;
+import com.nordlet.api.resources.transport.types.WaybillsCreateTransportResponse;
+import com.nordlet.api.resources.transport.types.WaybillsGetTransportResponse;
+import com.nordlet.api.resources.transport.types.WaybillsIssueTransportResponse;
+import com.nordlet.api.resources.transport.types.WaybillsListTransportResponse;
+import com.nordlet.api.resources.transport.types.WaybillsUpdateTransportResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -52,13 +54,13 @@ public class RawTransportClient {
     this.clientOptions = clientOptions;
   }
 
-  public NordletApiHttpResponse<PostV1TransportWaybillsCreateResponse> postV1TransportWaybillsCreate(
-      PostV1TransportWaybillsCreateRequest request) {
-    return postV1TransportWaybillsCreate(request,null);
+  public NordletApiHttpResponse<WaybillsCreateTransportResponse> waybillsCreate(
+      WaybillsCreateTransportRequest request) {
+    return waybillsCreate(request,null);
   }
 
-  public NordletApiHttpResponse<PostV1TransportWaybillsCreateResponse> postV1TransportWaybillsCreate(
-      PostV1TransportWaybillsCreateRequest request, RequestOptions requestOptions) {
+  public NordletApiHttpResponse<WaybillsCreateTransportResponse> waybillsCreate(
+      WaybillsCreateTransportRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/transport/waybills/create");if (requestOptions != null) {
@@ -91,15 +93,17 @@ public class RawTransportClient {
         ResponseBody responseBody = response.body();
         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
         if (response.isSuccessful()) {
-          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1TransportWaybillsCreateResponse.class), response);
+          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, WaybillsCreateTransportResponse.class), response);
         }
         try {
           switch (response.code()) {
             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -119,13 +123,13 @@ public class RawTransportClient {
       }
     }
 
-    public NordletApiHttpResponse<PostV1TransportWaybillsUpdateResponse> postV1TransportWaybillsUpdate(
-        PostV1TransportWaybillsUpdateRequest request) {
-      return postV1TransportWaybillsUpdate(request,null);
+    public NordletApiHttpResponse<WaybillsUpdateTransportResponse> waybillsUpdate(
+        WaybillsUpdateTransportRequest request) {
+      return waybillsUpdate(request,null);
     }
 
-    public NordletApiHttpResponse<PostV1TransportWaybillsUpdateResponse> postV1TransportWaybillsUpdate(
-        PostV1TransportWaybillsUpdateRequest request, RequestOptions requestOptions) {
+    public NordletApiHttpResponse<WaybillsUpdateTransportResponse> waybillsUpdate(
+        WaybillsUpdateTransportRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/transport/waybills/update");if (requestOptions != null) {
@@ -158,15 +162,17 @@ public class RawTransportClient {
           ResponseBody responseBody = response.body();
           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
           if (response.isSuccessful()) {
-            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1TransportWaybillsUpdateResponse.class), response);
+            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, WaybillsUpdateTransportResponse.class), response);
           }
           try {
             switch (response.code()) {
               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -186,13 +192,13 @@ public class RawTransportClient {
         }
       }
 
-      public NordletApiHttpResponse<PostV1TransportWaybillsIssueResponse> postV1TransportWaybillsIssue(
-          PostV1TransportWaybillsIssueRequest request) {
-        return postV1TransportWaybillsIssue(request,null);
+      public NordletApiHttpResponse<WaybillsIssueTransportResponse> waybillsIssue(
+          WaybillsIssueTransportRequest request) {
+        return waybillsIssue(request,null);
       }
 
-      public NordletApiHttpResponse<PostV1TransportWaybillsIssueResponse> postV1TransportWaybillsIssue(
-          PostV1TransportWaybillsIssueRequest request, RequestOptions requestOptions) {
+      public NordletApiHttpResponse<WaybillsIssueTransportResponse> waybillsIssue(
+          WaybillsIssueTransportRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/transport/waybills/issue");if (requestOptions != null) {
@@ -225,15 +231,17 @@ public class RawTransportClient {
             ResponseBody responseBody = response.body();
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1TransportWaybillsIssueResponse.class), response);
+              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, WaybillsIssueTransportResponse.class), response);
             }
             try {
               switch (response.code()) {
                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -253,13 +261,13 @@ public class RawTransportClient {
           }
         }
 
-        public NordletApiHttpResponse<PostV1TransportWaybillsCancelResponse> postV1TransportWaybillsCancel(
-            PostV1TransportWaybillsCancelRequest request) {
-          return postV1TransportWaybillsCancel(request,null);
+        public NordletApiHttpResponse<WaybillsCancelTransportResponse> waybillsCancel(
+            WaybillsCancelTransportRequest request) {
+          return waybillsCancel(request,null);
         }
 
-        public NordletApiHttpResponse<PostV1TransportWaybillsCancelResponse> postV1TransportWaybillsCancel(
-            PostV1TransportWaybillsCancelRequest request, RequestOptions requestOptions) {
+        public NordletApiHttpResponse<WaybillsCancelTransportResponse> waybillsCancel(
+            WaybillsCancelTransportRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/transport/waybills/cancel");if (requestOptions != null) {
@@ -292,15 +300,17 @@ public class RawTransportClient {
               ResponseBody responseBody = response.body();
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1TransportWaybillsCancelResponse.class), response);
+                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, WaybillsCancelTransportResponse.class), response);
               }
               try {
                 switch (response.code()) {
                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -320,13 +330,13 @@ public class RawTransportClient {
             }
           }
 
-          public NordletApiHttpResponse<PostV1TransportWaybillsGetResponse> postV1TransportWaybillsGet(
-              PostV1TransportWaybillsGetRequest request) {
-            return postV1TransportWaybillsGet(request,null);
+          public NordletApiHttpResponse<WaybillsGetTransportResponse> waybillsGet(
+              WaybillsGetTransportRequest request) {
+            return waybillsGet(request,null);
           }
 
-          public NordletApiHttpResponse<PostV1TransportWaybillsGetResponse> postV1TransportWaybillsGet(
-              PostV1TransportWaybillsGetRequest request, RequestOptions requestOptions) {
+          public NordletApiHttpResponse<WaybillsGetTransportResponse> waybillsGet(
+              WaybillsGetTransportRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
               .addPathSegments("v1/transport/waybills/get");if (requestOptions != null) {
@@ -359,15 +369,17 @@ public class RawTransportClient {
                 ResponseBody responseBody = response.body();
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1TransportWaybillsGetResponse.class), response);
+                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, WaybillsGetTransportResponse.class), response);
                 }
                 try {
                   switch (response.code()) {
                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -387,23 +399,22 @@ public class RawTransportClient {
               }
             }
 
-            public NordletApiHttpResponse<PostV1TransportWaybillsListResponse> postV1TransportWaybillsList(
-                ) {
-              return postV1TransportWaybillsList(PostV1TransportWaybillsListRequest.builder().build());
+            public NordletApiHttpResponse<WaybillsListTransportResponse> waybillsList() {
+              return waybillsList(WaybillsListTransportRequest.builder().build());
             }
 
-            public NordletApiHttpResponse<PostV1TransportWaybillsListResponse> postV1TransportWaybillsList(
+            public NordletApiHttpResponse<WaybillsListTransportResponse> waybillsList(
                 RequestOptions requestOptions) {
-              return postV1TransportWaybillsList(PostV1TransportWaybillsListRequest.builder().build(),requestOptions);
+              return waybillsList(WaybillsListTransportRequest.builder().build(),requestOptions);
             }
 
-            public NordletApiHttpResponse<PostV1TransportWaybillsListResponse> postV1TransportWaybillsList(
-                PostV1TransportWaybillsListRequest request) {
-              return postV1TransportWaybillsList(request,null);
+            public NordletApiHttpResponse<WaybillsListTransportResponse> waybillsList(
+                WaybillsListTransportRequest request) {
+              return waybillsList(request,null);
             }
 
-            public NordletApiHttpResponse<PostV1TransportWaybillsListResponse> postV1TransportWaybillsList(
-                PostV1TransportWaybillsListRequest request, RequestOptions requestOptions) {
+            public NordletApiHttpResponse<WaybillsListTransportResponse> waybillsList(
+                WaybillsListTransportRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/transport/waybills/list");if (requestOptions != null) {
@@ -436,15 +447,17 @@ public class RawTransportClient {
                   ResponseBody responseBody = response.body();
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1TransportWaybillsListResponse.class), response);
+                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, WaybillsListTransportResponse.class), response);
                   }
                   try {
                     switch (response.code()) {
                       case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);

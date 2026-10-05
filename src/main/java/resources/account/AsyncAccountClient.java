@@ -6,82 +6,82 @@ package com.nordlet.api.resources.account;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysCreateRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysListRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysRevokeRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountApiKeysRotateRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesActivateRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesArchiveRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesCreateRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesDeleteRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesProfileRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesSelectRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountCompaniesUpdateRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountConsentAcceptRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountDeleteRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountEmailChangeRequestRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountExportRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountInvitesAcceptRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountInvitesCreateRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountInvitesGetRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountInvitesListRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountInvitesRevokeRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountLocaleSetRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountLoginLinkConsumeRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountLoginLinkRequestRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountLogoutRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountMeRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountMembersListRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountMembersRemoveRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountMembersSetRoleRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountMembersTransferOwnershipRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountProfileUpdateRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountReferralConvertRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountReferralGetRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountSessionsListRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountSessionsRevokeOthersRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountSessionsRevokeRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountTableSettingsGetRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountTableSettingsListRequest;
-import com.nordlet.api.resources.account.requests.PostV1AccountTableSettingsSetRequest;
-import com.nordlet.api.resources.account.types.PostV1AccountApiKeysCreateResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountApiKeysListResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountApiKeysRevokeResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountApiKeysRotateResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountCompaniesActivateResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountCompaniesArchiveResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountCompaniesCreateResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountCompaniesDeleteResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountCompaniesProfileResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountCompaniesSelectResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountCompaniesUpdateResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountConsentAcceptResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountDeleteResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountEmailChangeRequestResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountExportResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountInvitesAcceptResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountInvitesCreateResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountInvitesGetResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountInvitesListResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountInvitesRevokeResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountLocaleSetResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountLoginLinkConsumeResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountLoginLinkRequestResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountLogoutResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountMeResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountMembersListResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountMembersRemoveResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountMembersSetRoleResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountMembersTransferOwnershipResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountProfileUpdateResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountReferralConvertResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountReferralGetResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountSessionsListResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountSessionsRevokeOthersResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountSessionsRevokeResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountTableSettingsGetResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountTableSettingsListResponse;
-import com.nordlet.api.resources.account.types.PostV1AccountTableSettingsSetResponse;
+import com.nordlet.api.resources.account.requests.ApiKeysCreateAccountRequest;
+import com.nordlet.api.resources.account.requests.ApiKeysListAccountRequest;
+import com.nordlet.api.resources.account.requests.ApiKeysRevokeAccountRequest;
+import com.nordlet.api.resources.account.requests.ApiKeysRotateAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesActivateAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesArchiveAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesCreateAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesDeleteAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesProfileAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesSelectAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesUpdateAccountRequest;
+import com.nordlet.api.resources.account.requests.ConsentAcceptAccountRequest;
+import com.nordlet.api.resources.account.requests.DeleteAccountRequest;
+import com.nordlet.api.resources.account.requests.EmailChangeRequestAccountRequest;
+import com.nordlet.api.resources.account.requests.ExportAccountRequest;
+import com.nordlet.api.resources.account.requests.InvitesAcceptAccountRequest;
+import com.nordlet.api.resources.account.requests.InvitesCreateAccountRequest;
+import com.nordlet.api.resources.account.requests.InvitesGetAccountRequest;
+import com.nordlet.api.resources.account.requests.InvitesListAccountRequest;
+import com.nordlet.api.resources.account.requests.InvitesRevokeAccountRequest;
+import com.nordlet.api.resources.account.requests.LocaleSetAccountRequest;
+import com.nordlet.api.resources.account.requests.LoginLinkConsumeAccountRequest;
+import com.nordlet.api.resources.account.requests.LoginLinkRequestAccountRequest;
+import com.nordlet.api.resources.account.requests.LogoutAccountRequest;
+import com.nordlet.api.resources.account.requests.MeAccountRequest;
+import com.nordlet.api.resources.account.requests.MembersListAccountRequest;
+import com.nordlet.api.resources.account.requests.MembersRemoveAccountRequest;
+import com.nordlet.api.resources.account.requests.MembersSetRoleAccountRequest;
+import com.nordlet.api.resources.account.requests.MembersTransferOwnershipAccountRequest;
+import com.nordlet.api.resources.account.requests.ProfileUpdateAccountRequest;
+import com.nordlet.api.resources.account.requests.ReferralConvertAccountRequest;
+import com.nordlet.api.resources.account.requests.ReferralGetAccountRequest;
+import com.nordlet.api.resources.account.requests.SessionsListAccountRequest;
+import com.nordlet.api.resources.account.requests.SessionsRevokeAccountRequest;
+import com.nordlet.api.resources.account.requests.SessionsRevokeOthersAccountRequest;
+import com.nordlet.api.resources.account.requests.TableSettingsGetAccountRequest;
+import com.nordlet.api.resources.account.requests.TableSettingsListAccountRequest;
+import com.nordlet.api.resources.account.requests.TableSettingsSetAccountRequest;
+import com.nordlet.api.resources.account.types.ApiKeysCreateAccountResponse;
+import com.nordlet.api.resources.account.types.ApiKeysListAccountResponse;
+import com.nordlet.api.resources.account.types.ApiKeysRevokeAccountResponse;
+import com.nordlet.api.resources.account.types.ApiKeysRotateAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesActivateAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesArchiveAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesCreateAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesDeleteAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesProfileAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesSelectAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesUpdateAccountResponse;
+import com.nordlet.api.resources.account.types.ConsentAcceptAccountResponse;
+import com.nordlet.api.resources.account.types.DeleteAccountResponse;
+import com.nordlet.api.resources.account.types.EmailChangeRequestAccountResponse;
+import com.nordlet.api.resources.account.types.ExportAccountResponse;
+import com.nordlet.api.resources.account.types.InvitesAcceptAccountResponse;
+import com.nordlet.api.resources.account.types.InvitesCreateAccountResponse;
+import com.nordlet.api.resources.account.types.InvitesGetAccountResponse;
+import com.nordlet.api.resources.account.types.InvitesListAccountResponse;
+import com.nordlet.api.resources.account.types.InvitesRevokeAccountResponse;
+import com.nordlet.api.resources.account.types.LocaleSetAccountResponse;
+import com.nordlet.api.resources.account.types.LoginLinkConsumeAccountResponse;
+import com.nordlet.api.resources.account.types.LoginLinkRequestAccountResponse;
+import com.nordlet.api.resources.account.types.LogoutAccountResponse;
+import com.nordlet.api.resources.account.types.MeAccountResponse;
+import com.nordlet.api.resources.account.types.MembersListAccountResponse;
+import com.nordlet.api.resources.account.types.MembersRemoveAccountResponse;
+import com.nordlet.api.resources.account.types.MembersSetRoleAccountResponse;
+import com.nordlet.api.resources.account.types.MembersTransferOwnershipAccountResponse;
+import com.nordlet.api.resources.account.types.ProfileUpdateAccountResponse;
+import com.nordlet.api.resources.account.types.ReferralConvertAccountResponse;
+import com.nordlet.api.resources.account.types.ReferralGetAccountResponse;
+import com.nordlet.api.resources.account.types.SessionsListAccountResponse;
+import com.nordlet.api.resources.account.types.SessionsRevokeAccountResponse;
+import com.nordlet.api.resources.account.types.SessionsRevokeOthersAccountResponse;
+import com.nordlet.api.resources.account.types.TableSettingsGetAccountResponse;
+import com.nordlet.api.resources.account.types.TableSettingsListAccountResponse;
+import com.nordlet.api.resources.account.types.TableSettingsSetAccountResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncAccountClient {
@@ -101,499 +101,484 @@ public class AsyncAccountClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1AccountLoginLinkRequestResponse> postV1AccountLoginLinkRequest(
-      PostV1AccountLoginLinkRequestRequest request) {
-    return this.rawClient.postV1AccountLoginLinkRequest(request).thenApply(response -> response.body());
+  public CompletableFuture<LoginLinkRequestAccountResponse> loginLinkRequest(
+      LoginLinkRequestAccountRequest request) {
+    return this.rawClient.loginLinkRequest(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountLoginLinkRequestResponse> postV1AccountLoginLinkRequest(
-      PostV1AccountLoginLinkRequestRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountLoginLinkRequest(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<LoginLinkRequestAccountResponse> loginLinkRequest(
+      LoginLinkRequestAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.loginLinkRequest(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountLoginLinkConsumeResponse> postV1AccountLoginLinkConsume(
-      PostV1AccountLoginLinkConsumeRequest request) {
-    return this.rawClient.postV1AccountLoginLinkConsume(request).thenApply(response -> response.body());
+  public CompletableFuture<LoginLinkConsumeAccountResponse> loginLinkConsume(
+      LoginLinkConsumeAccountRequest request) {
+    return this.rawClient.loginLinkConsume(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountLoginLinkConsumeResponse> postV1AccountLoginLinkConsume(
-      PostV1AccountLoginLinkConsumeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountLoginLinkConsume(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<LoginLinkConsumeAccountResponse> loginLinkConsume(
+      LoginLinkConsumeAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.loginLinkConsume(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountLogoutResponse> postV1AccountLogout() {
-    return this.rawClient.postV1AccountLogout().thenApply(response -> response.body());
+  public CompletableFuture<LogoutAccountResponse> logout() {
+    return this.rawClient.logout().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountLogoutResponse> postV1AccountLogout(
+  public CompletableFuture<LogoutAccountResponse> logout(RequestOptions requestOptions) {
+    return this.rawClient.logout(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<LogoutAccountResponse> logout(LogoutAccountRequest request) {
+    return this.rawClient.logout(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<LogoutAccountResponse> logout(LogoutAccountRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountLogout(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.logout(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountLogoutResponse> postV1AccountLogout(
-      PostV1AccountLogoutRequest request) {
-    return this.rawClient.postV1AccountLogout(request).thenApply(response -> response.body());
+  public CompletableFuture<MeAccountResponse> me() {
+    return this.rawClient.me().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountLogoutResponse> postV1AccountLogout(
-      PostV1AccountLogoutRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountLogout(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<MeAccountResponse> me(RequestOptions requestOptions) {
+    return this.rawClient.me(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountMeResponse> postV1AccountMe() {
-    return this.rawClient.postV1AccountMe().thenApply(response -> response.body());
+  public CompletableFuture<MeAccountResponse> me(MeAccountRequest request) {
+    return this.rawClient.me(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountMeResponse> postV1AccountMe(RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountMe(requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountMeResponse> postV1AccountMe(
-      PostV1AccountMeRequest request) {
-    return this.rawClient.postV1AccountMe(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountMeResponse> postV1AccountMe(PostV1AccountMeRequest request,
+  public CompletableFuture<MeAccountResponse> me(MeAccountRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountMe(request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.me(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountMembersListResponse> postV1AccountMembersList() {
-    return this.rawClient.postV1AccountMembersList().thenApply(response -> response.body());
+  public CompletableFuture<MembersListAccountResponse> membersList() {
+    return this.rawClient.membersList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountMembersListResponse> postV1AccountMembersList(
+  public CompletableFuture<MembersListAccountResponse> membersList(RequestOptions requestOptions) {
+    return this.rawClient.membersList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<MembersListAccountResponse> membersList(
+      MembersListAccountRequest request) {
+    return this.rawClient.membersList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<MembersListAccountResponse> membersList(
+      MembersListAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.membersList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<MembersSetRoleAccountResponse> membersSetRole(
+      MembersSetRoleAccountRequest request) {
+    return this.rawClient.membersSetRole(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<MembersSetRoleAccountResponse> membersSetRole(
+      MembersSetRoleAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.membersSetRole(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<MembersTransferOwnershipAccountResponse> membersTransferOwnership(
+      MembersTransferOwnershipAccountRequest request) {
+    return this.rawClient.membersTransferOwnership(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<MembersTransferOwnershipAccountResponse> membersTransferOwnership(
+      MembersTransferOwnershipAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.membersTransferOwnership(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<MembersRemoveAccountResponse> membersRemove(
+      MembersRemoveAccountRequest request) {
+    return this.rawClient.membersRemove(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<MembersRemoveAccountResponse> membersRemove(
+      MembersRemoveAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.membersRemove(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvitesCreateAccountResponse> invitesCreate(
+      InvitesCreateAccountRequest request) {
+    return this.rawClient.invitesCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvitesCreateAccountResponse> invitesCreate(
+      InvitesCreateAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invitesCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvitesListAccountResponse> invitesList() {
+    return this.rawClient.invitesList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvitesListAccountResponse> invitesList(RequestOptions requestOptions) {
+    return this.rawClient.invitesList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvitesListAccountResponse> invitesList(
+      InvitesListAccountRequest request) {
+    return this.rawClient.invitesList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvitesListAccountResponse> invitesList(
+      InvitesListAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invitesList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvitesRevokeAccountResponse> invitesRevoke(
+      InvitesRevokeAccountRequest request) {
+    return this.rawClient.invitesRevoke(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvitesRevokeAccountResponse> invitesRevoke(
+      InvitesRevokeAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invitesRevoke(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvitesGetAccountResponse> invitesGet(InvitesGetAccountRequest request) {
+    return this.rawClient.invitesGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvitesGetAccountResponse> invitesGet(InvitesGetAccountRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountMembersList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.invitesGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountMembersListResponse> postV1AccountMembersList(
-      PostV1AccountMembersListRequest request) {
-    return this.rawClient.postV1AccountMembersList(request).thenApply(response -> response.body());
+  public CompletableFuture<InvitesAcceptAccountResponse> invitesAccept(
+      InvitesAcceptAccountRequest request) {
+    return this.rawClient.invitesAccept(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountMembersListResponse> postV1AccountMembersList(
-      PostV1AccountMembersListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountMembersList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InvitesAcceptAccountResponse> invitesAccept(
+      InvitesAcceptAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invitesAccept(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountMembersSetRoleResponse> postV1AccountMembersSetRole(
-      PostV1AccountMembersSetRoleRequest request) {
-    return this.rawClient.postV1AccountMembersSetRole(request).thenApply(response -> response.body());
+  public CompletableFuture<LocaleSetAccountResponse> localeSet(LocaleSetAccountRequest request) {
+    return this.rawClient.localeSet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountMembersSetRoleResponse> postV1AccountMembersSetRole(
-      PostV1AccountMembersSetRoleRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountMembersSetRole(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountMembersTransferOwnershipResponse> postV1AccountMembersTransferOwnership(
-      PostV1AccountMembersTransferOwnershipRequest request) {
-    return this.rawClient.postV1AccountMembersTransferOwnership(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountMembersTransferOwnershipResponse> postV1AccountMembersTransferOwnership(
-      PostV1AccountMembersTransferOwnershipRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountMembersTransferOwnership(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountMembersRemoveResponse> postV1AccountMembersRemove(
-      PostV1AccountMembersRemoveRequest request) {
-    return this.rawClient.postV1AccountMembersRemove(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountMembersRemoveResponse> postV1AccountMembersRemove(
-      PostV1AccountMembersRemoveRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountMembersRemove(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountInvitesCreateResponse> postV1AccountInvitesCreate(
-      PostV1AccountInvitesCreateRequest request) {
-    return this.rawClient.postV1AccountInvitesCreate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountInvitesCreateResponse> postV1AccountInvitesCreate(
-      PostV1AccountInvitesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountInvitesCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountInvitesListResponse> postV1AccountInvitesList() {
-    return this.rawClient.postV1AccountInvitesList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountInvitesListResponse> postV1AccountInvitesList(
+  public CompletableFuture<LocaleSetAccountResponse> localeSet(LocaleSetAccountRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountInvitesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.localeSet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountInvitesListResponse> postV1AccountInvitesList(
-      PostV1AccountInvitesListRequest request) {
-    return this.rawClient.postV1AccountInvitesList(request).thenApply(response -> response.body());
+  public CompletableFuture<CompaniesCreateAccountResponse> companiesCreate(
+      CompaniesCreateAccountRequest request) {
+    return this.rawClient.companiesCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountInvitesListResponse> postV1AccountInvitesList(
-      PostV1AccountInvitesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountInvitesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CompaniesCreateAccountResponse> companiesCreate(
+      CompaniesCreateAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.companiesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountInvitesRevokeResponse> postV1AccountInvitesRevoke(
-      PostV1AccountInvitesRevokeRequest request) {
-    return this.rawClient.postV1AccountInvitesRevoke(request).thenApply(response -> response.body());
+  public CompletableFuture<CompaniesSelectAccountResponse> companiesSelect(
+      CompaniesSelectAccountRequest request) {
+    return this.rawClient.companiesSelect(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountInvitesRevokeResponse> postV1AccountInvitesRevoke(
-      PostV1AccountInvitesRevokeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountInvitesRevoke(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CompaniesSelectAccountResponse> companiesSelect(
+      CompaniesSelectAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.companiesSelect(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountInvitesGetResponse> postV1AccountInvitesGet(
-      PostV1AccountInvitesGetRequest request) {
-    return this.rawClient.postV1AccountInvitesGet(request).thenApply(response -> response.body());
+  public CompletableFuture<CompaniesProfileAccountResponse> companiesProfile() {
+    return this.rawClient.companiesProfile().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountInvitesGetResponse> postV1AccountInvitesGet(
-      PostV1AccountInvitesGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountInvitesGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountInvitesAcceptResponse> postV1AccountInvitesAccept(
-      PostV1AccountInvitesAcceptRequest request) {
-    return this.rawClient.postV1AccountInvitesAccept(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountInvitesAcceptResponse> postV1AccountInvitesAccept(
-      PostV1AccountInvitesAcceptRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountInvitesAccept(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountLocaleSetResponse> postV1AccountLocaleSet(
-      PostV1AccountLocaleSetRequest request) {
-    return this.rawClient.postV1AccountLocaleSet(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountLocaleSetResponse> postV1AccountLocaleSet(
-      PostV1AccountLocaleSetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountLocaleSet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountCompaniesCreateResponse> postV1AccountCompaniesCreate(
-      PostV1AccountCompaniesCreateRequest request) {
-    return this.rawClient.postV1AccountCompaniesCreate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountCompaniesCreateResponse> postV1AccountCompaniesCreate(
-      PostV1AccountCompaniesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountCompaniesSelectResponse> postV1AccountCompaniesSelect(
-      PostV1AccountCompaniesSelectRequest request) {
-    return this.rawClient.postV1AccountCompaniesSelect(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountCompaniesSelectResponse> postV1AccountCompaniesSelect(
-      PostV1AccountCompaniesSelectRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesSelect(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountCompaniesProfileResponse> postV1AccountCompaniesProfile() {
-    return this.rawClient.postV1AccountCompaniesProfile().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountCompaniesProfileResponse> postV1AccountCompaniesProfile(
+  public CompletableFuture<CompaniesProfileAccountResponse> companiesProfile(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesProfile(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.companiesProfile(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountCompaniesProfileResponse> postV1AccountCompaniesProfile(
-      PostV1AccountCompaniesProfileRequest request) {
-    return this.rawClient.postV1AccountCompaniesProfile(request).thenApply(response -> response.body());
+  public CompletableFuture<CompaniesProfileAccountResponse> companiesProfile(
+      CompaniesProfileAccountRequest request) {
+    return this.rawClient.companiesProfile(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountCompaniesProfileResponse> postV1AccountCompaniesProfile(
-      PostV1AccountCompaniesProfileRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesProfile(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CompaniesProfileAccountResponse> companiesProfile(
+      CompaniesProfileAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.companiesProfile(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountCompaniesUpdateResponse> postV1AccountCompaniesUpdate() {
-    return this.rawClient.postV1AccountCompaniesUpdate().thenApply(response -> response.body());
+  public CompletableFuture<CompaniesUpdateAccountResponse> companiesUpdate() {
+    return this.rawClient.companiesUpdate().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountCompaniesUpdateResponse> postV1AccountCompaniesUpdate(
+  public CompletableFuture<CompaniesUpdateAccountResponse> companiesUpdate(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesUpdate(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.companiesUpdate(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountCompaniesUpdateResponse> postV1AccountCompaniesUpdate(
-      PostV1AccountCompaniesUpdateRequest request) {
-    return this.rawClient.postV1AccountCompaniesUpdate(request).thenApply(response -> response.body());
+  public CompletableFuture<CompaniesUpdateAccountResponse> companiesUpdate(
+      CompaniesUpdateAccountRequest request) {
+    return this.rawClient.companiesUpdate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountCompaniesUpdateResponse> postV1AccountCompaniesUpdate(
-      PostV1AccountCompaniesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesUpdate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CompaniesUpdateAccountResponse> companiesUpdate(
+      CompaniesUpdateAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.companiesUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountCompaniesArchiveResponse> postV1AccountCompaniesArchive(
-      PostV1AccountCompaniesArchiveRequest request) {
-    return this.rawClient.postV1AccountCompaniesArchive(request).thenApply(response -> response.body());
+  public CompletableFuture<CompaniesArchiveAccountResponse> companiesArchive(
+      CompaniesArchiveAccountRequest request) {
+    return this.rawClient.companiesArchive(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountCompaniesArchiveResponse> postV1AccountCompaniesArchive(
-      PostV1AccountCompaniesArchiveRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesArchive(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CompaniesArchiveAccountResponse> companiesArchive(
+      CompaniesArchiveAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.companiesArchive(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountCompaniesDeleteResponse> postV1AccountCompaniesDelete(
-      PostV1AccountCompaniesDeleteRequest request) {
-    return this.rawClient.postV1AccountCompaniesDelete(request).thenApply(response -> response.body());
+  public CompletableFuture<CompaniesDeleteAccountResponse> companiesDelete(
+      CompaniesDeleteAccountRequest request) {
+    return this.rawClient.companiesDelete(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountCompaniesDeleteResponse> postV1AccountCompaniesDelete(
-      PostV1AccountCompaniesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesDelete(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CompaniesDeleteAccountResponse> companiesDelete(
+      CompaniesDeleteAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.companiesDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountCompaniesActivateResponse> postV1AccountCompaniesActivate(
-      PostV1AccountCompaniesActivateRequest request) {
-    return this.rawClient.postV1AccountCompaniesActivate(request).thenApply(response -> response.body());
+  public CompletableFuture<CompaniesActivateAccountResponse> companiesActivate(
+      CompaniesActivateAccountRequest request) {
+    return this.rawClient.companiesActivate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountCompaniesActivateResponse> postV1AccountCompaniesActivate(
-      PostV1AccountCompaniesActivateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountCompaniesActivate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<CompaniesActivateAccountResponse> companiesActivate(
+      CompaniesActivateAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.companiesActivate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountApiKeysCreateResponse> postV1AccountApiKeysCreate(
-      PostV1AccountApiKeysCreateRequest request) {
-    return this.rawClient.postV1AccountApiKeysCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<ApiKeysCreateAccountResponse> apiKeysCreate(
+      ApiKeysCreateAccountRequest request) {
+    return this.rawClient.apiKeysCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountApiKeysCreateResponse> postV1AccountApiKeysCreate(
-      PostV1AccountApiKeysCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountApiKeysCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ApiKeysCreateAccountResponse> apiKeysCreate(
+      ApiKeysCreateAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.apiKeysCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountApiKeysListResponse> postV1AccountApiKeysList() {
-    return this.rawClient.postV1AccountApiKeysList().thenApply(response -> response.body());
+  public CompletableFuture<ApiKeysListAccountResponse> apiKeysList() {
+    return this.rawClient.apiKeysList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountApiKeysListResponse> postV1AccountApiKeysList(
+  public CompletableFuture<ApiKeysListAccountResponse> apiKeysList(RequestOptions requestOptions) {
+    return this.rawClient.apiKeysList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ApiKeysListAccountResponse> apiKeysList(
+      ApiKeysListAccountRequest request) {
+    return this.rawClient.apiKeysList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ApiKeysListAccountResponse> apiKeysList(
+      ApiKeysListAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.apiKeysList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ApiKeysRotateAccountResponse> apiKeysRotate(
+      ApiKeysRotateAccountRequest request) {
+    return this.rawClient.apiKeysRotate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ApiKeysRotateAccountResponse> apiKeysRotate(
+      ApiKeysRotateAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.apiKeysRotate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ApiKeysRevokeAccountResponse> apiKeysRevoke(
+      ApiKeysRevokeAccountRequest request) {
+    return this.rawClient.apiKeysRevoke(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ApiKeysRevokeAccountResponse> apiKeysRevoke(
+      ApiKeysRevokeAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.apiKeysRevoke(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ConsentAcceptAccountResponse> consentAccept(
+      ConsentAcceptAccountRequest request) {
+    return this.rawClient.consentAccept(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ConsentAcceptAccountResponse> consentAccept(
+      ConsentAcceptAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.consentAccept(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ProfileUpdateAccountResponse> profileUpdate(
+      ProfileUpdateAccountRequest request) {
+    return this.rawClient.profileUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ProfileUpdateAccountResponse> profileUpdate(
+      ProfileUpdateAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.profileUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<EmailChangeRequestAccountResponse> emailChangeRequest(
+      EmailChangeRequestAccountRequest request) {
+    return this.rawClient.emailChangeRequest(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<EmailChangeRequestAccountResponse> emailChangeRequest(
+      EmailChangeRequestAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.emailChangeRequest(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<SessionsListAccountResponse> sessionsList() {
+    return this.rawClient.sessionsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<SessionsListAccountResponse> sessionsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountApiKeysList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.sessionsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountApiKeysListResponse> postV1AccountApiKeysList(
-      PostV1AccountApiKeysListRequest request) {
-    return this.rawClient.postV1AccountApiKeysList(request).thenApply(response -> response.body());
+  public CompletableFuture<SessionsListAccountResponse> sessionsList(
+      SessionsListAccountRequest request) {
+    return this.rawClient.sessionsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountApiKeysListResponse> postV1AccountApiKeysList(
-      PostV1AccountApiKeysListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountApiKeysList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<SessionsListAccountResponse> sessionsList(
+      SessionsListAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.sessionsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountApiKeysRotateResponse> issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(
-      PostV1AccountApiKeysRotateRequest request) {
-    return this.rawClient.issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(request).thenApply(response -> response.body());
+  public CompletableFuture<SessionsRevokeAccountResponse> sessionsRevoke(
+      SessionsRevokeAccountRequest request) {
+    return this.rawClient.sessionsRevoke(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountApiKeysRotateResponse> issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(
-      PostV1AccountApiKeysRotateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<SessionsRevokeAccountResponse> sessionsRevoke(
+      SessionsRevokeAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.sessionsRevoke(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountApiKeysRevokeResponse> postV1AccountApiKeysRevoke(
-      PostV1AccountApiKeysRevokeRequest request) {
-    return this.rawClient.postV1AccountApiKeysRevoke(request).thenApply(response -> response.body());
+  public CompletableFuture<SessionsRevokeOthersAccountResponse> sessionsRevokeOthers() {
+    return this.rawClient.sessionsRevokeOthers().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountApiKeysRevokeResponse> postV1AccountApiKeysRevoke(
-      PostV1AccountApiKeysRevokeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountApiKeysRevoke(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountConsentAcceptResponse> postV1AccountConsentAccept(
-      PostV1AccountConsentAcceptRequest request) {
-    return this.rawClient.postV1AccountConsentAccept(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountConsentAcceptResponse> postV1AccountConsentAccept(
-      PostV1AccountConsentAcceptRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountConsentAccept(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountProfileUpdateResponse> postV1AccountProfileUpdate(
-      PostV1AccountProfileUpdateRequest request) {
-    return this.rawClient.postV1AccountProfileUpdate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountProfileUpdateResponse> postV1AccountProfileUpdate(
-      PostV1AccountProfileUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountProfileUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountEmailChangeRequestResponse> postV1AccountEmailChangeRequest(
-      PostV1AccountEmailChangeRequestRequest request) {
-    return this.rawClient.postV1AccountEmailChangeRequest(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountEmailChangeRequestResponse> postV1AccountEmailChangeRequest(
-      PostV1AccountEmailChangeRequestRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountEmailChangeRequest(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountSessionsListResponse> postV1AccountSessionsList() {
-    return this.rawClient.postV1AccountSessionsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountSessionsListResponse> postV1AccountSessionsList(
+  public CompletableFuture<SessionsRevokeOthersAccountResponse> sessionsRevokeOthers(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountSessionsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.sessionsRevokeOthers(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountSessionsListResponse> postV1AccountSessionsList(
-      PostV1AccountSessionsListRequest request) {
-    return this.rawClient.postV1AccountSessionsList(request).thenApply(response -> response.body());
+  public CompletableFuture<SessionsRevokeOthersAccountResponse> sessionsRevokeOthers(
+      SessionsRevokeOthersAccountRequest request) {
+    return this.rawClient.sessionsRevokeOthers(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountSessionsListResponse> postV1AccountSessionsList(
-      PostV1AccountSessionsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountSessionsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<SessionsRevokeOthersAccountResponse> sessionsRevokeOthers(
+      SessionsRevokeOthersAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.sessionsRevokeOthers(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountSessionsRevokeResponse> postV1AccountSessionsRevoke(
-      PostV1AccountSessionsRevokeRequest request) {
-    return this.rawClient.postV1AccountSessionsRevoke(request).thenApply(response -> response.body());
+  public CompletableFuture<ExportAccountResponse> export() {
+    return this.rawClient.export().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountSessionsRevokeResponse> postV1AccountSessionsRevoke(
-      PostV1AccountSessionsRevokeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountSessionsRevoke(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ExportAccountResponse> export(RequestOptions requestOptions) {
+    return this.rawClient.export(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountSessionsRevokeOthersResponse> postV1AccountSessionsRevokeOthers(
-      ) {
-    return this.rawClient.postV1AccountSessionsRevokeOthers().thenApply(response -> response.body());
+  public CompletableFuture<ExportAccountResponse> export(ExportAccountRequest request) {
+    return this.rawClient.export(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountSessionsRevokeOthersResponse> postV1AccountSessionsRevokeOthers(
+  public CompletableFuture<ExportAccountResponse> export(ExportAccountRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountSessionsRevokeOthers(requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountSessionsRevokeOthersResponse> postV1AccountSessionsRevokeOthers(
-      PostV1AccountSessionsRevokeOthersRequest request) {
-    return this.rawClient.postV1AccountSessionsRevokeOthers(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountSessionsRevokeOthersResponse> postV1AccountSessionsRevokeOthers(
-      PostV1AccountSessionsRevokeOthersRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountSessionsRevokeOthers(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountExportResponse> downloadEverythingNordletStoresAboutTheSignedInUser(
-      ) {
-    return this.rawClient.downloadEverythingNordletStoresAboutTheSignedInUser().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountExportResponse> downloadEverythingNordletStoresAboutTheSignedInUser(
-      RequestOptions requestOptions) {
-    return this.rawClient.downloadEverythingNordletStoresAboutTheSignedInUser(requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountExportResponse> downloadEverythingNordletStoresAboutTheSignedInUser(
-      PostV1AccountExportRequest request) {
-    return this.rawClient.downloadEverythingNordletStoresAboutTheSignedInUser(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountExportResponse> downloadEverythingNordletStoresAboutTheSignedInUser(
-      PostV1AccountExportRequest request, RequestOptions requestOptions) {
-    return this.rawClient.downloadEverythingNordletStoresAboutTheSignedInUser(request, requestOptions).thenApply(response -> response.body());
+    return this.rawClient.export(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
    */
-  public CompletableFuture<PostV1AccountDeleteResponse> deleteTheSignedInUserAccount(
-      PostV1AccountDeleteRequest request) {
-    return this.rawClient.deleteTheSignedInUserAccount(request).thenApply(response -> response.body());
+  public CompletableFuture<DeleteAccountResponse> delete(DeleteAccountRequest request) {
+    return this.rawClient.delete(request).thenApply(response -> response.body());
   }
 
   /**
    * Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
    */
-  public CompletableFuture<PostV1AccountDeleteResponse> deleteTheSignedInUserAccount(
-      PostV1AccountDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.deleteTheSignedInUserAccount(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountReferralGetResponse> postV1AccountReferralGet() {
-    return this.rawClient.postV1AccountReferralGet().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AccountReferralGetResponse> postV1AccountReferralGet(
+  public CompletableFuture<DeleteAccountResponse> delete(DeleteAccountRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountReferralGet(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.delete(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountReferralGetResponse> postV1AccountReferralGet(
-      PostV1AccountReferralGetRequest request) {
-    return this.rawClient.postV1AccountReferralGet(request).thenApply(response -> response.body());
+  public CompletableFuture<ReferralGetAccountResponse> referralGet() {
+    return this.rawClient.referralGet().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountReferralGetResponse> postV1AccountReferralGet(
-      PostV1AccountReferralGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountReferralGet(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ReferralGetAccountResponse> referralGet(RequestOptions requestOptions) {
+    return this.rawClient.referralGet(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountReferralConvertResponse> postV1AccountReferralConvert(
-      PostV1AccountReferralConvertRequest request) {
-    return this.rawClient.postV1AccountReferralConvert(request).thenApply(response -> response.body());
+  public CompletableFuture<ReferralGetAccountResponse> referralGet(
+      ReferralGetAccountRequest request) {
+    return this.rawClient.referralGet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountReferralConvertResponse> postV1AccountReferralConvert(
-      PostV1AccountReferralConvertRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountReferralConvert(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ReferralGetAccountResponse> referralGet(
+      ReferralGetAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.referralGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountTableSettingsGetResponse> postV1AccountTableSettingsGet(
-      PostV1AccountTableSettingsGetRequest request) {
-    return this.rawClient.postV1AccountTableSettingsGet(request).thenApply(response -> response.body());
+  public CompletableFuture<ReferralConvertAccountResponse> referralConvert(
+      ReferralConvertAccountRequest request) {
+    return this.rawClient.referralConvert(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountTableSettingsGetResponse> postV1AccountTableSettingsGet(
-      PostV1AccountTableSettingsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountTableSettingsGet(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ReferralConvertAccountResponse> referralConvert(
+      ReferralConvertAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.referralConvert(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountTableSettingsSetResponse> postV1AccountTableSettingsSet(
-      PostV1AccountTableSettingsSetRequest request) {
-    return this.rawClient.postV1AccountTableSettingsSet(request).thenApply(response -> response.body());
+  public CompletableFuture<TableSettingsGetAccountResponse> tableSettingsGet(
+      TableSettingsGetAccountRequest request) {
+    return this.rawClient.tableSettingsGet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountTableSettingsSetResponse> postV1AccountTableSettingsSet(
-      PostV1AccountTableSettingsSetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountTableSettingsSet(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<TableSettingsGetAccountResponse> tableSettingsGet(
+      TableSettingsGetAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.tableSettingsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountTableSettingsListResponse> postV1AccountTableSettingsList(
-      ) {
-    return this.rawClient.postV1AccountTableSettingsList().thenApply(response -> response.body());
+  public CompletableFuture<TableSettingsSetAccountResponse> tableSettingsSet(
+      TableSettingsSetAccountRequest request) {
+    return this.rawClient.tableSettingsSet(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountTableSettingsListResponse> postV1AccountTableSettingsList(
+  public CompletableFuture<TableSettingsSetAccountResponse> tableSettingsSet(
+      TableSettingsSetAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.tableSettingsSet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TableSettingsListAccountResponse> tableSettingsList() {
+    return this.rawClient.tableSettingsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TableSettingsListAccountResponse> tableSettingsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountTableSettingsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.tableSettingsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountTableSettingsListResponse> postV1AccountTableSettingsList(
-      PostV1AccountTableSettingsListRequest request) {
-    return this.rawClient.postV1AccountTableSettingsList(request).thenApply(response -> response.body());
+  public CompletableFuture<TableSettingsListAccountResponse> tableSettingsList(
+      TableSettingsListAccountRequest request) {
+    return this.rawClient.tableSettingsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AccountTableSettingsListResponse> postV1AccountTableSettingsList(
-      PostV1AccountTableSettingsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AccountTableSettingsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<TableSettingsListAccountResponse> tableSettingsList(
+      TableSettingsListAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.tableSettingsList(request, requestOptions).thenApply(response -> response.body());
   }
 }

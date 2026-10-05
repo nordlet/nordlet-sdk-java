@@ -15,38 +15,40 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationGroupsCreateRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationGroupsDeleteRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationGroupsGetRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationGroupsListRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationGroupsUpdateRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationIntercompanyCandidatesRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationIntercompanyLinksListRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationIntercompanyLinksRemoveRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationIntercompanyLinksSetRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationIntercompanyReportRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationMembersAddRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationMembersRemoveRequest;
-import com.nordlet.api.resources.consolidation.requests.PostV1ConsolidationReportRequest;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationGroupsCreateResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationGroupsDeleteResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationGroupsGetResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationGroupsListResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationGroupsUpdateResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationIntercompanyCandidatesResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationIntercompanyLinksListResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationIntercompanyLinksRemoveResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationIntercompanyLinksSetResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationIntercompanyReportResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationMembersAddResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationMembersRemoveResponse;
-import com.nordlet.api.resources.consolidation.types.PostV1ConsolidationReportResponse;
+import com.nordlet.api.resources.consolidation.requests.GroupsCreateConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.GroupsDeleteConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.GroupsGetConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.GroupsListConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.GroupsUpdateConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.IntercompanyCandidatesConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.IntercompanyLinksListConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.IntercompanyLinksRemoveConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.IntercompanyLinksSetConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.IntercompanyReportConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.MembersAddConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.MembersRemoveConsolidationRequest;
+import com.nordlet.api.resources.consolidation.requests.ReportConsolidationRequest;
+import com.nordlet.api.resources.consolidation.types.GroupsCreateConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.GroupsDeleteConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.GroupsGetConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.GroupsListConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.GroupsUpdateConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.IntercompanyCandidatesConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.IntercompanyLinksListConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.IntercompanyLinksRemoveConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.IntercompanyLinksSetConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.IntercompanyReportConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.MembersAddConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.MembersRemoveConsolidationResponse;
+import com.nordlet.api.resources.consolidation.types.ReportConsolidationResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -66,13 +68,13 @@ public class RawConsolidationClient {
     this.clientOptions = clientOptions;
   }
 
-  public NordletApiHttpResponse<PostV1ConsolidationGroupsCreateResponse> postV1ConsolidationGroupsCreate(
-      PostV1ConsolidationGroupsCreateRequest request) {
-    return postV1ConsolidationGroupsCreate(request,null);
+  public NordletApiHttpResponse<GroupsCreateConsolidationResponse> groupsCreate(
+      GroupsCreateConsolidationRequest request) {
+    return groupsCreate(request,null);
   }
 
-  public NordletApiHttpResponse<PostV1ConsolidationGroupsCreateResponse> postV1ConsolidationGroupsCreate(
-      PostV1ConsolidationGroupsCreateRequest request, RequestOptions requestOptions) {
+  public NordletApiHttpResponse<GroupsCreateConsolidationResponse> groupsCreate(
+      GroupsCreateConsolidationRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/consolidation/groups/create");if (requestOptions != null) {
@@ -105,15 +107,17 @@ public class RawConsolidationClient {
         ResponseBody responseBody = response.body();
         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
         if (response.isSuccessful()) {
-          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ConsolidationGroupsCreateResponse.class), response);
+          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsCreateConsolidationResponse.class), response);
         }
         try {
           switch (response.code()) {
             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -133,23 +137,22 @@ public class RawConsolidationClient {
       }
     }
 
-    public NordletApiHttpResponse<PostV1ConsolidationGroupsListResponse> postV1ConsolidationGroupsList(
-        ) {
-      return postV1ConsolidationGroupsList(PostV1ConsolidationGroupsListRequest.builder().build());
+    public NordletApiHttpResponse<GroupsListConsolidationResponse> groupsList() {
+      return groupsList(GroupsListConsolidationRequest.builder().build());
     }
 
-    public NordletApiHttpResponse<PostV1ConsolidationGroupsListResponse> postV1ConsolidationGroupsList(
+    public NordletApiHttpResponse<GroupsListConsolidationResponse> groupsList(
         RequestOptions requestOptions) {
-      return postV1ConsolidationGroupsList(PostV1ConsolidationGroupsListRequest.builder().build(),requestOptions);
+      return groupsList(GroupsListConsolidationRequest.builder().build(),requestOptions);
     }
 
-    public NordletApiHttpResponse<PostV1ConsolidationGroupsListResponse> postV1ConsolidationGroupsList(
-        PostV1ConsolidationGroupsListRequest request) {
-      return postV1ConsolidationGroupsList(request,null);
+    public NordletApiHttpResponse<GroupsListConsolidationResponse> groupsList(
+        GroupsListConsolidationRequest request) {
+      return groupsList(request,null);
     }
 
-    public NordletApiHttpResponse<PostV1ConsolidationGroupsListResponse> postV1ConsolidationGroupsList(
-        PostV1ConsolidationGroupsListRequest request, RequestOptions requestOptions) {
+    public NordletApiHttpResponse<GroupsListConsolidationResponse> groupsList(
+        GroupsListConsolidationRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/consolidation/groups/list");if (requestOptions != null) {
@@ -182,15 +185,17 @@ public class RawConsolidationClient {
           ResponseBody responseBody = response.body();
           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
           if (response.isSuccessful()) {
-            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ConsolidationGroupsListResponse.class), response);
+            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsListConsolidationResponse.class), response);
           }
           try {
             switch (response.code()) {
               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -210,13 +215,13 @@ public class RawConsolidationClient {
         }
       }
 
-      public NordletApiHttpResponse<PostV1ConsolidationGroupsGetResponse> postV1ConsolidationGroupsGet(
-          PostV1ConsolidationGroupsGetRequest request) {
-        return postV1ConsolidationGroupsGet(request,null);
+      public NordletApiHttpResponse<GroupsGetConsolidationResponse> groupsGet(
+          GroupsGetConsolidationRequest request) {
+        return groupsGet(request,null);
       }
 
-      public NordletApiHttpResponse<PostV1ConsolidationGroupsGetResponse> postV1ConsolidationGroupsGet(
-          PostV1ConsolidationGroupsGetRequest request, RequestOptions requestOptions) {
+      public NordletApiHttpResponse<GroupsGetConsolidationResponse> groupsGet(
+          GroupsGetConsolidationRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/consolidation/groups/get");if (requestOptions != null) {
@@ -249,15 +254,17 @@ public class RawConsolidationClient {
             ResponseBody responseBody = response.body();
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ConsolidationGroupsGetResponse.class), response);
+              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsGetConsolidationResponse.class), response);
             }
             try {
               switch (response.code()) {
                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -277,13 +284,13 @@ public class RawConsolidationClient {
           }
         }
 
-        public NordletApiHttpResponse<PostV1ConsolidationGroupsUpdateResponse> postV1ConsolidationGroupsUpdate(
-            PostV1ConsolidationGroupsUpdateRequest request) {
-          return postV1ConsolidationGroupsUpdate(request,null);
+        public NordletApiHttpResponse<GroupsUpdateConsolidationResponse> groupsUpdate(
+            GroupsUpdateConsolidationRequest request) {
+          return groupsUpdate(request,null);
         }
 
-        public NordletApiHttpResponse<PostV1ConsolidationGroupsUpdateResponse> postV1ConsolidationGroupsUpdate(
-            PostV1ConsolidationGroupsUpdateRequest request, RequestOptions requestOptions) {
+        public NordletApiHttpResponse<GroupsUpdateConsolidationResponse> groupsUpdate(
+            GroupsUpdateConsolidationRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/consolidation/groups/update");if (requestOptions != null) {
@@ -316,15 +323,17 @@ public class RawConsolidationClient {
               ResponseBody responseBody = response.body();
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ConsolidationGroupsUpdateResponse.class), response);
+                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsUpdateConsolidationResponse.class), response);
               }
               try {
                 switch (response.code()) {
                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -344,13 +353,13 @@ public class RawConsolidationClient {
             }
           }
 
-          public NordletApiHttpResponse<PostV1ConsolidationGroupsDeleteResponse> postV1ConsolidationGroupsDelete(
-              PostV1ConsolidationGroupsDeleteRequest request) {
-            return postV1ConsolidationGroupsDelete(request,null);
+          public NordletApiHttpResponse<GroupsDeleteConsolidationResponse> groupsDelete(
+              GroupsDeleteConsolidationRequest request) {
+            return groupsDelete(request,null);
           }
 
-          public NordletApiHttpResponse<PostV1ConsolidationGroupsDeleteResponse> postV1ConsolidationGroupsDelete(
-              PostV1ConsolidationGroupsDeleteRequest request, RequestOptions requestOptions) {
+          public NordletApiHttpResponse<GroupsDeleteConsolidationResponse> groupsDelete(
+              GroupsDeleteConsolidationRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
               .addPathSegments("v1/consolidation/groups/delete");if (requestOptions != null) {
@@ -383,15 +392,17 @@ public class RawConsolidationClient {
                 ResponseBody responseBody = response.body();
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ConsolidationGroupsDeleteResponse.class), response);
+                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsDeleteConsolidationResponse.class), response);
                 }
                 try {
                   switch (response.code()) {
                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -411,13 +422,13 @@ public class RawConsolidationClient {
               }
             }
 
-            public NordletApiHttpResponse<PostV1ConsolidationMembersAddResponse> postV1ConsolidationMembersAdd(
-                PostV1ConsolidationMembersAddRequest request) {
-              return postV1ConsolidationMembersAdd(request,null);
+            public NordletApiHttpResponse<MembersAddConsolidationResponse> membersAdd(
+                MembersAddConsolidationRequest request) {
+              return membersAdd(request,null);
             }
 
-            public NordletApiHttpResponse<PostV1ConsolidationMembersAddResponse> postV1ConsolidationMembersAdd(
-                PostV1ConsolidationMembersAddRequest request, RequestOptions requestOptions) {
+            public NordletApiHttpResponse<MembersAddConsolidationResponse> membersAdd(
+                MembersAddConsolidationRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/consolidation/members/add");if (requestOptions != null) {
@@ -450,15 +461,17 @@ public class RawConsolidationClient {
                   ResponseBody responseBody = response.body();
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ConsolidationMembersAddResponse.class), response);
+                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MembersAddConsolidationResponse.class), response);
                   }
                   try {
                     switch (response.code()) {
                       case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -478,13 +491,13 @@ public class RawConsolidationClient {
                 }
               }
 
-              public NordletApiHttpResponse<PostV1ConsolidationMembersRemoveResponse> postV1ConsolidationMembersRemove(
-                  PostV1ConsolidationMembersRemoveRequest request) {
-                return postV1ConsolidationMembersRemove(request,null);
+              public NordletApiHttpResponse<MembersRemoveConsolidationResponse> membersRemove(
+                  MembersRemoveConsolidationRequest request) {
+                return membersRemove(request,null);
               }
 
-              public NordletApiHttpResponse<PostV1ConsolidationMembersRemoveResponse> postV1ConsolidationMembersRemove(
-                  PostV1ConsolidationMembersRemoveRequest request, RequestOptions requestOptions) {
+              public NordletApiHttpResponse<MembersRemoveConsolidationResponse> membersRemove(
+                  MembersRemoveConsolidationRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                   .addPathSegments("v1/consolidation/members/remove");if (requestOptions != null) {
@@ -517,15 +530,17 @@ public class RawConsolidationClient {
                     ResponseBody responseBody = response.body();
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ConsolidationMembersRemoveResponse.class), response);
+                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MembersRemoveConsolidationResponse.class), response);
                     }
                     try {
                       switch (response.code()) {
                         case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -548,16 +563,16 @@ public class RawConsolidationClient {
                 /**
                  * Partners in member companies that look like other members of the same group (matched on company code or VAT code), with any existing intercompany link. Confirming a candidate via intercompany/links/set enables invoice mirroring.
                  */
-                public NordletApiHttpResponse<PostV1ConsolidationIntercompanyCandidatesResponse> postV1ConsolidationIntercompanyCandidates(
-                    PostV1ConsolidationIntercompanyCandidatesRequest request) {
-                  return postV1ConsolidationIntercompanyCandidates(request,null);
+                public NordletApiHttpResponse<IntercompanyCandidatesConsolidationResponse> intercompanyCandidates(
+                    IntercompanyCandidatesConsolidationRequest request) {
+                  return intercompanyCandidates(request,null);
                 }
 
                 /**
                  * Partners in member companies that look like other members of the same group (matched on company code or VAT code), with any existing intercompany link. Confirming a candidate via intercompany/links/set enables invoice mirroring.
                  */
-                public NordletApiHttpResponse<PostV1ConsolidationIntercompanyCandidatesResponse> postV1ConsolidationIntercompanyCandidates(
-                    PostV1ConsolidationIntercompanyCandidatesRequest request,
+                public NordletApiHttpResponse<IntercompanyCandidatesConsolidationResponse> intercompanyCandidates(
+                    IntercompanyCandidatesConsolidationRequest request,
                     RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -591,15 +606,17 @@ public class RawConsolidationClient {
                       ResponseBody responseBody = response.body();
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ConsolidationIntercompanyCandidatesResponse.class), response);
+                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, IntercompanyCandidatesConsolidationResponse.class), response);
                       }
                       try {
                         switch (response.code()) {
                           case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -622,16 +639,16 @@ public class RawConsolidationClient {
                   /**
                    * Confirm that a partner record in one member company represents another member company of the group. Once links exist in both directions, issuing an intercompany sale invoice automatically creates the matching draft purchase invoice in the counterparty.
                    */
-                  public NordletApiHttpResponse<PostV1ConsolidationIntercompanyLinksSetResponse> postV1ConsolidationIntercompanyLinksSet(
-                      PostV1ConsolidationIntercompanyLinksSetRequest request) {
-                    return postV1ConsolidationIntercompanyLinksSet(request,null);
+                  public NordletApiHttpResponse<IntercompanyLinksSetConsolidationResponse> intercompanyLinksSet(
+                      IntercompanyLinksSetConsolidationRequest request) {
+                    return intercompanyLinksSet(request,null);
                   }
 
                   /**
                    * Confirm that a partner record in one member company represents another member company of the group. Once links exist in both directions, issuing an intercompany sale invoice automatically creates the matching draft purchase invoice in the counterparty.
                    */
-                  public NordletApiHttpResponse<PostV1ConsolidationIntercompanyLinksSetResponse> postV1ConsolidationIntercompanyLinksSet(
-                      PostV1ConsolidationIntercompanyLinksSetRequest request,
+                  public NordletApiHttpResponse<IntercompanyLinksSetConsolidationResponse> intercompanyLinksSet(
+                      IntercompanyLinksSetConsolidationRequest request,
                       RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -665,15 +682,17 @@ public class RawConsolidationClient {
                         ResponseBody responseBody = response.body();
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ConsolidationIntercompanyLinksSetResponse.class), response);
+                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, IntercompanyLinksSetConsolidationResponse.class), response);
                         }
                         try {
                           switch (response.code()) {
                             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -693,13 +712,13 @@ public class RawConsolidationClient {
                       }
                     }
 
-                    public NordletApiHttpResponse<PostV1ConsolidationIntercompanyLinksListResponse> postV1ConsolidationIntercompanyLinksList(
-                        PostV1ConsolidationIntercompanyLinksListRequest request) {
-                      return postV1ConsolidationIntercompanyLinksList(request,null);
+                    public NordletApiHttpResponse<IntercompanyLinksListConsolidationResponse> intercompanyLinksList(
+                        IntercompanyLinksListConsolidationRequest request) {
+                      return intercompanyLinksList(request,null);
                     }
 
-                    public NordletApiHttpResponse<PostV1ConsolidationIntercompanyLinksListResponse> postV1ConsolidationIntercompanyLinksList(
-                        PostV1ConsolidationIntercompanyLinksListRequest request,
+                    public NordletApiHttpResponse<IntercompanyLinksListConsolidationResponse> intercompanyLinksList(
+                        IntercompanyLinksListConsolidationRequest request,
                         RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -733,15 +752,17 @@ public class RawConsolidationClient {
                           ResponseBody responseBody = response.body();
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ConsolidationIntercompanyLinksListResponse.class), response);
+                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, IntercompanyLinksListConsolidationResponse.class), response);
                           }
                           try {
                             switch (response.code()) {
                               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -761,13 +782,13 @@ public class RawConsolidationClient {
                         }
                       }
 
-                      public NordletApiHttpResponse<PostV1ConsolidationIntercompanyLinksRemoveResponse> postV1ConsolidationIntercompanyLinksRemove(
-                          PostV1ConsolidationIntercompanyLinksRemoveRequest request) {
-                        return postV1ConsolidationIntercompanyLinksRemove(request,null);
+                      public NordletApiHttpResponse<IntercompanyLinksRemoveConsolidationResponse> intercompanyLinksRemove(
+                          IntercompanyLinksRemoveConsolidationRequest request) {
+                        return intercompanyLinksRemove(request,null);
                       }
 
-                      public NordletApiHttpResponse<PostV1ConsolidationIntercompanyLinksRemoveResponse> postV1ConsolidationIntercompanyLinksRemove(
-                          PostV1ConsolidationIntercompanyLinksRemoveRequest request,
+                      public NordletApiHttpResponse<IntercompanyLinksRemoveConsolidationResponse> intercompanyLinksRemove(
+                          IntercompanyLinksRemoveConsolidationRequest request,
                           RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -801,15 +822,17 @@ public class RawConsolidationClient {
                             ResponseBody responseBody = response.body();
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ConsolidationIntercompanyLinksRemoveResponse.class), response);
+                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, IntercompanyLinksRemoveConsolidationResponse.class), response);
                             }
                             try {
                               switch (response.code()) {
                                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -832,16 +855,16 @@ public class RawConsolidationClient {
                         /**
                          * Intercompany reconciliation for a period: every issued intercompany sale invoice with its mirrored or manually recorded counterpart, unmatched documents on both sides, and per-currency totals with differences. Confirmed pairs are the basis for consolidation eliminations.
                          */
-                        public NordletApiHttpResponse<PostV1ConsolidationIntercompanyReportResponse> postV1ConsolidationIntercompanyReport(
-                            PostV1ConsolidationIntercompanyReportRequest request) {
-                          return postV1ConsolidationIntercompanyReport(request,null);
+                        public NordletApiHttpResponse<IntercompanyReportConsolidationResponse> intercompanyReport(
+                            IntercompanyReportConsolidationRequest request) {
+                          return intercompanyReport(request,null);
                         }
 
                         /**
                          * Intercompany reconciliation for a period: every issued intercompany sale invoice with its mirrored or manually recorded counterpart, unmatched documents on both sides, and per-currency totals with differences. Confirmed pairs are the basis for consolidation eliminations.
                          */
-                        public NordletApiHttpResponse<PostV1ConsolidationIntercompanyReportResponse> postV1ConsolidationIntercompanyReport(
-                            PostV1ConsolidationIntercompanyReportRequest request,
+                        public NordletApiHttpResponse<IntercompanyReportConsolidationResponse> intercompanyReport(
+                            IntercompanyReportConsolidationRequest request,
                             RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -875,15 +898,17 @@ public class RawConsolidationClient {
                               ResponseBody responseBody = response.body();
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ConsolidationIntercompanyReportResponse.class), response);
+                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, IntercompanyReportConsolidationResponse.class), response);
                               }
                               try {
                                 switch (response.code()) {
                                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -903,14 +928,13 @@ public class RawConsolidationClient {
                             }
                           }
 
-                          public NordletApiHttpResponse<PostV1ConsolidationReportResponse> postV1ConsolidationReport(
-                              PostV1ConsolidationReportRequest request) {
-                            return postV1ConsolidationReport(request,null);
+                          public NordletApiHttpResponse<ReportConsolidationResponse> report(
+                              ReportConsolidationRequest request) {
+                            return report(request,null);
                           }
 
-                          public NordletApiHttpResponse<PostV1ConsolidationReportResponse> postV1ConsolidationReport(
-                              PostV1ConsolidationReportRequest request,
-                              RequestOptions requestOptions) {
+                          public NordletApiHttpResponse<ReportConsolidationResponse> report(
+                              ReportConsolidationRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                               .addPathSegments("v1/consolidation/report");if (requestOptions != null) {
@@ -943,15 +967,17 @@ public class RawConsolidationClient {
                                 ResponseBody responseBody = response.body();
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1ConsolidationReportResponse.class), response);
+                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReportConsolidationResponse.class), response);
                                 }
                                 try {
                                   switch (response.code()) {
                                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);

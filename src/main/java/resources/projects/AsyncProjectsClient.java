@@ -6,26 +6,26 @@ package com.nordlet.api.resources.projects;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsCreateRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsGetRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsListRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsReportRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsTimeEntriesBillRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsTimeEntriesCreateRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsTimeEntriesDeleteRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsTimeEntriesListRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsTimeEntriesUpdateRequest;
-import com.nordlet.api.resources.projects.requests.PostV1ProjectsUpdateRequest;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsCreateResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsGetResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsListResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsReportResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsTimeEntriesBillResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsTimeEntriesCreateResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsTimeEntriesDeleteResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsTimeEntriesListResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsTimeEntriesUpdateResponse;
-import com.nordlet.api.resources.projects.types.PostV1ProjectsUpdateResponse;
+import com.nordlet.api.resources.projects.requests.CreateProjectsRequest;
+import com.nordlet.api.resources.projects.requests.GetProjectsRequest;
+import com.nordlet.api.resources.projects.requests.ListProjectsRequest;
+import com.nordlet.api.resources.projects.requests.ReportProjectsRequest;
+import com.nordlet.api.resources.projects.requests.TimeEntriesBillProjectsRequest;
+import com.nordlet.api.resources.projects.requests.TimeEntriesCreateProjectsRequest;
+import com.nordlet.api.resources.projects.requests.TimeEntriesDeleteProjectsRequest;
+import com.nordlet.api.resources.projects.requests.TimeEntriesListProjectsRequest;
+import com.nordlet.api.resources.projects.requests.TimeEntriesUpdateProjectsRequest;
+import com.nordlet.api.resources.projects.requests.UpdateProjectsRequest;
+import com.nordlet.api.resources.projects.types.CreateProjectsResponse;
+import com.nordlet.api.resources.projects.types.GetProjectsResponse;
+import com.nordlet.api.resources.projects.types.ListProjectsResponse;
+import com.nordlet.api.resources.projects.types.ReportProjectsResponse;
+import com.nordlet.api.resources.projects.types.TimeEntriesBillProjectsResponse;
+import com.nordlet.api.resources.projects.types.TimeEntriesCreateProjectsResponse;
+import com.nordlet.api.resources.projects.types.TimeEntriesDeleteProjectsResponse;
+import com.nordlet.api.resources.projects.types.TimeEntriesListProjectsResponse;
+import com.nordlet.api.resources.projects.types.TimeEntriesUpdateProjectsResponse;
+import com.nordlet.api.resources.projects.types.UpdateProjectsResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncProjectsClient {
@@ -45,130 +45,123 @@ public class AsyncProjectsClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1ProjectsCreateResponse> postV1ProjectsCreate(
-      PostV1ProjectsCreateRequest request) {
-    return this.rawClient.postV1ProjectsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<CreateProjectsResponse> create(CreateProjectsRequest request) {
+    return this.rawClient.create(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ProjectsCreateResponse> postV1ProjectsCreate(
-      PostV1ProjectsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsUpdateResponse> postV1ProjectsUpdate(
-      PostV1ProjectsUpdateRequest request) {
-    return this.rawClient.postV1ProjectsUpdate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsUpdateResponse> postV1ProjectsUpdate(
-      PostV1ProjectsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsGetResponse> postV1ProjectsGet(
-      PostV1ProjectsGetRequest request) {
-    return this.rawClient.postV1ProjectsGet(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsGetResponse> postV1ProjectsGet(
-      PostV1ProjectsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsListResponse> postV1ProjectsList() {
-    return this.rawClient.postV1ProjectsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsListResponse> postV1ProjectsList(
+  public CompletableFuture<CreateProjectsResponse> create(CreateProjectsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.create(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ProjectsListResponse> postV1ProjectsList(
-      PostV1ProjectsListRequest request) {
-    return this.rawClient.postV1ProjectsList(request).thenApply(response -> response.body());
+  public CompletableFuture<UpdateProjectsResponse> update(UpdateProjectsRequest request) {
+    return this.rawClient.update(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ProjectsListResponse> postV1ProjectsList(
-      PostV1ProjectsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsList(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsTimeEntriesCreateResponse> postV1ProjectsTimeEntriesCreate(
-      PostV1ProjectsTimeEntriesCreateRequest request) {
-    return this.rawClient.postV1ProjectsTimeEntriesCreate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsTimeEntriesCreateResponse> postV1ProjectsTimeEntriesCreate(
-      PostV1ProjectsTimeEntriesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsTimeEntriesCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsTimeEntriesUpdateResponse> postV1ProjectsTimeEntriesUpdate(
-      PostV1ProjectsTimeEntriesUpdateRequest request) {
-    return this.rawClient.postV1ProjectsTimeEntriesUpdate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsTimeEntriesUpdateResponse> postV1ProjectsTimeEntriesUpdate(
-      PostV1ProjectsTimeEntriesUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsTimeEntriesUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsTimeEntriesDeleteResponse> postV1ProjectsTimeEntriesDelete(
-      PostV1ProjectsTimeEntriesDeleteRequest request) {
-    return this.rawClient.postV1ProjectsTimeEntriesDelete(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsTimeEntriesDeleteResponse> postV1ProjectsTimeEntriesDelete(
-      PostV1ProjectsTimeEntriesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsTimeEntriesDelete(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsTimeEntriesListResponse> postV1ProjectsTimeEntriesList() {
-    return this.rawClient.postV1ProjectsTimeEntriesList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsTimeEntriesListResponse> postV1ProjectsTimeEntriesList(
+  public CompletableFuture<UpdateProjectsResponse> update(UpdateProjectsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsTimeEntriesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.update(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ProjectsTimeEntriesListResponse> postV1ProjectsTimeEntriesList(
-      PostV1ProjectsTimeEntriesListRequest request) {
-    return this.rawClient.postV1ProjectsTimeEntriesList(request).thenApply(response -> response.body());
+  public CompletableFuture<GetProjectsResponse> get(GetProjectsRequest request) {
+    return this.rawClient.get(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ProjectsTimeEntriesListResponse> postV1ProjectsTimeEntriesList(
-      PostV1ProjectsTimeEntriesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsTimeEntriesList(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsTimeEntriesBillResponse> postV1ProjectsTimeEntriesBill(
-      PostV1ProjectsTimeEntriesBillRequest request) {
-    return this.rawClient.postV1ProjectsTimeEntriesBill(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsTimeEntriesBillResponse> postV1ProjectsTimeEntriesBill(
-      PostV1ProjectsTimeEntriesBillRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsTimeEntriesBill(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsReportResponse> postV1ProjectsReport() {
-    return this.rawClient.postV1ProjectsReport().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1ProjectsReportResponse> postV1ProjectsReport(
+  public CompletableFuture<GetProjectsResponse> get(GetProjectsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsReport(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.get(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ProjectsReportResponse> postV1ProjectsReport(
-      PostV1ProjectsReportRequest request) {
-    return this.rawClient.postV1ProjectsReport(request).thenApply(response -> response.body());
+  public CompletableFuture<ListProjectsResponse> list() {
+    return this.rawClient.list().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1ProjectsReportResponse> postV1ProjectsReport(
-      PostV1ProjectsReportRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1ProjectsReport(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<ListProjectsResponse> list(RequestOptions requestOptions) {
+    return this.rawClient.list(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ListProjectsResponse> list(ListProjectsRequest request) {
+    return this.rawClient.list(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ListProjectsResponse> list(ListProjectsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.list(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TimeEntriesCreateProjectsResponse> timeEntriesCreate(
+      TimeEntriesCreateProjectsRequest request) {
+    return this.rawClient.timeEntriesCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TimeEntriesCreateProjectsResponse> timeEntriesCreate(
+      TimeEntriesCreateProjectsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.timeEntriesCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TimeEntriesUpdateProjectsResponse> timeEntriesUpdate(
+      TimeEntriesUpdateProjectsRequest request) {
+    return this.rawClient.timeEntriesUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TimeEntriesUpdateProjectsResponse> timeEntriesUpdate(
+      TimeEntriesUpdateProjectsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.timeEntriesUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TimeEntriesDeleteProjectsResponse> timeEntriesDelete(
+      TimeEntriesDeleteProjectsRequest request) {
+    return this.rawClient.timeEntriesDelete(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TimeEntriesDeleteProjectsResponse> timeEntriesDelete(
+      TimeEntriesDeleteProjectsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.timeEntriesDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TimeEntriesListProjectsResponse> timeEntriesList() {
+    return this.rawClient.timeEntriesList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TimeEntriesListProjectsResponse> timeEntriesList(
+      RequestOptions requestOptions) {
+    return this.rawClient.timeEntriesList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TimeEntriesListProjectsResponse> timeEntriesList(
+      TimeEntriesListProjectsRequest request) {
+    return this.rawClient.timeEntriesList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TimeEntriesListProjectsResponse> timeEntriesList(
+      TimeEntriesListProjectsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.timeEntriesList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TimeEntriesBillProjectsResponse> timeEntriesBill(
+      TimeEntriesBillProjectsRequest request) {
+    return this.rawClient.timeEntriesBill(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TimeEntriesBillProjectsResponse> timeEntriesBill(
+      TimeEntriesBillProjectsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.timeEntriesBill(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReportProjectsResponse> report() {
+    return this.rawClient.report().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReportProjectsResponse> report(RequestOptions requestOptions) {
+    return this.rawClient.report(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReportProjectsResponse> report(ReportProjectsRequest request) {
+    return this.rawClient.report(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReportProjectsResponse> report(ReportProjectsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.report(request, requestOptions).thenApply(response -> response.body());
   }
 }

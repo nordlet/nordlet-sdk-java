@@ -6,30 +6,30 @@ package com.nordlet.api.resources.agreements;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsBillingRunRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsCreateRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsDeleteRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsGenerateInvoiceRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsGetRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsListRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsAgreementsUpdateRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsInsurancePoliciesCreateRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsInsurancePoliciesDeleteRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsInsurancePoliciesListRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsTypesCreateRequest;
-import com.nordlet.api.resources.agreements.requests.PostV1AgreementsTypesListRequest;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsBillingRunResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsCreateResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsDeleteResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsGenerateInvoiceResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsGetResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsListResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsAgreementsUpdateResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsInsurancePoliciesCreateResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsInsurancePoliciesDeleteResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsInsurancePoliciesListResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsTypesCreateResponse;
-import com.nordlet.api.resources.agreements.types.PostV1AgreementsTypesListResponse;
+import com.nordlet.api.resources.agreements.requests.AgreementsBillingRunAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsCreateAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsDeleteAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsGenerateInvoiceAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsGetAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsListAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsUpdateAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.InsurancePoliciesCreateAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.InsurancePoliciesDeleteAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.InsurancePoliciesListAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.TypesCreateAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.TypesListAgreementsRequest;
+import com.nordlet.api.resources.agreements.types.AgreementsBillingRunAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsCreateAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsDeleteAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsGenerateInvoiceAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsGetAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsListAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsUpdateAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.InsurancePoliciesCreateAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.InsurancePoliciesDeleteAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.InsurancePoliciesListAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.TypesCreateAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.TypesListAgreementsResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncAgreementsClient {
@@ -49,162 +49,158 @@ public class AsyncAgreementsClient {
     return this.rawClient;
   }
 
-  public CompletableFuture<PostV1AgreementsTypesCreateResponse> postV1AgreementsTypesCreate(
-      PostV1AgreementsTypesCreateRequest request) {
-    return this.rawClient.postV1AgreementsTypesCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<TypesCreateAgreementsResponse> typesCreate(
+      TypesCreateAgreementsRequest request) {
+    return this.rawClient.typesCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsTypesCreateResponse> postV1AgreementsTypesCreate(
-      PostV1AgreementsTypesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsTypesCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<TypesCreateAgreementsResponse> typesCreate(
+      TypesCreateAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.typesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsTypesListResponse> postV1AgreementsTypesList() {
-    return this.rawClient.postV1AgreementsTypesList().thenApply(response -> response.body());
+  public CompletableFuture<TypesListAgreementsResponse> typesList() {
+    return this.rawClient.typesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsTypesListResponse> postV1AgreementsTypesList(
+  public CompletableFuture<TypesListAgreementsResponse> typesList(RequestOptions requestOptions) {
+    return this.rawClient.typesList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesListAgreementsResponse> typesList(
+      TypesListAgreementsRequest request) {
+    return this.rawClient.typesList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesListAgreementsResponse> typesList(
+      TypesListAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.typesList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AgreementsCreateAgreementsResponse> agreementsCreate(
+      AgreementsCreateAgreementsRequest request) {
+    return this.rawClient.agreementsCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AgreementsCreateAgreementsResponse> agreementsCreate(
+      AgreementsCreateAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.agreementsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AgreementsGetAgreementsResponse> agreementsGet(
+      AgreementsGetAgreementsRequest request) {
+    return this.rawClient.agreementsGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AgreementsGetAgreementsResponse> agreementsGet(
+      AgreementsGetAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.agreementsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AgreementsUpdateAgreementsResponse> agreementsUpdate(
+      AgreementsUpdateAgreementsRequest request) {
+    return this.rawClient.agreementsUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AgreementsUpdateAgreementsResponse> agreementsUpdate(
+      AgreementsUpdateAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.agreementsUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AgreementsDeleteAgreementsResponse> agreementsDelete(
+      AgreementsDeleteAgreementsRequest request) {
+    return this.rawClient.agreementsDelete(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AgreementsDeleteAgreementsResponse> agreementsDelete(
+      AgreementsDeleteAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.agreementsDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AgreementsListAgreementsResponse> agreementsList() {
+    return this.rawClient.agreementsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AgreementsListAgreementsResponse> agreementsList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsTypesList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.agreementsList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsTypesListResponse> postV1AgreementsTypesList(
-      PostV1AgreementsTypesListRequest request) {
-    return this.rawClient.postV1AgreementsTypesList(request).thenApply(response -> response.body());
+  public CompletableFuture<AgreementsListAgreementsResponse> agreementsList(
+      AgreementsListAgreementsRequest request) {
+    return this.rawClient.agreementsList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsTypesListResponse> postV1AgreementsTypesList(
-      PostV1AgreementsTypesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsTypesList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<AgreementsListAgreementsResponse> agreementsList(
+      AgreementsListAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.agreementsList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsAgreementsCreateResponse> postV1AgreementsAgreementsCreate(
-      PostV1AgreementsAgreementsCreateRequest request) {
-    return this.rawClient.postV1AgreementsAgreementsCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<AgreementsGenerateInvoiceAgreementsResponse> agreementsGenerateInvoice(
+      AgreementsGenerateInvoiceAgreementsRequest request) {
+    return this.rawClient.agreementsGenerateInvoice(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsAgreementsCreateResponse> postV1AgreementsAgreementsCreate(
-      PostV1AgreementsAgreementsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsCreate(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<AgreementsGenerateInvoiceAgreementsResponse> agreementsGenerateInvoice(
+      AgreementsGenerateInvoiceAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.agreementsGenerateInvoice(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsAgreementsGetResponse> postV1AgreementsAgreementsGet(
-      PostV1AgreementsAgreementsGetRequest request) {
-    return this.rawClient.postV1AgreementsAgreementsGet(request).thenApply(response -> response.body());
+  public CompletableFuture<AgreementsBillingRunAgreementsResponse> agreementsBillingRun() {
+    return this.rawClient.agreementsBillingRun().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsAgreementsGetResponse> postV1AgreementsAgreementsGet(
-      PostV1AgreementsAgreementsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsGet(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AgreementsAgreementsUpdateResponse> postV1AgreementsAgreementsUpdate(
-      PostV1AgreementsAgreementsUpdateRequest request) {
-    return this.rawClient.postV1AgreementsAgreementsUpdate(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AgreementsAgreementsUpdateResponse> postV1AgreementsAgreementsUpdate(
-      PostV1AgreementsAgreementsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsUpdate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AgreementsAgreementsDeleteResponse> postV1AgreementsAgreementsDelete(
-      PostV1AgreementsAgreementsDeleteRequest request) {
-    return this.rawClient.postV1AgreementsAgreementsDelete(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AgreementsAgreementsDeleteResponse> postV1AgreementsAgreementsDelete(
-      PostV1AgreementsAgreementsDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsDelete(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AgreementsAgreementsListResponse> postV1AgreementsAgreementsList(
-      ) {
-    return this.rawClient.postV1AgreementsAgreementsList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AgreementsAgreementsListResponse> postV1AgreementsAgreementsList(
+  public CompletableFuture<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsList(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.agreementsBillingRun(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsAgreementsListResponse> postV1AgreementsAgreementsList(
-      PostV1AgreementsAgreementsListRequest request) {
-    return this.rawClient.postV1AgreementsAgreementsList(request).thenApply(response -> response.body());
+  public CompletableFuture<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
+      AgreementsBillingRunAgreementsRequest request) {
+    return this.rawClient.agreementsBillingRun(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsAgreementsListResponse> postV1AgreementsAgreementsList(
-      PostV1AgreementsAgreementsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsList(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
+      AgreementsBillingRunAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.agreementsBillingRun(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsAgreementsGenerateInvoiceResponse> postV1AgreementsAgreementsGenerateInvoice(
-      PostV1AgreementsAgreementsGenerateInvoiceRequest request) {
-    return this.rawClient.postV1AgreementsAgreementsGenerateInvoice(request).thenApply(response -> response.body());
+  public CompletableFuture<InsurancePoliciesCreateAgreementsResponse> insurancePoliciesCreate(
+      InsurancePoliciesCreateAgreementsRequest request) {
+    return this.rawClient.insurancePoliciesCreate(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsAgreementsGenerateInvoiceResponse> postV1AgreementsAgreementsGenerateInvoice(
-      PostV1AgreementsAgreementsGenerateInvoiceRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsGenerateInvoice(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InsurancePoliciesCreateAgreementsResponse> insurancePoliciesCreate(
+      InsurancePoliciesCreateAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.insurancePoliciesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsAgreementsBillingRunResponse> postV1AgreementsAgreementsBillingRun(
-      ) {
-    return this.rawClient.postV1AgreementsAgreementsBillingRun().thenApply(response -> response.body());
+  public CompletableFuture<InsurancePoliciesListAgreementsResponse> insurancePoliciesList() {
+    return this.rawClient.insurancePoliciesList().thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsAgreementsBillingRunResponse> postV1AgreementsAgreementsBillingRun(
+  public CompletableFuture<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsBillingRun(requestOptions).thenApply(response -> response.body());
+    return this.rawClient.insurancePoliciesList(requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsAgreementsBillingRunResponse> postV1AgreementsAgreementsBillingRun(
-      PostV1AgreementsAgreementsBillingRunRequest request) {
-    return this.rawClient.postV1AgreementsAgreementsBillingRun(request).thenApply(response -> response.body());
+  public CompletableFuture<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
+      InsurancePoliciesListAgreementsRequest request) {
+    return this.rawClient.insurancePoliciesList(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsAgreementsBillingRunResponse> postV1AgreementsAgreementsBillingRun(
-      PostV1AgreementsAgreementsBillingRunRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsAgreementsBillingRun(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
+      InsurancePoliciesListAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.insurancePoliciesList(request, requestOptions).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsInsurancePoliciesCreateResponse> postV1AgreementsInsurancePoliciesCreate(
-      PostV1AgreementsInsurancePoliciesCreateRequest request) {
-    return this.rawClient.postV1AgreementsInsurancePoliciesCreate(request).thenApply(response -> response.body());
+  public CompletableFuture<InsurancePoliciesDeleteAgreementsResponse> insurancePoliciesDelete(
+      InsurancePoliciesDeleteAgreementsRequest request) {
+    return this.rawClient.insurancePoliciesDelete(request).thenApply(response -> response.body());
   }
 
-  public CompletableFuture<PostV1AgreementsInsurancePoliciesCreateResponse> postV1AgreementsInsurancePoliciesCreate(
-      PostV1AgreementsInsurancePoliciesCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsInsurancePoliciesCreate(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AgreementsInsurancePoliciesListResponse> postV1AgreementsInsurancePoliciesList(
-      ) {
-    return this.rawClient.postV1AgreementsInsurancePoliciesList().thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AgreementsInsurancePoliciesListResponse> postV1AgreementsInsurancePoliciesList(
-      RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsInsurancePoliciesList(requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AgreementsInsurancePoliciesListResponse> postV1AgreementsInsurancePoliciesList(
-      PostV1AgreementsInsurancePoliciesListRequest request) {
-    return this.rawClient.postV1AgreementsInsurancePoliciesList(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AgreementsInsurancePoliciesListResponse> postV1AgreementsInsurancePoliciesList(
-      PostV1AgreementsInsurancePoliciesListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsInsurancePoliciesList(request, requestOptions).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AgreementsInsurancePoliciesDeleteResponse> postV1AgreementsInsurancePoliciesDelete(
-      PostV1AgreementsInsurancePoliciesDeleteRequest request) {
-    return this.rawClient.postV1AgreementsInsurancePoliciesDelete(request).thenApply(response -> response.body());
-  }
-
-  public CompletableFuture<PostV1AgreementsInsurancePoliciesDeleteResponse> postV1AgreementsInsurancePoliciesDelete(
-      PostV1AgreementsInsurancePoliciesDeleteRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AgreementsInsurancePoliciesDelete(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<InsurancePoliciesDeleteAgreementsResponse> insurancePoliciesDelete(
+      InsurancePoliciesDeleteAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.insurancePoliciesDelete(request, requestOptions).thenApply(response -> response.body());
   }
 }

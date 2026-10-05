@@ -15,74 +15,68 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsApplyTemplateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsSwitchChartRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerAccountsUpdateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsDeleteRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCenterGroupsUpdateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCentersCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCentersListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerCostCentersUpdateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerJournalTransactionsCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerJournalTransactionsGetRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerJournalTransactionsListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerOwnersCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerOwnersDeleteRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerOwnersListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerOwnersUpdateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerPeriodsListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerPeriodsLockRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerPeriodsUnlockRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerPostingRulesListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerPostingRulesUpdateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerStatementRowsListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerStatementRowsSchemesRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1LedgerStatementRowsSetRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1OfficersCreateRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1OfficersDeleteRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1OfficersListRequest;
-import com.nordlet.api.resources.ledger.requests.PostV1OfficersUpdateRequest;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsApplyTemplateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsSwitchChartResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerAccountsUpdateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsDeleteResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCenterGroupsUpdateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCentersCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCentersListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerCostCentersUpdateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerJournalTransactionsCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerJournalTransactionsGetResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerJournalTransactionsListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerOwnersCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerOwnersDeleteResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerOwnersListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerOwnersUpdateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerPeriodsListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerPeriodsLockResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerPeriodsUnlockResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerPostingRulesListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerPostingRulesUpdateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerStatementRowsListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerStatementRowsSchemesResponse;
-import com.nordlet.api.resources.ledger.types.PostV1LedgerStatementRowsSetResponse;
-import com.nordlet.api.resources.ledger.types.PostV1OfficersCreateResponse;
-import com.nordlet.api.resources.ledger.types.PostV1OfficersDeleteResponse;
-import com.nordlet.api.resources.ledger.types.PostV1OfficersListResponse;
-import com.nordlet.api.resources.ledger.types.PostV1OfficersUpdateResponse;
+import com.nordlet.api.resources.ledger.requests.AccountsApplyTemplateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.AccountsCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.AccountsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.AccountsSwitchChartLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.AccountsUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCenterGroupsCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCenterGroupsDeleteLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCenterGroupsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCenterGroupsUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCentersCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCentersListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.CostCentersUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.JournalTransactionsCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.JournalTransactionsGetLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.JournalTransactionsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.OwnersCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.OwnersDeleteLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.OwnersListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.OwnersUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.PeriodsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.PeriodsLockLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.PeriodsUnlockLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.PostingRulesListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.PostingRulesUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.StatementRowsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.StatementRowsSchemesLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.StatementRowsSetLedgerRequest;
+import com.nordlet.api.resources.ledger.types.AccountsApplyTemplateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.AccountsCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.AccountsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.AccountsSwitchChartLedgerResponse;
+import com.nordlet.api.resources.ledger.types.AccountsUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCenterGroupsCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCenterGroupsDeleteLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCenterGroupsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCenterGroupsUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCentersCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCentersListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.CostCentersUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.JournalTransactionsCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.JournalTransactionsGetLedgerResponse;
+import com.nordlet.api.resources.ledger.types.JournalTransactionsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.OwnersCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.OwnersDeleteLedgerResponse;
+import com.nordlet.api.resources.ledger.types.OwnersListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.OwnersUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.PeriodsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.PeriodsLockLedgerResponse;
+import com.nordlet.api.resources.ledger.types.PeriodsUnlockLedgerResponse;
+import com.nordlet.api.resources.ledger.types.PostingRulesListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.PostingRulesUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.StatementRowsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.StatementRowsSchemesLedgerResponse;
+import com.nordlet.api.resources.ledger.types.StatementRowsSetLedgerResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -102,22 +96,22 @@ public class RawLedgerClient {
     this.clientOptions = clientOptions;
   }
 
-  public NordletApiHttpResponse<PostV1LedgerAccountsListResponse> postV1LedgerAccountsList() {
-    return postV1LedgerAccountsList(PostV1LedgerAccountsListRequest.builder().build());
+  public NordletApiHttpResponse<AccountsListLedgerResponse> accountsList() {
+    return accountsList(AccountsListLedgerRequest.builder().build());
   }
 
-  public NordletApiHttpResponse<PostV1LedgerAccountsListResponse> postV1LedgerAccountsList(
+  public NordletApiHttpResponse<AccountsListLedgerResponse> accountsList(
       RequestOptions requestOptions) {
-    return postV1LedgerAccountsList(PostV1LedgerAccountsListRequest.builder().build(),requestOptions);
+    return accountsList(AccountsListLedgerRequest.builder().build(),requestOptions);
   }
 
-  public NordletApiHttpResponse<PostV1LedgerAccountsListResponse> postV1LedgerAccountsList(
-      PostV1LedgerAccountsListRequest request) {
-    return postV1LedgerAccountsList(request,null);
+  public NordletApiHttpResponse<AccountsListLedgerResponse> accountsList(
+      AccountsListLedgerRequest request) {
+    return accountsList(request,null);
   }
 
-  public NordletApiHttpResponse<PostV1LedgerAccountsListResponse> postV1LedgerAccountsList(
-      PostV1LedgerAccountsListRequest request, RequestOptions requestOptions) {
+  public NordletApiHttpResponse<AccountsListLedgerResponse> accountsList(
+      AccountsListLedgerRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/ledger/accounts/list");if (requestOptions != null) {
@@ -150,15 +144,17 @@ public class RawLedgerClient {
         ResponseBody responseBody = response.body();
         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
         if (response.isSuccessful()) {
-          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerAccountsListResponse.class), response);
+          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AccountsListLedgerResponse.class), response);
         }
         try {
           switch (response.code()) {
             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -178,13 +174,13 @@ public class RawLedgerClient {
       }
     }
 
-    public NordletApiHttpResponse<PostV1LedgerAccountsCreateResponse> postV1LedgerAccountsCreate(
-        PostV1LedgerAccountsCreateRequest request) {
-      return postV1LedgerAccountsCreate(request,null);
+    public NordletApiHttpResponse<AccountsCreateLedgerResponse> accountsCreate(
+        AccountsCreateLedgerRequest request) {
+      return accountsCreate(request,null);
     }
 
-    public NordletApiHttpResponse<PostV1LedgerAccountsCreateResponse> postV1LedgerAccountsCreate(
-        PostV1LedgerAccountsCreateRequest request, RequestOptions requestOptions) {
+    public NordletApiHttpResponse<AccountsCreateLedgerResponse> accountsCreate(
+        AccountsCreateLedgerRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/ledger/accounts/create");if (requestOptions != null) {
@@ -217,15 +213,17 @@ public class RawLedgerClient {
           ResponseBody responseBody = response.body();
           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
           if (response.isSuccessful()) {
-            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerAccountsCreateResponse.class), response);
+            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AccountsCreateLedgerResponse.class), response);
           }
           try {
             switch (response.code()) {
               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -245,13 +243,13 @@ public class RawLedgerClient {
         }
       }
 
-      public NordletApiHttpResponse<PostV1LedgerAccountsUpdateResponse> postV1LedgerAccountsUpdate(
-          PostV1LedgerAccountsUpdateRequest request) {
-        return postV1LedgerAccountsUpdate(request,null);
+      public NordletApiHttpResponse<AccountsUpdateLedgerResponse> accountsUpdate(
+          AccountsUpdateLedgerRequest request) {
+        return accountsUpdate(request,null);
       }
 
-      public NordletApiHttpResponse<PostV1LedgerAccountsUpdateResponse> postV1LedgerAccountsUpdate(
-          PostV1LedgerAccountsUpdateRequest request, RequestOptions requestOptions) {
+      public NordletApiHttpResponse<AccountsUpdateLedgerResponse> accountsUpdate(
+          AccountsUpdateLedgerRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/ledger/accounts/update");if (requestOptions != null) {
@@ -284,15 +282,17 @@ public class RawLedgerClient {
             ResponseBody responseBody = response.body();
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerAccountsUpdateResponse.class), response);
+              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AccountsUpdateLedgerResponse.class), response);
             }
             try {
               switch (response.code()) {
                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -312,23 +312,22 @@ public class RawLedgerClient {
           }
         }
 
-        public NordletApiHttpResponse<PostV1LedgerAccountsApplyTemplateResponse> postV1LedgerAccountsApplyTemplate(
-            ) {
-          return postV1LedgerAccountsApplyTemplate(PostV1LedgerAccountsApplyTemplateRequest.builder().build());
+        public NordletApiHttpResponse<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate() {
+          return accountsApplyTemplate(AccountsApplyTemplateLedgerRequest.builder().build());
         }
 
-        public NordletApiHttpResponse<PostV1LedgerAccountsApplyTemplateResponse> postV1LedgerAccountsApplyTemplate(
+        public NordletApiHttpResponse<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate(
             RequestOptions requestOptions) {
-          return postV1LedgerAccountsApplyTemplate(PostV1LedgerAccountsApplyTemplateRequest.builder().build(),requestOptions);
+          return accountsApplyTemplate(AccountsApplyTemplateLedgerRequest.builder().build(),requestOptions);
         }
 
-        public NordletApiHttpResponse<PostV1LedgerAccountsApplyTemplateResponse> postV1LedgerAccountsApplyTemplate(
-            PostV1LedgerAccountsApplyTemplateRequest request) {
-          return postV1LedgerAccountsApplyTemplate(request,null);
+        public NordletApiHttpResponse<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate(
+            AccountsApplyTemplateLedgerRequest request) {
+          return accountsApplyTemplate(request,null);
         }
 
-        public NordletApiHttpResponse<PostV1LedgerAccountsApplyTemplateResponse> postV1LedgerAccountsApplyTemplate(
-            PostV1LedgerAccountsApplyTemplateRequest request, RequestOptions requestOptions) {
+        public NordletApiHttpResponse<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate(
+            AccountsApplyTemplateLedgerRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/ledger/accounts/apply-template");if (requestOptions != null) {
@@ -361,15 +360,17 @@ public class RawLedgerClient {
               ResponseBody responseBody = response.body();
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerAccountsApplyTemplateResponse.class), response);
+                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AccountsApplyTemplateLedgerResponse.class), response);
               }
               try {
                 switch (response.code()) {
                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -392,32 +393,31 @@ public class RawLedgerClient {
           /**
            * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
            */
-          public NordletApiHttpResponse<PostV1LedgerAccountsSwitchChartResponse> moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
-              ) {
-            return moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(PostV1LedgerAccountsSwitchChartRequest.builder().build());
+          public NordletApiHttpResponse<AccountsSwitchChartLedgerResponse> accountsSwitchChart() {
+            return accountsSwitchChart(AccountsSwitchChartLedgerRequest.builder().build());
           }
 
           /**
            * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
            */
-          public NordletApiHttpResponse<PostV1LedgerAccountsSwitchChartResponse> moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
+          public NordletApiHttpResponse<AccountsSwitchChartLedgerResponse> accountsSwitchChart(
               RequestOptions requestOptions) {
-            return moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(PostV1LedgerAccountsSwitchChartRequest.builder().build(),requestOptions);
+            return accountsSwitchChart(AccountsSwitchChartLedgerRequest.builder().build(),requestOptions);
           }
 
           /**
            * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
            */
-          public NordletApiHttpResponse<PostV1LedgerAccountsSwitchChartResponse> moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
-              PostV1LedgerAccountsSwitchChartRequest request) {
-            return moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(request,null);
+          public NordletApiHttpResponse<AccountsSwitchChartLedgerResponse> accountsSwitchChart(
+              AccountsSwitchChartLedgerRequest request) {
+            return accountsSwitchChart(request,null);
           }
 
           /**
            * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
            */
-          public NordletApiHttpResponse<PostV1LedgerAccountsSwitchChartResponse> moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
-              PostV1LedgerAccountsSwitchChartRequest request, RequestOptions requestOptions) {
+          public NordletApiHttpResponse<AccountsSwitchChartLedgerResponse> accountsSwitchChart(
+              AccountsSwitchChartLedgerRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
               .addPathSegments("v1/ledger/accounts/switch-chart");if (requestOptions != null) {
@@ -450,15 +450,17 @@ public class RawLedgerClient {
                 ResponseBody responseBody = response.body();
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerAccountsSwitchChartResponse.class), response);
+                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AccountsSwitchChartLedgerResponse.class), response);
                 }
                 try {
                   switch (response.code()) {
                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -478,23 +480,22 @@ public class RawLedgerClient {
               }
             }
 
-            public NordletApiHttpResponse<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList(
-                ) {
-              return postV1LedgerPeriodsList(PostV1LedgerPeriodsListRequest.builder().build());
+            public NordletApiHttpResponse<PeriodsListLedgerResponse> periodsList() {
+              return periodsList(PeriodsListLedgerRequest.builder().build());
             }
 
-            public NordletApiHttpResponse<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList(
+            public NordletApiHttpResponse<PeriodsListLedgerResponse> periodsList(
                 RequestOptions requestOptions) {
-              return postV1LedgerPeriodsList(PostV1LedgerPeriodsListRequest.builder().build(),requestOptions);
+              return periodsList(PeriodsListLedgerRequest.builder().build(),requestOptions);
             }
 
-            public NordletApiHttpResponse<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList(
-                PostV1LedgerPeriodsListRequest request) {
-              return postV1LedgerPeriodsList(request,null);
+            public NordletApiHttpResponse<PeriodsListLedgerResponse> periodsList(
+                PeriodsListLedgerRequest request) {
+              return periodsList(request,null);
             }
 
-            public NordletApiHttpResponse<PostV1LedgerPeriodsListResponse> postV1LedgerPeriodsList(
-                PostV1LedgerPeriodsListRequest request, RequestOptions requestOptions) {
+            public NordletApiHttpResponse<PeriodsListLedgerResponse> periodsList(
+                PeriodsListLedgerRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/ledger/periods/list");if (requestOptions != null) {
@@ -527,15 +528,17 @@ public class RawLedgerClient {
                   ResponseBody responseBody = response.body();
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerPeriodsListResponse.class), response);
+                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PeriodsListLedgerResponse.class), response);
                   }
                   try {
                     switch (response.code()) {
                       case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -555,13 +558,13 @@ public class RawLedgerClient {
                 }
               }
 
-              public NordletApiHttpResponse<PostV1LedgerPeriodsLockResponse> postV1LedgerPeriodsLock(
-                  PostV1LedgerPeriodsLockRequest request) {
-                return postV1LedgerPeriodsLock(request,null);
+              public NordletApiHttpResponse<PeriodsLockLedgerResponse> periodsLock(
+                  PeriodsLockLedgerRequest request) {
+                return periodsLock(request,null);
               }
 
-              public NordletApiHttpResponse<PostV1LedgerPeriodsLockResponse> postV1LedgerPeriodsLock(
-                  PostV1LedgerPeriodsLockRequest request, RequestOptions requestOptions) {
+              public NordletApiHttpResponse<PeriodsLockLedgerResponse> periodsLock(
+                  PeriodsLockLedgerRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                   .addPathSegments("v1/ledger/periods/lock");if (requestOptions != null) {
@@ -594,15 +597,17 @@ public class RawLedgerClient {
                     ResponseBody responseBody = response.body();
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerPeriodsLockResponse.class), response);
+                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PeriodsLockLedgerResponse.class), response);
                     }
                     try {
                       switch (response.code()) {
                         case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -622,13 +627,13 @@ public class RawLedgerClient {
                   }
                 }
 
-                public NordletApiHttpResponse<PostV1LedgerPeriodsUnlockResponse> postV1LedgerPeriodsUnlock(
-                    PostV1LedgerPeriodsUnlockRequest request) {
-                  return postV1LedgerPeriodsUnlock(request,null);
+                public NordletApiHttpResponse<PeriodsUnlockLedgerResponse> periodsUnlock(
+                    PeriodsUnlockLedgerRequest request) {
+                  return periodsUnlock(request,null);
                 }
 
-                public NordletApiHttpResponse<PostV1LedgerPeriodsUnlockResponse> postV1LedgerPeriodsUnlock(
-                    PostV1LedgerPeriodsUnlockRequest request, RequestOptions requestOptions) {
+                public NordletApiHttpResponse<PeriodsUnlockLedgerResponse> periodsUnlock(
+                    PeriodsUnlockLedgerRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                     .addPathSegments("v1/ledger/periods/unlock");if (requestOptions != null) {
@@ -661,15 +666,17 @@ public class RawLedgerClient {
                       ResponseBody responseBody = response.body();
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerPeriodsUnlockResponse.class), response);
+                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PeriodsUnlockLedgerResponse.class), response);
                       }
                       try {
                         switch (response.code()) {
                           case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -689,24 +696,23 @@ public class RawLedgerClient {
                     }
                   }
 
-                  public NordletApiHttpResponse<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
+                  public NordletApiHttpResponse<JournalTransactionsListLedgerResponse> journalTransactionsList(
                       ) {
-                    return postV1LedgerJournalTransactionsList(PostV1LedgerJournalTransactionsListRequest.builder().build());
+                    return journalTransactionsList(JournalTransactionsListLedgerRequest.builder().build());
                   }
 
-                  public NordletApiHttpResponse<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
+                  public NordletApiHttpResponse<JournalTransactionsListLedgerResponse> journalTransactionsList(
                       RequestOptions requestOptions) {
-                    return postV1LedgerJournalTransactionsList(PostV1LedgerJournalTransactionsListRequest.builder().build(),requestOptions);
+                    return journalTransactionsList(JournalTransactionsListLedgerRequest.builder().build(),requestOptions);
                   }
 
-                  public NordletApiHttpResponse<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
-                      PostV1LedgerJournalTransactionsListRequest request) {
-                    return postV1LedgerJournalTransactionsList(request,null);
+                  public NordletApiHttpResponse<JournalTransactionsListLedgerResponse> journalTransactionsList(
+                      JournalTransactionsListLedgerRequest request) {
+                    return journalTransactionsList(request,null);
                   }
 
-                  public NordletApiHttpResponse<PostV1LedgerJournalTransactionsListResponse> postV1LedgerJournalTransactionsList(
-                      PostV1LedgerJournalTransactionsListRequest request,
-                      RequestOptions requestOptions) {
+                  public NordletApiHttpResponse<JournalTransactionsListLedgerResponse> journalTransactionsList(
+                      JournalTransactionsListLedgerRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                       .addPathSegments("v1/ledger/journal/transactions/list");if (requestOptions != null) {
@@ -739,15 +745,17 @@ public class RawLedgerClient {
                         ResponseBody responseBody = response.body();
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerJournalTransactionsListResponse.class), response);
+                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, JournalTransactionsListLedgerResponse.class), response);
                         }
                         try {
                           switch (response.code()) {
                             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -767,14 +775,13 @@ public class RawLedgerClient {
                       }
                     }
 
-                    public NordletApiHttpResponse<PostV1LedgerCostCentersCreateResponse> postV1LedgerCostCentersCreate(
-                        PostV1LedgerCostCentersCreateRequest request) {
-                      return postV1LedgerCostCentersCreate(request,null);
+                    public NordletApiHttpResponse<CostCentersCreateLedgerResponse> costCentersCreate(
+                        CostCentersCreateLedgerRequest request) {
+                      return costCentersCreate(request,null);
                     }
 
-                    public NordletApiHttpResponse<PostV1LedgerCostCentersCreateResponse> postV1LedgerCostCentersCreate(
-                        PostV1LedgerCostCentersCreateRequest request,
-                        RequestOptions requestOptions) {
+                    public NordletApiHttpResponse<CostCentersCreateLedgerResponse> costCentersCreate(
+                        CostCentersCreateLedgerRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                         .addPathSegments("v1/ledger/cost-centers/create");if (requestOptions != null) {
@@ -807,15 +814,17 @@ public class RawLedgerClient {
                           ResponseBody responseBody = response.body();
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCentersCreateResponse.class), response);
+                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CostCentersCreateLedgerResponse.class), response);
                           }
                           try {
                             switch (response.code()) {
                               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -835,14 +844,13 @@ public class RawLedgerClient {
                         }
                       }
 
-                      public NordletApiHttpResponse<PostV1LedgerCostCentersUpdateResponse> postV1LedgerCostCentersUpdate(
-                          PostV1LedgerCostCentersUpdateRequest request) {
-                        return postV1LedgerCostCentersUpdate(request,null);
+                      public NordletApiHttpResponse<CostCentersUpdateLedgerResponse> costCentersUpdate(
+                          CostCentersUpdateLedgerRequest request) {
+                        return costCentersUpdate(request,null);
                       }
 
-                      public NordletApiHttpResponse<PostV1LedgerCostCentersUpdateResponse> postV1LedgerCostCentersUpdate(
-                          PostV1LedgerCostCentersUpdateRequest request,
-                          RequestOptions requestOptions) {
+                      public NordletApiHttpResponse<CostCentersUpdateLedgerResponse> costCentersUpdate(
+                          CostCentersUpdateLedgerRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                           .addPathSegments("v1/ledger/cost-centers/update");if (requestOptions != null) {
@@ -875,15 +883,17 @@ public class RawLedgerClient {
                             ResponseBody responseBody = response.body();
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCentersUpdateResponse.class), response);
+                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CostCentersUpdateLedgerResponse.class), response);
                             }
                             try {
                               switch (response.code()) {
                                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -903,24 +913,23 @@ public class RawLedgerClient {
                           }
                         }
 
-                        public NordletApiHttpResponse<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList(
+                        public NordletApiHttpResponse<CostCentersListLedgerResponse> costCentersList(
                             ) {
-                          return postV1LedgerCostCentersList(PostV1LedgerCostCentersListRequest.builder().build());
+                          return costCentersList(CostCentersListLedgerRequest.builder().build());
                         }
 
-                        public NordletApiHttpResponse<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList(
+                        public NordletApiHttpResponse<CostCentersListLedgerResponse> costCentersList(
                             RequestOptions requestOptions) {
-                          return postV1LedgerCostCentersList(PostV1LedgerCostCentersListRequest.builder().build(),requestOptions);
+                          return costCentersList(CostCentersListLedgerRequest.builder().build(),requestOptions);
                         }
 
-                        public NordletApiHttpResponse<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList(
-                            PostV1LedgerCostCentersListRequest request) {
-                          return postV1LedgerCostCentersList(request,null);
+                        public NordletApiHttpResponse<CostCentersListLedgerResponse> costCentersList(
+                            CostCentersListLedgerRequest request) {
+                          return costCentersList(request,null);
                         }
 
-                        public NordletApiHttpResponse<PostV1LedgerCostCentersListResponse> postV1LedgerCostCentersList(
-                            PostV1LedgerCostCentersListRequest request,
-                            RequestOptions requestOptions) {
+                        public NordletApiHttpResponse<CostCentersListLedgerResponse> costCentersList(
+                            CostCentersListLedgerRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                             .addPathSegments("v1/ledger/cost-centers/list");if (requestOptions != null) {
@@ -953,15 +962,17 @@ public class RawLedgerClient {
                               ResponseBody responseBody = response.body();
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCentersListResponse.class), response);
+                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CostCentersListLedgerResponse.class), response);
                               }
                               try {
                                 switch (response.code()) {
                                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -981,13 +992,13 @@ public class RawLedgerClient {
                             }
                           }
 
-                          public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsCreateResponse> postV1LedgerCostCenterGroupsCreate(
-                              PostV1LedgerCostCenterGroupsCreateRequest request) {
-                            return postV1LedgerCostCenterGroupsCreate(request,null);
+                          public NordletApiHttpResponse<CostCenterGroupsCreateLedgerResponse> costCenterGroupsCreate(
+                              CostCenterGroupsCreateLedgerRequest request) {
+                            return costCenterGroupsCreate(request,null);
                           }
 
-                          public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsCreateResponse> postV1LedgerCostCenterGroupsCreate(
-                              PostV1LedgerCostCenterGroupsCreateRequest request,
+                          public NordletApiHttpResponse<CostCenterGroupsCreateLedgerResponse> costCenterGroupsCreate(
+                              CostCenterGroupsCreateLedgerRequest request,
                               RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1021,15 +1032,17 @@ public class RawLedgerClient {
                                 ResponseBody responseBody = response.body();
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCenterGroupsCreateResponse.class), response);
+                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CostCenterGroupsCreateLedgerResponse.class), response);
                                 }
                                 try {
                                   switch (response.code()) {
                                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1049,13 +1062,13 @@ public class RawLedgerClient {
                               }
                             }
 
-                            public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsUpdateResponse> postV1LedgerCostCenterGroupsUpdate(
-                                PostV1LedgerCostCenterGroupsUpdateRequest request) {
-                              return postV1LedgerCostCenterGroupsUpdate(request,null);
+                            public NordletApiHttpResponse<CostCenterGroupsUpdateLedgerResponse> costCenterGroupsUpdate(
+                                CostCenterGroupsUpdateLedgerRequest request) {
+                              return costCenterGroupsUpdate(request,null);
                             }
 
-                            public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsUpdateResponse> postV1LedgerCostCenterGroupsUpdate(
-                                PostV1LedgerCostCenterGroupsUpdateRequest request,
+                            public NordletApiHttpResponse<CostCenterGroupsUpdateLedgerResponse> costCenterGroupsUpdate(
+                                CostCenterGroupsUpdateLedgerRequest request,
                                 RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1089,15 +1102,17 @@ public class RawLedgerClient {
                                   ResponseBody responseBody = response.body();
                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                   if (response.isSuccessful()) {
-                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCenterGroupsUpdateResponse.class), response);
+                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CostCenterGroupsUpdateLedgerResponse.class), response);
                                   }
                                   try {
                                     switch (response.code()) {
                                       case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                       case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                       case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                       case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                       case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                       case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                       case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                       case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1117,13 +1132,13 @@ public class RawLedgerClient {
                                 }
                               }
 
-                              public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsDeleteResponse> postV1LedgerCostCenterGroupsDelete(
-                                  PostV1LedgerCostCenterGroupsDeleteRequest request) {
-                                return postV1LedgerCostCenterGroupsDelete(request,null);
+                              public NordletApiHttpResponse<CostCenterGroupsDeleteLedgerResponse> costCenterGroupsDelete(
+                                  CostCenterGroupsDeleteLedgerRequest request) {
+                                return costCenterGroupsDelete(request,null);
                               }
 
-                              public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsDeleteResponse> postV1LedgerCostCenterGroupsDelete(
-                                  PostV1LedgerCostCenterGroupsDeleteRequest request,
+                              public NordletApiHttpResponse<CostCenterGroupsDeleteLedgerResponse> costCenterGroupsDelete(
+                                  CostCenterGroupsDeleteLedgerRequest request,
                                   RequestOptions requestOptions) {
                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1157,15 +1172,17 @@ public class RawLedgerClient {
                                     ResponseBody responseBody = response.body();
                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                     if (response.isSuccessful()) {
-                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCenterGroupsDeleteResponse.class), response);
+                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CostCenterGroupsDeleteLedgerResponse.class), response);
                                     }
                                     try {
                                       switch (response.code()) {
                                         case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                         case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                         case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                         case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                         case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                         case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                         case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                         case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1185,23 +1202,23 @@ public class RawLedgerClient {
                                   }
                                 }
 
-                                public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
+                                public NordletApiHttpResponse<CostCenterGroupsListLedgerResponse> costCenterGroupsList(
                                     ) {
-                                  return postV1LedgerCostCenterGroupsList(PostV1LedgerCostCenterGroupsListRequest.builder().build());
+                                  return costCenterGroupsList(CostCenterGroupsListLedgerRequest.builder().build());
                                 }
 
-                                public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
+                                public NordletApiHttpResponse<CostCenterGroupsListLedgerResponse> costCenterGroupsList(
                                     RequestOptions requestOptions) {
-                                  return postV1LedgerCostCenterGroupsList(PostV1LedgerCostCenterGroupsListRequest.builder().build(),requestOptions);
+                                  return costCenterGroupsList(CostCenterGroupsListLedgerRequest.builder().build(),requestOptions);
                                 }
 
-                                public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
-                                    PostV1LedgerCostCenterGroupsListRequest request) {
-                                  return postV1LedgerCostCenterGroupsList(request,null);
+                                public NordletApiHttpResponse<CostCenterGroupsListLedgerResponse> costCenterGroupsList(
+                                    CostCenterGroupsListLedgerRequest request) {
+                                  return costCenterGroupsList(request,null);
                                 }
 
-                                public NordletApiHttpResponse<PostV1LedgerCostCenterGroupsListResponse> postV1LedgerCostCenterGroupsList(
-                                    PostV1LedgerCostCenterGroupsListRequest request,
+                                public NordletApiHttpResponse<CostCenterGroupsListLedgerResponse> costCenterGroupsList(
+                                    CostCenterGroupsListLedgerRequest request,
                                     RequestOptions requestOptions) {
                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1235,15 +1252,17 @@ public class RawLedgerClient {
                                       ResponseBody responseBody = response.body();
                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                       if (response.isSuccessful()) {
-                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerCostCenterGroupsListResponse.class), response);
+                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CostCenterGroupsListLedgerResponse.class), response);
                                       }
                                       try {
                                         switch (response.code()) {
                                           case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                           case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                           case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                           case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                           case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                           case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                           case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                           case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1263,23 +1282,23 @@ public class RawLedgerClient {
                                     }
                                   }
 
-                                  public NordletApiHttpResponse<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList(
+                                  public NordletApiHttpResponse<PostingRulesListLedgerResponse> postingRulesList(
                                       ) {
-                                    return postV1LedgerPostingRulesList(PostV1LedgerPostingRulesListRequest.builder().build());
+                                    return postingRulesList(PostingRulesListLedgerRequest.builder().build());
                                   }
 
-                                  public NordletApiHttpResponse<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList(
+                                  public NordletApiHttpResponse<PostingRulesListLedgerResponse> postingRulesList(
                                       RequestOptions requestOptions) {
-                                    return postV1LedgerPostingRulesList(PostV1LedgerPostingRulesListRequest.builder().build(),requestOptions);
+                                    return postingRulesList(PostingRulesListLedgerRequest.builder().build(),requestOptions);
                                   }
 
-                                  public NordletApiHttpResponse<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList(
-                                      PostV1LedgerPostingRulesListRequest request) {
-                                    return postV1LedgerPostingRulesList(request,null);
+                                  public NordletApiHttpResponse<PostingRulesListLedgerResponse> postingRulesList(
+                                      PostingRulesListLedgerRequest request) {
+                                    return postingRulesList(request,null);
                                   }
 
-                                  public NordletApiHttpResponse<PostV1LedgerPostingRulesListResponse> postV1LedgerPostingRulesList(
-                                      PostV1LedgerPostingRulesListRequest request,
+                                  public NordletApiHttpResponse<PostingRulesListLedgerResponse> postingRulesList(
+                                      PostingRulesListLedgerRequest request,
                                       RequestOptions requestOptions) {
                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1313,15 +1332,17 @@ public class RawLedgerClient {
                                         ResponseBody responseBody = response.body();
                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                         if (response.isSuccessful()) {
-                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerPostingRulesListResponse.class), response);
+                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostingRulesListLedgerResponse.class), response);
                                         }
                                         try {
                                           switch (response.code()) {
                                             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1341,13 +1362,13 @@ public class RawLedgerClient {
                                       }
                                     }
 
-                                    public NordletApiHttpResponse<PostV1LedgerPostingRulesUpdateResponse> postV1LedgerPostingRulesUpdate(
-                                        PostV1LedgerPostingRulesUpdateRequest request) {
-                                      return postV1LedgerPostingRulesUpdate(request,null);
+                                    public NordletApiHttpResponse<PostingRulesUpdateLedgerResponse> postingRulesUpdate(
+                                        PostingRulesUpdateLedgerRequest request) {
+                                      return postingRulesUpdate(request,null);
                                     }
 
-                                    public NordletApiHttpResponse<PostV1LedgerPostingRulesUpdateResponse> postV1LedgerPostingRulesUpdate(
-                                        PostV1LedgerPostingRulesUpdateRequest request,
+                                    public NordletApiHttpResponse<PostingRulesUpdateLedgerResponse> postingRulesUpdate(
+                                        PostingRulesUpdateLedgerRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1381,15 +1402,17 @@ public class RawLedgerClient {
                                           ResponseBody responseBody = response.body();
                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                           if (response.isSuccessful()) {
-                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerPostingRulesUpdateResponse.class), response);
+                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostingRulesUpdateLedgerResponse.class), response);
                                           }
                                           try {
                                             switch (response.code()) {
                                               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1409,13 +1432,13 @@ public class RawLedgerClient {
                                         }
                                       }
 
-                                      public NordletApiHttpResponse<PostV1LedgerOwnersCreateResponse> postV1LedgerOwnersCreate(
-                                          PostV1LedgerOwnersCreateRequest request) {
-                                        return postV1LedgerOwnersCreate(request,null);
+                                      public NordletApiHttpResponse<OwnersCreateLedgerResponse> ownersCreate(
+                                          OwnersCreateLedgerRequest request) {
+                                        return ownersCreate(request,null);
                                       }
 
-                                      public NordletApiHttpResponse<PostV1LedgerOwnersCreateResponse> postV1LedgerOwnersCreate(
-                                          PostV1LedgerOwnersCreateRequest request,
+                                      public NordletApiHttpResponse<OwnersCreateLedgerResponse> ownersCreate(
+                                          OwnersCreateLedgerRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1449,15 +1472,17 @@ public class RawLedgerClient {
                                             ResponseBody responseBody = response.body();
                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                             if (response.isSuccessful()) {
-                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerOwnersCreateResponse.class), response);
+                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OwnersCreateLedgerResponse.class), response);
                                             }
                                             try {
                                               switch (response.code()) {
                                                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1477,13 +1502,13 @@ public class RawLedgerClient {
                                           }
                                         }
 
-                                        public NordletApiHttpResponse<PostV1LedgerOwnersUpdateResponse> postV1LedgerOwnersUpdate(
-                                            PostV1LedgerOwnersUpdateRequest request) {
-                                          return postV1LedgerOwnersUpdate(request,null);
+                                        public NordletApiHttpResponse<OwnersUpdateLedgerResponse> ownersUpdate(
+                                            OwnersUpdateLedgerRequest request) {
+                                          return ownersUpdate(request,null);
                                         }
 
-                                        public NordletApiHttpResponse<PostV1LedgerOwnersUpdateResponse> postV1LedgerOwnersUpdate(
-                                            PostV1LedgerOwnersUpdateRequest request,
+                                        public NordletApiHttpResponse<OwnersUpdateLedgerResponse> ownersUpdate(
+                                            OwnersUpdateLedgerRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1517,15 +1542,17 @@ public class RawLedgerClient {
                                               ResponseBody responseBody = response.body();
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerOwnersUpdateResponse.class), response);
+                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OwnersUpdateLedgerResponse.class), response);
                                               }
                                               try {
                                                 switch (response.code()) {
                                                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1545,13 +1572,13 @@ public class RawLedgerClient {
                                             }
                                           }
 
-                                          public NordletApiHttpResponse<PostV1LedgerOwnersDeleteResponse> postV1LedgerOwnersDelete(
-                                              PostV1LedgerOwnersDeleteRequest request) {
-                                            return postV1LedgerOwnersDelete(request,null);
+                                          public NordletApiHttpResponse<OwnersDeleteLedgerResponse> ownersDelete(
+                                              OwnersDeleteLedgerRequest request) {
+                                            return ownersDelete(request,null);
                                           }
 
-                                          public NordletApiHttpResponse<PostV1LedgerOwnersDeleteResponse> postV1LedgerOwnersDelete(
-                                              PostV1LedgerOwnersDeleteRequest request,
+                                          public NordletApiHttpResponse<OwnersDeleteLedgerResponse> ownersDelete(
+                                              OwnersDeleteLedgerRequest request,
                                               RequestOptions requestOptions) {
                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1585,15 +1612,17 @@ public class RawLedgerClient {
                                                 ResponseBody responseBody = response.body();
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerOwnersDeleteResponse.class), response);
+                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OwnersDeleteLedgerResponse.class), response);
                                                 }
                                                 try {
                                                   switch (response.code()) {
                                                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1613,23 +1642,23 @@ public class RawLedgerClient {
                                               }
                                             }
 
-                                            public NordletApiHttpResponse<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList(
+                                            public NordletApiHttpResponse<OwnersListLedgerResponse> ownersList(
                                                 ) {
-                                              return postV1LedgerOwnersList(PostV1LedgerOwnersListRequest.builder().build());
+                                              return ownersList(OwnersListLedgerRequest.builder().build());
                                             }
 
-                                            public NordletApiHttpResponse<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList(
+                                            public NordletApiHttpResponse<OwnersListLedgerResponse> ownersList(
                                                 RequestOptions requestOptions) {
-                                              return postV1LedgerOwnersList(PostV1LedgerOwnersListRequest.builder().build(),requestOptions);
+                                              return ownersList(OwnersListLedgerRequest.builder().build(),requestOptions);
                                             }
 
-                                            public NordletApiHttpResponse<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList(
-                                                PostV1LedgerOwnersListRequest request) {
-                                              return postV1LedgerOwnersList(request,null);
+                                            public NordletApiHttpResponse<OwnersListLedgerResponse> ownersList(
+                                                OwnersListLedgerRequest request) {
+                                              return ownersList(request,null);
                                             }
 
-                                            public NordletApiHttpResponse<PostV1LedgerOwnersListResponse> postV1LedgerOwnersList(
-                                                PostV1LedgerOwnersListRequest request,
+                                            public NordletApiHttpResponse<OwnersListLedgerResponse> ownersList(
+                                                OwnersListLedgerRequest request,
                                                 RequestOptions requestOptions) {
                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1663,15 +1692,17 @@ public class RawLedgerClient {
                                                   ResponseBody responseBody = response.body();
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerOwnersListResponse.class), response);
+                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OwnersListLedgerResponse.class), response);
                                                   }
                                                   try {
                                                     switch (response.code()) {
                                                       case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                       case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                       case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                       case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                       case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                       case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                       case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                       case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1691,13 +1722,13 @@ public class RawLedgerClient {
                                                 }
                                               }
 
-                                              public NordletApiHttpResponse<PostV1LedgerJournalTransactionsGetResponse> postV1LedgerJournalTransactionsGet(
-                                                  PostV1LedgerJournalTransactionsGetRequest request) {
-                                                return postV1LedgerJournalTransactionsGet(request,null);
+                                              public NordletApiHttpResponse<JournalTransactionsGetLedgerResponse> journalTransactionsGet(
+                                                  JournalTransactionsGetLedgerRequest request) {
+                                                return journalTransactionsGet(request,null);
                                               }
 
-                                              public NordletApiHttpResponse<PostV1LedgerJournalTransactionsGetResponse> postV1LedgerJournalTransactionsGet(
-                                                  PostV1LedgerJournalTransactionsGetRequest request,
+                                              public NordletApiHttpResponse<JournalTransactionsGetLedgerResponse> journalTransactionsGet(
+                                                  JournalTransactionsGetLedgerRequest request,
                                                   RequestOptions requestOptions) {
                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1731,15 +1762,17 @@ public class RawLedgerClient {
                                                     ResponseBody responseBody = response.body();
                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                     if (response.isSuccessful()) {
-                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerJournalTransactionsGetResponse.class), response);
+                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, JournalTransactionsGetLedgerResponse.class), response);
                                                     }
                                                     try {
                                                       switch (response.code()) {
                                                         case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                         case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                         case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                         case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                         case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                         case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                         case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                         case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1759,13 +1792,13 @@ public class RawLedgerClient {
                                                   }
                                                 }
 
-                                                public NordletApiHttpResponse<PostV1LedgerJournalTransactionsCreateResponse> postV1LedgerJournalTransactionsCreate(
-                                                    PostV1LedgerJournalTransactionsCreateRequest request) {
-                                                  return postV1LedgerJournalTransactionsCreate(request,null);
+                                                public NordletApiHttpResponse<JournalTransactionsCreateLedgerResponse> journalTransactionsCreate(
+                                                    JournalTransactionsCreateLedgerRequest request) {
+                                                  return journalTransactionsCreate(request,null);
                                                 }
 
-                                                public NordletApiHttpResponse<PostV1LedgerJournalTransactionsCreateResponse> postV1LedgerJournalTransactionsCreate(
-                                                    PostV1LedgerJournalTransactionsCreateRequest request,
+                                                public NordletApiHttpResponse<JournalTransactionsCreateLedgerResponse> journalTransactionsCreate(
+                                                    JournalTransactionsCreateLedgerRequest request,
                                                     RequestOptions requestOptions) {
                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1799,15 +1832,17 @@ public class RawLedgerClient {
                                                       ResponseBody responseBody = response.body();
                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                       if (response.isSuccessful()) {
-                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerJournalTransactionsCreateResponse.class), response);
+                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, JournalTransactionsCreateLedgerResponse.class), response);
                                                       }
                                                       try {
                                                         switch (response.code()) {
                                                           case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                           case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                           case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                           case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                           case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                           case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                           case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                           case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1830,32 +1865,32 @@ public class RawLedgerClient {
                                                   /**
                                                    * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
                                                    */
-                                                  public NordletApiHttpResponse<PostV1LedgerStatementRowsSchemesResponse> nationalStatementLayoutsAvailableToTheCompany(
+                                                  public NordletApiHttpResponse<StatementRowsSchemesLedgerResponse> statementRowsSchemes(
                                                       ) {
-                                                    return nationalStatementLayoutsAvailableToTheCompany(PostV1LedgerStatementRowsSchemesRequest.builder().build());
+                                                    return statementRowsSchemes(StatementRowsSchemesLedgerRequest.builder().build());
                                                   }
 
                                                   /**
                                                    * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
                                                    */
-                                                  public NordletApiHttpResponse<PostV1LedgerStatementRowsSchemesResponse> nationalStatementLayoutsAvailableToTheCompany(
+                                                  public NordletApiHttpResponse<StatementRowsSchemesLedgerResponse> statementRowsSchemes(
                                                       RequestOptions requestOptions) {
-                                                    return nationalStatementLayoutsAvailableToTheCompany(PostV1LedgerStatementRowsSchemesRequest.builder().build(),requestOptions);
+                                                    return statementRowsSchemes(StatementRowsSchemesLedgerRequest.builder().build(),requestOptions);
                                                   }
 
                                                   /**
                                                    * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
                                                    */
-                                                  public NordletApiHttpResponse<PostV1LedgerStatementRowsSchemesResponse> nationalStatementLayoutsAvailableToTheCompany(
-                                                      PostV1LedgerStatementRowsSchemesRequest request) {
-                                                    return nationalStatementLayoutsAvailableToTheCompany(request,null);
+                                                  public NordletApiHttpResponse<StatementRowsSchemesLedgerResponse> statementRowsSchemes(
+                                                      StatementRowsSchemesLedgerRequest request) {
+                                                    return statementRowsSchemes(request,null);
                                                   }
 
                                                   /**
                                                    * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
                                                    */
-                                                  public NordletApiHttpResponse<PostV1LedgerStatementRowsSchemesResponse> nationalStatementLayoutsAvailableToTheCompany(
-                                                      PostV1LedgerStatementRowsSchemesRequest request,
+                                                  public NordletApiHttpResponse<StatementRowsSchemesLedgerResponse> statementRowsSchemes(
+                                                      StatementRowsSchemesLedgerRequest request,
                                                       RequestOptions requestOptions) {
                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1889,15 +1924,17 @@ public class RawLedgerClient {
                                                         ResponseBody responseBody = response.body();
                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                         if (response.isSuccessful()) {
-                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerStatementRowsSchemesResponse.class), response);
+                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementRowsSchemesLedgerResponse.class), response);
                                                         }
                                                         try {
                                                           switch (response.code()) {
                                                             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1917,13 +1954,13 @@ public class RawLedgerClient {
                                                       }
                                                     }
 
-                                                    public NordletApiHttpResponse<PostV1LedgerStatementRowsListResponse> accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(
-                                                        PostV1LedgerStatementRowsListRequest request) {
-                                                      return accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(request,null);
+                                                    public NordletApiHttpResponse<StatementRowsListLedgerResponse> statementRowsList(
+                                                        StatementRowsListLedgerRequest request) {
+                                                      return statementRowsList(request,null);
                                                     }
 
-                                                    public NordletApiHttpResponse<PostV1LedgerStatementRowsListResponse> accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(
-                                                        PostV1LedgerStatementRowsListRequest request,
+                                                    public NordletApiHttpResponse<StatementRowsListLedgerResponse> statementRowsList(
+                                                        StatementRowsListLedgerRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -1957,15 +1994,17 @@ public class RawLedgerClient {
                                                           ResponseBody responseBody = response.body();
                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                           if (response.isSuccessful()) {
-                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerStatementRowsListResponse.class), response);
+                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementRowsListLedgerResponse.class), response);
                                                           }
                                                           try {
                                                             switch (response.code()) {
                                                               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -1988,16 +2027,16 @@ public class RawLedgerClient {
                                                       /**
                                                        * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
                                                        */
-                                                      public NordletApiHttpResponse<PostV1LedgerStatementRowsSetResponse> mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(
-                                                          PostV1LedgerStatementRowsSetRequest request) {
-                                                        return mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(request,null);
+                                                      public NordletApiHttpResponse<StatementRowsSetLedgerResponse> statementRowsSet(
+                                                          StatementRowsSetLedgerRequest request) {
+                                                        return statementRowsSet(request,null);
                                                       }
 
                                                       /**
                                                        * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
                                                        */
-                                                      public NordletApiHttpResponse<PostV1LedgerStatementRowsSetResponse> mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(
-                                                          PostV1LedgerStatementRowsSetRequest request,
+                                                      public NordletApiHttpResponse<StatementRowsSetLedgerResponse> statementRowsSet(
+                                                          StatementRowsSetLedgerRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
@@ -2031,15 +2070,17 @@ public class RawLedgerClient {
                                                             ResponseBody responseBody = response.body();
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1LedgerStatementRowsSetResponse.class), response);
+                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementRowsSetLedgerResponse.class), response);
                                                             }
                                                             try {
                                                               switch (response.code()) {
                                                                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                                                                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -2058,298 +2099,4 @@ public class RawLedgerClient {
                                                             throw new NordletApiException("Network error executing HTTP request", e);
                                                           }
                                                         }
-
-                                                        /**
-                                                         * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
-                                                         */
-                                                        public NordletApiHttpResponse<PostV1OfficersListResponse> officersOfTheCompany(
-                                                            ) {
-                                                          return officersOfTheCompany(PostV1OfficersListRequest.builder().build());
-                                                        }
-
-                                                        /**
-                                                         * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
-                                                         */
-                                                        public NordletApiHttpResponse<PostV1OfficersListResponse> officersOfTheCompany(
-                                                            RequestOptions requestOptions) {
-                                                          return officersOfTheCompany(PostV1OfficersListRequest.builder().build(),requestOptions);
-                                                        }
-
-                                                        /**
-                                                         * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
-                                                         */
-                                                        public NordletApiHttpResponse<PostV1OfficersListResponse> officersOfTheCompany(
-                                                            PostV1OfficersListRequest request) {
-                                                          return officersOfTheCompany(request,null);
-                                                        }
-
-                                                        /**
-                                                         * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
-                                                         */
-                                                        public NordletApiHttpResponse<PostV1OfficersListResponse> officersOfTheCompany(
-                                                            PostV1OfficersListRequest request,
-                                                            RequestOptions requestOptions) {
-                                                          HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                                                            .addPathSegments("v1/officers/list");if (requestOptions != null) {
-                                                              requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                                                                httpUrl.addQueryParameter(_key, _value);
-                                                              } );
-                                                            }
-                                                            RequestBody body;
-                                                            try {
-                                                              body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                                                            }
-                                                            catch(JsonProcessingException e) {
-                                                              throw new NordletApiException("Failed to serialize request", e);
-                                                            }
-                                                            Request okhttpRequest = new Request.Builder()
-                                                              .url(httpUrl.build())
-                                                              .method("POST", body)
-                                                              .headers(Headers.of(clientOptions.headers(requestOptions)))
-                                                              .addHeader("Content-Type", "application/json")
-                                                              .addHeader("Accept", "application/json")
-                                                              .build();
-                                                            OkHttpClient client = clientOptions.httpClient();
-                                                            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                                                              client = clientOptions.httpClientWithTimeout(requestOptions);
-                                                            }
-                                                            if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                                                              okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                                                            }
-                                                            try (Response response = client.newCall(okhttpRequest).execute()) {
-                                                              ResponseBody responseBody = response.body();
-                                                              String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                                                              if (response.isSuccessful()) {
-                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1OfficersListResponse.class), response);
-                                                              }
-                                                              try {
-                                                                switch (response.code()) {
-                                                                  case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                  case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                  case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                  case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                  case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                  case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                  case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                  case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                }
-                                                              }
-                                                              catch (JsonProcessingException ignored) {
-                                                                // unable to map error response, throwing generic error
-                                                              }
-                                                              Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                                                              throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
-                                                            }
-                                                            catch (JsonProcessingException e) {
-                                                              throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
-                                                            }
-                                                            catch (IOException e) {
-                                                              throw new NordletApiException("Network error executing HTTP request", e);
-                                                            }
-                                                          }
-
-                                                          public NordletApiHttpResponse<PostV1OfficersCreateResponse> recordAnOfficerOfTheCompany(
-                                                              PostV1OfficersCreateRequest request) {
-                                                            return recordAnOfficerOfTheCompany(request,null);
-                                                          }
-
-                                                          public NordletApiHttpResponse<PostV1OfficersCreateResponse> recordAnOfficerOfTheCompany(
-                                                              PostV1OfficersCreateRequest request,
-                                                              RequestOptions requestOptions) {
-                                                            HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                                                              .addPathSegments("v1/officers/create");if (requestOptions != null) {
-                                                                requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                                                                  httpUrl.addQueryParameter(_key, _value);
-                                                                } );
-                                                              }
-                                                              RequestBody body;
-                                                              try {
-                                                                body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                                                              }
-                                                              catch(JsonProcessingException e) {
-                                                                throw new NordletApiException("Failed to serialize request", e);
-                                                              }
-                                                              Request okhttpRequest = new Request.Builder()
-                                                                .url(httpUrl.build())
-                                                                .method("POST", body)
-                                                                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                                                                .addHeader("Content-Type", "application/json")
-                                                                .addHeader("Accept", "application/json")
-                                                                .build();
-                                                              OkHttpClient client = clientOptions.httpClient();
-                                                              if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                                                                client = clientOptions.httpClientWithTimeout(requestOptions);
-                                                              }
-                                                              if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                                                                okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                                                              }
-                                                              try (Response response = client.newCall(okhttpRequest).execute()) {
-                                                                ResponseBody responseBody = response.body();
-                                                                String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                                                                if (response.isSuccessful()) {
-                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1OfficersCreateResponse.class), response);
-                                                                }
-                                                                try {
-                                                                  switch (response.code()) {
-                                                                    case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                    case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                    case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                    case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                    case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                    case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                    case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                    case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                  }
-                                                                }
-                                                                catch (JsonProcessingException ignored) {
-                                                                  // unable to map error response, throwing generic error
-                                                                }
-                                                                Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                                                                throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
-                                                              }
-                                                              catch (JsonProcessingException e) {
-                                                                throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
-                                                              }
-                                                              catch (IOException e) {
-                                                                throw new NordletApiException("Network error executing HTTP request", e);
-                                                              }
-                                                            }
-
-                                                            public NordletApiHttpResponse<PostV1OfficersUpdateResponse> changeARecordedOfficer(
-                                                                PostV1OfficersUpdateRequest request) {
-                                                              return changeARecordedOfficer(request,null);
-                                                            }
-
-                                                            public NordletApiHttpResponse<PostV1OfficersUpdateResponse> changeARecordedOfficer(
-                                                                PostV1OfficersUpdateRequest request,
-                                                                RequestOptions requestOptions) {
-                                                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                                                                .addPathSegments("v1/officers/update");if (requestOptions != null) {
-                                                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                                                                    httpUrl.addQueryParameter(_key, _value);
-                                                                  } );
-                                                                }
-                                                                RequestBody body;
-                                                                try {
-                                                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                                                                }
-                                                                catch(JsonProcessingException e) {
-                                                                  throw new NordletApiException("Failed to serialize request", e);
-                                                                }
-                                                                Request okhttpRequest = new Request.Builder()
-                                                                  .url(httpUrl.build())
-                                                                  .method("POST", body)
-                                                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
-                                                                  .addHeader("Content-Type", "application/json")
-                                                                  .addHeader("Accept", "application/json")
-                                                                  .build();
-                                                                OkHttpClient client = clientOptions.httpClient();
-                                                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                                                                  client = clientOptions.httpClientWithTimeout(requestOptions);
-                                                                }
-                                                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                                                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                                                                }
-                                                                try (Response response = client.newCall(okhttpRequest).execute()) {
-                                                                  ResponseBody responseBody = response.body();
-                                                                  String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                                                                  if (response.isSuccessful()) {
-                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1OfficersUpdateResponse.class), response);
-                                                                  }
-                                                                  try {
-                                                                    switch (response.code()) {
-                                                                      case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                      case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                      case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                      case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                      case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                      case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                      case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                      case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                    }
-                                                                  }
-                                                                  catch (JsonProcessingException ignored) {
-                                                                    // unable to map error response, throwing generic error
-                                                                  }
-                                                                  Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                                                                  throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
-                                                                }
-                                                                catch (JsonProcessingException e) {
-                                                                  throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
-                                                                }
-                                                                catch (IOException e) {
-                                                                  throw new NordletApiException("Network error executing HTTP request", e);
-                                                                }
-                                                              }
-
-                                                              public NordletApiHttpResponse<PostV1OfficersDeleteResponse> removeARecordedOfficer(
-                                                                  PostV1OfficersDeleteRequest request) {
-                                                                return removeARecordedOfficer(request,null);
-                                                              }
-
-                                                              public NordletApiHttpResponse<PostV1OfficersDeleteResponse> removeARecordedOfficer(
-                                                                  PostV1OfficersDeleteRequest request,
-                                                                  RequestOptions requestOptions) {
-                                                                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                                                                  .addPathSegments("v1/officers/delete");if (requestOptions != null) {
-                                                                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                                                                      httpUrl.addQueryParameter(_key, _value);
-                                                                    } );
-                                                                  }
-                                                                  RequestBody body;
-                                                                  try {
-                                                                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                                                                  }
-                                                                  catch(JsonProcessingException e) {
-                                                                    throw new NordletApiException("Failed to serialize request", e);
-                                                                  }
-                                                                  Request okhttpRequest = new Request.Builder()
-                                                                    .url(httpUrl.build())
-                                                                    .method("POST", body)
-                                                                    .headers(Headers.of(clientOptions.headers(requestOptions)))
-                                                                    .addHeader("Content-Type", "application/json")
-                                                                    .addHeader("Accept", "application/json")
-                                                                    .build();
-                                                                  OkHttpClient client = clientOptions.httpClient();
-                                                                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                                                                    client = clientOptions.httpClientWithTimeout(requestOptions);
-                                                                  }
-                                                                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                                                                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                                                                  }
-                                                                  try (Response response = client.newCall(okhttpRequest).execute()) {
-                                                                    ResponseBody responseBody = response.body();
-                                                                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                                                                    if (response.isSuccessful()) {
-                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1OfficersDeleteResponse.class), response);
-                                                                    }
-                                                                    try {
-                                                                      switch (response.code()) {
-                                                                        case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                        case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                        case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                        case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                        case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                        case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                        case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                        case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
-                                                                      }
-                                                                    }
-                                                                    catch (JsonProcessingException ignored) {
-                                                                      // unable to map error response, throwing generic error
-                                                                    }
-                                                                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                                                                    throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
-                                                                  }
-                                                                  catch (JsonProcessingException e) {
-                                                                    throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
-                                                                  }
-                                                                  catch (IOException e) {
-                                                                    throw new NordletApiException("Network error executing HTTP request", e);
-                                                                  }
-                                                                }
-                                                              }
+                                                      }

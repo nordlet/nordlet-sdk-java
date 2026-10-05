@@ -15,36 +15,38 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollCalcRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollDepartmentsCreateRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollDepartmentsListRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollLinesAttendanceRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollPaymentsExportRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsApproveRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsCancelRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsCreateRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsGetRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollRunsListRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollSchedulesCreateRequest;
-import com.nordlet.api.resources.payroll.requests.PostV1PayrollSchedulesListRequest;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollCalcResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollDepartmentsCreateResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollDepartmentsListResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollLinesAttendanceResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollPaymentsExportResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsApproveResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsCancelResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsCreateResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsGetResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollRunsListResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollSchedulesCreateResponse;
-import com.nordlet.api.resources.payroll.types.PostV1PayrollSchedulesListResponse;
+import com.nordlet.api.resources.payroll.requests.CalcPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.DepartmentsCreatePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.DepartmentsListPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.LinesAttendancePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.PaymentsExportPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsApprovePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsCancelPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsCreatePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsGetPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsListPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.SchedulesCreatePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.SchedulesListPayrollRequest;
+import com.nordlet.api.resources.payroll.types.CalcPayrollResponse;
+import com.nordlet.api.resources.payroll.types.DepartmentsCreatePayrollResponse;
+import com.nordlet.api.resources.payroll.types.DepartmentsListPayrollResponse;
+import com.nordlet.api.resources.payroll.types.LinesAttendancePayrollResponse;
+import com.nordlet.api.resources.payroll.types.PaymentsExportPayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsApprovePayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsCancelPayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsCreatePayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsGetPayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsListPayrollResponse;
+import com.nordlet.api.resources.payroll.types.SchedulesCreatePayrollResponse;
+import com.nordlet.api.resources.payroll.types.SchedulesListPayrollResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -69,13 +71,13 @@ public class AsyncRawPayrollClient {
     this.clientOptions = clientOptions;
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1PayrollDepartmentsCreateResponse>> postV1PayrollDepartmentsCreate(
-      PostV1PayrollDepartmentsCreateRequest request) {
-    return postV1PayrollDepartmentsCreate(request,null);
+  public CompletableFuture<NordletApiHttpResponse<DepartmentsCreatePayrollResponse>> departmentsCreate(
+      DepartmentsCreatePayrollRequest request) {
+    return departmentsCreate(request,null);
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1PayrollDepartmentsCreateResponse>> postV1PayrollDepartmentsCreate(
-      PostV1PayrollDepartmentsCreateRequest request, RequestOptions requestOptions) {
+  public CompletableFuture<NordletApiHttpResponse<DepartmentsCreatePayrollResponse>> departmentsCreate(
+      DepartmentsCreatePayrollRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/payroll/departments/create");if (requestOptions != null) {
@@ -104,14 +106,14 @@ public class AsyncRawPayrollClient {
       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
       }
-      CompletableFuture<NordletApiHttpResponse<PostV1PayrollDepartmentsCreateResponse>> future = new CompletableFuture<>();
+      CompletableFuture<NordletApiHttpResponse<DepartmentsCreatePayrollResponse>> future = new CompletableFuture<>();
       client.newCall(okhttpRequest).enqueue(new Callback() {
         @Override
         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
           try (ResponseBody responseBody = response.body()) {
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollDepartmentsCreateResponse.class), response));
+              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DepartmentsCreatePayrollResponse.class), response));
               return;
             }
             try {
@@ -120,11 +122,15 @@ public class AsyncRawPayrollClient {
                 return;
                 case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
+                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
                 case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
+                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
@@ -157,23 +163,23 @@ public class AsyncRawPayrollClient {
       return future;
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1PayrollDepartmentsListResponse>> postV1PayrollDepartmentsList(
+    public CompletableFuture<NordletApiHttpResponse<DepartmentsListPayrollResponse>> departmentsList(
         ) {
-      return postV1PayrollDepartmentsList(PostV1PayrollDepartmentsListRequest.builder().build());
+      return departmentsList(DepartmentsListPayrollRequest.builder().build());
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1PayrollDepartmentsListResponse>> postV1PayrollDepartmentsList(
+    public CompletableFuture<NordletApiHttpResponse<DepartmentsListPayrollResponse>> departmentsList(
         RequestOptions requestOptions) {
-      return postV1PayrollDepartmentsList(PostV1PayrollDepartmentsListRequest.builder().build(),requestOptions);
+      return departmentsList(DepartmentsListPayrollRequest.builder().build(),requestOptions);
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1PayrollDepartmentsListResponse>> postV1PayrollDepartmentsList(
-        PostV1PayrollDepartmentsListRequest request) {
-      return postV1PayrollDepartmentsList(request,null);
+    public CompletableFuture<NordletApiHttpResponse<DepartmentsListPayrollResponse>> departmentsList(
+        DepartmentsListPayrollRequest request) {
+      return departmentsList(request,null);
     }
 
-    public CompletableFuture<NordletApiHttpResponse<PostV1PayrollDepartmentsListResponse>> postV1PayrollDepartmentsList(
-        PostV1PayrollDepartmentsListRequest request, RequestOptions requestOptions) {
+    public CompletableFuture<NordletApiHttpResponse<DepartmentsListPayrollResponse>> departmentsList(
+        DepartmentsListPayrollRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/payroll/departments/list");if (requestOptions != null) {
@@ -202,14 +208,14 @@ public class AsyncRawPayrollClient {
         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
         }
-        CompletableFuture<NordletApiHttpResponse<PostV1PayrollDepartmentsListResponse>> future = new CompletableFuture<>();
+        CompletableFuture<NordletApiHttpResponse<DepartmentsListPayrollResponse>> future = new CompletableFuture<>();
         client.newCall(okhttpRequest).enqueue(new Callback() {
           @Override
           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
             try (ResponseBody responseBody = response.body()) {
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollDepartmentsListResponse.class), response));
+                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DepartmentsListPayrollResponse.class), response));
                 return;
               }
               try {
@@ -218,11 +224,15 @@ public class AsyncRawPayrollClient {
                   return;
                   case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
+                  case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
                   case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
@@ -255,13 +265,13 @@ public class AsyncRawPayrollClient {
         return future;
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1PayrollSchedulesCreateResponse>> postV1PayrollSchedulesCreate(
-          PostV1PayrollSchedulesCreateRequest request) {
-        return postV1PayrollSchedulesCreate(request,null);
+      public CompletableFuture<NordletApiHttpResponse<SchedulesCreatePayrollResponse>> schedulesCreate(
+          SchedulesCreatePayrollRequest request) {
+        return schedulesCreate(request,null);
       }
 
-      public CompletableFuture<NordletApiHttpResponse<PostV1PayrollSchedulesCreateResponse>> postV1PayrollSchedulesCreate(
-          PostV1PayrollSchedulesCreateRequest request, RequestOptions requestOptions) {
+      public CompletableFuture<NordletApiHttpResponse<SchedulesCreatePayrollResponse>> schedulesCreate(
+          SchedulesCreatePayrollRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/payroll/schedules/create");if (requestOptions != null) {
@@ -290,14 +300,14 @@ public class AsyncRawPayrollClient {
           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
           }
-          CompletableFuture<NordletApiHttpResponse<PostV1PayrollSchedulesCreateResponse>> future = new CompletableFuture<>();
+          CompletableFuture<NordletApiHttpResponse<SchedulesCreatePayrollResponse>> future = new CompletableFuture<>();
           client.newCall(okhttpRequest).enqueue(new Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
               try (ResponseBody responseBody = response.body()) {
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollSchedulesCreateResponse.class), response));
+                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SchedulesCreatePayrollResponse.class), response));
                   return;
                 }
                 try {
@@ -306,11 +316,15 @@ public class AsyncRawPayrollClient {
                     return;
                     case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
+                    case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                    return;
                     case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                    return;
+                    case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
                     case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                     return;
@@ -343,23 +357,23 @@ public class AsyncRawPayrollClient {
           return future;
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1PayrollSchedulesListResponse>> postV1PayrollSchedulesList(
+        public CompletableFuture<NordletApiHttpResponse<SchedulesListPayrollResponse>> schedulesList(
             ) {
-          return postV1PayrollSchedulesList(PostV1PayrollSchedulesListRequest.builder().build());
+          return schedulesList(SchedulesListPayrollRequest.builder().build());
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1PayrollSchedulesListResponse>> postV1PayrollSchedulesList(
+        public CompletableFuture<NordletApiHttpResponse<SchedulesListPayrollResponse>> schedulesList(
             RequestOptions requestOptions) {
-          return postV1PayrollSchedulesList(PostV1PayrollSchedulesListRequest.builder().build(),requestOptions);
+          return schedulesList(SchedulesListPayrollRequest.builder().build(),requestOptions);
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1PayrollSchedulesListResponse>> postV1PayrollSchedulesList(
-            PostV1PayrollSchedulesListRequest request) {
-          return postV1PayrollSchedulesList(request,null);
+        public CompletableFuture<NordletApiHttpResponse<SchedulesListPayrollResponse>> schedulesList(
+            SchedulesListPayrollRequest request) {
+          return schedulesList(request,null);
         }
 
-        public CompletableFuture<NordletApiHttpResponse<PostV1PayrollSchedulesListResponse>> postV1PayrollSchedulesList(
-            PostV1PayrollSchedulesListRequest request, RequestOptions requestOptions) {
+        public CompletableFuture<NordletApiHttpResponse<SchedulesListPayrollResponse>> schedulesList(
+            SchedulesListPayrollRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/payroll/schedules/list");if (requestOptions != null) {
@@ -388,14 +402,14 @@ public class AsyncRawPayrollClient {
             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
             }
-            CompletableFuture<NordletApiHttpResponse<PostV1PayrollSchedulesListResponse>> future = new CompletableFuture<>();
+            CompletableFuture<NordletApiHttpResponse<SchedulesListPayrollResponse>> future = new CompletableFuture<>();
             client.newCall(okhttpRequest).enqueue(new Callback() {
               @Override
               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollSchedulesListResponse.class), response));
+                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SchedulesListPayrollResponse.class), response));
                     return;
                   }
                   try {
@@ -404,11 +418,15 @@ public class AsyncRawPayrollClient {
                       return;
                       case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
+                      case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                      return;
                       case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                      return;
+                      case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
                       case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                       return;
@@ -441,13 +459,13 @@ public class AsyncRawPayrollClient {
             return future;
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1PayrollCalcResponse>> calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
-              PostV1PayrollCalcRequest request) {
-            return calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(request,null);
+          public CompletableFuture<NordletApiHttpResponse<CalcPayrollResponse>> calc(
+              CalcPayrollRequest request) {
+            return calc(request,null);
           }
 
-          public CompletableFuture<NordletApiHttpResponse<PostV1PayrollCalcResponse>> calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
-              PostV1PayrollCalcRequest request, RequestOptions requestOptions) {
+          public CompletableFuture<NordletApiHttpResponse<CalcPayrollResponse>> calc(
+              CalcPayrollRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
               .addPathSegments("v1/payroll/calc");if (requestOptions != null) {
@@ -476,14 +494,14 @@ public class AsyncRawPayrollClient {
               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
               }
-              CompletableFuture<NordletApiHttpResponse<PostV1PayrollCalcResponse>> future = new CompletableFuture<>();
+              CompletableFuture<NordletApiHttpResponse<CalcPayrollResponse>> future = new CompletableFuture<>();
               client.newCall(okhttpRequest).enqueue(new Callback() {
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                   try (ResponseBody responseBody = response.body()) {
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollCalcResponse.class), response));
+                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CalcPayrollResponse.class), response));
                       return;
                     }
                     try {
@@ -492,11 +510,15 @@ public class AsyncRawPayrollClient {
                         return;
                         case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
+                        case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                        return;
                         case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                        return;
+                        case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
                         case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                         return;
@@ -529,13 +551,13 @@ public class AsyncRawPayrollClient {
               return future;
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsCreateResponse>> postV1PayrollRunsCreate(
-                PostV1PayrollRunsCreateRequest request) {
-              return postV1PayrollRunsCreate(request,null);
+            public CompletableFuture<NordletApiHttpResponse<RunsCreatePayrollResponse>> runsCreate(
+                RunsCreatePayrollRequest request) {
+              return runsCreate(request,null);
             }
 
-            public CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsCreateResponse>> postV1PayrollRunsCreate(
-                PostV1PayrollRunsCreateRequest request, RequestOptions requestOptions) {
+            public CompletableFuture<NordletApiHttpResponse<RunsCreatePayrollResponse>> runsCreate(
+                RunsCreatePayrollRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/payroll/runs/create");if (requestOptions != null) {
@@ -564,14 +586,14 @@ public class AsyncRawPayrollClient {
                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                 }
-                CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsCreateResponse>> future = new CompletableFuture<>();
+                CompletableFuture<NordletApiHttpResponse<RunsCreatePayrollResponse>> future = new CompletableFuture<>();
                 client.newCall(okhttpRequest).enqueue(new Callback() {
                   @Override
                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     try (ResponseBody responseBody = response.body()) {
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollRunsCreateResponse.class), response));
+                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RunsCreatePayrollResponse.class), response));
                         return;
                       }
                       try {
@@ -580,11 +602,15 @@ public class AsyncRawPayrollClient {
                           return;
                           case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
+                          case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
                           case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                          return;
+                          case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
                           case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                           return;
@@ -617,13 +643,13 @@ public class AsyncRawPayrollClient {
                 return future;
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsGetResponse>> postV1PayrollRunsGet(
-                  PostV1PayrollRunsGetRequest request) {
-                return postV1PayrollRunsGet(request,null);
+              public CompletableFuture<NordletApiHttpResponse<RunsGetPayrollResponse>> runsGet(
+                  RunsGetPayrollRequest request) {
+                return runsGet(request,null);
               }
 
-              public CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsGetResponse>> postV1PayrollRunsGet(
-                  PostV1PayrollRunsGetRequest request, RequestOptions requestOptions) {
+              public CompletableFuture<NordletApiHttpResponse<RunsGetPayrollResponse>> runsGet(
+                  RunsGetPayrollRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                   .addPathSegments("v1/payroll/runs/get");if (requestOptions != null) {
@@ -652,14 +678,14 @@ public class AsyncRawPayrollClient {
                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                   }
-                  CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsGetResponse>> future = new CompletableFuture<>();
+                  CompletableFuture<NordletApiHttpResponse<RunsGetPayrollResponse>> future = new CompletableFuture<>();
                   client.newCall(okhttpRequest).enqueue(new Callback() {
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                       try (ResponseBody responseBody = response.body()) {
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollRunsGetResponse.class), response));
+                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RunsGetPayrollResponse.class), response));
                           return;
                         }
                         try {
@@ -668,11 +694,15 @@ public class AsyncRawPayrollClient {
                             return;
                             case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
+                            case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
                             case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
                             case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
                             case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                            return;
+                            case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
                             case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                             return;
@@ -705,23 +735,23 @@ public class AsyncRawPayrollClient {
                   return future;
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsListResponse>> postV1PayrollRunsList(
+                public CompletableFuture<NordletApiHttpResponse<RunsListPayrollResponse>> runsList(
                     ) {
-                  return postV1PayrollRunsList(PostV1PayrollRunsListRequest.builder().build());
+                  return runsList(RunsListPayrollRequest.builder().build());
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsListResponse>> postV1PayrollRunsList(
+                public CompletableFuture<NordletApiHttpResponse<RunsListPayrollResponse>> runsList(
                     RequestOptions requestOptions) {
-                  return postV1PayrollRunsList(PostV1PayrollRunsListRequest.builder().build(),requestOptions);
+                  return runsList(RunsListPayrollRequest.builder().build(),requestOptions);
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsListResponse>> postV1PayrollRunsList(
-                    PostV1PayrollRunsListRequest request) {
-                  return postV1PayrollRunsList(request,null);
+                public CompletableFuture<NordletApiHttpResponse<RunsListPayrollResponse>> runsList(
+                    RunsListPayrollRequest request) {
+                  return runsList(request,null);
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsListResponse>> postV1PayrollRunsList(
-                    PostV1PayrollRunsListRequest request, RequestOptions requestOptions) {
+                public CompletableFuture<NordletApiHttpResponse<RunsListPayrollResponse>> runsList(
+                    RunsListPayrollRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                     .addPathSegments("v1/payroll/runs/list");if (requestOptions != null) {
@@ -750,14 +780,14 @@ public class AsyncRawPayrollClient {
                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                     }
-                    CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsListResponse>> future = new CompletableFuture<>();
+                    CompletableFuture<NordletApiHttpResponse<RunsListPayrollResponse>> future = new CompletableFuture<>();
                     client.newCall(okhttpRequest).enqueue(new Callback() {
                       @Override
                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         try (ResponseBody responseBody = response.body()) {
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollRunsListResponse.class), response));
+                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RunsListPayrollResponse.class), response));
                             return;
                           }
                           try {
@@ -766,11 +796,15 @@ public class AsyncRawPayrollClient {
                               return;
                               case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
+                              case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                              return;
                               case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
                               case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
                               case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                              return;
+                              case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
                               case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                               return;
@@ -806,16 +840,16 @@ public class AsyncRawPayrollClient {
                   /**
                    * The days and hours worked, the days on the register and the average hourly earnings that some countries report per employment. The Czech monthly employer report asks for all four. They can be set while the run is a draft.
                    */
-                  public CompletableFuture<NordletApiHttpResponse<PostV1PayrollLinesAttendanceResponse>> recordTheTimeAPersonWorkedInAPayrollLine(
-                      PostV1PayrollLinesAttendanceRequest request) {
-                    return recordTheTimeAPersonWorkedInAPayrollLine(request,null);
+                  public CompletableFuture<NordletApiHttpResponse<LinesAttendancePayrollResponse>> linesAttendance(
+                      LinesAttendancePayrollRequest request) {
+                    return linesAttendance(request,null);
                   }
 
                   /**
                    * The days and hours worked, the days on the register and the average hourly earnings that some countries report per employment. The Czech monthly employer report asks for all four. They can be set while the run is a draft.
                    */
-                  public CompletableFuture<NordletApiHttpResponse<PostV1PayrollLinesAttendanceResponse>> recordTheTimeAPersonWorkedInAPayrollLine(
-                      PostV1PayrollLinesAttendanceRequest request, RequestOptions requestOptions) {
+                  public CompletableFuture<NordletApiHttpResponse<LinesAttendancePayrollResponse>> linesAttendance(
+                      LinesAttendancePayrollRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                       .addPathSegments("v1/payroll/lines/attendance");if (requestOptions != null) {
@@ -844,14 +878,14 @@ public class AsyncRawPayrollClient {
                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                       }
-                      CompletableFuture<NordletApiHttpResponse<PostV1PayrollLinesAttendanceResponse>> future = new CompletableFuture<>();
+                      CompletableFuture<NordletApiHttpResponse<LinesAttendancePayrollResponse>> future = new CompletableFuture<>();
                       client.newCall(okhttpRequest).enqueue(new Callback() {
                         @Override
                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                           try (ResponseBody responseBody = response.body()) {
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollLinesAttendanceResponse.class), response));
+                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LinesAttendancePayrollResponse.class), response));
                               return;
                             }
                             try {
@@ -860,11 +894,15 @@ public class AsyncRawPayrollClient {
                                 return;
                                 case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                 return;
+                                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                return;
                                 case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                 return;
                                 case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                 return;
                                 case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                return;
+                                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                 return;
                                 case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                 return;
@@ -897,13 +935,13 @@ public class AsyncRawPayrollClient {
                       return future;
                     }
 
-                    public CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsApproveResponse>> postV1PayrollRunsApprove(
-                        PostV1PayrollRunsApproveRequest request) {
-                      return postV1PayrollRunsApprove(request,null);
+                    public CompletableFuture<NordletApiHttpResponse<RunsApprovePayrollResponse>> runsApprove(
+                        RunsApprovePayrollRequest request) {
+                      return runsApprove(request,null);
                     }
 
-                    public CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsApproveResponse>> postV1PayrollRunsApprove(
-                        PostV1PayrollRunsApproveRequest request, RequestOptions requestOptions) {
+                    public CompletableFuture<NordletApiHttpResponse<RunsApprovePayrollResponse>> runsApprove(
+                        RunsApprovePayrollRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                         .addPathSegments("v1/payroll/runs/approve");if (requestOptions != null) {
@@ -932,14 +970,14 @@ public class AsyncRawPayrollClient {
                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                         }
-                        CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsApproveResponse>> future = new CompletableFuture<>();
+                        CompletableFuture<NordletApiHttpResponse<RunsApprovePayrollResponse>> future = new CompletableFuture<>();
                         client.newCall(okhttpRequest).enqueue(new Callback() {
                           @Override
                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                             try (ResponseBody responseBody = response.body()) {
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollRunsApproveResponse.class), response));
+                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RunsApprovePayrollResponse.class), response));
                                 return;
                               }
                               try {
@@ -948,11 +986,15 @@ public class AsyncRawPayrollClient {
                                   return;
                                   case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                   return;
+                                  case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                  return;
                                   case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                   return;
                                   case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                   return;
                                   case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                  return;
+                                  case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                   return;
                                   case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                   return;
@@ -985,13 +1027,13 @@ public class AsyncRawPayrollClient {
                         return future;
                       }
 
-                      public CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsCancelResponse>> postV1PayrollRunsCancel(
-                          PostV1PayrollRunsCancelRequest request) {
-                        return postV1PayrollRunsCancel(request,null);
+                      public CompletableFuture<NordletApiHttpResponse<RunsCancelPayrollResponse>> runsCancel(
+                          RunsCancelPayrollRequest request) {
+                        return runsCancel(request,null);
                       }
 
-                      public CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsCancelResponse>> postV1PayrollRunsCancel(
-                          PostV1PayrollRunsCancelRequest request, RequestOptions requestOptions) {
+                      public CompletableFuture<NordletApiHttpResponse<RunsCancelPayrollResponse>> runsCancel(
+                          RunsCancelPayrollRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                           .addPathSegments("v1/payroll/runs/cancel");if (requestOptions != null) {
@@ -1020,14 +1062,14 @@ public class AsyncRawPayrollClient {
                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                           }
-                          CompletableFuture<NordletApiHttpResponse<PostV1PayrollRunsCancelResponse>> future = new CompletableFuture<>();
+                          CompletableFuture<NordletApiHttpResponse<RunsCancelPayrollResponse>> future = new CompletableFuture<>();
                           client.newCall(okhttpRequest).enqueue(new Callback() {
                             @Override
                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                               try (ResponseBody responseBody = response.body()) {
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollRunsCancelResponse.class), response));
+                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RunsCancelPayrollResponse.class), response));
                                   return;
                                 }
                                 try {
@@ -1036,11 +1078,15 @@ public class AsyncRawPayrollClient {
                                     return;
                                     case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                     return;
+                                    case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                    return;
                                     case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                     return;
                                     case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                     return;
                                     case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                    return;
+                                    case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                     return;
                                     case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                     return;
@@ -1073,14 +1119,13 @@ public class AsyncRawPayrollClient {
                           return future;
                         }
 
-                        public CompletableFuture<NordletApiHttpResponse<PostV1PayrollPaymentsExportResponse>> postV1PayrollPaymentsExport(
-                            PostV1PayrollPaymentsExportRequest request) {
-                          return postV1PayrollPaymentsExport(request,null);
+                        public CompletableFuture<NordletApiHttpResponse<PaymentsExportPayrollResponse>> paymentsExport(
+                            PaymentsExportPayrollRequest request) {
+                          return paymentsExport(request,null);
                         }
 
-                        public CompletableFuture<NordletApiHttpResponse<PostV1PayrollPaymentsExportResponse>> postV1PayrollPaymentsExport(
-                            PostV1PayrollPaymentsExportRequest request,
-                            RequestOptions requestOptions) {
+                        public CompletableFuture<NordletApiHttpResponse<PaymentsExportPayrollResponse>> paymentsExport(
+                            PaymentsExportPayrollRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                             .addPathSegments("v1/payroll/payments/export");if (requestOptions != null) {
@@ -1109,14 +1154,14 @@ public class AsyncRawPayrollClient {
                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                             }
-                            CompletableFuture<NordletApiHttpResponse<PostV1PayrollPaymentsExportResponse>> future = new CompletableFuture<>();
+                            CompletableFuture<NordletApiHttpResponse<PaymentsExportPayrollResponse>> future = new CompletableFuture<>();
                             client.newCall(okhttpRequest).enqueue(new Callback() {
                               @Override
                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                 try (ResponseBody responseBody = response.body()) {
                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                   if (response.isSuccessful()) {
-                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PayrollPaymentsExportResponse.class), response));
+                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaymentsExportPayrollResponse.class), response));
                                     return;
                                   }
                                   try {
@@ -1125,11 +1170,15 @@ public class AsyncRawPayrollClient {
                                       return;
                                       case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                       return;
+                                      case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                      return;
                                       case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                       return;
                                       case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                       return;
                                       case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                      return;
+                                      case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                       return;
                                       case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                                       return;

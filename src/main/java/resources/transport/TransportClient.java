@@ -6,18 +6,18 @@ package com.nordlet.api.resources.transport;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsCancelRequest;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsCreateRequest;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsGetRequest;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsIssueRequest;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsListRequest;
-import com.nordlet.api.resources.transport.requests.PostV1TransportWaybillsUpdateRequest;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsCancelResponse;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsCreateResponse;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsGetResponse;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsIssueResponse;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsListResponse;
-import com.nordlet.api.resources.transport.types.PostV1TransportWaybillsUpdateResponse;
+import com.nordlet.api.resources.transport.requests.WaybillsCancelTransportRequest;
+import com.nordlet.api.resources.transport.requests.WaybillsCreateTransportRequest;
+import com.nordlet.api.resources.transport.requests.WaybillsGetTransportRequest;
+import com.nordlet.api.resources.transport.requests.WaybillsIssueTransportRequest;
+import com.nordlet.api.resources.transport.requests.WaybillsListTransportRequest;
+import com.nordlet.api.resources.transport.requests.WaybillsUpdateTransportRequest;
+import com.nordlet.api.resources.transport.types.WaybillsCancelTransportResponse;
+import com.nordlet.api.resources.transport.types.WaybillsCreateTransportResponse;
+import com.nordlet.api.resources.transport.types.WaybillsGetTransportResponse;
+import com.nordlet.api.resources.transport.types.WaybillsIssueTransportResponse;
+import com.nordlet.api.resources.transport.types.WaybillsListTransportResponse;
+import com.nordlet.api.resources.transport.types.WaybillsUpdateTransportResponse;
 
 public class TransportClient {
   protected final ClientOptions clientOptions;
@@ -36,72 +36,65 @@ public class TransportClient {
     return this.rawClient;
   }
 
-  public PostV1TransportWaybillsCreateResponse postV1TransportWaybillsCreate(
-      PostV1TransportWaybillsCreateRequest request) {
-    return this.rawClient.postV1TransportWaybillsCreate(request).body();
+  public WaybillsCreateTransportResponse waybillsCreate(WaybillsCreateTransportRequest request) {
+    return this.rawClient.waybillsCreate(request).body();
   }
 
-  public PostV1TransportWaybillsCreateResponse postV1TransportWaybillsCreate(
-      PostV1TransportWaybillsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1TransportWaybillsCreate(request, requestOptions).body();
-  }
-
-  public PostV1TransportWaybillsUpdateResponse postV1TransportWaybillsUpdate(
-      PostV1TransportWaybillsUpdateRequest request) {
-    return this.rawClient.postV1TransportWaybillsUpdate(request).body();
-  }
-
-  public PostV1TransportWaybillsUpdateResponse postV1TransportWaybillsUpdate(
-      PostV1TransportWaybillsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1TransportWaybillsUpdate(request, requestOptions).body();
-  }
-
-  public PostV1TransportWaybillsIssueResponse postV1TransportWaybillsIssue(
-      PostV1TransportWaybillsIssueRequest request) {
-    return this.rawClient.postV1TransportWaybillsIssue(request).body();
-  }
-
-  public PostV1TransportWaybillsIssueResponse postV1TransportWaybillsIssue(
-      PostV1TransportWaybillsIssueRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1TransportWaybillsIssue(request, requestOptions).body();
-  }
-
-  public PostV1TransportWaybillsCancelResponse postV1TransportWaybillsCancel(
-      PostV1TransportWaybillsCancelRequest request) {
-    return this.rawClient.postV1TransportWaybillsCancel(request).body();
-  }
-
-  public PostV1TransportWaybillsCancelResponse postV1TransportWaybillsCancel(
-      PostV1TransportWaybillsCancelRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1TransportWaybillsCancel(request, requestOptions).body();
-  }
-
-  public PostV1TransportWaybillsGetResponse postV1TransportWaybillsGet(
-      PostV1TransportWaybillsGetRequest request) {
-    return this.rawClient.postV1TransportWaybillsGet(request).body();
-  }
-
-  public PostV1TransportWaybillsGetResponse postV1TransportWaybillsGet(
-      PostV1TransportWaybillsGetRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1TransportWaybillsGet(request, requestOptions).body();
-  }
-
-  public PostV1TransportWaybillsListResponse postV1TransportWaybillsList() {
-    return this.rawClient.postV1TransportWaybillsList().body();
-  }
-
-  public PostV1TransportWaybillsListResponse postV1TransportWaybillsList(
+  public WaybillsCreateTransportResponse waybillsCreate(WaybillsCreateTransportRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1TransportWaybillsList(requestOptions).body();
+    return this.rawClient.waybillsCreate(request, requestOptions).body();
   }
 
-  public PostV1TransportWaybillsListResponse postV1TransportWaybillsList(
-      PostV1TransportWaybillsListRequest request) {
-    return this.rawClient.postV1TransportWaybillsList(request).body();
+  public WaybillsUpdateTransportResponse waybillsUpdate(WaybillsUpdateTransportRequest request) {
+    return this.rawClient.waybillsUpdate(request).body();
   }
 
-  public PostV1TransportWaybillsListResponse postV1TransportWaybillsList(
-      PostV1TransportWaybillsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1TransportWaybillsList(request, requestOptions).body();
+  public WaybillsUpdateTransportResponse waybillsUpdate(WaybillsUpdateTransportRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.waybillsUpdate(request, requestOptions).body();
+  }
+
+  public WaybillsIssueTransportResponse waybillsIssue(WaybillsIssueTransportRequest request) {
+    return this.rawClient.waybillsIssue(request).body();
+  }
+
+  public WaybillsIssueTransportResponse waybillsIssue(WaybillsIssueTransportRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.waybillsIssue(request, requestOptions).body();
+  }
+
+  public WaybillsCancelTransportResponse waybillsCancel(WaybillsCancelTransportRequest request) {
+    return this.rawClient.waybillsCancel(request).body();
+  }
+
+  public WaybillsCancelTransportResponse waybillsCancel(WaybillsCancelTransportRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.waybillsCancel(request, requestOptions).body();
+  }
+
+  public WaybillsGetTransportResponse waybillsGet(WaybillsGetTransportRequest request) {
+    return this.rawClient.waybillsGet(request).body();
+  }
+
+  public WaybillsGetTransportResponse waybillsGet(WaybillsGetTransportRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.waybillsGet(request, requestOptions).body();
+  }
+
+  public WaybillsListTransportResponse waybillsList() {
+    return this.rawClient.waybillsList().body();
+  }
+
+  public WaybillsListTransportResponse waybillsList(RequestOptions requestOptions) {
+    return this.rawClient.waybillsList(requestOptions).body();
+  }
+
+  public WaybillsListTransportResponse waybillsList(WaybillsListTransportRequest request) {
+    return this.rawClient.waybillsList(request).body();
+  }
+
+  public WaybillsListTransportResponse waybillsList(WaybillsListTransportRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.waybillsList(request, requestOptions).body();
   }
 }

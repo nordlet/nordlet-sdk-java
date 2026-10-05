@@ -6,10 +6,10 @@ package com.nordlet.api.resources.migration;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.migration.requests.PostV1MigrationBooksImportRequest;
-import com.nordlet.api.resources.migration.requests.PostV1MigrationBooksValidateRequest;
-import com.nordlet.api.resources.migration.types.PostV1MigrationBooksImportResponse;
-import com.nordlet.api.resources.migration.types.PostV1MigrationBooksValidateResponse;
+import com.nordlet.api.resources.migration.requests.BooksImportMigrationRequest;
+import com.nordlet.api.resources.migration.requests.BooksValidateMigrationRequest;
+import com.nordlet.api.resources.migration.types.BooksImportMigrationResponse;
+import com.nordlet.api.resources.migration.types.BooksValidateMigrationResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncMigrationClient {
@@ -32,32 +32,32 @@ public class AsyncMigrationClient {
   /**
    * Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored.
    */
-  public CompletableFuture<PostV1MigrationBooksValidateResponse> checkAHistoricalBooksPackageWithoutWritingAnything(
-      PostV1MigrationBooksValidateRequest request) {
-    return this.rawClient.checkAHistoricalBooksPackageWithoutWritingAnything(request).thenApply(response -> response.body());
+  public CompletableFuture<BooksValidateMigrationResponse> booksValidate(
+      BooksValidateMigrationRequest request) {
+    return this.rawClient.booksValidate(request).thenApply(response -> response.body());
   }
 
   /**
    * Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored.
    */
-  public CompletableFuture<PostV1MigrationBooksValidateResponse> checkAHistoricalBooksPackageWithoutWritingAnything(
-      PostV1MigrationBooksValidateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.checkAHistoricalBooksPackageWithoutWritingAnything(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<BooksValidateMigrationResponse> booksValidate(
+      BooksValidateMigrationRequest request, RequestOptions requestOptions) {
+    return this.rawClient.booksValidate(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
    * Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction — if any row fails, nothing is stored.
    */
-  public CompletableFuture<PostV1MigrationBooksImportResponse> importHistoricalBooksFromAPreviousAccountingSystem(
-      PostV1MigrationBooksImportRequest request) {
-    return this.rawClient.importHistoricalBooksFromAPreviousAccountingSystem(request).thenApply(response -> response.body());
+  public CompletableFuture<BooksImportMigrationResponse> booksImport(
+      BooksImportMigrationRequest request) {
+    return this.rawClient.booksImport(request).thenApply(response -> response.body());
   }
 
   /**
    * Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction — if any row fails, nothing is stored.
    */
-  public CompletableFuture<PostV1MigrationBooksImportResponse> importHistoricalBooksFromAPreviousAccountingSystem(
-      PostV1MigrationBooksImportRequest request, RequestOptions requestOptions) {
-    return this.rawClient.importHistoricalBooksFromAPreviousAccountingSystem(request, requestOptions).thenApply(response -> response.body());
+  public CompletableFuture<BooksImportMigrationResponse> booksImport(
+      BooksImportMigrationRequest request, RequestOptions requestOptions) {
+    return this.rawClient.booksImport(request, requestOptions).thenApply(response -> response.body());
   }
 }

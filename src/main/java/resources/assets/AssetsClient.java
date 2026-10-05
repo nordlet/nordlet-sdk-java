@@ -6,26 +6,28 @@ package com.nordlet.api.resources.assets;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsCreateRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsGetRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsInputVatRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsListRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsModernizeRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsAssetsUpdateRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsDepreciationPostRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsDepreciationPreviewRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsGroupsCreateRequest;
-import com.nordlet.api.resources.assets.requests.PostV1AssetsGroupsListRequest;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsCreateResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsGetResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsInputVatResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsListResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsModernizeResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsAssetsUpdateResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsDepreciationPostResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsDepreciationPreviewResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsGroupsCreateResponse;
-import com.nordlet.api.resources.assets.types.PostV1AssetsGroupsListResponse;
+import com.nordlet.api.resources.assets.requests.AssetsCreateAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsDisposeAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsGetAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsInputVatAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsListAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsModernizeAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsUpdateAssetsRequest;
+import com.nordlet.api.resources.assets.requests.DepreciationPostAssetsRequest;
+import com.nordlet.api.resources.assets.requests.DepreciationPreviewAssetsRequest;
+import com.nordlet.api.resources.assets.requests.GroupsCreateAssetsRequest;
+import com.nordlet.api.resources.assets.requests.GroupsListAssetsRequest;
+import com.nordlet.api.resources.assets.types.AssetsCreateAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsDisposeAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsGetAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsInputVatAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsListAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsModernizeAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsUpdateAssetsResponse;
+import com.nordlet.api.resources.assets.types.DepreciationPostAssetsResponse;
+import com.nordlet.api.resources.assets.types.DepreciationPreviewAssetsResponse;
+import com.nordlet.api.resources.assets.types.GroupsCreateAssetsResponse;
+import com.nordlet.api.resources.assets.types.GroupsListAssetsResponse;
 
 public class AssetsClient {
   protected final ClientOptions clientOptions;
@@ -44,124 +46,131 @@ public class AssetsClient {
     return this.rawClient;
   }
 
-  public PostV1AssetsGroupsCreateResponse postV1AssetsGroupsCreate(
-      PostV1AssetsGroupsCreateRequest request) {
-    return this.rawClient.postV1AssetsGroupsCreate(request).body();
+  public GroupsCreateAssetsResponse groupsCreate(GroupsCreateAssetsRequest request) {
+    return this.rawClient.groupsCreate(request).body();
   }
 
-  public PostV1AssetsGroupsCreateResponse postV1AssetsGroupsCreate(
-      PostV1AssetsGroupsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsGroupsCreate(request, requestOptions).body();
-  }
-
-  public PostV1AssetsGroupsListResponse postV1AssetsGroupsList() {
-    return this.rawClient.postV1AssetsGroupsList().body();
-  }
-
-  public PostV1AssetsGroupsListResponse postV1AssetsGroupsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsGroupsList(requestOptions).body();
-  }
-
-  public PostV1AssetsGroupsListResponse postV1AssetsGroupsList(
-      PostV1AssetsGroupsListRequest request) {
-    return this.rawClient.postV1AssetsGroupsList(request).body();
-  }
-
-  public PostV1AssetsGroupsListResponse postV1AssetsGroupsList(
-      PostV1AssetsGroupsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsGroupsList(request, requestOptions).body();
-  }
-
-  public PostV1AssetsAssetsCreateResponse postV1AssetsAssetsCreate(
-      PostV1AssetsAssetsCreateRequest request) {
-    return this.rawClient.postV1AssetsAssetsCreate(request).body();
-  }
-
-  public PostV1AssetsAssetsCreateResponse postV1AssetsAssetsCreate(
-      PostV1AssetsAssetsCreateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsAssetsCreate(request, requestOptions).body();
-  }
-
-  public PostV1AssetsAssetsUpdateResponse postV1AssetsAssetsUpdate(
-      PostV1AssetsAssetsUpdateRequest request) {
-    return this.rawClient.postV1AssetsAssetsUpdate(request).body();
-  }
-
-  public PostV1AssetsAssetsUpdateResponse postV1AssetsAssetsUpdate(
-      PostV1AssetsAssetsUpdateRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsAssetsUpdate(request, requestOptions).body();
-  }
-
-  /**
-   * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
-   */
-  public PostV1AssetsAssetsInputVatResponse postV1AssetsAssetsInputVat(
-      PostV1AssetsAssetsInputVatRequest request) {
-    return this.rawClient.postV1AssetsAssetsInputVat(request).body();
-  }
-
-  /**
-   * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
-   */
-  public PostV1AssetsAssetsInputVatResponse postV1AssetsAssetsInputVat(
-      PostV1AssetsAssetsInputVatRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsAssetsInputVat(request, requestOptions).body();
-  }
-
-  public PostV1AssetsAssetsGetResponse postV1AssetsAssetsGet(PostV1AssetsAssetsGetRequest request) {
-    return this.rawClient.postV1AssetsAssetsGet(request).body();
-  }
-
-  public PostV1AssetsAssetsGetResponse postV1AssetsAssetsGet(PostV1AssetsAssetsGetRequest request,
+  public GroupsCreateAssetsResponse groupsCreate(GroupsCreateAssetsRequest request,
       RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsAssetsGet(request, requestOptions).body();
+    return this.rawClient.groupsCreate(request, requestOptions).body();
   }
 
-  public PostV1AssetsAssetsListResponse postV1AssetsAssetsList() {
-    return this.rawClient.postV1AssetsAssetsList().body();
+  public GroupsListAssetsResponse groupsList() {
+    return this.rawClient.groupsList().body();
   }
 
-  public PostV1AssetsAssetsListResponse postV1AssetsAssetsList(RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsAssetsList(requestOptions).body();
+  public GroupsListAssetsResponse groupsList(RequestOptions requestOptions) {
+    return this.rawClient.groupsList(requestOptions).body();
   }
 
-  public PostV1AssetsAssetsListResponse postV1AssetsAssetsList(
-      PostV1AssetsAssetsListRequest request) {
-    return this.rawClient.postV1AssetsAssetsList(request).body();
+  public GroupsListAssetsResponse groupsList(GroupsListAssetsRequest request) {
+    return this.rawClient.groupsList(request).body();
   }
 
-  public PostV1AssetsAssetsListResponse postV1AssetsAssetsList(
-      PostV1AssetsAssetsListRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsAssetsList(request, requestOptions).body();
+  public GroupsListAssetsResponse groupsList(GroupsListAssetsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.groupsList(request, requestOptions).body();
   }
 
-  public PostV1AssetsAssetsModernizeResponse postV1AssetsAssetsModernize(
-      PostV1AssetsAssetsModernizeRequest request) {
-    return this.rawClient.postV1AssetsAssetsModernize(request).body();
+  public AssetsCreateAssetsResponse assetsCreate(AssetsCreateAssetsRequest request) {
+    return this.rawClient.assetsCreate(request).body();
   }
 
-  public PostV1AssetsAssetsModernizeResponse postV1AssetsAssetsModernize(
-      PostV1AssetsAssetsModernizeRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsAssetsModernize(request, requestOptions).body();
+  public AssetsCreateAssetsResponse assetsCreate(AssetsCreateAssetsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.assetsCreate(request, requestOptions).body();
   }
 
-  public PostV1AssetsDepreciationPreviewResponse postV1AssetsDepreciationPreview(
-      PostV1AssetsDepreciationPreviewRequest request) {
-    return this.rawClient.postV1AssetsDepreciationPreview(request).body();
+  public AssetsUpdateAssetsResponse assetsUpdate(AssetsUpdateAssetsRequest request) {
+    return this.rawClient.assetsUpdate(request).body();
   }
 
-  public PostV1AssetsDepreciationPreviewResponse postV1AssetsDepreciationPreview(
-      PostV1AssetsDepreciationPreviewRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsDepreciationPreview(request, requestOptions).body();
+  public AssetsUpdateAssetsResponse assetsUpdate(AssetsUpdateAssetsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.assetsUpdate(request, requestOptions).body();
   }
 
-  public PostV1AssetsDepreciationPostResponse postV1AssetsDepreciationPost(
-      PostV1AssetsDepreciationPostRequest request) {
-    return this.rawClient.postV1AssetsDepreciationPost(request).body();
+  /**
+   * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
+   */
+  public AssetsInputVatAssetsResponse assetsInputVat(AssetsInputVatAssetsRequest request) {
+    return this.rawClient.assetsInputVat(request).body();
   }
 
-  public PostV1AssetsDepreciationPostResponse postV1AssetsDepreciationPost(
-      PostV1AssetsDepreciationPostRequest request, RequestOptions requestOptions) {
-    return this.rawClient.postV1AssetsDepreciationPost(request, requestOptions).body();
+  /**
+   * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
+   */
+  public AssetsInputVatAssetsResponse assetsInputVat(AssetsInputVatAssetsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.assetsInputVat(request, requestOptions).body();
+  }
+
+  public AssetsGetAssetsResponse assetsGet(AssetsGetAssetsRequest request) {
+    return this.rawClient.assetsGet(request).body();
+  }
+
+  public AssetsGetAssetsResponse assetsGet(AssetsGetAssetsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.assetsGet(request, requestOptions).body();
+  }
+
+  public AssetsListAssetsResponse assetsList() {
+    return this.rawClient.assetsList().body();
+  }
+
+  public AssetsListAssetsResponse assetsList(RequestOptions requestOptions) {
+    return this.rawClient.assetsList(requestOptions).body();
+  }
+
+  public AssetsListAssetsResponse assetsList(AssetsListAssetsRequest request) {
+    return this.rawClient.assetsList(request).body();
+  }
+
+  public AssetsListAssetsResponse assetsList(AssetsListAssetsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.assetsList(request, requestOptions).body();
+  }
+
+  public AssetsModernizeAssetsResponse assetsModernize(AssetsModernizeAssetsRequest request) {
+    return this.rawClient.assetsModernize(request).body();
+  }
+
+  public AssetsModernizeAssetsResponse assetsModernize(AssetsModernizeAssetsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.assetsModernize(request, requestOptions).body();
+  }
+
+  /**
+   * Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+   */
+  public AssetsDisposeAssetsResponse assetsDispose(AssetsDisposeAssetsRequest request) {
+    return this.rawClient.assetsDispose(request).body();
+  }
+
+  /**
+   * Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+   */
+  public AssetsDisposeAssetsResponse assetsDispose(AssetsDisposeAssetsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.assetsDispose(request, requestOptions).body();
+  }
+
+  public DepreciationPreviewAssetsResponse depreciationPreview(
+      DepreciationPreviewAssetsRequest request) {
+    return this.rawClient.depreciationPreview(request).body();
+  }
+
+  public DepreciationPreviewAssetsResponse depreciationPreview(
+      DepreciationPreviewAssetsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.depreciationPreview(request, requestOptions).body();
+  }
+
+  public DepreciationPostAssetsResponse depreciationPost(DepreciationPostAssetsRequest request) {
+    return this.rawClient.depreciationPost(request).body();
+  }
+
+  public DepreciationPostAssetsResponse depreciationPost(DepreciationPostAssetsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.depreciationPost(request, requestOptions).body();
   }
 }

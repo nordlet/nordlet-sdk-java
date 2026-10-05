@@ -15,15 +15,17 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.public_.requests.GetV1PublicPayTokenRequest;
-import com.nordlet.api.resources.public_.requests.PostV1PublicIntegrationRequestsRequest;
-import com.nordlet.api.resources.public_.types.PostV1PublicIntegrationRequestsResponse;
+import com.nordlet.api.resources.public_.requests.IntegrationRequestsPublicRequest;
+import com.nordlet.api.resources.public_.requests.PayPublicRequest;
+import com.nordlet.api.resources.public_.types.IntegrationRequestsPublicResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -49,13 +51,13 @@ public class AsyncRawPublicClient {
     this.clientOptions = clientOptions;
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1PublicIntegrationRequestsResponse>> postV1PublicIntegrationRequests(
-      PostV1PublicIntegrationRequestsRequest request) {
-    return postV1PublicIntegrationRequests(request,null);
+  public CompletableFuture<NordletApiHttpResponse<IntegrationRequestsPublicResponse>> integrationRequests(
+      IntegrationRequestsPublicRequest request) {
+    return integrationRequests(request,null);
   }
 
-  public CompletableFuture<NordletApiHttpResponse<PostV1PublicIntegrationRequestsResponse>> postV1PublicIntegrationRequests(
-      PostV1PublicIntegrationRequestsRequest request, RequestOptions requestOptions) {
+  public CompletableFuture<NordletApiHttpResponse<IntegrationRequestsPublicResponse>> integrationRequests(
+      IntegrationRequestsPublicRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/public/integration-requests");if (requestOptions != null) {
@@ -84,14 +86,14 @@ public class AsyncRawPublicClient {
       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
       }
-      CompletableFuture<NordletApiHttpResponse<PostV1PublicIntegrationRequestsResponse>> future = new CompletableFuture<>();
+      CompletableFuture<NordletApiHttpResponse<IntegrationRequestsPublicResponse>> future = new CompletableFuture<>();
       client.newCall(okhttpRequest).enqueue(new Callback() {
         @Override
         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
           try (ResponseBody responseBody = response.body()) {
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1PublicIntegrationRequestsResponse.class), response));
+              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, IntegrationRequestsPublicResponse.class), response));
               return;
             }
             try {
@@ -100,11 +102,15 @@ public class AsyncRawPublicClient {
                 return;
                 case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
+                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
                 case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                return;
+                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
                 case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                 return;
@@ -137,22 +143,22 @@ public class AsyncRawPublicClient {
       return future;
     }
 
-    public CompletableFuture<NordletApiHttpResponse<Void>> getV1PublicPayToken(String token) {
-      return getV1PublicPayToken(token,GetV1PublicPayTokenRequest.builder().build());
+    public CompletableFuture<NordletApiHttpResponse<Void>> pay(String token) {
+      return pay(token,PayPublicRequest.builder().build());
     }
 
-    public CompletableFuture<NordletApiHttpResponse<Void>> getV1PublicPayToken(String token,
+    public CompletableFuture<NordletApiHttpResponse<Void>> pay(String token,
         RequestOptions requestOptions) {
-      return getV1PublicPayToken(token,GetV1PublicPayTokenRequest.builder().build(),requestOptions);
+      return pay(token,PayPublicRequest.builder().build(),requestOptions);
     }
 
-    public CompletableFuture<NordletApiHttpResponse<Void>> getV1PublicPayToken(String token,
-        GetV1PublicPayTokenRequest request) {
-      return getV1PublicPayToken(token,request,null);
+    public CompletableFuture<NordletApiHttpResponse<Void>> pay(String token,
+        PayPublicRequest request) {
+      return pay(token,request,null);
     }
 
-    public CompletableFuture<NordletApiHttpResponse<Void>> getV1PublicPayToken(String token,
-        GetV1PublicPayTokenRequest request, RequestOptions requestOptions) {
+    public CompletableFuture<NordletApiHttpResponse<Void>> pay(String token,
+        PayPublicRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/public/pay")
@@ -190,11 +196,15 @@ public class AsyncRawPublicClient {
                   return;
                   case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
+                  case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
                   case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                  return;
+                  case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;
                   case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
                   return;

@@ -15,28 +15,30 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.core.RetryInterceptor;
 import com.nordlet.api.errors.BadRequestError;
 import com.nordlet.api.errors.ConflictError;
+import com.nordlet.api.errors.ContentTooLargeError;
 import com.nordlet.api.errors.ForbiddenError;
 import com.nordlet.api.errors.InternalServerError;
 import com.nordlet.api.errors.NotFoundError;
+import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersCancelRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersCreateRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersFulfillRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersGetRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersListRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceOrdersReserveRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceProductsListRequest;
-import com.nordlet.api.resources.ecommerce.requests.PostV1EcommerceStockListRequest;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersCancelResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersCreateResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersFulfillResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersGetResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersListResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceOrdersReserveResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceProductsListResponse;
-import com.nordlet.api.resources.ecommerce.types.PostV1EcommerceStockListResponse;
+import com.nordlet.api.resources.ecommerce.requests.OrdersCancelEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersCreateEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersFulfillEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersGetEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersListEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.OrdersReserveEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.ProductsListEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.requests.StockListEcommerceRequest;
+import com.nordlet.api.resources.ecommerce.types.OrdersCancelEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersCreateEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersFulfillEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersGetEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersListEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.OrdersReserveEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.ProductsListEcommerceResponse;
+import com.nordlet.api.resources.ecommerce.types.StockListEcommerceResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -56,13 +58,13 @@ public class RawEcommerceClient {
     this.clientOptions = clientOptions;
   }
 
-  public NordletApiHttpResponse<PostV1EcommerceOrdersCreateResponse> postV1EcommerceOrdersCreate(
-      PostV1EcommerceOrdersCreateRequest request) {
-    return postV1EcommerceOrdersCreate(request,null);
+  public NordletApiHttpResponse<OrdersCreateEcommerceResponse> ordersCreate(
+      OrdersCreateEcommerceRequest request) {
+    return ordersCreate(request,null);
   }
 
-  public NordletApiHttpResponse<PostV1EcommerceOrdersCreateResponse> postV1EcommerceOrdersCreate(
-      PostV1EcommerceOrdersCreateRequest request, RequestOptions requestOptions) {
+  public NordletApiHttpResponse<OrdersCreateEcommerceResponse> ordersCreate(
+      OrdersCreateEcommerceRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
       .addPathSegments("v1/ecommerce/orders/create");if (requestOptions != null) {
@@ -95,15 +97,17 @@ public class RawEcommerceClient {
         ResponseBody responseBody = response.body();
         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
         if (response.isSuccessful()) {
-          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceOrdersCreateResponse.class), response);
+          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCreateEcommerceResponse.class), response);
         }
         try {
           switch (response.code()) {
             case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
             case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -123,13 +127,13 @@ public class RawEcommerceClient {
       }
     }
 
-    public NordletApiHttpResponse<PostV1EcommerceOrdersGetResponse> postV1EcommerceOrdersGet(
-        PostV1EcommerceOrdersGetRequest request) {
-      return postV1EcommerceOrdersGet(request,null);
+    public NordletApiHttpResponse<OrdersGetEcommerceResponse> ordersGet(
+        OrdersGetEcommerceRequest request) {
+      return ordersGet(request,null);
     }
 
-    public NordletApiHttpResponse<PostV1EcommerceOrdersGetResponse> postV1EcommerceOrdersGet(
-        PostV1EcommerceOrdersGetRequest request, RequestOptions requestOptions) {
+    public NordletApiHttpResponse<OrdersGetEcommerceResponse> ordersGet(
+        OrdersGetEcommerceRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
         .addPathSegments("v1/ecommerce/orders/get");if (requestOptions != null) {
@@ -162,15 +166,17 @@ public class RawEcommerceClient {
           ResponseBody responseBody = response.body();
           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
           if (response.isSuccessful()) {
-            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceOrdersGetResponse.class), response);
+            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersGetEcommerceResponse.class), response);
           }
           try {
             switch (response.code()) {
               case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
               case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -190,22 +196,22 @@ public class RawEcommerceClient {
         }
       }
 
-      public NordletApiHttpResponse<PostV1EcommerceOrdersListResponse> postV1EcommerceOrdersList() {
-        return postV1EcommerceOrdersList(PostV1EcommerceOrdersListRequest.builder().build());
+      public NordletApiHttpResponse<OrdersListEcommerceResponse> ordersList() {
+        return ordersList(OrdersListEcommerceRequest.builder().build());
       }
 
-      public NordletApiHttpResponse<PostV1EcommerceOrdersListResponse> postV1EcommerceOrdersList(
+      public NordletApiHttpResponse<OrdersListEcommerceResponse> ordersList(
           RequestOptions requestOptions) {
-        return postV1EcommerceOrdersList(PostV1EcommerceOrdersListRequest.builder().build(),requestOptions);
+        return ordersList(OrdersListEcommerceRequest.builder().build(),requestOptions);
       }
 
-      public NordletApiHttpResponse<PostV1EcommerceOrdersListResponse> postV1EcommerceOrdersList(
-          PostV1EcommerceOrdersListRequest request) {
-        return postV1EcommerceOrdersList(request,null);
+      public NordletApiHttpResponse<OrdersListEcommerceResponse> ordersList(
+          OrdersListEcommerceRequest request) {
+        return ordersList(request,null);
       }
 
-      public NordletApiHttpResponse<PostV1EcommerceOrdersListResponse> postV1EcommerceOrdersList(
-          PostV1EcommerceOrdersListRequest request, RequestOptions requestOptions) {
+      public NordletApiHttpResponse<OrdersListEcommerceResponse> ordersList(
+          OrdersListEcommerceRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
           .addPathSegments("v1/ecommerce/orders/list");if (requestOptions != null) {
@@ -238,15 +244,17 @@ public class RawEcommerceClient {
             ResponseBody responseBody = response.body();
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceOrdersListResponse.class), response);
+              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersListEcommerceResponse.class), response);
             }
             try {
               switch (response.code()) {
                 case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                 case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -266,13 +274,13 @@ public class RawEcommerceClient {
           }
         }
 
-        public NordletApiHttpResponse<PostV1EcommerceOrdersReserveResponse> postV1EcommerceOrdersReserve(
-            PostV1EcommerceOrdersReserveRequest request) {
-          return postV1EcommerceOrdersReserve(request,null);
+        public NordletApiHttpResponse<OrdersReserveEcommerceResponse> ordersReserve(
+            OrdersReserveEcommerceRequest request) {
+          return ordersReserve(request,null);
         }
 
-        public NordletApiHttpResponse<PostV1EcommerceOrdersReserveResponse> postV1EcommerceOrdersReserve(
-            PostV1EcommerceOrdersReserveRequest request, RequestOptions requestOptions) {
+        public NordletApiHttpResponse<OrdersReserveEcommerceResponse> ordersReserve(
+            OrdersReserveEcommerceRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
             .addPathSegments("v1/ecommerce/orders/reserve");if (requestOptions != null) {
@@ -305,15 +313,17 @@ public class RawEcommerceClient {
               ResponseBody responseBody = response.body();
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceOrdersReserveResponse.class), response);
+                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersReserveEcommerceResponse.class), response);
               }
               try {
                 switch (response.code()) {
                   case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                   case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -333,13 +343,13 @@ public class RawEcommerceClient {
             }
           }
 
-          public NordletApiHttpResponse<PostV1EcommerceOrdersFulfillResponse> postV1EcommerceOrdersFulfill(
-              PostV1EcommerceOrdersFulfillRequest request) {
-            return postV1EcommerceOrdersFulfill(request,null);
+          public NordletApiHttpResponse<OrdersFulfillEcommerceResponse> ordersFulfill(
+              OrdersFulfillEcommerceRequest request) {
+            return ordersFulfill(request,null);
           }
 
-          public NordletApiHttpResponse<PostV1EcommerceOrdersFulfillResponse> postV1EcommerceOrdersFulfill(
-              PostV1EcommerceOrdersFulfillRequest request, RequestOptions requestOptions) {
+          public NordletApiHttpResponse<OrdersFulfillEcommerceResponse> ordersFulfill(
+              OrdersFulfillEcommerceRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
               .addPathSegments("v1/ecommerce/orders/fulfill");if (requestOptions != null) {
@@ -372,15 +382,17 @@ public class RawEcommerceClient {
                 ResponseBody responseBody = response.body();
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceOrdersFulfillResponse.class), response);
+                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersFulfillEcommerceResponse.class), response);
                 }
                 try {
                   switch (response.code()) {
                     case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                     case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -400,13 +412,13 @@ public class RawEcommerceClient {
               }
             }
 
-            public NordletApiHttpResponse<PostV1EcommerceOrdersCancelResponse> postV1EcommerceOrdersCancel(
-                PostV1EcommerceOrdersCancelRequest request) {
-              return postV1EcommerceOrdersCancel(request,null);
+            public NordletApiHttpResponse<OrdersCancelEcommerceResponse> ordersCancel(
+                OrdersCancelEcommerceRequest request) {
+              return ordersCancel(request,null);
             }
 
-            public NordletApiHttpResponse<PostV1EcommerceOrdersCancelResponse> postV1EcommerceOrdersCancel(
-                PostV1EcommerceOrdersCancelRequest request, RequestOptions requestOptions) {
+            public NordletApiHttpResponse<OrdersCancelEcommerceResponse> ordersCancel(
+                OrdersCancelEcommerceRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                 .addPathSegments("v1/ecommerce/orders/cancel");if (requestOptions != null) {
@@ -439,15 +451,17 @@ public class RawEcommerceClient {
                   ResponseBody responseBody = response.body();
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceOrdersCancelResponse.class), response);
+                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCancelEcommerceResponse.class), response);
                   }
                   try {
                     switch (response.code()) {
                       case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                       case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -467,23 +481,22 @@ public class RawEcommerceClient {
                 }
               }
 
-              public NordletApiHttpResponse<PostV1EcommerceProductsListResponse> postV1EcommerceProductsList(
-                  ) {
-                return postV1EcommerceProductsList(PostV1EcommerceProductsListRequest.builder().build());
+              public NordletApiHttpResponse<ProductsListEcommerceResponse> productsList() {
+                return productsList(ProductsListEcommerceRequest.builder().build());
               }
 
-              public NordletApiHttpResponse<PostV1EcommerceProductsListResponse> postV1EcommerceProductsList(
+              public NordletApiHttpResponse<ProductsListEcommerceResponse> productsList(
                   RequestOptions requestOptions) {
-                return postV1EcommerceProductsList(PostV1EcommerceProductsListRequest.builder().build(),requestOptions);
+                return productsList(ProductsListEcommerceRequest.builder().build(),requestOptions);
               }
 
-              public NordletApiHttpResponse<PostV1EcommerceProductsListResponse> postV1EcommerceProductsList(
-                  PostV1EcommerceProductsListRequest request) {
-                return postV1EcommerceProductsList(request,null);
+              public NordletApiHttpResponse<ProductsListEcommerceResponse> productsList(
+                  ProductsListEcommerceRequest request) {
+                return productsList(request,null);
               }
 
-              public NordletApiHttpResponse<PostV1EcommerceProductsListResponse> postV1EcommerceProductsList(
-                  PostV1EcommerceProductsListRequest request, RequestOptions requestOptions) {
+              public NordletApiHttpResponse<ProductsListEcommerceResponse> productsList(
+                  ProductsListEcommerceRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                   .addPathSegments("v1/ecommerce/products/list");if (requestOptions != null) {
@@ -516,15 +529,17 @@ public class RawEcommerceClient {
                     ResponseBody responseBody = response.body();
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceProductsListResponse.class), response);
+                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ProductsListEcommerceResponse.class), response);
                     }
                     try {
                       switch (response.code()) {
                         case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                         case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
@@ -544,23 +559,22 @@ public class RawEcommerceClient {
                   }
                 }
 
-                public NordletApiHttpResponse<PostV1EcommerceStockListResponse> postV1EcommerceStockList(
-                    ) {
-                  return postV1EcommerceStockList(PostV1EcommerceStockListRequest.builder().build());
+                public NordletApiHttpResponse<StockListEcommerceResponse> stockList() {
+                  return stockList(StockListEcommerceRequest.builder().build());
                 }
 
-                public NordletApiHttpResponse<PostV1EcommerceStockListResponse> postV1EcommerceStockList(
+                public NordletApiHttpResponse<StockListEcommerceResponse> stockList(
                     RequestOptions requestOptions) {
-                  return postV1EcommerceStockList(PostV1EcommerceStockListRequest.builder().build(),requestOptions);
+                  return stockList(StockListEcommerceRequest.builder().build(),requestOptions);
                 }
 
-                public NordletApiHttpResponse<PostV1EcommerceStockListResponse> postV1EcommerceStockList(
-                    PostV1EcommerceStockListRequest request) {
-                  return postV1EcommerceStockList(request,null);
+                public NordletApiHttpResponse<StockListEcommerceResponse> stockList(
+                    StockListEcommerceRequest request) {
+                  return stockList(request,null);
                 }
 
-                public NordletApiHttpResponse<PostV1EcommerceStockListResponse> postV1EcommerceStockList(
-                    PostV1EcommerceStockListRequest request, RequestOptions requestOptions) {
+                public NordletApiHttpResponse<StockListEcommerceResponse> stockList(
+                    StockListEcommerceRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
                     .addPathSegments("v1/ecommerce/stock/list");if (requestOptions != null) {
@@ -593,15 +607,17 @@ public class RawEcommerceClient {
                       ResponseBody responseBody = response.body();
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostV1EcommerceStockListResponse.class), response);
+                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StockListEcommerceResponse.class), response);
                       }
                       try {
                         switch (response.code()) {
                           case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
                           case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
