@@ -20,6 +20,11 @@ import com.nordlet.api.resources.leads.requests.SourcesDeleteLeadsRequest;
 import com.nordlet.api.resources.leads.requests.SourcesListLeadsRequest;
 import com.nordlet.api.resources.leads.requests.SourcesOptionsLeadsRequest;
 import com.nordlet.api.resources.leads.requests.SourcesUpdateLeadsRequest;
+import com.nordlet.api.resources.leads.requests.TypesCreateLeadsRequest;
+import com.nordlet.api.resources.leads.requests.TypesDeleteLeadsRequest;
+import com.nordlet.api.resources.leads.requests.TypesListLeadsRequest;
+import com.nordlet.api.resources.leads.requests.TypesOptionsLeadsRequest;
+import com.nordlet.api.resources.leads.requests.TypesUpdateLeadsRequest;
 import com.nordlet.api.resources.leads.requests.UpdateLeadsRequest;
 import com.nordlet.api.resources.leads.types.ConvertLeadsResponse;
 import com.nordlet.api.resources.leads.types.CreateLeadsResponse;
@@ -35,6 +40,11 @@ import com.nordlet.api.resources.leads.types.SourcesDeleteLeadsResponse;
 import com.nordlet.api.resources.leads.types.SourcesListLeadsResponse;
 import com.nordlet.api.resources.leads.types.SourcesOptionsLeadsResponse;
 import com.nordlet.api.resources.leads.types.SourcesUpdateLeadsResponse;
+import com.nordlet.api.resources.leads.types.TypesCreateLeadsResponse;
+import com.nordlet.api.resources.leads.types.TypesDeleteLeadsResponse;
+import com.nordlet.api.resources.leads.types.TypesListLeadsResponse;
+import com.nordlet.api.resources.leads.types.TypesOptionsLeadsResponse;
+import com.nordlet.api.resources.leads.types.TypesUpdateLeadsResponse;
 import com.nordlet.api.resources.leads.types.UpdateLeadsResponse;
 
 public class LeadsClient {
@@ -197,6 +207,67 @@ public class LeadsClient {
   public SourcesOptionsLeadsResponse sourcesOptions(SourcesOptionsLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.sourcesOptions(request, requestOptions).body();
+  }
+
+  public TypesCreateLeadsResponse typesCreate(TypesCreateLeadsRequest request) {
+    return this.rawClient.typesCreate(request).body();
+  }
+
+  public TypesCreateLeadsResponse typesCreate(TypesCreateLeadsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.typesCreate(request, requestOptions).body();
+  }
+
+  public TypesUpdateLeadsResponse typesUpdate(TypesUpdateLeadsRequest request) {
+    return this.rawClient.typesUpdate(request).body();
+  }
+
+  public TypesUpdateLeadsResponse typesUpdate(TypesUpdateLeadsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.typesUpdate(request, requestOptions).body();
+  }
+
+  public TypesDeleteLeadsResponse typesDelete(TypesDeleteLeadsRequest request) {
+    return this.rawClient.typesDelete(request).body();
+  }
+
+  public TypesDeleteLeadsResponse typesDelete(TypesDeleteLeadsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.typesDelete(request, requestOptions).body();
+  }
+
+  public TypesListLeadsResponse typesList() {
+    return this.rawClient.typesList().body();
+  }
+
+  public TypesListLeadsResponse typesList(RequestOptions requestOptions) {
+    return this.rawClient.typesList(requestOptions).body();
+  }
+
+  public TypesListLeadsResponse typesList(TypesListLeadsRequest request) {
+    return this.rawClient.typesList(request).body();
+  }
+
+  public TypesListLeadsResponse typesList(TypesListLeadsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.typesList(request, requestOptions).body();
+  }
+
+  public TypesOptionsLeadsResponse typesOptions() {
+    return this.rawClient.typesOptions().body();
+  }
+
+  public TypesOptionsLeadsResponse typesOptions(RequestOptions requestOptions) {
+    return this.rawClient.typesOptions(requestOptions).body();
+  }
+
+  public TypesOptionsLeadsResponse typesOptions(TypesOptionsLeadsRequest request) {
+    return this.rawClient.typesOptions(request).body();
+  }
+
+  public TypesOptionsLeadsResponse typesOptions(TypesOptionsLeadsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.typesOptions(request, requestOptions).body();
   }
 
   /**

@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
@@ -28,17 +29,25 @@ import java.util.Objects;
 public final class PartnerBalancesReportsResponse {
   private final List<PartnerBalancesReportsResponseRowsItem> rows;
 
+  private final PartnerBalancesReportsResponseTotals totals;
+
   private final Map<String, Object> additionalProperties;
 
   private PartnerBalancesReportsResponse(List<PartnerBalancesReportsResponseRowsItem> rows,
-      Map<String, Object> additionalProperties) {
+      PartnerBalancesReportsResponseTotals totals, Map<String, Object> additionalProperties) {
     this.rows = rows;
+    this.totals = totals;
     this.additionalProperties = additionalProperties;
   }
 
   @JsonProperty("rows")
   public List<PartnerBalancesReportsResponseRowsItem> getRows() {
     return rows;
+  }
+
+  @JsonProperty("totals")
+  public PartnerBalancesReportsResponseTotals getTotals() {
+    return totals;
   }
 
   @java.lang.Override
@@ -53,12 +62,12 @@ public final class PartnerBalancesReportsResponse {
   }
 
   private boolean equalTo(PartnerBalancesReportsResponse other) {
-    return rows.equals(other.rows);
+    return rows.equals(other.rows) && totals.equals(other.totals);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.rows);
+    return Objects.hash(this.rows, this.totals);
   }
 
   @java.lang.Override
@@ -66,14 +75,36 @@ public final class PartnerBalancesReportsResponse {
     return ObjectMappers.stringify(this);
   }
 
-  public static Builder builder() {
+  public static TotalsStage builder() {
     return new Builder();
+  }
+
+  public interface TotalsStage {
+    _FinalStage totals(@NotNull PartnerBalancesReportsResponseTotals totals);
+
+    Builder from(PartnerBalancesReportsResponse other);
+  }
+
+  public interface _FinalStage {
+    PartnerBalancesReportsResponse build();
+
+    _FinalStage additionalProperty(String key, Object value);
+
+    _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage rows(List<PartnerBalancesReportsResponseRowsItem> rows);
+
+    _FinalStage addRows(PartnerBalancesReportsResponseRowsItem rows);
+
+    _FinalStage addAllRows(List<PartnerBalancesReportsResponseRowsItem> rows);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder {
+  public static final class Builder implements TotalsStage, _FinalStage {
+    private PartnerBalancesReportsResponseTotals totals;
+
     private List<PartnerBalancesReportsResponseRowsItem> rows = new ArrayList<>();
 
     @JsonAnySetter
@@ -82,16 +113,40 @@ public final class PartnerBalancesReportsResponse {
     private Builder() {
     }
 
+    @java.lang.Override
     public Builder from(PartnerBalancesReportsResponse other) {
       rows(other.getRows());
+      totals(other.getTotals());
       return this;
     }
 
+    @java.lang.Override
+    @JsonSetter("totals")
+    public _FinalStage totals(@NotNull PartnerBalancesReportsResponseTotals totals) {
+      this.totals = Objects.requireNonNull(totals, "totals must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addAllRows(List<PartnerBalancesReportsResponseRowsItem> rows) {
+      if (rows != null) {
+        this.rows.addAll(rows);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addRows(PartnerBalancesReportsResponseRowsItem rows) {
+      this.rows.add(rows);
+      return this;
+    }
+
+    @java.lang.Override
     @JsonSetter(
         value = "rows",
         nulls = Nulls.SKIP
     )
-    public Builder rows(List<PartnerBalancesReportsResponseRowsItem> rows) {
+    public _FinalStage rows(List<PartnerBalancesReportsResponseRowsItem> rows) {
       this.rows.clear();
       if (rows != null) {
         this.rows.addAll(rows);
@@ -99,27 +154,18 @@ public final class PartnerBalancesReportsResponse {
       return this;
     }
 
-    public Builder addRows(PartnerBalancesReportsResponseRowsItem rows) {
-      this.rows.add(rows);
-      return this;
-    }
-
-    public Builder addAllRows(List<PartnerBalancesReportsResponseRowsItem> rows) {
-      if (rows != null) {
-        this.rows.addAll(rows);
-      }
-      return this;
-    }
-
+    @java.lang.Override
     public PartnerBalancesReportsResponse build() {
-      return new PartnerBalancesReportsResponse(rows, additionalProperties);
+      return new PartnerBalancesReportsResponse(rows, totals, additionalProperties);
     }
 
+    @java.lang.Override
     public Builder additionalProperty(String key, Object value) {
       this.additionalProperties.put(key, value);
       return this;
     }
 
+    @java.lang.Override
     public Builder additionalProperties(Map<String, Object> additionalProperties) {
       this.additionalProperties.putAll(additionalProperties);
       return this;

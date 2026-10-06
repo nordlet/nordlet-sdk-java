@@ -37,6 +37,11 @@ import com.nordlet.api.resources.leads.requests.SourcesDeleteLeadsRequest;
 import com.nordlet.api.resources.leads.requests.SourcesListLeadsRequest;
 import com.nordlet.api.resources.leads.requests.SourcesOptionsLeadsRequest;
 import com.nordlet.api.resources.leads.requests.SourcesUpdateLeadsRequest;
+import com.nordlet.api.resources.leads.requests.TypesCreateLeadsRequest;
+import com.nordlet.api.resources.leads.requests.TypesDeleteLeadsRequest;
+import com.nordlet.api.resources.leads.requests.TypesListLeadsRequest;
+import com.nordlet.api.resources.leads.requests.TypesOptionsLeadsRequest;
+import com.nordlet.api.resources.leads.requests.TypesUpdateLeadsRequest;
 import com.nordlet.api.resources.leads.requests.UpdateLeadsRequest;
 import com.nordlet.api.resources.leads.types.ConvertLeadsResponse;
 import com.nordlet.api.resources.leads.types.CreateLeadsResponse;
@@ -52,6 +57,11 @@ import com.nordlet.api.resources.leads.types.SourcesDeleteLeadsResponse;
 import com.nordlet.api.resources.leads.types.SourcesListLeadsResponse;
 import com.nordlet.api.resources.leads.types.SourcesOptionsLeadsResponse;
 import com.nordlet.api.resources.leads.types.SourcesUpdateLeadsResponse;
+import com.nordlet.api.resources.leads.types.TypesCreateLeadsResponse;
+import com.nordlet.api.resources.leads.types.TypesDeleteLeadsResponse;
+import com.nordlet.api.resources.leads.types.TypesListLeadsResponse;
+import com.nordlet.api.resources.leads.types.TypesOptionsLeadsResponse;
+import com.nordlet.api.resources.leads.types.TypesUpdateLeadsResponse;
 import com.nordlet.api.resources.leads.types.UpdateLeadsResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
@@ -1060,22 +1070,16 @@ public class RawLeadsClient {
                                 }
                               }
 
-                              /**
-                               * Create a customer partner from the lead, move the lead files to the partner, copy the lead notes into the partner notes and mark the lead as converted.
-                               */
-                              public NordletApiHttpResponse<ConvertLeadsResponse> convert(
-                                  ConvertLeadsRequest request) {
-                                return convert(request,null);
+                              public NordletApiHttpResponse<TypesCreateLeadsResponse> typesCreate(
+                                  TypesCreateLeadsRequest request) {
+                                return typesCreate(request,null);
                               }
 
-                              /**
-                               * Create a customer partner from the lead, move the lead files to the partner, copy the lead notes into the partner notes and mark the lead as converted.
-                               */
-                              public NordletApiHttpResponse<ConvertLeadsResponse> convert(
-                                  ConvertLeadsRequest request, RequestOptions requestOptions) {
+                              public NordletApiHttpResponse<TypesCreateLeadsResponse> typesCreate(
+                                  TypesCreateLeadsRequest request, RequestOptions requestOptions) {
                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                  .addPathSegments("v1/leads/convert");if (requestOptions != null) {
+                                  .addPathSegments("v1/leads/types/create");if (requestOptions != null) {
                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                       httpUrl.addQueryParameter(_key, _value);
                                     } );
@@ -1105,7 +1109,7 @@ public class RawLeadsClient {
                                     ResponseBody responseBody = response.body();
                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                     if (response.isSuccessful()) {
-                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ConvertLeadsResponse.class), response);
+                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TypesCreateLeadsResponse.class), response);
                                     }
                                     try {
                                       switch (response.code()) {
@@ -1134,4 +1138,380 @@ public class RawLeadsClient {
                                     throw new NordletApiException("Network error executing HTTP request", e);
                                   }
                                 }
-                              }
+
+                                public NordletApiHttpResponse<TypesUpdateLeadsResponse> typesUpdate(
+                                    TypesUpdateLeadsRequest request) {
+                                  return typesUpdate(request,null);
+                                }
+
+                                public NordletApiHttpResponse<TypesUpdateLeadsResponse> typesUpdate(
+                                    TypesUpdateLeadsRequest request,
+                                    RequestOptions requestOptions) {
+                                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                    .addPathSegments("v1/leads/types/update");if (requestOptions != null) {
+                                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                        httpUrl.addQueryParameter(_key, _value);
+                                      } );
+                                    }
+                                    RequestBody body;
+                                    try {
+                                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                    }
+                                    catch(JsonProcessingException e) {
+                                      throw new NordletApiException("Failed to serialize request", e);
+                                    }
+                                    Request okhttpRequest = new Request.Builder()
+                                      .url(httpUrl.build())
+                                      .method("POST", body)
+                                      .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                      .addHeader("Content-Type", "application/json")
+                                      .addHeader("Accept", "application/json")
+                                      .build();
+                                    OkHttpClient client = clientOptions.httpClient();
+                                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                      client = clientOptions.httpClientWithTimeout(requestOptions);
+                                    }
+                                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                    }
+                                    try (Response response = client.newCall(okhttpRequest).execute()) {
+                                      ResponseBody responseBody = response.body();
+                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                      if (response.isSuccessful()) {
+                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TypesUpdateLeadsResponse.class), response);
+                                      }
+                                      try {
+                                        switch (response.code()) {
+                                          case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        }
+                                      }
+                                      catch (JsonProcessingException ignored) {
+                                        // unable to map error response, throwing generic error
+                                      }
+                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                      throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                    }
+                                    catch (JsonProcessingException e) {
+                                      throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                    }
+                                    catch (IOException e) {
+                                      throw new NordletApiException("Network error executing HTTP request", e);
+                                    }
+                                  }
+
+                                  public NordletApiHttpResponse<TypesDeleteLeadsResponse> typesDelete(
+                                      TypesDeleteLeadsRequest request) {
+                                    return typesDelete(request,null);
+                                  }
+
+                                  public NordletApiHttpResponse<TypesDeleteLeadsResponse> typesDelete(
+                                      TypesDeleteLeadsRequest request,
+                                      RequestOptions requestOptions) {
+                                    HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                      .addPathSegments("v1/leads/types/delete");if (requestOptions != null) {
+                                        requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                          httpUrl.addQueryParameter(_key, _value);
+                                        } );
+                                      }
+                                      RequestBody body;
+                                      try {
+                                        body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                      }
+                                      catch(JsonProcessingException e) {
+                                        throw new NordletApiException("Failed to serialize request", e);
+                                      }
+                                      Request okhttpRequest = new Request.Builder()
+                                        .url(httpUrl.build())
+                                        .method("POST", body)
+                                        .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                        .addHeader("Content-Type", "application/json")
+                                        .addHeader("Accept", "application/json")
+                                        .build();
+                                      OkHttpClient client = clientOptions.httpClient();
+                                      if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                        client = clientOptions.httpClientWithTimeout(requestOptions);
+                                      }
+                                      if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                        okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                      }
+                                      try (Response response = client.newCall(okhttpRequest).execute()) {
+                                        ResponseBody responseBody = response.body();
+                                        String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                        if (response.isSuccessful()) {
+                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TypesDeleteLeadsResponse.class), response);
+                                        }
+                                        try {
+                                          switch (response.code()) {
+                                            case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          }
+                                        }
+                                        catch (JsonProcessingException ignored) {
+                                          // unable to map error response, throwing generic error
+                                        }
+                                        Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                        throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                      }
+                                      catch (JsonProcessingException e) {
+                                        throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                      }
+                                      catch (IOException e) {
+                                        throw new NordletApiException("Network error executing HTTP request", e);
+                                      }
+                                    }
+
+                                    public NordletApiHttpResponse<TypesListLeadsResponse> typesList(
+                                        ) {
+                                      return typesList(TypesListLeadsRequest.builder().build());
+                                    }
+
+                                    public NordletApiHttpResponse<TypesListLeadsResponse> typesList(
+                                        RequestOptions requestOptions) {
+                                      return typesList(TypesListLeadsRequest.builder().build(),requestOptions);
+                                    }
+
+                                    public NordletApiHttpResponse<TypesListLeadsResponse> typesList(
+                                        TypesListLeadsRequest request) {
+                                      return typesList(request,null);
+                                    }
+
+                                    public NordletApiHttpResponse<TypesListLeadsResponse> typesList(
+                                        TypesListLeadsRequest request,
+                                        RequestOptions requestOptions) {
+                                      HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                        .addPathSegments("v1/leads/types/list");if (requestOptions != null) {
+                                          requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                            httpUrl.addQueryParameter(_key, _value);
+                                          } );
+                                        }
+                                        RequestBody body;
+                                        try {
+                                          body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                        }
+                                        catch(JsonProcessingException e) {
+                                          throw new NordletApiException("Failed to serialize request", e);
+                                        }
+                                        Request okhttpRequest = new Request.Builder()
+                                          .url(httpUrl.build())
+                                          .method("POST", body)
+                                          .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                          .addHeader("Content-Type", "application/json")
+                                          .addHeader("Accept", "application/json")
+                                          .build();
+                                        OkHttpClient client = clientOptions.httpClient();
+                                        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                          client = clientOptions.httpClientWithTimeout(requestOptions);
+                                        }
+                                        if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                          okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                        }
+                                        try (Response response = client.newCall(okhttpRequest).execute()) {
+                                          ResponseBody responseBody = response.body();
+                                          String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                          if (response.isSuccessful()) {
+                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TypesListLeadsResponse.class), response);
+                                          }
+                                          try {
+                                            switch (response.code()) {
+                                              case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                              case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                              case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                              case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                              case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                              case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                              case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                              case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            }
+                                          }
+                                          catch (JsonProcessingException ignored) {
+                                            // unable to map error response, throwing generic error
+                                          }
+                                          Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                          throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                        }
+                                        catch (JsonProcessingException e) {
+                                          throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                        }
+                                        catch (IOException e) {
+                                          throw new NordletApiException("Network error executing HTTP request", e);
+                                        }
+                                      }
+
+                                      public NordletApiHttpResponse<TypesOptionsLeadsResponse> typesOptions(
+                                          ) {
+                                        return typesOptions(TypesOptionsLeadsRequest.builder().build());
+                                      }
+
+                                      public NordletApiHttpResponse<TypesOptionsLeadsResponse> typesOptions(
+                                          RequestOptions requestOptions) {
+                                        return typesOptions(TypesOptionsLeadsRequest.builder().build(),requestOptions);
+                                      }
+
+                                      public NordletApiHttpResponse<TypesOptionsLeadsResponse> typesOptions(
+                                          TypesOptionsLeadsRequest request) {
+                                        return typesOptions(request,null);
+                                      }
+
+                                      public NordletApiHttpResponse<TypesOptionsLeadsResponse> typesOptions(
+                                          TypesOptionsLeadsRequest request,
+                                          RequestOptions requestOptions) {
+                                        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                          .addPathSegments("v1/leads/types/options");if (requestOptions != null) {
+                                            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                              httpUrl.addQueryParameter(_key, _value);
+                                            } );
+                                          }
+                                          RequestBody body;
+                                          try {
+                                            body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                          }
+                                          catch(JsonProcessingException e) {
+                                            throw new NordletApiException("Failed to serialize request", e);
+                                          }
+                                          Request okhttpRequest = new Request.Builder()
+                                            .url(httpUrl.build())
+                                            .method("POST", body)
+                                            .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                            .addHeader("Content-Type", "application/json")
+                                            .addHeader("Accept", "application/json")
+                                            .build();
+                                          OkHttpClient client = clientOptions.httpClient();
+                                          if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                            client = clientOptions.httpClientWithTimeout(requestOptions);
+                                          }
+                                          if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                            okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                          }
+                                          try (Response response = client.newCall(okhttpRequest).execute()) {
+                                            ResponseBody responseBody = response.body();
+                                            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                            if (response.isSuccessful()) {
+                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TypesOptionsLeadsResponse.class), response);
+                                            }
+                                            try {
+                                              switch (response.code()) {
+                                                case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                              }
+                                            }
+                                            catch (JsonProcessingException ignored) {
+                                              // unable to map error response, throwing generic error
+                                            }
+                                            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                            throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                          }
+                                          catch (JsonProcessingException e) {
+                                            throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                          }
+                                          catch (IOException e) {
+                                            throw new NordletApiException("Network error executing HTTP request", e);
+                                          }
+                                        }
+
+                                        /**
+                                         * Create a customer partner from the lead, move the lead files to the partner, copy the lead notes into the partner notes and mark the lead as converted.
+                                         */
+                                        public NordletApiHttpResponse<ConvertLeadsResponse> convert(
+                                            ConvertLeadsRequest request) {
+                                          return convert(request,null);
+                                        }
+
+                                        /**
+                                         * Create a customer partner from the lead, move the lead files to the partner, copy the lead notes into the partner notes and mark the lead as converted.
+                                         */
+                                        public NordletApiHttpResponse<ConvertLeadsResponse> convert(
+                                            ConvertLeadsRequest request,
+                                            RequestOptions requestOptions) {
+                                          HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                            .addPathSegments("v1/leads/convert");if (requestOptions != null) {
+                                              requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                httpUrl.addQueryParameter(_key, _value);
+                                              } );
+                                            }
+                                            RequestBody body;
+                                            try {
+                                              body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                            }
+                                            catch(JsonProcessingException e) {
+                                              throw new NordletApiException("Failed to serialize request", e);
+                                            }
+                                            Request okhttpRequest = new Request.Builder()
+                                              .url(httpUrl.build())
+                                              .method("POST", body)
+                                              .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                              .addHeader("Content-Type", "application/json")
+                                              .addHeader("Accept", "application/json")
+                                              .build();
+                                            OkHttpClient client = clientOptions.httpClient();
+                                            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                              client = clientOptions.httpClientWithTimeout(requestOptions);
+                                            }
+                                            if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                              okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                            }
+                                            try (Response response = client.newCall(okhttpRequest).execute()) {
+                                              ResponseBody responseBody = response.body();
+                                              String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                              if (response.isSuccessful()) {
+                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ConvertLeadsResponse.class), response);
+                                              }
+                                              try {
+                                                switch (response.code()) {
+                                                  case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                  case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                  case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                  case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                  case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                  case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                  case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                  case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                }
+                                              }
+                                              catch (JsonProcessingException ignored) {
+                                                // unable to map error response, throwing generic error
+                                              }
+                                              Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                              throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                            }
+                                            catch (JsonProcessingException e) {
+                                              throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                            }
+                                            catch (IOException e) {
+                                              throw new NordletApiException("Network error executing HTTP request", e);
+                                            }
+                                          }
+                                        }

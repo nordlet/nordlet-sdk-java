@@ -43,6 +43,8 @@ public final class CreateLeadsRequest {
 
   private final Optional<String> sourceId;
 
+  private final Optional<String> typeId;
+
   private final Optional<CreateLeadsRequestStatus> status;
 
   private final Optional<String> estimatedValue;
@@ -61,7 +63,7 @@ public final class CreateLeadsRequest {
 
   private CreateLeadsRequest(String name, Optional<String> contactName, Optional<String> email,
       Optional<String> phone, Optional<String> website, Optional<String> countryCode,
-      Optional<String> sourceId, Optional<CreateLeadsRequestStatus> status,
+      Optional<String> sourceId, Optional<String> typeId, Optional<CreateLeadsRequestStatus> status,
       Optional<String> estimatedValue, Optional<String> currency, Optional<String> description,
       Optional<String> assignedUserId, Optional<List<CreateLeadsRequestDocumentsItem>> documents,
       Optional<List<String>> notes, Map<String, Object> additionalProperties) {
@@ -72,6 +74,7 @@ public final class CreateLeadsRequest {
     this.website = website;
     this.countryCode = countryCode;
     this.sourceId = sourceId;
+    this.typeId = typeId;
     this.status = status;
     this.estimatedValue = estimatedValue;
     this.currency = currency;
@@ -115,6 +118,11 @@ public final class CreateLeadsRequest {
   @JsonProperty("sourceId")
   public Optional<String> getSourceId() {
     return sourceId;
+  }
+
+  @JsonProperty("typeId")
+  public Optional<String> getTypeId() {
+    return typeId;
   }
 
   @JsonProperty("status")
@@ -164,12 +172,12 @@ public final class CreateLeadsRequest {
   }
 
   private boolean equalTo(CreateLeadsRequest other) {
-    return name.equals(other.name) && contactName.equals(other.contactName) && email.equals(other.email) && phone.equals(other.phone) && website.equals(other.website) && countryCode.equals(other.countryCode) && sourceId.equals(other.sourceId) && status.equals(other.status) && estimatedValue.equals(other.estimatedValue) && currency.equals(other.currency) && description.equals(other.description) && assignedUserId.equals(other.assignedUserId) && documents.equals(other.documents) && notes.equals(other.notes);
+    return name.equals(other.name) && contactName.equals(other.contactName) && email.equals(other.email) && phone.equals(other.phone) && website.equals(other.website) && countryCode.equals(other.countryCode) && sourceId.equals(other.sourceId) && typeId.equals(other.typeId) && status.equals(other.status) && estimatedValue.equals(other.estimatedValue) && currency.equals(other.currency) && description.equals(other.description) && assignedUserId.equals(other.assignedUserId) && documents.equals(other.documents) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.contactName, this.email, this.phone, this.website, this.countryCode, this.sourceId, this.status, this.estimatedValue, this.currency, this.description, this.assignedUserId, this.documents, this.notes);
+    return Objects.hash(this.name, this.contactName, this.email, this.phone, this.website, this.countryCode, this.sourceId, this.typeId, this.status, this.estimatedValue, this.currency, this.description, this.assignedUserId, this.documents, this.notes);
   }
 
   @java.lang.Override
@@ -217,6 +225,10 @@ public final class CreateLeadsRequest {
     _FinalStage sourceId(Optional<String> sourceId);
 
     _FinalStage sourceId(String sourceId);
+
+    _FinalStage typeId(Optional<String> typeId);
+
+    _FinalStage typeId(String typeId);
 
     _FinalStage status(Optional<CreateLeadsRequestStatus> status);
 
@@ -267,6 +279,8 @@ public final class CreateLeadsRequest {
 
     private Optional<CreateLeadsRequestStatus> status = Optional.empty();
 
+    private Optional<String> typeId = Optional.empty();
+
     private Optional<String> sourceId = Optional.empty();
 
     private Optional<String> countryCode = Optional.empty();
@@ -294,6 +308,7 @@ public final class CreateLeadsRequest {
       website(other.getWebsite());
       countryCode(other.getCountryCode());
       sourceId(other.getSourceId());
+      typeId(other.getTypeId());
       status(other.getStatus());
       estimatedValue(other.getEstimatedValue());
       currency(other.getCurrency());
@@ -424,6 +439,22 @@ public final class CreateLeadsRequest {
     }
 
     @java.lang.Override
+    public _FinalStage typeId(String typeId) {
+      this.typeId = Optional.ofNullable(typeId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "typeId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage typeId(Optional<String> typeId) {
+      this.typeId = typeId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage sourceId(String sourceId) {
       this.sourceId = Optional.ofNullable(sourceId);
       return this;
@@ -521,7 +552,7 @@ public final class CreateLeadsRequest {
 
     @java.lang.Override
     public CreateLeadsRequest build() {
-      return new CreateLeadsRequest(name, contactName, email, phone, website, countryCode, sourceId, status, estimatedValue, currency, description, assignedUserId, documents, notes, additionalProperties);
+      return new CreateLeadsRequest(name, contactName, email, phone, website, countryCode, sourceId, typeId, status, estimatedValue, currency, description, assignedUserId, documents, notes, additionalProperties);
     }
 
     @java.lang.Override

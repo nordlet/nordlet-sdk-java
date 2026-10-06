@@ -4846,6 +4846,14 @@ client.leads().create(
 <dl>
 <dd>
 
+**typeId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **status:** `Optional<CreateLeadsRequestStatus>` 
     
 </dd>
@@ -5041,6 +5049,14 @@ client.leads().update(
 <dd>
 
 **sourceId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**typeId:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -5613,6 +5629,223 @@ client.leads().sourcesList(
 ```java
 client.leads().sourcesOptions(
     SourcesOptionsLeadsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.leads.typesCreate(request) -> TypesCreateLeadsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.leads().typesCreate(
+    TypesCreateLeadsRequest
+        .builder()
+        .name("name")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isActive:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.leads.typesUpdate(request) -> TypesUpdateLeadsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.leads().typesUpdate(
+    TypesUpdateLeadsRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isActive:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.leads.typesDelete(request) -> TypesDeleteLeadsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.leads().typesDelete(
+    TypesDeleteLeadsRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.leads.typesList(request) -> TypesListLeadsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.leads().typesList(
+    TypesListLeadsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.leads.typesOptions(request) -> TypesOptionsLeadsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.leads().typesOptions(
+    TypesOptionsLeadsRequest
         .builder()
         .build()
 );
@@ -17489,7 +17722,7 @@ client.declarations().ieCt1Generate(
 <dl>
 <dd>
 
-Build the working paper for the Form B1 annual return of a financial year — company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements — in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
+Build the working paper for the Form B1 annual return of a financial year - company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements - in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
 </dd>
 </dl>
 </dd>
@@ -21714,7 +21947,7 @@ client.migration().booksValidate(
 <dl>
 <dd>
 
-Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction — if any row fails, nothing is stored.
+Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction - if any row fails, nothing is stored.
 </dd>
 </dl>
 </dd>
@@ -25929,6 +26162,14 @@ client.payroll().runsCreate(
 <dd>
 
 **notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payDate:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -35657,6 +35898,82 @@ client.bank().mandatesList(
 <dd>
 
 **filter:** `Optional<List<MandatesListBankRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.directDebitsCandidates(request) -> DirectDebitsCandidatesBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().directDebitsCandidates(
+    DirectDebitsCandidatesBankRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<DirectDebitsCandidatesBankRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<DirectDebitsCandidatesBankRequestFilterItem>>` 
     
 </dd>
 </dl>

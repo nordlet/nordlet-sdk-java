@@ -20,6 +20,11 @@ import com.nordlet.api.resources.leads.requests.SourcesDeleteLeadsRequest;
 import com.nordlet.api.resources.leads.requests.SourcesListLeadsRequest;
 import com.nordlet.api.resources.leads.requests.SourcesOptionsLeadsRequest;
 import com.nordlet.api.resources.leads.requests.SourcesUpdateLeadsRequest;
+import com.nordlet.api.resources.leads.requests.TypesCreateLeadsRequest;
+import com.nordlet.api.resources.leads.requests.TypesDeleteLeadsRequest;
+import com.nordlet.api.resources.leads.requests.TypesListLeadsRequest;
+import com.nordlet.api.resources.leads.requests.TypesOptionsLeadsRequest;
+import com.nordlet.api.resources.leads.requests.TypesUpdateLeadsRequest;
 import com.nordlet.api.resources.leads.requests.UpdateLeadsRequest;
 import com.nordlet.api.resources.leads.types.ConvertLeadsResponse;
 import com.nordlet.api.resources.leads.types.CreateLeadsResponse;
@@ -35,6 +40,11 @@ import com.nordlet.api.resources.leads.types.SourcesDeleteLeadsResponse;
 import com.nordlet.api.resources.leads.types.SourcesListLeadsResponse;
 import com.nordlet.api.resources.leads.types.SourcesOptionsLeadsResponse;
 import com.nordlet.api.resources.leads.types.SourcesUpdateLeadsResponse;
+import com.nordlet.api.resources.leads.types.TypesCreateLeadsResponse;
+import com.nordlet.api.resources.leads.types.TypesDeleteLeadsResponse;
+import com.nordlet.api.resources.leads.types.TypesListLeadsResponse;
+import com.nordlet.api.resources.leads.types.TypesOptionsLeadsResponse;
+import com.nordlet.api.resources.leads.types.TypesUpdateLeadsResponse;
 import com.nordlet.api.resources.leads.types.UpdateLeadsResponse;
 import java.util.concurrent.CompletableFuture;
 
@@ -208,6 +218,68 @@ public class AsyncLeadsClient {
   public CompletableFuture<SourcesOptionsLeadsResponse> sourcesOptions(
       SourcesOptionsLeadsRequest request, RequestOptions requestOptions) {
     return this.rawClient.sourcesOptions(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesCreateLeadsResponse> typesCreate(TypesCreateLeadsRequest request) {
+    return this.rawClient.typesCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesCreateLeadsResponse> typesCreate(TypesCreateLeadsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.typesCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesUpdateLeadsResponse> typesUpdate(TypesUpdateLeadsRequest request) {
+    return this.rawClient.typesUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesUpdateLeadsResponse> typesUpdate(TypesUpdateLeadsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.typesUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesDeleteLeadsResponse> typesDelete(TypesDeleteLeadsRequest request) {
+    return this.rawClient.typesDelete(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesDeleteLeadsResponse> typesDelete(TypesDeleteLeadsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.typesDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesListLeadsResponse> typesList() {
+    return this.rawClient.typesList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesListLeadsResponse> typesList(RequestOptions requestOptions) {
+    return this.rawClient.typesList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesListLeadsResponse> typesList(TypesListLeadsRequest request) {
+    return this.rawClient.typesList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesListLeadsResponse> typesList(TypesListLeadsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.typesList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesOptionsLeadsResponse> typesOptions() {
+    return this.rawClient.typesOptions().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesOptionsLeadsResponse> typesOptions(RequestOptions requestOptions) {
+    return this.rawClient.typesOptions(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesOptionsLeadsResponse> typesOptions(
+      TypesOptionsLeadsRequest request) {
+    return this.rawClient.typesOptions(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TypesOptionsLeadsResponse> typesOptions(TypesOptionsLeadsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.typesOptions(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**

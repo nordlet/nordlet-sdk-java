@@ -35,28 +35,23 @@ public final class DebtRemindersPreviewPartnersResponseRowsItem {
 
   private final DebtRemindersPreviewPartnersResponseRowsItemLocale locale;
 
-  private final String currency;
-
   private final List<DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem> invoices;
 
-  private final String totalDue;
-
-  private final String interestDue;
+  private final List<DebtRemindersPreviewPartnersResponseRowsItemTotalsItem> totals;
 
   private final Map<String, Object> additionalProperties;
 
   private DebtRemindersPreviewPartnersResponseRowsItem(String partnerId, String partnerName,
-      String email, DebtRemindersPreviewPartnersResponseRowsItemLocale locale, String currency,
-      List<DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem> invoices, String totalDue,
-      String interestDue, Map<String, Object> additionalProperties) {
+      String email, DebtRemindersPreviewPartnersResponseRowsItemLocale locale,
+      List<DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem> invoices,
+      List<DebtRemindersPreviewPartnersResponseRowsItemTotalsItem> totals,
+      Map<String, Object> additionalProperties) {
     this.partnerId = partnerId;
     this.partnerName = partnerName;
     this.email = email;
     this.locale = locale;
-    this.currency = currency;
     this.invoices = invoices;
-    this.totalDue = totalDue;
-    this.interestDue = interestDue;
+    this.totals = totals;
     this.additionalProperties = additionalProperties;
   }
 
@@ -80,24 +75,14 @@ public final class DebtRemindersPreviewPartnersResponseRowsItem {
     return locale;
   }
 
-  @JsonProperty("currency")
-  public String getCurrency() {
-    return currency;
-  }
-
   @JsonProperty("invoices")
   public List<DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem> getInvoices() {
     return invoices;
   }
 
-  @JsonProperty("totalDue")
-  public String getTotalDue() {
-    return totalDue;
-  }
-
-  @JsonProperty("interestDue")
-  public String getInterestDue() {
-    return interestDue;
+  @JsonProperty("totals")
+  public List<DebtRemindersPreviewPartnersResponseRowsItemTotalsItem> getTotals() {
+    return totals;
   }
 
   @java.lang.Override
@@ -112,12 +97,12 @@ public final class DebtRemindersPreviewPartnersResponseRowsItem {
   }
 
   private boolean equalTo(DebtRemindersPreviewPartnersResponseRowsItem other) {
-    return partnerId.equals(other.partnerId) && partnerName.equals(other.partnerName) && email.equals(other.email) && locale.equals(other.locale) && currency.equals(other.currency) && invoices.equals(other.invoices) && totalDue.equals(other.totalDue) && interestDue.equals(other.interestDue);
+    return partnerId.equals(other.partnerId) && partnerName.equals(other.partnerName) && email.equals(other.email) && locale.equals(other.locale) && invoices.equals(other.invoices) && totals.equals(other.totals);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.partnerId, this.partnerName, this.email, this.locale, this.currency, this.invoices, this.totalDue, this.interestDue);
+    return Objects.hash(this.partnerId, this.partnerName, this.email, this.locale, this.invoices, this.totals);
   }
 
   @java.lang.Override
@@ -144,19 +129,7 @@ public final class DebtRemindersPreviewPartnersResponseRowsItem {
   }
 
   public interface LocaleStage {
-    CurrencyStage locale(@NotNull DebtRemindersPreviewPartnersResponseRowsItemLocale locale);
-  }
-
-  public interface CurrencyStage {
-    TotalDueStage currency(@NotNull String currency);
-  }
-
-  public interface TotalDueStage {
-    InterestDueStage totalDue(@NotNull String totalDue);
-  }
-
-  public interface InterestDueStage {
-    _FinalStage interestDue(@NotNull String interestDue);
+    _FinalStage locale(@NotNull DebtRemindersPreviewPartnersResponseRowsItemLocale locale);
   }
 
   public interface _FinalStage {
@@ -172,12 +145,18 @@ public final class DebtRemindersPreviewPartnersResponseRowsItem {
 
     _FinalStage addAllInvoices(
         List<DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem> invoices);
+
+    _FinalStage totals(List<DebtRemindersPreviewPartnersResponseRowsItemTotalsItem> totals);
+
+    _FinalStage addTotals(DebtRemindersPreviewPartnersResponseRowsItemTotalsItem totals);
+
+    _FinalStage addAllTotals(List<DebtRemindersPreviewPartnersResponseRowsItemTotalsItem> totals);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements PartnerIdStage, PartnerNameStage, EmailStage, LocaleStage, CurrencyStage, TotalDueStage, InterestDueStage, _FinalStage {
+  public static final class Builder implements PartnerIdStage, PartnerNameStage, EmailStage, LocaleStage, _FinalStage {
     private String partnerId;
 
     private String partnerName;
@@ -186,11 +165,7 @@ public final class DebtRemindersPreviewPartnersResponseRowsItem {
 
     private DebtRemindersPreviewPartnersResponseRowsItemLocale locale;
 
-    private String currency;
-
-    private String totalDue;
-
-    private String interestDue;
+    private List<DebtRemindersPreviewPartnersResponseRowsItemTotalsItem> totals = new ArrayList<>();
 
     private List<DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem> invoices = new ArrayList<>();
 
@@ -206,10 +181,8 @@ public final class DebtRemindersPreviewPartnersResponseRowsItem {
       partnerName(other.getPartnerName());
       email(other.getEmail());
       locale(other.getLocale());
-      currency(other.getCurrency());
       invoices(other.getInvoices());
-      totalDue(other.getTotalDue());
-      interestDue(other.getInterestDue());
+      totals(other.getTotals());
       return this;
     }
 
@@ -236,30 +209,36 @@ public final class DebtRemindersPreviewPartnersResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("locale")
-    public CurrencyStage locale(
-        @NotNull DebtRemindersPreviewPartnersResponseRowsItemLocale locale) {
+    public _FinalStage locale(@NotNull DebtRemindersPreviewPartnersResponseRowsItemLocale locale) {
       this.locale = Objects.requireNonNull(locale, "locale must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("currency")
-    public TotalDueStage currency(@NotNull String currency) {
-      this.currency = Objects.requireNonNull(currency, "currency must not be null");
+    public _FinalStage addAllTotals(
+        List<DebtRemindersPreviewPartnersResponseRowsItemTotalsItem> totals) {
+      if (totals != null) {
+        this.totals.addAll(totals);
+      }
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("totalDue")
-    public InterestDueStage totalDue(@NotNull String totalDue) {
-      this.totalDue = Objects.requireNonNull(totalDue, "totalDue must not be null");
+    public _FinalStage addTotals(DebtRemindersPreviewPartnersResponseRowsItemTotalsItem totals) {
+      this.totals.add(totals);
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("interestDue")
-    public _FinalStage interestDue(@NotNull String interestDue) {
-      this.interestDue = Objects.requireNonNull(interestDue, "interestDue must not be null");
+    @JsonSetter(
+        value = "totals",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage totals(List<DebtRemindersPreviewPartnersResponseRowsItemTotalsItem> totals) {
+      this.totals.clear();
+      if (totals != null) {
+        this.totals.addAll(totals);
+      }
       return this;
     }
 
@@ -295,7 +274,7 @@ public final class DebtRemindersPreviewPartnersResponseRowsItem {
 
     @java.lang.Override
     public DebtRemindersPreviewPartnersResponseRowsItem build() {
-      return new DebtRemindersPreviewPartnersResponseRowsItem(partnerId, partnerName, email, locale, currency, invoices, totalDue, interestDue, additionalProperties);
+      return new DebtRemindersPreviewPartnersResponseRowsItem(partnerId, partnerName, email, locale, invoices, totals, additionalProperties);
     }
 
     @java.lang.Override

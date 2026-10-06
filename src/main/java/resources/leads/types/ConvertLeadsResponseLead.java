@@ -48,6 +48,10 @@ public final class ConvertLeadsResponseLead {
 
   private final Optional<String> sourceName;
 
+  private final Optional<String> typeId;
+
+  private final Optional<String> typeName;
+
   private final ConvertLeadsResponseLeadStatus status;
 
   private final Optional<String> estimatedValue;
@@ -71,8 +75,9 @@ public final class ConvertLeadsResponseLead {
   private ConvertLeadsResponseLead(String id, String name, Optional<String> contactName,
       Optional<String> email, Optional<String> phone, Optional<String> website,
       Optional<String> countryCode, Optional<String> sourceId, Optional<String> sourceName,
-      ConvertLeadsResponseLeadStatus status, Optional<String> estimatedValue, String currency,
-      Optional<String> description, Optional<String> assignedUserId, Optional<String> partnerId,
+      Optional<String> typeId, Optional<String> typeName, ConvertLeadsResponseLeadStatus status,
+      Optional<String> estimatedValue, String currency, Optional<String> description,
+      Optional<String> assignedUserId, Optional<String> partnerId,
       Optional<OffsetDateTime> convertedAt, OffsetDateTime createdAt, OffsetDateTime updatedAt,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -84,6 +89,8 @@ public final class ConvertLeadsResponseLead {
     this.countryCode = countryCode;
     this.sourceId = sourceId;
     this.sourceName = sourceName;
+    this.typeId = typeId;
+    this.typeName = typeName;
     this.status = status;
     this.estimatedValue = estimatedValue;
     this.currency = currency;
@@ -160,6 +167,22 @@ public final class ConvertLeadsResponseLead {
       return Optional.empty();
     }
     return sourceName;
+  }
+
+  @JsonIgnore
+  public Optional<String> getTypeId() {
+    if (typeId == null) {
+      return Optional.empty();
+    }
+    return typeId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getTypeName() {
+    if (typeName == null) {
+      return Optional.empty();
+    }
+    return typeName;
   }
 
   @JsonProperty("status")
@@ -289,6 +312,24 @@ public final class ConvertLeadsResponseLead {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("typeId")
+  private Optional<String> _getTypeId() {
+    return typeId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("typeName")
+  private Optional<String> _getTypeName() {
+    return typeName;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("estimatedValue")
   private Optional<String> _getEstimatedValue() {
     return estimatedValue;
@@ -342,12 +383,12 @@ public final class ConvertLeadsResponseLead {
   }
 
   private boolean equalTo(ConvertLeadsResponseLead other) {
-    return id.equals(other.id) && name.equals(other.name) && contactName.equals(other.contactName) && email.equals(other.email) && phone.equals(other.phone) && website.equals(other.website) && countryCode.equals(other.countryCode) && sourceId.equals(other.sourceId) && sourceName.equals(other.sourceName) && status.equals(other.status) && estimatedValue.equals(other.estimatedValue) && currency.equals(other.currency) && description.equals(other.description) && assignedUserId.equals(other.assignedUserId) && partnerId.equals(other.partnerId) && convertedAt.equals(other.convertedAt) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && name.equals(other.name) && contactName.equals(other.contactName) && email.equals(other.email) && phone.equals(other.phone) && website.equals(other.website) && countryCode.equals(other.countryCode) && sourceId.equals(other.sourceId) && sourceName.equals(other.sourceName) && typeId.equals(other.typeId) && typeName.equals(other.typeName) && status.equals(other.status) && estimatedValue.equals(other.estimatedValue) && currency.equals(other.currency) && description.equals(other.description) && assignedUserId.equals(other.assignedUserId) && partnerId.equals(other.partnerId) && convertedAt.equals(other.convertedAt) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.contactName, this.email, this.phone, this.website, this.countryCode, this.sourceId, this.sourceName, this.status, this.estimatedValue, this.currency, this.description, this.assignedUserId, this.partnerId, this.convertedAt, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.name, this.contactName, this.email, this.phone, this.website, this.countryCode, this.sourceId, this.sourceName, this.typeId, this.typeName, this.status, this.estimatedValue, this.currency, this.description, this.assignedUserId, this.partnerId, this.convertedAt, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -434,6 +475,18 @@ public final class ConvertLeadsResponseLead {
 
     _FinalStage sourceName(Nullable<String> sourceName);
 
+    _FinalStage typeId(Optional<String> typeId);
+
+    _FinalStage typeId(String typeId);
+
+    _FinalStage typeId(Nullable<String> typeId);
+
+    _FinalStage typeName(Optional<String> typeName);
+
+    _FinalStage typeName(String typeName);
+
+    _FinalStage typeName(Nullable<String> typeName);
+
     _FinalStage estimatedValue(Optional<String> estimatedValue);
 
     _FinalStage estimatedValue(String estimatedValue);
@@ -491,6 +544,10 @@ public final class ConvertLeadsResponseLead {
 
     private Optional<String> estimatedValue = Optional.empty();
 
+    private Optional<String> typeName = Optional.empty();
+
+    private Optional<String> typeId = Optional.empty();
+
     private Optional<String> sourceName = Optional.empty();
 
     private Optional<String> sourceId = Optional.empty();
@@ -522,6 +579,8 @@ public final class ConvertLeadsResponseLead {
       countryCode(other.getCountryCode());
       sourceId(other.getSourceId());
       sourceName(other.getSourceName());
+      typeId(other.getTypeId());
+      typeName(other.getTypeName());
       status(other.getStatus());
       estimatedValue(other.getEstimatedValue());
       currency(other.getCurrency());
@@ -723,6 +782,66 @@ public final class ConvertLeadsResponseLead {
     )
     public _FinalStage estimatedValue(Optional<String> estimatedValue) {
       this.estimatedValue = estimatedValue;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage typeName(Nullable<String> typeName) {
+      if (typeName.isNull()) {
+        this.typeName = null;
+      }
+      else if (typeName.isEmpty()) {
+        this.typeName = Optional.empty();
+      }
+      else {
+        this.typeName = Optional.of(typeName.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage typeName(String typeName) {
+      this.typeName = Optional.ofNullable(typeName);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "typeName",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage typeName(Optional<String> typeName) {
+      this.typeName = typeName;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage typeId(Nullable<String> typeId) {
+      if (typeId.isNull()) {
+        this.typeId = null;
+      }
+      else if (typeId.isEmpty()) {
+        this.typeId = Optional.empty();
+      }
+      else {
+        this.typeId = Optional.of(typeId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage typeId(String typeId) {
+      this.typeId = Optional.ofNullable(typeId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "typeId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage typeId(Optional<String> typeId) {
+      this.typeId = typeId;
       return this;
     }
 
@@ -938,7 +1057,7 @@ public final class ConvertLeadsResponseLead {
 
     @java.lang.Override
     public ConvertLeadsResponseLead build() {
-      return new ConvertLeadsResponseLead(id, name, contactName, email, phone, website, countryCode, sourceId, sourceName, status, estimatedValue, currency, description, assignedUserId, partnerId, convertedAt, createdAt, updatedAt, additionalProperties);
+      return new ConvertLeadsResponseLead(id, name, contactName, email, phone, website, countryCode, sourceId, sourceName, typeId, typeName, status, estimatedValue, currency, description, assignedUserId, partnerId, convertedAt, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

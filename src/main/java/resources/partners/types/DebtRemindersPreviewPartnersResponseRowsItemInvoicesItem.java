@@ -32,6 +32,8 @@ public final class DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem {
 
   private final String dueDate;
 
+  private final String currency;
+
   private final String remaining;
 
   private final long daysLate;
@@ -41,12 +43,13 @@ public final class DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem {
   private final Map<String, Object> additionalProperties;
 
   private DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem(String id, String fullNumber,
-      String issueDate, String dueDate, String remaining, long daysLate, String interest,
-      Map<String, Object> additionalProperties) {
+      String issueDate, String dueDate, String currency, String remaining, long daysLate,
+      String interest, Map<String, Object> additionalProperties) {
     this.id = id;
     this.fullNumber = fullNumber;
     this.issueDate = issueDate;
     this.dueDate = dueDate;
+    this.currency = currency;
     this.remaining = remaining;
     this.daysLate = daysLate;
     this.interest = interest;
@@ -71,6 +74,11 @@ public final class DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem {
   @JsonProperty("dueDate")
   public String getDueDate() {
     return dueDate;
+  }
+
+  @JsonProperty("currency")
+  public String getCurrency() {
+    return currency;
   }
 
   @JsonProperty("remaining")
@@ -100,12 +108,12 @@ public final class DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem {
   }
 
   private boolean equalTo(DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem other) {
-    return id.equals(other.id) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && remaining.equals(other.remaining) && daysLate == other.daysLate && interest.equals(other.interest);
+    return id.equals(other.id) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && remaining.equals(other.remaining) && daysLate == other.daysLate && interest.equals(other.interest);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.fullNumber, this.issueDate, this.dueDate, this.remaining, this.daysLate, this.interest);
+    return Objects.hash(this.id, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.remaining, this.daysLate, this.interest);
   }
 
   @java.lang.Override
@@ -132,7 +140,11 @@ public final class DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem {
   }
 
   public interface DueDateStage {
-    RemainingStage dueDate(@NotNull String dueDate);
+    CurrencyStage dueDate(@NotNull String dueDate);
+  }
+
+  public interface CurrencyStage {
+    RemainingStage currency(@NotNull String currency);
   }
 
   public interface RemainingStage {
@@ -158,7 +170,7 @@ public final class DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, FullNumberStage, IssueDateStage, DueDateStage, RemainingStage, DaysLateStage, InterestStage, _FinalStage {
+  public static final class Builder implements IdStage, FullNumberStage, IssueDateStage, DueDateStage, CurrencyStage, RemainingStage, DaysLateStage, InterestStage, _FinalStage {
     private String id;
 
     private String fullNumber;
@@ -166,6 +178,8 @@ public final class DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem {
     private String issueDate;
 
     private String dueDate;
+
+    private String currency;
 
     private String remaining;
 
@@ -185,6 +199,7 @@ public final class DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem {
       fullNumber(other.getFullNumber());
       issueDate(other.getIssueDate());
       dueDate(other.getDueDate());
+      currency(other.getCurrency());
       remaining(other.getRemaining());
       daysLate(other.getDaysLate());
       interest(other.getInterest());
@@ -214,8 +229,15 @@ public final class DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem {
 
     @java.lang.Override
     @JsonSetter("dueDate")
-    public RemainingStage dueDate(@NotNull String dueDate) {
+    public CurrencyStage dueDate(@NotNull String dueDate) {
       this.dueDate = Objects.requireNonNull(dueDate, "dueDate must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("currency")
+    public RemainingStage currency(@NotNull String currency) {
+      this.currency = Objects.requireNonNull(currency, "currency must not be null");
       return this;
     }
 
@@ -242,7 +264,7 @@ public final class DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem {
 
     @java.lang.Override
     public DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem build() {
-      return new DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem(id, fullNumber, issueDate, dueDate, remaining, daysLate, interest, additionalProperties);
+      return new DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem(id, fullNumber, issueDate, dueDate, currency, remaining, daysLate, interest, additionalProperties);
     }
 
     @java.lang.Override

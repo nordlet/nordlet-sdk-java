@@ -40,6 +40,8 @@ public final class RunsCreatePayrollResponse {
 
   private final String countryCode;
 
+  private final Optional<String> payDate;
+
   private final RunsCreatePayrollResponseStatus status;
 
   private final String grossTotal;
@@ -71,8 +73,9 @@ public final class RunsCreatePayrollResponse {
   private final Map<String, Object> additionalProperties;
 
   private RunsCreatePayrollResponse(String id, long year, long month, String countryCode,
-      RunsCreatePayrollResponseStatus status, String grossTotal, String taxAllowanceTotal,
-      String incomeTaxTotal, String employeeContributionsTotal, String employerContributionsTotal,
+      Optional<String> payDate, RunsCreatePayrollResponseStatus status, String grossTotal,
+      String taxAllowanceTotal, String incomeTaxTotal, String employeeContributionsTotal,
+      String employerContributionsTotal,
       List<RunsCreatePayrollResponseComponentTotalsItem> componentTotals, String netTotal,
       Optional<String> journalTransactionId, Optional<String> notes, List<String> warnings,
       OffsetDateTime createdAt, Optional<OffsetDateTime> approvedAt,
@@ -81,6 +84,7 @@ public final class RunsCreatePayrollResponse {
     this.year = year;
     this.month = month;
     this.countryCode = countryCode;
+    this.payDate = payDate;
     this.status = status;
     this.grossTotal = grossTotal;
     this.taxAllowanceTotal = taxAllowanceTotal;
@@ -116,6 +120,14 @@ public final class RunsCreatePayrollResponse {
   @JsonProperty("countryCode")
   public String getCountryCode() {
     return countryCode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPayDate() {
+    if (payDate == null) {
+      return Optional.empty();
+    }
+    return payDate;
   }
 
   @JsonProperty("status")
@@ -201,6 +213,15 @@ public final class RunsCreatePayrollResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("payDate")
+  private Optional<String> _getPayDate() {
+    return payDate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("journalTransactionId")
   private Optional<String> _getJournalTransactionId() {
     return journalTransactionId;
@@ -236,12 +257,12 @@ public final class RunsCreatePayrollResponse {
   }
 
   private boolean equalTo(RunsCreatePayrollResponse other) {
-    return id.equals(other.id) && year == other.year && month == other.month && countryCode.equals(other.countryCode) && status.equals(other.status) && grossTotal.equals(other.grossTotal) && taxAllowanceTotal.equals(other.taxAllowanceTotal) && incomeTaxTotal.equals(other.incomeTaxTotal) && employeeContributionsTotal.equals(other.employeeContributionsTotal) && employerContributionsTotal.equals(other.employerContributionsTotal) && componentTotals.equals(other.componentTotals) && netTotal.equals(other.netTotal) && journalTransactionId.equals(other.journalTransactionId) && notes.equals(other.notes) && warnings.equals(other.warnings) && createdAt.equals(other.createdAt) && approvedAt.equals(other.approvedAt) && lines.equals(other.lines);
+    return id.equals(other.id) && year == other.year && month == other.month && countryCode.equals(other.countryCode) && payDate.equals(other.payDate) && status.equals(other.status) && grossTotal.equals(other.grossTotal) && taxAllowanceTotal.equals(other.taxAllowanceTotal) && incomeTaxTotal.equals(other.incomeTaxTotal) && employeeContributionsTotal.equals(other.employeeContributionsTotal) && employerContributionsTotal.equals(other.employerContributionsTotal) && componentTotals.equals(other.componentTotals) && netTotal.equals(other.netTotal) && journalTransactionId.equals(other.journalTransactionId) && notes.equals(other.notes) && warnings.equals(other.warnings) && createdAt.equals(other.createdAt) && approvedAt.equals(other.approvedAt) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.year, this.month, this.countryCode, this.status, this.grossTotal, this.taxAllowanceTotal, this.incomeTaxTotal, this.employeeContributionsTotal, this.employerContributionsTotal, this.componentTotals, this.netTotal, this.journalTransactionId, this.notes, this.warnings, this.createdAt, this.approvedAt, this.lines);
+    return Objects.hash(this.id, this.year, this.month, this.countryCode, this.payDate, this.status, this.grossTotal, this.taxAllowanceTotal, this.incomeTaxTotal, this.employeeContributionsTotal, this.employerContributionsTotal, this.componentTotals, this.netTotal, this.journalTransactionId, this.notes, this.warnings, this.createdAt, this.approvedAt, this.lines);
   }
 
   @java.lang.Override
@@ -310,6 +331,12 @@ public final class RunsCreatePayrollResponse {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage payDate(Optional<String> payDate);
+
+    _FinalStage payDate(String payDate);
+
+    _FinalStage payDate(Nullable<String> payDate);
 
     _FinalStage componentTotals(List<RunsCreatePayrollResponseComponentTotalsItem> componentTotals);
 
@@ -389,6 +416,8 @@ public final class RunsCreatePayrollResponse {
 
     private List<RunsCreatePayrollResponseComponentTotalsItem> componentTotals = new ArrayList<>();
 
+    private Optional<String> payDate = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -401,6 +430,7 @@ public final class RunsCreatePayrollResponse {
       year(other.getYear());
       month(other.getMonth());
       countryCode(other.getCountryCode());
+      payDate(other.getPayDate());
       status(other.getStatus());
       grossTotal(other.getGrossTotal());
       taxAllowanceTotal(other.getTaxAllowanceTotal());
@@ -678,8 +708,38 @@ public final class RunsCreatePayrollResponse {
     }
 
     @java.lang.Override
+    public _FinalStage payDate(Nullable<String> payDate) {
+      if (payDate.isNull()) {
+        this.payDate = null;
+      }
+      else if (payDate.isEmpty()) {
+        this.payDate = Optional.empty();
+      }
+      else {
+        this.payDate = Optional.of(payDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage payDate(String payDate) {
+      this.payDate = Optional.ofNullable(payDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "payDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage payDate(Optional<String> payDate) {
+      this.payDate = payDate;
+      return this;
+    }
+
+    @java.lang.Override
     public RunsCreatePayrollResponse build() {
-      return new RunsCreatePayrollResponse(id, year, month, countryCode, status, grossTotal, taxAllowanceTotal, incomeTaxTotal, employeeContributionsTotal, employerContributionsTotal, componentTotals, netTotal, journalTransactionId, notes, warnings, createdAt, approvedAt, lines, additionalProperties);
+      return new RunsCreatePayrollResponse(id, year, month, countryCode, payDate, status, grossTotal, taxAllowanceTotal, incomeTaxTotal, employeeContributionsTotal, employerContributionsTotal, componentTotals, netTotal, journalTransactionId, notes, warnings, createdAt, approvedAt, lines, additionalProperties);
     }
 
     @java.lang.Override

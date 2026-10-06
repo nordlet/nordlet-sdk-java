@@ -9,6 +9,7 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.bank.requests.AccountsCreateBankRequest;
 import com.nordlet.api.resources.bank.requests.AccountsListBankRequest;
 import com.nordlet.api.resources.bank.requests.AccountsUpdateBankRequest;
+import com.nordlet.api.resources.bank.requests.DirectDebitsCandidatesBankRequest;
 import com.nordlet.api.resources.bank.requests.DirectDebitsExportBankRequest;
 import com.nordlet.api.resources.bank.requests.FeedsAccountsConfigureBankRequest;
 import com.nordlet.api.resources.bank.requests.FeedsAccountsLinkBankRequest;
@@ -52,6 +53,7 @@ import com.nordlet.api.resources.bank.requests.TransactionsUnmatchBankRequest;
 import com.nordlet.api.resources.bank.types.AccountsCreateBankResponse;
 import com.nordlet.api.resources.bank.types.AccountsListBankResponse;
 import com.nordlet.api.resources.bank.types.AccountsUpdateBankResponse;
+import com.nordlet.api.resources.bank.types.DirectDebitsCandidatesBankResponse;
 import com.nordlet.api.resources.bank.types.DirectDebitsExportBankResponse;
 import com.nordlet.api.resources.bank.types.FeedsAccountsConfigureBankResponse;
 import com.nordlet.api.resources.bank.types.FeedsAccountsLinkBankResponse;
@@ -395,6 +397,25 @@ public class AsyncBankClient {
   public CompletableFuture<MandatesListBankResponse> mandatesList(MandatesListBankRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.mandatesList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<DirectDebitsCandidatesBankResponse> directDebitsCandidates() {
+    return this.rawClient.directDebitsCandidates().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<DirectDebitsCandidatesBankResponse> directDebitsCandidates(
+      RequestOptions requestOptions) {
+    return this.rawClient.directDebitsCandidates(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<DirectDebitsCandidatesBankResponse> directDebitsCandidates(
+      DirectDebitsCandidatesBankRequest request) {
+    return this.rawClient.directDebitsCandidates(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<DirectDebitsCandidatesBankResponse> directDebitsCandidates(
+      DirectDebitsCandidatesBankRequest request, RequestOptions requestOptions) {
+    return this.rawClient.directDebitsCandidates(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<DirectDebitsExportBankResponse> directDebitsExport(

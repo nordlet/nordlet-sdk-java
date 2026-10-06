@@ -48,12 +48,14 @@ public final class JournalTransactionsListLedgerResponseRowsItem {
 
   private final Optional<OffsetDateTime> postedAt;
 
+  private final Optional<String> partnerName;
+
   private final Map<String, Object> additionalProperties;
 
   private JournalTransactionsListLedgerResponseRowsItem(String id, String date,
       Optional<String> description, Optional<String> documentType, Optional<String> documentId,
       Optional<String> partnerId, JournalTransactionsListLedgerResponseRowsItemStatus status,
-      OffsetDateTime createdAt, Optional<OffsetDateTime> postedAt,
+      OffsetDateTime createdAt, Optional<OffsetDateTime> postedAt, Optional<String> partnerName,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.date = date;
@@ -64,6 +66,7 @@ public final class JournalTransactionsListLedgerResponseRowsItem {
     this.status = status;
     this.createdAt = createdAt;
     this.postedAt = postedAt;
+    this.partnerName = partnerName;
     this.additionalProperties = additionalProperties;
   }
 
@@ -127,6 +130,14 @@ public final class JournalTransactionsListLedgerResponseRowsItem {
     return postedAt;
   }
 
+  @JsonIgnore
+  public Optional<String> getPartnerName() {
+    if (partnerName == null) {
+      return Optional.empty();
+    }
+    return partnerName;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -172,6 +183,15 @@ public final class JournalTransactionsListLedgerResponseRowsItem {
     return postedAt;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("partnerName")
+  private Optional<String> _getPartnerName() {
+    return partnerName;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -184,12 +204,12 @@ public final class JournalTransactionsListLedgerResponseRowsItem {
   }
 
   private boolean equalTo(JournalTransactionsListLedgerResponseRowsItem other) {
-    return id.equals(other.id) && date.equals(other.date) && description.equals(other.description) && documentType.equals(other.documentType) && documentId.equals(other.documentId) && partnerId.equals(other.partnerId) && status.equals(other.status) && createdAt.equals(other.createdAt) && postedAt.equals(other.postedAt);
+    return id.equals(other.id) && date.equals(other.date) && description.equals(other.description) && documentType.equals(other.documentType) && documentId.equals(other.documentId) && partnerId.equals(other.partnerId) && status.equals(other.status) && createdAt.equals(other.createdAt) && postedAt.equals(other.postedAt) && partnerName.equals(other.partnerName);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.date, this.description, this.documentType, this.documentId, this.partnerId, this.status, this.createdAt, this.postedAt);
+    return Objects.hash(this.id, this.date, this.description, this.documentType, this.documentId, this.partnerId, this.status, this.createdAt, this.postedAt, this.partnerName);
   }
 
   @java.lang.Override
@@ -255,6 +275,12 @@ public final class JournalTransactionsListLedgerResponseRowsItem {
     _FinalStage postedAt(OffsetDateTime postedAt);
 
     _FinalStage postedAt(Nullable<OffsetDateTime> postedAt);
+
+    _FinalStage partnerName(Optional<String> partnerName);
+
+    _FinalStage partnerName(String partnerName);
+
+    _FinalStage partnerName(Nullable<String> partnerName);
   }
 
   @JsonIgnoreProperties(
@@ -268,6 +294,8 @@ public final class JournalTransactionsListLedgerResponseRowsItem {
     private JournalTransactionsListLedgerResponseRowsItemStatus status;
 
     private OffsetDateTime createdAt;
+
+    private Optional<String> partnerName = Optional.empty();
 
     private Optional<OffsetDateTime> postedAt = Optional.empty();
 
@@ -296,6 +324,7 @@ public final class JournalTransactionsListLedgerResponseRowsItem {
       status(other.getStatus());
       createdAt(other.getCreatedAt());
       postedAt(other.getPostedAt());
+      partnerName(other.getPartnerName());
       return this;
     }
 
@@ -325,6 +354,36 @@ public final class JournalTransactionsListLedgerResponseRowsItem {
     @JsonSetter("createdAt")
     public _FinalStage createdAt(@NotNull OffsetDateTime createdAt) {
       this.createdAt = Objects.requireNonNull(createdAt, "createdAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partnerName(Nullable<String> partnerName) {
+      if (partnerName.isNull()) {
+        this.partnerName = null;
+      }
+      else if (partnerName.isEmpty()) {
+        this.partnerName = Optional.empty();
+      }
+      else {
+        this.partnerName = Optional.of(partnerName.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partnerName(String partnerName) {
+      this.partnerName = Optional.ofNullable(partnerName);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "partnerName",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage partnerName(Optional<String> partnerName) {
+      this.partnerName = partnerName;
       return this;
     }
 
@@ -480,7 +539,7 @@ public final class JournalTransactionsListLedgerResponseRowsItem {
 
     @java.lang.Override
     public JournalTransactionsListLedgerResponseRowsItem build() {
-      return new JournalTransactionsListLedgerResponseRowsItem(id, date, description, documentType, documentId, partnerId, status, createdAt, postedAt, additionalProperties);
+      return new JournalTransactionsListLedgerResponseRowsItem(id, date, description, documentType, documentId, partnerId, status, createdAt, postedAt, partnerName, additionalProperties);
     }
 
     @java.lang.Override

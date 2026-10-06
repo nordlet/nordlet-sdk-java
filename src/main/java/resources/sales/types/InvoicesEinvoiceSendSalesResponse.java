@@ -47,7 +47,7 @@ public final class InvoicesEinvoiceSendSalesResponse {
 
   private final Optional<String> detail;
 
-  private final String fileId;
+  private final Optional<String> fileId;
 
   private final List<String> warnings;
 
@@ -56,7 +56,7 @@ public final class InvoicesEinvoiceSendSalesResponse {
   private InvoicesEinvoiceSendSalesResponse(boolean sent, String system, String format,
       InvoicesEinvoiceSendSalesResponseTransport transport, String messageId,
       Optional<String> nationalNumber, InvoicesEinvoiceSendSalesResponseStatus status,
-      Optional<String> detail, String fileId, List<String> warnings,
+      Optional<String> detail, Optional<String> fileId, List<String> warnings,
       Map<String, Object> additionalProperties) {
     this.sent = sent;
     this.system = system;
@@ -117,8 +117,11 @@ public final class InvoicesEinvoiceSendSalesResponse {
     return detail;
   }
 
-  @JsonProperty("fileId")
-  public String getFileId() {
+  @JsonIgnore
+  public Optional<String> getFileId() {
+    if (fileId == null) {
+      return Optional.empty();
+    }
     return fileId;
   }
 
@@ -143,6 +146,15 @@ public final class InvoicesEinvoiceSendSalesResponse {
   @JsonProperty("detail")
   private Optional<String> _getDetail() {
     return detail;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("fileId")
+  private Optional<String> _getFileId() {
+    return fileId;
   }
 
   @java.lang.Override
@@ -197,11 +209,7 @@ public final class InvoicesEinvoiceSendSalesResponse {
   }
 
   public interface StatusStage {
-    FileIdStage status(@NotNull InvoicesEinvoiceSendSalesResponseStatus status);
-  }
-
-  public interface FileIdStage {
-    _FinalStage fileId(@NotNull String fileId);
+    _FinalStage status(@NotNull InvoicesEinvoiceSendSalesResponseStatus status);
   }
 
   public interface _FinalStage {
@@ -223,6 +231,12 @@ public final class InvoicesEinvoiceSendSalesResponse {
 
     _FinalStage detail(Nullable<String> detail);
 
+    _FinalStage fileId(Optional<String> fileId);
+
+    _FinalStage fileId(String fileId);
+
+    _FinalStage fileId(Nullable<String> fileId);
+
     _FinalStage warnings(List<String> warnings);
 
     _FinalStage addWarnings(String warnings);
@@ -233,7 +247,7 @@ public final class InvoicesEinvoiceSendSalesResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements SentStage, SystemStage, FormatStage, TransportStage, MessageIdStage, StatusStage, FileIdStage, _FinalStage {
+  public static final class Builder implements SentStage, SystemStage, FormatStage, TransportStage, MessageIdStage, StatusStage, _FinalStage {
     private boolean sent;
 
     private String system;
@@ -246,9 +260,9 @@ public final class InvoicesEinvoiceSendSalesResponse {
 
     private InvoicesEinvoiceSendSalesResponseStatus status;
 
-    private String fileId;
-
     private List<String> warnings = new ArrayList<>();
+
+    private Optional<String> fileId = Optional.empty();
 
     private Optional<String> detail = Optional.empty();
 
@@ -312,15 +326,8 @@ public final class InvoicesEinvoiceSendSalesResponse {
 
     @java.lang.Override
     @JsonSetter("status")
-    public FileIdStage status(@NotNull InvoicesEinvoiceSendSalesResponseStatus status) {
+    public _FinalStage status(@NotNull InvoicesEinvoiceSendSalesResponseStatus status) {
       this.status = Objects.requireNonNull(status, "status must not be null");
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter("fileId")
-    public _FinalStage fileId(@NotNull String fileId) {
-      this.fileId = Objects.requireNonNull(fileId, "fileId must not be null");
       return this;
     }
 
@@ -348,6 +355,36 @@ public final class InvoicesEinvoiceSendSalesResponse {
       if (warnings != null) {
         this.warnings.addAll(warnings);
       }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fileId(Nullable<String> fileId) {
+      if (fileId.isNull()) {
+        this.fileId = null;
+      }
+      else if (fileId.isEmpty()) {
+        this.fileId = Optional.empty();
+      }
+      else {
+        this.fileId = Optional.of(fileId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fileId(String fileId) {
+      this.fileId = Optional.ofNullable(fileId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "fileId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage fileId(Optional<String> fileId) {
+      this.fileId = fileId;
       return this;
     }
 

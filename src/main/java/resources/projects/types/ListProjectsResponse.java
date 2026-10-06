@@ -37,15 +37,20 @@ public final class ListProjectsResponse {
 
   private final Optional<Map<String, String>> totals;
 
+  private final Optional<Map<String, Map<String, String>>> totalsByCurrency;
+
   private final Map<String, Object> additionalProperties;
 
   private ListProjectsResponse(List<ListProjectsResponseRowsItem> rows, long page, long pageSize,
-      long total, Optional<Map<String, String>> totals, Map<String, Object> additionalProperties) {
+      long total, Optional<Map<String, String>> totals,
+      Optional<Map<String, Map<String, String>>> totalsByCurrency,
+      Map<String, Object> additionalProperties) {
     this.rows = rows;
     this.page = page;
     this.pageSize = pageSize;
     this.total = total;
     this.totals = totals;
+    this.totalsByCurrency = totalsByCurrency;
     this.additionalProperties = additionalProperties;
   }
 
@@ -74,6 +79,14 @@ public final class ListProjectsResponse {
     return totals;
   }
 
+  /**
+   * @return The requested totals split by currency code, present when the listed records carry a currency
+   */
+  @JsonProperty("totalsByCurrency")
+  public Optional<Map<String, Map<String, String>>> getTotalsByCurrency() {
+    return totalsByCurrency;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -86,12 +99,12 @@ public final class ListProjectsResponse {
   }
 
   private boolean equalTo(ListProjectsResponse other) {
-    return rows.equals(other.rows) && page == other.page && pageSize == other.pageSize && total == other.total && totals.equals(other.totals);
+    return rows.equals(other.rows) && page == other.page && pageSize == other.pageSize && total == other.total && totals.equals(other.totals) && totalsByCurrency.equals(other.totalsByCurrency);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.rows, this.page, this.pageSize, this.total, this.totals);
+    return Objects.hash(this.rows, this.page, this.pageSize, this.total, this.totals, this.totalsByCurrency);
   }
 
   @java.lang.Override
@@ -133,6 +146,13 @@ public final class ListProjectsResponse {
     _FinalStage totals(Optional<Map<String, String>> totals);
 
     _FinalStage totals(Map<String, String> totals);
+
+    /**
+     * <p>The requested totals split by currency code, present when the listed records carry a currency</p>
+     */
+    _FinalStage totalsByCurrency(Optional<Map<String, Map<String, String>>> totalsByCurrency);
+
+    _FinalStage totalsByCurrency(Map<String, Map<String, String>> totalsByCurrency);
   }
 
   @JsonIgnoreProperties(
@@ -144,6 +164,8 @@ public final class ListProjectsResponse {
     private long pageSize;
 
     private long total;
+
+    private Optional<Map<String, Map<String, String>>> totalsByCurrency = Optional.empty();
 
     private Optional<Map<String, String>> totals = Optional.empty();
 
@@ -162,6 +184,7 @@ public final class ListProjectsResponse {
       pageSize(other.getPageSize());
       total(other.getTotal());
       totals(other.getTotals());
+      totalsByCurrency(other.getTotalsByCurrency());
       return this;
     }
 
@@ -183,6 +206,30 @@ public final class ListProjectsResponse {
     @JsonSetter("total")
     public _FinalStage total(long total) {
       this.total = total;
+      return this;
+    }
+
+    /**
+     * <p>The requested totals split by currency code, present when the listed records carry a currency</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage totalsByCurrency(Map<String, Map<String, String>> totalsByCurrency) {
+      this.totalsByCurrency = Optional.ofNullable(totalsByCurrency);
+      return this;
+    }
+
+    /**
+     * <p>The requested totals split by currency code, present when the listed records carry a currency</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "totalsByCurrency",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage totalsByCurrency(
+        Optional<Map<String, Map<String, String>>> totalsByCurrency) {
+      this.totalsByCurrency = totalsByCurrency;
       return this;
     }
 
@@ -231,7 +278,7 @@ public final class ListProjectsResponse {
 
     @java.lang.Override
     public ListProjectsResponse build() {
-      return new ListProjectsResponse(rows, page, pageSize, total, totals, additionalProperties);
+      return new ListProjectsResponse(rows, page, pageSize, total, totals, totalsByCurrency, additionalProperties);
     }
 
     @java.lang.Override

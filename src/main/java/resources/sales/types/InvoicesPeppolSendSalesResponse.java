@@ -6,17 +6,22 @@ package com.nordlet.api.resources.sales.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nordlet.api.core.Nullable;
+import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -30,12 +35,12 @@ public final class InvoicesPeppolSendSalesResponse {
 
   private final String receiverId;
 
-  private final String fileId;
+  private final Optional<String> fileId;
 
   private final Map<String, Object> additionalProperties;
 
   private InvoicesPeppolSendSalesResponse(boolean sent, String messageId, String receiverId,
-      String fileId, Map<String, Object> additionalProperties) {
+      Optional<String> fileId, Map<String, Object> additionalProperties) {
     this.sent = sent;
     this.messageId = messageId;
     this.receiverId = receiverId;
@@ -58,8 +63,20 @@ public final class InvoicesPeppolSendSalesResponse {
     return receiverId;
   }
 
+  @JsonIgnore
+  public Optional<String> getFileId() {
+    if (fileId == null) {
+      return Optional.empty();
+    }
+    return fileId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("fileId")
-  public String getFileId() {
+  private Optional<String> _getFileId() {
     return fileId;
   }
 
@@ -103,11 +120,7 @@ public final class InvoicesPeppolSendSalesResponse {
   }
 
   public interface ReceiverIdStage {
-    FileIdStage receiverId(@NotNull String receiverId);
-  }
-
-  public interface FileIdStage {
-    _FinalStage fileId(@NotNull String fileId);
+    _FinalStage receiverId(@NotNull String receiverId);
   }
 
   public interface _FinalStage {
@@ -116,19 +129,25 @@ public final class InvoicesPeppolSendSalesResponse {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage fileId(Optional<String> fileId);
+
+    _FinalStage fileId(String fileId);
+
+    _FinalStage fileId(Nullable<String> fileId);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements SentStage, MessageIdStage, ReceiverIdStage, FileIdStage, _FinalStage {
+  public static final class Builder implements SentStage, MessageIdStage, ReceiverIdStage, _FinalStage {
     private boolean sent;
 
     private String messageId;
 
     private String receiverId;
 
-    private String fileId;
+    private Optional<String> fileId = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -161,15 +180,38 @@ public final class InvoicesPeppolSendSalesResponse {
 
     @java.lang.Override
     @JsonSetter("receiverId")
-    public FileIdStage receiverId(@NotNull String receiverId) {
+    public _FinalStage receiverId(@NotNull String receiverId) {
       this.receiverId = Objects.requireNonNull(receiverId, "receiverId must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("fileId")
-    public _FinalStage fileId(@NotNull String fileId) {
-      this.fileId = Objects.requireNonNull(fileId, "fileId must not be null");
+    public _FinalStage fileId(Nullable<String> fileId) {
+      if (fileId.isNull()) {
+        this.fileId = null;
+      }
+      else if (fileId.isEmpty()) {
+        this.fileId = Optional.empty();
+      }
+      else {
+        this.fileId = Optional.of(fileId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fileId(String fileId) {
+      this.fileId = Optional.ofNullable(fileId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "fileId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage fileId(Optional<String> fileId) {
+      this.fileId = fileId;
       return this;
     }
 

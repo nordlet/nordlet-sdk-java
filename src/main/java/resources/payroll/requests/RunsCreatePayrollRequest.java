@@ -41,18 +41,21 @@ public final class RunsCreatePayrollRequest {
 
   private final Optional<String> notes;
 
+  private final Optional<String> payDate;
+
   private final Map<String, Object> additionalProperties;
 
   private RunsCreatePayrollRequest(long year, long month, Optional<Boolean> includeNatura,
       Optional<List<RunsCreatePayrollRequestGrossOverridesItem>> grossOverrides,
       Optional<List<RunsCreatePayrollRequestLinesItem>> lines, Optional<String> notes,
-      Map<String, Object> additionalProperties) {
+      Optional<String> payDate, Map<String, Object> additionalProperties) {
     this.year = year;
     this.month = month;
     this.includeNatura = includeNatura;
     this.grossOverrides = grossOverrides;
     this.lines = lines;
     this.notes = notes;
+    this.payDate = payDate;
     this.additionalProperties = additionalProperties;
   }
 
@@ -86,6 +89,11 @@ public final class RunsCreatePayrollRequest {
     return notes;
   }
 
+  @JsonProperty("payDate")
+  public Optional<String> getPayDate() {
+    return payDate;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -98,12 +106,12 @@ public final class RunsCreatePayrollRequest {
   }
 
   private boolean equalTo(RunsCreatePayrollRequest other) {
-    return year == other.year && month == other.month && includeNatura.equals(other.includeNatura) && grossOverrides.equals(other.grossOverrides) && lines.equals(other.lines) && notes.equals(other.notes);
+    return year == other.year && month == other.month && includeNatura.equals(other.includeNatura) && grossOverrides.equals(other.grossOverrides) && lines.equals(other.lines) && notes.equals(other.notes) && payDate.equals(other.payDate);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.year, this.month, this.includeNatura, this.grossOverrides, this.lines, this.notes);
+    return Objects.hash(this.year, this.month, this.includeNatura, this.grossOverrides, this.lines, this.notes, this.payDate);
   }
 
   @java.lang.Override
@@ -148,6 +156,10 @@ public final class RunsCreatePayrollRequest {
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
+
+    _FinalStage payDate(Optional<String> payDate);
+
+    _FinalStage payDate(String payDate);
   }
 
   @JsonIgnoreProperties(
@@ -157,6 +169,8 @@ public final class RunsCreatePayrollRequest {
     private long year;
 
     private long month;
+
+    private Optional<String> payDate = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
 
@@ -180,6 +194,7 @@ public final class RunsCreatePayrollRequest {
       grossOverrides(other.getGrossOverrides());
       lines(other.getLines());
       notes(other.getNotes());
+      payDate(other.getPayDate());
       return this;
     }
 
@@ -194,6 +209,22 @@ public final class RunsCreatePayrollRequest {
     @JsonSetter("month")
     public _FinalStage month(long month) {
       this.month = month;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage payDate(String payDate) {
+      this.payDate = Optional.ofNullable(payDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "payDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage payDate(Optional<String> payDate) {
+      this.payDate = payDate;
       return this;
     }
 
@@ -265,7 +296,7 @@ public final class RunsCreatePayrollRequest {
 
     @java.lang.Override
     public RunsCreatePayrollRequest build() {
-      return new RunsCreatePayrollRequest(year, month, includeNatura, grossOverrides, lines, notes, additionalProperties);
+      return new RunsCreatePayrollRequest(year, month, includeNatura, grossOverrides, lines, notes, payDate, additionalProperties);
     }
 
     @java.lang.Override
