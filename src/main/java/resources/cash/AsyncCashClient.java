@@ -8,11 +8,17 @@ import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.cash.requests.AdvanceHoldersBalancesCashRequest;
 import com.nordlet.api.resources.cash.requests.BalanceCashRequest;
+import com.nordlet.api.resources.cash.requests.ExpenseReportsCreateCashRequest;
+import com.nordlet.api.resources.cash.requests.ExpenseReportsGetCashRequest;
+import com.nordlet.api.resources.cash.requests.ExpenseReportsListCashRequest;
 import com.nordlet.api.resources.cash.requests.OrdersCreateCashRequest;
 import com.nordlet.api.resources.cash.requests.OrdersGetCashRequest;
 import com.nordlet.api.resources.cash.requests.OrdersListCashRequest;
 import com.nordlet.api.resources.cash.types.AdvanceHoldersBalancesCashResponse;
 import com.nordlet.api.resources.cash.types.BalanceCashResponse;
+import com.nordlet.api.resources.cash.types.ExpenseReportsCreateCashResponse;
+import com.nordlet.api.resources.cash.types.ExpenseReportsGetCashResponse;
+import com.nordlet.api.resources.cash.types.ExpenseReportsListCashResponse;
 import com.nordlet.api.resources.cash.types.OrdersCreateCashResponse;
 import com.nordlet.api.resources.cash.types.OrdersGetCashResponse;
 import com.nordlet.api.resources.cash.types.OrdersListCashResponse;
@@ -85,6 +91,45 @@ public class AsyncCashClient {
   public CompletableFuture<BalanceCashResponse> balance(BalanceCashRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.balance(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExpenseReportsCreateCashResponse> expenseReportsCreate(
+      ExpenseReportsCreateCashRequest request) {
+    return this.rawClient.expenseReportsCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExpenseReportsCreateCashResponse> expenseReportsCreate(
+      ExpenseReportsCreateCashRequest request, RequestOptions requestOptions) {
+    return this.rawClient.expenseReportsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExpenseReportsGetCashResponse> expenseReportsGet(
+      ExpenseReportsGetCashRequest request) {
+    return this.rawClient.expenseReportsGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExpenseReportsGetCashResponse> expenseReportsGet(
+      ExpenseReportsGetCashRequest request, RequestOptions requestOptions) {
+    return this.rawClient.expenseReportsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList() {
+    return this.rawClient.expenseReportsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.expenseReportsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList(
+      ExpenseReportsListCashRequest request) {
+    return this.rawClient.expenseReportsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList(
+      ExpenseReportsListCashRequest request, RequestOptions requestOptions) {
+    return this.rawClient.expenseReportsList(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<AdvanceHoldersBalancesCashResponse> advanceHoldersBalances() {

@@ -23,6 +23,8 @@ import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
+import com.nordlet.api.resources.purchases.requests.DeferralsListPurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.DeferralsPostPurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.InvoicesCreatePurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.InvoicesDeletePurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.InvoicesGetPurchasesRequest;
@@ -43,6 +45,8 @@ import com.nordlet.api.resources.purchases.requests.OrdersUpdatePurchasesRequest
 import com.nordlet.api.resources.purchases.requests.ReceiptsCreatePurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.ReceiptsGetPurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.ReceiptsListPurchasesRequest;
+import com.nordlet.api.resources.purchases.types.DeferralsListPurchasesResponse;
+import com.nordlet.api.resources.purchases.types.DeferralsPostPurchasesResponse;
 import com.nordlet.api.resources.purchases.types.InvoicesCreatePurchasesResponse;
 import com.nordlet.api.resources.purchases.types.InvoicesDeletePurchasesResponse;
 import com.nordlet.api.resources.purchases.types.InvoicesGetPurchasesResponse;
@@ -427,25 +431,25 @@ public class RawPurchasesClient {
               }
             }
 
-            public NordletApiHttpResponse<InvoicesListPurchasesResponse> invoicesList() {
-              return invoicesList(InvoicesListPurchasesRequest.builder().build());
+            public NordletApiHttpResponse<DeferralsListPurchasesResponse> deferralsList() {
+              return deferralsList(DeferralsListPurchasesRequest.builder().build());
             }
 
-            public NordletApiHttpResponse<InvoicesListPurchasesResponse> invoicesList(
+            public NordletApiHttpResponse<DeferralsListPurchasesResponse> deferralsList(
                 RequestOptions requestOptions) {
-              return invoicesList(InvoicesListPurchasesRequest.builder().build(),requestOptions);
+              return deferralsList(DeferralsListPurchasesRequest.builder().build(),requestOptions);
             }
 
-            public NordletApiHttpResponse<InvoicesListPurchasesResponse> invoicesList(
-                InvoicesListPurchasesRequest request) {
-              return invoicesList(request,null);
+            public NordletApiHttpResponse<DeferralsListPurchasesResponse> deferralsList(
+                DeferralsListPurchasesRequest request) {
+              return deferralsList(request,null);
             }
 
-            public NordletApiHttpResponse<InvoicesListPurchasesResponse> invoicesList(
-                InvoicesListPurchasesRequest request, RequestOptions requestOptions) {
+            public NordletApiHttpResponse<DeferralsListPurchasesResponse> deferralsList(
+                DeferralsListPurchasesRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                .addPathSegments("v1/purchases/invoices/list");if (requestOptions != null) {
+                .addPathSegments("v1/purchases/deferrals/list");if (requestOptions != null) {
                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                     httpUrl.addQueryParameter(_key, _value);
                   } );
@@ -475,7 +479,7 @@ public class RawPurchasesClient {
                   ResponseBody responseBody = response.body();
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesListPurchasesResponse.class), response);
+                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeferralsListPurchasesResponse.class), response);
                   }
                   try {
                     switch (response.code()) {
@@ -505,16 +509,25 @@ public class RawPurchasesClient {
                 }
               }
 
-              public NordletApiHttpResponse<OrdersCreatePurchasesResponse> ordersCreate(
-                  OrdersCreatePurchasesRequest request) {
-                return ordersCreate(request,null);
+              public NordletApiHttpResponse<DeferralsPostPurchasesResponse> deferralsPost() {
+                return deferralsPost(DeferralsPostPurchasesRequest.builder().build());
               }
 
-              public NordletApiHttpResponse<OrdersCreatePurchasesResponse> ordersCreate(
-                  OrdersCreatePurchasesRequest request, RequestOptions requestOptions) {
+              public NordletApiHttpResponse<DeferralsPostPurchasesResponse> deferralsPost(
+                  RequestOptions requestOptions) {
+                return deferralsPost(DeferralsPostPurchasesRequest.builder().build(),requestOptions);
+              }
+
+              public NordletApiHttpResponse<DeferralsPostPurchasesResponse> deferralsPost(
+                  DeferralsPostPurchasesRequest request) {
+                return deferralsPost(request,null);
+              }
+
+              public NordletApiHttpResponse<DeferralsPostPurchasesResponse> deferralsPost(
+                  DeferralsPostPurchasesRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                  .addPathSegments("v1/purchases/orders/create");if (requestOptions != null) {
+                  .addPathSegments("v1/purchases/deferrals/post");if (requestOptions != null) {
                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                       httpUrl.addQueryParameter(_key, _value);
                     } );
@@ -544,7 +557,7 @@ public class RawPurchasesClient {
                     ResponseBody responseBody = response.body();
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCreatePurchasesResponse.class), response);
+                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeferralsPostPurchasesResponse.class), response);
                     }
                     try {
                       switch (response.code()) {
@@ -574,16 +587,25 @@ public class RawPurchasesClient {
                   }
                 }
 
-                public NordletApiHttpResponse<OrdersUpdatePurchasesResponse> ordersUpdate(
-                    OrdersUpdatePurchasesRequest request) {
-                  return ordersUpdate(request,null);
+                public NordletApiHttpResponse<InvoicesListPurchasesResponse> invoicesList() {
+                  return invoicesList(InvoicesListPurchasesRequest.builder().build());
                 }
 
-                public NordletApiHttpResponse<OrdersUpdatePurchasesResponse> ordersUpdate(
-                    OrdersUpdatePurchasesRequest request, RequestOptions requestOptions) {
+                public NordletApiHttpResponse<InvoicesListPurchasesResponse> invoicesList(
+                    RequestOptions requestOptions) {
+                  return invoicesList(InvoicesListPurchasesRequest.builder().build(),requestOptions);
+                }
+
+                public NordletApiHttpResponse<InvoicesListPurchasesResponse> invoicesList(
+                    InvoicesListPurchasesRequest request) {
+                  return invoicesList(request,null);
+                }
+
+                public NordletApiHttpResponse<InvoicesListPurchasesResponse> invoicesList(
+                    InvoicesListPurchasesRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                    .addPathSegments("v1/purchases/orders/update");if (requestOptions != null) {
+                    .addPathSegments("v1/purchases/invoices/list");if (requestOptions != null) {
                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                         httpUrl.addQueryParameter(_key, _value);
                       } );
@@ -613,7 +635,7 @@ public class RawPurchasesClient {
                       ResponseBody responseBody = response.body();
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersUpdatePurchasesResponse.class), response);
+                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesListPurchasesResponse.class), response);
                       }
                       try {
                         switch (response.code()) {
@@ -643,16 +665,16 @@ public class RawPurchasesClient {
                     }
                   }
 
-                  public NordletApiHttpResponse<OrdersGetPurchasesResponse> ordersGet(
-                      OrdersGetPurchasesRequest request) {
-                    return ordersGet(request,null);
+                  public NordletApiHttpResponse<OrdersCreatePurchasesResponse> ordersCreate(
+                      OrdersCreatePurchasesRequest request) {
+                    return ordersCreate(request,null);
                   }
 
-                  public NordletApiHttpResponse<OrdersGetPurchasesResponse> ordersGet(
-                      OrdersGetPurchasesRequest request, RequestOptions requestOptions) {
+                  public NordletApiHttpResponse<OrdersCreatePurchasesResponse> ordersCreate(
+                      OrdersCreatePurchasesRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                      .addPathSegments("v1/purchases/orders/get");if (requestOptions != null) {
+                      .addPathSegments("v1/purchases/orders/create");if (requestOptions != null) {
                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                           httpUrl.addQueryParameter(_key, _value);
                         } );
@@ -682,7 +704,7 @@ public class RawPurchasesClient {
                         ResponseBody responseBody = response.body();
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersGetPurchasesResponse.class), response);
+                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCreatePurchasesResponse.class), response);
                         }
                         try {
                           switch (response.code()) {
@@ -712,25 +734,16 @@ public class RawPurchasesClient {
                       }
                     }
 
-                    public NordletApiHttpResponse<OrdersListPurchasesResponse> ordersList() {
-                      return ordersList(OrdersListPurchasesRequest.builder().build());
+                    public NordletApiHttpResponse<OrdersUpdatePurchasesResponse> ordersUpdate(
+                        OrdersUpdatePurchasesRequest request) {
+                      return ordersUpdate(request,null);
                     }
 
-                    public NordletApiHttpResponse<OrdersListPurchasesResponse> ordersList(
-                        RequestOptions requestOptions) {
-                      return ordersList(OrdersListPurchasesRequest.builder().build(),requestOptions);
-                    }
-
-                    public NordletApiHttpResponse<OrdersListPurchasesResponse> ordersList(
-                        OrdersListPurchasesRequest request) {
-                      return ordersList(request,null);
-                    }
-
-                    public NordletApiHttpResponse<OrdersListPurchasesResponse> ordersList(
-                        OrdersListPurchasesRequest request, RequestOptions requestOptions) {
+                    public NordletApiHttpResponse<OrdersUpdatePurchasesResponse> ordersUpdate(
+                        OrdersUpdatePurchasesRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                        .addPathSegments("v1/purchases/orders/list");if (requestOptions != null) {
+                        .addPathSegments("v1/purchases/orders/update");if (requestOptions != null) {
                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                             httpUrl.addQueryParameter(_key, _value);
                           } );
@@ -760,7 +773,7 @@ public class RawPurchasesClient {
                           ResponseBody responseBody = response.body();
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersListPurchasesResponse.class), response);
+                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersUpdatePurchasesResponse.class), response);
                           }
                           try {
                             switch (response.code()) {
@@ -790,16 +803,16 @@ public class RawPurchasesClient {
                         }
                       }
 
-                      public NordletApiHttpResponse<OrdersSubmitPurchasesResponse> ordersSubmit(
-                          OrdersSubmitPurchasesRequest request) {
-                        return ordersSubmit(request,null);
+                      public NordletApiHttpResponse<OrdersGetPurchasesResponse> ordersGet(
+                          OrdersGetPurchasesRequest request) {
+                        return ordersGet(request,null);
                       }
 
-                      public NordletApiHttpResponse<OrdersSubmitPurchasesResponse> ordersSubmit(
-                          OrdersSubmitPurchasesRequest request, RequestOptions requestOptions) {
+                      public NordletApiHttpResponse<OrdersGetPurchasesResponse> ordersGet(
+                          OrdersGetPurchasesRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                          .addPathSegments("v1/purchases/orders/submit");if (requestOptions != null) {
+                          .addPathSegments("v1/purchases/orders/get");if (requestOptions != null) {
                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                               httpUrl.addQueryParameter(_key, _value);
                             } );
@@ -829,7 +842,7 @@ public class RawPurchasesClient {
                             ResponseBody responseBody = response.body();
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersSubmitPurchasesResponse.class), response);
+                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersGetPurchasesResponse.class), response);
                             }
                             try {
                               switch (response.code()) {
@@ -859,16 +872,25 @@ public class RawPurchasesClient {
                           }
                         }
 
-                        public NordletApiHttpResponse<OrdersApprovePurchasesResponse> ordersApprove(
-                            OrdersApprovePurchasesRequest request) {
-                          return ordersApprove(request,null);
+                        public NordletApiHttpResponse<OrdersListPurchasesResponse> ordersList() {
+                          return ordersList(OrdersListPurchasesRequest.builder().build());
                         }
 
-                        public NordletApiHttpResponse<OrdersApprovePurchasesResponse> ordersApprove(
-                            OrdersApprovePurchasesRequest request, RequestOptions requestOptions) {
+                        public NordletApiHttpResponse<OrdersListPurchasesResponse> ordersList(
+                            RequestOptions requestOptions) {
+                          return ordersList(OrdersListPurchasesRequest.builder().build(),requestOptions);
+                        }
+
+                        public NordletApiHttpResponse<OrdersListPurchasesResponse> ordersList(
+                            OrdersListPurchasesRequest request) {
+                          return ordersList(request,null);
+                        }
+
+                        public NordletApiHttpResponse<OrdersListPurchasesResponse> ordersList(
+                            OrdersListPurchasesRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                            .addPathSegments("v1/purchases/orders/approve");if (requestOptions != null) {
+                            .addPathSegments("v1/purchases/orders/list");if (requestOptions != null) {
                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                 httpUrl.addQueryParameter(_key, _value);
                               } );
@@ -898,7 +920,7 @@ public class RawPurchasesClient {
                               ResponseBody responseBody = response.body();
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersApprovePurchasesResponse.class), response);
+                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersListPurchasesResponse.class), response);
                               }
                               try {
                                 switch (response.code()) {
@@ -928,16 +950,16 @@ public class RawPurchasesClient {
                             }
                           }
 
-                          public NordletApiHttpResponse<OrdersRejectPurchasesResponse> ordersReject(
-                              OrdersRejectPurchasesRequest request) {
-                            return ordersReject(request,null);
+                          public NordletApiHttpResponse<OrdersSubmitPurchasesResponse> ordersSubmit(
+                              OrdersSubmitPurchasesRequest request) {
+                            return ordersSubmit(request,null);
                           }
 
-                          public NordletApiHttpResponse<OrdersRejectPurchasesResponse> ordersReject(
-                              OrdersRejectPurchasesRequest request, RequestOptions requestOptions) {
+                          public NordletApiHttpResponse<OrdersSubmitPurchasesResponse> ordersSubmit(
+                              OrdersSubmitPurchasesRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                              .addPathSegments("v1/purchases/orders/reject");if (requestOptions != null) {
+                              .addPathSegments("v1/purchases/orders/submit");if (requestOptions != null) {
                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                   httpUrl.addQueryParameter(_key, _value);
                                 } );
@@ -967,7 +989,7 @@ public class RawPurchasesClient {
                                 ResponseBody responseBody = response.body();
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersRejectPurchasesResponse.class), response);
+                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersSubmitPurchasesResponse.class), response);
                                 }
                                 try {
                                   switch (response.code()) {
@@ -997,17 +1019,17 @@ public class RawPurchasesClient {
                               }
                             }
 
-                            public NordletApiHttpResponse<OrdersCancelPurchasesResponse> ordersCancel(
-                                OrdersCancelPurchasesRequest request) {
-                              return ordersCancel(request,null);
+                            public NordletApiHttpResponse<OrdersApprovePurchasesResponse> ordersApprove(
+                                OrdersApprovePurchasesRequest request) {
+                              return ordersApprove(request,null);
                             }
 
-                            public NordletApiHttpResponse<OrdersCancelPurchasesResponse> ordersCancel(
-                                OrdersCancelPurchasesRequest request,
+                            public NordletApiHttpResponse<OrdersApprovePurchasesResponse> ordersApprove(
+                                OrdersApprovePurchasesRequest request,
                                 RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                .addPathSegments("v1/purchases/orders/cancel");if (requestOptions != null) {
+                                .addPathSegments("v1/purchases/orders/approve");if (requestOptions != null) {
                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                     httpUrl.addQueryParameter(_key, _value);
                                   } );
@@ -1037,7 +1059,7 @@ public class RawPurchasesClient {
                                   ResponseBody responseBody = response.body();
                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                   if (response.isSuccessful()) {
-                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCancelPurchasesResponse.class), response);
+                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersApprovePurchasesResponse.class), response);
                                   }
                                   try {
                                     switch (response.code()) {
@@ -1067,17 +1089,17 @@ public class RawPurchasesClient {
                                 }
                               }
 
-                              public NordletApiHttpResponse<OrdersClosePurchasesResponse> ordersClose(
-                                  OrdersClosePurchasesRequest request) {
-                                return ordersClose(request,null);
+                              public NordletApiHttpResponse<OrdersRejectPurchasesResponse> ordersReject(
+                                  OrdersRejectPurchasesRequest request) {
+                                return ordersReject(request,null);
                               }
 
-                              public NordletApiHttpResponse<OrdersClosePurchasesResponse> ordersClose(
-                                  OrdersClosePurchasesRequest request,
+                              public NordletApiHttpResponse<OrdersRejectPurchasesResponse> ordersReject(
+                                  OrdersRejectPurchasesRequest request,
                                   RequestOptions requestOptions) {
                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                  .addPathSegments("v1/purchases/orders/close");if (requestOptions != null) {
+                                  .addPathSegments("v1/purchases/orders/reject");if (requestOptions != null) {
                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                       httpUrl.addQueryParameter(_key, _value);
                                     } );
@@ -1107,7 +1129,7 @@ public class RawPurchasesClient {
                                     ResponseBody responseBody = response.body();
                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                     if (response.isSuccessful()) {
-                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersClosePurchasesResponse.class), response);
+                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersRejectPurchasesResponse.class), response);
                                     }
                                     try {
                                       switch (response.code()) {
@@ -1137,17 +1159,17 @@ public class RawPurchasesClient {
                                   }
                                 }
 
-                                public NordletApiHttpResponse<OrdersDeletePurchasesResponse> ordersDelete(
-                                    OrdersDeletePurchasesRequest request) {
-                                  return ordersDelete(request,null);
+                                public NordletApiHttpResponse<OrdersCancelPurchasesResponse> ordersCancel(
+                                    OrdersCancelPurchasesRequest request) {
+                                  return ordersCancel(request,null);
                                 }
 
-                                public NordletApiHttpResponse<OrdersDeletePurchasesResponse> ordersDelete(
-                                    OrdersDeletePurchasesRequest request,
+                                public NordletApiHttpResponse<OrdersCancelPurchasesResponse> ordersCancel(
+                                    OrdersCancelPurchasesRequest request,
                                     RequestOptions requestOptions) {
                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                    .addPathSegments("v1/purchases/orders/delete");if (requestOptions != null) {
+                                    .addPathSegments("v1/purchases/orders/cancel");if (requestOptions != null) {
                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                         httpUrl.addQueryParameter(_key, _value);
                                       } );
@@ -1177,7 +1199,7 @@ public class RawPurchasesClient {
                                       ResponseBody responseBody = response.body();
                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                       if (response.isSuccessful()) {
-                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersDeletePurchasesResponse.class), response);
+                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCancelPurchasesResponse.class), response);
                                       }
                                       try {
                                         switch (response.code()) {
@@ -1207,17 +1229,17 @@ public class RawPurchasesClient {
                                     }
                                   }
 
-                                  public NordletApiHttpResponse<ReceiptsCreatePurchasesResponse> receiptsCreate(
-                                      ReceiptsCreatePurchasesRequest request) {
-                                    return receiptsCreate(request,null);
+                                  public NordletApiHttpResponse<OrdersClosePurchasesResponse> ordersClose(
+                                      OrdersClosePurchasesRequest request) {
+                                    return ordersClose(request,null);
                                   }
 
-                                  public NordletApiHttpResponse<ReceiptsCreatePurchasesResponse> receiptsCreate(
-                                      ReceiptsCreatePurchasesRequest request,
+                                  public NordletApiHttpResponse<OrdersClosePurchasesResponse> ordersClose(
+                                      OrdersClosePurchasesRequest request,
                                       RequestOptions requestOptions) {
                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                      .addPathSegments("v1/purchases/receipts/create");if (requestOptions != null) {
+                                      .addPathSegments("v1/purchases/orders/close");if (requestOptions != null) {
                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                           httpUrl.addQueryParameter(_key, _value);
                                         } );
@@ -1247,7 +1269,7 @@ public class RawPurchasesClient {
                                         ResponseBody responseBody = response.body();
                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                         if (response.isSuccessful()) {
-                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsCreatePurchasesResponse.class), response);
+                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersClosePurchasesResponse.class), response);
                                         }
                                         try {
                                           switch (response.code()) {
@@ -1277,17 +1299,17 @@ public class RawPurchasesClient {
                                       }
                                     }
 
-                                    public NordletApiHttpResponse<ReceiptsGetPurchasesResponse> receiptsGet(
-                                        ReceiptsGetPurchasesRequest request) {
-                                      return receiptsGet(request,null);
+                                    public NordletApiHttpResponse<OrdersDeletePurchasesResponse> ordersDelete(
+                                        OrdersDeletePurchasesRequest request) {
+                                      return ordersDelete(request,null);
                                     }
 
-                                    public NordletApiHttpResponse<ReceiptsGetPurchasesResponse> receiptsGet(
-                                        ReceiptsGetPurchasesRequest request,
+                                    public NordletApiHttpResponse<OrdersDeletePurchasesResponse> ordersDelete(
+                                        OrdersDeletePurchasesRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                        .addPathSegments("v1/purchases/receipts/get");if (requestOptions != null) {
+                                        .addPathSegments("v1/purchases/orders/delete");if (requestOptions != null) {
                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                             httpUrl.addQueryParameter(_key, _value);
                                           } );
@@ -1317,7 +1339,7 @@ public class RawPurchasesClient {
                                           ResponseBody responseBody = response.body();
                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                           if (response.isSuccessful()) {
-                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsGetPurchasesResponse.class), response);
+                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersDeletePurchasesResponse.class), response);
                                           }
                                           try {
                                             switch (response.code()) {
@@ -1347,27 +1369,17 @@ public class RawPurchasesClient {
                                         }
                                       }
 
-                                      public NordletApiHttpResponse<ReceiptsListPurchasesResponse> receiptsList(
-                                          ) {
-                                        return receiptsList(ReceiptsListPurchasesRequest.builder().build());
+                                      public NordletApiHttpResponse<ReceiptsCreatePurchasesResponse> receiptsCreate(
+                                          ReceiptsCreatePurchasesRequest request) {
+                                        return receiptsCreate(request,null);
                                       }
 
-                                      public NordletApiHttpResponse<ReceiptsListPurchasesResponse> receiptsList(
-                                          RequestOptions requestOptions) {
-                                        return receiptsList(ReceiptsListPurchasesRequest.builder().build(),requestOptions);
-                                      }
-
-                                      public NordletApiHttpResponse<ReceiptsListPurchasesResponse> receiptsList(
-                                          ReceiptsListPurchasesRequest request) {
-                                        return receiptsList(request,null);
-                                      }
-
-                                      public NordletApiHttpResponse<ReceiptsListPurchasesResponse> receiptsList(
-                                          ReceiptsListPurchasesRequest request,
+                                      public NordletApiHttpResponse<ReceiptsCreatePurchasesResponse> receiptsCreate(
+                                          ReceiptsCreatePurchasesRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                          .addPathSegments("v1/purchases/receipts/list");if (requestOptions != null) {
+                                          .addPathSegments("v1/purchases/receipts/create");if (requestOptions != null) {
                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                               httpUrl.addQueryParameter(_key, _value);
                                             } );
@@ -1397,7 +1409,7 @@ public class RawPurchasesClient {
                                             ResponseBody responseBody = response.body();
                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                             if (response.isSuccessful()) {
-                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsListPurchasesResponse.class), response);
+                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsCreatePurchasesResponse.class), response);
                                             }
                                             try {
                                               switch (response.code()) {
@@ -1427,17 +1439,17 @@ public class RawPurchasesClient {
                                           }
                                         }
 
-                                        public NordletApiHttpResponse<InvoicesMatchPurchasesResponse> invoicesMatch(
-                                            InvoicesMatchPurchasesRequest request) {
-                                          return invoicesMatch(request,null);
+                                        public NordletApiHttpResponse<ReceiptsGetPurchasesResponse> receiptsGet(
+                                            ReceiptsGetPurchasesRequest request) {
+                                          return receiptsGet(request,null);
                                         }
 
-                                        public NordletApiHttpResponse<InvoicesMatchPurchasesResponse> invoicesMatch(
-                                            InvoicesMatchPurchasesRequest request,
+                                        public NordletApiHttpResponse<ReceiptsGetPurchasesResponse> receiptsGet(
+                                            ReceiptsGetPurchasesRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                            .addPathSegments("v1/purchases/invoices/match");if (requestOptions != null) {
+                                            .addPathSegments("v1/purchases/receipts/get");if (requestOptions != null) {
                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                 httpUrl.addQueryParameter(_key, _value);
                                               } );
@@ -1467,7 +1479,7 @@ public class RawPurchasesClient {
                                               ResponseBody responseBody = response.body();
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesMatchPurchasesResponse.class), response);
+                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsGetPurchasesResponse.class), response);
                                               }
                                               try {
                                                 switch (response.code()) {
@@ -1496,4 +1508,154 @@ public class RawPurchasesClient {
                                               throw new NordletApiException("Network error executing HTTP request", e);
                                             }
                                           }
-                                        }
+
+                                          public NordletApiHttpResponse<ReceiptsListPurchasesResponse> receiptsList(
+                                              ) {
+                                            return receiptsList(ReceiptsListPurchasesRequest.builder().build());
+                                          }
+
+                                          public NordletApiHttpResponse<ReceiptsListPurchasesResponse> receiptsList(
+                                              RequestOptions requestOptions) {
+                                            return receiptsList(ReceiptsListPurchasesRequest.builder().build(),requestOptions);
+                                          }
+
+                                          public NordletApiHttpResponse<ReceiptsListPurchasesResponse> receiptsList(
+                                              ReceiptsListPurchasesRequest request) {
+                                            return receiptsList(request,null);
+                                          }
+
+                                          public NordletApiHttpResponse<ReceiptsListPurchasesResponse> receiptsList(
+                                              ReceiptsListPurchasesRequest request,
+                                              RequestOptions requestOptions) {
+                                            HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                              .addPathSegments("v1/purchases/receipts/list");if (requestOptions != null) {
+                                                requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                  httpUrl.addQueryParameter(_key, _value);
+                                                } );
+                                              }
+                                              RequestBody body;
+                                              try {
+                                                body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                              }
+                                              catch(JsonProcessingException e) {
+                                                throw new NordletApiException("Failed to serialize request", e);
+                                              }
+                                              Request okhttpRequest = new Request.Builder()
+                                                .url(httpUrl.build())
+                                                .method("POST", body)
+                                                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                .addHeader("Content-Type", "application/json")
+                                                .addHeader("Accept", "application/json")
+                                                .build();
+                                              OkHttpClient client = clientOptions.httpClient();
+                                              if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                client = clientOptions.httpClientWithTimeout(requestOptions);
+                                              }
+                                              if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                              }
+                                              try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                ResponseBody responseBody = response.body();
+                                                String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                if (response.isSuccessful()) {
+                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsListPurchasesResponse.class), response);
+                                                }
+                                                try {
+                                                  switch (response.code()) {
+                                                    case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                    case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                    case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                    case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                    case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                    case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                    case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                    case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                  }
+                                                }
+                                                catch (JsonProcessingException ignored) {
+                                                  // unable to map error response, throwing generic error
+                                                }
+                                                Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                              }
+                                              catch (JsonProcessingException e) {
+                                                throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                              }
+                                              catch (IOException e) {
+                                                throw new NordletApiException("Network error executing HTTP request", e);
+                                              }
+                                            }
+
+                                            public NordletApiHttpResponse<InvoicesMatchPurchasesResponse> invoicesMatch(
+                                                InvoicesMatchPurchasesRequest request) {
+                                              return invoicesMatch(request,null);
+                                            }
+
+                                            public NordletApiHttpResponse<InvoicesMatchPurchasesResponse> invoicesMatch(
+                                                InvoicesMatchPurchasesRequest request,
+                                                RequestOptions requestOptions) {
+                                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                .addPathSegments("v1/purchases/invoices/match");if (requestOptions != null) {
+                                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                    httpUrl.addQueryParameter(_key, _value);
+                                                  } );
+                                                }
+                                                RequestBody body;
+                                                try {
+                                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                }
+                                                catch(JsonProcessingException e) {
+                                                  throw new NordletApiException("Failed to serialize request", e);
+                                                }
+                                                Request okhttpRequest = new Request.Builder()
+                                                  .url(httpUrl.build())
+                                                  .method("POST", body)
+                                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                  .addHeader("Content-Type", "application/json")
+                                                  .addHeader("Accept", "application/json")
+                                                  .build();
+                                                OkHttpClient client = clientOptions.httpClient();
+                                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                  client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                }
+                                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                }
+                                                try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                  ResponseBody responseBody = response.body();
+                                                  String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                  if (response.isSuccessful()) {
+                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesMatchPurchasesResponse.class), response);
+                                                  }
+                                                  try {
+                                                    switch (response.code()) {
+                                                      case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                      case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                      case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                      case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                      case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                      case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                      case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                      case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                    }
+                                                  }
+                                                  catch (JsonProcessingException ignored) {
+                                                    // unable to map error response, throwing generic error
+                                                  }
+                                                  Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                  throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                }
+                                                catch (JsonProcessingException e) {
+                                                  throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                }
+                                                catch (IOException e) {
+                                                  throw new NordletApiException("Network error executing HTTP request", e);
+                                                }
+                                              }
+                                            }

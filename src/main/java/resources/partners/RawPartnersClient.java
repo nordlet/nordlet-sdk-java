@@ -53,6 +53,7 @@ import com.nordlet.api.resources.partners.requests.InquiriesGetPartnersRequest;
 import com.nordlet.api.resources.partners.requests.InquiriesListPartnersRequest;
 import com.nordlet.api.resources.partners.requests.InquiriesUpdatePartnersRequest;
 import com.nordlet.api.resources.partners.requests.ListPartnersRequest;
+import com.nordlet.api.resources.partners.requests.MergePartnersRequest;
 import com.nordlet.api.resources.partners.requests.StatusesCreatePartnersRequest;
 import com.nordlet.api.resources.partners.requests.StatusesDeletePartnersRequest;
 import com.nordlet.api.resources.partners.requests.StatusesListPartnersRequest;
@@ -91,6 +92,7 @@ import com.nordlet.api.resources.partners.types.InquiriesGetPartnersResponse;
 import com.nordlet.api.resources.partners.types.InquiriesListPartnersResponse;
 import com.nordlet.api.resources.partners.types.InquiriesUpdatePartnersResponse;
 import com.nordlet.api.resources.partners.types.ListPartnersResponse;
+import com.nordlet.api.resources.partners.types.MergePartnersResponse;
 import com.nordlet.api.resources.partners.types.StatusesCreatePartnersResponse;
 import com.nordlet.api.resources.partners.types.StatusesDeletePartnersResponse;
 import com.nordlet.api.resources.partners.types.StatusesListPartnersResponse;
@@ -1785,23 +1787,17 @@ public class RawPartnersClient {
                                                   }
                                                 }
 
-                                                /**
-                                                 * Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
-                                                 */
-                                                public NordletApiHttpResponse<AnonymizePartnersResponse> anonymize(
-                                                    AnonymizePartnersRequest request) {
-                                                  return anonymize(request,null);
+                                                public NordletApiHttpResponse<MergePartnersResponse> merge(
+                                                    MergePartnersRequest request) {
+                                                  return merge(request,null);
                                                 }
 
-                                                /**
-                                                 * Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
-                                                 */
-                                                public NordletApiHttpResponse<AnonymizePartnersResponse> anonymize(
-                                                    AnonymizePartnersRequest request,
+                                                public NordletApiHttpResponse<MergePartnersResponse> merge(
+                                                    MergePartnersRequest request,
                                                     RequestOptions requestOptions) {
                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                    .addPathSegments("v1/partners/anonymize");if (requestOptions != null) {
+                                                    .addPathSegments("v1/partners/merge");if (requestOptions != null) {
                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                         httpUrl.addQueryParameter(_key, _value);
                                                       } );
@@ -1831,7 +1827,7 @@ public class RawPartnersClient {
                                                       ResponseBody responseBody = response.body();
                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                       if (response.isSuccessful()) {
-                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnonymizePartnersResponse.class), response);
+                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MergePartnersResponse.class), response);
                                                       }
                                                       try {
                                                         switch (response.code()) {
@@ -1861,27 +1857,23 @@ public class RawPartnersClient {
                                                     }
                                                   }
 
-                                                  public NordletApiHttpResponse<ListPartnersResponse> list(
-                                                      ) {
-                                                    return list(ListPartnersRequest.builder().build());
+                                                  /**
+                                                   * Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
+                                                   */
+                                                  public NordletApiHttpResponse<AnonymizePartnersResponse> anonymize(
+                                                      AnonymizePartnersRequest request) {
+                                                    return anonymize(request,null);
                                                   }
 
-                                                  public NordletApiHttpResponse<ListPartnersResponse> list(
-                                                      RequestOptions requestOptions) {
-                                                    return list(ListPartnersRequest.builder().build(),requestOptions);
-                                                  }
-
-                                                  public NordletApiHttpResponse<ListPartnersResponse> list(
-                                                      ListPartnersRequest request) {
-                                                    return list(request,null);
-                                                  }
-
-                                                  public NordletApiHttpResponse<ListPartnersResponse> list(
-                                                      ListPartnersRequest request,
+                                                  /**
+                                                   * Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
+                                                   */
+                                                  public NordletApiHttpResponse<AnonymizePartnersResponse> anonymize(
+                                                      AnonymizePartnersRequest request,
                                                       RequestOptions requestOptions) {
                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                      .addPathSegments("v1/partners/list");if (requestOptions != null) {
+                                                      .addPathSegments("v1/partners/anonymize");if (requestOptions != null) {
                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                           httpUrl.addQueryParameter(_key, _value);
                                                         } );
@@ -1911,7 +1903,7 @@ public class RawPartnersClient {
                                                         ResponseBody responseBody = response.body();
                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                         if (response.isSuccessful()) {
-                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ListPartnersResponse.class), response);
+                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnonymizePartnersResponse.class), response);
                                                         }
                                                         try {
                                                           switch (response.code()) {
@@ -1941,17 +1933,27 @@ public class RawPartnersClient {
                                                       }
                                                     }
 
-                                                    public NordletApiHttpResponse<GroupsCreatePartnersResponse> groupsCreate(
-                                                        GroupsCreatePartnersRequest request) {
-                                                      return groupsCreate(request,null);
+                                                    public NordletApiHttpResponse<ListPartnersResponse> list(
+                                                        ) {
+                                                      return list(ListPartnersRequest.builder().build());
                                                     }
 
-                                                    public NordletApiHttpResponse<GroupsCreatePartnersResponse> groupsCreate(
-                                                        GroupsCreatePartnersRequest request,
+                                                    public NordletApiHttpResponse<ListPartnersResponse> list(
+                                                        RequestOptions requestOptions) {
+                                                      return list(ListPartnersRequest.builder().build(),requestOptions);
+                                                    }
+
+                                                    public NordletApiHttpResponse<ListPartnersResponse> list(
+                                                        ListPartnersRequest request) {
+                                                      return list(request,null);
+                                                    }
+
+                                                    public NordletApiHttpResponse<ListPartnersResponse> list(
+                                                        ListPartnersRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                        .addPathSegments("v1/partners/groups/create");if (requestOptions != null) {
+                                                        .addPathSegments("v1/partners/list");if (requestOptions != null) {
                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                             httpUrl.addQueryParameter(_key, _value);
                                                           } );
@@ -1981,7 +1983,7 @@ public class RawPartnersClient {
                                                           ResponseBody responseBody = response.body();
                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                           if (response.isSuccessful()) {
-                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsCreatePartnersResponse.class), response);
+                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ListPartnersResponse.class), response);
                                                           }
                                                           try {
                                                             switch (response.code()) {
@@ -2011,17 +2013,17 @@ public class RawPartnersClient {
                                                         }
                                                       }
 
-                                                      public NordletApiHttpResponse<GroupsUpdatePartnersResponse> groupsUpdate(
-                                                          GroupsUpdatePartnersRequest request) {
-                                                        return groupsUpdate(request,null);
+                                                      public NordletApiHttpResponse<GroupsCreatePartnersResponse> groupsCreate(
+                                                          GroupsCreatePartnersRequest request) {
+                                                        return groupsCreate(request,null);
                                                       }
 
-                                                      public NordletApiHttpResponse<GroupsUpdatePartnersResponse> groupsUpdate(
-                                                          GroupsUpdatePartnersRequest request,
+                                                      public NordletApiHttpResponse<GroupsCreatePartnersResponse> groupsCreate(
+                                                          GroupsCreatePartnersRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                          .addPathSegments("v1/partners/groups/update");if (requestOptions != null) {
+                                                          .addPathSegments("v1/partners/groups/create");if (requestOptions != null) {
                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                               httpUrl.addQueryParameter(_key, _value);
                                                             } );
@@ -2051,7 +2053,7 @@ public class RawPartnersClient {
                                                             ResponseBody responseBody = response.body();
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsUpdatePartnersResponse.class), response);
+                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsCreatePartnersResponse.class), response);
                                                             }
                                                             try {
                                                               switch (response.code()) {
@@ -2081,17 +2083,17 @@ public class RawPartnersClient {
                                                           }
                                                         }
 
-                                                        public NordletApiHttpResponse<GroupsDeletePartnersResponse> groupsDelete(
-                                                            GroupsDeletePartnersRequest request) {
-                                                          return groupsDelete(request,null);
+                                                        public NordletApiHttpResponse<GroupsUpdatePartnersResponse> groupsUpdate(
+                                                            GroupsUpdatePartnersRequest request) {
+                                                          return groupsUpdate(request,null);
                                                         }
 
-                                                        public NordletApiHttpResponse<GroupsDeletePartnersResponse> groupsDelete(
-                                                            GroupsDeletePartnersRequest request,
+                                                        public NordletApiHttpResponse<GroupsUpdatePartnersResponse> groupsUpdate(
+                                                            GroupsUpdatePartnersRequest request,
                                                             RequestOptions requestOptions) {
                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                            .addPathSegments("v1/partners/groups/delete");if (requestOptions != null) {
+                                                            .addPathSegments("v1/partners/groups/update");if (requestOptions != null) {
                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                 httpUrl.addQueryParameter(_key, _value);
                                                               } );
@@ -2121,7 +2123,7 @@ public class RawPartnersClient {
                                                               ResponseBody responseBody = response.body();
                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                               if (response.isSuccessful()) {
-                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsDeletePartnersResponse.class), response);
+                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsUpdatePartnersResponse.class), response);
                                                               }
                                                               try {
                                                                 switch (response.code()) {
@@ -2151,27 +2153,17 @@ public class RawPartnersClient {
                                                             }
                                                           }
 
-                                                          public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
-                                                              ) {
-                                                            return groupsList(GroupsListPartnersRequest.builder().build());
+                                                          public NordletApiHttpResponse<GroupsDeletePartnersResponse> groupsDelete(
+                                                              GroupsDeletePartnersRequest request) {
+                                                            return groupsDelete(request,null);
                                                           }
 
-                                                          public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
-                                                              RequestOptions requestOptions) {
-                                                            return groupsList(GroupsListPartnersRequest.builder().build(),requestOptions);
-                                                          }
-
-                                                          public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
-                                                              GroupsListPartnersRequest request) {
-                                                            return groupsList(request,null);
-                                                          }
-
-                                                          public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
-                                                              GroupsListPartnersRequest request,
+                                                          public NordletApiHttpResponse<GroupsDeletePartnersResponse> groupsDelete(
+                                                              GroupsDeletePartnersRequest request,
                                                               RequestOptions requestOptions) {
                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                              .addPathSegments("v1/partners/groups/list");if (requestOptions != null) {
+                                                              .addPathSegments("v1/partners/groups/delete");if (requestOptions != null) {
                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                 } );
@@ -2201,7 +2193,7 @@ public class RawPartnersClient {
                                                                 ResponseBody responseBody = response.body();
                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                 if (response.isSuccessful()) {
-                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsListPartnersResponse.class), response);
+                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsDeletePartnersResponse.class), response);
                                                                 }
                                                                 try {
                                                                   switch (response.code()) {
@@ -2231,17 +2223,27 @@ public class RawPartnersClient {
                                                               }
                                                             }
 
-                                                            public NordletApiHttpResponse<StatusesCreatePartnersResponse> statusesCreate(
-                                                                StatusesCreatePartnersRequest request) {
-                                                              return statusesCreate(request,null);
+                                                            public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
+                                                                ) {
+                                                              return groupsList(GroupsListPartnersRequest.builder().build());
                                                             }
 
-                                                            public NordletApiHttpResponse<StatusesCreatePartnersResponse> statusesCreate(
-                                                                StatusesCreatePartnersRequest request,
+                                                            public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
+                                                                RequestOptions requestOptions) {
+                                                              return groupsList(GroupsListPartnersRequest.builder().build(),requestOptions);
+                                                            }
+
+                                                            public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
+                                                                GroupsListPartnersRequest request) {
+                                                              return groupsList(request,null);
+                                                            }
+
+                                                            public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
+                                                                GroupsListPartnersRequest request,
                                                                 RequestOptions requestOptions) {
                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                .addPathSegments("v1/partners/statuses/create");if (requestOptions != null) {
+                                                                .addPathSegments("v1/partners/groups/list");if (requestOptions != null) {
                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                   } );
@@ -2271,7 +2273,7 @@ public class RawPartnersClient {
                                                                   ResponseBody responseBody = response.body();
                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                   if (response.isSuccessful()) {
-                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesCreatePartnersResponse.class), response);
+                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsListPartnersResponse.class), response);
                                                                   }
                                                                   try {
                                                                     switch (response.code()) {
@@ -2301,17 +2303,17 @@ public class RawPartnersClient {
                                                                 }
                                                               }
 
-                                                              public NordletApiHttpResponse<StatusesUpdatePartnersResponse> statusesUpdate(
-                                                                  StatusesUpdatePartnersRequest request) {
-                                                                return statusesUpdate(request,null);
+                                                              public NordletApiHttpResponse<StatusesCreatePartnersResponse> statusesCreate(
+                                                                  StatusesCreatePartnersRequest request) {
+                                                                return statusesCreate(request,null);
                                                               }
 
-                                                              public NordletApiHttpResponse<StatusesUpdatePartnersResponse> statusesUpdate(
-                                                                  StatusesUpdatePartnersRequest request,
+                                                              public NordletApiHttpResponse<StatusesCreatePartnersResponse> statusesCreate(
+                                                                  StatusesCreatePartnersRequest request,
                                                                   RequestOptions requestOptions) {
                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                  .addPathSegments("v1/partners/statuses/update");if (requestOptions != null) {
+                                                                  .addPathSegments("v1/partners/statuses/create");if (requestOptions != null) {
                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                     } );
@@ -2341,7 +2343,7 @@ public class RawPartnersClient {
                                                                     ResponseBody responseBody = response.body();
                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                     if (response.isSuccessful()) {
-                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesUpdatePartnersResponse.class), response);
+                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesCreatePartnersResponse.class), response);
                                                                     }
                                                                     try {
                                                                       switch (response.code()) {
@@ -2371,17 +2373,17 @@ public class RawPartnersClient {
                                                                   }
                                                                 }
 
-                                                                public NordletApiHttpResponse<StatusesDeletePartnersResponse> statusesDelete(
-                                                                    StatusesDeletePartnersRequest request) {
-                                                                  return statusesDelete(request,null);
+                                                                public NordletApiHttpResponse<StatusesUpdatePartnersResponse> statusesUpdate(
+                                                                    StatusesUpdatePartnersRequest request) {
+                                                                  return statusesUpdate(request,null);
                                                                 }
 
-                                                                public NordletApiHttpResponse<StatusesDeletePartnersResponse> statusesDelete(
-                                                                    StatusesDeletePartnersRequest request,
+                                                                public NordletApiHttpResponse<StatusesUpdatePartnersResponse> statusesUpdate(
+                                                                    StatusesUpdatePartnersRequest request,
                                                                     RequestOptions requestOptions) {
                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                    .addPathSegments("v1/partners/statuses/delete");if (requestOptions != null) {
+                                                                    .addPathSegments("v1/partners/statuses/update");if (requestOptions != null) {
                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                       } );
@@ -2411,7 +2413,7 @@ public class RawPartnersClient {
                                                                       ResponseBody responseBody = response.body();
                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                       if (response.isSuccessful()) {
-                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesDeletePartnersResponse.class), response);
+                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesUpdatePartnersResponse.class), response);
                                                                       }
                                                                       try {
                                                                         switch (response.code()) {
@@ -2441,27 +2443,17 @@ public class RawPartnersClient {
                                                                     }
                                                                   }
 
-                                                                  public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
-                                                                      ) {
-                                                                    return statusesList(StatusesListPartnersRequest.builder().build());
+                                                                  public NordletApiHttpResponse<StatusesDeletePartnersResponse> statusesDelete(
+                                                                      StatusesDeletePartnersRequest request) {
+                                                                    return statusesDelete(request,null);
                                                                   }
 
-                                                                  public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
-                                                                      RequestOptions requestOptions) {
-                                                                    return statusesList(StatusesListPartnersRequest.builder().build(),requestOptions);
-                                                                  }
-
-                                                                  public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
-                                                                      StatusesListPartnersRequest request) {
-                                                                    return statusesList(request,null);
-                                                                  }
-
-                                                                  public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
-                                                                      StatusesListPartnersRequest request,
+                                                                  public NordletApiHttpResponse<StatusesDeletePartnersResponse> statusesDelete(
+                                                                      StatusesDeletePartnersRequest request,
                                                                       RequestOptions requestOptions) {
                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                      .addPathSegments("v1/partners/statuses/list");if (requestOptions != null) {
+                                                                      .addPathSegments("v1/partners/statuses/delete");if (requestOptions != null) {
                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                         } );
@@ -2491,7 +2483,7 @@ public class RawPartnersClient {
                                                                         ResponseBody responseBody = response.body();
                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                         if (response.isSuccessful()) {
-                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesListPartnersResponse.class), response);
+                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesDeletePartnersResponse.class), response);
                                                                         }
                                                                         try {
                                                                           switch (response.code()) {
@@ -2521,17 +2513,27 @@ public class RawPartnersClient {
                                                                       }
                                                                     }
 
-                                                                    public NordletApiHttpResponse<InquiriesCreatePartnersResponse> inquiriesCreate(
-                                                                        InquiriesCreatePartnersRequest request) {
-                                                                      return inquiriesCreate(request,null);
+                                                                    public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
+                                                                        ) {
+                                                                      return statusesList(StatusesListPartnersRequest.builder().build());
                                                                     }
 
-                                                                    public NordletApiHttpResponse<InquiriesCreatePartnersResponse> inquiriesCreate(
-                                                                        InquiriesCreatePartnersRequest request,
+                                                                    public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
+                                                                        RequestOptions requestOptions) {
+                                                                      return statusesList(StatusesListPartnersRequest.builder().build(),requestOptions);
+                                                                    }
+
+                                                                    public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
+                                                                        StatusesListPartnersRequest request) {
+                                                                      return statusesList(request,null);
+                                                                    }
+
+                                                                    public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
+                                                                        StatusesListPartnersRequest request,
                                                                         RequestOptions requestOptions) {
                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                        .addPathSegments("v1/partners/inquiries/create");if (requestOptions != null) {
+                                                                        .addPathSegments("v1/partners/statuses/list");if (requestOptions != null) {
                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                           } );
@@ -2561,7 +2563,7 @@ public class RawPartnersClient {
                                                                           ResponseBody responseBody = response.body();
                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                           if (response.isSuccessful()) {
-                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesCreatePartnersResponse.class), response);
+                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesListPartnersResponse.class), response);
                                                                           }
                                                                           try {
                                                                             switch (response.code()) {
@@ -2591,17 +2593,17 @@ public class RawPartnersClient {
                                                                         }
                                                                       }
 
-                                                                      public NordletApiHttpResponse<InquiriesUpdatePartnersResponse> inquiriesUpdate(
-                                                                          InquiriesUpdatePartnersRequest request) {
-                                                                        return inquiriesUpdate(request,null);
+                                                                      public NordletApiHttpResponse<InquiriesCreatePartnersResponse> inquiriesCreate(
+                                                                          InquiriesCreatePartnersRequest request) {
+                                                                        return inquiriesCreate(request,null);
                                                                       }
 
-                                                                      public NordletApiHttpResponse<InquiriesUpdatePartnersResponse> inquiriesUpdate(
-                                                                          InquiriesUpdatePartnersRequest request,
+                                                                      public NordletApiHttpResponse<InquiriesCreatePartnersResponse> inquiriesCreate(
+                                                                          InquiriesCreatePartnersRequest request,
                                                                           RequestOptions requestOptions) {
                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                          .addPathSegments("v1/partners/inquiries/update");if (requestOptions != null) {
+                                                                          .addPathSegments("v1/partners/inquiries/create");if (requestOptions != null) {
                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                             } );
@@ -2631,7 +2633,7 @@ public class RawPartnersClient {
                                                                             ResponseBody responseBody = response.body();
                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                             if (response.isSuccessful()) {
-                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesUpdatePartnersResponse.class), response);
+                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesCreatePartnersResponse.class), response);
                                                                             }
                                                                             try {
                                                                               switch (response.code()) {
@@ -2661,17 +2663,17 @@ public class RawPartnersClient {
                                                                           }
                                                                         }
 
-                                                                        public NordletApiHttpResponse<InquiriesGetPartnersResponse> inquiriesGet(
-                                                                            InquiriesGetPartnersRequest request) {
-                                                                          return inquiriesGet(request,null);
+                                                                        public NordletApiHttpResponse<InquiriesUpdatePartnersResponse> inquiriesUpdate(
+                                                                            InquiriesUpdatePartnersRequest request) {
+                                                                          return inquiriesUpdate(request,null);
                                                                         }
 
-                                                                        public NordletApiHttpResponse<InquiriesGetPartnersResponse> inquiriesGet(
-                                                                            InquiriesGetPartnersRequest request,
+                                                                        public NordletApiHttpResponse<InquiriesUpdatePartnersResponse> inquiriesUpdate(
+                                                                            InquiriesUpdatePartnersRequest request,
                                                                             RequestOptions requestOptions) {
                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                            .addPathSegments("v1/partners/inquiries/get");if (requestOptions != null) {
+                                                                            .addPathSegments("v1/partners/inquiries/update");if (requestOptions != null) {
                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                               } );
@@ -2701,7 +2703,7 @@ public class RawPartnersClient {
                                                                               ResponseBody responseBody = response.body();
                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                               if (response.isSuccessful()) {
-                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesGetPartnersResponse.class), response);
+                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesUpdatePartnersResponse.class), response);
                                                                               }
                                                                               try {
                                                                                 switch (response.code()) {
@@ -2731,27 +2733,17 @@ public class RawPartnersClient {
                                                                             }
                                                                           }
 
-                                                                          public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
-                                                                              ) {
-                                                                            return inquiriesList(InquiriesListPartnersRequest.builder().build());
+                                                                          public NordletApiHttpResponse<InquiriesGetPartnersResponse> inquiriesGet(
+                                                                              InquiriesGetPartnersRequest request) {
+                                                                            return inquiriesGet(request,null);
                                                                           }
 
-                                                                          public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
-                                                                              RequestOptions requestOptions) {
-                                                                            return inquiriesList(InquiriesListPartnersRequest.builder().build(),requestOptions);
-                                                                          }
-
-                                                                          public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
-                                                                              InquiriesListPartnersRequest request) {
-                                                                            return inquiriesList(request,null);
-                                                                          }
-
-                                                                          public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
-                                                                              InquiriesListPartnersRequest request,
+                                                                          public NordletApiHttpResponse<InquiriesGetPartnersResponse> inquiriesGet(
+                                                                              InquiriesGetPartnersRequest request,
                                                                               RequestOptions requestOptions) {
                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                              .addPathSegments("v1/partners/inquiries/list");if (requestOptions != null) {
+                                                                              .addPathSegments("v1/partners/inquiries/get");if (requestOptions != null) {
                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                 } );
@@ -2781,7 +2773,7 @@ public class RawPartnersClient {
                                                                                 ResponseBody responseBody = response.body();
                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                 if (response.isSuccessful()) {
-                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesListPartnersResponse.class), response);
+                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesGetPartnersResponse.class), response);
                                                                                 }
                                                                                 try {
                                                                                   switch (response.code()) {
@@ -2811,17 +2803,27 @@ public class RawPartnersClient {
                                                                               }
                                                                             }
 
-                                                                            public NordletApiHttpResponse<CreditCheckPartnersResponse> creditCheck(
-                                                                                CreditCheckPartnersRequest request) {
-                                                                              return creditCheck(request,null);
+                                                                            public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
+                                                                                ) {
+                                                                              return inquiriesList(InquiriesListPartnersRequest.builder().build());
                                                                             }
 
-                                                                            public NordletApiHttpResponse<CreditCheckPartnersResponse> creditCheck(
-                                                                                CreditCheckPartnersRequest request,
+                                                                            public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
+                                                                                RequestOptions requestOptions) {
+                                                                              return inquiriesList(InquiriesListPartnersRequest.builder().build(),requestOptions);
+                                                                            }
+
+                                                                            public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
+                                                                                InquiriesListPartnersRequest request) {
+                                                                              return inquiriesList(request,null);
+                                                                            }
+
+                                                                            public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
+                                                                                InquiriesListPartnersRequest request,
                                                                                 RequestOptions requestOptions) {
                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                .addPathSegments("v1/partners/credit-check");if (requestOptions != null) {
+                                                                                .addPathSegments("v1/partners/inquiries/list");if (requestOptions != null) {
                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                   } );
@@ -2851,7 +2853,7 @@ public class RawPartnersClient {
                                                                                   ResponseBody responseBody = response.body();
                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                   if (response.isSuccessful()) {
-                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CreditCheckPartnersResponse.class), response);
+                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesListPartnersResponse.class), response);
                                                                                   }
                                                                                   try {
                                                                                     switch (response.code()) {
@@ -2880,4 +2882,74 @@ public class RawPartnersClient {
                                                                                   throw new NordletApiException("Network error executing HTTP request", e);
                                                                                 }
                                                                               }
-                                                                            }
+
+                                                                              public NordletApiHttpResponse<CreditCheckPartnersResponse> creditCheck(
+                                                                                  CreditCheckPartnersRequest request) {
+                                                                                return creditCheck(request,null);
+                                                                              }
+
+                                                                              public NordletApiHttpResponse<CreditCheckPartnersResponse> creditCheck(
+                                                                                  CreditCheckPartnersRequest request,
+                                                                                  RequestOptions requestOptions) {
+                                                                                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                  .addPathSegments("v1/partners/credit-check");if (requestOptions != null) {
+                                                                                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                      httpUrl.addQueryParameter(_key, _value);
+                                                                                    } );
+                                                                                  }
+                                                                                  RequestBody body;
+                                                                                  try {
+                                                                                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                  }
+                                                                                  catch(JsonProcessingException e) {
+                                                                                    throw new NordletApiException("Failed to serialize request", e);
+                                                                                  }
+                                                                                  Request okhttpRequest = new Request.Builder()
+                                                                                    .url(httpUrl.build())
+                                                                                    .method("POST", body)
+                                                                                    .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                    .addHeader("Content-Type", "application/json")
+                                                                                    .addHeader("Accept", "application/json")
+                                                                                    .build();
+                                                                                  OkHttpClient client = clientOptions.httpClient();
+                                                                                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                    client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                  }
+                                                                                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                  }
+                                                                                  try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                    ResponseBody responseBody = response.body();
+                                                                                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                    if (response.isSuccessful()) {
+                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CreditCheckPartnersResponse.class), response);
+                                                                                    }
+                                                                                    try {
+                                                                                      switch (response.code()) {
+                                                                                        case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                      }
+                                                                                    }
+                                                                                    catch (JsonProcessingException ignored) {
+                                                                                      // unable to map error response, throwing generic error
+                                                                                    }
+                                                                                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                    throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                  }
+                                                                                  catch (JsonProcessingException e) {
+                                                                                    throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                  }
+                                                                                  catch (IOException e) {
+                                                                                    throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                  }
+                                                                                }
+                                                                              }

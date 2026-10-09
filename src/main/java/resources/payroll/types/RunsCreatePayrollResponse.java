@@ -68,6 +68,12 @@ public final class RunsCreatePayrollResponse {
 
   private final Optional<OffsetDateTime> approvedAt;
 
+  private final Optional<OffsetDateTime> reversedAt;
+
+  private final Optional<String> reversalJournalTransactionId;
+
+  private final Optional<String> reversalReason;
+
   private final List<RunsCreatePayrollResponseLinesItem> lines;
 
   private final Map<String, Object> additionalProperties;
@@ -79,7 +85,9 @@ public final class RunsCreatePayrollResponse {
       List<RunsCreatePayrollResponseComponentTotalsItem> componentTotals, String netTotal,
       Optional<String> journalTransactionId, Optional<String> notes, List<String> warnings,
       OffsetDateTime createdAt, Optional<OffsetDateTime> approvedAt,
-      List<RunsCreatePayrollResponseLinesItem> lines, Map<String, Object> additionalProperties) {
+      Optional<OffsetDateTime> reversedAt, Optional<String> reversalJournalTransactionId,
+      Optional<String> reversalReason, List<RunsCreatePayrollResponseLinesItem> lines,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.year = year;
     this.month = month;
@@ -98,6 +106,9 @@ public final class RunsCreatePayrollResponse {
     this.warnings = warnings;
     this.createdAt = createdAt;
     this.approvedAt = approvedAt;
+    this.reversedAt = reversedAt;
+    this.reversalJournalTransactionId = reversalJournalTransactionId;
+    this.reversalReason = reversalReason;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
   }
@@ -204,6 +215,30 @@ public final class RunsCreatePayrollResponse {
     return approvedAt;
   }
 
+  @JsonIgnore
+  public Optional<OffsetDateTime> getReversedAt() {
+    if (reversedAt == null) {
+      return Optional.empty();
+    }
+    return reversedAt;
+  }
+
+  @JsonIgnore
+  public Optional<String> getReversalJournalTransactionId() {
+    if (reversalJournalTransactionId == null) {
+      return Optional.empty();
+    }
+    return reversalJournalTransactionId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getReversalReason() {
+    if (reversalReason == null) {
+      return Optional.empty();
+    }
+    return reversalReason;
+  }
+
   @JsonProperty("lines")
   public List<RunsCreatePayrollResponseLinesItem> getLines() {
     return lines;
@@ -245,6 +280,33 @@ public final class RunsCreatePayrollResponse {
     return approvedAt;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("reversedAt")
+  private Optional<OffsetDateTime> _getReversedAt() {
+    return reversedAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("reversalJournalTransactionId")
+  private Optional<String> _getReversalJournalTransactionId() {
+    return reversalJournalTransactionId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("reversalReason")
+  private Optional<String> _getReversalReason() {
+    return reversalReason;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -257,12 +319,12 @@ public final class RunsCreatePayrollResponse {
   }
 
   private boolean equalTo(RunsCreatePayrollResponse other) {
-    return id.equals(other.id) && year == other.year && month == other.month && countryCode.equals(other.countryCode) && payDate.equals(other.payDate) && status.equals(other.status) && grossTotal.equals(other.grossTotal) && taxAllowanceTotal.equals(other.taxAllowanceTotal) && incomeTaxTotal.equals(other.incomeTaxTotal) && employeeContributionsTotal.equals(other.employeeContributionsTotal) && employerContributionsTotal.equals(other.employerContributionsTotal) && componentTotals.equals(other.componentTotals) && netTotal.equals(other.netTotal) && journalTransactionId.equals(other.journalTransactionId) && notes.equals(other.notes) && warnings.equals(other.warnings) && createdAt.equals(other.createdAt) && approvedAt.equals(other.approvedAt) && lines.equals(other.lines);
+    return id.equals(other.id) && year == other.year && month == other.month && countryCode.equals(other.countryCode) && payDate.equals(other.payDate) && status.equals(other.status) && grossTotal.equals(other.grossTotal) && taxAllowanceTotal.equals(other.taxAllowanceTotal) && incomeTaxTotal.equals(other.incomeTaxTotal) && employeeContributionsTotal.equals(other.employeeContributionsTotal) && employerContributionsTotal.equals(other.employerContributionsTotal) && componentTotals.equals(other.componentTotals) && netTotal.equals(other.netTotal) && journalTransactionId.equals(other.journalTransactionId) && notes.equals(other.notes) && warnings.equals(other.warnings) && createdAt.equals(other.createdAt) && approvedAt.equals(other.approvedAt) && reversedAt.equals(other.reversedAt) && reversalJournalTransactionId.equals(other.reversalJournalTransactionId) && reversalReason.equals(other.reversalReason) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.year, this.month, this.countryCode, this.payDate, this.status, this.grossTotal, this.taxAllowanceTotal, this.incomeTaxTotal, this.employeeContributionsTotal, this.employerContributionsTotal, this.componentTotals, this.netTotal, this.journalTransactionId, this.notes, this.warnings, this.createdAt, this.approvedAt, this.lines);
+    return Objects.hash(this.id, this.year, this.month, this.countryCode, this.payDate, this.status, this.grossTotal, this.taxAllowanceTotal, this.incomeTaxTotal, this.employeeContributionsTotal, this.employerContributionsTotal, this.componentTotals, this.netTotal, this.journalTransactionId, this.notes, this.warnings, this.createdAt, this.approvedAt, this.reversedAt, this.reversalJournalTransactionId, this.reversalReason, this.lines);
   }
 
   @java.lang.Override
@@ -369,6 +431,24 @@ public final class RunsCreatePayrollResponse {
 
     _FinalStage approvedAt(Nullable<OffsetDateTime> approvedAt);
 
+    _FinalStage reversedAt(Optional<OffsetDateTime> reversedAt);
+
+    _FinalStage reversedAt(OffsetDateTime reversedAt);
+
+    _FinalStage reversedAt(Nullable<OffsetDateTime> reversedAt);
+
+    _FinalStage reversalJournalTransactionId(Optional<String> reversalJournalTransactionId);
+
+    _FinalStage reversalJournalTransactionId(String reversalJournalTransactionId);
+
+    _FinalStage reversalJournalTransactionId(Nullable<String> reversalJournalTransactionId);
+
+    _FinalStage reversalReason(Optional<String> reversalReason);
+
+    _FinalStage reversalReason(String reversalReason);
+
+    _FinalStage reversalReason(Nullable<String> reversalReason);
+
     _FinalStage lines(List<RunsCreatePayrollResponseLinesItem> lines);
 
     _FinalStage addLines(RunsCreatePayrollResponseLinesItem lines);
@@ -405,6 +485,12 @@ public final class RunsCreatePayrollResponse {
     private OffsetDateTime createdAt;
 
     private List<RunsCreatePayrollResponseLinesItem> lines = new ArrayList<>();
+
+    private Optional<String> reversalReason = Optional.empty();
+
+    private Optional<String> reversalJournalTransactionId = Optional.empty();
+
+    private Optional<OffsetDateTime> reversedAt = Optional.empty();
 
     private Optional<OffsetDateTime> approvedAt = Optional.empty();
 
@@ -444,6 +530,9 @@ public final class RunsCreatePayrollResponse {
       warnings(other.getWarnings());
       createdAt(other.getCreatedAt());
       approvedAt(other.getApprovedAt());
+      reversedAt(other.getReversedAt());
+      reversalJournalTransactionId(other.getReversalJournalTransactionId());
+      reversalReason(other.getReversalReason());
       lines(other.getLines());
       return this;
     }
@@ -557,6 +646,96 @@ public final class RunsCreatePayrollResponse {
       if (lines != null) {
         this.lines.addAll(lines);
       }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversalReason(Nullable<String> reversalReason) {
+      if (reversalReason.isNull()) {
+        this.reversalReason = null;
+      }
+      else if (reversalReason.isEmpty()) {
+        this.reversalReason = Optional.empty();
+      }
+      else {
+        this.reversalReason = Optional.of(reversalReason.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversalReason(String reversalReason) {
+      this.reversalReason = Optional.ofNullable(reversalReason);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "reversalReason",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage reversalReason(Optional<String> reversalReason) {
+      this.reversalReason = reversalReason;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversalJournalTransactionId(Nullable<String> reversalJournalTransactionId) {
+      if (reversalJournalTransactionId.isNull()) {
+        this.reversalJournalTransactionId = null;
+      }
+      else if (reversalJournalTransactionId.isEmpty()) {
+        this.reversalJournalTransactionId = Optional.empty();
+      }
+      else {
+        this.reversalJournalTransactionId = Optional.of(reversalJournalTransactionId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversalJournalTransactionId(String reversalJournalTransactionId) {
+      this.reversalJournalTransactionId = Optional.ofNullable(reversalJournalTransactionId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "reversalJournalTransactionId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage reversalJournalTransactionId(Optional<String> reversalJournalTransactionId) {
+      this.reversalJournalTransactionId = reversalJournalTransactionId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversedAt(Nullable<OffsetDateTime> reversedAt) {
+      if (reversedAt.isNull()) {
+        this.reversedAt = null;
+      }
+      else if (reversedAt.isEmpty()) {
+        this.reversedAt = Optional.empty();
+      }
+      else {
+        this.reversedAt = Optional.of(reversedAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversedAt(OffsetDateTime reversedAt) {
+      this.reversedAt = Optional.ofNullable(reversedAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "reversedAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage reversedAt(Optional<OffsetDateTime> reversedAt) {
+      this.reversedAt = reversedAt;
       return this;
     }
 
@@ -739,7 +918,7 @@ public final class RunsCreatePayrollResponse {
 
     @java.lang.Override
     public RunsCreatePayrollResponse build() {
-      return new RunsCreatePayrollResponse(id, year, month, countryCode, payDate, status, grossTotal, taxAllowanceTotal, incomeTaxTotal, employeeContributionsTotal, employerContributionsTotal, componentTotals, netTotal, journalTransactionId, notes, warnings, createdAt, approvedAt, lines, additionalProperties);
+      return new RunsCreatePayrollResponse(id, year, month, countryCode, payDate, status, grossTotal, taxAllowanceTotal, incomeTaxTotal, employeeContributionsTotal, employerContributionsTotal, componentTotals, netTotal, journalTransactionId, notes, warnings, createdAt, approvedAt, reversedAt, reversalJournalTransactionId, reversalReason, lines, additionalProperties);
     }
 
     @java.lang.Override

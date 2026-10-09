@@ -6,6 +6,8 @@ package com.nordlet.api.resources.purchases;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
+import com.nordlet.api.resources.purchases.requests.DeferralsListPurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.DeferralsPostPurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.InvoicesCreatePurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.InvoicesDeletePurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.InvoicesGetPurchasesRequest;
@@ -26,6 +28,8 @@ import com.nordlet.api.resources.purchases.requests.OrdersUpdatePurchasesRequest
 import com.nordlet.api.resources.purchases.requests.ReceiptsCreatePurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.ReceiptsGetPurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.ReceiptsListPurchasesRequest;
+import com.nordlet.api.resources.purchases.types.DeferralsListPurchasesResponse;
+import com.nordlet.api.resources.purchases.types.DeferralsPostPurchasesResponse;
 import com.nordlet.api.resources.purchases.types.InvoicesCreatePurchasesResponse;
 import com.nordlet.api.resources.purchases.types.InvoicesDeletePurchasesResponse;
 import com.nordlet.api.resources.purchases.types.InvoicesGetPurchasesResponse;
@@ -108,6 +112,40 @@ public class PurchasesClient {
   public InvoicesRegisterPurchasesResponse invoicesRegister(
       InvoicesRegisterPurchasesRequest request, RequestOptions requestOptions) {
     return this.rawClient.invoicesRegister(request, requestOptions).body();
+  }
+
+  public DeferralsListPurchasesResponse deferralsList() {
+    return this.rawClient.deferralsList().body();
+  }
+
+  public DeferralsListPurchasesResponse deferralsList(RequestOptions requestOptions) {
+    return this.rawClient.deferralsList(requestOptions).body();
+  }
+
+  public DeferralsListPurchasesResponse deferralsList(DeferralsListPurchasesRequest request) {
+    return this.rawClient.deferralsList(request).body();
+  }
+
+  public DeferralsListPurchasesResponse deferralsList(DeferralsListPurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.deferralsList(request, requestOptions).body();
+  }
+
+  public DeferralsPostPurchasesResponse deferralsPost() {
+    return this.rawClient.deferralsPost().body();
+  }
+
+  public DeferralsPostPurchasesResponse deferralsPost(RequestOptions requestOptions) {
+    return this.rawClient.deferralsPost(requestOptions).body();
+  }
+
+  public DeferralsPostPurchasesResponse deferralsPost(DeferralsPostPurchasesRequest request) {
+    return this.rawClient.deferralsPost(request).body();
+  }
+
+  public DeferralsPostPurchasesResponse deferralsPost(DeferralsPostPurchasesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.deferralsPost(request, requestOptions).body();
   }
 
   public InvoicesListPurchasesResponse invoicesList() {

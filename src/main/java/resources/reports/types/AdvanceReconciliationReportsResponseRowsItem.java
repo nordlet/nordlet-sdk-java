@@ -36,19 +36,22 @@ public final class AdvanceReconciliationReportsResponseRowsItem {
 
   private final String returned;
 
+  private final String settled;
+
   private final String closing;
 
   private final Map<String, Object> additionalProperties;
 
   private AdvanceReconciliationReportsResponseRowsItem(String employeeId, String firstName,
-      String lastName, String opening, String issued, String returned, String closing,
-      Map<String, Object> additionalProperties) {
+      String lastName, String opening, String issued, String returned, String settled,
+      String closing, Map<String, Object> additionalProperties) {
     this.employeeId = employeeId;
     this.firstName = firstName;
     this.lastName = lastName;
     this.opening = opening;
     this.issued = issued;
     this.returned = returned;
+    this.settled = settled;
     this.closing = closing;
     this.additionalProperties = additionalProperties;
   }
@@ -83,6 +86,11 @@ public final class AdvanceReconciliationReportsResponseRowsItem {
     return returned;
   }
 
+  @JsonProperty("settled")
+  public String getSettled() {
+    return settled;
+  }
+
   @JsonProperty("closing")
   public String getClosing() {
     return closing;
@@ -100,12 +108,12 @@ public final class AdvanceReconciliationReportsResponseRowsItem {
   }
 
   private boolean equalTo(AdvanceReconciliationReportsResponseRowsItem other) {
-    return employeeId.equals(other.employeeId) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && opening.equals(other.opening) && issued.equals(other.issued) && returned.equals(other.returned) && closing.equals(other.closing);
+    return employeeId.equals(other.employeeId) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && opening.equals(other.opening) && issued.equals(other.issued) && returned.equals(other.returned) && settled.equals(other.settled) && closing.equals(other.closing);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.employeeId, this.firstName, this.lastName, this.opening, this.issued, this.returned, this.closing);
+    return Objects.hash(this.employeeId, this.firstName, this.lastName, this.opening, this.issued, this.returned, this.settled, this.closing);
   }
 
   @java.lang.Override
@@ -140,7 +148,11 @@ public final class AdvanceReconciliationReportsResponseRowsItem {
   }
 
   public interface ReturnedStage {
-    ClosingStage returned(@NotNull String returned);
+    SettledStage returned(@NotNull String returned);
+  }
+
+  public interface SettledStage {
+    ClosingStage settled(@NotNull String settled);
   }
 
   public interface ClosingStage {
@@ -158,7 +170,7 @@ public final class AdvanceReconciliationReportsResponseRowsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements EmployeeIdStage, FirstNameStage, LastNameStage, OpeningStage, IssuedStage, ReturnedStage, ClosingStage, _FinalStage {
+  public static final class Builder implements EmployeeIdStage, FirstNameStage, LastNameStage, OpeningStage, IssuedStage, ReturnedStage, SettledStage, ClosingStage, _FinalStage {
     private String employeeId;
 
     private String firstName;
@@ -170,6 +182,8 @@ public final class AdvanceReconciliationReportsResponseRowsItem {
     private String issued;
 
     private String returned;
+
+    private String settled;
 
     private String closing;
 
@@ -187,6 +201,7 @@ public final class AdvanceReconciliationReportsResponseRowsItem {
       opening(other.getOpening());
       issued(other.getIssued());
       returned(other.getReturned());
+      settled(other.getSettled());
       closing(other.getClosing());
       return this;
     }
@@ -228,8 +243,15 @@ public final class AdvanceReconciliationReportsResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("returned")
-    public ClosingStage returned(@NotNull String returned) {
+    public SettledStage returned(@NotNull String returned) {
       this.returned = Objects.requireNonNull(returned, "returned must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("settled")
+    public ClosingStage settled(@NotNull String settled) {
+      this.settled = Objects.requireNonNull(settled, "settled must not be null");
       return this;
     }
 
@@ -242,7 +264,7 @@ public final class AdvanceReconciliationReportsResponseRowsItem {
 
     @java.lang.Override
     public AdvanceReconciliationReportsResponseRowsItem build() {
-      return new AdvanceReconciliationReportsResponseRowsItem(employeeId, firstName, lastName, opening, issued, returned, closing, additionalProperties);
+      return new AdvanceReconciliationReportsResponseRowsItem(employeeId, firstName, lastName, opening, issued, returned, settled, closing, additionalProperties);
     }
 
     @java.lang.Override

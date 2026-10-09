@@ -16,6 +16,7 @@ import com.nordlet.api.resources.payroll.requests.RunsCancelPayrollRequest;
 import com.nordlet.api.resources.payroll.requests.RunsCreatePayrollRequest;
 import com.nordlet.api.resources.payroll.requests.RunsGetPayrollRequest;
 import com.nordlet.api.resources.payroll.requests.RunsListPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsReversePayrollRequest;
 import com.nordlet.api.resources.payroll.requests.SchedulesCreatePayrollRequest;
 import com.nordlet.api.resources.payroll.requests.SchedulesListPayrollRequest;
 import com.nordlet.api.resources.payroll.types.CalcPayrollResponse;
@@ -28,6 +29,7 @@ import com.nordlet.api.resources.payroll.types.RunsCancelPayrollResponse;
 import com.nordlet.api.resources.payroll.types.RunsCreatePayrollResponse;
 import com.nordlet.api.resources.payroll.types.RunsGetPayrollResponse;
 import com.nordlet.api.resources.payroll.types.RunsListPayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsReversePayrollResponse;
 import com.nordlet.api.resources.payroll.types.SchedulesCreatePayrollResponse;
 import com.nordlet.api.resources.payroll.types.SchedulesListPayrollResponse;
 
@@ -166,6 +168,15 @@ public class PayrollClient {
   public RunsApprovePayrollResponse runsApprove(RunsApprovePayrollRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.runsApprove(request, requestOptions).body();
+  }
+
+  public RunsReversePayrollResponse runsReverse(RunsReversePayrollRequest request) {
+    return this.rawClient.runsReverse(request).body();
+  }
+
+  public RunsReversePayrollResponse runsReverse(RunsReversePayrollRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.runsReverse(request, requestOptions).body();
   }
 
   public RunsCancelPayrollResponse runsCancel(RunsCancelPayrollRequest request) {

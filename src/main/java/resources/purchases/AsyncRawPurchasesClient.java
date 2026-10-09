@@ -23,6 +23,8 @@ import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
+import com.nordlet.api.resources.purchases.requests.DeferralsListPurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.DeferralsPostPurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.InvoicesCreatePurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.InvoicesDeletePurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.InvoicesGetPurchasesRequest;
@@ -43,6 +45,8 @@ import com.nordlet.api.resources.purchases.requests.OrdersUpdatePurchasesRequest
 import com.nordlet.api.resources.purchases.requests.ReceiptsCreatePurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.ReceiptsGetPurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.ReceiptsListPurchasesRequest;
+import com.nordlet.api.resources.purchases.types.DeferralsListPurchasesResponse;
+import com.nordlet.api.resources.purchases.types.DeferralsPostPurchasesResponse;
 import com.nordlet.api.resources.purchases.types.InvoicesCreatePurchasesResponse;
 import com.nordlet.api.resources.purchases.types.InvoicesDeletePurchasesResponse;
 import com.nordlet.api.resources.purchases.types.InvoicesGetPurchasesResponse;
@@ -547,26 +551,26 @@ public class AsyncRawPurchasesClient {
               return future;
             }
 
-            public CompletableFuture<NordletApiHttpResponse<InvoicesListPurchasesResponse>> invoicesList(
+            public CompletableFuture<NordletApiHttpResponse<DeferralsListPurchasesResponse>> deferralsList(
                 ) {
-              return invoicesList(InvoicesListPurchasesRequest.builder().build());
+              return deferralsList(DeferralsListPurchasesRequest.builder().build());
             }
 
-            public CompletableFuture<NordletApiHttpResponse<InvoicesListPurchasesResponse>> invoicesList(
+            public CompletableFuture<NordletApiHttpResponse<DeferralsListPurchasesResponse>> deferralsList(
                 RequestOptions requestOptions) {
-              return invoicesList(InvoicesListPurchasesRequest.builder().build(),requestOptions);
+              return deferralsList(DeferralsListPurchasesRequest.builder().build(),requestOptions);
             }
 
-            public CompletableFuture<NordletApiHttpResponse<InvoicesListPurchasesResponse>> invoicesList(
-                InvoicesListPurchasesRequest request) {
-              return invoicesList(request,null);
+            public CompletableFuture<NordletApiHttpResponse<DeferralsListPurchasesResponse>> deferralsList(
+                DeferralsListPurchasesRequest request) {
+              return deferralsList(request,null);
             }
 
-            public CompletableFuture<NordletApiHttpResponse<InvoicesListPurchasesResponse>> invoicesList(
-                InvoicesListPurchasesRequest request, RequestOptions requestOptions) {
+            public CompletableFuture<NordletApiHttpResponse<DeferralsListPurchasesResponse>> deferralsList(
+                DeferralsListPurchasesRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                .addPathSegments("v1/purchases/invoices/list");if (requestOptions != null) {
+                .addPathSegments("v1/purchases/deferrals/list");if (requestOptions != null) {
                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                     httpUrl.addQueryParameter(_key, _value);
                   } );
@@ -592,14 +596,14 @@ public class AsyncRawPurchasesClient {
                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                 }
-                CompletableFuture<NordletApiHttpResponse<InvoicesListPurchasesResponse>> future = new CompletableFuture<>();
+                CompletableFuture<NordletApiHttpResponse<DeferralsListPurchasesResponse>> future = new CompletableFuture<>();
                 client.newCall(okhttpRequest).enqueue(new Callback() {
                   @Override
                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     try (ResponseBody responseBody = response.body()) {
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesListPurchasesResponse.class), response));
+                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeferralsListPurchasesResponse.class), response));
                         return;
                       }
                       try {
@@ -649,16 +653,26 @@ public class AsyncRawPurchasesClient {
                 return future;
               }
 
-              public CompletableFuture<NordletApiHttpResponse<OrdersCreatePurchasesResponse>> ordersCreate(
-                  OrdersCreatePurchasesRequest request) {
-                return ordersCreate(request,null);
+              public CompletableFuture<NordletApiHttpResponse<DeferralsPostPurchasesResponse>> deferralsPost(
+                  ) {
+                return deferralsPost(DeferralsPostPurchasesRequest.builder().build());
               }
 
-              public CompletableFuture<NordletApiHttpResponse<OrdersCreatePurchasesResponse>> ordersCreate(
-                  OrdersCreatePurchasesRequest request, RequestOptions requestOptions) {
+              public CompletableFuture<NordletApiHttpResponse<DeferralsPostPurchasesResponse>> deferralsPost(
+                  RequestOptions requestOptions) {
+                return deferralsPost(DeferralsPostPurchasesRequest.builder().build(),requestOptions);
+              }
+
+              public CompletableFuture<NordletApiHttpResponse<DeferralsPostPurchasesResponse>> deferralsPost(
+                  DeferralsPostPurchasesRequest request) {
+                return deferralsPost(request,null);
+              }
+
+              public CompletableFuture<NordletApiHttpResponse<DeferralsPostPurchasesResponse>> deferralsPost(
+                  DeferralsPostPurchasesRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                  .addPathSegments("v1/purchases/orders/create");if (requestOptions != null) {
+                  .addPathSegments("v1/purchases/deferrals/post");if (requestOptions != null) {
                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                       httpUrl.addQueryParameter(_key, _value);
                     } );
@@ -684,14 +698,14 @@ public class AsyncRawPurchasesClient {
                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                   }
-                  CompletableFuture<NordletApiHttpResponse<OrdersCreatePurchasesResponse>> future = new CompletableFuture<>();
+                  CompletableFuture<NordletApiHttpResponse<DeferralsPostPurchasesResponse>> future = new CompletableFuture<>();
                   client.newCall(okhttpRequest).enqueue(new Callback() {
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                       try (ResponseBody responseBody = response.body()) {
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCreatePurchasesResponse.class), response));
+                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeferralsPostPurchasesResponse.class), response));
                           return;
                         }
                         try {
@@ -741,16 +755,26 @@ public class AsyncRawPurchasesClient {
                   return future;
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<OrdersUpdatePurchasesResponse>> ordersUpdate(
-                    OrdersUpdatePurchasesRequest request) {
-                  return ordersUpdate(request,null);
+                public CompletableFuture<NordletApiHttpResponse<InvoicesListPurchasesResponse>> invoicesList(
+                    ) {
+                  return invoicesList(InvoicesListPurchasesRequest.builder().build());
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<OrdersUpdatePurchasesResponse>> ordersUpdate(
-                    OrdersUpdatePurchasesRequest request, RequestOptions requestOptions) {
+                public CompletableFuture<NordletApiHttpResponse<InvoicesListPurchasesResponse>> invoicesList(
+                    RequestOptions requestOptions) {
+                  return invoicesList(InvoicesListPurchasesRequest.builder().build(),requestOptions);
+                }
+
+                public CompletableFuture<NordletApiHttpResponse<InvoicesListPurchasesResponse>> invoicesList(
+                    InvoicesListPurchasesRequest request) {
+                  return invoicesList(request,null);
+                }
+
+                public CompletableFuture<NordletApiHttpResponse<InvoicesListPurchasesResponse>> invoicesList(
+                    InvoicesListPurchasesRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                    .addPathSegments("v1/purchases/orders/update");if (requestOptions != null) {
+                    .addPathSegments("v1/purchases/invoices/list");if (requestOptions != null) {
                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                         httpUrl.addQueryParameter(_key, _value);
                       } );
@@ -776,14 +800,14 @@ public class AsyncRawPurchasesClient {
                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                     }
-                    CompletableFuture<NordletApiHttpResponse<OrdersUpdatePurchasesResponse>> future = new CompletableFuture<>();
+                    CompletableFuture<NordletApiHttpResponse<InvoicesListPurchasesResponse>> future = new CompletableFuture<>();
                     client.newCall(okhttpRequest).enqueue(new Callback() {
                       @Override
                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         try (ResponseBody responseBody = response.body()) {
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersUpdatePurchasesResponse.class), response));
+                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesListPurchasesResponse.class), response));
                             return;
                           }
                           try {
@@ -833,16 +857,16 @@ public class AsyncRawPurchasesClient {
                     return future;
                   }
 
-                  public CompletableFuture<NordletApiHttpResponse<OrdersGetPurchasesResponse>> ordersGet(
-                      OrdersGetPurchasesRequest request) {
-                    return ordersGet(request,null);
+                  public CompletableFuture<NordletApiHttpResponse<OrdersCreatePurchasesResponse>> ordersCreate(
+                      OrdersCreatePurchasesRequest request) {
+                    return ordersCreate(request,null);
                   }
 
-                  public CompletableFuture<NordletApiHttpResponse<OrdersGetPurchasesResponse>> ordersGet(
-                      OrdersGetPurchasesRequest request, RequestOptions requestOptions) {
+                  public CompletableFuture<NordletApiHttpResponse<OrdersCreatePurchasesResponse>> ordersCreate(
+                      OrdersCreatePurchasesRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                      .addPathSegments("v1/purchases/orders/get");if (requestOptions != null) {
+                      .addPathSegments("v1/purchases/orders/create");if (requestOptions != null) {
                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                           httpUrl.addQueryParameter(_key, _value);
                         } );
@@ -868,14 +892,14 @@ public class AsyncRawPurchasesClient {
                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                       }
-                      CompletableFuture<NordletApiHttpResponse<OrdersGetPurchasesResponse>> future = new CompletableFuture<>();
+                      CompletableFuture<NordletApiHttpResponse<OrdersCreatePurchasesResponse>> future = new CompletableFuture<>();
                       client.newCall(okhttpRequest).enqueue(new Callback() {
                         @Override
                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                           try (ResponseBody responseBody = response.body()) {
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersGetPurchasesResponse.class), response));
+                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCreatePurchasesResponse.class), response));
                               return;
                             }
                             try {
@@ -925,26 +949,16 @@ public class AsyncRawPurchasesClient {
                       return future;
                     }
 
-                    public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
-                        ) {
-                      return ordersList(OrdersListPurchasesRequest.builder().build());
+                    public CompletableFuture<NordletApiHttpResponse<OrdersUpdatePurchasesResponse>> ordersUpdate(
+                        OrdersUpdatePurchasesRequest request) {
+                      return ordersUpdate(request,null);
                     }
 
-                    public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
-                        RequestOptions requestOptions) {
-                      return ordersList(OrdersListPurchasesRequest.builder().build(),requestOptions);
-                    }
-
-                    public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
-                        OrdersListPurchasesRequest request) {
-                      return ordersList(request,null);
-                    }
-
-                    public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
-                        OrdersListPurchasesRequest request, RequestOptions requestOptions) {
+                    public CompletableFuture<NordletApiHttpResponse<OrdersUpdatePurchasesResponse>> ordersUpdate(
+                        OrdersUpdatePurchasesRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                        .addPathSegments("v1/purchases/orders/list");if (requestOptions != null) {
+                        .addPathSegments("v1/purchases/orders/update");if (requestOptions != null) {
                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                             httpUrl.addQueryParameter(_key, _value);
                           } );
@@ -970,14 +984,14 @@ public class AsyncRawPurchasesClient {
                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                         }
-                        CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> future = new CompletableFuture<>();
+                        CompletableFuture<NordletApiHttpResponse<OrdersUpdatePurchasesResponse>> future = new CompletableFuture<>();
                         client.newCall(okhttpRequest).enqueue(new Callback() {
                           @Override
                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                             try (ResponseBody responseBody = response.body()) {
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersListPurchasesResponse.class), response));
+                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersUpdatePurchasesResponse.class), response));
                                 return;
                               }
                               try {
@@ -1027,16 +1041,16 @@ public class AsyncRawPurchasesClient {
                         return future;
                       }
 
-                      public CompletableFuture<NordletApiHttpResponse<OrdersSubmitPurchasesResponse>> ordersSubmit(
-                          OrdersSubmitPurchasesRequest request) {
-                        return ordersSubmit(request,null);
+                      public CompletableFuture<NordletApiHttpResponse<OrdersGetPurchasesResponse>> ordersGet(
+                          OrdersGetPurchasesRequest request) {
+                        return ordersGet(request,null);
                       }
 
-                      public CompletableFuture<NordletApiHttpResponse<OrdersSubmitPurchasesResponse>> ordersSubmit(
-                          OrdersSubmitPurchasesRequest request, RequestOptions requestOptions) {
+                      public CompletableFuture<NordletApiHttpResponse<OrdersGetPurchasesResponse>> ordersGet(
+                          OrdersGetPurchasesRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                          .addPathSegments("v1/purchases/orders/submit");if (requestOptions != null) {
+                          .addPathSegments("v1/purchases/orders/get");if (requestOptions != null) {
                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                               httpUrl.addQueryParameter(_key, _value);
                             } );
@@ -1062,14 +1076,14 @@ public class AsyncRawPurchasesClient {
                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                           }
-                          CompletableFuture<NordletApiHttpResponse<OrdersSubmitPurchasesResponse>> future = new CompletableFuture<>();
+                          CompletableFuture<NordletApiHttpResponse<OrdersGetPurchasesResponse>> future = new CompletableFuture<>();
                           client.newCall(okhttpRequest).enqueue(new Callback() {
                             @Override
                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                               try (ResponseBody responseBody = response.body()) {
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersSubmitPurchasesResponse.class), response));
+                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersGetPurchasesResponse.class), response));
                                   return;
                                 }
                                 try {
@@ -1119,16 +1133,26 @@ public class AsyncRawPurchasesClient {
                           return future;
                         }
 
-                        public CompletableFuture<NordletApiHttpResponse<OrdersApprovePurchasesResponse>> ordersApprove(
-                            OrdersApprovePurchasesRequest request) {
-                          return ordersApprove(request,null);
+                        public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
+                            ) {
+                          return ordersList(OrdersListPurchasesRequest.builder().build());
                         }
 
-                        public CompletableFuture<NordletApiHttpResponse<OrdersApprovePurchasesResponse>> ordersApprove(
-                            OrdersApprovePurchasesRequest request, RequestOptions requestOptions) {
+                        public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
+                            RequestOptions requestOptions) {
+                          return ordersList(OrdersListPurchasesRequest.builder().build(),requestOptions);
+                        }
+
+                        public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
+                            OrdersListPurchasesRequest request) {
+                          return ordersList(request,null);
+                        }
+
+                        public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
+                            OrdersListPurchasesRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                            .addPathSegments("v1/purchases/orders/approve");if (requestOptions != null) {
+                            .addPathSegments("v1/purchases/orders/list");if (requestOptions != null) {
                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                 httpUrl.addQueryParameter(_key, _value);
                               } );
@@ -1154,14 +1178,14 @@ public class AsyncRawPurchasesClient {
                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                             }
-                            CompletableFuture<NordletApiHttpResponse<OrdersApprovePurchasesResponse>> future = new CompletableFuture<>();
+                            CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> future = new CompletableFuture<>();
                             client.newCall(okhttpRequest).enqueue(new Callback() {
                               @Override
                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                 try (ResponseBody responseBody = response.body()) {
                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                   if (response.isSuccessful()) {
-                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersApprovePurchasesResponse.class), response));
+                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersListPurchasesResponse.class), response));
                                     return;
                                   }
                                   try {
@@ -1211,16 +1235,16 @@ public class AsyncRawPurchasesClient {
                             return future;
                           }
 
-                          public CompletableFuture<NordletApiHttpResponse<OrdersRejectPurchasesResponse>> ordersReject(
-                              OrdersRejectPurchasesRequest request) {
-                            return ordersReject(request,null);
+                          public CompletableFuture<NordletApiHttpResponse<OrdersSubmitPurchasesResponse>> ordersSubmit(
+                              OrdersSubmitPurchasesRequest request) {
+                            return ordersSubmit(request,null);
                           }
 
-                          public CompletableFuture<NordletApiHttpResponse<OrdersRejectPurchasesResponse>> ordersReject(
-                              OrdersRejectPurchasesRequest request, RequestOptions requestOptions) {
+                          public CompletableFuture<NordletApiHttpResponse<OrdersSubmitPurchasesResponse>> ordersSubmit(
+                              OrdersSubmitPurchasesRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                              .addPathSegments("v1/purchases/orders/reject");if (requestOptions != null) {
+                              .addPathSegments("v1/purchases/orders/submit");if (requestOptions != null) {
                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                   httpUrl.addQueryParameter(_key, _value);
                                 } );
@@ -1246,14 +1270,14 @@ public class AsyncRawPurchasesClient {
                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                               }
-                              CompletableFuture<NordletApiHttpResponse<OrdersRejectPurchasesResponse>> future = new CompletableFuture<>();
+                              CompletableFuture<NordletApiHttpResponse<OrdersSubmitPurchasesResponse>> future = new CompletableFuture<>();
                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                 @Override
                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                   try (ResponseBody responseBody = response.body()) {
                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                     if (response.isSuccessful()) {
-                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersRejectPurchasesResponse.class), response));
+                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersSubmitPurchasesResponse.class), response));
                                       return;
                                     }
                                     try {
@@ -1303,17 +1327,17 @@ public class AsyncRawPurchasesClient {
                               return future;
                             }
 
-                            public CompletableFuture<NordletApiHttpResponse<OrdersCancelPurchasesResponse>> ordersCancel(
-                                OrdersCancelPurchasesRequest request) {
-                              return ordersCancel(request,null);
+                            public CompletableFuture<NordletApiHttpResponse<OrdersApprovePurchasesResponse>> ordersApprove(
+                                OrdersApprovePurchasesRequest request) {
+                              return ordersApprove(request,null);
                             }
 
-                            public CompletableFuture<NordletApiHttpResponse<OrdersCancelPurchasesResponse>> ordersCancel(
-                                OrdersCancelPurchasesRequest request,
+                            public CompletableFuture<NordletApiHttpResponse<OrdersApprovePurchasesResponse>> ordersApprove(
+                                OrdersApprovePurchasesRequest request,
                                 RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                .addPathSegments("v1/purchases/orders/cancel");if (requestOptions != null) {
+                                .addPathSegments("v1/purchases/orders/approve");if (requestOptions != null) {
                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                     httpUrl.addQueryParameter(_key, _value);
                                   } );
@@ -1339,14 +1363,14 @@ public class AsyncRawPurchasesClient {
                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                 }
-                                CompletableFuture<NordletApiHttpResponse<OrdersCancelPurchasesResponse>> future = new CompletableFuture<>();
+                                CompletableFuture<NordletApiHttpResponse<OrdersApprovePurchasesResponse>> future = new CompletableFuture<>();
                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                   @Override
                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                     try (ResponseBody responseBody = response.body()) {
                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                       if (response.isSuccessful()) {
-                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCancelPurchasesResponse.class), response));
+                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersApprovePurchasesResponse.class), response));
                                         return;
                                       }
                                       try {
@@ -1396,17 +1420,17 @@ public class AsyncRawPurchasesClient {
                                 return future;
                               }
 
-                              public CompletableFuture<NordletApiHttpResponse<OrdersClosePurchasesResponse>> ordersClose(
-                                  OrdersClosePurchasesRequest request) {
-                                return ordersClose(request,null);
+                              public CompletableFuture<NordletApiHttpResponse<OrdersRejectPurchasesResponse>> ordersReject(
+                                  OrdersRejectPurchasesRequest request) {
+                                return ordersReject(request,null);
                               }
 
-                              public CompletableFuture<NordletApiHttpResponse<OrdersClosePurchasesResponse>> ordersClose(
-                                  OrdersClosePurchasesRequest request,
+                              public CompletableFuture<NordletApiHttpResponse<OrdersRejectPurchasesResponse>> ordersReject(
+                                  OrdersRejectPurchasesRequest request,
                                   RequestOptions requestOptions) {
                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                  .addPathSegments("v1/purchases/orders/close");if (requestOptions != null) {
+                                  .addPathSegments("v1/purchases/orders/reject");if (requestOptions != null) {
                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                       httpUrl.addQueryParameter(_key, _value);
                                     } );
@@ -1432,14 +1456,14 @@ public class AsyncRawPurchasesClient {
                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                   }
-                                  CompletableFuture<NordletApiHttpResponse<OrdersClosePurchasesResponse>> future = new CompletableFuture<>();
+                                  CompletableFuture<NordletApiHttpResponse<OrdersRejectPurchasesResponse>> future = new CompletableFuture<>();
                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                     @Override
                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                       try (ResponseBody responseBody = response.body()) {
                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                         if (response.isSuccessful()) {
-                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersClosePurchasesResponse.class), response));
+                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersRejectPurchasesResponse.class), response));
                                           return;
                                         }
                                         try {
@@ -1489,17 +1513,17 @@ public class AsyncRawPurchasesClient {
                                   return future;
                                 }
 
-                                public CompletableFuture<NordletApiHttpResponse<OrdersDeletePurchasesResponse>> ordersDelete(
-                                    OrdersDeletePurchasesRequest request) {
-                                  return ordersDelete(request,null);
+                                public CompletableFuture<NordletApiHttpResponse<OrdersCancelPurchasesResponse>> ordersCancel(
+                                    OrdersCancelPurchasesRequest request) {
+                                  return ordersCancel(request,null);
                                 }
 
-                                public CompletableFuture<NordletApiHttpResponse<OrdersDeletePurchasesResponse>> ordersDelete(
-                                    OrdersDeletePurchasesRequest request,
+                                public CompletableFuture<NordletApiHttpResponse<OrdersCancelPurchasesResponse>> ordersCancel(
+                                    OrdersCancelPurchasesRequest request,
                                     RequestOptions requestOptions) {
                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                    .addPathSegments("v1/purchases/orders/delete");if (requestOptions != null) {
+                                    .addPathSegments("v1/purchases/orders/cancel");if (requestOptions != null) {
                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                         httpUrl.addQueryParameter(_key, _value);
                                       } );
@@ -1525,14 +1549,14 @@ public class AsyncRawPurchasesClient {
                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                     }
-                                    CompletableFuture<NordletApiHttpResponse<OrdersDeletePurchasesResponse>> future = new CompletableFuture<>();
+                                    CompletableFuture<NordletApiHttpResponse<OrdersCancelPurchasesResponse>> future = new CompletableFuture<>();
                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                       @Override
                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                         try (ResponseBody responseBody = response.body()) {
                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                           if (response.isSuccessful()) {
-                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersDeletePurchasesResponse.class), response));
+                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCancelPurchasesResponse.class), response));
                                             return;
                                           }
                                           try {
@@ -1582,17 +1606,17 @@ public class AsyncRawPurchasesClient {
                                     return future;
                                   }
 
-                                  public CompletableFuture<NordletApiHttpResponse<ReceiptsCreatePurchasesResponse>> receiptsCreate(
-                                      ReceiptsCreatePurchasesRequest request) {
-                                    return receiptsCreate(request,null);
+                                  public CompletableFuture<NordletApiHttpResponse<OrdersClosePurchasesResponse>> ordersClose(
+                                      OrdersClosePurchasesRequest request) {
+                                    return ordersClose(request,null);
                                   }
 
-                                  public CompletableFuture<NordletApiHttpResponse<ReceiptsCreatePurchasesResponse>> receiptsCreate(
-                                      ReceiptsCreatePurchasesRequest request,
+                                  public CompletableFuture<NordletApiHttpResponse<OrdersClosePurchasesResponse>> ordersClose(
+                                      OrdersClosePurchasesRequest request,
                                       RequestOptions requestOptions) {
                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                      .addPathSegments("v1/purchases/receipts/create");if (requestOptions != null) {
+                                      .addPathSegments("v1/purchases/orders/close");if (requestOptions != null) {
                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                           httpUrl.addQueryParameter(_key, _value);
                                         } );
@@ -1618,14 +1642,14 @@ public class AsyncRawPurchasesClient {
                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                       }
-                                      CompletableFuture<NordletApiHttpResponse<ReceiptsCreatePurchasesResponse>> future = new CompletableFuture<>();
+                                      CompletableFuture<NordletApiHttpResponse<OrdersClosePurchasesResponse>> future = new CompletableFuture<>();
                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                         @Override
                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                           try (ResponseBody responseBody = response.body()) {
                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                             if (response.isSuccessful()) {
-                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsCreatePurchasesResponse.class), response));
+                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersClosePurchasesResponse.class), response));
                                               return;
                                             }
                                             try {
@@ -1675,17 +1699,17 @@ public class AsyncRawPurchasesClient {
                                       return future;
                                     }
 
-                                    public CompletableFuture<NordletApiHttpResponse<ReceiptsGetPurchasesResponse>> receiptsGet(
-                                        ReceiptsGetPurchasesRequest request) {
-                                      return receiptsGet(request,null);
+                                    public CompletableFuture<NordletApiHttpResponse<OrdersDeletePurchasesResponse>> ordersDelete(
+                                        OrdersDeletePurchasesRequest request) {
+                                      return ordersDelete(request,null);
                                     }
 
-                                    public CompletableFuture<NordletApiHttpResponse<ReceiptsGetPurchasesResponse>> receiptsGet(
-                                        ReceiptsGetPurchasesRequest request,
+                                    public CompletableFuture<NordletApiHttpResponse<OrdersDeletePurchasesResponse>> ordersDelete(
+                                        OrdersDeletePurchasesRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                        .addPathSegments("v1/purchases/receipts/get");if (requestOptions != null) {
+                                        .addPathSegments("v1/purchases/orders/delete");if (requestOptions != null) {
                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                             httpUrl.addQueryParameter(_key, _value);
                                           } );
@@ -1711,14 +1735,14 @@ public class AsyncRawPurchasesClient {
                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                         }
-                                        CompletableFuture<NordletApiHttpResponse<ReceiptsGetPurchasesResponse>> future = new CompletableFuture<>();
+                                        CompletableFuture<NordletApiHttpResponse<OrdersDeletePurchasesResponse>> future = new CompletableFuture<>();
                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                           @Override
                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                             try (ResponseBody responseBody = response.body()) {
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsGetPurchasesResponse.class), response));
+                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersDeletePurchasesResponse.class), response));
                                                 return;
                                               }
                                               try {
@@ -1768,27 +1792,17 @@ public class AsyncRawPurchasesClient {
                                         return future;
                                       }
 
-                                      public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
-                                          ) {
-                                        return receiptsList(ReceiptsListPurchasesRequest.builder().build());
+                                      public CompletableFuture<NordletApiHttpResponse<ReceiptsCreatePurchasesResponse>> receiptsCreate(
+                                          ReceiptsCreatePurchasesRequest request) {
+                                        return receiptsCreate(request,null);
                                       }
 
-                                      public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
-                                          RequestOptions requestOptions) {
-                                        return receiptsList(ReceiptsListPurchasesRequest.builder().build(),requestOptions);
-                                      }
-
-                                      public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
-                                          ReceiptsListPurchasesRequest request) {
-                                        return receiptsList(request,null);
-                                      }
-
-                                      public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
-                                          ReceiptsListPurchasesRequest request,
+                                      public CompletableFuture<NordletApiHttpResponse<ReceiptsCreatePurchasesResponse>> receiptsCreate(
+                                          ReceiptsCreatePurchasesRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                          .addPathSegments("v1/purchases/receipts/list");if (requestOptions != null) {
+                                          .addPathSegments("v1/purchases/receipts/create");if (requestOptions != null) {
                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                               httpUrl.addQueryParameter(_key, _value);
                                             } );
@@ -1814,14 +1828,14 @@ public class AsyncRawPurchasesClient {
                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                           }
-                                          CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> future = new CompletableFuture<>();
+                                          CompletableFuture<NordletApiHttpResponse<ReceiptsCreatePurchasesResponse>> future = new CompletableFuture<>();
                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                             @Override
                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                               try (ResponseBody responseBody = response.body()) {
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsListPurchasesResponse.class), response));
+                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsCreatePurchasesResponse.class), response));
                                                   return;
                                                 }
                                                 try {
@@ -1871,17 +1885,17 @@ public class AsyncRawPurchasesClient {
                                           return future;
                                         }
 
-                                        public CompletableFuture<NordletApiHttpResponse<InvoicesMatchPurchasesResponse>> invoicesMatch(
-                                            InvoicesMatchPurchasesRequest request) {
-                                          return invoicesMatch(request,null);
+                                        public CompletableFuture<NordletApiHttpResponse<ReceiptsGetPurchasesResponse>> receiptsGet(
+                                            ReceiptsGetPurchasesRequest request) {
+                                          return receiptsGet(request,null);
                                         }
 
-                                        public CompletableFuture<NordletApiHttpResponse<InvoicesMatchPurchasesResponse>> invoicesMatch(
-                                            InvoicesMatchPurchasesRequest request,
+                                        public CompletableFuture<NordletApiHttpResponse<ReceiptsGetPurchasesResponse>> receiptsGet(
+                                            ReceiptsGetPurchasesRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                            .addPathSegments("v1/purchases/invoices/match");if (requestOptions != null) {
+                                            .addPathSegments("v1/purchases/receipts/get");if (requestOptions != null) {
                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                 httpUrl.addQueryParameter(_key, _value);
                                               } );
@@ -1907,14 +1921,14 @@ public class AsyncRawPurchasesClient {
                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                             }
-                                            CompletableFuture<NordletApiHttpResponse<InvoicesMatchPurchasesResponse>> future = new CompletableFuture<>();
+                                            CompletableFuture<NordletApiHttpResponse<ReceiptsGetPurchasesResponse>> future = new CompletableFuture<>();
                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                               @Override
                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                 try (ResponseBody responseBody = response.body()) {
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesMatchPurchasesResponse.class), response));
+                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsGetPurchasesResponse.class), response));
                                                     return;
                                                   }
                                                   try {
@@ -1963,4 +1977,200 @@ public class AsyncRawPurchasesClient {
                                             });
                                             return future;
                                           }
-                                        }
+
+                                          public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
+                                              ) {
+                                            return receiptsList(ReceiptsListPurchasesRequest.builder().build());
+                                          }
+
+                                          public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
+                                              RequestOptions requestOptions) {
+                                            return receiptsList(ReceiptsListPurchasesRequest.builder().build(),requestOptions);
+                                          }
+
+                                          public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
+                                              ReceiptsListPurchasesRequest request) {
+                                            return receiptsList(request,null);
+                                          }
+
+                                          public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
+                                              ReceiptsListPurchasesRequest request,
+                                              RequestOptions requestOptions) {
+                                            HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                              .addPathSegments("v1/purchases/receipts/list");if (requestOptions != null) {
+                                                requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                  httpUrl.addQueryParameter(_key, _value);
+                                                } );
+                                              }
+                                              RequestBody body;
+                                              try {
+                                                body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                              }
+                                              catch(JsonProcessingException e) {
+                                                throw new NordletApiException("Failed to serialize request", e);
+                                              }
+                                              Request okhttpRequest = new Request.Builder()
+                                                .url(httpUrl.build())
+                                                .method("POST", body)
+                                                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                .addHeader("Content-Type", "application/json")
+                                                .addHeader("Accept", "application/json")
+                                                .build();
+                                              OkHttpClient client = clientOptions.httpClient();
+                                              if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                client = clientOptions.httpClientWithTimeout(requestOptions);
+                                              }
+                                              if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                              }
+                                              CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> future = new CompletableFuture<>();
+                                              client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                @Override
+                                                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                  try (ResponseBody responseBody = response.body()) {
+                                                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                    if (response.isSuccessful()) {
+                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsListPurchasesResponse.class), response));
+                                                      return;
+                                                    }
+                                                    try {
+                                                      switch (response.code()) {
+                                                        case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                        return;
+                                                        case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                        return;
+                                                        case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                        return;
+                                                        case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                        return;
+                                                        case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                        return;
+                                                        case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                        return;
+                                                        case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                        return;
+                                                        case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                        return;
+                                                        case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                        return;
+                                                        case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                        return;
+                                                      }
+                                                    }
+                                                    catch (JsonProcessingException ignored) {
+                                                      // unable to map error response, throwing generic error
+                                                    }
+                                                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                    future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                    return;
+                                                  }
+                                                  catch (JsonProcessingException e) {
+                                                    future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                  }
+                                                  catch (IOException e) {
+                                                    future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                  }
+                                                }
+
+                                                @Override
+                                                public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                  future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                }
+                                              });
+                                              return future;
+                                            }
+
+                                            public CompletableFuture<NordletApiHttpResponse<InvoicesMatchPurchasesResponse>> invoicesMatch(
+                                                InvoicesMatchPurchasesRequest request) {
+                                              return invoicesMatch(request,null);
+                                            }
+
+                                            public CompletableFuture<NordletApiHttpResponse<InvoicesMatchPurchasesResponse>> invoicesMatch(
+                                                InvoicesMatchPurchasesRequest request,
+                                                RequestOptions requestOptions) {
+                                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                .addPathSegments("v1/purchases/invoices/match");if (requestOptions != null) {
+                                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                    httpUrl.addQueryParameter(_key, _value);
+                                                  } );
+                                                }
+                                                RequestBody body;
+                                                try {
+                                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                }
+                                                catch(JsonProcessingException e) {
+                                                  throw new NordletApiException("Failed to serialize request", e);
+                                                }
+                                                Request okhttpRequest = new Request.Builder()
+                                                  .url(httpUrl.build())
+                                                  .method("POST", body)
+                                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                  .addHeader("Content-Type", "application/json")
+                                                  .addHeader("Accept", "application/json")
+                                                  .build();
+                                                OkHttpClient client = clientOptions.httpClient();
+                                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                  client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                }
+                                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                }
+                                                CompletableFuture<NordletApiHttpResponse<InvoicesMatchPurchasesResponse>> future = new CompletableFuture<>();
+                                                client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                  @Override
+                                                  public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                    try (ResponseBody responseBody = response.body()) {
+                                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                      if (response.isSuccessful()) {
+                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesMatchPurchasesResponse.class), response));
+                                                        return;
+                                                      }
+                                                      try {
+                                                        switch (response.code()) {
+                                                          case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                        }
+                                                      }
+                                                      catch (JsonProcessingException ignored) {
+                                                        // unable to map error response, throwing generic error
+                                                      }
+                                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                      future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                      return;
+                                                    }
+                                                    catch (JsonProcessingException e) {
+                                                      future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                    }
+                                                    catch (IOException e) {
+                                                      future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                    }
+                                                  }
+
+                                                  @Override
+                                                  public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                    future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                  }
+                                                });
+                                                return future;
+                                              }
+                                            }

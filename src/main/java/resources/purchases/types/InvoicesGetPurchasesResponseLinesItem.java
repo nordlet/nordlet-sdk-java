@@ -53,6 +53,10 @@ public final class InvoicesGetPurchasesResponseLinesItem {
 
   private final Optional<String> accountCode;
 
+  private final Optional<String> deferralStartDate;
+
+  private final Optional<String> deferralEndDate;
+
   private final String lineNet;
 
   private final String lineVat;
@@ -67,8 +71,8 @@ public final class InvoicesGetPurchasesResponseLinesItem {
       String description, String unit, String quantity, Optional<String> unitPriceExclVat,
       Optional<String> unitPriceInclVat, String vatRatePercent, Optional<String> vatClassifierCode,
       Optional<String> costCenterId, Optional<String> projectId, Optional<String> accountCode,
-      String lineNet, String lineVat, String lineGross, long sortOrder,
-      Map<String, Object> additionalProperties) {
+      Optional<String> deferralStartDate, Optional<String> deferralEndDate, String lineNet,
+      String lineVat, String lineGross, long sortOrder, Map<String, Object> additionalProperties) {
     this.id = id;
     this.itemId = itemId;
     this.description = description;
@@ -81,6 +85,8 @@ public final class InvoicesGetPurchasesResponseLinesItem {
     this.costCenterId = costCenterId;
     this.projectId = projectId;
     this.accountCode = accountCode;
+    this.deferralStartDate = deferralStartDate;
+    this.deferralEndDate = deferralEndDate;
     this.lineNet = lineNet;
     this.lineVat = lineVat;
     this.lineGross = lineGross;
@@ -169,6 +175,22 @@ public final class InvoicesGetPurchasesResponseLinesItem {
     return accountCode;
   }
 
+  @JsonIgnore
+  public Optional<String> getDeferralStartDate() {
+    if (deferralStartDate == null) {
+      return Optional.empty();
+    }
+    return deferralStartDate;
+  }
+
+  @JsonIgnore
+  public Optional<String> getDeferralEndDate() {
+    if (deferralEndDate == null) {
+      return Optional.empty();
+    }
+    return deferralEndDate;
+  }
+
   @JsonProperty("lineNet")
   public String getLineNet() {
     return lineNet;
@@ -252,6 +274,24 @@ public final class InvoicesGetPurchasesResponseLinesItem {
     return accountCode;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("deferralStartDate")
+  private Optional<String> _getDeferralStartDate() {
+    return deferralStartDate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("deferralEndDate")
+  private Optional<String> _getDeferralEndDate() {
+    return deferralEndDate;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -264,12 +304,12 @@ public final class InvoicesGetPurchasesResponseLinesItem {
   }
 
   private boolean equalTo(InvoicesGetPurchasesResponseLinesItem other) {
-    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && accountCode.equals(other.accountCode) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder;
+    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && accountCode.equals(other.accountCode) && deferralStartDate.equals(other.deferralStartDate) && deferralEndDate.equals(other.deferralEndDate) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.accountCode, this.lineNet, this.lineVat, this.lineGross, this.sortOrder);
+    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.accountCode, this.deferralStartDate, this.deferralEndDate, this.lineNet, this.lineVat, this.lineGross, this.sortOrder);
   }
 
   @java.lang.Override
@@ -367,6 +407,18 @@ public final class InvoicesGetPurchasesResponseLinesItem {
     _FinalStage accountCode(String accountCode);
 
     _FinalStage accountCode(Nullable<String> accountCode);
+
+    _FinalStage deferralStartDate(Optional<String> deferralStartDate);
+
+    _FinalStage deferralStartDate(String deferralStartDate);
+
+    _FinalStage deferralStartDate(Nullable<String> deferralStartDate);
+
+    _FinalStage deferralEndDate(Optional<String> deferralEndDate);
+
+    _FinalStage deferralEndDate(String deferralEndDate);
+
+    _FinalStage deferralEndDate(Nullable<String> deferralEndDate);
   }
 
   @JsonIgnoreProperties(
@@ -390,6 +442,10 @@ public final class InvoicesGetPurchasesResponseLinesItem {
     private String lineGross;
 
     private long sortOrder;
+
+    private Optional<String> deferralEndDate = Optional.empty();
+
+    private Optional<String> deferralStartDate = Optional.empty();
 
     private Optional<String> accountCode = Optional.empty();
 
@@ -425,6 +481,8 @@ public final class InvoicesGetPurchasesResponseLinesItem {
       costCenterId(other.getCostCenterId());
       projectId(other.getProjectId());
       accountCode(other.getAccountCode());
+      deferralStartDate(other.getDeferralStartDate());
+      deferralEndDate(other.getDeferralEndDate());
       lineNet(other.getLineNet());
       lineVat(other.getLineVat());
       lineGross(other.getLineGross());
@@ -492,6 +550,66 @@ public final class InvoicesGetPurchasesResponseLinesItem {
     @JsonSetter("sortOrder")
     public _FinalStage sortOrder(long sortOrder) {
       this.sortOrder = sortOrder;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage deferralEndDate(Nullable<String> deferralEndDate) {
+      if (deferralEndDate.isNull()) {
+        this.deferralEndDate = null;
+      }
+      else if (deferralEndDate.isEmpty()) {
+        this.deferralEndDate = Optional.empty();
+      }
+      else {
+        this.deferralEndDate = Optional.of(deferralEndDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage deferralEndDate(String deferralEndDate) {
+      this.deferralEndDate = Optional.ofNullable(deferralEndDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "deferralEndDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage deferralEndDate(Optional<String> deferralEndDate) {
+      this.deferralEndDate = deferralEndDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage deferralStartDate(Nullable<String> deferralStartDate) {
+      if (deferralStartDate.isNull()) {
+        this.deferralStartDate = null;
+      }
+      else if (deferralStartDate.isEmpty()) {
+        this.deferralStartDate = Optional.empty();
+      }
+      else {
+        this.deferralStartDate = Optional.of(deferralStartDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage deferralStartDate(String deferralStartDate) {
+      this.deferralStartDate = Optional.ofNullable(deferralStartDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "deferralStartDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage deferralStartDate(Optional<String> deferralStartDate) {
+      this.deferralStartDate = deferralStartDate;
       return this;
     }
 
@@ -707,7 +825,7 @@ public final class InvoicesGetPurchasesResponseLinesItem {
 
     @java.lang.Override
     public InvoicesGetPurchasesResponseLinesItem build() {
-      return new InvoicesGetPurchasesResponseLinesItem(id, itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, accountCode, lineNet, lineVat, lineGross, sortOrder, additionalProperties);
+      return new InvoicesGetPurchasesResponseLinesItem(id, itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, accountCode, deferralStartDate, deferralEndDate, lineNet, lineVat, lineGross, sortOrder, additionalProperties);
     }
 
     @java.lang.Override

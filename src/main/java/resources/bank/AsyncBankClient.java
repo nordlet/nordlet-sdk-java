@@ -47,6 +47,7 @@ import com.nordlet.api.resources.bank.requests.StatementsImportBankRequest;
 import com.nordlet.api.resources.bank.requests.TransactionsImportBankRequest;
 import com.nordlet.api.resources.bank.requests.TransactionsListBankRequest;
 import com.nordlet.api.resources.bank.requests.TransactionsMatchBankRequest;
+import com.nordlet.api.resources.bank.requests.TransactionsMatchManyBankRequest;
 import com.nordlet.api.resources.bank.requests.TransactionsRecordBankRequest;
 import com.nordlet.api.resources.bank.requests.TransactionsSuggestMatchesBankRequest;
 import com.nordlet.api.resources.bank.requests.TransactionsUnmatchBankRequest;
@@ -91,6 +92,7 @@ import com.nordlet.api.resources.bank.types.StatementsImportBankResponse;
 import com.nordlet.api.resources.bank.types.TransactionsImportBankResponse;
 import com.nordlet.api.resources.bank.types.TransactionsListBankResponse;
 import com.nordlet.api.resources.bank.types.TransactionsMatchBankResponse;
+import com.nordlet.api.resources.bank.types.TransactionsMatchManyBankResponse;
 import com.nordlet.api.resources.bank.types.TransactionsRecordBankResponse;
 import com.nordlet.api.resources.bank.types.TransactionsSuggestMatchesBankResponse;
 import com.nordlet.api.resources.bank.types.TransactionsUnmatchBankResponse;
@@ -197,6 +199,16 @@ public class AsyncBankClient {
   public CompletableFuture<TransactionsMatchBankResponse> transactionsMatch(
       TransactionsMatchBankRequest request, RequestOptions requestOptions) {
     return this.rawClient.transactionsMatch(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TransactionsMatchManyBankResponse> transactionsMatchMany(
+      TransactionsMatchManyBankRequest request) {
+    return this.rawClient.transactionsMatchMany(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TransactionsMatchManyBankResponse> transactionsMatchMany(
+      TransactionsMatchManyBankRequest request, RequestOptions requestOptions) {
+    return this.rawClient.transactionsMatchMany(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**

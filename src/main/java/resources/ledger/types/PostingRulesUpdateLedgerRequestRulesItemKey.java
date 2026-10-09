@@ -38,7 +38,11 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey PURCHASES_GOODS_FOR_RESALE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.PURCHASES_GOODS_FOR_RESALE, "purchases.goodsForResale");
 
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey CASH_ADVANCES = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.CASH_ADVANCES, "cash.advances");
+
   public static final PostingRulesUpdateLedgerRequestRulesItemKey INVENTORY_COGS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.INVENTORY_COGS, "inventory.cogs");
+
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey PURCHASES_PREPAID_EXPENSES = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.PURCHASES_PREPAID_EXPENSES, "purchases.prepaidExpenses");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey SETTLEMENTS_SUSPENSE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SETTLEMENTS_SUSPENSE, "settlements.suspense");
 
@@ -122,8 +126,12 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return visitor.visitSalesVatPayable();
       case PURCHASES_GOODS_FOR_RESALE:
         return visitor.visitPurchasesGoodsForResale();
+      case CASH_ADVANCES:
+        return visitor.visitCashAdvances();
       case INVENTORY_COGS:
         return visitor.visitInventoryCogs();
+      case PURCHASES_PREPAID_EXPENSES:
+        return visitor.visitPurchasesPrepaidExpenses();
       case SETTLEMENTS_SUSPENSE:
         return visitor.visitSettlementsSuspense();
       case ASSETS_DISPOSAL_GAIN:
@@ -185,8 +193,12 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return SALES_VAT_PAYABLE;
       case "purchases.goodsForResale":
         return PURCHASES_GOODS_FOR_RESALE;
+      case "cash.advances":
+        return CASH_ADVANCES;
       case "inventory.cogs":
         return INVENTORY_COGS;
+      case "purchases.prepaidExpenses":
+        return PURCHASES_PREPAID_EXPENSES;
       case "settlements.suspense":
         return SETTLEMENTS_SUSPENSE;
       case "assets.disposalGain":
@@ -233,6 +245,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
 
     PURCHASES_DEFAULT_EXPENSE,
 
+    PURCHASES_PREPAID_EXPENSES,
+
     INVENTORY_COGS,
 
     INVENTORY_STOCK,
@@ -265,6 +279,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
 
     ASSETS_DISPOSAL_PROCEEDS,
 
+    CASH_ADVANCES,
+
     CLOSING_RETAINED_EARNINGS,
 
     UNKNOWN
@@ -288,6 +304,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
     T visitPurchasesGoodsForResale();
 
     T visitPurchasesDefaultExpense();
+
+    T visitPurchasesPrepaidExpenses();
 
     T visitInventoryCogs();
 
@@ -320,6 +338,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
     T visitAssetsDisposalLoss();
 
     T visitAssetsDisposalProceeds();
+
+    T visitCashAdvances();
 
     T visitClosingRetainedEarnings();
 

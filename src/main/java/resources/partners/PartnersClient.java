@@ -36,6 +36,7 @@ import com.nordlet.api.resources.partners.requests.InquiriesGetPartnersRequest;
 import com.nordlet.api.resources.partners.requests.InquiriesListPartnersRequest;
 import com.nordlet.api.resources.partners.requests.InquiriesUpdatePartnersRequest;
 import com.nordlet.api.resources.partners.requests.ListPartnersRequest;
+import com.nordlet.api.resources.partners.requests.MergePartnersRequest;
 import com.nordlet.api.resources.partners.requests.StatusesCreatePartnersRequest;
 import com.nordlet.api.resources.partners.requests.StatusesDeletePartnersRequest;
 import com.nordlet.api.resources.partners.requests.StatusesListPartnersRequest;
@@ -74,6 +75,7 @@ import com.nordlet.api.resources.partners.types.InquiriesGetPartnersResponse;
 import com.nordlet.api.resources.partners.types.InquiriesListPartnersResponse;
 import com.nordlet.api.resources.partners.types.InquiriesUpdatePartnersResponse;
 import com.nordlet.api.resources.partners.types.ListPartnersResponse;
+import com.nordlet.api.resources.partners.types.MergePartnersResponse;
 import com.nordlet.api.resources.partners.types.StatusesCreatePartnersResponse;
 import com.nordlet.api.resources.partners.types.StatusesDeletePartnersResponse;
 import com.nordlet.api.resources.partners.types.StatusesListPartnersResponse;
@@ -367,6 +369,14 @@ public class PartnersClient {
   public DeletePartnersResponse delete(DeletePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.delete(request, requestOptions).body();
+  }
+
+  public MergePartnersResponse merge(MergePartnersRequest request) {
+    return this.rawClient.merge(request).body();
+  }
+
+  public MergePartnersResponse merge(MergePartnersRequest request, RequestOptions requestOptions) {
+    return this.rawClient.merge(request, requestOptions).body();
   }
 
   /**

@@ -9,15 +9,29 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.pos.requests.DevicesCreatePosRequest;
 import com.nordlet.api.resources.pos.requests.DevicesListPosRequest;
 import com.nordlet.api.resources.pos.requests.DevicesUpdatePosRequest;
+import com.nordlet.api.resources.pos.requests.ReceiptsCreatePosRequest;
+import com.nordlet.api.resources.pos.requests.ReceiptsGetPosRequest;
+import com.nordlet.api.resources.pos.requests.ReceiptsListPosRequest;
 import com.nordlet.api.resources.pos.requests.ReportsCreatePosRequest;
 import com.nordlet.api.resources.pos.requests.ReportsGetPosRequest;
 import com.nordlet.api.resources.pos.requests.ReportsListPosRequest;
+import com.nordlet.api.resources.pos.requests.ShiftsClosePosRequest;
+import com.nordlet.api.resources.pos.requests.ShiftsGetPosRequest;
+import com.nordlet.api.resources.pos.requests.ShiftsListPosRequest;
+import com.nordlet.api.resources.pos.requests.ShiftsOpenPosRequest;
 import com.nordlet.api.resources.pos.types.DevicesCreatePosResponse;
 import com.nordlet.api.resources.pos.types.DevicesListPosResponse;
 import com.nordlet.api.resources.pos.types.DevicesUpdatePosResponse;
+import com.nordlet.api.resources.pos.types.ReceiptsCreatePosResponse;
+import com.nordlet.api.resources.pos.types.ReceiptsGetPosResponse;
+import com.nordlet.api.resources.pos.types.ReceiptsListPosResponse;
 import com.nordlet.api.resources.pos.types.ReportsCreatePosResponse;
 import com.nordlet.api.resources.pos.types.ReportsGetPosResponse;
 import com.nordlet.api.resources.pos.types.ReportsListPosResponse;
+import com.nordlet.api.resources.pos.types.ShiftsClosePosResponse;
+import com.nordlet.api.resources.pos.types.ShiftsGetPosResponse;
+import com.nordlet.api.resources.pos.types.ShiftsListPosResponse;
+import com.nordlet.api.resources.pos.types.ShiftsOpenPosResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncPosClient {
@@ -108,5 +122,85 @@ public class AsyncPosClient {
   public CompletableFuture<ReportsListPosResponse> reportsList(ReportsListPosRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.reportsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ShiftsOpenPosResponse> shiftsOpen(ShiftsOpenPosRequest request) {
+    return this.rawClient.shiftsOpen(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ShiftsOpenPosResponse> shiftsOpen(ShiftsOpenPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.shiftsOpen(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ShiftsGetPosResponse> shiftsGet(ShiftsGetPosRequest request) {
+    return this.rawClient.shiftsGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ShiftsGetPosResponse> shiftsGet(ShiftsGetPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.shiftsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ShiftsListPosResponse> shiftsList() {
+    return this.rawClient.shiftsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ShiftsListPosResponse> shiftsList(RequestOptions requestOptions) {
+    return this.rawClient.shiftsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ShiftsListPosResponse> shiftsList(ShiftsListPosRequest request) {
+    return this.rawClient.shiftsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ShiftsListPosResponse> shiftsList(ShiftsListPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.shiftsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReceiptsCreatePosResponse> receiptsCreate(
+      ReceiptsCreatePosRequest request) {
+    return this.rawClient.receiptsCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReceiptsCreatePosResponse> receiptsCreate(
+      ReceiptsCreatePosRequest request, RequestOptions requestOptions) {
+    return this.rawClient.receiptsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReceiptsListPosResponse> receiptsList() {
+    return this.rawClient.receiptsList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReceiptsListPosResponse> receiptsList(RequestOptions requestOptions) {
+    return this.rawClient.receiptsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReceiptsListPosResponse> receiptsList(ReceiptsListPosRequest request) {
+    return this.rawClient.receiptsList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReceiptsListPosResponse> receiptsList(ReceiptsListPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.receiptsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReceiptsGetPosResponse> receiptsGet(ReceiptsGetPosRequest request) {
+    return this.rawClient.receiptsGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ReceiptsGetPosResponse> receiptsGet(ReceiptsGetPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.receiptsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ShiftsClosePosResponse> shiftsClose(ShiftsClosePosRequest request) {
+    return this.rawClient.shiftsClose(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ShiftsClosePosResponse> shiftsClose(ShiftsClosePosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.shiftsClose(request, requestOptions).thenApply(response -> response.body());
   }
 }

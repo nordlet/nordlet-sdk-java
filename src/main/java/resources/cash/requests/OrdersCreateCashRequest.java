@@ -35,9 +35,13 @@ public final class OrdersCreateCashRequest {
 
   private final String purpose;
 
-  private final String counterAccountCode;
+  private final Optional<String> counterAccountCode;
 
   private final Optional<String> cashAccountCode;
+
+  private final Optional<String> saleInvoiceId;
+
+  private final Optional<String> purchaseInvoiceId;
 
   private final Optional<String> series;
 
@@ -50,15 +54,18 @@ public final class OrdersCreateCashRequest {
   private final Map<String, Object> additionalProperties;
 
   private OrdersCreateCashRequest(OrdersCreateCashRequestType type, String date, String amount,
-      String purpose, String counterAccountCode, Optional<String> cashAccountCode,
-      Optional<String> series, Optional<String> partnerId, Optional<String> employeeId,
-      Optional<String> notes, Map<String, Object> additionalProperties) {
+      String purpose, Optional<String> counterAccountCode, Optional<String> cashAccountCode,
+      Optional<String> saleInvoiceId, Optional<String> purchaseInvoiceId, Optional<String> series,
+      Optional<String> partnerId, Optional<String> employeeId, Optional<String> notes,
+      Map<String, Object> additionalProperties) {
     this.type = type;
     this.date = date;
     this.amount = amount;
     this.purpose = purpose;
     this.counterAccountCode = counterAccountCode;
     this.cashAccountCode = cashAccountCode;
+    this.saleInvoiceId = saleInvoiceId;
+    this.purchaseInvoiceId = purchaseInvoiceId;
     this.series = series;
     this.partnerId = partnerId;
     this.employeeId = employeeId;
@@ -87,13 +94,23 @@ public final class OrdersCreateCashRequest {
   }
 
   @JsonProperty("counterAccountCode")
-  public String getCounterAccountCode() {
+  public Optional<String> getCounterAccountCode() {
     return counterAccountCode;
   }
 
   @JsonProperty("cashAccountCode")
   public Optional<String> getCashAccountCode() {
     return cashAccountCode;
+  }
+
+  @JsonProperty("saleInvoiceId")
+  public Optional<String> getSaleInvoiceId() {
+    return saleInvoiceId;
+  }
+
+  @JsonProperty("purchaseInvoiceId")
+  public Optional<String> getPurchaseInvoiceId() {
+    return purchaseInvoiceId;
   }
 
   @JsonProperty("series")
@@ -128,12 +145,12 @@ public final class OrdersCreateCashRequest {
   }
 
   private boolean equalTo(OrdersCreateCashRequest other) {
-    return type.equals(other.type) && date.equals(other.date) && amount.equals(other.amount) && purpose.equals(other.purpose) && counterAccountCode.equals(other.counterAccountCode) && cashAccountCode.equals(other.cashAccountCode) && series.equals(other.series) && partnerId.equals(other.partnerId) && employeeId.equals(other.employeeId) && notes.equals(other.notes);
+    return type.equals(other.type) && date.equals(other.date) && amount.equals(other.amount) && purpose.equals(other.purpose) && counterAccountCode.equals(other.counterAccountCode) && cashAccountCode.equals(other.cashAccountCode) && saleInvoiceId.equals(other.saleInvoiceId) && purchaseInvoiceId.equals(other.purchaseInvoiceId) && series.equals(other.series) && partnerId.equals(other.partnerId) && employeeId.equals(other.employeeId) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.type, this.date, this.amount, this.purpose, this.counterAccountCode, this.cashAccountCode, this.series, this.partnerId, this.employeeId, this.notes);
+    return Objects.hash(this.type, this.date, this.amount, this.purpose, this.counterAccountCode, this.cashAccountCode, this.saleInvoiceId, this.purchaseInvoiceId, this.series, this.partnerId, this.employeeId, this.notes);
   }
 
   @java.lang.Override
@@ -160,11 +177,7 @@ public final class OrdersCreateCashRequest {
   }
 
   public interface PurposeStage {
-    CounterAccountCodeStage purpose(@NotNull String purpose);
-  }
-
-  public interface CounterAccountCodeStage {
-    _FinalStage counterAccountCode(@NotNull String counterAccountCode);
+    _FinalStage purpose(@NotNull String purpose);
   }
 
   public interface _FinalStage {
@@ -174,9 +187,21 @@ public final class OrdersCreateCashRequest {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage counterAccountCode(Optional<String> counterAccountCode);
+
+    _FinalStage counterAccountCode(String counterAccountCode);
+
     _FinalStage cashAccountCode(Optional<String> cashAccountCode);
 
     _FinalStage cashAccountCode(String cashAccountCode);
+
+    _FinalStage saleInvoiceId(Optional<String> saleInvoiceId);
+
+    _FinalStage saleInvoiceId(String saleInvoiceId);
+
+    _FinalStage purchaseInvoiceId(Optional<String> purchaseInvoiceId);
+
+    _FinalStage purchaseInvoiceId(String purchaseInvoiceId);
 
     _FinalStage series(Optional<String> series);
 
@@ -198,7 +223,7 @@ public final class OrdersCreateCashRequest {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements TypeStage, DateStage, AmountStage, PurposeStage, CounterAccountCodeStage, _FinalStage {
+  public static final class Builder implements TypeStage, DateStage, AmountStage, PurposeStage, _FinalStage {
     private OrdersCreateCashRequestType type;
 
     private String date;
@@ -206,8 +231,6 @@ public final class OrdersCreateCashRequest {
     private String amount;
 
     private String purpose;
-
-    private String counterAccountCode;
 
     private Optional<String> notes = Optional.empty();
 
@@ -217,7 +240,13 @@ public final class OrdersCreateCashRequest {
 
     private Optional<String> series = Optional.empty();
 
+    private Optional<String> purchaseInvoiceId = Optional.empty();
+
+    private Optional<String> saleInvoiceId = Optional.empty();
+
     private Optional<String> cashAccountCode = Optional.empty();
+
+    private Optional<String> counterAccountCode = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -233,6 +262,8 @@ public final class OrdersCreateCashRequest {
       purpose(other.getPurpose());
       counterAccountCode(other.getCounterAccountCode());
       cashAccountCode(other.getCashAccountCode());
+      saleInvoiceId(other.getSaleInvoiceId());
+      purchaseInvoiceId(other.getPurchaseInvoiceId());
       series(other.getSeries());
       partnerId(other.getPartnerId());
       employeeId(other.getEmployeeId());
@@ -263,15 +294,8 @@ public final class OrdersCreateCashRequest {
 
     @java.lang.Override
     @JsonSetter("purpose")
-    public CounterAccountCodeStage purpose(@NotNull String purpose) {
+    public _FinalStage purpose(@NotNull String purpose) {
       this.purpose = Objects.requireNonNull(purpose, "purpose must not be null");
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter("counterAccountCode")
-    public _FinalStage counterAccountCode(@NotNull String counterAccountCode) {
-      this.counterAccountCode = Objects.requireNonNull(counterAccountCode, "counterAccountCode must not be null");
       return this;
     }
 
@@ -340,6 +364,38 @@ public final class OrdersCreateCashRequest {
     }
 
     @java.lang.Override
+    public _FinalStage purchaseInvoiceId(String purchaseInvoiceId) {
+      this.purchaseInvoiceId = Optional.ofNullable(purchaseInvoiceId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "purchaseInvoiceId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage purchaseInvoiceId(Optional<String> purchaseInvoiceId) {
+      this.purchaseInvoiceId = purchaseInvoiceId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage saleInvoiceId(String saleInvoiceId) {
+      this.saleInvoiceId = Optional.ofNullable(saleInvoiceId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "saleInvoiceId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage saleInvoiceId(Optional<String> saleInvoiceId) {
+      this.saleInvoiceId = saleInvoiceId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage cashAccountCode(String cashAccountCode) {
       this.cashAccountCode = Optional.ofNullable(cashAccountCode);
       return this;
@@ -356,8 +412,24 @@ public final class OrdersCreateCashRequest {
     }
 
     @java.lang.Override
+    public _FinalStage counterAccountCode(String counterAccountCode) {
+      this.counterAccountCode = Optional.ofNullable(counterAccountCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "counterAccountCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage counterAccountCode(Optional<String> counterAccountCode) {
+      this.counterAccountCode = counterAccountCode;
+      return this;
+    }
+
+    @java.lang.Override
     public OrdersCreateCashRequest build() {
-      return new OrdersCreateCashRequest(type, date, amount, purpose, counterAccountCode, cashAccountCode, series, partnerId, employeeId, notes, additionalProperties);
+      return new OrdersCreateCashRequest(type, date, amount, purpose, counterAccountCode, cashAccountCode, saleInvoiceId, purchaseInvoiceId, series, partnerId, employeeId, notes, additionalProperties);
     }
 
     @java.lang.Override

@@ -9,15 +9,29 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.pos.requests.DevicesCreatePosRequest;
 import com.nordlet.api.resources.pos.requests.DevicesListPosRequest;
 import com.nordlet.api.resources.pos.requests.DevicesUpdatePosRequest;
+import com.nordlet.api.resources.pos.requests.ReceiptsCreatePosRequest;
+import com.nordlet.api.resources.pos.requests.ReceiptsGetPosRequest;
+import com.nordlet.api.resources.pos.requests.ReceiptsListPosRequest;
 import com.nordlet.api.resources.pos.requests.ReportsCreatePosRequest;
 import com.nordlet.api.resources.pos.requests.ReportsGetPosRequest;
 import com.nordlet.api.resources.pos.requests.ReportsListPosRequest;
+import com.nordlet.api.resources.pos.requests.ShiftsClosePosRequest;
+import com.nordlet.api.resources.pos.requests.ShiftsGetPosRequest;
+import com.nordlet.api.resources.pos.requests.ShiftsListPosRequest;
+import com.nordlet.api.resources.pos.requests.ShiftsOpenPosRequest;
 import com.nordlet.api.resources.pos.types.DevicesCreatePosResponse;
 import com.nordlet.api.resources.pos.types.DevicesListPosResponse;
 import com.nordlet.api.resources.pos.types.DevicesUpdatePosResponse;
+import com.nordlet.api.resources.pos.types.ReceiptsCreatePosResponse;
+import com.nordlet.api.resources.pos.types.ReceiptsGetPosResponse;
+import com.nordlet.api.resources.pos.types.ReceiptsListPosResponse;
 import com.nordlet.api.resources.pos.types.ReportsCreatePosResponse;
 import com.nordlet.api.resources.pos.types.ReportsGetPosResponse;
 import com.nordlet.api.resources.pos.types.ReportsListPosResponse;
+import com.nordlet.api.resources.pos.types.ShiftsClosePosResponse;
+import com.nordlet.api.resources.pos.types.ShiftsGetPosResponse;
+import com.nordlet.api.resources.pos.types.ShiftsListPosResponse;
+import com.nordlet.api.resources.pos.types.ShiftsOpenPosResponse;
 
 public class PosClient {
   protected final ClientOptions clientOptions;
@@ -104,5 +118,84 @@ public class PosClient {
   public ReportsListPosResponse reportsList(ReportsListPosRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.reportsList(request, requestOptions).body();
+  }
+
+  public ShiftsOpenPosResponse shiftsOpen(ShiftsOpenPosRequest request) {
+    return this.rawClient.shiftsOpen(request).body();
+  }
+
+  public ShiftsOpenPosResponse shiftsOpen(ShiftsOpenPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.shiftsOpen(request, requestOptions).body();
+  }
+
+  public ShiftsGetPosResponse shiftsGet(ShiftsGetPosRequest request) {
+    return this.rawClient.shiftsGet(request).body();
+  }
+
+  public ShiftsGetPosResponse shiftsGet(ShiftsGetPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.shiftsGet(request, requestOptions).body();
+  }
+
+  public ShiftsListPosResponse shiftsList() {
+    return this.rawClient.shiftsList().body();
+  }
+
+  public ShiftsListPosResponse shiftsList(RequestOptions requestOptions) {
+    return this.rawClient.shiftsList(requestOptions).body();
+  }
+
+  public ShiftsListPosResponse shiftsList(ShiftsListPosRequest request) {
+    return this.rawClient.shiftsList(request).body();
+  }
+
+  public ShiftsListPosResponse shiftsList(ShiftsListPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.shiftsList(request, requestOptions).body();
+  }
+
+  public ReceiptsCreatePosResponse receiptsCreate(ReceiptsCreatePosRequest request) {
+    return this.rawClient.receiptsCreate(request).body();
+  }
+
+  public ReceiptsCreatePosResponse receiptsCreate(ReceiptsCreatePosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.receiptsCreate(request, requestOptions).body();
+  }
+
+  public ReceiptsListPosResponse receiptsList() {
+    return this.rawClient.receiptsList().body();
+  }
+
+  public ReceiptsListPosResponse receiptsList(RequestOptions requestOptions) {
+    return this.rawClient.receiptsList(requestOptions).body();
+  }
+
+  public ReceiptsListPosResponse receiptsList(ReceiptsListPosRequest request) {
+    return this.rawClient.receiptsList(request).body();
+  }
+
+  public ReceiptsListPosResponse receiptsList(ReceiptsListPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.receiptsList(request, requestOptions).body();
+  }
+
+  public ReceiptsGetPosResponse receiptsGet(ReceiptsGetPosRequest request) {
+    return this.rawClient.receiptsGet(request).body();
+  }
+
+  public ReceiptsGetPosResponse receiptsGet(ReceiptsGetPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.receiptsGet(request, requestOptions).body();
+  }
+
+  public ShiftsClosePosResponse shiftsClose(ShiftsClosePosRequest request) {
+    return this.rawClient.shiftsClose(request).body();
+  }
+
+  public ShiftsClosePosResponse shiftsClose(ShiftsClosePosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.shiftsClose(request, requestOptions).body();
   }
 }

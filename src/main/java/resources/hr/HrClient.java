@@ -6,6 +6,11 @@ package com.nordlet.api.resources.hr;
 
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
+import com.nordlet.api.resources.hr.requests.BusinessTripsApproveHrRequest;
+import com.nordlet.api.resources.hr.requests.BusinessTripsCreateHrRequest;
+import com.nordlet.api.resources.hr.requests.BusinessTripsDeleteHrRequest;
+import com.nordlet.api.resources.hr.requests.BusinessTripsGetHrRequest;
+import com.nordlet.api.resources.hr.requests.BusinessTripsListHrRequest;
 import com.nordlet.api.resources.hr.requests.ContractsCreateHrRequest;
 import com.nordlet.api.resources.hr.requests.ContractsEndHrRequest;
 import com.nordlet.api.resources.hr.requests.ContractsListHrRequest;
@@ -25,6 +30,9 @@ import com.nordlet.api.resources.hr.requests.IncapacityCertificatesCreateHrReque
 import com.nordlet.api.resources.hr.requests.IncapacityCertificatesListHrRequest;
 import com.nordlet.api.resources.hr.requests.LeaveBalancesListHrRequest;
 import com.nordlet.api.resources.hr.requests.LeaveBalancesSetHrRequest;
+import com.nordlet.api.resources.hr.requests.PerDiemRatesCreateHrRequest;
+import com.nordlet.api.resources.hr.requests.PerDiemRatesDeleteHrRequest;
+import com.nordlet.api.resources.hr.requests.PerDiemRatesListHrRequest;
 import com.nordlet.api.resources.hr.requests.PositionsCreateHrRequest;
 import com.nordlet.api.resources.hr.requests.PositionsListHrRequest;
 import com.nordlet.api.resources.hr.requests.PositionsUpdateHrRequest;
@@ -33,6 +41,11 @@ import com.nordlet.api.resources.hr.requests.TimesheetsGenerateHrRequest;
 import com.nordlet.api.resources.hr.requests.TimesheetsGetHrRequest;
 import com.nordlet.api.resources.hr.requests.TimesheetsListHrRequest;
 import com.nordlet.api.resources.hr.requests.TimesheetsUpsertHrRequest;
+import com.nordlet.api.resources.hr.types.BusinessTripsApproveHrResponse;
+import com.nordlet.api.resources.hr.types.BusinessTripsCreateHrResponse;
+import com.nordlet.api.resources.hr.types.BusinessTripsDeleteHrResponse;
+import com.nordlet.api.resources.hr.types.BusinessTripsGetHrResponse;
+import com.nordlet.api.resources.hr.types.BusinessTripsListHrResponse;
 import com.nordlet.api.resources.hr.types.ContractsCreateHrResponse;
 import com.nordlet.api.resources.hr.types.ContractsEndHrResponse;
 import com.nordlet.api.resources.hr.types.ContractsListHrResponse;
@@ -52,6 +65,9 @@ import com.nordlet.api.resources.hr.types.IncapacityCertificatesCreateHrResponse
 import com.nordlet.api.resources.hr.types.IncapacityCertificatesListHrResponse;
 import com.nordlet.api.resources.hr.types.LeaveBalancesListHrResponse;
 import com.nordlet.api.resources.hr.types.LeaveBalancesSetHrResponse;
+import com.nordlet.api.resources.hr.types.PerDiemRatesCreateHrResponse;
+import com.nordlet.api.resources.hr.types.PerDiemRatesDeleteHrResponse;
+import com.nordlet.api.resources.hr.types.PerDiemRatesListHrResponse;
 import com.nordlet.api.resources.hr.types.PositionsCreateHrResponse;
 import com.nordlet.api.resources.hr.types.PositionsListHrResponse;
 import com.nordlet.api.resources.hr.types.PositionsUpdateHrResponse;
@@ -298,6 +314,95 @@ public class HrClient {
   public IncapacityCertificatesListHrResponse incapacityCertificatesList(
       IncapacityCertificatesListHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.incapacityCertificatesList(request, requestOptions).body();
+  }
+
+  public PerDiemRatesCreateHrResponse perDiemRatesCreate(PerDiemRatesCreateHrRequest request) {
+    return this.rawClient.perDiemRatesCreate(request).body();
+  }
+
+  public PerDiemRatesCreateHrResponse perDiemRatesCreate(PerDiemRatesCreateHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.perDiemRatesCreate(request, requestOptions).body();
+  }
+
+  public PerDiemRatesListHrResponse perDiemRatesList() {
+    return this.rawClient.perDiemRatesList().body();
+  }
+
+  public PerDiemRatesListHrResponse perDiemRatesList(RequestOptions requestOptions) {
+    return this.rawClient.perDiemRatesList(requestOptions).body();
+  }
+
+  public PerDiemRatesListHrResponse perDiemRatesList(PerDiemRatesListHrRequest request) {
+    return this.rawClient.perDiemRatesList(request).body();
+  }
+
+  public PerDiemRatesListHrResponse perDiemRatesList(PerDiemRatesListHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.perDiemRatesList(request, requestOptions).body();
+  }
+
+  public PerDiemRatesDeleteHrResponse perDiemRatesDelete(PerDiemRatesDeleteHrRequest request) {
+    return this.rawClient.perDiemRatesDelete(request).body();
+  }
+
+  public PerDiemRatesDeleteHrResponse perDiemRatesDelete(PerDiemRatesDeleteHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.perDiemRatesDelete(request, requestOptions).body();
+  }
+
+  public BusinessTripsCreateHrResponse businessTripsCreate(BusinessTripsCreateHrRequest request) {
+    return this.rawClient.businessTripsCreate(request).body();
+  }
+
+  public BusinessTripsCreateHrResponse businessTripsCreate(BusinessTripsCreateHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.businessTripsCreate(request, requestOptions).body();
+  }
+
+  public BusinessTripsGetHrResponse businessTripsGet(BusinessTripsGetHrRequest request) {
+    return this.rawClient.businessTripsGet(request).body();
+  }
+
+  public BusinessTripsGetHrResponse businessTripsGet(BusinessTripsGetHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.businessTripsGet(request, requestOptions).body();
+  }
+
+  public BusinessTripsListHrResponse businessTripsList() {
+    return this.rawClient.businessTripsList().body();
+  }
+
+  public BusinessTripsListHrResponse businessTripsList(RequestOptions requestOptions) {
+    return this.rawClient.businessTripsList(requestOptions).body();
+  }
+
+  public BusinessTripsListHrResponse businessTripsList(BusinessTripsListHrRequest request) {
+    return this.rawClient.businessTripsList(request).body();
+  }
+
+  public BusinessTripsListHrResponse businessTripsList(BusinessTripsListHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.businessTripsList(request, requestOptions).body();
+  }
+
+  public BusinessTripsApproveHrResponse businessTripsApprove(
+      BusinessTripsApproveHrRequest request) {
+    return this.rawClient.businessTripsApprove(request).body();
+  }
+
+  public BusinessTripsApproveHrResponse businessTripsApprove(BusinessTripsApproveHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.businessTripsApprove(request, requestOptions).body();
+  }
+
+  public BusinessTripsDeleteHrResponse businessTripsDelete(BusinessTripsDeleteHrRequest request) {
+    return this.rawClient.businessTripsDelete(request).body();
+  }
+
+  public BusinessTripsDeleteHrResponse businessTripsDelete(BusinessTripsDeleteHrRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.businessTripsDelete(request, requestOptions).body();
   }
 
   public EmployeesRecordsCreateHrResponse employeesRecordsCreate(

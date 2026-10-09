@@ -14,6 +14,8 @@ public final class RunsCreatePayrollResponseStatus {
 
   public static final RunsCreatePayrollResponseStatus DRAFT = new RunsCreatePayrollResponseStatus(Value.DRAFT, "draft");
 
+  public static final RunsCreatePayrollResponseStatus REVERSED = new RunsCreatePayrollResponseStatus(Value.REVERSED, "reversed");
+
   private final Value value;
 
   private final String string;
@@ -50,6 +52,8 @@ public final class RunsCreatePayrollResponseStatus {
         return visitor.visitApproved();
       case DRAFT:
         return visitor.visitDraft();
+      case REVERSED:
+        return visitor.visitReversed();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -65,6 +69,8 @@ public final class RunsCreatePayrollResponseStatus {
         return APPROVED;
       case "draft":
         return DRAFT;
+      case "reversed":
+        return REVERSED;
       default:
         return new RunsCreatePayrollResponseStatus(Value.UNKNOWN, value);
     }
@@ -75,6 +81,8 @@ public final class RunsCreatePayrollResponseStatus {
 
     APPROVED,
 
+    REVERSED,
+
     UNKNOWN
   }
 
@@ -82,6 +90,8 @@ public final class RunsCreatePayrollResponseStatus {
     T visitDraft();
 
     T visitApproved();
+
+    T visitReversed();
 
     T visitUnknown(String unknownType);
   }

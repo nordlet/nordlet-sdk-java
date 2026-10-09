@@ -58,6 +58,10 @@ public final class OrdersListCashResponseRowsItem {
 
   private final Optional<String> journalTransactionId;
 
+  private final Optional<String> saleInvoiceId;
+
+  private final Optional<String> purchaseInvoiceId;
+
   private final Optional<String> notes;
 
   private final OffsetDateTime createdAt;
@@ -68,7 +72,8 @@ public final class OrdersListCashResponseRowsItem {
       String series, long number, String fullNumber, String date, Optional<String> partnerId,
       Optional<String> employeeId, String amount, String currency, String purpose,
       String cashAccountCode, String counterAccountCode, Optional<String> journalTransactionId,
-      Optional<String> notes, OffsetDateTime createdAt, Map<String, Object> additionalProperties) {
+      Optional<String> saleInvoiceId, Optional<String> purchaseInvoiceId, Optional<String> notes,
+      OffsetDateTime createdAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.type = type;
     this.series = series;
@@ -83,6 +88,8 @@ public final class OrdersListCashResponseRowsItem {
     this.cashAccountCode = cashAccountCode;
     this.counterAccountCode = counterAccountCode;
     this.journalTransactionId = journalTransactionId;
+    this.saleInvoiceId = saleInvoiceId;
+    this.purchaseInvoiceId = purchaseInvoiceId;
     this.notes = notes;
     this.createdAt = createdAt;
     this.additionalProperties = additionalProperties;
@@ -168,6 +175,22 @@ public final class OrdersListCashResponseRowsItem {
   }
 
   @JsonIgnore
+  public Optional<String> getSaleInvoiceId() {
+    if (saleInvoiceId == null) {
+      return Optional.empty();
+    }
+    return saleInvoiceId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPurchaseInvoiceId() {
+    if (purchaseInvoiceId == null) {
+      return Optional.empty();
+    }
+    return purchaseInvoiceId;
+  }
+
+  @JsonIgnore
   public Optional<String> getNotes() {
     if (notes == null) {
       return Optional.empty();
@@ -211,6 +234,24 @@ public final class OrdersListCashResponseRowsItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("saleInvoiceId")
+  private Optional<String> _getSaleInvoiceId() {
+    return saleInvoiceId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("purchaseInvoiceId")
+  private Optional<String> _getPurchaseInvoiceId() {
+    return purchaseInvoiceId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("notes")
   private Optional<String> _getNotes() {
     return notes;
@@ -228,12 +269,12 @@ public final class OrdersListCashResponseRowsItem {
   }
 
   private boolean equalTo(OrdersListCashResponseRowsItem other) {
-    return id.equals(other.id) && type.equals(other.type) && series.equals(other.series) && number == other.number && fullNumber.equals(other.fullNumber) && date.equals(other.date) && partnerId.equals(other.partnerId) && employeeId.equals(other.employeeId) && amount.equals(other.amount) && currency.equals(other.currency) && purpose.equals(other.purpose) && cashAccountCode.equals(other.cashAccountCode) && counterAccountCode.equals(other.counterAccountCode) && journalTransactionId.equals(other.journalTransactionId) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && type.equals(other.type) && series.equals(other.series) && number == other.number && fullNumber.equals(other.fullNumber) && date.equals(other.date) && partnerId.equals(other.partnerId) && employeeId.equals(other.employeeId) && amount.equals(other.amount) && currency.equals(other.currency) && purpose.equals(other.purpose) && cashAccountCode.equals(other.cashAccountCode) && counterAccountCode.equals(other.counterAccountCode) && journalTransactionId.equals(other.journalTransactionId) && saleInvoiceId.equals(other.saleInvoiceId) && purchaseInvoiceId.equals(other.purchaseInvoiceId) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.type, this.series, this.number, this.fullNumber, this.date, this.partnerId, this.employeeId, this.amount, this.currency, this.purpose, this.cashAccountCode, this.counterAccountCode, this.journalTransactionId, this.notes, this.createdAt);
+    return Objects.hash(this.id, this.type, this.series, this.number, this.fullNumber, this.date, this.partnerId, this.employeeId, this.amount, this.currency, this.purpose, this.cashAccountCode, this.counterAccountCode, this.journalTransactionId, this.saleInvoiceId, this.purchaseInvoiceId, this.notes, this.createdAt);
   }
 
   @java.lang.Override
@@ -320,6 +361,18 @@ public final class OrdersListCashResponseRowsItem {
 
     _FinalStage journalTransactionId(Nullable<String> journalTransactionId);
 
+    _FinalStage saleInvoiceId(Optional<String> saleInvoiceId);
+
+    _FinalStage saleInvoiceId(String saleInvoiceId);
+
+    _FinalStage saleInvoiceId(Nullable<String> saleInvoiceId);
+
+    _FinalStage purchaseInvoiceId(Optional<String> purchaseInvoiceId);
+
+    _FinalStage purchaseInvoiceId(String purchaseInvoiceId);
+
+    _FinalStage purchaseInvoiceId(Nullable<String> purchaseInvoiceId);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -357,6 +410,10 @@ public final class OrdersListCashResponseRowsItem {
 
     private Optional<String> notes = Optional.empty();
 
+    private Optional<String> purchaseInvoiceId = Optional.empty();
+
+    private Optional<String> saleInvoiceId = Optional.empty();
+
     private Optional<String> journalTransactionId = Optional.empty();
 
     private Optional<String> employeeId = Optional.empty();
@@ -385,6 +442,8 @@ public final class OrdersListCashResponseRowsItem {
       cashAccountCode(other.getCashAccountCode());
       counterAccountCode(other.getCounterAccountCode());
       journalTransactionId(other.getJournalTransactionId());
+      saleInvoiceId(other.getSaleInvoiceId());
+      purchaseInvoiceId(other.getPurchaseInvoiceId());
       notes(other.getNotes());
       createdAt(other.getCreatedAt());
       return this;
@@ -505,6 +564,66 @@ public final class OrdersListCashResponseRowsItem {
     }
 
     @java.lang.Override
+    public _FinalStage purchaseInvoiceId(Nullable<String> purchaseInvoiceId) {
+      if (purchaseInvoiceId.isNull()) {
+        this.purchaseInvoiceId = null;
+      }
+      else if (purchaseInvoiceId.isEmpty()) {
+        this.purchaseInvoiceId = Optional.empty();
+      }
+      else {
+        this.purchaseInvoiceId = Optional.of(purchaseInvoiceId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage purchaseInvoiceId(String purchaseInvoiceId) {
+      this.purchaseInvoiceId = Optional.ofNullable(purchaseInvoiceId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "purchaseInvoiceId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage purchaseInvoiceId(Optional<String> purchaseInvoiceId) {
+      this.purchaseInvoiceId = purchaseInvoiceId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage saleInvoiceId(Nullable<String> saleInvoiceId) {
+      if (saleInvoiceId.isNull()) {
+        this.saleInvoiceId = null;
+      }
+      else if (saleInvoiceId.isEmpty()) {
+        this.saleInvoiceId = Optional.empty();
+      }
+      else {
+        this.saleInvoiceId = Optional.of(saleInvoiceId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage saleInvoiceId(String saleInvoiceId) {
+      this.saleInvoiceId = Optional.ofNullable(saleInvoiceId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "saleInvoiceId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage saleInvoiceId(Optional<String> saleInvoiceId) {
+      this.saleInvoiceId = saleInvoiceId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage journalTransactionId(Nullable<String> journalTransactionId) {
       if (journalTransactionId.isNull()) {
         this.journalTransactionId = null;
@@ -596,7 +715,7 @@ public final class OrdersListCashResponseRowsItem {
 
     @java.lang.Override
     public OrdersListCashResponseRowsItem build() {
-      return new OrdersListCashResponseRowsItem(id, type, series, number, fullNumber, date, partnerId, employeeId, amount, currency, purpose, cashAccountCode, counterAccountCode, journalTransactionId, notes, createdAt, additionalProperties);
+      return new OrdersListCashResponseRowsItem(id, type, series, number, fullNumber, date, partnerId, employeeId, amount, currency, purpose, cashAccountCode, counterAccountCode, journalTransactionId, saleInvoiceId, purchaseInvoiceId, notes, createdAt, additionalProperties);
     }
 
     @java.lang.Override

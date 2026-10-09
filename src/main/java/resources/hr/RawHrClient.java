@@ -23,6 +23,11 @@ import com.nordlet.api.errors.PaymentRequiredError;
 import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
+import com.nordlet.api.resources.hr.requests.BusinessTripsApproveHrRequest;
+import com.nordlet.api.resources.hr.requests.BusinessTripsCreateHrRequest;
+import com.nordlet.api.resources.hr.requests.BusinessTripsDeleteHrRequest;
+import com.nordlet.api.resources.hr.requests.BusinessTripsGetHrRequest;
+import com.nordlet.api.resources.hr.requests.BusinessTripsListHrRequest;
 import com.nordlet.api.resources.hr.requests.ContractsCreateHrRequest;
 import com.nordlet.api.resources.hr.requests.ContractsEndHrRequest;
 import com.nordlet.api.resources.hr.requests.ContractsListHrRequest;
@@ -42,6 +47,9 @@ import com.nordlet.api.resources.hr.requests.IncapacityCertificatesCreateHrReque
 import com.nordlet.api.resources.hr.requests.IncapacityCertificatesListHrRequest;
 import com.nordlet.api.resources.hr.requests.LeaveBalancesListHrRequest;
 import com.nordlet.api.resources.hr.requests.LeaveBalancesSetHrRequest;
+import com.nordlet.api.resources.hr.requests.PerDiemRatesCreateHrRequest;
+import com.nordlet.api.resources.hr.requests.PerDiemRatesDeleteHrRequest;
+import com.nordlet.api.resources.hr.requests.PerDiemRatesListHrRequest;
 import com.nordlet.api.resources.hr.requests.PositionsCreateHrRequest;
 import com.nordlet.api.resources.hr.requests.PositionsListHrRequest;
 import com.nordlet.api.resources.hr.requests.PositionsUpdateHrRequest;
@@ -50,6 +58,11 @@ import com.nordlet.api.resources.hr.requests.TimesheetsGenerateHrRequest;
 import com.nordlet.api.resources.hr.requests.TimesheetsGetHrRequest;
 import com.nordlet.api.resources.hr.requests.TimesheetsListHrRequest;
 import com.nordlet.api.resources.hr.requests.TimesheetsUpsertHrRequest;
+import com.nordlet.api.resources.hr.types.BusinessTripsApproveHrResponse;
+import com.nordlet.api.resources.hr.types.BusinessTripsCreateHrResponse;
+import com.nordlet.api.resources.hr.types.BusinessTripsDeleteHrResponse;
+import com.nordlet.api.resources.hr.types.BusinessTripsGetHrResponse;
+import com.nordlet.api.resources.hr.types.BusinessTripsListHrResponse;
 import com.nordlet.api.resources.hr.types.ContractsCreateHrResponse;
 import com.nordlet.api.resources.hr.types.ContractsEndHrResponse;
 import com.nordlet.api.resources.hr.types.ContractsListHrResponse;
@@ -69,6 +82,9 @@ import com.nordlet.api.resources.hr.types.IncapacityCertificatesCreateHrResponse
 import com.nordlet.api.resources.hr.types.IncapacityCertificatesListHrResponse;
 import com.nordlet.api.resources.hr.types.LeaveBalancesListHrResponse;
 import com.nordlet.api.resources.hr.types.LeaveBalancesSetHrResponse;
+import com.nordlet.api.resources.hr.types.PerDiemRatesCreateHrResponse;
+import com.nordlet.api.resources.hr.types.PerDiemRatesDeleteHrResponse;
+import com.nordlet.api.resources.hr.types.PerDiemRatesListHrResponse;
 import com.nordlet.api.resources.hr.types.PositionsCreateHrResponse;
 import com.nordlet.api.resources.hr.types.PositionsListHrResponse;
 import com.nordlet.api.resources.hr.types.PositionsUpdateHrResponse;
@@ -1346,17 +1362,17 @@ public class RawHrClient {
                                       }
                                     }
 
-                                    public NordletApiHttpResponse<EmployeesRecordsCreateHrResponse> employeesRecordsCreate(
-                                        EmployeesRecordsCreateHrRequest request) {
-                                      return employeesRecordsCreate(request,null);
+                                    public NordletApiHttpResponse<PerDiemRatesCreateHrResponse> perDiemRatesCreate(
+                                        PerDiemRatesCreateHrRequest request) {
+                                      return perDiemRatesCreate(request,null);
                                     }
 
-                                    public NordletApiHttpResponse<EmployeesRecordsCreateHrResponse> employeesRecordsCreate(
-                                        EmployeesRecordsCreateHrRequest request,
+                                    public NordletApiHttpResponse<PerDiemRatesCreateHrResponse> perDiemRatesCreate(
+                                        PerDiemRatesCreateHrRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                        .addPathSegments("v1/hr/employees/records/create");if (requestOptions != null) {
+                                        .addPathSegments("v1/hr/per-diem-rates/create");if (requestOptions != null) {
                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                             httpUrl.addQueryParameter(_key, _value);
                                           } );
@@ -1386,7 +1402,7 @@ public class RawHrClient {
                                           ResponseBody responseBody = response.body();
                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                           if (response.isSuccessful()) {
-                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EmployeesRecordsCreateHrResponse.class), response);
+                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PerDiemRatesCreateHrResponse.class), response);
                                           }
                                           try {
                                             switch (response.code()) {
@@ -1416,17 +1432,27 @@ public class RawHrClient {
                                         }
                                       }
 
-                                      public NordletApiHttpResponse<EmployeesRecordsUpdateHrResponse> employeesRecordsUpdate(
-                                          EmployeesRecordsUpdateHrRequest request) {
-                                        return employeesRecordsUpdate(request,null);
+                                      public NordletApiHttpResponse<PerDiemRatesListHrResponse> perDiemRatesList(
+                                          ) {
+                                        return perDiemRatesList(PerDiemRatesListHrRequest.builder().build());
                                       }
 
-                                      public NordletApiHttpResponse<EmployeesRecordsUpdateHrResponse> employeesRecordsUpdate(
-                                          EmployeesRecordsUpdateHrRequest request,
+                                      public NordletApiHttpResponse<PerDiemRatesListHrResponse> perDiemRatesList(
+                                          RequestOptions requestOptions) {
+                                        return perDiemRatesList(PerDiemRatesListHrRequest.builder().build(),requestOptions);
+                                      }
+
+                                      public NordletApiHttpResponse<PerDiemRatesListHrResponse> perDiemRatesList(
+                                          PerDiemRatesListHrRequest request) {
+                                        return perDiemRatesList(request,null);
+                                      }
+
+                                      public NordletApiHttpResponse<PerDiemRatesListHrResponse> perDiemRatesList(
+                                          PerDiemRatesListHrRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                          .addPathSegments("v1/hr/employees/records/update");if (requestOptions != null) {
+                                          .addPathSegments("v1/hr/per-diem-rates/list");if (requestOptions != null) {
                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                               httpUrl.addQueryParameter(_key, _value);
                                             } );
@@ -1456,7 +1482,7 @@ public class RawHrClient {
                                             ResponseBody responseBody = response.body();
                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                             if (response.isSuccessful()) {
-                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EmployeesRecordsUpdateHrResponse.class), response);
+                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PerDiemRatesListHrResponse.class), response);
                                             }
                                             try {
                                               switch (response.code()) {
@@ -1486,17 +1512,17 @@ public class RawHrClient {
                                           }
                                         }
 
-                                        public NordletApiHttpResponse<EmployeesRecordsDeleteHrResponse> employeesRecordsDelete(
-                                            EmployeesRecordsDeleteHrRequest request) {
-                                          return employeesRecordsDelete(request,null);
+                                        public NordletApiHttpResponse<PerDiemRatesDeleteHrResponse> perDiemRatesDelete(
+                                            PerDiemRatesDeleteHrRequest request) {
+                                          return perDiemRatesDelete(request,null);
                                         }
 
-                                        public NordletApiHttpResponse<EmployeesRecordsDeleteHrResponse> employeesRecordsDelete(
-                                            EmployeesRecordsDeleteHrRequest request,
+                                        public NordletApiHttpResponse<PerDiemRatesDeleteHrResponse> perDiemRatesDelete(
+                                            PerDiemRatesDeleteHrRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                            .addPathSegments("v1/hr/employees/records/delete");if (requestOptions != null) {
+                                            .addPathSegments("v1/hr/per-diem-rates/delete");if (requestOptions != null) {
                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                 httpUrl.addQueryParameter(_key, _value);
                                               } );
@@ -1526,7 +1552,7 @@ public class RawHrClient {
                                               ResponseBody responseBody = response.body();
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EmployeesRecordsDeleteHrResponse.class), response);
+                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PerDiemRatesDeleteHrResponse.class), response);
                                               }
                                               try {
                                                 switch (response.code()) {
@@ -1556,27 +1582,17 @@ public class RawHrClient {
                                             }
                                           }
 
-                                          public NordletApiHttpResponse<EmployeesRecordsListHrResponse> employeesRecordsList(
-                                              ) {
-                                            return employeesRecordsList(EmployeesRecordsListHrRequest.builder().build());
+                                          public NordletApiHttpResponse<BusinessTripsCreateHrResponse> businessTripsCreate(
+                                              BusinessTripsCreateHrRequest request) {
+                                            return businessTripsCreate(request,null);
                                           }
 
-                                          public NordletApiHttpResponse<EmployeesRecordsListHrResponse> employeesRecordsList(
-                                              RequestOptions requestOptions) {
-                                            return employeesRecordsList(EmployeesRecordsListHrRequest.builder().build(),requestOptions);
-                                          }
-
-                                          public NordletApiHttpResponse<EmployeesRecordsListHrResponse> employeesRecordsList(
-                                              EmployeesRecordsListHrRequest request) {
-                                            return employeesRecordsList(request,null);
-                                          }
-
-                                          public NordletApiHttpResponse<EmployeesRecordsListHrResponse> employeesRecordsList(
-                                              EmployeesRecordsListHrRequest request,
+                                          public NordletApiHttpResponse<BusinessTripsCreateHrResponse> businessTripsCreate(
+                                              BusinessTripsCreateHrRequest request,
                                               RequestOptions requestOptions) {
                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                              .addPathSegments("v1/hr/employees/records/list");if (requestOptions != null) {
+                                              .addPathSegments("v1/hr/business-trips/create");if (requestOptions != null) {
                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                   httpUrl.addQueryParameter(_key, _value);
                                                 } );
@@ -1606,7 +1622,7 @@ public class RawHrClient {
                                                 ResponseBody responseBody = response.body();
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EmployeesRecordsListHrResponse.class), response);
+                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, BusinessTripsCreateHrResponse.class), response);
                                                 }
                                                 try {
                                                   switch (response.code()) {
@@ -1636,17 +1652,17 @@ public class RawHrClient {
                                               }
                                             }
 
-                                            public NordletApiHttpResponse<EmployeesAttachmentsListHrResponse> employeesAttachmentsList(
-                                                EmployeesAttachmentsListHrRequest request) {
-                                              return employeesAttachmentsList(request,null);
+                                            public NordletApiHttpResponse<BusinessTripsGetHrResponse> businessTripsGet(
+                                                BusinessTripsGetHrRequest request) {
+                                              return businessTripsGet(request,null);
                                             }
 
-                                            public NordletApiHttpResponse<EmployeesAttachmentsListHrResponse> employeesAttachmentsList(
-                                                EmployeesAttachmentsListHrRequest request,
+                                            public NordletApiHttpResponse<BusinessTripsGetHrResponse> businessTripsGet(
+                                                BusinessTripsGetHrRequest request,
                                                 RequestOptions requestOptions) {
                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                .addPathSegments("v1/hr/employees/attachments/list");if (requestOptions != null) {
+                                                .addPathSegments("v1/hr/business-trips/get");if (requestOptions != null) {
                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                     httpUrl.addQueryParameter(_key, _value);
                                                   } );
@@ -1676,7 +1692,7 @@ public class RawHrClient {
                                                   ResponseBody responseBody = response.body();
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EmployeesAttachmentsListHrResponse.class), response);
+                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, BusinessTripsGetHrResponse.class), response);
                                                   }
                                                   try {
                                                     switch (response.code()) {
@@ -1706,17 +1722,27 @@ public class RawHrClient {
                                                 }
                                               }
 
-                                              public NordletApiHttpResponse<TimesheetsGenerateHrResponse> timesheetsGenerate(
-                                                  TimesheetsGenerateHrRequest request) {
-                                                return timesheetsGenerate(request,null);
+                                              public NordletApiHttpResponse<BusinessTripsListHrResponse> businessTripsList(
+                                                  ) {
+                                                return businessTripsList(BusinessTripsListHrRequest.builder().build());
                                               }
 
-                                              public NordletApiHttpResponse<TimesheetsGenerateHrResponse> timesheetsGenerate(
-                                                  TimesheetsGenerateHrRequest request,
+                                              public NordletApiHttpResponse<BusinessTripsListHrResponse> businessTripsList(
+                                                  RequestOptions requestOptions) {
+                                                return businessTripsList(BusinessTripsListHrRequest.builder().build(),requestOptions);
+                                              }
+
+                                              public NordletApiHttpResponse<BusinessTripsListHrResponse> businessTripsList(
+                                                  BusinessTripsListHrRequest request) {
+                                                return businessTripsList(request,null);
+                                              }
+
+                                              public NordletApiHttpResponse<BusinessTripsListHrResponse> businessTripsList(
+                                                  BusinessTripsListHrRequest request,
                                                   RequestOptions requestOptions) {
                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                  .addPathSegments("v1/hr/timesheets/generate");if (requestOptions != null) {
+                                                  .addPathSegments("v1/hr/business-trips/list");if (requestOptions != null) {
                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                       httpUrl.addQueryParameter(_key, _value);
                                                     } );
@@ -1746,7 +1772,7 @@ public class RawHrClient {
                                                     ResponseBody responseBody = response.body();
                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                     if (response.isSuccessful()) {
-                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TimesheetsGenerateHrResponse.class), response);
+                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, BusinessTripsListHrResponse.class), response);
                                                     }
                                                     try {
                                                       switch (response.code()) {
@@ -1776,17 +1802,17 @@ public class RawHrClient {
                                                   }
                                                 }
 
-                                                public NordletApiHttpResponse<TimesheetsUpsertHrResponse> timesheetsUpsert(
-                                                    TimesheetsUpsertHrRequest request) {
-                                                  return timesheetsUpsert(request,null);
+                                                public NordletApiHttpResponse<BusinessTripsApproveHrResponse> businessTripsApprove(
+                                                    BusinessTripsApproveHrRequest request) {
+                                                  return businessTripsApprove(request,null);
                                                 }
 
-                                                public NordletApiHttpResponse<TimesheetsUpsertHrResponse> timesheetsUpsert(
-                                                    TimesheetsUpsertHrRequest request,
+                                                public NordletApiHttpResponse<BusinessTripsApproveHrResponse> businessTripsApprove(
+                                                    BusinessTripsApproveHrRequest request,
                                                     RequestOptions requestOptions) {
                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                    .addPathSegments("v1/hr/timesheets/upsert");if (requestOptions != null) {
+                                                    .addPathSegments("v1/hr/business-trips/approve");if (requestOptions != null) {
                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                         httpUrl.addQueryParameter(_key, _value);
                                                       } );
@@ -1816,7 +1842,7 @@ public class RawHrClient {
                                                       ResponseBody responseBody = response.body();
                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                       if (response.isSuccessful()) {
-                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TimesheetsUpsertHrResponse.class), response);
+                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, BusinessTripsApproveHrResponse.class), response);
                                                       }
                                                       try {
                                                         switch (response.code()) {
@@ -1846,17 +1872,17 @@ public class RawHrClient {
                                                     }
                                                   }
 
-                                                  public NordletApiHttpResponse<TimesheetsGetHrResponse> timesheetsGet(
-                                                      TimesheetsGetHrRequest request) {
-                                                    return timesheetsGet(request,null);
+                                                  public NordletApiHttpResponse<BusinessTripsDeleteHrResponse> businessTripsDelete(
+                                                      BusinessTripsDeleteHrRequest request) {
+                                                    return businessTripsDelete(request,null);
                                                   }
 
-                                                  public NordletApiHttpResponse<TimesheetsGetHrResponse> timesheetsGet(
-                                                      TimesheetsGetHrRequest request,
+                                                  public NordletApiHttpResponse<BusinessTripsDeleteHrResponse> businessTripsDelete(
+                                                      BusinessTripsDeleteHrRequest request,
                                                       RequestOptions requestOptions) {
                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                      .addPathSegments("v1/hr/timesheets/get");if (requestOptions != null) {
+                                                      .addPathSegments("v1/hr/business-trips/delete");if (requestOptions != null) {
                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                           httpUrl.addQueryParameter(_key, _value);
                                                         } );
@@ -1886,7 +1912,7 @@ public class RawHrClient {
                                                         ResponseBody responseBody = response.body();
                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                         if (response.isSuccessful()) {
-                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TimesheetsGetHrResponse.class), response);
+                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, BusinessTripsDeleteHrResponse.class), response);
                                                         }
                                                         try {
                                                           switch (response.code()) {
@@ -1916,17 +1942,17 @@ public class RawHrClient {
                                                       }
                                                     }
 
-                                                    public NordletApiHttpResponse<TimesheetsListHrResponse> timesheetsList(
-                                                        TimesheetsListHrRequest request) {
-                                                      return timesheetsList(request,null);
+                                                    public NordletApiHttpResponse<EmployeesRecordsCreateHrResponse> employeesRecordsCreate(
+                                                        EmployeesRecordsCreateHrRequest request) {
+                                                      return employeesRecordsCreate(request,null);
                                                     }
 
-                                                    public NordletApiHttpResponse<TimesheetsListHrResponse> timesheetsList(
-                                                        TimesheetsListHrRequest request,
+                                                    public NordletApiHttpResponse<EmployeesRecordsCreateHrResponse> employeesRecordsCreate(
+                                                        EmployeesRecordsCreateHrRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                        .addPathSegments("v1/hr/timesheets/list");if (requestOptions != null) {
+                                                        .addPathSegments("v1/hr/employees/records/create");if (requestOptions != null) {
                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                             httpUrl.addQueryParameter(_key, _value);
                                                           } );
@@ -1956,7 +1982,7 @@ public class RawHrClient {
                                                           ResponseBody responseBody = response.body();
                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                           if (response.isSuccessful()) {
-                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TimesheetsListHrResponse.class), response);
+                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EmployeesRecordsCreateHrResponse.class), response);
                                                           }
                                                           try {
                                                             switch (response.code()) {
@@ -1986,17 +2012,17 @@ public class RawHrClient {
                                                         }
                                                       }
 
-                                                      public NordletApiHttpResponse<TimesheetsDeleteHrResponse> timesheetsDelete(
-                                                          TimesheetsDeleteHrRequest request) {
-                                                        return timesheetsDelete(request,null);
+                                                      public NordletApiHttpResponse<EmployeesRecordsUpdateHrResponse> employeesRecordsUpdate(
+                                                          EmployeesRecordsUpdateHrRequest request) {
+                                                        return employeesRecordsUpdate(request,null);
                                                       }
 
-                                                      public NordletApiHttpResponse<TimesheetsDeleteHrResponse> timesheetsDelete(
-                                                          TimesheetsDeleteHrRequest request,
+                                                      public NordletApiHttpResponse<EmployeesRecordsUpdateHrResponse> employeesRecordsUpdate(
+                                                          EmployeesRecordsUpdateHrRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                          .addPathSegments("v1/hr/timesheets/delete");if (requestOptions != null) {
+                                                          .addPathSegments("v1/hr/employees/records/update");if (requestOptions != null) {
                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                               httpUrl.addQueryParameter(_key, _value);
                                                             } );
@@ -2026,7 +2052,7 @@ public class RawHrClient {
                                                             ResponseBody responseBody = response.body();
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TimesheetsDeleteHrResponse.class), response);
+                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EmployeesRecordsUpdateHrResponse.class), response);
                                                             }
                                                             try {
                                                               switch (response.code()) {
@@ -2055,4 +2081,574 @@ public class RawHrClient {
                                                             throw new NordletApiException("Network error executing HTTP request", e);
                                                           }
                                                         }
-                                                      }
+
+                                                        public NordletApiHttpResponse<EmployeesRecordsDeleteHrResponse> employeesRecordsDelete(
+                                                            EmployeesRecordsDeleteHrRequest request) {
+                                                          return employeesRecordsDelete(request,null);
+                                                        }
+
+                                                        public NordletApiHttpResponse<EmployeesRecordsDeleteHrResponse> employeesRecordsDelete(
+                                                            EmployeesRecordsDeleteHrRequest request,
+                                                            RequestOptions requestOptions) {
+                                                          HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                            .addPathSegments("v1/hr/employees/records/delete");if (requestOptions != null) {
+                                                              requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                httpUrl.addQueryParameter(_key, _value);
+                                                              } );
+                                                            }
+                                                            RequestBody body;
+                                                            try {
+                                                              body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                            }
+                                                            catch(JsonProcessingException e) {
+                                                              throw new NordletApiException("Failed to serialize request", e);
+                                                            }
+                                                            Request okhttpRequest = new Request.Builder()
+                                                              .url(httpUrl.build())
+                                                              .method("POST", body)
+                                                              .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                              .addHeader("Content-Type", "application/json")
+                                                              .addHeader("Accept", "application/json")
+                                                              .build();
+                                                            OkHttpClient client = clientOptions.httpClient();
+                                                            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                              client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                            }
+                                                            if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                              okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                            }
+                                                            try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                              ResponseBody responseBody = response.body();
+                                                              String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                              if (response.isSuccessful()) {
+                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EmployeesRecordsDeleteHrResponse.class), response);
+                                                              }
+                                                              try {
+                                                                switch (response.code()) {
+                                                                  case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                }
+                                                              }
+                                                              catch (JsonProcessingException ignored) {
+                                                                // unable to map error response, throwing generic error
+                                                              }
+                                                              Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                              throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                            }
+                                                            catch (JsonProcessingException e) {
+                                                              throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                            }
+                                                            catch (IOException e) {
+                                                              throw new NordletApiException("Network error executing HTTP request", e);
+                                                            }
+                                                          }
+
+                                                          public NordletApiHttpResponse<EmployeesRecordsListHrResponse> employeesRecordsList(
+                                                              ) {
+                                                            return employeesRecordsList(EmployeesRecordsListHrRequest.builder().build());
+                                                          }
+
+                                                          public NordletApiHttpResponse<EmployeesRecordsListHrResponse> employeesRecordsList(
+                                                              RequestOptions requestOptions) {
+                                                            return employeesRecordsList(EmployeesRecordsListHrRequest.builder().build(),requestOptions);
+                                                          }
+
+                                                          public NordletApiHttpResponse<EmployeesRecordsListHrResponse> employeesRecordsList(
+                                                              EmployeesRecordsListHrRequest request) {
+                                                            return employeesRecordsList(request,null);
+                                                          }
+
+                                                          public NordletApiHttpResponse<EmployeesRecordsListHrResponse> employeesRecordsList(
+                                                              EmployeesRecordsListHrRequest request,
+                                                              RequestOptions requestOptions) {
+                                                            HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                              .addPathSegments("v1/hr/employees/records/list");if (requestOptions != null) {
+                                                                requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                  httpUrl.addQueryParameter(_key, _value);
+                                                                } );
+                                                              }
+                                                              RequestBody body;
+                                                              try {
+                                                                body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                              }
+                                                              catch(JsonProcessingException e) {
+                                                                throw new NordletApiException("Failed to serialize request", e);
+                                                              }
+                                                              Request okhttpRequest = new Request.Builder()
+                                                                .url(httpUrl.build())
+                                                                .method("POST", body)
+                                                                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                .addHeader("Content-Type", "application/json")
+                                                                .addHeader("Accept", "application/json")
+                                                                .build();
+                                                              OkHttpClient client = clientOptions.httpClient();
+                                                              if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                              }
+                                                              if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                              }
+                                                              try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                ResponseBody responseBody = response.body();
+                                                                String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                if (response.isSuccessful()) {
+                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EmployeesRecordsListHrResponse.class), response);
+                                                                }
+                                                                try {
+                                                                  switch (response.code()) {
+                                                                    case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  }
+                                                                }
+                                                                catch (JsonProcessingException ignored) {
+                                                                  // unable to map error response, throwing generic error
+                                                                }
+                                                                Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                              }
+                                                              catch (JsonProcessingException e) {
+                                                                throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                              }
+                                                              catch (IOException e) {
+                                                                throw new NordletApiException("Network error executing HTTP request", e);
+                                                              }
+                                                            }
+
+                                                            public NordletApiHttpResponse<EmployeesAttachmentsListHrResponse> employeesAttachmentsList(
+                                                                EmployeesAttachmentsListHrRequest request) {
+                                                              return employeesAttachmentsList(request,null);
+                                                            }
+
+                                                            public NordletApiHttpResponse<EmployeesAttachmentsListHrResponse> employeesAttachmentsList(
+                                                                EmployeesAttachmentsListHrRequest request,
+                                                                RequestOptions requestOptions) {
+                                                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                .addPathSegments("v1/hr/employees/attachments/list");if (requestOptions != null) {
+                                                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                    httpUrl.addQueryParameter(_key, _value);
+                                                                  } );
+                                                                }
+                                                                RequestBody body;
+                                                                try {
+                                                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                }
+                                                                catch(JsonProcessingException e) {
+                                                                  throw new NordletApiException("Failed to serialize request", e);
+                                                                }
+                                                                Request okhttpRequest = new Request.Builder()
+                                                                  .url(httpUrl.build())
+                                                                  .method("POST", body)
+                                                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                  .addHeader("Content-Type", "application/json")
+                                                                  .addHeader("Accept", "application/json")
+                                                                  .build();
+                                                                OkHttpClient client = clientOptions.httpClient();
+                                                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                  client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                }
+                                                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                }
+                                                                try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                  ResponseBody responseBody = response.body();
+                                                                  String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                  if (response.isSuccessful()) {
+                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EmployeesAttachmentsListHrResponse.class), response);
+                                                                  }
+                                                                  try {
+                                                                    switch (response.code()) {
+                                                                      case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    }
+                                                                  }
+                                                                  catch (JsonProcessingException ignored) {
+                                                                    // unable to map error response, throwing generic error
+                                                                  }
+                                                                  Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                  throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                }
+                                                                catch (JsonProcessingException e) {
+                                                                  throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                }
+                                                                catch (IOException e) {
+                                                                  throw new NordletApiException("Network error executing HTTP request", e);
+                                                                }
+                                                              }
+
+                                                              public NordletApiHttpResponse<TimesheetsGenerateHrResponse> timesheetsGenerate(
+                                                                  TimesheetsGenerateHrRequest request) {
+                                                                return timesheetsGenerate(request,null);
+                                                              }
+
+                                                              public NordletApiHttpResponse<TimesheetsGenerateHrResponse> timesheetsGenerate(
+                                                                  TimesheetsGenerateHrRequest request,
+                                                                  RequestOptions requestOptions) {
+                                                                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                  .addPathSegments("v1/hr/timesheets/generate");if (requestOptions != null) {
+                                                                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                      httpUrl.addQueryParameter(_key, _value);
+                                                                    } );
+                                                                  }
+                                                                  RequestBody body;
+                                                                  try {
+                                                                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                  }
+                                                                  catch(JsonProcessingException e) {
+                                                                    throw new NordletApiException("Failed to serialize request", e);
+                                                                  }
+                                                                  Request okhttpRequest = new Request.Builder()
+                                                                    .url(httpUrl.build())
+                                                                    .method("POST", body)
+                                                                    .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                    .addHeader("Content-Type", "application/json")
+                                                                    .addHeader("Accept", "application/json")
+                                                                    .build();
+                                                                  OkHttpClient client = clientOptions.httpClient();
+                                                                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                    client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                  }
+                                                                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                  }
+                                                                  try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                    ResponseBody responseBody = response.body();
+                                                                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                    if (response.isSuccessful()) {
+                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TimesheetsGenerateHrResponse.class), response);
+                                                                    }
+                                                                    try {
+                                                                      switch (response.code()) {
+                                                                        case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      }
+                                                                    }
+                                                                    catch (JsonProcessingException ignored) {
+                                                                      // unable to map error response, throwing generic error
+                                                                    }
+                                                                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                    throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                  }
+                                                                  catch (JsonProcessingException e) {
+                                                                    throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                  }
+                                                                  catch (IOException e) {
+                                                                    throw new NordletApiException("Network error executing HTTP request", e);
+                                                                  }
+                                                                }
+
+                                                                public NordletApiHttpResponse<TimesheetsUpsertHrResponse> timesheetsUpsert(
+                                                                    TimesheetsUpsertHrRequest request) {
+                                                                  return timesheetsUpsert(request,null);
+                                                                }
+
+                                                                public NordletApiHttpResponse<TimesheetsUpsertHrResponse> timesheetsUpsert(
+                                                                    TimesheetsUpsertHrRequest request,
+                                                                    RequestOptions requestOptions) {
+                                                                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                    .addPathSegments("v1/hr/timesheets/upsert");if (requestOptions != null) {
+                                                                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                        httpUrl.addQueryParameter(_key, _value);
+                                                                      } );
+                                                                    }
+                                                                    RequestBody body;
+                                                                    try {
+                                                                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                    }
+                                                                    catch(JsonProcessingException e) {
+                                                                      throw new NordletApiException("Failed to serialize request", e);
+                                                                    }
+                                                                    Request okhttpRequest = new Request.Builder()
+                                                                      .url(httpUrl.build())
+                                                                      .method("POST", body)
+                                                                      .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                      .addHeader("Content-Type", "application/json")
+                                                                      .addHeader("Accept", "application/json")
+                                                                      .build();
+                                                                    OkHttpClient client = clientOptions.httpClient();
+                                                                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                      client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                    }
+                                                                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                    }
+                                                                    try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                      ResponseBody responseBody = response.body();
+                                                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                      if (response.isSuccessful()) {
+                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TimesheetsUpsertHrResponse.class), response);
+                                                                      }
+                                                                      try {
+                                                                        switch (response.code()) {
+                                                                          case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        }
+                                                                      }
+                                                                      catch (JsonProcessingException ignored) {
+                                                                        // unable to map error response, throwing generic error
+                                                                      }
+                                                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                      throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                    }
+                                                                    catch (JsonProcessingException e) {
+                                                                      throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                    }
+                                                                    catch (IOException e) {
+                                                                      throw new NordletApiException("Network error executing HTTP request", e);
+                                                                    }
+                                                                  }
+
+                                                                  public NordletApiHttpResponse<TimesheetsGetHrResponse> timesheetsGet(
+                                                                      TimesheetsGetHrRequest request) {
+                                                                    return timesheetsGet(request,null);
+                                                                  }
+
+                                                                  public NordletApiHttpResponse<TimesheetsGetHrResponse> timesheetsGet(
+                                                                      TimesheetsGetHrRequest request,
+                                                                      RequestOptions requestOptions) {
+                                                                    HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                      .addPathSegments("v1/hr/timesheets/get");if (requestOptions != null) {
+                                                                        requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                          httpUrl.addQueryParameter(_key, _value);
+                                                                        } );
+                                                                      }
+                                                                      RequestBody body;
+                                                                      try {
+                                                                        body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                      }
+                                                                      catch(JsonProcessingException e) {
+                                                                        throw new NordletApiException("Failed to serialize request", e);
+                                                                      }
+                                                                      Request okhttpRequest = new Request.Builder()
+                                                                        .url(httpUrl.build())
+                                                                        .method("POST", body)
+                                                                        .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                        .addHeader("Content-Type", "application/json")
+                                                                        .addHeader("Accept", "application/json")
+                                                                        .build();
+                                                                      OkHttpClient client = clientOptions.httpClient();
+                                                                      if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                        client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                      }
+                                                                      if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                        okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                      }
+                                                                      try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                        ResponseBody responseBody = response.body();
+                                                                        String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                        if (response.isSuccessful()) {
+                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TimesheetsGetHrResponse.class), response);
+                                                                        }
+                                                                        try {
+                                                                          switch (response.code()) {
+                                                                            case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          }
+                                                                        }
+                                                                        catch (JsonProcessingException ignored) {
+                                                                          // unable to map error response, throwing generic error
+                                                                        }
+                                                                        Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                        throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                      }
+                                                                      catch (JsonProcessingException e) {
+                                                                        throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                      }
+                                                                      catch (IOException e) {
+                                                                        throw new NordletApiException("Network error executing HTTP request", e);
+                                                                      }
+                                                                    }
+
+                                                                    public NordletApiHttpResponse<TimesheetsListHrResponse> timesheetsList(
+                                                                        TimesheetsListHrRequest request) {
+                                                                      return timesheetsList(request,null);
+                                                                    }
+
+                                                                    public NordletApiHttpResponse<TimesheetsListHrResponse> timesheetsList(
+                                                                        TimesheetsListHrRequest request,
+                                                                        RequestOptions requestOptions) {
+                                                                      HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                        .addPathSegments("v1/hr/timesheets/list");if (requestOptions != null) {
+                                                                          requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                            httpUrl.addQueryParameter(_key, _value);
+                                                                          } );
+                                                                        }
+                                                                        RequestBody body;
+                                                                        try {
+                                                                          body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                        }
+                                                                        catch(JsonProcessingException e) {
+                                                                          throw new NordletApiException("Failed to serialize request", e);
+                                                                        }
+                                                                        Request okhttpRequest = new Request.Builder()
+                                                                          .url(httpUrl.build())
+                                                                          .method("POST", body)
+                                                                          .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                          .addHeader("Content-Type", "application/json")
+                                                                          .addHeader("Accept", "application/json")
+                                                                          .build();
+                                                                        OkHttpClient client = clientOptions.httpClient();
+                                                                        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                          client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                        }
+                                                                        if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                          okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                        }
+                                                                        try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                          ResponseBody responseBody = response.body();
+                                                                          String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                          if (response.isSuccessful()) {
+                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TimesheetsListHrResponse.class), response);
+                                                                          }
+                                                                          try {
+                                                                            switch (response.code()) {
+                                                                              case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                            }
+                                                                          }
+                                                                          catch (JsonProcessingException ignored) {
+                                                                            // unable to map error response, throwing generic error
+                                                                          }
+                                                                          Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                          throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                        }
+                                                                        catch (JsonProcessingException e) {
+                                                                          throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                        }
+                                                                        catch (IOException e) {
+                                                                          throw new NordletApiException("Network error executing HTTP request", e);
+                                                                        }
+                                                                      }
+
+                                                                      public NordletApiHttpResponse<TimesheetsDeleteHrResponse> timesheetsDelete(
+                                                                          TimesheetsDeleteHrRequest request) {
+                                                                        return timesheetsDelete(request,null);
+                                                                      }
+
+                                                                      public NordletApiHttpResponse<TimesheetsDeleteHrResponse> timesheetsDelete(
+                                                                          TimesheetsDeleteHrRequest request,
+                                                                          RequestOptions requestOptions) {
+                                                                        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                          .addPathSegments("v1/hr/timesheets/delete");if (requestOptions != null) {
+                                                                            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                              httpUrl.addQueryParameter(_key, _value);
+                                                                            } );
+                                                                          }
+                                                                          RequestBody body;
+                                                                          try {
+                                                                            body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                          }
+                                                                          catch(JsonProcessingException e) {
+                                                                            throw new NordletApiException("Failed to serialize request", e);
+                                                                          }
+                                                                          Request okhttpRequest = new Request.Builder()
+                                                                            .url(httpUrl.build())
+                                                                            .method("POST", body)
+                                                                            .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                            .addHeader("Content-Type", "application/json")
+                                                                            .addHeader("Accept", "application/json")
+                                                                            .build();
+                                                                          OkHttpClient client = clientOptions.httpClient();
+                                                                          if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                            client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                          }
+                                                                          if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                            okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                          }
+                                                                          try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                            ResponseBody responseBody = response.body();
+                                                                            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                            if (response.isSuccessful()) {
+                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TimesheetsDeleteHrResponse.class), response);
+                                                                            }
+                                                                            try {
+                                                                              switch (response.code()) {
+                                                                                case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                              }
+                                                                            }
+                                                                            catch (JsonProcessingException ignored) {
+                                                                              // unable to map error response, throwing generic error
+                                                                            }
+                                                                            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                            throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                          }
+                                                                          catch (JsonProcessingException e) {
+                                                                            throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                          }
+                                                                          catch (IOException e) {
+                                                                            throw new NordletApiException("Network error executing HTTP request", e);
+                                                                          }
+                                                                        }
+                                                                      }

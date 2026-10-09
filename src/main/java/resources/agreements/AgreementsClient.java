@@ -16,6 +16,8 @@ import com.nordlet.api.resources.agreements.requests.AgreementsUpdateAgreementsR
 import com.nordlet.api.resources.agreements.requests.InsurancePoliciesCreateAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.InsurancePoliciesDeleteAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.InsurancePoliciesListAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.SettingsGetAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.SettingsUpdateAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.TypesCreateAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.TypesListAgreementsRequest;
 import com.nordlet.api.resources.agreements.types.AgreementsBillingRunAgreementsResponse;
@@ -28,6 +30,8 @@ import com.nordlet.api.resources.agreements.types.AgreementsUpdateAgreementsResp
 import com.nordlet.api.resources.agreements.types.InsurancePoliciesCreateAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.InsurancePoliciesDeleteAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.InsurancePoliciesListAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.SettingsGetAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.SettingsUpdateAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.TypesCreateAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.TypesListAgreementsResponse;
 
@@ -46,6 +50,32 @@ public class AgreementsClient {
    */
   public RawAgreementsClient withRawResponse() {
     return this.rawClient;
+  }
+
+  public SettingsGetAgreementsResponse settingsGet() {
+    return this.rawClient.settingsGet().body();
+  }
+
+  public SettingsGetAgreementsResponse settingsGet(RequestOptions requestOptions) {
+    return this.rawClient.settingsGet(requestOptions).body();
+  }
+
+  public SettingsGetAgreementsResponse settingsGet(SettingsGetAgreementsRequest request) {
+    return this.rawClient.settingsGet(request).body();
+  }
+
+  public SettingsGetAgreementsResponse settingsGet(SettingsGetAgreementsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.settingsGet(request, requestOptions).body();
+  }
+
+  public SettingsUpdateAgreementsResponse settingsUpdate(SettingsUpdateAgreementsRequest request) {
+    return this.rawClient.settingsUpdate(request).body();
+  }
+
+  public SettingsUpdateAgreementsResponse settingsUpdate(SettingsUpdateAgreementsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.settingsUpdate(request, requestOptions).body();
   }
 
   public TypesCreateAgreementsResponse typesCreate(TypesCreateAgreementsRequest request) {

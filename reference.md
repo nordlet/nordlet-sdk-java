@@ -3843,6 +3843,60 @@ client.partners().delete(
 </dl>
 </details>
 
+<details><summary><code>client.partners.merge(request) -> MergePartnersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.partners().merge(
+    MergePartnersRequest
+        .builder()
+        .sourceId("sourceId")
+        .targetId("targetId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sourceId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**targetId:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.partners.anonymize(request) -> AnonymizePartnersResponse</code></summary>
 <dl>
 <dd>
@@ -9246,6 +9300,14 @@ client.sales().invoicesIssue(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**returnToStock:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -12301,6 +12363,126 @@ client.purchases().invoicesRegister(
 <dd>
 
 **warehouseId:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.deferralsList(request) -> DeferralsListPurchasesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.purchases().deferralsList(
+    DeferralsListPurchasesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<DeferralsListPurchasesRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<DeferralsListPurchasesRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.purchases.deferralsPost(request) -> DeferralsPostPurchasesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.purchases().deferralsPost(
+    DeferralsPostPurchasesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**asOfDate:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -22083,6 +22265,80 @@ client.migration().booksImport(
 </details>
 
 ## assets
+<details><summary><code>client.assets.settingsGet(request) -> SettingsGetAssetsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().settingsGet(
+    SettingsGetAssetsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.assets.settingsUpdate(request) -> SettingsUpdateAssetsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().settingsUpdate(
+    SettingsUpdateAssetsRequest
+        .builder()
+        .autoDepreciation(true)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**autoDepreciation:** `Boolean` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.assets.groupsCreate(request) -> GroupsCreateAssetsResponse</code></summary>
 <dl>
 <dd>
@@ -24442,6 +24698,482 @@ client.hr().incapacityCertificatesList(
 </dl>
 </details>
 
+<details><summary><code>client.hr.perDiemRatesCreate(request) -> PerDiemRatesCreateHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.hr().perDiemRatesCreate(
+    PerDiemRatesCreateHrRequest
+        .builder()
+        .countryCode("countryCode")
+        .dailyAmount("121.00")
+        .validFrom("2026-07-01")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**countryCode:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dailyAmount:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**validFrom:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.hr.perDiemRatesList(request) -> PerDiemRatesListHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.hr().perDiemRatesList(
+    PerDiemRatesListHrRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<PerDiemRatesListHrRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<PerDiemRatesListHrRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.hr.perDiemRatesDelete(request) -> PerDiemRatesDeleteHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.hr().perDiemRatesDelete(
+    PerDiemRatesDeleteHrRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.hr.businessTripsCreate(request) -> BusinessTripsCreateHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.hr().businessTripsCreate(
+    BusinessTripsCreateHrRequest
+        .builder()
+        .employeeId("employeeId")
+        .destinationCountryCode("destinationCountryCode")
+        .purpose("purpose")
+        .startDate("2026-07-01")
+        .endDate("2026-07-01")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**employeeId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**destinationCountryCode:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purpose:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endDate:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.hr.businessTripsGet(request) -> BusinessTripsGetHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.hr().businessTripsGet(
+    BusinessTripsGetHrRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.hr.businessTripsList(request) -> BusinessTripsListHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.hr().businessTripsList(
+    BusinessTripsListHrRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<BusinessTripsListHrRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<BusinessTripsListHrRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.hr.businessTripsApprove(request) -> BusinessTripsApproveHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.hr().businessTripsApprove(
+    BusinessTripsApproveHrRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.hr.businessTripsDelete(request) -> BusinessTripsDeleteHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.hr().businessTripsDelete(
+    BusinessTripsDeleteHrRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.hr.employeesRecordsCreate(request) -> EmployeesRecordsCreateHrResponse</code></summary>
 <dl>
 <dd>
@@ -26494,6 +27226,60 @@ client.payroll().runsApprove(
 </dl>
 </details>
 
+<details><summary><code>client.payroll.runsReverse(request) -> RunsReversePayrollResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.payroll().runsReverse(
+    RunsReversePayrollRequest
+        .builder()
+        .id("id")
+        .reason("reason")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reason:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.payroll.runsCancel(request) -> RunsCancelPayrollResponse</code></summary>
 <dl>
 <dd>
@@ -26610,6 +27396,80 @@ client.payroll().paymentsExport(
 </details>
 
 ## agreements
+<details><summary><code>client.agreements.settingsGet(request) -> SettingsGetAgreementsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.agreements().settingsGet(
+    SettingsGetAgreementsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agreements.settingsUpdate(request) -> SettingsUpdateAgreementsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.agreements().settingsUpdate(
+    SettingsUpdateAgreementsRequest
+        .builder()
+        .autoBilling(true)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**autoBilling:** `Boolean` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.agreements.typesCreate(request) -> TypesCreateAgreementsResponse</code></summary>
 <dl>
 <dd>
@@ -31026,7 +31886,6 @@ client.cash().ordersCreate(
         .date("2026-07-01")
         .amount("121.0000")
         .purpose("purpose")
-        .counterAccountCode("counterAccountCode")
         .build()
 );
 ```
@@ -31075,7 +31934,7 @@ client.cash().ordersCreate(
 <dl>
 <dd>
 
-**counterAccountCode:** `String` 
+**counterAccountCode:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -31084,6 +31943,22 @@ client.cash().ordersCreate(
 <dd>
 
 **cashAccountCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**saleInvoiceId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchaseInvoiceId:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -31289,6 +32164,207 @@ client.cash().balance(
 <dd>
 
 **asOf:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.cash.expenseReportsCreate(request) -> ExpenseReportsCreateCashResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.cash().expenseReportsCreate(
+    ExpenseReportsCreateCashRequest
+        .builder()
+        .employeeId("employeeId")
+        .date("2026-07-01")
+        .lines(
+            Arrays.asList(
+                ExpenseReportsCreateCashRequestLinesItem
+                    .builder()
+                    .description("description")
+                    .accountCode("accountCode")
+                    .netAmount("121.00")
+                    .build()
+            )
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**employeeId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lines:** `List<ExpenseReportsCreateCashRequestLinesItem>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.cash.expenseReportsGet(request) -> ExpenseReportsGetCashResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.cash().expenseReportsGet(
+    ExpenseReportsGetCashRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.cash.expenseReportsList(request) -> ExpenseReportsListCashResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.cash().expenseReportsList(
+    ExpenseReportsListCashRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<ExpenseReportsListCashRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<ExpenseReportsListCashRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -33198,6 +34274,458 @@ client.pos().reportsList(
 </dl>
 </details>
 
+<details><summary><code>client.pos.shiftsOpen(request) -> ShiftsOpenPosResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.pos().shiftsOpen(
+    ShiftsOpenPosRequest
+        .builder()
+        .deviceId("deviceId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**deviceId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warehouseId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**openingCash:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.pos.shiftsGet(request) -> ShiftsGetPosResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.pos().shiftsGet(
+    ShiftsGetPosRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.pos.shiftsList(request) -> ShiftsListPosResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.pos().shiftsList(
+    ShiftsListPosRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<ShiftsListPosRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<ShiftsListPosRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.pos.receiptsCreate(request) -> ReceiptsCreatePosResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.pos().receiptsCreate(
+    ReceiptsCreatePosRequest
+        .builder()
+        .shiftId("shiftId")
+        .lines(
+            Arrays.asList(
+                ReceiptsCreatePosRequestLinesItem
+                    .builder()
+                    .quantity("121.0000")
+                    .unitPriceInclVat("121.0000")
+                    .vatRatePercent("121.00")
+                    .build()
+            )
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**shiftId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lines:** `List<ReceiptsCreatePosRequestLinesItem>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cashAmount:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cardAmount:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.pos.receiptsList(request) -> ReceiptsListPosResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.pos().receiptsList(
+    ReceiptsListPosRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<ReceiptsListPosRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<ReceiptsListPosRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.pos.receiptsGet(request) -> ReceiptsGetPosResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.pos().receiptsGet(
+    ReceiptsGetPosRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.pos.shiftsClose(request) -> ShiftsClosePosResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.pos().shiftsClose(
+    ShiftsClosePosRequest
+        .builder()
+        .id("id")
+        .countedCash("121.00")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**countedCash:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reportNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## calendar
 <details><summary><code>client.calendar.list(request) -> ListCalendarResponse</code></summary>
 <dl>
@@ -34582,6 +36110,69 @@ client.bank().transactionsMatch(
 <dd>
 
 **invoiceAmount:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.transactionsMatchMany(request) -> TransactionsMatchManyBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().transactionsMatchMany(
+    TransactionsMatchManyBankRequest
+        .builder()
+        .transactionId("transactionId")
+        .allocations(
+            Arrays.asList(
+                TransactionsMatchManyBankRequestAllocationsItem
+                    .builder()
+                    .documentType(TransactionsMatchManyBankRequestAllocationsItemDocumentType.SALE_INVOICE)
+                    .documentId("documentId")
+                    .amount("121.0000")
+                    .build()
+            )
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**transactionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**allocations:** `List<TransactionsMatchManyBankRequestAllocationsItem>` 
     
 </dd>
 </dl>

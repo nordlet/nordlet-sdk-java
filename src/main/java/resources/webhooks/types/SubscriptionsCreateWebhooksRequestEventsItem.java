@@ -90,6 +90,8 @@ public final class SubscriptionsCreateWebhooksRequestEventsItem {
 
   public static final SubscriptionsCreateWebhooksRequestEventsItem SALES_ORDER_CREATED = new SubscriptionsCreateWebhooksRequestEventsItem(Value.SALES_ORDER_CREATED, "sales_order.created");
 
+  public static final SubscriptionsCreateWebhooksRequestEventsItem PAYROLL_RUN_REVERSED = new SubscriptionsCreateWebhooksRequestEventsItem(Value.PAYROLL_RUN_REVERSED, "payroll_run.reversed");
+
   private final Value value;
 
   private final String string;
@@ -202,6 +204,8 @@ public final class SubscriptionsCreateWebhooksRequestEventsItem {
         return visitor.visitAgreementInvoiceGenerated();
       case SALES_ORDER_CREATED:
         return visitor.visitSalesOrderCreated();
+      case PAYROLL_RUN_REVERSED:
+        return visitor.visitPayrollRunReversed();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -293,6 +297,8 @@ public final class SubscriptionsCreateWebhooksRequestEventsItem {
         return AGREEMENT_INVOICE_GENERATED;
       case "sales_order.created":
         return SALES_ORDER_CREATED;
+      case "payroll_run.reversed":
+        return PAYROLL_RUN_REVERSED;
       default:
         return new SubscriptionsCreateWebhooksRequestEventsItem(Value.UNKNOWN, value);
     }
@@ -324,6 +330,8 @@ public final class SubscriptionsCreateWebhooksRequestEventsItem {
     PARTNER_INQUIRY_CREATED,
 
     PAYROLL_RUN_APPROVED,
+
+    PAYROLL_RUN_REVERSED,
 
     POS_REPORT_CREATED,
 
@@ -408,6 +416,8 @@ public final class SubscriptionsCreateWebhooksRequestEventsItem {
     T visitPartnerInquiryCreated();
 
     T visitPayrollRunApproved();
+
+    T visitPayrollRunReversed();
 
     T visitPosReportCreated();
 

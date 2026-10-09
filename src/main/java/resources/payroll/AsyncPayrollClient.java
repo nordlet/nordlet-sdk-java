@@ -16,6 +16,7 @@ import com.nordlet.api.resources.payroll.requests.RunsCancelPayrollRequest;
 import com.nordlet.api.resources.payroll.requests.RunsCreatePayrollRequest;
 import com.nordlet.api.resources.payroll.requests.RunsGetPayrollRequest;
 import com.nordlet.api.resources.payroll.requests.RunsListPayrollRequest;
+import com.nordlet.api.resources.payroll.requests.RunsReversePayrollRequest;
 import com.nordlet.api.resources.payroll.requests.SchedulesCreatePayrollRequest;
 import com.nordlet.api.resources.payroll.requests.SchedulesListPayrollRequest;
 import com.nordlet.api.resources.payroll.types.CalcPayrollResponse;
@@ -28,6 +29,7 @@ import com.nordlet.api.resources.payroll.types.RunsCancelPayrollResponse;
 import com.nordlet.api.resources.payroll.types.RunsCreatePayrollResponse;
 import com.nordlet.api.resources.payroll.types.RunsGetPayrollResponse;
 import com.nordlet.api.resources.payroll.types.RunsListPayrollResponse;
+import com.nordlet.api.resources.payroll.types.RunsReversePayrollResponse;
 import com.nordlet.api.resources.payroll.types.SchedulesCreatePayrollResponse;
 import com.nordlet.api.resources.payroll.types.SchedulesListPayrollResponse;
 import java.util.concurrent.CompletableFuture;
@@ -175,6 +177,16 @@ public class AsyncPayrollClient {
   public CompletableFuture<RunsApprovePayrollResponse> runsApprove(
       RunsApprovePayrollRequest request, RequestOptions requestOptions) {
     return this.rawClient.runsApprove(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RunsReversePayrollResponse> runsReverse(
+      RunsReversePayrollRequest request) {
+    return this.rawClient.runsReverse(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<RunsReversePayrollResponse> runsReverse(
+      RunsReversePayrollRequest request, RequestOptions requestOptions) {
+    return this.rawClient.runsReverse(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<RunsCancelPayrollResponse> runsCancel(RunsCancelPayrollRequest request) {

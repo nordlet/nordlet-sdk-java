@@ -47,6 +47,10 @@ public final class DocumentsConfirmCaptureRequestLinesItem {
 
   private final Optional<String> accountCode;
 
+  private final Optional<String> deferralStartDate;
+
+  private final Optional<String> deferralEndDate;
+
   private final Map<String, Object> additionalProperties;
 
   private DocumentsConfirmCaptureRequestLinesItem(Optional<String> itemId,
@@ -55,6 +59,7 @@ public final class DocumentsConfirmCaptureRequestLinesItem {
       Optional<String> unitPriceExclVat, Optional<String> unitPriceInclVat,
       Optional<String> vatRatePercent, Optional<String> vatClassifierCode,
       Optional<String> costCenterId, Optional<String> projectId, Optional<String> accountCode,
+      Optional<String> deferralStartDate, Optional<String> deferralEndDate,
       Map<String, Object> additionalProperties) {
     this.itemId = itemId;
     this.description = description;
@@ -67,6 +72,8 @@ public final class DocumentsConfirmCaptureRequestLinesItem {
     this.costCenterId = costCenterId;
     this.projectId = projectId;
     this.accountCode = accountCode;
+    this.deferralStartDate = deferralStartDate;
+    this.deferralEndDate = deferralEndDate;
     this.additionalProperties = additionalProperties;
   }
 
@@ -125,6 +132,16 @@ public final class DocumentsConfirmCaptureRequestLinesItem {
     return accountCode;
   }
 
+  @JsonProperty("deferralStartDate")
+  public Optional<String> getDeferralStartDate() {
+    return deferralStartDate;
+  }
+
+  @JsonProperty("deferralEndDate")
+  public Optional<String> getDeferralEndDate() {
+    return deferralEndDate;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -137,12 +154,12 @@ public final class DocumentsConfirmCaptureRequestLinesItem {
   }
 
   private boolean equalTo(DocumentsConfirmCaptureRequestLinesItem other) {
-    return itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && accountCode.equals(other.accountCode);
+    return itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && accountCode.equals(other.accountCode) && deferralStartDate.equals(other.deferralStartDate) && deferralEndDate.equals(other.deferralEndDate);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.accountCode);
+    return Objects.hash(this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.accountCode, this.deferralStartDate, this.deferralEndDate);
   }
 
   @java.lang.Override
@@ -180,6 +197,10 @@ public final class DocumentsConfirmCaptureRequestLinesItem {
 
     private Optional<String> accountCode = Optional.empty();
 
+    private Optional<String> deferralStartDate = Optional.empty();
+
+    private Optional<String> deferralEndDate = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -198,6 +219,8 @@ public final class DocumentsConfirmCaptureRequestLinesItem {
       costCenterId(other.getCostCenterId());
       projectId(other.getProjectId());
       accountCode(other.getAccountCode());
+      deferralStartDate(other.getDeferralStartDate());
+      deferralEndDate(other.getDeferralEndDate());
       return this;
     }
 
@@ -355,8 +378,36 @@ public final class DocumentsConfirmCaptureRequestLinesItem {
       return this;
     }
 
+    @JsonSetter(
+        value = "deferralStartDate",
+        nulls = Nulls.SKIP
+    )
+    public Builder deferralStartDate(Optional<String> deferralStartDate) {
+      this.deferralStartDate = deferralStartDate;
+      return this;
+    }
+
+    public Builder deferralStartDate(String deferralStartDate) {
+      this.deferralStartDate = Optional.ofNullable(deferralStartDate);
+      return this;
+    }
+
+    @JsonSetter(
+        value = "deferralEndDate",
+        nulls = Nulls.SKIP
+    )
+    public Builder deferralEndDate(Optional<String> deferralEndDate) {
+      this.deferralEndDate = deferralEndDate;
+      return this;
+    }
+
+    public Builder deferralEndDate(String deferralEndDate) {
+      this.deferralEndDate = Optional.ofNullable(deferralEndDate);
+      return this;
+    }
+
     public DocumentsConfirmCaptureRequestLinesItem build() {
-      return new DocumentsConfirmCaptureRequestLinesItem(itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, accountCode, additionalProperties);
+      return new DocumentsConfirmCaptureRequestLinesItem(itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, accountCode, deferralStartDate, deferralEndDate, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

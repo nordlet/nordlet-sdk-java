@@ -16,6 +16,8 @@ import com.nordlet.api.resources.agreements.requests.AgreementsUpdateAgreementsR
 import com.nordlet.api.resources.agreements.requests.InsurancePoliciesCreateAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.InsurancePoliciesDeleteAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.InsurancePoliciesListAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.SettingsGetAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.SettingsUpdateAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.TypesCreateAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.TypesListAgreementsRequest;
 import com.nordlet.api.resources.agreements.types.AgreementsBillingRunAgreementsResponse;
@@ -28,6 +30,8 @@ import com.nordlet.api.resources.agreements.types.AgreementsUpdateAgreementsResp
 import com.nordlet.api.resources.agreements.types.InsurancePoliciesCreateAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.InsurancePoliciesDeleteAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.InsurancePoliciesListAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.SettingsGetAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.SettingsUpdateAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.TypesCreateAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.TypesListAgreementsResponse;
 import java.util.concurrent.CompletableFuture;
@@ -47,6 +51,35 @@ public class AsyncAgreementsClient {
    */
   public AsyncRawAgreementsClient withRawResponse() {
     return this.rawClient;
+  }
+
+  public CompletableFuture<SettingsGetAgreementsResponse> settingsGet() {
+    return this.rawClient.settingsGet().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<SettingsGetAgreementsResponse> settingsGet(
+      RequestOptions requestOptions) {
+    return this.rawClient.settingsGet(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<SettingsGetAgreementsResponse> settingsGet(
+      SettingsGetAgreementsRequest request) {
+    return this.rawClient.settingsGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<SettingsGetAgreementsResponse> settingsGet(
+      SettingsGetAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.settingsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<SettingsUpdateAgreementsResponse> settingsUpdate(
+      SettingsUpdateAgreementsRequest request) {
+    return this.rawClient.settingsUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<SettingsUpdateAgreementsResponse> settingsUpdate(
+      SettingsUpdateAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.settingsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<TypesCreateAgreementsResponse> typesCreate(

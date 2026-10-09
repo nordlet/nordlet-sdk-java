@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -34,14 +35,18 @@ public final class InvoicesIssueSalesRequest {
 
   private final Optional<String> warehouseId;
 
+  private final Optional<Boolean> returnToStock;
+
   private final Map<String, Object> additionalProperties;
 
   private InvoicesIssueSalesRequest(String id, Optional<String> series, Optional<String> issueDate,
-      Optional<String> warehouseId, Map<String, Object> additionalProperties) {
+      Optional<String> warehouseId, Optional<Boolean> returnToStock,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.series = series;
     this.issueDate = issueDate;
     this.warehouseId = warehouseId;
+    this.returnToStock = returnToStock;
     this.additionalProperties = additionalProperties;
   }
 
@@ -65,6 +70,11 @@ public final class InvoicesIssueSalesRequest {
     return warehouseId;
   }
 
+  @JsonProperty("returnToStock")
+  public Optional<Boolean> getReturnToStock() {
+    return returnToStock;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -77,12 +87,12 @@ public final class InvoicesIssueSalesRequest {
   }
 
   private boolean equalTo(InvoicesIssueSalesRequest other) {
-    return id.equals(other.id) && series.equals(other.series) && issueDate.equals(other.issueDate) && warehouseId.equals(other.warehouseId);
+    return id.equals(other.id) && series.equals(other.series) && issueDate.equals(other.issueDate) && warehouseId.equals(other.warehouseId) && returnToStock.equals(other.returnToStock);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.series, this.issueDate, this.warehouseId);
+    return Objects.hash(this.id, this.series, this.issueDate, this.warehouseId, this.returnToStock);
   }
 
   @java.lang.Override
@@ -118,6 +128,10 @@ public final class InvoicesIssueSalesRequest {
     _FinalStage warehouseId(Optional<String> warehouseId);
 
     _FinalStage warehouseId(String warehouseId);
+
+    _FinalStage returnToStock(Optional<Boolean> returnToStock);
+
+    _FinalStage returnToStock(Boolean returnToStock);
   }
 
   @JsonIgnoreProperties(
@@ -125,6 +139,8 @@ public final class InvoicesIssueSalesRequest {
   )
   public static final class Builder implements IdStage, _FinalStage {
     private String id;
+
+    private Optional<Boolean> returnToStock = Optional.empty();
 
     private Optional<String> warehouseId = Optional.empty();
 
@@ -144,6 +160,7 @@ public final class InvoicesIssueSalesRequest {
       series(other.getSeries());
       issueDate(other.getIssueDate());
       warehouseId(other.getWarehouseId());
+      returnToStock(other.getReturnToStock());
       return this;
     }
 
@@ -151,6 +168,22 @@ public final class InvoicesIssueSalesRequest {
     @JsonSetter("id")
     public _FinalStage id(@NotNull String id) {
       this.id = Objects.requireNonNull(id, "id must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage returnToStock(Boolean returnToStock) {
+      this.returnToStock = Optional.ofNullable(returnToStock);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "returnToStock",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage returnToStock(Optional<Boolean> returnToStock) {
+      this.returnToStock = returnToStock;
       return this;
     }
 
@@ -204,7 +237,7 @@ public final class InvoicesIssueSalesRequest {
 
     @java.lang.Override
     public InvoicesIssueSalesRequest build() {
-      return new InvoicesIssueSalesRequest(id, series, issueDate, warehouseId, additionalProperties);
+      return new InvoicesIssueSalesRequest(id, series, issueDate, warehouseId, returnToStock, additionalProperties);
     }
 
     @java.lang.Override

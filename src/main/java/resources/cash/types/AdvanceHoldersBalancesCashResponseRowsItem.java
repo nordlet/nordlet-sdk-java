@@ -34,18 +34,21 @@ public final class AdvanceHoldersBalancesCashResponseRowsItem {
 
   private final String returned;
 
+  private final String settled;
+
   private final String balance;
 
   private final Map<String, Object> additionalProperties;
 
   private AdvanceHoldersBalancesCashResponseRowsItem(String employeeId, String firstName,
-      String lastName, String issued, String returned, String balance,
+      String lastName, String issued, String returned, String settled, String balance,
       Map<String, Object> additionalProperties) {
     this.employeeId = employeeId;
     this.firstName = firstName;
     this.lastName = lastName;
     this.issued = issued;
     this.returned = returned;
+    this.settled = settled;
     this.balance = balance;
     this.additionalProperties = additionalProperties;
   }
@@ -75,6 +78,11 @@ public final class AdvanceHoldersBalancesCashResponseRowsItem {
     return returned;
   }
 
+  @JsonProperty("settled")
+  public String getSettled() {
+    return settled;
+  }
+
   @JsonProperty("balance")
   public String getBalance() {
     return balance;
@@ -92,12 +100,12 @@ public final class AdvanceHoldersBalancesCashResponseRowsItem {
   }
 
   private boolean equalTo(AdvanceHoldersBalancesCashResponseRowsItem other) {
-    return employeeId.equals(other.employeeId) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && issued.equals(other.issued) && returned.equals(other.returned) && balance.equals(other.balance);
+    return employeeId.equals(other.employeeId) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && issued.equals(other.issued) && returned.equals(other.returned) && settled.equals(other.settled) && balance.equals(other.balance);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.employeeId, this.firstName, this.lastName, this.issued, this.returned, this.balance);
+    return Objects.hash(this.employeeId, this.firstName, this.lastName, this.issued, this.returned, this.settled, this.balance);
   }
 
   @java.lang.Override
@@ -128,7 +136,11 @@ public final class AdvanceHoldersBalancesCashResponseRowsItem {
   }
 
   public interface ReturnedStage {
-    BalanceStage returned(@NotNull String returned);
+    SettledStage returned(@NotNull String returned);
+  }
+
+  public interface SettledStage {
+    BalanceStage settled(@NotNull String settled);
   }
 
   public interface BalanceStage {
@@ -146,7 +158,7 @@ public final class AdvanceHoldersBalancesCashResponseRowsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements EmployeeIdStage, FirstNameStage, LastNameStage, IssuedStage, ReturnedStage, BalanceStage, _FinalStage {
+  public static final class Builder implements EmployeeIdStage, FirstNameStage, LastNameStage, IssuedStage, ReturnedStage, SettledStage, BalanceStage, _FinalStage {
     private String employeeId;
 
     private String firstName;
@@ -156,6 +168,8 @@ public final class AdvanceHoldersBalancesCashResponseRowsItem {
     private String issued;
 
     private String returned;
+
+    private String settled;
 
     private String balance;
 
@@ -172,6 +186,7 @@ public final class AdvanceHoldersBalancesCashResponseRowsItem {
       lastName(other.getLastName());
       issued(other.getIssued());
       returned(other.getReturned());
+      settled(other.getSettled());
       balance(other.getBalance());
       return this;
     }
@@ -206,8 +221,15 @@ public final class AdvanceHoldersBalancesCashResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("returned")
-    public BalanceStage returned(@NotNull String returned) {
+    public SettledStage returned(@NotNull String returned) {
       this.returned = Objects.requireNonNull(returned, "returned must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("settled")
+    public BalanceStage settled(@NotNull String settled) {
+      this.settled = Objects.requireNonNull(settled, "settled must not be null");
       return this;
     }
 
@@ -220,7 +242,7 @@ public final class AdvanceHoldersBalancesCashResponseRowsItem {
 
     @java.lang.Override
     public AdvanceHoldersBalancesCashResponseRowsItem build() {
-      return new AdvanceHoldersBalancesCashResponseRowsItem(employeeId, firstName, lastName, issued, returned, balance, additionalProperties);
+      return new AdvanceHoldersBalancesCashResponseRowsItem(employeeId, firstName, lastName, issued, returned, settled, balance, additionalProperties);
     }
 
     @java.lang.Override

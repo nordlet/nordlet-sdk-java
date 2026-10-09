@@ -17,6 +17,8 @@ import com.nordlet.api.resources.assets.requests.DepreciationPostAssetsRequest;
 import com.nordlet.api.resources.assets.requests.DepreciationPreviewAssetsRequest;
 import com.nordlet.api.resources.assets.requests.GroupsCreateAssetsRequest;
 import com.nordlet.api.resources.assets.requests.GroupsListAssetsRequest;
+import com.nordlet.api.resources.assets.requests.SettingsGetAssetsRequest;
+import com.nordlet.api.resources.assets.requests.SettingsUpdateAssetsRequest;
 import com.nordlet.api.resources.assets.types.AssetsCreateAssetsResponse;
 import com.nordlet.api.resources.assets.types.AssetsDisposeAssetsResponse;
 import com.nordlet.api.resources.assets.types.AssetsGetAssetsResponse;
@@ -28,6 +30,8 @@ import com.nordlet.api.resources.assets.types.DepreciationPostAssetsResponse;
 import com.nordlet.api.resources.assets.types.DepreciationPreviewAssetsResponse;
 import com.nordlet.api.resources.assets.types.GroupsCreateAssetsResponse;
 import com.nordlet.api.resources.assets.types.GroupsListAssetsResponse;
+import com.nordlet.api.resources.assets.types.SettingsGetAssetsResponse;
+import com.nordlet.api.resources.assets.types.SettingsUpdateAssetsResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncAssetsClient {
@@ -45,6 +49,34 @@ public class AsyncAssetsClient {
    */
   public AsyncRawAssetsClient withRawResponse() {
     return this.rawClient;
+  }
+
+  public CompletableFuture<SettingsGetAssetsResponse> settingsGet() {
+    return this.rawClient.settingsGet().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<SettingsGetAssetsResponse> settingsGet(RequestOptions requestOptions) {
+    return this.rawClient.settingsGet(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<SettingsGetAssetsResponse> settingsGet(
+      SettingsGetAssetsRequest request) {
+    return this.rawClient.settingsGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<SettingsGetAssetsResponse> settingsGet(SettingsGetAssetsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.settingsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<SettingsUpdateAssetsResponse> settingsUpdate(
+      SettingsUpdateAssetsRequest request) {
+    return this.rawClient.settingsUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<SettingsUpdateAssetsResponse> settingsUpdate(
+      SettingsUpdateAssetsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.settingsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<GroupsCreateAssetsResponse> groupsCreate(
