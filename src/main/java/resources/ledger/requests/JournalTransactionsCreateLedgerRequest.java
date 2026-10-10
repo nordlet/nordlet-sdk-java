@@ -33,15 +33,18 @@ public final class JournalTransactionsCreateLedgerRequest {
 
   private final Optional<String> description;
 
+  private final Optional<String> currency;
+
   private final List<JournalTransactionsCreateLedgerRequestEntriesItem> entries;
 
   private final Map<String, Object> additionalProperties;
 
   private JournalTransactionsCreateLedgerRequest(String date, Optional<String> description,
-      List<JournalTransactionsCreateLedgerRequestEntriesItem> entries,
+      Optional<String> currency, List<JournalTransactionsCreateLedgerRequestEntriesItem> entries,
       Map<String, Object> additionalProperties) {
     this.date = date;
     this.description = description;
+    this.currency = currency;
     this.entries = entries;
     this.additionalProperties = additionalProperties;
   }
@@ -54,6 +57,11 @@ public final class JournalTransactionsCreateLedgerRequest {
   @JsonProperty("description")
   public Optional<String> getDescription() {
     return description;
+  }
+
+  @JsonProperty("currency")
+  public Optional<String> getCurrency() {
+    return currency;
   }
 
   @JsonProperty("entries")
@@ -73,12 +81,12 @@ public final class JournalTransactionsCreateLedgerRequest {
   }
 
   private boolean equalTo(JournalTransactionsCreateLedgerRequest other) {
-    return date.equals(other.date) && description.equals(other.description) && entries.equals(other.entries);
+    return date.equals(other.date) && description.equals(other.description) && currency.equals(other.currency) && entries.equals(other.entries);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.date, this.description, this.entries);
+    return Objects.hash(this.date, this.description, this.currency, this.entries);
   }
 
   @java.lang.Override
@@ -107,6 +115,10 @@ public final class JournalTransactionsCreateLedgerRequest {
 
     _FinalStage description(String description);
 
+    _FinalStage currency(Optional<String> currency);
+
+    _FinalStage currency(String currency);
+
     _FinalStage entries(List<JournalTransactionsCreateLedgerRequestEntriesItem> entries);
 
     _FinalStage addEntries(JournalTransactionsCreateLedgerRequestEntriesItem entries);
@@ -122,6 +134,8 @@ public final class JournalTransactionsCreateLedgerRequest {
 
     private List<JournalTransactionsCreateLedgerRequestEntriesItem> entries = new ArrayList<>();
 
+    private Optional<String> currency = Optional.empty();
+
     private Optional<String> description = Optional.empty();
 
     @JsonAnySetter
@@ -134,6 +148,7 @@ public final class JournalTransactionsCreateLedgerRequest {
     public Builder from(JournalTransactionsCreateLedgerRequest other) {
       date(other.getDate());
       description(other.getDescription());
+      currency(other.getCurrency());
       entries(other.getEntries());
       return this;
     }
@@ -174,6 +189,22 @@ public final class JournalTransactionsCreateLedgerRequest {
     }
 
     @java.lang.Override
+    public _FinalStage currency(String currency) {
+      this.currency = Optional.ofNullable(currency);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "currency",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage currency(Optional<String> currency) {
+      this.currency = currency;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage description(String description) {
       this.description = Optional.ofNullable(description);
       return this;
@@ -191,7 +222,7 @@ public final class JournalTransactionsCreateLedgerRequest {
 
     @java.lang.Override
     public JournalTransactionsCreateLedgerRequest build() {
-      return new JournalTransactionsCreateLedgerRequest(date, description, entries, additionalProperties);
+      return new JournalTransactionsCreateLedgerRequest(date, description, currency, entries, additionalProperties);
     }
 
     @java.lang.Override

@@ -27,6 +27,7 @@ import com.nordlet.api.resources.inventory.requests.StockTransferInventoryReques
 import com.nordlet.api.resources.inventory.requests.StockWriteOffInventoryRequest;
 import com.nordlet.api.resources.inventory.requests.WarehousesCreateInventoryRequest;
 import com.nordlet.api.resources.inventory.requests.WarehousesListInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.WarehousesUpdateInventoryRequest;
 import com.nordlet.api.resources.inventory.types.LandedCostsCreateInventoryResponse;
 import com.nordlet.api.resources.inventory.types.LandedCostsGetInventoryResponse;
 import com.nordlet.api.resources.inventory.types.LandedCostsListInventoryResponse;
@@ -48,6 +49,7 @@ import com.nordlet.api.resources.inventory.types.StockTransferInventoryResponse;
 import com.nordlet.api.resources.inventory.types.StockWriteOffInventoryResponse;
 import com.nordlet.api.resources.inventory.types.WarehousesCreateInventoryResponse;
 import com.nordlet.api.resources.inventory.types.WarehousesListInventoryResponse;
+import com.nordlet.api.resources.inventory.types.WarehousesUpdateInventoryResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncInventoryClient {
@@ -123,6 +125,16 @@ public class AsyncInventoryClient {
   public CompletableFuture<WarehousesListInventoryResponse> warehousesList(
       WarehousesListInventoryRequest request, RequestOptions requestOptions) {
     return this.rawClient.warehousesList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<WarehousesUpdateInventoryResponse> warehousesUpdate(
+      WarehousesUpdateInventoryRequest request) {
+    return this.rawClient.warehousesUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<WarehousesUpdateInventoryResponse> warehousesUpdate(
+      WarehousesUpdateInventoryRequest request, RequestOptions requestOptions) {
+    return this.rawClient.warehousesUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<StockReceiveInventoryResponse> stockReceive(

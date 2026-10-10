@@ -28,6 +28,7 @@ import com.nordlet.api.resources.sales.requests.InvoicesPaymentSettingsGetSalesR
 import com.nordlet.api.resources.sales.requests.InvoicesPaymentSettingsUpdateSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesPdfSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesPeppolSendSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesPeppolStatusSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesPeppolXmlSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesSendSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesUnlockSalesRequest;
@@ -63,6 +64,7 @@ import com.nordlet.api.resources.sales.types.InvoicesPaymentSettingsGetSalesResp
 import com.nordlet.api.resources.sales.types.InvoicesPaymentSettingsUpdateSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesPdfSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesPeppolSendSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesPeppolStatusSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesPeppolXmlSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesSendSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesUnlockSalesResponse;
@@ -139,14 +141,36 @@ public class SalesClient {
     return this.rawClient.invoicesPeppolXml(request, requestOptions).body();
   }
 
+  /**
+   * Send an issued invoice or credit note to the customer over Peppol through the company's own access point (Settings → Compliance → EU; Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with <code>sales/invoices/peppol-xml</code>. <code>status</code> is <code>pending</code> until the receiving access point confirms, then <code>delivered</code>; <code>failed</code> and <code>rejected</code> come with <code>detail</code>, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as <code>sale_invoice.peppol_delivered</code>, <code>sale_invoice.peppol_rejected</code> and <code>sale_invoice.peppol_failed</code>.
+   */
   public InvoicesPeppolSendSalesResponse invoicesPeppolSend(
       InvoicesPeppolSendSalesRequest request) {
     return this.rawClient.invoicesPeppolSend(request).body();
   }
 
+  /**
+   * Send an issued invoice or credit note to the customer over Peppol through the company's own access point (Settings → Compliance → EU; Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with <code>sales/invoices/peppol-xml</code>. <code>status</code> is <code>pending</code> until the receiving access point confirms, then <code>delivered</code>; <code>failed</code> and <code>rejected</code> come with <code>detail</code>, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as <code>sale_invoice.peppol_delivered</code>, <code>sale_invoice.peppol_rejected</code> and <code>sale_invoice.peppol_failed</code>.
+   */
   public InvoicesPeppolSendSalesResponse invoicesPeppolSend(InvoicesPeppolSendSalesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.invoicesPeppolSend(request, requestOptions).body();
+  }
+
+  /**
+   * Ask the company's Peppol access point what happened to an invoice sent with <code>sales/invoices/peppol-send</code>, and store the answer: <code>pending</code>, <code>delivered</code> (the receiving access point confirmed it), <code>rejected</code> (the receiver refused it, see <code>detail</code>) or <code>failed</code> (it could not be delivered, see <code>detail</code>). The access point's webhook updates the same fields without this call. Storecove has no call for the status of a sent document, so for a Storecove access point this answers 422 and the status comes only from its webhook.
+   */
+  public InvoicesPeppolStatusSalesResponse invoicesPeppolStatus(
+      InvoicesPeppolStatusSalesRequest request) {
+    return this.rawClient.invoicesPeppolStatus(request).body();
+  }
+
+  /**
+   * Ask the company's Peppol access point what happened to an invoice sent with <code>sales/invoices/peppol-send</code>, and store the answer: <code>pending</code>, <code>delivered</code> (the receiving access point confirmed it), <code>rejected</code> (the receiver refused it, see <code>detail</code>) or <code>failed</code> (it could not be delivered, see <code>detail</code>). The access point's webhook updates the same fields without this call. Storecove has no call for the status of a sent document, so for a Storecove access point this answers 422 and the status comes only from its webhook.
+   */
+  public InvoicesPeppolStatusSalesResponse invoicesPeppolStatus(
+      InvoicesPeppolStatusSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesPeppolStatus(request, requestOptions).body();
   }
 
   /**

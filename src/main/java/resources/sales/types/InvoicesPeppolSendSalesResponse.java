@@ -35,15 +35,22 @@ public final class InvoicesPeppolSendSalesResponse {
 
   private final String receiverId;
 
+  private final InvoicesPeppolSendSalesResponseStatus status;
+
+  private final Optional<String> detail;
+
   private final Optional<String> fileId;
 
   private final Map<String, Object> additionalProperties;
 
   private InvoicesPeppolSendSalesResponse(boolean sent, String messageId, String receiverId,
+      InvoicesPeppolSendSalesResponseStatus status, Optional<String> detail,
       Optional<String> fileId, Map<String, Object> additionalProperties) {
     this.sent = sent;
     this.messageId = messageId;
     this.receiverId = receiverId;
+    this.status = status;
+    this.detail = detail;
     this.fileId = fileId;
     this.additionalProperties = additionalProperties;
   }
@@ -63,12 +70,34 @@ public final class InvoicesPeppolSendSalesResponse {
     return receiverId;
   }
 
+  @JsonProperty("status")
+  public InvoicesPeppolSendSalesResponseStatus getStatus() {
+    return status;
+  }
+
+  @JsonIgnore
+  public Optional<String> getDetail() {
+    if (detail == null) {
+      return Optional.empty();
+    }
+    return detail;
+  }
+
   @JsonIgnore
   public Optional<String> getFileId() {
     if (fileId == null) {
       return Optional.empty();
     }
     return fileId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("detail")
+  private Optional<String> _getDetail() {
+    return detail;
   }
 
   @JsonInclude(
@@ -92,12 +121,12 @@ public final class InvoicesPeppolSendSalesResponse {
   }
 
   private boolean equalTo(InvoicesPeppolSendSalesResponse other) {
-    return sent == other.sent && messageId.equals(other.messageId) && receiverId.equals(other.receiverId) && fileId.equals(other.fileId);
+    return sent == other.sent && messageId.equals(other.messageId) && receiverId.equals(other.receiverId) && status.equals(other.status) && detail.equals(other.detail) && fileId.equals(other.fileId);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.sent, this.messageId, this.receiverId, this.fileId);
+    return Objects.hash(this.sent, this.messageId, this.receiverId, this.status, this.detail, this.fileId);
   }
 
   @java.lang.Override
@@ -120,7 +149,11 @@ public final class InvoicesPeppolSendSalesResponse {
   }
 
   public interface ReceiverIdStage {
-    _FinalStage receiverId(@NotNull String receiverId);
+    StatusStage receiverId(@NotNull String receiverId);
+  }
+
+  public interface StatusStage {
+    _FinalStage status(@NotNull InvoicesPeppolSendSalesResponseStatus status);
   }
 
   public interface _FinalStage {
@@ -129,6 +162,12 @@ public final class InvoicesPeppolSendSalesResponse {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage detail(Optional<String> detail);
+
+    _FinalStage detail(String detail);
+
+    _FinalStage detail(Nullable<String> detail);
 
     _FinalStage fileId(Optional<String> fileId);
 
@@ -140,14 +179,18 @@ public final class InvoicesPeppolSendSalesResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements SentStage, MessageIdStage, ReceiverIdStage, _FinalStage {
+  public static final class Builder implements SentStage, MessageIdStage, ReceiverIdStage, StatusStage, _FinalStage {
     private boolean sent;
 
     private String messageId;
 
     private String receiverId;
 
+    private InvoicesPeppolSendSalesResponseStatus status;
+
     private Optional<String> fileId = Optional.empty();
+
+    private Optional<String> detail = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -160,6 +203,8 @@ public final class InvoicesPeppolSendSalesResponse {
       sent(other.getSent());
       messageId(other.getMessageId());
       receiverId(other.getReceiverId());
+      status(other.getStatus());
+      detail(other.getDetail());
       fileId(other.getFileId());
       return this;
     }
@@ -180,8 +225,15 @@ public final class InvoicesPeppolSendSalesResponse {
 
     @java.lang.Override
     @JsonSetter("receiverId")
-    public _FinalStage receiverId(@NotNull String receiverId) {
+    public StatusStage receiverId(@NotNull String receiverId) {
       this.receiverId = Objects.requireNonNull(receiverId, "receiverId must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("status")
+    public _FinalStage status(@NotNull InvoicesPeppolSendSalesResponseStatus status) {
+      this.status = Objects.requireNonNull(status, "status must not be null");
       return this;
     }
 
@@ -216,8 +268,38 @@ public final class InvoicesPeppolSendSalesResponse {
     }
 
     @java.lang.Override
+    public _FinalStage detail(Nullable<String> detail) {
+      if (detail.isNull()) {
+        this.detail = null;
+      }
+      else if (detail.isEmpty()) {
+        this.detail = Optional.empty();
+      }
+      else {
+        this.detail = Optional.of(detail.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage detail(String detail) {
+      this.detail = Optional.ofNullable(detail);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "detail",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage detail(Optional<String> detail) {
+      this.detail = detail;
+      return this;
+    }
+
+    @java.lang.Override
     public InvoicesPeppolSendSalesResponse build() {
-      return new InvoicesPeppolSendSalesResponse(sent, messageId, receiverId, fileId, additionalProperties);
+      return new InvoicesPeppolSendSalesResponse(sent, messageId, receiverId, status, detail, fileId, additionalProperties);
     }
 
     @java.lang.Override

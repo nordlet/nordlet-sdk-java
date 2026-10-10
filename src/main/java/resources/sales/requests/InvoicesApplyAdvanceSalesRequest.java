@@ -32,13 +32,16 @@ public final class InvoicesApplyAdvanceSalesRequest {
 
   private final Optional<String> date;
 
+  private final Optional<String> amount;
+
   private final Map<String, Object> additionalProperties;
 
   private InvoicesApplyAdvanceSalesRequest(String advanceId, String invoiceId,
-      Optional<String> date, Map<String, Object> additionalProperties) {
+      Optional<String> date, Optional<String> amount, Map<String, Object> additionalProperties) {
     this.advanceId = advanceId;
     this.invoiceId = invoiceId;
     this.date = date;
+    this.amount = amount;
     this.additionalProperties = additionalProperties;
   }
 
@@ -57,6 +60,14 @@ public final class InvoicesApplyAdvanceSalesRequest {
     return date;
   }
 
+  /**
+   * @return Gross amount of the advance to apply; defaults to the unapplied advance or the unpaid balance of the invoice, whichever is smaller
+   */
+  @JsonProperty("amount")
+  public Optional<String> getAmount() {
+    return amount;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -69,12 +80,12 @@ public final class InvoicesApplyAdvanceSalesRequest {
   }
 
   private boolean equalTo(InvoicesApplyAdvanceSalesRequest other) {
-    return advanceId.equals(other.advanceId) && invoiceId.equals(other.invoiceId) && date.equals(other.date);
+    return advanceId.equals(other.advanceId) && invoiceId.equals(other.invoiceId) && date.equals(other.date) && amount.equals(other.amount);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.advanceId, this.invoiceId, this.date);
+    return Objects.hash(this.advanceId, this.invoiceId, this.date, this.amount);
   }
 
   @java.lang.Override
@@ -106,6 +117,13 @@ public final class InvoicesApplyAdvanceSalesRequest {
     _FinalStage date(Optional<String> date);
 
     _FinalStage date(String date);
+
+    /**
+     * <p>Gross amount of the advance to apply; defaults to the unapplied advance or the unpaid balance of the invoice, whichever is smaller</p>
+     */
+    _FinalStage amount(Optional<String> amount);
+
+    _FinalStage amount(String amount);
   }
 
   @JsonIgnoreProperties(
@@ -115,6 +133,8 @@ public final class InvoicesApplyAdvanceSalesRequest {
     private String advanceId;
 
     private String invoiceId;
+
+    private Optional<String> amount = Optional.empty();
 
     private Optional<String> date = Optional.empty();
 
@@ -129,6 +149,7 @@ public final class InvoicesApplyAdvanceSalesRequest {
       advanceId(other.getAdvanceId());
       invoiceId(other.getInvoiceId());
       date(other.getDate());
+      amount(other.getAmount());
       return this;
     }
 
@@ -143,6 +164,29 @@ public final class InvoicesApplyAdvanceSalesRequest {
     @JsonSetter("invoiceId")
     public _FinalStage invoiceId(@NotNull String invoiceId) {
       this.invoiceId = Objects.requireNonNull(invoiceId, "invoiceId must not be null");
+      return this;
+    }
+
+    /**
+     * <p>Gross amount of the advance to apply; defaults to the unapplied advance or the unpaid balance of the invoice, whichever is smaller</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage amount(String amount) {
+      this.amount = Optional.ofNullable(amount);
+      return this;
+    }
+
+    /**
+     * <p>Gross amount of the advance to apply; defaults to the unapplied advance or the unpaid balance of the invoice, whichever is smaller</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "amount",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage amount(Optional<String> amount) {
+      this.amount = amount;
       return this;
     }
 
@@ -164,7 +208,7 @@ public final class InvoicesApplyAdvanceSalesRequest {
 
     @java.lang.Override
     public InvoicesApplyAdvanceSalesRequest build() {
-      return new InvoicesApplyAdvanceSalesRequest(advanceId, invoiceId, date, additionalProperties);
+      return new InvoicesApplyAdvanceSalesRequest(advanceId, invoiceId, date, amount, additionalProperties);
     }
 
     @java.lang.Override

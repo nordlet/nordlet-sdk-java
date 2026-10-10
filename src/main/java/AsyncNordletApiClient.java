@@ -31,6 +31,8 @@ import com.nordlet.api.resources.officers.AsyncOfficersClient;
 import com.nordlet.api.resources.operationtypes.AsyncOperationTypesClient;
 import com.nordlet.api.resources.partners.AsyncPartnersClient;
 import com.nordlet.api.resources.payroll.AsyncPayrollClient;
+import com.nordlet.api.resources.peppol.AsyncPeppolClient;
+import com.nordlet.api.resources.platformsellers.AsyncPlatformSellersClient;
 import com.nordlet.api.resources.pos.AsyncPosClient;
 import com.nordlet.api.resources.production.AsyncProductionClient;
 import com.nordlet.api.resources.projects.AsyncProjectsClient;
@@ -64,11 +66,15 @@ public class AsyncNordletApiClient {
 
   protected final Supplier<AsyncCaptureClient> captureClient;
 
+  protected final Supplier<AsyncPeppolClient> peppolClient;
+
   protected final Supplier<AsyncDeclarationsClient> declarationsClient;
 
   protected final Supplier<AsyncLedgerClient> ledgerClient;
 
   protected final Supplier<AsyncOfficersClient> officersClient;
+
+  protected final Supplier<AsyncPlatformSellersClient> platformSellersClient;
 
   protected final Supplier<AsyncMigrationClient> migrationClient;
 
@@ -127,9 +133,11 @@ public class AsyncNordletApiClient {
     this.documentSeriesClient = Suppliers.memoize(() -> new AsyncDocumentSeriesClient(clientOptions));
     this.purchasesClient = Suppliers.memoize(() -> new AsyncPurchasesClient(clientOptions));
     this.captureClient = Suppliers.memoize(() -> new AsyncCaptureClient(clientOptions));
+    this.peppolClient = Suppliers.memoize(() -> new AsyncPeppolClient(clientOptions));
     this.declarationsClient = Suppliers.memoize(() -> new AsyncDeclarationsClient(clientOptions));
     this.ledgerClient = Suppliers.memoize(() -> new AsyncLedgerClient(clientOptions));
     this.officersClient = Suppliers.memoize(() -> new AsyncOfficersClient(clientOptions));
+    this.platformSellersClient = Suppliers.memoize(() -> new AsyncPlatformSellersClient(clientOptions));
     this.migrationClient = Suppliers.memoize(() -> new AsyncMigrationClient(clientOptions));
     this.assetsClient = Suppliers.memoize(() -> new AsyncAssetsClient(clientOptions));
     this.hrClient = Suppliers.memoize(() -> new AsyncHrClient(clientOptions));
@@ -191,6 +199,10 @@ public class AsyncNordletApiClient {
     return this.captureClient.get();
   }
 
+  public AsyncPeppolClient peppol() {
+    return this.peppolClient.get();
+  }
+
   public AsyncDeclarationsClient declarations() {
     return this.declarationsClient.get();
   }
@@ -201,6 +213,10 @@ public class AsyncNordletApiClient {
 
   public AsyncOfficersClient officers() {
     return this.officersClient.get();
+  }
+
+  public AsyncPlatformSellersClient platformSellers() {
+    return this.platformSellersClient.get();
   }
 
   public AsyncMigrationClient migration() {

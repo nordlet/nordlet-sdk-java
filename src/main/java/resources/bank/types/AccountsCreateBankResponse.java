@@ -34,6 +34,8 @@ public final class AccountsCreateBankResponse {
 
   private final String name;
 
+  private final AccountsCreateBankResponseType type;
+
   private final Optional<String> iban;
 
   private final String currency;
@@ -46,11 +48,12 @@ public final class AccountsCreateBankResponse {
 
   private final Map<String, Object> additionalProperties;
 
-  private AccountsCreateBankResponse(String id, String name, Optional<String> iban, String currency,
-      String accountCode, boolean isActive, OffsetDateTime createdAt,
-      Map<String, Object> additionalProperties) {
+  private AccountsCreateBankResponse(String id, String name, AccountsCreateBankResponseType type,
+      Optional<String> iban, String currency, String accountCode, boolean isActive,
+      OffsetDateTime createdAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.name = name;
+    this.type = type;
     this.iban = iban;
     this.currency = currency;
     this.accountCode = accountCode;
@@ -67,6 +70,11 @@ public final class AccountsCreateBankResponse {
   @JsonProperty("name")
   public String getName() {
     return name;
+  }
+
+  @JsonProperty("type")
+  public AccountsCreateBankResponseType getType() {
+    return type;
   }
 
   @JsonIgnore
@@ -118,12 +126,12 @@ public final class AccountsCreateBankResponse {
   }
 
   private boolean equalTo(AccountsCreateBankResponse other) {
-    return id.equals(other.id) && name.equals(other.name) && iban.equals(other.iban) && currency.equals(other.currency) && accountCode.equals(other.accountCode) && isActive == other.isActive && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && name.equals(other.name) && type.equals(other.type) && iban.equals(other.iban) && currency.equals(other.currency) && accountCode.equals(other.accountCode) && isActive == other.isActive && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.iban, this.currency, this.accountCode, this.isActive, this.createdAt);
+    return Objects.hash(this.id, this.name, this.type, this.iban, this.currency, this.accountCode, this.isActive, this.createdAt);
   }
 
   @java.lang.Override
@@ -142,7 +150,11 @@ public final class AccountsCreateBankResponse {
   }
 
   public interface NameStage {
-    CurrencyStage name(@NotNull String name);
+    TypeStage name(@NotNull String name);
+  }
+
+  public interface TypeStage {
+    CurrencyStage type(@NotNull AccountsCreateBankResponseType type);
   }
 
   public interface CurrencyStage {
@@ -178,10 +190,12 @@ public final class AccountsCreateBankResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, NameStage, CurrencyStage, AccountCodeStage, IsActiveStage, CreatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, NameStage, TypeStage, CurrencyStage, AccountCodeStage, IsActiveStage, CreatedAtStage, _FinalStage {
     private String id;
 
     private String name;
+
+    private AccountsCreateBankResponseType type;
 
     private String currency;
 
@@ -203,6 +217,7 @@ public final class AccountsCreateBankResponse {
     public Builder from(AccountsCreateBankResponse other) {
       id(other.getId());
       name(other.getName());
+      type(other.getType());
       iban(other.getIban());
       currency(other.getCurrency());
       accountCode(other.getAccountCode());
@@ -220,8 +235,15 @@ public final class AccountsCreateBankResponse {
 
     @java.lang.Override
     @JsonSetter("name")
-    public CurrencyStage name(@NotNull String name) {
+    public TypeStage name(@NotNull String name) {
       this.name = Objects.requireNonNull(name, "name must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("type")
+    public CurrencyStage type(@NotNull AccountsCreateBankResponseType type) {
+      this.type = Objects.requireNonNull(type, "type must not be null");
       return this;
     }
 
@@ -285,7 +307,7 @@ public final class AccountsCreateBankResponse {
 
     @java.lang.Override
     public AccountsCreateBankResponse build() {
-      return new AccountsCreateBankResponse(id, name, iban, currency, accountCode, isActive, createdAt, additionalProperties);
+      return new AccountsCreateBankResponse(id, name, type, iban, currency, accountCode, isActive, createdAt, additionalProperties);
     }
 
     @java.lang.Override

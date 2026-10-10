@@ -10,6 +10,8 @@ import java.lang.Object;
 import java.lang.String;
 
 public final class TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType {
+  public static final TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType PAYROLL_RUN = new TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType(Value.PAYROLL_RUN, "payroll_run");
+
   public static final TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType PURCHASE_INVOICE = new TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType(Value.PURCHASE_INVOICE, "purchase_invoice");
 
   public static final TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType SALE_INVOICE = new TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType(Value.SALE_INVOICE, "sale_invoice");
@@ -46,6 +48,8 @@ public final class TransactionsSuggestMatchesBankResponseSuggestionsItemDocument
 
   public <T> T visit(Visitor<T> visitor) {
     switch (value) {
+      case PAYROLL_RUN:
+        return visitor.visitPayrollRun();
       case PURCHASE_INVOICE:
         return visitor.visitPurchaseInvoice();
       case SALE_INVOICE:
@@ -62,6 +66,8 @@ public final class TransactionsSuggestMatchesBankResponseSuggestionsItemDocument
   public static TransactionsSuggestMatchesBankResponseSuggestionsItemDocumentType valueOf(
       String value) {
     switch (value) {
+      case "payroll_run":
+        return PAYROLL_RUN;
       case "purchase_invoice":
         return PURCHASE_INVOICE;
       case "sale_invoice":
@@ -76,6 +82,8 @@ public final class TransactionsSuggestMatchesBankResponseSuggestionsItemDocument
 
     PURCHASE_INVOICE,
 
+    PAYROLL_RUN,
+
     UNKNOWN
   }
 
@@ -83,6 +91,8 @@ public final class TransactionsSuggestMatchesBankResponseSuggestionsItemDocument
     T visitSaleInvoice();
 
     T visitPurchaseInvoice();
+
+    T visitPayrollRun();
 
     T visitUnknown(String unknownType);
   }

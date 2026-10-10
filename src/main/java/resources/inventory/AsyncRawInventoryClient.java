@@ -44,6 +44,7 @@ import com.nordlet.api.resources.inventory.requests.StockTransferInventoryReques
 import com.nordlet.api.resources.inventory.requests.StockWriteOffInventoryRequest;
 import com.nordlet.api.resources.inventory.requests.WarehousesCreateInventoryRequest;
 import com.nordlet.api.resources.inventory.requests.WarehousesListInventoryRequest;
+import com.nordlet.api.resources.inventory.requests.WarehousesUpdateInventoryRequest;
 import com.nordlet.api.resources.inventory.types.LandedCostsCreateInventoryResponse;
 import com.nordlet.api.resources.inventory.types.LandedCostsGetInventoryResponse;
 import com.nordlet.api.resources.inventory.types.LandedCostsListInventoryResponse;
@@ -65,6 +66,7 @@ import com.nordlet.api.resources.inventory.types.StockTransferInventoryResponse;
 import com.nordlet.api.resources.inventory.types.StockWriteOffInventoryResponse;
 import com.nordlet.api.resources.inventory.types.WarehousesCreateInventoryResponse;
 import com.nordlet.api.resources.inventory.types.WarehousesListInventoryResponse;
+import com.nordlet.api.resources.inventory.types.WarehousesUpdateInventoryResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -476,16 +478,16 @@ public class AsyncRawInventoryClient {
             return future;
           }
 
-          public CompletableFuture<NordletApiHttpResponse<StockReceiveInventoryResponse>> stockReceive(
-              StockReceiveInventoryRequest request) {
-            return stockReceive(request,null);
+          public CompletableFuture<NordletApiHttpResponse<WarehousesUpdateInventoryResponse>> warehousesUpdate(
+              WarehousesUpdateInventoryRequest request) {
+            return warehousesUpdate(request,null);
           }
 
-          public CompletableFuture<NordletApiHttpResponse<StockReceiveInventoryResponse>> stockReceive(
-              StockReceiveInventoryRequest request, RequestOptions requestOptions) {
+          public CompletableFuture<NordletApiHttpResponse<WarehousesUpdateInventoryResponse>> warehousesUpdate(
+              WarehousesUpdateInventoryRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-              .addPathSegments("v1/inventory/stock/receive");if (requestOptions != null) {
+              .addPathSegments("v1/inventory/warehouses/update");if (requestOptions != null) {
                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                   httpUrl.addQueryParameter(_key, _value);
                 } );
@@ -511,14 +513,14 @@ public class AsyncRawInventoryClient {
               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
               }
-              CompletableFuture<NordletApiHttpResponse<StockReceiveInventoryResponse>> future = new CompletableFuture<>();
+              CompletableFuture<NordletApiHttpResponse<WarehousesUpdateInventoryResponse>> future = new CompletableFuture<>();
               client.newCall(okhttpRequest).enqueue(new Callback() {
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                   try (ResponseBody responseBody = response.body()) {
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StockReceiveInventoryResponse.class), response));
+                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, WarehousesUpdateInventoryResponse.class), response));
                       return;
                     }
                     try {
@@ -568,16 +570,16 @@ public class AsyncRawInventoryClient {
               return future;
             }
 
-            public CompletableFuture<NordletApiHttpResponse<StockWriteOffInventoryResponse>> stockWriteOff(
-                StockWriteOffInventoryRequest request) {
-              return stockWriteOff(request,null);
+            public CompletableFuture<NordletApiHttpResponse<StockReceiveInventoryResponse>> stockReceive(
+                StockReceiveInventoryRequest request) {
+              return stockReceive(request,null);
             }
 
-            public CompletableFuture<NordletApiHttpResponse<StockWriteOffInventoryResponse>> stockWriteOff(
-                StockWriteOffInventoryRequest request, RequestOptions requestOptions) {
+            public CompletableFuture<NordletApiHttpResponse<StockReceiveInventoryResponse>> stockReceive(
+                StockReceiveInventoryRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                .addPathSegments("v1/inventory/stock/write-off");if (requestOptions != null) {
+                .addPathSegments("v1/inventory/stock/receive");if (requestOptions != null) {
                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                     httpUrl.addQueryParameter(_key, _value);
                   } );
@@ -603,14 +605,14 @@ public class AsyncRawInventoryClient {
                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                 }
-                CompletableFuture<NordletApiHttpResponse<StockWriteOffInventoryResponse>> future = new CompletableFuture<>();
+                CompletableFuture<NordletApiHttpResponse<StockReceiveInventoryResponse>> future = new CompletableFuture<>();
                 client.newCall(okhttpRequest).enqueue(new Callback() {
                   @Override
                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     try (ResponseBody responseBody = response.body()) {
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StockWriteOffInventoryResponse.class), response));
+                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StockReceiveInventoryResponse.class), response));
                         return;
                       }
                       try {
@@ -660,16 +662,16 @@ public class AsyncRawInventoryClient {
                 return future;
               }
 
-              public CompletableFuture<NordletApiHttpResponse<StockTransferInventoryResponse>> stockTransfer(
-                  StockTransferInventoryRequest request) {
-                return stockTransfer(request,null);
+              public CompletableFuture<NordletApiHttpResponse<StockWriteOffInventoryResponse>> stockWriteOff(
+                  StockWriteOffInventoryRequest request) {
+                return stockWriteOff(request,null);
               }
 
-              public CompletableFuture<NordletApiHttpResponse<StockTransferInventoryResponse>> stockTransfer(
-                  StockTransferInventoryRequest request, RequestOptions requestOptions) {
+              public CompletableFuture<NordletApiHttpResponse<StockWriteOffInventoryResponse>> stockWriteOff(
+                  StockWriteOffInventoryRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                  .addPathSegments("v1/inventory/stock/transfer");if (requestOptions != null) {
+                  .addPathSegments("v1/inventory/stock/write-off");if (requestOptions != null) {
                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                       httpUrl.addQueryParameter(_key, _value);
                     } );
@@ -695,14 +697,14 @@ public class AsyncRawInventoryClient {
                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                   }
-                  CompletableFuture<NordletApiHttpResponse<StockTransferInventoryResponse>> future = new CompletableFuture<>();
+                  CompletableFuture<NordletApiHttpResponse<StockWriteOffInventoryResponse>> future = new CompletableFuture<>();
                   client.newCall(okhttpRequest).enqueue(new Callback() {
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                       try (ResponseBody responseBody = response.body()) {
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StockTransferInventoryResponse.class), response));
+                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StockWriteOffInventoryResponse.class), response));
                           return;
                         }
                         try {
@@ -752,16 +754,16 @@ public class AsyncRawInventoryClient {
                   return future;
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<StockTakeInventoryResponse>> stockTake(
-                    StockTakeInventoryRequest request) {
-                  return stockTake(request,null);
+                public CompletableFuture<NordletApiHttpResponse<StockTransferInventoryResponse>> stockTransfer(
+                    StockTransferInventoryRequest request) {
+                  return stockTransfer(request,null);
                 }
 
-                public CompletableFuture<NordletApiHttpResponse<StockTakeInventoryResponse>> stockTake(
-                    StockTakeInventoryRequest request, RequestOptions requestOptions) {
+                public CompletableFuture<NordletApiHttpResponse<StockTransferInventoryResponse>> stockTransfer(
+                    StockTransferInventoryRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                    .addPathSegments("v1/inventory/stock/take");if (requestOptions != null) {
+                    .addPathSegments("v1/inventory/stock/transfer");if (requestOptions != null) {
                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                         httpUrl.addQueryParameter(_key, _value);
                       } );
@@ -787,14 +789,14 @@ public class AsyncRawInventoryClient {
                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                     }
-                    CompletableFuture<NordletApiHttpResponse<StockTakeInventoryResponse>> future = new CompletableFuture<>();
+                    CompletableFuture<NordletApiHttpResponse<StockTransferInventoryResponse>> future = new CompletableFuture<>();
                     client.newCall(okhttpRequest).enqueue(new Callback() {
                       @Override
                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         try (ResponseBody responseBody = response.body()) {
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StockTakeInventoryResponse.class), response));
+                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StockTransferInventoryResponse.class), response));
                             return;
                           }
                           try {
@@ -844,26 +846,16 @@ public class AsyncRawInventoryClient {
                     return future;
                   }
 
-                  public CompletableFuture<NordletApiHttpResponse<StockLevelsInventoryResponse>> stockLevels(
-                      ) {
-                    return stockLevels(StockLevelsInventoryRequest.builder().build());
+                  public CompletableFuture<NordletApiHttpResponse<StockTakeInventoryResponse>> stockTake(
+                      StockTakeInventoryRequest request) {
+                    return stockTake(request,null);
                   }
 
-                  public CompletableFuture<NordletApiHttpResponse<StockLevelsInventoryResponse>> stockLevels(
-                      RequestOptions requestOptions) {
-                    return stockLevels(StockLevelsInventoryRequest.builder().build(),requestOptions);
-                  }
-
-                  public CompletableFuture<NordletApiHttpResponse<StockLevelsInventoryResponse>> stockLevels(
-                      StockLevelsInventoryRequest request) {
-                    return stockLevels(request,null);
-                  }
-
-                  public CompletableFuture<NordletApiHttpResponse<StockLevelsInventoryResponse>> stockLevels(
-                      StockLevelsInventoryRequest request, RequestOptions requestOptions) {
+                  public CompletableFuture<NordletApiHttpResponse<StockTakeInventoryResponse>> stockTake(
+                      StockTakeInventoryRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                      .addPathSegments("v1/inventory/stock/levels");if (requestOptions != null) {
+                      .addPathSegments("v1/inventory/stock/take");if (requestOptions != null) {
                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                           httpUrl.addQueryParameter(_key, _value);
                         } );
@@ -889,14 +881,14 @@ public class AsyncRawInventoryClient {
                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                       }
-                      CompletableFuture<NordletApiHttpResponse<StockLevelsInventoryResponse>> future = new CompletableFuture<>();
+                      CompletableFuture<NordletApiHttpResponse<StockTakeInventoryResponse>> future = new CompletableFuture<>();
                       client.newCall(okhttpRequest).enqueue(new Callback() {
                         @Override
                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                           try (ResponseBody responseBody = response.body()) {
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StockLevelsInventoryResponse.class), response));
+                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StockTakeInventoryResponse.class), response));
                               return;
                             }
                             try {
@@ -946,26 +938,26 @@ public class AsyncRawInventoryClient {
                       return future;
                     }
 
-                    public CompletableFuture<NordletApiHttpResponse<StockMovementsListInventoryResponse>> stockMovementsList(
+                    public CompletableFuture<NordletApiHttpResponse<StockLevelsInventoryResponse>> stockLevels(
                         ) {
-                      return stockMovementsList(StockMovementsListInventoryRequest.builder().build());
+                      return stockLevels(StockLevelsInventoryRequest.builder().build());
                     }
 
-                    public CompletableFuture<NordletApiHttpResponse<StockMovementsListInventoryResponse>> stockMovementsList(
+                    public CompletableFuture<NordletApiHttpResponse<StockLevelsInventoryResponse>> stockLevels(
                         RequestOptions requestOptions) {
-                      return stockMovementsList(StockMovementsListInventoryRequest.builder().build(),requestOptions);
+                      return stockLevels(StockLevelsInventoryRequest.builder().build(),requestOptions);
                     }
 
-                    public CompletableFuture<NordletApiHttpResponse<StockMovementsListInventoryResponse>> stockMovementsList(
-                        StockMovementsListInventoryRequest request) {
-                      return stockMovementsList(request,null);
+                    public CompletableFuture<NordletApiHttpResponse<StockLevelsInventoryResponse>> stockLevels(
+                        StockLevelsInventoryRequest request) {
+                      return stockLevels(request,null);
                     }
 
-                    public CompletableFuture<NordletApiHttpResponse<StockMovementsListInventoryResponse>> stockMovementsList(
-                        StockMovementsListInventoryRequest request, RequestOptions requestOptions) {
+                    public CompletableFuture<NordletApiHttpResponse<StockLevelsInventoryResponse>> stockLevels(
+                        StockLevelsInventoryRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                        .addPathSegments("v1/inventory/stock/movements/list");if (requestOptions != null) {
+                        .addPathSegments("v1/inventory/stock/levels");if (requestOptions != null) {
                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                             httpUrl.addQueryParameter(_key, _value);
                           } );
@@ -991,14 +983,14 @@ public class AsyncRawInventoryClient {
                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                         }
-                        CompletableFuture<NordletApiHttpResponse<StockMovementsListInventoryResponse>> future = new CompletableFuture<>();
+                        CompletableFuture<NordletApiHttpResponse<StockLevelsInventoryResponse>> future = new CompletableFuture<>();
                         client.newCall(okhttpRequest).enqueue(new Callback() {
                           @Override
                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                             try (ResponseBody responseBody = response.body()) {
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StockMovementsListInventoryResponse.class), response));
+                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StockLevelsInventoryResponse.class), response));
                                 return;
                               }
                               try {
@@ -1048,26 +1040,27 @@ public class AsyncRawInventoryClient {
                         return future;
                       }
 
-                      public CompletableFuture<NordletApiHttpResponse<LotsListInventoryResponse>> lotsList(
+                      public CompletableFuture<NordletApiHttpResponse<StockMovementsListInventoryResponse>> stockMovementsList(
                           ) {
-                        return lotsList(LotsListInventoryRequest.builder().build());
+                        return stockMovementsList(StockMovementsListInventoryRequest.builder().build());
                       }
 
-                      public CompletableFuture<NordletApiHttpResponse<LotsListInventoryResponse>> lotsList(
+                      public CompletableFuture<NordletApiHttpResponse<StockMovementsListInventoryResponse>> stockMovementsList(
                           RequestOptions requestOptions) {
-                        return lotsList(LotsListInventoryRequest.builder().build(),requestOptions);
+                        return stockMovementsList(StockMovementsListInventoryRequest.builder().build(),requestOptions);
                       }
 
-                      public CompletableFuture<NordletApiHttpResponse<LotsListInventoryResponse>> lotsList(
-                          LotsListInventoryRequest request) {
-                        return lotsList(request,null);
+                      public CompletableFuture<NordletApiHttpResponse<StockMovementsListInventoryResponse>> stockMovementsList(
+                          StockMovementsListInventoryRequest request) {
+                        return stockMovementsList(request,null);
                       }
 
-                      public CompletableFuture<NordletApiHttpResponse<LotsListInventoryResponse>> lotsList(
-                          LotsListInventoryRequest request, RequestOptions requestOptions) {
+                      public CompletableFuture<NordletApiHttpResponse<StockMovementsListInventoryResponse>> stockMovementsList(
+                          StockMovementsListInventoryRequest request,
+                          RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                          .addPathSegments("v1/inventory/lots/list");if (requestOptions != null) {
+                          .addPathSegments("v1/inventory/stock/movements/list");if (requestOptions != null) {
                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                               httpUrl.addQueryParameter(_key, _value);
                             } );
@@ -1093,14 +1086,14 @@ public class AsyncRawInventoryClient {
                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                           }
-                          CompletableFuture<NordletApiHttpResponse<LotsListInventoryResponse>> future = new CompletableFuture<>();
+                          CompletableFuture<NordletApiHttpResponse<StockMovementsListInventoryResponse>> future = new CompletableFuture<>();
                           client.newCall(okhttpRequest).enqueue(new Callback() {
                             @Override
                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                               try (ResponseBody responseBody = response.body()) {
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LotsListInventoryResponse.class), response));
+                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StockMovementsListInventoryResponse.class), response));
                                   return;
                                 }
                                 try {
@@ -1150,16 +1143,26 @@ public class AsyncRawInventoryClient {
                           return future;
                         }
 
-                        public CompletableFuture<NordletApiHttpResponse<LotsGetInventoryResponse>> lotsGet(
-                            LotsGetInventoryRequest request) {
-                          return lotsGet(request,null);
+                        public CompletableFuture<NordletApiHttpResponse<LotsListInventoryResponse>> lotsList(
+                            ) {
+                          return lotsList(LotsListInventoryRequest.builder().build());
                         }
 
-                        public CompletableFuture<NordletApiHttpResponse<LotsGetInventoryResponse>> lotsGet(
-                            LotsGetInventoryRequest request, RequestOptions requestOptions) {
+                        public CompletableFuture<NordletApiHttpResponse<LotsListInventoryResponse>> lotsList(
+                            RequestOptions requestOptions) {
+                          return lotsList(LotsListInventoryRequest.builder().build(),requestOptions);
+                        }
+
+                        public CompletableFuture<NordletApiHttpResponse<LotsListInventoryResponse>> lotsList(
+                            LotsListInventoryRequest request) {
+                          return lotsList(request,null);
+                        }
+
+                        public CompletableFuture<NordletApiHttpResponse<LotsListInventoryResponse>> lotsList(
+                            LotsListInventoryRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                            .addPathSegments("v1/inventory/lots/get");if (requestOptions != null) {
+                            .addPathSegments("v1/inventory/lots/list");if (requestOptions != null) {
                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                 httpUrl.addQueryParameter(_key, _value);
                               } );
@@ -1185,14 +1188,14 @@ public class AsyncRawInventoryClient {
                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                             }
-                            CompletableFuture<NordletApiHttpResponse<LotsGetInventoryResponse>> future = new CompletableFuture<>();
+                            CompletableFuture<NordletApiHttpResponse<LotsListInventoryResponse>> future = new CompletableFuture<>();
                             client.newCall(okhttpRequest).enqueue(new Callback() {
                               @Override
                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                 try (ResponseBody responseBody = response.body()) {
                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                   if (response.isSuccessful()) {
-                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LotsGetInventoryResponse.class), response));
+                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LotsListInventoryResponse.class), response));
                                     return;
                                   }
                                   try {
@@ -1242,16 +1245,16 @@ public class AsyncRawInventoryClient {
                             return future;
                           }
 
-                          public CompletableFuture<NordletApiHttpResponse<LotsUpdateInventoryResponse>> lotsUpdate(
-                              LotsUpdateInventoryRequest request) {
-                            return lotsUpdate(request,null);
+                          public CompletableFuture<NordletApiHttpResponse<LotsGetInventoryResponse>> lotsGet(
+                              LotsGetInventoryRequest request) {
+                            return lotsGet(request,null);
                           }
 
-                          public CompletableFuture<NordletApiHttpResponse<LotsUpdateInventoryResponse>> lotsUpdate(
-                              LotsUpdateInventoryRequest request, RequestOptions requestOptions) {
+                          public CompletableFuture<NordletApiHttpResponse<LotsGetInventoryResponse>> lotsGet(
+                              LotsGetInventoryRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                              .addPathSegments("v1/inventory/lots/update");if (requestOptions != null) {
+                              .addPathSegments("v1/inventory/lots/get");if (requestOptions != null) {
                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                   httpUrl.addQueryParameter(_key, _value);
                                 } );
@@ -1277,14 +1280,14 @@ public class AsyncRawInventoryClient {
                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                               }
-                              CompletableFuture<NordletApiHttpResponse<LotsUpdateInventoryResponse>> future = new CompletableFuture<>();
+                              CompletableFuture<NordletApiHttpResponse<LotsGetInventoryResponse>> future = new CompletableFuture<>();
                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                 @Override
                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                   try (ResponseBody responseBody = response.body()) {
                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                     if (response.isSuccessful()) {
-                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LotsUpdateInventoryResponse.class), response));
+                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LotsGetInventoryResponse.class), response));
                                       return;
                                     }
                                     try {
@@ -1334,17 +1337,16 @@ public class AsyncRawInventoryClient {
                               return future;
                             }
 
-                            public CompletableFuture<NordletApiHttpResponse<LandedCostsCreateInventoryResponse>> landedCostsCreate(
-                                LandedCostsCreateInventoryRequest request) {
-                              return landedCostsCreate(request,null);
+                            public CompletableFuture<NordletApiHttpResponse<LotsUpdateInventoryResponse>> lotsUpdate(
+                                LotsUpdateInventoryRequest request) {
+                              return lotsUpdate(request,null);
                             }
 
-                            public CompletableFuture<NordletApiHttpResponse<LandedCostsCreateInventoryResponse>> landedCostsCreate(
-                                LandedCostsCreateInventoryRequest request,
-                                RequestOptions requestOptions) {
+                            public CompletableFuture<NordletApiHttpResponse<LotsUpdateInventoryResponse>> lotsUpdate(
+                                LotsUpdateInventoryRequest request, RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                .addPathSegments("v1/inventory/landed-costs/create");if (requestOptions != null) {
+                                .addPathSegments("v1/inventory/lots/update");if (requestOptions != null) {
                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                     httpUrl.addQueryParameter(_key, _value);
                                   } );
@@ -1370,14 +1372,14 @@ public class AsyncRawInventoryClient {
                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                 }
-                                CompletableFuture<NordletApiHttpResponse<LandedCostsCreateInventoryResponse>> future = new CompletableFuture<>();
+                                CompletableFuture<NordletApiHttpResponse<LotsUpdateInventoryResponse>> future = new CompletableFuture<>();
                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                   @Override
                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                     try (ResponseBody responseBody = response.body()) {
                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                       if (response.isSuccessful()) {
-                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LandedCostsCreateInventoryResponse.class), response));
+                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LotsUpdateInventoryResponse.class), response));
                                         return;
                                       }
                                       try {
@@ -1427,17 +1429,17 @@ public class AsyncRawInventoryClient {
                                 return future;
                               }
 
-                              public CompletableFuture<NordletApiHttpResponse<LandedCostsGetInventoryResponse>> landedCostsGet(
-                                  LandedCostsGetInventoryRequest request) {
-                                return landedCostsGet(request,null);
+                              public CompletableFuture<NordletApiHttpResponse<LandedCostsCreateInventoryResponse>> landedCostsCreate(
+                                  LandedCostsCreateInventoryRequest request) {
+                                return landedCostsCreate(request,null);
                               }
 
-                              public CompletableFuture<NordletApiHttpResponse<LandedCostsGetInventoryResponse>> landedCostsGet(
-                                  LandedCostsGetInventoryRequest request,
+                              public CompletableFuture<NordletApiHttpResponse<LandedCostsCreateInventoryResponse>> landedCostsCreate(
+                                  LandedCostsCreateInventoryRequest request,
                                   RequestOptions requestOptions) {
                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                  .addPathSegments("v1/inventory/landed-costs/get");if (requestOptions != null) {
+                                  .addPathSegments("v1/inventory/landed-costs/create");if (requestOptions != null) {
                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                       httpUrl.addQueryParameter(_key, _value);
                                     } );
@@ -1463,14 +1465,14 @@ public class AsyncRawInventoryClient {
                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                   }
-                                  CompletableFuture<NordletApiHttpResponse<LandedCostsGetInventoryResponse>> future = new CompletableFuture<>();
+                                  CompletableFuture<NordletApiHttpResponse<LandedCostsCreateInventoryResponse>> future = new CompletableFuture<>();
                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                     @Override
                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                       try (ResponseBody responseBody = response.body()) {
                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                         if (response.isSuccessful()) {
-                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LandedCostsGetInventoryResponse.class), response));
+                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LandedCostsCreateInventoryResponse.class), response));
                                           return;
                                         }
                                         try {
@@ -1520,27 +1522,17 @@ public class AsyncRawInventoryClient {
                                   return future;
                                 }
 
-                                public CompletableFuture<NordletApiHttpResponse<LandedCostsListInventoryResponse>> landedCostsList(
-                                    ) {
-                                  return landedCostsList(LandedCostsListInventoryRequest.builder().build());
+                                public CompletableFuture<NordletApiHttpResponse<LandedCostsGetInventoryResponse>> landedCostsGet(
+                                    LandedCostsGetInventoryRequest request) {
+                                  return landedCostsGet(request,null);
                                 }
 
-                                public CompletableFuture<NordletApiHttpResponse<LandedCostsListInventoryResponse>> landedCostsList(
-                                    RequestOptions requestOptions) {
-                                  return landedCostsList(LandedCostsListInventoryRequest.builder().build(),requestOptions);
-                                }
-
-                                public CompletableFuture<NordletApiHttpResponse<LandedCostsListInventoryResponse>> landedCostsList(
-                                    LandedCostsListInventoryRequest request) {
-                                  return landedCostsList(request,null);
-                                }
-
-                                public CompletableFuture<NordletApiHttpResponse<LandedCostsListInventoryResponse>> landedCostsList(
-                                    LandedCostsListInventoryRequest request,
+                                public CompletableFuture<NordletApiHttpResponse<LandedCostsGetInventoryResponse>> landedCostsGet(
+                                    LandedCostsGetInventoryRequest request,
                                     RequestOptions requestOptions) {
                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                    .addPathSegments("v1/inventory/landed-costs/list");if (requestOptions != null) {
+                                    .addPathSegments("v1/inventory/landed-costs/get");if (requestOptions != null) {
                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                         httpUrl.addQueryParameter(_key, _value);
                                       } );
@@ -1566,14 +1558,14 @@ public class AsyncRawInventoryClient {
                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                     }
-                                    CompletableFuture<NordletApiHttpResponse<LandedCostsListInventoryResponse>> future = new CompletableFuture<>();
+                                    CompletableFuture<NordletApiHttpResponse<LandedCostsGetInventoryResponse>> future = new CompletableFuture<>();
                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                       @Override
                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                         try (ResponseBody responseBody = response.body()) {
                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                           if (response.isSuccessful()) {
-                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LandedCostsListInventoryResponse.class), response));
+                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LandedCostsGetInventoryResponse.class), response));
                                             return;
                                           }
                                           try {
@@ -1623,17 +1615,27 @@ public class AsyncRawInventoryClient {
                                     return future;
                                   }
 
-                                  public CompletableFuture<NordletApiHttpResponse<ReorderRulesCreateInventoryResponse>> reorderRulesCreate(
-                                      ReorderRulesCreateInventoryRequest request) {
-                                    return reorderRulesCreate(request,null);
+                                  public CompletableFuture<NordletApiHttpResponse<LandedCostsListInventoryResponse>> landedCostsList(
+                                      ) {
+                                    return landedCostsList(LandedCostsListInventoryRequest.builder().build());
                                   }
 
-                                  public CompletableFuture<NordletApiHttpResponse<ReorderRulesCreateInventoryResponse>> reorderRulesCreate(
-                                      ReorderRulesCreateInventoryRequest request,
+                                  public CompletableFuture<NordletApiHttpResponse<LandedCostsListInventoryResponse>> landedCostsList(
+                                      RequestOptions requestOptions) {
+                                    return landedCostsList(LandedCostsListInventoryRequest.builder().build(),requestOptions);
+                                  }
+
+                                  public CompletableFuture<NordletApiHttpResponse<LandedCostsListInventoryResponse>> landedCostsList(
+                                      LandedCostsListInventoryRequest request) {
+                                    return landedCostsList(request,null);
+                                  }
+
+                                  public CompletableFuture<NordletApiHttpResponse<LandedCostsListInventoryResponse>> landedCostsList(
+                                      LandedCostsListInventoryRequest request,
                                       RequestOptions requestOptions) {
                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                      .addPathSegments("v1/inventory/reorder-rules/create");if (requestOptions != null) {
+                                      .addPathSegments("v1/inventory/landed-costs/list");if (requestOptions != null) {
                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                           httpUrl.addQueryParameter(_key, _value);
                                         } );
@@ -1659,14 +1661,14 @@ public class AsyncRawInventoryClient {
                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                       }
-                                      CompletableFuture<NordletApiHttpResponse<ReorderRulesCreateInventoryResponse>> future = new CompletableFuture<>();
+                                      CompletableFuture<NordletApiHttpResponse<LandedCostsListInventoryResponse>> future = new CompletableFuture<>();
                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                         @Override
                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                           try (ResponseBody responseBody = response.body()) {
                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                             if (response.isSuccessful()) {
-                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReorderRulesCreateInventoryResponse.class), response));
+                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LandedCostsListInventoryResponse.class), response));
                                               return;
                                             }
                                             try {
@@ -1716,17 +1718,17 @@ public class AsyncRawInventoryClient {
                                       return future;
                                     }
 
-                                    public CompletableFuture<NordletApiHttpResponse<ReorderRulesUpdateInventoryResponse>> reorderRulesUpdate(
-                                        ReorderRulesUpdateInventoryRequest request) {
-                                      return reorderRulesUpdate(request,null);
+                                    public CompletableFuture<NordletApiHttpResponse<ReorderRulesCreateInventoryResponse>> reorderRulesCreate(
+                                        ReorderRulesCreateInventoryRequest request) {
+                                      return reorderRulesCreate(request,null);
                                     }
 
-                                    public CompletableFuture<NordletApiHttpResponse<ReorderRulesUpdateInventoryResponse>> reorderRulesUpdate(
-                                        ReorderRulesUpdateInventoryRequest request,
+                                    public CompletableFuture<NordletApiHttpResponse<ReorderRulesCreateInventoryResponse>> reorderRulesCreate(
+                                        ReorderRulesCreateInventoryRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                        .addPathSegments("v1/inventory/reorder-rules/update");if (requestOptions != null) {
+                                        .addPathSegments("v1/inventory/reorder-rules/create");if (requestOptions != null) {
                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                             httpUrl.addQueryParameter(_key, _value);
                                           } );
@@ -1752,14 +1754,14 @@ public class AsyncRawInventoryClient {
                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                         }
-                                        CompletableFuture<NordletApiHttpResponse<ReorderRulesUpdateInventoryResponse>> future = new CompletableFuture<>();
+                                        CompletableFuture<NordletApiHttpResponse<ReorderRulesCreateInventoryResponse>> future = new CompletableFuture<>();
                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                           @Override
                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                             try (ResponseBody responseBody = response.body()) {
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReorderRulesUpdateInventoryResponse.class), response));
+                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReorderRulesCreateInventoryResponse.class), response));
                                                 return;
                                               }
                                               try {
@@ -1809,17 +1811,17 @@ public class AsyncRawInventoryClient {
                                         return future;
                                       }
 
-                                      public CompletableFuture<NordletApiHttpResponse<ReorderRulesDeleteInventoryResponse>> reorderRulesDelete(
-                                          ReorderRulesDeleteInventoryRequest request) {
-                                        return reorderRulesDelete(request,null);
+                                      public CompletableFuture<NordletApiHttpResponse<ReorderRulesUpdateInventoryResponse>> reorderRulesUpdate(
+                                          ReorderRulesUpdateInventoryRequest request) {
+                                        return reorderRulesUpdate(request,null);
                                       }
 
-                                      public CompletableFuture<NordletApiHttpResponse<ReorderRulesDeleteInventoryResponse>> reorderRulesDelete(
-                                          ReorderRulesDeleteInventoryRequest request,
+                                      public CompletableFuture<NordletApiHttpResponse<ReorderRulesUpdateInventoryResponse>> reorderRulesUpdate(
+                                          ReorderRulesUpdateInventoryRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                          .addPathSegments("v1/inventory/reorder-rules/delete");if (requestOptions != null) {
+                                          .addPathSegments("v1/inventory/reorder-rules/update");if (requestOptions != null) {
                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                               httpUrl.addQueryParameter(_key, _value);
                                             } );
@@ -1845,14 +1847,14 @@ public class AsyncRawInventoryClient {
                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                           }
-                                          CompletableFuture<NordletApiHttpResponse<ReorderRulesDeleteInventoryResponse>> future = new CompletableFuture<>();
+                                          CompletableFuture<NordletApiHttpResponse<ReorderRulesUpdateInventoryResponse>> future = new CompletableFuture<>();
                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                             @Override
                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                               try (ResponseBody responseBody = response.body()) {
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReorderRulesDeleteInventoryResponse.class), response));
+                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReorderRulesUpdateInventoryResponse.class), response));
                                                   return;
                                                 }
                                                 try {
@@ -1902,27 +1904,17 @@ public class AsyncRawInventoryClient {
                                           return future;
                                         }
 
-                                        public CompletableFuture<NordletApiHttpResponse<ReorderRulesListInventoryResponse>> reorderRulesList(
-                                            ) {
-                                          return reorderRulesList(ReorderRulesListInventoryRequest.builder().build());
+                                        public CompletableFuture<NordletApiHttpResponse<ReorderRulesDeleteInventoryResponse>> reorderRulesDelete(
+                                            ReorderRulesDeleteInventoryRequest request) {
+                                          return reorderRulesDelete(request,null);
                                         }
 
-                                        public CompletableFuture<NordletApiHttpResponse<ReorderRulesListInventoryResponse>> reorderRulesList(
-                                            RequestOptions requestOptions) {
-                                          return reorderRulesList(ReorderRulesListInventoryRequest.builder().build(),requestOptions);
-                                        }
-
-                                        public CompletableFuture<NordletApiHttpResponse<ReorderRulesListInventoryResponse>> reorderRulesList(
-                                            ReorderRulesListInventoryRequest request) {
-                                          return reorderRulesList(request,null);
-                                        }
-
-                                        public CompletableFuture<NordletApiHttpResponse<ReorderRulesListInventoryResponse>> reorderRulesList(
-                                            ReorderRulesListInventoryRequest request,
+                                        public CompletableFuture<NordletApiHttpResponse<ReorderRulesDeleteInventoryResponse>> reorderRulesDelete(
+                                            ReorderRulesDeleteInventoryRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                            .addPathSegments("v1/inventory/reorder-rules/list");if (requestOptions != null) {
+                                            .addPathSegments("v1/inventory/reorder-rules/delete");if (requestOptions != null) {
                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                 httpUrl.addQueryParameter(_key, _value);
                                               } );
@@ -1948,14 +1940,14 @@ public class AsyncRawInventoryClient {
                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                             }
-                                            CompletableFuture<NordletApiHttpResponse<ReorderRulesListInventoryResponse>> future = new CompletableFuture<>();
+                                            CompletableFuture<NordletApiHttpResponse<ReorderRulesDeleteInventoryResponse>> future = new CompletableFuture<>();
                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                               @Override
                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                 try (ResponseBody responseBody = response.body()) {
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReorderRulesListInventoryResponse.class), response));
+                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReorderRulesDeleteInventoryResponse.class), response));
                                                     return;
                                                   }
                                                   try {
@@ -2005,27 +1997,27 @@ public class AsyncRawInventoryClient {
                                             return future;
                                           }
 
-                                          public CompletableFuture<NordletApiHttpResponse<ReorderRulesCheckInventoryResponse>> reorderRulesCheck(
+                                          public CompletableFuture<NordletApiHttpResponse<ReorderRulesListInventoryResponse>> reorderRulesList(
                                               ) {
-                                            return reorderRulesCheck(ReorderRulesCheckInventoryRequest.builder().build());
+                                            return reorderRulesList(ReorderRulesListInventoryRequest.builder().build());
                                           }
 
-                                          public CompletableFuture<NordletApiHttpResponse<ReorderRulesCheckInventoryResponse>> reorderRulesCheck(
+                                          public CompletableFuture<NordletApiHttpResponse<ReorderRulesListInventoryResponse>> reorderRulesList(
                                               RequestOptions requestOptions) {
-                                            return reorderRulesCheck(ReorderRulesCheckInventoryRequest.builder().build(),requestOptions);
+                                            return reorderRulesList(ReorderRulesListInventoryRequest.builder().build(),requestOptions);
                                           }
 
-                                          public CompletableFuture<NordletApiHttpResponse<ReorderRulesCheckInventoryResponse>> reorderRulesCheck(
-                                              ReorderRulesCheckInventoryRequest request) {
-                                            return reorderRulesCheck(request,null);
+                                          public CompletableFuture<NordletApiHttpResponse<ReorderRulesListInventoryResponse>> reorderRulesList(
+                                              ReorderRulesListInventoryRequest request) {
+                                            return reorderRulesList(request,null);
                                           }
 
-                                          public CompletableFuture<NordletApiHttpResponse<ReorderRulesCheckInventoryResponse>> reorderRulesCheck(
-                                              ReorderRulesCheckInventoryRequest request,
+                                          public CompletableFuture<NordletApiHttpResponse<ReorderRulesListInventoryResponse>> reorderRulesList(
+                                              ReorderRulesListInventoryRequest request,
                                               RequestOptions requestOptions) {
                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                              .addPathSegments("v1/inventory/reorder-rules/check");if (requestOptions != null) {
+                                              .addPathSegments("v1/inventory/reorder-rules/list");if (requestOptions != null) {
                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                   httpUrl.addQueryParameter(_key, _value);
                                                 } );
@@ -2051,14 +2043,14 @@ public class AsyncRawInventoryClient {
                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                               }
-                                              CompletableFuture<NordletApiHttpResponse<ReorderRulesCheckInventoryResponse>> future = new CompletableFuture<>();
+                                              CompletableFuture<NordletApiHttpResponse<ReorderRulesListInventoryResponse>> future = new CompletableFuture<>();
                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                 @Override
                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                   try (ResponseBody responseBody = response.body()) {
                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                     if (response.isSuccessful()) {
-                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReorderRulesCheckInventoryResponse.class), response));
+                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReorderRulesListInventoryResponse.class), response));
                                                       return;
                                                     }
                                                     try {
@@ -2107,4 +2099,107 @@ public class AsyncRawInventoryClient {
                                               });
                                               return future;
                                             }
-                                          }
+
+                                            public CompletableFuture<NordletApiHttpResponse<ReorderRulesCheckInventoryResponse>> reorderRulesCheck(
+                                                ) {
+                                              return reorderRulesCheck(ReorderRulesCheckInventoryRequest.builder().build());
+                                            }
+
+                                            public CompletableFuture<NordletApiHttpResponse<ReorderRulesCheckInventoryResponse>> reorderRulesCheck(
+                                                RequestOptions requestOptions) {
+                                              return reorderRulesCheck(ReorderRulesCheckInventoryRequest.builder().build(),requestOptions);
+                                            }
+
+                                            public CompletableFuture<NordletApiHttpResponse<ReorderRulesCheckInventoryResponse>> reorderRulesCheck(
+                                                ReorderRulesCheckInventoryRequest request) {
+                                              return reorderRulesCheck(request,null);
+                                            }
+
+                                            public CompletableFuture<NordletApiHttpResponse<ReorderRulesCheckInventoryResponse>> reorderRulesCheck(
+                                                ReorderRulesCheckInventoryRequest request,
+                                                RequestOptions requestOptions) {
+                                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                .addPathSegments("v1/inventory/reorder-rules/check");if (requestOptions != null) {
+                                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                    httpUrl.addQueryParameter(_key, _value);
+                                                  } );
+                                                }
+                                                RequestBody body;
+                                                try {
+                                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                }
+                                                catch(JsonProcessingException e) {
+                                                  throw new NordletApiException("Failed to serialize request", e);
+                                                }
+                                                Request okhttpRequest = new Request.Builder()
+                                                  .url(httpUrl.build())
+                                                  .method("POST", body)
+                                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                  .addHeader("Content-Type", "application/json")
+                                                  .addHeader("Accept", "application/json")
+                                                  .build();
+                                                OkHttpClient client = clientOptions.httpClient();
+                                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                  client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                }
+                                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                }
+                                                CompletableFuture<NordletApiHttpResponse<ReorderRulesCheckInventoryResponse>> future = new CompletableFuture<>();
+                                                client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                  @Override
+                                                  public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                    try (ResponseBody responseBody = response.body()) {
+                                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                      if (response.isSuccessful()) {
+                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReorderRulesCheckInventoryResponse.class), response));
+                                                        return;
+                                                      }
+                                                      try {
+                                                        switch (response.code()) {
+                                                          case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                          case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                          return;
+                                                        }
+                                                      }
+                                                      catch (JsonProcessingException ignored) {
+                                                        // unable to map error response, throwing generic error
+                                                      }
+                                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                      future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                      return;
+                                                    }
+                                                    catch (JsonProcessingException e) {
+                                                      future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                    }
+                                                    catch (IOException e) {
+                                                      future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                    }
+                                                  }
+
+                                                  @Override
+                                                  public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                    future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                  }
+                                                });
+                                                return future;
+                                              }
+                                            }

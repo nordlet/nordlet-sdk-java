@@ -6,11 +6,15 @@ package com.nordlet.api.resources.inventory.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nordlet.api.core.Nullable;
+import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
@@ -18,6 +22,7 @@ import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -33,16 +38,20 @@ public final class WarehousesListInventoryResponseRowsItem {
 
   private final boolean isDefault;
 
+  private final Optional<String> countryCode;
+
   private final OffsetDateTime createdAt;
 
   private final Map<String, Object> additionalProperties;
 
   private WarehousesListInventoryResponseRowsItem(String id, String code, String name,
-      boolean isDefault, OffsetDateTime createdAt, Map<String, Object> additionalProperties) {
+      boolean isDefault, Optional<String> countryCode, OffsetDateTime createdAt,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.code = code;
     this.name = name;
     this.isDefault = isDefault;
+    this.countryCode = countryCode;
     this.createdAt = createdAt;
     this.additionalProperties = additionalProperties;
   }
@@ -67,9 +76,26 @@ public final class WarehousesListInventoryResponseRowsItem {
     return isDefault;
   }
 
+  @JsonIgnore
+  public Optional<String> getCountryCode() {
+    if (countryCode == null) {
+      return Optional.empty();
+    }
+    return countryCode;
+  }
+
   @JsonProperty("createdAt")
   public OffsetDateTime getCreatedAt() {
     return createdAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("countryCode")
+  private Optional<String> _getCountryCode() {
+    return countryCode;
   }
 
   @java.lang.Override
@@ -84,12 +110,12 @@ public final class WarehousesListInventoryResponseRowsItem {
   }
 
   private boolean equalTo(WarehousesListInventoryResponseRowsItem other) {
-    return id.equals(other.id) && code.equals(other.code) && name.equals(other.name) && isDefault == other.isDefault && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && code.equals(other.code) && name.equals(other.name) && isDefault == other.isDefault && countryCode.equals(other.countryCode) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.code, this.name, this.isDefault, this.createdAt);
+    return Objects.hash(this.id, this.code, this.name, this.isDefault, this.countryCode, this.createdAt);
   }
 
   @java.lang.Override
@@ -129,6 +155,12 @@ public final class WarehousesListInventoryResponseRowsItem {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage countryCode(Optional<String> countryCode);
+
+    _FinalStage countryCode(String countryCode);
+
+    _FinalStage countryCode(Nullable<String> countryCode);
   }
 
   @JsonIgnoreProperties(
@@ -145,6 +177,8 @@ public final class WarehousesListInventoryResponseRowsItem {
 
     private OffsetDateTime createdAt;
 
+    private Optional<String> countryCode = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -157,6 +191,7 @@ public final class WarehousesListInventoryResponseRowsItem {
       code(other.getCode());
       name(other.getName());
       isDefault(other.getIsDefault());
+      countryCode(other.getCountryCode());
       createdAt(other.getCreatedAt());
       return this;
     }
@@ -197,8 +232,38 @@ public final class WarehousesListInventoryResponseRowsItem {
     }
 
     @java.lang.Override
+    public _FinalStage countryCode(Nullable<String> countryCode) {
+      if (countryCode.isNull()) {
+        this.countryCode = null;
+      }
+      else if (countryCode.isEmpty()) {
+        this.countryCode = Optional.empty();
+      }
+      else {
+        this.countryCode = Optional.of(countryCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage countryCode(String countryCode) {
+      this.countryCode = Optional.ofNullable(countryCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "countryCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage countryCode(Optional<String> countryCode) {
+      this.countryCode = countryCode;
+      return this;
+    }
+
+    @java.lang.Override
     public WarehousesListInventoryResponseRowsItem build() {
-      return new WarehousesListInventoryResponseRowsItem(id, code, name, isDefault, createdAt, additionalProperties);
+      return new WarehousesListInventoryResponseRowsItem(id, code, name, isDefault, countryCode, createdAt, additionalProperties);
     }
 
     @java.lang.Override

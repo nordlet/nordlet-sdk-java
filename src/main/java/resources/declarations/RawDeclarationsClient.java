@@ -50,9 +50,13 @@ import com.nordlet.api.resources.declarations.requests.DeReturnsGenerateDeclarat
 import com.nordlet.api.resources.declarations.requests.DkSelskabsskatGenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EeEmploymentRegisterSendDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EsVerifactuDeclaracionResponsableDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuDac7PreviewDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuDac7XmlDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuDigitalReportingListDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuDistanceSalesThresholdGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuIossComputeDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuOssComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuOwnGoodsTransfersComputeDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuSmeCrossBorderReportComputeDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuSmeThresholdGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuSmeThresholdsListDeclarationsRequest;
@@ -140,9 +144,13 @@ import com.nordlet.api.resources.declarations.types.DeReturnsGenerateDeclaration
 import com.nordlet.api.resources.declarations.types.DkSelskabsskatGenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EeEmploymentRegisterSendDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EsVerifactuDeclaracionResponsableDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuDac7PreviewDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuDac7XmlDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuDigitalReportingListDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuDistanceSalesThresholdGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuIossComputeDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuOssComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuOwnGoodsTransfersComputeDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuSmeCrossBorderReportComputeDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuSmeThresholdGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuSmeThresholdsListDeclarationsResponse;
@@ -1331,27 +1339,17 @@ public class RawDeclarationsClient {
                                     }
                                   }
 
-                                  public NordletApiHttpResponse<EuDistanceSalesThresholdGetDeclarationsResponse> euDistanceSalesThresholdGet(
-                                      ) {
-                                    return euDistanceSalesThresholdGet(EuDistanceSalesThresholdGetDeclarationsRequest.builder().build());
+                                  public NordletApiHttpResponse<EuOwnGoodsTransfersComputeDeclarationsResponse> euOwnGoodsTransfersCompute(
+                                      EuOwnGoodsTransfersComputeDeclarationsRequest request) {
+                                    return euOwnGoodsTransfersCompute(request,null);
                                   }
 
-                                  public NordletApiHttpResponse<EuDistanceSalesThresholdGetDeclarationsResponse> euDistanceSalesThresholdGet(
-                                      RequestOptions requestOptions) {
-                                    return euDistanceSalesThresholdGet(EuDistanceSalesThresholdGetDeclarationsRequest.builder().build(),requestOptions);
-                                  }
-
-                                  public NordletApiHttpResponse<EuDistanceSalesThresholdGetDeclarationsResponse> euDistanceSalesThresholdGet(
-                                      EuDistanceSalesThresholdGetDeclarationsRequest request) {
-                                    return euDistanceSalesThresholdGet(request,null);
-                                  }
-
-                                  public NordletApiHttpResponse<EuDistanceSalesThresholdGetDeclarationsResponse> euDistanceSalesThresholdGet(
-                                      EuDistanceSalesThresholdGetDeclarationsRequest request,
+                                  public NordletApiHttpResponse<EuOwnGoodsTransfersComputeDeclarationsResponse> euOwnGoodsTransfersCompute(
+                                      EuOwnGoodsTransfersComputeDeclarationsRequest request,
                                       RequestOptions requestOptions) {
                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                      .addPathSegments("v1/declarations/eu/distance-sales-threshold/get");if (requestOptions != null) {
+                                      .addPathSegments("v1/declarations/eu/own-goods-transfers/compute");if (requestOptions != null) {
                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                           httpUrl.addQueryParameter(_key, _value);
                                         } );
@@ -1381,7 +1379,7 @@ public class RawDeclarationsClient {
                                         ResponseBody responseBody = response.body();
                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                         if (response.isSuccessful()) {
-                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuDistanceSalesThresholdGetDeclarationsResponse.class), response);
+                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuOwnGoodsTransfersComputeDeclarationsResponse.class), response);
                                         }
                                         try {
                                           switch (response.code()) {
@@ -1411,27 +1409,17 @@ public class RawDeclarationsClient {
                                       }
                                     }
 
-                                    public NordletApiHttpResponse<EuUnionTurnoverGetDeclarationsResponse> euUnionTurnoverGet(
-                                        ) {
-                                      return euUnionTurnoverGet(EuUnionTurnoverGetDeclarationsRequest.builder().build());
+                                    public NordletApiHttpResponse<EuDigitalReportingListDeclarationsResponse> euDigitalReportingList(
+                                        EuDigitalReportingListDeclarationsRequest request) {
+                                      return euDigitalReportingList(request,null);
                                     }
 
-                                    public NordletApiHttpResponse<EuUnionTurnoverGetDeclarationsResponse> euUnionTurnoverGet(
-                                        RequestOptions requestOptions) {
-                                      return euUnionTurnoverGet(EuUnionTurnoverGetDeclarationsRequest.builder().build(),requestOptions);
-                                    }
-
-                                    public NordletApiHttpResponse<EuUnionTurnoverGetDeclarationsResponse> euUnionTurnoverGet(
-                                        EuUnionTurnoverGetDeclarationsRequest request) {
-                                      return euUnionTurnoverGet(request,null);
-                                    }
-
-                                    public NordletApiHttpResponse<EuUnionTurnoverGetDeclarationsResponse> euUnionTurnoverGet(
-                                        EuUnionTurnoverGetDeclarationsRequest request,
+                                    public NordletApiHttpResponse<EuDigitalReportingListDeclarationsResponse> euDigitalReportingList(
+                                        EuDigitalReportingListDeclarationsRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                        .addPathSegments("v1/declarations/eu/union-turnover/get");if (requestOptions != null) {
+                                        .addPathSegments("v1/declarations/eu/digital-reporting/list");if (requestOptions != null) {
                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                             httpUrl.addQueryParameter(_key, _value);
                                           } );
@@ -1461,7 +1449,7 @@ public class RawDeclarationsClient {
                                           ResponseBody responseBody = response.body();
                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                           if (response.isSuccessful()) {
-                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuUnionTurnoverGetDeclarationsResponse.class), response);
+                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuDigitalReportingListDeclarationsResponse.class), response);
                                           }
                                           try {
                                             switch (response.code()) {
@@ -1491,17 +1479,23 @@ public class RawDeclarationsClient {
                                         }
                                       }
 
-                                      public NordletApiHttpResponse<EuSmeCrossBorderReportComputeDeclarationsResponse> euSmeCrossBorderReportCompute(
-                                          EuSmeCrossBorderReportComputeDeclarationsRequest request) {
-                                        return euSmeCrossBorderReportCompute(request,null);
+                                      /**
+                                       * Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V) and why the others are excluded, the data still missing, and how the company files the report in its Member State.
+                                       */
+                                      public NordletApiHttpResponse<EuDac7PreviewDeclarationsResponse> euDac7Preview(
+                                          EuDac7PreviewDeclarationsRequest request) {
+                                        return euDac7Preview(request,null);
                                       }
 
-                                      public NordletApiHttpResponse<EuSmeCrossBorderReportComputeDeclarationsResponse> euSmeCrossBorderReportCompute(
-                                          EuSmeCrossBorderReportComputeDeclarationsRequest request,
+                                      /**
+                                       * Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V) and why the others are excluded, the data still missing, and how the company files the report in its Member State.
+                                       */
+                                      public NordletApiHttpResponse<EuDac7PreviewDeclarationsResponse> euDac7Preview(
+                                          EuDac7PreviewDeclarationsRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                          .addPathSegments("v1/declarations/eu/sme-cross-border-report/compute");if (requestOptions != null) {
+                                          .addPathSegments("v1/declarations/eu/dac7/preview");if (requestOptions != null) {
                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                               httpUrl.addQueryParameter(_key, _value);
                                             } );
@@ -1531,7 +1525,7 @@ public class RawDeclarationsClient {
                                             ResponseBody responseBody = response.body();
                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                             if (response.isSuccessful()) {
-                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuSmeCrossBorderReportComputeDeclarationsResponse.class), response);
+                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuDac7PreviewDeclarationsResponse.class), response);
                                             }
                                             try {
                                               switch (response.code()) {
@@ -1561,27 +1555,17 @@ public class RawDeclarationsClient {
                                           }
                                         }
 
-                                        public NordletApiHttpResponse<EuSmeThresholdsListDeclarationsResponse> euSmeThresholdsList(
-                                            ) {
-                                          return euSmeThresholdsList(EuSmeThresholdsListDeclarationsRequest.builder().build());
+                                        public NordletApiHttpResponse<EuDac7XmlDeclarationsResponse> euDac7Xml(
+                                            EuDac7XmlDeclarationsRequest request) {
+                                          return euDac7Xml(request,null);
                                         }
 
-                                        public NordletApiHttpResponse<EuSmeThresholdsListDeclarationsResponse> euSmeThresholdsList(
-                                            RequestOptions requestOptions) {
-                                          return euSmeThresholdsList(EuSmeThresholdsListDeclarationsRequest.builder().build(),requestOptions);
-                                        }
-
-                                        public NordletApiHttpResponse<EuSmeThresholdsListDeclarationsResponse> euSmeThresholdsList(
-                                            EuSmeThresholdsListDeclarationsRequest request) {
-                                          return euSmeThresholdsList(request,null);
-                                        }
-
-                                        public NordletApiHttpResponse<EuSmeThresholdsListDeclarationsResponse> euSmeThresholdsList(
-                                            EuSmeThresholdsListDeclarationsRequest request,
+                                        public NordletApiHttpResponse<EuDac7XmlDeclarationsResponse> euDac7Xml(
+                                            EuDac7XmlDeclarationsRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                            .addPathSegments("v1/declarations/eu/sme-thresholds/list");if (requestOptions != null) {
+                                            .addPathSegments("v1/declarations/eu/dac7/xml");if (requestOptions != null) {
                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                 httpUrl.addQueryParameter(_key, _value);
                                               } );
@@ -1611,7 +1595,7 @@ public class RawDeclarationsClient {
                                               ResponseBody responseBody = response.body();
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuSmeThresholdsListDeclarationsResponse.class), response);
+                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuDac7XmlDeclarationsResponse.class), response);
                                               }
                                               try {
                                                 switch (response.code()) {
@@ -1641,27 +1625,27 @@ public class RawDeclarationsClient {
                                             }
                                           }
 
-                                          public NordletApiHttpResponse<EuSmeThresholdGetDeclarationsResponse> euSmeThresholdGet(
+                                          public NordletApiHttpResponse<EuDistanceSalesThresholdGetDeclarationsResponse> euDistanceSalesThresholdGet(
                                               ) {
-                                            return euSmeThresholdGet(EuSmeThresholdGetDeclarationsRequest.builder().build());
+                                            return euDistanceSalesThresholdGet(EuDistanceSalesThresholdGetDeclarationsRequest.builder().build());
                                           }
 
-                                          public NordletApiHttpResponse<EuSmeThresholdGetDeclarationsResponse> euSmeThresholdGet(
+                                          public NordletApiHttpResponse<EuDistanceSalesThresholdGetDeclarationsResponse> euDistanceSalesThresholdGet(
                                               RequestOptions requestOptions) {
-                                            return euSmeThresholdGet(EuSmeThresholdGetDeclarationsRequest.builder().build(),requestOptions);
+                                            return euDistanceSalesThresholdGet(EuDistanceSalesThresholdGetDeclarationsRequest.builder().build(),requestOptions);
                                           }
 
-                                          public NordletApiHttpResponse<EuSmeThresholdGetDeclarationsResponse> euSmeThresholdGet(
-                                              EuSmeThresholdGetDeclarationsRequest request) {
-                                            return euSmeThresholdGet(request,null);
+                                          public NordletApiHttpResponse<EuDistanceSalesThresholdGetDeclarationsResponse> euDistanceSalesThresholdGet(
+                                              EuDistanceSalesThresholdGetDeclarationsRequest request) {
+                                            return euDistanceSalesThresholdGet(request,null);
                                           }
 
-                                          public NordletApiHttpResponse<EuSmeThresholdGetDeclarationsResponse> euSmeThresholdGet(
-                                              EuSmeThresholdGetDeclarationsRequest request,
+                                          public NordletApiHttpResponse<EuDistanceSalesThresholdGetDeclarationsResponse> euDistanceSalesThresholdGet(
+                                              EuDistanceSalesThresholdGetDeclarationsRequest request,
                                               RequestOptions requestOptions) {
                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                              .addPathSegments("v1/declarations/eu/sme-threshold/get");if (requestOptions != null) {
+                                              .addPathSegments("v1/declarations/eu/distance-sales-threshold/get");if (requestOptions != null) {
                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                   httpUrl.addQueryParameter(_key, _value);
                                                 } );
@@ -1691,7 +1675,7 @@ public class RawDeclarationsClient {
                                                 ResponseBody responseBody = response.body();
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuSmeThresholdGetDeclarationsResponse.class), response);
+                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuDistanceSalesThresholdGetDeclarationsResponse.class), response);
                                                 }
                                                 try {
                                                   switch (response.code()) {
@@ -1721,27 +1705,27 @@ public class RawDeclarationsClient {
                                               }
                                             }
 
-                                            public NordletApiHttpResponse<EuVatReturnPacksListDeclarationsResponse> euVatReturnPacksList(
+                                            public NordletApiHttpResponse<EuUnionTurnoverGetDeclarationsResponse> euUnionTurnoverGet(
                                                 ) {
-                                              return euVatReturnPacksList(EuVatReturnPacksListDeclarationsRequest.builder().build());
+                                              return euUnionTurnoverGet(EuUnionTurnoverGetDeclarationsRequest.builder().build());
                                             }
 
-                                            public NordletApiHttpResponse<EuVatReturnPacksListDeclarationsResponse> euVatReturnPacksList(
+                                            public NordletApiHttpResponse<EuUnionTurnoverGetDeclarationsResponse> euUnionTurnoverGet(
                                                 RequestOptions requestOptions) {
-                                              return euVatReturnPacksList(EuVatReturnPacksListDeclarationsRequest.builder().build(),requestOptions);
+                                              return euUnionTurnoverGet(EuUnionTurnoverGetDeclarationsRequest.builder().build(),requestOptions);
                                             }
 
-                                            public NordletApiHttpResponse<EuVatReturnPacksListDeclarationsResponse> euVatReturnPacksList(
-                                                EuVatReturnPacksListDeclarationsRequest request) {
-                                              return euVatReturnPacksList(request,null);
+                                            public NordletApiHttpResponse<EuUnionTurnoverGetDeclarationsResponse> euUnionTurnoverGet(
+                                                EuUnionTurnoverGetDeclarationsRequest request) {
+                                              return euUnionTurnoverGet(request,null);
                                             }
 
-                                            public NordletApiHttpResponse<EuVatReturnPacksListDeclarationsResponse> euVatReturnPacksList(
-                                                EuVatReturnPacksListDeclarationsRequest request,
+                                            public NordletApiHttpResponse<EuUnionTurnoverGetDeclarationsResponse> euUnionTurnoverGet(
+                                                EuUnionTurnoverGetDeclarationsRequest request,
                                                 RequestOptions requestOptions) {
                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                .addPathSegments("v1/declarations/eu/vat-return/packs/list");if (requestOptions != null) {
+                                                .addPathSegments("v1/declarations/eu/union-turnover/get");if (requestOptions != null) {
                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                     httpUrl.addQueryParameter(_key, _value);
                                                   } );
@@ -1771,7 +1755,7 @@ public class RawDeclarationsClient {
                                                   ResponseBody responseBody = response.body();
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuVatReturnPacksListDeclarationsResponse.class), response);
+                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuUnionTurnoverGetDeclarationsResponse.class), response);
                                                   }
                                                   try {
                                                     switch (response.code()) {
@@ -1801,17 +1785,17 @@ public class RawDeclarationsClient {
                                                 }
                                               }
 
-                                              public NordletApiHttpResponse<EuVatReturnComputeDeclarationsResponse> euVatReturnCompute(
-                                                  EuVatReturnComputeDeclarationsRequest request) {
-                                                return euVatReturnCompute(request,null);
+                                              public NordletApiHttpResponse<EuSmeCrossBorderReportComputeDeclarationsResponse> euSmeCrossBorderReportCompute(
+                                                  EuSmeCrossBorderReportComputeDeclarationsRequest request) {
+                                                return euSmeCrossBorderReportCompute(request,null);
                                               }
 
-                                              public NordletApiHttpResponse<EuVatReturnComputeDeclarationsResponse> euVatReturnCompute(
-                                                  EuVatReturnComputeDeclarationsRequest request,
+                                              public NordletApiHttpResponse<EuSmeCrossBorderReportComputeDeclarationsResponse> euSmeCrossBorderReportCompute(
+                                                  EuSmeCrossBorderReportComputeDeclarationsRequest request,
                                                   RequestOptions requestOptions) {
                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                  .addPathSegments("v1/declarations/eu/vat-return/compute");if (requestOptions != null) {
+                                                  .addPathSegments("v1/declarations/eu/sme-cross-border-report/compute");if (requestOptions != null) {
                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                       httpUrl.addQueryParameter(_key, _value);
                                                     } );
@@ -1841,7 +1825,7 @@ public class RawDeclarationsClient {
                                                     ResponseBody responseBody = response.body();
                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                     if (response.isSuccessful()) {
-                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuVatReturnComputeDeclarationsResponse.class), response);
+                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuSmeCrossBorderReportComputeDeclarationsResponse.class), response);
                                                     }
                                                     try {
                                                       switch (response.code()) {
@@ -1871,23 +1855,27 @@ public class RawDeclarationsClient {
                                                   }
                                                 }
 
-                                                /**
-                                                 * Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
-                                                 */
-                                                public NordletApiHttpResponse<PlJpkV7MGenerateDeclarationsResponse> plJpkV7MGenerate(
-                                                    PlJpkV7MGenerateDeclarationsRequest request) {
-                                                  return plJpkV7MGenerate(request,null);
+                                                public NordletApiHttpResponse<EuSmeThresholdsListDeclarationsResponse> euSmeThresholdsList(
+                                                    ) {
+                                                  return euSmeThresholdsList(EuSmeThresholdsListDeclarationsRequest.builder().build());
                                                 }
 
-                                                /**
-                                                 * Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
-                                                 */
-                                                public NordletApiHttpResponse<PlJpkV7MGenerateDeclarationsResponse> plJpkV7MGenerate(
-                                                    PlJpkV7MGenerateDeclarationsRequest request,
+                                                public NordletApiHttpResponse<EuSmeThresholdsListDeclarationsResponse> euSmeThresholdsList(
+                                                    RequestOptions requestOptions) {
+                                                  return euSmeThresholdsList(EuSmeThresholdsListDeclarationsRequest.builder().build(),requestOptions);
+                                                }
+
+                                                public NordletApiHttpResponse<EuSmeThresholdsListDeclarationsResponse> euSmeThresholdsList(
+                                                    EuSmeThresholdsListDeclarationsRequest request) {
+                                                  return euSmeThresholdsList(request,null);
+                                                }
+
+                                                public NordletApiHttpResponse<EuSmeThresholdsListDeclarationsResponse> euSmeThresholdsList(
+                                                    EuSmeThresholdsListDeclarationsRequest request,
                                                     RequestOptions requestOptions) {
                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                    .addPathSegments("v1/declarations/pl/jpk-v7m/generate");if (requestOptions != null) {
+                                                    .addPathSegments("v1/declarations/eu/sme-thresholds/list");if (requestOptions != null) {
                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                         httpUrl.addQueryParameter(_key, _value);
                                                       } );
@@ -1917,7 +1905,7 @@ public class RawDeclarationsClient {
                                                       ResponseBody responseBody = response.body();
                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                       if (response.isSuccessful()) {
-                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlJpkV7MGenerateDeclarationsResponse.class), response);
+                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuSmeThresholdsListDeclarationsResponse.class), response);
                                                       }
                                                       try {
                                                         switch (response.code()) {
@@ -1947,23 +1935,27 @@ public class RawDeclarationsClient {
                                                     }
                                                   }
 
-                                                  /**
-                                                   * Build the rows of the Polish recapitulative statement VAT-UE for a month: section C intra-Community supplies of goods, section D intra-Community acquisitions, section E services taxed where the customer is established. Amounts are full złoty per counterparty. The VAT-UE(5) file itself goes out from the EU sales list deadline in the calendar.
-                                                   */
-                                                  public NordletApiHttpResponse<PlVatUeGenerateDeclarationsResponse> plVatUeGenerate(
-                                                      PlVatUeGenerateDeclarationsRequest request) {
-                                                    return plVatUeGenerate(request,null);
+                                                  public NordletApiHttpResponse<EuSmeThresholdGetDeclarationsResponse> euSmeThresholdGet(
+                                                      ) {
+                                                    return euSmeThresholdGet(EuSmeThresholdGetDeclarationsRequest.builder().build());
                                                   }
 
-                                                  /**
-                                                   * Build the rows of the Polish recapitulative statement VAT-UE for a month: section C intra-Community supplies of goods, section D intra-Community acquisitions, section E services taxed where the customer is established. Amounts are full złoty per counterparty. The VAT-UE(5) file itself goes out from the EU sales list deadline in the calendar.
-                                                   */
-                                                  public NordletApiHttpResponse<PlVatUeGenerateDeclarationsResponse> plVatUeGenerate(
-                                                      PlVatUeGenerateDeclarationsRequest request,
+                                                  public NordletApiHttpResponse<EuSmeThresholdGetDeclarationsResponse> euSmeThresholdGet(
+                                                      RequestOptions requestOptions) {
+                                                    return euSmeThresholdGet(EuSmeThresholdGetDeclarationsRequest.builder().build(),requestOptions);
+                                                  }
+
+                                                  public NordletApiHttpResponse<EuSmeThresholdGetDeclarationsResponse> euSmeThresholdGet(
+                                                      EuSmeThresholdGetDeclarationsRequest request) {
+                                                    return euSmeThresholdGet(request,null);
+                                                  }
+
+                                                  public NordletApiHttpResponse<EuSmeThresholdGetDeclarationsResponse> euSmeThresholdGet(
+                                                      EuSmeThresholdGetDeclarationsRequest request,
                                                       RequestOptions requestOptions) {
                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                      .addPathSegments("v1/declarations/pl/vat-ue/generate");if (requestOptions != null) {
+                                                      .addPathSegments("v1/declarations/eu/sme-threshold/get");if (requestOptions != null) {
                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                           httpUrl.addQueryParameter(_key, _value);
                                                         } );
@@ -1993,7 +1985,7 @@ public class RawDeclarationsClient {
                                                         ResponseBody responseBody = response.body();
                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                         if (response.isSuccessful()) {
-                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlVatUeGenerateDeclarationsResponse.class), response);
+                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuSmeThresholdGetDeclarationsResponse.class), response);
                                                         }
                                                         try {
                                                           switch (response.code()) {
@@ -2023,23 +2015,27 @@ public class RawDeclarationsClient {
                                                       }
                                                     }
 
-                                                    /**
-                                                     * Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Goods without a CN code are left out and named in the warnings. The IST message itself goes out from the Intrastat deadline in the calendar.
-                                                     */
-                                                    public NordletApiHttpResponse<PlIntrastatGenerateDeclarationsResponse> plIntrastatGenerate(
-                                                        PlIntrastatGenerateDeclarationsRequest request) {
-                                                      return plIntrastatGenerate(request,null);
+                                                    public NordletApiHttpResponse<EuVatReturnPacksListDeclarationsResponse> euVatReturnPacksList(
+                                                        ) {
+                                                      return euVatReturnPacksList(EuVatReturnPacksListDeclarationsRequest.builder().build());
                                                     }
 
-                                                    /**
-                                                     * Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Goods without a CN code are left out and named in the warnings. The IST message itself goes out from the Intrastat deadline in the calendar.
-                                                     */
-                                                    public NordletApiHttpResponse<PlIntrastatGenerateDeclarationsResponse> plIntrastatGenerate(
-                                                        PlIntrastatGenerateDeclarationsRequest request,
+                                                    public NordletApiHttpResponse<EuVatReturnPacksListDeclarationsResponse> euVatReturnPacksList(
+                                                        RequestOptions requestOptions) {
+                                                      return euVatReturnPacksList(EuVatReturnPacksListDeclarationsRequest.builder().build(),requestOptions);
+                                                    }
+
+                                                    public NordletApiHttpResponse<EuVatReturnPacksListDeclarationsResponse> euVatReturnPacksList(
+                                                        EuVatReturnPacksListDeclarationsRequest request) {
+                                                      return euVatReturnPacksList(request,null);
+                                                    }
+
+                                                    public NordletApiHttpResponse<EuVatReturnPacksListDeclarationsResponse> euVatReturnPacksList(
+                                                        EuVatReturnPacksListDeclarationsRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                        .addPathSegments("v1/declarations/pl/intrastat/generate");if (requestOptions != null) {
+                                                        .addPathSegments("v1/declarations/eu/vat-return/packs/list");if (requestOptions != null) {
                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                             httpUrl.addQueryParameter(_key, _value);
                                                           } );
@@ -2069,7 +2065,7 @@ public class RawDeclarationsClient {
                                                           ResponseBody responseBody = response.body();
                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                           if (response.isSuccessful()) {
-                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlIntrastatGenerateDeclarationsResponse.class), response);
+                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuVatReturnPacksListDeclarationsResponse.class), response);
                                                           }
                                                           try {
                                                             switch (response.code()) {
@@ -2099,23 +2095,17 @@ public class RawDeclarationsClient {
                                                         }
                                                       }
 
-                                                      /**
-                                                       * List the invoices KSeF holds for this company as the buyer, for a window of acquisition timestamps. Each row carries the KSeF number and, when the document number matches a registered purchase invoice, the invoice it belongs to.
-                                                       */
-                                                      public NordletApiHttpResponse<PlKsefReceivedListDeclarationsResponse> plKsefReceivedList(
-                                                          PlKsefReceivedListDeclarationsRequest request) {
-                                                        return plKsefReceivedList(request,null);
+                                                      public NordletApiHttpResponse<EuVatReturnComputeDeclarationsResponse> euVatReturnCompute(
+                                                          EuVatReturnComputeDeclarationsRequest request) {
+                                                        return euVatReturnCompute(request,null);
                                                       }
 
-                                                      /**
-                                                       * List the invoices KSeF holds for this company as the buyer, for a window of acquisition timestamps. Each row carries the KSeF number and, when the document number matches a registered purchase invoice, the invoice it belongs to.
-                                                       */
-                                                      public NordletApiHttpResponse<PlKsefReceivedListDeclarationsResponse> plKsefReceivedList(
-                                                          PlKsefReceivedListDeclarationsRequest request,
+                                                      public NordletApiHttpResponse<EuVatReturnComputeDeclarationsResponse> euVatReturnCompute(
+                                                          EuVatReturnComputeDeclarationsRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                          .addPathSegments("v1/declarations/pl/ksef/received/list");if (requestOptions != null) {
+                                                          .addPathSegments("v1/declarations/eu/vat-return/compute");if (requestOptions != null) {
                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                               httpUrl.addQueryParameter(_key, _value);
                                                             } );
@@ -2145,7 +2135,7 @@ public class RawDeclarationsClient {
                                                             ResponseBody responseBody = response.body();
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlKsefReceivedListDeclarationsResponse.class), response);
+                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuVatReturnComputeDeclarationsResponse.class), response);
                                                             }
                                                             try {
                                                               switch (response.code()) {
@@ -2176,22 +2166,22 @@ public class RawDeclarationsClient {
                                                         }
 
                                                         /**
-                                                         * Read one invoice out of KSeF by its national number. With a purchase invoice given, the KSeF number is written onto that invoice, which is what makes the purchase row of JPK_V7M carry NrKSeF instead of the BFK marker.
+                                                         * Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
                                                          */
-                                                        public NordletApiHttpResponse<PlKsefReceivedFetchDeclarationsResponse> plKsefReceivedFetch(
-                                                            PlKsefReceivedFetchDeclarationsRequest request) {
-                                                          return plKsefReceivedFetch(request,null);
+                                                        public NordletApiHttpResponse<PlJpkV7MGenerateDeclarationsResponse> plJpkV7MGenerate(
+                                                            PlJpkV7MGenerateDeclarationsRequest request) {
+                                                          return plJpkV7MGenerate(request,null);
                                                         }
 
                                                         /**
-                                                         * Read one invoice out of KSeF by its national number. With a purchase invoice given, the KSeF number is written onto that invoice, which is what makes the purchase row of JPK_V7M carry NrKSeF instead of the BFK marker.
+                                                         * Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
                                                          */
-                                                        public NordletApiHttpResponse<PlKsefReceivedFetchDeclarationsResponse> plKsefReceivedFetch(
-                                                            PlKsefReceivedFetchDeclarationsRequest request,
+                                                        public NordletApiHttpResponse<PlJpkV7MGenerateDeclarationsResponse> plJpkV7MGenerate(
+                                                            PlJpkV7MGenerateDeclarationsRequest request,
                                                             RequestOptions requestOptions) {
                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                            .addPathSegments("v1/declarations/pl/ksef/received/fetch");if (requestOptions != null) {
+                                                            .addPathSegments("v1/declarations/pl/jpk-v7m/generate");if (requestOptions != null) {
                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                 httpUrl.addQueryParameter(_key, _value);
                                                               } );
@@ -2221,7 +2211,7 @@ public class RawDeclarationsClient {
                                                               ResponseBody responseBody = response.body();
                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                               if (response.isSuccessful()) {
-                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlKsefReceivedFetchDeclarationsResponse.class), response);
+                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlJpkV7MGenerateDeclarationsResponse.class), response);
                                                               }
                                                               try {
                                                                 switch (response.code()) {
@@ -2252,38 +2242,22 @@ public class RawDeclarationsClient {
                                                           }
 
                                                           /**
-                                                           * The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
+                                                           * Build the rows of the Polish recapitulative statement VAT-UE for a month: section C intra-Community supplies of goods, section D intra-Community acquisitions, section E services taxed where the customer is established. Amounts are full złoty per counterparty. The VAT-UE(5) file itself goes out from the EU sales list deadline in the calendar.
                                                            */
-                                                          public NordletApiHttpResponse<PlKsefReceiptDeclarationsResponse> plKsefReceipt(
-                                                              ) {
-                                                            return plKsefReceipt(PlKsefReceiptDeclarationsRequest.builder().build());
+                                                          public NordletApiHttpResponse<PlVatUeGenerateDeclarationsResponse> plVatUeGenerate(
+                                                              PlVatUeGenerateDeclarationsRequest request) {
+                                                            return plVatUeGenerate(request,null);
                                                           }
 
                                                           /**
-                                                           * The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
+                                                           * Build the rows of the Polish recapitulative statement VAT-UE for a month: section C intra-Community supplies of goods, section D intra-Community acquisitions, section E services taxed where the customer is established. Amounts are full złoty per counterparty. The VAT-UE(5) file itself goes out from the EU sales list deadline in the calendar.
                                                            */
-                                                          public NordletApiHttpResponse<PlKsefReceiptDeclarationsResponse> plKsefReceipt(
-                                                              RequestOptions requestOptions) {
-                                                            return plKsefReceipt(PlKsefReceiptDeclarationsRequest.builder().build(),requestOptions);
-                                                          }
-
-                                                          /**
-                                                           * The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
-                                                           */
-                                                          public NordletApiHttpResponse<PlKsefReceiptDeclarationsResponse> plKsefReceipt(
-                                                              PlKsefReceiptDeclarationsRequest request) {
-                                                            return plKsefReceipt(request,null);
-                                                          }
-
-                                                          /**
-                                                           * The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
-                                                           */
-                                                          public NordletApiHttpResponse<PlKsefReceiptDeclarationsResponse> plKsefReceipt(
-                                                              PlKsefReceiptDeclarationsRequest request,
+                                                          public NordletApiHttpResponse<PlVatUeGenerateDeclarationsResponse> plVatUeGenerate(
+                                                              PlVatUeGenerateDeclarationsRequest request,
                                                               RequestOptions requestOptions) {
                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                              .addPathSegments("v1/declarations/pl/ksef/receipt");if (requestOptions != null) {
+                                                              .addPathSegments("v1/declarations/pl/vat-ue/generate");if (requestOptions != null) {
                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                 } );
@@ -2313,7 +2287,7 @@ public class RawDeclarationsClient {
                                                                 ResponseBody responseBody = response.body();
                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                 if (response.isSuccessful()) {
-                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlKsefReceiptDeclarationsResponse.class), response);
+                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlVatUeGenerateDeclarationsResponse.class), response);
                                                                 }
                                                                 try {
                                                                   switch (response.code()) {
@@ -2344,22 +2318,22 @@ public class RawDeclarationsClient {
                                                             }
 
                                                             /**
-                                                             * The differences between the accounting result and the taxable profit: non-deductible expenses, income added to or left out of the tax base, extra deductible expenses, donations, losses carried forward, reliefs and tax credits. The annual corporate income tax return is built from them.
+                                                             * Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Goods without a CN code are left out and named in the warnings. The IST message itself goes out from the Intrastat deadline in the calendar.
                                                              */
-                                                            public NordletApiHttpResponse<TaxAdjustmentsListDeclarationsResponse> taxAdjustmentsList(
-                                                                TaxAdjustmentsListDeclarationsRequest request) {
-                                                              return taxAdjustmentsList(request,null);
+                                                            public NordletApiHttpResponse<PlIntrastatGenerateDeclarationsResponse> plIntrastatGenerate(
+                                                                PlIntrastatGenerateDeclarationsRequest request) {
+                                                              return plIntrastatGenerate(request,null);
                                                             }
 
                                                             /**
-                                                             * The differences between the accounting result and the taxable profit: non-deductible expenses, income added to or left out of the tax base, extra deductible expenses, donations, losses carried forward, reliefs and tax credits. The annual corporate income tax return is built from them.
+                                                             * Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Goods without a CN code are left out and named in the warnings. The IST message itself goes out from the Intrastat deadline in the calendar.
                                                              */
-                                                            public NordletApiHttpResponse<TaxAdjustmentsListDeclarationsResponse> taxAdjustmentsList(
-                                                                TaxAdjustmentsListDeclarationsRequest request,
+                                                            public NordletApiHttpResponse<PlIntrastatGenerateDeclarationsResponse> plIntrastatGenerate(
+                                                                PlIntrastatGenerateDeclarationsRequest request,
                                                                 RequestOptions requestOptions) {
                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                .addPathSegments("v1/declarations/tax-adjustments/list");if (requestOptions != null) {
+                                                                .addPathSegments("v1/declarations/pl/intrastat/generate");if (requestOptions != null) {
                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                   } );
@@ -2389,7 +2363,7 @@ public class RawDeclarationsClient {
                                                                   ResponseBody responseBody = response.body();
                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                   if (response.isSuccessful()) {
-                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxAdjustmentsListDeclarationsResponse.class), response);
+                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlIntrastatGenerateDeclarationsResponse.class), response);
                                                                   }
                                                                   try {
                                                                     switch (response.code()) {
@@ -2419,17 +2393,23 @@ public class RawDeclarationsClient {
                                                                 }
                                                               }
 
-                                                              public NordletApiHttpResponse<TaxAdjustmentsCreateDeclarationsResponse> taxAdjustmentsCreate(
-                                                                  TaxAdjustmentsCreateDeclarationsRequest request) {
-                                                                return taxAdjustmentsCreate(request,null);
+                                                              /**
+                                                               * List the invoices KSeF holds for this company as the buyer, for a window of acquisition timestamps. Each row carries the KSeF number and, when the document number matches a registered purchase invoice, the invoice it belongs to.
+                                                               */
+                                                              public NordletApiHttpResponse<PlKsefReceivedListDeclarationsResponse> plKsefReceivedList(
+                                                                  PlKsefReceivedListDeclarationsRequest request) {
+                                                                return plKsefReceivedList(request,null);
                                                               }
 
-                                                              public NordletApiHttpResponse<TaxAdjustmentsCreateDeclarationsResponse> taxAdjustmentsCreate(
-                                                                  TaxAdjustmentsCreateDeclarationsRequest request,
+                                                              /**
+                                                               * List the invoices KSeF holds for this company as the buyer, for a window of acquisition timestamps. Each row carries the KSeF number and, when the document number matches a registered purchase invoice, the invoice it belongs to.
+                                                               */
+                                                              public NordletApiHttpResponse<PlKsefReceivedListDeclarationsResponse> plKsefReceivedList(
+                                                                  PlKsefReceivedListDeclarationsRequest request,
                                                                   RequestOptions requestOptions) {
                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                  .addPathSegments("v1/declarations/tax-adjustments/create");if (requestOptions != null) {
+                                                                  .addPathSegments("v1/declarations/pl/ksef/received/list");if (requestOptions != null) {
                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                     } );
@@ -2459,7 +2439,7 @@ public class RawDeclarationsClient {
                                                                     ResponseBody responseBody = response.body();
                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                     if (response.isSuccessful()) {
-                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxAdjustmentsCreateDeclarationsResponse.class), response);
+                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlKsefReceivedListDeclarationsResponse.class), response);
                                                                     }
                                                                     try {
                                                                       switch (response.code()) {
@@ -2489,17 +2469,23 @@ public class RawDeclarationsClient {
                                                                   }
                                                                 }
 
-                                                                public NordletApiHttpResponse<TaxAdjustmentsUpdateDeclarationsResponse> taxAdjustmentsUpdate(
-                                                                    TaxAdjustmentsUpdateDeclarationsRequest request) {
-                                                                  return taxAdjustmentsUpdate(request,null);
+                                                                /**
+                                                                 * Read one invoice out of KSeF by its national number. With a purchase invoice given, the KSeF number is written onto that invoice, which is what makes the purchase row of JPK_V7M carry NrKSeF instead of the BFK marker.
+                                                                 */
+                                                                public NordletApiHttpResponse<PlKsefReceivedFetchDeclarationsResponse> plKsefReceivedFetch(
+                                                                    PlKsefReceivedFetchDeclarationsRequest request) {
+                                                                  return plKsefReceivedFetch(request,null);
                                                                 }
 
-                                                                public NordletApiHttpResponse<TaxAdjustmentsUpdateDeclarationsResponse> taxAdjustmentsUpdate(
-                                                                    TaxAdjustmentsUpdateDeclarationsRequest request,
+                                                                /**
+                                                                 * Read one invoice out of KSeF by its national number. With a purchase invoice given, the KSeF number is written onto that invoice, which is what makes the purchase row of JPK_V7M carry NrKSeF instead of the BFK marker.
+                                                                 */
+                                                                public NordletApiHttpResponse<PlKsefReceivedFetchDeclarationsResponse> plKsefReceivedFetch(
+                                                                    PlKsefReceivedFetchDeclarationsRequest request,
                                                                     RequestOptions requestOptions) {
                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                    .addPathSegments("v1/declarations/tax-adjustments/update");if (requestOptions != null) {
+                                                                    .addPathSegments("v1/declarations/pl/ksef/received/fetch");if (requestOptions != null) {
                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                       } );
@@ -2529,7 +2515,7 @@ public class RawDeclarationsClient {
                                                                       ResponseBody responseBody = response.body();
                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                       if (response.isSuccessful()) {
-                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxAdjustmentsUpdateDeclarationsResponse.class), response);
+                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlKsefReceivedFetchDeclarationsResponse.class), response);
                                                                       }
                                                                       try {
                                                                         switch (response.code()) {
@@ -2559,17 +2545,39 @@ public class RawDeclarationsClient {
                                                                     }
                                                                   }
 
-                                                                  public NordletApiHttpResponse<TaxAdjustmentsDeleteDeclarationsResponse> taxAdjustmentsDelete(
-                                                                      TaxAdjustmentsDeleteDeclarationsRequest request) {
-                                                                    return taxAdjustmentsDelete(request,null);
+                                                                  /**
+                                                                   * The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
+                                                                   */
+                                                                  public NordletApiHttpResponse<PlKsefReceiptDeclarationsResponse> plKsefReceipt(
+                                                                      ) {
+                                                                    return plKsefReceipt(PlKsefReceiptDeclarationsRequest.builder().build());
                                                                   }
 
-                                                                  public NordletApiHttpResponse<TaxAdjustmentsDeleteDeclarationsResponse> taxAdjustmentsDelete(
-                                                                      TaxAdjustmentsDeleteDeclarationsRequest request,
+                                                                  /**
+                                                                   * The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
+                                                                   */
+                                                                  public NordletApiHttpResponse<PlKsefReceiptDeclarationsResponse> plKsefReceipt(
+                                                                      RequestOptions requestOptions) {
+                                                                    return plKsefReceipt(PlKsefReceiptDeclarationsRequest.builder().build(),requestOptions);
+                                                                  }
+
+                                                                  /**
+                                                                   * The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
+                                                                   */
+                                                                  public NordletApiHttpResponse<PlKsefReceiptDeclarationsResponse> plKsefReceipt(
+                                                                      PlKsefReceiptDeclarationsRequest request) {
+                                                                    return plKsefReceipt(request,null);
+                                                                  }
+
+                                                                  /**
+                                                                   * The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
+                                                                   */
+                                                                  public NordletApiHttpResponse<PlKsefReceiptDeclarationsResponse> plKsefReceipt(
+                                                                      PlKsefReceiptDeclarationsRequest request,
                                                                       RequestOptions requestOptions) {
                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                      .addPathSegments("v1/declarations/tax-adjustments/delete");if (requestOptions != null) {
+                                                                      .addPathSegments("v1/declarations/pl/ksef/receipt");if (requestOptions != null) {
                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                         } );
@@ -2599,7 +2607,7 @@ public class RawDeclarationsClient {
                                                                         ResponseBody responseBody = response.body();
                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                         if (response.isSuccessful()) {
-                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxAdjustmentsDeleteDeclarationsResponse.class), response);
+                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlKsefReceiptDeclarationsResponse.class), response);
                                                                         }
                                                                         try {
                                                                           switch (response.code()) {
@@ -2630,22 +2638,22 @@ public class RawDeclarationsClient {
                                                                     }
 
                                                                     /**
-                                                                     * What the company has paid the administration towards a tax before the return is filed: payments on account, tax withheld at source by others, a final settlement, and a refund received. Returns report these on their own lines, so the amount they ask for is the balance.
+                                                                     * The differences between the accounting result and the taxable profit: non-deductible expenses, income added to or left out of the tax base, extra deductible expenses, donations, losses carried forward, reliefs and tax credits. The annual corporate income tax return is built from them.
                                                                      */
-                                                                    public NordletApiHttpResponse<TaxPaymentsListDeclarationsResponse> taxPaymentsList(
-                                                                        TaxPaymentsListDeclarationsRequest request) {
-                                                                      return taxPaymentsList(request,null);
+                                                                    public NordletApiHttpResponse<TaxAdjustmentsListDeclarationsResponse> taxAdjustmentsList(
+                                                                        TaxAdjustmentsListDeclarationsRequest request) {
+                                                                      return taxAdjustmentsList(request,null);
                                                                     }
 
                                                                     /**
-                                                                     * What the company has paid the administration towards a tax before the return is filed: payments on account, tax withheld at source by others, a final settlement, and a refund received. Returns report these on their own lines, so the amount they ask for is the balance.
+                                                                     * The differences between the accounting result and the taxable profit: non-deductible expenses, income added to or left out of the tax base, extra deductible expenses, donations, losses carried forward, reliefs and tax credits. The annual corporate income tax return is built from them.
                                                                      */
-                                                                    public NordletApiHttpResponse<TaxPaymentsListDeclarationsResponse> taxPaymentsList(
-                                                                        TaxPaymentsListDeclarationsRequest request,
+                                                                    public NordletApiHttpResponse<TaxAdjustmentsListDeclarationsResponse> taxAdjustmentsList(
+                                                                        TaxAdjustmentsListDeclarationsRequest request,
                                                                         RequestOptions requestOptions) {
                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                        .addPathSegments("v1/declarations/tax-payments/list");if (requestOptions != null) {
+                                                                        .addPathSegments("v1/declarations/tax-adjustments/list");if (requestOptions != null) {
                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                           } );
@@ -2675,7 +2683,7 @@ public class RawDeclarationsClient {
                                                                           ResponseBody responseBody = response.body();
                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                           if (response.isSuccessful()) {
-                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxPaymentsListDeclarationsResponse.class), response);
+                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxAdjustmentsListDeclarationsResponse.class), response);
                                                                           }
                                                                           try {
                                                                             switch (response.code()) {
@@ -2705,17 +2713,17 @@ public class RawDeclarationsClient {
                                                                         }
                                                                       }
 
-                                                                      public NordletApiHttpResponse<TaxPaymentsCreateDeclarationsResponse> taxPaymentsCreate(
-                                                                          TaxPaymentsCreateDeclarationsRequest request) {
-                                                                        return taxPaymentsCreate(request,null);
+                                                                      public NordletApiHttpResponse<TaxAdjustmentsCreateDeclarationsResponse> taxAdjustmentsCreate(
+                                                                          TaxAdjustmentsCreateDeclarationsRequest request) {
+                                                                        return taxAdjustmentsCreate(request,null);
                                                                       }
 
-                                                                      public NordletApiHttpResponse<TaxPaymentsCreateDeclarationsResponse> taxPaymentsCreate(
-                                                                          TaxPaymentsCreateDeclarationsRequest request,
+                                                                      public NordletApiHttpResponse<TaxAdjustmentsCreateDeclarationsResponse> taxAdjustmentsCreate(
+                                                                          TaxAdjustmentsCreateDeclarationsRequest request,
                                                                           RequestOptions requestOptions) {
                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                          .addPathSegments("v1/declarations/tax-payments/create");if (requestOptions != null) {
+                                                                          .addPathSegments("v1/declarations/tax-adjustments/create");if (requestOptions != null) {
                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                             } );
@@ -2745,7 +2753,7 @@ public class RawDeclarationsClient {
                                                                             ResponseBody responseBody = response.body();
                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                             if (response.isSuccessful()) {
-                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxPaymentsCreateDeclarationsResponse.class), response);
+                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxAdjustmentsCreateDeclarationsResponse.class), response);
                                                                             }
                                                                             try {
                                                                               switch (response.code()) {
@@ -2775,17 +2783,17 @@ public class RawDeclarationsClient {
                                                                           }
                                                                         }
 
-                                                                        public NordletApiHttpResponse<TaxPaymentsUpdateDeclarationsResponse> taxPaymentsUpdate(
-                                                                            TaxPaymentsUpdateDeclarationsRequest request) {
-                                                                          return taxPaymentsUpdate(request,null);
+                                                                        public NordletApiHttpResponse<TaxAdjustmentsUpdateDeclarationsResponse> taxAdjustmentsUpdate(
+                                                                            TaxAdjustmentsUpdateDeclarationsRequest request) {
+                                                                          return taxAdjustmentsUpdate(request,null);
                                                                         }
 
-                                                                        public NordletApiHttpResponse<TaxPaymentsUpdateDeclarationsResponse> taxPaymentsUpdate(
-                                                                            TaxPaymentsUpdateDeclarationsRequest request,
+                                                                        public NordletApiHttpResponse<TaxAdjustmentsUpdateDeclarationsResponse> taxAdjustmentsUpdate(
+                                                                            TaxAdjustmentsUpdateDeclarationsRequest request,
                                                                             RequestOptions requestOptions) {
                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                            .addPathSegments("v1/declarations/tax-payments/update");if (requestOptions != null) {
+                                                                            .addPathSegments("v1/declarations/tax-adjustments/update");if (requestOptions != null) {
                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                               } );
@@ -2815,7 +2823,7 @@ public class RawDeclarationsClient {
                                                                               ResponseBody responseBody = response.body();
                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                               if (response.isSuccessful()) {
-                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxPaymentsUpdateDeclarationsResponse.class), response);
+                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxAdjustmentsUpdateDeclarationsResponse.class), response);
                                                                               }
                                                                               try {
                                                                                 switch (response.code()) {
@@ -2845,17 +2853,17 @@ public class RawDeclarationsClient {
                                                                             }
                                                                           }
 
-                                                                          public NordletApiHttpResponse<TaxPaymentsDeleteDeclarationsResponse> taxPaymentsDelete(
-                                                                              TaxPaymentsDeleteDeclarationsRequest request) {
-                                                                            return taxPaymentsDelete(request,null);
+                                                                          public NordletApiHttpResponse<TaxAdjustmentsDeleteDeclarationsResponse> taxAdjustmentsDelete(
+                                                                              TaxAdjustmentsDeleteDeclarationsRequest request) {
+                                                                            return taxAdjustmentsDelete(request,null);
                                                                           }
 
-                                                                          public NordletApiHttpResponse<TaxPaymentsDeleteDeclarationsResponse> taxPaymentsDelete(
-                                                                              TaxPaymentsDeleteDeclarationsRequest request,
+                                                                          public NordletApiHttpResponse<TaxAdjustmentsDeleteDeclarationsResponse> taxAdjustmentsDelete(
+                                                                              TaxAdjustmentsDeleteDeclarationsRequest request,
                                                                               RequestOptions requestOptions) {
                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                              .addPathSegments("v1/declarations/tax-payments/delete");if (requestOptions != null) {
+                                                                              .addPathSegments("v1/declarations/tax-adjustments/delete");if (requestOptions != null) {
                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                 } );
@@ -2885,7 +2893,7 @@ public class RawDeclarationsClient {
                                                                                 ResponseBody responseBody = response.body();
                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                 if (response.isSuccessful()) {
-                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxPaymentsDeleteDeclarationsResponse.class), response);
+                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxAdjustmentsDeleteDeclarationsResponse.class), response);
                                                                                 }
                                                                                 try {
                                                                                   switch (response.code()) {
@@ -2916,22 +2924,22 @@ public class RawDeclarationsClient {
                                                                             }
 
                                                                             /**
-                                                                             * Whether the general meeting adopted the annual accounts and on which date, the date the accounts were prepared, and which directors signed them. The annual accounts filed with the trade register are built from these facts.
+                                                                             * What the company has paid the administration towards a tax before the return is filed: payments on account, tax withheld at source by others, a final settlement, and a refund received. Returns report these on their own lines, so the amount they ask for is the balance.
                                                                              */
-                                                                            public NordletApiHttpResponse<AnnualAccountsGetDeclarationsResponse> annualAccountsGet(
-                                                                                AnnualAccountsGetDeclarationsRequest request) {
-                                                                              return annualAccountsGet(request,null);
+                                                                            public NordletApiHttpResponse<TaxPaymentsListDeclarationsResponse> taxPaymentsList(
+                                                                                TaxPaymentsListDeclarationsRequest request) {
+                                                                              return taxPaymentsList(request,null);
                                                                             }
 
                                                                             /**
-                                                                             * Whether the general meeting adopted the annual accounts and on which date, the date the accounts were prepared, and which directors signed them. The annual accounts filed with the trade register are built from these facts.
+                                                                             * What the company has paid the administration towards a tax before the return is filed: payments on account, tax withheld at source by others, a final settlement, and a refund received. Returns report these on their own lines, so the amount they ask for is the balance.
                                                                              */
-                                                                            public NordletApiHttpResponse<AnnualAccountsGetDeclarationsResponse> annualAccountsGet(
-                                                                                AnnualAccountsGetDeclarationsRequest request,
+                                                                            public NordletApiHttpResponse<TaxPaymentsListDeclarationsResponse> taxPaymentsList(
+                                                                                TaxPaymentsListDeclarationsRequest request,
                                                                                 RequestOptions requestOptions) {
                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                .addPathSegments("v1/declarations/annual-accounts/get");if (requestOptions != null) {
+                                                                                .addPathSegments("v1/declarations/tax-payments/list");if (requestOptions != null) {
                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                   } );
@@ -2961,7 +2969,7 @@ public class RawDeclarationsClient {
                                                                                   ResponseBody responseBody = response.body();
                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                   if (response.isSuccessful()) {
-                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsGetDeclarationsResponse.class), response);
+                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxPaymentsListDeclarationsResponse.class), response);
                                                                                   }
                                                                                   try {
                                                                                     switch (response.code()) {
@@ -2991,17 +2999,17 @@ public class RawDeclarationsClient {
                                                                                 }
                                                                               }
 
-                                                                              public NordletApiHttpResponse<AnnualAccountsSetDeclarationsResponse> annualAccountsSet(
-                                                                                  AnnualAccountsSetDeclarationsRequest request) {
-                                                                                return annualAccountsSet(request,null);
+                                                                              public NordletApiHttpResponse<TaxPaymentsCreateDeclarationsResponse> taxPaymentsCreate(
+                                                                                  TaxPaymentsCreateDeclarationsRequest request) {
+                                                                                return taxPaymentsCreate(request,null);
                                                                               }
 
-                                                                              public NordletApiHttpResponse<AnnualAccountsSetDeclarationsResponse> annualAccountsSet(
-                                                                                  AnnualAccountsSetDeclarationsRequest request,
+                                                                              public NordletApiHttpResponse<TaxPaymentsCreateDeclarationsResponse> taxPaymentsCreate(
+                                                                                  TaxPaymentsCreateDeclarationsRequest request,
                                                                                   RequestOptions requestOptions) {
                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                  .addPathSegments("v1/declarations/annual-accounts/set");if (requestOptions != null) {
+                                                                                  .addPathSegments("v1/declarations/tax-payments/create");if (requestOptions != null) {
                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                     } );
@@ -3031,7 +3039,7 @@ public class RawDeclarationsClient {
                                                                                     ResponseBody responseBody = response.body();
                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                     if (response.isSuccessful()) {
-                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsSetDeclarationsResponse.class), response);
+                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxPaymentsCreateDeclarationsResponse.class), response);
                                                                                     }
                                                                                     try {
                                                                                       switch (response.code()) {
@@ -3061,17 +3069,17 @@ public class RawDeclarationsClient {
                                                                                   }
                                                                                 }
 
-                                                                                public NordletApiHttpResponse<AnnualAccountsSignaturesCreateDeclarationsResponse> annualAccountsSignaturesCreate(
-                                                                                    AnnualAccountsSignaturesCreateDeclarationsRequest request) {
-                                                                                  return annualAccountsSignaturesCreate(request,null);
+                                                                                public NordletApiHttpResponse<TaxPaymentsUpdateDeclarationsResponse> taxPaymentsUpdate(
+                                                                                    TaxPaymentsUpdateDeclarationsRequest request) {
+                                                                                  return taxPaymentsUpdate(request,null);
                                                                                 }
 
-                                                                                public NordletApiHttpResponse<AnnualAccountsSignaturesCreateDeclarationsResponse> annualAccountsSignaturesCreate(
-                                                                                    AnnualAccountsSignaturesCreateDeclarationsRequest request,
+                                                                                public NordletApiHttpResponse<TaxPaymentsUpdateDeclarationsResponse> taxPaymentsUpdate(
+                                                                                    TaxPaymentsUpdateDeclarationsRequest request,
                                                                                     RequestOptions requestOptions) {
                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                    .addPathSegments("v1/declarations/annual-accounts/signatures/create");if (requestOptions != null) {
+                                                                                    .addPathSegments("v1/declarations/tax-payments/update");if (requestOptions != null) {
                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                       } );
@@ -3101,7 +3109,7 @@ public class RawDeclarationsClient {
                                                                                       ResponseBody responseBody = response.body();
                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                       if (response.isSuccessful()) {
-                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsSignaturesCreateDeclarationsResponse.class), response);
+                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxPaymentsUpdateDeclarationsResponse.class), response);
                                                                                       }
                                                                                       try {
                                                                                         switch (response.code()) {
@@ -3131,17 +3139,17 @@ public class RawDeclarationsClient {
                                                                                     }
                                                                                   }
 
-                                                                                  public NordletApiHttpResponse<AnnualAccountsSignaturesUpdateDeclarationsResponse> annualAccountsSignaturesUpdate(
-                                                                                      AnnualAccountsSignaturesUpdateDeclarationsRequest request) {
-                                                                                    return annualAccountsSignaturesUpdate(request,null);
+                                                                                  public NordletApiHttpResponse<TaxPaymentsDeleteDeclarationsResponse> taxPaymentsDelete(
+                                                                                      TaxPaymentsDeleteDeclarationsRequest request) {
+                                                                                    return taxPaymentsDelete(request,null);
                                                                                   }
 
-                                                                                  public NordletApiHttpResponse<AnnualAccountsSignaturesUpdateDeclarationsResponse> annualAccountsSignaturesUpdate(
-                                                                                      AnnualAccountsSignaturesUpdateDeclarationsRequest request,
+                                                                                  public NordletApiHttpResponse<TaxPaymentsDeleteDeclarationsResponse> taxPaymentsDelete(
+                                                                                      TaxPaymentsDeleteDeclarationsRequest request,
                                                                                       RequestOptions requestOptions) {
                                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                      .addPathSegments("v1/declarations/annual-accounts/signatures/update");if (requestOptions != null) {
+                                                                                      .addPathSegments("v1/declarations/tax-payments/delete");if (requestOptions != null) {
                                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                                         } );
@@ -3171,7 +3179,7 @@ public class RawDeclarationsClient {
                                                                                         ResponseBody responseBody = response.body();
                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                         if (response.isSuccessful()) {
-                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsSignaturesUpdateDeclarationsResponse.class), response);
+                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxPaymentsDeleteDeclarationsResponse.class), response);
                                                                                         }
                                                                                         try {
                                                                                           switch (response.code()) {
@@ -3201,17 +3209,23 @@ public class RawDeclarationsClient {
                                                                                       }
                                                                                     }
 
-                                                                                    public NordletApiHttpResponse<AnnualAccountsSignaturesDeleteDeclarationsResponse> annualAccountsSignaturesDelete(
-                                                                                        AnnualAccountsSignaturesDeleteDeclarationsRequest request) {
-                                                                                      return annualAccountsSignaturesDelete(request,null);
+                                                                                    /**
+                                                                                     * Whether the general meeting adopted the annual accounts and on which date, the date the accounts were prepared, and which directors signed them. The annual accounts filed with the trade register are built from these facts.
+                                                                                     */
+                                                                                    public NordletApiHttpResponse<AnnualAccountsGetDeclarationsResponse> annualAccountsGet(
+                                                                                        AnnualAccountsGetDeclarationsRequest request) {
+                                                                                      return annualAccountsGet(request,null);
                                                                                     }
 
-                                                                                    public NordletApiHttpResponse<AnnualAccountsSignaturesDeleteDeclarationsResponse> annualAccountsSignaturesDelete(
-                                                                                        AnnualAccountsSignaturesDeleteDeclarationsRequest request,
+                                                                                    /**
+                                                                                     * Whether the general meeting adopted the annual accounts and on which date, the date the accounts were prepared, and which directors signed them. The annual accounts filed with the trade register are built from these facts.
+                                                                                     */
+                                                                                    public NordletApiHttpResponse<AnnualAccountsGetDeclarationsResponse> annualAccountsGet(
+                                                                                        AnnualAccountsGetDeclarationsRequest request,
                                                                                         RequestOptions requestOptions) {
                                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                        .addPathSegments("v1/declarations/annual-accounts/signatures/delete");if (requestOptions != null) {
+                                                                                        .addPathSegments("v1/declarations/annual-accounts/get");if (requestOptions != null) {
                                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                                           } );
@@ -3241,7 +3255,7 @@ public class RawDeclarationsClient {
                                                                                           ResponseBody responseBody = response.body();
                                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                           if (response.isSuccessful()) {
-                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsSignaturesDeleteDeclarationsResponse.class), response);
+                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsGetDeclarationsResponse.class), response);
                                                                                           }
                                                                                           try {
                                                                                             switch (response.code()) {
@@ -3271,17 +3285,17 @@ public class RawDeclarationsClient {
                                                                                         }
                                                                                       }
 
-                                                                                      public NordletApiHttpResponse<AnnualAccountsDistributionsCreateDeclarationsResponse> annualAccountsDistributionsCreate(
-                                                                                          AnnualAccountsDistributionsCreateDeclarationsRequest request) {
-                                                                                        return annualAccountsDistributionsCreate(request,null);
+                                                                                      public NordletApiHttpResponse<AnnualAccountsSetDeclarationsResponse> annualAccountsSet(
+                                                                                          AnnualAccountsSetDeclarationsRequest request) {
+                                                                                        return annualAccountsSet(request,null);
                                                                                       }
 
-                                                                                      public NordletApiHttpResponse<AnnualAccountsDistributionsCreateDeclarationsResponse> annualAccountsDistributionsCreate(
-                                                                                          AnnualAccountsDistributionsCreateDeclarationsRequest request,
+                                                                                      public NordletApiHttpResponse<AnnualAccountsSetDeclarationsResponse> annualAccountsSet(
+                                                                                          AnnualAccountsSetDeclarationsRequest request,
                                                                                           RequestOptions requestOptions) {
                                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                          .addPathSegments("v1/declarations/annual-accounts/distributions/create");if (requestOptions != null) {
+                                                                                          .addPathSegments("v1/declarations/annual-accounts/set");if (requestOptions != null) {
                                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                                             } );
@@ -3311,7 +3325,7 @@ public class RawDeclarationsClient {
                                                                                             ResponseBody responseBody = response.body();
                                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                             if (response.isSuccessful()) {
-                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsDistributionsCreateDeclarationsResponse.class), response);
+                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsSetDeclarationsResponse.class), response);
                                                                                             }
                                                                                             try {
                                                                                               switch (response.code()) {
@@ -3341,17 +3355,17 @@ public class RawDeclarationsClient {
                                                                                           }
                                                                                         }
 
-                                                                                        public NordletApiHttpResponse<AnnualAccountsDistributionsUpdateDeclarationsResponse> annualAccountsDistributionsUpdate(
-                                                                                            AnnualAccountsDistributionsUpdateDeclarationsRequest request) {
-                                                                                          return annualAccountsDistributionsUpdate(request,null);
+                                                                                        public NordletApiHttpResponse<AnnualAccountsSignaturesCreateDeclarationsResponse> annualAccountsSignaturesCreate(
+                                                                                            AnnualAccountsSignaturesCreateDeclarationsRequest request) {
+                                                                                          return annualAccountsSignaturesCreate(request,null);
                                                                                         }
 
-                                                                                        public NordletApiHttpResponse<AnnualAccountsDistributionsUpdateDeclarationsResponse> annualAccountsDistributionsUpdate(
-                                                                                            AnnualAccountsDistributionsUpdateDeclarationsRequest request,
+                                                                                        public NordletApiHttpResponse<AnnualAccountsSignaturesCreateDeclarationsResponse> annualAccountsSignaturesCreate(
+                                                                                            AnnualAccountsSignaturesCreateDeclarationsRequest request,
                                                                                             RequestOptions requestOptions) {
                                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                            .addPathSegments("v1/declarations/annual-accounts/distributions/update");if (requestOptions != null) {
+                                                                                            .addPathSegments("v1/declarations/annual-accounts/signatures/create");if (requestOptions != null) {
                                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                                               } );
@@ -3381,7 +3395,7 @@ public class RawDeclarationsClient {
                                                                                               ResponseBody responseBody = response.body();
                                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                               if (response.isSuccessful()) {
-                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsDistributionsUpdateDeclarationsResponse.class), response);
+                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsSignaturesCreateDeclarationsResponse.class), response);
                                                                                               }
                                                                                               try {
                                                                                                 switch (response.code()) {
@@ -3411,17 +3425,17 @@ public class RawDeclarationsClient {
                                                                                             }
                                                                                           }
 
-                                                                                          public NordletApiHttpResponse<AnnualAccountsDistributionsDeleteDeclarationsResponse> annualAccountsDistributionsDelete(
-                                                                                              AnnualAccountsDistributionsDeleteDeclarationsRequest request) {
-                                                                                            return annualAccountsDistributionsDelete(request,null);
+                                                                                          public NordletApiHttpResponse<AnnualAccountsSignaturesUpdateDeclarationsResponse> annualAccountsSignaturesUpdate(
+                                                                                              AnnualAccountsSignaturesUpdateDeclarationsRequest request) {
+                                                                                            return annualAccountsSignaturesUpdate(request,null);
                                                                                           }
 
-                                                                                          public NordletApiHttpResponse<AnnualAccountsDistributionsDeleteDeclarationsResponse> annualAccountsDistributionsDelete(
-                                                                                              AnnualAccountsDistributionsDeleteDeclarationsRequest request,
+                                                                                          public NordletApiHttpResponse<AnnualAccountsSignaturesUpdateDeclarationsResponse> annualAccountsSignaturesUpdate(
+                                                                                              AnnualAccountsSignaturesUpdateDeclarationsRequest request,
                                                                                               RequestOptions requestOptions) {
                                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                              .addPathSegments("v1/declarations/annual-accounts/distributions/delete");if (requestOptions != null) {
+                                                                                              .addPathSegments("v1/declarations/annual-accounts/signatures/update");if (requestOptions != null) {
                                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                                 } );
@@ -3451,7 +3465,7 @@ public class RawDeclarationsClient {
                                                                                                 ResponseBody responseBody = response.body();
                                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                 if (response.isSuccessful()) {
-                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsDistributionsDeleteDeclarationsResponse.class), response);
+                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsSignaturesUpdateDeclarationsResponse.class), response);
                                                                                                 }
                                                                                                 try {
                                                                                                   switch (response.code()) {
@@ -3481,23 +3495,17 @@ public class RawDeclarationsClient {
                                                                                               }
                                                                                             }
 
-                                                                                            /**
-                                                                                             * Links a file uploaded through files/upload (its storageKey) to the annual accounts of the year as the notes, the management report, the auditor statement, the profit appropriation resolution, the approval certificate, the general data sheet, the full report as a pdf, or another document. Deposits that must carry these documents take them from here.
-                                                                                             */
-                                                                                            public NordletApiHttpResponse<AnnualAccountsAttachmentsAddDeclarationsResponse> annualAccountsAttachmentsAdd(
-                                                                                                AnnualAccountsAttachmentsAddDeclarationsRequest request) {
-                                                                                              return annualAccountsAttachmentsAdd(request,null);
+                                                                                            public NordletApiHttpResponse<AnnualAccountsSignaturesDeleteDeclarationsResponse> annualAccountsSignaturesDelete(
+                                                                                                AnnualAccountsSignaturesDeleteDeclarationsRequest request) {
+                                                                                              return annualAccountsSignaturesDelete(request,null);
                                                                                             }
 
-                                                                                            /**
-                                                                                             * Links a file uploaded through files/upload (its storageKey) to the annual accounts of the year as the notes, the management report, the auditor statement, the profit appropriation resolution, the approval certificate, the general data sheet, the full report as a pdf, or another document. Deposits that must carry these documents take them from here.
-                                                                                             */
-                                                                                            public NordletApiHttpResponse<AnnualAccountsAttachmentsAddDeclarationsResponse> annualAccountsAttachmentsAdd(
-                                                                                                AnnualAccountsAttachmentsAddDeclarationsRequest request,
+                                                                                            public NordletApiHttpResponse<AnnualAccountsSignaturesDeleteDeclarationsResponse> annualAccountsSignaturesDelete(
+                                                                                                AnnualAccountsSignaturesDeleteDeclarationsRequest request,
                                                                                                 RequestOptions requestOptions) {
                                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                .addPathSegments("v1/declarations/annual-accounts/attachments/add");if (requestOptions != null) {
+                                                                                                .addPathSegments("v1/declarations/annual-accounts/signatures/delete");if (requestOptions != null) {
                                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                                   } );
@@ -3527,7 +3535,7 @@ public class RawDeclarationsClient {
                                                                                                   ResponseBody responseBody = response.body();
                                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                   if (response.isSuccessful()) {
-                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsAttachmentsAddDeclarationsResponse.class), response);
+                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsSignaturesDeleteDeclarationsResponse.class), response);
                                                                                                   }
                                                                                                   try {
                                                                                                     switch (response.code()) {
@@ -3557,17 +3565,17 @@ public class RawDeclarationsClient {
                                                                                                 }
                                                                                               }
 
-                                                                                              public NordletApiHttpResponse<AnnualAccountsAttachmentsDeleteDeclarationsResponse> annualAccountsAttachmentsDelete(
-                                                                                                  AnnualAccountsAttachmentsDeleteDeclarationsRequest request) {
-                                                                                                return annualAccountsAttachmentsDelete(request,null);
+                                                                                              public NordletApiHttpResponse<AnnualAccountsDistributionsCreateDeclarationsResponse> annualAccountsDistributionsCreate(
+                                                                                                  AnnualAccountsDistributionsCreateDeclarationsRequest request) {
+                                                                                                return annualAccountsDistributionsCreate(request,null);
                                                                                               }
 
-                                                                                              public NordletApiHttpResponse<AnnualAccountsAttachmentsDeleteDeclarationsResponse> annualAccountsAttachmentsDelete(
-                                                                                                  AnnualAccountsAttachmentsDeleteDeclarationsRequest request,
+                                                                                              public NordletApiHttpResponse<AnnualAccountsDistributionsCreateDeclarationsResponse> annualAccountsDistributionsCreate(
+                                                                                                  AnnualAccountsDistributionsCreateDeclarationsRequest request,
                                                                                                   RequestOptions requestOptions) {
                                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                  .addPathSegments("v1/declarations/annual-accounts/attachments/delete");if (requestOptions != null) {
+                                                                                                  .addPathSegments("v1/declarations/annual-accounts/distributions/create");if (requestOptions != null) {
                                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                                     } );
@@ -3597,7 +3605,7 @@ public class RawDeclarationsClient {
                                                                                                     ResponseBody responseBody = response.body();
                                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                     if (response.isSuccessful()) {
-                                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsAttachmentsDeleteDeclarationsResponse.class), response);
+                                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsDistributionsCreateDeclarationsResponse.class), response);
                                                                                                     }
                                                                                                     try {
                                                                                                       switch (response.code()) {
@@ -3627,23 +3635,17 @@ public class RawDeclarationsClient {
                                                                                                   }
                                                                                                 }
 
-                                                                                                /**
-                                                                                                 * Compute the company income tax return TD4 of a tax year from the ledger and the recorded tax adjustments: the accounting profit, the add-backs, deductions, capital allowances and losses brought forward, the chargeable income, the corporation tax at the rate of the year and the double tax relief, as the fields the company keys into TAXISnet or Tax For All. The Tax Department publishes no upload layout for the TD4; the XML is a working file.
-                                                                                                 */
-                                                                                                public NordletApiHttpResponse<CyTd4GenerateDeclarationsResponse> cyTd4Generate(
-                                                                                                    CyTd4GenerateDeclarationsRequest request) {
-                                                                                                  return cyTd4Generate(request,null);
+                                                                                                public NordletApiHttpResponse<AnnualAccountsDistributionsUpdateDeclarationsResponse> annualAccountsDistributionsUpdate(
+                                                                                                    AnnualAccountsDistributionsUpdateDeclarationsRequest request) {
+                                                                                                  return annualAccountsDistributionsUpdate(request,null);
                                                                                                 }
 
-                                                                                                /**
-                                                                                                 * Compute the company income tax return TD4 of a tax year from the ledger and the recorded tax adjustments: the accounting profit, the add-backs, deductions, capital allowances and losses brought forward, the chargeable income, the corporation tax at the rate of the year and the double tax relief, as the fields the company keys into TAXISnet or Tax For All. The Tax Department publishes no upload layout for the TD4; the XML is a working file.
-                                                                                                 */
-                                                                                                public NordletApiHttpResponse<CyTd4GenerateDeclarationsResponse> cyTd4Generate(
-                                                                                                    CyTd4GenerateDeclarationsRequest request,
+                                                                                                public NordletApiHttpResponse<AnnualAccountsDistributionsUpdateDeclarationsResponse> annualAccountsDistributionsUpdate(
+                                                                                                    AnnualAccountsDistributionsUpdateDeclarationsRequest request,
                                                                                                     RequestOptions requestOptions) {
                                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                    .addPathSegments("v1/declarations/cy/td4/generate");if (requestOptions != null) {
+                                                                                                    .addPathSegments("v1/declarations/annual-accounts/distributions/update");if (requestOptions != null) {
                                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                                       } );
@@ -3673,7 +3675,7 @@ public class RawDeclarationsClient {
                                                                                                       ResponseBody responseBody = response.body();
                                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                       if (response.isSuccessful()) {
-                                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CyTd4GenerateDeclarationsResponse.class), response);
+                                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsDistributionsUpdateDeclarationsResponse.class), response);
                                                                                                       }
                                                                                                       try {
                                                                                                         switch (response.code()) {
@@ -3703,23 +3705,17 @@ public class RawDeclarationsClient {
                                                                                                     }
                                                                                                   }
 
-                                                                                                  /**
-                                                                                                   * Build the annual return HE32 of a year: the figures the Registrar’s e-filing screens ask for (company number, registered office, made-up-to date, share capital, register of members, directors and secretary, annual general meeting date, the accounts summary), the working file, and the printed form HE32(I) filled in as a PDF for signing and for keying into the Registrar’s system, which takes the return only through its own screens.
-                                                                                                   */
-                                                                                                  public NordletApiHttpResponse<CyHe32GenerateDeclarationsResponse> cyHe32Generate(
-                                                                                                      CyHe32GenerateDeclarationsRequest request) {
-                                                                                                    return cyHe32Generate(request,null);
+                                                                                                  public NordletApiHttpResponse<AnnualAccountsDistributionsDeleteDeclarationsResponse> annualAccountsDistributionsDelete(
+                                                                                                      AnnualAccountsDistributionsDeleteDeclarationsRequest request) {
+                                                                                                    return annualAccountsDistributionsDelete(request,null);
                                                                                                   }
 
-                                                                                                  /**
-                                                                                                   * Build the annual return HE32 of a year: the figures the Registrar’s e-filing screens ask for (company number, registered office, made-up-to date, share capital, register of members, directors and secretary, annual general meeting date, the accounts summary), the working file, and the printed form HE32(I) filled in as a PDF for signing and for keying into the Registrar’s system, which takes the return only through its own screens.
-                                                                                                   */
-                                                                                                  public NordletApiHttpResponse<CyHe32GenerateDeclarationsResponse> cyHe32Generate(
-                                                                                                      CyHe32GenerateDeclarationsRequest request,
+                                                                                                  public NordletApiHttpResponse<AnnualAccountsDistributionsDeleteDeclarationsResponse> annualAccountsDistributionsDelete(
+                                                                                                      AnnualAccountsDistributionsDeleteDeclarationsRequest request,
                                                                                                       RequestOptions requestOptions) {
                                                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                      .addPathSegments("v1/declarations/cy/he32/generate");if (requestOptions != null) {
+                                                                                                      .addPathSegments("v1/declarations/annual-accounts/distributions/delete");if (requestOptions != null) {
                                                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                                                         } );
@@ -3749,7 +3745,7 @@ public class RawDeclarationsClient {
                                                                                                         ResponseBody responseBody = response.body();
                                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                         if (response.isSuccessful()) {
-                                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CyHe32GenerateDeclarationsResponse.class), response);
+                                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsDistributionsDeleteDeclarationsResponse.class), response);
                                                                                                         }
                                                                                                         try {
                                                                                                           switch (response.code()) {
@@ -3780,22 +3776,22 @@ public class RawDeclarationsClient {
                                                                                                     }
 
                                                                                                     /**
-                                                                                                     * Build one of the German returns that ELSTER accepts only through a licensed ERiC transmission (E-Bilanz, Körperschaftsteuer, Gewerbesteuer with its Zerlegungserklärung, annual VAT return, Lohnsteuer-Anmeldung, Lohnsteuerbescheinigung) for the company to send through its own ELSTER-capable program. The period is the year, or YYYY-MM for the monthly Lohnsteuer-Anmeldung.
+                                                                                                     * Links a file uploaded through files/upload (its storageKey) to the annual accounts of the year as the notes, the management report, the auditor statement, the profit appropriation resolution, the approval certificate, the general data sheet, the full report as a pdf, or another document. Deposits that must carry these documents take them from here.
                                                                                                      */
-                                                                                                    public NordletApiHttpResponse<DeReturnsGenerateDeclarationsResponse> deReturnsGenerate(
-                                                                                                        DeReturnsGenerateDeclarationsRequest request) {
-                                                                                                      return deReturnsGenerate(request,null);
+                                                                                                    public NordletApiHttpResponse<AnnualAccountsAttachmentsAddDeclarationsResponse> annualAccountsAttachmentsAdd(
+                                                                                                        AnnualAccountsAttachmentsAddDeclarationsRequest request) {
+                                                                                                      return annualAccountsAttachmentsAdd(request,null);
                                                                                                     }
 
                                                                                                     /**
-                                                                                                     * Build one of the German returns that ELSTER accepts only through a licensed ERiC transmission (E-Bilanz, Körperschaftsteuer, Gewerbesteuer with its Zerlegungserklärung, annual VAT return, Lohnsteuer-Anmeldung, Lohnsteuerbescheinigung) for the company to send through its own ELSTER-capable program. The period is the year, or YYYY-MM for the monthly Lohnsteuer-Anmeldung.
+                                                                                                     * Links a file uploaded through files/upload (its storageKey) to the annual accounts of the year as the notes, the management report, the auditor statement, the profit appropriation resolution, the approval certificate, the general data sheet, the full report as a pdf, or another document. Deposits that must carry these documents take them from here.
                                                                                                      */
-                                                                                                    public NordletApiHttpResponse<DeReturnsGenerateDeclarationsResponse> deReturnsGenerate(
-                                                                                                        DeReturnsGenerateDeclarationsRequest request,
+                                                                                                    public NordletApiHttpResponse<AnnualAccountsAttachmentsAddDeclarationsResponse> annualAccountsAttachmentsAdd(
+                                                                                                        AnnualAccountsAttachmentsAddDeclarationsRequest request,
                                                                                                         RequestOptions requestOptions) {
                                                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                        .addPathSegments("v1/declarations/de/returns/generate");if (requestOptions != null) {
+                                                                                                        .addPathSegments("v1/declarations/annual-accounts/attachments/add");if (requestOptions != null) {
                                                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                                                           } );
@@ -3825,7 +3821,7 @@ public class RawDeclarationsClient {
                                                                                                           ResponseBody responseBody = response.body();
                                                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                           if (response.isSuccessful()) {
-                                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeReturnsGenerateDeclarationsResponse.class), response);
+                                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsAttachmentsAddDeclarationsResponse.class), response);
                                                                                                           }
                                                                                                           try {
                                                                                                             switch (response.code()) {
@@ -3855,23 +3851,17 @@ public class RawDeclarationsClient {
                                                                                                         }
                                                                                                       }
 
-                                                                                                      /**
-                                                                                                       * The facts of one year that the German annual returns (Körperschaftsteuer, Gewerbesteuer, Umsatzsteuererklärung) need and the ledger does not hold: changes of shareholders, contracts with shareholders, the tax contribution account, loss carry-back, the donation carry-forward, the business premises with the municipalities for the apportionment of the trade tax, the land values or property tax and the participations for the trade tax additions and reductions, the foreign income per country for the Anlage AESt, the date of leaving the small-business scheme and the Anlage UN answers of a company seated abroad. A key that is absent has not been answered.
-                                                                                                       */
-                                                                                                      public NordletApiHttpResponse<DeReturnFactsGetDeclarationsResponse> deReturnFactsGet(
-                                                                                                          DeReturnFactsGetDeclarationsRequest request) {
-                                                                                                        return deReturnFactsGet(request,null);
+                                                                                                      public NordletApiHttpResponse<AnnualAccountsAttachmentsDeleteDeclarationsResponse> annualAccountsAttachmentsDelete(
+                                                                                                          AnnualAccountsAttachmentsDeleteDeclarationsRequest request) {
+                                                                                                        return annualAccountsAttachmentsDelete(request,null);
                                                                                                       }
 
-                                                                                                      /**
-                                                                                                       * The facts of one year that the German annual returns (Körperschaftsteuer, Gewerbesteuer, Umsatzsteuererklärung) need and the ledger does not hold: changes of shareholders, contracts with shareholders, the tax contribution account, loss carry-back, the donation carry-forward, the business premises with the municipalities for the apportionment of the trade tax, the land values or property tax and the participations for the trade tax additions and reductions, the foreign income per country for the Anlage AESt, the date of leaving the small-business scheme and the Anlage UN answers of a company seated abroad. A key that is absent has not been answered.
-                                                                                                       */
-                                                                                                      public NordletApiHttpResponse<DeReturnFactsGetDeclarationsResponse> deReturnFactsGet(
-                                                                                                          DeReturnFactsGetDeclarationsRequest request,
+                                                                                                      public NordletApiHttpResponse<AnnualAccountsAttachmentsDeleteDeclarationsResponse> annualAccountsAttachmentsDelete(
+                                                                                                          AnnualAccountsAttachmentsDeleteDeclarationsRequest request,
                                                                                                           RequestOptions requestOptions) {
                                                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                          .addPathSegments("v1/declarations/de/return-facts/get");if (requestOptions != null) {
+                                                                                                          .addPathSegments("v1/declarations/annual-accounts/attachments/delete");if (requestOptions != null) {
                                                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                                                             } );
@@ -3901,7 +3891,7 @@ public class RawDeclarationsClient {
                                                                                                             ResponseBody responseBody = response.body();
                                                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                             if (response.isSuccessful()) {
-                                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeReturnFactsGetDeclarationsResponse.class), response);
+                                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnnualAccountsAttachmentsDeleteDeclarationsResponse.class), response);
                                                                                                             }
                                                                                                             try {
                                                                                                               switch (response.code()) {
@@ -3932,22 +3922,22 @@ public class RawDeclarationsClient {
                                                                                                         }
 
                                                                                                         /**
-                                                                                                         * Replace the facts of one year for the German annual returns. The returns built afterwards read them; a key left out stays unanswered.
+                                                                                                         * Compute the company income tax return TD4 of a tax year from the ledger and the recorded tax adjustments: the accounting profit, the add-backs, deductions, capital allowances and losses brought forward, the chargeable income, the corporation tax at the rate of the year and the double tax relief, as the fields the company keys into TAXISnet or Tax For All. The Tax Department publishes no upload layout for the TD4; the XML is a working file.
                                                                                                          */
-                                                                                                        public NordletApiHttpResponse<DeReturnFactsSetDeclarationsResponse> deReturnFactsSet(
-                                                                                                            DeReturnFactsSetDeclarationsRequest request) {
-                                                                                                          return deReturnFactsSet(request,null);
+                                                                                                        public NordletApiHttpResponse<CyTd4GenerateDeclarationsResponse> cyTd4Generate(
+                                                                                                            CyTd4GenerateDeclarationsRequest request) {
+                                                                                                          return cyTd4Generate(request,null);
                                                                                                         }
 
                                                                                                         /**
-                                                                                                         * Replace the facts of one year for the German annual returns. The returns built afterwards read them; a key left out stays unanswered.
+                                                                                                         * Compute the company income tax return TD4 of a tax year from the ledger and the recorded tax adjustments: the accounting profit, the add-backs, deductions, capital allowances and losses brought forward, the chargeable income, the corporation tax at the rate of the year and the double tax relief, as the fields the company keys into TAXISnet or Tax For All. The Tax Department publishes no upload layout for the TD4; the XML is a working file.
                                                                                                          */
-                                                                                                        public NordletApiHttpResponse<DeReturnFactsSetDeclarationsResponse> deReturnFactsSet(
-                                                                                                            DeReturnFactsSetDeclarationsRequest request,
+                                                                                                        public NordletApiHttpResponse<CyTd4GenerateDeclarationsResponse> cyTd4Generate(
+                                                                                                            CyTd4GenerateDeclarationsRequest request,
                                                                                                             RequestOptions requestOptions) {
                                                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                            .addPathSegments("v1/declarations/de/return-facts/set");if (requestOptions != null) {
+                                                                                                            .addPathSegments("v1/declarations/cy/td4/generate");if (requestOptions != null) {
                                                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                                                               } );
@@ -3977,7 +3967,7 @@ public class RawDeclarationsClient {
                                                                                                               ResponseBody responseBody = response.body();
                                                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                               if (response.isSuccessful()) {
-                                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeReturnFactsSetDeclarationsResponse.class), response);
+                                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CyTd4GenerateDeclarationsResponse.class), response);
                                                                                                               }
                                                                                                               try {
                                                                                                                 switch (response.code()) {
@@ -4008,22 +3998,22 @@ public class RawDeclarationsClient {
                                                                                                           }
 
                                                                                                           /**
-                                                                                                           * Build the DEÜV notifications of a month (Anmeldung for every start, Abmeldung for every leaving, in December the Jahresmeldung for everyone employed on 31 December) as DSME records with the DBME, DBNA, DBGB and DBAN blocks of Anlage 4 in force from 2026, from the approved payroll runs and the employee record, for the company's own transmission channel.
+                                                                                                           * Build the annual return HE32 of a year: the figures the Registrar’s e-filing screens ask for (company number, registered office, made-up-to date, share capital, register of members, directors and secretary, annual general meeting date, the accounts summary), the working file, and the printed form HE32(I) filled in as a PDF for signing and for keying into the Registrar’s system, which takes the return only through its own screens.
                                                                                                            */
-                                                                                                          public NordletApiHttpResponse<DeDeuevGenerateDeclarationsResponse> deDeuevGenerate(
-                                                                                                              DeDeuevGenerateDeclarationsRequest request) {
-                                                                                                            return deDeuevGenerate(request,null);
+                                                                                                          public NordletApiHttpResponse<CyHe32GenerateDeclarationsResponse> cyHe32Generate(
+                                                                                                              CyHe32GenerateDeclarationsRequest request) {
+                                                                                                            return cyHe32Generate(request,null);
                                                                                                           }
 
                                                                                                           /**
-                                                                                                           * Build the DEÜV notifications of a month (Anmeldung for every start, Abmeldung for every leaving, in December the Jahresmeldung for everyone employed on 31 December) as DSME records with the DBME, DBNA, DBGB and DBAN blocks of Anlage 4 in force from 2026, from the approved payroll runs and the employee record, for the company's own transmission channel.
+                                                                                                           * Build the annual return HE32 of a year: the figures the Registrar’s e-filing screens ask for (company number, registered office, made-up-to date, share capital, register of members, directors and secretary, annual general meeting date, the accounts summary), the working file, and the printed form HE32(I) filled in as a PDF for signing and for keying into the Registrar’s system, which takes the return only through its own screens.
                                                                                                            */
-                                                                                                          public NordletApiHttpResponse<DeDeuevGenerateDeclarationsResponse> deDeuevGenerate(
-                                                                                                              DeDeuevGenerateDeclarationsRequest request,
+                                                                                                          public NordletApiHttpResponse<CyHe32GenerateDeclarationsResponse> cyHe32Generate(
+                                                                                                              CyHe32GenerateDeclarationsRequest request,
                                                                                                               RequestOptions requestOptions) {
                                                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                              .addPathSegments("v1/declarations/de/deuev/generate");if (requestOptions != null) {
+                                                                                                              .addPathSegments("v1/declarations/cy/he32/generate");if (requestOptions != null) {
                                                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                                                 } );
@@ -4053,7 +4043,7 @@ public class RawDeclarationsClient {
                                                                                                                 ResponseBody responseBody = response.body();
                                                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                 if (response.isSuccessful()) {
-                                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeDeuevGenerateDeclarationsResponse.class), response);
+                                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CyHe32GenerateDeclarationsResponse.class), response);
                                                                                                                 }
                                                                                                                 try {
                                                                                                                   switch (response.code()) {
@@ -4084,22 +4074,22 @@ public class RawDeclarationsClient {
                                                                                                             }
 
                                                                                                             /**
-                                                                                                             * Build the monthly contribution statement to the health insurers (Beitragsnachweis) from the payroll run: one fixed-length record BW02 per insurer, in the record layout in force from 2026, ready for the company's own transmission channel.
+                                                                                                             * Build one of the German returns that ELSTER accepts only through a licensed ERiC transmission (E-Bilanz, Körperschaftsteuer, Gewerbesteuer with its Zerlegungserklärung, annual VAT return, Lohnsteuer-Anmeldung, Lohnsteuerbescheinigung) for the company to send through its own ELSTER-capable program. The period is the year, or YYYY-MM for the monthly Lohnsteuer-Anmeldung.
                                                                                                              */
-                                                                                                            public NordletApiHttpResponse<DeBeitragsnachweisGenerateDeclarationsResponse> deBeitragsnachweisGenerate(
-                                                                                                                DeBeitragsnachweisGenerateDeclarationsRequest request) {
-                                                                                                              return deBeitragsnachweisGenerate(request,null);
+                                                                                                            public NordletApiHttpResponse<DeReturnsGenerateDeclarationsResponse> deReturnsGenerate(
+                                                                                                                DeReturnsGenerateDeclarationsRequest request) {
+                                                                                                              return deReturnsGenerate(request,null);
                                                                                                             }
 
                                                                                                             /**
-                                                                                                             * Build the monthly contribution statement to the health insurers (Beitragsnachweis) from the payroll run: one fixed-length record BW02 per insurer, in the record layout in force from 2026, ready for the company's own transmission channel.
+                                                                                                             * Build one of the German returns that ELSTER accepts only through a licensed ERiC transmission (E-Bilanz, Körperschaftsteuer, Gewerbesteuer with its Zerlegungserklärung, annual VAT return, Lohnsteuer-Anmeldung, Lohnsteuerbescheinigung) for the company to send through its own ELSTER-capable program. The period is the year, or YYYY-MM for the monthly Lohnsteuer-Anmeldung.
                                                                                                              */
-                                                                                                            public NordletApiHttpResponse<DeBeitragsnachweisGenerateDeclarationsResponse> deBeitragsnachweisGenerate(
-                                                                                                                DeBeitragsnachweisGenerateDeclarationsRequest request,
+                                                                                                            public NordletApiHttpResponse<DeReturnsGenerateDeclarationsResponse> deReturnsGenerate(
+                                                                                                                DeReturnsGenerateDeclarationsRequest request,
                                                                                                                 RequestOptions requestOptions) {
                                                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                .addPathSegments("v1/declarations/de/beitragsnachweis/generate");if (requestOptions != null) {
+                                                                                                                .addPathSegments("v1/declarations/de/returns/generate");if (requestOptions != null) {
                                                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                                                   } );
@@ -4129,7 +4119,7 @@ public class RawDeclarationsClient {
                                                                                                                   ResponseBody responseBody = response.body();
                                                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                   if (response.isSuccessful()) {
-                                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeBeitragsnachweisGenerateDeclarationsResponse.class), response);
+                                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeReturnsGenerateDeclarationsResponse.class), response);
                                                                                                                   }
                                                                                                                   try {
                                                                                                                     switch (response.code()) {
@@ -4160,22 +4150,22 @@ public class RawDeclarationsClient {
                                                                                                               }
 
                                                                                                               /**
-                                                                                                               * Compute the oplysningsskema for selskaber (selskabsselvangivelsen) of an income year from the ledger and the recorded tax adjustments: accounting result before tax, tax adjustments, losses carried forward, taxable income, the 22 % corporation tax, reliefs and the balance, as the rubrikker the company keys into TastSelv Selskabsskat (DIAS). Skatteforvaltningen publishes no file format for the return; the XML is a working file.
+                                                                                                               * The facts of one year that the German annual returns (Körperschaftsteuer, Gewerbesteuer, Umsatzsteuererklärung) need and the ledger does not hold: changes of shareholders, contracts with shareholders, the tax contribution account, loss carry-back, the donation carry-forward, the business premises with the municipalities for the apportionment of the trade tax, the land values or property tax and the participations for the trade tax additions and reductions, the foreign income per country for the Anlage AESt, the date of leaving the small-business scheme and the Anlage UN answers of a company seated abroad. A key that is absent has not been answered.
                                                                                                                */
-                                                                                                              public NordletApiHttpResponse<DkSelskabsskatGenerateDeclarationsResponse> dkSelskabsskatGenerate(
-                                                                                                                  DkSelskabsskatGenerateDeclarationsRequest request) {
-                                                                                                                return dkSelskabsskatGenerate(request,null);
+                                                                                                              public NordletApiHttpResponse<DeReturnFactsGetDeclarationsResponse> deReturnFactsGet(
+                                                                                                                  DeReturnFactsGetDeclarationsRequest request) {
+                                                                                                                return deReturnFactsGet(request,null);
                                                                                                               }
 
                                                                                                               /**
-                                                                                                               * Compute the oplysningsskema for selskaber (selskabsselvangivelsen) of an income year from the ledger and the recorded tax adjustments: accounting result before tax, tax adjustments, losses carried forward, taxable income, the 22 % corporation tax, reliefs and the balance, as the rubrikker the company keys into TastSelv Selskabsskat (DIAS). Skatteforvaltningen publishes no file format for the return; the XML is a working file.
+                                                                                                               * The facts of one year that the German annual returns (Körperschaftsteuer, Gewerbesteuer, Umsatzsteuererklärung) need and the ledger does not hold: changes of shareholders, contracts with shareholders, the tax contribution account, loss carry-back, the donation carry-forward, the business premises with the municipalities for the apportionment of the trade tax, the land values or property tax and the participations for the trade tax additions and reductions, the foreign income per country for the Anlage AESt, the date of leaving the small-business scheme and the Anlage UN answers of a company seated abroad. A key that is absent has not been answered.
                                                                                                                */
-                                                                                                              public NordletApiHttpResponse<DkSelskabsskatGenerateDeclarationsResponse> dkSelskabsskatGenerate(
-                                                                                                                  DkSelskabsskatGenerateDeclarationsRequest request,
+                                                                                                              public NordletApiHttpResponse<DeReturnFactsGetDeclarationsResponse> deReturnFactsGet(
+                                                                                                                  DeReturnFactsGetDeclarationsRequest request,
                                                                                                                   RequestOptions requestOptions) {
                                                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                  .addPathSegments("v1/declarations/dk/selskabsskat/generate");if (requestOptions != null) {
+                                                                                                                  .addPathSegments("v1/declarations/de/return-facts/get");if (requestOptions != null) {
                                                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                                                     } );
@@ -4205,7 +4195,7 @@ public class RawDeclarationsClient {
                                                                                                                     ResponseBody responseBody = response.body();
                                                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                     if (response.isSuccessful()) {
-                                                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DkSelskabsskatGenerateDeclarationsResponse.class), response);
+                                                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeReturnFactsGetDeclarationsResponse.class), response);
                                                                                                                     }
                                                                                                                     try {
                                                                                                                       switch (response.code()) {
@@ -4236,22 +4226,22 @@ public class RawDeclarationsClient {
                                                                                                                 }
 
                                                                                                                 /**
-                                                                                                                 * Send one employment register (töötamise register) entry for an employment contract to e-MTA over X-tee: the start of work, or its end with the reason recorded on the contract.
+                                                                                                                 * Replace the facts of one year for the German annual returns. The returns built afterwards read them; a key left out stays unanswered.
                                                                                                                  */
-                                                                                                                public NordletApiHttpResponse<EeEmploymentRegisterSendDeclarationsResponse> eeEmploymentRegisterSend(
-                                                                                                                    EeEmploymentRegisterSendDeclarationsRequest request) {
-                                                                                                                  return eeEmploymentRegisterSend(request,null);
+                                                                                                                public NordletApiHttpResponse<DeReturnFactsSetDeclarationsResponse> deReturnFactsSet(
+                                                                                                                    DeReturnFactsSetDeclarationsRequest request) {
+                                                                                                                  return deReturnFactsSet(request,null);
                                                                                                                 }
 
                                                                                                                 /**
-                                                                                                                 * Send one employment register (töötamise register) entry for an employment contract to e-MTA over X-tee: the start of work, or its end with the reason recorded on the contract.
+                                                                                                                 * Replace the facts of one year for the German annual returns. The returns built afterwards read them; a key left out stays unanswered.
                                                                                                                  */
-                                                                                                                public NordletApiHttpResponse<EeEmploymentRegisterSendDeclarationsResponse> eeEmploymentRegisterSend(
-                                                                                                                    EeEmploymentRegisterSendDeclarationsRequest request,
+                                                                                                                public NordletApiHttpResponse<DeReturnFactsSetDeclarationsResponse> deReturnFactsSet(
+                                                                                                                    DeReturnFactsSetDeclarationsRequest request,
                                                                                                                     RequestOptions requestOptions) {
                                                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                    .addPathSegments("v1/declarations/ee/employment-register/send");if (requestOptions != null) {
+                                                                                                                    .addPathSegments("v1/declarations/de/return-facts/set");if (requestOptions != null) {
                                                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                                                       } );
@@ -4281,7 +4271,7 @@ public class RawDeclarationsClient {
                                                                                                                       ResponseBody responseBody = response.body();
                                                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                       if (response.isSuccessful()) {
-                                                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EeEmploymentRegisterSendDeclarationsResponse.class), response);
+                                                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeReturnFactsSetDeclarationsResponse.class), response);
                                                                                                                       }
                                                                                                                       try {
                                                                                                                         switch (response.code()) {
@@ -4312,38 +4302,22 @@ public class RawDeclarationsClient {
                                                                                                                   }
 
                                                                                                                   /**
-                                                                                                                   * Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
+                                                                                                                   * Build the DEÜV notifications of a month (Anmeldung for every start, Abmeldung for every leaving, in December the Jahresmeldung for everyone employed on 31 December) as DSME records with the DBME, DBNA, DBGB and DBAN blocks of Anlage 4 in force from 2026, from the approved payroll runs and the employee record, for the company's own transmission channel.
                                                                                                                    */
-                                                                                                                  public NordletApiHttpResponse<EsVerifactuDeclaracionResponsableDeclarationsResponse> esVerifactuDeclaracionResponsable(
-                                                                                                                      ) {
-                                                                                                                    return esVerifactuDeclaracionResponsable(EsVerifactuDeclaracionResponsableDeclarationsRequest.builder().build());
+                                                                                                                  public NordletApiHttpResponse<DeDeuevGenerateDeclarationsResponse> deDeuevGenerate(
+                                                                                                                      DeDeuevGenerateDeclarationsRequest request) {
+                                                                                                                    return deDeuevGenerate(request,null);
                                                                                                                   }
 
                                                                                                                   /**
-                                                                                                                   * Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
+                                                                                                                   * Build the DEÜV notifications of a month (Anmeldung for every start, Abmeldung for every leaving, in December the Jahresmeldung for everyone employed on 31 December) as DSME records with the DBME, DBNA, DBGB and DBAN blocks of Anlage 4 in force from 2026, from the approved payroll runs and the employee record, for the company's own transmission channel.
                                                                                                                    */
-                                                                                                                  public NordletApiHttpResponse<EsVerifactuDeclaracionResponsableDeclarationsResponse> esVerifactuDeclaracionResponsable(
-                                                                                                                      RequestOptions requestOptions) {
-                                                                                                                    return esVerifactuDeclaracionResponsable(EsVerifactuDeclaracionResponsableDeclarationsRequest.builder().build(),requestOptions);
-                                                                                                                  }
-
-                                                                                                                  /**
-                                                                                                                   * Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
-                                                                                                                   */
-                                                                                                                  public NordletApiHttpResponse<EsVerifactuDeclaracionResponsableDeclarationsResponse> esVerifactuDeclaracionResponsable(
-                                                                                                                      EsVerifactuDeclaracionResponsableDeclarationsRequest request) {
-                                                                                                                    return esVerifactuDeclaracionResponsable(request,null);
-                                                                                                                  }
-
-                                                                                                                  /**
-                                                                                                                   * Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
-                                                                                                                   */
-                                                                                                                  public NordletApiHttpResponse<EsVerifactuDeclaracionResponsableDeclarationsResponse> esVerifactuDeclaracionResponsable(
-                                                                                                                      EsVerifactuDeclaracionResponsableDeclarationsRequest request,
+                                                                                                                  public NordletApiHttpResponse<DeDeuevGenerateDeclarationsResponse> deDeuevGenerate(
+                                                                                                                      DeDeuevGenerateDeclarationsRequest request,
                                                                                                                       RequestOptions requestOptions) {
                                                                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                      .addPathSegments("v1/declarations/es/verifactu/declaracion-responsable");if (requestOptions != null) {
+                                                                                                                      .addPathSegments("v1/declarations/de/deuev/generate");if (requestOptions != null) {
                                                                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                                                                         } );
@@ -4373,7 +4347,7 @@ public class RawDeclarationsClient {
                                                                                                                         ResponseBody responseBody = response.body();
                                                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                         if (response.isSuccessful()) {
-                                                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EsVerifactuDeclaracionResponsableDeclarationsResponse.class), response);
+                                                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeDeuevGenerateDeclarationsResponse.class), response);
                                                                                                                         }
                                                                                                                         try {
                                                                                                                           switch (response.code()) {
@@ -4404,22 +4378,22 @@ public class RawDeclarationsClient {
                                                                                                                     }
 
                                                                                                                     /**
-                                                                                                                     * Build the Form CT1 of an accounting year as the ROS version 26 XML and the accompanying financial statements as inline XBRL on the FRS 102 Irish Extension 2026 taxonomy Revenue accepts, both from the ledger, the recorded tax adjustments, the annual accounts record and the officers, for upload through the company’s own ROS account. Says whether the company is above the iXBRL deferral limits (balance sheet total €4.4 million, turnover €8.8 million, 50 employees).
+                                                                                                                     * Build the monthly contribution statement to the health insurers (Beitragsnachweis) from the payroll run: one fixed-length record BW02 per insurer, in the record layout in force from 2026, ready for the company's own transmission channel.
                                                                                                                      */
-                                                                                                                    public NordletApiHttpResponse<IeCt1GenerateDeclarationsResponse> ieCt1Generate(
-                                                                                                                        IeCt1GenerateDeclarationsRequest request) {
-                                                                                                                      return ieCt1Generate(request,null);
+                                                                                                                    public NordletApiHttpResponse<DeBeitragsnachweisGenerateDeclarationsResponse> deBeitragsnachweisGenerate(
+                                                                                                                        DeBeitragsnachweisGenerateDeclarationsRequest request) {
+                                                                                                                      return deBeitragsnachweisGenerate(request,null);
                                                                                                                     }
 
                                                                                                                     /**
-                                                                                                                     * Build the Form CT1 of an accounting year as the ROS version 26 XML and the accompanying financial statements as inline XBRL on the FRS 102 Irish Extension 2026 taxonomy Revenue accepts, both from the ledger, the recorded tax adjustments, the annual accounts record and the officers, for upload through the company’s own ROS account. Says whether the company is above the iXBRL deferral limits (balance sheet total €4.4 million, turnover €8.8 million, 50 employees).
+                                                                                                                     * Build the monthly contribution statement to the health insurers (Beitragsnachweis) from the payroll run: one fixed-length record BW02 per insurer, in the record layout in force from 2026, ready for the company's own transmission channel.
                                                                                                                      */
-                                                                                                                    public NordletApiHttpResponse<IeCt1GenerateDeclarationsResponse> ieCt1Generate(
-                                                                                                                        IeCt1GenerateDeclarationsRequest request,
+                                                                                                                    public NordletApiHttpResponse<DeBeitragsnachweisGenerateDeclarationsResponse> deBeitragsnachweisGenerate(
+                                                                                                                        DeBeitragsnachweisGenerateDeclarationsRequest request,
                                                                                                                         RequestOptions requestOptions) {
                                                                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                        .addPathSegments("v1/declarations/ie/ct1/generate");if (requestOptions != null) {
+                                                                                                                        .addPathSegments("v1/declarations/de/beitragsnachweis/generate");if (requestOptions != null) {
                                                                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                                                                           } );
@@ -4449,7 +4423,7 @@ public class RawDeclarationsClient {
                                                                                                                           ResponseBody responseBody = response.body();
                                                                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                           if (response.isSuccessful()) {
-                                                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, IeCt1GenerateDeclarationsResponse.class), response);
+                                                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeBeitragsnachweisGenerateDeclarationsResponse.class), response);
                                                                                                                           }
                                                                                                                           try {
                                                                                                                             switch (response.code()) {
@@ -4480,22 +4454,22 @@ public class RawDeclarationsClient {
                                                                                                                       }
 
                                                                                                                       /**
-                                                                                                                       * Build the working paper for the Form B1 annual return of a financial year - company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements - in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
+                                                                                                                       * Compute the oplysningsskema for selskaber (selskabsselvangivelsen) of an income year from the ledger and the recorded tax adjustments: accounting result before tax, tax adjustments, losses carried forward, taxable income, the 22 % corporation tax, reliefs and the balance, as the rubrikker the company keys into TastSelv Selskabsskat (DIAS). Skatteforvaltningen publishes no file format for the return; the XML is a working file.
                                                                                                                        */
-                                                                                                                      public NordletApiHttpResponse<IeB1GenerateDeclarationsResponse> ieB1Generate(
-                                                                                                                          IeB1GenerateDeclarationsRequest request) {
-                                                                                                                        return ieB1Generate(request,null);
+                                                                                                                      public NordletApiHttpResponse<DkSelskabsskatGenerateDeclarationsResponse> dkSelskabsskatGenerate(
+                                                                                                                          DkSelskabsskatGenerateDeclarationsRequest request) {
+                                                                                                                        return dkSelskabsskatGenerate(request,null);
                                                                                                                       }
 
                                                                                                                       /**
-                                                                                                                       * Build the working paper for the Form B1 annual return of a financial year - company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements - in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
+                                                                                                                       * Compute the oplysningsskema for selskaber (selskabsselvangivelsen) of an income year from the ledger and the recorded tax adjustments: accounting result before tax, tax adjustments, losses carried forward, taxable income, the 22 % corporation tax, reliefs and the balance, as the rubrikker the company keys into TastSelv Selskabsskat (DIAS). Skatteforvaltningen publishes no file format for the return; the XML is a working file.
                                                                                                                        */
-                                                                                                                      public NordletApiHttpResponse<IeB1GenerateDeclarationsResponse> ieB1Generate(
-                                                                                                                          IeB1GenerateDeclarationsRequest request,
+                                                                                                                      public NordletApiHttpResponse<DkSelskabsskatGenerateDeclarationsResponse> dkSelskabsskatGenerate(
+                                                                                                                          DkSelskabsskatGenerateDeclarationsRequest request,
                                                                                                                           RequestOptions requestOptions) {
                                                                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                          .addPathSegments("v1/declarations/ie/b1/generate");if (requestOptions != null) {
+                                                                                                                          .addPathSegments("v1/declarations/dk/selskabsskat/generate");if (requestOptions != null) {
                                                                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                                                                             } );
@@ -4525,7 +4499,7 @@ public class RawDeclarationsClient {
                                                                                                                             ResponseBody responseBody = response.body();
                                                                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                             if (response.isSuccessful()) {
-                                                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, IeB1GenerateDeclarationsResponse.class), response);
+                                                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DkSelskabsskatGenerateDeclarationsResponse.class), response);
                                                                                                                             }
                                                                                                                             try {
                                                                                                                               switch (response.code()) {
@@ -4556,22 +4530,22 @@ public class RawDeclarationsClient {
                                                                                                                         }
 
                                                                                                                         /**
-                                                                                                                         * Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed.
+                                                                                                                         * Send one employment register (töötamise register) entry for an employment contract to e-MTA over X-tee: the start of work, or its end with the reason recorded on the contract.
                                                                                                                          */
-                                                                                                                        public NordletApiHttpResponse<ItSdiPurchaseSendDeclarationsResponse> itSdiPurchaseSend(
-                                                                                                                            ItSdiPurchaseSendDeclarationsRequest request) {
-                                                                                                                          return itSdiPurchaseSend(request,null);
+                                                                                                                        public NordletApiHttpResponse<EeEmploymentRegisterSendDeclarationsResponse> eeEmploymentRegisterSend(
+                                                                                                                            EeEmploymentRegisterSendDeclarationsRequest request) {
+                                                                                                                          return eeEmploymentRegisterSend(request,null);
                                                                                                                         }
 
                                                                                                                         /**
-                                                                                                                         * Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed.
+                                                                                                                         * Send one employment register (töötamise register) entry for an employment contract to e-MTA over X-tee: the start of work, or its end with the reason recorded on the contract.
                                                                                                                          */
-                                                                                                                        public NordletApiHttpResponse<ItSdiPurchaseSendDeclarationsResponse> itSdiPurchaseSend(
-                                                                                                                            ItSdiPurchaseSendDeclarationsRequest request,
+                                                                                                                        public NordletApiHttpResponse<EeEmploymentRegisterSendDeclarationsResponse> eeEmploymentRegisterSend(
+                                                                                                                            EeEmploymentRegisterSendDeclarationsRequest request,
                                                                                                                             RequestOptions requestOptions) {
                                                                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                            .addPathSegments("v1/declarations/it/sdi/purchase-send");if (requestOptions != null) {
+                                                                                                                            .addPathSegments("v1/declarations/ee/employment-register/send");if (requestOptions != null) {
                                                                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                                                                               } );
@@ -4601,7 +4575,7 @@ public class RawDeclarationsClient {
                                                                                                                               ResponseBody responseBody = response.body();
                                                                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                               if (response.isSuccessful()) {
-                                                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ItSdiPurchaseSendDeclarationsResponse.class), response);
+                                                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EeEmploymentRegisterSendDeclarationsResponse.class), response);
                                                                                                                               }
                                                                                                                               try {
                                                                                                                                 switch (response.code()) {
@@ -4632,22 +4606,38 @@ public class RawDeclarationsClient {
                                                                                                                           }
 
                                                                                                                           /**
-                                                                                                                           * Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first.
+                                                                                                                           * Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
                                                                                                                            */
-                                                                                                                          public NordletApiHttpResponse<ItSdiPurchasePreviewDeclarationsResponse> itSdiPurchasePreview(
-                                                                                                                              ItSdiPurchasePreviewDeclarationsRequest request) {
-                                                                                                                            return itSdiPurchasePreview(request,null);
+                                                                                                                          public NordletApiHttpResponse<EsVerifactuDeclaracionResponsableDeclarationsResponse> esVerifactuDeclaracionResponsable(
+                                                                                                                              ) {
+                                                                                                                            return esVerifactuDeclaracionResponsable(EsVerifactuDeclaracionResponsableDeclarationsRequest.builder().build());
                                                                                                                           }
 
                                                                                                                           /**
-                                                                                                                           * Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first.
+                                                                                                                           * Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
                                                                                                                            */
-                                                                                                                          public NordletApiHttpResponse<ItSdiPurchasePreviewDeclarationsResponse> itSdiPurchasePreview(
-                                                                                                                              ItSdiPurchasePreviewDeclarationsRequest request,
+                                                                                                                          public NordletApiHttpResponse<EsVerifactuDeclaracionResponsableDeclarationsResponse> esVerifactuDeclaracionResponsable(
+                                                                                                                              RequestOptions requestOptions) {
+                                                                                                                            return esVerifactuDeclaracionResponsable(EsVerifactuDeclaracionResponsableDeclarationsRequest.builder().build(),requestOptions);
+                                                                                                                          }
+
+                                                                                                                          /**
+                                                                                                                           * Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
+                                                                                                                           */
+                                                                                                                          public NordletApiHttpResponse<EsVerifactuDeclaracionResponsableDeclarationsResponse> esVerifactuDeclaracionResponsable(
+                                                                                                                              EsVerifactuDeclaracionResponsableDeclarationsRequest request) {
+                                                                                                                            return esVerifactuDeclaracionResponsable(request,null);
+                                                                                                                          }
+
+                                                                                                                          /**
+                                                                                                                           * Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
+                                                                                                                           */
+                                                                                                                          public NordletApiHttpResponse<EsVerifactuDeclaracionResponsableDeclarationsResponse> esVerifactuDeclaracionResponsable(
+                                                                                                                              EsVerifactuDeclaracionResponsableDeclarationsRequest request,
                                                                                                                               RequestOptions requestOptions) {
                                                                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                              .addPathSegments("v1/declarations/it/sdi/purchase-preview");if (requestOptions != null) {
+                                                                                                                              .addPathSegments("v1/declarations/es/verifactu/declaracion-responsable");if (requestOptions != null) {
                                                                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                                                                 } );
@@ -4677,7 +4667,7 @@ public class RawDeclarationsClient {
                                                                                                                                 ResponseBody responseBody = response.body();
                                                                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                 if (response.isSuccessful()) {
-                                                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ItSdiPurchasePreviewDeclarationsResponse.class), response);
+                                                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EsVerifactuDeclaracionResponsableDeclarationsResponse.class), response);
                                                                                                                                 }
                                                                                                                                 try {
                                                                                                                                   switch (response.code()) {
@@ -4708,22 +4698,22 @@ public class RawDeclarationsClient {
                                                                                                                             }
 
                                                                                                                             /**
-                                                                                                                             * Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The file, the case reference and the status are kept as a declaration submission (submissionId), whose outcome Nordlet then checks with i.SAF-T. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected. A range and data type already sent is sent again only with amend: true.
+                                                                                                                             * Build the Form CT1 of an accounting year as the ROS version 26 XML and the accompanying financial statements as inline XBRL on the FRS 102 Irish Extension 2026 taxonomy Revenue accepts, both from the ledger, the recorded tax adjustments, the annual accounts record and the officers, for upload through the company’s own ROS account. Says whether the company is above the iXBRL deferral limits (balance sheet total €4.4 million, turnover €8.8 million, 50 employees).
                                                                                                                              */
-                                                                                                                            public NordletApiHttpResponse<LtSaftSendDeclarationsResponse> ltSaftSend(
-                                                                                                                                LtSaftSendDeclarationsRequest request) {
-                                                                                                                              return ltSaftSend(request,null);
+                                                                                                                            public NordletApiHttpResponse<IeCt1GenerateDeclarationsResponse> ieCt1Generate(
+                                                                                                                                IeCt1GenerateDeclarationsRequest request) {
+                                                                                                                              return ieCt1Generate(request,null);
                                                                                                                             }
 
                                                                                                                             /**
-                                                                                                                             * Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The file, the case reference and the status are kept as a declaration submission (submissionId), whose outcome Nordlet then checks with i.SAF-T. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected. A range and data type already sent is sent again only with amend: true.
+                                                                                                                             * Build the Form CT1 of an accounting year as the ROS version 26 XML and the accompanying financial statements as inline XBRL on the FRS 102 Irish Extension 2026 taxonomy Revenue accepts, both from the ledger, the recorded tax adjustments, the annual accounts record and the officers, for upload through the company’s own ROS account. Says whether the company is above the iXBRL deferral limits (balance sheet total €4.4 million, turnover €8.8 million, 50 employees).
                                                                                                                              */
-                                                                                                                            public NordletApiHttpResponse<LtSaftSendDeclarationsResponse> ltSaftSend(
-                                                                                                                                LtSaftSendDeclarationsRequest request,
+                                                                                                                            public NordletApiHttpResponse<IeCt1GenerateDeclarationsResponse> ieCt1Generate(
+                                                                                                                                IeCt1GenerateDeclarationsRequest request,
                                                                                                                                 RequestOptions requestOptions) {
                                                                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                .addPathSegments("v1/declarations/lt/saft/send");if (requestOptions != null) {
+                                                                                                                                .addPathSegments("v1/declarations/ie/ct1/generate");if (requestOptions != null) {
                                                                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                                                                   } );
@@ -4753,7 +4743,7 @@ public class RawDeclarationsClient {
                                                                                                                                   ResponseBody responseBody = response.body();
                                                                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                   if (response.isSuccessful()) {
-                                                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LtSaftSendDeclarationsResponse.class), response);
+                                                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, IeCt1GenerateDeclarationsResponse.class), response);
                                                                                                                                   }
                                                                                                                                   try {
                                                                                                                                     switch (response.code()) {
@@ -4784,22 +4774,22 @@ public class RawDeclarationsClient {
                                                                                                                               }
 
                                                                                                                               /**
-                                                                                                                               * Render the Sodra 1-SD or 2-SD notice for the contracts starting or ending in the range as an .ffdata document for EDAS.
+                                                                                                                               * Build the working paper for the Form B1 annual return of a financial year - company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements - in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
                                                                                                                                */
-                                                                                                                              public NordletApiHttpResponse<LtSdFfdataDeclarationsResponse> ltSdFfdata(
-                                                                                                                                  LtSdFfdataDeclarationsRequest request) {
-                                                                                                                                return ltSdFfdata(request,null);
+                                                                                                                              public NordletApiHttpResponse<IeB1GenerateDeclarationsResponse> ieB1Generate(
+                                                                                                                                  IeB1GenerateDeclarationsRequest request) {
+                                                                                                                                return ieB1Generate(request,null);
                                                                                                                               }
 
                                                                                                                               /**
-                                                                                                                               * Render the Sodra 1-SD or 2-SD notice for the contracts starting or ending in the range as an .ffdata document for EDAS.
+                                                                                                                               * Build the working paper for the Form B1 annual return of a financial year - company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements - in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
                                                                                                                                */
-                                                                                                                              public NordletApiHttpResponse<LtSdFfdataDeclarationsResponse> ltSdFfdata(
-                                                                                                                                  LtSdFfdataDeclarationsRequest request,
+                                                                                                                              public NordletApiHttpResponse<IeB1GenerateDeclarationsResponse> ieB1Generate(
+                                                                                                                                  IeB1GenerateDeclarationsRequest request,
                                                                                                                                   RequestOptions requestOptions) {
                                                                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                  .addPathSegments("v1/declarations/lt/sd/ffdata");if (requestOptions != null) {
+                                                                                                                                  .addPathSegments("v1/declarations/ie/b1/generate");if (requestOptions != null) {
                                                                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                                                                     } );
@@ -4829,7 +4819,7 @@ public class RawDeclarationsClient {
                                                                                                                                     ResponseBody responseBody = response.body();
                                                                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                     if (response.isSuccessful()) {
-                                                                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LtSdFfdataDeclarationsResponse.class), response);
+                                                                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, IeB1GenerateDeclarationsResponse.class), response);
                                                                                                                                     }
                                                                                                                                     try {
                                                                                                                                       switch (response.code()) {
@@ -4860,22 +4850,22 @@ public class RawDeclarationsClient {
                                                                                                                                 }
 
                                                                                                                                 /**
-                                                                                                                                 * Render the annual corporate income tax return PLN204 as an .ffdata document, including the PLN204S and PLN204Z annexes, from the ledger and the tax adjustments recorded for that year.
+                                                                                                                                 * Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed.
                                                                                                                                  */
-                                                                                                                                public NordletApiHttpResponse<LtPln204FfdataDeclarationsResponse> ltPln204Ffdata(
-                                                                                                                                    LtPln204FfdataDeclarationsRequest request) {
-                                                                                                                                  return ltPln204Ffdata(request,null);
+                                                                                                                                public NordletApiHttpResponse<ItSdiPurchaseSendDeclarationsResponse> itSdiPurchaseSend(
+                                                                                                                                    ItSdiPurchaseSendDeclarationsRequest request) {
+                                                                                                                                  return itSdiPurchaseSend(request,null);
                                                                                                                                 }
 
                                                                                                                                 /**
-                                                                                                                                 * Render the annual corporate income tax return PLN204 as an .ffdata document, including the PLN204S and PLN204Z annexes, from the ledger and the tax adjustments recorded for that year.
+                                                                                                                                 * Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed.
                                                                                                                                  */
-                                                                                                                                public NordletApiHttpResponse<LtPln204FfdataDeclarationsResponse> ltPln204Ffdata(
-                                                                                                                                    LtPln204FfdataDeclarationsRequest request,
+                                                                                                                                public NordletApiHttpResponse<ItSdiPurchaseSendDeclarationsResponse> itSdiPurchaseSend(
+                                                                                                                                    ItSdiPurchaseSendDeclarationsRequest request,
                                                                                                                                     RequestOptions requestOptions) {
                                                                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                    .addPathSegments("v1/declarations/lt/pln204/ffdata");if (requestOptions != null) {
+                                                                                                                                    .addPathSegments("v1/declarations/it/sdi/purchase-send");if (requestOptions != null) {
                                                                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                                                                       } );
@@ -4905,7 +4895,7 @@ public class RawDeclarationsClient {
                                                                                                                                       ResponseBody responseBody = response.body();
                                                                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                       if (response.isSuccessful()) {
-                                                                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LtPln204FfdataDeclarationsResponse.class), response);
+                                                                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ItSdiPurchaseSendDeclarationsResponse.class), response);
                                                                                                                                       }
                                                                                                                                       try {
                                                                                                                                         switch (response.code()) {
@@ -4936,22 +4926,22 @@ public class RawDeclarationsClient {
                                                                                                                                   }
 
                                                                                                                                   /**
-                                                                                                                                   * Compute the company income tax return and self-assessment of a year of assessment from the ledger and the recorded tax adjustments: the accounting profit before tax, the add-backs and deductions, the approved donations, capital allowances and losses carried forward, the chargeable income, the 35 % charge, the relief against the tax and the allocation of the distributable profit to the five tax accounts. The Malta Tax and Customs Administration issues the return as a personalised spreadsheet to the registered tax practitioner and publishes no layout, so the XML is a working file and the figures are keyed into that spreadsheet.
+                                                                                                                                   * Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first.
                                                                                                                                    */
-                                                                                                                                  public NordletApiHttpResponse<MtCompanyTaxGenerateDeclarationsResponse> mtCompanyTaxGenerate(
-                                                                                                                                      MtCompanyTaxGenerateDeclarationsRequest request) {
-                                                                                                                                    return mtCompanyTaxGenerate(request,null);
+                                                                                                                                  public NordletApiHttpResponse<ItSdiPurchasePreviewDeclarationsResponse> itSdiPurchasePreview(
+                                                                                                                                      ItSdiPurchasePreviewDeclarationsRequest request) {
+                                                                                                                                    return itSdiPurchasePreview(request,null);
                                                                                                                                   }
 
                                                                                                                                   /**
-                                                                                                                                   * Compute the company income tax return and self-assessment of a year of assessment from the ledger and the recorded tax adjustments: the accounting profit before tax, the add-backs and deductions, the approved donations, capital allowances and losses carried forward, the chargeable income, the 35 % charge, the relief against the tax and the allocation of the distributable profit to the five tax accounts. The Malta Tax and Customs Administration issues the return as a personalised spreadsheet to the registered tax practitioner and publishes no layout, so the XML is a working file and the figures are keyed into that spreadsheet.
+                                                                                                                                   * Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first.
                                                                                                                                    */
-                                                                                                                                  public NordletApiHttpResponse<MtCompanyTaxGenerateDeclarationsResponse> mtCompanyTaxGenerate(
-                                                                                                                                      MtCompanyTaxGenerateDeclarationsRequest request,
+                                                                                                                                  public NordletApiHttpResponse<ItSdiPurchasePreviewDeclarationsResponse> itSdiPurchasePreview(
+                                                                                                                                      ItSdiPurchasePreviewDeclarationsRequest request,
                                                                                                                                       RequestOptions requestOptions) {
                                                                                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                      .addPathSegments("v1/declarations/mt/company-tax/generate");if (requestOptions != null) {
+                                                                                                                                      .addPathSegments("v1/declarations/it/sdi/purchase-preview");if (requestOptions != null) {
                                                                                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                                                                                         } );
@@ -4981,7 +4971,7 @@ public class RawDeclarationsClient {
                                                                                                                                         ResponseBody responseBody = response.body();
                                                                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                         if (response.isSuccessful()) {
-                                                                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MtCompanyTaxGenerateDeclarationsResponse.class), response);
+                                                                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ItSdiPurchasePreviewDeclarationsResponse.class), response);
                                                                                                                                         }
                                                                                                                                         try {
                                                                                                                                           switch (response.code()) {
@@ -5012,22 +5002,22 @@ public class RawDeclarationsClient {
                                                                                                                                     }
 
                                                                                                                                     /**
-                                                                                                                                     * Build the annual return of a year: the company number, registered office and made-up-to date, the share capital, the register of members, the directors and the company secretary and the accounts summary, as the figures the Malta Business Registry asks for on its own screens, plus the printed Annual Return Form of the Seventh Schedule filled in as a PDF for signing.
+                                                                                                                                     * Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The file, the case reference and the status are kept as a declaration submission (submissionId), whose outcome Nordlet then checks with i.SAF-T. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected. A range and data type already sent is sent again only with amend: true.
                                                                                                                                      */
-                                                                                                                                    public NordletApiHttpResponse<MtAnnualReturnGenerateDeclarationsResponse> mtAnnualReturnGenerate(
-                                                                                                                                        MtAnnualReturnGenerateDeclarationsRequest request) {
-                                                                                                                                      return mtAnnualReturnGenerate(request,null);
+                                                                                                                                    public NordletApiHttpResponse<LtSaftSendDeclarationsResponse> ltSaftSend(
+                                                                                                                                        LtSaftSendDeclarationsRequest request) {
+                                                                                                                                      return ltSaftSend(request,null);
                                                                                                                                     }
 
                                                                                                                                     /**
-                                                                                                                                     * Build the annual return of a year: the company number, registered office and made-up-to date, the share capital, the register of members, the directors and the company secretary and the accounts summary, as the figures the Malta Business Registry asks for on its own screens, plus the printed Annual Return Form of the Seventh Schedule filled in as a PDF for signing.
+                                                                                                                                     * Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The file, the case reference and the status are kept as a declaration submission (submissionId), whose outcome Nordlet then checks with i.SAF-T. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected. A range and data type already sent is sent again only with amend: true.
                                                                                                                                      */
-                                                                                                                                    public NordletApiHttpResponse<MtAnnualReturnGenerateDeclarationsResponse> mtAnnualReturnGenerate(
-                                                                                                                                        MtAnnualReturnGenerateDeclarationsRequest request,
+                                                                                                                                    public NordletApiHttpResponse<LtSaftSendDeclarationsResponse> ltSaftSend(
+                                                                                                                                        LtSaftSendDeclarationsRequest request,
                                                                                                                                         RequestOptions requestOptions) {
                                                                                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                        .addPathSegments("v1/declarations/mt/annual-return/generate");if (requestOptions != null) {
+                                                                                                                                        .addPathSegments("v1/declarations/lt/saft/send");if (requestOptions != null) {
                                                                                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                                                                                           } );
@@ -5057,7 +5047,7 @@ public class RawDeclarationsClient {
                                                                                                                                           ResponseBody responseBody = response.body();
                                                                                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                           if (response.isSuccessful()) {
-                                                                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MtAnnualReturnGenerateDeclarationsResponse.class), response);
+                                                                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LtSaftSendDeclarationsResponse.class), response);
                                                                                                                                           }
                                                                                                                                           try {
                                                                                                                                             switch (response.code()) {
@@ -5088,22 +5078,22 @@ public class RawDeclarationsClient {
                                                                                                                                       }
 
                                                                                                                                       /**
-                                                                                                                                       * Generate JPK_FA(4), the on-demand structure with every sales invoice issued in a period, its VAT bases per rate and one row per invoice line. Filed only when the tax office asks for it.
+                                                                                                                                       * Render the Sodra 1-SD or 2-SD notice for the contracts starting or ending in the range as an .ffdata document for EDAS.
                                                                                                                                        */
-                                                                                                                                      public NordletApiHttpResponse<PlJpkFaGenerateDeclarationsResponse> plJpkFaGenerate(
-                                                                                                                                          PlJpkFaGenerateDeclarationsRequest request) {
-                                                                                                                                        return plJpkFaGenerate(request,null);
+                                                                                                                                      public NordletApiHttpResponse<LtSdFfdataDeclarationsResponse> ltSdFfdata(
+                                                                                                                                          LtSdFfdataDeclarationsRequest request) {
+                                                                                                                                        return ltSdFfdata(request,null);
                                                                                                                                       }
 
                                                                                                                                       /**
-                                                                                                                                       * Generate JPK_FA(4), the on-demand structure with every sales invoice issued in a period, its VAT bases per rate and one row per invoice line. Filed only when the tax office asks for it.
+                                                                                                                                       * Render the Sodra 1-SD or 2-SD notice for the contracts starting or ending in the range as an .ffdata document for EDAS.
                                                                                                                                        */
-                                                                                                                                      public NordletApiHttpResponse<PlJpkFaGenerateDeclarationsResponse> plJpkFaGenerate(
-                                                                                                                                          PlJpkFaGenerateDeclarationsRequest request,
+                                                                                                                                      public NordletApiHttpResponse<LtSdFfdataDeclarationsResponse> ltSdFfdata(
+                                                                                                                                          LtSdFfdataDeclarationsRequest request,
                                                                                                                                           RequestOptions requestOptions) {
                                                                                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                          .addPathSegments("v1/declarations/pl/jpk-fa/generate");if (requestOptions != null) {
+                                                                                                                                          .addPathSegments("v1/declarations/lt/sd/ffdata");if (requestOptions != null) {
                                                                                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                                                                                             } );
@@ -5133,7 +5123,7 @@ public class RawDeclarationsClient {
                                                                                                                                             ResponseBody responseBody = response.body();
                                                                                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                             if (response.isSuccessful()) {
-                                                                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlJpkFaGenerateDeclarationsResponse.class), response);
+                                                                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LtSdFfdataDeclarationsResponse.class), response);
                                                                                                                                             }
                                                                                                                                             try {
                                                                                                                                               switch (response.code()) {
@@ -5164,22 +5154,22 @@ public class RawDeclarationsClient {
                                                                                                                                         }
 
                                                                                                                                         /**
-                                                                                                                                         * Generate JPK_KR(1), the on-demand structure with the chart of accounts and its opening balances and turnover, the journal and the double entries behind it. Filed only when the tax office asks for it.
+                                                                                                                                         * Render the annual corporate income tax return PLN204 as an .ffdata document, including the PLN204S and PLN204Z annexes, from the ledger and the tax adjustments recorded for that year.
                                                                                                                                          */
-                                                                                                                                        public NordletApiHttpResponse<PlJpkKrGenerateDeclarationsResponse> plJpkKrGenerate(
-                                                                                                                                            PlJpkKrGenerateDeclarationsRequest request) {
-                                                                                                                                          return plJpkKrGenerate(request,null);
+                                                                                                                                        public NordletApiHttpResponse<LtPln204FfdataDeclarationsResponse> ltPln204Ffdata(
+                                                                                                                                            LtPln204FfdataDeclarationsRequest request) {
+                                                                                                                                          return ltPln204Ffdata(request,null);
                                                                                                                                         }
 
                                                                                                                                         /**
-                                                                                                                                         * Generate JPK_KR(1), the on-demand structure with the chart of accounts and its opening balances and turnover, the journal and the double entries behind it. Filed only when the tax office asks for it.
+                                                                                                                                         * Render the annual corporate income tax return PLN204 as an .ffdata document, including the PLN204S and PLN204Z annexes, from the ledger and the tax adjustments recorded for that year.
                                                                                                                                          */
-                                                                                                                                        public NordletApiHttpResponse<PlJpkKrGenerateDeclarationsResponse> plJpkKrGenerate(
-                                                                                                                                            PlJpkKrGenerateDeclarationsRequest request,
+                                                                                                                                        public NordletApiHttpResponse<LtPln204FfdataDeclarationsResponse> ltPln204Ffdata(
+                                                                                                                                            LtPln204FfdataDeclarationsRequest request,
                                                                                                                                             RequestOptions requestOptions) {
                                                                                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                            .addPathSegments("v1/declarations/pl/jpk-kr/generate");if (requestOptions != null) {
+                                                                                                                                            .addPathSegments("v1/declarations/lt/pln204/ffdata");if (requestOptions != null) {
                                                                                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                                                                                               } );
@@ -5209,7 +5199,7 @@ public class RawDeclarationsClient {
                                                                                                                                               ResponseBody responseBody = response.body();
                                                                                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                               if (response.isSuccessful()) {
-                                                                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlJpkKrGenerateDeclarationsResponse.class), response);
+                                                                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LtPln204FfdataDeclarationsResponse.class), response);
                                                                                                                                               }
                                                                                                                                               try {
                                                                                                                                                 switch (response.code()) {
@@ -5240,22 +5230,22 @@ public class RawDeclarationsClient {
                                                                                                                                           }
 
                                                                                                                                           /**
-                                                                                                                                           * Generate JPK_MAG(2), the on-demand structure with the warehouse documents of one warehouse: goods received from outside (PZ) or internally (PW) and issued to a customer (WZ) or internally (RW). Filed only when the tax office asks for it.
+                                                                                                                                           * Compute the company income tax return and self-assessment of a year of assessment from the ledger and the recorded tax adjustments: the accounting profit before tax, the add-backs and deductions, the approved donations, capital allowances and losses carried forward, the chargeable income, the 35 % charge, the relief against the tax and the allocation of the distributable profit to the five tax accounts. The Malta Tax and Customs Administration issues the return as a personalised spreadsheet to the registered tax practitioner and publishes no layout, so the XML is a working file and the figures are keyed into that spreadsheet.
                                                                                                                                            */
-                                                                                                                                          public NordletApiHttpResponse<PlJpkMagGenerateDeclarationsResponse> plJpkMagGenerate(
-                                                                                                                                              PlJpkMagGenerateDeclarationsRequest request) {
-                                                                                                                                            return plJpkMagGenerate(request,null);
+                                                                                                                                          public NordletApiHttpResponse<MtCompanyTaxGenerateDeclarationsResponse> mtCompanyTaxGenerate(
+                                                                                                                                              MtCompanyTaxGenerateDeclarationsRequest request) {
+                                                                                                                                            return mtCompanyTaxGenerate(request,null);
                                                                                                                                           }
 
                                                                                                                                           /**
-                                                                                                                                           * Generate JPK_MAG(2), the on-demand structure with the warehouse documents of one warehouse: goods received from outside (PZ) or internally (PW) and issued to a customer (WZ) or internally (RW). Filed only when the tax office asks for it.
+                                                                                                                                           * Compute the company income tax return and self-assessment of a year of assessment from the ledger and the recorded tax adjustments: the accounting profit before tax, the add-backs and deductions, the approved donations, capital allowances and losses carried forward, the chargeable income, the 35 % charge, the relief against the tax and the allocation of the distributable profit to the five tax accounts. The Malta Tax and Customs Administration issues the return as a personalised spreadsheet to the registered tax practitioner and publishes no layout, so the XML is a working file and the figures are keyed into that spreadsheet.
                                                                                                                                            */
-                                                                                                                                          public NordletApiHttpResponse<PlJpkMagGenerateDeclarationsResponse> plJpkMagGenerate(
-                                                                                                                                              PlJpkMagGenerateDeclarationsRequest request,
+                                                                                                                                          public NordletApiHttpResponse<MtCompanyTaxGenerateDeclarationsResponse> mtCompanyTaxGenerate(
+                                                                                                                                              MtCompanyTaxGenerateDeclarationsRequest request,
                                                                                                                                               RequestOptions requestOptions) {
                                                                                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                              .addPathSegments("v1/declarations/pl/jpk-mag/generate");if (requestOptions != null) {
+                                                                                                                                              .addPathSegments("v1/declarations/mt/company-tax/generate");if (requestOptions != null) {
                                                                                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                 } );
@@ -5285,7 +5275,7 @@ public class RawDeclarationsClient {
                                                                                                                                                 ResponseBody responseBody = response.body();
                                                                                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                 if (response.isSuccessful()) {
-                                                                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlJpkMagGenerateDeclarationsResponse.class), response);
+                                                                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MtCompanyTaxGenerateDeclarationsResponse.class), response);
                                                                                                                                                 }
                                                                                                                                                 try {
                                                                                                                                                   switch (response.code()) {
@@ -5316,22 +5306,22 @@ public class RawDeclarationsClient {
                                                                                                                                             }
 
                                                                                                                                             /**
-                                                                                                                                             * Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
+                                                                                                                                             * Build the annual return of a year: the company number, registered office and made-up-to date, the share capital, the register of members, the directors and the company secretary and the accounts summary, as the figures the Malta Business Registry asks for on its own screens, plus the printed Annual Return Form of the Seventh Schedule filled in as a PDF for signing.
                                                                                                                                              */
-                                                                                                                                            public NordletApiHttpResponse<PlPit11GenerateDeclarationsResponse> plPit11Generate(
-                                                                                                                                                PlPit11GenerateDeclarationsRequest request) {
-                                                                                                                                              return plPit11Generate(request,null);
+                                                                                                                                            public NordletApiHttpResponse<MtAnnualReturnGenerateDeclarationsResponse> mtAnnualReturnGenerate(
+                                                                                                                                                MtAnnualReturnGenerateDeclarationsRequest request) {
+                                                                                                                                              return mtAnnualReturnGenerate(request,null);
                                                                                                                                             }
 
                                                                                                                                             /**
-                                                                                                                                             * Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
+                                                                                                                                             * Build the annual return of a year: the company number, registered office and made-up-to date, the share capital, the register of members, the directors and the company secretary and the accounts summary, as the figures the Malta Business Registry asks for on its own screens, plus the printed Annual Return Form of the Seventh Schedule filled in as a PDF for signing.
                                                                                                                                              */
-                                                                                                                                            public NordletApiHttpResponse<PlPit11GenerateDeclarationsResponse> plPit11Generate(
-                                                                                                                                                PlPit11GenerateDeclarationsRequest request,
+                                                                                                                                            public NordletApiHttpResponse<MtAnnualReturnGenerateDeclarationsResponse> mtAnnualReturnGenerate(
+                                                                                                                                                MtAnnualReturnGenerateDeclarationsRequest request,
                                                                                                                                                 RequestOptions requestOptions) {
                                                                                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                .addPathSegments("v1/declarations/pl/pit-11/generate");if (requestOptions != null) {
+                                                                                                                                                .addPathSegments("v1/declarations/mt/annual-return/generate");if (requestOptions != null) {
                                                                                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                   } );
@@ -5361,7 +5351,7 @@ public class RawDeclarationsClient {
                                                                                                                                                   ResponseBody responseBody = response.body();
                                                                                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                   if (response.isSuccessful()) {
-                                                                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlPit11GenerateDeclarationsResponse.class), response);
+                                                                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MtAnnualReturnGenerateDeclarationsResponse.class), response);
                                                                                                                                                   }
                                                                                                                                                   try {
                                                                                                                                                     switch (response.code()) {
@@ -5392,22 +5382,22 @@ public class RawDeclarationsClient {
                                                                                                                                               }
 
                                                                                                                                               /**
-                                                                                                                                               * Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
+                                                                                                                                               * Generate JPK_FA(4), the on-demand structure with every sales invoice issued in a period, its VAT bases per rate and one row per invoice line. Filed only when the tax office asks for it.
                                                                                                                                                */
-                                                                                                                                              public NordletApiHttpResponse<PlCit8GenerateDeclarationsResponse> plCit8Generate(
-                                                                                                                                                  PlCit8GenerateDeclarationsRequest request) {
-                                                                                                                                                return plCit8Generate(request,null);
+                                                                                                                                              public NordletApiHttpResponse<PlJpkFaGenerateDeclarationsResponse> plJpkFaGenerate(
+                                                                                                                                                  PlJpkFaGenerateDeclarationsRequest request) {
+                                                                                                                                                return plJpkFaGenerate(request,null);
                                                                                                                                               }
 
                                                                                                                                               /**
-                                                                                                                                               * Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
+                                                                                                                                               * Generate JPK_FA(4), the on-demand structure with every sales invoice issued in a period, its VAT bases per rate and one row per invoice line. Filed only when the tax office asks for it.
                                                                                                                                                */
-                                                                                                                                              public NordletApiHttpResponse<PlCit8GenerateDeclarationsResponse> plCit8Generate(
-                                                                                                                                                  PlCit8GenerateDeclarationsRequest request,
+                                                                                                                                              public NordletApiHttpResponse<PlJpkFaGenerateDeclarationsResponse> plJpkFaGenerate(
+                                                                                                                                                  PlJpkFaGenerateDeclarationsRequest request,
                                                                                                                                                   RequestOptions requestOptions) {
                                                                                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                  .addPathSegments("v1/declarations/pl/cit-8/generate");if (requestOptions != null) {
+                                                                                                                                                  .addPathSegments("v1/declarations/pl/jpk-fa/generate");if (requestOptions != null) {
                                                                                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                     } );
@@ -5437,7 +5427,7 @@ public class RawDeclarationsClient {
                                                                                                                                                     ResponseBody responseBody = response.body();
                                                                                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                     if (response.isSuccessful()) {
-                                                                                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlCit8GenerateDeclarationsResponse.class), response);
+                                                                                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlJpkFaGenerateDeclarationsResponse.class), response);
                                                                                                                                                     }
                                                                                                                                                     try {
                                                                                                                                                       switch (response.code()) {
@@ -5468,22 +5458,22 @@ public class RawDeclarationsClient {
                                                                                                                                                 }
 
                                                                                                                                                 /**
-                                                                                                                                                 * Compute the monthly ZUS DRA settlement from the payroll run of one month: the pension, disability, sickness, accident and health insurance contributions and the Labour Fund, Solidarity Fund and guaranteed benefits fund charges, each split between the insured person and the payer. The amounts are carried into Płatnik or ePłatnik by hand.
+                                                                                                                                                 * Generate JPK_KR(1), the on-demand structure with the chart of accounts and its opening balances and turnover, the journal and the double entries behind it. Filed only when the tax office asks for it.
                                                                                                                                                  */
-                                                                                                                                                public NordletApiHttpResponse<PlZusDraComputeDeclarationsResponse> plZusDraCompute(
-                                                                                                                                                    PlZusDraComputeDeclarationsRequest request) {
-                                                                                                                                                  return plZusDraCompute(request,null);
+                                                                                                                                                public NordletApiHttpResponse<PlJpkKrGenerateDeclarationsResponse> plJpkKrGenerate(
+                                                                                                                                                    PlJpkKrGenerateDeclarationsRequest request) {
+                                                                                                                                                  return plJpkKrGenerate(request,null);
                                                                                                                                                 }
 
                                                                                                                                                 /**
-                                                                                                                                                 * Compute the monthly ZUS DRA settlement from the payroll run of one month: the pension, disability, sickness, accident and health insurance contributions and the Labour Fund, Solidarity Fund and guaranteed benefits fund charges, each split between the insured person and the payer. The amounts are carried into Płatnik or ePłatnik by hand.
+                                                                                                                                                 * Generate JPK_KR(1), the on-demand structure with the chart of accounts and its opening balances and turnover, the journal and the double entries behind it. Filed only when the tax office asks for it.
                                                                                                                                                  */
-                                                                                                                                                public NordletApiHttpResponse<PlZusDraComputeDeclarationsResponse> plZusDraCompute(
-                                                                                                                                                    PlZusDraComputeDeclarationsRequest request,
+                                                                                                                                                public NordletApiHttpResponse<PlJpkKrGenerateDeclarationsResponse> plJpkKrGenerate(
+                                                                                                                                                    PlJpkKrGenerateDeclarationsRequest request,
                                                                                                                                                     RequestOptions requestOptions) {
                                                                                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                    .addPathSegments("v1/declarations/pl/zus-dra/compute");if (requestOptions != null) {
+                                                                                                                                                    .addPathSegments("v1/declarations/pl/jpk-kr/generate");if (requestOptions != null) {
                                                                                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                       } );
@@ -5513,7 +5503,7 @@ public class RawDeclarationsClient {
                                                                                                                                                       ResponseBody responseBody = response.body();
                                                                                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                       if (response.isSuccessful()) {
-                                                                                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlZusDraComputeDeclarationsResponse.class), response);
+                                                                                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlJpkKrGenerateDeclarationsResponse.class), response);
                                                                                                                                                       }
                                                                                                                                                       try {
                                                                                                                                                         switch (response.code()) {
@@ -5544,22 +5534,22 @@ public class RawDeclarationsClient {
                                                                                                                                                   }
 
                                                                                                                                                   /**
-                                                                                                                                                   * Build the KEDU file for one month: the ZUS DRA settlement and one ZUS RCA report per person on the payroll, in the schema kedu_5_4 that Płatnik and ePłatnik import. The payer REGON, short name and declaration deadline code come from the ZUS compliance settings; the insurance title code and working time of each person from the employee record.
+                                                                                                                                                   * Generate JPK_MAG(2), the on-demand structure with the warehouse documents of one warehouse: goods received from outside (PZ) or internally (PW) and issued to a customer (WZ) or internally (RW). Filed only when the tax office asks for it.
                                                                                                                                                    */
-                                                                                                                                                  public NordletApiHttpResponse<PlZusDraKeduDeclarationsResponse> plZusDraKedu(
-                                                                                                                                                      PlZusDraKeduDeclarationsRequest request) {
-                                                                                                                                                    return plZusDraKedu(request,null);
+                                                                                                                                                  public NordletApiHttpResponse<PlJpkMagGenerateDeclarationsResponse> plJpkMagGenerate(
+                                                                                                                                                      PlJpkMagGenerateDeclarationsRequest request) {
+                                                                                                                                                    return plJpkMagGenerate(request,null);
                                                                                                                                                   }
 
                                                                                                                                                   /**
-                                                                                                                                                   * Build the KEDU file for one month: the ZUS DRA settlement and one ZUS RCA report per person on the payroll, in the schema kedu_5_4 that Płatnik and ePłatnik import. The payer REGON, short name and declaration deadline code come from the ZUS compliance settings; the insurance title code and working time of each person from the employee record.
+                                                                                                                                                   * Generate JPK_MAG(2), the on-demand structure with the warehouse documents of one warehouse: goods received from outside (PZ) or internally (PW) and issued to a customer (WZ) or internally (RW). Filed only when the tax office asks for it.
                                                                                                                                                    */
-                                                                                                                                                  public NordletApiHttpResponse<PlZusDraKeduDeclarationsResponse> plZusDraKedu(
-                                                                                                                                                      PlZusDraKeduDeclarationsRequest request,
+                                                                                                                                                  public NordletApiHttpResponse<PlJpkMagGenerateDeclarationsResponse> plJpkMagGenerate(
+                                                                                                                                                      PlJpkMagGenerateDeclarationsRequest request,
                                                                                                                                                       RequestOptions requestOptions) {
                                                                                                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                      .addPathSegments("v1/declarations/pl/zus-dra/kedu");if (requestOptions != null) {
+                                                                                                                                                      .addPathSegments("v1/declarations/pl/jpk-mag/generate");if (requestOptions != null) {
                                                                                                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                         } );
@@ -5589,7 +5579,7 @@ public class RawDeclarationsClient {
                                                                                                                                                         ResponseBody responseBody = response.body();
                                                                                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                         if (response.isSuccessful()) {
-                                                                                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlZusDraKeduDeclarationsResponse.class), response);
+                                                                                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlJpkMagGenerateDeclarationsResponse.class), response);
                                                                                                                                                         }
                                                                                                                                                         try {
                                                                                                                                                           switch (response.code()) {
@@ -5620,22 +5610,22 @@ public class RawDeclarationsClient {
                                                                                                                                                     }
 
                                                                                                                                                     /**
-                                                                                                                                                     * Fill the published ZUS DRA form for one month and return it as a PDF. The amounts, the payer identity and the deadline code are the same ones the KEDU file carries; blocks the payroll does not hold (paid benefits, bridging pensions, income declaration of a self-paying person) stay empty.
+                                                                                                                                                     * Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed, addressed to the tax office of the place of residence of that person (employee field plKodUrzedu); a person without that code is refused with 422.
                                                                                                                                                      */
-                                                                                                                                                    public NordletApiHttpResponse<PlZusDraPdfDeclarationsResponse> plZusDraPdf(
-                                                                                                                                                        PlZusDraPdfDeclarationsRequest request) {
-                                                                                                                                                      return plZusDraPdf(request,null);
+                                                                                                                                                    public NordletApiHttpResponse<PlPit11GenerateDeclarationsResponse> plPit11Generate(
+                                                                                                                                                        PlPit11GenerateDeclarationsRequest request) {
+                                                                                                                                                      return plPit11Generate(request,null);
                                                                                                                                                     }
 
                                                                                                                                                     /**
-                                                                                                                                                     * Fill the published ZUS DRA form for one month and return it as a PDF. The amounts, the payer identity and the deadline code are the same ones the KEDU file carries; blocks the payroll does not hold (paid benefits, bridging pensions, income declaration of a self-paying person) stay empty.
+                                                                                                                                                     * Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed, addressed to the tax office of the place of residence of that person (employee field plKodUrzedu); a person without that code is refused with 422.
                                                                                                                                                      */
-                                                                                                                                                    public NordletApiHttpResponse<PlZusDraPdfDeclarationsResponse> plZusDraPdf(
-                                                                                                                                                        PlZusDraPdfDeclarationsRequest request,
+                                                                                                                                                    public NordletApiHttpResponse<PlPit11GenerateDeclarationsResponse> plPit11Generate(
+                                                                                                                                                        PlPit11GenerateDeclarationsRequest request,
                                                                                                                                                         RequestOptions requestOptions) {
                                                                                                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                        .addPathSegments("v1/declarations/pl/zus-dra/pdf");if (requestOptions != null) {
+                                                                                                                                                        .addPathSegments("v1/declarations/pl/pit-11/generate");if (requestOptions != null) {
                                                                                                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                           } );
@@ -5665,7 +5655,7 @@ public class RawDeclarationsClient {
                                                                                                                                                           ResponseBody responseBody = response.body();
                                                                                                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                           if (response.isSuccessful()) {
-                                                                                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlZusDraPdfDeclarationsResponse.class), response);
+                                                                                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlPit11GenerateDeclarationsResponse.class), response);
                                                                                                                                                           }
                                                                                                                                                           try {
                                                                                                                                                             switch (response.code()) {
@@ -5696,22 +5686,22 @@ public class RawDeclarationsClient {
                                                                                                                                                       }
 
                                                                                                                                                       /**
-                                                                                                                                                       * Build the RO e-Transport declaration for an issued waybill: goods with their tariff codes and masses, the commercial partner, the route and the vehicle. The XML follows the ANAF eTransport v2 schema and is kept as a file on the waybill. Anything listed in blockers has to be filled in before /etransport/send will accept it.
+                                                                                                                                                       * Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
                                                                                                                                                        */
-                                                                                                                                                      public NordletApiHttpResponse<RoEtransportBuildDeclarationsResponse> roEtransportBuild(
-                                                                                                                                                          RoEtransportBuildDeclarationsRequest request) {
-                                                                                                                                                        return roEtransportBuild(request,null);
+                                                                                                                                                      public NordletApiHttpResponse<PlCit8GenerateDeclarationsResponse> plCit8Generate(
+                                                                                                                                                          PlCit8GenerateDeclarationsRequest request) {
+                                                                                                                                                        return plCit8Generate(request,null);
                                                                                                                                                       }
 
                                                                                                                                                       /**
-                                                                                                                                                       * Build the RO e-Transport declaration for an issued waybill: goods with their tariff codes and masses, the commercial partner, the route and the vehicle. The XML follows the ANAF eTransport v2 schema and is kept as a file on the waybill. Anything listed in blockers has to be filled in before /etransport/send will accept it.
+                                                                                                                                                       * Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
                                                                                                                                                        */
-                                                                                                                                                      public NordletApiHttpResponse<RoEtransportBuildDeclarationsResponse> roEtransportBuild(
-                                                                                                                                                          RoEtransportBuildDeclarationsRequest request,
+                                                                                                                                                      public NordletApiHttpResponse<PlCit8GenerateDeclarationsResponse> plCit8Generate(
+                                                                                                                                                          PlCit8GenerateDeclarationsRequest request,
                                                                                                                                                           RequestOptions requestOptions) {
                                                                                                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                          .addPathSegments("v1/declarations/ro/etransport/build");if (requestOptions != null) {
+                                                                                                                                                          .addPathSegments("v1/declarations/pl/cit-8/generate");if (requestOptions != null) {
                                                                                                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                             } );
@@ -5741,7 +5731,7 @@ public class RawDeclarationsClient {
                                                                                                                                                             ResponseBody responseBody = response.body();
                                                                                                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                             if (response.isSuccessful()) {
-                                                                                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RoEtransportBuildDeclarationsResponse.class), response);
+                                                                                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlCit8GenerateDeclarationsResponse.class), response);
                                                                                                                                                             }
                                                                                                                                                             try {
                                                                                                                                                               switch (response.code()) {
@@ -5772,22 +5762,22 @@ public class RawDeclarationsClient {
                                                                                                                                                         }
 
                                                                                                                                                         /**
-                                                                                                                                                         * Hand the RO e-Transport declaration for an issued waybill to ANAF under the SPV OAuth token in compliance settings, and return the upload index the UIT is read back with. Answers 422 while any field the ANAF validator requires is still missing.
+                                                                                                                                                         * Compute the monthly ZUS DRA settlement from the payroll run of one month: the pension, disability, sickness, accident and health insurance contributions and the Labour Fund, Solidarity Fund and guaranteed benefits fund charges, each split between the insured person and the payer. The amounts are carried into Płatnik or ePłatnik by hand.
                                                                                                                                                          */
-                                                                                                                                                        public NordletApiHttpResponse<RoEtransportSubmitDeclarationsResponse> roEtransportSubmit(
-                                                                                                                                                            RoEtransportSubmitDeclarationsRequest request) {
-                                                                                                                                                          return roEtransportSubmit(request,null);
+                                                                                                                                                        public NordletApiHttpResponse<PlZusDraComputeDeclarationsResponse> plZusDraCompute(
+                                                                                                                                                            PlZusDraComputeDeclarationsRequest request) {
+                                                                                                                                                          return plZusDraCompute(request,null);
                                                                                                                                                         }
 
                                                                                                                                                         /**
-                                                                                                                                                         * Hand the RO e-Transport declaration for an issued waybill to ANAF under the SPV OAuth token in compliance settings, and return the upload index the UIT is read back with. Answers 422 while any field the ANAF validator requires is still missing.
+                                                                                                                                                         * Compute the monthly ZUS DRA settlement from the payroll run of one month: the pension, disability, sickness, accident and health insurance contributions and the Labour Fund, Solidarity Fund and guaranteed benefits fund charges, each split between the insured person and the payer. The amounts are carried into Płatnik or ePłatnik by hand.
                                                                                                                                                          */
-                                                                                                                                                        public NordletApiHttpResponse<RoEtransportSubmitDeclarationsResponse> roEtransportSubmit(
-                                                                                                                                                            RoEtransportSubmitDeclarationsRequest request,
+                                                                                                                                                        public NordletApiHttpResponse<PlZusDraComputeDeclarationsResponse> plZusDraCompute(
+                                                                                                                                                            PlZusDraComputeDeclarationsRequest request,
                                                                                                                                                             RequestOptions requestOptions) {
                                                                                                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                            .addPathSegments("v1/declarations/ro/etransport/submit");if (requestOptions != null) {
+                                                                                                                                                            .addPathSegments("v1/declarations/pl/zus-dra/compute");if (requestOptions != null) {
                                                                                                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                               } );
@@ -5817,7 +5807,7 @@ public class RawDeclarationsClient {
                                                                                                                                                               ResponseBody responseBody = response.body();
                                                                                                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                               if (response.isSuccessful()) {
-                                                                                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RoEtransportSubmitDeclarationsResponse.class), response);
+                                                                                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlZusDraComputeDeclarationsResponse.class), response);
                                                                                                                                                               }
                                                                                                                                                               try {
                                                                                                                                                                 switch (response.code()) {
@@ -5848,22 +5838,22 @@ public class RawDeclarationsClient {
                                                                                                                                                           }
 
                                                                                                                                                           /**
-                                                                                                                                                           * Read the outcome of an e-Transport declaration from ANAF by its upload index, under the SPV OAuth token in compliance settings. Returns the UIT code once the declaration validates.
+                                                                                                                                                           * Build the KEDU file for one month: the ZUS DRA settlement and one ZUS RCA report per person on the payroll, in the schema kedu_5_4 that Płatnik and ePłatnik import. The payer REGON, short name and declaration deadline code come from the ZUS compliance settings; the insurance title code and working time of each person from the employee record.
                                                                                                                                                            */
-                                                                                                                                                          public NordletApiHttpResponse<RoEtransportStatusDeclarationsResponse> roEtransportStatus(
-                                                                                                                                                              RoEtransportStatusDeclarationsRequest request) {
-                                                                                                                                                            return roEtransportStatus(request,null);
+                                                                                                                                                          public NordletApiHttpResponse<PlZusDraKeduDeclarationsResponse> plZusDraKedu(
+                                                                                                                                                              PlZusDraKeduDeclarationsRequest request) {
+                                                                                                                                                            return plZusDraKedu(request,null);
                                                                                                                                                           }
 
                                                                                                                                                           /**
-                                                                                                                                                           * Read the outcome of an e-Transport declaration from ANAF by its upload index, under the SPV OAuth token in compliance settings. Returns the UIT code once the declaration validates.
+                                                                                                                                                           * Build the KEDU file for one month: the ZUS DRA settlement and one ZUS RCA report per person on the payroll, in the schema kedu_5_4 that Płatnik and ePłatnik import. The payer REGON, short name and declaration deadline code come from the ZUS compliance settings; the insurance title code and working time of each person from the employee record.
                                                                                                                                                            */
-                                                                                                                                                          public NordletApiHttpResponse<RoEtransportStatusDeclarationsResponse> roEtransportStatus(
-                                                                                                                                                              RoEtransportStatusDeclarationsRequest request,
+                                                                                                                                                          public NordletApiHttpResponse<PlZusDraKeduDeclarationsResponse> plZusDraKedu(
+                                                                                                                                                              PlZusDraKeduDeclarationsRequest request,
                                                                                                                                                               RequestOptions requestOptions) {
                                                                                                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                              .addPathSegments("v1/declarations/ro/etransport/status");if (requestOptions != null) {
+                                                                                                                                                              .addPathSegments("v1/declarations/pl/zus-dra/kedu");if (requestOptions != null) {
                                                                                                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                                 } );
@@ -5893,7 +5883,7 @@ public class RawDeclarationsClient {
                                                                                                                                                                 ResponseBody responseBody = response.body();
                                                                                                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                                 if (response.isSuccessful()) {
-                                                                                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RoEtransportStatusDeclarationsResponse.class), response);
+                                                                                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlZusDraKeduDeclarationsResponse.class), response);
                                                                                                                                                                 }
                                                                                                                                                                 try {
                                                                                                                                                                   switch (response.code()) {
@@ -5924,22 +5914,22 @@ public class RawDeclarationsClient {
                                                                                                                                                             }
 
                                                                                                                                                             /**
-                                                                                                                                                             * Build the annual wage declaration (Lohndeklaration) to the AHV-IV-FAK from the approved payroll runs of the year as the CSV that AHVeasy imports under Lohndeklaration → CSV-Import der Lohndaten: one row per employee with the 18 columns of the AHVeasy template, the AHV-liable wage and the ALV wage.
+                                                                                                                                                             * Fill the published ZUS DRA form for one month and return it as a PDF. The amounts, the payer identity and the deadline code are the same ones the KEDU file carries; blocks the payroll does not hold (paid benefits, bridging pensions, income declaration of a self-paying person) stay empty.
                                                                                                                                                              */
-                                                                                                                                                            public NordletApiHttpResponse<LiLohndeklarationGenerateDeclarationsResponse> liLohndeklarationGenerate(
-                                                                                                                                                                LiLohndeklarationGenerateDeclarationsRequest request) {
-                                                                                                                                                              return liLohndeklarationGenerate(request,null);
+                                                                                                                                                            public NordletApiHttpResponse<PlZusDraPdfDeclarationsResponse> plZusDraPdf(
+                                                                                                                                                                PlZusDraPdfDeclarationsRequest request) {
+                                                                                                                                                              return plZusDraPdf(request,null);
                                                                                                                                                             }
 
                                                                                                                                                             /**
-                                                                                                                                                             * Build the annual wage declaration (Lohndeklaration) to the AHV-IV-FAK from the approved payroll runs of the year as the CSV that AHVeasy imports under Lohndeklaration → CSV-Import der Lohndaten: one row per employee with the 18 columns of the AHVeasy template, the AHV-liable wage and the ALV wage.
+                                                                                                                                                             * Fill the published ZUS DRA form for one month and return it as a PDF. The amounts, the payer identity and the deadline code are the same ones the KEDU file carries; blocks the payroll does not hold (paid benefits, bridging pensions, income declaration of a self-paying person) stay empty.
                                                                                                                                                              */
-                                                                                                                                                            public NordletApiHttpResponse<LiLohndeklarationGenerateDeclarationsResponse> liLohndeklarationGenerate(
-                                                                                                                                                                LiLohndeklarationGenerateDeclarationsRequest request,
+                                                                                                                                                            public NordletApiHttpResponse<PlZusDraPdfDeclarationsResponse> plZusDraPdf(
+                                                                                                                                                                PlZusDraPdfDeclarationsRequest request,
                                                                                                                                                                 RequestOptions requestOptions) {
                                                                                                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                                .addPathSegments("v1/declarations/li/lohndeklaration/generate");if (requestOptions != null) {
+                                                                                                                                                                .addPathSegments("v1/declarations/pl/zus-dra/pdf");if (requestOptions != null) {
                                                                                                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                                   } );
@@ -5969,7 +5959,7 @@ public class RawDeclarationsClient {
                                                                                                                                                                   ResponseBody responseBody = response.body();
                                                                                                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                                   if (response.isSuccessful()) {
-                                                                                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LiLohndeklarationGenerateDeclarationsResponse.class), response);
+                                                                                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PlZusDraPdfDeclarationsResponse.class), response);
                                                                                                                                                                   }
                                                                                                                                                                   try {
                                                                                                                                                                     switch (response.code()) {
@@ -6000,22 +5990,22 @@ public class RawDeclarationsClient {
                                                                                                                                                               }
 
                                                                                                                                                               /**
-                                                                                                                                                               * Build the annual wage list (Lohnliste) of a Liechtenstein employer from the approved payroll runs of the year as the XLSX file the tax administration's eLohnausweis / eLohnlisten application imports: one row per employee with PEID, name, birth date, address, gross wage, wage tax withheld and the settlement period.
+                                                                                                                                                               * Build the RO e-Transport declaration for an issued waybill: goods with their tariff codes and masses, the commercial partner, the route and the vehicle. The XML follows the ANAF eTransport v2 schema and is kept as a file on the waybill. Anything listed in blockers has to be filled in before /etransport/send will accept it.
                                                                                                                                                                */
-                                                                                                                                                              public NordletApiHttpResponse<LiLohnlistenGenerateDeclarationsResponse> liLohnlistenGenerate(
-                                                                                                                                                                  LiLohnlistenGenerateDeclarationsRequest request) {
-                                                                                                                                                                return liLohnlistenGenerate(request,null);
+                                                                                                                                                              public NordletApiHttpResponse<RoEtransportBuildDeclarationsResponse> roEtransportBuild(
+                                                                                                                                                                  RoEtransportBuildDeclarationsRequest request) {
+                                                                                                                                                                return roEtransportBuild(request,null);
                                                                                                                                                               }
 
                                                                                                                                                               /**
-                                                                                                                                                               * Build the annual wage list (Lohnliste) of a Liechtenstein employer from the approved payroll runs of the year as the XLSX file the tax administration's eLohnausweis / eLohnlisten application imports: one row per employee with PEID, name, birth date, address, gross wage, wage tax withheld and the settlement period.
+                                                                                                                                                               * Build the RO e-Transport declaration for an issued waybill: goods with their tariff codes and masses, the commercial partner, the route and the vehicle. The XML follows the ANAF eTransport v2 schema and is kept as a file on the waybill. Anything listed in blockers has to be filled in before /etransport/send will accept it.
                                                                                                                                                                */
-                                                                                                                                                              public NordletApiHttpResponse<LiLohnlistenGenerateDeclarationsResponse> liLohnlistenGenerate(
-                                                                                                                                                                  LiLohnlistenGenerateDeclarationsRequest request,
+                                                                                                                                                              public NordletApiHttpResponse<RoEtransportBuildDeclarationsResponse> roEtransportBuild(
+                                                                                                                                                                  RoEtransportBuildDeclarationsRequest request,
                                                                                                                                                                   RequestOptions requestOptions) {
                                                                                                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                                  .addPathSegments("v1/declarations/li/lohnlisten/generate");if (requestOptions != null) {
+                                                                                                                                                                  .addPathSegments("v1/declarations/ro/etransport/build");if (requestOptions != null) {
                                                                                                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                                     } );
@@ -6045,7 +6035,7 @@ public class RawDeclarationsClient {
                                                                                                                                                                     ResponseBody responseBody = response.body();
                                                                                                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                                     if (response.isSuccessful()) {
-                                                                                                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LiLohnlistenGenerateDeclarationsResponse.class), response);
+                                                                                                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RoEtransportBuildDeclarationsResponse.class), response);
                                                                                                                                                                     }
                                                                                                                                                                     try {
                                                                                                                                                                       switch (response.code()) {
@@ -6075,27 +6065,23 @@ public class RawDeclarationsClient {
                                                                                                                                                                   }
                                                                                                                                                                 }
 
-                                                                                                                                                                public NordletApiHttpResponse<ConfigsListDeclarationsResponse> configsList(
-                                                                                                                                                                    ) {
-                                                                                                                                                                  return configsList(ConfigsListDeclarationsRequest.builder().build());
+                                                                                                                                                                /**
+                                                                                                                                                                 * Hand the RO e-Transport declaration for an issued waybill to ANAF under the SPV OAuth token in compliance settings, and return the upload index the UIT is read back with. Answers 422 while any field the ANAF validator requires is still missing.
+                                                                                                                                                                 */
+                                                                                                                                                                public NordletApiHttpResponse<RoEtransportSubmitDeclarationsResponse> roEtransportSubmit(
+                                                                                                                                                                    RoEtransportSubmitDeclarationsRequest request) {
+                                                                                                                                                                  return roEtransportSubmit(request,null);
                                                                                                                                                                 }
 
-                                                                                                                                                                public NordletApiHttpResponse<ConfigsListDeclarationsResponse> configsList(
-                                                                                                                                                                    RequestOptions requestOptions) {
-                                                                                                                                                                  return configsList(ConfigsListDeclarationsRequest.builder().build(),requestOptions);
-                                                                                                                                                                }
-
-                                                                                                                                                                public NordletApiHttpResponse<ConfigsListDeclarationsResponse> configsList(
-                                                                                                                                                                    ConfigsListDeclarationsRequest request) {
-                                                                                                                                                                  return configsList(request,null);
-                                                                                                                                                                }
-
-                                                                                                                                                                public NordletApiHttpResponse<ConfigsListDeclarationsResponse> configsList(
-                                                                                                                                                                    ConfigsListDeclarationsRequest request,
+                                                                                                                                                                /**
+                                                                                                                                                                 * Hand the RO e-Transport declaration for an issued waybill to ANAF under the SPV OAuth token in compliance settings, and return the upload index the UIT is read back with. Answers 422 while any field the ANAF validator requires is still missing.
+                                                                                                                                                                 */
+                                                                                                                                                                public NordletApiHttpResponse<RoEtransportSubmitDeclarationsResponse> roEtransportSubmit(
+                                                                                                                                                                    RoEtransportSubmitDeclarationsRequest request,
                                                                                                                                                                     RequestOptions requestOptions) {
                                                                                                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                                    .addPathSegments("v1/declarations/configs/list");if (requestOptions != null) {
+                                                                                                                                                                    .addPathSegments("v1/declarations/ro/etransport/submit");if (requestOptions != null) {
                                                                                                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                                       } );
@@ -6125,7 +6111,7 @@ public class RawDeclarationsClient {
                                                                                                                                                                       ResponseBody responseBody = response.body();
                                                                                                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                                       if (response.isSuccessful()) {
-                                                                                                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ConfigsListDeclarationsResponse.class), response);
+                                                                                                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RoEtransportSubmitDeclarationsResponse.class), response);
                                                                                                                                                                       }
                                                                                                                                                                       try {
                                                                                                                                                                         switch (response.code()) {
@@ -6155,17 +6141,23 @@ public class RawDeclarationsClient {
                                                                                                                                                                     }
                                                                                                                                                                   }
 
-                                                                                                                                                                  public NordletApiHttpResponse<ConfigsUpdateDeclarationsResponse> configsUpdate(
-                                                                                                                                                                      ConfigsUpdateDeclarationsRequest request) {
-                                                                                                                                                                    return configsUpdate(request,null);
+                                                                                                                                                                  /**
+                                                                                                                                                                   * Read the outcome of an e-Transport declaration from ANAF by its upload index, under the SPV OAuth token in compliance settings. Returns the UIT code once the declaration validates.
+                                                                                                                                                                   */
+                                                                                                                                                                  public NordletApiHttpResponse<RoEtransportStatusDeclarationsResponse> roEtransportStatus(
+                                                                                                                                                                      RoEtransportStatusDeclarationsRequest request) {
+                                                                                                                                                                    return roEtransportStatus(request,null);
                                                                                                                                                                   }
 
-                                                                                                                                                                  public NordletApiHttpResponse<ConfigsUpdateDeclarationsResponse> configsUpdate(
-                                                                                                                                                                      ConfigsUpdateDeclarationsRequest request,
+                                                                                                                                                                  /**
+                                                                                                                                                                   * Read the outcome of an e-Transport declaration from ANAF by its upload index, under the SPV OAuth token in compliance settings. Returns the UIT code once the declaration validates.
+                                                                                                                                                                   */
+                                                                                                                                                                  public NordletApiHttpResponse<RoEtransportStatusDeclarationsResponse> roEtransportStatus(
+                                                                                                                                                                      RoEtransportStatusDeclarationsRequest request,
                                                                                                                                                                       RequestOptions requestOptions) {
                                                                                                                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                                      .addPathSegments("v1/declarations/configs/update");if (requestOptions != null) {
+                                                                                                                                                                      .addPathSegments("v1/declarations/ro/etransport/status");if (requestOptions != null) {
                                                                                                                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                                         } );
@@ -6195,7 +6187,7 @@ public class RawDeclarationsClient {
                                                                                                                                                                         ResponseBody responseBody = response.body();
                                                                                                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                                         if (response.isSuccessful()) {
-                                                                                                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ConfigsUpdateDeclarationsResponse.class), response);
+                                                                                                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RoEtransportStatusDeclarationsResponse.class), response);
                                                                                                                                                                         }
                                                                                                                                                                         try {
                                                                                                                                                                           switch (response.code()) {
@@ -6225,17 +6217,23 @@ public class RawDeclarationsClient {
                                                                                                                                                                       }
                                                                                                                                                                     }
 
-                                                                                                                                                                    public NordletApiHttpResponse<CertificatesUploadDeclarationsResponse> certificatesUpload(
-                                                                                                                                                                        CertificatesUploadDeclarationsRequest request) {
-                                                                                                                                                                      return certificatesUpload(request,null);
+                                                                                                                                                                    /**
+                                                                                                                                                                     * Build the annual wage declaration (Lohndeklaration) to the AHV-IV-FAK from the approved payroll runs of the year as the CSV that AHVeasy imports under Lohndeklaration → CSV-Import der Lohndaten: one row per employee with the 18 columns of the AHVeasy template, the AHV-liable wage and the ALV wage.
+                                                                                                                                                                     */
+                                                                                                                                                                    public NordletApiHttpResponse<LiLohndeklarationGenerateDeclarationsResponse> liLohndeklarationGenerate(
+                                                                                                                                                                        LiLohndeklarationGenerateDeclarationsRequest request) {
+                                                                                                                                                                      return liLohndeklarationGenerate(request,null);
                                                                                                                                                                     }
 
-                                                                                                                                                                    public NordletApiHttpResponse<CertificatesUploadDeclarationsResponse> certificatesUpload(
-                                                                                                                                                                        CertificatesUploadDeclarationsRequest request,
+                                                                                                                                                                    /**
+                                                                                                                                                                     * Build the annual wage declaration (Lohndeklaration) to the AHV-IV-FAK from the approved payroll runs of the year as the CSV that AHVeasy imports under Lohndeklaration → CSV-Import der Lohndaten: one row per employee with the 18 columns of the AHVeasy template, the AHV-liable wage and the ALV wage.
+                                                                                                                                                                     */
+                                                                                                                                                                    public NordletApiHttpResponse<LiLohndeklarationGenerateDeclarationsResponse> liLohndeklarationGenerate(
+                                                                                                                                                                        LiLohndeklarationGenerateDeclarationsRequest request,
                                                                                                                                                                         RequestOptions requestOptions) {
                                                                                                                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                                        .addPathSegments("v1/declarations/certificates/upload");if (requestOptions != null) {
+                                                                                                                                                                        .addPathSegments("v1/declarations/li/lohndeklaration/generate");if (requestOptions != null) {
                                                                                                                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                                           } );
@@ -6265,7 +6263,7 @@ public class RawDeclarationsClient {
                                                                                                                                                                           ResponseBody responseBody = response.body();
                                                                                                                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                                           if (response.isSuccessful()) {
-                                                                                                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CertificatesUploadDeclarationsResponse.class), response);
+                                                                                                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LiLohndeklarationGenerateDeclarationsResponse.class), response);
                                                                                                                                                                           }
                                                                                                                                                                           try {
                                                                                                                                                                             switch (response.code()) {
@@ -6295,27 +6293,23 @@ public class RawDeclarationsClient {
                                                                                                                                                                         }
                                                                                                                                                                       }
 
-                                                                                                                                                                      public NordletApiHttpResponse<CertificatesListDeclarationsResponse> certificatesList(
-                                                                                                                                                                          ) {
-                                                                                                                                                                        return certificatesList(CertificatesListDeclarationsRequest.builder().build());
+                                                                                                                                                                      /**
+                                                                                                                                                                       * Build the annual wage list (Lohnliste) of a Liechtenstein employer from the approved payroll runs of the year as the XLSX file the tax administration's eLohnausweis / eLohnlisten application imports: one row per employee with PEID, name, birth date, address, gross wage, wage tax withheld and the settlement period.
+                                                                                                                                                                       */
+                                                                                                                                                                      public NordletApiHttpResponse<LiLohnlistenGenerateDeclarationsResponse> liLohnlistenGenerate(
+                                                                                                                                                                          LiLohnlistenGenerateDeclarationsRequest request) {
+                                                                                                                                                                        return liLohnlistenGenerate(request,null);
                                                                                                                                                                       }
 
-                                                                                                                                                                      public NordletApiHttpResponse<CertificatesListDeclarationsResponse> certificatesList(
-                                                                                                                                                                          RequestOptions requestOptions) {
-                                                                                                                                                                        return certificatesList(CertificatesListDeclarationsRequest.builder().build(),requestOptions);
-                                                                                                                                                                      }
-
-                                                                                                                                                                      public NordletApiHttpResponse<CertificatesListDeclarationsResponse> certificatesList(
-                                                                                                                                                                          CertificatesListDeclarationsRequest request) {
-                                                                                                                                                                        return certificatesList(request,null);
-                                                                                                                                                                      }
-
-                                                                                                                                                                      public NordletApiHttpResponse<CertificatesListDeclarationsResponse> certificatesList(
-                                                                                                                                                                          CertificatesListDeclarationsRequest request,
+                                                                                                                                                                      /**
+                                                                                                                                                                       * Build the annual wage list (Lohnliste) of a Liechtenstein employer from the approved payroll runs of the year as the XLSX file the tax administration's eLohnausweis / eLohnlisten application imports: one row per employee with PEID, name, birth date, address, gross wage, wage tax withheld and the settlement period.
+                                                                                                                                                                       */
+                                                                                                                                                                      public NordletApiHttpResponse<LiLohnlistenGenerateDeclarationsResponse> liLohnlistenGenerate(
+                                                                                                                                                                          LiLohnlistenGenerateDeclarationsRequest request,
                                                                                                                                                                           RequestOptions requestOptions) {
                                                                                                                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                                          .addPathSegments("v1/declarations/certificates/list");if (requestOptions != null) {
+                                                                                                                                                                          .addPathSegments("v1/declarations/li/lohnlisten/generate");if (requestOptions != null) {
                                                                                                                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                                             } );
@@ -6345,7 +6339,7 @@ public class RawDeclarationsClient {
                                                                                                                                                                             ResponseBody responseBody = response.body();
                                                                                                                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                                             if (response.isSuccessful()) {
-                                                                                                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CertificatesListDeclarationsResponse.class), response);
+                                                                                                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LiLohnlistenGenerateDeclarationsResponse.class), response);
                                                                                                                                                                             }
                                                                                                                                                                             try {
                                                                                                                                                                               switch (response.code()) {
@@ -6375,17 +6369,27 @@ public class RawDeclarationsClient {
                                                                                                                                                                           }
                                                                                                                                                                         }
 
-                                                                                                                                                                        public NordletApiHttpResponse<CertificatesDeleteDeclarationsResponse> certificatesDelete(
-                                                                                                                                                                            CertificatesDeleteDeclarationsRequest request) {
-                                                                                                                                                                          return certificatesDelete(request,null);
+                                                                                                                                                                        public NordletApiHttpResponse<ConfigsListDeclarationsResponse> configsList(
+                                                                                                                                                                            ) {
+                                                                                                                                                                          return configsList(ConfigsListDeclarationsRequest.builder().build());
                                                                                                                                                                         }
 
-                                                                                                                                                                        public NordletApiHttpResponse<CertificatesDeleteDeclarationsResponse> certificatesDelete(
-                                                                                                                                                                            CertificatesDeleteDeclarationsRequest request,
+                                                                                                                                                                        public NordletApiHttpResponse<ConfigsListDeclarationsResponse> configsList(
+                                                                                                                                                                            RequestOptions requestOptions) {
+                                                                                                                                                                          return configsList(ConfigsListDeclarationsRequest.builder().build(),requestOptions);
+                                                                                                                                                                        }
+
+                                                                                                                                                                        public NordletApiHttpResponse<ConfigsListDeclarationsResponse> configsList(
+                                                                                                                                                                            ConfigsListDeclarationsRequest request) {
+                                                                                                                                                                          return configsList(request,null);
+                                                                                                                                                                        }
+
+                                                                                                                                                                        public NordletApiHttpResponse<ConfigsListDeclarationsResponse> configsList(
+                                                                                                                                                                            ConfigsListDeclarationsRequest request,
                                                                                                                                                                             RequestOptions requestOptions) {
                                                                                                                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                                            .addPathSegments("v1/declarations/certificates/delete");if (requestOptions != null) {
+                                                                                                                                                                            .addPathSegments("v1/declarations/configs/list");if (requestOptions != null) {
                                                                                                                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                                               } );
@@ -6415,7 +6419,7 @@ public class RawDeclarationsClient {
                                                                                                                                                                               ResponseBody responseBody = response.body();
                                                                                                                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                                               if (response.isSuccessful()) {
-                                                                                                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CertificatesDeleteDeclarationsResponse.class), response);
+                                                                                                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ConfigsListDeclarationsResponse.class), response);
                                                                                                                                                                               }
                                                                                                                                                                               try {
                                                                                                                                                                                 switch (response.code()) {
@@ -6445,27 +6449,17 @@ public class RawDeclarationsClient {
                                                                                                                                                                             }
                                                                                                                                                                           }
 
-                                                                                                                                                                          public NordletApiHttpResponse<AutomationListDeclarationsResponse> automationList(
-                                                                                                                                                                              ) {
-                                                                                                                                                                            return automationList(AutomationListDeclarationsRequest.builder().build());
+                                                                                                                                                                          public NordletApiHttpResponse<ConfigsUpdateDeclarationsResponse> configsUpdate(
+                                                                                                                                                                              ConfigsUpdateDeclarationsRequest request) {
+                                                                                                                                                                            return configsUpdate(request,null);
                                                                                                                                                                           }
 
-                                                                                                                                                                          public NordletApiHttpResponse<AutomationListDeclarationsResponse> automationList(
-                                                                                                                                                                              RequestOptions requestOptions) {
-                                                                                                                                                                            return automationList(AutomationListDeclarationsRequest.builder().build(),requestOptions);
-                                                                                                                                                                          }
-
-                                                                                                                                                                          public NordletApiHttpResponse<AutomationListDeclarationsResponse> automationList(
-                                                                                                                                                                              AutomationListDeclarationsRequest request) {
-                                                                                                                                                                            return automationList(request,null);
-                                                                                                                                                                          }
-
-                                                                                                                                                                          public NordletApiHttpResponse<AutomationListDeclarationsResponse> automationList(
-                                                                                                                                                                              AutomationListDeclarationsRequest request,
+                                                                                                                                                                          public NordletApiHttpResponse<ConfigsUpdateDeclarationsResponse> configsUpdate(
+                                                                                                                                                                              ConfigsUpdateDeclarationsRequest request,
                                                                                                                                                                               RequestOptions requestOptions) {
                                                                                                                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                                              .addPathSegments("v1/declarations/automation/list");if (requestOptions != null) {
+                                                                                                                                                                              .addPathSegments("v1/declarations/configs/update");if (requestOptions != null) {
                                                                                                                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                                                 } );
@@ -6495,7 +6489,7 @@ public class RawDeclarationsClient {
                                                                                                                                                                                 ResponseBody responseBody = response.body();
                                                                                                                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                                                 if (response.isSuccessful()) {
-                                                                                                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AutomationListDeclarationsResponse.class), response);
+                                                                                                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ConfigsUpdateDeclarationsResponse.class), response);
                                                                                                                                                                                 }
                                                                                                                                                                                 try {
                                                                                                                                                                                   switch (response.code()) {
@@ -6525,17 +6519,17 @@ public class RawDeclarationsClient {
                                                                                                                                                                               }
                                                                                                                                                                             }
 
-                                                                                                                                                                            public NordletApiHttpResponse<AutomationUpdateDeclarationsResponse> automationUpdate(
-                                                                                                                                                                                AutomationUpdateDeclarationsRequest request) {
-                                                                                                                                                                              return automationUpdate(request,null);
+                                                                                                                                                                            public NordletApiHttpResponse<CertificatesUploadDeclarationsResponse> certificatesUpload(
+                                                                                                                                                                                CertificatesUploadDeclarationsRequest request) {
+                                                                                                                                                                              return certificatesUpload(request,null);
                                                                                                                                                                             }
 
-                                                                                                                                                                            public NordletApiHttpResponse<AutomationUpdateDeclarationsResponse> automationUpdate(
-                                                                                                                                                                                AutomationUpdateDeclarationsRequest request,
+                                                                                                                                                                            public NordletApiHttpResponse<CertificatesUploadDeclarationsResponse> certificatesUpload(
+                                                                                                                                                                                CertificatesUploadDeclarationsRequest request,
                                                                                                                                                                                 RequestOptions requestOptions) {
                                                                                                                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                                                .addPathSegments("v1/declarations/automation/update");if (requestOptions != null) {
+                                                                                                                                                                                .addPathSegments("v1/declarations/certificates/upload");if (requestOptions != null) {
                                                                                                                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                                                   } );
@@ -6565,7 +6559,7 @@ public class RawDeclarationsClient {
                                                                                                                                                                                   ResponseBody responseBody = response.body();
                                                                                                                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                                                   if (response.isSuccessful()) {
-                                                                                                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AutomationUpdateDeclarationsResponse.class), response);
+                                                                                                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CertificatesUploadDeclarationsResponse.class), response);
                                                                                                                                                                                   }
                                                                                                                                                                                   try {
                                                                                                                                                                                     switch (response.code()) {
@@ -6595,17 +6589,27 @@ public class RawDeclarationsClient {
                                                                                                                                                                                 }
                                                                                                                                                                               }
 
-                                                                                                                                                                              public NordletApiHttpResponse<SubmissionsRetryDeclarationsResponse> submissionsRetry(
-                                                                                                                                                                                  SubmissionsRetryDeclarationsRequest request) {
-                                                                                                                                                                                return submissionsRetry(request,null);
+                                                                                                                                                                              public NordletApiHttpResponse<CertificatesListDeclarationsResponse> certificatesList(
+                                                                                                                                                                                  ) {
+                                                                                                                                                                                return certificatesList(CertificatesListDeclarationsRequest.builder().build());
                                                                                                                                                                               }
 
-                                                                                                                                                                              public NordletApiHttpResponse<SubmissionsRetryDeclarationsResponse> submissionsRetry(
-                                                                                                                                                                                  SubmissionsRetryDeclarationsRequest request,
+                                                                                                                                                                              public NordletApiHttpResponse<CertificatesListDeclarationsResponse> certificatesList(
+                                                                                                                                                                                  RequestOptions requestOptions) {
+                                                                                                                                                                                return certificatesList(CertificatesListDeclarationsRequest.builder().build(),requestOptions);
+                                                                                                                                                                              }
+
+                                                                                                                                                                              public NordletApiHttpResponse<CertificatesListDeclarationsResponse> certificatesList(
+                                                                                                                                                                                  CertificatesListDeclarationsRequest request) {
+                                                                                                                                                                                return certificatesList(request,null);
+                                                                                                                                                                              }
+
+                                                                                                                                                                              public NordletApiHttpResponse<CertificatesListDeclarationsResponse> certificatesList(
+                                                                                                                                                                                  CertificatesListDeclarationsRequest request,
                                                                                                                                                                                   RequestOptions requestOptions) {
                                                                                                                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                                                  .addPathSegments("v1/declarations/submissions/retry");if (requestOptions != null) {
+                                                                                                                                                                                  .addPathSegments("v1/declarations/certificates/list");if (requestOptions != null) {
                                                                                                                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                                                     } );
@@ -6635,7 +6639,7 @@ public class RawDeclarationsClient {
                                                                                                                                                                                     ResponseBody responseBody = response.body();
                                                                                                                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                                                     if (response.isSuccessful()) {
-                                                                                                                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubmissionsRetryDeclarationsResponse.class), response);
+                                                                                                                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CertificatesListDeclarationsResponse.class), response);
                                                                                                                                                                                     }
                                                                                                                                                                                     try {
                                                                                                                                                                                       switch (response.code()) {
@@ -6665,17 +6669,17 @@ public class RawDeclarationsClient {
                                                                                                                                                                                   }
                                                                                                                                                                                 }
 
-                                                                                                                                                                                public NordletApiHttpResponse<SubmissionsCreateDeclarationsResponse> submissionsCreate(
-                                                                                                                                                                                    SubmissionsCreateDeclarationsRequest request) {
-                                                                                                                                                                                  return submissionsCreate(request,null);
+                                                                                                                                                                                public NordletApiHttpResponse<CertificatesDeleteDeclarationsResponse> certificatesDelete(
+                                                                                                                                                                                    CertificatesDeleteDeclarationsRequest request) {
+                                                                                                                                                                                  return certificatesDelete(request,null);
                                                                                                                                                                                 }
 
-                                                                                                                                                                                public NordletApiHttpResponse<SubmissionsCreateDeclarationsResponse> submissionsCreate(
-                                                                                                                                                                                    SubmissionsCreateDeclarationsRequest request,
+                                                                                                                                                                                public NordletApiHttpResponse<CertificatesDeleteDeclarationsResponse> certificatesDelete(
+                                                                                                                                                                                    CertificatesDeleteDeclarationsRequest request,
                                                                                                                                                                                     RequestOptions requestOptions) {
                                                                                                                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                                                    .addPathSegments("v1/declarations/submissions/create");if (requestOptions != null) {
+                                                                                                                                                                                    .addPathSegments("v1/declarations/certificates/delete");if (requestOptions != null) {
                                                                                                                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                                                       } );
@@ -6705,7 +6709,7 @@ public class RawDeclarationsClient {
                                                                                                                                                                                       ResponseBody responseBody = response.body();
                                                                                                                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                                                       if (response.isSuccessful()) {
-                                                                                                                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubmissionsCreateDeclarationsResponse.class), response);
+                                                                                                                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CertificatesDeleteDeclarationsResponse.class), response);
                                                                                                                                                                                       }
                                                                                                                                                                                       try {
                                                                                                                                                                                         switch (response.code()) {
@@ -6735,17 +6739,27 @@ public class RawDeclarationsClient {
                                                                                                                                                                                     }
                                                                                                                                                                                   }
 
-                                                                                                                                                                                  public NordletApiHttpResponse<SubmissionsMarkDeclarationsResponse> submissionsMark(
-                                                                                                                                                                                      SubmissionsMarkDeclarationsRequest request) {
-                                                                                                                                                                                    return submissionsMark(request,null);
+                                                                                                                                                                                  public NordletApiHttpResponse<AutomationListDeclarationsResponse> automationList(
+                                                                                                                                                                                      ) {
+                                                                                                                                                                                    return automationList(AutomationListDeclarationsRequest.builder().build());
                                                                                                                                                                                   }
 
-                                                                                                                                                                                  public NordletApiHttpResponse<SubmissionsMarkDeclarationsResponse> submissionsMark(
-                                                                                                                                                                                      SubmissionsMarkDeclarationsRequest request,
+                                                                                                                                                                                  public NordletApiHttpResponse<AutomationListDeclarationsResponse> automationList(
+                                                                                                                                                                                      RequestOptions requestOptions) {
+                                                                                                                                                                                    return automationList(AutomationListDeclarationsRequest.builder().build(),requestOptions);
+                                                                                                                                                                                  }
+
+                                                                                                                                                                                  public NordletApiHttpResponse<AutomationListDeclarationsResponse> automationList(
+                                                                                                                                                                                      AutomationListDeclarationsRequest request) {
+                                                                                                                                                                                    return automationList(request,null);
+                                                                                                                                                                                  }
+
+                                                                                                                                                                                  public NordletApiHttpResponse<AutomationListDeclarationsResponse> automationList(
+                                                                                                                                                                                      AutomationListDeclarationsRequest request,
                                                                                                                                                                                       RequestOptions requestOptions) {
                                                                                                                                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                                                      .addPathSegments("v1/declarations/submissions/mark");if (requestOptions != null) {
+                                                                                                                                                                                      .addPathSegments("v1/declarations/automation/list");if (requestOptions != null) {
                                                                                                                                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                                                         } );
@@ -6775,7 +6789,7 @@ public class RawDeclarationsClient {
                                                                                                                                                                                         ResponseBody responseBody = response.body();
                                                                                                                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                                                         if (response.isSuccessful()) {
-                                                                                                                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubmissionsMarkDeclarationsResponse.class), response);
+                                                                                                                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AutomationListDeclarationsResponse.class), response);
                                                                                                                                                                                         }
                                                                                                                                                                                         try {
                                                                                                                                                                                           switch (response.code()) {
@@ -6805,27 +6819,17 @@ public class RawDeclarationsClient {
                                                                                                                                                                                       }
                                                                                                                                                                                     }
 
-                                                                                                                                                                                    public NordletApiHttpResponse<SubmissionsListDeclarationsResponse> submissionsList(
-                                                                                                                                                                                        ) {
-                                                                                                                                                                                      return submissionsList(SubmissionsListDeclarationsRequest.builder().build());
+                                                                                                                                                                                    public NordletApiHttpResponse<AutomationUpdateDeclarationsResponse> automationUpdate(
+                                                                                                                                                                                        AutomationUpdateDeclarationsRequest request) {
+                                                                                                                                                                                      return automationUpdate(request,null);
                                                                                                                                                                                     }
 
-                                                                                                                                                                                    public NordletApiHttpResponse<SubmissionsListDeclarationsResponse> submissionsList(
-                                                                                                                                                                                        RequestOptions requestOptions) {
-                                                                                                                                                                                      return submissionsList(SubmissionsListDeclarationsRequest.builder().build(),requestOptions);
-                                                                                                                                                                                    }
-
-                                                                                                                                                                                    public NordletApiHttpResponse<SubmissionsListDeclarationsResponse> submissionsList(
-                                                                                                                                                                                        SubmissionsListDeclarationsRequest request) {
-                                                                                                                                                                                      return submissionsList(request,null);
-                                                                                                                                                                                    }
-
-                                                                                                                                                                                    public NordletApiHttpResponse<SubmissionsListDeclarationsResponse> submissionsList(
-                                                                                                                                                                                        SubmissionsListDeclarationsRequest request,
+                                                                                                                                                                                    public NordletApiHttpResponse<AutomationUpdateDeclarationsResponse> automationUpdate(
+                                                                                                                                                                                        AutomationUpdateDeclarationsRequest request,
                                                                                                                                                                                         RequestOptions requestOptions) {
                                                                                                                                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                                                                                        .addPathSegments("v1/declarations/submissions/list");if (requestOptions != null) {
+                                                                                                                                                                                        .addPathSegments("v1/declarations/automation/update");if (requestOptions != null) {
                                                                                                                                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                                                                                                                                           } );
@@ -6855,7 +6859,7 @@ public class RawDeclarationsClient {
                                                                                                                                                                                           ResponseBody responseBody = response.body();
                                                                                                                                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                                                                                           if (response.isSuccessful()) {
-                                                                                                                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubmissionsListDeclarationsResponse.class), response);
+                                                                                                                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AutomationUpdateDeclarationsResponse.class), response);
                                                                                                                                                                                           }
                                                                                                                                                                                           try {
                                                                                                                                                                                             switch (response.code()) {
@@ -6884,4 +6888,294 @@ public class RawDeclarationsClient {
                                                                                                                                                                                           throw new NordletApiException("Network error executing HTTP request", e);
                                                                                                                                                                                         }
                                                                                                                                                                                       }
-                                                                                                                                                                                    }
+
+                                                                                                                                                                                      public NordletApiHttpResponse<SubmissionsRetryDeclarationsResponse> submissionsRetry(
+                                                                                                                                                                                          SubmissionsRetryDeclarationsRequest request) {
+                                                                                                                                                                                        return submissionsRetry(request,null);
+                                                                                                                                                                                      }
+
+                                                                                                                                                                                      public NordletApiHttpResponse<SubmissionsRetryDeclarationsResponse> submissionsRetry(
+                                                                                                                                                                                          SubmissionsRetryDeclarationsRequest request,
+                                                                                                                                                                                          RequestOptions requestOptions) {
+                                                                                                                                                                                        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                                                                                                                          .addPathSegments("v1/declarations/submissions/retry");if (requestOptions != null) {
+                                                                                                                                                                                            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                                                                                                                              httpUrl.addQueryParameter(_key, _value);
+                                                                                                                                                                                            } );
+                                                                                                                                                                                          }
+                                                                                                                                                                                          RequestBody body;
+                                                                                                                                                                                          try {
+                                                                                                                                                                                            body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                                                                                                                          }
+                                                                                                                                                                                          catch(JsonProcessingException e) {
+                                                                                                                                                                                            throw new NordletApiException("Failed to serialize request", e);
+                                                                                                                                                                                          }
+                                                                                                                                                                                          Request okhttpRequest = new Request.Builder()
+                                                                                                                                                                                            .url(httpUrl.build())
+                                                                                                                                                                                            .method("POST", body)
+                                                                                                                                                                                            .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                                                                                                                            .addHeader("Content-Type", "application/json")
+                                                                                                                                                                                            .addHeader("Accept", "application/json")
+                                                                                                                                                                                            .build();
+                                                                                                                                                                                          OkHttpClient client = clientOptions.httpClient();
+                                                                                                                                                                                          if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                                                                                                                            client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                                                                                                                          }
+                                                                                                                                                                                          if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                                                                                                                            okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                                                                                                                          }
+                                                                                                                                                                                          try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                                                                                                                            ResponseBody responseBody = response.body();
+                                                                                                                                                                                            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                                                                                                                            if (response.isSuccessful()) {
+                                                                                                                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubmissionsRetryDeclarationsResponse.class), response);
+                                                                                                                                                                                            }
+                                                                                                                                                                                            try {
+                                                                                                                                                                                              switch (response.code()) {
+                                                                                                                                                                                                case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                              }
+                                                                                                                                                                                            }
+                                                                                                                                                                                            catch (JsonProcessingException ignored) {
+                                                                                                                                                                                              // unable to map error response, throwing generic error
+                                                                                                                                                                                            }
+                                                                                                                                                                                            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                                                                                                                            throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                                                                                                                          }
+                                                                                                                                                                                          catch (JsonProcessingException e) {
+                                                                                                                                                                                            throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                                                                                                                          }
+                                                                                                                                                                                          catch (IOException e) {
+                                                                                                                                                                                            throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                                                                                                                          }
+                                                                                                                                                                                        }
+
+                                                                                                                                                                                        public NordletApiHttpResponse<SubmissionsCreateDeclarationsResponse> submissionsCreate(
+                                                                                                                                                                                            SubmissionsCreateDeclarationsRequest request) {
+                                                                                                                                                                                          return submissionsCreate(request,null);
+                                                                                                                                                                                        }
+
+                                                                                                                                                                                        public NordletApiHttpResponse<SubmissionsCreateDeclarationsResponse> submissionsCreate(
+                                                                                                                                                                                            SubmissionsCreateDeclarationsRequest request,
+                                                                                                                                                                                            RequestOptions requestOptions) {
+                                                                                                                                                                                          HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                                                                                                                            .addPathSegments("v1/declarations/submissions/create");if (requestOptions != null) {
+                                                                                                                                                                                              requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                                                                                                                                httpUrl.addQueryParameter(_key, _value);
+                                                                                                                                                                                              } );
+                                                                                                                                                                                            }
+                                                                                                                                                                                            RequestBody body;
+                                                                                                                                                                                            try {
+                                                                                                                                                                                              body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                                                                                                                            }
+                                                                                                                                                                                            catch(JsonProcessingException e) {
+                                                                                                                                                                                              throw new NordletApiException("Failed to serialize request", e);
+                                                                                                                                                                                            }
+                                                                                                                                                                                            Request okhttpRequest = new Request.Builder()
+                                                                                                                                                                                              .url(httpUrl.build())
+                                                                                                                                                                                              .method("POST", body)
+                                                                                                                                                                                              .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                                                                                                                              .addHeader("Content-Type", "application/json")
+                                                                                                                                                                                              .addHeader("Accept", "application/json")
+                                                                                                                                                                                              .build();
+                                                                                                                                                                                            OkHttpClient client = clientOptions.httpClient();
+                                                                                                                                                                                            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                                                                                                                              client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                                                                                                                            }
+                                                                                                                                                                                            if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                                                                                                                              okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                                                                                                                            }
+                                                                                                                                                                                            try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                                                                                                                              ResponseBody responseBody = response.body();
+                                                                                                                                                                                              String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                                                                                                                              if (response.isSuccessful()) {
+                                                                                                                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubmissionsCreateDeclarationsResponse.class), response);
+                                                                                                                                                                                              }
+                                                                                                                                                                                              try {
+                                                                                                                                                                                                switch (response.code()) {
+                                                                                                                                                                                                  case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                  case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                  case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                  case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                  case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                  case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                  case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                  case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                }
+                                                                                                                                                                                              }
+                                                                                                                                                                                              catch (JsonProcessingException ignored) {
+                                                                                                                                                                                                // unable to map error response, throwing generic error
+                                                                                                                                                                                              }
+                                                                                                                                                                                              Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                                                                                                                              throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                                                                                                                            }
+                                                                                                                                                                                            catch (JsonProcessingException e) {
+                                                                                                                                                                                              throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                                                                                                                            }
+                                                                                                                                                                                            catch (IOException e) {
+                                                                                                                                                                                              throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                                                                                                                            }
+                                                                                                                                                                                          }
+
+                                                                                                                                                                                          public NordletApiHttpResponse<SubmissionsMarkDeclarationsResponse> submissionsMark(
+                                                                                                                                                                                              SubmissionsMarkDeclarationsRequest request) {
+                                                                                                                                                                                            return submissionsMark(request,null);
+                                                                                                                                                                                          }
+
+                                                                                                                                                                                          public NordletApiHttpResponse<SubmissionsMarkDeclarationsResponse> submissionsMark(
+                                                                                                                                                                                              SubmissionsMarkDeclarationsRequest request,
+                                                                                                                                                                                              RequestOptions requestOptions) {
+                                                                                                                                                                                            HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                                                                                                                              .addPathSegments("v1/declarations/submissions/mark");if (requestOptions != null) {
+                                                                                                                                                                                                requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                                                                                                                                  httpUrl.addQueryParameter(_key, _value);
+                                                                                                                                                                                                } );
+                                                                                                                                                                                              }
+                                                                                                                                                                                              RequestBody body;
+                                                                                                                                                                                              try {
+                                                                                                                                                                                                body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                                                                                                                              }
+                                                                                                                                                                                              catch(JsonProcessingException e) {
+                                                                                                                                                                                                throw new NordletApiException("Failed to serialize request", e);
+                                                                                                                                                                                              }
+                                                                                                                                                                                              Request okhttpRequest = new Request.Builder()
+                                                                                                                                                                                                .url(httpUrl.build())
+                                                                                                                                                                                                .method("POST", body)
+                                                                                                                                                                                                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                                                                                                                                .addHeader("Content-Type", "application/json")
+                                                                                                                                                                                                .addHeader("Accept", "application/json")
+                                                                                                                                                                                                .build();
+                                                                                                                                                                                              OkHttpClient client = clientOptions.httpClient();
+                                                                                                                                                                                              if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                                                                                                                                client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                                                                                                                              }
+                                                                                                                                                                                              if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                                                                                                                                okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                                                                                                                              }
+                                                                                                                                                                                              try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                                                                                                                                ResponseBody responseBody = response.body();
+                                                                                                                                                                                                String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                                                                                                                                if (response.isSuccessful()) {
+                                                                                                                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubmissionsMarkDeclarationsResponse.class), response);
+                                                                                                                                                                                                }
+                                                                                                                                                                                                try {
+                                                                                                                                                                                                  switch (response.code()) {
+                                                                                                                                                                                                    case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                    case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                    case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                    case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                    case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                    case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                    case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                    case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                  }
+                                                                                                                                                                                                }
+                                                                                                                                                                                                catch (JsonProcessingException ignored) {
+                                                                                                                                                                                                  // unable to map error response, throwing generic error
+                                                                                                                                                                                                }
+                                                                                                                                                                                                Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                                                                                                                                throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                                                                                                                              }
+                                                                                                                                                                                              catch (JsonProcessingException e) {
+                                                                                                                                                                                                throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                                                                                                                              }
+                                                                                                                                                                                              catch (IOException e) {
+                                                                                                                                                                                                throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                                                                                                                              }
+                                                                                                                                                                                            }
+
+                                                                                                                                                                                            public NordletApiHttpResponse<SubmissionsListDeclarationsResponse> submissionsList(
+                                                                                                                                                                                                ) {
+                                                                                                                                                                                              return submissionsList(SubmissionsListDeclarationsRequest.builder().build());
+                                                                                                                                                                                            }
+
+                                                                                                                                                                                            public NordletApiHttpResponse<SubmissionsListDeclarationsResponse> submissionsList(
+                                                                                                                                                                                                RequestOptions requestOptions) {
+                                                                                                                                                                                              return submissionsList(SubmissionsListDeclarationsRequest.builder().build(),requestOptions);
+                                                                                                                                                                                            }
+
+                                                                                                                                                                                            public NordletApiHttpResponse<SubmissionsListDeclarationsResponse> submissionsList(
+                                                                                                                                                                                                SubmissionsListDeclarationsRequest request) {
+                                                                                                                                                                                              return submissionsList(request,null);
+                                                                                                                                                                                            }
+
+                                                                                                                                                                                            public NordletApiHttpResponse<SubmissionsListDeclarationsResponse> submissionsList(
+                                                                                                                                                                                                SubmissionsListDeclarationsRequest request,
+                                                                                                                                                                                                RequestOptions requestOptions) {
+                                                                                                                                                                                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                                                                                                                                .addPathSegments("v1/declarations/submissions/list");if (requestOptions != null) {
+                                                                                                                                                                                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                                                                                                                                    httpUrl.addQueryParameter(_key, _value);
+                                                                                                                                                                                                  } );
+                                                                                                                                                                                                }
+                                                                                                                                                                                                RequestBody body;
+                                                                                                                                                                                                try {
+                                                                                                                                                                                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                                                                                                                                }
+                                                                                                                                                                                                catch(JsonProcessingException e) {
+                                                                                                                                                                                                  throw new NordletApiException("Failed to serialize request", e);
+                                                                                                                                                                                                }
+                                                                                                                                                                                                Request okhttpRequest = new Request.Builder()
+                                                                                                                                                                                                  .url(httpUrl.build())
+                                                                                                                                                                                                  .method("POST", body)
+                                                                                                                                                                                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                                                                                                                                  .addHeader("Content-Type", "application/json")
+                                                                                                                                                                                                  .addHeader("Accept", "application/json")
+                                                                                                                                                                                                  .build();
+                                                                                                                                                                                                OkHttpClient client = clientOptions.httpClient();
+                                                                                                                                                                                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                                                                                                                                  client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                                                                                                                                }
+                                                                                                                                                                                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                                                                                                                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                                                                                                                                }
+                                                                                                                                                                                                try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                                                                                                                                  ResponseBody responseBody = response.body();
+                                                                                                                                                                                                  String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                                                                                                                                  if (response.isSuccessful()) {
+                                                                                                                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubmissionsListDeclarationsResponse.class), response);
+                                                                                                                                                                                                  }
+                                                                                                                                                                                                  try {
+                                                                                                                                                                                                    switch (response.code()) {
+                                                                                                                                                                                                      case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                      case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                      case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                      case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                      case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                      case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                      case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                      case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                  }
+                                                                                                                                                                                                  catch (JsonProcessingException ignored) {
+                                                                                                                                                                                                    // unable to map error response, throwing generic error
+                                                                                                                                                                                                  }
+                                                                                                                                                                                                  Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                                                                                                                                  throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                                                                                                                                }
+                                                                                                                                                                                                catch (JsonProcessingException e) {
+                                                                                                                                                                                                  throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                                                                                                                                }
+                                                                                                                                                                                                catch (IOException e) {
+                                                                                                                                                                                                  throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                                                                                                                                }
+                                                                                                                                                                                              }
+                                                                                                                                                                                            }

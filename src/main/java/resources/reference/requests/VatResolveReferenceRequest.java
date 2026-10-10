@@ -13,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.reference.types.VatResolveReferenceRequestGoodsKind;
+import com.nordlet.api.resources.reference.types.VatResolveReferenceRequestServiceKind;
 import com.nordlet.api.resources.reference.types.VatResolveReferenceRequestSupplyType;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -47,6 +49,18 @@ public final class VatResolveReferenceRequest {
 
   private final Optional<String> importedConsignmentValueEur;
 
+  private final Optional<VatResolveReferenceRequestServiceKind> serviceKind;
+
+  private final Optional<String> serviceCountryCode;
+
+  private final Optional<Boolean> underlyingSupplierGaveVatNumber;
+
+  private final Optional<Boolean> underlyingSupplierChargesVat;
+
+  private final Optional<VatResolveReferenceRequestGoodsKind> goodsKind;
+
+  private final Optional<String> goodsLocationCountryCode;
+
   private final Map<String, Object> additionalProperties;
 
   private VatResolveReferenceRequest(Optional<String> partnerId,
@@ -54,7 +68,12 @@ public final class VatResolveReferenceRequest {
       Optional<VatResolveReferenceRequestSupplyType> supplyType, Optional<String> date,
       Optional<Boolean> belowDistanceSalesThreshold, Optional<Boolean> facilitatedByMarketplace,
       Optional<Boolean> actingAsMarketplace, Optional<Boolean> sellerEstablishedInEu,
-      Optional<String> importedConsignmentValueEur, Map<String, Object> additionalProperties) {
+      Optional<String> importedConsignmentValueEur,
+      Optional<VatResolveReferenceRequestServiceKind> serviceKind,
+      Optional<String> serviceCountryCode, Optional<Boolean> underlyingSupplierGaveVatNumber,
+      Optional<Boolean> underlyingSupplierChargesVat,
+      Optional<VatResolveReferenceRequestGoodsKind> goodsKind,
+      Optional<String> goodsLocationCountryCode, Map<String, Object> additionalProperties) {
     this.partnerId = partnerId;
     this.customerCountryCode = customerCountryCode;
     this.customerIsBusiness = customerIsBusiness;
@@ -65,6 +84,12 @@ public final class VatResolveReferenceRequest {
     this.actingAsMarketplace = actingAsMarketplace;
     this.sellerEstablishedInEu = sellerEstablishedInEu;
     this.importedConsignmentValueEur = importedConsignmentValueEur;
+    this.serviceKind = serviceKind;
+    this.serviceCountryCode = serviceCountryCode;
+    this.underlyingSupplierGaveVatNumber = underlyingSupplierGaveVatNumber;
+    this.underlyingSupplierChargesVat = underlyingSupplierChargesVat;
+    this.goodsKind = goodsKind;
+    this.goodsLocationCountryCode = goodsLocationCountryCode;
     this.additionalProperties = additionalProperties;
   }
 
@@ -118,6 +143,36 @@ public final class VatResolveReferenceRequest {
     return importedConsignmentValueEur;
   }
 
+  @JsonProperty("serviceKind")
+  public Optional<VatResolveReferenceRequestServiceKind> getServiceKind() {
+    return serviceKind;
+  }
+
+  @JsonProperty("serviceCountryCode")
+  public Optional<String> getServiceCountryCode() {
+    return serviceCountryCode;
+  }
+
+  @JsonProperty("underlyingSupplierGaveVatNumber")
+  public Optional<Boolean> getUnderlyingSupplierGaveVatNumber() {
+    return underlyingSupplierGaveVatNumber;
+  }
+
+  @JsonProperty("underlyingSupplierChargesVat")
+  public Optional<Boolean> getUnderlyingSupplierChargesVat() {
+    return underlyingSupplierChargesVat;
+  }
+
+  @JsonProperty("goodsKind")
+  public Optional<VatResolveReferenceRequestGoodsKind> getGoodsKind() {
+    return goodsKind;
+  }
+
+  @JsonProperty("goodsLocationCountryCode")
+  public Optional<String> getGoodsLocationCountryCode() {
+    return goodsLocationCountryCode;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -130,12 +185,12 @@ public final class VatResolveReferenceRequest {
   }
 
   private boolean equalTo(VatResolveReferenceRequest other) {
-    return partnerId.equals(other.partnerId) && customerCountryCode.equals(other.customerCountryCode) && customerIsBusiness.equals(other.customerIsBusiness) && supplyType.equals(other.supplyType) && date.equals(other.date) && belowDistanceSalesThreshold.equals(other.belowDistanceSalesThreshold) && facilitatedByMarketplace.equals(other.facilitatedByMarketplace) && actingAsMarketplace.equals(other.actingAsMarketplace) && sellerEstablishedInEu.equals(other.sellerEstablishedInEu) && importedConsignmentValueEur.equals(other.importedConsignmentValueEur);
+    return partnerId.equals(other.partnerId) && customerCountryCode.equals(other.customerCountryCode) && customerIsBusiness.equals(other.customerIsBusiness) && supplyType.equals(other.supplyType) && date.equals(other.date) && belowDistanceSalesThreshold.equals(other.belowDistanceSalesThreshold) && facilitatedByMarketplace.equals(other.facilitatedByMarketplace) && actingAsMarketplace.equals(other.actingAsMarketplace) && sellerEstablishedInEu.equals(other.sellerEstablishedInEu) && importedConsignmentValueEur.equals(other.importedConsignmentValueEur) && serviceKind.equals(other.serviceKind) && serviceCountryCode.equals(other.serviceCountryCode) && underlyingSupplierGaveVatNumber.equals(other.underlyingSupplierGaveVatNumber) && underlyingSupplierChargesVat.equals(other.underlyingSupplierChargesVat) && goodsKind.equals(other.goodsKind) && goodsLocationCountryCode.equals(other.goodsLocationCountryCode);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.partnerId, this.customerCountryCode, this.customerIsBusiness, this.supplyType, this.date, this.belowDistanceSalesThreshold, this.facilitatedByMarketplace, this.actingAsMarketplace, this.sellerEstablishedInEu, this.importedConsignmentValueEur);
+    return Objects.hash(this.partnerId, this.customerCountryCode, this.customerIsBusiness, this.supplyType, this.date, this.belowDistanceSalesThreshold, this.facilitatedByMarketplace, this.actingAsMarketplace, this.sellerEstablishedInEu, this.importedConsignmentValueEur, this.serviceKind, this.serviceCountryCode, this.underlyingSupplierGaveVatNumber, this.underlyingSupplierChargesVat, this.goodsKind, this.goodsLocationCountryCode);
   }
 
   @java.lang.Override
@@ -171,6 +226,18 @@ public final class VatResolveReferenceRequest {
 
     private Optional<String> importedConsignmentValueEur = Optional.empty();
 
+    private Optional<VatResolveReferenceRequestServiceKind> serviceKind = Optional.empty();
+
+    private Optional<String> serviceCountryCode = Optional.empty();
+
+    private Optional<Boolean> underlyingSupplierGaveVatNumber = Optional.empty();
+
+    private Optional<Boolean> underlyingSupplierChargesVat = Optional.empty();
+
+    private Optional<VatResolveReferenceRequestGoodsKind> goodsKind = Optional.empty();
+
+    private Optional<String> goodsLocationCountryCode = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -188,6 +255,12 @@ public final class VatResolveReferenceRequest {
       actingAsMarketplace(other.getActingAsMarketplace());
       sellerEstablishedInEu(other.getSellerEstablishedInEu());
       importedConsignmentValueEur(other.getImportedConsignmentValueEur());
+      serviceKind(other.getServiceKind());
+      serviceCountryCode(other.getServiceCountryCode());
+      underlyingSupplierGaveVatNumber(other.getUnderlyingSupplierGaveVatNumber());
+      underlyingSupplierChargesVat(other.getUnderlyingSupplierChargesVat());
+      goodsKind(other.getGoodsKind());
+      goodsLocationCountryCode(other.getGoodsLocationCountryCode());
       return this;
     }
 
@@ -331,8 +404,93 @@ public final class VatResolveReferenceRequest {
       return this;
     }
 
+    @JsonSetter(
+        value = "serviceKind",
+        nulls = Nulls.SKIP
+    )
+    public Builder serviceKind(Optional<VatResolveReferenceRequestServiceKind> serviceKind) {
+      this.serviceKind = serviceKind;
+      return this;
+    }
+
+    public Builder serviceKind(VatResolveReferenceRequestServiceKind serviceKind) {
+      this.serviceKind = Optional.ofNullable(serviceKind);
+      return this;
+    }
+
+    @JsonSetter(
+        value = "serviceCountryCode",
+        nulls = Nulls.SKIP
+    )
+    public Builder serviceCountryCode(Optional<String> serviceCountryCode) {
+      this.serviceCountryCode = serviceCountryCode;
+      return this;
+    }
+
+    public Builder serviceCountryCode(String serviceCountryCode) {
+      this.serviceCountryCode = Optional.ofNullable(serviceCountryCode);
+      return this;
+    }
+
+    @JsonSetter(
+        value = "underlyingSupplierGaveVatNumber",
+        nulls = Nulls.SKIP
+    )
+    public Builder underlyingSupplierGaveVatNumber(
+        Optional<Boolean> underlyingSupplierGaveVatNumber) {
+      this.underlyingSupplierGaveVatNumber = underlyingSupplierGaveVatNumber;
+      return this;
+    }
+
+    public Builder underlyingSupplierGaveVatNumber(Boolean underlyingSupplierGaveVatNumber) {
+      this.underlyingSupplierGaveVatNumber = Optional.ofNullable(underlyingSupplierGaveVatNumber);
+      return this;
+    }
+
+    @JsonSetter(
+        value = "underlyingSupplierChargesVat",
+        nulls = Nulls.SKIP
+    )
+    public Builder underlyingSupplierChargesVat(Optional<Boolean> underlyingSupplierChargesVat) {
+      this.underlyingSupplierChargesVat = underlyingSupplierChargesVat;
+      return this;
+    }
+
+    public Builder underlyingSupplierChargesVat(Boolean underlyingSupplierChargesVat) {
+      this.underlyingSupplierChargesVat = Optional.ofNullable(underlyingSupplierChargesVat);
+      return this;
+    }
+
+    @JsonSetter(
+        value = "goodsKind",
+        nulls = Nulls.SKIP
+    )
+    public Builder goodsKind(Optional<VatResolveReferenceRequestGoodsKind> goodsKind) {
+      this.goodsKind = goodsKind;
+      return this;
+    }
+
+    public Builder goodsKind(VatResolveReferenceRequestGoodsKind goodsKind) {
+      this.goodsKind = Optional.ofNullable(goodsKind);
+      return this;
+    }
+
+    @JsonSetter(
+        value = "goodsLocationCountryCode",
+        nulls = Nulls.SKIP
+    )
+    public Builder goodsLocationCountryCode(Optional<String> goodsLocationCountryCode) {
+      this.goodsLocationCountryCode = goodsLocationCountryCode;
+      return this;
+    }
+
+    public Builder goodsLocationCountryCode(String goodsLocationCountryCode) {
+      this.goodsLocationCountryCode = Optional.ofNullable(goodsLocationCountryCode);
+      return this;
+    }
+
     public VatResolveReferenceRequest build() {
-      return new VatResolveReferenceRequest(partnerId, customerCountryCode, customerIsBusiness, supplyType, date, belowDistanceSalesThreshold, facilitatedByMarketplace, actingAsMarketplace, sellerEstablishedInEu, importedConsignmentValueEur, additionalProperties);
+      return new VatResolveReferenceRequest(partnerId, customerCountryCode, customerIsBusiness, supplyType, date, belowDistanceSalesThreshold, facilitatedByMarketplace, actingAsMarketplace, sellerEstablishedInEu, importedConsignmentValueEur, serviceKind, serviceCountryCode, underlyingSupplierGaveVatNumber, underlyingSupplierChargesVat, goodsKind, goodsLocationCountryCode, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

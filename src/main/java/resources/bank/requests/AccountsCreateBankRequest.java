@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.bank.types.AccountsCreateBankRequestType;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -28,6 +29,8 @@ import org.jetbrains.annotations.NotNull;
 public final class AccountsCreateBankRequest {
   private final String name;
 
+  private final Optional<AccountsCreateBankRequestType> type;
+
   private final Optional<String> iban;
 
   private final Optional<String> currency;
@@ -38,10 +41,11 @@ public final class AccountsCreateBankRequest {
 
   private final Map<String, Object> additionalProperties;
 
-  private AccountsCreateBankRequest(String name, Optional<String> iban, Optional<String> currency,
-      Optional<String> accountCode, Optional<String> documentRef,
-      Map<String, Object> additionalProperties) {
+  private AccountsCreateBankRequest(String name, Optional<AccountsCreateBankRequestType> type,
+      Optional<String> iban, Optional<String> currency, Optional<String> accountCode,
+      Optional<String> documentRef, Map<String, Object> additionalProperties) {
     this.name = name;
+    this.type = type;
     this.iban = iban;
     this.currency = currency;
     this.accountCode = accountCode;
@@ -52,6 +56,11 @@ public final class AccountsCreateBankRequest {
   @JsonProperty("name")
   public String getName() {
     return name;
+  }
+
+  @JsonProperty("type")
+  public Optional<AccountsCreateBankRequestType> getType() {
+    return type;
   }
 
   @JsonProperty("iban")
@@ -86,12 +95,12 @@ public final class AccountsCreateBankRequest {
   }
 
   private boolean equalTo(AccountsCreateBankRequest other) {
-    return name.equals(other.name) && iban.equals(other.iban) && currency.equals(other.currency) && accountCode.equals(other.accountCode) && documentRef.equals(other.documentRef);
+    return name.equals(other.name) && type.equals(other.type) && iban.equals(other.iban) && currency.equals(other.currency) && accountCode.equals(other.accountCode) && documentRef.equals(other.documentRef);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.iban, this.currency, this.accountCode, this.documentRef);
+    return Objects.hash(this.name, this.type, this.iban, this.currency, this.accountCode, this.documentRef);
   }
 
   @java.lang.Override
@@ -115,6 +124,10 @@ public final class AccountsCreateBankRequest {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage type(Optional<AccountsCreateBankRequestType> type);
+
+    _FinalStage type(AccountsCreateBankRequestType type);
 
     _FinalStage iban(Optional<String> iban);
 
@@ -147,6 +160,8 @@ public final class AccountsCreateBankRequest {
 
     private Optional<String> iban = Optional.empty();
 
+    private Optional<AccountsCreateBankRequestType> type = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -156,6 +171,7 @@ public final class AccountsCreateBankRequest {
     @java.lang.Override
     public Builder from(AccountsCreateBankRequest other) {
       name(other.getName());
+      type(other.getType());
       iban(other.getIban());
       currency(other.getCurrency());
       accountCode(other.getAccountCode());
@@ -235,8 +251,24 @@ public final class AccountsCreateBankRequest {
     }
 
     @java.lang.Override
+    public _FinalStage type(AccountsCreateBankRequestType type) {
+      this.type = Optional.ofNullable(type);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "type",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage type(Optional<AccountsCreateBankRequestType> type) {
+      this.type = type;
+      return this;
+    }
+
+    @java.lang.Override
     public AccountsCreateBankRequest build() {
-      return new AccountsCreateBankRequest(name, iban, currency, accountCode, documentRef, additionalProperties);
+      return new AccountsCreateBankRequest(name, type, iban, currency, accountCode, documentRef, additionalProperties);
     }
 
     @java.lang.Override

@@ -48,6 +48,8 @@ public final class LandedCostsCreateInventoryResponse {
 
   private final OffsetDateTime createdAt;
 
+  private final Optional<String> journalTransactionId;
+
   private final List<LandedCostsCreateInventoryResponseLinesItem> lines;
 
   private final Map<String, Object> additionalProperties;
@@ -55,6 +57,7 @@ public final class LandedCostsCreateInventoryResponse {
   private LandedCostsCreateInventoryResponse(String id, String date, String amount,
       LandedCostsCreateInventoryResponseMethod method, Optional<String> goodsReceiptId,
       Optional<String> sourceInvoiceId, Optional<String> notes, OffsetDateTime createdAt,
+      Optional<String> journalTransactionId,
       List<LandedCostsCreateInventoryResponseLinesItem> lines,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -65,6 +68,7 @@ public final class LandedCostsCreateInventoryResponse {
     this.sourceInvoiceId = sourceInvoiceId;
     this.notes = notes;
     this.createdAt = createdAt;
+    this.journalTransactionId = journalTransactionId;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
   }
@@ -118,6 +122,14 @@ public final class LandedCostsCreateInventoryResponse {
     return createdAt;
   }
 
+  @JsonIgnore
+  public Optional<String> getJournalTransactionId() {
+    if (journalTransactionId == null) {
+      return Optional.empty();
+    }
+    return journalTransactionId;
+  }
+
   @JsonProperty("lines")
   public List<LandedCostsCreateInventoryResponseLinesItem> getLines() {
     return lines;
@@ -150,6 +162,15 @@ public final class LandedCostsCreateInventoryResponse {
     return notes;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("journalTransactionId")
+  private Optional<String> _getJournalTransactionId() {
+    return journalTransactionId;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -162,12 +183,12 @@ public final class LandedCostsCreateInventoryResponse {
   }
 
   private boolean equalTo(LandedCostsCreateInventoryResponse other) {
-    return id.equals(other.id) && date.equals(other.date) && amount.equals(other.amount) && method.equals(other.method) && goodsReceiptId.equals(other.goodsReceiptId) && sourceInvoiceId.equals(other.sourceInvoiceId) && notes.equals(other.notes) && createdAt.equals(other.createdAt) && lines.equals(other.lines);
+    return id.equals(other.id) && date.equals(other.date) && amount.equals(other.amount) && method.equals(other.method) && goodsReceiptId.equals(other.goodsReceiptId) && sourceInvoiceId.equals(other.sourceInvoiceId) && notes.equals(other.notes) && createdAt.equals(other.createdAt) && journalTransactionId.equals(other.journalTransactionId) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.date, this.amount, this.method, this.goodsReceiptId, this.sourceInvoiceId, this.notes, this.createdAt, this.lines);
+    return Objects.hash(this.id, this.date, this.amount, this.method, this.goodsReceiptId, this.sourceInvoiceId, this.notes, this.createdAt, this.journalTransactionId, this.lines);
   }
 
   @java.lang.Override
@@ -226,6 +247,12 @@ public final class LandedCostsCreateInventoryResponse {
 
     _FinalStage notes(Nullable<String> notes);
 
+    _FinalStage journalTransactionId(Optional<String> journalTransactionId);
+
+    _FinalStage journalTransactionId(String journalTransactionId);
+
+    _FinalStage journalTransactionId(Nullable<String> journalTransactionId);
+
     _FinalStage lines(List<LandedCostsCreateInventoryResponseLinesItem> lines);
 
     _FinalStage addLines(LandedCostsCreateInventoryResponseLinesItem lines);
@@ -249,6 +276,8 @@ public final class LandedCostsCreateInventoryResponse {
 
     private List<LandedCostsCreateInventoryResponseLinesItem> lines = new ArrayList<>();
 
+    private Optional<String> journalTransactionId = Optional.empty();
+
     private Optional<String> notes = Optional.empty();
 
     private Optional<String> sourceInvoiceId = Optional.empty();
@@ -271,6 +300,7 @@ public final class LandedCostsCreateInventoryResponse {
       sourceInvoiceId(other.getSourceInvoiceId());
       notes(other.getNotes());
       createdAt(other.getCreatedAt());
+      journalTransactionId(other.getJournalTransactionId());
       lines(other.getLines());
       return this;
     }
@@ -334,6 +364,36 @@ public final class LandedCostsCreateInventoryResponse {
       if (lines != null) {
         this.lines.addAll(lines);
       }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage journalTransactionId(Nullable<String> journalTransactionId) {
+      if (journalTransactionId.isNull()) {
+        this.journalTransactionId = null;
+      }
+      else if (journalTransactionId.isEmpty()) {
+        this.journalTransactionId = Optional.empty();
+      }
+      else {
+        this.journalTransactionId = Optional.of(journalTransactionId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage journalTransactionId(String journalTransactionId) {
+      this.journalTransactionId = Optional.ofNullable(journalTransactionId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "journalTransactionId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage journalTransactionId(Optional<String> journalTransactionId) {
+      this.journalTransactionId = journalTransactionId;
       return this;
     }
 
@@ -429,7 +489,7 @@ public final class LandedCostsCreateInventoryResponse {
 
     @java.lang.Override
     public LandedCostsCreateInventoryResponse build() {
-      return new LandedCostsCreateInventoryResponse(id, date, amount, method, goodsReceiptId, sourceInvoiceId, notes, createdAt, lines, additionalProperties);
+      return new LandedCostsCreateInventoryResponse(id, date, amount, method, goodsReceiptId, sourceInvoiceId, notes, createdAt, journalTransactionId, lines, additionalProperties);
     }
 
     @java.lang.Override

@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -32,13 +33,17 @@ public final class InvoicesRegisterPurchasesRequest {
 
   private final Optional<String> warehouseId;
 
+  private final Optional<Boolean> returnFromStock;
+
   private final Map<String, Object> additionalProperties;
 
   private InvoicesRegisterPurchasesRequest(String id, Optional<String> registrationDate,
-      Optional<String> warehouseId, Map<String, Object> additionalProperties) {
+      Optional<String> warehouseId, Optional<Boolean> returnFromStock,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.registrationDate = registrationDate;
     this.warehouseId = warehouseId;
+    this.returnFromStock = returnFromStock;
     this.additionalProperties = additionalProperties;
   }
 
@@ -57,6 +62,11 @@ public final class InvoicesRegisterPurchasesRequest {
     return warehouseId;
   }
 
+  @JsonProperty("returnFromStock")
+  public Optional<Boolean> getReturnFromStock() {
+    return returnFromStock;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -69,12 +79,12 @@ public final class InvoicesRegisterPurchasesRequest {
   }
 
   private boolean equalTo(InvoicesRegisterPurchasesRequest other) {
-    return id.equals(other.id) && registrationDate.equals(other.registrationDate) && warehouseId.equals(other.warehouseId);
+    return id.equals(other.id) && registrationDate.equals(other.registrationDate) && warehouseId.equals(other.warehouseId) && returnFromStock.equals(other.returnFromStock);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.registrationDate, this.warehouseId);
+    return Objects.hash(this.id, this.registrationDate, this.warehouseId, this.returnFromStock);
   }
 
   @java.lang.Override
@@ -106,6 +116,10 @@ public final class InvoicesRegisterPurchasesRequest {
     _FinalStage warehouseId(Optional<String> warehouseId);
 
     _FinalStage warehouseId(String warehouseId);
+
+    _FinalStage returnFromStock(Optional<Boolean> returnFromStock);
+
+    _FinalStage returnFromStock(Boolean returnFromStock);
   }
 
   @JsonIgnoreProperties(
@@ -113,6 +127,8 @@ public final class InvoicesRegisterPurchasesRequest {
   )
   public static final class Builder implements IdStage, _FinalStage {
     private String id;
+
+    private Optional<Boolean> returnFromStock = Optional.empty();
 
     private Optional<String> warehouseId = Optional.empty();
 
@@ -129,6 +145,7 @@ public final class InvoicesRegisterPurchasesRequest {
       id(other.getId());
       registrationDate(other.getRegistrationDate());
       warehouseId(other.getWarehouseId());
+      returnFromStock(other.getReturnFromStock());
       return this;
     }
 
@@ -136,6 +153,22 @@ public final class InvoicesRegisterPurchasesRequest {
     @JsonSetter("id")
     public _FinalStage id(@NotNull String id) {
       this.id = Objects.requireNonNull(id, "id must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage returnFromStock(Boolean returnFromStock) {
+      this.returnFromStock = Optional.ofNullable(returnFromStock);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "returnFromStock",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage returnFromStock(Optional<Boolean> returnFromStock) {
+      this.returnFromStock = returnFromStock;
       return this;
     }
 
@@ -173,7 +206,7 @@ public final class InvoicesRegisterPurchasesRequest {
 
     @java.lang.Override
     public InvoicesRegisterPurchasesRequest build() {
-      return new InvoicesRegisterPurchasesRequest(id, registrationDate, warehouseId, additionalProperties);
+      return new InvoicesRegisterPurchasesRequest(id, registrationDate, warehouseId, returnFromStock, additionalProperties);
     }
 
     @java.lang.Override

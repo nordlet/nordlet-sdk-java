@@ -54,9 +54,15 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem PURCHASE_ORDER_APPROVED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.PURCHASE_ORDER_APPROVED, "purchase_order.approved");
 
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_PEPPOL_FAILED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_PEPPOL_FAILED, "sale_invoice.peppol_failed");
+
   public static final SubscriptionsUpdateWebhooksRequestEventsItem INTERCOMPANY_INVOICE_MIRRORED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.INTERCOMPANY_INVOICE_MIRRORED, "intercompany.invoice_mirrored");
 
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_PEPPOL_REJECTED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_PEPPOL_REJECTED, "sale_invoice.peppol_rejected");
+
   public static final SubscriptionsUpdateWebhooksRequestEventsItem PURCHASE_INVOICE_REGISTERED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.PURCHASE_INVOICE_REGISTERED, "purchase_invoice.registered");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem DOCUMENT_CAPTURE_PEPPOL_RECEIVED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.DOCUMENT_CAPTURE_PEPPOL_RECEIVED, "document_capture.peppol_received");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem PURCHASE_INVOICE_PAID = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.PURCHASE_INVOICE_PAID, "purchase_invoice.paid");
 
@@ -77,6 +83,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
   public static final SubscriptionsUpdateWebhooksRequestEventsItem SETTLEMENT_UPDATED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SETTLEMENT_UPDATED, "settlement.updated");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem LEAD_CREATED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.LEAD_CREATED, "lead.created");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_PEPPOL_DELIVERED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_PEPPOL_DELIVERED, "sale_invoice.peppol_delivered");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem FILING_FAILED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.FILING_FAILED, "filing.failed");
 
@@ -168,10 +176,16 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
         return visitor.visitFilingRejected();
       case PURCHASE_ORDER_APPROVED:
         return visitor.visitPurchaseOrderApproved();
+      case SALE_INVOICE_PEPPOL_FAILED:
+        return visitor.visitSaleInvoicePeppolFailed();
       case INTERCOMPANY_INVOICE_MIRRORED:
         return visitor.visitIntercompanyInvoiceMirrored();
+      case SALE_INVOICE_PEPPOL_REJECTED:
+        return visitor.visitSaleInvoicePeppolRejected();
       case PURCHASE_INVOICE_REGISTERED:
         return visitor.visitPurchaseInvoiceRegistered();
+      case DOCUMENT_CAPTURE_PEPPOL_RECEIVED:
+        return visitor.visitDocumentCapturePeppolReceived();
       case PURCHASE_INVOICE_PAID:
         return visitor.visitPurchaseInvoicePaid();
       case SETTLEMENT_POSTED:
@@ -192,6 +206,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
         return visitor.visitSettlementUpdated();
       case LEAD_CREATED:
         return visitor.visitLeadCreated();
+      case SALE_INVOICE_PEPPOL_DELIVERED:
+        return visitor.visitSaleInvoicePeppolDelivered();
       case FILING_FAILED:
         return visitor.visitFilingFailed();
       case PARTNER_INQUIRY_CREATED:
@@ -261,10 +277,16 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
         return FILING_REJECTED;
       case "purchase_order.approved":
         return PURCHASE_ORDER_APPROVED;
+      case "sale_invoice.peppol_failed":
+        return SALE_INVOICE_PEPPOL_FAILED;
       case "intercompany.invoice_mirrored":
         return INTERCOMPANY_INVOICE_MIRRORED;
+      case "sale_invoice.peppol_rejected":
+        return SALE_INVOICE_PEPPOL_REJECTED;
       case "purchase_invoice.registered":
         return PURCHASE_INVOICE_REGISTERED;
+      case "document_capture.peppol_received":
+        return DOCUMENT_CAPTURE_PEPPOL_RECEIVED;
       case "purchase_invoice.paid":
         return PURCHASE_INVOICE_PAID;
       case "settlement.posted":
@@ -285,6 +307,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
         return SETTLEMENT_UPDATED;
       case "lead.created":
         return LEAD_CREATED;
+      case "sale_invoice.peppol_delivered":
+        return SALE_INVOICE_PEPPOL_DELIVERED;
       case "filing.failed":
         return FILING_FAILED;
       case "partner_inquiry.created":
@@ -308,6 +332,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
     AGREEMENT_INVOICE_GENERATED,
 
     BANK_FEED_SYNCED,
+
+    DOCUMENT_CAPTURE_PEPPOL_RECEIVED,
 
     FILING_FAILED,
 
@@ -363,6 +389,12 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
 
     SALE_INVOICE_PAID,
 
+    SALE_INVOICE_PEPPOL_DELIVERED,
+
+    SALE_INVOICE_PEPPOL_FAILED,
+
+    SALE_INVOICE_PEPPOL_REJECTED,
+
     SALE_INVOICE_PEPPOL_SENT,
 
     SALE_INVOICE_SENT,
@@ -394,6 +426,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
     T visitAgreementInvoiceGenerated();
 
     T visitBankFeedSynced();
+
+    T visitDocumentCapturePeppolReceived();
 
     T visitFilingFailed();
 
@@ -448,6 +482,12 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
     T visitSaleInvoiceIssued();
 
     T visitSaleInvoicePaid();
+
+    T visitSaleInvoicePeppolDelivered();
+
+    T visitSaleInvoicePeppolFailed();
+
+    T visitSaleInvoicePeppolRejected();
 
     T visitSaleInvoicePeppolSent();
 

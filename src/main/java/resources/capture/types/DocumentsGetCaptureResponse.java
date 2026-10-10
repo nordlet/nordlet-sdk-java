@@ -57,6 +57,8 @@ public final class DocumentsGetCaptureResponse {
 
   private final Optional<String> error;
 
+  private final Optional<String> senderId;
+
   private final OffsetDateTime createdAt;
 
   private final OffsetDateTime updatedAt;
@@ -69,8 +71,8 @@ public final class DocumentsGetCaptureResponse {
       long sizeBytes, DocumentsGetCaptureResponseStatus status, Optional<String> provider,
       Optional<String> model, Optional<Long> pagesProcessed,
       Optional<DocumentsGetCaptureResponseExtraction> extraction, Optional<String> matchedPartnerId,
-      Optional<String> purchaseInvoiceId, Optional<String> error, OffsetDateTime createdAt,
-      OffsetDateTime updatedAt, Optional<String> rawText,
+      Optional<String> purchaseInvoiceId, Optional<String> error, Optional<String> senderId,
+      OffsetDateTime createdAt, OffsetDateTime updatedAt, Optional<String> rawText,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.fileId = fileId;
@@ -85,6 +87,7 @@ public final class DocumentsGetCaptureResponse {
     this.matchedPartnerId = matchedPartnerId;
     this.purchaseInvoiceId = purchaseInvoiceId;
     this.error = error;
+    this.senderId = senderId;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.rawText = rawText;
@@ -177,6 +180,14 @@ public final class DocumentsGetCaptureResponse {
     return error;
   }
 
+  @JsonIgnore
+  public Optional<String> getSenderId() {
+    if (senderId == null) {
+      return Optional.empty();
+    }
+    return senderId;
+  }
+
   @JsonProperty("createdAt")
   public OffsetDateTime getCreatedAt() {
     return createdAt;
@@ -262,6 +273,15 @@ public final class DocumentsGetCaptureResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("senderId")
+  private Optional<String> _getSenderId() {
+    return senderId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("rawText")
   private Optional<String> _getRawText() {
     return rawText;
@@ -279,12 +299,12 @@ public final class DocumentsGetCaptureResponse {
   }
 
   private boolean equalTo(DocumentsGetCaptureResponse other) {
-    return id.equals(other.id) && fileId.equals(other.fileId) && fileName.equals(other.fileName) && mimeType.equals(other.mimeType) && sizeBytes == other.sizeBytes && status.equals(other.status) && provider.equals(other.provider) && model.equals(other.model) && pagesProcessed.equals(other.pagesProcessed) && extraction.equals(other.extraction) && matchedPartnerId.equals(other.matchedPartnerId) && purchaseInvoiceId.equals(other.purchaseInvoiceId) && error.equals(other.error) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && rawText.equals(other.rawText);
+    return id.equals(other.id) && fileId.equals(other.fileId) && fileName.equals(other.fileName) && mimeType.equals(other.mimeType) && sizeBytes == other.sizeBytes && status.equals(other.status) && provider.equals(other.provider) && model.equals(other.model) && pagesProcessed.equals(other.pagesProcessed) && extraction.equals(other.extraction) && matchedPartnerId.equals(other.matchedPartnerId) && purchaseInvoiceId.equals(other.purchaseInvoiceId) && error.equals(other.error) && senderId.equals(other.senderId) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && rawText.equals(other.rawText);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.fileId, this.fileName, this.mimeType, this.sizeBytes, this.status, this.provider, this.model, this.pagesProcessed, this.extraction, this.matchedPartnerId, this.purchaseInvoiceId, this.error, this.createdAt, this.updatedAt, this.rawText);
+    return Objects.hash(this.id, this.fileId, this.fileName, this.mimeType, this.sizeBytes, this.status, this.provider, this.model, this.pagesProcessed, this.extraction, this.matchedPartnerId, this.purchaseInvoiceId, this.error, this.senderId, this.createdAt, this.updatedAt, this.rawText);
   }
 
   @java.lang.Override
@@ -379,6 +399,12 @@ public final class DocumentsGetCaptureResponse {
 
     _FinalStage error(Nullable<String> error);
 
+    _FinalStage senderId(Optional<String> senderId);
+
+    _FinalStage senderId(String senderId);
+
+    _FinalStage senderId(Nullable<String> senderId);
+
     _FinalStage rawText(Optional<String> rawText);
 
     _FinalStage rawText(String rawText);
@@ -407,6 +433,8 @@ public final class DocumentsGetCaptureResponse {
     private OffsetDateTime updatedAt;
 
     private Optional<String> rawText = Optional.empty();
+
+    private Optional<String> senderId = Optional.empty();
 
     private Optional<String> error = Optional.empty();
 
@@ -443,6 +471,7 @@ public final class DocumentsGetCaptureResponse {
       matchedPartnerId(other.getMatchedPartnerId());
       purchaseInvoiceId(other.getPurchaseInvoiceId());
       error(other.getError());
+      senderId(other.getSenderId());
       createdAt(other.getCreatedAt());
       updatedAt(other.getUpdatedAt());
       rawText(other.getRawText());
@@ -532,6 +561,36 @@ public final class DocumentsGetCaptureResponse {
     )
     public _FinalStage rawText(Optional<String> rawText) {
       this.rawText = rawText;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage senderId(Nullable<String> senderId) {
+      if (senderId.isNull()) {
+        this.senderId = null;
+      }
+      else if (senderId.isEmpty()) {
+        this.senderId = Optional.empty();
+      }
+      else {
+        this.senderId = Optional.of(senderId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage senderId(String senderId) {
+      this.senderId = Optional.ofNullable(senderId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "senderId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage senderId(Optional<String> senderId) {
+      this.senderId = senderId;
       return this;
     }
 
@@ -747,7 +806,7 @@ public final class DocumentsGetCaptureResponse {
 
     @java.lang.Override
     public DocumentsGetCaptureResponse build() {
-      return new DocumentsGetCaptureResponse(id, fileId, fileName, mimeType, sizeBytes, status, provider, model, pagesProcessed, extraction, matchedPartnerId, purchaseInvoiceId, error, createdAt, updatedAt, rawText, additionalProperties);
+      return new DocumentsGetCaptureResponse(id, fileId, fileName, mimeType, sizeBytes, status, provider, model, pagesProcessed, extraction, matchedPartnerId, purchaseInvoiceId, error, senderId, createdAt, updatedAt, rawText, additionalProperties);
     }
 
     @java.lang.Override

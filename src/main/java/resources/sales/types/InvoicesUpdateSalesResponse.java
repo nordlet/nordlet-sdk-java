@@ -135,9 +135,21 @@ public final class InvoicesUpdateSalesResponse {
 
   private final Optional<OffsetDateTime> einvoiceCheckedAt;
 
+  private final Optional<String> peppolMessageId;
+
+  private final Optional<String> peppolStatus;
+
+  private final Optional<String> peppolDetail;
+
+  private final Optional<OffsetDateTime> peppolSentAt;
+
+  private final Optional<OffsetDateTime> peppolCheckedAt;
+
   private final OffsetDateTime createdAt;
 
   private final OffsetDateTime updatedAt;
+
+  private final Optional<String> advanceAppliedAmount;
 
   private final List<InvoicesUpdateSalesResponseLinesItem> lines;
 
@@ -166,8 +178,10 @@ public final class InvoicesUpdateSalesResponse {
       Optional<String> einvoiceMessageId, Optional<String> einvoiceNumber,
       Optional<String> einvoiceStatus, Optional<String> einvoiceDetail,
       Optional<OffsetDateTime> einvoiceSentAt, Optional<OffsetDateTime> einvoiceCheckedAt,
-      OffsetDateTime createdAt, OffsetDateTime updatedAt,
-      List<InvoicesUpdateSalesResponseLinesItem> lines,
+      Optional<String> peppolMessageId, Optional<String> peppolStatus,
+      Optional<String> peppolDetail, Optional<OffsetDateTime> peppolSentAt,
+      Optional<OffsetDateTime> peppolCheckedAt, OffsetDateTime createdAt, OffsetDateTime updatedAt,
+      Optional<String> advanceAppliedAmount, List<InvoicesUpdateSalesResponseLinesItem> lines,
       Optional<InvoicesUpdateSalesResponseVatEvidence> vatEvidence,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -221,8 +235,14 @@ public final class InvoicesUpdateSalesResponse {
     this.einvoiceDetail = einvoiceDetail;
     this.einvoiceSentAt = einvoiceSentAt;
     this.einvoiceCheckedAt = einvoiceCheckedAt;
+    this.peppolMessageId = peppolMessageId;
+    this.peppolStatus = peppolStatus;
+    this.peppolDetail = peppolDetail;
+    this.peppolSentAt = peppolSentAt;
+    this.peppolCheckedAt = peppolCheckedAt;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
+    this.advanceAppliedAmount = advanceAppliedAmount;
     this.lines = lines;
     this.vatEvidence = vatEvidence;
     this.additionalProperties = additionalProperties;
@@ -600,6 +620,46 @@ public final class InvoicesUpdateSalesResponse {
     return einvoiceCheckedAt;
   }
 
+  @JsonIgnore
+  public Optional<String> getPeppolMessageId() {
+    if (peppolMessageId == null) {
+      return Optional.empty();
+    }
+    return peppolMessageId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPeppolStatus() {
+    if (peppolStatus == null) {
+      return Optional.empty();
+    }
+    return peppolStatus;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPeppolDetail() {
+    if (peppolDetail == null) {
+      return Optional.empty();
+    }
+    return peppolDetail;
+  }
+
+  @JsonIgnore
+  public Optional<OffsetDateTime> getPeppolSentAt() {
+    if (peppolSentAt == null) {
+      return Optional.empty();
+    }
+    return peppolSentAt;
+  }
+
+  @JsonIgnore
+  public Optional<OffsetDateTime> getPeppolCheckedAt() {
+    if (peppolCheckedAt == null) {
+      return Optional.empty();
+    }
+    return peppolCheckedAt;
+  }
+
   @JsonProperty("createdAt")
   public OffsetDateTime getCreatedAt() {
     return createdAt;
@@ -608,6 +668,17 @@ public final class InvoicesUpdateSalesResponse {
   @JsonProperty("updatedAt")
   public OffsetDateTime getUpdatedAt() {
     return updatedAt;
+  }
+
+  /**
+   * @return Gross amount of an advance invoice applied to final invoices so far; null on other documents
+   */
+  @JsonIgnore
+  public Optional<String> getAdvanceAppliedAmount() {
+    if (advanceAppliedAmount == null) {
+      return Optional.empty();
+    }
+    return advanceAppliedAmount;
   }
 
   @JsonProperty("lines")
@@ -978,6 +1049,60 @@ public final class InvoicesUpdateSalesResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("peppolMessageId")
+  private Optional<String> _getPeppolMessageId() {
+    return peppolMessageId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("peppolStatus")
+  private Optional<String> _getPeppolStatus() {
+    return peppolStatus;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("peppolDetail")
+  private Optional<String> _getPeppolDetail() {
+    return peppolDetail;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("peppolSentAt")
+  private Optional<OffsetDateTime> _getPeppolSentAt() {
+    return peppolSentAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("peppolCheckedAt")
+  private Optional<OffsetDateTime> _getPeppolCheckedAt() {
+    return peppolCheckedAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("advanceAppliedAmount")
+  private Optional<String> _getAdvanceAppliedAmount() {
+    return advanceAppliedAmount;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("vatEvidence")
   private Optional<InvoicesUpdateSalesResponseVatEvidence> _getVatEvidence() {
     return vatEvidence;
@@ -995,12 +1120,12 @@ public final class InvoicesUpdateSalesResponse {
   }
 
   private boolean equalTo(InvoicesUpdateSalesResponse other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && fxRate.equals(other.fxRate) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && lockedAt.equals(other.lockedAt) && lockedBy.equals(other.lockedBy) && payToken.equals(other.payToken) && einvoiceSystem.equals(other.einvoiceSystem) && einvoiceTransport.equals(other.einvoiceTransport) && einvoiceMessageId.equals(other.einvoiceMessageId) && einvoiceNumber.equals(other.einvoiceNumber) && einvoiceStatus.equals(other.einvoiceStatus) && einvoiceDetail.equals(other.einvoiceDetail) && einvoiceSentAt.equals(other.einvoiceSentAt) && einvoiceCheckedAt.equals(other.einvoiceCheckedAt) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && lines.equals(other.lines) && vatEvidence.equals(other.vatEvidence);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && fxRate.equals(other.fxRate) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && lockedAt.equals(other.lockedAt) && lockedBy.equals(other.lockedBy) && payToken.equals(other.payToken) && einvoiceSystem.equals(other.einvoiceSystem) && einvoiceTransport.equals(other.einvoiceTransport) && einvoiceMessageId.equals(other.einvoiceMessageId) && einvoiceNumber.equals(other.einvoiceNumber) && einvoiceStatus.equals(other.einvoiceStatus) && einvoiceDetail.equals(other.einvoiceDetail) && einvoiceSentAt.equals(other.einvoiceSentAt) && einvoiceCheckedAt.equals(other.einvoiceCheckedAt) && peppolMessageId.equals(other.peppolMessageId) && peppolStatus.equals(other.peppolStatus) && peppolDetail.equals(other.peppolDetail) && peppolSentAt.equals(other.peppolSentAt) && peppolCheckedAt.equals(other.peppolCheckedAt) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && advanceAppliedAmount.equals(other.advanceAppliedAmount) && lines.equals(other.lines) && vatEvidence.equals(other.vatEvidence);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.fxRate, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.lockedAt, this.lockedBy, this.payToken, this.einvoiceSystem, this.einvoiceTransport, this.einvoiceMessageId, this.einvoiceNumber, this.einvoiceStatus, this.einvoiceDetail, this.einvoiceSentAt, this.einvoiceCheckedAt, this.createdAt, this.updatedAt, this.lines, this.vatEvidence);
+    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.fxRate, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.lockedAt, this.lockedBy, this.payToken, this.einvoiceSystem, this.einvoiceTransport, this.einvoiceMessageId, this.einvoiceNumber, this.einvoiceStatus, this.einvoiceDetail, this.einvoiceSentAt, this.einvoiceCheckedAt, this.peppolMessageId, this.peppolStatus, this.peppolDetail, this.peppolSentAt, this.peppolCheckedAt, this.createdAt, this.updatedAt, this.advanceAppliedAmount, this.lines, this.vatEvidence);
   }
 
   @java.lang.Override
@@ -1311,6 +1436,45 @@ public final class InvoicesUpdateSalesResponse {
 
     _FinalStage einvoiceCheckedAt(Nullable<OffsetDateTime> einvoiceCheckedAt);
 
+    _FinalStage peppolMessageId(Optional<String> peppolMessageId);
+
+    _FinalStage peppolMessageId(String peppolMessageId);
+
+    _FinalStage peppolMessageId(Nullable<String> peppolMessageId);
+
+    _FinalStage peppolStatus(Optional<String> peppolStatus);
+
+    _FinalStage peppolStatus(String peppolStatus);
+
+    _FinalStage peppolStatus(Nullable<String> peppolStatus);
+
+    _FinalStage peppolDetail(Optional<String> peppolDetail);
+
+    _FinalStage peppolDetail(String peppolDetail);
+
+    _FinalStage peppolDetail(Nullable<String> peppolDetail);
+
+    _FinalStage peppolSentAt(Optional<OffsetDateTime> peppolSentAt);
+
+    _FinalStage peppolSentAt(OffsetDateTime peppolSentAt);
+
+    _FinalStage peppolSentAt(Nullable<OffsetDateTime> peppolSentAt);
+
+    _FinalStage peppolCheckedAt(Optional<OffsetDateTime> peppolCheckedAt);
+
+    _FinalStage peppolCheckedAt(OffsetDateTime peppolCheckedAt);
+
+    _FinalStage peppolCheckedAt(Nullable<OffsetDateTime> peppolCheckedAt);
+
+    /**
+     * <p>Gross amount of an advance invoice applied to final invoices so far; null on other documents</p>
+     */
+    _FinalStage advanceAppliedAmount(Optional<String> advanceAppliedAmount);
+
+    _FinalStage advanceAppliedAmount(String advanceAppliedAmount);
+
+    _FinalStage advanceAppliedAmount(Nullable<String> advanceAppliedAmount);
+
     _FinalStage lines(List<InvoicesUpdateSalesResponseLinesItem> lines);
 
     _FinalStage addLines(InvoicesUpdateSalesResponseLinesItem lines);
@@ -1359,6 +1523,18 @@ public final class InvoicesUpdateSalesResponse {
     private Optional<InvoicesUpdateSalesResponseVatEvidence> vatEvidence = Optional.empty();
 
     private List<InvoicesUpdateSalesResponseLinesItem> lines = new ArrayList<>();
+
+    private Optional<String> advanceAppliedAmount = Optional.empty();
+
+    private Optional<OffsetDateTime> peppolCheckedAt = Optional.empty();
+
+    private Optional<OffsetDateTime> peppolSentAt = Optional.empty();
+
+    private Optional<String> peppolDetail = Optional.empty();
+
+    private Optional<String> peppolStatus = Optional.empty();
+
+    private Optional<String> peppolMessageId = Optional.empty();
 
     private Optional<OffsetDateTime> einvoiceCheckedAt = Optional.empty();
 
@@ -1497,8 +1673,14 @@ public final class InvoicesUpdateSalesResponse {
       einvoiceDetail(other.getEinvoiceDetail());
       einvoiceSentAt(other.getEinvoiceSentAt());
       einvoiceCheckedAt(other.getEinvoiceCheckedAt());
+      peppolMessageId(other.getPeppolMessageId());
+      peppolStatus(other.getPeppolStatus());
+      peppolDetail(other.getPeppolDetail());
+      peppolSentAt(other.getPeppolSentAt());
+      peppolCheckedAt(other.getPeppolCheckedAt());
       createdAt(other.getCreatedAt());
       updatedAt(other.getUpdatedAt());
+      advanceAppliedAmount(other.getAdvanceAppliedAmount());
       lines(other.getLines());
       vatEvidence(other.getVatEvidence());
       return this;
@@ -1657,6 +1839,197 @@ public final class InvoicesUpdateSalesResponse {
       if (lines != null) {
         this.lines.addAll(lines);
       }
+      return this;
+    }
+
+    /**
+     * <p>Gross amount of an advance invoice applied to final invoices so far; null on other documents</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage advanceAppliedAmount(Nullable<String> advanceAppliedAmount) {
+      if (advanceAppliedAmount.isNull()) {
+        this.advanceAppliedAmount = null;
+      }
+      else if (advanceAppliedAmount.isEmpty()) {
+        this.advanceAppliedAmount = Optional.empty();
+      }
+      else {
+        this.advanceAppliedAmount = Optional.of(advanceAppliedAmount.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Gross amount of an advance invoice applied to final invoices so far; null on other documents</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage advanceAppliedAmount(String advanceAppliedAmount) {
+      this.advanceAppliedAmount = Optional.ofNullable(advanceAppliedAmount);
+      return this;
+    }
+
+    /**
+     * <p>Gross amount of an advance invoice applied to final invoices so far; null on other documents</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "advanceAppliedAmount",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage advanceAppliedAmount(Optional<String> advanceAppliedAmount) {
+      this.advanceAppliedAmount = advanceAppliedAmount;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage peppolCheckedAt(Nullable<OffsetDateTime> peppolCheckedAt) {
+      if (peppolCheckedAt.isNull()) {
+        this.peppolCheckedAt = null;
+      }
+      else if (peppolCheckedAt.isEmpty()) {
+        this.peppolCheckedAt = Optional.empty();
+      }
+      else {
+        this.peppolCheckedAt = Optional.of(peppolCheckedAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage peppolCheckedAt(OffsetDateTime peppolCheckedAt) {
+      this.peppolCheckedAt = Optional.ofNullable(peppolCheckedAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "peppolCheckedAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage peppolCheckedAt(Optional<OffsetDateTime> peppolCheckedAt) {
+      this.peppolCheckedAt = peppolCheckedAt;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage peppolSentAt(Nullable<OffsetDateTime> peppolSentAt) {
+      if (peppolSentAt.isNull()) {
+        this.peppolSentAt = null;
+      }
+      else if (peppolSentAt.isEmpty()) {
+        this.peppolSentAt = Optional.empty();
+      }
+      else {
+        this.peppolSentAt = Optional.of(peppolSentAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage peppolSentAt(OffsetDateTime peppolSentAt) {
+      this.peppolSentAt = Optional.ofNullable(peppolSentAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "peppolSentAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage peppolSentAt(Optional<OffsetDateTime> peppolSentAt) {
+      this.peppolSentAt = peppolSentAt;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage peppolDetail(Nullable<String> peppolDetail) {
+      if (peppolDetail.isNull()) {
+        this.peppolDetail = null;
+      }
+      else if (peppolDetail.isEmpty()) {
+        this.peppolDetail = Optional.empty();
+      }
+      else {
+        this.peppolDetail = Optional.of(peppolDetail.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage peppolDetail(String peppolDetail) {
+      this.peppolDetail = Optional.ofNullable(peppolDetail);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "peppolDetail",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage peppolDetail(Optional<String> peppolDetail) {
+      this.peppolDetail = peppolDetail;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage peppolStatus(Nullable<String> peppolStatus) {
+      if (peppolStatus.isNull()) {
+        this.peppolStatus = null;
+      }
+      else if (peppolStatus.isEmpty()) {
+        this.peppolStatus = Optional.empty();
+      }
+      else {
+        this.peppolStatus = Optional.of(peppolStatus.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage peppolStatus(String peppolStatus) {
+      this.peppolStatus = Optional.ofNullable(peppolStatus);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "peppolStatus",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage peppolStatus(Optional<String> peppolStatus) {
+      this.peppolStatus = peppolStatus;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage peppolMessageId(Nullable<String> peppolMessageId) {
+      if (peppolMessageId.isNull()) {
+        this.peppolMessageId = null;
+      }
+      else if (peppolMessageId.isEmpty()) {
+        this.peppolMessageId = Optional.empty();
+      }
+      else {
+        this.peppolMessageId = Optional.of(peppolMessageId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage peppolMessageId(String peppolMessageId) {
+      this.peppolMessageId = Optional.ofNullable(peppolMessageId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "peppolMessageId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage peppolMessageId(Optional<String> peppolMessageId) {
+      this.peppolMessageId = peppolMessageId;
       return this;
     }
 
@@ -2832,7 +3205,7 @@ public final class InvoicesUpdateSalesResponse {
 
     @java.lang.Override
     public InvoicesUpdateSalesResponse build() {
-      return new InvoicesUpdateSalesResponse(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, fxRate, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, lockedAt, lockedBy, payToken, einvoiceSystem, einvoiceTransport, einvoiceMessageId, einvoiceNumber, einvoiceStatus, einvoiceDetail, einvoiceSentAt, einvoiceCheckedAt, createdAt, updatedAt, lines, vatEvidence, additionalProperties);
+      return new InvoicesUpdateSalesResponse(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, fxRate, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, lockedAt, lockedBy, payToken, einvoiceSystem, einvoiceTransport, einvoiceMessageId, einvoiceNumber, einvoiceStatus, einvoiceDetail, einvoiceSentAt, einvoiceCheckedAt, peppolMessageId, peppolStatus, peppolDetail, peppolSentAt, peppolCheckedAt, createdAt, updatedAt, advanceAppliedAmount, lines, vatEvidence, additionalProperties);
     }
 
     @java.lang.Override

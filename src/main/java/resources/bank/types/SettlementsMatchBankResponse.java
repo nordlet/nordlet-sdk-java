@@ -59,6 +59,14 @@ public final class SettlementsMatchBankResponse {
 
   private final SettlementsMatchBankResponseMatchStatus matchStatus;
 
+  private final Optional<String> clearingBankAccountId;
+
+  private final Optional<String> clearingBooked;
+
+  private final Optional<String> clearingDifference;
+
+  private final boolean clearingUnposted;
+
   private final Map<String, Object> additionalProperties;
 
   private SettlementsMatchBankResponse(String id, String externalId, String category, String date,
@@ -66,6 +74,8 @@ public final class SettlementsMatchBankResponse {
       Optional<String> chargeId, Optional<String> commissionPercent,
       Optional<String> commissionAmount, Optional<String> reference,
       Optional<String> matchedInvoiceId, SettlementsMatchBankResponseMatchStatus matchStatus,
+      Optional<String> clearingBankAccountId, Optional<String> clearingBooked,
+      Optional<String> clearingDifference, boolean clearingUnposted,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.externalId = externalId;
@@ -82,6 +92,10 @@ public final class SettlementsMatchBankResponse {
     this.reference = reference;
     this.matchedInvoiceId = matchedInvoiceId;
     this.matchStatus = matchStatus;
+    this.clearingBankAccountId = clearingBankAccountId;
+    this.clearingBooked = clearingBooked;
+    this.clearingDifference = clearingDifference;
+    this.clearingUnposted = clearingUnposted;
     this.additionalProperties = additionalProperties;
   }
 
@@ -181,6 +195,35 @@ public final class SettlementsMatchBankResponse {
     return matchStatus;
   }
 
+  @JsonIgnore
+  public Optional<String> getClearingBankAccountId() {
+    if (clearingBankAccountId == null) {
+      return Optional.empty();
+    }
+    return clearingBankAccountId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getClearingBooked() {
+    if (clearingBooked == null) {
+      return Optional.empty();
+    }
+    return clearingBooked;
+  }
+
+  @JsonIgnore
+  public Optional<String> getClearingDifference() {
+    if (clearingDifference == null) {
+      return Optional.empty();
+    }
+    return clearingDifference;
+  }
+
+  @JsonProperty("clearingUnposted")
+  public boolean getClearingUnposted() {
+    return clearingUnposted;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -244,6 +287,33 @@ public final class SettlementsMatchBankResponse {
     return matchedInvoiceId;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("clearingBankAccountId")
+  private Optional<String> _getClearingBankAccountId() {
+    return clearingBankAccountId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("clearingBooked")
+  private Optional<String> _getClearingBooked() {
+    return clearingBooked;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("clearingDifference")
+  private Optional<String> _getClearingDifference() {
+    return clearingDifference;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -256,12 +326,12 @@ public final class SettlementsMatchBankResponse {
   }
 
   private boolean equalTo(SettlementsMatchBankResponse other) {
-    return id.equals(other.id) && externalId.equals(other.externalId) && category.equals(other.category) && date.equals(other.date) && gross.equals(other.gross) && fee.equals(other.fee) && net.equals(other.net) && description.equals(other.description) && sourceId.equals(other.sourceId) && chargeId.equals(other.chargeId) && commissionPercent.equals(other.commissionPercent) && commissionAmount.equals(other.commissionAmount) && reference.equals(other.reference) && matchedInvoiceId.equals(other.matchedInvoiceId) && matchStatus.equals(other.matchStatus);
+    return id.equals(other.id) && externalId.equals(other.externalId) && category.equals(other.category) && date.equals(other.date) && gross.equals(other.gross) && fee.equals(other.fee) && net.equals(other.net) && description.equals(other.description) && sourceId.equals(other.sourceId) && chargeId.equals(other.chargeId) && commissionPercent.equals(other.commissionPercent) && commissionAmount.equals(other.commissionAmount) && reference.equals(other.reference) && matchedInvoiceId.equals(other.matchedInvoiceId) && matchStatus.equals(other.matchStatus) && clearingBankAccountId.equals(other.clearingBankAccountId) && clearingBooked.equals(other.clearingBooked) && clearingDifference.equals(other.clearingDifference) && clearingUnposted == other.clearingUnposted;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.externalId, this.category, this.date, this.gross, this.fee, this.net, this.description, this.sourceId, this.chargeId, this.commissionPercent, this.commissionAmount, this.reference, this.matchedInvoiceId, this.matchStatus);
+    return Objects.hash(this.id, this.externalId, this.category, this.date, this.gross, this.fee, this.net, this.description, this.sourceId, this.chargeId, this.commissionPercent, this.commissionAmount, this.reference, this.matchedInvoiceId, this.matchStatus, this.clearingBankAccountId, this.clearingBooked, this.clearingDifference, this.clearingUnposted);
   }
 
   @java.lang.Override
@@ -304,7 +374,11 @@ public final class SettlementsMatchBankResponse {
   }
 
   public interface MatchStatusStage {
-    _FinalStage matchStatus(@NotNull SettlementsMatchBankResponseMatchStatus matchStatus);
+    ClearingUnpostedStage matchStatus(@NotNull SettlementsMatchBankResponseMatchStatus matchStatus);
+  }
+
+  public interface ClearingUnpostedStage {
+    _FinalStage clearingUnposted(boolean clearingUnposted);
   }
 
   public interface _FinalStage {
@@ -355,12 +429,30 @@ public final class SettlementsMatchBankResponse {
     _FinalStage matchedInvoiceId(String matchedInvoiceId);
 
     _FinalStage matchedInvoiceId(Nullable<String> matchedInvoiceId);
+
+    _FinalStage clearingBankAccountId(Optional<String> clearingBankAccountId);
+
+    _FinalStage clearingBankAccountId(String clearingBankAccountId);
+
+    _FinalStage clearingBankAccountId(Nullable<String> clearingBankAccountId);
+
+    _FinalStage clearingBooked(Optional<String> clearingBooked);
+
+    _FinalStage clearingBooked(String clearingBooked);
+
+    _FinalStage clearingBooked(Nullable<String> clearingBooked);
+
+    _FinalStage clearingDifference(Optional<String> clearingDifference);
+
+    _FinalStage clearingDifference(String clearingDifference);
+
+    _FinalStage clearingDifference(Nullable<String> clearingDifference);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, ExternalIdStage, CategoryStage, DateStage, GrossStage, FeeStage, NetStage, MatchStatusStage, _FinalStage {
+  public static final class Builder implements IdStage, ExternalIdStage, CategoryStage, DateStage, GrossStage, FeeStage, NetStage, MatchStatusStage, ClearingUnpostedStage, _FinalStage {
     private String id;
 
     private String externalId;
@@ -376,6 +468,14 @@ public final class SettlementsMatchBankResponse {
     private String net;
 
     private SettlementsMatchBankResponseMatchStatus matchStatus;
+
+    private boolean clearingUnposted;
+
+    private Optional<String> clearingDifference = Optional.empty();
+
+    private Optional<String> clearingBooked = Optional.empty();
+
+    private Optional<String> clearingBankAccountId = Optional.empty();
 
     private Optional<String> matchedInvoiceId = Optional.empty();
 
@@ -414,6 +514,10 @@ public final class SettlementsMatchBankResponse {
       reference(other.getReference());
       matchedInvoiceId(other.getMatchedInvoiceId());
       matchStatus(other.getMatchStatus());
+      clearingBankAccountId(other.getClearingBankAccountId());
+      clearingBooked(other.getClearingBooked());
+      clearingDifference(other.getClearingDifference());
+      clearingUnposted(other.getClearingUnposted());
       return this;
     }
 
@@ -468,8 +572,106 @@ public final class SettlementsMatchBankResponse {
 
     @java.lang.Override
     @JsonSetter("matchStatus")
-    public _FinalStage matchStatus(@NotNull SettlementsMatchBankResponseMatchStatus matchStatus) {
+    public ClearingUnpostedStage matchStatus(
+        @NotNull SettlementsMatchBankResponseMatchStatus matchStatus) {
       this.matchStatus = Objects.requireNonNull(matchStatus, "matchStatus must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("clearingUnposted")
+    public _FinalStage clearingUnposted(boolean clearingUnposted) {
+      this.clearingUnposted = clearingUnposted;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage clearingDifference(Nullable<String> clearingDifference) {
+      if (clearingDifference.isNull()) {
+        this.clearingDifference = null;
+      }
+      else if (clearingDifference.isEmpty()) {
+        this.clearingDifference = Optional.empty();
+      }
+      else {
+        this.clearingDifference = Optional.of(clearingDifference.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage clearingDifference(String clearingDifference) {
+      this.clearingDifference = Optional.ofNullable(clearingDifference);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "clearingDifference",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage clearingDifference(Optional<String> clearingDifference) {
+      this.clearingDifference = clearingDifference;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage clearingBooked(Nullable<String> clearingBooked) {
+      if (clearingBooked.isNull()) {
+        this.clearingBooked = null;
+      }
+      else if (clearingBooked.isEmpty()) {
+        this.clearingBooked = Optional.empty();
+      }
+      else {
+        this.clearingBooked = Optional.of(clearingBooked.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage clearingBooked(String clearingBooked) {
+      this.clearingBooked = Optional.ofNullable(clearingBooked);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "clearingBooked",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage clearingBooked(Optional<String> clearingBooked) {
+      this.clearingBooked = clearingBooked;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage clearingBankAccountId(Nullable<String> clearingBankAccountId) {
+      if (clearingBankAccountId.isNull()) {
+        this.clearingBankAccountId = null;
+      }
+      else if (clearingBankAccountId.isEmpty()) {
+        this.clearingBankAccountId = Optional.empty();
+      }
+      else {
+        this.clearingBankAccountId = Optional.of(clearingBankAccountId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage clearingBankAccountId(String clearingBankAccountId) {
+      this.clearingBankAccountId = Optional.ofNullable(clearingBankAccountId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "clearingBankAccountId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage clearingBankAccountId(Optional<String> clearingBankAccountId) {
+      this.clearingBankAccountId = clearingBankAccountId;
       return this;
     }
 
@@ -685,7 +887,7 @@ public final class SettlementsMatchBankResponse {
 
     @java.lang.Override
     public SettlementsMatchBankResponse build() {
-      return new SettlementsMatchBankResponse(id, externalId, category, date, gross, fee, net, description, sourceId, chargeId, commissionPercent, commissionAmount, reference, matchedInvoiceId, matchStatus, additionalProperties);
+      return new SettlementsMatchBankResponse(id, externalId, category, date, gross, fee, net, description, sourceId, chargeId, commissionPercent, commissionAmount, reference, matchedInvoiceId, matchStatus, clearingBankAccountId, clearingBooked, clearingDifference, clearingUnposted, additionalProperties);
     }
 
     @java.lang.Override

@@ -6,17 +6,22 @@ package com.nordlet.api.resources.capture.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nordlet.api.core.Nullable;
+import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -28,12 +33,17 @@ public final class DocumentsConfirmCaptureResponse {
 
   private final DocumentsConfirmCaptureResponseInvoice invoice;
 
+  private final Optional<DocumentsConfirmCaptureResponseOppositeInvoice> oppositeInvoice;
+
   private final Map<String, Object> additionalProperties;
 
   private DocumentsConfirmCaptureResponse(DocumentsConfirmCaptureResponseCapture capture,
-      DocumentsConfirmCaptureResponseInvoice invoice, Map<String, Object> additionalProperties) {
+      DocumentsConfirmCaptureResponseInvoice invoice,
+      Optional<DocumentsConfirmCaptureResponseOppositeInvoice> oppositeInvoice,
+      Map<String, Object> additionalProperties) {
     this.capture = capture;
     this.invoice = invoice;
+    this.oppositeInvoice = oppositeInvoice;
     this.additionalProperties = additionalProperties;
   }
 
@@ -45,6 +55,23 @@ public final class DocumentsConfirmCaptureResponse {
   @JsonProperty("invoice")
   public DocumentsConfirmCaptureResponseInvoice getInvoice() {
     return invoice;
+  }
+
+  @JsonIgnore
+  public Optional<DocumentsConfirmCaptureResponseOppositeInvoice> getOppositeInvoice() {
+    if (oppositeInvoice == null) {
+      return Optional.empty();
+    }
+    return oppositeInvoice;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("oppositeInvoice")
+  private Optional<DocumentsConfirmCaptureResponseOppositeInvoice> _getOppositeInvoice() {
+    return oppositeInvoice;
   }
 
   @java.lang.Override
@@ -59,12 +86,12 @@ public final class DocumentsConfirmCaptureResponse {
   }
 
   private boolean equalTo(DocumentsConfirmCaptureResponse other) {
-    return capture.equals(other.capture) && invoice.equals(other.invoice);
+    return capture.equals(other.capture) && invoice.equals(other.invoice) && oppositeInvoice.equals(other.oppositeInvoice);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.capture, this.invoice);
+    return Objects.hash(this.capture, this.invoice, this.oppositeInvoice);
   }
 
   @java.lang.Override
@@ -92,6 +119,14 @@ public final class DocumentsConfirmCaptureResponse {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage oppositeInvoice(
+        Optional<DocumentsConfirmCaptureResponseOppositeInvoice> oppositeInvoice);
+
+    _FinalStage oppositeInvoice(DocumentsConfirmCaptureResponseOppositeInvoice oppositeInvoice);
+
+    _FinalStage oppositeInvoice(
+        Nullable<DocumentsConfirmCaptureResponseOppositeInvoice> oppositeInvoice);
   }
 
   @JsonIgnoreProperties(
@@ -101,6 +136,8 @@ public final class DocumentsConfirmCaptureResponse {
     private DocumentsConfirmCaptureResponseCapture capture;
 
     private DocumentsConfirmCaptureResponseInvoice invoice;
+
+    private Optional<DocumentsConfirmCaptureResponseOppositeInvoice> oppositeInvoice = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -112,6 +149,7 @@ public final class DocumentsConfirmCaptureResponse {
     public Builder from(DocumentsConfirmCaptureResponse other) {
       capture(other.getCapture());
       invoice(other.getInvoice());
+      oppositeInvoice(other.getOppositeInvoice());
       return this;
     }
 
@@ -130,8 +168,41 @@ public final class DocumentsConfirmCaptureResponse {
     }
 
     @java.lang.Override
+    public _FinalStage oppositeInvoice(
+        Nullable<DocumentsConfirmCaptureResponseOppositeInvoice> oppositeInvoice) {
+      if (oppositeInvoice.isNull()) {
+        this.oppositeInvoice = null;
+      }
+      else if (oppositeInvoice.isEmpty()) {
+        this.oppositeInvoice = Optional.empty();
+      }
+      else {
+        this.oppositeInvoice = Optional.of(oppositeInvoice.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage oppositeInvoice(
+        DocumentsConfirmCaptureResponseOppositeInvoice oppositeInvoice) {
+      this.oppositeInvoice = Optional.ofNullable(oppositeInvoice);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "oppositeInvoice",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage oppositeInvoice(
+        Optional<DocumentsConfirmCaptureResponseOppositeInvoice> oppositeInvoice) {
+      this.oppositeInvoice = oppositeInvoice;
+      return this;
+    }
+
+    @java.lang.Override
     public DocumentsConfirmCaptureResponse build() {
-      return new DocumentsConfirmCaptureResponse(capture, invoice, additionalProperties);
+      return new DocumentsConfirmCaptureResponse(capture, invoice, oppositeInvoice, additionalProperties);
     }
 
     @java.lang.Override

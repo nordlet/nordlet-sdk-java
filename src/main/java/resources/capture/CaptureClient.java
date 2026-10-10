@@ -167,10 +167,16 @@ public class CaptureClient {
     return this.rawClient.documentsDelete(request, requestOptions).body();
   }
 
+  /**
+   * Creates the purchase invoice (or credit note, see <code>type</code>) from <code>lines</code>. Lines with the opposite sign go in <code>oppositeLines</code> and are saved as a second document of the opposite type for the same supplier: a purchase credit note against the new invoice, or a purchase invoice next to the new credit note. It is numbered <code>oppositeDocumentNumber</code>, by default the document number followed by &quot;-CR&quot; (credit note) or &quot;-INV&quot; (invoice).
+   */
   public DocumentsConfirmCaptureResponse documentsConfirm(DocumentsConfirmCaptureRequest request) {
     return this.rawClient.documentsConfirm(request).body();
   }
 
+  /**
+   * Creates the purchase invoice (or credit note, see <code>type</code>) from <code>lines</code>. Lines with the opposite sign go in <code>oppositeLines</code> and are saved as a second document of the opposite type for the same supplier: a purchase credit note against the new invoice, or a purchase invoice next to the new credit note. It is numbered <code>oppositeDocumentNumber</code>, by default the document number followed by &quot;-CR&quot; (credit note) or &quot;-INV&quot; (invoice).
+   */
   public DocumentsConfirmCaptureResponse documentsConfirm(DocumentsConfirmCaptureRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.documentsConfirm(request, requestOptions).body();

@@ -31,6 +31,8 @@ import com.nordlet.api.resources.officers.OfficersClient;
 import com.nordlet.api.resources.operationtypes.OperationTypesClient;
 import com.nordlet.api.resources.partners.PartnersClient;
 import com.nordlet.api.resources.payroll.PayrollClient;
+import com.nordlet.api.resources.peppol.PeppolClient;
+import com.nordlet.api.resources.platformsellers.PlatformSellersClient;
 import com.nordlet.api.resources.pos.PosClient;
 import com.nordlet.api.resources.production.ProductionClient;
 import com.nordlet.api.resources.projects.ProjectsClient;
@@ -64,11 +66,15 @@ public class NordletApiClient {
 
   protected final Supplier<CaptureClient> captureClient;
 
+  protected final Supplier<PeppolClient> peppolClient;
+
   protected final Supplier<DeclarationsClient> declarationsClient;
 
   protected final Supplier<LedgerClient> ledgerClient;
 
   protected final Supplier<OfficersClient> officersClient;
+
+  protected final Supplier<PlatformSellersClient> platformSellersClient;
 
   protected final Supplier<MigrationClient> migrationClient;
 
@@ -127,9 +133,11 @@ public class NordletApiClient {
     this.documentSeriesClient = Suppliers.memoize(() -> new DocumentSeriesClient(clientOptions));
     this.purchasesClient = Suppliers.memoize(() -> new PurchasesClient(clientOptions));
     this.captureClient = Suppliers.memoize(() -> new CaptureClient(clientOptions));
+    this.peppolClient = Suppliers.memoize(() -> new PeppolClient(clientOptions));
     this.declarationsClient = Suppliers.memoize(() -> new DeclarationsClient(clientOptions));
     this.ledgerClient = Suppliers.memoize(() -> new LedgerClient(clientOptions));
     this.officersClient = Suppliers.memoize(() -> new OfficersClient(clientOptions));
+    this.platformSellersClient = Suppliers.memoize(() -> new PlatformSellersClient(clientOptions));
     this.migrationClient = Suppliers.memoize(() -> new MigrationClient(clientOptions));
     this.assetsClient = Suppliers.memoize(() -> new AssetsClient(clientOptions));
     this.hrClient = Suppliers.memoize(() -> new HrClient(clientOptions));
@@ -191,6 +199,10 @@ public class NordletApiClient {
     return this.captureClient.get();
   }
 
+  public PeppolClient peppol() {
+    return this.peppolClient.get();
+  }
+
   public DeclarationsClient declarations() {
     return this.declarationsClient.get();
   }
@@ -201,6 +213,10 @@ public class NordletApiClient {
 
   public OfficersClient officers() {
     return this.officersClient.get();
+  }
+
+  public PlatformSellersClient platformSellers() {
+    return this.platformSellersClient.get();
   }
 
   public MigrationClient migration() {

@@ -15,6 +15,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.capture.types.DocumentsConfirmCaptureRequestLinesItem;
 import com.nordlet.api.resources.capture.types.DocumentsConfirmCaptureRequestNewSupplier;
+import com.nordlet.api.resources.capture.types.DocumentsConfirmCaptureRequestOppositeLinesItem;
+import com.nordlet.api.resources.capture.types.DocumentsConfirmCaptureRequestType;
 import java.lang.Object;
 import java.lang.String;
 import java.util.ArrayList;
@@ -36,6 +38,8 @@ public final class DocumentsConfirmCaptureRequest {
 
   private final Optional<DocumentsConfirmCaptureRequestNewSupplier> newSupplier;
 
+  private final Optional<DocumentsConfirmCaptureRequestType> type;
+
   private final String documentNumber;
 
   private final String documentDate;
@@ -48,22 +52,31 @@ public final class DocumentsConfirmCaptureRequest {
 
   private final List<DocumentsConfirmCaptureRequestLinesItem> lines;
 
+  private final Optional<List<DocumentsConfirmCaptureRequestOppositeLinesItem>> oppositeLines;
+
+  private final Optional<String> oppositeDocumentNumber;
+
   private final Map<String, Object> additionalProperties;
 
   private DocumentsConfirmCaptureRequest(String id, Optional<String> partnerId,
-      Optional<DocumentsConfirmCaptureRequestNewSupplier> newSupplier, String documentNumber,
-      String documentDate, Optional<String> dueDate, Optional<String> currency,
-      Optional<String> notes, List<DocumentsConfirmCaptureRequestLinesItem> lines,
-      Map<String, Object> additionalProperties) {
+      Optional<DocumentsConfirmCaptureRequestNewSupplier> newSupplier,
+      Optional<DocumentsConfirmCaptureRequestType> type, String documentNumber, String documentDate,
+      Optional<String> dueDate, Optional<String> currency, Optional<String> notes,
+      List<DocumentsConfirmCaptureRequestLinesItem> lines,
+      Optional<List<DocumentsConfirmCaptureRequestOppositeLinesItem>> oppositeLines,
+      Optional<String> oppositeDocumentNumber, Map<String, Object> additionalProperties) {
     this.id = id;
     this.partnerId = partnerId;
     this.newSupplier = newSupplier;
+    this.type = type;
     this.documentNumber = documentNumber;
     this.documentDate = documentDate;
     this.dueDate = dueDate;
     this.currency = currency;
     this.notes = notes;
     this.lines = lines;
+    this.oppositeLines = oppositeLines;
+    this.oppositeDocumentNumber = oppositeDocumentNumber;
     this.additionalProperties = additionalProperties;
   }
 
@@ -80,6 +93,11 @@ public final class DocumentsConfirmCaptureRequest {
   @JsonProperty("newSupplier")
   public Optional<DocumentsConfirmCaptureRequestNewSupplier> getNewSupplier() {
     return newSupplier;
+  }
+
+  @JsonProperty("type")
+  public Optional<DocumentsConfirmCaptureRequestType> getType() {
+    return type;
   }
 
   @JsonProperty("documentNumber")
@@ -112,6 +130,16 @@ public final class DocumentsConfirmCaptureRequest {
     return lines;
   }
 
+  @JsonProperty("oppositeLines")
+  public Optional<List<DocumentsConfirmCaptureRequestOppositeLinesItem>> getOppositeLines() {
+    return oppositeLines;
+  }
+
+  @JsonProperty("oppositeDocumentNumber")
+  public Optional<String> getOppositeDocumentNumber() {
+    return oppositeDocumentNumber;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -124,12 +152,12 @@ public final class DocumentsConfirmCaptureRequest {
   }
 
   private boolean equalTo(DocumentsConfirmCaptureRequest other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && newSupplier.equals(other.newSupplier) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && notes.equals(other.notes) && lines.equals(other.lines);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && newSupplier.equals(other.newSupplier) && type.equals(other.type) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && notes.equals(other.notes) && lines.equals(other.lines) && oppositeLines.equals(other.oppositeLines) && oppositeDocumentNumber.equals(other.oppositeDocumentNumber);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.newSupplier, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.notes, this.lines);
+    return Objects.hash(this.id, this.partnerId, this.newSupplier, this.type, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.notes, this.lines, this.oppositeLines, this.oppositeDocumentNumber);
   }
 
   @java.lang.Override
@@ -170,6 +198,10 @@ public final class DocumentsConfirmCaptureRequest {
 
     _FinalStage newSupplier(DocumentsConfirmCaptureRequestNewSupplier newSupplier);
 
+    _FinalStage type(Optional<DocumentsConfirmCaptureRequestType> type);
+
+    _FinalStage type(DocumentsConfirmCaptureRequestType type);
+
     _FinalStage dueDate(Optional<String> dueDate);
 
     _FinalStage dueDate(String dueDate);
@@ -187,6 +219,15 @@ public final class DocumentsConfirmCaptureRequest {
     _FinalStage addLines(DocumentsConfirmCaptureRequestLinesItem lines);
 
     _FinalStage addAllLines(List<DocumentsConfirmCaptureRequestLinesItem> lines);
+
+    _FinalStage oppositeLines(
+        Optional<List<DocumentsConfirmCaptureRequestOppositeLinesItem>> oppositeLines);
+
+    _FinalStage oppositeLines(List<DocumentsConfirmCaptureRequestOppositeLinesItem> oppositeLines);
+
+    _FinalStage oppositeDocumentNumber(Optional<String> oppositeDocumentNumber);
+
+    _FinalStage oppositeDocumentNumber(String oppositeDocumentNumber);
   }
 
   @JsonIgnoreProperties(
@@ -199,6 +240,10 @@ public final class DocumentsConfirmCaptureRequest {
 
     private String documentDate;
 
+    private Optional<String> oppositeDocumentNumber = Optional.empty();
+
+    private Optional<List<DocumentsConfirmCaptureRequestOppositeLinesItem>> oppositeLines = Optional.empty();
+
     private List<DocumentsConfirmCaptureRequestLinesItem> lines = new ArrayList<>();
 
     private Optional<String> notes = Optional.empty();
@@ -206,6 +251,8 @@ public final class DocumentsConfirmCaptureRequest {
     private Optional<String> currency = Optional.empty();
 
     private Optional<String> dueDate = Optional.empty();
+
+    private Optional<DocumentsConfirmCaptureRequestType> type = Optional.empty();
 
     private Optional<DocumentsConfirmCaptureRequestNewSupplier> newSupplier = Optional.empty();
 
@@ -222,12 +269,15 @@ public final class DocumentsConfirmCaptureRequest {
       id(other.getId());
       partnerId(other.getPartnerId());
       newSupplier(other.getNewSupplier());
+      type(other.getType());
       documentNumber(other.getDocumentNumber());
       documentDate(other.getDocumentDate());
       dueDate(other.getDueDate());
       currency(other.getCurrency());
       notes(other.getNotes());
       lines(other.getLines());
+      oppositeLines(other.getOppositeLines());
+      oppositeDocumentNumber(other.getOppositeDocumentNumber());
       return this;
     }
 
@@ -249,6 +299,40 @@ public final class DocumentsConfirmCaptureRequest {
     @JsonSetter("documentDate")
     public _FinalStage documentDate(@NotNull String documentDate) {
       this.documentDate = Objects.requireNonNull(documentDate, "documentDate must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage oppositeDocumentNumber(String oppositeDocumentNumber) {
+      this.oppositeDocumentNumber = Optional.ofNullable(oppositeDocumentNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "oppositeDocumentNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage oppositeDocumentNumber(Optional<String> oppositeDocumentNumber) {
+      this.oppositeDocumentNumber = oppositeDocumentNumber;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage oppositeLines(
+        List<DocumentsConfirmCaptureRequestOppositeLinesItem> oppositeLines) {
+      this.oppositeLines = Optional.ofNullable(oppositeLines);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "oppositeLines",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage oppositeLines(
+        Optional<List<DocumentsConfirmCaptureRequestOppositeLinesItem>> oppositeLines) {
+      this.oppositeLines = oppositeLines;
       return this;
     }
 
@@ -328,6 +412,22 @@ public final class DocumentsConfirmCaptureRequest {
     }
 
     @java.lang.Override
+    public _FinalStage type(DocumentsConfirmCaptureRequestType type) {
+      this.type = Optional.ofNullable(type);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "type",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage type(Optional<DocumentsConfirmCaptureRequestType> type) {
+      this.type = type;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage newSupplier(DocumentsConfirmCaptureRequestNewSupplier newSupplier) {
       this.newSupplier = Optional.ofNullable(newSupplier);
       return this;
@@ -362,7 +462,7 @@ public final class DocumentsConfirmCaptureRequest {
 
     @java.lang.Override
     public DocumentsConfirmCaptureRequest build() {
-      return new DocumentsConfirmCaptureRequest(id, partnerId, newSupplier, documentNumber, documentDate, dueDate, currency, notes, lines, additionalProperties);
+      return new DocumentsConfirmCaptureRequest(id, partnerId, newSupplier, type, documentNumber, documentDate, dueDate, currency, notes, lines, oppositeLines, oppositeDocumentNumber, additionalProperties);
     }
 
     @java.lang.Override

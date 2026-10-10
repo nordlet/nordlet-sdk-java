@@ -33,9 +33,13 @@ import com.nordlet.api.resources.declarations.requests.DeReturnsGenerateDeclarat
 import com.nordlet.api.resources.declarations.requests.DkSelskabsskatGenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EeEmploymentRegisterSendDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EsVerifactuDeclaracionResponsableDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuDac7PreviewDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuDac7XmlDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuDigitalReportingListDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuDistanceSalesThresholdGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuIossComputeDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuOssComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuOwnGoodsTransfersComputeDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuSmeCrossBorderReportComputeDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuSmeThresholdGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuSmeThresholdsListDeclarationsRequest;
@@ -123,9 +127,13 @@ import com.nordlet.api.resources.declarations.types.DeReturnsGenerateDeclaration
 import com.nordlet.api.resources.declarations.types.DkSelskabsskatGenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EeEmploymentRegisterSendDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EsVerifactuDeclaracionResponsableDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuDac7PreviewDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuDac7XmlDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuDigitalReportingListDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuDistanceSalesThresholdGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuIossComputeDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuOssComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuOwnGoodsTransfersComputeDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuSmeCrossBorderReportComputeDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuSmeThresholdGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuSmeThresholdsListDeclarationsResponse;
@@ -356,6 +364,50 @@ public class DeclarationsClient {
   public EuIossComputeDeclarationsResponse euIossCompute(EuIossComputeDeclarationsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.euIossCompute(request, requestOptions).body();
+  }
+
+  public EuOwnGoodsTransfersComputeDeclarationsResponse euOwnGoodsTransfersCompute(
+      EuOwnGoodsTransfersComputeDeclarationsRequest request) {
+    return this.rawClient.euOwnGoodsTransfersCompute(request).body();
+  }
+
+  public EuOwnGoodsTransfersComputeDeclarationsResponse euOwnGoodsTransfersCompute(
+      EuOwnGoodsTransfersComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.euOwnGoodsTransfersCompute(request, requestOptions).body();
+  }
+
+  public EuDigitalReportingListDeclarationsResponse euDigitalReportingList(
+      EuDigitalReportingListDeclarationsRequest request) {
+    return this.rawClient.euDigitalReportingList(request).body();
+  }
+
+  public EuDigitalReportingListDeclarationsResponse euDigitalReportingList(
+      EuDigitalReportingListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.euDigitalReportingList(request, requestOptions).body();
+  }
+
+  /**
+   * Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V) and why the others are excluded, the data still missing, and how the company files the report in its Member State.
+   */
+  public EuDac7PreviewDeclarationsResponse euDac7Preview(EuDac7PreviewDeclarationsRequest request) {
+    return this.rawClient.euDac7Preview(request).body();
+  }
+
+  /**
+   * Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V) and why the others are excluded, the data still missing, and how the company files the report in its Member State.
+   */
+  public EuDac7PreviewDeclarationsResponse euDac7Preview(EuDac7PreviewDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.euDac7Preview(request, requestOptions).body();
+  }
+
+  public EuDac7XmlDeclarationsResponse euDac7Xml(EuDac7XmlDeclarationsRequest request) {
+    return this.rawClient.euDac7Xml(request).body();
+  }
+
+  public EuDac7XmlDeclarationsResponse euDac7Xml(EuDac7XmlDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.euDac7Xml(request, requestOptions).body();
   }
 
   public EuDistanceSalesThresholdGetDeclarationsResponse euDistanceSalesThresholdGet() {
@@ -1147,7 +1199,7 @@ public class DeclarationsClient {
   }
 
   /**
-   * Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
+   * Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed, addressed to the tax office of the place of residence of that person (employee field plKodUrzedu); a person without that code is refused with 422.
    */
   public PlPit11GenerateDeclarationsResponse plPit11Generate(
       PlPit11GenerateDeclarationsRequest request) {
@@ -1155,7 +1207,7 @@ public class DeclarationsClient {
   }
 
   /**
-   * Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
+   * Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed, addressed to the tax office of the place of residence of that person (employee field plKodUrzedu); a person without that code is refused with 422.
    */
   public PlPit11GenerateDeclarationsResponse plPit11Generate(
       PlPit11GenerateDeclarationsRequest request, RequestOptions requestOptions) {

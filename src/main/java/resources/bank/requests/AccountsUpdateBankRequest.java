@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.bank.types.AccountsUpdateBankRequestType;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -31,6 +32,8 @@ public final class AccountsUpdateBankRequest {
 
   private final Optional<String> name;
 
+  private final Optional<AccountsUpdateBankRequestType> type;
+
   private final Optional<String> iban;
 
   private final Optional<String> accountCode;
@@ -39,11 +42,13 @@ public final class AccountsUpdateBankRequest {
 
   private final Map<String, Object> additionalProperties;
 
-  private AccountsUpdateBankRequest(String id, Optional<String> name, Optional<String> iban,
+  private AccountsUpdateBankRequest(String id, Optional<String> name,
+      Optional<AccountsUpdateBankRequestType> type, Optional<String> iban,
       Optional<String> accountCode, Optional<Boolean> isActive,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.name = name;
+    this.type = type;
     this.iban = iban;
     this.accountCode = accountCode;
     this.isActive = isActive;
@@ -58,6 +63,11 @@ public final class AccountsUpdateBankRequest {
   @JsonProperty("name")
   public Optional<String> getName() {
     return name;
+  }
+
+  @JsonProperty("type")
+  public Optional<AccountsUpdateBankRequestType> getType() {
+    return type;
   }
 
   @JsonProperty("iban")
@@ -87,12 +97,12 @@ public final class AccountsUpdateBankRequest {
   }
 
   private boolean equalTo(AccountsUpdateBankRequest other) {
-    return id.equals(other.id) && name.equals(other.name) && iban.equals(other.iban) && accountCode.equals(other.accountCode) && isActive.equals(other.isActive);
+    return id.equals(other.id) && name.equals(other.name) && type.equals(other.type) && iban.equals(other.iban) && accountCode.equals(other.accountCode) && isActive.equals(other.isActive);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.iban, this.accountCode, this.isActive);
+    return Objects.hash(this.id, this.name, this.type, this.iban, this.accountCode, this.isActive);
   }
 
   @java.lang.Override
@@ -121,6 +131,10 @@ public final class AccountsUpdateBankRequest {
 
     _FinalStage name(String name);
 
+    _FinalStage type(Optional<AccountsUpdateBankRequestType> type);
+
+    _FinalStage type(AccountsUpdateBankRequestType type);
+
     _FinalStage iban(Optional<String> iban);
 
     _FinalStage iban(String iban);
@@ -146,6 +160,8 @@ public final class AccountsUpdateBankRequest {
 
     private Optional<String> iban = Optional.empty();
 
+    private Optional<AccountsUpdateBankRequestType> type = Optional.empty();
+
     private Optional<String> name = Optional.empty();
 
     @JsonAnySetter
@@ -158,6 +174,7 @@ public final class AccountsUpdateBankRequest {
     public Builder from(AccountsUpdateBankRequest other) {
       id(other.getId());
       name(other.getName());
+      type(other.getType());
       iban(other.getIban());
       accountCode(other.getAccountCode());
       isActive(other.getIsActive());
@@ -220,6 +237,22 @@ public final class AccountsUpdateBankRequest {
     }
 
     @java.lang.Override
+    public _FinalStage type(AccountsUpdateBankRequestType type) {
+      this.type = Optional.ofNullable(type);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "type",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage type(Optional<AccountsUpdateBankRequestType> type) {
+      this.type = type;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage name(String name) {
       this.name = Optional.ofNullable(name);
       return this;
@@ -237,7 +270,7 @@ public final class AccountsUpdateBankRequest {
 
     @java.lang.Override
     public AccountsUpdateBankRequest build() {
-      return new AccountsUpdateBankRequest(id, name, iban, accountCode, isActive, additionalProperties);
+      return new AccountsUpdateBankRequest(id, name, type, iban, accountCode, isActive, additionalProperties);
     }
 
     @java.lang.Override

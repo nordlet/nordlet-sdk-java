@@ -62,6 +62,12 @@ public final class SettlementsListBankResponseRowsItem {
 
   private final long unmatchedCount;
 
+  private final Optional<String> clearedNet;
+
+  private final Optional<String> clearingDifference;
+
+  private final long clearingOpenCount;
+
   private final OffsetDateTime createdAt;
 
   private final OffsetDateTime updatedAt;
@@ -73,6 +79,7 @@ public final class SettlementsListBankResponseRowsItem {
       String feeTotal, String netTotal, Optional<String> fxRate,
       SettlementsListBankResponseRowsItemStatus status, Optional<String> journalTransactionId,
       Optional<String> bankTransactionId, long lineCount, long matchedCount, long unmatchedCount,
+      Optional<String> clearedNet, Optional<String> clearingDifference, long clearingOpenCount,
       OffsetDateTime createdAt, OffsetDateTime updatedAt,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -91,6 +98,9 @@ public final class SettlementsListBankResponseRowsItem {
     this.lineCount = lineCount;
     this.matchedCount = matchedCount;
     this.unmatchedCount = unmatchedCount;
+    this.clearedNet = clearedNet;
+    this.clearingDifference = clearingDifference;
+    this.clearingOpenCount = clearingOpenCount;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.additionalProperties = additionalProperties;
@@ -188,6 +198,27 @@ public final class SettlementsListBankResponseRowsItem {
     return unmatchedCount;
   }
 
+  @JsonIgnore
+  public Optional<String> getClearedNet() {
+    if (clearedNet == null) {
+      return Optional.empty();
+    }
+    return clearedNet;
+  }
+
+  @JsonIgnore
+  public Optional<String> getClearingDifference() {
+    if (clearingDifference == null) {
+      return Optional.empty();
+    }
+    return clearingDifference;
+  }
+
+  @JsonProperty("clearingOpenCount")
+  public long getClearingOpenCount() {
+    return clearingOpenCount;
+  }
+
   @JsonProperty("createdAt")
   public OffsetDateTime getCreatedAt() {
     return createdAt;
@@ -234,6 +265,24 @@ public final class SettlementsListBankResponseRowsItem {
     return bankTransactionId;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("clearedNet")
+  private Optional<String> _getClearedNet() {
+    return clearedNet;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("clearingDifference")
+  private Optional<String> _getClearingDifference() {
+    return clearingDifference;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -246,12 +295,12 @@ public final class SettlementsListBankResponseRowsItem {
   }
 
   private boolean equalTo(SettlementsListBankResponseRowsItem other) {
-    return id.equals(other.id) && bankAccountId.equals(other.bankAccountId) && provider.equals(other.provider) && payoutId.equals(other.payoutId) && payoutDate.equals(other.payoutDate) && currency.equals(other.currency) && grossTotal.equals(other.grossTotal) && feeTotal.equals(other.feeTotal) && netTotal.equals(other.netTotal) && fxRate.equals(other.fxRate) && status.equals(other.status) && journalTransactionId.equals(other.journalTransactionId) && bankTransactionId.equals(other.bankTransactionId) && lineCount == other.lineCount && matchedCount == other.matchedCount && unmatchedCount == other.unmatchedCount && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && bankAccountId.equals(other.bankAccountId) && provider.equals(other.provider) && payoutId.equals(other.payoutId) && payoutDate.equals(other.payoutDate) && currency.equals(other.currency) && grossTotal.equals(other.grossTotal) && feeTotal.equals(other.feeTotal) && netTotal.equals(other.netTotal) && fxRate.equals(other.fxRate) && status.equals(other.status) && journalTransactionId.equals(other.journalTransactionId) && bankTransactionId.equals(other.bankTransactionId) && lineCount == other.lineCount && matchedCount == other.matchedCount && unmatchedCount == other.unmatchedCount && clearedNet.equals(other.clearedNet) && clearingDifference.equals(other.clearingDifference) && clearingOpenCount == other.clearingOpenCount && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.bankAccountId, this.provider, this.payoutId, this.payoutDate, this.currency, this.grossTotal, this.feeTotal, this.netTotal, this.fxRate, this.status, this.journalTransactionId, this.bankTransactionId, this.lineCount, this.matchedCount, this.unmatchedCount, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.bankAccountId, this.provider, this.payoutId, this.payoutDate, this.currency, this.grossTotal, this.feeTotal, this.netTotal, this.fxRate, this.status, this.journalTransactionId, this.bankTransactionId, this.lineCount, this.matchedCount, this.unmatchedCount, this.clearedNet, this.clearingDifference, this.clearingOpenCount, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -310,7 +359,11 @@ public final class SettlementsListBankResponseRowsItem {
   }
 
   public interface UnmatchedCountStage {
-    CreatedAtStage unmatchedCount(long unmatchedCount);
+    ClearingOpenCountStage unmatchedCount(long unmatchedCount);
+  }
+
+  public interface ClearingOpenCountStage {
+    CreatedAtStage clearingOpenCount(long clearingOpenCount);
   }
 
   public interface CreatedAtStage {
@@ -351,12 +404,24 @@ public final class SettlementsListBankResponseRowsItem {
     _FinalStage bankTransactionId(String bankTransactionId);
 
     _FinalStage bankTransactionId(Nullable<String> bankTransactionId);
+
+    _FinalStage clearedNet(Optional<String> clearedNet);
+
+    _FinalStage clearedNet(String clearedNet);
+
+    _FinalStage clearedNet(Nullable<String> clearedNet);
+
+    _FinalStage clearingDifference(Optional<String> clearingDifference);
+
+    _FinalStage clearingDifference(String clearingDifference);
+
+    _FinalStage clearingDifference(Nullable<String> clearingDifference);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, BankAccountIdStage, ProviderStage, PayoutIdStage, CurrencyStage, GrossTotalStage, FeeTotalStage, NetTotalStage, StatusStage, LineCountStage, MatchedCountStage, UnmatchedCountStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, BankAccountIdStage, ProviderStage, PayoutIdStage, CurrencyStage, GrossTotalStage, FeeTotalStage, NetTotalStage, StatusStage, LineCountStage, MatchedCountStage, UnmatchedCountStage, ClearingOpenCountStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
     private String id;
 
     private String bankAccountId;
@@ -381,9 +446,15 @@ public final class SettlementsListBankResponseRowsItem {
 
     private long unmatchedCount;
 
+    private long clearingOpenCount;
+
     private OffsetDateTime createdAt;
 
     private OffsetDateTime updatedAt;
+
+    private Optional<String> clearingDifference = Optional.empty();
+
+    private Optional<String> clearedNet = Optional.empty();
 
     private Optional<String> bankTransactionId = Optional.empty();
 
@@ -417,6 +488,9 @@ public final class SettlementsListBankResponseRowsItem {
       lineCount(other.getLineCount());
       matchedCount(other.getMatchedCount());
       unmatchedCount(other.getUnmatchedCount());
+      clearedNet(other.getClearedNet());
+      clearingDifference(other.getClearingDifference());
+      clearingOpenCount(other.getClearingOpenCount());
       createdAt(other.getCreatedAt());
       updatedAt(other.getUpdatedAt());
       return this;
@@ -501,8 +575,15 @@ public final class SettlementsListBankResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("unmatchedCount")
-    public CreatedAtStage unmatchedCount(long unmatchedCount) {
+    public ClearingOpenCountStage unmatchedCount(long unmatchedCount) {
       this.unmatchedCount = unmatchedCount;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("clearingOpenCount")
+    public CreatedAtStage clearingOpenCount(long clearingOpenCount) {
+      this.clearingOpenCount = clearingOpenCount;
       return this;
     }
 
@@ -517,6 +598,66 @@ public final class SettlementsListBankResponseRowsItem {
     @JsonSetter("updatedAt")
     public _FinalStage updatedAt(@NotNull OffsetDateTime updatedAt) {
       this.updatedAt = Objects.requireNonNull(updatedAt, "updatedAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage clearingDifference(Nullable<String> clearingDifference) {
+      if (clearingDifference.isNull()) {
+        this.clearingDifference = null;
+      }
+      else if (clearingDifference.isEmpty()) {
+        this.clearingDifference = Optional.empty();
+      }
+      else {
+        this.clearingDifference = Optional.of(clearingDifference.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage clearingDifference(String clearingDifference) {
+      this.clearingDifference = Optional.ofNullable(clearingDifference);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "clearingDifference",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage clearingDifference(Optional<String> clearingDifference) {
+      this.clearingDifference = clearingDifference;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage clearedNet(Nullable<String> clearedNet) {
+      if (clearedNet.isNull()) {
+        this.clearedNet = null;
+      }
+      else if (clearedNet.isEmpty()) {
+        this.clearedNet = Optional.empty();
+      }
+      else {
+        this.clearedNet = Optional.of(clearedNet.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage clearedNet(String clearedNet) {
+      this.clearedNet = Optional.ofNullable(clearedNet);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "clearedNet",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage clearedNet(Optional<String> clearedNet) {
+      this.clearedNet = clearedNet;
       return this;
     }
 
@@ -642,7 +783,7 @@ public final class SettlementsListBankResponseRowsItem {
 
     @java.lang.Override
     public SettlementsListBankResponseRowsItem build() {
-      return new SettlementsListBankResponseRowsItem(id, bankAccountId, provider, payoutId, payoutDate, currency, grossTotal, feeTotal, netTotal, fxRate, status, journalTransactionId, bankTransactionId, lineCount, matchedCount, unmatchedCount, createdAt, updatedAt, additionalProperties);
+      return new SettlementsListBankResponseRowsItem(id, bankAccountId, provider, payoutId, payoutDate, currency, grossTotal, feeTotal, netTotal, fxRate, status, journalTransactionId, bankTransactionId, lineCount, matchedCount, unmatchedCount, clearedNet, clearingDifference, clearingOpenCount, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

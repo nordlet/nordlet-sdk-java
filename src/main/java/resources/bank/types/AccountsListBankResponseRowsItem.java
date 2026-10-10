@@ -34,6 +34,8 @@ public final class AccountsListBankResponseRowsItem {
 
   private final String name;
 
+  private final AccountsListBankResponseRowsItemType type;
+
   private final Optional<String> iban;
 
   private final String currency;
@@ -46,11 +48,13 @@ public final class AccountsListBankResponseRowsItem {
 
   private final Map<String, Object> additionalProperties;
 
-  private AccountsListBankResponseRowsItem(String id, String name, Optional<String> iban,
-      String currency, String accountCode, boolean isActive, OffsetDateTime createdAt,
+  private AccountsListBankResponseRowsItem(String id, String name,
+      AccountsListBankResponseRowsItemType type, Optional<String> iban, String currency,
+      String accountCode, boolean isActive, OffsetDateTime createdAt,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.name = name;
+    this.type = type;
     this.iban = iban;
     this.currency = currency;
     this.accountCode = accountCode;
@@ -67,6 +71,11 @@ public final class AccountsListBankResponseRowsItem {
   @JsonProperty("name")
   public String getName() {
     return name;
+  }
+
+  @JsonProperty("type")
+  public AccountsListBankResponseRowsItemType getType() {
+    return type;
   }
 
   @JsonIgnore
@@ -118,12 +127,12 @@ public final class AccountsListBankResponseRowsItem {
   }
 
   private boolean equalTo(AccountsListBankResponseRowsItem other) {
-    return id.equals(other.id) && name.equals(other.name) && iban.equals(other.iban) && currency.equals(other.currency) && accountCode.equals(other.accountCode) && isActive == other.isActive && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && name.equals(other.name) && type.equals(other.type) && iban.equals(other.iban) && currency.equals(other.currency) && accountCode.equals(other.accountCode) && isActive == other.isActive && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.iban, this.currency, this.accountCode, this.isActive, this.createdAt);
+    return Objects.hash(this.id, this.name, this.type, this.iban, this.currency, this.accountCode, this.isActive, this.createdAt);
   }
 
   @java.lang.Override
@@ -142,7 +151,11 @@ public final class AccountsListBankResponseRowsItem {
   }
 
   public interface NameStage {
-    CurrencyStage name(@NotNull String name);
+    TypeStage name(@NotNull String name);
+  }
+
+  public interface TypeStage {
+    CurrencyStage type(@NotNull AccountsListBankResponseRowsItemType type);
   }
 
   public interface CurrencyStage {
@@ -178,10 +191,12 @@ public final class AccountsListBankResponseRowsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, NameStage, CurrencyStage, AccountCodeStage, IsActiveStage, CreatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, NameStage, TypeStage, CurrencyStage, AccountCodeStage, IsActiveStage, CreatedAtStage, _FinalStage {
     private String id;
 
     private String name;
+
+    private AccountsListBankResponseRowsItemType type;
 
     private String currency;
 
@@ -203,6 +218,7 @@ public final class AccountsListBankResponseRowsItem {
     public Builder from(AccountsListBankResponseRowsItem other) {
       id(other.getId());
       name(other.getName());
+      type(other.getType());
       iban(other.getIban());
       currency(other.getCurrency());
       accountCode(other.getAccountCode());
@@ -220,8 +236,15 @@ public final class AccountsListBankResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("name")
-    public CurrencyStage name(@NotNull String name) {
+    public TypeStage name(@NotNull String name) {
       this.name = Objects.requireNonNull(name, "name must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("type")
+    public CurrencyStage type(@NotNull AccountsListBankResponseRowsItemType type) {
+      this.type = Objects.requireNonNull(type, "type must not be null");
       return this;
     }
 
@@ -285,7 +308,7 @@ public final class AccountsListBankResponseRowsItem {
 
     @java.lang.Override
     public AccountsListBankResponseRowsItem build() {
-      return new AccountsListBankResponseRowsItem(id, name, iban, currency, accountCode, isActive, createdAt, additionalProperties);
+      return new AccountsListBankResponseRowsItem(id, name, type, iban, currency, accountCode, isActive, createdAt, additionalProperties);
     }
 
     @java.lang.Override

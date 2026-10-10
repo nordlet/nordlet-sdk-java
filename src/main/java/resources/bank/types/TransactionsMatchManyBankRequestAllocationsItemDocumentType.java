@@ -10,6 +10,8 @@ import java.lang.Object;
 import java.lang.String;
 
 public final class TransactionsMatchManyBankRequestAllocationsItemDocumentType {
+  public static final TransactionsMatchManyBankRequestAllocationsItemDocumentType PAYROLL_RUN = new TransactionsMatchManyBankRequestAllocationsItemDocumentType(Value.PAYROLL_RUN, "payroll_run");
+
   public static final TransactionsMatchManyBankRequestAllocationsItemDocumentType PURCHASE_INVOICE = new TransactionsMatchManyBankRequestAllocationsItemDocumentType(Value.PURCHASE_INVOICE, "purchase_invoice");
 
   public static final TransactionsMatchManyBankRequestAllocationsItemDocumentType SALE_INVOICE = new TransactionsMatchManyBankRequestAllocationsItemDocumentType(Value.SALE_INVOICE, "sale_invoice");
@@ -46,6 +48,8 @@ public final class TransactionsMatchManyBankRequestAllocationsItemDocumentType {
 
   public <T> T visit(Visitor<T> visitor) {
     switch (value) {
+      case PAYROLL_RUN:
+        return visitor.visitPayrollRun();
       case PURCHASE_INVOICE:
         return visitor.visitPurchaseInvoice();
       case SALE_INVOICE:
@@ -61,6 +65,8 @@ public final class TransactionsMatchManyBankRequestAllocationsItemDocumentType {
   )
   public static TransactionsMatchManyBankRequestAllocationsItemDocumentType valueOf(String value) {
     switch (value) {
+      case "payroll_run":
+        return PAYROLL_RUN;
       case "purchase_invoice":
         return PURCHASE_INVOICE;
       case "sale_invoice":
@@ -75,6 +81,8 @@ public final class TransactionsMatchManyBankRequestAllocationsItemDocumentType {
 
     PURCHASE_INVOICE,
 
+    PAYROLL_RUN,
+
     UNKNOWN
   }
 
@@ -82,6 +90,8 @@ public final class TransactionsMatchManyBankRequestAllocationsItemDocumentType {
     T visitSaleInvoice();
 
     T visitPurchaseInvoice();
+
+    T visitPayrollRun();
 
     T visitUnknown(String unknownType);
   }

@@ -6,12 +6,15 @@ package com.nordlet.api.resources.inventory.requests;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nordlet.api.core.Nullable;
+import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -33,13 +36,16 @@ public final class WarehousesCreateInventoryRequest {
 
   private final Optional<Boolean> isDefault;
 
+  private final Optional<String> countryCode;
+
   private final Map<String, Object> additionalProperties;
 
   private WarehousesCreateInventoryRequest(String code, String name, Optional<Boolean> isDefault,
-      Map<String, Object> additionalProperties) {
+      Optional<String> countryCode, Map<String, Object> additionalProperties) {
     this.code = code;
     this.name = name;
     this.isDefault = isDefault;
+    this.countryCode = countryCode;
     this.additionalProperties = additionalProperties;
   }
 
@@ -58,6 +64,23 @@ public final class WarehousesCreateInventoryRequest {
     return isDefault;
   }
 
+  @JsonIgnore
+  public Optional<String> getCountryCode() {
+    if (countryCode == null) {
+      return Optional.empty();
+    }
+    return countryCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("countryCode")
+  private Optional<String> _getCountryCode() {
+    return countryCode;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -70,12 +93,12 @@ public final class WarehousesCreateInventoryRequest {
   }
 
   private boolean equalTo(WarehousesCreateInventoryRequest other) {
-    return code.equals(other.code) && name.equals(other.name) && isDefault.equals(other.isDefault);
+    return code.equals(other.code) && name.equals(other.name) && isDefault.equals(other.isDefault) && countryCode.equals(other.countryCode);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.code, this.name, this.isDefault);
+    return Objects.hash(this.code, this.name, this.isDefault, this.countryCode);
   }
 
   @java.lang.Override
@@ -107,6 +130,12 @@ public final class WarehousesCreateInventoryRequest {
     _FinalStage isDefault(Optional<Boolean> isDefault);
 
     _FinalStage isDefault(Boolean isDefault);
+
+    _FinalStage countryCode(Optional<String> countryCode);
+
+    _FinalStage countryCode(String countryCode);
+
+    _FinalStage countryCode(Nullable<String> countryCode);
   }
 
   @JsonIgnoreProperties(
@@ -116,6 +145,8 @@ public final class WarehousesCreateInventoryRequest {
     private String code;
 
     private String name;
+
+    private Optional<String> countryCode = Optional.empty();
 
     private Optional<Boolean> isDefault = Optional.empty();
 
@@ -130,6 +161,7 @@ public final class WarehousesCreateInventoryRequest {
       code(other.getCode());
       name(other.getName());
       isDefault(other.getIsDefault());
+      countryCode(other.getCountryCode());
       return this;
     }
 
@@ -144,6 +176,36 @@ public final class WarehousesCreateInventoryRequest {
     @JsonSetter("name")
     public _FinalStage name(@NotNull String name) {
       this.name = Objects.requireNonNull(name, "name must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage countryCode(Nullable<String> countryCode) {
+      if (countryCode.isNull()) {
+        this.countryCode = null;
+      }
+      else if (countryCode.isEmpty()) {
+        this.countryCode = Optional.empty();
+      }
+      else {
+        this.countryCode = Optional.of(countryCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage countryCode(String countryCode) {
+      this.countryCode = Optional.ofNullable(countryCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "countryCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage countryCode(Optional<String> countryCode) {
+      this.countryCode = countryCode;
       return this;
     }
 
@@ -165,7 +227,7 @@ public final class WarehousesCreateInventoryRequest {
 
     @java.lang.Override
     public WarehousesCreateInventoryRequest build() {
-      return new WarehousesCreateInventoryRequest(code, name, isDefault, additionalProperties);
+      return new WarehousesCreateInventoryRequest(code, name, isDefault, countryCode, additionalProperties);
     }
 
     @java.lang.Override

@@ -26,6 +26,8 @@ import org.jetbrains.annotations.NotNull;
 public final class OnlineSalesReportsResponseRowsItem {
   private final String channel;
 
+  private final String currency;
+
   private final long orders;
 
   private final long fulfilled;
@@ -40,10 +42,11 @@ public final class OnlineSalesReportsResponseRowsItem {
 
   private final Map<String, Object> additionalProperties;
 
-  private OnlineSalesReportsResponseRowsItem(String channel, long orders, long fulfilled,
-      long cancelled, long open, String net, String gross,
+  private OnlineSalesReportsResponseRowsItem(String channel, String currency, long orders,
+      long fulfilled, long cancelled, long open, String net, String gross,
       Map<String, Object> additionalProperties) {
     this.channel = channel;
+    this.currency = currency;
     this.orders = orders;
     this.fulfilled = fulfilled;
     this.cancelled = cancelled;
@@ -56,6 +59,11 @@ public final class OnlineSalesReportsResponseRowsItem {
   @JsonProperty("channel")
   public String getChannel() {
     return channel;
+  }
+
+  @JsonProperty("currency")
+  public String getCurrency() {
+    return currency;
   }
 
   @JsonProperty("orders")
@@ -100,12 +108,12 @@ public final class OnlineSalesReportsResponseRowsItem {
   }
 
   private boolean equalTo(OnlineSalesReportsResponseRowsItem other) {
-    return channel.equals(other.channel) && orders == other.orders && fulfilled == other.fulfilled && cancelled == other.cancelled && open == other.open && net.equals(other.net) && gross.equals(other.gross);
+    return channel.equals(other.channel) && currency.equals(other.currency) && orders == other.orders && fulfilled == other.fulfilled && cancelled == other.cancelled && open == other.open && net.equals(other.net) && gross.equals(other.gross);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.channel, this.orders, this.fulfilled, this.cancelled, this.open, this.net, this.gross);
+    return Objects.hash(this.channel, this.currency, this.orders, this.fulfilled, this.cancelled, this.open, this.net, this.gross);
   }
 
   @java.lang.Override
@@ -118,9 +126,13 @@ public final class OnlineSalesReportsResponseRowsItem {
   }
 
   public interface ChannelStage {
-    OrdersStage channel(@NotNull String channel);
+    CurrencyStage channel(@NotNull String channel);
 
     Builder from(OnlineSalesReportsResponseRowsItem other);
+  }
+
+  public interface CurrencyStage {
+    OrdersStage currency(@NotNull String currency);
   }
 
   public interface OrdersStage {
@@ -158,8 +170,10 @@ public final class OnlineSalesReportsResponseRowsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements ChannelStage, OrdersStage, FulfilledStage, CancelledStage, OpenStage, NetStage, GrossStage, _FinalStage {
+  public static final class Builder implements ChannelStage, CurrencyStage, OrdersStage, FulfilledStage, CancelledStage, OpenStage, NetStage, GrossStage, _FinalStage {
     private String channel;
+
+    private String currency;
 
     private long orders;
 
@@ -182,6 +196,7 @@ public final class OnlineSalesReportsResponseRowsItem {
     @java.lang.Override
     public Builder from(OnlineSalesReportsResponseRowsItem other) {
       channel(other.getChannel());
+      currency(other.getCurrency());
       orders(other.getOrders());
       fulfilled(other.getFulfilled());
       cancelled(other.getCancelled());
@@ -193,8 +208,15 @@ public final class OnlineSalesReportsResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("channel")
-    public OrdersStage channel(@NotNull String channel) {
+    public CurrencyStage channel(@NotNull String channel) {
       this.channel = Objects.requireNonNull(channel, "channel must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("currency")
+    public OrdersStage currency(@NotNull String currency) {
+      this.currency = Objects.requireNonNull(currency, "currency must not be null");
       return this;
     }
 
@@ -242,7 +264,7 @@ public final class OnlineSalesReportsResponseRowsItem {
 
     @java.lang.Override
     public OnlineSalesReportsResponseRowsItem build() {
-      return new OnlineSalesReportsResponseRowsItem(channel, orders, fulfilled, cancelled, open, net, gross, additionalProperties);
+      return new OnlineSalesReportsResponseRowsItem(channel, currency, orders, fulfilled, cancelled, open, net, gross, additionalProperties);
     }
 
     @java.lang.Override

@@ -58,6 +58,8 @@ public final class RunsApprovePayrollResponse {
 
   private final String netTotal;
 
+  private final String paidAmount;
+
   private final Optional<String> journalTransactionId;
 
   private final Optional<String> notes;
@@ -81,8 +83,8 @@ public final class RunsApprovePayrollResponse {
       String taxAllowanceTotal, String incomeTaxTotal, String employeeContributionsTotal,
       String employerContributionsTotal,
       List<RunsApprovePayrollResponseComponentTotalsItem> componentTotals, String netTotal,
-      Optional<String> journalTransactionId, Optional<String> notes, List<String> warnings,
-      OffsetDateTime createdAt, Optional<OffsetDateTime> approvedAt,
+      String paidAmount, Optional<String> journalTransactionId, Optional<String> notes,
+      List<String> warnings, OffsetDateTime createdAt, Optional<OffsetDateTime> approvedAt,
       Optional<OffsetDateTime> reversedAt, Optional<String> reversalJournalTransactionId,
       Optional<String> reversalReason, Map<String, Object> additionalProperties) {
     this.id = id;
@@ -98,6 +100,7 @@ public final class RunsApprovePayrollResponse {
     this.employerContributionsTotal = employerContributionsTotal;
     this.componentTotals = componentTotals;
     this.netTotal = netTotal;
+    this.paidAmount = paidAmount;
     this.journalTransactionId = journalTransactionId;
     this.notes = notes;
     this.warnings = warnings;
@@ -175,6 +178,11 @@ public final class RunsApprovePayrollResponse {
   @JsonProperty("netTotal")
   public String getNetTotal() {
     return netTotal;
+  }
+
+  @JsonProperty("paidAmount")
+  public String getPaidAmount() {
+    return paidAmount;
   }
 
   @JsonIgnore
@@ -310,12 +318,12 @@ public final class RunsApprovePayrollResponse {
   }
 
   private boolean equalTo(RunsApprovePayrollResponse other) {
-    return id.equals(other.id) && year == other.year && month == other.month && countryCode.equals(other.countryCode) && payDate.equals(other.payDate) && status.equals(other.status) && grossTotal.equals(other.grossTotal) && taxAllowanceTotal.equals(other.taxAllowanceTotal) && incomeTaxTotal.equals(other.incomeTaxTotal) && employeeContributionsTotal.equals(other.employeeContributionsTotal) && employerContributionsTotal.equals(other.employerContributionsTotal) && componentTotals.equals(other.componentTotals) && netTotal.equals(other.netTotal) && journalTransactionId.equals(other.journalTransactionId) && notes.equals(other.notes) && warnings.equals(other.warnings) && createdAt.equals(other.createdAt) && approvedAt.equals(other.approvedAt) && reversedAt.equals(other.reversedAt) && reversalJournalTransactionId.equals(other.reversalJournalTransactionId) && reversalReason.equals(other.reversalReason);
+    return id.equals(other.id) && year == other.year && month == other.month && countryCode.equals(other.countryCode) && payDate.equals(other.payDate) && status.equals(other.status) && grossTotal.equals(other.grossTotal) && taxAllowanceTotal.equals(other.taxAllowanceTotal) && incomeTaxTotal.equals(other.incomeTaxTotal) && employeeContributionsTotal.equals(other.employeeContributionsTotal) && employerContributionsTotal.equals(other.employerContributionsTotal) && componentTotals.equals(other.componentTotals) && netTotal.equals(other.netTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && notes.equals(other.notes) && warnings.equals(other.warnings) && createdAt.equals(other.createdAt) && approvedAt.equals(other.approvedAt) && reversedAt.equals(other.reversedAt) && reversalJournalTransactionId.equals(other.reversalJournalTransactionId) && reversalReason.equals(other.reversalReason);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.year, this.month, this.countryCode, this.payDate, this.status, this.grossTotal, this.taxAllowanceTotal, this.incomeTaxTotal, this.employeeContributionsTotal, this.employerContributionsTotal, this.componentTotals, this.netTotal, this.journalTransactionId, this.notes, this.warnings, this.createdAt, this.approvedAt, this.reversedAt, this.reversalJournalTransactionId, this.reversalReason);
+    return Objects.hash(this.id, this.year, this.month, this.countryCode, this.payDate, this.status, this.grossTotal, this.taxAllowanceTotal, this.incomeTaxTotal, this.employeeContributionsTotal, this.employerContributionsTotal, this.componentTotals, this.netTotal, this.paidAmount, this.journalTransactionId, this.notes, this.warnings, this.createdAt, this.approvedAt, this.reversedAt, this.reversalJournalTransactionId, this.reversalReason);
   }
 
   @java.lang.Override
@@ -371,7 +379,11 @@ public final class RunsApprovePayrollResponse {
   }
 
   public interface NetTotalStage {
-    CreatedAtStage netTotal(@NotNull String netTotal);
+    PaidAmountStage netTotal(@NotNull String netTotal);
+  }
+
+  public interface PaidAmountStage {
+    CreatedAtStage paidAmount(@NotNull String paidAmount);
   }
 
   public interface CreatedAtStage {
@@ -445,7 +457,7 @@ public final class RunsApprovePayrollResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, YearStage, MonthStage, CountryCodeStage, StatusStage, GrossTotalStage, TaxAllowanceTotalStage, IncomeTaxTotalStage, EmployeeContributionsTotalStage, EmployerContributionsTotalStage, NetTotalStage, CreatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, YearStage, MonthStage, CountryCodeStage, StatusStage, GrossTotalStage, TaxAllowanceTotalStage, IncomeTaxTotalStage, EmployeeContributionsTotalStage, EmployerContributionsTotalStage, NetTotalStage, PaidAmountStage, CreatedAtStage, _FinalStage {
     private String id;
 
     private long year;
@@ -467,6 +479,8 @@ public final class RunsApprovePayrollResponse {
     private String employerContributionsTotal;
 
     private String netTotal;
+
+    private String paidAmount;
 
     private OffsetDateTime createdAt;
 
@@ -509,6 +523,7 @@ public final class RunsApprovePayrollResponse {
       employerContributionsTotal(other.getEmployerContributionsTotal());
       componentTotals(other.getComponentTotals());
       netTotal(other.getNetTotal());
+      paidAmount(other.getPaidAmount());
       journalTransactionId(other.getJournalTransactionId());
       notes(other.getNotes());
       warnings(other.getWarnings());
@@ -593,8 +608,15 @@ public final class RunsApprovePayrollResponse {
 
     @java.lang.Override
     @JsonSetter("netTotal")
-    public CreatedAtStage netTotal(@NotNull String netTotal) {
+    public PaidAmountStage netTotal(@NotNull String netTotal) {
       this.netTotal = Objects.requireNonNull(netTotal, "netTotal must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("paidAmount")
+    public CreatedAtStage paidAmount(@NotNull String paidAmount) {
+      this.paidAmount = Objects.requireNonNull(paidAmount, "paidAmount must not be null");
       return this;
     }
 
@@ -874,7 +896,7 @@ public final class RunsApprovePayrollResponse {
 
     @java.lang.Override
     public RunsApprovePayrollResponse build() {
-      return new RunsApprovePayrollResponse(id, year, month, countryCode, payDate, status, grossTotal, taxAllowanceTotal, incomeTaxTotal, employeeContributionsTotal, employerContributionsTotal, componentTotals, netTotal, journalTransactionId, notes, warnings, createdAt, approvedAt, reversedAt, reversalJournalTransactionId, reversalReason, additionalProperties);
+      return new RunsApprovePayrollResponse(id, year, month, countryCode, payDate, status, grossTotal, taxAllowanceTotal, incomeTaxTotal, employeeContributionsTotal, employerContributionsTotal, componentTotals, netTotal, paidAmount, journalTransactionId, notes, warnings, createdAt, approvedAt, reversedAt, reversalJournalTransactionId, reversalReason, additionalProperties);
     }
 
     @java.lang.Override

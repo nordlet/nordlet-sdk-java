@@ -31,6 +31,8 @@ import org.jetbrains.annotations.NotNull;
     builder = DocumentsExtractCaptureResponseExtraction.Builder.class
 )
 public final class DocumentsExtractCaptureResponseExtraction {
+  private final Optional<DocumentsExtractCaptureResponseExtractionDocumentType> documentType;
+
   private final DocumentsExtractCaptureResponseExtractionSupplier supplier;
 
   private final Optional<String> documentNumber;
@@ -51,14 +53,19 @@ public final class DocumentsExtractCaptureResponseExtraction {
 
   private final List<DocumentsExtractCaptureResponseExtractionLinesItem> lines;
 
+  private final Optional<List<DocumentsExtractCaptureResponseExtractionOppositeLinesItem>> oppositeLines;
+
   private final Map<String, Object> additionalProperties;
 
   private DocumentsExtractCaptureResponseExtraction(
+      Optional<DocumentsExtractCaptureResponseExtractionDocumentType> documentType,
       DocumentsExtractCaptureResponseExtractionSupplier supplier, Optional<String> documentNumber,
       Optional<String> documentDate, Optional<String> dueDate, Optional<String> currency,
       Optional<String> netTotal, Optional<String> vatTotal, Optional<String> grossTotal,
       Optional<String> notes, List<DocumentsExtractCaptureResponseExtractionLinesItem> lines,
+      Optional<List<DocumentsExtractCaptureResponseExtractionOppositeLinesItem>> oppositeLines,
       Map<String, Object> additionalProperties) {
+    this.documentType = documentType;
     this.supplier = supplier;
     this.documentNumber = documentNumber;
     this.documentDate = documentDate;
@@ -69,7 +76,13 @@ public final class DocumentsExtractCaptureResponseExtraction {
     this.grossTotal = grossTotal;
     this.notes = notes;
     this.lines = lines;
+    this.oppositeLines = oppositeLines;
     this.additionalProperties = additionalProperties;
+  }
+
+  @JsonProperty("documentType")
+  public Optional<DocumentsExtractCaptureResponseExtractionDocumentType> getDocumentType() {
+    return documentType;
   }
 
   @JsonProperty("supplier")
@@ -144,6 +157,12 @@ public final class DocumentsExtractCaptureResponseExtraction {
   @JsonProperty("lines")
   public List<DocumentsExtractCaptureResponseExtractionLinesItem> getLines() {
     return lines;
+  }
+
+  @JsonProperty("oppositeLines")
+  public Optional<List<DocumentsExtractCaptureResponseExtractionOppositeLinesItem>> getOppositeLines(
+      ) {
+    return oppositeLines;
   }
 
   @JsonInclude(
@@ -230,12 +249,12 @@ public final class DocumentsExtractCaptureResponseExtraction {
   }
 
   private boolean equalTo(DocumentsExtractCaptureResponseExtraction other) {
-    return supplier.equals(other.supplier) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && notes.equals(other.notes) && lines.equals(other.lines);
+    return documentType.equals(other.documentType) && supplier.equals(other.supplier) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && notes.equals(other.notes) && lines.equals(other.lines) && oppositeLines.equals(other.oppositeLines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.supplier, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.notes, this.lines);
+    return Objects.hash(this.documentType, this.supplier, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.notes, this.lines, this.oppositeLines);
   }
 
   @java.lang.Override
@@ -259,6 +278,11 @@ public final class DocumentsExtractCaptureResponseExtraction {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage documentType(
+        Optional<DocumentsExtractCaptureResponseExtractionDocumentType> documentType);
+
+    _FinalStage documentType(DocumentsExtractCaptureResponseExtractionDocumentType documentType);
 
     _FinalStage documentNumber(Optional<String> documentNumber);
 
@@ -313,6 +337,12 @@ public final class DocumentsExtractCaptureResponseExtraction {
     _FinalStage addLines(DocumentsExtractCaptureResponseExtractionLinesItem lines);
 
     _FinalStage addAllLines(List<DocumentsExtractCaptureResponseExtractionLinesItem> lines);
+
+    _FinalStage oppositeLines(
+        Optional<List<DocumentsExtractCaptureResponseExtractionOppositeLinesItem>> oppositeLines);
+
+    _FinalStage oppositeLines(
+        List<DocumentsExtractCaptureResponseExtractionOppositeLinesItem> oppositeLines);
   }
 
   @JsonIgnoreProperties(
@@ -320,6 +350,8 @@ public final class DocumentsExtractCaptureResponseExtraction {
   )
   public static final class Builder implements SupplierStage, _FinalStage {
     private DocumentsExtractCaptureResponseExtractionSupplier supplier;
+
+    private Optional<List<DocumentsExtractCaptureResponseExtractionOppositeLinesItem>> oppositeLines = Optional.empty();
 
     private List<DocumentsExtractCaptureResponseExtractionLinesItem> lines = new ArrayList<>();
 
@@ -339,6 +371,8 @@ public final class DocumentsExtractCaptureResponseExtraction {
 
     private Optional<String> documentNumber = Optional.empty();
 
+    private Optional<DocumentsExtractCaptureResponseExtractionDocumentType> documentType = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -347,6 +381,7 @@ public final class DocumentsExtractCaptureResponseExtraction {
 
     @java.lang.Override
     public Builder from(DocumentsExtractCaptureResponseExtraction other) {
+      documentType(other.getDocumentType());
       supplier(other.getSupplier());
       documentNumber(other.getDocumentNumber());
       documentDate(other.getDocumentDate());
@@ -357,6 +392,7 @@ public final class DocumentsExtractCaptureResponseExtraction {
       grossTotal(other.getGrossTotal());
       notes(other.getNotes());
       lines(other.getLines());
+      oppositeLines(other.getOppositeLines());
       return this;
     }
 
@@ -365,6 +401,24 @@ public final class DocumentsExtractCaptureResponseExtraction {
     public _FinalStage supplier(
         @NotNull DocumentsExtractCaptureResponseExtractionSupplier supplier) {
       this.supplier = Objects.requireNonNull(supplier, "supplier must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage oppositeLines(
+        List<DocumentsExtractCaptureResponseExtractionOppositeLinesItem> oppositeLines) {
+      this.oppositeLines = Optional.ofNullable(oppositeLines);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "oppositeLines",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage oppositeLines(
+        Optional<List<DocumentsExtractCaptureResponseExtractionOppositeLinesItem>> oppositeLines) {
+      this.oppositeLines = oppositeLines;
       return this;
     }
 
@@ -636,8 +690,26 @@ public final class DocumentsExtractCaptureResponseExtraction {
     }
 
     @java.lang.Override
+    public _FinalStage documentType(
+        DocumentsExtractCaptureResponseExtractionDocumentType documentType) {
+      this.documentType = Optional.ofNullable(documentType);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentType",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentType(
+        Optional<DocumentsExtractCaptureResponseExtractionDocumentType> documentType) {
+      this.documentType = documentType;
+      return this;
+    }
+
+    @java.lang.Override
     public DocumentsExtractCaptureResponseExtraction build() {
-      return new DocumentsExtractCaptureResponseExtraction(supplier, documentNumber, documentDate, dueDate, currency, netTotal, vatTotal, grossTotal, notes, lines, additionalProperties);
+      return new DocumentsExtractCaptureResponseExtraction(documentType, supplier, documentNumber, documentDate, dueDate, currency, netTotal, vatTotal, grossTotal, notes, lines, oppositeLines, additionalProperties);
     }
 
     @java.lang.Override

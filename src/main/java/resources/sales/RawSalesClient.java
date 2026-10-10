@@ -45,6 +45,7 @@ import com.nordlet.api.resources.sales.requests.InvoicesPaymentSettingsGetSalesR
 import com.nordlet.api.resources.sales.requests.InvoicesPaymentSettingsUpdateSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesPdfSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesPeppolSendSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesPeppolStatusSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesPeppolXmlSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesSendSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesUnlockSalesRequest;
@@ -80,6 +81,7 @@ import com.nordlet.api.resources.sales.types.InvoicesPaymentSettingsGetSalesResp
 import com.nordlet.api.resources.sales.types.InvoicesPaymentSettingsUpdateSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesPdfSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesPeppolSendSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesPeppolStatusSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesPeppolXmlSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesSendSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesUnlockSalesResponse;
@@ -457,11 +459,17 @@ public class RawSalesClient {
               }
             }
 
+            /**
+             * Send an issued invoice or credit note to the customer over Peppol through the company's own access point (Settings → Compliance → EU; Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with <code>sales/invoices/peppol-xml</code>. <code>status</code> is <code>pending</code> until the receiving access point confirms, then <code>delivered</code>; <code>failed</code> and <code>rejected</code> come with <code>detail</code>, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as <code>sale_invoice.peppol_delivered</code>, <code>sale_invoice.peppol_rejected</code> and <code>sale_invoice.peppol_failed</code>.
+             */
             public NordletApiHttpResponse<InvoicesPeppolSendSalesResponse> invoicesPeppolSend(
                 InvoicesPeppolSendSalesRequest request) {
               return invoicesPeppolSend(request,null);
             }
 
+            /**
+             * Send an issued invoice or credit note to the customer over Peppol through the company's own access point (Settings → Compliance → EU; Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with <code>sales/invoices/peppol-xml</code>. <code>status</code> is <code>pending</code> until the receiving access point confirms, then <code>delivered</code>; <code>failed</code> and <code>rejected</code> come with <code>detail</code>, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as <code>sale_invoice.peppol_delivered</code>, <code>sale_invoice.peppol_rejected</code> and <code>sale_invoice.peppol_failed</code>.
+             */
             public NordletApiHttpResponse<InvoicesPeppolSendSalesResponse> invoicesPeppolSend(
                 InvoicesPeppolSendSalesRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -527,21 +535,21 @@ public class RawSalesClient {
               }
 
               /**
-               * Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
+               * Ask the company's Peppol access point what happened to an invoice sent with <code>sales/invoices/peppol-send</code>, and store the answer: <code>pending</code>, <code>delivered</code> (the receiving access point confirmed it), <code>rejected</code> (the receiver refused it, see <code>detail</code>) or <code>failed</code> (it could not be delivered, see <code>detail</code>). The access point's webhook updates the same fields without this call. Storecove has no call for the status of a sent document, so for a Storecove access point this answers 422 and the status comes only from its webhook.
                */
-              public NordletApiHttpResponse<InvoicesEinvoiceXmlSalesResponse> invoicesEinvoiceXml(
-                  InvoicesEinvoiceXmlSalesRequest request) {
-                return invoicesEinvoiceXml(request,null);
+              public NordletApiHttpResponse<InvoicesPeppolStatusSalesResponse> invoicesPeppolStatus(
+                  InvoicesPeppolStatusSalesRequest request) {
+                return invoicesPeppolStatus(request,null);
               }
 
               /**
-               * Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
+               * Ask the company's Peppol access point what happened to an invoice sent with <code>sales/invoices/peppol-send</code>, and store the answer: <code>pending</code>, <code>delivered</code> (the receiving access point confirmed it), <code>rejected</code> (the receiver refused it, see <code>detail</code>) or <code>failed</code> (it could not be delivered, see <code>detail</code>). The access point's webhook updates the same fields without this call. Storecove has no call for the status of a sent document, so for a Storecove access point this answers 422 and the status comes only from its webhook.
                */
-              public NordletApiHttpResponse<InvoicesEinvoiceXmlSalesResponse> invoicesEinvoiceXml(
-                  InvoicesEinvoiceXmlSalesRequest request, RequestOptions requestOptions) {
+              public NordletApiHttpResponse<InvoicesPeppolStatusSalesResponse> invoicesPeppolStatus(
+                  InvoicesPeppolStatusSalesRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                  .addPathSegments("v1/sales/invoices/einvoice-xml");if (requestOptions != null) {
+                  .addPathSegments("v1/sales/invoices/peppol-status");if (requestOptions != null) {
                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                       httpUrl.addQueryParameter(_key, _value);
                     } );
@@ -571,7 +579,7 @@ public class RawSalesClient {
                     ResponseBody responseBody = response.body();
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesEinvoiceXmlSalesResponse.class), response);
+                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesPeppolStatusSalesResponse.class), response);
                     }
                     try {
                       switch (response.code()) {
@@ -602,21 +610,21 @@ public class RawSalesClient {
                 }
 
                 /**
-                 * Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
+                 * Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
                  */
-                public NordletApiHttpResponse<InvoicesEinvoiceSendSalesResponse> invoicesEinvoiceSend(
-                    InvoicesEinvoiceSendSalesRequest request) {
-                  return invoicesEinvoiceSend(request,null);
+                public NordletApiHttpResponse<InvoicesEinvoiceXmlSalesResponse> invoicesEinvoiceXml(
+                    InvoicesEinvoiceXmlSalesRequest request) {
+                  return invoicesEinvoiceXml(request,null);
                 }
 
                 /**
-                 * Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
+                 * Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
                  */
-                public NordletApiHttpResponse<InvoicesEinvoiceSendSalesResponse> invoicesEinvoiceSend(
-                    InvoicesEinvoiceSendSalesRequest request, RequestOptions requestOptions) {
+                public NordletApiHttpResponse<InvoicesEinvoiceXmlSalesResponse> invoicesEinvoiceXml(
+                    InvoicesEinvoiceXmlSalesRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                    .addPathSegments("v1/sales/invoices/einvoice-send");if (requestOptions != null) {
+                    .addPathSegments("v1/sales/invoices/einvoice-xml");if (requestOptions != null) {
                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                         httpUrl.addQueryParameter(_key, _value);
                       } );
@@ -646,7 +654,7 @@ public class RawSalesClient {
                       ResponseBody responseBody = response.body();
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesEinvoiceSendSalesResponse.class), response);
+                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesEinvoiceXmlSalesResponse.class), response);
                       }
                       try {
                         switch (response.code()) {
@@ -677,21 +685,21 @@ public class RawSalesClient {
                   }
 
                   /**
-                   * Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
+                   * Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
                    */
-                  public NordletApiHttpResponse<InvoicesEinvoiceStatusSalesResponse> invoicesEinvoiceStatus(
-                      InvoicesEinvoiceStatusSalesRequest request) {
-                    return invoicesEinvoiceStatus(request,null);
+                  public NordletApiHttpResponse<InvoicesEinvoiceSendSalesResponse> invoicesEinvoiceSend(
+                      InvoicesEinvoiceSendSalesRequest request) {
+                    return invoicesEinvoiceSend(request,null);
                   }
 
                   /**
-                   * Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
+                   * Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
                    */
-                  public NordletApiHttpResponse<InvoicesEinvoiceStatusSalesResponse> invoicesEinvoiceStatus(
-                      InvoicesEinvoiceStatusSalesRequest request, RequestOptions requestOptions) {
+                  public NordletApiHttpResponse<InvoicesEinvoiceSendSalesResponse> invoicesEinvoiceSend(
+                      InvoicesEinvoiceSendSalesRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                      .addPathSegments("v1/sales/invoices/einvoice-status");if (requestOptions != null) {
+                      .addPathSegments("v1/sales/invoices/einvoice-send");if (requestOptions != null) {
                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                           httpUrl.addQueryParameter(_key, _value);
                         } );
@@ -721,7 +729,7 @@ public class RawSalesClient {
                         ResponseBody responseBody = response.body();
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesEinvoiceStatusSalesResponse.class), response);
+                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesEinvoiceSendSalesResponse.class), response);
                         }
                         try {
                           switch (response.code()) {
@@ -751,16 +759,22 @@ public class RawSalesClient {
                       }
                     }
 
-                    public NordletApiHttpResponse<InvoicesUpdateSalesResponse> invoicesUpdate(
-                        InvoicesUpdateSalesRequest request) {
-                      return invoicesUpdate(request,null);
+                    /**
+                     * Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
+                     */
+                    public NordletApiHttpResponse<InvoicesEinvoiceStatusSalesResponse> invoicesEinvoiceStatus(
+                        InvoicesEinvoiceStatusSalesRequest request) {
+                      return invoicesEinvoiceStatus(request,null);
                     }
 
-                    public NordletApiHttpResponse<InvoicesUpdateSalesResponse> invoicesUpdate(
-                        InvoicesUpdateSalesRequest request, RequestOptions requestOptions) {
+                    /**
+                     * Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
+                     */
+                    public NordletApiHttpResponse<InvoicesEinvoiceStatusSalesResponse> invoicesEinvoiceStatus(
+                        InvoicesEinvoiceStatusSalesRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                        .addPathSegments("v1/sales/invoices/update");if (requestOptions != null) {
+                        .addPathSegments("v1/sales/invoices/einvoice-status");if (requestOptions != null) {
                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                             httpUrl.addQueryParameter(_key, _value);
                           } );
@@ -790,7 +804,7 @@ public class RawSalesClient {
                           ResponseBody responseBody = response.body();
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesUpdateSalesResponse.class), response);
+                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesEinvoiceStatusSalesResponse.class), response);
                           }
                           try {
                             switch (response.code()) {
@@ -820,16 +834,16 @@ public class RawSalesClient {
                         }
                       }
 
-                      public NordletApiHttpResponse<InvoicesDeleteSalesResponse> invoicesDelete(
-                          InvoicesDeleteSalesRequest request) {
-                        return invoicesDelete(request,null);
+                      public NordletApiHttpResponse<InvoicesUpdateSalesResponse> invoicesUpdate(
+                          InvoicesUpdateSalesRequest request) {
+                        return invoicesUpdate(request,null);
                       }
 
-                      public NordletApiHttpResponse<InvoicesDeleteSalesResponse> invoicesDelete(
-                          InvoicesDeleteSalesRequest request, RequestOptions requestOptions) {
+                      public NordletApiHttpResponse<InvoicesUpdateSalesResponse> invoicesUpdate(
+                          InvoicesUpdateSalesRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                          .addPathSegments("v1/sales/invoices/delete");if (requestOptions != null) {
+                          .addPathSegments("v1/sales/invoices/update");if (requestOptions != null) {
                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                               httpUrl.addQueryParameter(_key, _value);
                             } );
@@ -859,7 +873,7 @@ public class RawSalesClient {
                             ResponseBody responseBody = response.body();
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesDeleteSalesResponse.class), response);
+                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesUpdateSalesResponse.class), response);
                             }
                             try {
                               switch (response.code()) {
@@ -889,16 +903,16 @@ public class RawSalesClient {
                           }
                         }
 
-                        public NordletApiHttpResponse<InvoicesIssueSalesResponse> invoicesIssue(
-                            InvoicesIssueSalesRequest request) {
-                          return invoicesIssue(request,null);
+                        public NordletApiHttpResponse<InvoicesDeleteSalesResponse> invoicesDelete(
+                            InvoicesDeleteSalesRequest request) {
+                          return invoicesDelete(request,null);
                         }
 
-                        public NordletApiHttpResponse<InvoicesIssueSalesResponse> invoicesIssue(
-                            InvoicesIssueSalesRequest request, RequestOptions requestOptions) {
+                        public NordletApiHttpResponse<InvoicesDeleteSalesResponse> invoicesDelete(
+                            InvoicesDeleteSalesRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                            .addPathSegments("v1/sales/invoices/issue");if (requestOptions != null) {
+                            .addPathSegments("v1/sales/invoices/delete");if (requestOptions != null) {
                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                 httpUrl.addQueryParameter(_key, _value);
                               } );
@@ -928,7 +942,7 @@ public class RawSalesClient {
                               ResponseBody responseBody = response.body();
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesIssueSalesResponse.class), response);
+                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesDeleteSalesResponse.class), response);
                               }
                               try {
                                 switch (response.code()) {
@@ -958,16 +972,16 @@ public class RawSalesClient {
                             }
                           }
 
-                          public NordletApiHttpResponse<InvoicesLockSalesResponse> invoicesLock(
-                              InvoicesLockSalesRequest request) {
-                            return invoicesLock(request,null);
+                          public NordletApiHttpResponse<InvoicesIssueSalesResponse> invoicesIssue(
+                              InvoicesIssueSalesRequest request) {
+                            return invoicesIssue(request,null);
                           }
 
-                          public NordletApiHttpResponse<InvoicesLockSalesResponse> invoicesLock(
-                              InvoicesLockSalesRequest request, RequestOptions requestOptions) {
+                          public NordletApiHttpResponse<InvoicesIssueSalesResponse> invoicesIssue(
+                              InvoicesIssueSalesRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                              .addPathSegments("v1/sales/invoices/lock");if (requestOptions != null) {
+                              .addPathSegments("v1/sales/invoices/issue");if (requestOptions != null) {
                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                   httpUrl.addQueryParameter(_key, _value);
                                 } );
@@ -997,7 +1011,7 @@ public class RawSalesClient {
                                 ResponseBody responseBody = response.body();
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesLockSalesResponse.class), response);
+                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesIssueSalesResponse.class), response);
                                 }
                                 try {
                                   switch (response.code()) {
@@ -1027,16 +1041,16 @@ public class RawSalesClient {
                               }
                             }
 
-                            public NordletApiHttpResponse<InvoicesUnlockSalesResponse> invoicesUnlock(
-                                InvoicesUnlockSalesRequest request) {
-                              return invoicesUnlock(request,null);
+                            public NordletApiHttpResponse<InvoicesLockSalesResponse> invoicesLock(
+                                InvoicesLockSalesRequest request) {
+                              return invoicesLock(request,null);
                             }
 
-                            public NordletApiHttpResponse<InvoicesUnlockSalesResponse> invoicesUnlock(
-                                InvoicesUnlockSalesRequest request, RequestOptions requestOptions) {
+                            public NordletApiHttpResponse<InvoicesLockSalesResponse> invoicesLock(
+                                InvoicesLockSalesRequest request, RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                .addPathSegments("v1/sales/invoices/unlock");if (requestOptions != null) {
+                                .addPathSegments("v1/sales/invoices/lock");if (requestOptions != null) {
                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                     httpUrl.addQueryParameter(_key, _value);
                                   } );
@@ -1066,7 +1080,7 @@ public class RawSalesClient {
                                   ResponseBody responseBody = response.body();
                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                   if (response.isSuccessful()) {
-                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesUnlockSalesResponse.class), response);
+                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesLockSalesResponse.class), response);
                                   }
                                   try {
                                     switch (response.code()) {
@@ -1096,17 +1110,17 @@ public class RawSalesClient {
                                 }
                               }
 
-                              public NordletApiHttpResponse<InvoicesPaymentLinkSalesResponse> invoicesPaymentLink(
-                                  InvoicesPaymentLinkSalesRequest request) {
-                                return invoicesPaymentLink(request,null);
+                              public NordletApiHttpResponse<InvoicesUnlockSalesResponse> invoicesUnlock(
+                                  InvoicesUnlockSalesRequest request) {
+                                return invoicesUnlock(request,null);
                               }
 
-                              public NordletApiHttpResponse<InvoicesPaymentLinkSalesResponse> invoicesPaymentLink(
-                                  InvoicesPaymentLinkSalesRequest request,
+                              public NordletApiHttpResponse<InvoicesUnlockSalesResponse> invoicesUnlock(
+                                  InvoicesUnlockSalesRequest request,
                                   RequestOptions requestOptions) {
                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                  .addPathSegments("v1/sales/invoices/payment-link");if (requestOptions != null) {
+                                  .addPathSegments("v1/sales/invoices/unlock");if (requestOptions != null) {
                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                       httpUrl.addQueryParameter(_key, _value);
                                     } );
@@ -1136,7 +1150,7 @@ public class RawSalesClient {
                                     ResponseBody responseBody = response.body();
                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                     if (response.isSuccessful()) {
-                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesPaymentLinkSalesResponse.class), response);
+                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesUnlockSalesResponse.class), response);
                                     }
                                     try {
                                       switch (response.code()) {
@@ -1166,27 +1180,17 @@ public class RawSalesClient {
                                   }
                                 }
 
-                                public NordletApiHttpResponse<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet(
-                                    ) {
-                                  return invoicesPaymentSettingsGet(InvoicesPaymentSettingsGetSalesRequest.builder().build());
+                                public NordletApiHttpResponse<InvoicesPaymentLinkSalesResponse> invoicesPaymentLink(
+                                    InvoicesPaymentLinkSalesRequest request) {
+                                  return invoicesPaymentLink(request,null);
                                 }
 
-                                public NordletApiHttpResponse<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet(
-                                    RequestOptions requestOptions) {
-                                  return invoicesPaymentSettingsGet(InvoicesPaymentSettingsGetSalesRequest.builder().build(),requestOptions);
-                                }
-
-                                public NordletApiHttpResponse<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet(
-                                    InvoicesPaymentSettingsGetSalesRequest request) {
-                                  return invoicesPaymentSettingsGet(request,null);
-                                }
-
-                                public NordletApiHttpResponse<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet(
-                                    InvoicesPaymentSettingsGetSalesRequest request,
+                                public NordletApiHttpResponse<InvoicesPaymentLinkSalesResponse> invoicesPaymentLink(
+                                    InvoicesPaymentLinkSalesRequest request,
                                     RequestOptions requestOptions) {
                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                    .addPathSegments("v1/sales/invoices/payment-settings/get");if (requestOptions != null) {
+                                    .addPathSegments("v1/sales/invoices/payment-link");if (requestOptions != null) {
                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                         httpUrl.addQueryParameter(_key, _value);
                                       } );
@@ -1216,7 +1220,7 @@ public class RawSalesClient {
                                       ResponseBody responseBody = response.body();
                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                       if (response.isSuccessful()) {
-                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesPaymentSettingsGetSalesResponse.class), response);
+                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesPaymentLinkSalesResponse.class), response);
                                       }
                                       try {
                                         switch (response.code()) {
@@ -1246,17 +1250,27 @@ public class RawSalesClient {
                                     }
                                   }
 
-                                  public NordletApiHttpResponse<InvoicesPaymentSettingsUpdateSalesResponse> invoicesPaymentSettingsUpdate(
-                                      InvoicesPaymentSettingsUpdateSalesRequest request) {
-                                    return invoicesPaymentSettingsUpdate(request,null);
+                                  public NordletApiHttpResponse<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet(
+                                      ) {
+                                    return invoicesPaymentSettingsGet(InvoicesPaymentSettingsGetSalesRequest.builder().build());
                                   }
 
-                                  public NordletApiHttpResponse<InvoicesPaymentSettingsUpdateSalesResponse> invoicesPaymentSettingsUpdate(
-                                      InvoicesPaymentSettingsUpdateSalesRequest request,
+                                  public NordletApiHttpResponse<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet(
+                                      RequestOptions requestOptions) {
+                                    return invoicesPaymentSettingsGet(InvoicesPaymentSettingsGetSalesRequest.builder().build(),requestOptions);
+                                  }
+
+                                  public NordletApiHttpResponse<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet(
+                                      InvoicesPaymentSettingsGetSalesRequest request) {
+                                    return invoicesPaymentSettingsGet(request,null);
+                                  }
+
+                                  public NordletApiHttpResponse<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet(
+                                      InvoicesPaymentSettingsGetSalesRequest request,
                                       RequestOptions requestOptions) {
                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                      .addPathSegments("v1/sales/invoices/payment-settings/update");if (requestOptions != null) {
+                                      .addPathSegments("v1/sales/invoices/payment-settings/get");if (requestOptions != null) {
                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                           httpUrl.addQueryParameter(_key, _value);
                                         } );
@@ -1286,7 +1300,7 @@ public class RawSalesClient {
                                         ResponseBody responseBody = response.body();
                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                         if (response.isSuccessful()) {
-                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesPaymentSettingsUpdateSalesResponse.class), response);
+                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesPaymentSettingsGetSalesResponse.class), response);
                                         }
                                         try {
                                           switch (response.code()) {
@@ -1316,27 +1330,17 @@ public class RawSalesClient {
                                       }
                                     }
 
-                                    public NordletApiHttpResponse<RecognitionSchedulesListSalesResponse> recognitionSchedulesList(
-                                        ) {
-                                      return recognitionSchedulesList(RecognitionSchedulesListSalesRequest.builder().build());
+                                    public NordletApiHttpResponse<InvoicesPaymentSettingsUpdateSalesResponse> invoicesPaymentSettingsUpdate(
+                                        InvoicesPaymentSettingsUpdateSalesRequest request) {
+                                      return invoicesPaymentSettingsUpdate(request,null);
                                     }
 
-                                    public NordletApiHttpResponse<RecognitionSchedulesListSalesResponse> recognitionSchedulesList(
-                                        RequestOptions requestOptions) {
-                                      return recognitionSchedulesList(RecognitionSchedulesListSalesRequest.builder().build(),requestOptions);
-                                    }
-
-                                    public NordletApiHttpResponse<RecognitionSchedulesListSalesResponse> recognitionSchedulesList(
-                                        RecognitionSchedulesListSalesRequest request) {
-                                      return recognitionSchedulesList(request,null);
-                                    }
-
-                                    public NordletApiHttpResponse<RecognitionSchedulesListSalesResponse> recognitionSchedulesList(
-                                        RecognitionSchedulesListSalesRequest request,
+                                    public NordletApiHttpResponse<InvoicesPaymentSettingsUpdateSalesResponse> invoicesPaymentSettingsUpdate(
+                                        InvoicesPaymentSettingsUpdateSalesRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                        .addPathSegments("v1/sales/recognition-schedules/list");if (requestOptions != null) {
+                                        .addPathSegments("v1/sales/invoices/payment-settings/update");if (requestOptions != null) {
                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                             httpUrl.addQueryParameter(_key, _value);
                                           } );
@@ -1366,7 +1370,7 @@ public class RawSalesClient {
                                           ResponseBody responseBody = response.body();
                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                           if (response.isSuccessful()) {
-                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionSchedulesListSalesResponse.class), response);
+                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesPaymentSettingsUpdateSalesResponse.class), response);
                                           }
                                           try {
                                             switch (response.code()) {
@@ -1396,17 +1400,27 @@ public class RawSalesClient {
                                         }
                                       }
 
-                                      public NordletApiHttpResponse<InvoicesApplyAdvanceSalesResponse> invoicesApplyAdvance(
-                                          InvoicesApplyAdvanceSalesRequest request) {
-                                        return invoicesApplyAdvance(request,null);
+                                      public NordletApiHttpResponse<RecognitionSchedulesListSalesResponse> recognitionSchedulesList(
+                                          ) {
+                                        return recognitionSchedulesList(RecognitionSchedulesListSalesRequest.builder().build());
                                       }
 
-                                      public NordletApiHttpResponse<InvoicesApplyAdvanceSalesResponse> invoicesApplyAdvance(
-                                          InvoicesApplyAdvanceSalesRequest request,
+                                      public NordletApiHttpResponse<RecognitionSchedulesListSalesResponse> recognitionSchedulesList(
+                                          RequestOptions requestOptions) {
+                                        return recognitionSchedulesList(RecognitionSchedulesListSalesRequest.builder().build(),requestOptions);
+                                      }
+
+                                      public NordletApiHttpResponse<RecognitionSchedulesListSalesResponse> recognitionSchedulesList(
+                                          RecognitionSchedulesListSalesRequest request) {
+                                        return recognitionSchedulesList(request,null);
+                                      }
+
+                                      public NordletApiHttpResponse<RecognitionSchedulesListSalesResponse> recognitionSchedulesList(
+                                          RecognitionSchedulesListSalesRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                          .addPathSegments("v1/sales/invoices/apply-advance");if (requestOptions != null) {
+                                          .addPathSegments("v1/sales/recognition-schedules/list");if (requestOptions != null) {
                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                               httpUrl.addQueryParameter(_key, _value);
                                             } );
@@ -1436,7 +1450,7 @@ public class RawSalesClient {
                                             ResponseBody responseBody = response.body();
                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                             if (response.isSuccessful()) {
-                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesApplyAdvanceSalesResponse.class), response);
+                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionSchedulesListSalesResponse.class), response);
                                             }
                                             try {
                                               switch (response.code()) {
@@ -1466,27 +1480,17 @@ public class RawSalesClient {
                                           }
                                         }
 
-                                        public NordletApiHttpResponse<InvoicesListSalesResponse> invoicesList(
-                                            ) {
-                                          return invoicesList(InvoicesListSalesRequest.builder().build());
+                                        public NordletApiHttpResponse<InvoicesApplyAdvanceSalesResponse> invoicesApplyAdvance(
+                                            InvoicesApplyAdvanceSalesRequest request) {
+                                          return invoicesApplyAdvance(request,null);
                                         }
 
-                                        public NordletApiHttpResponse<InvoicesListSalesResponse> invoicesList(
-                                            RequestOptions requestOptions) {
-                                          return invoicesList(InvoicesListSalesRequest.builder().build(),requestOptions);
-                                        }
-
-                                        public NordletApiHttpResponse<InvoicesListSalesResponse> invoicesList(
-                                            InvoicesListSalesRequest request) {
-                                          return invoicesList(request,null);
-                                        }
-
-                                        public NordletApiHttpResponse<InvoicesListSalesResponse> invoicesList(
-                                            InvoicesListSalesRequest request,
+                                        public NordletApiHttpResponse<InvoicesApplyAdvanceSalesResponse> invoicesApplyAdvance(
+                                            InvoicesApplyAdvanceSalesRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                            .addPathSegments("v1/sales/invoices/list");if (requestOptions != null) {
+                                            .addPathSegments("v1/sales/invoices/apply-advance");if (requestOptions != null) {
                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                 httpUrl.addQueryParameter(_key, _value);
                                               } );
@@ -1516,7 +1520,7 @@ public class RawSalesClient {
                                               ResponseBody responseBody = response.body();
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesListSalesResponse.class), response);
+                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesApplyAdvanceSalesResponse.class), response);
                                               }
                                               try {
                                                 switch (response.code()) {
@@ -1546,17 +1550,27 @@ public class RawSalesClient {
                                             }
                                           }
 
-                                          public NordletApiHttpResponse<ActsCreateSalesResponse> actsCreate(
-                                              ActsCreateSalesRequest request) {
-                                            return actsCreate(request,null);
+                                          public NordletApiHttpResponse<InvoicesListSalesResponse> invoicesList(
+                                              ) {
+                                            return invoicesList(InvoicesListSalesRequest.builder().build());
                                           }
 
-                                          public NordletApiHttpResponse<ActsCreateSalesResponse> actsCreate(
-                                              ActsCreateSalesRequest request,
+                                          public NordletApiHttpResponse<InvoicesListSalesResponse> invoicesList(
+                                              RequestOptions requestOptions) {
+                                            return invoicesList(InvoicesListSalesRequest.builder().build(),requestOptions);
+                                          }
+
+                                          public NordletApiHttpResponse<InvoicesListSalesResponse> invoicesList(
+                                              InvoicesListSalesRequest request) {
+                                            return invoicesList(request,null);
+                                          }
+
+                                          public NordletApiHttpResponse<InvoicesListSalesResponse> invoicesList(
+                                              InvoicesListSalesRequest request,
                                               RequestOptions requestOptions) {
                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                              .addPathSegments("v1/sales/acts/create");if (requestOptions != null) {
+                                              .addPathSegments("v1/sales/invoices/list");if (requestOptions != null) {
                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                   httpUrl.addQueryParameter(_key, _value);
                                                 } );
@@ -1586,7 +1600,7 @@ public class RawSalesClient {
                                                 ResponseBody responseBody = response.body();
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ActsCreateSalesResponse.class), response);
+                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesListSalesResponse.class), response);
                                                 }
                                                 try {
                                                   switch (response.code()) {
@@ -1616,17 +1630,17 @@ public class RawSalesClient {
                                               }
                                             }
 
-                                            public NordletApiHttpResponse<ActsUpdateSalesResponse> actsUpdate(
-                                                ActsUpdateSalesRequest request) {
-                                              return actsUpdate(request,null);
+                                            public NordletApiHttpResponse<ActsCreateSalesResponse> actsCreate(
+                                                ActsCreateSalesRequest request) {
+                                              return actsCreate(request,null);
                                             }
 
-                                            public NordletApiHttpResponse<ActsUpdateSalesResponse> actsUpdate(
-                                                ActsUpdateSalesRequest request,
+                                            public NordletApiHttpResponse<ActsCreateSalesResponse> actsCreate(
+                                                ActsCreateSalesRequest request,
                                                 RequestOptions requestOptions) {
                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                .addPathSegments("v1/sales/acts/update");if (requestOptions != null) {
+                                                .addPathSegments("v1/sales/acts/create");if (requestOptions != null) {
                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                     httpUrl.addQueryParameter(_key, _value);
                                                   } );
@@ -1656,7 +1670,7 @@ public class RawSalesClient {
                                                   ResponseBody responseBody = response.body();
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ActsUpdateSalesResponse.class), response);
+                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ActsCreateSalesResponse.class), response);
                                                   }
                                                   try {
                                                     switch (response.code()) {
@@ -1686,17 +1700,17 @@ public class RawSalesClient {
                                                 }
                                               }
 
-                                              public NordletApiHttpResponse<ActsIssueSalesResponse> actsIssue(
-                                                  ActsIssueSalesRequest request) {
-                                                return actsIssue(request,null);
+                                              public NordletApiHttpResponse<ActsUpdateSalesResponse> actsUpdate(
+                                                  ActsUpdateSalesRequest request) {
+                                                return actsUpdate(request,null);
                                               }
 
-                                              public NordletApiHttpResponse<ActsIssueSalesResponse> actsIssue(
-                                                  ActsIssueSalesRequest request,
+                                              public NordletApiHttpResponse<ActsUpdateSalesResponse> actsUpdate(
+                                                  ActsUpdateSalesRequest request,
                                                   RequestOptions requestOptions) {
                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                  .addPathSegments("v1/sales/acts/issue");if (requestOptions != null) {
+                                                  .addPathSegments("v1/sales/acts/update");if (requestOptions != null) {
                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                       httpUrl.addQueryParameter(_key, _value);
                                                     } );
@@ -1726,7 +1740,7 @@ public class RawSalesClient {
                                                     ResponseBody responseBody = response.body();
                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                     if (response.isSuccessful()) {
-                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ActsIssueSalesResponse.class), response);
+                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ActsUpdateSalesResponse.class), response);
                                                     }
                                                     try {
                                                       switch (response.code()) {
@@ -1756,17 +1770,17 @@ public class RawSalesClient {
                                                   }
                                                 }
 
-                                                public NordletApiHttpResponse<ActsCancelSalesResponse> actsCancel(
-                                                    ActsCancelSalesRequest request) {
-                                                  return actsCancel(request,null);
+                                                public NordletApiHttpResponse<ActsIssueSalesResponse> actsIssue(
+                                                    ActsIssueSalesRequest request) {
+                                                  return actsIssue(request,null);
                                                 }
 
-                                                public NordletApiHttpResponse<ActsCancelSalesResponse> actsCancel(
-                                                    ActsCancelSalesRequest request,
+                                                public NordletApiHttpResponse<ActsIssueSalesResponse> actsIssue(
+                                                    ActsIssueSalesRequest request,
                                                     RequestOptions requestOptions) {
                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                    .addPathSegments("v1/sales/acts/cancel");if (requestOptions != null) {
+                                                    .addPathSegments("v1/sales/acts/issue");if (requestOptions != null) {
                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                         httpUrl.addQueryParameter(_key, _value);
                                                       } );
@@ -1796,7 +1810,7 @@ public class RawSalesClient {
                                                       ResponseBody responseBody = response.body();
                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                       if (response.isSuccessful()) {
-                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ActsCancelSalesResponse.class), response);
+                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ActsIssueSalesResponse.class), response);
                                                       }
                                                       try {
                                                         switch (response.code()) {
@@ -1826,17 +1840,17 @@ public class RawSalesClient {
                                                     }
                                                   }
 
-                                                  public NordletApiHttpResponse<ActsGetSalesResponse> actsGet(
-                                                      ActsGetSalesRequest request) {
-                                                    return actsGet(request,null);
+                                                  public NordletApiHttpResponse<ActsCancelSalesResponse> actsCancel(
+                                                      ActsCancelSalesRequest request) {
+                                                    return actsCancel(request,null);
                                                   }
 
-                                                  public NordletApiHttpResponse<ActsGetSalesResponse> actsGet(
-                                                      ActsGetSalesRequest request,
+                                                  public NordletApiHttpResponse<ActsCancelSalesResponse> actsCancel(
+                                                      ActsCancelSalesRequest request,
                                                       RequestOptions requestOptions) {
                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                      .addPathSegments("v1/sales/acts/get");if (requestOptions != null) {
+                                                      .addPathSegments("v1/sales/acts/cancel");if (requestOptions != null) {
                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                           httpUrl.addQueryParameter(_key, _value);
                                                         } );
@@ -1866,7 +1880,7 @@ public class RawSalesClient {
                                                         ResponseBody responseBody = response.body();
                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                         if (response.isSuccessful()) {
-                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ActsGetSalesResponse.class), response);
+                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ActsCancelSalesResponse.class), response);
                                                         }
                                                         try {
                                                           switch (response.code()) {
@@ -1896,27 +1910,17 @@ public class RawSalesClient {
                                                       }
                                                     }
 
-                                                    public NordletApiHttpResponse<ActsListSalesResponse> actsList(
-                                                        ) {
-                                                      return actsList(ActsListSalesRequest.builder().build());
+                                                    public NordletApiHttpResponse<ActsGetSalesResponse> actsGet(
+                                                        ActsGetSalesRequest request) {
+                                                      return actsGet(request,null);
                                                     }
 
-                                                    public NordletApiHttpResponse<ActsListSalesResponse> actsList(
-                                                        RequestOptions requestOptions) {
-                                                      return actsList(ActsListSalesRequest.builder().build(),requestOptions);
-                                                    }
-
-                                                    public NordletApiHttpResponse<ActsListSalesResponse> actsList(
-                                                        ActsListSalesRequest request) {
-                                                      return actsList(request,null);
-                                                    }
-
-                                                    public NordletApiHttpResponse<ActsListSalesResponse> actsList(
-                                                        ActsListSalesRequest request,
+                                                    public NordletApiHttpResponse<ActsGetSalesResponse> actsGet(
+                                                        ActsGetSalesRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                        .addPathSegments("v1/sales/acts/list");if (requestOptions != null) {
+                                                        .addPathSegments("v1/sales/acts/get");if (requestOptions != null) {
                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                             httpUrl.addQueryParameter(_key, _value);
                                                           } );
@@ -1946,7 +1950,7 @@ public class RawSalesClient {
                                                           ResponseBody responseBody = response.body();
                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                           if (response.isSuccessful()) {
-                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ActsListSalesResponse.class), response);
+                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ActsGetSalesResponse.class), response);
                                                           }
                                                           try {
                                                             switch (response.code()) {
@@ -1976,17 +1980,27 @@ public class RawSalesClient {
                                                         }
                                                       }
 
-                                                      public NordletApiHttpResponse<ActsPdfSalesResponse> actsPdf(
-                                                          ActsPdfSalesRequest request) {
-                                                        return actsPdf(request,null);
+                                                      public NordletApiHttpResponse<ActsListSalesResponse> actsList(
+                                                          ) {
+                                                        return actsList(ActsListSalesRequest.builder().build());
                                                       }
 
-                                                      public NordletApiHttpResponse<ActsPdfSalesResponse> actsPdf(
-                                                          ActsPdfSalesRequest request,
+                                                      public NordletApiHttpResponse<ActsListSalesResponse> actsList(
+                                                          RequestOptions requestOptions) {
+                                                        return actsList(ActsListSalesRequest.builder().build(),requestOptions);
+                                                      }
+
+                                                      public NordletApiHttpResponse<ActsListSalesResponse> actsList(
+                                                          ActsListSalesRequest request) {
+                                                        return actsList(request,null);
+                                                      }
+
+                                                      public NordletApiHttpResponse<ActsListSalesResponse> actsList(
+                                                          ActsListSalesRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                          .addPathSegments("v1/sales/acts/pdf");if (requestOptions != null) {
+                                                          .addPathSegments("v1/sales/acts/list");if (requestOptions != null) {
                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                               httpUrl.addQueryParameter(_key, _value);
                                                             } );
@@ -2016,7 +2030,7 @@ public class RawSalesClient {
                                                             ResponseBody responseBody = response.body();
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ActsPdfSalesResponse.class), response);
+                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ActsListSalesResponse.class), response);
                                                             }
                                                             try {
                                                               switch (response.code()) {
@@ -2046,27 +2060,17 @@ public class RawSalesClient {
                                                           }
                                                         }
 
-                                                        public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
-                                                            ) {
-                                                          return recognitionCompute(RecognitionComputeSalesRequest.builder().build());
+                                                        public NordletApiHttpResponse<ActsPdfSalesResponse> actsPdf(
+                                                            ActsPdfSalesRequest request) {
+                                                          return actsPdf(request,null);
                                                         }
 
-                                                        public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
-                                                            RequestOptions requestOptions) {
-                                                          return recognitionCompute(RecognitionComputeSalesRequest.builder().build(),requestOptions);
-                                                        }
-
-                                                        public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
-                                                            RecognitionComputeSalesRequest request) {
-                                                          return recognitionCompute(request,null);
-                                                        }
-
-                                                        public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
-                                                            RecognitionComputeSalesRequest request,
+                                                        public NordletApiHttpResponse<ActsPdfSalesResponse> actsPdf(
+                                                            ActsPdfSalesRequest request,
                                                             RequestOptions requestOptions) {
                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                            .addPathSegments("v1/sales/recognition/compute");if (requestOptions != null) {
+                                                            .addPathSegments("v1/sales/acts/pdf");if (requestOptions != null) {
                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                 httpUrl.addQueryParameter(_key, _value);
                                                               } );
@@ -2096,7 +2100,7 @@ public class RawSalesClient {
                                                               ResponseBody responseBody = response.body();
                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                               if (response.isSuccessful()) {
-                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionComputeSalesResponse.class), response);
+                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ActsPdfSalesResponse.class), response);
                                                               }
                                                               try {
                                                                 switch (response.code()) {
@@ -2126,27 +2130,27 @@ public class RawSalesClient {
                                                             }
                                                           }
 
-                                                          public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
+                                                          public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
                                                               ) {
-                                                            return recognitionRun(RecognitionRunSalesRequest.builder().build());
+                                                            return recognitionCompute(RecognitionComputeSalesRequest.builder().build());
                                                           }
 
-                                                          public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
+                                                          public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
                                                               RequestOptions requestOptions) {
-                                                            return recognitionRun(RecognitionRunSalesRequest.builder().build(),requestOptions);
+                                                            return recognitionCompute(RecognitionComputeSalesRequest.builder().build(),requestOptions);
                                                           }
 
-                                                          public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
-                                                              RecognitionRunSalesRequest request) {
-                                                            return recognitionRun(request,null);
+                                                          public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
+                                                              RecognitionComputeSalesRequest request) {
+                                                            return recognitionCompute(request,null);
                                                           }
 
-                                                          public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
-                                                              RecognitionRunSalesRequest request,
+                                                          public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
+                                                              RecognitionComputeSalesRequest request,
                                                               RequestOptions requestOptions) {
                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                              .addPathSegments("v1/sales/recognition/run");if (requestOptions != null) {
+                                                              .addPathSegments("v1/sales/recognition/compute");if (requestOptions != null) {
                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                 } );
@@ -2176,7 +2180,7 @@ public class RawSalesClient {
                                                                 ResponseBody responseBody = response.body();
                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                 if (response.isSuccessful()) {
-                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionRunSalesResponse.class), response);
+                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionComputeSalesResponse.class), response);
                                                                 }
                                                                 try {
                                                                   switch (response.code()) {
@@ -2206,17 +2210,27 @@ public class RawSalesClient {
                                                               }
                                                             }
 
-                                                            public NordletApiHttpResponse<RecognitionProgressSalesResponse> recognitionProgress(
-                                                                RecognitionProgressSalesRequest request) {
-                                                              return recognitionProgress(request,null);
+                                                            public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
+                                                                ) {
+                                                              return recognitionRun(RecognitionRunSalesRequest.builder().build());
                                                             }
 
-                                                            public NordletApiHttpResponse<RecognitionProgressSalesResponse> recognitionProgress(
-                                                                RecognitionProgressSalesRequest request,
+                                                            public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
+                                                                RequestOptions requestOptions) {
+                                                              return recognitionRun(RecognitionRunSalesRequest.builder().build(),requestOptions);
+                                                            }
+
+                                                            public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
+                                                                RecognitionRunSalesRequest request) {
+                                                              return recognitionRun(request,null);
+                                                            }
+
+                                                            public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
+                                                                RecognitionRunSalesRequest request,
                                                                 RequestOptions requestOptions) {
                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                .addPathSegments("v1/sales/recognition/progress");if (requestOptions != null) {
+                                                                .addPathSegments("v1/sales/recognition/run");if (requestOptions != null) {
                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                   } );
@@ -2246,7 +2260,7 @@ public class RawSalesClient {
                                                                   ResponseBody responseBody = response.body();
                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                   if (response.isSuccessful()) {
-                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionProgressSalesResponse.class), response);
+                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionRunSalesResponse.class), response);
                                                                   }
                                                                   try {
                                                                     switch (response.code()) {
@@ -2276,23 +2290,17 @@ public class RawSalesClient {
                                                                 }
                                                               }
 
-                                                              /**
-                                                               * Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
-                                                               */
-                                                              public NordletApiHttpResponse<RecognitionModifySalesResponse> recognitionModify(
-                                                                  RecognitionModifySalesRequest request) {
-                                                                return recognitionModify(request,null);
+                                                              public NordletApiHttpResponse<RecognitionProgressSalesResponse> recognitionProgress(
+                                                                  RecognitionProgressSalesRequest request) {
+                                                                return recognitionProgress(request,null);
                                                               }
 
-                                                              /**
-                                                               * Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
-                                                               */
-                                                              public NordletApiHttpResponse<RecognitionModifySalesResponse> recognitionModify(
-                                                                  RecognitionModifySalesRequest request,
+                                                              public NordletApiHttpResponse<RecognitionProgressSalesResponse> recognitionProgress(
+                                                                  RecognitionProgressSalesRequest request,
                                                                   RequestOptions requestOptions) {
                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                  .addPathSegments("v1/sales/recognition/modify");if (requestOptions != null) {
+                                                                  .addPathSegments("v1/sales/recognition/progress");if (requestOptions != null) {
                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                     } );
@@ -2322,7 +2330,7 @@ public class RawSalesClient {
                                                                     ResponseBody responseBody = response.body();
                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                     if (response.isSuccessful()) {
-                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionModifySalesResponse.class), response);
+                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionProgressSalesResponse.class), response);
                                                                     }
                                                                     try {
                                                                       switch (response.code()) {
@@ -2352,27 +2360,23 @@ public class RawSalesClient {
                                                                   }
                                                                 }
 
-                                                                public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
-                                                                    ) {
-                                                                  return recognitionRunsList(RecognitionRunsListSalesRequest.builder().build());
+                                                                /**
+                                                                 * Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
+                                                                 */
+                                                                public NordletApiHttpResponse<RecognitionModifySalesResponse> recognitionModify(
+                                                                    RecognitionModifySalesRequest request) {
+                                                                  return recognitionModify(request,null);
                                                                 }
 
-                                                                public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
-                                                                    RequestOptions requestOptions) {
-                                                                  return recognitionRunsList(RecognitionRunsListSalesRequest.builder().build(),requestOptions);
-                                                                }
-
-                                                                public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
-                                                                    RecognitionRunsListSalesRequest request) {
-                                                                  return recognitionRunsList(request,null);
-                                                                }
-
-                                                                public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
-                                                                    RecognitionRunsListSalesRequest request,
+                                                                /**
+                                                                 * Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
+                                                                 */
+                                                                public NordletApiHttpResponse<RecognitionModifySalesResponse> recognitionModify(
+                                                                    RecognitionModifySalesRequest request,
                                                                     RequestOptions requestOptions) {
                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                    .addPathSegments("v1/sales/recognition/runs/list");if (requestOptions != null) {
+                                                                    .addPathSegments("v1/sales/recognition/modify");if (requestOptions != null) {
                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                       } );
@@ -2402,7 +2406,7 @@ public class RawSalesClient {
                                                                       ResponseBody responseBody = response.body();
                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                       if (response.isSuccessful()) {
-                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionRunsListSalesResponse.class), response);
+                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionModifySalesResponse.class), response);
                                                                       }
                                                                       try {
                                                                         switch (response.code()) {
@@ -2432,27 +2436,27 @@ public class RawSalesClient {
                                                                     }
                                                                   }
 
-                                                                  public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
+                                                                  public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
                                                                       ) {
-                                                                    return recognitionSummary(RecognitionSummarySalesRequest.builder().build());
+                                                                    return recognitionRunsList(RecognitionRunsListSalesRequest.builder().build());
                                                                   }
 
-                                                                  public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
+                                                                  public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
                                                                       RequestOptions requestOptions) {
-                                                                    return recognitionSummary(RecognitionSummarySalesRequest.builder().build(),requestOptions);
+                                                                    return recognitionRunsList(RecognitionRunsListSalesRequest.builder().build(),requestOptions);
                                                                   }
 
-                                                                  public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
-                                                                      RecognitionSummarySalesRequest request) {
-                                                                    return recognitionSummary(request,null);
+                                                                  public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
+                                                                      RecognitionRunsListSalesRequest request) {
+                                                                    return recognitionRunsList(request,null);
                                                                   }
 
-                                                                  public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
-                                                                      RecognitionSummarySalesRequest request,
+                                                                  public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
+                                                                      RecognitionRunsListSalesRequest request,
                                                                       RequestOptions requestOptions) {
                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                      .addPathSegments("v1/sales/recognition/summary");if (requestOptions != null) {
+                                                                      .addPathSegments("v1/sales/recognition/runs/list");if (requestOptions != null) {
                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                         } );
@@ -2482,7 +2486,7 @@ public class RawSalesClient {
                                                                         ResponseBody responseBody = response.body();
                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                         if (response.isSuccessful()) {
-                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionSummarySalesResponse.class), response);
+                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionRunsListSalesResponse.class), response);
                                                                         }
                                                                         try {
                                                                           switch (response.code()) {
@@ -2512,27 +2516,27 @@ public class RawSalesClient {
                                                                       }
                                                                     }
 
-                                                                    public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
+                                                                    public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
                                                                         ) {
-                                                                      return refundLiabilityList(RefundLiabilityListSalesRequest.builder().build());
+                                                                      return recognitionSummary(RecognitionSummarySalesRequest.builder().build());
                                                                     }
 
-                                                                    public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
+                                                                    public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
                                                                         RequestOptions requestOptions) {
-                                                                      return refundLiabilityList(RefundLiabilityListSalesRequest.builder().build(),requestOptions);
+                                                                      return recognitionSummary(RecognitionSummarySalesRequest.builder().build(),requestOptions);
                                                                     }
 
-                                                                    public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
-                                                                        RefundLiabilityListSalesRequest request) {
-                                                                      return refundLiabilityList(request,null);
+                                                                    public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
+                                                                        RecognitionSummarySalesRequest request) {
+                                                                      return recognitionSummary(request,null);
                                                                     }
 
-                                                                    public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
-                                                                        RefundLiabilityListSalesRequest request,
+                                                                    public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
+                                                                        RecognitionSummarySalesRequest request,
                                                                         RequestOptions requestOptions) {
                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                        .addPathSegments("v1/sales/refund-liability/list");if (requestOptions != null) {
+                                                                        .addPathSegments("v1/sales/recognition/summary");if (requestOptions != null) {
                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                           } );
@@ -2562,7 +2566,7 @@ public class RawSalesClient {
                                                                           ResponseBody responseBody = response.body();
                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                           if (response.isSuccessful()) {
-                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RefundLiabilityListSalesResponse.class), response);
+                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionSummarySalesResponse.class), response);
                                                                           }
                                                                           try {
                                                                             switch (response.code()) {
@@ -2592,17 +2596,27 @@ public class RawSalesClient {
                                                                         }
                                                                       }
 
-                                                                      public NordletApiHttpResponse<RefundLiabilityTrueUpSalesResponse> refundLiabilityTrueUp(
-                                                                          RefundLiabilityTrueUpSalesRequest request) {
-                                                                        return refundLiabilityTrueUp(request,null);
+                                                                      public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
+                                                                          ) {
+                                                                        return refundLiabilityList(RefundLiabilityListSalesRequest.builder().build());
                                                                       }
 
-                                                                      public NordletApiHttpResponse<RefundLiabilityTrueUpSalesResponse> refundLiabilityTrueUp(
-                                                                          RefundLiabilityTrueUpSalesRequest request,
+                                                                      public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
+                                                                          RequestOptions requestOptions) {
+                                                                        return refundLiabilityList(RefundLiabilityListSalesRequest.builder().build(),requestOptions);
+                                                                      }
+
+                                                                      public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
+                                                                          RefundLiabilityListSalesRequest request) {
+                                                                        return refundLiabilityList(request,null);
+                                                                      }
+
+                                                                      public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
+                                                                          RefundLiabilityListSalesRequest request,
                                                                           RequestOptions requestOptions) {
                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                          .addPathSegments("v1/sales/refund-liability/true-up");if (requestOptions != null) {
+                                                                          .addPathSegments("v1/sales/refund-liability/list");if (requestOptions != null) {
                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                             } );
@@ -2632,7 +2646,7 @@ public class RawSalesClient {
                                                                             ResponseBody responseBody = response.body();
                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                             if (response.isSuccessful()) {
-                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RefundLiabilityTrueUpSalesResponse.class), response);
+                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RefundLiabilityListSalesResponse.class), response);
                                                                             }
                                                                             try {
                                                                               switch (response.code()) {
@@ -2661,4 +2675,74 @@ public class RawSalesClient {
                                                                             throw new NordletApiException("Network error executing HTTP request", e);
                                                                           }
                                                                         }
-                                                                      }
+
+                                                                        public NordletApiHttpResponse<RefundLiabilityTrueUpSalesResponse> refundLiabilityTrueUp(
+                                                                            RefundLiabilityTrueUpSalesRequest request) {
+                                                                          return refundLiabilityTrueUp(request,null);
+                                                                        }
+
+                                                                        public NordletApiHttpResponse<RefundLiabilityTrueUpSalesResponse> refundLiabilityTrueUp(
+                                                                            RefundLiabilityTrueUpSalesRequest request,
+                                                                            RequestOptions requestOptions) {
+                                                                          HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                            .addPathSegments("v1/sales/refund-liability/true-up");if (requestOptions != null) {
+                                                                              requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                httpUrl.addQueryParameter(_key, _value);
+                                                                              } );
+                                                                            }
+                                                                            RequestBody body;
+                                                                            try {
+                                                                              body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                            }
+                                                                            catch(JsonProcessingException e) {
+                                                                              throw new NordletApiException("Failed to serialize request", e);
+                                                                            }
+                                                                            Request okhttpRequest = new Request.Builder()
+                                                                              .url(httpUrl.build())
+                                                                              .method("POST", body)
+                                                                              .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                              .addHeader("Content-Type", "application/json")
+                                                                              .addHeader("Accept", "application/json")
+                                                                              .build();
+                                                                            OkHttpClient client = clientOptions.httpClient();
+                                                                            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                              client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                            }
+                                                                            if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                              okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                            }
+                                                                            try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                              ResponseBody responseBody = response.body();
+                                                                              String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                              if (response.isSuccessful()) {
+                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RefundLiabilityTrueUpSalesResponse.class), response);
+                                                                              }
+                                                                              try {
+                                                                                switch (response.code()) {
+                                                                                  case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                  case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                  case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                  case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                  case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                  case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                  case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                  case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                }
+                                                                              }
+                                                                              catch (JsonProcessingException ignored) {
+                                                                                // unable to map error response, throwing generic error
+                                                                              }
+                                                                              Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                              throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                            }
+                                                                            catch (JsonProcessingException e) {
+                                                                              throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                            }
+                                                                            catch (IOException e) {
+                                                                              throw new NordletApiException("Network error executing HTTP request", e);
+                                                                            }
+                                                                          }
+                                                                        }

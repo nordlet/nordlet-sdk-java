@@ -10,6 +10,8 @@ import java.lang.Object;
 import java.lang.String;
 
 public final class TransactionsMatchBankRequestDocumentType {
+  public static final TransactionsMatchBankRequestDocumentType PAYROLL_RUN = new TransactionsMatchBankRequestDocumentType(Value.PAYROLL_RUN, "payroll_run");
+
   public static final TransactionsMatchBankRequestDocumentType PURCHASE_INVOICE = new TransactionsMatchBankRequestDocumentType(Value.PURCHASE_INVOICE, "purchase_invoice");
 
   public static final TransactionsMatchBankRequestDocumentType SALE_INVOICE = new TransactionsMatchBankRequestDocumentType(Value.SALE_INVOICE, "sale_invoice");
@@ -46,6 +48,8 @@ public final class TransactionsMatchBankRequestDocumentType {
 
   public <T> T visit(Visitor<T> visitor) {
     switch (value) {
+      case PAYROLL_RUN:
+        return visitor.visitPayrollRun();
       case PURCHASE_INVOICE:
         return visitor.visitPurchaseInvoice();
       case SALE_INVOICE:
@@ -61,6 +65,8 @@ public final class TransactionsMatchBankRequestDocumentType {
   )
   public static TransactionsMatchBankRequestDocumentType valueOf(String value) {
     switch (value) {
+      case "payroll_run":
+        return PAYROLL_RUN;
       case "purchase_invoice":
         return PURCHASE_INVOICE;
       case "sale_invoice":
@@ -75,6 +81,8 @@ public final class TransactionsMatchBankRequestDocumentType {
 
     PURCHASE_INVOICE,
 
+    PAYROLL_RUN,
+
     UNKNOWN
   }
 
@@ -82,6 +90,8 @@ public final class TransactionsMatchBankRequestDocumentType {
     T visitSaleInvoice();
 
     T visitPurchaseInvoice();
+
+    T visitPayrollRun();
 
     T visitUnknown(String unknownType);
   }

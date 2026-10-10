@@ -1106,6 +1106,54 @@ client.reference().vatResolve(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**serviceKind:** `Optional<VatResolveReferenceRequestServiceKind>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**serviceCountryCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**underlyingSupplierGaveVatNumber:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**underlyingSupplierChargesVat:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**goodsKind:** `Optional<VatResolveReferenceRequestGoodsKind>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**goodsLocationCountryCode:** `Optional<String>` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -8747,6 +8795,20 @@ client.sales().invoicesPeppolXml(
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Send an issued invoice or credit note to the customer over Peppol through the company's own access point (Settings → Compliance → EU; Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with `sales/invoices/peppol-xml`. `status` is `pending` until the receiving access point confirms, then `delivered`; `failed` and `rejected` come with `detail`, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as `sale_invoice.peppol_delivered`, `sale_invoice.peppol_rejected` and `sale_invoice.peppol_failed`.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -8758,6 +8820,65 @@ client.sales().invoicesPeppolXml(
 ```java
 client.sales().invoicesPeppolSend(
     InvoicesPeppolSendSalesRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.invoicesPeppolStatus(request) -> InvoicesPeppolStatusSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Ask the company's Peppol access point what happened to an invoice sent with `sales/invoices/peppol-send`, and store the answer: `pending`, `delivered` (the receiving access point confirmed it), `rejected` (the receiver refused it, see `detail`) or `failed` (it could not be delivered, see `detail`). The access point's webhook updates the same fields without this call. Storecove has no call for the status of a sent document, so for a Storecove access point this answers 422 and the status comes only from its webhook.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().invoicesPeppolStatus(
+    InvoicesPeppolStatusSalesRequest
         .builder()
         .id("id")
         .build()
@@ -9651,6 +9772,14 @@ client.sales().invoicesApplyAdvance(
 <dd>
 
 **date:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amount:** `Optional<String>` — Gross amount of the advance to apply; defaults to the unapplied advance or the unpaid balance of the invoice, whichever is smaller
     
 </dd>
 </dl>
@@ -12366,6 +12495,14 @@ client.purchases().invoicesRegister(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**returnFromStock:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -13977,6 +14114,20 @@ client.capture().documentsDelete(
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates the purchase invoice (or credit note, see `type`) from `lines`. Lines with the opposite sign go in `oppositeLines` and are saved as a second document of the opposite type for the same supplier: a purchase credit note against the new invoice, or a purchase invoice next to the new credit note. It is numbered `oppositeDocumentNumber`, by default the document number followed by "-CR" (credit note) or "-INV" (invoice).
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -14039,6 +14190,14 @@ client.capture().documentsConfirm(
 <dl>
 <dd>
 
+**type:** `Optional<DocumentsConfirmCaptureRequestType>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **documentNumber:** `String` 
     
 </dd>
@@ -14080,6 +14239,143 @@ client.capture().documentsConfirm(
 <dd>
 
 **lines:** `List<DocumentsConfirmCaptureRequestLinesItem>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**oppositeLines:** `Optional<List<DocumentsConfirmCaptureRequestOppositeLinesItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**oppositeDocumentNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## peppol
+<details><summary><code>client.peppol.participantsLookup(request) -> ParticipantsLookupPeppolResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Look a receiver up on the Peppol network (SML and SMP) and say which Peppol BIS Billing 3.0 documents it accepts. Give `partnerId` to look up a partner by its Peppol ID, VAT code or registration code, or `participantId` as "<scheme>:<identifier>". Works without an access point.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.peppol().participantsLookup(
+    ParticipantsLookupPeppolRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**partnerId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**participantId:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.peppol.webhooks(provider, companyId) -> WebhooksPeppolResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.peppol().webhooks(
+    WebhooksPeppolRequestProvider.RECOMMAND,
+    "companyId",
+    WebhooksPeppolRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**provider:** `WebhooksPeppolRequestProvider` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**companyId:** `String` 
     
 </dd>
 </dl>
@@ -15073,6 +15369,218 @@ client.declarations().euIossCompute(
 <dd>
 
 **month:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.euOwnGoodsTransfersCompute(request) -> EuOwnGoodsTransfersComputeDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().euOwnGoodsTransfersCompute(
+    EuOwnGoodsTransfersComputeDeclarationsRequest
+        .builder()
+        .year(1000000L)
+        .month(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**month:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.euDigitalReportingList(request) -> EuDigitalReportingListDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().euDigitalReportingList(
+    EuDigitalReportingListDeclarationsRequest
+        .builder()
+        .fromDate("2026-07-01")
+        .toDate("2026-07-01")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fromDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**toDate:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.euDac7Preview(request) -> EuDac7PreviewDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V) and why the others are excluded, the data still missing, and how the company files the report in its Member State.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().euDac7Preview(
+    EuDac7PreviewDeclarationsRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.declarations.euDac7Xml(request) -> EuDac7XmlDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.declarations().euDac7Xml(
+    EuDac7XmlDeclarationsRequest
+        .builder()
+        .year(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**year:** `Long` 
     
 </dd>
 </dl>
@@ -18687,7 +19195,7 @@ client.declarations().plJpkMagGenerate(
 <dl>
 <dd>
 
-Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
+Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed, addressed to the tax office of the place of residence of that person (employee field plKodUrzedu); a person without that code is refused with 422.
 </dd>
 </dl>
 </dd>
@@ -21475,6 +21983,14 @@ client.ledger().journalTransactionsCreate(
 <dl>
 <dd>
 
+**currency:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **entries:** `List<JournalTransactionsCreateLedgerRequestEntriesItem>` 
     
 </dd>
@@ -21939,6 +22455,586 @@ client.officers().update(
 ```java
 client.officers().delete(
     DeleteOfficersRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## PlatformSellers
+<details><summary><code>client.platformSellers.list(request) -> ListPlatformSellersResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Individuals and entities that sell goods, rent out property or transport, or perform personal services through the platform the company operates. The yearly DAC7 report is built from them.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.platformSellers().list(
+    ListPlatformSellersRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<ListPlatformSellersRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<ListPlatformSellersRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.platformSellers.get(request) -> GetPlatformSellersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.platformSellers().get(
+    GetPlatformSellersRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.platformSellers.create(request) -> CreatePlatformSellersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.platformSellers().create(
+    CreatePlatformSellersRequest
+        .builder()
+        .kind(CreatePlatformSellersRequestKind.INDIVIDUAL)
+        .address(
+            CreatePlatformSellersRequestAddress
+                .builder()
+                .countryCode("countryCode")
+                .build()
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**kind:** `CreatePlatformSellersRequestKind` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partnerId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**firstName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**middleName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lastName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**entityName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taxResidences:** `Optional<List<CreatePlatformSellersRequestTaxResidencesItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vatCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**businessRegistrationNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**address:** `CreatePlatformSellersRequestAddress` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**birthDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**birthCity:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**birthCountryCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**iban:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**accountHolderName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**governmentEntity:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**listedEntity:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**permanentEstablishments:** `Optional<List<String>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**activities:** `Optional<List<CreatePlatformSellersRequestActivitiesItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.platformSellers.update(request) -> UpdatePlatformSellersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.platformSellers().update(
+    UpdatePlatformSellersRequest
+        .builder()
+        .id("id")
+        .kind(UpdatePlatformSellersRequestKind.INDIVIDUAL)
+        .address(
+            UpdatePlatformSellersRequestAddress
+                .builder()
+                .countryCode("countryCode")
+                .build()
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**kind:** `UpdatePlatformSellersRequestKind` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partnerId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**firstName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**middleName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lastName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**entityName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taxResidences:** `Optional<List<UpdatePlatformSellersRequestTaxResidencesItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vatCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**businessRegistrationNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**address:** `UpdatePlatformSellersRequestAddress` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**birthDate:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**birthCity:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**birthCountryCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**iban:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**accountHolderName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**governmentEntity:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**listedEntity:** `Optional<Boolean>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**permanentEstablishments:** `Optional<List<String>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**activities:** `Optional<List<UpdatePlatformSellersRequestActivitiesItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.platformSellers.delete(request) -> DeletePlatformSellersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.platformSellers().delete(
+    DeletePlatformSellersRequest
         .builder()
         .id("id")
         .build()
@@ -28516,6 +29612,14 @@ client.inventory().warehousesCreate(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**countryCode:** `Optional<String>` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -28589,6 +29693,67 @@ client.inventory().warehousesList(
 <dd>
 
 **totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inventory.warehousesUpdate(request) -> WarehousesUpdateInventoryResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.inventory().warehousesUpdate(
+    WarehousesUpdateInventoryRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**countryCode:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -35645,6 +36810,14 @@ client.bank().accountsCreate(
 <dl>
 <dd>
 
+**type:** `Optional<AccountsCreateBankRequestType>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **iban:** `Optional<String>` 
     
 </dd>
@@ -35799,6 +36972,14 @@ client.bank().accountsUpdate(
 <dd>
 
 **name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**type:** `Optional<AccountsUpdateBankRequestType>` 
     
 </dd>
 </dl>
