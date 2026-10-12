@@ -36,6 +36,8 @@ public final class MeAccountResponseBilling {
 
   private final long balanceCents;
 
+  private final long overdraftAllowanceCents;
+
   private final Optional<OffsetDateTime> trialEndsAt;
 
   private final String payerUserId;
@@ -44,18 +46,26 @@ public final class MeAccountResponseBilling {
 
   private final boolean isPayer;
 
+  private final boolean planChosen;
+
+  private final boolean flatRate;
+
   private final Map<String, Object> additionalProperties;
 
   private MeAccountResponseBilling(MeAccountResponseBillingStatus status, String plan,
-      long balanceCents, Optional<OffsetDateTime> trialEndsAt, String payerUserId,
-      String payerEmail, boolean isPayer, Map<String, Object> additionalProperties) {
+      long balanceCents, long overdraftAllowanceCents, Optional<OffsetDateTime> trialEndsAt,
+      String payerUserId, String payerEmail, boolean isPayer, boolean planChosen, boolean flatRate,
+      Map<String, Object> additionalProperties) {
     this.status = status;
     this.plan = plan;
     this.balanceCents = balanceCents;
+    this.overdraftAllowanceCents = overdraftAllowanceCents;
     this.trialEndsAt = trialEndsAt;
     this.payerUserId = payerUserId;
     this.payerEmail = payerEmail;
     this.isPayer = isPayer;
+    this.planChosen = planChosen;
+    this.flatRate = flatRate;
     this.additionalProperties = additionalProperties;
   }
 
@@ -72,6 +82,11 @@ public final class MeAccountResponseBilling {
   @JsonProperty("balanceCents")
   public long getBalanceCents() {
     return balanceCents;
+  }
+
+  @JsonProperty("overdraftAllowanceCents")
+  public long getOverdraftAllowanceCents() {
+    return overdraftAllowanceCents;
   }
 
   @JsonIgnore
@@ -97,6 +112,16 @@ public final class MeAccountResponseBilling {
     return isPayer;
   }
 
+  @JsonProperty("planChosen")
+  public boolean getPlanChosen() {
+    return planChosen;
+  }
+
+  @JsonProperty("flatRate")
+  public boolean getFlatRate() {
+    return flatRate;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -118,12 +143,12 @@ public final class MeAccountResponseBilling {
   }
 
   private boolean equalTo(MeAccountResponseBilling other) {
-    return status.equals(other.status) && plan.equals(other.plan) && balanceCents == other.balanceCents && trialEndsAt.equals(other.trialEndsAt) && payerUserId.equals(other.payerUserId) && payerEmail.equals(other.payerEmail) && isPayer == other.isPayer;
+    return status.equals(other.status) && plan.equals(other.plan) && balanceCents == other.balanceCents && overdraftAllowanceCents == other.overdraftAllowanceCents && trialEndsAt.equals(other.trialEndsAt) && payerUserId.equals(other.payerUserId) && payerEmail.equals(other.payerEmail) && isPayer == other.isPayer && planChosen == other.planChosen && flatRate == other.flatRate;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.status, this.plan, this.balanceCents, this.trialEndsAt, this.payerUserId, this.payerEmail, this.isPayer);
+    return Objects.hash(this.status, this.plan, this.balanceCents, this.overdraftAllowanceCents, this.trialEndsAt, this.payerUserId, this.payerEmail, this.isPayer, this.planChosen, this.flatRate);
   }
 
   @java.lang.Override
@@ -146,7 +171,11 @@ public final class MeAccountResponseBilling {
   }
 
   public interface BalanceCentsStage {
-    PayerUserIdStage balanceCents(long balanceCents);
+    OverdraftAllowanceCentsStage balanceCents(long balanceCents);
+  }
+
+  public interface OverdraftAllowanceCentsStage {
+    PayerUserIdStage overdraftAllowanceCents(long overdraftAllowanceCents);
   }
 
   public interface PayerUserIdStage {
@@ -158,7 +187,15 @@ public final class MeAccountResponseBilling {
   }
 
   public interface IsPayerStage {
-    _FinalStage isPayer(boolean isPayer);
+    PlanChosenStage isPayer(boolean isPayer);
+  }
+
+  public interface PlanChosenStage {
+    FlatRateStage planChosen(boolean planChosen);
+  }
+
+  public interface FlatRateStage {
+    _FinalStage flatRate(boolean flatRate);
   }
 
   public interface _FinalStage {
@@ -178,18 +215,24 @@ public final class MeAccountResponseBilling {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements StatusStage, PlanStage, BalanceCentsStage, PayerUserIdStage, PayerEmailStage, IsPayerStage, _FinalStage {
+  public static final class Builder implements StatusStage, PlanStage, BalanceCentsStage, OverdraftAllowanceCentsStage, PayerUserIdStage, PayerEmailStage, IsPayerStage, PlanChosenStage, FlatRateStage, _FinalStage {
     private MeAccountResponseBillingStatus status;
 
     private String plan;
 
     private long balanceCents;
 
+    private long overdraftAllowanceCents;
+
     private String payerUserId;
 
     private String payerEmail;
 
     private boolean isPayer;
+
+    private boolean planChosen;
+
+    private boolean flatRate;
 
     private Optional<OffsetDateTime> trialEndsAt = Optional.empty();
 
@@ -204,10 +247,13 @@ public final class MeAccountResponseBilling {
       status(other.getStatus());
       plan(other.getPlan());
       balanceCents(other.getBalanceCents());
+      overdraftAllowanceCents(other.getOverdraftAllowanceCents());
       trialEndsAt(other.getTrialEndsAt());
       payerUserId(other.getPayerUserId());
       payerEmail(other.getPayerEmail());
       isPayer(other.getIsPayer());
+      planChosen(other.getPlanChosen());
+      flatRate(other.getFlatRate());
       return this;
     }
 
@@ -227,8 +273,15 @@ public final class MeAccountResponseBilling {
 
     @java.lang.Override
     @JsonSetter("balanceCents")
-    public PayerUserIdStage balanceCents(long balanceCents) {
+    public OverdraftAllowanceCentsStage balanceCents(long balanceCents) {
       this.balanceCents = balanceCents;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("overdraftAllowanceCents")
+    public PayerUserIdStage overdraftAllowanceCents(long overdraftAllowanceCents) {
+      this.overdraftAllowanceCents = overdraftAllowanceCents;
       return this;
     }
 
@@ -248,8 +301,22 @@ public final class MeAccountResponseBilling {
 
     @java.lang.Override
     @JsonSetter("isPayer")
-    public _FinalStage isPayer(boolean isPayer) {
+    public PlanChosenStage isPayer(boolean isPayer) {
       this.isPayer = isPayer;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("planChosen")
+    public FlatRateStage planChosen(boolean planChosen) {
+      this.planChosen = planChosen;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("flatRate")
+    public _FinalStage flatRate(boolean flatRate) {
+      this.flatRate = flatRate;
       return this;
     }
 
@@ -285,7 +352,7 @@ public final class MeAccountResponseBilling {
 
     @java.lang.Override
     public MeAccountResponseBilling build() {
-      return new MeAccountResponseBilling(status, plan, balanceCents, trialEndsAt, payerUserId, payerEmail, isPayer, additionalProperties);
+      return new MeAccountResponseBilling(status, plan, balanceCents, overdraftAllowanceCents, trialEndsAt, payerUserId, payerEmail, isPayer, planChosen, flatRate, additionalProperties);
     }
 
     @java.lang.Override

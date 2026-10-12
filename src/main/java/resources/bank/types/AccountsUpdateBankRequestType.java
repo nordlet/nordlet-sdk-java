@@ -12,6 +12,8 @@ import java.lang.String;
 public final class AccountsUpdateBankRequestType {
   public static final AccountsUpdateBankRequestType BANK = new AccountsUpdateBankRequestType(Value.BANK, "bank");
 
+  public static final AccountsUpdateBankRequestType BROKER = new AccountsUpdateBankRequestType(Value.BROKER, "broker");
+
   public static final AccountsUpdateBankRequestType STRIPE = new AccountsUpdateBankRequestType(Value.STRIPE, "stripe");
 
   private final Value value;
@@ -48,6 +50,8 @@ public final class AccountsUpdateBankRequestType {
     switch (value) {
       case BANK:
         return visitor.visitBank();
+      case BROKER:
+        return visitor.visitBroker();
       case STRIPE:
         return visitor.visitStripe();
       case UNKNOWN:
@@ -63,6 +67,8 @@ public final class AccountsUpdateBankRequestType {
     switch (value) {
       case "bank":
         return BANK;
+      case "broker":
+        return BROKER;
       case "stripe":
         return STRIPE;
       default:
@@ -75,6 +81,8 @@ public final class AccountsUpdateBankRequestType {
 
     STRIPE,
 
+    BROKER,
+
     UNKNOWN
   }
 
@@ -82,6 +90,8 @@ public final class AccountsUpdateBankRequestType {
     T visitBank();
 
     T visitStripe();
+
+    T visitBroker();
 
     T visitUnknown(String unknownType);
   }

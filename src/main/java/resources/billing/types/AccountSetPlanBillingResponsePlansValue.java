@@ -26,9 +26,9 @@ import org.jetbrains.annotations.NotNull;
 public final class AccountSetPlanBillingResponsePlansValue {
   private final String monthlyFeeEur;
 
-  private final long includedRequests;
+  private final long includedInvoices;
 
-  private final String requestOverageEur;
+  private final String invoiceOverageEur;
 
   private final double includedDatabaseBytes;
 
@@ -36,12 +36,12 @@ public final class AccountSetPlanBillingResponsePlansValue {
 
   private final Map<String, Object> additionalProperties;
 
-  private AccountSetPlanBillingResponsePlansValue(String monthlyFeeEur, long includedRequests,
-      String requestOverageEur, double includedDatabaseBytes, double includedFileBytes,
+  private AccountSetPlanBillingResponsePlansValue(String monthlyFeeEur, long includedInvoices,
+      String invoiceOverageEur, double includedDatabaseBytes, double includedFileBytes,
       Map<String, Object> additionalProperties) {
     this.monthlyFeeEur = monthlyFeeEur;
-    this.includedRequests = includedRequests;
-    this.requestOverageEur = requestOverageEur;
+    this.includedInvoices = includedInvoices;
+    this.invoiceOverageEur = invoiceOverageEur;
     this.includedDatabaseBytes = includedDatabaseBytes;
     this.includedFileBytes = includedFileBytes;
     this.additionalProperties = additionalProperties;
@@ -52,14 +52,14 @@ public final class AccountSetPlanBillingResponsePlansValue {
     return monthlyFeeEur;
   }
 
-  @JsonProperty("includedRequests")
-  public long getIncludedRequests() {
-    return includedRequests;
+  @JsonProperty("includedInvoices")
+  public long getIncludedInvoices() {
+    return includedInvoices;
   }
 
-  @JsonProperty("requestOverageEur")
-  public String getRequestOverageEur() {
-    return requestOverageEur;
+  @JsonProperty("invoiceOverageEur")
+  public String getInvoiceOverageEur() {
+    return invoiceOverageEur;
   }
 
   @JsonProperty("includedDatabaseBytes")
@@ -84,12 +84,12 @@ public final class AccountSetPlanBillingResponsePlansValue {
   }
 
   private boolean equalTo(AccountSetPlanBillingResponsePlansValue other) {
-    return monthlyFeeEur.equals(other.monthlyFeeEur) && includedRequests == other.includedRequests && requestOverageEur.equals(other.requestOverageEur) && includedDatabaseBytes == other.includedDatabaseBytes && includedFileBytes == other.includedFileBytes;
+    return monthlyFeeEur.equals(other.monthlyFeeEur) && includedInvoices == other.includedInvoices && invoiceOverageEur.equals(other.invoiceOverageEur) && includedDatabaseBytes == other.includedDatabaseBytes && includedFileBytes == other.includedFileBytes;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.monthlyFeeEur, this.includedRequests, this.requestOverageEur, this.includedDatabaseBytes, this.includedFileBytes);
+    return Objects.hash(this.monthlyFeeEur, this.includedInvoices, this.invoiceOverageEur, this.includedDatabaseBytes, this.includedFileBytes);
   }
 
   @java.lang.Override
@@ -102,17 +102,17 @@ public final class AccountSetPlanBillingResponsePlansValue {
   }
 
   public interface MonthlyFeeEurStage {
-    IncludedRequestsStage monthlyFeeEur(@NotNull String monthlyFeeEur);
+    IncludedInvoicesStage monthlyFeeEur(@NotNull String monthlyFeeEur);
 
     Builder from(AccountSetPlanBillingResponsePlansValue other);
   }
 
-  public interface IncludedRequestsStage {
-    RequestOverageEurStage includedRequests(long includedRequests);
+  public interface IncludedInvoicesStage {
+    InvoiceOverageEurStage includedInvoices(long includedInvoices);
   }
 
-  public interface RequestOverageEurStage {
-    IncludedDatabaseBytesStage requestOverageEur(@NotNull String requestOverageEur);
+  public interface InvoiceOverageEurStage {
+    IncludedDatabaseBytesStage invoiceOverageEur(@NotNull String invoiceOverageEur);
   }
 
   public interface IncludedDatabaseBytesStage {
@@ -134,12 +134,12 @@ public final class AccountSetPlanBillingResponsePlansValue {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements MonthlyFeeEurStage, IncludedRequestsStage, RequestOverageEurStage, IncludedDatabaseBytesStage, IncludedFileBytesStage, _FinalStage {
+  public static final class Builder implements MonthlyFeeEurStage, IncludedInvoicesStage, InvoiceOverageEurStage, IncludedDatabaseBytesStage, IncludedFileBytesStage, _FinalStage {
     private String monthlyFeeEur;
 
-    private long includedRequests;
+    private long includedInvoices;
 
-    private String requestOverageEur;
+    private String invoiceOverageEur;
 
     private double includedDatabaseBytes;
 
@@ -154,8 +154,8 @@ public final class AccountSetPlanBillingResponsePlansValue {
     @java.lang.Override
     public Builder from(AccountSetPlanBillingResponsePlansValue other) {
       monthlyFeeEur(other.getMonthlyFeeEur());
-      includedRequests(other.getIncludedRequests());
-      requestOverageEur(other.getRequestOverageEur());
+      includedInvoices(other.getIncludedInvoices());
+      invoiceOverageEur(other.getInvoiceOverageEur());
       includedDatabaseBytes(other.getIncludedDatabaseBytes());
       includedFileBytes(other.getIncludedFileBytes());
       return this;
@@ -163,22 +163,22 @@ public final class AccountSetPlanBillingResponsePlansValue {
 
     @java.lang.Override
     @JsonSetter("monthlyFeeEur")
-    public IncludedRequestsStage monthlyFeeEur(@NotNull String monthlyFeeEur) {
+    public IncludedInvoicesStage monthlyFeeEur(@NotNull String monthlyFeeEur) {
       this.monthlyFeeEur = Objects.requireNonNull(monthlyFeeEur, "monthlyFeeEur must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("includedRequests")
-    public RequestOverageEurStage includedRequests(long includedRequests) {
-      this.includedRequests = includedRequests;
+    @JsonSetter("includedInvoices")
+    public InvoiceOverageEurStage includedInvoices(long includedInvoices) {
+      this.includedInvoices = includedInvoices;
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("requestOverageEur")
-    public IncludedDatabaseBytesStage requestOverageEur(@NotNull String requestOverageEur) {
-      this.requestOverageEur = Objects.requireNonNull(requestOverageEur, "requestOverageEur must not be null");
+    @JsonSetter("invoiceOverageEur")
+    public IncludedDatabaseBytesStage invoiceOverageEur(@NotNull String invoiceOverageEur) {
+      this.invoiceOverageEur = Objects.requireNonNull(invoiceOverageEur, "invoiceOverageEur must not be null");
       return this;
     }
 
@@ -198,7 +198,7 @@ public final class AccountSetPlanBillingResponsePlansValue {
 
     @java.lang.Override
     public AccountSetPlanBillingResponsePlansValue build() {
-      return new AccountSetPlanBillingResponsePlansValue(monthlyFeeEur, includedRequests, requestOverageEur, includedDatabaseBytes, includedFileBytes, additionalProperties);
+      return new AccountSetPlanBillingResponsePlansValue(monthlyFeeEur, includedInvoices, invoiceOverageEur, includedDatabaseBytes, includedFileBytes, additionalProperties);
     }
 
     @java.lang.Override

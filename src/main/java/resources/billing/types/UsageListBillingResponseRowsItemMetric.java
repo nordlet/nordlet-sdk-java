@@ -14,6 +14,8 @@ public final class UsageListBillingResponseRowsItemMetric {
 
   public static final UsageListBillingResponseRowsItemMetric FILE_STORAGE_BYTES = new UsageListBillingResponseRowsItemMetric(Value.FILE_STORAGE_BYTES, "file_storage_bytes");
 
+  public static final UsageListBillingResponseRowsItemMetric SALE_INVOICE = new UsageListBillingResponseRowsItemMetric(Value.SALE_INVOICE, "sale_invoice");
+
   public static final UsageListBillingResponseRowsItemMetric API_REQUEST = new UsageListBillingResponseRowsItemMetric(Value.API_REQUEST, "api_request");
 
   public static final UsageListBillingResponseRowsItemMetric OCR_PAGE = new UsageListBillingResponseRowsItemMetric(Value.OCR_PAGE, "ocr_page");
@@ -54,6 +56,8 @@ public final class UsageListBillingResponseRowsItemMetric {
         return visitor.visitDatabaseBytes();
       case FILE_STORAGE_BYTES:
         return visitor.visitFileStorageBytes();
+      case SALE_INVOICE:
+        return visitor.visitSaleInvoice();
       case API_REQUEST:
         return visitor.visitApiRequest();
       case OCR_PAGE:
@@ -73,6 +77,8 @@ public final class UsageListBillingResponseRowsItemMetric {
         return DATABASE_BYTES;
       case "file_storage_bytes":
         return FILE_STORAGE_BYTES;
+      case "sale_invoice":
+        return SALE_INVOICE;
       case "api_request":
         return API_REQUEST;
       case "ocr_page":
@@ -91,6 +97,8 @@ public final class UsageListBillingResponseRowsItemMetric {
 
     DATABASE_BYTES,
 
+    SALE_INVOICE,
+
     UNKNOWN
   }
 
@@ -102,6 +110,8 @@ public final class UsageListBillingResponseRowsItemMetric {
     T visitFileStorageBytes();
 
     T visitDatabaseBytes();
+
+    T visitSaleInvoice();
 
     T visitUnknown(String unknownType);
   }

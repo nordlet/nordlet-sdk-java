@@ -85,10 +85,6 @@ public final class UpdatePartnersRequest {
 
   private final Optional<String> eoriCode;
 
-  private final Optional<String> otherCode;
-
-  private final Optional<String> foreignTaxNumber;
-
   private final Optional<Boolean> autoDebtReminder;
 
   private final Optional<String> lateInterestPercent;
@@ -121,7 +117,6 @@ public final class UpdatePartnersRequest {
       Optional<UpdatePartnersRequestCorrespondenceAddress> correspondenceAddress,
       Optional<String> notes, Optional<String> documentRef, Optional<String> shortName,
       Optional<String> website, Optional<String> fax, Optional<String> eoriCode,
-      Optional<String> otherCode, Optional<String> foreignTaxNumber,
       Optional<Boolean> autoDebtReminder, Optional<String> lateInterestPercent,
       Optional<String> firstCallDate, Optional<String> lastCallDate, Optional<String> nextCallDate,
       Optional<Long> rating, Optional<Boolean> isEmployee, Optional<Boolean> isGroupMember,
@@ -153,8 +148,6 @@ public final class UpdatePartnersRequest {
     this.website = website;
     this.fax = fax;
     this.eoriCode = eoriCode;
-    this.otherCode = otherCode;
-    this.foreignTaxNumber = foreignTaxNumber;
     this.autoDebtReminder = autoDebtReminder;
     this.lateInterestPercent = lateInterestPercent;
     this.firstCallDate = firstCallDate;
@@ -348,22 +341,6 @@ public final class UpdatePartnersRequest {
       return Optional.empty();
     }
     return eoriCode;
-  }
-
-  @JsonIgnore
-  public Optional<String> getOtherCode() {
-    if (otherCode == null) {
-      return Optional.empty();
-    }
-    return otherCode;
-  }
-
-  @JsonIgnore
-  public Optional<String> getForeignTaxNumber() {
-    if (foreignTaxNumber == null) {
-      return Optional.empty();
-    }
-    return foreignTaxNumber;
   }
 
   @JsonProperty("autoDebtReminder")
@@ -609,24 +586,6 @@ public final class UpdatePartnersRequest {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
-  @JsonProperty("otherCode")
-  private Optional<String> _getOtherCode() {
-    return otherCode;
-  }
-
-  @JsonInclude(
-      value = JsonInclude.Include.CUSTOM,
-      valueFilter = NullableNonemptyFilter.class
-  )
-  @JsonProperty("foreignTaxNumber")
-  private Optional<String> _getForeignTaxNumber() {
-    return foreignTaxNumber;
-  }
-
-  @JsonInclude(
-      value = JsonInclude.Include.CUSTOM,
-      valueFilter = NullableNonemptyFilter.class
-  )
   @JsonProperty("lateInterestPercent")
   private Optional<String> _getLateInterestPercent() {
     return lateInterestPercent;
@@ -689,12 +648,12 @@ public final class UpdatePartnersRequest {
   }
 
   private boolean equalTo(UpdatePartnersRequest other) {
-    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && otherCode.equals(other.otherCode) && foreignTaxNumber.equals(other.foreignTaxNumber) && autoDebtReminder.equals(other.autoDebtReminder) && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee.equals(other.isEmployee) && isGroupMember.equals(other.isGroupMember) && isActive.equals(other.isActive) && legalCountryClass.equals(other.legalCountryClass);
+    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && autoDebtReminder.equals(other.autoDebtReminder) && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee.equals(other.isEmployee) && isGroupMember.equals(other.isGroupMember) && isActive.equals(other.isActive) && legalCountryClass.equals(other.legalCountryClass);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isCustomer, this.isSupplier, this.paymentTermDays, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.otherCode, this.foreignTaxNumber, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass);
+    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isCustomer, this.isSupplier, this.paymentTermDays, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass);
   }
 
   @java.lang.Override
@@ -856,18 +815,6 @@ public final class UpdatePartnersRequest {
 
     _FinalStage eoriCode(Nullable<String> eoriCode);
 
-    _FinalStage otherCode(Optional<String> otherCode);
-
-    _FinalStage otherCode(String otherCode);
-
-    _FinalStage otherCode(Nullable<String> otherCode);
-
-    _FinalStage foreignTaxNumber(Optional<String> foreignTaxNumber);
-
-    _FinalStage foreignTaxNumber(String foreignTaxNumber);
-
-    _FinalStage foreignTaxNumber(Nullable<String> foreignTaxNumber);
-
     _FinalStage autoDebtReminder(Optional<Boolean> autoDebtReminder);
 
     _FinalStage autoDebtReminder(Boolean autoDebtReminder);
@@ -948,10 +895,6 @@ public final class UpdatePartnersRequest {
     private Optional<String> lateInterestPercent = Optional.empty();
 
     private Optional<Boolean> autoDebtReminder = Optional.empty();
-
-    private Optional<String> foreignTaxNumber = Optional.empty();
-
-    private Optional<String> otherCode = Optional.empty();
 
     private Optional<String> eoriCode = Optional.empty();
 
@@ -1034,8 +977,6 @@ public final class UpdatePartnersRequest {
       website(other.getWebsite());
       fax(other.getFax());
       eoriCode(other.getEoriCode());
-      otherCode(other.getOtherCode());
-      foreignTaxNumber(other.getForeignTaxNumber());
       autoDebtReminder(other.getAutoDebtReminder());
       lateInterestPercent(other.getLateInterestPercent());
       firstCallDate(other.getFirstCallDate());
@@ -1299,66 +1240,6 @@ public final class UpdatePartnersRequest {
     )
     public _FinalStage autoDebtReminder(Optional<Boolean> autoDebtReminder) {
       this.autoDebtReminder = autoDebtReminder;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage foreignTaxNumber(Nullable<String> foreignTaxNumber) {
-      if (foreignTaxNumber.isNull()) {
-        this.foreignTaxNumber = null;
-      }
-      else if (foreignTaxNumber.isEmpty()) {
-        this.foreignTaxNumber = Optional.empty();
-      }
-      else {
-        this.foreignTaxNumber = Optional.of(foreignTaxNumber.get());
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage foreignTaxNumber(String foreignTaxNumber) {
-      this.foreignTaxNumber = Optional.ofNullable(foreignTaxNumber);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "foreignTaxNumber",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage foreignTaxNumber(Optional<String> foreignTaxNumber) {
-      this.foreignTaxNumber = foreignTaxNumber;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage otherCode(Nullable<String> otherCode) {
-      if (otherCode.isNull()) {
-        this.otherCode = null;
-      }
-      else if (otherCode.isEmpty()) {
-        this.otherCode = Optional.empty();
-      }
-      else {
-        this.otherCode = Optional.of(otherCode.get());
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage otherCode(String otherCode) {
-      this.otherCode = Optional.ofNullable(otherCode);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "otherCode",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage otherCode(Optional<String> otherCode) {
-      this.otherCode = otherCode;
       return this;
     }
 
@@ -2017,7 +1898,7 @@ public final class UpdatePartnersRequest {
 
     @java.lang.Override
     public UpdatePartnersRequest build() {
-      return new UpdatePartnersRequest(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isCustomer, isSupplier, paymentTermDays, creditLimit, priceListId, groupId, statusId, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, otherCode, foreignTaxNumber, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, additionalProperties);
+      return new UpdatePartnersRequest(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isCustomer, isSupplier, paymentTermDays, creditLimit, priceListId, groupId, statusId, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, additionalProperties);
     }
 
     @java.lang.Override

@@ -13,6 +13,11 @@ import com.nordlet.api.resources.sales.requests.ActsIssueSalesRequest;
 import com.nordlet.api.resources.sales.requests.ActsListSalesRequest;
 import com.nordlet.api.resources.sales.requests.ActsPdfSalesRequest;
 import com.nordlet.api.resources.sales.requests.ActsUpdateSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoiceTemplatesCreateSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoiceTemplatesDeleteSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoiceTemplatesGetSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoiceTemplatesListSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoiceTemplatesUpdateSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesApplyAdvanceSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesCreateSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesDeleteSalesRequest;
@@ -49,6 +54,11 @@ import com.nordlet.api.resources.sales.types.ActsIssueSalesResponse;
 import com.nordlet.api.resources.sales.types.ActsListSalesResponse;
 import com.nordlet.api.resources.sales.types.ActsPdfSalesResponse;
 import com.nordlet.api.resources.sales.types.ActsUpdateSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoiceTemplatesCreateSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoiceTemplatesDeleteSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoiceTemplatesGetSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoiceTemplatesListSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoiceTemplatesUpdateSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesApplyAdvanceSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesCreateSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesDeleteSalesResponse;
@@ -418,6 +428,64 @@ public class SalesClient {
 
   public ActsPdfSalesResponse actsPdf(ActsPdfSalesRequest request, RequestOptions requestOptions) {
     return this.rawClient.actsPdf(request, requestOptions).body();
+  }
+
+  public InvoiceTemplatesCreateSalesResponse invoiceTemplatesCreate(
+      InvoiceTemplatesCreateSalesRequest request) {
+    return this.rawClient.invoiceTemplatesCreate(request).body();
+  }
+
+  public InvoiceTemplatesCreateSalesResponse invoiceTemplatesCreate(
+      InvoiceTemplatesCreateSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoiceTemplatesCreate(request, requestOptions).body();
+  }
+
+  public InvoiceTemplatesUpdateSalesResponse invoiceTemplatesUpdate(
+      InvoiceTemplatesUpdateSalesRequest request) {
+    return this.rawClient.invoiceTemplatesUpdate(request).body();
+  }
+
+  public InvoiceTemplatesUpdateSalesResponse invoiceTemplatesUpdate(
+      InvoiceTemplatesUpdateSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoiceTemplatesUpdate(request, requestOptions).body();
+  }
+
+  public InvoiceTemplatesGetSalesResponse invoiceTemplatesGet(
+      InvoiceTemplatesGetSalesRequest request) {
+    return this.rawClient.invoiceTemplatesGet(request).body();
+  }
+
+  public InvoiceTemplatesGetSalesResponse invoiceTemplatesGet(
+      InvoiceTemplatesGetSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoiceTemplatesGet(request, requestOptions).body();
+  }
+
+  public InvoiceTemplatesDeleteSalesResponse invoiceTemplatesDelete(
+      InvoiceTemplatesDeleteSalesRequest request) {
+    return this.rawClient.invoiceTemplatesDelete(request).body();
+  }
+
+  public InvoiceTemplatesDeleteSalesResponse invoiceTemplatesDelete(
+      InvoiceTemplatesDeleteSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoiceTemplatesDelete(request, requestOptions).body();
+  }
+
+  public InvoiceTemplatesListSalesResponse invoiceTemplatesList() {
+    return this.rawClient.invoiceTemplatesList().body();
+  }
+
+  public InvoiceTemplatesListSalesResponse invoiceTemplatesList(RequestOptions requestOptions) {
+    return this.rawClient.invoiceTemplatesList(requestOptions).body();
+  }
+
+  public InvoiceTemplatesListSalesResponse invoiceTemplatesList(
+      InvoiceTemplatesListSalesRequest request) {
+    return this.rawClient.invoiceTemplatesList(request).body();
+  }
+
+  public InvoiceTemplatesListSalesResponse invoiceTemplatesList(
+      InvoiceTemplatesListSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoiceTemplatesList(request, requestOptions).body();
   }
 
   public RecognitionComputeSalesResponse recognitionCompute() {

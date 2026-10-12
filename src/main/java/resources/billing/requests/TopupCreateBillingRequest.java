@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.billing.types.TopupCreateBillingRequestLocale;
+import com.nordlet.api.resources.billing.types.TopupCreateBillingRequestReturnTo;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -30,12 +31,17 @@ public final class TopupCreateBillingRequest {
 
   private final Optional<TopupCreateBillingRequestLocale> locale;
 
+  private final Optional<TopupCreateBillingRequestReturnTo> returnTo;
+
   private final Map<String, Object> additionalProperties;
 
   private TopupCreateBillingRequest(long amountCents,
-      Optional<TopupCreateBillingRequestLocale> locale, Map<String, Object> additionalProperties) {
+      Optional<TopupCreateBillingRequestLocale> locale,
+      Optional<TopupCreateBillingRequestReturnTo> returnTo,
+      Map<String, Object> additionalProperties) {
     this.amountCents = amountCents;
     this.locale = locale;
+    this.returnTo = returnTo;
     this.additionalProperties = additionalProperties;
   }
 
@@ -47,6 +53,11 @@ public final class TopupCreateBillingRequest {
   @JsonProperty("locale")
   public Optional<TopupCreateBillingRequestLocale> getLocale() {
     return locale;
+  }
+
+  @JsonProperty("returnTo")
+  public Optional<TopupCreateBillingRequestReturnTo> getReturnTo() {
+    return returnTo;
   }
 
   @java.lang.Override
@@ -61,12 +72,12 @@ public final class TopupCreateBillingRequest {
   }
 
   private boolean equalTo(TopupCreateBillingRequest other) {
-    return amountCents == other.amountCents && locale.equals(other.locale);
+    return amountCents == other.amountCents && locale.equals(other.locale) && returnTo.equals(other.returnTo);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.amountCents, this.locale);
+    return Objects.hash(this.amountCents, this.locale, this.returnTo);
   }
 
   @java.lang.Override
@@ -94,6 +105,10 @@ public final class TopupCreateBillingRequest {
     _FinalStage locale(Optional<TopupCreateBillingRequestLocale> locale);
 
     _FinalStage locale(TopupCreateBillingRequestLocale locale);
+
+    _FinalStage returnTo(Optional<TopupCreateBillingRequestReturnTo> returnTo);
+
+    _FinalStage returnTo(TopupCreateBillingRequestReturnTo returnTo);
   }
 
   @JsonIgnoreProperties(
@@ -101,6 +116,8 @@ public final class TopupCreateBillingRequest {
   )
   public static final class Builder implements AmountCentsStage, _FinalStage {
     private long amountCents;
+
+    private Optional<TopupCreateBillingRequestReturnTo> returnTo = Optional.empty();
 
     private Optional<TopupCreateBillingRequestLocale> locale = Optional.empty();
 
@@ -114,6 +131,7 @@ public final class TopupCreateBillingRequest {
     public Builder from(TopupCreateBillingRequest other) {
       amountCents(other.getAmountCents());
       locale(other.getLocale());
+      returnTo(other.getReturnTo());
       return this;
     }
 
@@ -121,6 +139,22 @@ public final class TopupCreateBillingRequest {
     @JsonSetter("amountCents")
     public _FinalStage amountCents(long amountCents) {
       this.amountCents = amountCents;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage returnTo(TopupCreateBillingRequestReturnTo returnTo) {
+      this.returnTo = Optional.ofNullable(returnTo);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "returnTo",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage returnTo(Optional<TopupCreateBillingRequestReturnTo> returnTo) {
+      this.returnTo = returnTo;
       return this;
     }
 
@@ -142,7 +176,7 @@ public final class TopupCreateBillingRequest {
 
     @java.lang.Override
     public TopupCreateBillingRequest build() {
-      return new TopupCreateBillingRequest(amountCents, locale, additionalProperties);
+      return new TopupCreateBillingRequest(amountCents, locale, returnTo, additionalProperties);
     }
 
     @java.lang.Override

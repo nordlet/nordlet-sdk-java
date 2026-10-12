@@ -3043,22 +3043,6 @@ client.partners().create(
 <dl>
 <dd>
 
-**otherCode:** `Optional<String>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**foreignTaxNumber:** `Optional<String>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **autoDebtReminder:** `Optional<Boolean>` 
     
 </dd>
@@ -3361,22 +3345,6 @@ client.partners().findOrCreate(
 <dd>
 
 **eoriCode:** `Optional<String>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**otherCode:** `Optional<String>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**foreignTaxNumber:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -3739,22 +3707,6 @@ client.partners().update(
 <dd>
 
 **eoriCode:** `Optional<String>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**otherCode:** `Optional<String>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**foreignTaxNumber:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -10378,6 +10330,638 @@ client.sales().actsPdf(
 <dd>
 
 **locale:** `Optional<ActsPdfSalesRequestLocale>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.invoiceTemplatesCreate(request) -> InvoiceTemplatesCreateSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().invoiceTemplatesCreate(
+    InvoiceTemplatesCreateSalesRequest
+        .builder()
+        .name("name")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentType:** `Optional<InvoiceTemplatesCreateSalesRequestDocumentType>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partnerId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currency:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**paymentTermDays:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vatScheme:** `Optional<InvoiceTemplatesCreateSalesRequestVatScheme>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vatCountryCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**agreementId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**operationTypeId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentSeriesId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**discountPercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**issuedByName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**issuedByTitle:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**receivedByName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**receivedByTitle:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**supplyType:** `Optional<InvoiceTemplatesCreateSalesRequestSupplyType>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**seriesLabel:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orderNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatTransportMode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatDeliveryTerms:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatRegion:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatNatureOfTransaction:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lines:** `Optional<List<InvoiceTemplatesCreateSalesRequestLinesItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.invoiceTemplatesUpdate(request) -> InvoiceTemplatesUpdateSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().invoiceTemplatesUpdate(
+    InvoiceTemplatesUpdateSalesRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentType:** `Optional<InvoiceTemplatesUpdateSalesRequestDocumentType>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partnerId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currency:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**paymentTermDays:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vatScheme:** `Optional<InvoiceTemplatesUpdateSalesRequestVatScheme>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vatCountryCode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**agreementId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**operationTypeId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentSeriesId:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**discountPercent:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**issuedByName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**issuedByTitle:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**receivedByName:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**receivedByTitle:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**supplyType:** `Optional<InvoiceTemplatesUpdateSalesRequestSupplyType>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**seriesLabel:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orderNumber:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatTransportMode:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatDeliveryTerms:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatRegion:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**intrastatNatureOfTransaction:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lines:** `Optional<List<InvoiceTemplatesUpdateSalesRequestLinesItem>>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.invoiceTemplatesGet(request) -> InvoiceTemplatesGetSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().invoiceTemplatesGet(
+    InvoiceTemplatesGetSalesRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.invoiceTemplatesDelete(request) -> InvoiceTemplatesDeleteSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().invoiceTemplatesDelete(
+    InvoiceTemplatesDeleteSalesRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.sales.invoiceTemplatesList(request) -> InvoiceTemplatesListSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.sales().invoiceTemplatesList(
+    InvoiceTemplatesListSalesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<InvoiceTemplatesListSalesRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<InvoiceTemplatesListSalesRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -39381,6 +39965,189 @@ client.bank().settlementsPost(
 </dl>
 </details>
 
+<details><summary><code>client.bank.securitiesImport(request) -> SecuritiesImportBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().securitiesImport(
+    SecuritiesImportBankRequest
+        .builder()
+        .bankAccountId("bankAccountId")
+        .content("content")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**bankAccountId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**content:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fileName:** `Optional<String>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.securitiesList(request) -> SecuritiesListBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().securitiesList(
+    SecuritiesListBankRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Optional<Long>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Optional<List<SecuritiesListBankRequestSortItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `Optional<List<SecuritiesListBankRequestFilterItem>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**totals:** `Optional<List<String>>` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.securitiesGet(request) -> SecuritiesGetBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().securitiesGet(
+    SecuritiesGetBankRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.bank.feedsBanksList(request) -> FeedsBanksListBankResponse</code></summary>
 <dl>
 <dd>
@@ -42873,6 +43640,150 @@ client.billing().accountSetPlan(
 </dl>
 </details>
 
+<details><summary><code>client.billing.accountSetAccountType(request) -> AccountSetAccountTypeBillingResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.billing().accountSetAccountType(
+    AccountSetAccountTypeBillingRequest
+        .builder()
+        .accountType(AccountSetAccountTypeBillingRequestAccountType.FLAT_RATE)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**accountType:** `AccountSetAccountTypeBillingRequestAccountType` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.accountSetAutoTopUp(request) -> AccountSetAutoTopUpBillingResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.billing().accountSetAutoTopUp(
+    AccountSetAutoTopUpBillingRequest
+        .builder()
+        .enabled(true)
+        .amountCents(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**enabled:** `Boolean` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amountCents:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.accountSetOverdraftCap(request) -> AccountSetOverdraftCapBillingResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.billing().accountSetOverdraftCap(
+    AccountSetOverdraftCapBillingRequest
+        .builder()
+        .capCents(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**capCents:** `Long` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.billing.topupCreate(request) -> TopupCreateBillingResponse</code></summary>
 <dl>
 <dd>
@@ -42915,6 +43826,156 @@ client.billing().topupCreate(
 <dd>
 
 **locale:** `Optional<TopupCreateBillingRequestLocale>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**returnTo:** `Optional<TopupCreateBillingRequestReturnTo>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.topupConfirm(request) -> TopupConfirmBillingResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.billing().topupConfirm(
+    TopupConfirmBillingRequest
+        .builder()
+        .sessionId("sessionId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.flatRateCreate(request) -> FlatRateCreateBillingResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.billing().flatRateCreate(
+    FlatRateCreateBillingRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**locale:** `Optional<FlatRateCreateBillingRequestLocale>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**plan:** `Optional<FlatRateCreateBillingRequestPlan>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.flatRateConfirm(request) -> FlatRateConfirmBillingResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.billing().flatRateConfirm(
+    FlatRateConfirmBillingRequest
+        .builder()
+        .sessionId("sessionId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `String` 
     
 </dd>
 </dl>

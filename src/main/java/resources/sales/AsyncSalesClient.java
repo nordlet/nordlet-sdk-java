@@ -13,6 +13,11 @@ import com.nordlet.api.resources.sales.requests.ActsIssueSalesRequest;
 import com.nordlet.api.resources.sales.requests.ActsListSalesRequest;
 import com.nordlet.api.resources.sales.requests.ActsPdfSalesRequest;
 import com.nordlet.api.resources.sales.requests.ActsUpdateSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoiceTemplatesCreateSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoiceTemplatesDeleteSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoiceTemplatesGetSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoiceTemplatesListSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoiceTemplatesUpdateSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesApplyAdvanceSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesCreateSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesDeleteSalesRequest;
@@ -49,6 +54,11 @@ import com.nordlet.api.resources.sales.types.ActsIssueSalesResponse;
 import com.nordlet.api.resources.sales.types.ActsListSalesResponse;
 import com.nordlet.api.resources.sales.types.ActsPdfSalesResponse;
 import com.nordlet.api.resources.sales.types.ActsUpdateSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoiceTemplatesCreateSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoiceTemplatesDeleteSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoiceTemplatesGetSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoiceTemplatesListSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoiceTemplatesUpdateSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesApplyAdvanceSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesCreateSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesDeleteSalesResponse;
@@ -430,6 +440,65 @@ public class AsyncSalesClient {
   public CompletableFuture<ActsPdfSalesResponse> actsPdf(ActsPdfSalesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.actsPdf(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvoiceTemplatesCreateSalesResponse> invoiceTemplatesCreate(
+      InvoiceTemplatesCreateSalesRequest request) {
+    return this.rawClient.invoiceTemplatesCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvoiceTemplatesCreateSalesResponse> invoiceTemplatesCreate(
+      InvoiceTemplatesCreateSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoiceTemplatesCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvoiceTemplatesUpdateSalesResponse> invoiceTemplatesUpdate(
+      InvoiceTemplatesUpdateSalesRequest request) {
+    return this.rawClient.invoiceTemplatesUpdate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvoiceTemplatesUpdateSalesResponse> invoiceTemplatesUpdate(
+      InvoiceTemplatesUpdateSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoiceTemplatesUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvoiceTemplatesGetSalesResponse> invoiceTemplatesGet(
+      InvoiceTemplatesGetSalesRequest request) {
+    return this.rawClient.invoiceTemplatesGet(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvoiceTemplatesGetSalesResponse> invoiceTemplatesGet(
+      InvoiceTemplatesGetSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoiceTemplatesGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvoiceTemplatesDeleteSalesResponse> invoiceTemplatesDelete(
+      InvoiceTemplatesDeleteSalesRequest request) {
+    return this.rawClient.invoiceTemplatesDelete(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvoiceTemplatesDeleteSalesResponse> invoiceTemplatesDelete(
+      InvoiceTemplatesDeleteSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoiceTemplatesDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvoiceTemplatesListSalesResponse> invoiceTemplatesList() {
+    return this.rawClient.invoiceTemplatesList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvoiceTemplatesListSalesResponse> invoiceTemplatesList(
+      RequestOptions requestOptions) {
+    return this.rawClient.invoiceTemplatesList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvoiceTemplatesListSalesResponse> invoiceTemplatesList(
+      InvoiceTemplatesListSalesRequest request) {
+    return this.rawClient.invoiceTemplatesList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<InvoiceTemplatesListSalesResponse> invoiceTemplatesList(
+      InvoiceTemplatesListSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoiceTemplatesList(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<RecognitionComputeSalesResponse> recognitionCompute() {

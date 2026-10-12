@@ -7,14 +7,26 @@ package com.nordlet.api.resources.billing;
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.billing.requests.AccountGetBillingRequest;
+import com.nordlet.api.resources.billing.requests.AccountSetAccountTypeBillingRequest;
+import com.nordlet.api.resources.billing.requests.AccountSetAutoTopUpBillingRequest;
+import com.nordlet.api.resources.billing.requests.AccountSetOverdraftCapBillingRequest;
 import com.nordlet.api.resources.billing.requests.AccountSetPlanBillingRequest;
+import com.nordlet.api.resources.billing.requests.FlatRateConfirmBillingRequest;
+import com.nordlet.api.resources.billing.requests.FlatRateCreateBillingRequest;
 import com.nordlet.api.resources.billing.requests.PortalCreateBillingRequest;
+import com.nordlet.api.resources.billing.requests.TopupConfirmBillingRequest;
 import com.nordlet.api.resources.billing.requests.TopupCreateBillingRequest;
 import com.nordlet.api.resources.billing.requests.TransactionsListBillingRequest;
 import com.nordlet.api.resources.billing.requests.UsageListBillingRequest;
 import com.nordlet.api.resources.billing.types.AccountGetBillingResponse;
+import com.nordlet.api.resources.billing.types.AccountSetAccountTypeBillingResponse;
+import com.nordlet.api.resources.billing.types.AccountSetAutoTopUpBillingResponse;
+import com.nordlet.api.resources.billing.types.AccountSetOverdraftCapBillingResponse;
 import com.nordlet.api.resources.billing.types.AccountSetPlanBillingResponse;
+import com.nordlet.api.resources.billing.types.FlatRateConfirmBillingResponse;
+import com.nordlet.api.resources.billing.types.FlatRateCreateBillingResponse;
 import com.nordlet.api.resources.billing.types.PortalCreateBillingResponse;
+import com.nordlet.api.resources.billing.types.TopupConfirmBillingResponse;
 import com.nordlet.api.resources.billing.types.TopupCreateBillingResponse;
 import com.nordlet.api.resources.billing.types.TransactionsListBillingResponse;
 import com.nordlet.api.resources.billing.types.UsageListBillingResponse;
@@ -64,6 +76,36 @@ public class AsyncBillingClient {
     return this.rawClient.accountSetPlan(request, requestOptions).thenApply(response -> response.body());
   }
 
+  public CompletableFuture<AccountSetAccountTypeBillingResponse> accountSetAccountType(
+      AccountSetAccountTypeBillingRequest request) {
+    return this.rawClient.accountSetAccountType(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AccountSetAccountTypeBillingResponse> accountSetAccountType(
+      AccountSetAccountTypeBillingRequest request, RequestOptions requestOptions) {
+    return this.rawClient.accountSetAccountType(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AccountSetAutoTopUpBillingResponse> accountSetAutoTopUp(
+      AccountSetAutoTopUpBillingRequest request) {
+    return this.rawClient.accountSetAutoTopUp(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AccountSetAutoTopUpBillingResponse> accountSetAutoTopUp(
+      AccountSetAutoTopUpBillingRequest request, RequestOptions requestOptions) {
+    return this.rawClient.accountSetAutoTopUp(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AccountSetOverdraftCapBillingResponse> accountSetOverdraftCap(
+      AccountSetOverdraftCapBillingRequest request) {
+    return this.rawClient.accountSetOverdraftCap(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<AccountSetOverdraftCapBillingResponse> accountSetOverdraftCap(
+      AccountSetOverdraftCapBillingRequest request, RequestOptions requestOptions) {
+    return this.rawClient.accountSetOverdraftCap(request, requestOptions).thenApply(response -> response.body());
+  }
+
   public CompletableFuture<TopupCreateBillingResponse> topupCreate(
       TopupCreateBillingRequest request) {
     return this.rawClient.topupCreate(request).thenApply(response -> response.body());
@@ -72,6 +114,45 @@ public class AsyncBillingClient {
   public CompletableFuture<TopupCreateBillingResponse> topupCreate(
       TopupCreateBillingRequest request, RequestOptions requestOptions) {
     return this.rawClient.topupCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TopupConfirmBillingResponse> topupConfirm(
+      TopupConfirmBillingRequest request) {
+    return this.rawClient.topupConfirm(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<TopupConfirmBillingResponse> topupConfirm(
+      TopupConfirmBillingRequest request, RequestOptions requestOptions) {
+    return this.rawClient.topupConfirm(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<FlatRateCreateBillingResponse> flatRateCreate() {
+    return this.rawClient.flatRateCreate().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<FlatRateCreateBillingResponse> flatRateCreate(
+      RequestOptions requestOptions) {
+    return this.rawClient.flatRateCreate(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<FlatRateCreateBillingResponse> flatRateCreate(
+      FlatRateCreateBillingRequest request) {
+    return this.rawClient.flatRateCreate(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<FlatRateCreateBillingResponse> flatRateCreate(
+      FlatRateCreateBillingRequest request, RequestOptions requestOptions) {
+    return this.rawClient.flatRateCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<FlatRateConfirmBillingResponse> flatRateConfirm(
+      FlatRateConfirmBillingRequest request) {
+    return this.rawClient.flatRateConfirm(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<FlatRateConfirmBillingResponse> flatRateConfirm(
+      FlatRateConfirmBillingRequest request, RequestOptions requestOptions) {
+    return this.rawClient.flatRateConfirm(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<PortalCreateBillingResponse> portalCreate() {

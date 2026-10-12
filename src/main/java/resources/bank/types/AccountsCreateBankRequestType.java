@@ -12,6 +12,8 @@ import java.lang.String;
 public final class AccountsCreateBankRequestType {
   public static final AccountsCreateBankRequestType BANK = new AccountsCreateBankRequestType(Value.BANK, "bank");
 
+  public static final AccountsCreateBankRequestType BROKER = new AccountsCreateBankRequestType(Value.BROKER, "broker");
+
   public static final AccountsCreateBankRequestType STRIPE = new AccountsCreateBankRequestType(Value.STRIPE, "stripe");
 
   private final Value value;
@@ -48,6 +50,8 @@ public final class AccountsCreateBankRequestType {
     switch (value) {
       case BANK:
         return visitor.visitBank();
+      case BROKER:
+        return visitor.visitBroker();
       case STRIPE:
         return visitor.visitStripe();
       case UNKNOWN:
@@ -63,6 +67,8 @@ public final class AccountsCreateBankRequestType {
     switch (value) {
       case "bank":
         return BANK;
+      case "broker":
+        return BROKER;
       case "stripe":
         return STRIPE;
       default:
@@ -75,6 +81,8 @@ public final class AccountsCreateBankRequestType {
 
     STRIPE,
 
+    BROKER,
+
     UNKNOWN
   }
 
@@ -82,6 +90,8 @@ public final class AccountsCreateBankRequestType {
     T visitBank();
 
     T visitStripe();
+
+    T visitBroker();
 
     T visitUnknown(String unknownType);
   }

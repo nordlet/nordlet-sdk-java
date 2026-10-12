@@ -7,14 +7,26 @@ package com.nordlet.api.resources.billing;
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.billing.requests.AccountGetBillingRequest;
+import com.nordlet.api.resources.billing.requests.AccountSetAccountTypeBillingRequest;
+import com.nordlet.api.resources.billing.requests.AccountSetAutoTopUpBillingRequest;
+import com.nordlet.api.resources.billing.requests.AccountSetOverdraftCapBillingRequest;
 import com.nordlet.api.resources.billing.requests.AccountSetPlanBillingRequest;
+import com.nordlet.api.resources.billing.requests.FlatRateConfirmBillingRequest;
+import com.nordlet.api.resources.billing.requests.FlatRateCreateBillingRequest;
 import com.nordlet.api.resources.billing.requests.PortalCreateBillingRequest;
+import com.nordlet.api.resources.billing.requests.TopupConfirmBillingRequest;
 import com.nordlet.api.resources.billing.requests.TopupCreateBillingRequest;
 import com.nordlet.api.resources.billing.requests.TransactionsListBillingRequest;
 import com.nordlet.api.resources.billing.requests.UsageListBillingRequest;
 import com.nordlet.api.resources.billing.types.AccountGetBillingResponse;
+import com.nordlet.api.resources.billing.types.AccountSetAccountTypeBillingResponse;
+import com.nordlet.api.resources.billing.types.AccountSetAutoTopUpBillingResponse;
+import com.nordlet.api.resources.billing.types.AccountSetOverdraftCapBillingResponse;
 import com.nordlet.api.resources.billing.types.AccountSetPlanBillingResponse;
+import com.nordlet.api.resources.billing.types.FlatRateConfirmBillingResponse;
+import com.nordlet.api.resources.billing.types.FlatRateCreateBillingResponse;
 import com.nordlet.api.resources.billing.types.PortalCreateBillingResponse;
+import com.nordlet.api.resources.billing.types.TopupConfirmBillingResponse;
 import com.nordlet.api.resources.billing.types.TopupCreateBillingResponse;
 import com.nordlet.api.resources.billing.types.TransactionsListBillingResponse;
 import com.nordlet.api.resources.billing.types.UsageListBillingResponse;
@@ -62,6 +74,36 @@ public class BillingClient {
     return this.rawClient.accountSetPlan(request, requestOptions).body();
   }
 
+  public AccountSetAccountTypeBillingResponse accountSetAccountType(
+      AccountSetAccountTypeBillingRequest request) {
+    return this.rawClient.accountSetAccountType(request).body();
+  }
+
+  public AccountSetAccountTypeBillingResponse accountSetAccountType(
+      AccountSetAccountTypeBillingRequest request, RequestOptions requestOptions) {
+    return this.rawClient.accountSetAccountType(request, requestOptions).body();
+  }
+
+  public AccountSetAutoTopUpBillingResponse accountSetAutoTopUp(
+      AccountSetAutoTopUpBillingRequest request) {
+    return this.rawClient.accountSetAutoTopUp(request).body();
+  }
+
+  public AccountSetAutoTopUpBillingResponse accountSetAutoTopUp(
+      AccountSetAutoTopUpBillingRequest request, RequestOptions requestOptions) {
+    return this.rawClient.accountSetAutoTopUp(request, requestOptions).body();
+  }
+
+  public AccountSetOverdraftCapBillingResponse accountSetOverdraftCap(
+      AccountSetOverdraftCapBillingRequest request) {
+    return this.rawClient.accountSetOverdraftCap(request).body();
+  }
+
+  public AccountSetOverdraftCapBillingResponse accountSetOverdraftCap(
+      AccountSetOverdraftCapBillingRequest request, RequestOptions requestOptions) {
+    return this.rawClient.accountSetOverdraftCap(request, requestOptions).body();
+  }
+
   public TopupCreateBillingResponse topupCreate(TopupCreateBillingRequest request) {
     return this.rawClient.topupCreate(request).body();
   }
@@ -69,6 +111,41 @@ public class BillingClient {
   public TopupCreateBillingResponse topupCreate(TopupCreateBillingRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.topupCreate(request, requestOptions).body();
+  }
+
+  public TopupConfirmBillingResponse topupConfirm(TopupConfirmBillingRequest request) {
+    return this.rawClient.topupConfirm(request).body();
+  }
+
+  public TopupConfirmBillingResponse topupConfirm(TopupConfirmBillingRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.topupConfirm(request, requestOptions).body();
+  }
+
+  public FlatRateCreateBillingResponse flatRateCreate() {
+    return this.rawClient.flatRateCreate().body();
+  }
+
+  public FlatRateCreateBillingResponse flatRateCreate(RequestOptions requestOptions) {
+    return this.rawClient.flatRateCreate(requestOptions).body();
+  }
+
+  public FlatRateCreateBillingResponse flatRateCreate(FlatRateCreateBillingRequest request) {
+    return this.rawClient.flatRateCreate(request).body();
+  }
+
+  public FlatRateCreateBillingResponse flatRateCreate(FlatRateCreateBillingRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.flatRateCreate(request, requestOptions).body();
+  }
+
+  public FlatRateConfirmBillingResponse flatRateConfirm(FlatRateConfirmBillingRequest request) {
+    return this.rawClient.flatRateConfirm(request).body();
+  }
+
+  public FlatRateConfirmBillingResponse flatRateConfirm(FlatRateConfirmBillingRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.flatRateConfirm(request, requestOptions).body();
   }
 
   public PortalCreateBillingResponse portalCreate() {

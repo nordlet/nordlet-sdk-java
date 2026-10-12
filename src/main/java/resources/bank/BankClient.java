@@ -35,6 +35,9 @@ import com.nordlet.api.resources.bank.requests.MatchRulesDeleteBankRequest;
 import com.nordlet.api.resources.bank.requests.MatchRulesListBankRequest;
 import com.nordlet.api.resources.bank.requests.MatchRulesUpdateBankRequest;
 import com.nordlet.api.resources.bank.requests.PaymentsExportBankRequest;
+import com.nordlet.api.resources.bank.requests.SecuritiesGetBankRequest;
+import com.nordlet.api.resources.bank.requests.SecuritiesImportBankRequest;
+import com.nordlet.api.resources.bank.requests.SecuritiesListBankRequest;
 import com.nordlet.api.resources.bank.requests.SettlementsCommissionBankRequest;
 import com.nordlet.api.resources.bank.requests.SettlementsGetBankRequest;
 import com.nordlet.api.resources.bank.requests.SettlementsImportBankRequest;
@@ -80,6 +83,9 @@ import com.nordlet.api.resources.bank.types.MatchRulesDeleteBankResponse;
 import com.nordlet.api.resources.bank.types.MatchRulesListBankResponse;
 import com.nordlet.api.resources.bank.types.MatchRulesUpdateBankResponse;
 import com.nordlet.api.resources.bank.types.PaymentsExportBankResponse;
+import com.nordlet.api.resources.bank.types.SecuritiesGetBankResponse;
+import com.nordlet.api.resources.bank.types.SecuritiesImportBankResponse;
+import com.nordlet.api.resources.bank.types.SecuritiesListBankResponse;
 import com.nordlet.api.resources.bank.types.SettlementsCommissionBankResponse;
 import com.nordlet.api.resources.bank.types.SettlementsGetBankResponse;
 import com.nordlet.api.resources.bank.types.SettlementsImportBankResponse;
@@ -525,6 +531,41 @@ public class BankClient {
   public SettlementsPostBankResponse settlementsPost(SettlementsPostBankRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.settlementsPost(request, requestOptions).body();
+  }
+
+  public SecuritiesImportBankResponse securitiesImport(SecuritiesImportBankRequest request) {
+    return this.rawClient.securitiesImport(request).body();
+  }
+
+  public SecuritiesImportBankResponse securitiesImport(SecuritiesImportBankRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.securitiesImport(request, requestOptions).body();
+  }
+
+  public SecuritiesListBankResponse securitiesList() {
+    return this.rawClient.securitiesList().body();
+  }
+
+  public SecuritiesListBankResponse securitiesList(RequestOptions requestOptions) {
+    return this.rawClient.securitiesList(requestOptions).body();
+  }
+
+  public SecuritiesListBankResponse securitiesList(SecuritiesListBankRequest request) {
+    return this.rawClient.securitiesList(request).body();
+  }
+
+  public SecuritiesListBankResponse securitiesList(SecuritiesListBankRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.securitiesList(request, requestOptions).body();
+  }
+
+  public SecuritiesGetBankResponse securitiesGet(SecuritiesGetBankRequest request) {
+    return this.rawClient.securitiesGet(request).body();
+  }
+
+  public SecuritiesGetBankResponse securitiesGet(SecuritiesGetBankRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.securitiesGet(request, requestOptions).body();
   }
 
   public FeedsBanksListBankResponse feedsBanksList() {

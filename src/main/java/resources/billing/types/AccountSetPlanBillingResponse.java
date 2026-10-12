@@ -33,6 +33,8 @@ import org.jetbrains.annotations.NotNull;
 public final class AccountSetPlanBillingResponse {
   private final AccountSetPlanBillingResponsePlan plan;
 
+  private final AccountSetPlanBillingResponseAccountType accountType;
+
   private final AccountSetPlanBillingResponseStatus status;
 
   private final long balanceCents;
@@ -57,23 +59,34 @@ public final class AccountSetPlanBillingResponse {
 
   private final Map<String, AccountSetPlanBillingResponsePlansValue> plans;
 
+  private final String apiRequestEur;
+
   private final AccountSetPlanBillingResponseTopUp topUp;
+
+  private final AccountSetPlanBillingResponseAutoTopUp autoTopUp;
+
+  private final long overdraftCapCents;
+
+  private final long overdraftCapMaxCents;
 
   private final long trialDays;
 
   private final Map<String, Object> additionalProperties;
 
   private AccountSetPlanBillingResponse(AccountSetPlanBillingResponsePlan plan,
+      AccountSetPlanBillingResponseAccountType accountType,
       AccountSetPlanBillingResponseStatus status, long balanceCents,
       Optional<OffsetDateTime> trialEndsAt, Optional<OffsetDateTime> firstTopUpAt,
       Optional<String> lastChargedDate, boolean paymentsConfigured, boolean hasPaymentAccount,
       boolean hasSubscription, Optional<OffsetDateTime> paymentFailedAt,
       Optional<String> paymentFailedInvoiceUrl,
       AccountSetPlanBillingResponseMonthToDate monthToDate,
-      Map<String, AccountSetPlanBillingResponsePlansValue> plans,
-      AccountSetPlanBillingResponseTopUp topUp, long trialDays,
+      Map<String, AccountSetPlanBillingResponsePlansValue> plans, String apiRequestEur,
+      AccountSetPlanBillingResponseTopUp topUp, AccountSetPlanBillingResponseAutoTopUp autoTopUp,
+      long overdraftCapCents, long overdraftCapMaxCents, long trialDays,
       Map<String, Object> additionalProperties) {
     this.plan = plan;
+    this.accountType = accountType;
     this.status = status;
     this.balanceCents = balanceCents;
     this.trialEndsAt = trialEndsAt;
@@ -86,7 +99,11 @@ public final class AccountSetPlanBillingResponse {
     this.paymentFailedInvoiceUrl = paymentFailedInvoiceUrl;
     this.monthToDate = monthToDate;
     this.plans = plans;
+    this.apiRequestEur = apiRequestEur;
     this.topUp = topUp;
+    this.autoTopUp = autoTopUp;
+    this.overdraftCapCents = overdraftCapCents;
+    this.overdraftCapMaxCents = overdraftCapMaxCents;
     this.trialDays = trialDays;
     this.additionalProperties = additionalProperties;
   }
@@ -94,6 +111,11 @@ public final class AccountSetPlanBillingResponse {
   @JsonProperty("plan")
   public AccountSetPlanBillingResponsePlan getPlan() {
     return plan;
+  }
+
+  @JsonProperty("accountType")
+  public AccountSetPlanBillingResponseAccountType getAccountType() {
+    return accountType;
   }
 
   @JsonProperty("status")
@@ -171,9 +193,29 @@ public final class AccountSetPlanBillingResponse {
     return plans;
   }
 
+  @JsonProperty("apiRequestEur")
+  public String getApiRequestEur() {
+    return apiRequestEur;
+  }
+
   @JsonProperty("topUp")
   public AccountSetPlanBillingResponseTopUp getTopUp() {
     return topUp;
+  }
+
+  @JsonProperty("autoTopUp")
+  public AccountSetPlanBillingResponseAutoTopUp getAutoTopUp() {
+    return autoTopUp;
+  }
+
+  @JsonProperty("overdraftCapCents")
+  public long getOverdraftCapCents() {
+    return overdraftCapCents;
+  }
+
+  @JsonProperty("overdraftCapMaxCents")
+  public long getOverdraftCapMaxCents() {
+    return overdraftCapMaxCents;
   }
 
   @JsonProperty("trialDays")
@@ -238,12 +280,12 @@ public final class AccountSetPlanBillingResponse {
   }
 
   private boolean equalTo(AccountSetPlanBillingResponse other) {
-    return plan.equals(other.plan) && status.equals(other.status) && balanceCents == other.balanceCents && trialEndsAt.equals(other.trialEndsAt) && firstTopUpAt.equals(other.firstTopUpAt) && lastChargedDate.equals(other.lastChargedDate) && paymentsConfigured == other.paymentsConfigured && hasPaymentAccount == other.hasPaymentAccount && hasSubscription == other.hasSubscription && paymentFailedAt.equals(other.paymentFailedAt) && paymentFailedInvoiceUrl.equals(other.paymentFailedInvoiceUrl) && monthToDate.equals(other.monthToDate) && plans.equals(other.plans) && topUp.equals(other.topUp) && trialDays == other.trialDays;
+    return plan.equals(other.plan) && accountType.equals(other.accountType) && status.equals(other.status) && balanceCents == other.balanceCents && trialEndsAt.equals(other.trialEndsAt) && firstTopUpAt.equals(other.firstTopUpAt) && lastChargedDate.equals(other.lastChargedDate) && paymentsConfigured == other.paymentsConfigured && hasPaymentAccount == other.hasPaymentAccount && hasSubscription == other.hasSubscription && paymentFailedAt.equals(other.paymentFailedAt) && paymentFailedInvoiceUrl.equals(other.paymentFailedInvoiceUrl) && monthToDate.equals(other.monthToDate) && plans.equals(other.plans) && apiRequestEur.equals(other.apiRequestEur) && topUp.equals(other.topUp) && autoTopUp.equals(other.autoTopUp) && overdraftCapCents == other.overdraftCapCents && overdraftCapMaxCents == other.overdraftCapMaxCents && trialDays == other.trialDays;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.plan, this.status, this.balanceCents, this.trialEndsAt, this.firstTopUpAt, this.lastChargedDate, this.paymentsConfigured, this.hasPaymentAccount, this.hasSubscription, this.paymentFailedAt, this.paymentFailedInvoiceUrl, this.monthToDate, this.plans, this.topUp, this.trialDays);
+    return Objects.hash(this.plan, this.accountType, this.status, this.balanceCents, this.trialEndsAt, this.firstTopUpAt, this.lastChargedDate, this.paymentsConfigured, this.hasPaymentAccount, this.hasSubscription, this.paymentFailedAt, this.paymentFailedInvoiceUrl, this.monthToDate, this.plans, this.apiRequestEur, this.topUp, this.autoTopUp, this.overdraftCapCents, this.overdraftCapMaxCents, this.trialDays);
   }
 
   @java.lang.Override
@@ -256,9 +298,13 @@ public final class AccountSetPlanBillingResponse {
   }
 
   public interface PlanStage {
-    StatusStage plan(@NotNull AccountSetPlanBillingResponsePlan plan);
+    AccountTypeStage plan(@NotNull AccountSetPlanBillingResponsePlan plan);
 
     Builder from(AccountSetPlanBillingResponse other);
+  }
+
+  public interface AccountTypeStage {
+    StatusStage accountType(@NotNull AccountSetPlanBillingResponseAccountType accountType);
   }
 
   public interface StatusStage {
@@ -282,11 +328,27 @@ public final class AccountSetPlanBillingResponse {
   }
 
   public interface MonthToDateStage {
-    TopUpStage monthToDate(@NotNull AccountSetPlanBillingResponseMonthToDate monthToDate);
+    ApiRequestEurStage monthToDate(@NotNull AccountSetPlanBillingResponseMonthToDate monthToDate);
+  }
+
+  public interface ApiRequestEurStage {
+    TopUpStage apiRequestEur(@NotNull String apiRequestEur);
   }
 
   public interface TopUpStage {
-    TrialDaysStage topUp(@NotNull AccountSetPlanBillingResponseTopUp topUp);
+    AutoTopUpStage topUp(@NotNull AccountSetPlanBillingResponseTopUp topUp);
+  }
+
+  public interface AutoTopUpStage {
+    OverdraftCapCentsStage autoTopUp(@NotNull AccountSetPlanBillingResponseAutoTopUp autoTopUp);
+  }
+
+  public interface OverdraftCapCentsStage {
+    OverdraftCapMaxCentsStage overdraftCapCents(long overdraftCapCents);
+  }
+
+  public interface OverdraftCapMaxCentsStage {
+    TrialDaysStage overdraftCapMaxCents(long overdraftCapMaxCents);
   }
 
   public interface TrialDaysStage {
@@ -340,8 +402,10 @@ public final class AccountSetPlanBillingResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements PlanStage, StatusStage, BalanceCentsStage, PaymentsConfiguredStage, HasPaymentAccountStage, HasSubscriptionStage, MonthToDateStage, TopUpStage, TrialDaysStage, _FinalStage {
+  public static final class Builder implements PlanStage, AccountTypeStage, StatusStage, BalanceCentsStage, PaymentsConfiguredStage, HasPaymentAccountStage, HasSubscriptionStage, MonthToDateStage, ApiRequestEurStage, TopUpStage, AutoTopUpStage, OverdraftCapCentsStage, OverdraftCapMaxCentsStage, TrialDaysStage, _FinalStage {
     private AccountSetPlanBillingResponsePlan plan;
+
+    private AccountSetPlanBillingResponseAccountType accountType;
 
     private AccountSetPlanBillingResponseStatus status;
 
@@ -355,7 +419,15 @@ public final class AccountSetPlanBillingResponse {
 
     private AccountSetPlanBillingResponseMonthToDate monthToDate;
 
+    private String apiRequestEur;
+
     private AccountSetPlanBillingResponseTopUp topUp;
+
+    private AccountSetPlanBillingResponseAutoTopUp autoTopUp;
+
+    private long overdraftCapCents;
+
+    private long overdraftCapMaxCents;
 
     private long trialDays;
 
@@ -380,6 +452,7 @@ public final class AccountSetPlanBillingResponse {
     @java.lang.Override
     public Builder from(AccountSetPlanBillingResponse other) {
       plan(other.getPlan());
+      accountType(other.getAccountType());
       status(other.getStatus());
       balanceCents(other.getBalanceCents());
       trialEndsAt(other.getTrialEndsAt());
@@ -392,15 +465,26 @@ public final class AccountSetPlanBillingResponse {
       paymentFailedInvoiceUrl(other.getPaymentFailedInvoiceUrl());
       monthToDate(other.getMonthToDate());
       plans(other.getPlans());
+      apiRequestEur(other.getApiRequestEur());
       topUp(other.getTopUp());
+      autoTopUp(other.getAutoTopUp());
+      overdraftCapCents(other.getOverdraftCapCents());
+      overdraftCapMaxCents(other.getOverdraftCapMaxCents());
       trialDays(other.getTrialDays());
       return this;
     }
 
     @java.lang.Override
     @JsonSetter("plan")
-    public StatusStage plan(@NotNull AccountSetPlanBillingResponsePlan plan) {
+    public AccountTypeStage plan(@NotNull AccountSetPlanBillingResponsePlan plan) {
       this.plan = Objects.requireNonNull(plan, "plan must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("accountType")
+    public StatusStage accountType(@NotNull AccountSetPlanBillingResponseAccountType accountType) {
+      this.accountType = Objects.requireNonNull(accountType, "accountType must not be null");
       return this;
     }
 
@@ -441,15 +525,45 @@ public final class AccountSetPlanBillingResponse {
 
     @java.lang.Override
     @JsonSetter("monthToDate")
-    public TopUpStage monthToDate(@NotNull AccountSetPlanBillingResponseMonthToDate monthToDate) {
+    public ApiRequestEurStage monthToDate(
+        @NotNull AccountSetPlanBillingResponseMonthToDate monthToDate) {
       this.monthToDate = Objects.requireNonNull(monthToDate, "monthToDate must not be null");
       return this;
     }
 
     @java.lang.Override
+    @JsonSetter("apiRequestEur")
+    public TopUpStage apiRequestEur(@NotNull String apiRequestEur) {
+      this.apiRequestEur = Objects.requireNonNull(apiRequestEur, "apiRequestEur must not be null");
+      return this;
+    }
+
+    @java.lang.Override
     @JsonSetter("topUp")
-    public TrialDaysStage topUp(@NotNull AccountSetPlanBillingResponseTopUp topUp) {
+    public AutoTopUpStage topUp(@NotNull AccountSetPlanBillingResponseTopUp topUp) {
       this.topUp = Objects.requireNonNull(topUp, "topUp must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("autoTopUp")
+    public OverdraftCapCentsStage autoTopUp(
+        @NotNull AccountSetPlanBillingResponseAutoTopUp autoTopUp) {
+      this.autoTopUp = Objects.requireNonNull(autoTopUp, "autoTopUp must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("overdraftCapCents")
+    public OverdraftCapMaxCentsStage overdraftCapCents(long overdraftCapCents) {
+      this.overdraftCapCents = overdraftCapCents;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("overdraftCapMaxCents")
+    public TrialDaysStage overdraftCapMaxCents(long overdraftCapMaxCents) {
+      this.overdraftCapMaxCents = overdraftCapMaxCents;
       return this;
     }
 
@@ -639,7 +753,7 @@ public final class AccountSetPlanBillingResponse {
 
     @java.lang.Override
     public AccountSetPlanBillingResponse build() {
-      return new AccountSetPlanBillingResponse(plan, status, balanceCents, trialEndsAt, firstTopUpAt, lastChargedDate, paymentsConfigured, hasPaymentAccount, hasSubscription, paymentFailedAt, paymentFailedInvoiceUrl, monthToDate, plans, topUp, trialDays, additionalProperties);
+      return new AccountSetPlanBillingResponse(plan, accountType, status, balanceCents, trialEndsAt, firstTopUpAt, lastChargedDate, paymentsConfigured, hasPaymentAccount, hasSubscription, paymentFailedAt, paymentFailedInvoiceUrl, monthToDate, plans, apiRequestEur, topUp, autoTopUp, overdraftCapCents, overdraftCapMaxCents, trialDays, additionalProperties);
     }
 
     @java.lang.Override

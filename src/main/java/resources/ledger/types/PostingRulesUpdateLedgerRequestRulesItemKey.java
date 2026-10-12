@@ -20,6 +20,10 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey SETTLEMENTS_COMMISSION_REVENUE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SETTLEMENTS_COMMISSION_REVENUE, "settlements.commissionRevenue");
 
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey SECURITIES_WITHHOLDING_TAX = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SECURITIES_WITHHOLDING_TAX, "securities.withholdingTax");
+
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey SECURITIES_INVESTMENTS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SECURITIES_INVESTMENTS, "securities.investments");
+
   public static final PostingRulesUpdateLedgerRequestRulesItemKey INVENTORY_STOCK = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.INVENTORY_STOCK, "inventory.stock");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey BANK_FX_LOSS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.BANK_FX_LOSS, "bank.fxLoss");
@@ -32,19 +36,29 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey ASSETS_DISPOSAL_PROCEEDS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.ASSETS_DISPOSAL_PROCEEDS, "assets.disposalProceeds");
 
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey SECURITIES_GAIN = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SECURITIES_GAIN, "securities.gain");
+
   public static final PostingRulesUpdateLedgerRequestRulesItemKey REVENUE_REFUND_LIABILITY = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.REVENUE_REFUND_LIABILITY, "revenue.refundLiability");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey SALES_VAT_PAYABLE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SALES_VAT_PAYABLE, "sales.vatPayable");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey PURCHASES_GOODS_FOR_RESALE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.PURCHASES_GOODS_FOR_RESALE, "purchases.goodsForResale");
 
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey SECURITIES_LOSS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SECURITIES_LOSS, "securities.loss");
+
   public static final PostingRulesUpdateLedgerRequestRulesItemKey CASH_ADVANCES = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.CASH_ADVANCES, "cash.advances");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey INVENTORY_COGS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.INVENTORY_COGS, "inventory.cogs");
 
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey SECURITIES_INTEREST_EXPENSE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SECURITIES_INTEREST_EXPENSE, "securities.interestExpense");
+
   public static final PostingRulesUpdateLedgerRequestRulesItemKey PURCHASES_PREPAID_EXPENSES = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.PURCHASES_PREPAID_EXPENSES, "purchases.prepaidExpenses");
 
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey SECURITIES_INTEREST_INCOME = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SECURITIES_INTEREST_INCOME, "securities.interestIncome");
+
   public static final PostingRulesUpdateLedgerRequestRulesItemKey SETTLEMENTS_SUSPENSE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SETTLEMENTS_SUSPENSE, "settlements.suspense");
+
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey SECURITIES_DIVIDEND_INCOME = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SECURITIES_DIVIDEND_INCOME, "securities.dividendIncome");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey ASSETS_DISPOSAL_GAIN = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.ASSETS_DISPOSAL_GAIN, "assets.disposalGain");
 
@@ -53,6 +67,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
   public static final PostingRulesUpdateLedgerRequestRulesItemKey PURCHASES_DEFAULT_EXPENSE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.PURCHASES_DEFAULT_EXPENSE, "purchases.defaultExpense");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey PRODUCTION_SCRAP = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.PRODUCTION_SCRAP, "production.scrap");
+
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey SECURITIES_FEES = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SECURITIES_FEES, "securities.fees");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey REVENUE_CONTRACT_ASSET = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.REVENUE_CONTRACT_ASSET, "revenue.contractAsset");
 
@@ -108,6 +124,10 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return visitor.visitClosingRetainedEarnings();
       case SETTLEMENTS_COMMISSION_REVENUE:
         return visitor.visitSettlementsCommissionRevenue();
+      case SECURITIES_WITHHOLDING_TAX:
+        return visitor.visitSecuritiesWithholdingTax();
+      case SECURITIES_INVESTMENTS:
+        return visitor.visitSecuritiesInvestments();
       case INVENTORY_STOCK:
         return visitor.visitInventoryStock();
       case BANK_FX_LOSS:
@@ -120,20 +140,30 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return visitor.visitSalesRevenueServices();
       case ASSETS_DISPOSAL_PROCEEDS:
         return visitor.visitAssetsDisposalProceeds();
+      case SECURITIES_GAIN:
+        return visitor.visitSecuritiesGain();
       case REVENUE_REFUND_LIABILITY:
         return visitor.visitRevenueRefundLiability();
       case SALES_VAT_PAYABLE:
         return visitor.visitSalesVatPayable();
       case PURCHASES_GOODS_FOR_RESALE:
         return visitor.visitPurchasesGoodsForResale();
+      case SECURITIES_LOSS:
+        return visitor.visitSecuritiesLoss();
       case CASH_ADVANCES:
         return visitor.visitCashAdvances();
       case INVENTORY_COGS:
         return visitor.visitInventoryCogs();
+      case SECURITIES_INTEREST_EXPENSE:
+        return visitor.visitSecuritiesInterestExpense();
       case PURCHASES_PREPAID_EXPENSES:
         return visitor.visitPurchasesPrepaidExpenses();
+      case SECURITIES_INTEREST_INCOME:
+        return visitor.visitSecuritiesInterestIncome();
       case SETTLEMENTS_SUSPENSE:
         return visitor.visitSettlementsSuspense();
+      case SECURITIES_DIVIDEND_INCOME:
+        return visitor.visitSecuritiesDividendIncome();
       case ASSETS_DISPOSAL_GAIN:
         return visitor.visitAssetsDisposalGain();
       case PURCHASES_PAYABLES:
@@ -142,6 +172,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return visitor.visitPurchasesDefaultExpense();
       case PRODUCTION_SCRAP:
         return visitor.visitProductionScrap();
+      case SECURITIES_FEES:
+        return visitor.visitSecuritiesFees();
       case REVENUE_CONTRACT_ASSET:
         return visitor.visitRevenueContractAsset();
       case SALES_ADVANCES_RECEIVED:
@@ -175,6 +207,10 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return CLOSING_RETAINED_EARNINGS;
       case "settlements.commissionRevenue":
         return SETTLEMENTS_COMMISSION_REVENUE;
+      case "securities.withholdingTax":
+        return SECURITIES_WITHHOLDING_TAX;
+      case "securities.investments":
+        return SECURITIES_INVESTMENTS;
       case "inventory.stock":
         return INVENTORY_STOCK;
       case "bank.fxLoss":
@@ -187,20 +223,30 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return SALES_REVENUE_SERVICES;
       case "assets.disposalProceeds":
         return ASSETS_DISPOSAL_PROCEEDS;
+      case "securities.gain":
+        return SECURITIES_GAIN;
       case "revenue.refundLiability":
         return REVENUE_REFUND_LIABILITY;
       case "sales.vatPayable":
         return SALES_VAT_PAYABLE;
       case "purchases.goodsForResale":
         return PURCHASES_GOODS_FOR_RESALE;
+      case "securities.loss":
+        return SECURITIES_LOSS;
       case "cash.advances":
         return CASH_ADVANCES;
       case "inventory.cogs":
         return INVENTORY_COGS;
+      case "securities.interestExpense":
+        return SECURITIES_INTEREST_EXPENSE;
       case "purchases.prepaidExpenses":
         return PURCHASES_PREPAID_EXPENSES;
+      case "securities.interestIncome":
+        return SECURITIES_INTEREST_INCOME;
       case "settlements.suspense":
         return SETTLEMENTS_SUSPENSE;
+      case "securities.dividendIncome":
+        return SECURITIES_DIVIDEND_INCOME;
       case "assets.disposalGain":
         return ASSETS_DISPOSAL_GAIN;
       case "purchases.payables":
@@ -209,6 +255,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return PURCHASES_DEFAULT_EXPENSE;
       case "production.scrap":
         return PRODUCTION_SCRAP;
+      case "securities.fees":
+        return SECURITIES_FEES;
       case "revenue.contractAsset":
         return REVENUE_CONTRACT_ASSET;
       case "sales.advancesReceived":
@@ -281,6 +329,22 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
 
     CASH_ADVANCES,
 
+    SECURITIES_INVESTMENTS,
+
+    SECURITIES_GAIN,
+
+    SECURITIES_LOSS,
+
+    SECURITIES_DIVIDEND_INCOME,
+
+    SECURITIES_WITHHOLDING_TAX,
+
+    SECURITIES_INTEREST_INCOME,
+
+    SECURITIES_INTEREST_EXPENSE,
+
+    SECURITIES_FEES,
+
     CLOSING_RETAINED_EARNINGS,
 
     UNKNOWN
@@ -340,6 +404,22 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
     T visitAssetsDisposalProceeds();
 
     T visitCashAdvances();
+
+    T visitSecuritiesInvestments();
+
+    T visitSecuritiesGain();
+
+    T visitSecuritiesLoss();
+
+    T visitSecuritiesDividendIncome();
+
+    T visitSecuritiesWithholdingTax();
+
+    T visitSecuritiesInterestIncome();
+
+    T visitSecuritiesInterestExpense();
+
+    T visitSecuritiesFees();
 
     T visitClosingRetainedEarnings();
 
