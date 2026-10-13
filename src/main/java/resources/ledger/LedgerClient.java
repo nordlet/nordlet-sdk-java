@@ -390,21 +390,21 @@ public class LedgerClient {
   }
 
   /**
-   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
    */
   public StatementRowsSchemesLedgerResponse statementRowsSchemes() {
     return this.rawClient.statementRowsSchemes().body();
   }
 
   /**
-   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
    */
   public StatementRowsSchemesLedgerResponse statementRowsSchemes(RequestOptions requestOptions) {
     return this.rawClient.statementRowsSchemes(requestOptions).body();
   }
 
   /**
-   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
    */
   public StatementRowsSchemesLedgerResponse statementRowsSchemes(
       StatementRowsSchemesLedgerRequest request) {
@@ -412,7 +412,7 @@ public class LedgerClient {
   }
 
   /**
-   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
    */
   public StatementRowsSchemesLedgerResponse statementRowsSchemes(
       StatementRowsSchemesLedgerRequest request, RequestOptions requestOptions) {
