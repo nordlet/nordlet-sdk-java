@@ -24,6 +24,7 @@ import com.nordlet.api.resources.bank.requests.ImportTemplatesCreateBankRequest;
 import com.nordlet.api.resources.bank.requests.ImportTemplatesDeleteBankRequest;
 import com.nordlet.api.resources.bank.requests.ImportTemplatesGetBankRequest;
 import com.nordlet.api.resources.bank.requests.ImportTemplatesListBankRequest;
+import com.nordlet.api.resources.bank.requests.ImportTemplatesListBuiltinBankRequest;
 import com.nordlet.api.resources.bank.requests.ImportTemplatesUpdateBankRequest;
 import com.nordlet.api.resources.bank.requests.MandatesCancelBankRequest;
 import com.nordlet.api.resources.bank.requests.MandatesCreateBankRequest;
@@ -72,6 +73,7 @@ import com.nordlet.api.resources.bank.types.ImportTemplatesCreateBankResponse;
 import com.nordlet.api.resources.bank.types.ImportTemplatesDeleteBankResponse;
 import com.nordlet.api.resources.bank.types.ImportTemplatesGetBankResponse;
 import com.nordlet.api.resources.bank.types.ImportTemplatesListBankResponse;
+import com.nordlet.api.resources.bank.types.ImportTemplatesListBuiltinBankResponse;
 import com.nordlet.api.resources.bank.types.ImportTemplatesUpdateBankResponse;
 import com.nordlet.api.resources.bank.types.MandatesCancelBankResponse;
 import com.nordlet.api.resources.bank.types.MandatesCreateBankResponse;
@@ -280,6 +282,25 @@ public class BankClient {
   public ImportTemplatesGetBankResponse importTemplatesGet(ImportTemplatesGetBankRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.importTemplatesGet(request, requestOptions).body();
+  }
+
+  public ImportTemplatesListBuiltinBankResponse importTemplatesListBuiltin() {
+    return this.rawClient.importTemplatesListBuiltin().body();
+  }
+
+  public ImportTemplatesListBuiltinBankResponse importTemplatesListBuiltin(
+      RequestOptions requestOptions) {
+    return this.rawClient.importTemplatesListBuiltin(requestOptions).body();
+  }
+
+  public ImportTemplatesListBuiltinBankResponse importTemplatesListBuiltin(
+      ImportTemplatesListBuiltinBankRequest request) {
+    return this.rawClient.importTemplatesListBuiltin(request).body();
+  }
+
+  public ImportTemplatesListBuiltinBankResponse importTemplatesListBuiltin(
+      ImportTemplatesListBuiltinBankRequest request, RequestOptions requestOptions) {
+    return this.rawClient.importTemplatesListBuiltin(request, requestOptions).body();
   }
 
   public ImportTemplatesListBankResponse importTemplatesList() {

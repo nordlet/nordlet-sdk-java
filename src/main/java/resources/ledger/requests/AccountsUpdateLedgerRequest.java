@@ -16,7 +16,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.Nullable;
 import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
-import com.nordlet.api.resources.ledger.types.AccountsUpdateLedgerRequestTranslationsValue;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -35,21 +34,16 @@ public final class AccountsUpdateLedgerRequest {
 
   private final Optional<String> name;
 
-  private final Optional<Map<String, Optional<AccountsUpdateLedgerRequestTranslationsValue>>> translations;
-
   private final Optional<String> parentId;
 
   private final Optional<Boolean> isPostable;
 
   private final Map<String, Object> additionalProperties;
 
-  private AccountsUpdateLedgerRequest(String id, Optional<String> name,
-      Optional<Map<String, Optional<AccountsUpdateLedgerRequestTranslationsValue>>> translations,
-      Optional<String> parentId, Optional<Boolean> isPostable,
-      Map<String, Object> additionalProperties) {
+  private AccountsUpdateLedgerRequest(String id, Optional<String> name, Optional<String> parentId,
+      Optional<Boolean> isPostable, Map<String, Object> additionalProperties) {
     this.id = id;
     this.name = name;
-    this.translations = translations;
     this.parentId = parentId;
     this.isPostable = isPostable;
     this.additionalProperties = additionalProperties;
@@ -66,15 +60,6 @@ public final class AccountsUpdateLedgerRequest {
   }
 
   @JsonIgnore
-  public Optional<Map<String, Optional<AccountsUpdateLedgerRequestTranslationsValue>>> getTranslations(
-      ) {
-    if (translations == null) {
-      return Optional.empty();
-    }
-    return translations;
-  }
-
-  @JsonIgnore
   public Optional<String> getParentId() {
     if (parentId == null) {
       return Optional.empty();
@@ -85,16 +70,6 @@ public final class AccountsUpdateLedgerRequest {
   @JsonProperty("isPostable")
   public Optional<Boolean> getIsPostable() {
     return isPostable;
-  }
-
-  @JsonInclude(
-      value = JsonInclude.Include.CUSTOM,
-      valueFilter = NullableNonemptyFilter.class
-  )
-  @JsonProperty("translations")
-  private Optional<Map<String, Optional<AccountsUpdateLedgerRequestTranslationsValue>>> _getTranslations(
-      ) {
-    return translations;
   }
 
   @JsonInclude(
@@ -118,12 +93,12 @@ public final class AccountsUpdateLedgerRequest {
   }
 
   private boolean equalTo(AccountsUpdateLedgerRequest other) {
-    return id.equals(other.id) && name.equals(other.name) && translations.equals(other.translations) && parentId.equals(other.parentId) && isPostable.equals(other.isPostable);
+    return id.equals(other.id) && name.equals(other.name) && parentId.equals(other.parentId) && isPostable.equals(other.isPostable);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.translations, this.parentId, this.isPostable);
+    return Objects.hash(this.id, this.name, this.parentId, this.isPostable);
   }
 
   @java.lang.Override
@@ -152,15 +127,6 @@ public final class AccountsUpdateLedgerRequest {
 
     _FinalStage name(String name);
 
-    _FinalStage translations(
-        Optional<Map<String, Optional<AccountsUpdateLedgerRequestTranslationsValue>>> translations);
-
-    _FinalStage translations(
-        Map<String, Optional<AccountsUpdateLedgerRequestTranslationsValue>> translations);
-
-    _FinalStage translations(
-        Nullable<Map<String, Optional<AccountsUpdateLedgerRequestTranslationsValue>>> translations);
-
     _FinalStage parentId(Optional<String> parentId);
 
     _FinalStage parentId(String parentId);
@@ -182,8 +148,6 @@ public final class AccountsUpdateLedgerRequest {
 
     private Optional<String> parentId = Optional.empty();
 
-    private Optional<Map<String, Optional<AccountsUpdateLedgerRequestTranslationsValue>>> translations = Optional.empty();
-
     private Optional<String> name = Optional.empty();
 
     @JsonAnySetter
@@ -196,7 +160,6 @@ public final class AccountsUpdateLedgerRequest {
     public Builder from(AccountsUpdateLedgerRequest other) {
       id(other.getId());
       name(other.getName());
-      translations(other.getTranslations());
       parentId(other.getParentId());
       isPostable(other.getIsPostable());
       return this;
@@ -256,39 +219,6 @@ public final class AccountsUpdateLedgerRequest {
     }
 
     @java.lang.Override
-    public _FinalStage translations(
-        Nullable<Map<String, Optional<AccountsUpdateLedgerRequestTranslationsValue>>> translations) {
-      if (translations.isNull()) {
-        this.translations = null;
-      }
-      else if (translations.isEmpty()) {
-        this.translations = Optional.empty();
-      }
-      else {
-        this.translations = Optional.of(translations.get());
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage translations(
-        Map<String, Optional<AccountsUpdateLedgerRequestTranslationsValue>> translations) {
-      this.translations = Optional.ofNullable(translations);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "translations",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage translations(
-        Optional<Map<String, Optional<AccountsUpdateLedgerRequestTranslationsValue>>> translations) {
-      this.translations = translations;
-      return this;
-    }
-
-    @java.lang.Override
     public _FinalStage name(String name) {
       this.name = Optional.ofNullable(name);
       return this;
@@ -306,7 +236,7 @@ public final class AccountsUpdateLedgerRequest {
 
     @java.lang.Override
     public AccountsUpdateLedgerRequest build() {
-      return new AccountsUpdateLedgerRequest(id, name, translations, parentId, isPostable, additionalProperties);
+      return new AccountsUpdateLedgerRequest(id, name, parentId, isPostable, additionalProperties);
     }
 
     @java.lang.Override

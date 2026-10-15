@@ -36,7 +36,7 @@ public final class AccountsUpdateLedgerResponse {
 
   private final String name;
 
-  private final Optional<Map<String, Optional<AccountsUpdateLedgerResponseTranslationsValue>>> translations;
+  private final String displayName;
 
   private final AccountsUpdateLedgerResponseType type;
 
@@ -48,14 +48,13 @@ public final class AccountsUpdateLedgerResponse {
 
   private final Map<String, Object> additionalProperties;
 
-  private AccountsUpdateLedgerResponse(String id, String code, String name,
-      Optional<Map<String, Optional<AccountsUpdateLedgerResponseTranslationsValue>>> translations,
+  private AccountsUpdateLedgerResponse(String id, String code, String name, String displayName,
       AccountsUpdateLedgerResponseType type, Optional<String> parentId, boolean isPostable,
       OffsetDateTime createdAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.code = code;
     this.name = name;
-    this.translations = translations;
+    this.displayName = displayName;
     this.type = type;
     this.parentId = parentId;
     this.isPostable = isPostable;
@@ -78,13 +77,12 @@ public final class AccountsUpdateLedgerResponse {
     return name;
   }
 
-  @JsonIgnore
-  public Optional<Map<String, Optional<AccountsUpdateLedgerResponseTranslationsValue>>> getTranslations(
-      ) {
-    if (translations == null) {
-      return Optional.empty();
-    }
-    return translations;
+  /**
+   * @return The name in the language of the Accept-Language header
+   */
+  @JsonProperty("displayName")
+  public String getDisplayName() {
+    return displayName;
   }
 
   @JsonProperty("type")
@@ -114,16 +112,6 @@ public final class AccountsUpdateLedgerResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
-  @JsonProperty("translations")
-  private Optional<Map<String, Optional<AccountsUpdateLedgerResponseTranslationsValue>>> _getTranslations(
-      ) {
-    return translations;
-  }
-
-  @JsonInclude(
-      value = JsonInclude.Include.CUSTOM,
-      valueFilter = NullableNonemptyFilter.class
-  )
   @JsonProperty("parentId")
   private Optional<String> _getParentId() {
     return parentId;
@@ -141,12 +129,12 @@ public final class AccountsUpdateLedgerResponse {
   }
 
   private boolean equalTo(AccountsUpdateLedgerResponse other) {
-    return id.equals(other.id) && code.equals(other.code) && name.equals(other.name) && translations.equals(other.translations) && type.equals(other.type) && parentId.equals(other.parentId) && isPostable == other.isPostable && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && code.equals(other.code) && name.equals(other.name) && displayName.equals(other.displayName) && type.equals(other.type) && parentId.equals(other.parentId) && isPostable == other.isPostable && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.code, this.name, this.translations, this.type, this.parentId, this.isPostable, this.createdAt);
+    return Objects.hash(this.id, this.code, this.name, this.displayName, this.type, this.parentId, this.isPostable, this.createdAt);
   }
 
   @java.lang.Override
@@ -169,7 +157,14 @@ public final class AccountsUpdateLedgerResponse {
   }
 
   public interface NameStage {
-    TypeStage name(@NotNull String name);
+    DisplayNameStage name(@NotNull String name);
+  }
+
+  public interface DisplayNameStage {
+    /**
+     * <p>The name in the language of the Accept-Language header</p>
+     */
+    TypeStage displayName(@NotNull String displayName);
   }
 
   public interface TypeStage {
@@ -191,15 +186,6 @@ public final class AccountsUpdateLedgerResponse {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
-    _FinalStage translations(
-        Optional<Map<String, Optional<AccountsUpdateLedgerResponseTranslationsValue>>> translations);
-
-    _FinalStage translations(
-        Map<String, Optional<AccountsUpdateLedgerResponseTranslationsValue>> translations);
-
-    _FinalStage translations(
-        Nullable<Map<String, Optional<AccountsUpdateLedgerResponseTranslationsValue>>> translations);
-
     _FinalStage parentId(Optional<String> parentId);
 
     _FinalStage parentId(String parentId);
@@ -210,12 +196,14 @@ public final class AccountsUpdateLedgerResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, CodeStage, NameStage, TypeStage, IsPostableStage, CreatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, CodeStage, NameStage, DisplayNameStage, TypeStage, IsPostableStage, CreatedAtStage, _FinalStage {
     private String id;
 
     private String code;
 
     private String name;
+
+    private String displayName;
 
     private AccountsUpdateLedgerResponseType type;
 
@@ -224,8 +212,6 @@ public final class AccountsUpdateLedgerResponse {
     private OffsetDateTime createdAt;
 
     private Optional<String> parentId = Optional.empty();
-
-    private Optional<Map<String, Optional<AccountsUpdateLedgerResponseTranslationsValue>>> translations = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -238,7 +224,7 @@ public final class AccountsUpdateLedgerResponse {
       id(other.getId());
       code(other.getCode());
       name(other.getName());
-      translations(other.getTranslations());
+      displayName(other.getDisplayName());
       type(other.getType());
       parentId(other.getParentId());
       isPostable(other.getIsPostable());
@@ -262,8 +248,19 @@ public final class AccountsUpdateLedgerResponse {
 
     @java.lang.Override
     @JsonSetter("name")
-    public TypeStage name(@NotNull String name) {
+    public DisplayNameStage name(@NotNull String name) {
       this.name = Objects.requireNonNull(name, "name must not be null");
+      return this;
+    }
+
+    /**
+     * <p>The name in the language of the Accept-Language header</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    @JsonSetter("displayName")
+    public TypeStage displayName(@NotNull String displayName) {
+      this.displayName = Objects.requireNonNull(displayName, "displayName must not be null");
       return this;
     }
 
@@ -319,41 +316,8 @@ public final class AccountsUpdateLedgerResponse {
     }
 
     @java.lang.Override
-    public _FinalStage translations(
-        Nullable<Map<String, Optional<AccountsUpdateLedgerResponseTranslationsValue>>> translations) {
-      if (translations.isNull()) {
-        this.translations = null;
-      }
-      else if (translations.isEmpty()) {
-        this.translations = Optional.empty();
-      }
-      else {
-        this.translations = Optional.of(translations.get());
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage translations(
-        Map<String, Optional<AccountsUpdateLedgerResponseTranslationsValue>> translations) {
-      this.translations = Optional.ofNullable(translations);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "translations",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage translations(
-        Optional<Map<String, Optional<AccountsUpdateLedgerResponseTranslationsValue>>> translations) {
-      this.translations = translations;
-      return this;
-    }
-
-    @java.lang.Override
     public AccountsUpdateLedgerResponse build() {
-      return new AccountsUpdateLedgerResponse(id, code, name, translations, type, parentId, isPostable, createdAt, additionalProperties);
+      return new AccountsUpdateLedgerResponse(id, code, name, displayName, type, parentId, isPostable, createdAt, additionalProperties);
     }
 
     @java.lang.Override

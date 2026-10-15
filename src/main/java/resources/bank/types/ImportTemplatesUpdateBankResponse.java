@@ -64,6 +64,8 @@ public final class ImportTemplatesUpdateBankResponse {
 
   private final Optional<String> fullRefundLabel;
 
+  private final boolean builtin;
+
   private final OffsetDateTime createdAt;
 
   private final OffsetDateTime updatedAt;
@@ -77,7 +79,7 @@ public final class ImportTemplatesUpdateBankResponse {
       Optional<String> companyMetaField, Optional<String> invoiceItemId, boolean advanceInvoices,
       Optional<String> authorizationOperationTypeId, Optional<String> payoutOperationTypeId,
       Optional<String> commissionOperationTypeId, Optional<String> lenderMetaField,
-      Optional<String> partialRefundLabel, Optional<String> fullRefundLabel,
+      Optional<String> partialRefundLabel, Optional<String> fullRefundLabel, boolean builtin,
       OffsetDateTime createdAt, OffsetDateTime updatedAt,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -96,6 +98,7 @@ public final class ImportTemplatesUpdateBankResponse {
     this.lenderMetaField = lenderMetaField;
     this.partialRefundLabel = partialRefundLabel;
     this.fullRefundLabel = fullRefundLabel;
+    this.builtin = builtin;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.additionalProperties = additionalProperties;
@@ -211,6 +214,14 @@ public final class ImportTemplatesUpdateBankResponse {
     return fullRefundLabel;
   }
 
+  /**
+   * @return Provided by Nordlet for every company; it cannot be changed or deleted
+   */
+  @JsonProperty("builtin")
+  public boolean getBuiltin() {
+    return builtin;
+  }
+
   @JsonProperty("createdAt")
   public OffsetDateTime getCreatedAt() {
     return createdAt;
@@ -323,12 +334,12 @@ public final class ImportTemplatesUpdateBankResponse {
   }
 
   private boolean equalTo(ImportTemplatesUpdateBankResponse other) {
-    return id.equals(other.id) && name.equals(other.name) && type.equals(other.type) && fields.equals(other.fields) && metaFields.equals(other.metaFields) && invoiceMetaField.equals(other.invoiceMetaField) && invoiceVatRatePercent.equals(other.invoiceVatRatePercent) && companyMetaField.equals(other.companyMetaField) && invoiceItemId.equals(other.invoiceItemId) && advanceInvoices == other.advanceInvoices && authorizationOperationTypeId.equals(other.authorizationOperationTypeId) && payoutOperationTypeId.equals(other.payoutOperationTypeId) && commissionOperationTypeId.equals(other.commissionOperationTypeId) && lenderMetaField.equals(other.lenderMetaField) && partialRefundLabel.equals(other.partialRefundLabel) && fullRefundLabel.equals(other.fullRefundLabel) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && name.equals(other.name) && type.equals(other.type) && fields.equals(other.fields) && metaFields.equals(other.metaFields) && invoiceMetaField.equals(other.invoiceMetaField) && invoiceVatRatePercent.equals(other.invoiceVatRatePercent) && companyMetaField.equals(other.companyMetaField) && invoiceItemId.equals(other.invoiceItemId) && advanceInvoices == other.advanceInvoices && authorizationOperationTypeId.equals(other.authorizationOperationTypeId) && payoutOperationTypeId.equals(other.payoutOperationTypeId) && commissionOperationTypeId.equals(other.commissionOperationTypeId) && lenderMetaField.equals(other.lenderMetaField) && partialRefundLabel.equals(other.partialRefundLabel) && fullRefundLabel.equals(other.fullRefundLabel) && builtin == other.builtin && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.type, this.fields, this.metaFields, this.invoiceMetaField, this.invoiceVatRatePercent, this.companyMetaField, this.invoiceItemId, this.advanceInvoices, this.authorizationOperationTypeId, this.payoutOperationTypeId, this.commissionOperationTypeId, this.lenderMetaField, this.partialRefundLabel, this.fullRefundLabel, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.name, this.type, this.fields, this.metaFields, this.invoiceMetaField, this.invoiceVatRatePercent, this.companyMetaField, this.invoiceItemId, this.advanceInvoices, this.authorizationOperationTypeId, this.payoutOperationTypeId, this.commissionOperationTypeId, this.lenderMetaField, this.partialRefundLabel, this.fullRefundLabel, this.builtin, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -355,7 +366,14 @@ public final class ImportTemplatesUpdateBankResponse {
   }
 
   public interface AdvanceInvoicesStage {
-    CreatedAtStage advanceInvoices(boolean advanceInvoices);
+    BuiltinStage advanceInvoices(boolean advanceInvoices);
+  }
+
+  public interface BuiltinStage {
+    /**
+     * <p>Provided by Nordlet for every company; it cannot be changed or deleted</p>
+     */
+    CreatedAtStage builtin(boolean builtin);
   }
 
   public interface CreatedAtStage {
@@ -449,7 +467,7 @@ public final class ImportTemplatesUpdateBankResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, NameStage, TypeStage, AdvanceInvoicesStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, NameStage, TypeStage, AdvanceInvoicesStage, BuiltinStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
     private String id;
 
     private String name;
@@ -457,6 +475,8 @@ public final class ImportTemplatesUpdateBankResponse {
     private ImportTemplatesUpdateBankResponseType type;
 
     private boolean advanceInvoices;
+
+    private boolean builtin;
 
     private OffsetDateTime createdAt;
 
@@ -510,6 +530,7 @@ public final class ImportTemplatesUpdateBankResponse {
       lenderMetaField(other.getLenderMetaField());
       partialRefundLabel(other.getPartialRefundLabel());
       fullRefundLabel(other.getFullRefundLabel());
+      builtin(other.getBuiltin());
       createdAt(other.getCreatedAt());
       updatedAt(other.getUpdatedAt());
       return this;
@@ -538,8 +559,19 @@ public final class ImportTemplatesUpdateBankResponse {
 
     @java.lang.Override
     @JsonSetter("advanceInvoices")
-    public CreatedAtStage advanceInvoices(boolean advanceInvoices) {
+    public BuiltinStage advanceInvoices(boolean advanceInvoices) {
       this.advanceInvoices = advanceInvoices;
+      return this;
+    }
+
+    /**
+     * <p>Provided by Nordlet for every company; it cannot be changed or deleted</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    @JsonSetter("builtin")
+    public CreatedAtStage builtin(boolean builtin) {
+      this.builtin = builtin;
       return this;
     }
 
@@ -913,7 +945,7 @@ public final class ImportTemplatesUpdateBankResponse {
 
     @java.lang.Override
     public ImportTemplatesUpdateBankResponse build() {
-      return new ImportTemplatesUpdateBankResponse(id, name, type, fields, metaFields, invoiceMetaField, invoiceVatRatePercent, companyMetaField, invoiceItemId, advanceInvoices, authorizationOperationTypeId, payoutOperationTypeId, commissionOperationTypeId, lenderMetaField, partialRefundLabel, fullRefundLabel, createdAt, updatedAt, additionalProperties);
+      return new ImportTemplatesUpdateBankResponse(id, name, type, fields, metaFields, invoiceMetaField, invoiceVatRatePercent, companyMetaField, invoiceItemId, advanceInvoices, authorizationOperationTypeId, payoutOperationTypeId, commissionOperationTypeId, lenderMetaField, partialRefundLabel, fullRefundLabel, builtin, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

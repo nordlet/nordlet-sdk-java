@@ -41,6 +41,7 @@ import com.nordlet.api.resources.bank.requests.ImportTemplatesCreateBankRequest;
 import com.nordlet.api.resources.bank.requests.ImportTemplatesDeleteBankRequest;
 import com.nordlet.api.resources.bank.requests.ImportTemplatesGetBankRequest;
 import com.nordlet.api.resources.bank.requests.ImportTemplatesListBankRequest;
+import com.nordlet.api.resources.bank.requests.ImportTemplatesListBuiltinBankRequest;
 import com.nordlet.api.resources.bank.requests.ImportTemplatesUpdateBankRequest;
 import com.nordlet.api.resources.bank.requests.MandatesCancelBankRequest;
 import com.nordlet.api.resources.bank.requests.MandatesCreateBankRequest;
@@ -89,6 +90,7 @@ import com.nordlet.api.resources.bank.types.ImportTemplatesCreateBankResponse;
 import com.nordlet.api.resources.bank.types.ImportTemplatesDeleteBankResponse;
 import com.nordlet.api.resources.bank.types.ImportTemplatesGetBankResponse;
 import com.nordlet.api.resources.bank.types.ImportTemplatesListBankResponse;
+import com.nordlet.api.resources.bank.types.ImportTemplatesListBuiltinBankResponse;
 import com.nordlet.api.resources.bank.types.ImportTemplatesUpdateBankResponse;
 import com.nordlet.api.resources.bank.types.MandatesCancelBankResponse;
 import com.nordlet.api.resources.bank.types.MandatesCreateBankResponse;
@@ -1201,27 +1203,27 @@ public class RawBankClient {
                                   }
                                 }
 
-                                public NordletApiHttpResponse<ImportTemplatesListBankResponse> importTemplatesList(
+                                public NordletApiHttpResponse<ImportTemplatesListBuiltinBankResponse> importTemplatesListBuiltin(
                                     ) {
-                                  return importTemplatesList(ImportTemplatesListBankRequest.builder().build());
+                                  return importTemplatesListBuiltin(ImportTemplatesListBuiltinBankRequest.builder().build());
                                 }
 
-                                public NordletApiHttpResponse<ImportTemplatesListBankResponse> importTemplatesList(
+                                public NordletApiHttpResponse<ImportTemplatesListBuiltinBankResponse> importTemplatesListBuiltin(
                                     RequestOptions requestOptions) {
-                                  return importTemplatesList(ImportTemplatesListBankRequest.builder().build(),requestOptions);
+                                  return importTemplatesListBuiltin(ImportTemplatesListBuiltinBankRequest.builder().build(),requestOptions);
                                 }
 
-                                public NordletApiHttpResponse<ImportTemplatesListBankResponse> importTemplatesList(
-                                    ImportTemplatesListBankRequest request) {
-                                  return importTemplatesList(request,null);
+                                public NordletApiHttpResponse<ImportTemplatesListBuiltinBankResponse> importTemplatesListBuiltin(
+                                    ImportTemplatesListBuiltinBankRequest request) {
+                                  return importTemplatesListBuiltin(request,null);
                                 }
 
-                                public NordletApiHttpResponse<ImportTemplatesListBankResponse> importTemplatesList(
-                                    ImportTemplatesListBankRequest request,
+                                public NordletApiHttpResponse<ImportTemplatesListBuiltinBankResponse> importTemplatesListBuiltin(
+                                    ImportTemplatesListBuiltinBankRequest request,
                                     RequestOptions requestOptions) {
                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                    .addPathSegments("v1/bank/import-templates/list");if (requestOptions != null) {
+                                    .addPathSegments("v1/bank/import-templates/list-builtin");if (requestOptions != null) {
                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                         httpUrl.addQueryParameter(_key, _value);
                                       } );
@@ -1251,7 +1253,7 @@ public class RawBankClient {
                                       ResponseBody responseBody = response.body();
                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                       if (response.isSuccessful()) {
-                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ImportTemplatesListBankResponse.class), response);
+                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ImportTemplatesListBuiltinBankResponse.class), response);
                                       }
                                       try {
                                         switch (response.code()) {
@@ -1281,17 +1283,27 @@ public class RawBankClient {
                                     }
                                   }
 
-                                  public NordletApiHttpResponse<MatchRulesCreateBankResponse> matchRulesCreate(
-                                      MatchRulesCreateBankRequest request) {
-                                    return matchRulesCreate(request,null);
+                                  public NordletApiHttpResponse<ImportTemplatesListBankResponse> importTemplatesList(
+                                      ) {
+                                    return importTemplatesList(ImportTemplatesListBankRequest.builder().build());
                                   }
 
-                                  public NordletApiHttpResponse<MatchRulesCreateBankResponse> matchRulesCreate(
-                                      MatchRulesCreateBankRequest request,
+                                  public NordletApiHttpResponse<ImportTemplatesListBankResponse> importTemplatesList(
+                                      RequestOptions requestOptions) {
+                                    return importTemplatesList(ImportTemplatesListBankRequest.builder().build(),requestOptions);
+                                  }
+
+                                  public NordletApiHttpResponse<ImportTemplatesListBankResponse> importTemplatesList(
+                                      ImportTemplatesListBankRequest request) {
+                                    return importTemplatesList(request,null);
+                                  }
+
+                                  public NordletApiHttpResponse<ImportTemplatesListBankResponse> importTemplatesList(
+                                      ImportTemplatesListBankRequest request,
                                       RequestOptions requestOptions) {
                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                      .addPathSegments("v1/bank/match-rules/create");if (requestOptions != null) {
+                                      .addPathSegments("v1/bank/import-templates/list");if (requestOptions != null) {
                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                           httpUrl.addQueryParameter(_key, _value);
                                         } );
@@ -1321,7 +1333,7 @@ public class RawBankClient {
                                         ResponseBody responseBody = response.body();
                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                         if (response.isSuccessful()) {
-                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MatchRulesCreateBankResponse.class), response);
+                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ImportTemplatesListBankResponse.class), response);
                                         }
                                         try {
                                           switch (response.code()) {
@@ -1351,17 +1363,17 @@ public class RawBankClient {
                                       }
                                     }
 
-                                    public NordletApiHttpResponse<MatchRulesUpdateBankResponse> matchRulesUpdate(
-                                        MatchRulesUpdateBankRequest request) {
-                                      return matchRulesUpdate(request,null);
+                                    public NordletApiHttpResponse<MatchRulesCreateBankResponse> matchRulesCreate(
+                                        MatchRulesCreateBankRequest request) {
+                                      return matchRulesCreate(request,null);
                                     }
 
-                                    public NordletApiHttpResponse<MatchRulesUpdateBankResponse> matchRulesUpdate(
-                                        MatchRulesUpdateBankRequest request,
+                                    public NordletApiHttpResponse<MatchRulesCreateBankResponse> matchRulesCreate(
+                                        MatchRulesCreateBankRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                        .addPathSegments("v1/bank/match-rules/update");if (requestOptions != null) {
+                                        .addPathSegments("v1/bank/match-rules/create");if (requestOptions != null) {
                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                             httpUrl.addQueryParameter(_key, _value);
                                           } );
@@ -1391,7 +1403,7 @@ public class RawBankClient {
                                           ResponseBody responseBody = response.body();
                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                           if (response.isSuccessful()) {
-                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MatchRulesUpdateBankResponse.class), response);
+                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MatchRulesCreateBankResponse.class), response);
                                           }
                                           try {
                                             switch (response.code()) {
@@ -1421,17 +1433,17 @@ public class RawBankClient {
                                         }
                                       }
 
-                                      public NordletApiHttpResponse<MatchRulesDeleteBankResponse> matchRulesDelete(
-                                          MatchRulesDeleteBankRequest request) {
-                                        return matchRulesDelete(request,null);
+                                      public NordletApiHttpResponse<MatchRulesUpdateBankResponse> matchRulesUpdate(
+                                          MatchRulesUpdateBankRequest request) {
+                                        return matchRulesUpdate(request,null);
                                       }
 
-                                      public NordletApiHttpResponse<MatchRulesDeleteBankResponse> matchRulesDelete(
-                                          MatchRulesDeleteBankRequest request,
+                                      public NordletApiHttpResponse<MatchRulesUpdateBankResponse> matchRulesUpdate(
+                                          MatchRulesUpdateBankRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                          .addPathSegments("v1/bank/match-rules/delete");if (requestOptions != null) {
+                                          .addPathSegments("v1/bank/match-rules/update");if (requestOptions != null) {
                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                               httpUrl.addQueryParameter(_key, _value);
                                             } );
@@ -1461,7 +1473,7 @@ public class RawBankClient {
                                             ResponseBody responseBody = response.body();
                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                             if (response.isSuccessful()) {
-                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MatchRulesDeleteBankResponse.class), response);
+                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MatchRulesUpdateBankResponse.class), response);
                                             }
                                             try {
                                               switch (response.code()) {
@@ -1491,27 +1503,17 @@ public class RawBankClient {
                                           }
                                         }
 
-                                        public NordletApiHttpResponse<MatchRulesListBankResponse> matchRulesList(
-                                            ) {
-                                          return matchRulesList(MatchRulesListBankRequest.builder().build());
+                                        public NordletApiHttpResponse<MatchRulesDeleteBankResponse> matchRulesDelete(
+                                            MatchRulesDeleteBankRequest request) {
+                                          return matchRulesDelete(request,null);
                                         }
 
-                                        public NordletApiHttpResponse<MatchRulesListBankResponse> matchRulesList(
-                                            RequestOptions requestOptions) {
-                                          return matchRulesList(MatchRulesListBankRequest.builder().build(),requestOptions);
-                                        }
-
-                                        public NordletApiHttpResponse<MatchRulesListBankResponse> matchRulesList(
-                                            MatchRulesListBankRequest request) {
-                                          return matchRulesList(request,null);
-                                        }
-
-                                        public NordletApiHttpResponse<MatchRulesListBankResponse> matchRulesList(
-                                            MatchRulesListBankRequest request,
+                                        public NordletApiHttpResponse<MatchRulesDeleteBankResponse> matchRulesDelete(
+                                            MatchRulesDeleteBankRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                            .addPathSegments("v1/bank/match-rules/list");if (requestOptions != null) {
+                                            .addPathSegments("v1/bank/match-rules/delete");if (requestOptions != null) {
                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                 httpUrl.addQueryParameter(_key, _value);
                                               } );
@@ -1541,7 +1543,7 @@ public class RawBankClient {
                                               ResponseBody responseBody = response.body();
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MatchRulesListBankResponse.class), response);
+                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MatchRulesDeleteBankResponse.class), response);
                                               }
                                               try {
                                                 switch (response.code()) {
@@ -1571,17 +1573,27 @@ public class RawBankClient {
                                             }
                                           }
 
-                                          public NordletApiHttpResponse<MandatesCreateBankResponse> mandatesCreate(
-                                              MandatesCreateBankRequest request) {
-                                            return mandatesCreate(request,null);
+                                          public NordletApiHttpResponse<MatchRulesListBankResponse> matchRulesList(
+                                              ) {
+                                            return matchRulesList(MatchRulesListBankRequest.builder().build());
                                           }
 
-                                          public NordletApiHttpResponse<MandatesCreateBankResponse> mandatesCreate(
-                                              MandatesCreateBankRequest request,
+                                          public NordletApiHttpResponse<MatchRulesListBankResponse> matchRulesList(
+                                              RequestOptions requestOptions) {
+                                            return matchRulesList(MatchRulesListBankRequest.builder().build(),requestOptions);
+                                          }
+
+                                          public NordletApiHttpResponse<MatchRulesListBankResponse> matchRulesList(
+                                              MatchRulesListBankRequest request) {
+                                            return matchRulesList(request,null);
+                                          }
+
+                                          public NordletApiHttpResponse<MatchRulesListBankResponse> matchRulesList(
+                                              MatchRulesListBankRequest request,
                                               RequestOptions requestOptions) {
                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                              .addPathSegments("v1/bank/mandates/create");if (requestOptions != null) {
+                                              .addPathSegments("v1/bank/match-rules/list");if (requestOptions != null) {
                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                   httpUrl.addQueryParameter(_key, _value);
                                                 } );
@@ -1611,7 +1623,7 @@ public class RawBankClient {
                                                 ResponseBody responseBody = response.body();
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesCreateBankResponse.class), response);
+                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MatchRulesListBankResponse.class), response);
                                                 }
                                                 try {
                                                   switch (response.code()) {
@@ -1641,17 +1653,17 @@ public class RawBankClient {
                                               }
                                             }
 
-                                            public NordletApiHttpResponse<MandatesUpdateBankResponse> mandatesUpdate(
-                                                MandatesUpdateBankRequest request) {
-                                              return mandatesUpdate(request,null);
+                                            public NordletApiHttpResponse<MandatesCreateBankResponse> mandatesCreate(
+                                                MandatesCreateBankRequest request) {
+                                              return mandatesCreate(request,null);
                                             }
 
-                                            public NordletApiHttpResponse<MandatesUpdateBankResponse> mandatesUpdate(
-                                                MandatesUpdateBankRequest request,
+                                            public NordletApiHttpResponse<MandatesCreateBankResponse> mandatesCreate(
+                                                MandatesCreateBankRequest request,
                                                 RequestOptions requestOptions) {
                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                .addPathSegments("v1/bank/mandates/update");if (requestOptions != null) {
+                                                .addPathSegments("v1/bank/mandates/create");if (requestOptions != null) {
                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                     httpUrl.addQueryParameter(_key, _value);
                                                   } );
@@ -1681,7 +1693,7 @@ public class RawBankClient {
                                                   ResponseBody responseBody = response.body();
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesUpdateBankResponse.class), response);
+                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesCreateBankResponse.class), response);
                                                   }
                                                   try {
                                                     switch (response.code()) {
@@ -1711,17 +1723,17 @@ public class RawBankClient {
                                                 }
                                               }
 
-                                              public NordletApiHttpResponse<MandatesCancelBankResponse> mandatesCancel(
-                                                  MandatesCancelBankRequest request) {
-                                                return mandatesCancel(request,null);
+                                              public NordletApiHttpResponse<MandatesUpdateBankResponse> mandatesUpdate(
+                                                  MandatesUpdateBankRequest request) {
+                                                return mandatesUpdate(request,null);
                                               }
 
-                                              public NordletApiHttpResponse<MandatesCancelBankResponse> mandatesCancel(
-                                                  MandatesCancelBankRequest request,
+                                              public NordletApiHttpResponse<MandatesUpdateBankResponse> mandatesUpdate(
+                                                  MandatesUpdateBankRequest request,
                                                   RequestOptions requestOptions) {
                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                  .addPathSegments("v1/bank/mandates/cancel");if (requestOptions != null) {
+                                                  .addPathSegments("v1/bank/mandates/update");if (requestOptions != null) {
                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                       httpUrl.addQueryParameter(_key, _value);
                                                     } );
@@ -1751,7 +1763,7 @@ public class RawBankClient {
                                                     ResponseBody responseBody = response.body();
                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                     if (response.isSuccessful()) {
-                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesCancelBankResponse.class), response);
+                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesUpdateBankResponse.class), response);
                                                     }
                                                     try {
                                                       switch (response.code()) {
@@ -1781,17 +1793,17 @@ public class RawBankClient {
                                                   }
                                                 }
 
-                                                public NordletApiHttpResponse<MandatesGetBankResponse> mandatesGet(
-                                                    MandatesGetBankRequest request) {
-                                                  return mandatesGet(request,null);
+                                                public NordletApiHttpResponse<MandatesCancelBankResponse> mandatesCancel(
+                                                    MandatesCancelBankRequest request) {
+                                                  return mandatesCancel(request,null);
                                                 }
 
-                                                public NordletApiHttpResponse<MandatesGetBankResponse> mandatesGet(
-                                                    MandatesGetBankRequest request,
+                                                public NordletApiHttpResponse<MandatesCancelBankResponse> mandatesCancel(
+                                                    MandatesCancelBankRequest request,
                                                     RequestOptions requestOptions) {
                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                    .addPathSegments("v1/bank/mandates/get");if (requestOptions != null) {
+                                                    .addPathSegments("v1/bank/mandates/cancel");if (requestOptions != null) {
                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                         httpUrl.addQueryParameter(_key, _value);
                                                       } );
@@ -1821,7 +1833,7 @@ public class RawBankClient {
                                                       ResponseBody responseBody = response.body();
                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                       if (response.isSuccessful()) {
-                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesGetBankResponse.class), response);
+                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesCancelBankResponse.class), response);
                                                       }
                                                       try {
                                                         switch (response.code()) {
@@ -1851,27 +1863,17 @@ public class RawBankClient {
                                                     }
                                                   }
 
-                                                  public NordletApiHttpResponse<MandatesListBankResponse> mandatesList(
-                                                      ) {
-                                                    return mandatesList(MandatesListBankRequest.builder().build());
+                                                  public NordletApiHttpResponse<MandatesGetBankResponse> mandatesGet(
+                                                      MandatesGetBankRequest request) {
+                                                    return mandatesGet(request,null);
                                                   }
 
-                                                  public NordletApiHttpResponse<MandatesListBankResponse> mandatesList(
-                                                      RequestOptions requestOptions) {
-                                                    return mandatesList(MandatesListBankRequest.builder().build(),requestOptions);
-                                                  }
-
-                                                  public NordletApiHttpResponse<MandatesListBankResponse> mandatesList(
-                                                      MandatesListBankRequest request) {
-                                                    return mandatesList(request,null);
-                                                  }
-
-                                                  public NordletApiHttpResponse<MandatesListBankResponse> mandatesList(
-                                                      MandatesListBankRequest request,
+                                                  public NordletApiHttpResponse<MandatesGetBankResponse> mandatesGet(
+                                                      MandatesGetBankRequest request,
                                                       RequestOptions requestOptions) {
                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                      .addPathSegments("v1/bank/mandates/list");if (requestOptions != null) {
+                                                      .addPathSegments("v1/bank/mandates/get");if (requestOptions != null) {
                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                           httpUrl.addQueryParameter(_key, _value);
                                                         } );
@@ -1901,7 +1903,7 @@ public class RawBankClient {
                                                         ResponseBody responseBody = response.body();
                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                         if (response.isSuccessful()) {
-                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesListBankResponse.class), response);
+                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesGetBankResponse.class), response);
                                                         }
                                                         try {
                                                           switch (response.code()) {
@@ -1931,27 +1933,27 @@ public class RawBankClient {
                                                       }
                                                     }
 
-                                                    public NordletApiHttpResponse<DirectDebitsCandidatesBankResponse> directDebitsCandidates(
+                                                    public NordletApiHttpResponse<MandatesListBankResponse> mandatesList(
                                                         ) {
-                                                      return directDebitsCandidates(DirectDebitsCandidatesBankRequest.builder().build());
+                                                      return mandatesList(MandatesListBankRequest.builder().build());
                                                     }
 
-                                                    public NordletApiHttpResponse<DirectDebitsCandidatesBankResponse> directDebitsCandidates(
+                                                    public NordletApiHttpResponse<MandatesListBankResponse> mandatesList(
                                                         RequestOptions requestOptions) {
-                                                      return directDebitsCandidates(DirectDebitsCandidatesBankRequest.builder().build(),requestOptions);
+                                                      return mandatesList(MandatesListBankRequest.builder().build(),requestOptions);
                                                     }
 
-                                                    public NordletApiHttpResponse<DirectDebitsCandidatesBankResponse> directDebitsCandidates(
-                                                        DirectDebitsCandidatesBankRequest request) {
-                                                      return directDebitsCandidates(request,null);
+                                                    public NordletApiHttpResponse<MandatesListBankResponse> mandatesList(
+                                                        MandatesListBankRequest request) {
+                                                      return mandatesList(request,null);
                                                     }
 
-                                                    public NordletApiHttpResponse<DirectDebitsCandidatesBankResponse> directDebitsCandidates(
-                                                        DirectDebitsCandidatesBankRequest request,
+                                                    public NordletApiHttpResponse<MandatesListBankResponse> mandatesList(
+                                                        MandatesListBankRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                        .addPathSegments("v1/bank/direct-debits/candidates");if (requestOptions != null) {
+                                                        .addPathSegments("v1/bank/mandates/list");if (requestOptions != null) {
                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                             httpUrl.addQueryParameter(_key, _value);
                                                           } );
@@ -1981,7 +1983,7 @@ public class RawBankClient {
                                                           ResponseBody responseBody = response.body();
                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                           if (response.isSuccessful()) {
-                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DirectDebitsCandidatesBankResponse.class), response);
+                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesListBankResponse.class), response);
                                                           }
                                                           try {
                                                             switch (response.code()) {
@@ -2011,17 +2013,27 @@ public class RawBankClient {
                                                         }
                                                       }
 
-                                                      public NordletApiHttpResponse<DirectDebitsExportBankResponse> directDebitsExport(
-                                                          DirectDebitsExportBankRequest request) {
-                                                        return directDebitsExport(request,null);
+                                                      public NordletApiHttpResponse<DirectDebitsCandidatesBankResponse> directDebitsCandidates(
+                                                          ) {
+                                                        return directDebitsCandidates(DirectDebitsCandidatesBankRequest.builder().build());
                                                       }
 
-                                                      public NordletApiHttpResponse<DirectDebitsExportBankResponse> directDebitsExport(
-                                                          DirectDebitsExportBankRequest request,
+                                                      public NordletApiHttpResponse<DirectDebitsCandidatesBankResponse> directDebitsCandidates(
+                                                          RequestOptions requestOptions) {
+                                                        return directDebitsCandidates(DirectDebitsCandidatesBankRequest.builder().build(),requestOptions);
+                                                      }
+
+                                                      public NordletApiHttpResponse<DirectDebitsCandidatesBankResponse> directDebitsCandidates(
+                                                          DirectDebitsCandidatesBankRequest request) {
+                                                        return directDebitsCandidates(request,null);
+                                                      }
+
+                                                      public NordletApiHttpResponse<DirectDebitsCandidatesBankResponse> directDebitsCandidates(
+                                                          DirectDebitsCandidatesBankRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                          .addPathSegments("v1/bank/direct-debits/export");if (requestOptions != null) {
+                                                          .addPathSegments("v1/bank/direct-debits/candidates");if (requestOptions != null) {
                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                               httpUrl.addQueryParameter(_key, _value);
                                                             } );
@@ -2051,7 +2063,7 @@ public class RawBankClient {
                                                             ResponseBody responseBody = response.body();
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DirectDebitsExportBankResponse.class), response);
+                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DirectDebitsCandidatesBankResponse.class), response);
                                                             }
                                                             try {
                                                               switch (response.code()) {
@@ -2081,17 +2093,17 @@ public class RawBankClient {
                                                           }
                                                         }
 
-                                                        public NordletApiHttpResponse<TransactionsSuggestMatchesBankResponse> transactionsSuggestMatches(
-                                                            TransactionsSuggestMatchesBankRequest request) {
-                                                          return transactionsSuggestMatches(request,null);
+                                                        public NordletApiHttpResponse<DirectDebitsExportBankResponse> directDebitsExport(
+                                                            DirectDebitsExportBankRequest request) {
+                                                          return directDebitsExport(request,null);
                                                         }
 
-                                                        public NordletApiHttpResponse<TransactionsSuggestMatchesBankResponse> transactionsSuggestMatches(
-                                                            TransactionsSuggestMatchesBankRequest request,
+                                                        public NordletApiHttpResponse<DirectDebitsExportBankResponse> directDebitsExport(
+                                                            DirectDebitsExportBankRequest request,
                                                             RequestOptions requestOptions) {
                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                            .addPathSegments("v1/bank/transactions/suggest-matches");if (requestOptions != null) {
+                                                            .addPathSegments("v1/bank/direct-debits/export");if (requestOptions != null) {
                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                 httpUrl.addQueryParameter(_key, _value);
                                                               } );
@@ -2121,7 +2133,7 @@ public class RawBankClient {
                                                               ResponseBody responseBody = response.body();
                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                               if (response.isSuccessful()) {
-                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TransactionsSuggestMatchesBankResponse.class), response);
+                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DirectDebitsExportBankResponse.class), response);
                                                               }
                                                               try {
                                                                 switch (response.code()) {
@@ -2151,17 +2163,17 @@ public class RawBankClient {
                                                             }
                                                           }
 
-                                                          public NordletApiHttpResponse<SettlementsImportBankResponse> settlementsImport(
-                                                              SettlementsImportBankRequest request) {
-                                                            return settlementsImport(request,null);
+                                                          public NordletApiHttpResponse<TransactionsSuggestMatchesBankResponse> transactionsSuggestMatches(
+                                                              TransactionsSuggestMatchesBankRequest request) {
+                                                            return transactionsSuggestMatches(request,null);
                                                           }
 
-                                                          public NordletApiHttpResponse<SettlementsImportBankResponse> settlementsImport(
-                                                              SettlementsImportBankRequest request,
+                                                          public NordletApiHttpResponse<TransactionsSuggestMatchesBankResponse> transactionsSuggestMatches(
+                                                              TransactionsSuggestMatchesBankRequest request,
                                                               RequestOptions requestOptions) {
                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                              .addPathSegments("v1/bank/settlements/import");if (requestOptions != null) {
+                                                              .addPathSegments("v1/bank/transactions/suggest-matches");if (requestOptions != null) {
                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                 } );
@@ -2191,7 +2203,7 @@ public class RawBankClient {
                                                                 ResponseBody responseBody = response.body();
                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                 if (response.isSuccessful()) {
-                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsImportBankResponse.class), response);
+                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TransactionsSuggestMatchesBankResponse.class), response);
                                                                 }
                                                                 try {
                                                                   switch (response.code()) {
@@ -2221,27 +2233,17 @@ public class RawBankClient {
                                                               }
                                                             }
 
-                                                            public NordletApiHttpResponse<SettlementsListBankResponse> settlementsList(
-                                                                ) {
-                                                              return settlementsList(SettlementsListBankRequest.builder().build());
+                                                            public NordletApiHttpResponse<SettlementsImportBankResponse> settlementsImport(
+                                                                SettlementsImportBankRequest request) {
+                                                              return settlementsImport(request,null);
                                                             }
 
-                                                            public NordletApiHttpResponse<SettlementsListBankResponse> settlementsList(
-                                                                RequestOptions requestOptions) {
-                                                              return settlementsList(SettlementsListBankRequest.builder().build(),requestOptions);
-                                                            }
-
-                                                            public NordletApiHttpResponse<SettlementsListBankResponse> settlementsList(
-                                                                SettlementsListBankRequest request) {
-                                                              return settlementsList(request,null);
-                                                            }
-
-                                                            public NordletApiHttpResponse<SettlementsListBankResponse> settlementsList(
-                                                                SettlementsListBankRequest request,
+                                                            public NordletApiHttpResponse<SettlementsImportBankResponse> settlementsImport(
+                                                                SettlementsImportBankRequest request,
                                                                 RequestOptions requestOptions) {
                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                .addPathSegments("v1/bank/settlements/list");if (requestOptions != null) {
+                                                                .addPathSegments("v1/bank/settlements/import");if (requestOptions != null) {
                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                   } );
@@ -2271,7 +2273,7 @@ public class RawBankClient {
                                                                   ResponseBody responseBody = response.body();
                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                   if (response.isSuccessful()) {
-                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsListBankResponse.class), response);
+                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsImportBankResponse.class), response);
                                                                   }
                                                                   try {
                                                                     switch (response.code()) {
@@ -2301,17 +2303,27 @@ public class RawBankClient {
                                                                 }
                                                               }
 
-                                                              public NordletApiHttpResponse<SettlementsGetBankResponse> settlementsGet(
-                                                                  SettlementsGetBankRequest request) {
-                                                                return settlementsGet(request,null);
+                                                              public NordletApiHttpResponse<SettlementsListBankResponse> settlementsList(
+                                                                  ) {
+                                                                return settlementsList(SettlementsListBankRequest.builder().build());
                                                               }
 
-                                                              public NordletApiHttpResponse<SettlementsGetBankResponse> settlementsGet(
-                                                                  SettlementsGetBankRequest request,
+                                                              public NordletApiHttpResponse<SettlementsListBankResponse> settlementsList(
+                                                                  RequestOptions requestOptions) {
+                                                                return settlementsList(SettlementsListBankRequest.builder().build(),requestOptions);
+                                                              }
+
+                                                              public NordletApiHttpResponse<SettlementsListBankResponse> settlementsList(
+                                                                  SettlementsListBankRequest request) {
+                                                                return settlementsList(request,null);
+                                                              }
+
+                                                              public NordletApiHttpResponse<SettlementsListBankResponse> settlementsList(
+                                                                  SettlementsListBankRequest request,
                                                                   RequestOptions requestOptions) {
                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                  .addPathSegments("v1/bank/settlements/get");if (requestOptions != null) {
+                                                                  .addPathSegments("v1/bank/settlements/list");if (requestOptions != null) {
                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                     } );
@@ -2341,7 +2353,7 @@ public class RawBankClient {
                                                                     ResponseBody responseBody = response.body();
                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                     if (response.isSuccessful()) {
-                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsGetBankResponse.class), response);
+                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsListBankResponse.class), response);
                                                                     }
                                                                     try {
                                                                       switch (response.code()) {
@@ -2371,17 +2383,17 @@ public class RawBankClient {
                                                                   }
                                                                 }
 
-                                                                public NordletApiHttpResponse<SettlementsMatchBankResponse> settlementsMatch(
-                                                                    SettlementsMatchBankRequest request) {
-                                                                  return settlementsMatch(request,null);
+                                                                public NordletApiHttpResponse<SettlementsGetBankResponse> settlementsGet(
+                                                                    SettlementsGetBankRequest request) {
+                                                                  return settlementsGet(request,null);
                                                                 }
 
-                                                                public NordletApiHttpResponse<SettlementsMatchBankResponse> settlementsMatch(
-                                                                    SettlementsMatchBankRequest request,
+                                                                public NordletApiHttpResponse<SettlementsGetBankResponse> settlementsGet(
+                                                                    SettlementsGetBankRequest request,
                                                                     RequestOptions requestOptions) {
                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                    .addPathSegments("v1/bank/settlements/match");if (requestOptions != null) {
+                                                                    .addPathSegments("v1/bank/settlements/get");if (requestOptions != null) {
                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                       } );
@@ -2411,7 +2423,7 @@ public class RawBankClient {
                                                                       ResponseBody responseBody = response.body();
                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                       if (response.isSuccessful()) {
-                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsMatchBankResponse.class), response);
+                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsGetBankResponse.class), response);
                                                                       }
                                                                       try {
                                                                         switch (response.code()) {
@@ -2441,23 +2453,17 @@ public class RawBankClient {
                                                                     }
                                                                   }
 
-                                                                  /**
-                                                                   * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
-                                                                   */
-                                                                  public NordletApiHttpResponse<SettlementsCommissionBankResponse> settlementsCommission(
-                                                                      SettlementsCommissionBankRequest request) {
-                                                                    return settlementsCommission(request,null);
+                                                                  public NordletApiHttpResponse<SettlementsMatchBankResponse> settlementsMatch(
+                                                                      SettlementsMatchBankRequest request) {
+                                                                    return settlementsMatch(request,null);
                                                                   }
 
-                                                                  /**
-                                                                   * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
-                                                                   */
-                                                                  public NordletApiHttpResponse<SettlementsCommissionBankResponse> settlementsCommission(
-                                                                      SettlementsCommissionBankRequest request,
+                                                                  public NordletApiHttpResponse<SettlementsMatchBankResponse> settlementsMatch(
+                                                                      SettlementsMatchBankRequest request,
                                                                       RequestOptions requestOptions) {
                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                      .addPathSegments("v1/bank/settlements/commission");if (requestOptions != null) {
+                                                                      .addPathSegments("v1/bank/settlements/match");if (requestOptions != null) {
                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                         } );
@@ -2487,7 +2493,7 @@ public class RawBankClient {
                                                                         ResponseBody responseBody = response.body();
                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                         if (response.isSuccessful()) {
-                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsCommissionBankResponse.class), response);
+                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsMatchBankResponse.class), response);
                                                                         }
                                                                         try {
                                                                           switch (response.code()) {
@@ -2518,22 +2524,22 @@ public class RawBankClient {
                                                                     }
 
                                                                     /**
-                                                                     * Attach the incoming bank-statement line that carries this payout to the settlement batch.
+                                                                     * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
                                                                      */
-                                                                    public NordletApiHttpResponse<SettlementsLinkBankResponse> settlementsLink(
-                                                                        SettlementsLinkBankRequest request) {
-                                                                      return settlementsLink(request,null);
+                                                                    public NordletApiHttpResponse<SettlementsCommissionBankResponse> settlementsCommission(
+                                                                        SettlementsCommissionBankRequest request) {
+                                                                      return settlementsCommission(request,null);
                                                                     }
 
                                                                     /**
-                                                                     * Attach the incoming bank-statement line that carries this payout to the settlement batch.
+                                                                     * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
                                                                      */
-                                                                    public NordletApiHttpResponse<SettlementsLinkBankResponse> settlementsLink(
-                                                                        SettlementsLinkBankRequest request,
+                                                                    public NordletApiHttpResponse<SettlementsCommissionBankResponse> settlementsCommission(
+                                                                        SettlementsCommissionBankRequest request,
                                                                         RequestOptions requestOptions) {
                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                        .addPathSegments("v1/bank/settlements/link");if (requestOptions != null) {
+                                                                        .addPathSegments("v1/bank/settlements/commission");if (requestOptions != null) {
                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                           } );
@@ -2563,7 +2569,7 @@ public class RawBankClient {
                                                                           ResponseBody responseBody = response.body();
                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                           if (response.isSuccessful()) {
-                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsLinkBankResponse.class), response);
+                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsCommissionBankResponse.class), response);
                                                                           }
                                                                           try {
                                                                             switch (response.code()) {
@@ -2594,22 +2600,22 @@ public class RawBankClient {
                                                                       }
 
                                                                       /**
-                                                                       * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+                                                                       * Attach the incoming bank-statement line that carries this payout to the settlement batch.
                                                                        */
-                                                                      public NordletApiHttpResponse<SettlementsUnlinkBankResponse> settlementsUnlink(
-                                                                          SettlementsUnlinkBankRequest request) {
-                                                                        return settlementsUnlink(request,null);
+                                                                      public NordletApiHttpResponse<SettlementsLinkBankResponse> settlementsLink(
+                                                                          SettlementsLinkBankRequest request) {
+                                                                        return settlementsLink(request,null);
                                                                       }
 
                                                                       /**
-                                                                       * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+                                                                       * Attach the incoming bank-statement line that carries this payout to the settlement batch.
                                                                        */
-                                                                      public NordletApiHttpResponse<SettlementsUnlinkBankResponse> settlementsUnlink(
-                                                                          SettlementsUnlinkBankRequest request,
+                                                                      public NordletApiHttpResponse<SettlementsLinkBankResponse> settlementsLink(
+                                                                          SettlementsLinkBankRequest request,
                                                                           RequestOptions requestOptions) {
                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                          .addPathSegments("v1/bank/settlements/unlink");if (requestOptions != null) {
+                                                                          .addPathSegments("v1/bank/settlements/link");if (requestOptions != null) {
                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                             } );
@@ -2639,7 +2645,7 @@ public class RawBankClient {
                                                                             ResponseBody responseBody = response.body();
                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                             if (response.isSuccessful()) {
-                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsUnlinkBankResponse.class), response);
+                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsLinkBankResponse.class), response);
                                                                             }
                                                                             try {
                                                                               switch (response.code()) {
@@ -2669,17 +2675,23 @@ public class RawBankClient {
                                                                           }
                                                                         }
 
-                                                                        public NordletApiHttpResponse<SettlementsPostBankResponse> settlementsPost(
-                                                                            SettlementsPostBankRequest request) {
-                                                                          return settlementsPost(request,null);
+                                                                        /**
+                                                                         * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+                                                                         */
+                                                                        public NordletApiHttpResponse<SettlementsUnlinkBankResponse> settlementsUnlink(
+                                                                            SettlementsUnlinkBankRequest request) {
+                                                                          return settlementsUnlink(request,null);
                                                                         }
 
-                                                                        public NordletApiHttpResponse<SettlementsPostBankResponse> settlementsPost(
-                                                                            SettlementsPostBankRequest request,
+                                                                        /**
+                                                                         * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+                                                                         */
+                                                                        public NordletApiHttpResponse<SettlementsUnlinkBankResponse> settlementsUnlink(
+                                                                            SettlementsUnlinkBankRequest request,
                                                                             RequestOptions requestOptions) {
                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                            .addPathSegments("v1/bank/settlements/post");if (requestOptions != null) {
+                                                                            .addPathSegments("v1/bank/settlements/unlink");if (requestOptions != null) {
                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                               } );
@@ -2709,7 +2721,7 @@ public class RawBankClient {
                                                                               ResponseBody responseBody = response.body();
                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                               if (response.isSuccessful()) {
-                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsPostBankResponse.class), response);
+                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsUnlinkBankResponse.class), response);
                                                                               }
                                                                               try {
                                                                                 switch (response.code()) {
@@ -2739,17 +2751,17 @@ public class RawBankClient {
                                                                             }
                                                                           }
 
-                                                                          public NordletApiHttpResponse<SecuritiesImportBankResponse> securitiesImport(
-                                                                              SecuritiesImportBankRequest request) {
-                                                                            return securitiesImport(request,null);
+                                                                          public NordletApiHttpResponse<SettlementsPostBankResponse> settlementsPost(
+                                                                              SettlementsPostBankRequest request) {
+                                                                            return settlementsPost(request,null);
                                                                           }
 
-                                                                          public NordletApiHttpResponse<SecuritiesImportBankResponse> securitiesImport(
-                                                                              SecuritiesImportBankRequest request,
+                                                                          public NordletApiHttpResponse<SettlementsPostBankResponse> settlementsPost(
+                                                                              SettlementsPostBankRequest request,
                                                                               RequestOptions requestOptions) {
                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                              .addPathSegments("v1/bank/securities/import");if (requestOptions != null) {
+                                                                              .addPathSegments("v1/bank/settlements/post");if (requestOptions != null) {
                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                 } );
@@ -2779,7 +2791,7 @@ public class RawBankClient {
                                                                                 ResponseBody responseBody = response.body();
                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                 if (response.isSuccessful()) {
-                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SecuritiesImportBankResponse.class), response);
+                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsPostBankResponse.class), response);
                                                                                 }
                                                                                 try {
                                                                                   switch (response.code()) {
@@ -2809,27 +2821,17 @@ public class RawBankClient {
                                                                               }
                                                                             }
 
-                                                                            public NordletApiHttpResponse<SecuritiesListBankResponse> securitiesList(
-                                                                                ) {
-                                                                              return securitiesList(SecuritiesListBankRequest.builder().build());
+                                                                            public NordletApiHttpResponse<SecuritiesImportBankResponse> securitiesImport(
+                                                                                SecuritiesImportBankRequest request) {
+                                                                              return securitiesImport(request,null);
                                                                             }
 
-                                                                            public NordletApiHttpResponse<SecuritiesListBankResponse> securitiesList(
-                                                                                RequestOptions requestOptions) {
-                                                                              return securitiesList(SecuritiesListBankRequest.builder().build(),requestOptions);
-                                                                            }
-
-                                                                            public NordletApiHttpResponse<SecuritiesListBankResponse> securitiesList(
-                                                                                SecuritiesListBankRequest request) {
-                                                                              return securitiesList(request,null);
-                                                                            }
-
-                                                                            public NordletApiHttpResponse<SecuritiesListBankResponse> securitiesList(
-                                                                                SecuritiesListBankRequest request,
+                                                                            public NordletApiHttpResponse<SecuritiesImportBankResponse> securitiesImport(
+                                                                                SecuritiesImportBankRequest request,
                                                                                 RequestOptions requestOptions) {
                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                .addPathSegments("v1/bank/securities/list");if (requestOptions != null) {
+                                                                                .addPathSegments("v1/bank/securities/import");if (requestOptions != null) {
                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                   } );
@@ -2859,7 +2861,7 @@ public class RawBankClient {
                                                                                   ResponseBody responseBody = response.body();
                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                   if (response.isSuccessful()) {
-                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SecuritiesListBankResponse.class), response);
+                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SecuritiesImportBankResponse.class), response);
                                                                                   }
                                                                                   try {
                                                                                     switch (response.code()) {
@@ -2889,17 +2891,27 @@ public class RawBankClient {
                                                                                 }
                                                                               }
 
-                                                                              public NordletApiHttpResponse<SecuritiesGetBankResponse> securitiesGet(
-                                                                                  SecuritiesGetBankRequest request) {
-                                                                                return securitiesGet(request,null);
+                                                                              public NordletApiHttpResponse<SecuritiesListBankResponse> securitiesList(
+                                                                                  ) {
+                                                                                return securitiesList(SecuritiesListBankRequest.builder().build());
                                                                               }
 
-                                                                              public NordletApiHttpResponse<SecuritiesGetBankResponse> securitiesGet(
-                                                                                  SecuritiesGetBankRequest request,
+                                                                              public NordletApiHttpResponse<SecuritiesListBankResponse> securitiesList(
+                                                                                  RequestOptions requestOptions) {
+                                                                                return securitiesList(SecuritiesListBankRequest.builder().build(),requestOptions);
+                                                                              }
+
+                                                                              public NordletApiHttpResponse<SecuritiesListBankResponse> securitiesList(
+                                                                                  SecuritiesListBankRequest request) {
+                                                                                return securitiesList(request,null);
+                                                                              }
+
+                                                                              public NordletApiHttpResponse<SecuritiesListBankResponse> securitiesList(
+                                                                                  SecuritiesListBankRequest request,
                                                                                   RequestOptions requestOptions) {
                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                  .addPathSegments("v1/bank/securities/get");if (requestOptions != null) {
+                                                                                  .addPathSegments("v1/bank/securities/list");if (requestOptions != null) {
                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                     } );
@@ -2929,7 +2941,7 @@ public class RawBankClient {
                                                                                     ResponseBody responseBody = response.body();
                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                     if (response.isSuccessful()) {
-                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SecuritiesGetBankResponse.class), response);
+                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SecuritiesListBankResponse.class), response);
                                                                                     }
                                                                                     try {
                                                                                       switch (response.code()) {
@@ -2959,27 +2971,17 @@ public class RawBankClient {
                                                                                   }
                                                                                 }
 
-                                                                                public NordletApiHttpResponse<FeedsBanksListBankResponse> feedsBanksList(
-                                                                                    ) {
-                                                                                  return feedsBanksList(FeedsBanksListBankRequest.builder().build());
+                                                                                public NordletApiHttpResponse<SecuritiesGetBankResponse> securitiesGet(
+                                                                                    SecuritiesGetBankRequest request) {
+                                                                                  return securitiesGet(request,null);
                                                                                 }
 
-                                                                                public NordletApiHttpResponse<FeedsBanksListBankResponse> feedsBanksList(
-                                                                                    RequestOptions requestOptions) {
-                                                                                  return feedsBanksList(FeedsBanksListBankRequest.builder().build(),requestOptions);
-                                                                                }
-
-                                                                                public NordletApiHttpResponse<FeedsBanksListBankResponse> feedsBanksList(
-                                                                                    FeedsBanksListBankRequest request) {
-                                                                                  return feedsBanksList(request,null);
-                                                                                }
-
-                                                                                public NordletApiHttpResponse<FeedsBanksListBankResponse> feedsBanksList(
-                                                                                    FeedsBanksListBankRequest request,
+                                                                                public NordletApiHttpResponse<SecuritiesGetBankResponse> securitiesGet(
+                                                                                    SecuritiesGetBankRequest request,
                                                                                     RequestOptions requestOptions) {
                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                    .addPathSegments("v1/bank/feeds/banks/list");if (requestOptions != null) {
+                                                                                    .addPathSegments("v1/bank/securities/get");if (requestOptions != null) {
                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                       } );
@@ -3009,7 +3011,7 @@ public class RawBankClient {
                                                                                       ResponseBody responseBody = response.body();
                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                       if (response.isSuccessful()) {
-                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsBanksListBankResponse.class), response);
+                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SecuritiesGetBankResponse.class), response);
                                                                                       }
                                                                                       try {
                                                                                         switch (response.code()) {
@@ -3039,17 +3041,27 @@ public class RawBankClient {
                                                                                     }
                                                                                   }
 
-                                                                                  public NordletApiHttpResponse<FeedsConnectionsStartBankResponse> feedsConnectionsStart(
-                                                                                      FeedsConnectionsStartBankRequest request) {
-                                                                                    return feedsConnectionsStart(request,null);
+                                                                                  public NordletApiHttpResponse<FeedsBanksListBankResponse> feedsBanksList(
+                                                                                      ) {
+                                                                                    return feedsBanksList(FeedsBanksListBankRequest.builder().build());
                                                                                   }
 
-                                                                                  public NordletApiHttpResponse<FeedsConnectionsStartBankResponse> feedsConnectionsStart(
-                                                                                      FeedsConnectionsStartBankRequest request,
+                                                                                  public NordletApiHttpResponse<FeedsBanksListBankResponse> feedsBanksList(
+                                                                                      RequestOptions requestOptions) {
+                                                                                    return feedsBanksList(FeedsBanksListBankRequest.builder().build(),requestOptions);
+                                                                                  }
+
+                                                                                  public NordletApiHttpResponse<FeedsBanksListBankResponse> feedsBanksList(
+                                                                                      FeedsBanksListBankRequest request) {
+                                                                                    return feedsBanksList(request,null);
+                                                                                  }
+
+                                                                                  public NordletApiHttpResponse<FeedsBanksListBankResponse> feedsBanksList(
+                                                                                      FeedsBanksListBankRequest request,
                                                                                       RequestOptions requestOptions) {
                                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                      .addPathSegments("v1/bank/feeds/connections/start");if (requestOptions != null) {
+                                                                                      .addPathSegments("v1/bank/feeds/banks/list");if (requestOptions != null) {
                                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                                         } );
@@ -3079,7 +3091,7 @@ public class RawBankClient {
                                                                                         ResponseBody responseBody = response.body();
                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                         if (response.isSuccessful()) {
-                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsStartBankResponse.class), response);
+                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsBanksListBankResponse.class), response);
                                                                                         }
                                                                                         try {
                                                                                           switch (response.code()) {
@@ -3109,17 +3121,17 @@ public class RawBankClient {
                                                                                       }
                                                                                     }
 
-                                                                                    public NordletApiHttpResponse<FeedsConnectionsCompleteBankResponse> feedsConnectionsComplete(
-                                                                                        FeedsConnectionsCompleteBankRequest request) {
-                                                                                      return feedsConnectionsComplete(request,null);
+                                                                                    public NordletApiHttpResponse<FeedsConnectionsStartBankResponse> feedsConnectionsStart(
+                                                                                        FeedsConnectionsStartBankRequest request) {
+                                                                                      return feedsConnectionsStart(request,null);
                                                                                     }
 
-                                                                                    public NordletApiHttpResponse<FeedsConnectionsCompleteBankResponse> feedsConnectionsComplete(
-                                                                                        FeedsConnectionsCompleteBankRequest request,
+                                                                                    public NordletApiHttpResponse<FeedsConnectionsStartBankResponse> feedsConnectionsStart(
+                                                                                        FeedsConnectionsStartBankRequest request,
                                                                                         RequestOptions requestOptions) {
                                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                        .addPathSegments("v1/bank/feeds/connections/complete");if (requestOptions != null) {
+                                                                                        .addPathSegments("v1/bank/feeds/connections/start");if (requestOptions != null) {
                                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                                           } );
@@ -3149,7 +3161,7 @@ public class RawBankClient {
                                                                                           ResponseBody responseBody = response.body();
                                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                           if (response.isSuccessful()) {
-                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsCompleteBankResponse.class), response);
+                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsStartBankResponse.class), response);
                                                                                           }
                                                                                           try {
                                                                                             switch (response.code()) {
@@ -3179,17 +3191,17 @@ public class RawBankClient {
                                                                                         }
                                                                                       }
 
-                                                                                      public NordletApiHttpResponse<FeedsConnectionsGetBankResponse> feedsConnectionsGet(
-                                                                                          FeedsConnectionsGetBankRequest request) {
-                                                                                        return feedsConnectionsGet(request,null);
+                                                                                      public NordletApiHttpResponse<FeedsConnectionsCompleteBankResponse> feedsConnectionsComplete(
+                                                                                          FeedsConnectionsCompleteBankRequest request) {
+                                                                                        return feedsConnectionsComplete(request,null);
                                                                                       }
 
-                                                                                      public NordletApiHttpResponse<FeedsConnectionsGetBankResponse> feedsConnectionsGet(
-                                                                                          FeedsConnectionsGetBankRequest request,
+                                                                                      public NordletApiHttpResponse<FeedsConnectionsCompleteBankResponse> feedsConnectionsComplete(
+                                                                                          FeedsConnectionsCompleteBankRequest request,
                                                                                           RequestOptions requestOptions) {
                                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                          .addPathSegments("v1/bank/feeds/connections/get");if (requestOptions != null) {
+                                                                                          .addPathSegments("v1/bank/feeds/connections/complete");if (requestOptions != null) {
                                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                                             } );
@@ -3219,7 +3231,7 @@ public class RawBankClient {
                                                                                             ResponseBody responseBody = response.body();
                                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                             if (response.isSuccessful()) {
-                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsGetBankResponse.class), response);
+                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsCompleteBankResponse.class), response);
                                                                                             }
                                                                                             try {
                                                                                               switch (response.code()) {
@@ -3249,27 +3261,17 @@ public class RawBankClient {
                                                                                           }
                                                                                         }
 
-                                                                                        public NordletApiHttpResponse<FeedsConnectionsListBankResponse> feedsConnectionsList(
-                                                                                            ) {
-                                                                                          return feedsConnectionsList(FeedsConnectionsListBankRequest.builder().build());
+                                                                                        public NordletApiHttpResponse<FeedsConnectionsGetBankResponse> feedsConnectionsGet(
+                                                                                            FeedsConnectionsGetBankRequest request) {
+                                                                                          return feedsConnectionsGet(request,null);
                                                                                         }
 
-                                                                                        public NordletApiHttpResponse<FeedsConnectionsListBankResponse> feedsConnectionsList(
-                                                                                            RequestOptions requestOptions) {
-                                                                                          return feedsConnectionsList(FeedsConnectionsListBankRequest.builder().build(),requestOptions);
-                                                                                        }
-
-                                                                                        public NordletApiHttpResponse<FeedsConnectionsListBankResponse> feedsConnectionsList(
-                                                                                            FeedsConnectionsListBankRequest request) {
-                                                                                          return feedsConnectionsList(request,null);
-                                                                                        }
-
-                                                                                        public NordletApiHttpResponse<FeedsConnectionsListBankResponse> feedsConnectionsList(
-                                                                                            FeedsConnectionsListBankRequest request,
+                                                                                        public NordletApiHttpResponse<FeedsConnectionsGetBankResponse> feedsConnectionsGet(
+                                                                                            FeedsConnectionsGetBankRequest request,
                                                                                             RequestOptions requestOptions) {
                                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                            .addPathSegments("v1/bank/feeds/connections/list");if (requestOptions != null) {
+                                                                                            .addPathSegments("v1/bank/feeds/connections/get");if (requestOptions != null) {
                                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                                               } );
@@ -3299,7 +3301,7 @@ public class RawBankClient {
                                                                                               ResponseBody responseBody = response.body();
                                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                               if (response.isSuccessful()) {
-                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsListBankResponse.class), response);
+                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsGetBankResponse.class), response);
                                                                                               }
                                                                                               try {
                                                                                                 switch (response.code()) {
@@ -3329,17 +3331,27 @@ public class RawBankClient {
                                                                                             }
                                                                                           }
 
-                                                                                          public NordletApiHttpResponse<FeedsConnectionsDeleteBankResponse> feedsConnectionsDelete(
-                                                                                              FeedsConnectionsDeleteBankRequest request) {
-                                                                                            return feedsConnectionsDelete(request,null);
+                                                                                          public NordletApiHttpResponse<FeedsConnectionsListBankResponse> feedsConnectionsList(
+                                                                                              ) {
+                                                                                            return feedsConnectionsList(FeedsConnectionsListBankRequest.builder().build());
                                                                                           }
 
-                                                                                          public NordletApiHttpResponse<FeedsConnectionsDeleteBankResponse> feedsConnectionsDelete(
-                                                                                              FeedsConnectionsDeleteBankRequest request,
+                                                                                          public NordletApiHttpResponse<FeedsConnectionsListBankResponse> feedsConnectionsList(
+                                                                                              RequestOptions requestOptions) {
+                                                                                            return feedsConnectionsList(FeedsConnectionsListBankRequest.builder().build(),requestOptions);
+                                                                                          }
+
+                                                                                          public NordletApiHttpResponse<FeedsConnectionsListBankResponse> feedsConnectionsList(
+                                                                                              FeedsConnectionsListBankRequest request) {
+                                                                                            return feedsConnectionsList(request,null);
+                                                                                          }
+
+                                                                                          public NordletApiHttpResponse<FeedsConnectionsListBankResponse> feedsConnectionsList(
+                                                                                              FeedsConnectionsListBankRequest request,
                                                                                               RequestOptions requestOptions) {
                                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                              .addPathSegments("v1/bank/feeds/connections/delete");if (requestOptions != null) {
+                                                                                              .addPathSegments("v1/bank/feeds/connections/list");if (requestOptions != null) {
                                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                                 } );
@@ -3369,7 +3381,7 @@ public class RawBankClient {
                                                                                                 ResponseBody responseBody = response.body();
                                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                 if (response.isSuccessful()) {
-                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsDeleteBankResponse.class), response);
+                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsListBankResponse.class), response);
                                                                                                 }
                                                                                                 try {
                                                                                                   switch (response.code()) {
@@ -3399,17 +3411,17 @@ public class RawBankClient {
                                                                                               }
                                                                                             }
 
-                                                                                            public NordletApiHttpResponse<FeedsAccountsLinkBankResponse> feedsAccountsLink(
-                                                                                                FeedsAccountsLinkBankRequest request) {
-                                                                                              return feedsAccountsLink(request,null);
+                                                                                            public NordletApiHttpResponse<FeedsConnectionsDeleteBankResponse> feedsConnectionsDelete(
+                                                                                                FeedsConnectionsDeleteBankRequest request) {
+                                                                                              return feedsConnectionsDelete(request,null);
                                                                                             }
 
-                                                                                            public NordletApiHttpResponse<FeedsAccountsLinkBankResponse> feedsAccountsLink(
-                                                                                                FeedsAccountsLinkBankRequest request,
+                                                                                            public NordletApiHttpResponse<FeedsConnectionsDeleteBankResponse> feedsConnectionsDelete(
+                                                                                                FeedsConnectionsDeleteBankRequest request,
                                                                                                 RequestOptions requestOptions) {
                                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                .addPathSegments("v1/bank/feeds/accounts/link");if (requestOptions != null) {
+                                                                                                .addPathSegments("v1/bank/feeds/connections/delete");if (requestOptions != null) {
                                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                                   } );
@@ -3439,7 +3451,7 @@ public class RawBankClient {
                                                                                                   ResponseBody responseBody = response.body();
                                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                   if (response.isSuccessful()) {
-                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsAccountsLinkBankResponse.class), response);
+                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsDeleteBankResponse.class), response);
                                                                                                   }
                                                                                                   try {
                                                                                                     switch (response.code()) {
@@ -3469,17 +3481,17 @@ public class RawBankClient {
                                                                                                 }
                                                                                               }
 
-                                                                                              public NordletApiHttpResponse<FeedsAccountsConfigureBankResponse> feedsAccountsConfigure(
-                                                                                                  FeedsAccountsConfigureBankRequest request) {
-                                                                                                return feedsAccountsConfigure(request,null);
+                                                                                              public NordletApiHttpResponse<FeedsAccountsLinkBankResponse> feedsAccountsLink(
+                                                                                                  FeedsAccountsLinkBankRequest request) {
+                                                                                                return feedsAccountsLink(request,null);
                                                                                               }
 
-                                                                                              public NordletApiHttpResponse<FeedsAccountsConfigureBankResponse> feedsAccountsConfigure(
-                                                                                                  FeedsAccountsConfigureBankRequest request,
+                                                                                              public NordletApiHttpResponse<FeedsAccountsLinkBankResponse> feedsAccountsLink(
+                                                                                                  FeedsAccountsLinkBankRequest request,
                                                                                                   RequestOptions requestOptions) {
                                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                  .addPathSegments("v1/bank/feeds/accounts/configure");if (requestOptions != null) {
+                                                                                                  .addPathSegments("v1/bank/feeds/accounts/link");if (requestOptions != null) {
                                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                                     } );
@@ -3509,7 +3521,7 @@ public class RawBankClient {
                                                                                                     ResponseBody responseBody = response.body();
                                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                     if (response.isSuccessful()) {
-                                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsAccountsConfigureBankResponse.class), response);
+                                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsAccountsLinkBankResponse.class), response);
                                                                                                     }
                                                                                                     try {
                                                                                                       switch (response.code()) {
@@ -3539,17 +3551,17 @@ public class RawBankClient {
                                                                                                   }
                                                                                                 }
 
-                                                                                                public NordletApiHttpResponse<FeedsSyncBankResponse> feedsSync(
-                                                                                                    FeedsSyncBankRequest request) {
-                                                                                                  return feedsSync(request,null);
+                                                                                                public NordletApiHttpResponse<FeedsAccountsConfigureBankResponse> feedsAccountsConfigure(
+                                                                                                    FeedsAccountsConfigureBankRequest request) {
+                                                                                                  return feedsAccountsConfigure(request,null);
                                                                                                 }
 
-                                                                                                public NordletApiHttpResponse<FeedsSyncBankResponse> feedsSync(
-                                                                                                    FeedsSyncBankRequest request,
+                                                                                                public NordletApiHttpResponse<FeedsAccountsConfigureBankResponse> feedsAccountsConfigure(
+                                                                                                    FeedsAccountsConfigureBankRequest request,
                                                                                                     RequestOptions requestOptions) {
                                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                    .addPathSegments("v1/bank/feeds/sync");if (requestOptions != null) {
+                                                                                                    .addPathSegments("v1/bank/feeds/accounts/configure");if (requestOptions != null) {
                                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                                       } );
@@ -3579,7 +3591,7 @@ public class RawBankClient {
                                                                                                       ResponseBody responseBody = response.body();
                                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                       if (response.isSuccessful()) {
-                                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsSyncBankResponse.class), response);
+                                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsAccountsConfigureBankResponse.class), response);
                                                                                                       }
                                                                                                       try {
                                                                                                         switch (response.code()) {
@@ -3608,4 +3620,74 @@ public class RawBankClient {
                                                                                                       throw new NordletApiException("Network error executing HTTP request", e);
                                                                                                     }
                                                                                                   }
-                                                                                                }
+
+                                                                                                  public NordletApiHttpResponse<FeedsSyncBankResponse> feedsSync(
+                                                                                                      FeedsSyncBankRequest request) {
+                                                                                                    return feedsSync(request,null);
+                                                                                                  }
+
+                                                                                                  public NordletApiHttpResponse<FeedsSyncBankResponse> feedsSync(
+                                                                                                      FeedsSyncBankRequest request,
+                                                                                                      RequestOptions requestOptions) {
+                                                                                                    HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                                      .addPathSegments("v1/bank/feeds/sync");if (requestOptions != null) {
+                                                                                                        requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                                          httpUrl.addQueryParameter(_key, _value);
+                                                                                                        } );
+                                                                                                      }
+                                                                                                      RequestBody body;
+                                                                                                      try {
+                                                                                                        body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                                      }
+                                                                                                      catch(JsonProcessingException e) {
+                                                                                                        throw new NordletApiException("Failed to serialize request", e);
+                                                                                                      }
+                                                                                                      Request okhttpRequest = new Request.Builder()
+                                                                                                        .url(httpUrl.build())
+                                                                                                        .method("POST", body)
+                                                                                                        .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                                        .addHeader("Content-Type", "application/json")
+                                                                                                        .addHeader("Accept", "application/json")
+                                                                                                        .build();
+                                                                                                      OkHttpClient client = clientOptions.httpClient();
+                                                                                                      if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                                        client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                                      }
+                                                                                                      if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                                        okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                                      }
+                                                                                                      try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                                        ResponseBody responseBody = response.body();
+                                                                                                        String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                                        if (response.isSuccessful()) {
+                                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsSyncBankResponse.class), response);
+                                                                                                        }
+                                                                                                        try {
+                                                                                                          switch (response.code()) {
+                                                                                                            case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                            case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                            case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                            case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                            case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                            case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                            case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                            case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                          }
+                                                                                                        }
+                                                                                                        catch (JsonProcessingException ignored) {
+                                                                                                          // unable to map error response, throwing generic error
+                                                                                                        }
+                                                                                                        Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                                        throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                                      }
+                                                                                                      catch (JsonProcessingException e) {
+                                                                                                        throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                                      }
+                                                                                                      catch (IOException e) {
+                                                                                                        throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }

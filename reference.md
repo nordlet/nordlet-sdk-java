@@ -21098,14 +21098,6 @@ client.ledger().accountsCreate(
 <dl>
 <dd>
 
-**translations:** `Optional<Map<String, AccountsCreateLedgerRequestTranslationsValue>>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **type:** `AccountsCreateLedgerRequestType` 
     
 </dd>
@@ -21176,14 +21168,6 @@ client.ledger().accountsUpdate(
 <dd>
 
 **name:** `Optional<String>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**translations:** `Optional<Map<String, Optional<AccountsUpdateLedgerRequestTranslationsValue>>>` 
     
 </dd>
 </dl>
@@ -38572,6 +38556,35 @@ client.bank().importTemplatesGet(
 
 **id:** `String` 
     
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bank.importTemplatesListBuiltin(request) -> ImportTemplatesListBuiltinBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.bank().importTemplatesListBuiltin(
+    ImportTemplatesListBuiltinBankRequest
+        .builder()
+        .build()
+);
+```
 </dd>
 </dl>
 </dd>

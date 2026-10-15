@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
-import com.nordlet.api.resources.ledger.types.AccountsCreateLedgerRequestTranslationsValue;
 import com.nordlet.api.resources.ledger.types.AccountsCreateLedgerRequestType;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -33,8 +32,6 @@ public final class AccountsCreateLedgerRequest {
 
   private final String name;
 
-  private final Optional<Map<String, AccountsCreateLedgerRequestTranslationsValue>> translations;
-
   private final AccountsCreateLedgerRequestType type;
 
   private final Optional<String> parentId;
@@ -44,12 +41,10 @@ public final class AccountsCreateLedgerRequest {
   private final Map<String, Object> additionalProperties;
 
   private AccountsCreateLedgerRequest(String code, String name,
-      Optional<Map<String, AccountsCreateLedgerRequestTranslationsValue>> translations,
       AccountsCreateLedgerRequestType type, Optional<String> parentId, Optional<Boolean> isPostable,
       Map<String, Object> additionalProperties) {
     this.code = code;
     this.name = name;
-    this.translations = translations;
     this.type = type;
     this.parentId = parentId;
     this.isPostable = isPostable;
@@ -64,11 +59,6 @@ public final class AccountsCreateLedgerRequest {
   @JsonProperty("name")
   public String getName() {
     return name;
-  }
-
-  @JsonProperty("translations")
-  public Optional<Map<String, AccountsCreateLedgerRequestTranslationsValue>> getTranslations() {
-    return translations;
   }
 
   @JsonProperty("type")
@@ -98,12 +88,12 @@ public final class AccountsCreateLedgerRequest {
   }
 
   private boolean equalTo(AccountsCreateLedgerRequest other) {
-    return code.equals(other.code) && name.equals(other.name) && translations.equals(other.translations) && type.equals(other.type) && parentId.equals(other.parentId) && isPostable.equals(other.isPostable);
+    return code.equals(other.code) && name.equals(other.name) && type.equals(other.type) && parentId.equals(other.parentId) && isPostable.equals(other.isPostable);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.code, this.name, this.translations, this.type, this.parentId, this.isPostable);
+    return Objects.hash(this.code, this.name, this.type, this.parentId, this.isPostable);
   }
 
   @java.lang.Override
@@ -136,12 +126,6 @@ public final class AccountsCreateLedgerRequest {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
-    _FinalStage translations(
-        Optional<Map<String, AccountsCreateLedgerRequestTranslationsValue>> translations);
-
-    _FinalStage translations(
-        Map<String, AccountsCreateLedgerRequestTranslationsValue> translations);
-
     _FinalStage parentId(Optional<String> parentId);
 
     _FinalStage parentId(String parentId);
@@ -165,8 +149,6 @@ public final class AccountsCreateLedgerRequest {
 
     private Optional<String> parentId = Optional.empty();
 
-    private Optional<Map<String, AccountsCreateLedgerRequestTranslationsValue>> translations = Optional.empty();
-
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -177,7 +159,6 @@ public final class AccountsCreateLedgerRequest {
     public Builder from(AccountsCreateLedgerRequest other) {
       code(other.getCode());
       name(other.getName());
-      translations(other.getTranslations());
       type(other.getType());
       parentId(other.getParentId());
       isPostable(other.getIsPostable());
@@ -238,26 +219,8 @@ public final class AccountsCreateLedgerRequest {
     }
 
     @java.lang.Override
-    public _FinalStage translations(
-        Map<String, AccountsCreateLedgerRequestTranslationsValue> translations) {
-      this.translations = Optional.ofNullable(translations);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "translations",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage translations(
-        Optional<Map<String, AccountsCreateLedgerRequestTranslationsValue>> translations) {
-      this.translations = translations;
-      return this;
-    }
-
-    @java.lang.Override
     public AccountsCreateLedgerRequest build() {
-      return new AccountsCreateLedgerRequest(code, name, translations, type, parentId, isPostable, additionalProperties);
+      return new AccountsCreateLedgerRequest(code, name, type, parentId, isPostable, additionalProperties);
     }
 
     @java.lang.Override

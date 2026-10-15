@@ -10,6 +10,8 @@ import java.lang.Object;
 import java.lang.String;
 
 public final class StatementsImportBankRequestFormat {
+  public static final StatementsImportBankRequestFormat REVOLUT_CSV = new StatementsImportBankRequestFormat(Value.REVOLUT_CSV, "revolut-csv");
+
   public static final StatementsImportBankRequestFormat STRIPE_CSV = new StatementsImportBankRequestFormat(Value.STRIPE_CSV, "stripe-csv");
 
   public static final StatementsImportBankRequestFormat CAMT053 = new StatementsImportBankRequestFormat(Value.CAMT053, "camt053");
@@ -48,6 +50,8 @@ public final class StatementsImportBankRequestFormat {
 
   public <T> T visit(Visitor<T> visitor) {
     switch (value) {
+      case REVOLUT_CSV:
+        return visitor.visitRevolutCsv();
       case STRIPE_CSV:
         return visitor.visitStripeCsv();
       case CAMT053:
@@ -65,6 +69,8 @@ public final class StatementsImportBankRequestFormat {
   )
   public static StatementsImportBankRequestFormat valueOf(String value) {
     switch (value) {
+      case "revolut-csv":
+        return REVOLUT_CSV;
       case "stripe-csv":
         return STRIPE_CSV;
       case "camt053":
@@ -83,6 +89,8 @@ public final class StatementsImportBankRequestFormat {
 
     STRIPE_CSV,
 
+    REVOLUT_CSV,
+
     UNKNOWN
   }
 
@@ -92,6 +100,8 @@ public final class StatementsImportBankRequestFormat {
     T visitMt940();
 
     T visitStripeCsv();
+
+    T visitRevolutCsv();
 
     T visitUnknown(String unknownType);
   }

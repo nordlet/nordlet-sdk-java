@@ -16,6 +16,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey SALES_REVENUE_PRODUCTS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SALES_REVENUE_PRODUCTS, "sales.revenueProducts");
 
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey BANK_FEES = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.BANK_FEES, "bank.fees");
+
   public static final PostingRulesUpdateLedgerRequestRulesItemKey CLOSING_RETAINED_EARNINGS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.CLOSING_RETAINED_EARNINGS, "closing.retainedEarnings");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey SETTLEMENTS_COMMISSION_REVENUE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SETTLEMENTS_COMMISSION_REVENUE, "settlements.commissionRevenue");
@@ -50,6 +52,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey INVENTORY_COGS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.INVENTORY_COGS, "inventory.cogs");
 
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey BANK_CARD_PAYMENTS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.BANK_CARD_PAYMENTS, "bank.cardPayments");
+
   public static final PostingRulesUpdateLedgerRequestRulesItemKey SECURITIES_INTEREST_EXPENSE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SECURITIES_INTEREST_EXPENSE, "securities.interestExpense");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey PURCHASES_PREPAID_EXPENSES = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.PURCHASES_PREPAID_EXPENSES, "purchases.prepaidExpenses");
@@ -67,6 +71,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
   public static final PostingRulesUpdateLedgerRequestRulesItemKey PURCHASES_DEFAULT_EXPENSE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.PURCHASES_DEFAULT_EXPENSE, "purchases.defaultExpense");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey PRODUCTION_SCRAP = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.PRODUCTION_SCRAP, "production.scrap");
+
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey BANK_TOP_UPS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.BANK_TOP_UPS, "bank.topUps");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey SECURITIES_FEES = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SECURITIES_FEES, "securities.fees");
 
@@ -120,6 +126,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return visitor.visitAssetsDisposalLoss();
       case SALES_REVENUE_PRODUCTS:
         return visitor.visitSalesRevenueProducts();
+      case BANK_FEES:
+        return visitor.visitBankFees();
       case CLOSING_RETAINED_EARNINGS:
         return visitor.visitClosingRetainedEarnings();
       case SETTLEMENTS_COMMISSION_REVENUE:
@@ -154,6 +162,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return visitor.visitCashAdvances();
       case INVENTORY_COGS:
         return visitor.visitInventoryCogs();
+      case BANK_CARD_PAYMENTS:
+        return visitor.visitBankCardPayments();
       case SECURITIES_INTEREST_EXPENSE:
         return visitor.visitSecuritiesInterestExpense();
       case PURCHASES_PREPAID_EXPENSES:
@@ -172,6 +182,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return visitor.visitPurchasesDefaultExpense();
       case PRODUCTION_SCRAP:
         return visitor.visitProductionScrap();
+      case BANK_TOP_UPS:
+        return visitor.visitBankTopUps();
       case SECURITIES_FEES:
         return visitor.visitSecuritiesFees();
       case REVENUE_CONTRACT_ASSET:
@@ -203,6 +215,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return ASSETS_DISPOSAL_LOSS;
       case "sales.revenueProducts":
         return SALES_REVENUE_PRODUCTS;
+      case "bank.fees":
+        return BANK_FEES;
       case "closing.retainedEarnings":
         return CLOSING_RETAINED_EARNINGS;
       case "settlements.commissionRevenue":
@@ -237,6 +251,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return CASH_ADVANCES;
       case "inventory.cogs":
         return INVENTORY_COGS;
+      case "bank.cardPayments":
+        return BANK_CARD_PAYMENTS;
       case "securities.interestExpense":
         return SECURITIES_INTEREST_EXPENSE;
       case "purchases.prepaidExpenses":
@@ -255,6 +271,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return PURCHASES_DEFAULT_EXPENSE;
       case "production.scrap":
         return PRODUCTION_SCRAP;
+      case "bank.topUps":
+        return BANK_TOP_UPS;
       case "securities.fees":
         return SECURITIES_FEES;
       case "revenue.contractAsset":
@@ -306,6 +324,12 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
     BANK_FX_GAIN,
 
     BANK_FX_LOSS,
+
+    BANK_FEES,
+
+    BANK_CARD_PAYMENTS,
+
+    BANK_TOP_UPS,
 
     SETTLEMENTS_FEES,
 
@@ -382,6 +406,12 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
     T visitBankFxGain();
 
     T visitBankFxLoss();
+
+    T visitBankFees();
+
+    T visitBankCardPayments();
+
+    T visitBankTopUps();
 
     T visitSettlementsFees();
 

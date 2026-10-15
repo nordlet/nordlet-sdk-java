@@ -10,6 +10,8 @@ import java.lang.Object;
 import java.lang.String;
 
 public final class ImportTemplatesUpdateBankRequestType {
+  public static final ImportTemplatesUpdateBankRequestType REVOLUT = new ImportTemplatesUpdateBankRequestType(Value.REVOLUT, "revolut");
+
   public static final ImportTemplatesUpdateBankRequestType ISO20022 = new ImportTemplatesUpdateBankRequestType(Value.ISO20022, "iso20022");
 
   public static final ImportTemplatesUpdateBankRequestType BANK_CONNECTION = new ImportTemplatesUpdateBankRequestType(Value.BANK_CONNECTION, "bank_connection");
@@ -48,6 +50,8 @@ public final class ImportTemplatesUpdateBankRequestType {
 
   public <T> T visit(Visitor<T> visitor) {
     switch (value) {
+      case REVOLUT:
+        return visitor.visitRevolut();
       case ISO20022:
         return visitor.visitIso20022();
       case BANK_CONNECTION:
@@ -65,6 +69,8 @@ public final class ImportTemplatesUpdateBankRequestType {
   )
   public static ImportTemplatesUpdateBankRequestType valueOf(String value) {
     switch (value) {
+      case "revolut":
+        return REVOLUT;
       case "iso20022":
         return ISO20022;
       case "bank_connection":
@@ -83,6 +89,8 @@ public final class ImportTemplatesUpdateBankRequestType {
 
     BANK_CONNECTION,
 
+    REVOLUT,
+
     UNKNOWN
   }
 
@@ -92,6 +100,8 @@ public final class ImportTemplatesUpdateBankRequestType {
     T visitIso20022();
 
     T visitBankConnection();
+
+    T visitRevolut();
 
     T visitUnknown(String unknownType);
   }

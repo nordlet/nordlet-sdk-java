@@ -24,6 +24,7 @@ import com.nordlet.api.resources.bank.requests.ImportTemplatesCreateBankRequest;
 import com.nordlet.api.resources.bank.requests.ImportTemplatesDeleteBankRequest;
 import com.nordlet.api.resources.bank.requests.ImportTemplatesGetBankRequest;
 import com.nordlet.api.resources.bank.requests.ImportTemplatesListBankRequest;
+import com.nordlet.api.resources.bank.requests.ImportTemplatesListBuiltinBankRequest;
 import com.nordlet.api.resources.bank.requests.ImportTemplatesUpdateBankRequest;
 import com.nordlet.api.resources.bank.requests.MandatesCancelBankRequest;
 import com.nordlet.api.resources.bank.requests.MandatesCreateBankRequest;
@@ -72,6 +73,7 @@ import com.nordlet.api.resources.bank.types.ImportTemplatesCreateBankResponse;
 import com.nordlet.api.resources.bank.types.ImportTemplatesDeleteBankResponse;
 import com.nordlet.api.resources.bank.types.ImportTemplatesGetBankResponse;
 import com.nordlet.api.resources.bank.types.ImportTemplatesListBankResponse;
+import com.nordlet.api.resources.bank.types.ImportTemplatesListBuiltinBankResponse;
 import com.nordlet.api.resources.bank.types.ImportTemplatesUpdateBankResponse;
 import com.nordlet.api.resources.bank.types.MandatesCancelBankResponse;
 import com.nordlet.api.resources.bank.types.MandatesCreateBankResponse;
@@ -291,6 +293,25 @@ public class AsyncBankClient {
   public CompletableFuture<ImportTemplatesGetBankResponse> importTemplatesGet(
       ImportTemplatesGetBankRequest request, RequestOptions requestOptions) {
     return this.rawClient.importTemplatesGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ImportTemplatesListBuiltinBankResponse> importTemplatesListBuiltin() {
+    return this.rawClient.importTemplatesListBuiltin().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ImportTemplatesListBuiltinBankResponse> importTemplatesListBuiltin(
+      RequestOptions requestOptions) {
+    return this.rawClient.importTemplatesListBuiltin(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ImportTemplatesListBuiltinBankResponse> importTemplatesListBuiltin(
+      ImportTemplatesListBuiltinBankRequest request) {
+    return this.rawClient.importTemplatesListBuiltin(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<ImportTemplatesListBuiltinBankResponse> importTemplatesListBuiltin(
+      ImportTemplatesListBuiltinBankRequest request, RequestOptions requestOptions) {
+    return this.rawClient.importTemplatesListBuiltin(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<ImportTemplatesListBankResponse> importTemplatesList() {
