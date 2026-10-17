@@ -31,6 +31,8 @@ import org.jetbrains.annotations.NotNull;
 public final class SecuritiesGetBankResponseOperationsItem {
   private final String id;
 
+  private final String bankAccountId;
+
   private final String kind;
 
   private final String date;
@@ -73,8 +75,8 @@ public final class SecuritiesGetBankResponseOperationsItem {
 
   private final Map<String, Object> additionalProperties;
 
-  private SecuritiesGetBankResponseOperationsItem(String id, String kind, String date,
-      Optional<String> time, Optional<String> assetCategory, Optional<String> symbol,
+  private SecuritiesGetBankResponseOperationsItem(String id, String bankAccountId, String kind,
+      String date, Optional<String> time, Optional<String> assetCategory, Optional<String> symbol,
       Optional<String> description, String currency, Optional<String> quantity,
       Optional<String> price, Optional<String> amount, Optional<String> fee,
       Optional<String> brokerRealized, Optional<String> code, Optional<String> fxRate,
@@ -82,6 +84,7 @@ public final class SecuritiesGetBankResponseOperationsItem {
       SecuritiesGetBankResponseOperationsItemStatus status, Optional<String> note,
       Optional<String> journalTransactionId, Map<String, Object> additionalProperties) {
     this.id = id;
+    this.bankAccountId = bankAccountId;
     this.kind = kind;
     this.date = date;
     this.time = time;
@@ -108,6 +111,11 @@ public final class SecuritiesGetBankResponseOperationsItem {
   @JsonProperty("id")
   public String getId() {
     return id;
+  }
+
+  @JsonProperty("bankAccountId")
+  public String getBankAccountId() {
+    return bankAccountId;
   }
 
   @JsonProperty("kind")
@@ -414,12 +422,12 @@ public final class SecuritiesGetBankResponseOperationsItem {
   }
 
   private boolean equalTo(SecuritiesGetBankResponseOperationsItem other) {
-    return id.equals(other.id) && kind.equals(other.kind) && date.equals(other.date) && time.equals(other.time) && assetCategory.equals(other.assetCategory) && symbol.equals(other.symbol) && description.equals(other.description) && currency.equals(other.currency) && quantity.equals(other.quantity) && price.equals(other.price) && amount.equals(other.amount) && fee.equals(other.fee) && brokerRealized.equals(other.brokerRealized) && code.equals(other.code) && fxRate.equals(other.fxRate) && cashBase.equals(other.cashBase) && costBase.equals(other.costBase) && realizedBase.equals(other.realizedBase) && status.equals(other.status) && note.equals(other.note) && journalTransactionId.equals(other.journalTransactionId);
+    return id.equals(other.id) && bankAccountId.equals(other.bankAccountId) && kind.equals(other.kind) && date.equals(other.date) && time.equals(other.time) && assetCategory.equals(other.assetCategory) && symbol.equals(other.symbol) && description.equals(other.description) && currency.equals(other.currency) && quantity.equals(other.quantity) && price.equals(other.price) && amount.equals(other.amount) && fee.equals(other.fee) && brokerRealized.equals(other.brokerRealized) && code.equals(other.code) && fxRate.equals(other.fxRate) && cashBase.equals(other.cashBase) && costBase.equals(other.costBase) && realizedBase.equals(other.realizedBase) && status.equals(other.status) && note.equals(other.note) && journalTransactionId.equals(other.journalTransactionId);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.kind, this.date, this.time, this.assetCategory, this.symbol, this.description, this.currency, this.quantity, this.price, this.amount, this.fee, this.brokerRealized, this.code, this.fxRate, this.cashBase, this.costBase, this.realizedBase, this.status, this.note, this.journalTransactionId);
+    return Objects.hash(this.id, this.bankAccountId, this.kind, this.date, this.time, this.assetCategory, this.symbol, this.description, this.currency, this.quantity, this.price, this.amount, this.fee, this.brokerRealized, this.code, this.fxRate, this.cashBase, this.costBase, this.realizedBase, this.status, this.note, this.journalTransactionId);
   }
 
   @java.lang.Override
@@ -432,9 +440,13 @@ public final class SecuritiesGetBankResponseOperationsItem {
   }
 
   public interface IdStage {
-    KindStage id(@NotNull String id);
+    BankAccountIdStage id(@NotNull String id);
 
     Builder from(SecuritiesGetBankResponseOperationsItem other);
+  }
+
+  public interface BankAccountIdStage {
+    KindStage bankAccountId(@NotNull String bankAccountId);
   }
 
   public interface KindStage {
@@ -560,8 +572,10 @@ public final class SecuritiesGetBankResponseOperationsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, KindStage, DateStage, CurrencyStage, StatusStage, _FinalStage {
+  public static final class Builder implements IdStage, BankAccountIdStage, KindStage, DateStage, CurrencyStage, StatusStage, _FinalStage {
     private String id;
+
+    private String bankAccountId;
 
     private String kind;
 
@@ -612,6 +626,7 @@ public final class SecuritiesGetBankResponseOperationsItem {
     @java.lang.Override
     public Builder from(SecuritiesGetBankResponseOperationsItem other) {
       id(other.getId());
+      bankAccountId(other.getBankAccountId());
       kind(other.getKind());
       date(other.getDate());
       time(other.getTime());
@@ -637,8 +652,15 @@ public final class SecuritiesGetBankResponseOperationsItem {
 
     @java.lang.Override
     @JsonSetter("id")
-    public KindStage id(@NotNull String id) {
+    public BankAccountIdStage id(@NotNull String id) {
       this.id = Objects.requireNonNull(id, "id must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("bankAccountId")
+    public KindStage bankAccountId(@NotNull String bankAccountId) {
+      this.bankAccountId = Objects.requireNonNull(bankAccountId, "bankAccountId must not be null");
       return this;
     }
 
@@ -1152,7 +1174,7 @@ public final class SecuritiesGetBankResponseOperationsItem {
 
     @java.lang.Override
     public SecuritiesGetBankResponseOperationsItem build() {
-      return new SecuritiesGetBankResponseOperationsItem(id, kind, date, time, assetCategory, symbol, description, currency, quantity, price, amount, fee, brokerRealized, code, fxRate, cashBase, costBase, realizedBase, status, note, journalTransactionId, additionalProperties);
+      return new SecuritiesGetBankResponseOperationsItem(id, bankAccountId, kind, date, time, assetCategory, symbol, description, currency, quantity, price, amount, fee, brokerRealized, code, fxRate, cashBase, costBase, realizedBase, status, note, journalTransactionId, additionalProperties);
     }
 
     @java.lang.Override

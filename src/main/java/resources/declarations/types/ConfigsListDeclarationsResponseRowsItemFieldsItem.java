@@ -36,15 +36,20 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
 
   private final Optional<List<String>> options;
 
+  private final Optional<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> companyField;
+
   private final Map<String, Object> additionalProperties;
 
   private ConfigsListDeclarationsResponseRowsItemFieldsItem(String key,
       ConfigsListDeclarationsResponseRowsItemFieldsItemKind kind, Optional<Boolean> multiline,
-      Optional<List<String>> options, Map<String, Object> additionalProperties) {
+      Optional<List<String>> options,
+      Optional<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> companyField,
+      Map<String, Object> additionalProperties) {
     this.key = key;
     this.kind = kind;
     this.multiline = multiline;
     this.options = options;
+    this.companyField = companyField;
     this.additionalProperties = additionalProperties;
   }
 
@@ -68,6 +73,11 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
     return options;
   }
 
+  @JsonProperty("companyField")
+  public Optional<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> getCompanyField() {
+    return companyField;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -80,12 +90,12 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
   }
 
   private boolean equalTo(ConfigsListDeclarationsResponseRowsItemFieldsItem other) {
-    return key.equals(other.key) && kind.equals(other.kind) && multiline.equals(other.multiline) && options.equals(other.options);
+    return key.equals(other.key) && kind.equals(other.kind) && multiline.equals(other.multiline) && options.equals(other.options) && companyField.equals(other.companyField);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.key, this.kind, this.multiline, this.options);
+    return Objects.hash(this.key, this.kind, this.multiline, this.options, this.companyField);
   }
 
   @java.lang.Override
@@ -121,6 +131,12 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
     _FinalStage options(Optional<List<String>> options);
 
     _FinalStage options(List<String> options);
+
+    _FinalStage companyField(
+        Optional<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> companyField);
+
+    _FinalStage companyField(
+        ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField companyField);
   }
 
   @JsonIgnoreProperties(
@@ -130,6 +146,8 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
     private String key;
 
     private ConfigsListDeclarationsResponseRowsItemFieldsItemKind kind;
+
+    private Optional<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> companyField = Optional.empty();
 
     private Optional<List<String>> options = Optional.empty();
 
@@ -147,6 +165,7 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
       kind(other.getKind());
       multiline(other.getMultiline());
       options(other.getOptions());
+      companyField(other.getCompanyField());
       return this;
     }
 
@@ -161,6 +180,24 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
     @JsonSetter("kind")
     public _FinalStage kind(@NotNull ConfigsListDeclarationsResponseRowsItemFieldsItemKind kind) {
       this.kind = Objects.requireNonNull(kind, "kind must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage companyField(
+        ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField companyField) {
+      this.companyField = Optional.ofNullable(companyField);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "companyField",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage companyField(
+        Optional<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> companyField) {
+      this.companyField = companyField;
       return this;
     }
 
@@ -198,7 +235,7 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
 
     @java.lang.Override
     public ConfigsListDeclarationsResponseRowsItemFieldsItem build() {
-      return new ConfigsListDeclarationsResponseRowsItemFieldsItem(key, kind, multiline, options, additionalProperties);
+      return new ConfigsListDeclarationsResponseRowsItemFieldsItem(key, kind, multiline, options, companyField, additionalProperties);
     }
 
     @java.lang.Override

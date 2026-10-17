@@ -39,6 +39,7 @@ import com.nordlet.api.resources.bank.requests.PaymentsExportBankRequest;
 import com.nordlet.api.resources.bank.requests.SecuritiesGetBankRequest;
 import com.nordlet.api.resources.bank.requests.SecuritiesImportBankRequest;
 import com.nordlet.api.resources.bank.requests.SecuritiesListBankRequest;
+import com.nordlet.api.resources.bank.requests.SecuritiesOperationsListBankRequest;
 import com.nordlet.api.resources.bank.requests.SettlementsCommissionBankRequest;
 import com.nordlet.api.resources.bank.requests.SettlementsGetBankRequest;
 import com.nordlet.api.resources.bank.requests.SettlementsImportBankRequest;
@@ -88,6 +89,7 @@ import com.nordlet.api.resources.bank.types.PaymentsExportBankResponse;
 import com.nordlet.api.resources.bank.types.SecuritiesGetBankResponse;
 import com.nordlet.api.resources.bank.types.SecuritiesImportBankResponse;
 import com.nordlet.api.resources.bank.types.SecuritiesListBankResponse;
+import com.nordlet.api.resources.bank.types.SecuritiesOperationsListBankResponse;
 import com.nordlet.api.resources.bank.types.SettlementsCommissionBankResponse;
 import com.nordlet.api.resources.bank.types.SettlementsGetBankResponse;
 import com.nordlet.api.resources.bank.types.SettlementsImportBankResponse;
@@ -587,6 +589,25 @@ public class BankClient {
   public SecuritiesGetBankResponse securitiesGet(SecuritiesGetBankRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.securitiesGet(request, requestOptions).body();
+  }
+
+  public SecuritiesOperationsListBankResponse securitiesOperationsList() {
+    return this.rawClient.securitiesOperationsList().body();
+  }
+
+  public SecuritiesOperationsListBankResponse securitiesOperationsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.securitiesOperationsList(requestOptions).body();
+  }
+
+  public SecuritiesOperationsListBankResponse securitiesOperationsList(
+      SecuritiesOperationsListBankRequest request) {
+    return this.rawClient.securitiesOperationsList(request).body();
+  }
+
+  public SecuritiesOperationsListBankResponse securitiesOperationsList(
+      SecuritiesOperationsListBankRequest request, RequestOptions requestOptions) {
+    return this.rawClient.securitiesOperationsList(request, requestOptions).body();
   }
 
   public FeedsBanksListBankResponse feedsBanksList() {

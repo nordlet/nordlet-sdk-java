@@ -36,15 +36,20 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItem {
 
   private final Optional<List<String>> options;
 
+  private final Optional<ConfigsUpdateDeclarationsResponseFieldsItemCompanyField> companyField;
+
   private final Map<String, Object> additionalProperties;
 
   private ConfigsUpdateDeclarationsResponseFieldsItem(String key,
       ConfigsUpdateDeclarationsResponseFieldsItemKind kind, Optional<Boolean> multiline,
-      Optional<List<String>> options, Map<String, Object> additionalProperties) {
+      Optional<List<String>> options,
+      Optional<ConfigsUpdateDeclarationsResponseFieldsItemCompanyField> companyField,
+      Map<String, Object> additionalProperties) {
     this.key = key;
     this.kind = kind;
     this.multiline = multiline;
     this.options = options;
+    this.companyField = companyField;
     this.additionalProperties = additionalProperties;
   }
 
@@ -68,6 +73,11 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItem {
     return options;
   }
 
+  @JsonProperty("companyField")
+  public Optional<ConfigsUpdateDeclarationsResponseFieldsItemCompanyField> getCompanyField() {
+    return companyField;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -80,12 +90,12 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItem {
   }
 
   private boolean equalTo(ConfigsUpdateDeclarationsResponseFieldsItem other) {
-    return key.equals(other.key) && kind.equals(other.kind) && multiline.equals(other.multiline) && options.equals(other.options);
+    return key.equals(other.key) && kind.equals(other.kind) && multiline.equals(other.multiline) && options.equals(other.options) && companyField.equals(other.companyField);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.key, this.kind, this.multiline, this.options);
+    return Objects.hash(this.key, this.kind, this.multiline, this.options, this.companyField);
   }
 
   @java.lang.Override
@@ -121,6 +131,11 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItem {
     _FinalStage options(Optional<List<String>> options);
 
     _FinalStage options(List<String> options);
+
+    _FinalStage companyField(
+        Optional<ConfigsUpdateDeclarationsResponseFieldsItemCompanyField> companyField);
+
+    _FinalStage companyField(ConfigsUpdateDeclarationsResponseFieldsItemCompanyField companyField);
   }
 
   @JsonIgnoreProperties(
@@ -130,6 +145,8 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItem {
     private String key;
 
     private ConfigsUpdateDeclarationsResponseFieldsItemKind kind;
+
+    private Optional<ConfigsUpdateDeclarationsResponseFieldsItemCompanyField> companyField = Optional.empty();
 
     private Optional<List<String>> options = Optional.empty();
 
@@ -147,6 +164,7 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItem {
       kind(other.getKind());
       multiline(other.getMultiline());
       options(other.getOptions());
+      companyField(other.getCompanyField());
       return this;
     }
 
@@ -161,6 +179,24 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItem {
     @JsonSetter("kind")
     public _FinalStage kind(@NotNull ConfigsUpdateDeclarationsResponseFieldsItemKind kind) {
       this.kind = Objects.requireNonNull(kind, "kind must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage companyField(
+        ConfigsUpdateDeclarationsResponseFieldsItemCompanyField companyField) {
+      this.companyField = Optional.ofNullable(companyField);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "companyField",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage companyField(
+        Optional<ConfigsUpdateDeclarationsResponseFieldsItemCompanyField> companyField) {
+      this.companyField = companyField;
       return this;
     }
 
@@ -198,7 +234,7 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItem {
 
     @java.lang.Override
     public ConfigsUpdateDeclarationsResponseFieldsItem build() {
-      return new ConfigsUpdateDeclarationsResponseFieldsItem(key, kind, multiline, options, additionalProperties);
+      return new ConfigsUpdateDeclarationsResponseFieldsItem(key, kind, multiline, options, companyField, additionalProperties);
     }
 
     @java.lang.Override

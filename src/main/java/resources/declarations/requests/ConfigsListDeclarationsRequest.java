@@ -8,33 +8,59 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
     builder = ConfigsListDeclarationsRequest.Builder.class
 )
 public final class ConfigsListDeclarationsRequest {
+  private final Optional<String> country;
+
   private final Map<String, Object> additionalProperties;
 
-  private ConfigsListDeclarationsRequest(Map<String, Object> additionalProperties) {
+  private ConfigsListDeclarationsRequest(Optional<String> country,
+      Map<String, Object> additionalProperties) {
+    this.country = country;
     this.additionalProperties = additionalProperties;
+  }
+
+  /**
+   * @return List the systems of this country instead of the company country
+   */
+  @JsonProperty("country")
+  public Optional<String> getCountry() {
+    return country;
   }
 
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
-    return other instanceof ConfigsListDeclarationsRequest;
+    return other instanceof ConfigsListDeclarationsRequest && equalTo((ConfigsListDeclarationsRequest) other);
   }
 
   @JsonAnyGetter
   public Map<String, Object> getAdditionalProperties() {
     return this.additionalProperties;
+  }
+
+  private boolean equalTo(ConfigsListDeclarationsRequest other) {
+    return country.equals(other.country);
+  }
+
+  @java.lang.Override
+  public int hashCode() {
+    return Objects.hash(this.country);
   }
 
   @java.lang.Override
@@ -50,6 +76,8 @@ public final class ConfigsListDeclarationsRequest {
       ignoreUnknown = true
   )
   public static final class Builder {
+    private Optional<String> country = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -57,11 +85,29 @@ public final class ConfigsListDeclarationsRequest {
     }
 
     public Builder from(ConfigsListDeclarationsRequest other) {
+      country(other.getCountry());
+      return this;
+    }
+
+    /**
+     * <p>List the systems of this country instead of the company country</p>
+     */
+    @JsonSetter(
+        value = "country",
+        nulls = Nulls.SKIP
+    )
+    public Builder country(Optional<String> country) {
+      this.country = country;
+      return this;
+    }
+
+    public Builder country(String country) {
+      this.country = Optional.ofNullable(country);
       return this;
     }
 
     public ConfigsListDeclarationsRequest build() {
-      return new ConfigsListDeclarationsRequest(additionalProperties);
+      return new ConfigsListDeclarationsRequest(country, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {
