@@ -10,6 +10,7 @@ import com.nordlet.api.resources.payroll.requests.CalcPayrollRequest;
 import com.nordlet.api.resources.payroll.requests.DepartmentsCreatePayrollRequest;
 import com.nordlet.api.resources.payroll.requests.DepartmentsListPayrollRequest;
 import com.nordlet.api.resources.payroll.requests.LinesAttendancePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.PaymentTypesListPayrollRequest;
 import com.nordlet.api.resources.payroll.requests.PaymentsExportPayrollRequest;
 import com.nordlet.api.resources.payroll.requests.RunsApprovePayrollRequest;
 import com.nordlet.api.resources.payroll.requests.RunsCancelPayrollRequest;
@@ -23,6 +24,7 @@ import com.nordlet.api.resources.payroll.types.CalcPayrollResponse;
 import com.nordlet.api.resources.payroll.types.DepartmentsCreatePayrollResponse;
 import com.nordlet.api.resources.payroll.types.DepartmentsListPayrollResponse;
 import com.nordlet.api.resources.payroll.types.LinesAttendancePayrollResponse;
+import com.nordlet.api.resources.payroll.types.PaymentTypesListPayrollResponse;
 import com.nordlet.api.resources.payroll.types.PaymentsExportPayrollResponse;
 import com.nordlet.api.resources.payroll.types.RunsApprovePayrollResponse;
 import com.nordlet.api.resources.payroll.types.RunsCancelPayrollResponse;
@@ -107,6 +109,25 @@ public class AsyncPayrollClient {
   public CompletableFuture<SchedulesListPayrollResponse> schedulesList(
       SchedulesListPayrollRequest request, RequestOptions requestOptions) {
     return this.rawClient.schedulesList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PaymentTypesListPayrollResponse> paymentTypesList() {
+    return this.rawClient.paymentTypesList().thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PaymentTypesListPayrollResponse> paymentTypesList(
+      RequestOptions requestOptions) {
+    return this.rawClient.paymentTypesList(requestOptions).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PaymentTypesListPayrollResponse> paymentTypesList(
+      PaymentTypesListPayrollRequest request) {
+    return this.rawClient.paymentTypesList(request).thenApply(response -> response.body());
+  }
+
+  public CompletableFuture<PaymentTypesListPayrollResponse> paymentTypesList(
+      PaymentTypesListPayrollRequest request, RequestOptions requestOptions) {
+    return this.rawClient.paymentTypesList(request, requestOptions).thenApply(response -> response.body());
   }
 
   public CompletableFuture<CalcPayrollResponse> calc(CalcPayrollRequest request) {

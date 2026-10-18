@@ -33,13 +33,20 @@ public final class RunsCreatePayrollRequestLinesItemAdditionsItem {
 
   private final Optional<Boolean> taxable;
 
+  private final Optional<String> paymentType;
+
+  private final Optional<String> hours;
+
   private final Map<String, Object> additionalProperties;
 
   private RunsCreatePayrollRequestLinesItemAdditionsItem(String name, String amount,
-      Optional<Boolean> taxable, Map<String, Object> additionalProperties) {
+      Optional<Boolean> taxable, Optional<String> paymentType, Optional<String> hours,
+      Map<String, Object> additionalProperties) {
     this.name = name;
     this.amount = amount;
     this.taxable = taxable;
+    this.paymentType = paymentType;
+    this.hours = hours;
     this.additionalProperties = additionalProperties;
   }
 
@@ -58,6 +65,16 @@ public final class RunsCreatePayrollRequestLinesItemAdditionsItem {
     return taxable;
   }
 
+  @JsonProperty("paymentType")
+  public Optional<String> getPaymentType() {
+    return paymentType;
+  }
+
+  @JsonProperty("hours")
+  public Optional<String> getHours() {
+    return hours;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -70,12 +87,12 @@ public final class RunsCreatePayrollRequestLinesItemAdditionsItem {
   }
 
   private boolean equalTo(RunsCreatePayrollRequestLinesItemAdditionsItem other) {
-    return name.equals(other.name) && amount.equals(other.amount) && taxable.equals(other.taxable);
+    return name.equals(other.name) && amount.equals(other.amount) && taxable.equals(other.taxable) && paymentType.equals(other.paymentType) && hours.equals(other.hours);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.amount, this.taxable);
+    return Objects.hash(this.name, this.amount, this.taxable, this.paymentType, this.hours);
   }
 
   @java.lang.Override
@@ -107,6 +124,14 @@ public final class RunsCreatePayrollRequestLinesItemAdditionsItem {
     _FinalStage taxable(Optional<Boolean> taxable);
 
     _FinalStage taxable(Boolean taxable);
+
+    _FinalStage paymentType(Optional<String> paymentType);
+
+    _FinalStage paymentType(String paymentType);
+
+    _FinalStage hours(Optional<String> hours);
+
+    _FinalStage hours(String hours);
   }
 
   @JsonIgnoreProperties(
@@ -116,6 +141,10 @@ public final class RunsCreatePayrollRequestLinesItemAdditionsItem {
     private String name;
 
     private String amount;
+
+    private Optional<String> hours = Optional.empty();
+
+    private Optional<String> paymentType = Optional.empty();
 
     private Optional<Boolean> taxable = Optional.empty();
 
@@ -130,6 +159,8 @@ public final class RunsCreatePayrollRequestLinesItemAdditionsItem {
       name(other.getName());
       amount(other.getAmount());
       taxable(other.getTaxable());
+      paymentType(other.getPaymentType());
+      hours(other.getHours());
       return this;
     }
 
@@ -144,6 +175,38 @@ public final class RunsCreatePayrollRequestLinesItemAdditionsItem {
     @JsonSetter("amount")
     public _FinalStage amount(@NotNull String amount) {
       this.amount = Objects.requireNonNull(amount, "amount must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage hours(String hours) {
+      this.hours = Optional.ofNullable(hours);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "hours",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage hours(Optional<String> hours) {
+      this.hours = hours;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage paymentType(String paymentType) {
+      this.paymentType = Optional.ofNullable(paymentType);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "paymentType",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage paymentType(Optional<String> paymentType) {
+      this.paymentType = paymentType;
       return this;
     }
 
@@ -165,7 +228,7 @@ public final class RunsCreatePayrollRequestLinesItemAdditionsItem {
 
     @java.lang.Override
     public RunsCreatePayrollRequestLinesItemAdditionsItem build() {
-      return new RunsCreatePayrollRequestLinesItemAdditionsItem(name, amount, taxable, additionalProperties);
+      return new RunsCreatePayrollRequestLinesItemAdditionsItem(name, amount, taxable, paymentType, hours, additionalProperties);
     }
 
     @java.lang.Override

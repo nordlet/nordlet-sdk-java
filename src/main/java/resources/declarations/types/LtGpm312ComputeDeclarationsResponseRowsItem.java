@@ -43,11 +43,14 @@ public final class LtGpm312ComputeDeclarationsResponseRowsItem {
 
   private final String gpmWithheld;
 
+  private final String gpmRatePercent;
+
   private final Map<String, Object> additionalProperties;
 
   private LtGpm312ComputeDeclarationsResponseRowsItem(String employeeId,
       Optional<String> personalCode, String firstName, String lastName, String paymentCode,
-      String paidAmount, String gpmWithheld, Map<String, Object> additionalProperties) {
+      String paidAmount, String gpmWithheld, String gpmRatePercent,
+      Map<String, Object> additionalProperties) {
     this.employeeId = employeeId;
     this.personalCode = personalCode;
     this.firstName = firstName;
@@ -55,6 +58,7 @@ public final class LtGpm312ComputeDeclarationsResponseRowsItem {
     this.paymentCode = paymentCode;
     this.paidAmount = paidAmount;
     this.gpmWithheld = gpmWithheld;
+    this.gpmRatePercent = gpmRatePercent;
     this.additionalProperties = additionalProperties;
   }
 
@@ -96,6 +100,11 @@ public final class LtGpm312ComputeDeclarationsResponseRowsItem {
     return gpmWithheld;
   }
 
+  @JsonProperty("gpmRatePercent")
+  public String getGpmRatePercent() {
+    return gpmRatePercent;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -117,12 +126,12 @@ public final class LtGpm312ComputeDeclarationsResponseRowsItem {
   }
 
   private boolean equalTo(LtGpm312ComputeDeclarationsResponseRowsItem other) {
-    return employeeId.equals(other.employeeId) && personalCode.equals(other.personalCode) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && paymentCode.equals(other.paymentCode) && paidAmount.equals(other.paidAmount) && gpmWithheld.equals(other.gpmWithheld);
+    return employeeId.equals(other.employeeId) && personalCode.equals(other.personalCode) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && paymentCode.equals(other.paymentCode) && paidAmount.equals(other.paidAmount) && gpmWithheld.equals(other.gpmWithheld) && gpmRatePercent.equals(other.gpmRatePercent);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.employeeId, this.personalCode, this.firstName, this.lastName, this.paymentCode, this.paidAmount, this.gpmWithheld);
+    return Objects.hash(this.employeeId, this.personalCode, this.firstName, this.lastName, this.paymentCode, this.paidAmount, this.gpmWithheld, this.gpmRatePercent);
   }
 
   @java.lang.Override
@@ -157,7 +166,11 @@ public final class LtGpm312ComputeDeclarationsResponseRowsItem {
   }
 
   public interface GpmWithheldStage {
-    _FinalStage gpmWithheld(@NotNull String gpmWithheld);
+    GpmRatePercentStage gpmWithheld(@NotNull String gpmWithheld);
+  }
+
+  public interface GpmRatePercentStage {
+    _FinalStage gpmRatePercent(@NotNull String gpmRatePercent);
   }
 
   public interface _FinalStage {
@@ -177,7 +190,7 @@ public final class LtGpm312ComputeDeclarationsResponseRowsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements EmployeeIdStage, FirstNameStage, LastNameStage, PaymentCodeStage, PaidAmountStage, GpmWithheldStage, _FinalStage {
+  public static final class Builder implements EmployeeIdStage, FirstNameStage, LastNameStage, PaymentCodeStage, PaidAmountStage, GpmWithheldStage, GpmRatePercentStage, _FinalStage {
     private String employeeId;
 
     private String firstName;
@@ -189,6 +202,8 @@ public final class LtGpm312ComputeDeclarationsResponseRowsItem {
     private String paidAmount;
 
     private String gpmWithheld;
+
+    private String gpmRatePercent;
 
     private Optional<String> personalCode = Optional.empty();
 
@@ -207,6 +222,7 @@ public final class LtGpm312ComputeDeclarationsResponseRowsItem {
       paymentCode(other.getPaymentCode());
       paidAmount(other.getPaidAmount());
       gpmWithheld(other.getGpmWithheld());
+      gpmRatePercent(other.getGpmRatePercent());
       return this;
     }
 
@@ -247,8 +263,15 @@ public final class LtGpm312ComputeDeclarationsResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("gpmWithheld")
-    public _FinalStage gpmWithheld(@NotNull String gpmWithheld) {
+    public GpmRatePercentStage gpmWithheld(@NotNull String gpmWithheld) {
       this.gpmWithheld = Objects.requireNonNull(gpmWithheld, "gpmWithheld must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("gpmRatePercent")
+    public _FinalStage gpmRatePercent(@NotNull String gpmRatePercent) {
+      this.gpmRatePercent = Objects.requireNonNull(gpmRatePercent, "gpmRatePercent must not be null");
       return this;
     }
 
@@ -284,7 +307,7 @@ public final class LtGpm312ComputeDeclarationsResponseRowsItem {
 
     @java.lang.Override
     public LtGpm312ComputeDeclarationsResponseRowsItem build() {
-      return new LtGpm312ComputeDeclarationsResponseRowsItem(employeeId, personalCode, firstName, lastName, paymentCode, paidAmount, gpmWithheld, additionalProperties);
+      return new LtGpm312ComputeDeclarationsResponseRowsItem(employeeId, personalCode, firstName, lastName, paymentCode, paidAmount, gpmWithheld, gpmRatePercent, additionalProperties);
     }
 
     @java.lang.Override

@@ -21251,7 +21251,7 @@ client.ledger().accountsApplyTemplate(
 <dl>
 <dd>
 
-Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Estonian e-arveldaja chart for a company registered in Estonia, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
 </dd>
 </dl>
 </dd>
@@ -28396,6 +28396,35 @@ client.payroll().schedulesList(
 </dl>
 </details>
 
+<details><summary><code>client.payroll.paymentTypesList(request) -> PaymentTypesListPayrollResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.payroll().paymentTypesList(
+    PaymentTypesListPayrollRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.payroll.calc(request) -> CalcPayrollResponse</code></summary>
 <dl>
 <dd>
@@ -28487,6 +28516,14 @@ client.payroll().calc(
 <dd>
 
 **options:** `Optional<Map<String, String>>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payments:** `Optional<List<CalcPayrollRequestPaymentsItem>>` 
     
 </dd>
 </dl>

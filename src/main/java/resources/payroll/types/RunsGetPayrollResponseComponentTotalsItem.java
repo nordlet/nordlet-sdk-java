@@ -36,16 +36,20 @@ public final class RunsGetPayrollResponseComponentTotalsItem {
 
   private final Optional<String> base;
 
+  private final Optional<String> paymentType;
+
   private final Map<String, Object> additionalProperties;
 
   private RunsGetPayrollResponseComponentTotalsItem(String code,
       RunsGetPayrollResponseComponentTotalsItemKind kind, String amount, Optional<String> rate,
-      Optional<String> base, Map<String, Object> additionalProperties) {
+      Optional<String> base, Optional<String> paymentType,
+      Map<String, Object> additionalProperties) {
     this.code = code;
     this.kind = kind;
     this.amount = amount;
     this.rate = rate;
     this.base = base;
+    this.paymentType = paymentType;
     this.additionalProperties = additionalProperties;
   }
 
@@ -74,6 +78,11 @@ public final class RunsGetPayrollResponseComponentTotalsItem {
     return base;
   }
 
+  @JsonProperty("paymentType")
+  public Optional<String> getPaymentType() {
+    return paymentType;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -86,12 +95,12 @@ public final class RunsGetPayrollResponseComponentTotalsItem {
   }
 
   private boolean equalTo(RunsGetPayrollResponseComponentTotalsItem other) {
-    return code.equals(other.code) && kind.equals(other.kind) && amount.equals(other.amount) && rate.equals(other.rate) && base.equals(other.base);
+    return code.equals(other.code) && kind.equals(other.kind) && amount.equals(other.amount) && rate.equals(other.rate) && base.equals(other.base) && paymentType.equals(other.paymentType);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.code, this.kind, this.amount, this.rate, this.base);
+    return Objects.hash(this.code, this.kind, this.amount, this.rate, this.base, this.paymentType);
   }
 
   @java.lang.Override
@@ -131,6 +140,10 @@ public final class RunsGetPayrollResponseComponentTotalsItem {
     _FinalStage base(Optional<String> base);
 
     _FinalStage base(String base);
+
+    _FinalStage paymentType(Optional<String> paymentType);
+
+    _FinalStage paymentType(String paymentType);
   }
 
   @JsonIgnoreProperties(
@@ -142,6 +155,8 @@ public final class RunsGetPayrollResponseComponentTotalsItem {
     private RunsGetPayrollResponseComponentTotalsItemKind kind;
 
     private String amount;
+
+    private Optional<String> paymentType = Optional.empty();
 
     private Optional<String> base = Optional.empty();
 
@@ -160,6 +175,7 @@ public final class RunsGetPayrollResponseComponentTotalsItem {
       amount(other.getAmount());
       rate(other.getRate());
       base(other.getBase());
+      paymentType(other.getPaymentType());
       return this;
     }
 
@@ -181,6 +197,22 @@ public final class RunsGetPayrollResponseComponentTotalsItem {
     @JsonSetter("amount")
     public _FinalStage amount(@NotNull String amount) {
       this.amount = Objects.requireNonNull(amount, "amount must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage paymentType(String paymentType) {
+      this.paymentType = Optional.ofNullable(paymentType);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "paymentType",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage paymentType(Optional<String> paymentType) {
+      this.paymentType = paymentType;
       return this;
     }
 
@@ -218,7 +250,7 @@ public final class RunsGetPayrollResponseComponentTotalsItem {
 
     @java.lang.Override
     public RunsGetPayrollResponseComponentTotalsItem build() {
-      return new RunsGetPayrollResponseComponentTotalsItem(code, kind, amount, rate, base, additionalProperties);
+      return new RunsGetPayrollResponseComponentTotalsItem(code, kind, amount, rate, base, paymentType, additionalProperties);
     }
 
     @java.lang.Override

@@ -13,10 +13,12 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.payroll.types.CalcPayrollRequestPaymentsItem;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -43,12 +45,16 @@ public final class CalcPayrollRequest {
 
   private final Optional<Map<String, String>> options;
 
+  private final Optional<List<CalcPayrollRequestPaymentsItem>> payments;
+
   private final Map<String, Object> additionalProperties;
 
   private CalcPayrollRequest(String taxableBase, String date, Optional<Boolean> applyAllowance,
       Optional<String> allowanceOverride, Optional<Boolean> pensionAccumulation,
       Optional<Boolean> fixedTerm, Optional<String> benefitInKind,
-      Optional<Map<String, String>> options, Map<String, Object> additionalProperties) {
+      Optional<Map<String, String>> options,
+      Optional<List<CalcPayrollRequestPaymentsItem>> payments,
+      Map<String, Object> additionalProperties) {
     this.taxableBase = taxableBase;
     this.date = date;
     this.applyAllowance = applyAllowance;
@@ -57,6 +63,7 @@ public final class CalcPayrollRequest {
     this.fixedTerm = fixedTerm;
     this.benefitInKind = benefitInKind;
     this.options = options;
+    this.payments = payments;
     this.additionalProperties = additionalProperties;
   }
 
@@ -100,6 +107,11 @@ public final class CalcPayrollRequest {
     return options;
   }
 
+  @JsonProperty("payments")
+  public Optional<List<CalcPayrollRequestPaymentsItem>> getPayments() {
+    return payments;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -112,12 +124,12 @@ public final class CalcPayrollRequest {
   }
 
   private boolean equalTo(CalcPayrollRequest other) {
-    return taxableBase.equals(other.taxableBase) && date.equals(other.date) && applyAllowance.equals(other.applyAllowance) && allowanceOverride.equals(other.allowanceOverride) && pensionAccumulation.equals(other.pensionAccumulation) && fixedTerm.equals(other.fixedTerm) && benefitInKind.equals(other.benefitInKind) && options.equals(other.options);
+    return taxableBase.equals(other.taxableBase) && date.equals(other.date) && applyAllowance.equals(other.applyAllowance) && allowanceOverride.equals(other.allowanceOverride) && pensionAccumulation.equals(other.pensionAccumulation) && fixedTerm.equals(other.fixedTerm) && benefitInKind.equals(other.benefitInKind) && options.equals(other.options) && payments.equals(other.payments);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.taxableBase, this.date, this.applyAllowance, this.allowanceOverride, this.pensionAccumulation, this.fixedTerm, this.benefitInKind, this.options);
+    return Objects.hash(this.taxableBase, this.date, this.applyAllowance, this.allowanceOverride, this.pensionAccumulation, this.fixedTerm, this.benefitInKind, this.options, this.payments);
   }
 
   @java.lang.Override
@@ -169,6 +181,10 @@ public final class CalcPayrollRequest {
     _FinalStage options(Optional<Map<String, String>> options);
 
     _FinalStage options(Map<String, String> options);
+
+    _FinalStage payments(Optional<List<CalcPayrollRequestPaymentsItem>> payments);
+
+    _FinalStage payments(List<CalcPayrollRequestPaymentsItem> payments);
   }
 
   @JsonIgnoreProperties(
@@ -178,6 +194,8 @@ public final class CalcPayrollRequest {
     private String taxableBase;
 
     private String date;
+
+    private Optional<List<CalcPayrollRequestPaymentsItem>> payments = Optional.empty();
 
     private Optional<Map<String, String>> options = Optional.empty();
 
@@ -207,6 +225,7 @@ public final class CalcPayrollRequest {
       fixedTerm(other.getFixedTerm());
       benefitInKind(other.getBenefitInKind());
       options(other.getOptions());
+      payments(other.getPayments());
       return this;
     }
 
@@ -221,6 +240,22 @@ public final class CalcPayrollRequest {
     @JsonSetter("date")
     public _FinalStage date(@NotNull String date) {
       this.date = Objects.requireNonNull(date, "date must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage payments(List<CalcPayrollRequestPaymentsItem> payments) {
+      this.payments = Optional.ofNullable(payments);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "payments",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage payments(Optional<List<CalcPayrollRequestPaymentsItem>> payments) {
+      this.payments = payments;
       return this;
     }
 
@@ -322,7 +357,7 @@ public final class CalcPayrollRequest {
 
     @java.lang.Override
     public CalcPayrollRequest build() {
-      return new CalcPayrollRequest(taxableBase, date, applyAllowance, allowanceOverride, pensionAccumulation, fixedTerm, benefitInKind, options, additionalProperties);
+      return new CalcPayrollRequest(taxableBase, date, applyAllowance, allowanceOverride, pensionAccumulation, fixedTerm, benefitInKind, options, payments, additionalProperties);
     }
 
     @java.lang.Override

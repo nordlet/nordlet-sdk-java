@@ -10,6 +10,7 @@ import com.nordlet.api.resources.payroll.requests.CalcPayrollRequest;
 import com.nordlet.api.resources.payroll.requests.DepartmentsCreatePayrollRequest;
 import com.nordlet.api.resources.payroll.requests.DepartmentsListPayrollRequest;
 import com.nordlet.api.resources.payroll.requests.LinesAttendancePayrollRequest;
+import com.nordlet.api.resources.payroll.requests.PaymentTypesListPayrollRequest;
 import com.nordlet.api.resources.payroll.requests.PaymentsExportPayrollRequest;
 import com.nordlet.api.resources.payroll.requests.RunsApprovePayrollRequest;
 import com.nordlet.api.resources.payroll.requests.RunsCancelPayrollRequest;
@@ -23,6 +24,7 @@ import com.nordlet.api.resources.payroll.types.CalcPayrollResponse;
 import com.nordlet.api.resources.payroll.types.DepartmentsCreatePayrollResponse;
 import com.nordlet.api.resources.payroll.types.DepartmentsListPayrollResponse;
 import com.nordlet.api.resources.payroll.types.LinesAttendancePayrollResponse;
+import com.nordlet.api.resources.payroll.types.PaymentTypesListPayrollResponse;
 import com.nordlet.api.resources.payroll.types.PaymentsExportPayrollResponse;
 import com.nordlet.api.resources.payroll.types.RunsApprovePayrollResponse;
 import com.nordlet.api.resources.payroll.types.RunsCancelPayrollResponse;
@@ -101,6 +103,23 @@ public class PayrollClient {
   public SchedulesListPayrollResponse schedulesList(SchedulesListPayrollRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.schedulesList(request, requestOptions).body();
+  }
+
+  public PaymentTypesListPayrollResponse paymentTypesList() {
+    return this.rawClient.paymentTypesList().body();
+  }
+
+  public PaymentTypesListPayrollResponse paymentTypesList(RequestOptions requestOptions) {
+    return this.rawClient.paymentTypesList(requestOptions).body();
+  }
+
+  public PaymentTypesListPayrollResponse paymentTypesList(PaymentTypesListPayrollRequest request) {
+    return this.rawClient.paymentTypesList(request).body();
+  }
+
+  public PaymentTypesListPayrollResponse paymentTypesList(PaymentTypesListPayrollRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.paymentTypesList(request, requestOptions).body();
   }
 
   public CalcPayrollResponse calc(CalcPayrollRequest request) {

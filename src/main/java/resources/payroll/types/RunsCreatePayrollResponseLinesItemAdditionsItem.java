@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
@@ -17,6 +18,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -30,13 +32,20 @@ public final class RunsCreatePayrollResponseLinesItemAdditionsItem {
 
   private final boolean taxable;
 
+  private final Optional<String> paymentType;
+
+  private final Optional<String> hours;
+
   private final Map<String, Object> additionalProperties;
 
   private RunsCreatePayrollResponseLinesItemAdditionsItem(String name, String amount,
-      boolean taxable, Map<String, Object> additionalProperties) {
+      boolean taxable, Optional<String> paymentType, Optional<String> hours,
+      Map<String, Object> additionalProperties) {
     this.name = name;
     this.amount = amount;
     this.taxable = taxable;
+    this.paymentType = paymentType;
+    this.hours = hours;
     this.additionalProperties = additionalProperties;
   }
 
@@ -55,6 +64,16 @@ public final class RunsCreatePayrollResponseLinesItemAdditionsItem {
     return taxable;
   }
 
+  @JsonProperty("paymentType")
+  public Optional<String> getPaymentType() {
+    return paymentType;
+  }
+
+  @JsonProperty("hours")
+  public Optional<String> getHours() {
+    return hours;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -67,12 +86,12 @@ public final class RunsCreatePayrollResponseLinesItemAdditionsItem {
   }
 
   private boolean equalTo(RunsCreatePayrollResponseLinesItemAdditionsItem other) {
-    return name.equals(other.name) && amount.equals(other.amount) && taxable == other.taxable;
+    return name.equals(other.name) && amount.equals(other.amount) && taxable == other.taxable && paymentType.equals(other.paymentType) && hours.equals(other.hours);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.amount, this.taxable);
+    return Objects.hash(this.name, this.amount, this.taxable, this.paymentType, this.hours);
   }
 
   @java.lang.Override
@@ -104,6 +123,14 @@ public final class RunsCreatePayrollResponseLinesItemAdditionsItem {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage paymentType(Optional<String> paymentType);
+
+    _FinalStage paymentType(String paymentType);
+
+    _FinalStage hours(Optional<String> hours);
+
+    _FinalStage hours(String hours);
   }
 
   @JsonIgnoreProperties(
@@ -116,6 +143,10 @@ public final class RunsCreatePayrollResponseLinesItemAdditionsItem {
 
     private boolean taxable;
 
+    private Optional<String> hours = Optional.empty();
+
+    private Optional<String> paymentType = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -127,6 +158,8 @@ public final class RunsCreatePayrollResponseLinesItemAdditionsItem {
       name(other.getName());
       amount(other.getAmount());
       taxable(other.getTaxable());
+      paymentType(other.getPaymentType());
+      hours(other.getHours());
       return this;
     }
 
@@ -152,8 +185,40 @@ public final class RunsCreatePayrollResponseLinesItemAdditionsItem {
     }
 
     @java.lang.Override
+    public _FinalStage hours(String hours) {
+      this.hours = Optional.ofNullable(hours);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "hours",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage hours(Optional<String> hours) {
+      this.hours = hours;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage paymentType(String paymentType) {
+      this.paymentType = Optional.ofNullable(paymentType);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "paymentType",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage paymentType(Optional<String> paymentType) {
+      this.paymentType = paymentType;
+      return this;
+    }
+
+    @java.lang.Override
     public RunsCreatePayrollResponseLinesItemAdditionsItem build() {
-      return new RunsCreatePayrollResponseLinesItemAdditionsItem(name, amount, taxable, additionalProperties);
+      return new RunsCreatePayrollResponseLinesItemAdditionsItem(name, amount, taxable, paymentType, hours, additionalProperties);
     }
 
     @java.lang.Override
