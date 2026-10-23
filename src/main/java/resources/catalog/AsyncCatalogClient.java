@@ -81,339 +81,549 @@ public class AsyncCatalogClient {
     return this.rawClient;
   }
 
+  /**
+   * Create a catalog item: a product, a service or a set of other items. <code>unit</code> must be <code>vnt</code>, a global measurement unit or one of the company's own units (<code>catalog/units/options</code>), the sale, purchase and expense account codes must be postable accounts of the chart, and <code>priceFrom</code>/<code>priceTo</code> and <code>validFrom</code>/<code>validTo</code> must be in order; otherwise 422. A <code>set</code> needs at least one component and none of them may be a set; <code>components</code> on any other type is refused with 422. 409 when an active item already carries the <code>code</code>. <code>documentRef</code> is the storage key of a file uploaded with <code>files/upload</code>, which is attached to the item. Emits <code>item.created</code>.
+   */
   public CompletableFuture<ItemsCreateCatalogResponse> itemsCreate(
       ItemsCreateCatalogRequest request) {
     return this.rawClient.itemsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create a catalog item: a product, a service or a set of other items. <code>unit</code> must be <code>vnt</code>, a global measurement unit or one of the company's own units (<code>catalog/units/options</code>), the sale, purchase and expense account codes must be postable accounts of the chart, and <code>priceFrom</code>/<code>priceTo</code> and <code>validFrom</code>/<code>validTo</code> must be in order; otherwise 422. A <code>set</code> needs at least one component and none of them may be a set; <code>components</code> on any other type is refused with 422. 409 when an active item already carries the <code>code</code>. <code>documentRef</code> is the storage key of a file uploaded with <code>files/upload</code>, which is attached to the item. Emits <code>item.created</code>.
+   */
   public CompletableFuture<ItemsCreateCatalogResponse> itemsCreate(
       ItemsCreateCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Return one item; a set comes with its components.
+   */
   public CompletableFuture<ItemsGetCatalogResponse> itemsGet(ItemsGetCatalogRequest request) {
     return this.rawClient.itemsGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Return one item; a set comes with its components.
+   */
   public CompletableFuture<ItemsGetCatalogResponse> itemsGet(ItemsGetCatalogRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.itemsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Change the fields of an item; the fields that are nullable in the request can be set to null to clear them. The checks of <code>catalog/items/create</code> apply. <code>components</code> replaces the whole component list and is accepted only when the item is or becomes a set (422); turning an item into a set needs components and is refused with 409 while the item is itself a component of another set. Turning a set into another type removes its components. 409 when an active item already carries the new <code>code</code>. Emits <code>item.updated</code>.
+   */
   public CompletableFuture<ItemsUpdateCatalogResponse> itemsUpdate(
       ItemsUpdateCatalogRequest request) {
     return this.rawClient.itemsUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Change the fields of an item; the fields that are nullable in the request can be set to null to clear them. The checks of <code>catalog/items/create</code> apply. <code>components</code> replaces the whole component list and is accepted only when the item is or becomes a set (422); turning an item into a set needs components and is refused with 409 while the item is itself a component of another set. Turning a set into another type removes its components. 409 when an active item already carries the new <code>code</code>. Emits <code>item.updated</code>.
+   */
   public CompletableFuture<ItemsUpdateCatalogResponse> itemsUpdate(
       ItemsUpdateCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Soft-delete an item. Refused with 409 while the item is a component of an active set. Emits <code>item.deleted</code>.
+   */
   public CompletableFuture<ItemsDeleteCatalogResponse> itemsDelete(
       ItemsDeleteCatalogRequest request) {
     return this.rawClient.itemsDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Soft-delete an item. Refused with 409 while the item is a component of an active set. Emits <code>item.deleted</code>.
+   */
   public CompletableFuture<ItemsDeleteCatalogResponse> itemsDelete(
       ItemsDeleteCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemsDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+   */
   public CompletableFuture<ItemsListCatalogResponse> itemsList() {
     return this.rawClient.itemsList().thenApply(response -> response.body());
   }
 
+  /**
+   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+   */
   public CompletableFuture<ItemsListCatalogResponse> itemsList(RequestOptions requestOptions) {
     return this.rawClient.itemsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+   */
   public CompletableFuture<ItemsListCatalogResponse> itemsList(ItemsListCatalogRequest request) {
     return this.rawClient.itemsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+   */
   public CompletableFuture<ItemsListCatalogResponse> itemsList(ItemsListCatalogRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.itemsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the files attached to an item, newest first.
+   */
   public CompletableFuture<ItemsFilesListCatalogResponse> itemsFilesList(
       ItemsFilesListCatalogRequest request) {
     return this.rawClient.itemsFilesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the files attached to an item, newest first.
+   */
   public CompletableFuture<ItemsFilesListCatalogResponse> itemsFilesList(
       ItemsFilesListCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemsFilesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Create an item kind: a code, a name, the SAF-T item type, whether quantities are accounted for, and a sort order. 409 when the code already exists.
+   */
   public CompletableFuture<ItemsKindsCreateCatalogResponse> itemsKindsCreate(
       ItemsKindsCreateCatalogRequest request) {
     return this.rawClient.itemsKindsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create an item kind: a code, a name, the SAF-T item type, whether quantities are accounted for, and a sort order. 409 when the code already exists.
+   */
   public CompletableFuture<ItemsKindsCreateCatalogResponse> itemsKindsCreate(
       ItemsKindsCreateCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemsKindsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Change an item kind. 409 when the new code already exists.
+   */
   public CompletableFuture<ItemsKindsUpdateCatalogResponse> itemsKindsUpdate(
       ItemsKindsUpdateCatalogRequest request) {
     return this.rawClient.itemsKindsUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Change an item kind. 409 when the new code already exists.
+   */
   public CompletableFuture<ItemsKindsUpdateCatalogResponse> itemsKindsUpdate(
       ItemsKindsUpdateCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemsKindsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Delete an item kind. Refused with 409 while an active item uses it; soft-deleted items that still carry it are detached.
+   */
   public CompletableFuture<ItemsKindsDeleteCatalogResponse> itemsKindsDelete(
       ItemsKindsDeleteCatalogRequest request) {
     return this.rawClient.itemsKindsDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Delete an item kind. Refused with 409 while an active item uses it; soft-deleted items that still carry it are detached.
+   */
   public CompletableFuture<ItemsKindsDeleteCatalogResponse> itemsKindsDelete(
       ItemsKindsDeleteCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemsKindsDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's item kinds in sort order, then by code.
+   */
   public CompletableFuture<ItemsKindsListCatalogResponse> itemsKindsList() {
     return this.rawClient.itemsKindsList().thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's item kinds in sort order, then by code.
+   */
   public CompletableFuture<ItemsKindsListCatalogResponse> itemsKindsList(
       RequestOptions requestOptions) {
     return this.rawClient.itemsKindsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's item kinds in sort order, then by code.
+   */
   public CompletableFuture<ItemsKindsListCatalogResponse> itemsKindsList(
       ItemsKindsListCatalogRequest request) {
     return this.rawClient.itemsKindsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's item kinds in sort order, then by code.
+   */
   public CompletableFuture<ItemsKindsListCatalogResponse> itemsKindsList(
       ItemsKindsListCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemsKindsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). 409 when the code already exists.
+   */
   public CompletableFuture<UnitsCreateCatalogResponse> unitsCreate(
       UnitsCreateCatalogRequest request) {
     return this.rawClient.unitsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). 409 when the code already exists.
+   */
   public CompletableFuture<UnitsCreateCatalogResponse> unitsCreate(
       UnitsCreateCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.unitsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Change the code, name or active flag of a company unit. 409 when the new code already exists.
+   */
   public CompletableFuture<UnitsUpdateCatalogResponse> unitsUpdate(
       UnitsUpdateCatalogRequest request) {
     return this.rawClient.unitsUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Change the code, name or active flag of a company unit. 409 when the new code already exists.
+   */
   public CompletableFuture<UnitsUpdateCatalogResponse> unitsUpdate(
       UnitsUpdateCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.unitsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Delete a company unit of measure.
+   */
   public CompletableFuture<UnitsDeleteCatalogResponse> unitsDelete(
       UnitsDeleteCatalogRequest request) {
     return this.rawClient.unitsDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Delete a company unit of measure.
+   */
   public CompletableFuture<UnitsDeleteCatalogResponse> unitsDelete(
       UnitsDeleteCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.unitsDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's own units of measure, ordered by code.
+   */
   public CompletableFuture<UnitsListCatalogResponse> unitsList() {
     return this.rawClient.unitsList().thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's own units of measure, ordered by code.
+   */
   public CompletableFuture<UnitsListCatalogResponse> unitsList(RequestOptions requestOptions) {
     return this.rawClient.unitsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's own units of measure, ordered by code.
+   */
   public CompletableFuture<UnitsListCatalogResponse> unitsList(UnitsListCatalogRequest request) {
     return this.rawClient.unitsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's own units of measure, ordered by code.
+   */
   public CompletableFuture<UnitsListCatalogResponse> unitsList(UnitsListCatalogRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.unitsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Return the unit codes an item can use: the company's active own units first, then the global measurement units, named in the requested <code>locale</code> (Lithuanian for <code>lt</code>, English otherwise). A company unit hides a global unit with the same code.
+   */
   public CompletableFuture<UnitsOptionsCatalogResponse> unitsOptions() {
     return this.rawClient.unitsOptions().thenApply(response -> response.body());
   }
 
+  /**
+   * Return the unit codes an item can use: the company's active own units first, then the global measurement units, named in the requested <code>locale</code> (Lithuanian for <code>lt</code>, English otherwise). A company unit hides a global unit with the same code.
+   */
   public CompletableFuture<UnitsOptionsCatalogResponse> unitsOptions(
       RequestOptions requestOptions) {
     return this.rawClient.unitsOptions(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Return the unit codes an item can use: the company's active own units first, then the global measurement units, named in the requested <code>locale</code> (Lithuanian for <code>lt</code>, English otherwise). A company unit hides a global unit with the same code.
+   */
   public CompletableFuture<UnitsOptionsCatalogResponse> unitsOptions(
       UnitsOptionsCatalogRequest request) {
     return this.rawClient.unitsOptions(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Return the unit codes an item can use: the company's active own units first, then the global measurement units, named in the requested <code>locale</code> (Lithuanian for <code>lt</code>, English otherwise). A company unit hides a global unit with the same code.
+   */
   public CompletableFuture<UnitsOptionsCatalogResponse> unitsOptions(
       UnitsOptionsCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.unitsOptions(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Create an item group, optionally under <code>parentId</code>. 409 when the code already exists.
+   */
   public CompletableFuture<ItemGroupsCreateCatalogResponse> itemGroupsCreate(
       ItemGroupsCreateCatalogRequest request) {
     return this.rawClient.itemGroupsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create an item group, optionally under <code>parentId</code>. 409 when the code already exists.
+   */
   public CompletableFuture<ItemGroupsCreateCatalogResponse> itemGroupsCreate(
       ItemGroupsCreateCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemGroupsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Change the code, name or parent of an item group; <code>parentId</code> null moves it to the top level. 422 when the new parent is the group itself or one of its descendants. 409 when the new code already exists.
+   */
   public CompletableFuture<ItemGroupsUpdateCatalogResponse> itemGroupsUpdate(
       ItemGroupsUpdateCatalogRequest request) {
     return this.rawClient.itemGroupsUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Change the code, name or parent of an item group; <code>parentId</code> null moves it to the top level. 422 when the new parent is the group itself or one of its descendants. 409 when the new code already exists.
+   */
   public CompletableFuture<ItemGroupsUpdateCatalogResponse> itemGroupsUpdate(
       ItemGroupsUpdateCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemGroupsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Delete an item group. Refused with 409 while it has child groups or active items assigned.
+   */
   public CompletableFuture<ItemGroupsDeleteCatalogResponse> itemGroupsDelete(
       ItemGroupsDeleteCatalogRequest request) {
     return this.rawClient.itemGroupsDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Delete an item group. Refused with 409 while it has child groups or active items assigned.
+   */
   public CompletableFuture<ItemGroupsDeleteCatalogResponse> itemGroupsDelete(
       ItemGroupsDeleteCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemGroupsDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's item groups, ordered by code.
+   */
   public CompletableFuture<ItemGroupsListCatalogResponse> itemGroupsList() {
     return this.rawClient.itemGroupsList().thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's item groups, ordered by code.
+   */
   public CompletableFuture<ItemGroupsListCatalogResponse> itemGroupsList(
       RequestOptions requestOptions) {
     return this.rawClient.itemGroupsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's item groups, ordered by code.
+   */
   public CompletableFuture<ItemGroupsListCatalogResponse> itemGroupsList(
       ItemGroupsListCatalogRequest request) {
     return this.rawClient.itemGroupsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's item groups, ordered by code.
+   */
   public CompletableFuture<ItemGroupsListCatalogResponse> itemGroupsList(
       ItemGroupsListCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemGroupsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Create or replace the supplier record of an item for a partner (one per item and partner): supplier code, purchase price excluding VAT, currency (EUR when omitted) and notes. Fields omitted from the request are cleared on an existing record.
+   */
   public CompletableFuture<ItemsSuppliersUpsertCatalogResponse> itemsSuppliersUpsert(
       ItemsSuppliersUpsertCatalogRequest request) {
     return this.rawClient.itemsSuppliersUpsert(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create or replace the supplier record of an item for a partner (one per item and partner): supplier code, purchase price excluding VAT, currency (EUR when omitted) and notes. Fields omitted from the request are cleared on an existing record.
+   */
   public CompletableFuture<ItemsSuppliersUpsertCatalogResponse> itemsSuppliersUpsert(
       ItemsSuppliersUpsertCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemsSuppliersUpsert(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the supplier records, optionally for one <code>itemId</code> and/or <code>partnerId</code>, ordered by partner name.
+   */
   public CompletableFuture<ItemsSuppliersListCatalogResponse> itemsSuppliersList() {
     return this.rawClient.itemsSuppliersList().thenApply(response -> response.body());
   }
 
+  /**
+   * List the supplier records, optionally for one <code>itemId</code> and/or <code>partnerId</code>, ordered by partner name.
+   */
   public CompletableFuture<ItemsSuppliersListCatalogResponse> itemsSuppliersList(
       RequestOptions requestOptions) {
     return this.rawClient.itemsSuppliersList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the supplier records, optionally for one <code>itemId</code> and/or <code>partnerId</code>, ordered by partner name.
+   */
   public CompletableFuture<ItemsSuppliersListCatalogResponse> itemsSuppliersList(
       ItemsSuppliersListCatalogRequest request) {
     return this.rawClient.itemsSuppliersList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the supplier records, optionally for one <code>itemId</code> and/or <code>partnerId</code>, ordered by partner name.
+   */
   public CompletableFuture<ItemsSuppliersListCatalogResponse> itemsSuppliersList(
       ItemsSuppliersListCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemsSuppliersList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Delete the supplier record of an item.
+   */
   public CompletableFuture<ItemsSuppliersDeleteCatalogResponse> itemsSuppliersDelete(
       ItemsSuppliersDeleteCatalogRequest request) {
     return this.rawClient.itemsSuppliersDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Delete the supplier record of an item.
+   */
   public CompletableFuture<ItemsSuppliersDeleteCatalogResponse> itemsSuppliersDelete(
       ItemsSuppliersDeleteCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemsSuppliersDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
+   */
   public CompletableFuture<PriceListsCreateCatalogResponse> priceListsCreate(
       PriceListsCreateCatalogRequest request) {
     return this.rawClient.priceListsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
+   */
   public CompletableFuture<PriceListsCreateCatalogResponse> priceListsCreate(
       PriceListsCreateCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.priceListsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Change a price list. 409 when the new code already exists.
+   */
   public CompletableFuture<PriceListsUpdateCatalogResponse> priceListsUpdate(
       PriceListsUpdateCatalogRequest request) {
     return this.rawClient.priceListsUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Change a price list. 409 when the new code already exists.
+   */
   public CompletableFuture<PriceListsUpdateCatalogResponse> priceListsUpdate(
       PriceListsUpdateCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.priceListsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's price lists, ordered by code.
+   */
   public CompletableFuture<PriceListsListCatalogResponse> priceListsList() {
     return this.rawClient.priceListsList().thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's price lists, ordered by code.
+   */
   public CompletableFuture<PriceListsListCatalogResponse> priceListsList(
       RequestOptions requestOptions) {
     return this.rawClient.priceListsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's price lists, ordered by code.
+   */
   public CompletableFuture<PriceListsListCatalogResponse> priceListsList(
       PriceListsListCatalogRequest request) {
     return this.rawClient.priceListsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's price lists, ordered by code.
+   */
   public CompletableFuture<PriceListsListCatalogResponse> priceListsList(
       PriceListsListCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.priceListsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Set the unit price excluding VAT of up to 500 items on a price list; a price already on the list is replaced and the other items on the list are kept. 422 when an item appears twice in the request. Emits <code>price_list.updated</code> with the item ids.
+   */
   public CompletableFuture<PriceListsItemsSetCatalogResponse> priceListsItemsSet(
       PriceListsItemsSetCatalogRequest request) {
     return this.rawClient.priceListsItemsSet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Set the unit price excluding VAT of up to 500 items on a price list; a price already on the list is replaced and the other items on the list are kept. 422 when an item appears twice in the request. Emits <code>price_list.updated</code> with the item ids.
+   */
   public CompletableFuture<PriceListsItemsSetCatalogResponse> priceListsItemsSet(
       PriceListsItemsSetCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.priceListsItemsSet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the prices of a price list with the item name and code, ordered by item name.
+   */
   public CompletableFuture<PriceListsItemsListCatalogResponse> priceListsItemsList(
       PriceListsItemsListCatalogRequest request) {
     return this.rawClient.priceListsItemsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the prices of a price list with the item name and code, ordered by item name.
+   */
   public CompletableFuture<PriceListsItemsListCatalogResponse> priceListsItemsList(
       PriceListsItemsListCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.priceListsItemsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Remove one item from a price list.
+   */
   public CompletableFuture<PriceListsItemsDeleteCatalogResponse> priceListsItemsDelete(
       PriceListsItemsDeleteCatalogRequest request) {
     return this.rawClient.priceListsItemsDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Remove one item from a price list.
+   */
   public CompletableFuture<PriceListsItemsDeleteCatalogResponse> priceListsItemsDelete(
       PriceListsItemsDeleteCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.priceListsItemsDelete(request, requestOptions).thenApply(response -> response.body());

@@ -50,73 +50,121 @@ public class ConsolidationClient {
     return this.rawClient;
   }
 
+  /**
+   * Create a consolidation group owned by the calling company; <code>presentationCurrency</code> defaults to the company's base currency. Members are added with <code>consolidation/members/add</code>.
+   */
   public GroupsCreateConsolidationResponse groupsCreate(GroupsCreateConsolidationRequest request) {
     return this.rawClient.groupsCreate(request).body();
   }
 
+  /**
+   * Create a consolidation group owned by the calling company; <code>presentationCurrency</code> defaults to the company's base currency. Members are added with <code>consolidation/members/add</code>.
+   */
   public GroupsCreateConsolidationResponse groupsCreate(GroupsCreateConsolidationRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.groupsCreate(request, requestOptions).body();
   }
 
+  /**
+   * List the calling company's consolidation groups with their member counts.
+   */
   public GroupsListConsolidationResponse groupsList() {
     return this.rawClient.groupsList().body();
   }
 
+  /**
+   * List the calling company's consolidation groups with their member counts.
+   */
   public GroupsListConsolidationResponse groupsList(RequestOptions requestOptions) {
     return this.rawClient.groupsList(requestOptions).body();
   }
 
+  /**
+   * List the calling company's consolidation groups with their member counts.
+   */
   public GroupsListConsolidationResponse groupsList(GroupsListConsolidationRequest request) {
     return this.rawClient.groupsList(request).body();
   }
 
+  /**
+   * List the calling company's consolidation groups with their member counts.
+   */
   public GroupsListConsolidationResponse groupsList(GroupsListConsolidationRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.groupsList(request, requestOptions).body();
   }
 
+  /**
+   * Return one consolidation group with its members, each with its ownership percentage and consolidation method.
+   */
   public GroupsGetConsolidationResponse groupsGet(GroupsGetConsolidationRequest request) {
     return this.rawClient.groupsGet(request).body();
   }
 
+  /**
+   * Return one consolidation group with its members, each with its ownership percentage and consolidation method.
+   */
   public GroupsGetConsolidationResponse groupsGet(GroupsGetConsolidationRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.groupsGet(request, requestOptions).body();
   }
 
+  /**
+   * Rename a consolidation group or change its presentation currency.
+   */
   public GroupsUpdateConsolidationResponse groupsUpdate(GroupsUpdateConsolidationRequest request) {
     return this.rawClient.groupsUpdate(request).body();
   }
 
+  /**
+   * Rename a consolidation group or change its presentation currency.
+   */
   public GroupsUpdateConsolidationResponse groupsUpdate(GroupsUpdateConsolidationRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.groupsUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Delete a consolidation group.
+   */
   public GroupsDeleteConsolidationResponse groupsDelete(GroupsDeleteConsolidationRequest request) {
     return this.rawClient.groupsDelete(request).body();
   }
 
+  /**
+   * Delete a consolidation group.
+   */
   public GroupsDeleteConsolidationResponse groupsDelete(GroupsDeleteConsolidationRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.groupsDelete(request, requestOptions).body();
   }
 
+  /**
+   * Add a company to a consolidation group with its ownership percentage and method (<code>full</code>, <code>proportional</code> or <code>equity</code>), or change those of an existing member. Another company can be added only by a signed-in user who is owner, admin or accountant of it; an API key is refused with 403.
+   */
   public MembersAddConsolidationResponse membersAdd(MembersAddConsolidationRequest request) {
     return this.rawClient.membersAdd(request).body();
   }
 
+  /**
+   * Add a company to a consolidation group with its ownership percentage and method (<code>full</code>, <code>proportional</code> or <code>equity</code>), or change those of an existing member. Another company can be added only by a signed-in user who is owner, admin or accountant of it; an API key is refused with 403.
+   */
   public MembersAddConsolidationResponse membersAdd(MembersAddConsolidationRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.membersAdd(request, requestOptions).body();
   }
 
+  /**
+   * Remove a company from a consolidation group.
+   */
   public MembersRemoveConsolidationResponse membersRemove(
       MembersRemoveConsolidationRequest request) {
     return this.rawClient.membersRemove(request).body();
   }
 
+  /**
+   * Remove a company from a consolidation group.
+   */
   public MembersRemoveConsolidationResponse membersRemove(MembersRemoveConsolidationRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.membersRemove(request, requestOptions).body();
@@ -154,21 +202,33 @@ public class ConsolidationClient {
     return this.rawClient.intercompanyLinksSet(request, requestOptions).body();
   }
 
+  /**
+   * List the intercompany links of a group: which partner record of which member company stands for which other member company.
+   */
   public IntercompanyLinksListConsolidationResponse intercompanyLinksList(
       IntercompanyLinksListConsolidationRequest request) {
     return this.rawClient.intercompanyLinksList(request).body();
   }
 
+  /**
+   * List the intercompany links of a group: which partner record of which member company stands for which other member company.
+   */
   public IntercompanyLinksListConsolidationResponse intercompanyLinksList(
       IntercompanyLinksListConsolidationRequest request, RequestOptions requestOptions) {
     return this.rawClient.intercompanyLinksList(request, requestOptions).body();
   }
 
+  /**
+   * Remove an intercompany link from a group.
+   */
   public IntercompanyLinksRemoveConsolidationResponse intercompanyLinksRemove(
       IntercompanyLinksRemoveConsolidationRequest request) {
     return this.rawClient.intercompanyLinksRemove(request).body();
   }
 
+  /**
+   * Remove an intercompany link from a group.
+   */
   public IntercompanyLinksRemoveConsolidationResponse intercompanyLinksRemove(
       IntercompanyLinksRemoveConsolidationRequest request, RequestOptions requestOptions) {
     return this.rawClient.intercompanyLinksRemove(request, requestOptions).body();
@@ -190,10 +250,16 @@ public class ConsolidationClient {
     return this.rawClient.intercompanyReport(request, requestOptions).body();
   }
 
+  /**
+   * Consolidated financial statements of a group for a period in its presentation currency, with the consolidated trial balance and cash flow, each member's contribution and the intercompany candidates. Each member's balances are translated at the group owner's exchange rates of <code>toDate</code> and taken in full, in proportion to the ownership (<code>proportional</code>) or as an equity-method investment (<code>equity</code>); a fully consolidated member held below 100 % yields the non-controlling interest, and <code>eliminations</code> are amounts added to account codes before the statements are assembled (<code>balanced</code> tells whether they net to zero). Refused with 422 when the group has no members.
+   */
   public ReportConsolidationResponse report(ReportConsolidationRequest request) {
     return this.rawClient.report(request).body();
   }
 
+  /**
+   * Consolidated financial statements of a group for a period in its presentation currency, with the consolidated trial balance and cash flow, each member's contribution and the intercompany candidates. Each member's balances are translated at the group owner's exchange rates of <code>toDate</code> and taken in full, in proportion to the ownership (<code>proportional</code>) or as an equity-method investment (<code>equity</code>); a fully consolidated member held below 100 % yields the non-controlling interest, and <code>eliminations</code> are amounts added to account codes before the statements are assembled (<code>balanced</code> tells whether they net to zero). Refused with 422 when the group has no members.
+   */
   public ReportConsolidationResponse report(ReportConsolidationRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.report(request, requestOptions).body();

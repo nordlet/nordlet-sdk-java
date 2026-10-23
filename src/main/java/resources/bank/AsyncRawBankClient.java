@@ -147,11 +147,17 @@ public class AsyncRawBankClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Create a bank, Stripe or broker account. <code>currency</code> defaults to the company base currency and <code>accountCode</code> to the default bank account of the chart of accounts. A <code>documentRef</code> also creates a bank agreement with that document attached. A Stripe account with an <code>iban</code> is refused with 422; an account with the same IBAN already existing answers 409.
+   */
   public CompletableFuture<NordletApiHttpResponse<AccountsCreateBankResponse>> accountsCreate(
       AccountsCreateBankRequest request) {
     return accountsCreate(request,null);
   }
 
+  /**
+   * Create a bank, Stripe or broker account. <code>currency</code> defaults to the company base currency and <code>accountCode</code> to the default bank account of the chart of accounts. A <code>documentRef</code> also creates a bank agreement with that document attached. A Stripe account with an <code>iban</code> is refused with 422; an account with the same IBAN already existing answers 409.
+   */
   public CompletableFuture<NordletApiHttpResponse<AccountsCreateBankResponse>> accountsCreate(
       AccountsCreateBankRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -239,20 +245,32 @@ public class AsyncRawBankClient {
       return future;
     }
 
+    /**
+     * List the bank accounts of the company. Filterable by name, type, iban and isActive; sortable by name and createdAt.
+     */
     public CompletableFuture<NordletApiHttpResponse<AccountsListBankResponse>> accountsList() {
       return accountsList(AccountsListBankRequest.builder().build());
     }
 
+    /**
+     * List the bank accounts of the company. Filterable by name, type, iban and isActive; sortable by name and createdAt.
+     */
     public CompletableFuture<NordletApiHttpResponse<AccountsListBankResponse>> accountsList(
         RequestOptions requestOptions) {
       return accountsList(AccountsListBankRequest.builder().build(),requestOptions);
     }
 
+    /**
+     * List the bank accounts of the company. Filterable by name, type, iban and isActive; sortable by name and createdAt.
+     */
     public CompletableFuture<NordletApiHttpResponse<AccountsListBankResponse>> accountsList(
         AccountsListBankRequest request) {
       return accountsList(request,null);
     }
 
+    /**
+     * List the bank accounts of the company. Filterable by name, type, iban and isActive; sortable by name and createdAt.
+     */
     public CompletableFuture<NordletApiHttpResponse<AccountsListBankResponse>> accountsList(
         AccountsListBankRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -340,11 +358,17 @@ public class AsyncRawBankClient {
         return future;
       }
 
+      /**
+       * Change the name, type, IBAN, ledger account code or active flag of a bank account. Setting type to stripe clears the IBAN, and sending an <code>iban</code> together with it is refused with 422.
+       */
       public CompletableFuture<NordletApiHttpResponse<AccountsUpdateBankResponse>> accountsUpdate(
           AccountsUpdateBankRequest request) {
         return accountsUpdate(request,null);
       }
 
+      /**
+       * Change the name, type, IBAN, ledger account code or active flag of a bank account. Setting type to stripe clears the IBAN, and sending an <code>iban</code> together with it is refused with 422.
+       */
       public CompletableFuture<NordletApiHttpResponse<AccountsUpdateBankResponse>> accountsUpdate(
           AccountsUpdateBankRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -432,11 +456,17 @@ public class AsyncRawBankClient {
           return future;
         }
 
+        /**
+         * Insert statement lines (up to 1000 per call) into a bank account as new transactions. A line without <code>currency</code> takes the account currency; a line in another currency is refused with 422. A line whose <code>externalId</code> is already on the account is skipped and counted in <code>skipped</code>. An incoming line that an active match rule (<code>bank/match-rules/create</code>) recognises is linked to its settlement batch.
+         */
         public CompletableFuture<NordletApiHttpResponse<TransactionsImportBankResponse>> transactionsImport(
             TransactionsImportBankRequest request) {
           return transactionsImport(request,null);
         }
 
+        /**
+         * Insert statement lines (up to 1000 per call) into a bank account as new transactions. A line without <code>currency</code> takes the account currency; a line in another currency is refused with 422. A line whose <code>externalId</code> is already on the account is skipped and counted in <code>skipped</code>. An incoming line that an active match rule (<code>bank/match-rules/create</code>) recognises is linked to its settlement batch.
+         */
         public CompletableFuture<NordletApiHttpResponse<TransactionsImportBankResponse>> transactionsImport(
             TransactionsImportBankRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -524,11 +554,17 @@ public class AsyncRawBankClient {
             return future;
           }
 
+          /**
+           * Import a statement file into a bank account: camt.053 XML, MT940, a Stripe balance CSV or a Revolut Business CSV, chosen by <code>format</code> or by the type of <code>templateId</code> (an iso20022 template also takes MT940 content). Statements whose IBAN or currency differ from the account are left out; the call is refused with 422 when none remains, when a line is in another currency, when the file lacks the columns or elements the template requires or when it holds more than 50000 lines. Lines already on the account are skipped, and Stripe movements already posted through a settlement payout are skipped with a warning. With a template, the mapped fields are posted to their ledger accounts, partners are created, payments are matched to the invoices they reference, and invoices, credit notes or advance invoices are issued where the template asks for them (<code>invoiceMetaField</code>, <code>advanceInvoices</code>); <code>transfersCsv</code> posts the lender payouts and commissions of a Stripe template. Invoices issued this way are announced as <code>sale_invoice.issued</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<StatementsImportBankResponse>> statementsImport(
               StatementsImportBankRequest request) {
             return statementsImport(request,null);
           }
 
+          /**
+           * Import a statement file into a bank account: camt.053 XML, MT940, a Stripe balance CSV or a Revolut Business CSV, chosen by <code>format</code> or by the type of <code>templateId</code> (an iso20022 template also takes MT940 content). Statements whose IBAN or currency differ from the account are left out; the call is refused with 422 when none remains, when a line is in another currency, when the file lacks the columns or elements the template requires or when it holds more than 50000 lines. Lines already on the account are skipped, and Stripe movements already posted through a settlement payout are skipped with a warning. With a template, the mapped fields are posted to their ledger accounts, partners are created, payments are matched to the invoices they reference, and invoices, credit notes or advance invoices are issued where the template asks for them (<code>invoiceMetaField</code>, <code>advanceInvoices</code>); <code>transfersCsv</code> posts the lender payouts and commissions of a Stripe template. Invoices issued this way are announced as <code>sale_invoice.issued</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<StatementsImportBankResponse>> statementsImport(
               StatementsImportBankRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -616,21 +652,33 @@ public class AsyncRawBankClient {
               return future;
             }
 
+            /**
+             * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName and externalId; sortable by date, createdAt and amount.
+             */
             public CompletableFuture<NordletApiHttpResponse<TransactionsListBankResponse>> transactionsList(
                 ) {
               return transactionsList(TransactionsListBankRequest.builder().build());
             }
 
+            /**
+             * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName and externalId; sortable by date, createdAt and amount.
+             */
             public CompletableFuture<NordletApiHttpResponse<TransactionsListBankResponse>> transactionsList(
                 RequestOptions requestOptions) {
               return transactionsList(TransactionsListBankRequest.builder().build(),requestOptions);
             }
 
+            /**
+             * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName and externalId; sortable by date, createdAt and amount.
+             */
             public CompletableFuture<NordletApiHttpResponse<TransactionsListBankResponse>> transactionsList(
                 TransactionsListBankRequest request) {
               return transactionsList(request,null);
             }
 
+            /**
+             * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName and externalId; sortable by date, createdAt and amount.
+             */
             public CompletableFuture<NordletApiHttpResponse<TransactionsListBankResponse>> transactionsList(
                 TransactionsListBankRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -718,11 +766,17 @@ public class AsyncRawBankClient {
                 return future;
               }
 
+              /**
+               * Match one new bank transaction to a document: an issued sale invoice or advance for incoming money; an issued sale credit note, a registered purchase invoice or an approved payroll run (company currency only) for outgoing money. Posts the payment journal transaction between the bank account and the receivable, payable or net payable account, with any exchange difference on the gain or loss account, raises the paid amount of the document and sets the line to matched. <code>invoiceAmount</code> states the amount settled on an invoice in another currency; in the same currency it must equal the payment (422). Answers 409 when the line is already matched, when the amount exceeds the remaining balance of the document or when the accounting period of the line date is locked. A document that becomes fully paid is announced as <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code>.
+               */
               public CompletableFuture<NordletApiHttpResponse<TransactionsMatchBankResponse>> transactionsMatch(
                   TransactionsMatchBankRequest request) {
                 return transactionsMatch(request,null);
               }
 
+              /**
+               * Match one new bank transaction to a document: an issued sale invoice or advance for incoming money; an issued sale credit note, a registered purchase invoice or an approved payroll run (company currency only) for outgoing money. Posts the payment journal transaction between the bank account and the receivable, payable or net payable account, with any exchange difference on the gain or loss account, raises the paid amount of the document and sets the line to matched. <code>invoiceAmount</code> states the amount settled on an invoice in another currency; in the same currency it must equal the payment (422). Answers 409 when the line is already matched, when the amount exceeds the remaining balance of the document or when the accounting period of the line date is locked. A document that becomes fully paid is announced as <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code>.
+               */
               public CompletableFuture<NordletApiHttpResponse<TransactionsMatchBankResponse>> transactionsMatch(
                   TransactionsMatchBankRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -810,11 +864,17 @@ public class AsyncRawBankClient {
                   return future;
                 }
 
+                /**
+                 * The documents are issued sale invoices or advances for incoming money; issued sale credit notes, registered purchase invoices or approved payroll runs for outgoing money. Each must be in the currency of the payment, each allocation must be above zero, a document may appear once and the allocations must add up to the payment (422 otherwise). One journal transaction carries the bank entry, one entry per document and any exchange difference; the line is matched as an <code>invoice_allocation</code>. Answers 409 when the line is already matched, when an allocation exceeds the remaining balance of its document or when the accounting period of the line date is locked. Each document that becomes fully paid is announced as <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code>.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<TransactionsMatchManyBankResponse>> transactionsMatchMany(
                     TransactionsMatchManyBankRequest request) {
                   return transactionsMatchMany(request,null);
                 }
 
+                /**
+                 * The documents are issued sale invoices or advances for incoming money; issued sale credit notes, registered purchase invoices or approved payroll runs for outgoing money. Each must be in the currency of the payment, each allocation must be above zero, a document may appear once and the allocations must add up to the payment (422 otherwise). One journal transaction carries the bank entry, one entry per document and any exchange difference; the line is matched as an <code>invoice_allocation</code>. Answers 409 when the line is already matched, when an allocation exceeds the remaining balance of its document or when the accounting period of the line date is locked. Each document that becomes fully paid is announced as <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code>.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<TransactionsMatchManyBankResponse>> transactionsMatchMany(
                     TransactionsMatchManyBankRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1000,11 +1060,17 @@ public class AsyncRawBankClient {
                       return future;
                     }
 
+                    /**
+                     * Record a payment that is on no imported statement: inserts a bank transaction on the account dated <code>date</code> (positive for a sale invoice, negative for a purchase invoice or payroll run, in the account currency) and matches it to the document with the checks, posting and <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code> event of <code>bank/transactions/match</code>.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<TransactionsRecordBankResponse>> transactionsRecord(
                         TransactionsRecordBankRequest request) {
                       return transactionsRecord(request,null);
                     }
 
+                    /**
+                     * Record a payment that is on no imported statement: inserts a bank transaction on the account dated <code>date</code> (positive for a sale invoice, negative for a purchase invoice or payroll run, in the account currency) and matches it to the document with the checks, posting and <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code> event of <code>bank/transactions/match</code>.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<TransactionsRecordBankResponse>> transactionsRecord(
                         TransactionsRecordBankRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1092,11 +1158,17 @@ public class AsyncRawBankClient {
                         return future;
                       }
 
+                      /**
+                       * Build a SEPA credit transfer file (pain.001.001.03) that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code> (default: today), to the partner's default bank account. The bank account needs an IBAN and every invoice must be in EUR and have a partner bank account on file (422 otherwise, see <code>partners/bank-accounts/create</code>); an invoice that is already paid answers 409. The file is returned as <code>xml</code>; nothing is posted or marked paid.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<PaymentsExportBankResponse>> paymentsExport(
                           PaymentsExportBankRequest request) {
                         return paymentsExport(request,null);
                       }
 
+                      /**
+                       * Build a SEPA credit transfer file (pain.001.001.03) that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code> (default: today), to the partner's default bank account. The bank account needs an IBAN and every invoice must be in EUR and have a partner bank account on file (422 otherwise, see <code>partners/bank-accounts/create</code>); an invoice that is already paid answers 409. The file is returned as <code>xml</code>; nothing is posted or marked paid.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<PaymentsExportBankResponse>> paymentsExport(
                           PaymentsExportBankRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1184,11 +1256,17 @@ public class AsyncRawBankClient {
                           return future;
                         }
 
+                        /**
+                         * A template of type stripe, iso20022, revolut or bank_connection names the fields of the file or feed: a field with an <code>accountCode</code> is posted to that ledger account on import, a field with <code>createPartner</code> creates the customer, supplier or fee partner. <code>invoiceMetaField</code> is the Stripe metadata key (stripe) or the reference field (other types) by which payments are linked to invoices; with it <code>invoiceVatRatePercent</code>, <code>invoiceItemId</code> and, outside Stripe, <code>advanceInvoices</code> apply. <code>companyMetaField</code>, <code>lenderMetaField</code>, the operation types and the refund labels are for Stripe templates only. A template with the same name already existing answers 409.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<ImportTemplatesCreateBankResponse>> importTemplatesCreate(
                             ImportTemplatesCreateBankRequest request) {
                           return importTemplatesCreate(request,null);
                         }
 
+                        /**
+                         * A template of type stripe, iso20022, revolut or bank_connection names the fields of the file or feed: a field with an <code>accountCode</code> is posted to that ledger account on import, a field with <code>createPartner</code> creates the customer, supplier or fee partner. <code>invoiceMetaField</code> is the Stripe metadata key (stripe) or the reference field (other types) by which payments are linked to invoices; with it <code>invoiceVatRatePercent</code>, <code>invoiceItemId</code> and, outside Stripe, <code>advanceInvoices</code> apply. <code>companyMetaField</code>, <code>lenderMetaField</code>, the operation types and the refund labels are for Stripe templates only. A template with the same name already existing answers 409.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<ImportTemplatesCreateBankResponse>> importTemplatesCreate(
                             ImportTemplatesCreateBankRequest request,
                             RequestOptions requestOptions) {
@@ -1277,11 +1355,17 @@ public class AsyncRawBankClient {
                             return future;
                           }
 
+                          /**
+                           * Change a company import template under the rules of <code>bank/import-templates/create</code>; a change of <code>type</code> re-checks the existing fields against the new type. Built-in templates cannot be changed. A name already used by another template answers 409.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<ImportTemplatesUpdateBankResponse>> importTemplatesUpdate(
                               ImportTemplatesUpdateBankRequest request) {
                             return importTemplatesUpdate(request,null);
                           }
 
+                          /**
+                           * Change a company import template under the rules of <code>bank/import-templates/create</code>; a change of <code>type</code> re-checks the existing fields against the new type. Built-in templates cannot be changed. A name already used by another template answers 409.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<ImportTemplatesUpdateBankResponse>> importTemplatesUpdate(
                               ImportTemplatesUpdateBankRequest request,
                               RequestOptions requestOptions) {
@@ -1370,11 +1454,17 @@ public class AsyncRawBankClient {
                               return future;
                             }
 
+                            /**
+                             * Delete a company import template. Built-in templates cannot be deleted.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<ImportTemplatesDeleteBankResponse>> importTemplatesDelete(
                                 ImportTemplatesDeleteBankRequest request) {
                               return importTemplatesDelete(request,null);
                             }
 
+                            /**
+                             * Delete a company import template. Built-in templates cannot be deleted.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<ImportTemplatesDeleteBankResponse>> importTemplatesDelete(
                                 ImportTemplatesDeleteBankRequest request,
                                 RequestOptions requestOptions) {
@@ -1463,11 +1553,17 @@ public class AsyncRawBankClient {
                                 return future;
                               }
 
+                              /**
+                               * Read one import template, a company one or a built-in one.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<ImportTemplatesGetBankResponse>> importTemplatesGet(
                                   ImportTemplatesGetBankRequest request) {
                                 return importTemplatesGet(request,null);
                               }
 
+                              /**
+                               * Read one import template, a company one or a built-in one.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<ImportTemplatesGetBankResponse>> importTemplatesGet(
                                   ImportTemplatesGetBankRequest request,
                                   RequestOptions requestOptions) {
@@ -1556,21 +1652,33 @@ public class AsyncRawBankClient {
                                   return future;
                                 }
 
+                                /**
+                                 * Today the Revolut Business template: the Revolut CSV fields, with fees, card payments and top-ups posted to the accounts of the posting rules, the sender and beneficiary names creating partners and the Reference column linking payments to invoices. The rows carry <code>builtin: true</code>, are readable with <code>bank/import-templates/get</code> and are not in <code>bank/import-templates/list</code>.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<ImportTemplatesListBuiltinBankResponse>> importTemplatesListBuiltin(
                                     ) {
                                   return importTemplatesListBuiltin(ImportTemplatesListBuiltinBankRequest.builder().build());
                                 }
 
+                                /**
+                                 * Today the Revolut Business template: the Revolut CSV fields, with fees, card payments and top-ups posted to the accounts of the posting rules, the sender and beneficiary names creating partners and the Reference column linking payments to invoices. The rows carry <code>builtin: true</code>, are readable with <code>bank/import-templates/get</code> and are not in <code>bank/import-templates/list</code>.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<ImportTemplatesListBuiltinBankResponse>> importTemplatesListBuiltin(
                                     RequestOptions requestOptions) {
                                   return importTemplatesListBuiltin(ImportTemplatesListBuiltinBankRequest.builder().build(),requestOptions);
                                 }
 
+                                /**
+                                 * Today the Revolut Business template: the Revolut CSV fields, with fees, card payments and top-ups posted to the accounts of the posting rules, the sender and beneficiary names creating partners and the Reference column linking payments to invoices. The rows carry <code>builtin: true</code>, are readable with <code>bank/import-templates/get</code> and are not in <code>bank/import-templates/list</code>.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<ImportTemplatesListBuiltinBankResponse>> importTemplatesListBuiltin(
                                     ImportTemplatesListBuiltinBankRequest request) {
                                   return importTemplatesListBuiltin(request,null);
                                 }
 
+                                /**
+                                 * Today the Revolut Business template: the Revolut CSV fields, with fees, card payments and top-ups posted to the accounts of the posting rules, the sender and beneficiary names creating partners and the Reference column linking payments to invoices. The rows carry <code>builtin: true</code>, are readable with <code>bank/import-templates/get</code> and are not in <code>bank/import-templates/list</code>.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<ImportTemplatesListBuiltinBankResponse>> importTemplatesListBuiltin(
                                     ImportTemplatesListBuiltinBankRequest request,
                                     RequestOptions requestOptions) {
@@ -1659,21 +1767,33 @@ public class AsyncRawBankClient {
                                     return future;
                                   }
 
+                                  /**
+                                   * List the import templates of the company (the built-in ones are under <code>bank/import-templates/list-builtin</code>). Filterable by name and type; sortable by name and createdAt.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<ImportTemplatesListBankResponse>> importTemplatesList(
                                       ) {
                                     return importTemplatesList(ImportTemplatesListBankRequest.builder().build());
                                   }
 
+                                  /**
+                                   * List the import templates of the company (the built-in ones are under <code>bank/import-templates/list-builtin</code>). Filterable by name and type; sortable by name and createdAt.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<ImportTemplatesListBankResponse>> importTemplatesList(
                                       RequestOptions requestOptions) {
                                     return importTemplatesList(ImportTemplatesListBankRequest.builder().build(),requestOptions);
                                   }
 
+                                  /**
+                                   * List the import templates of the company (the built-in ones are under <code>bank/import-templates/list-builtin</code>). Filterable by name and type; sortable by name and createdAt.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<ImportTemplatesListBankResponse>> importTemplatesList(
                                       ImportTemplatesListBankRequest request) {
                                     return importTemplatesList(request,null);
                                   }
 
+                                  /**
+                                   * List the import templates of the company (the built-in ones are under <code>bank/import-templates/list-builtin</code>). Filterable by name and type; sortable by name and createdAt.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<ImportTemplatesListBankResponse>> importTemplatesList(
                                       ImportTemplatesListBankRequest request,
                                       RequestOptions requestOptions) {
@@ -1762,11 +1882,17 @@ public class AsyncRawBankClient {
                                       return future;
                                     }
 
+                                    /**
+                                     * Create a rule that links incoming bank lines to the settlement batches of a payment provider when lines are imported and when a batch is posted. A line whose description, counterparty name or external id contains <code>pattern</code> (case-insensitive) is linked to the open batch of <code>provider</code> whose payout id follows <code>payoutIdPrefix</code> in the line text or, without a prefix, to the single open batch on the same bank account with the same currency and net amount and a payout date within <code>dateWindowDays</code> of the line date. <code>bankAccountId</code> limits the rule to one account.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<MatchRulesCreateBankResponse>> matchRulesCreate(
                                         MatchRulesCreateBankRequest request) {
                                       return matchRulesCreate(request,null);
                                     }
 
+                                    /**
+                                     * Create a rule that links incoming bank lines to the settlement batches of a payment provider when lines are imported and when a batch is posted. A line whose description, counterparty name or external id contains <code>pattern</code> (case-insensitive) is linked to the open batch of <code>provider</code> whose payout id follows <code>payoutIdPrefix</code> in the line text or, without a prefix, to the single open batch on the same bank account with the same currency and net amount and a payout date within <code>dateWindowDays</code> of the line date. <code>bankAccountId</code> limits the rule to one account.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<MatchRulesCreateBankResponse>> matchRulesCreate(
                                         MatchRulesCreateBankRequest request,
                                         RequestOptions requestOptions) {
@@ -1855,11 +1981,17 @@ public class AsyncRawBankClient {
                                         return future;
                                       }
 
+                                      /**
+                                       * Change a match rule; <code>payoutIdPrefix</code> and <code>bankAccountId</code> are cleared with null.
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<MatchRulesUpdateBankResponse>> matchRulesUpdate(
                                           MatchRulesUpdateBankRequest request) {
                                         return matchRulesUpdate(request,null);
                                       }
 
+                                      /**
+                                       * Change a match rule; <code>payoutIdPrefix</code> and <code>bankAccountId</code> are cleared with null.
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<MatchRulesUpdateBankResponse>> matchRulesUpdate(
                                           MatchRulesUpdateBankRequest request,
                                           RequestOptions requestOptions) {
@@ -1948,11 +2080,17 @@ public class AsyncRawBankClient {
                                           return future;
                                         }
 
+                                        /**
+                                         * Delete a match rule.
+                                         */
                                         public CompletableFuture<NordletApiHttpResponse<MatchRulesDeleteBankResponse>> matchRulesDelete(
                                             MatchRulesDeleteBankRequest request) {
                                           return matchRulesDelete(request,null);
                                         }
 
+                                        /**
+                                         * Delete a match rule.
+                                         */
                                         public CompletableFuture<NordletApiHttpResponse<MatchRulesDeleteBankResponse>> matchRulesDelete(
                                             MatchRulesDeleteBankRequest request,
                                             RequestOptions requestOptions) {
@@ -2041,21 +2179,33 @@ public class AsyncRawBankClient {
                                             return future;
                                           }
 
+                                          /**
+                                           * List the match rules of the company, ordered by name.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<MatchRulesListBankResponse>> matchRulesList(
                                               ) {
                                             return matchRulesList(MatchRulesListBankRequest.builder().build());
                                           }
 
+                                          /**
+                                           * List the match rules of the company, ordered by name.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<MatchRulesListBankResponse>> matchRulesList(
                                               RequestOptions requestOptions) {
                                             return matchRulesList(MatchRulesListBankRequest.builder().build(),requestOptions);
                                           }
 
+                                          /**
+                                           * List the match rules of the company, ordered by name.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<MatchRulesListBankResponse>> matchRulesList(
                                               MatchRulesListBankRequest request) {
                                             return matchRulesList(request,null);
                                           }
 
+                                          /**
+                                           * List the match rules of the company, ordered by name.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<MatchRulesListBankResponse>> matchRulesList(
                                               MatchRulesListBankRequest request,
                                               RequestOptions requestOptions) {
@@ -2144,11 +2294,17 @@ public class AsyncRawBankClient {
                                               return future;
                                             }
 
+                                            /**
+                                             * Record a SEPA direct debit mandate a partner has signed: debtor IBAN and BIC, scheme (CORE or B2B), recurrent or one-off, and the signature date. <code>reference</code> is the mandate reference written into the collection files; without one <code>MNDT-</code> followed by a generated id is used. <code>debtorName</code> defaults to the partner name. A reference already in use answers 409.
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<MandatesCreateBankResponse>> mandatesCreate(
                                                 MandatesCreateBankRequest request) {
                                               return mandatesCreate(request,null);
                                             }
 
+                                            /**
+                                             * Record a SEPA direct debit mandate a partner has signed: debtor IBAN and BIC, scheme (CORE or B2B), recurrent or one-off, and the signature date. <code>reference</code> is the mandate reference written into the collection files; without one <code>MNDT-</code> followed by a generated id is used. <code>debtorName</code> defaults to the partner name. A reference already in use answers 409.
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<MandatesCreateBankResponse>> mandatesCreate(
                                                 MandatesCreateBankRequest request,
                                                 RequestOptions requestOptions) {
@@ -2237,11 +2393,17 @@ public class AsyncRawBankClient {
                                                 return future;
                                               }
 
+                                              /**
+                                               * Change the BIC, debtor name or notes of a mandate.
+                                               */
                                               public CompletableFuture<NordletApiHttpResponse<MandatesUpdateBankResponse>> mandatesUpdate(
                                                   MandatesUpdateBankRequest request) {
                                                 return mandatesUpdate(request,null);
                                               }
 
+                                              /**
+                                               * Change the BIC, debtor name or notes of a mandate.
+                                               */
                                               public CompletableFuture<NordletApiHttpResponse<MandatesUpdateBankResponse>> mandatesUpdate(
                                                   MandatesUpdateBankRequest request,
                                                   RequestOptions requestOptions) {
@@ -2330,11 +2492,17 @@ public class AsyncRawBankClient {
                                                   return future;
                                                 }
 
+                                                /**
+                                                 * Cancel an active mandate. A mandate that is already cancelled or completed answers 409.
+                                                 */
                                                 public CompletableFuture<NordletApiHttpResponse<MandatesCancelBankResponse>> mandatesCancel(
                                                     MandatesCancelBankRequest request) {
                                                   return mandatesCancel(request,null);
                                                 }
 
+                                                /**
+                                                 * Cancel an active mandate. A mandate that is already cancelled or completed answers 409.
+                                                 */
                                                 public CompletableFuture<NordletApiHttpResponse<MandatesCancelBankResponse>> mandatesCancel(
                                                     MandatesCancelBankRequest request,
                                                     RequestOptions requestOptions) {
@@ -2423,11 +2591,17 @@ public class AsyncRawBankClient {
                                                     return future;
                                                   }
 
+                                                  /**
+                                                   * Read one mandate. <code>expiresOn</code> is 36 months after the last collection, or after the signature date when nothing has been collected.
+                                                   */
                                                   public CompletableFuture<NordletApiHttpResponse<MandatesGetBankResponse>> mandatesGet(
                                                       MandatesGetBankRequest request) {
                                                     return mandatesGet(request,null);
                                                   }
 
+                                                  /**
+                                                   * Read one mandate. <code>expiresOn</code> is 36 months after the last collection, or after the signature date when nothing has been collected.
+                                                   */
                                                   public CompletableFuture<NordletApiHttpResponse<MandatesGetBankResponse>> mandatesGet(
                                                       MandatesGetBankRequest request,
                                                       RequestOptions requestOptions) {
@@ -2516,21 +2690,33 @@ public class AsyncRawBankClient {
                                                       return future;
                                                     }
 
+                                                    /**
+                                                     * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt and signatureDate.
+                                                     */
                                                     public CompletableFuture<NordletApiHttpResponse<MandatesListBankResponse>> mandatesList(
                                                         ) {
                                                       return mandatesList(MandatesListBankRequest.builder().build());
                                                     }
 
+                                                    /**
+                                                     * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt and signatureDate.
+                                                     */
                                                     public CompletableFuture<NordletApiHttpResponse<MandatesListBankResponse>> mandatesList(
                                                         RequestOptions requestOptions) {
                                                       return mandatesList(MandatesListBankRequest.builder().build(),requestOptions);
                                                     }
 
+                                                    /**
+                                                     * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt and signatureDate.
+                                                     */
                                                     public CompletableFuture<NordletApiHttpResponse<MandatesListBankResponse>> mandatesList(
                                                         MandatesListBankRequest request) {
                                                       return mandatesList(request,null);
                                                     }
 
+                                                    /**
+                                                     * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt and signatureDate.
+                                                     */
                                                     public CompletableFuture<NordletApiHttpResponse<MandatesListBankResponse>> mandatesList(
                                                         MandatesListBankRequest request,
                                                         RequestOptions requestOptions) {
@@ -2619,21 +2805,33 @@ public class AsyncRawBankClient {
                                                         return future;
                                                       }
 
+                                                      /**
+                                                       * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal and createdAt.
+                                                       */
                                                       public CompletableFuture<NordletApiHttpResponse<DirectDebitsCandidatesBankResponse>> directDebitsCandidates(
                                                           ) {
                                                         return directDebitsCandidates(DirectDebitsCandidatesBankRequest.builder().build());
                                                       }
 
+                                                      /**
+                                                       * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal and createdAt.
+                                                       */
                                                       public CompletableFuture<NordletApiHttpResponse<DirectDebitsCandidatesBankResponse>> directDebitsCandidates(
                                                           RequestOptions requestOptions) {
                                                         return directDebitsCandidates(DirectDebitsCandidatesBankRequest.builder().build(),requestOptions);
                                                       }
 
+                                                      /**
+                                                       * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal and createdAt.
+                                                       */
                                                       public CompletableFuture<NordletApiHttpResponse<DirectDebitsCandidatesBankResponse>> directDebitsCandidates(
                                                           DirectDebitsCandidatesBankRequest request) {
                                                         return directDebitsCandidates(request,null);
                                                       }
 
+                                                      /**
+                                                       * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal and createdAt.
+                                                       */
                                                       public CompletableFuture<NordletApiHttpResponse<DirectDebitsCandidatesBankResponse>> directDebitsCandidates(
                                                           DirectDebitsCandidatesBankRequest request,
                                                           RequestOptions requestOptions) {
@@ -2722,11 +2920,17 @@ public class AsyncRawBankClient {
                                                           return future;
                                                         }
 
+                                                        /**
+                                                         * Build a SEPA direct debit file (pain.008.001.02) that collects the remaining amount of each issued EUR sale invoice into the bank account on <code>collectionDate</code> (default: today) under the partner's most recently signed active mandate. The bank account needs an IBAN and the company a valid <code>sepaCreditorId</code> (422, see <code>account/companies/update</code>); an invoice whose partner has no active mandate, or whose mandate expired (36 months without a collection), answers 422; an invoice already paid, or a one-off mandate asked to collect more than one invoice, answers 409. The sequence type is OOFF for a one-off mandate, FRST for the first collection under a recurrent one and RCUR after that. On success the collection count and last collection date of each mandate are advanced and a one-off mandate is completed; nothing is posted.
+                                                         */
                                                         public CompletableFuture<NordletApiHttpResponse<DirectDebitsExportBankResponse>> directDebitsExport(
                                                             DirectDebitsExportBankRequest request) {
                                                           return directDebitsExport(request,null);
                                                         }
 
+                                                        /**
+                                                         * Build a SEPA direct debit file (pain.008.001.02) that collects the remaining amount of each issued EUR sale invoice into the bank account on <code>collectionDate</code> (default: today) under the partner's most recently signed active mandate. The bank account needs an IBAN and the company a valid <code>sepaCreditorId</code> (422, see <code>account/companies/update</code>); an invoice whose partner has no active mandate, or whose mandate expired (36 months without a collection), answers 422; an invoice already paid, or a one-off mandate asked to collect more than one invoice, answers 409. The sequence type is OOFF for a one-off mandate, FRST for the first collection under a recurrent one and RCUR after that. On success the collection count and last collection date of each mandate are advanced and a one-off mandate is completed; nothing is posted.
+                                                         */
                                                         public CompletableFuture<NordletApiHttpResponse<DirectDebitsExportBankResponse>> directDebitsExport(
                                                             DirectDebitsExportBankRequest request,
                                                             RequestOptions requestOptions) {
@@ -2815,11 +3019,17 @@ public class AsyncRawBankClient {
                                                             return future;
                                                           }
 
+                                                          /**
+                                                           * Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents whose remaining balance covers the payment (any balance when in another currency), scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best <code>limit</code> come back with their reasons. A transaction that is already matched answers 409.
+                                                           */
                                                           public CompletableFuture<NordletApiHttpResponse<TransactionsSuggestMatchesBankResponse>> transactionsSuggestMatches(
                                                               TransactionsSuggestMatchesBankRequest request) {
                                                             return transactionsSuggestMatches(request,null);
                                                           }
 
+                                                          /**
+                                                           * Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents whose remaining balance covers the payment (any balance when in another currency), scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best <code>limit</code> come back with their reasons. A transaction that is already matched answers 409.
+                                                           */
                                                           public CompletableFuture<NordletApiHttpResponse<TransactionsSuggestMatchesBankResponse>> transactionsSuggestMatches(
                                                               TransactionsSuggestMatchesBankRequest request,
                                                               RequestOptions requestOptions) {
@@ -2908,11 +3118,17 @@ public class AsyncRawBankClient {
                                                               return future;
                                                             }
 
+                                                            /**
+                                                             * Import a Stripe payout report into settlement batches, one per payout: the itemized payout reconciliation CSV (<code>format</code> payout_reconciliation) or the unified payments export with its Transfer column (unified_payments); another CSV is refused with 422. Rows without a payout, the payout rows themselves and unsettled payments are skipped and counted. Each line is matched to an issued sale invoice through the references the report carries (the external reference of a sales order or an invoice number) or through a charge matched earlier. A payout already imported receives its new lines while the batch is in status imported and is skipped once posted; a payout mixing currencies answers 422. Emits <code>settlement.imported</code> for a new batch and <code>settlement.updated</code> for one that received lines.
+                                                             */
                                                             public CompletableFuture<NordletApiHttpResponse<SettlementsImportBankResponse>> settlementsImport(
                                                                 SettlementsImportBankRequest request) {
                                                               return settlementsImport(request,null);
                                                             }
 
+                                                            /**
+                                                             * Import a Stripe payout report into settlement batches, one per payout: the itemized payout reconciliation CSV (<code>format</code> payout_reconciliation) or the unified payments export with its Transfer column (unified_payments); another CSV is refused with 422. Rows without a payout, the payout rows themselves and unsettled payments are skipped and counted. Each line is matched to an issued sale invoice through the references the report carries (the external reference of a sales order or an invoice number) or through a charge matched earlier. A payout already imported receives its new lines while the batch is in status imported and is skipped once posted; a payout mixing currencies answers 422. Emits <code>settlement.imported</code> for a new batch and <code>settlement.updated</code> for one that received lines.
+                                                             */
                                                             public CompletableFuture<NordletApiHttpResponse<SettlementsImportBankResponse>> settlementsImport(
                                                                 SettlementsImportBankRequest request,
                                                                 RequestOptions requestOptions) {
@@ -3001,21 +3217,33 @@ public class AsyncRawBankClient {
                                                                 return future;
                                                               }
 
+                                                              /**
+                                                               * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt and netTotal.
+                                                               */
                                                               public CompletableFuture<NordletApiHttpResponse<SettlementsListBankResponse>> settlementsList(
                                                                   ) {
                                                                 return settlementsList(SettlementsListBankRequest.builder().build());
                                                               }
 
+                                                              /**
+                                                               * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt and netTotal.
+                                                               */
                                                               public CompletableFuture<NordletApiHttpResponse<SettlementsListBankResponse>> settlementsList(
                                                                   RequestOptions requestOptions) {
                                                                 return settlementsList(SettlementsListBankRequest.builder().build(),requestOptions);
                                                               }
 
+                                                              /**
+                                                               * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt and netTotal.
+                                                               */
                                                               public CompletableFuture<NordletApiHttpResponse<SettlementsListBankResponse>> settlementsList(
                                                                   SettlementsListBankRequest request) {
                                                                 return settlementsList(request,null);
                                                               }
 
+                                                              /**
+                                                               * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt and netTotal.
+                                                               */
                                                               public CompletableFuture<NordletApiHttpResponse<SettlementsListBankResponse>> settlementsList(
                                                                   SettlementsListBankRequest request,
                                                                   RequestOptions requestOptions) {
@@ -3104,11 +3332,17 @@ public class AsyncRawBankClient {
                                                                   return future;
                                                                 }
 
+                                                                /**
+                                                                 * Read one settlement batch with its lines, each with the invoice it is matched to and the bank line that cleared it (<code>clearingBooked</code>, <code>clearingDifference</code>, <code>clearingUnposted</code>).
+                                                                 */
                                                                 public CompletableFuture<NordletApiHttpResponse<SettlementsGetBankResponse>> settlementsGet(
                                                                     SettlementsGetBankRequest request) {
                                                                   return settlementsGet(request,null);
                                                                 }
 
+                                                                /**
+                                                                 * Read one settlement batch with its lines, each with the invoice it is matched to and the bank line that cleared it (<code>clearingBooked</code>, <code>clearingDifference</code>, <code>clearingUnposted</code>).
+                                                                 */
                                                                 public CompletableFuture<NordletApiHttpResponse<SettlementsGetBankResponse>> settlementsGet(
                                                                     SettlementsGetBankRequest request,
                                                                     RequestOptions requestOptions) {
@@ -3197,11 +3431,17 @@ public class AsyncRawBankClient {
                                                                     return future;
                                                                   }
 
+                                                                  /**
+                                                                   * Match a settlement line to an issued sale invoice or advance by hand (<code>matchStatus</code> manual), or clear the match with <code>invoiceId</code> null. Only lines of the categories charge, refund, dispute, dispute_reversal and partial_capture_reversal can be matched (422), and only while the batch is in status imported (409).
+                                                                   */
                                                                   public CompletableFuture<NordletApiHttpResponse<SettlementsMatchBankResponse>> settlementsMatch(
                                                                       SettlementsMatchBankRequest request) {
                                                                     return settlementsMatch(request,null);
                                                                   }
 
+                                                                  /**
+                                                                   * Match a settlement line to an issued sale invoice or advance by hand (<code>matchStatus</code> manual), or clear the match with <code>invoiceId</code> null. Only lines of the categories charge, refund, dispute, dispute_reversal and partial_capture_reversal can be matched (422), and only while the batch is in status imported (409).
+                                                                   */
                                                                   public CompletableFuture<NordletApiHttpResponse<SettlementsMatchBankResponse>> settlementsMatch(
                                                                       SettlementsMatchBankRequest request,
                                                                       RequestOptions requestOptions) {
@@ -3587,11 +3827,17 @@ public class AsyncRawBankClient {
                                                                             return future;
                                                                           }
 
+                                                                          /**
+                                                                           * Post a settlement batch dated <code>date</code> (default: the payout date, else today): the bank account receives the net payout, the matched sale invoices are settled against the receivable (the receivable of each partner in a journal transaction of its own when invoices of several partners are settled), the provider fees, the marketplace commission and the seller payable are booked, and a payout in another currency is converted at the rate of that date with the exchange difference against each invoice's own rate on the gain or loss account. A line without a matched invoice is split by its own rate or amount, else by <code>commissionPercent</code>, else parked on the suspense account; a line already imported as a movement of a bank account is posted against that account instead. Answers 409 when the batch is already posted or the period is locked, 422 when it has no lines. The payout is linked to the bank line a match rule recognises. Emits <code>settlement.posted</code>, <code>sale_invoice.paid</code> for each invoice that becomes paid and <code>refund_liability.actual</code> for refunds of invoices carrying a refund liability.
+                                                                           */
                                                                           public CompletableFuture<NordletApiHttpResponse<SettlementsPostBankResponse>> settlementsPost(
                                                                               SettlementsPostBankRequest request) {
                                                                             return settlementsPost(request,null);
                                                                           }
 
+                                                                          /**
+                                                                           * Post a settlement batch dated <code>date</code> (default: the payout date, else today): the bank account receives the net payout, the matched sale invoices are settled against the receivable (the receivable of each partner in a journal transaction of its own when invoices of several partners are settled), the provider fees, the marketplace commission and the seller payable are booked, and a payout in another currency is converted at the rate of that date with the exchange difference against each invoice's own rate on the gain or loss account. A line without a matched invoice is split by its own rate or amount, else by <code>commissionPercent</code>, else parked on the suspense account; a line already imported as a movement of a bank account is posted against that account instead. Answers 409 when the batch is already posted or the period is locked, 422 when it has no lines. The payout is linked to the bank line a match rule recognises. Emits <code>settlement.posted</code>, <code>sale_invoice.paid</code> for each invoice that becomes paid and <code>refund_liability.actual</code> for refunds of invoices carrying a refund liability.
+                                                                           */
                                                                           public CompletableFuture<NordletApiHttpResponse<SettlementsPostBankResponse>> settlementsPost(
                                                                               SettlementsPostBankRequest request,
                                                                               RequestOptions requestOptions) {
@@ -3680,11 +3926,17 @@ public class AsyncRawBankClient {
                                                                               return future;
                                                                             }
 
+                                                                            /**
+                                                                             * Import an Interactive Brokers activity statement (CSV) into a bank account of type <code>broker</code>; refused with 422 for another account type, a file that is not an IBKR statement, a statement of a different IBKR account than the bank account already holds, or a trade older than the latest trade already imported (statements go in in date order). Rows already imported are skipped. Dividends, withholding tax, interest and fees are posted against the broker account; stock, option and futures trades are matched FIFO against the open lots and post the cost to <code>securities.investments</code> and the realised result to <code>securities.gain</code> or <code>securities.loss</code> (posting rules), one journal entry per date in the base currency at the rate of the day (422 without a rate, 409 when the date's period is locked). Deposits, corporate actions and currency conversions are stored as <code>not_posted</code> with a note.
+                                                                             */
                                                                             public CompletableFuture<NordletApiHttpResponse<SecuritiesImportBankResponse>> securitiesImport(
                                                                                 SecuritiesImportBankRequest request) {
                                                                               return securitiesImport(request,null);
                                                                             }
 
+                                                                            /**
+                                                                             * Import an Interactive Brokers activity statement (CSV) into a bank account of type <code>broker</code>; refused with 422 for another account type, a file that is not an IBKR statement, a statement of a different IBKR account than the bank account already holds, or a trade older than the latest trade already imported (statements go in in date order). Rows already imported are skipped. Dividends, withholding tax, interest and fees are posted against the broker account; stock, option and futures trades are matched FIFO against the open lots and post the cost to <code>securities.investments</code> and the realised result to <code>securities.gain</code> or <code>securities.loss</code> (posting rules), one journal entry per date in the base currency at the rate of the day (422 without a rate, 409 when the date's period is locked). Deposits, corporate actions and currency conversions are stored as <code>not_posted</code> with a note.
+                                                                             */
                                                                             public CompletableFuture<NordletApiHttpResponse<SecuritiesImportBankResponse>> securitiesImport(
                                                                                 SecuritiesImportBankRequest request,
                                                                                 RequestOptions requestOptions) {
@@ -3773,21 +4025,33 @@ public class AsyncRawBankClient {
                                                                                 return future;
                                                                               }
 
+                                                                              /**
+                                                                               * List the securities imports, newest first; filterable by <code>bankAccountId</code> and <code>brokerAccount</code>, sortable by <code>createdAt</code> and <code>realizedTotal</code>.
+                                                                               */
                                                                               public CompletableFuture<NordletApiHttpResponse<SecuritiesListBankResponse>> securitiesList(
                                                                                   ) {
                                                                                 return securitiesList(SecuritiesListBankRequest.builder().build());
                                                                               }
 
+                                                                              /**
+                                                                               * List the securities imports, newest first; filterable by <code>bankAccountId</code> and <code>brokerAccount</code>, sortable by <code>createdAt</code> and <code>realizedTotal</code>.
+                                                                               */
                                                                               public CompletableFuture<NordletApiHttpResponse<SecuritiesListBankResponse>> securitiesList(
                                                                                   RequestOptions requestOptions) {
                                                                                 return securitiesList(SecuritiesListBankRequest.builder().build(),requestOptions);
                                                                               }
 
+                                                                              /**
+                                                                               * List the securities imports, newest first; filterable by <code>bankAccountId</code> and <code>brokerAccount</code>, sortable by <code>createdAt</code> and <code>realizedTotal</code>.
+                                                                               */
                                                                               public CompletableFuture<NordletApiHttpResponse<SecuritiesListBankResponse>> securitiesList(
                                                                                   SecuritiesListBankRequest request) {
                                                                                 return securitiesList(request,null);
                                                                               }
 
+                                                                              /**
+                                                                               * List the securities imports, newest first; filterable by <code>bankAccountId</code> and <code>brokerAccount</code>, sortable by <code>createdAt</code> and <code>realizedTotal</code>.
+                                                                               */
                                                                               public CompletableFuture<NordletApiHttpResponse<SecuritiesListBankResponse>> securitiesList(
                                                                                   SecuritiesListBankRequest request,
                                                                                   RequestOptions requestOptions) {
@@ -3876,11 +4140,17 @@ public class AsyncRawBankClient {
                                                                                   return future;
                                                                                 }
 
+                                                                                /**
+                                                                                 * Return one securities import with its operations in date order, each with its posting status, its amounts in the base currency and the journal transaction it was posted in.
+                                                                                 */
                                                                                 public CompletableFuture<NordletApiHttpResponse<SecuritiesGetBankResponse>> securitiesGet(
                                                                                     SecuritiesGetBankRequest request) {
                                                                                   return securitiesGet(request,null);
                                                                                 }
 
+                                                                                /**
+                                                                                 * Return one securities import with its operations in date order, each with its posting status, its amounts in the base currency and the journal transaction it was posted in.
+                                                                                 */
                                                                                 public CompletableFuture<NordletApiHttpResponse<SecuritiesGetBankResponse>> securitiesGet(
                                                                                     SecuritiesGetBankRequest request,
                                                                                     RequestOptions requestOptions) {
@@ -3969,21 +4239,33 @@ public class AsyncRawBankClient {
                                                                                     return future;
                                                                                   }
 
+                                                                                  /**
+                                                                                   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code> and <code>createdAt</code>.
+                                                                                   */
                                                                                   public CompletableFuture<NordletApiHttpResponse<SecuritiesOperationsListBankResponse>> securitiesOperationsList(
                                                                                       ) {
                                                                                     return securitiesOperationsList(SecuritiesOperationsListBankRequest.builder().build());
                                                                                   }
 
+                                                                                  /**
+                                                                                   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code> and <code>createdAt</code>.
+                                                                                   */
                                                                                   public CompletableFuture<NordletApiHttpResponse<SecuritiesOperationsListBankResponse>> securitiesOperationsList(
                                                                                       RequestOptions requestOptions) {
                                                                                     return securitiesOperationsList(SecuritiesOperationsListBankRequest.builder().build(),requestOptions);
                                                                                   }
 
+                                                                                  /**
+                                                                                   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code> and <code>createdAt</code>.
+                                                                                   */
                                                                                   public CompletableFuture<NordletApiHttpResponse<SecuritiesOperationsListBankResponse>> securitiesOperationsList(
                                                                                       SecuritiesOperationsListBankRequest request) {
                                                                                     return securitiesOperationsList(request,null);
                                                                                   }
 
+                                                                                  /**
+                                                                                   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code> and <code>createdAt</code>.
+                                                                                   */
                                                                                   public CompletableFuture<NordletApiHttpResponse<SecuritiesOperationsListBankResponse>> securitiesOperationsList(
                                                                                       SecuritiesOperationsListBankRequest request,
                                                                                       RequestOptions requestOptions) {
@@ -4072,21 +4354,33 @@ public class AsyncRawBankClient {
                                                                                       return future;
                                                                                     }
 
+                                                                                    /**
+                                                                                     * Read from the bank-feed provider configured on the API server or in platform settings (Enable Banking or an HTTP bridge, named in <code>provider</code>), for one <code>country</code> or all. Without a provider the call answers 503.
+                                                                                     */
                                                                                     public CompletableFuture<NordletApiHttpResponse<FeedsBanksListBankResponse>> feedsBanksList(
                                                                                         ) {
                                                                                       return feedsBanksList(FeedsBanksListBankRequest.builder().build());
                                                                                     }
 
+                                                                                    /**
+                                                                                     * Read from the bank-feed provider configured on the API server or in platform settings (Enable Banking or an HTTP bridge, named in <code>provider</code>), for one <code>country</code> or all. Without a provider the call answers 503.
+                                                                                     */
                                                                                     public CompletableFuture<NordletApiHttpResponse<FeedsBanksListBankResponse>> feedsBanksList(
                                                                                         RequestOptions requestOptions) {
                                                                                       return feedsBanksList(FeedsBanksListBankRequest.builder().build(),requestOptions);
                                                                                     }
 
+                                                                                    /**
+                                                                                     * Read from the bank-feed provider configured on the API server or in platform settings (Enable Banking or an HTTP bridge, named in <code>provider</code>), for one <code>country</code> or all. Without a provider the call answers 503.
+                                                                                     */
                                                                                     public CompletableFuture<NordletApiHttpResponse<FeedsBanksListBankResponse>> feedsBanksList(
                                                                                         FeedsBanksListBankRequest request) {
                                                                                       return feedsBanksList(request,null);
                                                                                     }
 
+                                                                                    /**
+                                                                                     * Read from the bank-feed provider configured on the API server or in platform settings (Enable Banking or an HTTP bridge, named in <code>provider</code>), for one <code>country</code> or all. Without a provider the call answers 503.
+                                                                                     */
                                                                                     public CompletableFuture<NordletApiHttpResponse<FeedsBanksListBankResponse>> feedsBanksList(
                                                                                         FeedsBanksListBankRequest request,
                                                                                         RequestOptions requestOptions) {
@@ -4175,11 +4469,17 @@ public class AsyncRawBankClient {
                                                                                         return future;
                                                                                       }
 
+                                                                                      /**
+                                                                                       * Creates a pending bank connection and asks the provider for the authorization page of the bank. <code>url</code> is where the user authorizes access for <code>validForDays</code> (default 90); <code>reference</code> is the state the bank sends back and what <code>bank/feeds/connections/complete</code> takes. <code>redirectUrl</code> falls back to the one in platform settings, and the call is refused with 422 when neither is set.
+                                                                                       */
                                                                                       public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsStartBankResponse>> feedsConnectionsStart(
                                                                                           FeedsConnectionsStartBankRequest request) {
                                                                                         return feedsConnectionsStart(request,null);
                                                                                       }
 
+                                                                                      /**
+                                                                                       * Creates a pending bank connection and asks the provider for the authorization page of the bank. <code>url</code> is where the user authorizes access for <code>validForDays</code> (default 90); <code>reference</code> is the state the bank sends back and what <code>bank/feeds/connections/complete</code> takes. <code>redirectUrl</code> falls back to the one in platform settings, and the call is refused with 422 when neither is set.
+                                                                                       */
                                                                                       public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsStartBankResponse>> feedsConnectionsStart(
                                                                                           FeedsConnectionsStartBankRequest request,
                                                                                           RequestOptions requestOptions) {
@@ -4268,11 +4568,17 @@ public class AsyncRawBankClient {
                                                                                           return future;
                                                                                         }
 
+                                                                                        /**
+                                                                                         * Exchanges <code>code</code> for a provider session, sets the connection to active with the consent expiry the bank reports, and records every account of the session as a bank-feed account, not yet linked to a ledger account (<code>bank/feeds/accounts/link</code>). A connection that is already active answers 409. When the provider refuses the code the connection goes to status error with the message in <code>error</code>.
+                                                                                         */
                                                                                         public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsCompleteBankResponse>> feedsConnectionsComplete(
                                                                                             FeedsConnectionsCompleteBankRequest request) {
                                                                                           return feedsConnectionsComplete(request,null);
                                                                                         }
 
+                                                                                        /**
+                                                                                         * Exchanges <code>code</code> for a provider session, sets the connection to active with the consent expiry the bank reports, and records every account of the session as a bank-feed account, not yet linked to a ledger account (<code>bank/feeds/accounts/link</code>). A connection that is already active answers 409. When the provider refuses the code the connection goes to status error with the message in <code>error</code>.
+                                                                                         */
                                                                                         public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsCompleteBankResponse>> feedsConnectionsComplete(
                                                                                             FeedsConnectionsCompleteBankRequest request,
                                                                                             RequestOptions requestOptions) {
@@ -4361,11 +4667,17 @@ public class AsyncRawBankClient {
                                                                                             return future;
                                                                                           }
 
+                                                                                          /**
+                                                                                           * Read one bank connection with its bank-feed accounts.
+                                                                                           */
                                                                                           public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsGetBankResponse>> feedsConnectionsGet(
                                                                                               FeedsConnectionsGetBankRequest request) {
                                                                                             return feedsConnectionsGet(request,null);
                                                                                           }
 
+                                                                                          /**
+                                                                                           * Read one bank connection with its bank-feed accounts.
+                                                                                           */
                                                                                           public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsGetBankResponse>> feedsConnectionsGet(
                                                                                               FeedsConnectionsGetBankRequest request,
                                                                                               RequestOptions requestOptions) {
@@ -4454,21 +4766,33 @@ public class AsyncRawBankClient {
                                                                                               return future;
                                                                                             }
 
+                                                                                            /**
+                                                                                             * List the bank connections of the company, without their accounts. Filterable by status, provider and aspspCountry; sortable by createdAt and lastSyncedAt.
+                                                                                             */
                                                                                             public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsListBankResponse>> feedsConnectionsList(
                                                                                                 ) {
                                                                                               return feedsConnectionsList(FeedsConnectionsListBankRequest.builder().build());
                                                                                             }
 
+                                                                                            /**
+                                                                                             * List the bank connections of the company, without their accounts. Filterable by status, provider and aspspCountry; sortable by createdAt and lastSyncedAt.
+                                                                                             */
                                                                                             public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsListBankResponse>> feedsConnectionsList(
                                                                                                 RequestOptions requestOptions) {
                                                                                               return feedsConnectionsList(FeedsConnectionsListBankRequest.builder().build(),requestOptions);
                                                                                             }
 
+                                                                                            /**
+                                                                                             * List the bank connections of the company, without their accounts. Filterable by status, provider and aspspCountry; sortable by createdAt and lastSyncedAt.
+                                                                                             */
                                                                                             public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsListBankResponse>> feedsConnectionsList(
                                                                                                 FeedsConnectionsListBankRequest request) {
                                                                                               return feedsConnectionsList(request,null);
                                                                                             }
 
+                                                                                            /**
+                                                                                             * List the bank connections of the company, without their accounts. Filterable by status, provider and aspspCountry; sortable by createdAt and lastSyncedAt.
+                                                                                             */
                                                                                             public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsListBankResponse>> feedsConnectionsList(
                                                                                                 FeedsConnectionsListBankRequest request,
                                                                                                 RequestOptions requestOptions) {
@@ -4557,11 +4881,17 @@ public class AsyncRawBankClient {
                                                                                                 return future;
                                                                                               }
 
+                                                                                              /**
+                                                                                               * Closes the provider session when the connection has one and a provider is configured (a failure at the bank does not stop the call), then deletes the connection and its bank-feed accounts. The ledger bank accounts and the transactions already imported stay.
+                                                                                               */
                                                                                               public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsDeleteBankResponse>> feedsConnectionsDelete(
                                                                                                   FeedsConnectionsDeleteBankRequest request) {
                                                                                                 return feedsConnectionsDelete(request,null);
                                                                                               }
 
+                                                                                              /**
+                                                                                               * Closes the provider session when the connection has one and a provider is configured (a failure at the bank does not stop the call), then deletes the connection and its bank-feed accounts. The ledger bank accounts and the transactions already imported stay.
+                                                                                               */
                                                                                               public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsDeleteBankResponse>> feedsConnectionsDelete(
                                                                                                   FeedsConnectionsDeleteBankRequest request,
                                                                                                   RequestOptions requestOptions) {
@@ -4650,11 +4980,17 @@ public class AsyncRawBankClient {
                                                                                                   return future;
                                                                                                 }
 
+                                                                                                /**
+                                                                                                 * Give exactly one of <code>bankAccountId</code> (an existing ledger bank account) or <code>createBankAccount</code> (a new one with the IBAN and currency of the feed account; <code>accountCode</code> defaults to the default bank account of the chart of accounts). <code>syncFrom</code> is the date the first sync starts from; without it the first sync covers the last 90 days.
+                                                                                                 */
                                                                                                 public CompletableFuture<NordletApiHttpResponse<FeedsAccountsLinkBankResponse>> feedsAccountsLink(
                                                                                                     FeedsAccountsLinkBankRequest request) {
                                                                                                   return feedsAccountsLink(request,null);
                                                                                                 }
 
+                                                                                                /**
+                                                                                                 * Give exactly one of <code>bankAccountId</code> (an existing ledger bank account) or <code>createBankAccount</code> (a new one with the IBAN and currency of the feed account; <code>accountCode</code> defaults to the default bank account of the chart of accounts). <code>syncFrom</code> is the date the first sync starts from; without it the first sync covers the last 90 days.
+                                                                                                 */
                                                                                                 public CompletableFuture<NordletApiHttpResponse<FeedsAccountsLinkBankResponse>> feedsAccountsLink(
                                                                                                     FeedsAccountsLinkBankRequest request,
                                                                                                     RequestOptions requestOptions) {
@@ -4743,11 +5079,17 @@ public class AsyncRawBankClient {
                                                                                                     return future;
                                                                                                   }
 
+                                                                                                  /**
+                                                                                                   * <code>importTemplateId</code> must be a template of type bank_connection, or null to apply none. <code>syncSchedule</code> is manual, daily, weekly or monthly; every account whose schedule is not manual is synced by Nordlet when it is due. At least one of the two must be given.
+                                                                                                   */
                                                                                                   public CompletableFuture<NordletApiHttpResponse<FeedsAccountsConfigureBankResponse>> feedsAccountsConfigure(
                                                                                                       FeedsAccountsConfigureBankRequest request) {
                                                                                                     return feedsAccountsConfigure(request,null);
                                                                                                   }
 
+                                                                                                  /**
+                                                                                                   * <code>importTemplateId</code> must be a template of type bank_connection, or null to apply none. <code>syncSchedule</code> is manual, daily, weekly or monthly; every account whose schedule is not manual is synced by Nordlet when it is due. At least one of the two must be given.
+                                                                                                   */
                                                                                                   public CompletableFuture<NordletApiHttpResponse<FeedsAccountsConfigureBankResponse>> feedsAccountsConfigure(
                                                                                                       FeedsAccountsConfigureBankRequest request,
                                                                                                       RequestOptions requestOptions) {
@@ -4836,11 +5178,17 @@ public class AsyncRawBankClient {
                                                                                                       return future;
                                                                                                     }
 
+                                                                                                    /**
+                                                                                                     * Fetches the transactions of every linked bank-feed account of the connection, or of <code>feedAccountId</code> alone, from <code>dateFrom</code> (default: seven days before the last sync, else the <code>syncFrom</code> of the account, else 90 days back) to <code>dateTo</code>, and inserts the new ones into the linked ledger bank account; lines already there count as <code>skipped</code>. An import template set on the account is applied as in <code>bank/statements/import</code>. Answers 409 when the connection is not active or has no session, and when the bank returns more than 20 pages for the range (keep <code>dateFrom</code> and set an earlier <code>dateTo</code>). A provider failure is written to the <code>error</code> of the connection, and one that is not retryable sets its status to error. The outcome is announced as <code>bank_feed.synced</code>, and invoices the template issues as <code>sale_invoice.issued</code>.
+                                                                                                     */
                                                                                                     public CompletableFuture<NordletApiHttpResponse<FeedsSyncBankResponse>> feedsSync(
                                                                                                         FeedsSyncBankRequest request) {
                                                                                                       return feedsSync(request,null);
                                                                                                     }
 
+                                                                                                    /**
+                                                                                                     * Fetches the transactions of every linked bank-feed account of the connection, or of <code>feedAccountId</code> alone, from <code>dateFrom</code> (default: seven days before the last sync, else the <code>syncFrom</code> of the account, else 90 days back) to <code>dateTo</code>, and inserts the new ones into the linked ledger bank account; lines already there count as <code>skipped</code>. An import template set on the account is applied as in <code>bank/statements/import</code>. Answers 409 when the connection is not active or has no session, and when the bank returns more than 20 pages for the range (keep <code>dateFrom</code> and set an earlier <code>dateTo</code>). A provider failure is written to the <code>error</code> of the connection, and one that is not retryable sets its status to error. The outcome is announced as <code>bank_feed.synced</code>, and invoices the template issues as <code>sale_invoice.issued</code>.
+                                                                                                     */
                                                                                                     public CompletableFuture<NordletApiHttpResponse<FeedsSyncBankResponse>> feedsSync(
                                                                                                         FeedsSyncBankRequest request,
                                                                                                         RequestOptions requestOptions) {

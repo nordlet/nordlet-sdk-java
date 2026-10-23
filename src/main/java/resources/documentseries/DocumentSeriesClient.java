@@ -34,54 +34,90 @@ public class DocumentSeriesClient {
     return this.rawClient;
   }
 
+  /**
+   * Create a numbering series for sale invoices, credit notes, proformas or advance invoices (<code>documentType</code>). Numbers run from <code>nextNumber</code>, padded to <code>numberLength</code> digits, and are written as <code>prefix</code>-number or, with <code>printSeries</code> false, as the bare number; a series may be bound to an operation type (a default series of an operation type is picked for its documents that name no series) and to a warehouse, which <code>sales/invoices/issue</code> takes the goods from. <code>isDefault</code> makes it the default of its document type and clears the previous one. Answers 422 when only one end of the allocated range <code>allocatedFrom</code>..<code>allocatedTo</code> is given or the range is reversed, 409 when the prefix exists for the document type.
+   */
   public CreateDocumentSeriesResponse create(CreateDocumentSeriesRequest request) {
     return this.rawClient.create(request).body();
   }
 
+  /**
+   * Create a numbering series for sale invoices, credit notes, proformas or advance invoices (<code>documentType</code>). Numbers run from <code>nextNumber</code>, padded to <code>numberLength</code> digits, and are written as <code>prefix</code>-number or, with <code>printSeries</code> false, as the bare number; a series may be bound to an operation type (a default series of an operation type is picked for its documents that name no series) and to a warehouse, which <code>sales/invoices/issue</code> takes the goods from. <code>isDefault</code> makes it the default of its document type and clears the previous one. Answers 422 when only one end of the allocated range <code>allocatedFrom</code>..<code>allocatedTo</code> is given or the range is reversed, 409 when the prefix exists for the document type.
+   */
   public CreateDocumentSeriesResponse create(CreateDocumentSeriesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.create(request, requestOptions).body();
   }
 
+  /**
+   * Change a document series; fields left out keep their value. <code>nextNumber</code> cannot go below its current value (409); <code>isDefault</code> clears the previous default of the document type. Answers 422 for an incomplete or reversed allocated range, 409 when the prefix is taken for the document type.
+   */
   public UpdateDocumentSeriesResponse update(UpdateDocumentSeriesRequest request) {
     return this.rawClient.update(request).body();
   }
 
+  /**
+   * Change a document series; fields left out keep their value. <code>nextNumber</code> cannot go below its current value (409); <code>isDefault</code> clears the previous default of the document type. Answers 422 for an incomplete or reversed allocated range, 409 when the prefix is taken for the document type.
+   */
   public UpdateDocumentSeriesResponse update(UpdateDocumentSeriesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.update(request, requestOptions).body();
   }
 
+  /**
+   * Return one document series.
+   */
   public GetDocumentSeriesResponse get(GetDocumentSeriesRequest request) {
     return this.rawClient.get(request).body();
   }
 
+  /**
+   * Return one document series.
+   */
   public GetDocumentSeriesResponse get(GetDocumentSeriesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.get(request, requestOptions).body();
   }
 
+  /**
+   * Delete a document series no sale document uses. Answers 409 when invoices reference it; deactivate it with <code>isActive</code> instead.
+   */
   public DeleteDocumentSeriesResponse delete(DeleteDocumentSeriesRequest request) {
     return this.rawClient.delete(request).body();
   }
 
+  /**
+   * Delete a document series no sale document uses. Answers 409 when invoices reference it; deactivate it with <code>isActive</code> instead.
+   */
   public DeleteDocumentSeriesResponse delete(DeleteDocumentSeriesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.delete(request, requestOptions).body();
   }
 
+  /**
+   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+   */
   public ListDocumentSeriesResponse list() {
     return this.rawClient.list().body();
   }
 
+  /**
+   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+   */
   public ListDocumentSeriesResponse list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).body();
   }
 
+  /**
+   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+   */
   public ListDocumentSeriesResponse list(ListDocumentSeriesRequest request) {
     return this.rawClient.list(request).body();
   }
 
+  /**
+   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+   */
   public ListDocumentSeriesResponse list(ListDocumentSeriesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.list(request, requestOptions).body();

@@ -62,20 +62,32 @@ public class RawCaptureClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
+   */
   public NordletApiHttpResponse<SettingsGetCaptureResponse> settingsGet() {
     return settingsGet(SettingsGetCaptureRequest.builder().build());
   }
 
+  /**
+   * Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
+   */
   public NordletApiHttpResponse<SettingsGetCaptureResponse> settingsGet(
       RequestOptions requestOptions) {
     return settingsGet(SettingsGetCaptureRequest.builder().build(),requestOptions);
   }
 
+  /**
+   * Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
+   */
   public NordletApiHttpResponse<SettingsGetCaptureResponse> settingsGet(
       SettingsGetCaptureRequest request) {
     return settingsGet(request,null);
   }
 
+  /**
+   * Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
+   */
   public NordletApiHttpResponse<SettingsGetCaptureResponse> settingsGet(
       SettingsGetCaptureRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -140,20 +152,32 @@ public class RawCaptureClient {
       }
     }
 
+    /**
+     * Switch <code>intakeEnabled</code> (documents sent to the intake address are accepted) and <code>captureAutoExtract</code> (they are read on arrival) on or off; at least one field is required.
+     */
     public NordletApiHttpResponse<SettingsUpdateCaptureResponse> settingsUpdate() {
       return settingsUpdate(SettingsUpdateCaptureRequest.builder().build());
     }
 
+    /**
+     * Switch <code>intakeEnabled</code> (documents sent to the intake address are accepted) and <code>captureAutoExtract</code> (they are read on arrival) on or off; at least one field is required.
+     */
     public NordletApiHttpResponse<SettingsUpdateCaptureResponse> settingsUpdate(
         RequestOptions requestOptions) {
       return settingsUpdate(SettingsUpdateCaptureRequest.builder().build(),requestOptions);
     }
 
+    /**
+     * Switch <code>intakeEnabled</code> (documents sent to the intake address are accepted) and <code>captureAutoExtract</code> (they are read on arrival) on or off; at least one field is required.
+     */
     public NordletApiHttpResponse<SettingsUpdateCaptureResponse> settingsUpdate(
         SettingsUpdateCaptureRequest request) {
       return settingsUpdate(request,null);
     }
 
+    /**
+     * Switch <code>intakeEnabled</code> (documents sent to the intake address are accepted) and <code>captureAutoExtract</code> (they are read on arrival) on or off; at least one field is required.
+     */
     public NordletApiHttpResponse<SettingsUpdateCaptureResponse> settingsUpdate(
         SettingsUpdateCaptureRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -218,21 +242,33 @@ public class RawCaptureClient {
         }
       }
 
+      /**
+       * Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
+       */
       public NordletApiHttpResponse<SettingsRegenerateIntakeCaptureResponse> settingsRegenerateIntake(
           ) {
         return settingsRegenerateIntake(SettingsRegenerateIntakeCaptureRequest.builder().build());
       }
 
+      /**
+       * Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
+       */
       public NordletApiHttpResponse<SettingsRegenerateIntakeCaptureResponse> settingsRegenerateIntake(
           RequestOptions requestOptions) {
         return settingsRegenerateIntake(SettingsRegenerateIntakeCaptureRequest.builder().build(),requestOptions);
       }
 
+      /**
+       * Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
+       */
       public NordletApiHttpResponse<SettingsRegenerateIntakeCaptureResponse> settingsRegenerateIntake(
           SettingsRegenerateIntakeCaptureRequest request) {
         return settingsRegenerateIntake(request,null);
       }
 
+      /**
+       * Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
+       */
       public NordletApiHttpResponse<SettingsRegenerateIntakeCaptureResponse> settingsRegenerateIntake(
           SettingsRegenerateIntakeCaptureRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -297,20 +333,32 @@ public class RawCaptureClient {
           }
         }
 
+        /**
+         * Endpoint for the inbound e-mail provider (Postmark field names or the generic <code>to</code>, <code>from</code>, <code>subject</code> and <code>attachments</code> form). It needs the <code>x-inbound-secret</code> header and finds the company by the <code>intake+&lt;token&gt;@</code> recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a <code>pending</code> capture (<code>accepted</code>), anything else is <code>skipped</code>; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
+         */
         public NordletApiHttpResponse<InboundEmailCaptureResponse> inboundEmail() {
           return inboundEmail(InboundEmailCaptureRequest.builder().build());
         }
 
+        /**
+         * Endpoint for the inbound e-mail provider (Postmark field names or the generic <code>to</code>, <code>from</code>, <code>subject</code> and <code>attachments</code> form). It needs the <code>x-inbound-secret</code> header and finds the company by the <code>intake+&lt;token&gt;@</code> recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a <code>pending</code> capture (<code>accepted</code>), anything else is <code>skipped</code>; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
+         */
         public NordletApiHttpResponse<InboundEmailCaptureResponse> inboundEmail(
             RequestOptions requestOptions) {
           return inboundEmail(InboundEmailCaptureRequest.builder().build(),requestOptions);
         }
 
+        /**
+         * Endpoint for the inbound e-mail provider (Postmark field names or the generic <code>to</code>, <code>from</code>, <code>subject</code> and <code>attachments</code> form). It needs the <code>x-inbound-secret</code> header and finds the company by the <code>intake+&lt;token&gt;@</code> recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a <code>pending</code> capture (<code>accepted</code>), anything else is <code>skipped</code>; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
+         */
         public NordletApiHttpResponse<InboundEmailCaptureResponse> inboundEmail(
             InboundEmailCaptureRequest request) {
           return inboundEmail(request,null);
         }
 
+        /**
+         * Endpoint for the inbound e-mail provider (Postmark field names or the generic <code>to</code>, <code>from</code>, <code>subject</code> and <code>attachments</code> form). It needs the <code>x-inbound-secret</code> header and finds the company by the <code>intake+&lt;token&gt;@</code> recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a <code>pending</code> capture (<code>accepted</code>), anything else is <code>skipped</code>; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
+         */
         public NordletApiHttpResponse<InboundEmailCaptureResponse> inboundEmail(
             InboundEmailCaptureRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -375,11 +423,17 @@ public class RawCaptureClient {
             }
           }
 
+          /**
+           * Upload a supplier document (PDF, image, Word or PowerPoint, up to 10 MB; 422 for any other type) as a capture and read it at once. The result holds the extracted supplier, dates, totals and lines, the partner matched by VAT code, then partner code, then name, the raw text, and <code>status</code> <code>extracted</code> or <code>failed</code> with <code>error</code>. Needs a configured reading provider, is refused with 402 for a company on trial until its first top-up, and counts every page read as <code>ocr_page</code> usage. The draft is reviewed and saved with <code>capture/documents/confirm</code>.
+           */
           public NordletApiHttpResponse<DocumentsUploadCaptureResponse> documentsUpload(
               DocumentsUploadCaptureRequest request) {
             return documentsUpload(request,null);
           }
 
+          /**
+           * Upload a supplier document (PDF, image, Word or PowerPoint, up to 10 MB; 422 for any other type) as a capture and read it at once. The result holds the extracted supplier, dates, totals and lines, the partner matched by VAT code, then partner code, then name, the raw text, and <code>status</code> <code>extracted</code> or <code>failed</code> with <code>error</code>. Needs a configured reading provider, is refused with 402 for a company on trial until its first top-up, and counts every page read as <code>ocr_page</code> usage. The draft is reviewed and saved with <code>capture/documents/confirm</code>.
+           */
           public NordletApiHttpResponse<DocumentsUploadCaptureResponse> documentsUpload(
               DocumentsUploadCaptureRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -444,11 +498,17 @@ public class RawCaptureClient {
               }
             }
 
+            /**
+             * Read a stored capture again and replace its draft (supplier, totals, lines, matched partner). A capture received over Peppol is parsed from its document again without a reading provider; any other needs the provider and, for a company on trial, the first top-up (402). Refused with 409 once the capture is linked to a purchase invoice.
+             */
             public NordletApiHttpResponse<DocumentsExtractCaptureResponse> documentsExtract(
                 DocumentsExtractCaptureRequest request) {
               return documentsExtract(request,null);
             }
 
+            /**
+             * Read a stored capture again and replace its draft (supplier, totals, lines, matched partner). A capture received over Peppol is parsed from its document again without a reading provider; any other needs the provider and, for a company on trial, the first top-up (402). Refused with 409 once the capture is linked to a purchase invoice.
+             */
             public NordletApiHttpResponse<DocumentsExtractCaptureResponse> documentsExtract(
                 DocumentsExtractCaptureRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -513,11 +573,17 @@ public class RawCaptureClient {
                 }
               }
 
+              /**
+               * Return one capture with its extraction and raw text.
+               */
               public NordletApiHttpResponse<DocumentsGetCaptureResponse> documentsGet(
                   DocumentsGetCaptureRequest request) {
                 return documentsGet(request,null);
               }
 
+              /**
+               * Return one capture with its extraction and raw text.
+               */
               public NordletApiHttpResponse<DocumentsGetCaptureResponse> documentsGet(
                   DocumentsGetCaptureRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -582,20 +648,32 @@ public class RawCaptureClient {
                   }
                 }
 
+                /**
+                 * List captures without raw text. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
+                 */
                 public NordletApiHttpResponse<DocumentsListCaptureResponse> documentsList() {
                   return documentsList(DocumentsListCaptureRequest.builder().build());
                 }
 
+                /**
+                 * List captures without raw text. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
+                 */
                 public NordletApiHttpResponse<DocumentsListCaptureResponse> documentsList(
                     RequestOptions requestOptions) {
                   return documentsList(DocumentsListCaptureRequest.builder().build(),requestOptions);
                 }
 
+                /**
+                 * List captures without raw text. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
+                 */
                 public NordletApiHttpResponse<DocumentsListCaptureResponse> documentsList(
                     DocumentsListCaptureRequest request) {
                   return documentsList(request,null);
                 }
 
+                /**
+                 * List captures without raw text. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
+                 */
                 public NordletApiHttpResponse<DocumentsListCaptureResponse> documentsList(
                     DocumentsListCaptureRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -660,11 +738,17 @@ public class RawCaptureClient {
                     }
                   }
 
+                  /**
+                   * Delete a capture and its stored file (409 once it is linked to a purchase invoice).
+                   */
                   public NordletApiHttpResponse<DocumentsDeleteCaptureResponse> documentsDelete(
                       DocumentsDeleteCaptureRequest request) {
                     return documentsDelete(request,null);
                   }
 
+                  /**
+                   * Delete a capture and its stored file (409 once it is linked to a purchase invoice).
+                   */
                   public NordletApiHttpResponse<DocumentsDeleteCaptureResponse> documentsDelete(
                       DocumentsDeleteCaptureRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

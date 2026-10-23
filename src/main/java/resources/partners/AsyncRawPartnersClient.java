@@ -125,11 +125,17 @@ public class AsyncRawPartnersClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Adds an address of type billing, shipping, registered or other to the partner in <code>partnerId</code>.
+   */
   public CompletableFuture<NordletApiHttpResponse<AddressesCreatePartnersResponse>> addressesCreate(
       AddressesCreatePartnersRequest request) {
     return addressesCreate(request,null);
   }
 
+  /**
+   * Adds an address of type billing, shipping, registered or other to the partner in <code>partnerId</code>.
+   */
   public CompletableFuture<NordletApiHttpResponse<AddressesCreatePartnersResponse>> addressesCreate(
       AddressesCreatePartnersRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -217,11 +223,17 @@ public class AsyncRawPartnersClient {
       return future;
     }
 
+    /**
+     * Changes the given fields of a partner address.
+     */
     public CompletableFuture<NordletApiHttpResponse<AddressesUpdatePartnersResponse>> addressesUpdate(
         AddressesUpdatePartnersRequest request) {
       return addressesUpdate(request,null);
     }
 
+    /**
+     * Changes the given fields of a partner address.
+     */
     public CompletableFuture<NordletApiHttpResponse<AddressesUpdatePartnersResponse>> addressesUpdate(
         AddressesUpdatePartnersRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -309,11 +321,17 @@ public class AsyncRawPartnersClient {
         return future;
       }
 
+      /**
+       * Deletes a partner address.
+       */
       public CompletableFuture<NordletApiHttpResponse<AddressesDeletePartnersResponse>> addressesDelete(
           AddressesDeletePartnersRequest request) {
         return addressesDelete(request,null);
       }
 
+      /**
+       * Deletes a partner address.
+       */
       public CompletableFuture<NordletApiHttpResponse<AddressesDeletePartnersResponse>> addressesDelete(
           AddressesDeletePartnersRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -401,21 +419,33 @@ public class AsyncRawPartnersClient {
           return future;
         }
 
+        /**
+         * Lists partner addresses; filterable by <code>partnerId</code>, <code>type</code> and <code>city</code>, sortable by <code>createdAt</code>.
+         */
         public CompletableFuture<NordletApiHttpResponse<AddressesListPartnersResponse>> addressesList(
             ) {
           return addressesList(AddressesListPartnersRequest.builder().build());
         }
 
+        /**
+         * Lists partner addresses; filterable by <code>partnerId</code>, <code>type</code> and <code>city</code>, sortable by <code>createdAt</code>.
+         */
         public CompletableFuture<NordletApiHttpResponse<AddressesListPartnersResponse>> addressesList(
             RequestOptions requestOptions) {
           return addressesList(AddressesListPartnersRequest.builder().build(),requestOptions);
         }
 
+        /**
+         * Lists partner addresses; filterable by <code>partnerId</code>, <code>type</code> and <code>city</code>, sortable by <code>createdAt</code>.
+         */
         public CompletableFuture<NordletApiHttpResponse<AddressesListPartnersResponse>> addressesList(
             AddressesListPartnersRequest request) {
           return addressesList(request,null);
         }
 
+        /**
+         * Lists partner addresses; filterable by <code>partnerId</code>, <code>type</code> and <code>city</code>, sortable by <code>createdAt</code>.
+         */
         public CompletableFuture<NordletApiHttpResponse<AddressesListPartnersResponse>> addressesList(
             AddressesListPartnersRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -503,11 +533,17 @@ public class AsyncRawPartnersClient {
             return future;
           }
 
+          /**
+           * Adds a contact person to the partner in <code>partnerId</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<ContactsCreatePartnersResponse>> contactsCreate(
               ContactsCreatePartnersRequest request) {
             return contactsCreate(request,null);
           }
 
+          /**
+           * Adds a contact person to the partner in <code>partnerId</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<ContactsCreatePartnersResponse>> contactsCreate(
               ContactsCreatePartnersRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -595,11 +631,17 @@ public class AsyncRawPartnersClient {
               return future;
             }
 
+            /**
+             * Changes the given fields of a partner contact.
+             */
             public CompletableFuture<NordletApiHttpResponse<ContactsUpdatePartnersResponse>> contactsUpdate(
                 ContactsUpdatePartnersRequest request) {
               return contactsUpdate(request,null);
             }
 
+            /**
+             * Changes the given fields of a partner contact.
+             */
             public CompletableFuture<NordletApiHttpResponse<ContactsUpdatePartnersResponse>> contactsUpdate(
                 ContactsUpdatePartnersRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -687,11 +729,17 @@ public class AsyncRawPartnersClient {
                 return future;
               }
 
+              /**
+               * Deletes a partner contact.
+               */
               public CompletableFuture<NordletApiHttpResponse<ContactsDeletePartnersResponse>> contactsDelete(
                   ContactsDeletePartnersRequest request) {
                 return contactsDelete(request,null);
               }
 
+              /**
+               * Deletes a partner contact.
+               */
               public CompletableFuture<NordletApiHttpResponse<ContactsDeletePartnersResponse>> contactsDelete(
                   ContactsDeletePartnersRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -779,21 +827,33 @@ public class AsyncRawPartnersClient {
                   return future;
                 }
 
+                /**
+                 * Lists partner contacts; filterable by <code>partnerId</code>, <code>name</code> and <code>email</code>, sortable by <code>createdAt</code>.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<ContactsListPartnersResponse>> contactsList(
                     ) {
                   return contactsList(ContactsListPartnersRequest.builder().build());
                 }
 
+                /**
+                 * Lists partner contacts; filterable by <code>partnerId</code>, <code>name</code> and <code>email</code>, sortable by <code>createdAt</code>.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<ContactsListPartnersResponse>> contactsList(
                     RequestOptions requestOptions) {
                   return contactsList(ContactsListPartnersRequest.builder().build(),requestOptions);
                 }
 
+                /**
+                 * Lists partner contacts; filterable by <code>partnerId</code>, <code>name</code> and <code>email</code>, sortable by <code>createdAt</code>.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<ContactsListPartnersResponse>> contactsList(
                     ContactsListPartnersRequest request) {
                   return contactsList(request,null);
                 }
 
+                /**
+                 * Lists partner contacts; filterable by <code>partnerId</code>, <code>name</code> and <code>email</code>, sortable by <code>createdAt</code>.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<ContactsListPartnersResponse>> contactsList(
                     ContactsListPartnersRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -881,11 +941,17 @@ public class AsyncRawPartnersClient {
                     return future;
                   }
 
+                  /**
+                   * Adds a bank account to the partner in <code>partnerId</code>. The IBAN is stored without spaces in upper case; an IBAN the partner already has is refused with 409. With <code>isDefault</code> true the partner's other accounts lose their default mark.
+                   */
                   public CompletableFuture<NordletApiHttpResponse<BankAccountsCreatePartnersResponse>> bankAccountsCreate(
                       BankAccountsCreatePartnersRequest request) {
                     return bankAccountsCreate(request,null);
                   }
 
+                  /**
+                   * Adds a bank account to the partner in <code>partnerId</code>. The IBAN is stored without spaces in upper case; an IBAN the partner already has is refused with 409. With <code>isDefault</code> true the partner's other accounts lose their default mark.
+                   */
                   public CompletableFuture<NordletApiHttpResponse<BankAccountsCreatePartnersResponse>> bankAccountsCreate(
                       BankAccountsCreatePartnersRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -973,11 +1039,17 @@ public class AsyncRawPartnersClient {
                       return future;
                     }
 
+                    /**
+                     * Changes the given fields of a partner bank account. A new IBAN is stored without spaces in upper case and is refused with 409 when the partner already has it; when the account is the default after the change, the partner's other accounts lose their default mark.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<BankAccountsUpdatePartnersResponse>> bankAccountsUpdate(
                         BankAccountsUpdatePartnersRequest request) {
                       return bankAccountsUpdate(request,null);
                     }
 
+                    /**
+                     * Changes the given fields of a partner bank account. A new IBAN is stored without spaces in upper case and is refused with 409 when the partner already has it; when the account is the default after the change, the partner's other accounts lose their default mark.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<BankAccountsUpdatePartnersResponse>> bankAccountsUpdate(
                         BankAccountsUpdatePartnersRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1065,11 +1137,17 @@ public class AsyncRawPartnersClient {
                         return future;
                       }
 
+                      /**
+                       * Deletes a partner bank account.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<BankAccountsDeletePartnersResponse>> bankAccountsDelete(
                           BankAccountsDeletePartnersRequest request) {
                         return bankAccountsDelete(request,null);
                       }
 
+                      /**
+                       * Deletes a partner bank account.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<BankAccountsDeletePartnersResponse>> bankAccountsDelete(
                           BankAccountsDeletePartnersRequest request,
                           RequestOptions requestOptions) {
@@ -1158,21 +1236,33 @@ public class AsyncRawPartnersClient {
                           return future;
                         }
 
+                        /**
+                         * Lists partner bank accounts; filterable by <code>partnerId</code> and <code>iban</code>, sortable by <code>createdAt</code>.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<BankAccountsListPartnersResponse>> bankAccountsList(
                             ) {
                           return bankAccountsList(BankAccountsListPartnersRequest.builder().build());
                         }
 
+                        /**
+                         * Lists partner bank accounts; filterable by <code>partnerId</code> and <code>iban</code>, sortable by <code>createdAt</code>.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<BankAccountsListPartnersResponse>> bankAccountsList(
                             RequestOptions requestOptions) {
                           return bankAccountsList(BankAccountsListPartnersRequest.builder().build(),requestOptions);
                         }
 
+                        /**
+                         * Lists partner bank accounts; filterable by <code>partnerId</code> and <code>iban</code>, sortable by <code>createdAt</code>.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<BankAccountsListPartnersResponse>> bankAccountsList(
                             BankAccountsListPartnersRequest request) {
                           return bankAccountsList(request,null);
                         }
 
+                        /**
+                         * Lists partner bank accounts; filterable by <code>partnerId</code> and <code>iban</code>, sortable by <code>createdAt</code>.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<BankAccountsListPartnersResponse>> bankAccountsList(
                             BankAccountsListPartnersRequest request,
                             RequestOptions requestOptions) {
@@ -1261,11 +1351,17 @@ public class AsyncRawPartnersClient {
                             return future;
                           }
 
+                          /**
+                           * Lists the files attached to a partner, newest first. <code>partners/create</code> attaches one with <code>documentRef</code>, and <code>leads/convert</code> moves the lead's files here.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<FilesListPartnersResponse>> filesList(
                               FilesListPartnersRequest request) {
                             return filesList(request,null);
                           }
 
+                          /**
+                           * Lists the files attached to a partner, newest first. <code>partners/create</code> attaches one with <code>documentRef</code>, and <code>leads/convert</code> moves the lead's files here.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<FilesListPartnersResponse>> filesList(
                               FilesListPartnersRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1353,21 +1449,33 @@ public class AsyncRawPartnersClient {
                               return future;
                             }
 
+                            /**
+                             * Runs the selection of the daily debt-reminder job for this company as of the company's current date and returns what it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no reminder in the last 7 days and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<DebtRemindersPreviewPartnersResponse>> debtRemindersPreview(
                                 ) {
                               return debtRemindersPreview(DebtRemindersPreviewPartnersRequest.builder().build());
                             }
 
+                            /**
+                             * Runs the selection of the daily debt-reminder job for this company as of the company's current date and returns what it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no reminder in the last 7 days and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<DebtRemindersPreviewPartnersResponse>> debtRemindersPreview(
                                 RequestOptions requestOptions) {
                               return debtRemindersPreview(DebtRemindersPreviewPartnersRequest.builder().build(),requestOptions);
                             }
 
+                            /**
+                             * Runs the selection of the daily debt-reminder job for this company as of the company's current date and returns what it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no reminder in the last 7 days and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<DebtRemindersPreviewPartnersResponse>> debtRemindersPreview(
                                 DebtRemindersPreviewPartnersRequest request) {
                               return debtRemindersPreview(request,null);
                             }
 
+                            /**
+                             * Runs the selection of the daily debt-reminder job for this company as of the company's current date and returns what it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no reminder in the last 7 days and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<DebtRemindersPreviewPartnersResponse>> debtRemindersPreview(
                                 DebtRemindersPreviewPartnersRequest request,
                                 RequestOptions requestOptions) {
@@ -1456,21 +1564,33 @@ public class AsyncRawPartnersClient {
                                 return future;
                               }
 
+                              /**
+                               * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered; filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<DebtRemindersListPartnersResponse>> debtRemindersList(
                                   ) {
                                 return debtRemindersList(DebtRemindersListPartnersRequest.builder().build());
                               }
 
+                              /**
+                               * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered; filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<DebtRemindersListPartnersResponse>> debtRemindersList(
                                   RequestOptions requestOptions) {
                                 return debtRemindersList(DebtRemindersListPartnersRequest.builder().build(),requestOptions);
                               }
 
+                              /**
+                               * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered; filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<DebtRemindersListPartnersResponse>> debtRemindersList(
                                   DebtRemindersListPartnersRequest request) {
                                 return debtRemindersList(request,null);
                               }
 
+                              /**
+                               * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered; filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<DebtRemindersListPartnersResponse>> debtRemindersList(
                                   DebtRemindersListPartnersRequest request,
                                   RequestOptions requestOptions) {
@@ -1559,21 +1679,33 @@ public class AsyncRawPartnersClient {
                                   return future;
                                 }
 
+                                /**
+                                 * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<ValidateVatPartnersResponse>> validateVat(
                                     ) {
                                   return validateVat(ValidateVatPartnersRequest.builder().build());
                                 }
 
+                                /**
+                                 * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<ValidateVatPartnersResponse>> validateVat(
                                     RequestOptions requestOptions) {
                                   return validateVat(ValidateVatPartnersRequest.builder().build(),requestOptions);
                                 }
 
+                                /**
+                                 * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<ValidateVatPartnersResponse>> validateVat(
                                     ValidateVatPartnersRequest request) {
                                   return validateVat(request,null);
                                 }
 
+                                /**
+                                 * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<ValidateVatPartnersResponse>> validateVat(
                                     ValidateVatPartnersRequest request,
                                     RequestOptions requestOptions) {
@@ -1662,21 +1794,33 @@ public class AsyncRawPartnersClient {
                                     return future;
                                   }
 
+                                  /**
+                                   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<VatReviewsListPartnersResponse>> vatReviewsList(
                                       ) {
                                     return vatReviewsList(VatReviewsListPartnersRequest.builder().build());
                                   }
 
+                                  /**
+                                   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<VatReviewsListPartnersResponse>> vatReviewsList(
                                       RequestOptions requestOptions) {
                                     return vatReviewsList(VatReviewsListPartnersRequest.builder().build(),requestOptions);
                                   }
 
+                                  /**
+                                   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<VatReviewsListPartnersResponse>> vatReviewsList(
                                       VatReviewsListPartnersRequest request) {
                                     return vatReviewsList(request,null);
                                   }
 
+                                  /**
+                                   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<VatReviewsListPartnersResponse>> vatReviewsList(
                                       VatReviewsListPartnersRequest request,
                                       RequestOptions requestOptions) {
@@ -1765,11 +1909,17 @@ public class AsyncRawPartnersClient {
                                       return future;
                                     }
 
+                                    /**
+                                     * Closes an open VAT review as <code>confirmed_valid</code>, <code>confirmed_invalid</code> or <code>dismissed</code>, with an optional note. The first two also set the partner's <code>vatValid</code> and stamp <code>vatValidatedAt</code> when the partner still carries the reviewed VAT code; <code>dismissed</code> leaves the partner unchanged. A review that is already resolved answers 409; emits <code>vat_review.resolved</code>.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<VatReviewsResolvePartnersResponse>> vatReviewsResolve(
                                         VatReviewsResolvePartnersRequest request) {
                                       return vatReviewsResolve(request,null);
                                     }
 
+                                    /**
+                                     * Closes an open VAT review as <code>confirmed_valid</code>, <code>confirmed_invalid</code> or <code>dismissed</code>, with an optional note. The first two also set the partner's <code>vatValid</code> and stamp <code>vatValidatedAt</code> when the partner still carries the reviewed VAT code; <code>dismissed</code> leaves the partner unchanged. A review that is already resolved answers 409; emits <code>vat_review.resolved</code>.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<VatReviewsResolvePartnersResponse>> vatReviewsResolve(
                                         VatReviewsResolvePartnersRequest request,
                                         RequestOptions requestOptions) {
@@ -1858,11 +2008,17 @@ public class AsyncRawPartnersClient {
                                         return future;
                                       }
 
+                                      /**
+                                       * Creates a partner. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that is not an EU VAT number is stored unchecked (see <code>partners/validate-vat</code>).
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<CreatePartnersResponse>> create(
                                           CreatePartnersRequest request) {
                                         return create(request,null);
                                       }
 
+                                      /**
+                                       * Creates a partner. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that is not an EU VAT number is stored unchecked (see <code>partners/validate-vat</code>).
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<CreatePartnersResponse>> create(
                                           CreatePartnersRequest request,
                                           RequestOptions requestOptions) {
@@ -1951,11 +2107,17 @@ public class AsyncRawPartnersClient {
                                           return future;
                                         }
 
+                                        /**
+                                         * Returns the live partner matched by <code>code</code>, then <code>vatCode</code>, then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. A creation that loses a race on the partner code returns the partner the other call created.
+                                         */
                                         public CompletableFuture<NordletApiHttpResponse<FindOrCreatePartnersResponse>> findOrCreate(
                                             FindOrCreatePartnersRequest request) {
                                           return findOrCreate(request,null);
                                         }
 
+                                        /**
+                                         * Returns the live partner matched by <code>code</code>, then <code>vatCode</code>, then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. A creation that loses a race on the partner code returns the partner the other call created.
+                                         */
                                         public CompletableFuture<NordletApiHttpResponse<FindOrCreatePartnersResponse>> findOrCreate(
                                             FindOrCreatePartnersRequest request,
                                             RequestOptions requestOptions) {
@@ -2044,11 +2206,17 @@ public class AsyncRawPartnersClient {
                                             return future;
                                           }
 
+                                          /**
+                                           * Returns one partner; a deleted partner answers 404.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<GetPartnersResponse>> get(
                                               GetPartnersRequest request) {
                                             return get(request,null);
                                           }
 
+                                          /**
+                                           * Returns one partner; a deleted partner answers 404.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<GetPartnersResponse>> get(
                                               GetPartnersRequest request,
                                               RequestOptions requestOptions) {
@@ -2137,11 +2305,17 @@ public class AsyncRawPartnersClient {
                                               return future;
                                             }
 
+                                            /**
+                                             * Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<UpdatePartnersResponse>> update(
                                                 UpdatePartnersRequest request) {
                                               return update(request,null);
                                             }
 
+                                            /**
+                                             * Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<UpdatePartnersResponse>> update(
                                                 UpdatePartnersRequest request,
                                                 RequestOptions requestOptions) {
@@ -2230,11 +2404,17 @@ public class AsyncRawPartnersClient {
                                                 return future;
                                               }
 
+                                              /**
+                                               * Marks a partner as deleted; it no longer appears in lists or lookups.
+                                               */
                                               public CompletableFuture<NordletApiHttpResponse<DeletePartnersResponse>> delete(
                                                   DeletePartnersRequest request) {
                                                 return delete(request,null);
                                               }
 
+                                              /**
+                                               * Marks a partner as deleted; it no longer appears in lists or lookups.
+                                               */
                                               public CompletableFuture<NordletApiHttpResponse<DeletePartnersResponse>> delete(
                                                   DeletePartnersRequest request,
                                                   RequestOptions requestOptions) {
@@ -2323,11 +2503,17 @@ public class AsyncRawPartnersClient {
                                                   return future;
                                                 }
 
+                                                /**
+                                                 * Moves every row that references the duplicate <code>sourceId</code> through a foreign key to partners (looked up in the database catalogue, within the company) to <code>targetId</code>, then marks the source partner as deleted; <code>moved</code> lists the tables, columns and row counts. Merging a partner into itself is 422, and when both partners hold the same unique entry (for example the same IBAN or item supplier row) the merge is refused with 409 until it is removed from one of them. When the kept partner has an open VAT review, the duplicate's open review is resolved as <code>superseded</code> (<code>vat_review.resolved</code>).
+                                                 */
                                                 public CompletableFuture<NordletApiHttpResponse<MergePartnersResponse>> merge(
                                                     MergePartnersRequest request) {
                                                   return merge(request,null);
                                                 }
 
+                                                /**
+                                                 * Moves every row that references the duplicate <code>sourceId</code> through a foreign key to partners (looked up in the database catalogue, within the company) to <code>targetId</code>, then marks the source partner as deleted; <code>moved</code> lists the tables, columns and row counts. Merging a partner into itself is 422, and when both partners hold the same unique entry (for example the same IBAN or item supplier row) the merge is refused with 409 until it is removed from one of them. When the kept partner has an open VAT review, the duplicate's open review is resolved as <code>superseded</code> (<code>vat_review.resolved</code>).
+                                                 */
                                                 public CompletableFuture<NordletApiHttpResponse<MergePartnersResponse>> merge(
                                                     MergePartnersRequest request,
                                                     RequestOptions requestOptions) {
@@ -2515,21 +2701,33 @@ public class AsyncRawPartnersClient {
                                                       return future;
                                                     }
 
+                                                    /**
+                                                     * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+                                                     */
                                                     public CompletableFuture<NordletApiHttpResponse<ListPartnersResponse>> list(
                                                         ) {
                                                       return list(ListPartnersRequest.builder().build());
                                                     }
 
+                                                    /**
+                                                     * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+                                                     */
                                                     public CompletableFuture<NordletApiHttpResponse<ListPartnersResponse>> list(
                                                         RequestOptions requestOptions) {
                                                       return list(ListPartnersRequest.builder().build(),requestOptions);
                                                     }
 
+                                                    /**
+                                                     * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+                                                     */
                                                     public CompletableFuture<NordletApiHttpResponse<ListPartnersResponse>> list(
                                                         ListPartnersRequest request) {
                                                       return list(request,null);
                                                     }
 
+                                                    /**
+                                                     * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+                                                     */
                                                     public CompletableFuture<NordletApiHttpResponse<ListPartnersResponse>> list(
                                                         ListPartnersRequest request,
                                                         RequestOptions requestOptions) {
@@ -2618,11 +2816,17 @@ public class AsyncRawPartnersClient {
                                                         return future;
                                                       }
 
+                                                      /**
+                                                       * Creates a partner group; a <code>code</code> already used by a group of the company is refused with 409.
+                                                       */
                                                       public CompletableFuture<NordletApiHttpResponse<GroupsCreatePartnersResponse>> groupsCreate(
                                                           GroupsCreatePartnersRequest request) {
                                                         return groupsCreate(request,null);
                                                       }
 
+                                                      /**
+                                                       * Creates a partner group; a <code>code</code> already used by a group of the company is refused with 409.
+                                                       */
                                                       public CompletableFuture<NordletApiHttpResponse<GroupsCreatePartnersResponse>> groupsCreate(
                                                           GroupsCreatePartnersRequest request,
                                                           RequestOptions requestOptions) {
@@ -2711,11 +2915,17 @@ public class AsyncRawPartnersClient {
                                                           return future;
                                                         }
 
+                                                        /**
+                                                         * Changes the code or name of a partner group; a code already used by another group of the company is refused with 409.
+                                                         */
                                                         public CompletableFuture<NordletApiHttpResponse<GroupsUpdatePartnersResponse>> groupsUpdate(
                                                             GroupsUpdatePartnersRequest request) {
                                                           return groupsUpdate(request,null);
                                                         }
 
+                                                        /**
+                                                         * Changes the code or name of a partner group; a code already used by another group of the company is refused with 409.
+                                                         */
                                                         public CompletableFuture<NordletApiHttpResponse<GroupsUpdatePartnersResponse>> groupsUpdate(
                                                             GroupsUpdatePartnersRequest request,
                                                             RequestOptions requestOptions) {
@@ -2804,11 +3014,17 @@ public class AsyncRawPartnersClient {
                                                             return future;
                                                           }
 
+                                                          /**
+                                                           * Deletes a partner group; a group still assigned to a live partner is refused with 409.
+                                                           */
                                                           public CompletableFuture<NordletApiHttpResponse<GroupsDeletePartnersResponse>> groupsDelete(
                                                               GroupsDeletePartnersRequest request) {
                                                             return groupsDelete(request,null);
                                                           }
 
+                                                          /**
+                                                           * Deletes a partner group; a group still assigned to a live partner is refused with 409.
+                                                           */
                                                           public CompletableFuture<NordletApiHttpResponse<GroupsDeletePartnersResponse>> groupsDelete(
                                                               GroupsDeletePartnersRequest request,
                                                               RequestOptions requestOptions) {
@@ -2897,21 +3113,33 @@ public class AsyncRawPartnersClient {
                                                               return future;
                                                             }
 
+                                                            /**
+                                                             * Lists the company's partner groups ordered by code.
+                                                             */
                                                             public CompletableFuture<NordletApiHttpResponse<GroupsListPartnersResponse>> groupsList(
                                                                 ) {
                                                               return groupsList(GroupsListPartnersRequest.builder().build());
                                                             }
 
+                                                            /**
+                                                             * Lists the company's partner groups ordered by code.
+                                                             */
                                                             public CompletableFuture<NordletApiHttpResponse<GroupsListPartnersResponse>> groupsList(
                                                                 RequestOptions requestOptions) {
                                                               return groupsList(GroupsListPartnersRequest.builder().build(),requestOptions);
                                                             }
 
+                                                            /**
+                                                             * Lists the company's partner groups ordered by code.
+                                                             */
                                                             public CompletableFuture<NordletApiHttpResponse<GroupsListPartnersResponse>> groupsList(
                                                                 GroupsListPartnersRequest request) {
                                                               return groupsList(request,null);
                                                             }
 
+                                                            /**
+                                                             * Lists the company's partner groups ordered by code.
+                                                             */
                                                             public CompletableFuture<NordletApiHttpResponse<GroupsListPartnersResponse>> groupsList(
                                                                 GroupsListPartnersRequest request,
                                                                 RequestOptions requestOptions) {
@@ -3000,11 +3228,17 @@ public class AsyncRawPartnersClient {
                                                                 return future;
                                                               }
 
+                                                              /**
+                                                               * Creates a partner status with a <code>sortOrder</code>; a <code>code</code> already used by a status of the company is refused with 409.
+                                                               */
                                                               public CompletableFuture<NordletApiHttpResponse<StatusesCreatePartnersResponse>> statusesCreate(
                                                                   StatusesCreatePartnersRequest request) {
                                                                 return statusesCreate(request,null);
                                                               }
 
+                                                              /**
+                                                               * Creates a partner status with a <code>sortOrder</code>; a <code>code</code> already used by a status of the company is refused with 409.
+                                                               */
                                                               public CompletableFuture<NordletApiHttpResponse<StatusesCreatePartnersResponse>> statusesCreate(
                                                                   StatusesCreatePartnersRequest request,
                                                                   RequestOptions requestOptions) {
@@ -3093,11 +3327,17 @@ public class AsyncRawPartnersClient {
                                                                   return future;
                                                                 }
 
+                                                                /**
+                                                                 * Changes the code, name or sort order of a partner status; a code already used by another status of the company is refused with 409.
+                                                                 */
                                                                 public CompletableFuture<NordletApiHttpResponse<StatusesUpdatePartnersResponse>> statusesUpdate(
                                                                     StatusesUpdatePartnersRequest request) {
                                                                   return statusesUpdate(request,null);
                                                                 }
 
+                                                                /**
+                                                                 * Changes the code, name or sort order of a partner status; a code already used by another status of the company is refused with 409.
+                                                                 */
                                                                 public CompletableFuture<NordletApiHttpResponse<StatusesUpdatePartnersResponse>> statusesUpdate(
                                                                     StatusesUpdatePartnersRequest request,
                                                                     RequestOptions requestOptions) {
@@ -3186,11 +3426,17 @@ public class AsyncRawPartnersClient {
                                                                     return future;
                                                                   }
 
+                                                                  /**
+                                                                   * Deletes a partner status; a status still assigned to a live partner is refused with 409.
+                                                                   */
                                                                   public CompletableFuture<NordletApiHttpResponse<StatusesDeletePartnersResponse>> statusesDelete(
                                                                       StatusesDeletePartnersRequest request) {
                                                                     return statusesDelete(request,null);
                                                                   }
 
+                                                                  /**
+                                                                   * Deletes a partner status; a status still assigned to a live partner is refused with 409.
+                                                                   */
                                                                   public CompletableFuture<NordletApiHttpResponse<StatusesDeletePartnersResponse>> statusesDelete(
                                                                       StatusesDeletePartnersRequest request,
                                                                       RequestOptions requestOptions) {
@@ -3279,21 +3525,33 @@ public class AsyncRawPartnersClient {
                                                                       return future;
                                                                     }
 
+                                                                    /**
+                                                                     * Lists the company's partner statuses ordered by sort order, then code.
+                                                                     */
                                                                     public CompletableFuture<NordletApiHttpResponse<StatusesListPartnersResponse>> statusesList(
                                                                         ) {
                                                                       return statusesList(StatusesListPartnersRequest.builder().build());
                                                                     }
 
+                                                                    /**
+                                                                     * Lists the company's partner statuses ordered by sort order, then code.
+                                                                     */
                                                                     public CompletableFuture<NordletApiHttpResponse<StatusesListPartnersResponse>> statusesList(
                                                                         RequestOptions requestOptions) {
                                                                       return statusesList(StatusesListPartnersRequest.builder().build(),requestOptions);
                                                                     }
 
+                                                                    /**
+                                                                     * Lists the company's partner statuses ordered by sort order, then code.
+                                                                     */
                                                                     public CompletableFuture<NordletApiHttpResponse<StatusesListPartnersResponse>> statusesList(
                                                                         StatusesListPartnersRequest request) {
                                                                       return statusesList(request,null);
                                                                     }
 
+                                                                    /**
+                                                                     * Lists the company's partner statuses ordered by sort order, then code.
+                                                                     */
                                                                     public CompletableFuture<NordletApiHttpResponse<StatusesListPartnersResponse>> statusesList(
                                                                         StatusesListPartnersRequest request,
                                                                         RequestOptions requestOptions) {
@@ -3382,11 +3640,17 @@ public class AsyncRawPartnersClient {
                                                                         return future;
                                                                       }
 
+                                                                      /**
+                                                                       * Records an inquiry in status <code>new</code>, from a partner (<code>partnerId</code>) or from a contact given by <code>contactName</code> or <code>contactEmail</code>; without any of the three it is refused with 422. <code>assignedUserId</code> must be a member of the company. Emits <code>partner_inquiry.created</code>.
+                                                                       */
                                                                       public CompletableFuture<NordletApiHttpResponse<InquiriesCreatePartnersResponse>> inquiriesCreate(
                                                                           InquiriesCreatePartnersRequest request) {
                                                                         return inquiriesCreate(request,null);
                                                                       }
 
+                                                                      /**
+                                                                       * Records an inquiry in status <code>new</code>, from a partner (<code>partnerId</code>) or from a contact given by <code>contactName</code> or <code>contactEmail</code>; without any of the three it is refused with 422. <code>assignedUserId</code> must be a member of the company. Emits <code>partner_inquiry.created</code>.
+                                                                       */
                                                                       public CompletableFuture<NordletApiHttpResponse<InquiriesCreatePartnersResponse>> inquiriesCreate(
                                                                           InquiriesCreatePartnersRequest request,
                                                                           RequestOptions requestOptions) {
@@ -3475,11 +3739,17 @@ public class AsyncRawPartnersClient {
                                                                           return future;
                                                                         }
 
+                                                                        /**
+                                                                         * Changes the given fields of an inquiry; <code>partnerId</code> and <code>assignedUserId</code> accept null. Setting <code>status</code> to <code>closed</code> stamps <code>closedAt</code>, and moving a closed inquiry to another status clears it.
+                                                                         */
                                                                         public CompletableFuture<NordletApiHttpResponse<InquiriesUpdatePartnersResponse>> inquiriesUpdate(
                                                                             InquiriesUpdatePartnersRequest request) {
                                                                           return inquiriesUpdate(request,null);
                                                                         }
 
+                                                                        /**
+                                                                         * Changes the given fields of an inquiry; <code>partnerId</code> and <code>assignedUserId</code> accept null. Setting <code>status</code> to <code>closed</code> stamps <code>closedAt</code>, and moving a closed inquiry to another status clears it.
+                                                                         */
                                                                         public CompletableFuture<NordletApiHttpResponse<InquiriesUpdatePartnersResponse>> inquiriesUpdate(
                                                                             InquiriesUpdatePartnersRequest request,
                                                                             RequestOptions requestOptions) {
@@ -3568,11 +3838,17 @@ public class AsyncRawPartnersClient {
                                                                             return future;
                                                                           }
 
+                                                                          /**
+                                                                           * Returns one inquiry with the name of its partner.
+                                                                           */
                                                                           public CompletableFuture<NordletApiHttpResponse<InquiriesGetPartnersResponse>> inquiriesGet(
                                                                               InquiriesGetPartnersRequest request) {
                                                                             return inquiriesGet(request,null);
                                                                           }
 
+                                                                          /**
+                                                                           * Returns one inquiry with the name of its partner.
+                                                                           */
                                                                           public CompletableFuture<NordletApiHttpResponse<InquiriesGetPartnersResponse>> inquiriesGet(
                                                                               InquiriesGetPartnersRequest request,
                                                                               RequestOptions requestOptions) {
@@ -3661,21 +3937,33 @@ public class AsyncRawPartnersClient {
                                                                               return future;
                                                                             }
 
+                                                                            /**
+                                                                             * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
+                                                                             */
                                                                             public CompletableFuture<NordletApiHttpResponse<InquiriesListPartnersResponse>> inquiriesList(
                                                                                 ) {
                                                                               return inquiriesList(InquiriesListPartnersRequest.builder().build());
                                                                             }
 
+                                                                            /**
+                                                                             * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
+                                                                             */
                                                                             public CompletableFuture<NordletApiHttpResponse<InquiriesListPartnersResponse>> inquiriesList(
                                                                                 RequestOptions requestOptions) {
                                                                               return inquiriesList(InquiriesListPartnersRequest.builder().build(),requestOptions);
                                                                             }
 
+                                                                            /**
+                                                                             * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
+                                                                             */
                                                                             public CompletableFuture<NordletApiHttpResponse<InquiriesListPartnersResponse>> inquiriesList(
                                                                                 InquiriesListPartnersRequest request) {
                                                                               return inquiriesList(request,null);
                                                                             }
 
+                                                                            /**
+                                                                             * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
+                                                                             */
                                                                             public CompletableFuture<NordletApiHttpResponse<InquiriesListPartnersResponse>> inquiriesList(
                                                                                 InquiriesListPartnersRequest request,
                                                                                 RequestOptions requestOptions) {
@@ -3764,11 +4052,17 @@ public class AsyncRawPartnersClient {
                                                                                 return future;
                                                                               }
 
+                                                                              /**
+                                                                               * Compares a partner's open receivables plus an optional <code>additionalAmount</code> with its <code>creditLimit</code>. The open receivables are the unpaid remainder of the partner's issued invoices, advance invoices and credit notes (credit notes negative), converted to the company's base currency at each invoice's <code>fxRate</code>. Without a credit limit <code>available</code> is null and <code>exceeded</code> is false.
+                                                                               */
                                                                               public CompletableFuture<NordletApiHttpResponse<CreditCheckPartnersResponse>> creditCheck(
                                                                                   CreditCheckPartnersRequest request) {
                                                                                 return creditCheck(request,null);
                                                                               }
 
+                                                                              /**
+                                                                               * Compares a partner's open receivables plus an optional <code>additionalAmount</code> with its <code>creditLimit</code>. The open receivables are the unpaid remainder of the partner's issued invoices, advance invoices and credit notes (credit notes negative), converted to the company's base currency at each invoice's <code>fxRate</code>. Without a credit limit <code>available</code> is null and <code>exceeded</code> is false.
+                                                                               */
                                                                               public CompletableFuture<NordletApiHttpResponse<CreditCheckPartnersResponse>> creditCheck(
                                                                                   CreditCheckPartnersRequest request,
                                                                                   RequestOptions requestOptions) {

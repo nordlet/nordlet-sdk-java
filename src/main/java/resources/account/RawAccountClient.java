@@ -118,11 +118,17 @@ public class RawAccountClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with <code>account/login-link/consume</code>. When an unused link was requested for the same address within the last minute, the call answers <code>sent</code> without sending another. <code>locale</code> sets the language of the e-mail and of the link; <code>acceptTerms</code>, <code>acceptDpa</code> and <code>referralCode</code> are stored with the link and used when the address has no account yet.
+   */
   public NordletApiHttpResponse<LoginLinkRequestAccountResponse> loginLinkRequest(
       LoginLinkRequestAccountRequest request) {
     return loginLinkRequest(request,null);
   }
 
+  /**
+   * Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with <code>account/login-link/consume</code>. When an unused link was requested for the same address within the last minute, the call answers <code>sent</code> without sending another. <code>locale</code> sets the language of the e-mail and of the link; <code>acceptTerms</code>, <code>acceptDpa</code> and <code>referralCode</code> are stored with the link and used when the address has no account yet.
+   */
   public NordletApiHttpResponse<LoginLinkRequestAccountResponse> loginLinkRequest(
       LoginLinkRequestAccountRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -187,11 +193,17 @@ public class RawAccountClient {
       }
     }
 
+    /**
+     * Exchange a sign-in link token for a session; an unknown, used or expired token is refused with 401. When no account has the address, one is created (<code>isNewUser</code>), which is refused with 422 unless the link was requested with <code>acceptTerms</code> and <code>acceptDpa</code>; a <code>referralCode</code> on the link records who referred the new user. A link from <code>account/email/change-request</code> changes the signed-in user's address instead, refused with 409 when another account has it.
+     */
     public NordletApiHttpResponse<LoginLinkConsumeAccountResponse> loginLinkConsume(
         LoginLinkConsumeAccountRequest request) {
       return loginLinkConsume(request,null);
     }
 
+    /**
+     * Exchange a sign-in link token for a session; an unknown, used or expired token is refused with 401. When no account has the address, one is created (<code>isNewUser</code>), which is refused with 422 unless the link was requested with <code>acceptTerms</code> and <code>acceptDpa</code>; a <code>referralCode</code> on the link records who referred the new user. A link from <code>account/email/change-request</code> changes the signed-in user's address instead, refused with 409 when another account has it.
+     */
     public NordletApiHttpResponse<LoginLinkConsumeAccountResponse> loginLinkConsume(
         LoginLinkConsumeAccountRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -256,18 +268,30 @@ public class RawAccountClient {
         }
       }
 
+      /**
+       * Delete the session the call was made with.
+       */
       public NordletApiHttpResponse<LogoutAccountResponse> logout() {
         return logout(LogoutAccountRequest.builder().build());
       }
 
+      /**
+       * Delete the session the call was made with.
+       */
       public NordletApiHttpResponse<LogoutAccountResponse> logout(RequestOptions requestOptions) {
         return logout(LogoutAccountRequest.builder().build(),requestOptions);
       }
 
+      /**
+       * Delete the session the call was made with.
+       */
       public NordletApiHttpResponse<LogoutAccountResponse> logout(LogoutAccountRequest request) {
         return logout(request,null);
       }
 
+      /**
+       * Delete the session the call was made with.
+       */
       public NordletApiHttpResponse<LogoutAccountResponse> logout(LogoutAccountRequest request,
           RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -332,18 +356,30 @@ public class RawAccountClient {
           }
         }
 
+        /**
+         * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+         */
         public NordletApiHttpResponse<MeAccountResponse> me() {
           return me(MeAccountRequest.builder().build());
         }
 
+        /**
+         * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+         */
         public NordletApiHttpResponse<MeAccountResponse> me(RequestOptions requestOptions) {
           return me(MeAccountRequest.builder().build(),requestOptions);
         }
 
+        /**
+         * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+         */
         public NordletApiHttpResponse<MeAccountResponse> me(MeAccountRequest request) {
           return me(request,null);
         }
 
+        /**
+         * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+         */
         public NordletApiHttpResponse<MeAccountResponse> me(MeAccountRequest request,
             RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -408,20 +444,32 @@ public class RawAccountClient {
             }
           }
 
+          /**
+           * List the members of the active company with their role.
+           */
           public NordletApiHttpResponse<MembersListAccountResponse> membersList() {
             return membersList(MembersListAccountRequest.builder().build());
           }
 
+          /**
+           * List the members of the active company with their role.
+           */
           public NordletApiHttpResponse<MembersListAccountResponse> membersList(
               RequestOptions requestOptions) {
             return membersList(MembersListAccountRequest.builder().build(),requestOptions);
           }
 
+          /**
+           * List the members of the active company with their role.
+           */
           public NordletApiHttpResponse<MembersListAccountResponse> membersList(
               MembersListAccountRequest request) {
             return membersList(request,null);
           }
 
+          /**
+           * List the members of the active company with their role.
+           */
           public NordletApiHttpResponse<MembersListAccountResponse> membersList(
               MembersListAccountRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -486,11 +534,17 @@ public class RawAccountClient {
               }
             }
 
+            /**
+             * Change the role of a member of the active company; owners and admins may call it. Refused with 422 for the caller's own role and with 403 for the owner's, which only <code>account/members/transfer-ownership</code> changes.
+             */
             public NordletApiHttpResponse<MembersSetRoleAccountResponse> membersSetRole(
                 MembersSetRoleAccountRequest request) {
               return membersSetRole(request,null);
             }
 
+            /**
+             * Change the role of a member of the active company; owners and admins may call it. Refused with 422 for the caller's own role and with 403 for the owner's, which only <code>account/members/transfer-ownership</code> changes.
+             */
             public NordletApiHttpResponse<MembersSetRoleAccountResponse> membersSetRole(
                 MembersSetRoleAccountRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -555,11 +609,17 @@ public class RawAccountClient {
                 }
               }
 
+              /**
+               * Make another member the owner of the active company; the caller must be its owner and becomes an admin. Refused with 422 when <code>userId</code> is the caller. With <code>movePayer</code> the company's billing also moves to the new owner, which only the member currently paying for it may do (403).
+               */
               public NordletApiHttpResponse<MembersTransferOwnershipAccountResponse> membersTransferOwnership(
                   MembersTransferOwnershipAccountRequest request) {
                 return membersTransferOwnership(request,null);
               }
 
+              /**
+               * Make another member the owner of the active company; the caller must be its owner and becomes an admin. Refused with 422 when <code>userId</code> is the caller. With <code>movePayer</code> the company's billing also moves to the new owner, which only the member currently paying for it may do (403).
+               */
               public NordletApiHttpResponse<MembersTransferOwnershipAccountResponse> membersTransferOwnership(
                   MembersTransferOwnershipAccountRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -624,11 +684,17 @@ public class RawAccountClient {
                   }
                 }
 
+                /**
+                 * Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and the API keys they created for it are revoked. Refused with 422 for the caller themself and with 403 for the owner.
+                 */
                 public NordletApiHttpResponse<MembersRemoveAccountResponse> membersRemove(
                     MembersRemoveAccountRequest request) {
                   return membersRemove(request,null);
                 }
 
+                /**
+                 * Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and the API keys they created for it are revoked. Refused with 422 for the caller themself and with 403 for the owner.
+                 */
                 public NordletApiHttpResponse<MembersRemoveAccountResponse> membersRemove(
                     MembersRemoveAccountRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -693,11 +759,17 @@ public class RawAccountClient {
                     }
                   }
 
+                  /**
+                   * Create an invitation to the active company for an e-mail address with the given role and send it by e-mail in <code>locale</code>; owners and admins may call it. The invitation is valid for 7 days and replaces an earlier pending one for the same address. Refused with 409 when the address already belongs to a member.
+                   */
                   public NordletApiHttpResponse<InvitesCreateAccountResponse> invitesCreate(
                       InvitesCreateAccountRequest request) {
                     return invitesCreate(request,null);
                   }
 
+                  /**
+                   * Create an invitation to the active company for an e-mail address with the given role and send it by e-mail in <code>locale</code>; owners and admins may call it. The invitation is valid for 7 days and replaces an earlier pending one for the same address. Refused with 409 when the address already belongs to a member.
+                   */
                   public NordletApiHttpResponse<InvitesCreateAccountResponse> invitesCreate(
                       InvitesCreateAccountRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -762,20 +834,32 @@ public class RawAccountClient {
                       }
                     }
 
+                    /**
+                     * List the pending invitations of the active company; <code>expired</code> marks those past their expiry.
+                     */
                     public NordletApiHttpResponse<InvitesListAccountResponse> invitesList() {
                       return invitesList(InvitesListAccountRequest.builder().build());
                     }
 
+                    /**
+                     * List the pending invitations of the active company; <code>expired</code> marks those past their expiry.
+                     */
                     public NordletApiHttpResponse<InvitesListAccountResponse> invitesList(
                         RequestOptions requestOptions) {
                       return invitesList(InvitesListAccountRequest.builder().build(),requestOptions);
                     }
 
+                    /**
+                     * List the pending invitations of the active company; <code>expired</code> marks those past their expiry.
+                     */
                     public NordletApiHttpResponse<InvitesListAccountResponse> invitesList(
                         InvitesListAccountRequest request) {
                       return invitesList(request,null);
                     }
 
+                    /**
+                     * List the pending invitations of the active company; <code>expired</code> marks those past their expiry.
+                     */
                     public NordletApiHttpResponse<InvitesListAccountResponse> invitesList(
                         InvitesListAccountRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -840,11 +924,17 @@ public class RawAccountClient {
                         }
                       }
 
+                      /**
+                       * Delete a pending invitation of the active company.
+                       */
                       public NordletApiHttpResponse<InvitesRevokeAccountResponse> invitesRevoke(
                           InvitesRevokeAccountRequest request) {
                         return invitesRevoke(request,null);
                       }
 
+                      /**
+                       * Delete a pending invitation of the active company.
+                       */
                       public NordletApiHttpResponse<InvitesRevokeAccountResponse> invitesRevoke(
                           InvitesRevokeAccountRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -909,11 +999,17 @@ public class RawAccountClient {
                           }
                         }
 
+                        /**
+                         * Read a pending invitation by its token: the invited address, role and company name, whether it has expired and whether an account with that address already exists (<code>userExists</code>), in which case <code>account/invites/accept</code> must be called signed in as that account.
+                         */
                         public NordletApiHttpResponse<InvitesGetAccountResponse> invitesGet(
                             InvitesGetAccountRequest request) {
                           return invitesGet(request,null);
                         }
 
+                        /**
+                         * Read a pending invitation by its token: the invited address, role and company name, whether it has expired and whether an account with that address already exists (<code>userExists</code>), in which case <code>account/invites/accept</code> must be called signed in as that account.
+                         */
                         public NordletApiHttpResponse<InvitesGetAccountResponse> invitesGet(
                             InvitesGetAccountRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -978,11 +1074,17 @@ public class RawAccountClient {
                             }
                           }
 
+                          /**
+                           * Accept an invitation and return a session with the invited company active. When the address has no account, one is created with <code>name</code> and <code>locale</code>, which is refused with 422 unless <code>acceptTerms</code> and <code>acceptDpa</code> are true; when it has one, the call must be made signed in as that account (401 otherwise). An expired invitation is refused with 422.
+                           */
                           public NordletApiHttpResponse<InvitesAcceptAccountResponse> invitesAccept(
                               InvitesAcceptAccountRequest request) {
                             return invitesAccept(request,null);
                           }
 
+                          /**
+                           * Accept an invitation and return a session with the invited company active. When the address has no account, one is created with <code>name</code> and <code>locale</code>, which is refused with 422 unless <code>acceptTerms</code> and <code>acceptDpa</code> are true; when it has one, the call must be made signed in as that account (401 otherwise). An expired invitation is refused with 422.
+                           */
                           public NordletApiHttpResponse<InvitesAcceptAccountResponse> invitesAccept(
                               InvitesAcceptAccountRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1047,11 +1149,17 @@ public class RawAccountClient {
                               }
                             }
 
+                            /**
+                             * Set the user's language: with an active company it is stored on their membership of that company (<code>scope</code> = <code>membership</code>), otherwise on the user (<code>scope</code> = <code>user</code>).
+                             */
                             public NordletApiHttpResponse<LocaleSetAccountResponse> localeSet(
                                 LocaleSetAccountRequest request) {
                               return localeSet(request,null);
                             }
 
+                            /**
+                             * Set the user's language: with an active company it is stored on their membership of that company (<code>scope</code> = <code>membership</code>), otherwise on the user (<code>scope</code> = <code>user</code>).
+                             */
                             public NordletApiHttpResponse<LocaleSetAccountResponse> localeSet(
                                 LocaleSetAccountRequest request, RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1116,11 +1224,17 @@ public class RawAccountClient {
                                 }
                               }
 
+                              /**
+                               * Create a company with the caller as its owner and payer, seed its chart of accounts from the template of <code>countryCode</code>, and make it the active company of the session. <code>timeZone</code> defaults to the country's, <code>isVatPayer</code> to true and <code>defaultInvoiceCurrency</code> to the base currency. Refused with 422 when <code>baseCurrency</code> is not a supported currency.
+                               */
                               public NordletApiHttpResponse<CompaniesCreateAccountResponse> companiesCreate(
                                   CompaniesCreateAccountRequest request) {
                                 return companiesCreate(request,null);
                               }
 
+                              /**
+                               * Create a company with the caller as its owner and payer, seed its chart of accounts from the template of <code>countryCode</code>, and make it the active company of the session. <code>timeZone</code> defaults to the country's, <code>isVatPayer</code> to true and <code>defaultInvoiceCurrency</code> to the base currency. Refused with 422 when <code>baseCurrency</code> is not a supported currency.
+                               */
                               public NordletApiHttpResponse<CompaniesCreateAccountResponse> companiesCreate(
                                   CompaniesCreateAccountRequest request,
                                   RequestOptions requestOptions) {
@@ -1186,11 +1300,17 @@ public class RawAccountClient {
                                   }
                                 }
 
+                                /**
+                                 * Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member and with 422 when the company is archived or deleted.
+                                 */
                                 public NordletApiHttpResponse<CompaniesSelectAccountResponse> companiesSelect(
                                     CompaniesSelectAccountRequest request) {
                                   return companiesSelect(request,null);
                                 }
 
+                                /**
+                                 * Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member and with 422 when the company is archived or deleted.
+                                 */
                                 public NordletApiHttpResponse<CompaniesSelectAccountResponse> companiesSelect(
                                     CompaniesSelectAccountRequest request,
                                     RequestOptions requestOptions) {
@@ -1256,21 +1376,33 @@ public class RawAccountClient {
                                     }
                                   }
 
+                                  /**
+                                   * Return the profile of the active company.
+                                   */
                                   public NordletApiHttpResponse<CompaniesProfileAccountResponse> companiesProfile(
                                       ) {
                                     return companiesProfile(CompaniesProfileAccountRequest.builder().build());
                                   }
 
+                                  /**
+                                   * Return the profile of the active company.
+                                   */
                                   public NordletApiHttpResponse<CompaniesProfileAccountResponse> companiesProfile(
                                       RequestOptions requestOptions) {
                                     return companiesProfile(CompaniesProfileAccountRequest.builder().build(),requestOptions);
                                   }
 
+                                  /**
+                                   * Return the profile of the active company.
+                                   */
                                   public NordletApiHttpResponse<CompaniesProfileAccountResponse> companiesProfile(
                                       CompaniesProfileAccountRequest request) {
                                     return companiesProfile(request,null);
                                   }
 
+                                  /**
+                                   * Return the profile of the active company.
+                                   */
                                   public NordletApiHttpResponse<CompaniesProfileAccountResponse> companiesProfile(
                                       CompaniesProfileAccountRequest request,
                                       RequestOptions requestOptions) {
@@ -1336,21 +1468,33 @@ public class RawAccountClient {
                                       }
                                     }
 
+                                    /**
+                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+                                     */
                                     public NordletApiHttpResponse<CompaniesUpdateAccountResponse> companiesUpdate(
                                         ) {
                                       return companiesUpdate(CompaniesUpdateAccountRequest.builder().build());
                                     }
 
+                                    /**
+                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+                                     */
                                     public NordletApiHttpResponse<CompaniesUpdateAccountResponse> companiesUpdate(
                                         RequestOptions requestOptions) {
                                       return companiesUpdate(CompaniesUpdateAccountRequest.builder().build(),requestOptions);
                                     }
 
+                                    /**
+                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+                                     */
                                     public NordletApiHttpResponse<CompaniesUpdateAccountResponse> companiesUpdate(
                                         CompaniesUpdateAccountRequest request) {
                                       return companiesUpdate(request,null);
                                     }
 
+                                    /**
+                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+                                     */
                                     public NordletApiHttpResponse<CompaniesUpdateAccountResponse> companiesUpdate(
                                         CompaniesUpdateAccountRequest request,
                                         RequestOptions requestOptions) {
@@ -1416,11 +1560,17 @@ public class RawAccountClient {
                                         }
                                       }
 
+                                      /**
+                                       * Set the company named by <code>companyId</code> to <code>archived</code>; the caller must be its owner. Every session that had it active loses it. Refused with 409 unless the company is active; <code>account/companies/activate</code> reverses it.
+                                       */
                                       public NordletApiHttpResponse<CompaniesArchiveAccountResponse> companiesArchive(
                                           CompaniesArchiveAccountRequest request) {
                                         return companiesArchive(request,null);
                                       }
 
+                                      /**
+                                       * Set the company named by <code>companyId</code> to <code>archived</code>; the caller must be its owner. Every session that had it active loses it. Refused with 409 unless the company is active; <code>account/companies/activate</code> reverses it.
+                                       */
                                       public NordletApiHttpResponse<CompaniesArchiveAccountResponse> companiesArchive(
                                           CompaniesArchiveAccountRequest request,
                                           RequestOptions requestOptions) {
@@ -1486,11 +1636,17 @@ public class RawAccountClient {
                                           }
                                         }
 
+                                        /**
+                                         * Set the company named by <code>companyId</code> to <code>deleted</code>; the caller must be its owner, and every session that had it active loses it. A sandbox company is purged at once; any other is purged by the scheduled purge after <code>purgeAfter</code> (10 days) and can be restored until then with <code>account/companies/activate</code>. Refused with 409 when it is already deleted.
+                                         */
                                         public NordletApiHttpResponse<CompaniesDeleteAccountResponse> companiesDelete(
                                             CompaniesDeleteAccountRequest request) {
                                           return companiesDelete(request,null);
                                         }
 
+                                        /**
+                                         * Set the company named by <code>companyId</code> to <code>deleted</code>; the caller must be its owner, and every session that had it active loses it. A sandbox company is purged at once; any other is purged by the scheduled purge after <code>purgeAfter</code> (10 days) and can be restored until then with <code>account/companies/activate</code>. Refused with 409 when it is already deleted.
+                                         */
                                         public NordletApiHttpResponse<CompaniesDeleteAccountResponse> companiesDelete(
                                             CompaniesDeleteAccountRequest request,
                                             RequestOptions requestOptions) {
@@ -1556,11 +1712,17 @@ public class RawAccountClient {
                                             }
                                           }
 
+                                          /**
+                                           * Set an archived or deleted company named by <code>companyId</code> back to <code>active</code>; the caller must be its owner. Refused with 409 when it is already active.
+                                           */
                                           public NordletApiHttpResponse<CompaniesActivateAccountResponse> companiesActivate(
                                               CompaniesActivateAccountRequest request) {
                                             return companiesActivate(request,null);
                                           }
 
+                                          /**
+                                           * Set an archived or deleted company named by <code>companyId</code> back to <code>active</code>; the caller must be its owner. Refused with 409 when it is already active.
+                                           */
                                           public NordletApiHttpResponse<CompaniesActivateAccountResponse> companiesActivate(
                                               CompaniesActivateAccountRequest request,
                                               RequestOptions requestOptions) {
@@ -1626,11 +1788,17 @@ public class RawAccountClient {
                                               }
                                             }
 
+                                            /**
+                                             * Create an API key for the active company and return the key itself once; owners, admins and developers may call it. <code>scopes</code> defaults to the caller's own scopes and may not exceed them (403); without <code>expiresInDays</code> the key does not expire.
+                                             */
                                             public NordletApiHttpResponse<ApiKeysCreateAccountResponse> apiKeysCreate(
                                                 ApiKeysCreateAccountRequest request) {
                                               return apiKeysCreate(request,null);
                                             }
 
+                                            /**
+                                             * Create an API key for the active company and return the key itself once; owners, admins and developers may call it. <code>scopes</code> defaults to the caller's own scopes and may not exceed them (403); without <code>expiresInDays</code> the key does not expire.
+                                             */
                                             public NordletApiHttpResponse<ApiKeysCreateAccountResponse> apiKeysCreate(
                                                 ApiKeysCreateAccountRequest request,
                                                 RequestOptions requestOptions) {
@@ -1696,21 +1864,33 @@ public class RawAccountClient {
                                                 }
                                               }
 
+                                              /**
+                                               * List the API keys of the active company, including expired and revoked ones.
+                                               */
                                               public NordletApiHttpResponse<ApiKeysListAccountResponse> apiKeysList(
                                                   ) {
                                                 return apiKeysList(ApiKeysListAccountRequest.builder().build());
                                               }
 
+                                              /**
+                                               * List the API keys of the active company, including expired and revoked ones.
+                                               */
                                               public NordletApiHttpResponse<ApiKeysListAccountResponse> apiKeysList(
                                                   RequestOptions requestOptions) {
                                                 return apiKeysList(ApiKeysListAccountRequest.builder().build(),requestOptions);
                                               }
 
+                                              /**
+                                               * List the API keys of the active company, including expired and revoked ones.
+                                               */
                                               public NordletApiHttpResponse<ApiKeysListAccountResponse> apiKeysList(
                                                   ApiKeysListAccountRequest request) {
                                                 return apiKeysList(request,null);
                                               }
 
+                                              /**
+                                               * List the API keys of the active company, including expired and revoked ones.
+                                               */
                                               public NordletApiHttpResponse<ApiKeysListAccountResponse> apiKeysList(
                                                   ApiKeysListAccountRequest request,
                                                   RequestOptions requestOptions) {
@@ -1776,11 +1956,17 @@ public class RawAccountClient {
                                                   }
                                                 }
 
+                                                /**
+                                                 * Create a new key with the name and scopes of the key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key. Refused with 409 when the old key is revoked.
+                                                 */
                                                 public NordletApiHttpResponse<ApiKeysRotateAccountResponse> apiKeysRotate(
                                                     ApiKeysRotateAccountRequest request) {
                                                   return apiKeysRotate(request,null);
                                                 }
 
+                                                /**
+                                                 * Create a new key with the name and scopes of the key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key. Refused with 409 when the old key is revoked.
+                                                 */
                                                 public NordletApiHttpResponse<ApiKeysRotateAccountResponse> apiKeysRotate(
                                                     ApiKeysRotateAccountRequest request,
                                                     RequestOptions requestOptions) {
@@ -1846,11 +2032,17 @@ public class RawAccountClient {
                                                     }
                                                   }
 
+                                                  /**
+                                                   * Revoke an API key of the active company at once.
+                                                   */
                                                   public NordletApiHttpResponse<ApiKeysRevokeAccountResponse> apiKeysRevoke(
                                                       ApiKeysRevokeAccountRequest request) {
                                                     return apiKeysRevoke(request,null);
                                                   }
 
+                                                  /**
+                                                   * Revoke an API key of the active company at once.
+                                                   */
                                                   public NordletApiHttpResponse<ApiKeysRevokeAccountResponse> apiKeysRevoke(
                                                       ApiKeysRevokeAccountRequest request,
                                                       RequestOptions requestOptions) {
@@ -1916,11 +2108,17 @@ public class RawAccountClient {
                                                       }
                                                     }
 
+                                                    /**
+                                                     * Record the signed-in user's acceptance of the current Terms of Service and Data Processing Agreement versions and return the consent state.
+                                                     */
                                                     public NordletApiHttpResponse<ConsentAcceptAccountResponse> consentAccept(
                                                         ConsentAcceptAccountRequest request) {
                                                       return consentAccept(request,null);
                                                     }
 
+                                                    /**
+                                                     * Record the signed-in user's acceptance of the current Terms of Service and Data Processing Agreement versions and return the consent state.
+                                                     */
                                                     public NordletApiHttpResponse<ConsentAcceptAccountResponse> consentAccept(
                                                         ConsentAcceptAccountRequest request,
                                                         RequestOptions requestOptions) {
@@ -1986,11 +2184,17 @@ public class RawAccountClient {
                                                         }
                                                       }
 
+                                                      /**
+                                                       * Set the signed-in user's name; null or a blank string clears it.
+                                                       */
                                                       public NordletApiHttpResponse<ProfileUpdateAccountResponse> profileUpdate(
                                                           ProfileUpdateAccountRequest request) {
                                                         return profileUpdate(request,null);
                                                       }
 
+                                                      /**
+                                                       * Set the signed-in user's name; null or a blank string clears it.
+                                                       */
                                                       public NordletApiHttpResponse<ProfileUpdateAccountResponse> profileUpdate(
                                                           ProfileUpdateAccountRequest request,
                                                           RequestOptions requestOptions) {
@@ -2056,11 +2260,17 @@ public class RawAccountClient {
                                                           }
                                                         }
 
+                                                        /**
+                                                         * Send a confirmation link to <code>newEmail</code>; the address changes when that link is consumed with <code>account/login-link/consume</code>. When an unused link was sent to the address within the last minute, the call answers <code>sent</code> without sending another. Refused with 422 when it is already the user's address and with 409 when another account has it.
+                                                         */
                                                         public NordletApiHttpResponse<EmailChangeRequestAccountResponse> emailChangeRequest(
                                                             EmailChangeRequestAccountRequest request) {
                                                           return emailChangeRequest(request,null);
                                                         }
 
+                                                        /**
+                                                         * Send a confirmation link to <code>newEmail</code>; the address changes when that link is consumed with <code>account/login-link/consume</code>. When an unused link was sent to the address within the last minute, the call answers <code>sent</code> without sending another. Refused with 422 when it is already the user's address and with 409 when another account has it.
+                                                         */
                                                         public NordletApiHttpResponse<EmailChangeRequestAccountResponse> emailChangeRequest(
                                                             EmailChangeRequestAccountRequest request,
                                                             RequestOptions requestOptions) {
@@ -2126,21 +2336,33 @@ public class RawAccountClient {
                                                             }
                                                           }
 
+                                                          /**
+                                                           * List the signed-in user's sessions that have not expired; <code>current</code> marks the one the call was made with.
+                                                           */
                                                           public NordletApiHttpResponse<SessionsListAccountResponse> sessionsList(
                                                               ) {
                                                             return sessionsList(SessionsListAccountRequest.builder().build());
                                                           }
 
+                                                          /**
+                                                           * List the signed-in user's sessions that have not expired; <code>current</code> marks the one the call was made with.
+                                                           */
                                                           public NordletApiHttpResponse<SessionsListAccountResponse> sessionsList(
                                                               RequestOptions requestOptions) {
                                                             return sessionsList(SessionsListAccountRequest.builder().build(),requestOptions);
                                                           }
 
+                                                          /**
+                                                           * List the signed-in user's sessions that have not expired; <code>current</code> marks the one the call was made with.
+                                                           */
                                                           public NordletApiHttpResponse<SessionsListAccountResponse> sessionsList(
                                                               SessionsListAccountRequest request) {
                                                             return sessionsList(request,null);
                                                           }
 
+                                                          /**
+                                                           * List the signed-in user's sessions that have not expired; <code>current</code> marks the one the call was made with.
+                                                           */
                                                           public NordletApiHttpResponse<SessionsListAccountResponse> sessionsList(
                                                               SessionsListAccountRequest request,
                                                               RequestOptions requestOptions) {
@@ -2206,11 +2428,17 @@ public class RawAccountClient {
                                                               }
                                                             }
 
+                                                            /**
+                                                             * Delete one of the signed-in user's sessions.
+                                                             */
                                                             public NordletApiHttpResponse<SessionsRevokeAccountResponse> sessionsRevoke(
                                                                 SessionsRevokeAccountRequest request) {
                                                               return sessionsRevoke(request,null);
                                                             }
 
+                                                            /**
+                                                             * Delete one of the signed-in user's sessions.
+                                                             */
                                                             public NordletApiHttpResponse<SessionsRevokeAccountResponse> sessionsRevoke(
                                                                 SessionsRevokeAccountRequest request,
                                                                 RequestOptions requestOptions) {
@@ -2276,21 +2504,33 @@ public class RawAccountClient {
                                                                 }
                                                               }
 
+                                                              /**
+                                                               * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
+                                                               */
                                                               public NordletApiHttpResponse<SessionsRevokeOthersAccountResponse> sessionsRevokeOthers(
                                                                   ) {
                                                                 return sessionsRevokeOthers(SessionsRevokeOthersAccountRequest.builder().build());
                                                               }
 
+                                                              /**
+                                                               * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
+                                                               */
                                                               public NordletApiHttpResponse<SessionsRevokeOthersAccountResponse> sessionsRevokeOthers(
                                                                   RequestOptions requestOptions) {
                                                                 return sessionsRevokeOthers(SessionsRevokeOthersAccountRequest.builder().build(),requestOptions);
                                                               }
 
+                                                              /**
+                                                               * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
+                                                               */
                                                               public NordletApiHttpResponse<SessionsRevokeOthersAccountResponse> sessionsRevokeOthers(
                                                                   SessionsRevokeOthersAccountRequest request) {
                                                                 return sessionsRevokeOthers(request,null);
                                                               }
 
+                                                              /**
+                                                               * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
+                                                               */
                                                               public NordletApiHttpResponse<SessionsRevokeOthersAccountResponse> sessionsRevokeOthers(
                                                                   SessionsRevokeOthersAccountRequest request,
                                                                   RequestOptions requestOptions) {
@@ -2356,21 +2596,33 @@ public class RawAccountClient {
                                                                   }
                                                                 }
 
+                                                                /**
+                                                                 * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+                                                                 */
                                                                 public NordletApiHttpResponse<ExportAccountResponse> export(
                                                                     ) {
                                                                   return export(ExportAccountRequest.builder().build());
                                                                 }
 
+                                                                /**
+                                                                 * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+                                                                 */
                                                                 public NordletApiHttpResponse<ExportAccountResponse> export(
                                                                     RequestOptions requestOptions) {
                                                                   return export(ExportAccountRequest.builder().build(),requestOptions);
                                                                 }
 
+                                                                /**
+                                                                 * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+                                                                 */
                                                                 public NordletApiHttpResponse<ExportAccountResponse> export(
                                                                     ExportAccountRequest request) {
                                                                   return export(request,null);
                                                                 }
 
+                                                                /**
+                                                                 * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+                                                                 */
                                                                 public NordletApiHttpResponse<ExportAccountResponse> export(
                                                                     ExportAccountRequest request,
                                                                     RequestOptions requestOptions) {
@@ -2512,21 +2764,33 @@ public class RawAccountClient {
                                                                       }
                                                                     }
 
+                                                                    /**
+                                                                     * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
+                                                                     */
                                                                     public NordletApiHttpResponse<ReferralGetAccountResponse> referralGet(
                                                                         ) {
                                                                       return referralGet(ReferralGetAccountRequest.builder().build());
                                                                     }
 
+                                                                    /**
+                                                                     * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
+                                                                     */
                                                                     public NordletApiHttpResponse<ReferralGetAccountResponse> referralGet(
                                                                         RequestOptions requestOptions) {
                                                                       return referralGet(ReferralGetAccountRequest.builder().build(),requestOptions);
                                                                     }
 
+                                                                    /**
+                                                                     * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
+                                                                     */
                                                                     public NordletApiHttpResponse<ReferralGetAccountResponse> referralGet(
                                                                         ReferralGetAccountRequest request) {
                                                                       return referralGet(request,null);
                                                                     }
 
+                                                                    /**
+                                                                     * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
+                                                                     */
                                                                     public NordletApiHttpResponse<ReferralGetAccountResponse> referralGet(
                                                                         ReferralGetAccountRequest request,
                                                                         RequestOptions requestOptions) {
@@ -2592,11 +2856,17 @@ public class RawAccountClient {
                                                                         }
                                                                       }
 
+                                                                      /**
+                                                                       * Convert <code>points</code> of the user's referral points into credit on their billing account at <code>rates.pointCents</code> per point, booked as an <code>adjustment</code> credit transaction; a billing account past its trial is set to active when the new balance allows. Refused with 422 when the user has fewer points than requested.
+                                                                       */
                                                                       public NordletApiHttpResponse<ReferralConvertAccountResponse> referralConvert(
                                                                           ReferralConvertAccountRequest request) {
                                                                         return referralConvert(request,null);
                                                                       }
 
+                                                                      /**
+                                                                       * Convert <code>points</code> of the user's referral points into credit on their billing account at <code>rates.pointCents</code> per point, booked as an <code>adjustment</code> credit transaction; a billing account past its trial is set to active when the new balance allows. Refused with 422 when the user has fewer points than requested.
+                                                                       */
                                                                       public NordletApiHttpResponse<ReferralConvertAccountResponse> referralConvert(
                                                                           ReferralConvertAccountRequest request,
                                                                           RequestOptions requestOptions) {
@@ -2662,11 +2932,17 @@ public class RawAccountClient {
                                                                           }
                                                                         }
 
+                                                                        /**
+                                                                         * Return the signed-in user's saved column list and page size for the table <code>tableKey</code>; both are null when nothing is saved.
+                                                                         */
                                                                         public NordletApiHttpResponse<TableSettingsGetAccountResponse> tableSettingsGet(
                                                                             TableSettingsGetAccountRequest request) {
                                                                           return tableSettingsGet(request,null);
                                                                         }
 
+                                                                        /**
+                                                                         * Return the signed-in user's saved column list and page size for the table <code>tableKey</code>; both are null when nothing is saved.
+                                                                         */
                                                                         public NordletApiHttpResponse<TableSettingsGetAccountResponse> tableSettingsGet(
                                                                             TableSettingsGetAccountRequest request,
                                                                             RequestOptions requestOptions) {
@@ -2732,11 +3008,17 @@ public class RawAccountClient {
                                                                             }
                                                                           }
 
+                                                                          /**
+                                                                           * Save the signed-in user's column list and page size for the table <code>tableKey</code>; only the fields sent are changed, and null clears one.
+                                                                           */
                                                                           public NordletApiHttpResponse<TableSettingsSetAccountResponse> tableSettingsSet(
                                                                               TableSettingsSetAccountRequest request) {
                                                                             return tableSettingsSet(request,null);
                                                                           }
 
+                                                                          /**
+                                                                           * Save the signed-in user's column list and page size for the table <code>tableKey</code>; only the fields sent are changed, and null clears one.
+                                                                           */
                                                                           public NordletApiHttpResponse<TableSettingsSetAccountResponse> tableSettingsSet(
                                                                               TableSettingsSetAccountRequest request,
                                                                               RequestOptions requestOptions) {
@@ -2802,21 +3084,33 @@ public class RawAccountClient {
                                                                               }
                                                                             }
 
+                                                                            /**
+                                                                             * List the signed-in user's saved table settings.
+                                                                             */
                                                                             public NordletApiHttpResponse<TableSettingsListAccountResponse> tableSettingsList(
                                                                                 ) {
                                                                               return tableSettingsList(TableSettingsListAccountRequest.builder().build());
                                                                             }
 
+                                                                            /**
+                                                                             * List the signed-in user's saved table settings.
+                                                                             */
                                                                             public NordletApiHttpResponse<TableSettingsListAccountResponse> tableSettingsList(
                                                                                 RequestOptions requestOptions) {
                                                                               return tableSettingsList(TableSettingsListAccountRequest.builder().build(),requestOptions);
                                                                             }
 
+                                                                            /**
+                                                                             * List the signed-in user's saved table settings.
+                                                                             */
                                                                             public NordletApiHttpResponse<TableSettingsListAccountResponse> tableSettingsList(
                                                                                 TableSettingsListAccountRequest request) {
                                                                               return tableSettingsList(request,null);
                                                                             }
 
+                                                                            /**
+                                                                             * List the signed-in user's saved table settings.
+                                                                             */
                                                                             public NordletApiHttpResponse<TableSettingsListAccountResponse> tableSettingsList(
                                                                                 TableSettingsListAccountRequest request,
                                                                                 RequestOptions requestOptions) {

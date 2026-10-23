@@ -41,97 +41,157 @@ public class AsyncFleetClient {
     return this.rawClient;
   }
 
+  /**
+   * Register a vehicle. The plate number is stored in upper case and must be unique in the company (409 otherwise); <code>fixedAssetId</code> must name an existing fixed asset. Uploaded <code>documents</code> are attached to the vehicle.
+   */
   public CompletableFuture<VehiclesCreateFleetResponse> vehiclesCreate(
       VehiclesCreateFleetRequest request) {
     return this.rawClient.vehiclesCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Register a vehicle. The plate number is stored in upper case and must be unique in the company (409 otherwise); <code>fixedAssetId</code> must name an existing fixed asset. Uploaded <code>documents</code> are attached to the vehicle.
+   */
   public CompletableFuture<VehiclesCreateFleetResponse> vehiclesCreate(
       VehiclesCreateFleetRequest request, RequestOptions requestOptions) {
     return this.rawClient.vehiclesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Change a vehicle's details or set its <code>status</code> to <code>active</code>, <code>sold</code> or <code>scrapped</code>; omitted fields keep their value. A plate number already used by another vehicle is refused with 409.
+   */
   public CompletableFuture<VehiclesUpdateFleetResponse> vehiclesUpdate(
       VehiclesUpdateFleetRequest request) {
     return this.rawClient.vehiclesUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Change a vehicle's details or set its <code>status</code> to <code>active</code>, <code>sold</code> or <code>scrapped</code>; omitted fields keep their value. A plate number already used by another vehicle is refused with 409.
+   */
   public CompletableFuture<VehiclesUpdateFleetResponse> vehiclesUpdate(
       VehiclesUpdateFleetRequest request, RequestOptions requestOptions) {
     return this.rawClient.vehiclesUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Read one vehicle with its current assignment, when an employee holds it today.
+   */
   public CompletableFuture<VehiclesGetFleetResponse> vehiclesGet(VehiclesGetFleetRequest request) {
     return this.rawClient.vehiclesGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Read one vehicle with its current assignment, when an employee holds it today.
+   */
   public CompletableFuture<VehiclesGetFleetResponse> vehiclesGet(VehiclesGetFleetRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.vehiclesGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<VehiclesListFleetResponse> vehiclesList() {
     return this.rawClient.vehiclesList().thenApply(response -> response.body());
   }
 
+  /**
+   * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<VehiclesListFleetResponse> vehiclesList(RequestOptions requestOptions) {
     return this.rawClient.vehiclesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<VehiclesListFleetResponse> vehiclesList(
       VehiclesListFleetRequest request) {
     return this.rawClient.vehiclesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<VehiclesListFleetResponse> vehiclesList(VehiclesListFleetRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.vehiclesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Assign a vehicle to an employee from <code>fromDate</code>, open-ended or until <code>toDate</code>. A period that overlaps another assignment of the same vehicle is refused with 409, a <code>toDate</code> before <code>fromDate</code> with 422. <code>privateUse</code> makes the car a benefit in kind in <code>fleet/natura/preview</code>, and <code>employerPaysFuel</code> picks its rate.
+   */
   public CompletableFuture<AssignmentsCreateFleetResponse> assignmentsCreate(
       AssignmentsCreateFleetRequest request) {
     return this.rawClient.assignmentsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Assign a vehicle to an employee from <code>fromDate</code>, open-ended or until <code>toDate</code>. A period that overlaps another assignment of the same vehicle is refused with 409, a <code>toDate</code> before <code>fromDate</code> with 422. <code>privateUse</code> makes the car a benefit in kind in <code>fleet/natura/preview</code>, and <code>employerPaysFuel</code> picks its rate.
+   */
   public CompletableFuture<AssignmentsCreateFleetResponse> assignmentsCreate(
       AssignmentsCreateFleetRequest request, RequestOptions requestOptions) {
     return this.rawClient.assignmentsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * End an open assignment on <code>toDate</code>. An assignment that already has an end date is refused with 409, a <code>toDate</code> before its <code>fromDate</code> with 422.
+   */
   public CompletableFuture<AssignmentsEndFleetResponse> assignmentsEnd(
       AssignmentsEndFleetRequest request) {
     return this.rawClient.assignmentsEnd(request).thenApply(response -> response.body());
   }
 
+  /**
+   * End an open assignment on <code>toDate</code>. An assignment that already has an end date is refused with 409, a <code>toDate</code> before its <code>fromDate</code> with 422.
+   */
   public CompletableFuture<AssignmentsEndFleetResponse> assignmentsEnd(
       AssignmentsEndFleetRequest request, RequestOptions requestOptions) {
     return this.rawClient.assignmentsEnd(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List vehicle assignments with the plate number and the employee's name. Filterable by <code>vehicleId</code>, <code>employeeId</code> and <code>privateUse</code>; sortable by <code>fromDate</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<AssignmentsListFleetResponse> assignmentsList() {
     return this.rawClient.assignmentsList().thenApply(response -> response.body());
   }
 
+  /**
+   * List vehicle assignments with the plate number and the employee's name. Filterable by <code>vehicleId</code>, <code>employeeId</code> and <code>privateUse</code>; sortable by <code>fromDate</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<AssignmentsListFleetResponse> assignmentsList(
       RequestOptions requestOptions) {
     return this.rawClient.assignmentsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List vehicle assignments with the plate number and the employee's name. Filterable by <code>vehicleId</code>, <code>employeeId</code> and <code>privateUse</code>; sortable by <code>fromDate</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<AssignmentsListFleetResponse> assignmentsList(
       AssignmentsListFleetRequest request) {
     return this.rawClient.assignmentsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List vehicle assignments with the plate number and the employee's name. Filterable by <code>vehicleId</code>, <code>employeeId</code> and <code>privateUse</code>; sortable by <code>fromDate</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<AssignmentsListFleetResponse> assignmentsList(
       AssignmentsListFleetRequest request, RequestOptions requestOptions) {
     return this.rawClient.assignmentsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Preview the car benefit in kind of a month for a Lithuanian company: every assignment with <code>privateUse</code> that overlaps the month is valued at 0.75 % of the vehicle's market value when the employer pays the fuel, else 0.70 %, one row per employee and vehicle, with the total. A company registered in another country is refused with 422. The same amounts are added to a payroll run created with <code>includeNatura</code> (<code>payroll/runs/create</code>).
+   */
   public CompletableFuture<NaturaPreviewFleetResponse> naturaPreview(
       NaturaPreviewFleetRequest request) {
     return this.rawClient.naturaPreview(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Preview the car benefit in kind of a month for a Lithuanian company: every assignment with <code>privateUse</code> that overlaps the month is valued at 0.75 % of the vehicle's market value when the employer pays the fuel, else 0.70 %, one row per employee and vehicle, with the total. A company registered in another country is refused with 422. The same amounts are added to a payroll run created with <code>includeNatura</code> (<code>payroll/runs/create</code>).
+   */
   public CompletableFuture<NaturaPreviewFleetResponse> naturaPreview(
       NaturaPreviewFleetRequest request, RequestOptions requestOptions) {
     return this.rawClient.naturaPreview(request, requestOptions).thenApply(response -> response.body());

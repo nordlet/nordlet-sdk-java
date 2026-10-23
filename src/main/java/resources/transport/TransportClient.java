@@ -36,63 +36,105 @@ public class TransportClient {
     return this.rawClient;
   }
 
+  /**
+   * Create a draft waybill to the consignee. The cargo lines are <code>lines</code> or, when none are given and <code>saleInvoiceId</code> is set, the product lines of that sale invoice (422 when it has none); a line without <code>description</code>, <code>unit</code> or <code>productCode</code> takes them from its item. <code>documentDate</code> defaults to the company's today and <code>series</code> to <code>VAZ</code>.
+   */
   public WaybillsCreateTransportResponse waybillsCreate(WaybillsCreateTransportRequest request) {
     return this.rawClient.waybillsCreate(request).body();
   }
 
+  /**
+   * Create a draft waybill to the consignee. The cargo lines are <code>lines</code> or, when none are given and <code>saleInvoiceId</code> is set, the product lines of that sale invoice (422 when it has none); a line without <code>description</code>, <code>unit</code> or <code>productCode</code> takes them from its item. <code>documentDate</code> defaults to the company's today and <code>series</code> to <code>VAZ</code>.
+   */
   public WaybillsCreateTransportResponse waybillsCreate(WaybillsCreateTransportRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.waybillsCreate(request, requestOptions).body();
   }
 
+  /**
+   * Change a draft waybill; omitted fields keep their value, the optional ones can be cleared with null, and <code>lines</code>, when given, replace all existing lines. A waybill that is already issued or cancelled is refused with 409.
+   */
   public WaybillsUpdateTransportResponse waybillsUpdate(WaybillsUpdateTransportRequest request) {
     return this.rawClient.waybillsUpdate(request).body();
   }
 
+  /**
+   * Change a draft waybill; omitted fields keep their value, the optional ones can be cleared with null, and <code>lines</code>, when given, replace all existing lines. A waybill that is already issued or cancelled is refused with 409.
+   */
   public WaybillsUpdateTransportResponse waybillsUpdate(WaybillsUpdateTransportRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.waybillsUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Issue a draft waybill: it takes the next number of its <code>series</code> for the year of <code>documentDate</code> and becomes <code>issued</code>. Without a vehicle plate or without lines the call is refused with 422, a waybill that is not a draft with 409. Only issued waybills can go into the Lithuanian i.VAZ file (<code>declarations/lt/ivaz/generate</code>) and the Romanian e-Transport declaration (<code>declarations/ro/etransport/build</code>).
+   */
   public WaybillsIssueTransportResponse waybillsIssue(WaybillsIssueTransportRequest request) {
     return this.rawClient.waybillsIssue(request).body();
   }
 
+  /**
+   * Issue a draft waybill: it takes the next number of its <code>series</code> for the year of <code>documentDate</code> and becomes <code>issued</code>. Without a vehicle plate or without lines the call is refused with 422, a waybill that is not a draft with 409. Only issued waybills can go into the Lithuanian i.VAZ file (<code>declarations/lt/ivaz/generate</code>) and the Romanian e-Transport declaration (<code>declarations/ro/etransport/build</code>).
+   */
   public WaybillsIssueTransportResponse waybillsIssue(WaybillsIssueTransportRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.waybillsIssue(request, requestOptions).body();
   }
 
+  /**
+   * Cancel a draft or issued waybill. An already cancelled one is refused with 409.
+   */
   public WaybillsCancelTransportResponse waybillsCancel(WaybillsCancelTransportRequest request) {
     return this.rawClient.waybillsCancel(request).body();
   }
 
+  /**
+   * Cancel a draft or issued waybill. An already cancelled one is refused with 409.
+   */
   public WaybillsCancelTransportResponse waybillsCancel(WaybillsCancelTransportRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.waybillsCancel(request, requestOptions).body();
   }
 
+  /**
+   * Read one waybill with its lines.
+   */
   public WaybillsGetTransportResponse waybillsGet(WaybillsGetTransportRequest request) {
     return this.rawClient.waybillsGet(request).body();
   }
 
+  /**
+   * Read one waybill with its lines.
+   */
   public WaybillsGetTransportResponse waybillsGet(WaybillsGetTransportRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.waybillsGet(request, requestOptions).body();
   }
 
+  /**
+   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+   */
   public WaybillsListTransportResponse waybillsList() {
     return this.rawClient.waybillsList().body();
   }
 
+  /**
+   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+   */
   public WaybillsListTransportResponse waybillsList(RequestOptions requestOptions) {
     return this.rawClient.waybillsList(requestOptions).body();
   }
 
+  /**
+   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+   */
   public WaybillsListTransportResponse waybillsList(WaybillsListTransportRequest request) {
     return this.rawClient.waybillsList(request).body();
   }
 
+  /**
+   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+   */
   public WaybillsListTransportResponse waybillsList(WaybillsListTransportRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.waybillsList(request, requestOptions).body();

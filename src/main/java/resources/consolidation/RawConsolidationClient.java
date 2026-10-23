@@ -68,11 +68,17 @@ public class RawConsolidationClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Create a consolidation group owned by the calling company; <code>presentationCurrency</code> defaults to the company's base currency. Members are added with <code>consolidation/members/add</code>.
+   */
   public NordletApiHttpResponse<GroupsCreateConsolidationResponse> groupsCreate(
       GroupsCreateConsolidationRequest request) {
     return groupsCreate(request,null);
   }
 
+  /**
+   * Create a consolidation group owned by the calling company; <code>presentationCurrency</code> defaults to the company's base currency. Members are added with <code>consolidation/members/add</code>.
+   */
   public NordletApiHttpResponse<GroupsCreateConsolidationResponse> groupsCreate(
       GroupsCreateConsolidationRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -137,20 +143,32 @@ public class RawConsolidationClient {
       }
     }
 
+    /**
+     * List the calling company's consolidation groups with their member counts.
+     */
     public NordletApiHttpResponse<GroupsListConsolidationResponse> groupsList() {
       return groupsList(GroupsListConsolidationRequest.builder().build());
     }
 
+    /**
+     * List the calling company's consolidation groups with their member counts.
+     */
     public NordletApiHttpResponse<GroupsListConsolidationResponse> groupsList(
         RequestOptions requestOptions) {
       return groupsList(GroupsListConsolidationRequest.builder().build(),requestOptions);
     }
 
+    /**
+     * List the calling company's consolidation groups with their member counts.
+     */
     public NordletApiHttpResponse<GroupsListConsolidationResponse> groupsList(
         GroupsListConsolidationRequest request) {
       return groupsList(request,null);
     }
 
+    /**
+     * List the calling company's consolidation groups with their member counts.
+     */
     public NordletApiHttpResponse<GroupsListConsolidationResponse> groupsList(
         GroupsListConsolidationRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -215,11 +233,17 @@ public class RawConsolidationClient {
         }
       }
 
+      /**
+       * Return one consolidation group with its members, each with its ownership percentage and consolidation method.
+       */
       public NordletApiHttpResponse<GroupsGetConsolidationResponse> groupsGet(
           GroupsGetConsolidationRequest request) {
         return groupsGet(request,null);
       }
 
+      /**
+       * Return one consolidation group with its members, each with its ownership percentage and consolidation method.
+       */
       public NordletApiHttpResponse<GroupsGetConsolidationResponse> groupsGet(
           GroupsGetConsolidationRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -284,11 +308,17 @@ public class RawConsolidationClient {
           }
         }
 
+        /**
+         * Rename a consolidation group or change its presentation currency.
+         */
         public NordletApiHttpResponse<GroupsUpdateConsolidationResponse> groupsUpdate(
             GroupsUpdateConsolidationRequest request) {
           return groupsUpdate(request,null);
         }
 
+        /**
+         * Rename a consolidation group or change its presentation currency.
+         */
         public NordletApiHttpResponse<GroupsUpdateConsolidationResponse> groupsUpdate(
             GroupsUpdateConsolidationRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -353,11 +383,17 @@ public class RawConsolidationClient {
             }
           }
 
+          /**
+           * Delete a consolidation group.
+           */
           public NordletApiHttpResponse<GroupsDeleteConsolidationResponse> groupsDelete(
               GroupsDeleteConsolidationRequest request) {
             return groupsDelete(request,null);
           }
 
+          /**
+           * Delete a consolidation group.
+           */
           public NordletApiHttpResponse<GroupsDeleteConsolidationResponse> groupsDelete(
               GroupsDeleteConsolidationRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -422,11 +458,17 @@ public class RawConsolidationClient {
               }
             }
 
+            /**
+             * Add a company to a consolidation group with its ownership percentage and method (<code>full</code>, <code>proportional</code> or <code>equity</code>), or change those of an existing member. Another company can be added only by a signed-in user who is owner, admin or accountant of it; an API key is refused with 403.
+             */
             public NordletApiHttpResponse<MembersAddConsolidationResponse> membersAdd(
                 MembersAddConsolidationRequest request) {
               return membersAdd(request,null);
             }
 
+            /**
+             * Add a company to a consolidation group with its ownership percentage and method (<code>full</code>, <code>proportional</code> or <code>equity</code>), or change those of an existing member. Another company can be added only by a signed-in user who is owner, admin or accountant of it; an API key is refused with 403.
+             */
             public NordletApiHttpResponse<MembersAddConsolidationResponse> membersAdd(
                 MembersAddConsolidationRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -491,11 +533,17 @@ public class RawConsolidationClient {
                 }
               }
 
+              /**
+               * Remove a company from a consolidation group.
+               */
               public NordletApiHttpResponse<MembersRemoveConsolidationResponse> membersRemove(
                   MembersRemoveConsolidationRequest request) {
                 return membersRemove(request,null);
               }
 
+              /**
+               * Remove a company from a consolidation group.
+               */
               public NordletApiHttpResponse<MembersRemoveConsolidationResponse> membersRemove(
                   MembersRemoveConsolidationRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -712,11 +760,17 @@ public class RawConsolidationClient {
                       }
                     }
 
+                    /**
+                     * List the intercompany links of a group: which partner record of which member company stands for which other member company.
+                     */
                     public NordletApiHttpResponse<IntercompanyLinksListConsolidationResponse> intercompanyLinksList(
                         IntercompanyLinksListConsolidationRequest request) {
                       return intercompanyLinksList(request,null);
                     }
 
+                    /**
+                     * List the intercompany links of a group: which partner record of which member company stands for which other member company.
+                     */
                     public NordletApiHttpResponse<IntercompanyLinksListConsolidationResponse> intercompanyLinksList(
                         IntercompanyLinksListConsolidationRequest request,
                         RequestOptions requestOptions) {
@@ -782,11 +836,17 @@ public class RawConsolidationClient {
                         }
                       }
 
+                      /**
+                       * Remove an intercompany link from a group.
+                       */
                       public NordletApiHttpResponse<IntercompanyLinksRemoveConsolidationResponse> intercompanyLinksRemove(
                           IntercompanyLinksRemoveConsolidationRequest request) {
                         return intercompanyLinksRemove(request,null);
                       }
 
+                      /**
+                       * Remove an intercompany link from a group.
+                       */
                       public NordletApiHttpResponse<IntercompanyLinksRemoveConsolidationResponse> intercompanyLinksRemove(
                           IntercompanyLinksRemoveConsolidationRequest request,
                           RequestOptions requestOptions) {
@@ -928,11 +988,17 @@ public class RawConsolidationClient {
                             }
                           }
 
+                          /**
+                           * Consolidated financial statements of a group for a period in its presentation currency, with the consolidated trial balance and cash flow, each member's contribution and the intercompany candidates. Each member's balances are translated at the group owner's exchange rates of <code>toDate</code> and taken in full, in proportion to the ownership (<code>proportional</code>) or as an equity-method investment (<code>equity</code>); a fully consolidated member held below 100 % yields the non-controlling interest, and <code>eliminations</code> are amounts added to account codes before the statements are assembled (<code>balanced</code> tells whether they net to zero). Refused with 422 when the group has no members.
+                           */
                           public NordletApiHttpResponse<ReportConsolidationResponse> report(
                               ReportConsolidationRequest request) {
                             return report(request,null);
                           }
 
+                          /**
+                           * Consolidated financial statements of a group for a period in its presentation currency, with the consolidated trial balance and cash flow, each member's contribution and the intercompany candidates. Each member's balances are translated at the group owner's exchange rates of <code>toDate</code> and taken in full, in proportion to the ownership (<code>proportional</code>) or as an equity-method investment (<code>equity</code>); a fully consolidated member held below 100 % yields the non-controlling interest, and <code>eliminations</code> are amounts added to account codes before the statements are assembled (<code>balanced</code> tells whether they net to zero). Refused with 422 when the group has no members.
+                           */
                           public NordletApiHttpResponse<ReportConsolidationResponse> report(
                               ReportConsolidationRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

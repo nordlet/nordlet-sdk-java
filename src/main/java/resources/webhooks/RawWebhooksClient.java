@@ -54,11 +54,17 @@ public class RawWebhooksClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Register a webhook endpoint for the given event types (<code>*</code> for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless <code>secret</code> is given, and this call is the only one that returns it.
+   */
   public NordletApiHttpResponse<SubscriptionsCreateWebhooksResponse> subscriptionsCreate(
       SubscriptionsCreateWebhooksRequest request) {
     return subscriptionsCreate(request,null);
   }
 
+  /**
+   * Register a webhook endpoint for the given event types (<code>*</code> for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless <code>secret</code> is given, and this call is the only one that returns it.
+   */
   public NordletApiHttpResponse<SubscriptionsCreateWebhooksResponse> subscriptionsCreate(
       SubscriptionsCreateWebhooksRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -123,20 +129,32 @@ public class RawWebhooksClient {
       }
     }
 
+    /**
+     * List the company's webhook subscriptions with their last delivery state. Filterable by <code>url</code> and <code>isActive</code>; sortable by <code>createdAt</code> and <code>url</code>.
+     */
     public NordletApiHttpResponse<SubscriptionsListWebhooksResponse> subscriptionsList() {
       return subscriptionsList(SubscriptionsListWebhooksRequest.builder().build());
     }
 
+    /**
+     * List the company's webhook subscriptions with their last delivery state. Filterable by <code>url</code> and <code>isActive</code>; sortable by <code>createdAt</code> and <code>url</code>.
+     */
     public NordletApiHttpResponse<SubscriptionsListWebhooksResponse> subscriptionsList(
         RequestOptions requestOptions) {
       return subscriptionsList(SubscriptionsListWebhooksRequest.builder().build(),requestOptions);
     }
 
+    /**
+     * List the company's webhook subscriptions with their last delivery state. Filterable by <code>url</code> and <code>isActive</code>; sortable by <code>createdAt</code> and <code>url</code>.
+     */
     public NordletApiHttpResponse<SubscriptionsListWebhooksResponse> subscriptionsList(
         SubscriptionsListWebhooksRequest request) {
       return subscriptionsList(request,null);
     }
 
+    /**
+     * List the company's webhook subscriptions with their last delivery state. Filterable by <code>url</code> and <code>isActive</code>; sortable by <code>createdAt</code> and <code>url</code>.
+     */
     public NordletApiHttpResponse<SubscriptionsListWebhooksResponse> subscriptionsList(
         SubscriptionsListWebhooksRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -201,11 +219,17 @@ public class RawWebhooksClient {
         }
       }
 
+      /**
+       * Change the URL, event types or <code>isActive</code> flag of a subscription; at least one field is required (400) and a new URL must be an https address that resolves to a public network (422). Setting <code>isActive</code> to true also clears <code>pausedAt</code> and <code>consecutiveFailures</code>, which is how a subscription paused after 5 failed deliveries in a row is switched back on.
+       */
       public NordletApiHttpResponse<SubscriptionsUpdateWebhooksResponse> subscriptionsUpdate(
           SubscriptionsUpdateWebhooksRequest request) {
         return subscriptionsUpdate(request,null);
       }
 
+      /**
+       * Change the URL, event types or <code>isActive</code> flag of a subscription; at least one field is required (400) and a new URL must be an https address that resolves to a public network (422). Setting <code>isActive</code> to true also clears <code>pausedAt</code> and <code>consecutiveFailures</code>, which is how a subscription paused after 5 failed deliveries in a row is switched back on.
+       */
       public NordletApiHttpResponse<SubscriptionsUpdateWebhooksResponse> subscriptionsUpdate(
           SubscriptionsUpdateWebhooksRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -270,11 +294,17 @@ public class RawWebhooksClient {
           }
         }
 
+        /**
+         * Delete a webhook subscription.
+         */
         public NordletApiHttpResponse<SubscriptionsDeleteWebhooksResponse> subscriptionsDelete(
             SubscriptionsDeleteWebhooksRequest request) {
           return subscriptionsDelete(request,null);
         }
 
+        /**
+         * Delete a webhook subscription.
+         */
         public NordletApiHttpResponse<SubscriptionsDeleteWebhooksResponse> subscriptionsDelete(
             SubscriptionsDeleteWebhooksRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -339,20 +369,32 @@ public class RawWebhooksClient {
             }
           }
 
+          /**
+           * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
+           */
           public NordletApiHttpResponse<DeliveriesListWebhooksResponse> deliveriesList() {
             return deliveriesList(DeliveriesListWebhooksRequest.builder().build());
           }
 
+          /**
+           * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
+           */
           public NordletApiHttpResponse<DeliveriesListWebhooksResponse> deliveriesList(
               RequestOptions requestOptions) {
             return deliveriesList(DeliveriesListWebhooksRequest.builder().build(),requestOptions);
           }
 
+          /**
+           * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
+           */
           public NordletApiHttpResponse<DeliveriesListWebhooksResponse> deliveriesList(
               DeliveriesListWebhooksRequest request) {
             return deliveriesList(request,null);
           }
 
+          /**
+           * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
+           */
           public NordletApiHttpResponse<DeliveriesListWebhooksResponse> deliveriesList(
               DeliveriesListWebhooksRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -417,11 +459,17 @@ public class RawWebhooksClient {
               }
             }
 
+            /**
+             * Send a delivery again now: its status goes back to <code>pending</code> with the attempt count and last error cleared. Answers 409 when the subscription is inactive.
+             */
             public NordletApiHttpResponse<DeliveriesRedeliverWebhooksResponse> deliveriesRedeliver(
                 DeliveriesRedeliverWebhooksRequest request) {
               return deliveriesRedeliver(request,null);
             }
 
+            /**
+             * Send a delivery again now: its status goes back to <code>pending</code> with the attempt count and last error cleared. Answers 409 when the subscription is inactive.
+             */
             public NordletApiHttpResponse<DeliveriesRedeliverWebhooksResponse> deliveriesRedeliver(
                 DeliveriesRedeliverWebhooksRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

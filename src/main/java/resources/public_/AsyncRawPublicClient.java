@@ -51,11 +51,17 @@ public class AsyncRawPublicClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Store a request for an integration: the integration asked for and the sender's name, company, e-mail and details. When <code>website</code> is filled in, the call answers <code>received</code> without storing anything.
+   */
   public CompletableFuture<NordletApiHttpResponse<IntegrationRequestsPublicResponse>> integrationRequests(
       IntegrationRequestsPublicRequest request) {
     return integrationRequests(request,null);
   }
 
+  /**
+   * Store a request for an integration: the integration asked for and the sender's name, company, e-mail and details. When <code>website</code> is filled in, the call answers <code>received</code> without storing anything.
+   */
   public CompletableFuture<NordletApiHttpResponse<IntegrationRequestsPublicResponse>> integrationRequests(
       IntegrationRequestsPublicRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -143,20 +149,32 @@ public class AsyncRawPublicClient {
       return future;
     }
 
+    /**
+     * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+     */
     public CompletableFuture<NordletApiHttpResponse<Void>> pay(String token) {
       return pay(token,PayPublicRequest.builder().build());
     }
 
+    /**
+     * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+     */
     public CompletableFuture<NordletApiHttpResponse<Void>> pay(String token,
         RequestOptions requestOptions) {
       return pay(token,PayPublicRequest.builder().build(),requestOptions);
     }
 
+    /**
+     * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+     */
     public CompletableFuture<NordletApiHttpResponse<Void>> pay(String token,
         PayPublicRequest request) {
       return pay(token,request,null);
     }
 
+    /**
+     * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+     */
     public CompletableFuture<NordletApiHttpResponse<Void>> pay(String token,
         PayPublicRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

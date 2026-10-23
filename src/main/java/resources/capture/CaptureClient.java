@@ -44,124 +44,208 @@ public class CaptureClient {
     return this.rawClient;
   }
 
+  /**
+   * Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
+   */
   public SettingsGetCaptureResponse settingsGet() {
     return this.rawClient.settingsGet().body();
   }
 
+  /**
+   * Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
+   */
   public SettingsGetCaptureResponse settingsGet(RequestOptions requestOptions) {
     return this.rawClient.settingsGet(requestOptions).body();
   }
 
+  /**
+   * Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
+   */
   public SettingsGetCaptureResponse settingsGet(SettingsGetCaptureRequest request) {
     return this.rawClient.settingsGet(request).body();
   }
 
+  /**
+   * Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
+   */
   public SettingsGetCaptureResponse settingsGet(SettingsGetCaptureRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.settingsGet(request, requestOptions).body();
   }
 
+  /**
+   * Switch <code>intakeEnabled</code> (documents sent to the intake address are accepted) and <code>captureAutoExtract</code> (they are read on arrival) on or off; at least one field is required.
+   */
   public SettingsUpdateCaptureResponse settingsUpdate() {
     return this.rawClient.settingsUpdate().body();
   }
 
+  /**
+   * Switch <code>intakeEnabled</code> (documents sent to the intake address are accepted) and <code>captureAutoExtract</code> (they are read on arrival) on or off; at least one field is required.
+   */
   public SettingsUpdateCaptureResponse settingsUpdate(RequestOptions requestOptions) {
     return this.rawClient.settingsUpdate(requestOptions).body();
   }
 
+  /**
+   * Switch <code>intakeEnabled</code> (documents sent to the intake address are accepted) and <code>captureAutoExtract</code> (they are read on arrival) on or off; at least one field is required.
+   */
   public SettingsUpdateCaptureResponse settingsUpdate(SettingsUpdateCaptureRequest request) {
     return this.rawClient.settingsUpdate(request).body();
   }
 
+  /**
+   * Switch <code>intakeEnabled</code> (documents sent to the intake address are accepted) and <code>captureAutoExtract</code> (they are read on arrival) on or off; at least one field is required.
+   */
   public SettingsUpdateCaptureResponse settingsUpdate(SettingsUpdateCaptureRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.settingsUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
+   */
   public SettingsRegenerateIntakeCaptureResponse settingsRegenerateIntake() {
     return this.rawClient.settingsRegenerateIntake().body();
   }
 
+  /**
+   * Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
+   */
   public SettingsRegenerateIntakeCaptureResponse settingsRegenerateIntake(
       RequestOptions requestOptions) {
     return this.rawClient.settingsRegenerateIntake(requestOptions).body();
   }
 
+  /**
+   * Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
+   */
   public SettingsRegenerateIntakeCaptureResponse settingsRegenerateIntake(
       SettingsRegenerateIntakeCaptureRequest request) {
     return this.rawClient.settingsRegenerateIntake(request).body();
   }
 
+  /**
+   * Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
+   */
   public SettingsRegenerateIntakeCaptureResponse settingsRegenerateIntake(
       SettingsRegenerateIntakeCaptureRequest request, RequestOptions requestOptions) {
     return this.rawClient.settingsRegenerateIntake(request, requestOptions).body();
   }
 
+  /**
+   * Endpoint for the inbound e-mail provider (Postmark field names or the generic <code>to</code>, <code>from</code>, <code>subject</code> and <code>attachments</code> form). It needs the <code>x-inbound-secret</code> header and finds the company by the <code>intake+&lt;token&gt;@</code> recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a <code>pending</code> capture (<code>accepted</code>), anything else is <code>skipped</code>; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
+   */
   public InboundEmailCaptureResponse inboundEmail() {
     return this.rawClient.inboundEmail().body();
   }
 
+  /**
+   * Endpoint for the inbound e-mail provider (Postmark field names or the generic <code>to</code>, <code>from</code>, <code>subject</code> and <code>attachments</code> form). It needs the <code>x-inbound-secret</code> header and finds the company by the <code>intake+&lt;token&gt;@</code> recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a <code>pending</code> capture (<code>accepted</code>), anything else is <code>skipped</code>; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
+   */
   public InboundEmailCaptureResponse inboundEmail(RequestOptions requestOptions) {
     return this.rawClient.inboundEmail(requestOptions).body();
   }
 
+  /**
+   * Endpoint for the inbound e-mail provider (Postmark field names or the generic <code>to</code>, <code>from</code>, <code>subject</code> and <code>attachments</code> form). It needs the <code>x-inbound-secret</code> header and finds the company by the <code>intake+&lt;token&gt;@</code> recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a <code>pending</code> capture (<code>accepted</code>), anything else is <code>skipped</code>; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
+   */
   public InboundEmailCaptureResponse inboundEmail(InboundEmailCaptureRequest request) {
     return this.rawClient.inboundEmail(request).body();
   }
 
+  /**
+   * Endpoint for the inbound e-mail provider (Postmark field names or the generic <code>to</code>, <code>from</code>, <code>subject</code> and <code>attachments</code> form). It needs the <code>x-inbound-secret</code> header and finds the company by the <code>intake+&lt;token&gt;@</code> recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a <code>pending</code> capture (<code>accepted</code>), anything else is <code>skipped</code>; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
+   */
   public InboundEmailCaptureResponse inboundEmail(InboundEmailCaptureRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.inboundEmail(request, requestOptions).body();
   }
 
+  /**
+   * Upload a supplier document (PDF, image, Word or PowerPoint, up to 10 MB; 422 for any other type) as a capture and read it at once. The result holds the extracted supplier, dates, totals and lines, the partner matched by VAT code, then partner code, then name, the raw text, and <code>status</code> <code>extracted</code> or <code>failed</code> with <code>error</code>. Needs a configured reading provider, is refused with 402 for a company on trial until its first top-up, and counts every page read as <code>ocr_page</code> usage. The draft is reviewed and saved with <code>capture/documents/confirm</code>.
+   */
   public DocumentsUploadCaptureResponse documentsUpload(DocumentsUploadCaptureRequest request) {
     return this.rawClient.documentsUpload(request).body();
   }
 
+  /**
+   * Upload a supplier document (PDF, image, Word or PowerPoint, up to 10 MB; 422 for any other type) as a capture and read it at once. The result holds the extracted supplier, dates, totals and lines, the partner matched by VAT code, then partner code, then name, the raw text, and <code>status</code> <code>extracted</code> or <code>failed</code> with <code>error</code>. Needs a configured reading provider, is refused with 402 for a company on trial until its first top-up, and counts every page read as <code>ocr_page</code> usage. The draft is reviewed and saved with <code>capture/documents/confirm</code>.
+   */
   public DocumentsUploadCaptureResponse documentsUpload(DocumentsUploadCaptureRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.documentsUpload(request, requestOptions).body();
   }
 
+  /**
+   * Read a stored capture again and replace its draft (supplier, totals, lines, matched partner). A capture received over Peppol is parsed from its document again without a reading provider; any other needs the provider and, for a company on trial, the first top-up (402). Refused with 409 once the capture is linked to a purchase invoice.
+   */
   public DocumentsExtractCaptureResponse documentsExtract(DocumentsExtractCaptureRequest request) {
     return this.rawClient.documentsExtract(request).body();
   }
 
+  /**
+   * Read a stored capture again and replace its draft (supplier, totals, lines, matched partner). A capture received over Peppol is parsed from its document again without a reading provider; any other needs the provider and, for a company on trial, the first top-up (402). Refused with 409 once the capture is linked to a purchase invoice.
+   */
   public DocumentsExtractCaptureResponse documentsExtract(DocumentsExtractCaptureRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.documentsExtract(request, requestOptions).body();
   }
 
+  /**
+   * Return one capture with its extraction and raw text.
+   */
   public DocumentsGetCaptureResponse documentsGet(DocumentsGetCaptureRequest request) {
     return this.rawClient.documentsGet(request).body();
   }
 
+  /**
+   * Return one capture with its extraction and raw text.
+   */
   public DocumentsGetCaptureResponse documentsGet(DocumentsGetCaptureRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.documentsGet(request, requestOptions).body();
   }
 
+  /**
+   * List captures without raw text. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
+   */
   public DocumentsListCaptureResponse documentsList() {
     return this.rawClient.documentsList().body();
   }
 
+  /**
+   * List captures without raw text. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
+   */
   public DocumentsListCaptureResponse documentsList(RequestOptions requestOptions) {
     return this.rawClient.documentsList(requestOptions).body();
   }
 
+  /**
+   * List captures without raw text. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
+   */
   public DocumentsListCaptureResponse documentsList(DocumentsListCaptureRequest request) {
     return this.rawClient.documentsList(request).body();
   }
 
+  /**
+   * List captures without raw text. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
+   */
   public DocumentsListCaptureResponse documentsList(DocumentsListCaptureRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.documentsList(request, requestOptions).body();
   }
 
+  /**
+   * Delete a capture and its stored file (409 once it is linked to a purchase invoice).
+   */
   public DocumentsDeleteCaptureResponse documentsDelete(DocumentsDeleteCaptureRequest request) {
     return this.rawClient.documentsDelete(request).body();
   }
 
+  /**
+   * Delete a capture and its stored file (409 once it is linked to a purchase invoice).
+   */
   public DocumentsDeleteCaptureResponse documentsDelete(DocumentsDeleteCaptureRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.documentsDelete(request, requestOptions).body();

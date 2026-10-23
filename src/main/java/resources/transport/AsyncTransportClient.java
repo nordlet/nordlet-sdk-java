@@ -37,70 +37,112 @@ public class AsyncTransportClient {
     return this.rawClient;
   }
 
+  /**
+   * Create a draft waybill to the consignee. The cargo lines are <code>lines</code> or, when none are given and <code>saleInvoiceId</code> is set, the product lines of that sale invoice (422 when it has none); a line without <code>description</code>, <code>unit</code> or <code>productCode</code> takes them from its item. <code>documentDate</code> defaults to the company's today and <code>series</code> to <code>VAZ</code>.
+   */
   public CompletableFuture<WaybillsCreateTransportResponse> waybillsCreate(
       WaybillsCreateTransportRequest request) {
     return this.rawClient.waybillsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create a draft waybill to the consignee. The cargo lines are <code>lines</code> or, when none are given and <code>saleInvoiceId</code> is set, the product lines of that sale invoice (422 when it has none); a line without <code>description</code>, <code>unit</code> or <code>productCode</code> takes them from its item. <code>documentDate</code> defaults to the company's today and <code>series</code> to <code>VAZ</code>.
+   */
   public CompletableFuture<WaybillsCreateTransportResponse> waybillsCreate(
       WaybillsCreateTransportRequest request, RequestOptions requestOptions) {
     return this.rawClient.waybillsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Change a draft waybill; omitted fields keep their value, the optional ones can be cleared with null, and <code>lines</code>, when given, replace all existing lines. A waybill that is already issued or cancelled is refused with 409.
+   */
   public CompletableFuture<WaybillsUpdateTransportResponse> waybillsUpdate(
       WaybillsUpdateTransportRequest request) {
     return this.rawClient.waybillsUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Change a draft waybill; omitted fields keep their value, the optional ones can be cleared with null, and <code>lines</code>, when given, replace all existing lines. A waybill that is already issued or cancelled is refused with 409.
+   */
   public CompletableFuture<WaybillsUpdateTransportResponse> waybillsUpdate(
       WaybillsUpdateTransportRequest request, RequestOptions requestOptions) {
     return this.rawClient.waybillsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Issue a draft waybill: it takes the next number of its <code>series</code> for the year of <code>documentDate</code> and becomes <code>issued</code>. Without a vehicle plate or without lines the call is refused with 422, a waybill that is not a draft with 409. Only issued waybills can go into the Lithuanian i.VAZ file (<code>declarations/lt/ivaz/generate</code>) and the Romanian e-Transport declaration (<code>declarations/ro/etransport/build</code>).
+   */
   public CompletableFuture<WaybillsIssueTransportResponse> waybillsIssue(
       WaybillsIssueTransportRequest request) {
     return this.rawClient.waybillsIssue(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Issue a draft waybill: it takes the next number of its <code>series</code> for the year of <code>documentDate</code> and becomes <code>issued</code>. Without a vehicle plate or without lines the call is refused with 422, a waybill that is not a draft with 409. Only issued waybills can go into the Lithuanian i.VAZ file (<code>declarations/lt/ivaz/generate</code>) and the Romanian e-Transport declaration (<code>declarations/ro/etransport/build</code>).
+   */
   public CompletableFuture<WaybillsIssueTransportResponse> waybillsIssue(
       WaybillsIssueTransportRequest request, RequestOptions requestOptions) {
     return this.rawClient.waybillsIssue(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Cancel a draft or issued waybill. An already cancelled one is refused with 409.
+   */
   public CompletableFuture<WaybillsCancelTransportResponse> waybillsCancel(
       WaybillsCancelTransportRequest request) {
     return this.rawClient.waybillsCancel(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Cancel a draft or issued waybill. An already cancelled one is refused with 409.
+   */
   public CompletableFuture<WaybillsCancelTransportResponse> waybillsCancel(
       WaybillsCancelTransportRequest request, RequestOptions requestOptions) {
     return this.rawClient.waybillsCancel(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Read one waybill with its lines.
+   */
   public CompletableFuture<WaybillsGetTransportResponse> waybillsGet(
       WaybillsGetTransportRequest request) {
     return this.rawClient.waybillsGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Read one waybill with its lines.
+   */
   public CompletableFuture<WaybillsGetTransportResponse> waybillsGet(
       WaybillsGetTransportRequest request, RequestOptions requestOptions) {
     return this.rawClient.waybillsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+   */
   public CompletableFuture<WaybillsListTransportResponse> waybillsList() {
     return this.rawClient.waybillsList().thenApply(response -> response.body());
   }
 
+  /**
+   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+   */
   public CompletableFuture<WaybillsListTransportResponse> waybillsList(
       RequestOptions requestOptions) {
     return this.rawClient.waybillsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+   */
   public CompletableFuture<WaybillsListTransportResponse> waybillsList(
       WaybillsListTransportRequest request) {
     return this.rawClient.waybillsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+   */
   public CompletableFuture<WaybillsListTransportResponse> waybillsList(
       WaybillsListTransportRequest request, RequestOptions requestOptions) {
     return this.rawClient.waybillsList(request, requestOptions).thenApply(response -> response.body());

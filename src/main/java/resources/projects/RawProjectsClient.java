@@ -62,10 +62,16 @@ public class RawProjectsClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Create a project; <code>partnerId</code> is the customer that <code>projects/time-entries/bill</code> invoices by default. A duplicate <code>code</code> is refused with 409.
+   */
   public NordletApiHttpResponse<CreateProjectsResponse> create(CreateProjectsRequest request) {
     return create(request,null);
   }
 
+  /**
+   * Create a project; <code>partnerId</code> is the customer that <code>projects/time-entries/bill</code> invoices by default. A duplicate <code>code</code> is refused with 409.
+   */
   public NordletApiHttpResponse<CreateProjectsResponse> create(CreateProjectsRequest request,
       RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -130,10 +136,16 @@ public class RawProjectsClient {
       }
     }
 
+    /**
+     * Change a project's name, customer, <code>status</code> (<code>active</code>, <code>completed</code>, <code>archived</code>) or notes; only the fields sent are changed. An archived project accepts no new time entries.
+     */
     public NordletApiHttpResponse<UpdateProjectsResponse> update(UpdateProjectsRequest request) {
       return update(request,null);
     }
 
+    /**
+     * Change a project's name, customer, <code>status</code> (<code>active</code>, <code>completed</code>, <code>archived</code>) or notes; only the fields sent are changed. An archived project accepts no new time entries.
+     */
     public NordletApiHttpResponse<UpdateProjectsResponse> update(UpdateProjectsRequest request,
         RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -198,10 +210,16 @@ public class RawProjectsClient {
         }
       }
 
+      /**
+       * Return one project.
+       */
       public NordletApiHttpResponse<GetProjectsResponse> get(GetProjectsRequest request) {
         return get(request,null);
       }
 
+      /**
+       * Return one project.
+       */
       public NordletApiHttpResponse<GetProjectsResponse> get(GetProjectsRequest request,
           RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -266,18 +284,30 @@ public class RawProjectsClient {
           }
         }
 
+        /**
+         * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+         */
         public NordletApiHttpResponse<ListProjectsResponse> list() {
           return list(ListProjectsRequest.builder().build());
         }
 
+        /**
+         * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+         */
         public NordletApiHttpResponse<ListProjectsResponse> list(RequestOptions requestOptions) {
           return list(ListProjectsRequest.builder().build(),requestOptions);
         }
 
+        /**
+         * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+         */
         public NordletApiHttpResponse<ListProjectsResponse> list(ListProjectsRequest request) {
           return list(request,null);
         }
 
+        /**
+         * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+         */
         public NordletApiHttpResponse<ListProjectsResponse> list(ListProjectsRequest request,
             RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -342,11 +372,17 @@ public class RawProjectsClient {
             }
           }
 
+          /**
+           * Record hours worked on a project on a date, optionally for an employee and with the <code>hourlyRate</code> used when billing. <code>hours</code> must be positive (422); an archived project is refused with 409.
+           */
           public NordletApiHttpResponse<TimeEntriesCreateProjectsResponse> timeEntriesCreate(
               TimeEntriesCreateProjectsRequest request) {
             return timeEntriesCreate(request,null);
           }
 
+          /**
+           * Record hours worked on a project on a date, optionally for an employee and with the <code>hourlyRate</code> used when billing. <code>hours</code> must be positive (422); an archived project is refused with 409.
+           */
           public NordletApiHttpResponse<TimeEntriesCreateProjectsResponse> timeEntriesCreate(
               TimeEntriesCreateProjectsRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -411,11 +447,17 @@ public class RawProjectsClient {
               }
             }
 
+            /**
+             * Change a time entry; only the fields sent are changed. <code>hours</code> must be positive (422); an entry already billed to an invoice cannot be changed (409).
+             */
             public NordletApiHttpResponse<TimeEntriesUpdateProjectsResponse> timeEntriesUpdate(
                 TimeEntriesUpdateProjectsRequest request) {
               return timeEntriesUpdate(request,null);
             }
 
+            /**
+             * Change a time entry; only the fields sent are changed. <code>hours</code> must be positive (422); an entry already billed to an invoice cannot be changed (409).
+             */
             public NordletApiHttpResponse<TimeEntriesUpdateProjectsResponse> timeEntriesUpdate(
                 TimeEntriesUpdateProjectsRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -480,11 +522,17 @@ public class RawProjectsClient {
                 }
               }
 
+              /**
+               * Delete a time entry (409 once it is billed).
+               */
               public NordletApiHttpResponse<TimeEntriesDeleteProjectsResponse> timeEntriesDelete(
                   TimeEntriesDeleteProjectsRequest request) {
                 return timeEntriesDelete(request,null);
               }
 
+              /**
+               * Delete a time entry (409 once it is billed).
+               */
               public NordletApiHttpResponse<TimeEntriesDeleteProjectsResponse> timeEntriesDelete(
                   TimeEntriesDeleteProjectsRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -549,20 +597,32 @@ public class RawProjectsClient {
                   }
                 }
 
+                /**
+                 * List time entries. Filterable by <code>projectId</code>, <code>employeeId</code>, <code>billable</code>, <code>billedInvoiceId</code> and <code>date</code>; sortable by <code>date</code>, <code>createdAt</code> and <code>hours</code>.
+                 */
                 public NordletApiHttpResponse<TimeEntriesListProjectsResponse> timeEntriesList() {
                   return timeEntriesList(TimeEntriesListProjectsRequest.builder().build());
                 }
 
+                /**
+                 * List time entries. Filterable by <code>projectId</code>, <code>employeeId</code>, <code>billable</code>, <code>billedInvoiceId</code> and <code>date</code>; sortable by <code>date</code>, <code>createdAt</code> and <code>hours</code>.
+                 */
                 public NordletApiHttpResponse<TimeEntriesListProjectsResponse> timeEntriesList(
                     RequestOptions requestOptions) {
                   return timeEntriesList(TimeEntriesListProjectsRequest.builder().build(),requestOptions);
                 }
 
+                /**
+                 * List time entries. Filterable by <code>projectId</code>, <code>employeeId</code>, <code>billable</code>, <code>billedInvoiceId</code> and <code>date</code>; sortable by <code>date</code>, <code>createdAt</code> and <code>hours</code>.
+                 */
                 public NordletApiHttpResponse<TimeEntriesListProjectsResponse> timeEntriesList(
                     TimeEntriesListProjectsRequest request) {
                   return timeEntriesList(request,null);
                 }
 
+                /**
+                 * List time entries. Filterable by <code>projectId</code>, <code>employeeId</code>, <code>billable</code>, <code>billedInvoiceId</code> and <code>date</code>; sortable by <code>date</code>, <code>createdAt</code> and <code>hours</code>.
+                 */
                 public NordletApiHttpResponse<TimeEntriesListProjectsResponse> timeEntriesList(
                     TimeEntriesListProjectsRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -627,11 +687,17 @@ public class RawProjectsClient {
                     }
                   }
 
+                  /**
+                   * Create a draft sale invoice from the project's unbilled billable time entries, optionally limited to <code>dateFrom</code> and <code>dateTo</code>, and mark them billed; needs the <code>sales:write</code> scope, and the invoice is issued with <code>sales/invoices/issue</code>. The customer is <code>partnerId</code>, else the project's partner (422 without either); each entry is priced at its own <code>hourlyRate</code>, else the call's <code>hourlyRate</code> (422 when an entry has neither); <code>groupBy</code> <code>rate</code> makes one line per rate with the summed hours, <code>entry</code> one line per entry; <code>itemId</code>, <code>vatRatePercent</code> and <code>vatClassifierCode</code> go onto every line. No matching entries is 422.
+                   */
                   public NordletApiHttpResponse<TimeEntriesBillProjectsResponse> timeEntriesBill(
                       TimeEntriesBillProjectsRequest request) {
                     return timeEntriesBill(request,null);
                   }
 
+                  /**
+                   * Create a draft sale invoice from the project's unbilled billable time entries, optionally limited to <code>dateFrom</code> and <code>dateTo</code>, and mark them billed; needs the <code>sales:write</code> scope, and the invoice is issued with <code>sales/invoices/issue</code>. The customer is <code>partnerId</code>, else the project's partner (422 without either); each entry is priced at its own <code>hourlyRate</code>, else the call's <code>hourlyRate</code> (422 when an entry has neither); <code>groupBy</code> <code>rate</code> makes one line per rate with the summed hours, <code>entry</code> one line per entry; <code>itemId</code>, <code>vatRatePercent</code> and <code>vatClassifierCode</code> go onto every line. No matching entries is 422.
+                   */
                   public NordletApiHttpResponse<TimeEntriesBillProjectsResponse> timeEntriesBill(
                       TimeEntriesBillProjectsRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -696,20 +762,32 @@ public class RawProjectsClient {
                       }
                     }
 
+                    /**
+                     * Profitability per project: <code>revenue</code> and <code>costs</code> from posted journal entries tagged with the project (income accounts credit less debit, expense accounts debit less credit), <code>profit</code> as their difference, and the hours from time entries (total, billable, billed, unbilled, and the unbilled amount at the entries' hourly rates). <code>projectId</code> limits the report to one project; <code>dateFrom</code> and <code>dateTo</code> limit the journal dates and the entry dates. Nothing is changed.
+                     */
                     public NordletApiHttpResponse<ReportProjectsResponse> report() {
                       return report(ReportProjectsRequest.builder().build());
                     }
 
+                    /**
+                     * Profitability per project: <code>revenue</code> and <code>costs</code> from posted journal entries tagged with the project (income accounts credit less debit, expense accounts debit less credit), <code>profit</code> as their difference, and the hours from time entries (total, billable, billed, unbilled, and the unbilled amount at the entries' hourly rates). <code>projectId</code> limits the report to one project; <code>dateFrom</code> and <code>dateTo</code> limit the journal dates and the entry dates. Nothing is changed.
+                     */
                     public NordletApiHttpResponse<ReportProjectsResponse> report(
                         RequestOptions requestOptions) {
                       return report(ReportProjectsRequest.builder().build(),requestOptions);
                     }
 
+                    /**
+                     * Profitability per project: <code>revenue</code> and <code>costs</code> from posted journal entries tagged with the project (income accounts credit less debit, expense accounts debit less credit), <code>profit</code> as their difference, and the hours from time entries (total, billable, billed, unbilled, and the unbilled amount at the entries' hourly rates). <code>projectId</code> limits the report to one project; <code>dateFrom</code> and <code>dateTo</code> limit the journal dates and the entry dates. Nothing is changed.
+                     */
                     public NordletApiHttpResponse<ReportProjectsResponse> report(
                         ReportProjectsRequest request) {
                       return report(request,null);
                     }
 
+                    /**
+                     * Profitability per project: <code>revenue</code> and <code>costs</code> from posted journal entries tagged with the project (income accounts credit less debit, expense accounts debit less credit), <code>profit</code> as their difference, and the hours from time entries (total, billable, billed, unbilled, and the unbilled amount at the entries' hourly rates). <code>projectId</code> limits the report to one project; <code>dateFrom</code> and <code>dateTo</code> limit the journal dates and the entry dates. Nothing is changed.
+                     */
                     public NordletApiHttpResponse<ReportProjectsResponse> report(
                         ReportProjectsRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

@@ -79,58 +79,94 @@ public class AsyncLedgerClient {
     return this.rawClient;
   }
 
+  /**
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<AccountsListLedgerResponse> accountsList() {
     return this.rawClient.accountsList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<AccountsListLedgerResponse> accountsList(RequestOptions requestOptions) {
     return this.rawClient.accountsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<AccountsListLedgerResponse> accountsList(
       AccountsListLedgerRequest request) {
     return this.rawClient.accountsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<AccountsListLedgerResponse> accountsList(
       AccountsListLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.accountsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds an account to the company's chart of accounts. <code>parentId</code> must name an account of the same company. Answers 409 when an account with the same <code>code</code> already exists.
+   */
   public CompletableFuture<AccountsCreateLedgerResponse> accountsCreate(
       AccountsCreateLedgerRequest request) {
     return this.rawClient.accountsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds an account to the company's chart of accounts. <code>parentId</code> must name an account of the same company. Answers 409 when an account with the same <code>code</code> already exists.
+   */
   public CompletableFuture<AccountsCreateLedgerResponse> accountsCreate(
       AccountsCreateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.accountsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the name, parent or postability of an account; the code and type cannot be changed. An account cannot be its own parent.
+   */
   public CompletableFuture<AccountsUpdateLedgerResponse> accountsUpdate(
       AccountsUpdateLedgerRequest request) {
     return this.rawClient.accountsUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the name, parent or postability of an account; the code and type cannot be changed. An account cannot be its own parent.
+   */
   public CompletableFuture<AccountsUpdateLedgerResponse> accountsUpdate(
       AccountsUpdateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.accountsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds the accounts of the company's chart template that the chart does not have yet (an account whose code already exists is not replaced) and sets the parent links the template defines. Returns the number of accounts in the chart afterwards.
+   */
   public CompletableFuture<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate() {
     return this.rawClient.accountsApplyTemplate().thenApply(response -> response.body());
   }
 
+  /**
+   * Adds the accounts of the company's chart template that the chart does not have yet (an account whose code already exists is not replaced) and sets the parent links the template defines. Returns the number of accounts in the chart afterwards.
+   */
   public CompletableFuture<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate(
       RequestOptions requestOptions) {
     return this.rawClient.accountsApplyTemplate(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds the accounts of the company's chart template that the chart does not have yet (an account whose code already exists is not replaced) and sets the parent links the template defines. Returns the number of accounts in the chart afterwards.
+   */
   public CompletableFuture<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate(
       AccountsApplyTemplateLedgerRequest request) {
     return this.rawClient.accountsApplyTemplate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds the accounts of the company's chart template that the chart does not have yet (an account whose code already exists is not replaced) and sets the parent links the template defines. Returns the number of accounts in the chart afterwards.
+   */
   public CompletableFuture<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate(
       AccountsApplyTemplateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.accountsApplyTemplate(request, requestOptions).thenApply(response -> response.body());
@@ -167,242 +203,392 @@ public class AsyncLedgerClient {
     return this.rawClient.accountsSwitchChart(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's accounting periods with their <code>open</code> or <code>locked</code> status. Filterable by <code>year</code>, <code>month</code> and <code>status</code>; sortable by <code>year</code> and <code>month</code>.
+   */
   public CompletableFuture<PeriodsListLedgerResponse> periodsList() {
     return this.rawClient.periodsList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's accounting periods with their <code>open</code> or <code>locked</code> status. Filterable by <code>year</code>, <code>month</code> and <code>status</code>; sortable by <code>year</code> and <code>month</code>.
+   */
   public CompletableFuture<PeriodsListLedgerResponse> periodsList(RequestOptions requestOptions) {
     return this.rawClient.periodsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's accounting periods with their <code>open</code> or <code>locked</code> status. Filterable by <code>year</code>, <code>month</code> and <code>status</code>; sortable by <code>year</code> and <code>month</code>.
+   */
   public CompletableFuture<PeriodsListLedgerResponse> periodsList(
       PeriodsListLedgerRequest request) {
     return this.rawClient.periodsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's accounting periods with their <code>open</code> or <code>locked</code> status. Filterable by <code>year</code>, <code>month</code> and <code>status</code>; sortable by <code>year</code> and <code>month</code>.
+   */
   public CompletableFuture<PeriodsListLedgerResponse> periodsList(PeriodsListLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.periodsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Locks the month so that postings dated in it are refused with 409 (<code>ledger/journal/transactions/create</code>, <code>cash/orders/create</code> and <code>cash/expense-reports/create</code> among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits <code>revenue_recognition.posted</code> when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule <code>closing.retainedEarnings</code>).
+   */
   public CompletableFuture<PeriodsLockLedgerResponse> periodsLock(
       PeriodsLockLedgerRequest request) {
     return this.rawClient.periodsLock(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Locks the month so that postings dated in it are refused with 409 (<code>ledger/journal/transactions/create</code>, <code>cash/orders/create</code> and <code>cash/expense-reports/create</code> among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits <code>revenue_recognition.posted</code> when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule <code>closing.retainedEarnings</code>).
+   */
   public CompletableFuture<PeriodsLockLedgerResponse> periodsLock(PeriodsLockLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.periodsLock(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Opens the month for posting again. When the month is the company's fiscal year end and a year-end close is posted for it, posts a reversal of that close dated the same day.
+   */
   public CompletableFuture<PeriodsUnlockLedgerResponse> periodsUnlock(
       PeriodsUnlockLedgerRequest request) {
     return this.rawClient.periodsUnlock(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Opens the month for posting again. When the month is the company's fiscal year end and a year-end close is posted for it, posts a reversal of that close dated the same day.
+   */
   public CompletableFuture<PeriodsUnlockLedgerResponse> periodsUnlock(
       PeriodsUnlockLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.periodsUnlock(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<JournalTransactionsListLedgerResponse> journalTransactionsList() {
     return this.rawClient.journalTransactionsList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<JournalTransactionsListLedgerResponse> journalTransactionsList(
       RequestOptions requestOptions) {
     return this.rawClient.journalTransactionsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<JournalTransactionsListLedgerResponse> journalTransactionsList(
       JournalTransactionsListLedgerRequest request) {
     return this.rawClient.journalTransactionsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<JournalTransactionsListLedgerResponse> journalTransactionsList(
       JournalTransactionsListLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.journalTransactionsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a cost center, optionally inside a cost center group. Answers 409 when the <code>code</code> is already used.
+   */
   public CompletableFuture<CostCentersCreateLedgerResponse> costCentersCreate(
       CostCentersCreateLedgerRequest request) {
     return this.rawClient.costCentersCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a cost center, optionally inside a cost center group. Answers 409 when the <code>code</code> is already used.
+   */
   public CompletableFuture<CostCentersCreateLedgerResponse> costCentersCreate(
       CostCentersCreateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.costCentersCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the name, group or active flag of a cost center. An inactive cost center is refused on new manual journal entries (<code>ledger/journal/transactions/create</code> answers 422).
+   */
   public CompletableFuture<CostCentersUpdateLedgerResponse> costCentersUpdate(
       CostCentersUpdateLedgerRequest request) {
     return this.rawClient.costCentersUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the name, group or active flag of a cost center. An inactive cost center is refused on new manual journal entries (<code>ledger/journal/transactions/create</code> answers 422).
+   */
   public CompletableFuture<CostCentersUpdateLedgerResponse> costCentersUpdate(
       CostCentersUpdateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.costCentersUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists cost centers with their group name. Filterable by <code>code</code>, <code>name</code>, <code>isActive</code> and <code>groupId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<CostCentersListLedgerResponse> costCentersList() {
     return this.rawClient.costCentersList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists cost centers with their group name. Filterable by <code>code</code>, <code>name</code>, <code>isActive</code> and <code>groupId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<CostCentersListLedgerResponse> costCentersList(
       RequestOptions requestOptions) {
     return this.rawClient.costCentersList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists cost centers with their group name. Filterable by <code>code</code>, <code>name</code>, <code>isActive</code> and <code>groupId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<CostCentersListLedgerResponse> costCentersList(
       CostCentersListLedgerRequest request) {
     return this.rawClient.costCentersList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists cost centers with their group name. Filterable by <code>code</code>, <code>name</code>, <code>isActive</code> and <code>groupId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<CostCentersListLedgerResponse> costCentersList(
       CostCentersListLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.costCentersList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a cost center group. Answers 409 when the <code>code</code> is already used.
+   */
   public CompletableFuture<CostCenterGroupsCreateLedgerResponse> costCenterGroupsCreate(
       CostCenterGroupsCreateLedgerRequest request) {
     return this.rawClient.costCenterGroupsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a cost center group. Answers 409 when the <code>code</code> is already used.
+   */
   public CompletableFuture<CostCenterGroupsCreateLedgerResponse> costCenterGroupsCreate(
       CostCenterGroupsCreateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.costCenterGroupsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the code or name of a cost center group. Answers 409 when the new code is already used.
+   */
   public CompletableFuture<CostCenterGroupsUpdateLedgerResponse> costCenterGroupsUpdate(
       CostCenterGroupsUpdateLedgerRequest request) {
     return this.rawClient.costCenterGroupsUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the code or name of a cost center group. Answers 409 when the new code is already used.
+   */
   public CompletableFuture<CostCenterGroupsUpdateLedgerResponse> costCenterGroupsUpdate(
       CostCenterGroupsUpdateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.costCenterGroupsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a cost center group. Answers 409 while cost centers are still assigned to it.
+   */
   public CompletableFuture<CostCenterGroupsDeleteLedgerResponse> costCenterGroupsDelete(
       CostCenterGroupsDeleteLedgerRequest request) {
     return this.rawClient.costCenterGroupsDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a cost center group. Answers 409 while cost centers are still assigned to it.
+   */
   public CompletableFuture<CostCenterGroupsDeleteLedgerResponse> costCenterGroupsDelete(
       CostCenterGroupsDeleteLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.costCenterGroupsDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists cost center groups. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<CostCenterGroupsListLedgerResponse> costCenterGroupsList() {
     return this.rawClient.costCenterGroupsList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists cost center groups. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<CostCenterGroupsListLedgerResponse> costCenterGroupsList(
       RequestOptions requestOptions) {
     return this.rawClient.costCenterGroupsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists cost center groups. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<CostCenterGroupsListLedgerResponse> costCenterGroupsList(
       CostCenterGroupsListLedgerRequest request) {
     return this.rawClient.costCenterGroupsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists cost center groups. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<CostCenterGroupsListLedgerResponse> costCenterGroupsList(
       CostCenterGroupsListLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.costCenterGroupsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists every posting rule with its default account code on the company's chart template, the account code in effect and whether the company has overridden it.
+   */
   public CompletableFuture<PostingRulesListLedgerResponse> postingRulesList() {
     return this.rawClient.postingRulesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists every posting rule with its default account code on the company's chart template, the account code in effect and whether the company has overridden it.
+   */
   public CompletableFuture<PostingRulesListLedgerResponse> postingRulesList(
       RequestOptions requestOptions) {
     return this.rawClient.postingRulesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists every posting rule with its default account code on the company's chart template, the account code in effect and whether the company has overridden it.
+   */
   public CompletableFuture<PostingRulesListLedgerResponse> postingRulesList(
       PostingRulesListLedgerRequest request) {
     return this.rawClient.postingRulesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists every posting rule with its default account code on the company's chart template, the account code in effect and whether the company has overridden it.
+   */
   public CompletableFuture<PostingRulesListLedgerResponse> postingRulesList(
       PostingRulesListLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.postingRulesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Overrides the account code of one or more posting rules; an <code>accountCode</code> of null removes the override and the chart default applies again. Every code given must be a postable account of the company's chart, else 422.
+   */
   public CompletableFuture<PostingRulesUpdateLedgerResponse> postingRulesUpdate(
       PostingRulesUpdateLedgerRequest request) {
     return this.rawClient.postingRulesUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Overrides the account code of one or more posting rules; an <code>accountCode</code> of null removes the override and the chart default applies again. Every code given must be a postable account of the company's chart, else 422.
+   */
   public CompletableFuture<PostingRulesUpdateLedgerResponse> postingRulesUpdate(
       PostingRulesUpdateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.postingRulesUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds an owner of the company. <code>equityAccountCode</code> defaults to the share capital account of the company's chart; a code that is not in the chart of accounts answers 422.
+   */
   public CompletableFuture<OwnersCreateLedgerResponse> ownersCreate(
       OwnersCreateLedgerRequest request) {
     return this.rawClient.ownersCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds an owner of the company. <code>equityAccountCode</code> defaults to the share capital account of the company's chart; a code that is not in the chart of accounts answers 422.
+   */
   public CompletableFuture<OwnersCreateLedgerResponse> ownersCreate(
       OwnersCreateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.ownersCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the fields of an owner. An <code>equityAccountCode</code> that is not in the chart of accounts answers 422.
+   */
   public CompletableFuture<OwnersUpdateLedgerResponse> ownersUpdate(
       OwnersUpdateLedgerRequest request) {
     return this.rawClient.ownersUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the fields of an owner. An <code>equityAccountCode</code> that is not in the chart of accounts answers 422.
+   */
   public CompletableFuture<OwnersUpdateLedgerResponse> ownersUpdate(
       OwnersUpdateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.ownersUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes an owner.
+   */
   public CompletableFuture<OwnersDeleteLedgerResponse> ownersDelete(
       OwnersDeleteLedgerRequest request) {
     return this.rawClient.ownersDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes an owner.
+   */
   public CompletableFuture<OwnersDeleteLedgerResponse> ownersDelete(
       OwnersDeleteLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.ownersDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<OwnersListLedgerResponse> ownersList() {
     return this.rawClient.ownersList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<OwnersListLedgerResponse> ownersList(RequestOptions requestOptions) {
     return this.rawClient.ownersList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<OwnersListLedgerResponse> ownersList(OwnersListLedgerRequest request) {
     return this.rawClient.ownersList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<OwnersListLedgerResponse> ownersList(OwnersListLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ownersList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Returns a journal transaction with its entries, ordered by account code.
+   */
   public CompletableFuture<JournalTransactionsGetLedgerResponse> journalTransactionsGet(
       JournalTransactionsGetLedgerRequest request) {
     return this.rawClient.journalTransactionsGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Returns a journal transaction with its entries, ordered by account code.
+   */
   public CompletableFuture<JournalTransactionsGetLedgerResponse> journalTransactionsGet(
       JournalTransactionsGetLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.journalTransactionsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount with more than two decimals, for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
+   */
   public CompletableFuture<JournalTransactionsCreateLedgerResponse> journalTransactionsCreate(
       JournalTransactionsCreateLedgerRequest request) {
     return this.rawClient.journalTransactionsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount with more than two decimals, for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
+   */
   public CompletableFuture<JournalTransactionsCreateLedgerResponse> journalTransactionsCreate(
       JournalTransactionsCreateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.journalTransactionsCreate(request, requestOptions).thenApply(response -> response.body());
@@ -439,11 +625,17 @@ public class AsyncLedgerClient {
     return this.rawClient.statementRowsSchemes(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Every postable account of the company with the row of <code>scheme</code> it falls into, by a mapping (<code>ledger/statement-rows/set</code>) or by the layout default, and the amount it carries there: the balance up to <code>toDate</code> on a balance-sheet row, the movement from <code>fromDate</code> to <code>toDate</code> on an income-statement row. <code>toDate</code> defaults to today and <code>fromDate</code> to 1 January of that year. <code>rows</code> holds the row totals and <code>unmapped</code> the accounts with a balance but no row.
+   */
   public CompletableFuture<StatementRowsListLedgerResponse> statementRowsList(
       StatementRowsListLedgerRequest request) {
     return this.rawClient.statementRowsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Every postable account of the company with the row of <code>scheme</code> it falls into, by a mapping (<code>ledger/statement-rows/set</code>) or by the layout default, and the amount it carries there: the balance up to <code>toDate</code> on a balance-sheet row, the movement from <code>fromDate</code> to <code>toDate</code> on an income-statement row. <code>toDate</code> defaults to today and <code>fromDate</code> to 1 January of that year. <code>rows</code> holds the row totals and <code>unmapped</code> the accounts with a balance but no row.
+   */
   public CompletableFuture<StatementRowsListLedgerResponse> statementRowsList(
       StatementRowsListLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.statementRowsList(request, requestOptions).thenApply(response -> response.body());

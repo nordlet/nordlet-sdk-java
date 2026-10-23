@@ -70,20 +70,32 @@ public class RawAgreementsClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Return whether automatic agreement billing is switched on for the company.
+   */
   public NordletApiHttpResponse<SettingsGetAgreementsResponse> settingsGet() {
     return settingsGet(SettingsGetAgreementsRequest.builder().build());
   }
 
+  /**
+   * Return whether automatic agreement billing is switched on for the company.
+   */
   public NordletApiHttpResponse<SettingsGetAgreementsResponse> settingsGet(
       RequestOptions requestOptions) {
     return settingsGet(SettingsGetAgreementsRequest.builder().build(),requestOptions);
   }
 
+  /**
+   * Return whether automatic agreement billing is switched on for the company.
+   */
   public NordletApiHttpResponse<SettingsGetAgreementsResponse> settingsGet(
       SettingsGetAgreementsRequest request) {
     return settingsGet(request,null);
   }
 
+  /**
+   * Return whether automatic agreement billing is switched on for the company.
+   */
   public NordletApiHttpResponse<SettingsGetAgreementsResponse> settingsGet(
       SettingsGetAgreementsRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -148,11 +160,17 @@ public class RawAgreementsClient {
       }
     }
 
+    /**
+     * Switch automatic agreement billing on or off for the company. With it on, a scheduled job runs the same billing as <code>agreements/agreements/billing/run</code> for the company once a day.
+     */
     public NordletApiHttpResponse<SettingsUpdateAgreementsResponse> settingsUpdate(
         SettingsUpdateAgreementsRequest request) {
       return settingsUpdate(request,null);
     }
 
+    /**
+     * Switch automatic agreement billing on or off for the company. With it on, a scheduled job runs the same billing as <code>agreements/agreements/billing/run</code> for the company once a day.
+     */
     public NordletApiHttpResponse<SettingsUpdateAgreementsResponse> settingsUpdate(
         SettingsUpdateAgreementsRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -217,11 +235,17 @@ public class RawAgreementsClient {
         }
       }
 
+      /**
+       * Create an agreement type with a <code>code</code> and a <code>name</code>. Answers 409 when the company already has a type with that code.
+       */
       public NordletApiHttpResponse<TypesCreateAgreementsResponse> typesCreate(
           TypesCreateAgreementsRequest request) {
         return typesCreate(request,null);
       }
 
+      /**
+       * Create an agreement type with a <code>code</code> and a <code>name</code>. Answers 409 when the company already has a type with that code.
+       */
       public NordletApiHttpResponse<TypesCreateAgreementsResponse> typesCreate(
           TypesCreateAgreementsRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -286,20 +310,32 @@ public class RawAgreementsClient {
           }
         }
 
+        /**
+         * List the company's agreement types. Filterable and sortable by <code>code</code> and <code>name</code>.
+         */
         public NordletApiHttpResponse<TypesListAgreementsResponse> typesList() {
           return typesList(TypesListAgreementsRequest.builder().build());
         }
 
+        /**
+         * List the company's agreement types. Filterable and sortable by <code>code</code> and <code>name</code>.
+         */
         public NordletApiHttpResponse<TypesListAgreementsResponse> typesList(
             RequestOptions requestOptions) {
           return typesList(TypesListAgreementsRequest.builder().build(),requestOptions);
         }
 
+        /**
+         * List the company's agreement types. Filterable and sortable by <code>code</code> and <code>name</code>.
+         */
         public NordletApiHttpResponse<TypesListAgreementsResponse> typesList(
             TypesListAgreementsRequest request) {
           return typesList(request,null);
         }
 
+        /**
+         * List the company's agreement types. Filterable and sortable by <code>code</code> and <code>name</code>.
+         */
         public NordletApiHttpResponse<TypesListAgreementsResponse> typesList(
             TypesListAgreementsRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -364,11 +400,17 @@ public class RawAgreementsClient {
             }
           }
 
+          /**
+           * Create an agreement for exactly one party, a partner, an employee or a bank account, which must exist in the company (400 otherwise). Without <code>kind</code>, an employee agreement is <code>employment</code>, a bank account agreement is <code>bank</code> and a partner agreement is <code>other</code>; a <code>documentRef</code> (the <code>storageKey</code> of an uploaded file) attaches that file to the agreement. Answers 409 when the company already has an agreement with that <code>number</code>.
+           */
           public NordletApiHttpResponse<AgreementsCreateAgreementsResponse> agreementsCreate(
               AgreementsCreateAgreementsRequest request) {
             return agreementsCreate(request,null);
           }
 
+          /**
+           * Create an agreement for exactly one party, a partner, an employee or a bank account, which must exist in the company (400 otherwise). Without <code>kind</code>, an employee agreement is <code>employment</code>, a bank account agreement is <code>bank</code> and a partner agreement is <code>other</code>; a <code>documentRef</code> (the <code>storageKey</code> of an uploaded file) attaches that file to the agreement. Answers 409 when the company already has an agreement with that <code>number</code>.
+           */
           public NordletApiHttpResponse<AgreementsCreateAgreementsResponse> agreementsCreate(
               AgreementsCreateAgreementsRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -433,11 +475,17 @@ public class RawAgreementsClient {
               }
             }
 
+            /**
+             * Return one agreement with its items.
+             */
             public NordletApiHttpResponse<AgreementsGetAgreementsResponse> agreementsGet(
                 AgreementsGetAgreementsRequest request) {
               return agreementsGet(request,null);
             }
 
+            /**
+             * Return one agreement with its items.
+             */
             public NordletApiHttpResponse<AgreementsGetAgreementsResponse> agreementsGet(
                 AgreementsGetAgreementsRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -502,11 +550,17 @@ public class RawAgreementsClient {
                 }
               }
 
+              /**
+               * Change the given fields of an agreement and return it with its items. The party, <code>number</code>, <code>startDate</code>, <code>currency</code> and items are not changed by this call.
+               */
               public NordletApiHttpResponse<AgreementsUpdateAgreementsResponse> agreementsUpdate(
                   AgreementsUpdateAgreementsRequest request) {
                 return agreementsUpdate(request,null);
               }
 
+              /**
+               * Change the given fields of an agreement and return it with its items. The party, <code>number</code>, <code>startDate</code>, <code>currency</code> and items are not changed by this call.
+               */
               public NordletApiHttpResponse<AgreementsUpdateAgreementsResponse> agreementsUpdate(
                   AgreementsUpdateAgreementsRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -571,11 +625,17 @@ public class RawAgreementsClient {
                   }
                 }
 
+                /**
+                 * Mark an agreement as deleted. It is no longer returned, changed or billed.
+                 */
                 public NordletApiHttpResponse<AgreementsDeleteAgreementsResponse> agreementsDelete(
                     AgreementsDeleteAgreementsRequest request) {
                   return agreementsDelete(request,null);
                 }
 
+                /**
+                 * Mark an agreement as deleted. It is no longer returned, changed or billed.
+                 */
                 public NordletApiHttpResponse<AgreementsDeleteAgreementsResponse> agreementsDelete(
                     AgreementsDeleteAgreementsRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -640,20 +700,32 @@ public class RawAgreementsClient {
                     }
                   }
 
+                  /**
+                   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code> and <code>createdAt</code> (default <code>startDate</code> descending).
+                   */
                   public NordletApiHttpResponse<AgreementsListAgreementsResponse> agreementsList() {
                     return agreementsList(AgreementsListAgreementsRequest.builder().build());
                   }
 
+                  /**
+                   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code> and <code>createdAt</code> (default <code>startDate</code> descending).
+                   */
                   public NordletApiHttpResponse<AgreementsListAgreementsResponse> agreementsList(
                       RequestOptions requestOptions) {
                     return agreementsList(AgreementsListAgreementsRequest.builder().build(),requestOptions);
                   }
 
+                  /**
+                   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code> and <code>createdAt</code> (default <code>startDate</code> descending).
+                   */
                   public NordletApiHttpResponse<AgreementsListAgreementsResponse> agreementsList(
                       AgreementsListAgreementsRequest request) {
                     return agreementsList(request,null);
                   }
 
+                  /**
+                   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code> and <code>createdAt</code> (default <code>startDate</code> descending).
+                   */
                   public NordletApiHttpResponse<AgreementsListAgreementsResponse> agreementsList(
                       AgreementsListAgreementsRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -718,11 +790,17 @@ public class RawAgreementsClient {
                       }
                     }
 
+                    /**
+                     * Create a draft sale invoice for the next unbilled period of an active agreement that has a partner and a <code>billingPeriod</code>. The period follows the monthly, quarterly or annual grid from <code>startDate</code>, continues after the last period already invoiced for the agreement, and is prorated by days when it starts late or is cut by <code>endDate</code>; an <code>autoRenew</code> agreement has its <code>endDate</code> moved forward by whole terms instead (<code>renewedEndDate</code>). The lines come from the agreement items, else one line of <code>value</code>, with revenue recognised ratably over the period. Answers 422 when the agreement is not active, has no partner, billing period, items or value, carries VAT while the company is not a VAT payer, is fully billed through its end date, or when the next period starts after <code>asOfDate</code> (default today). Emits <code>agreement.invoice_generated</code>.
+                     */
                     public NordletApiHttpResponse<AgreementsGenerateInvoiceAgreementsResponse> agreementsGenerateInvoice(
                         AgreementsGenerateInvoiceAgreementsRequest request) {
                       return agreementsGenerateInvoice(request,null);
                     }
 
+                    /**
+                     * Create a draft sale invoice for the next unbilled period of an active agreement that has a partner and a <code>billingPeriod</code>. The period follows the monthly, quarterly or annual grid from <code>startDate</code>, continues after the last period already invoiced for the agreement, and is prorated by days when it starts late or is cut by <code>endDate</code>; an <code>autoRenew</code> agreement has its <code>endDate</code> moved forward by whole terms instead (<code>renewedEndDate</code>). The lines come from the agreement items, else one line of <code>value</code>, with revenue recognised ratably over the period. Answers 422 when the agreement is not active, has no partner, billing period, items or value, carries VAT while the company is not a VAT payer, is fully billed through its end date, or when the next period starts after <code>asOfDate</code> (default today). Emits <code>agreement.invoice_generated</code>.
+                     */
                     public NordletApiHttpResponse<AgreementsGenerateInvoiceAgreementsResponse> agreementsGenerateInvoice(
                         AgreementsGenerateInvoiceAgreementsRequest request,
                         RequestOptions requestOptions) {
@@ -788,21 +866,33 @@ public class RawAgreementsClient {
                         }
                       }
 
+                      /**
+                       * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
+                       */
                       public NordletApiHttpResponse<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
                           ) {
                         return agreementsBillingRun(AgreementsBillingRunAgreementsRequest.builder().build());
                       }
 
+                      /**
+                       * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
+                       */
                       public NordletApiHttpResponse<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
                           RequestOptions requestOptions) {
                         return agreementsBillingRun(AgreementsBillingRunAgreementsRequest.builder().build(),requestOptions);
                       }
 
+                      /**
+                       * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
+                       */
                       public NordletApiHttpResponse<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
                           AgreementsBillingRunAgreementsRequest request) {
                         return agreementsBillingRun(request,null);
                       }
 
+                      /**
+                       * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
+                       */
                       public NordletApiHttpResponse<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
                           AgreementsBillingRunAgreementsRequest request,
                           RequestOptions requestOptions) {
@@ -868,11 +958,17 @@ public class RawAgreementsClient {
                           }
                         }
 
+                        /**
+                         * Create an insurance policy. Answers 422 when <code>toDate</code> is before <code>fromDate</code>, 400 when <code>insurerPartnerId</code> is not a partner of the company, and 409 when the company already has a policy with that <code>policyNumber</code>.
+                         */
                         public NordletApiHttpResponse<InsurancePoliciesCreateAgreementsResponse> insurancePoliciesCreate(
                             InsurancePoliciesCreateAgreementsRequest request) {
                           return insurancePoliciesCreate(request,null);
                         }
 
+                        /**
+                         * Create an insurance policy. Answers 422 when <code>toDate</code> is before <code>fromDate</code>, 400 when <code>insurerPartnerId</code> is not a partner of the company, and 409 when the company already has a policy with that <code>policyNumber</code>.
+                         */
                         public NordletApiHttpResponse<InsurancePoliciesCreateAgreementsResponse> insurancePoliciesCreate(
                             InsurancePoliciesCreateAgreementsRequest request,
                             RequestOptions requestOptions) {
@@ -938,21 +1034,33 @@ public class RawAgreementsClient {
                             }
                           }
 
+                          /**
+                           * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
+                           */
                           public NordletApiHttpResponse<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
                               ) {
                             return insurancePoliciesList(InsurancePoliciesListAgreementsRequest.builder().build());
                           }
 
+                          /**
+                           * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
+                           */
                           public NordletApiHttpResponse<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
                               RequestOptions requestOptions) {
                             return insurancePoliciesList(InsurancePoliciesListAgreementsRequest.builder().build(),requestOptions);
                           }
 
+                          /**
+                           * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
+                           */
                           public NordletApiHttpResponse<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
                               InsurancePoliciesListAgreementsRequest request) {
                             return insurancePoliciesList(request,null);
                           }
 
+                          /**
+                           * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
+                           */
                           public NordletApiHttpResponse<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
                               InsurancePoliciesListAgreementsRequest request,
                               RequestOptions requestOptions) {
@@ -1018,11 +1126,17 @@ public class RawAgreementsClient {
                               }
                             }
 
+                            /**
+                             * Mark an insurance policy as deleted.
+                             */
                             public NordletApiHttpResponse<InsurancePoliciesDeleteAgreementsResponse> insurancePoliciesDelete(
                                 InsurancePoliciesDeleteAgreementsRequest request) {
                               return insurancePoliciesDelete(request,null);
                             }
 
+                            /**
+                             * Mark an insurance policy as deleted.
+                             */
                             public NordletApiHttpResponse<InsurancePoliciesDeleteAgreementsResponse> insurancePoliciesDelete(
                                 InsurancePoliciesDeleteAgreementsRequest request,
                                 RequestOptions requestOptions) {

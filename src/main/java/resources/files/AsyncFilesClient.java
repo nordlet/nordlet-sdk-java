@@ -33,45 +33,75 @@ public class AsyncFilesClient {
     return this.rawClient;
   }
 
+  /**
+   * Store a base64-encoded file of up to 10 MB (413 above that) under an <code>entity</code> and optional <code>entityId</code>, and return its record with the SHA-256 of the content and its <code>storageKey</code>, which other calls take as <code>documentRef</code>.
+   */
   public CompletableFuture<UploadFilesResponse> upload(UploadFilesRequest request) {
     return this.rawClient.upload(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Store a base64-encoded file of up to 10 MB (413 above that) under an <code>entity</code> and optional <code>entityId</code>, and return its record with the SHA-256 of the content and its <code>storageKey</code>, which other calls take as <code>documentRef</code>.
+   */
   public CompletableFuture<UploadFilesResponse> upload(UploadFilesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.upload(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Return a file record with its content, base64-encoded.
+   */
   public CompletableFuture<GetFilesResponse> get(GetFilesRequest request) {
     return this.rawClient.get(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Return a file record with its content, base64-encoded.
+   */
   public CompletableFuture<GetFilesResponse> get(GetFilesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.get(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+   */
   public CompletableFuture<ListFilesResponse> list() {
     return this.rawClient.list().thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+   */
   public CompletableFuture<ListFilesResponse> list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+   */
   public CompletableFuture<ListFilesResponse> list(ListFilesRequest request) {
     return this.rawClient.list(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+   */
   public CompletableFuture<ListFilesResponse> list(ListFilesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.list(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Delete a file record and its stored content.
+   */
   public CompletableFuture<DeleteFilesResponse> delete(DeleteFilesRequest request) {
     return this.rawClient.delete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Delete a file record and its stored content.
+   */
   public CompletableFuture<DeleteFilesResponse> delete(DeleteFilesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.delete(request, requestOptions).thenApply(response -> response.body());

@@ -102,279 +102,465 @@ public class PartnersClient {
     return this.rawClient;
   }
 
+  /**
+   * Adds an address of type billing, shipping, registered or other to the partner in <code>partnerId</code>.
+   */
   public AddressesCreatePartnersResponse addressesCreate(AddressesCreatePartnersRequest request) {
     return this.rawClient.addressesCreate(request).body();
   }
 
+  /**
+   * Adds an address of type billing, shipping, registered or other to the partner in <code>partnerId</code>.
+   */
   public AddressesCreatePartnersResponse addressesCreate(AddressesCreatePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.addressesCreate(request, requestOptions).body();
   }
 
+  /**
+   * Changes the given fields of a partner address.
+   */
   public AddressesUpdatePartnersResponse addressesUpdate(AddressesUpdatePartnersRequest request) {
     return this.rawClient.addressesUpdate(request).body();
   }
 
+  /**
+   * Changes the given fields of a partner address.
+   */
   public AddressesUpdatePartnersResponse addressesUpdate(AddressesUpdatePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.addressesUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Deletes a partner address.
+   */
   public AddressesDeletePartnersResponse addressesDelete(AddressesDeletePartnersRequest request) {
     return this.rawClient.addressesDelete(request).body();
   }
 
+  /**
+   * Deletes a partner address.
+   */
   public AddressesDeletePartnersResponse addressesDelete(AddressesDeletePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.addressesDelete(request, requestOptions).body();
   }
 
+  /**
+   * Lists partner addresses; filterable by <code>partnerId</code>, <code>type</code> and <code>city</code>, sortable by <code>createdAt</code>.
+   */
   public AddressesListPartnersResponse addressesList() {
     return this.rawClient.addressesList().body();
   }
 
+  /**
+   * Lists partner addresses; filterable by <code>partnerId</code>, <code>type</code> and <code>city</code>, sortable by <code>createdAt</code>.
+   */
   public AddressesListPartnersResponse addressesList(RequestOptions requestOptions) {
     return this.rawClient.addressesList(requestOptions).body();
   }
 
+  /**
+   * Lists partner addresses; filterable by <code>partnerId</code>, <code>type</code> and <code>city</code>, sortable by <code>createdAt</code>.
+   */
   public AddressesListPartnersResponse addressesList(AddressesListPartnersRequest request) {
     return this.rawClient.addressesList(request).body();
   }
 
+  /**
+   * Lists partner addresses; filterable by <code>partnerId</code>, <code>type</code> and <code>city</code>, sortable by <code>createdAt</code>.
+   */
   public AddressesListPartnersResponse addressesList(AddressesListPartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.addressesList(request, requestOptions).body();
   }
 
+  /**
+   * Adds a contact person to the partner in <code>partnerId</code>.
+   */
   public ContactsCreatePartnersResponse contactsCreate(ContactsCreatePartnersRequest request) {
     return this.rawClient.contactsCreate(request).body();
   }
 
+  /**
+   * Adds a contact person to the partner in <code>partnerId</code>.
+   */
   public ContactsCreatePartnersResponse contactsCreate(ContactsCreatePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.contactsCreate(request, requestOptions).body();
   }
 
+  /**
+   * Changes the given fields of a partner contact.
+   */
   public ContactsUpdatePartnersResponse contactsUpdate(ContactsUpdatePartnersRequest request) {
     return this.rawClient.contactsUpdate(request).body();
   }
 
+  /**
+   * Changes the given fields of a partner contact.
+   */
   public ContactsUpdatePartnersResponse contactsUpdate(ContactsUpdatePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.contactsUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Deletes a partner contact.
+   */
   public ContactsDeletePartnersResponse contactsDelete(ContactsDeletePartnersRequest request) {
     return this.rawClient.contactsDelete(request).body();
   }
 
+  /**
+   * Deletes a partner contact.
+   */
   public ContactsDeletePartnersResponse contactsDelete(ContactsDeletePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.contactsDelete(request, requestOptions).body();
   }
 
+  /**
+   * Lists partner contacts; filterable by <code>partnerId</code>, <code>name</code> and <code>email</code>, sortable by <code>createdAt</code>.
+   */
   public ContactsListPartnersResponse contactsList() {
     return this.rawClient.contactsList().body();
   }
 
+  /**
+   * Lists partner contacts; filterable by <code>partnerId</code>, <code>name</code> and <code>email</code>, sortable by <code>createdAt</code>.
+   */
   public ContactsListPartnersResponse contactsList(RequestOptions requestOptions) {
     return this.rawClient.contactsList(requestOptions).body();
   }
 
+  /**
+   * Lists partner contacts; filterable by <code>partnerId</code>, <code>name</code> and <code>email</code>, sortable by <code>createdAt</code>.
+   */
   public ContactsListPartnersResponse contactsList(ContactsListPartnersRequest request) {
     return this.rawClient.contactsList(request).body();
   }
 
+  /**
+   * Lists partner contacts; filterable by <code>partnerId</code>, <code>name</code> and <code>email</code>, sortable by <code>createdAt</code>.
+   */
   public ContactsListPartnersResponse contactsList(ContactsListPartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.contactsList(request, requestOptions).body();
   }
 
+  /**
+   * Adds a bank account to the partner in <code>partnerId</code>. The IBAN is stored without spaces in upper case; an IBAN the partner already has is refused with 409. With <code>isDefault</code> true the partner's other accounts lose their default mark.
+   */
   public BankAccountsCreatePartnersResponse bankAccountsCreate(
       BankAccountsCreatePartnersRequest request) {
     return this.rawClient.bankAccountsCreate(request).body();
   }
 
+  /**
+   * Adds a bank account to the partner in <code>partnerId</code>. The IBAN is stored without spaces in upper case; an IBAN the partner already has is refused with 409. With <code>isDefault</code> true the partner's other accounts lose their default mark.
+   */
   public BankAccountsCreatePartnersResponse bankAccountsCreate(
       BankAccountsCreatePartnersRequest request, RequestOptions requestOptions) {
     return this.rawClient.bankAccountsCreate(request, requestOptions).body();
   }
 
+  /**
+   * Changes the given fields of a partner bank account. A new IBAN is stored without spaces in upper case and is refused with 409 when the partner already has it; when the account is the default after the change, the partner's other accounts lose their default mark.
+   */
   public BankAccountsUpdatePartnersResponse bankAccountsUpdate(
       BankAccountsUpdatePartnersRequest request) {
     return this.rawClient.bankAccountsUpdate(request).body();
   }
 
+  /**
+   * Changes the given fields of a partner bank account. A new IBAN is stored without spaces in upper case and is refused with 409 when the partner already has it; when the account is the default after the change, the partner's other accounts lose their default mark.
+   */
   public BankAccountsUpdatePartnersResponse bankAccountsUpdate(
       BankAccountsUpdatePartnersRequest request, RequestOptions requestOptions) {
     return this.rawClient.bankAccountsUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Deletes a partner bank account.
+   */
   public BankAccountsDeletePartnersResponse bankAccountsDelete(
       BankAccountsDeletePartnersRequest request) {
     return this.rawClient.bankAccountsDelete(request).body();
   }
 
+  /**
+   * Deletes a partner bank account.
+   */
   public BankAccountsDeletePartnersResponse bankAccountsDelete(
       BankAccountsDeletePartnersRequest request, RequestOptions requestOptions) {
     return this.rawClient.bankAccountsDelete(request, requestOptions).body();
   }
 
+  /**
+   * Lists partner bank accounts; filterable by <code>partnerId</code> and <code>iban</code>, sortable by <code>createdAt</code>.
+   */
   public BankAccountsListPartnersResponse bankAccountsList() {
     return this.rawClient.bankAccountsList().body();
   }
 
+  /**
+   * Lists partner bank accounts; filterable by <code>partnerId</code> and <code>iban</code>, sortable by <code>createdAt</code>.
+   */
   public BankAccountsListPartnersResponse bankAccountsList(RequestOptions requestOptions) {
     return this.rawClient.bankAccountsList(requestOptions).body();
   }
 
+  /**
+   * Lists partner bank accounts; filterable by <code>partnerId</code> and <code>iban</code>, sortable by <code>createdAt</code>.
+   */
   public BankAccountsListPartnersResponse bankAccountsList(
       BankAccountsListPartnersRequest request) {
     return this.rawClient.bankAccountsList(request).body();
   }
 
+  /**
+   * Lists partner bank accounts; filterable by <code>partnerId</code> and <code>iban</code>, sortable by <code>createdAt</code>.
+   */
   public BankAccountsListPartnersResponse bankAccountsList(BankAccountsListPartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.bankAccountsList(request, requestOptions).body();
   }
 
+  /**
+   * Lists the files attached to a partner, newest first. <code>partners/create</code> attaches one with <code>documentRef</code>, and <code>leads/convert</code> moves the lead's files here.
+   */
   public FilesListPartnersResponse filesList(FilesListPartnersRequest request) {
     return this.rawClient.filesList(request).body();
   }
 
+  /**
+   * Lists the files attached to a partner, newest first. <code>partners/create</code> attaches one with <code>documentRef</code>, and <code>leads/convert</code> moves the lead's files here.
+   */
   public FilesListPartnersResponse filesList(FilesListPartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.filesList(request, requestOptions).body();
   }
 
+  /**
+   * Runs the selection of the daily debt-reminder job for this company as of the company's current date and returns what it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no reminder in the last 7 days and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+   */
   public DebtRemindersPreviewPartnersResponse debtRemindersPreview() {
     return this.rawClient.debtRemindersPreview().body();
   }
 
+  /**
+   * Runs the selection of the daily debt-reminder job for this company as of the company's current date and returns what it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no reminder in the last 7 days and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+   */
   public DebtRemindersPreviewPartnersResponse debtRemindersPreview(RequestOptions requestOptions) {
     return this.rawClient.debtRemindersPreview(requestOptions).body();
   }
 
+  /**
+   * Runs the selection of the daily debt-reminder job for this company as of the company's current date and returns what it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no reminder in the last 7 days and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+   */
   public DebtRemindersPreviewPartnersResponse debtRemindersPreview(
       DebtRemindersPreviewPartnersRequest request) {
     return this.rawClient.debtRemindersPreview(request).body();
   }
 
+  /**
+   * Runs the selection of the daily debt-reminder job for this company as of the company's current date and returns what it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no reminder in the last 7 days and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+   */
   public DebtRemindersPreviewPartnersResponse debtRemindersPreview(
       DebtRemindersPreviewPartnersRequest request, RequestOptions requestOptions) {
     return this.rawClient.debtRemindersPreview(request, requestOptions).body();
   }
 
+  /**
+   * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered; filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
+   */
   public DebtRemindersListPartnersResponse debtRemindersList() {
     return this.rawClient.debtRemindersList().body();
   }
 
+  /**
+   * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered; filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
+   */
   public DebtRemindersListPartnersResponse debtRemindersList(RequestOptions requestOptions) {
     return this.rawClient.debtRemindersList(requestOptions).body();
   }
 
+  /**
+   * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered; filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
+   */
   public DebtRemindersListPartnersResponse debtRemindersList(
       DebtRemindersListPartnersRequest request) {
     return this.rawClient.debtRemindersList(request).body();
   }
 
+  /**
+   * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered; filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
+   */
   public DebtRemindersListPartnersResponse debtRemindersList(
       DebtRemindersListPartnersRequest request, RequestOptions requestOptions) {
     return this.rawClient.debtRemindersList(request, requestOptions).body();
   }
 
+  /**
+   * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+   */
   public ValidateVatPartnersResponse validateVat() {
     return this.rawClient.validateVat().body();
   }
 
+  /**
+   * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+   */
   public ValidateVatPartnersResponse validateVat(RequestOptions requestOptions) {
     return this.rawClient.validateVat(requestOptions).body();
   }
 
+  /**
+   * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+   */
   public ValidateVatPartnersResponse validateVat(ValidateVatPartnersRequest request) {
     return this.rawClient.validateVat(request).body();
   }
 
+  /**
+   * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+   */
   public ValidateVatPartnersResponse validateVat(ValidateVatPartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.validateVat(request, requestOptions).body();
   }
 
+  /**
+   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+   */
   public VatReviewsListPartnersResponse vatReviewsList() {
     return this.rawClient.vatReviewsList().body();
   }
 
+  /**
+   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+   */
   public VatReviewsListPartnersResponse vatReviewsList(RequestOptions requestOptions) {
     return this.rawClient.vatReviewsList(requestOptions).body();
   }
 
+  /**
+   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+   */
   public VatReviewsListPartnersResponse vatReviewsList(VatReviewsListPartnersRequest request) {
     return this.rawClient.vatReviewsList(request).body();
   }
 
+  /**
+   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+   */
   public VatReviewsListPartnersResponse vatReviewsList(VatReviewsListPartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.vatReviewsList(request, requestOptions).body();
   }
 
+  /**
+   * Closes an open VAT review as <code>confirmed_valid</code>, <code>confirmed_invalid</code> or <code>dismissed</code>, with an optional note. The first two also set the partner's <code>vatValid</code> and stamp <code>vatValidatedAt</code> when the partner still carries the reviewed VAT code; <code>dismissed</code> leaves the partner unchanged. A review that is already resolved answers 409; emits <code>vat_review.resolved</code>.
+   */
   public VatReviewsResolvePartnersResponse vatReviewsResolve(
       VatReviewsResolvePartnersRequest request) {
     return this.rawClient.vatReviewsResolve(request).body();
   }
 
+  /**
+   * Closes an open VAT review as <code>confirmed_valid</code>, <code>confirmed_invalid</code> or <code>dismissed</code>, with an optional note. The first two also set the partner's <code>vatValid</code> and stamp <code>vatValidatedAt</code> when the partner still carries the reviewed VAT code; <code>dismissed</code> leaves the partner unchanged. A review that is already resolved answers 409; emits <code>vat_review.resolved</code>.
+   */
   public VatReviewsResolvePartnersResponse vatReviewsResolve(
       VatReviewsResolvePartnersRequest request, RequestOptions requestOptions) {
     return this.rawClient.vatReviewsResolve(request, requestOptions).body();
   }
 
+  /**
+   * Creates a partner. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that is not an EU VAT number is stored unchecked (see <code>partners/validate-vat</code>).
+   */
   public CreatePartnersResponse create(CreatePartnersRequest request) {
     return this.rawClient.create(request).body();
   }
 
+  /**
+   * Creates a partner. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that is not an EU VAT number is stored unchecked (see <code>partners/validate-vat</code>).
+   */
   public CreatePartnersResponse create(CreatePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.create(request, requestOptions).body();
   }
 
+  /**
+   * Returns the live partner matched by <code>code</code>, then <code>vatCode</code>, then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. A creation that loses a race on the partner code returns the partner the other call created.
+   */
   public FindOrCreatePartnersResponse findOrCreate(FindOrCreatePartnersRequest request) {
     return this.rawClient.findOrCreate(request).body();
   }
 
+  /**
+   * Returns the live partner matched by <code>code</code>, then <code>vatCode</code>, then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. A creation that loses a race on the partner code returns the partner the other call created.
+   */
   public FindOrCreatePartnersResponse findOrCreate(FindOrCreatePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.findOrCreate(request, requestOptions).body();
   }
 
+  /**
+   * Returns one partner; a deleted partner answers 404.
+   */
   public GetPartnersResponse get(GetPartnersRequest request) {
     return this.rawClient.get(request).body();
   }
 
+  /**
+   * Returns one partner; a deleted partner answers 404.
+   */
   public GetPartnersResponse get(GetPartnersRequest request, RequestOptions requestOptions) {
     return this.rawClient.get(request, requestOptions).body();
   }
 
+  /**
+   * Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
+   */
   public UpdatePartnersResponse update(UpdatePartnersRequest request) {
     return this.rawClient.update(request).body();
   }
 
+  /**
+   * Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
+   */
   public UpdatePartnersResponse update(UpdatePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.update(request, requestOptions).body();
   }
 
+  /**
+   * Marks a partner as deleted; it no longer appears in lists or lookups.
+   */
   public DeletePartnersResponse delete(DeletePartnersRequest request) {
     return this.rawClient.delete(request).body();
   }
 
+  /**
+   * Marks a partner as deleted; it no longer appears in lists or lookups.
+   */
   public DeletePartnersResponse delete(DeletePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.delete(request, requestOptions).body();
   }
 
+  /**
+   * Moves every row that references the duplicate <code>sourceId</code> through a foreign key to partners (looked up in the database catalogue, within the company) to <code>targetId</code>, then marks the source partner as deleted; <code>moved</code> lists the tables, columns and row counts. Merging a partner into itself is 422, and when both partners hold the same unique entry (for example the same IBAN or item supplier row) the merge is refused with 409 until it is removed from one of them. When the kept partner has an open VAT review, the duplicate's open review is resolved as <code>superseded</code> (<code>vat_review.resolved</code>).
+   */
   public MergePartnersResponse merge(MergePartnersRequest request) {
     return this.rawClient.merge(request).body();
   }
 
+  /**
+   * Moves every row that references the duplicate <code>sourceId</code> through a foreign key to partners (looked up in the database catalogue, within the company) to <code>targetId</code>, then marks the source partner as deleted; <code>moved</code> lists the tables, columns and row counts. Merging a partner into itself is 422, and when both partners hold the same unique entry (for example the same IBAN or item supplier row) the merge is refused with 409 until it is removed from one of them. When the kept partner has an open VAT review, the duplicate's open review is resolved as <code>superseded</code> (<code>vat_review.resolved</code>).
+   */
   public MergePartnersResponse merge(MergePartnersRequest request, RequestOptions requestOptions) {
     return this.rawClient.merge(request, requestOptions).body();
   }
@@ -394,158 +580,266 @@ public class PartnersClient {
     return this.rawClient.anonymize(request, requestOptions).body();
   }
 
+  /**
+   * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+   */
   public ListPartnersResponse list() {
     return this.rawClient.list().body();
   }
 
+  /**
+   * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+   */
   public ListPartnersResponse list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).body();
   }
 
+  /**
+   * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+   */
   public ListPartnersResponse list(ListPartnersRequest request) {
     return this.rawClient.list(request).body();
   }
 
+  /**
+   * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+   */
   public ListPartnersResponse list(ListPartnersRequest request, RequestOptions requestOptions) {
     return this.rawClient.list(request, requestOptions).body();
   }
 
+  /**
+   * Creates a partner group; a <code>code</code> already used by a group of the company is refused with 409.
+   */
   public GroupsCreatePartnersResponse groupsCreate(GroupsCreatePartnersRequest request) {
     return this.rawClient.groupsCreate(request).body();
   }
 
+  /**
+   * Creates a partner group; a <code>code</code> already used by a group of the company is refused with 409.
+   */
   public GroupsCreatePartnersResponse groupsCreate(GroupsCreatePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.groupsCreate(request, requestOptions).body();
   }
 
+  /**
+   * Changes the code or name of a partner group; a code already used by another group of the company is refused with 409.
+   */
   public GroupsUpdatePartnersResponse groupsUpdate(GroupsUpdatePartnersRequest request) {
     return this.rawClient.groupsUpdate(request).body();
   }
 
+  /**
+   * Changes the code or name of a partner group; a code already used by another group of the company is refused with 409.
+   */
   public GroupsUpdatePartnersResponse groupsUpdate(GroupsUpdatePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.groupsUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Deletes a partner group; a group still assigned to a live partner is refused with 409.
+   */
   public GroupsDeletePartnersResponse groupsDelete(GroupsDeletePartnersRequest request) {
     return this.rawClient.groupsDelete(request).body();
   }
 
+  /**
+   * Deletes a partner group; a group still assigned to a live partner is refused with 409.
+   */
   public GroupsDeletePartnersResponse groupsDelete(GroupsDeletePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.groupsDelete(request, requestOptions).body();
   }
 
+  /**
+   * Lists the company's partner groups ordered by code.
+   */
   public GroupsListPartnersResponse groupsList() {
     return this.rawClient.groupsList().body();
   }
 
+  /**
+   * Lists the company's partner groups ordered by code.
+   */
   public GroupsListPartnersResponse groupsList(RequestOptions requestOptions) {
     return this.rawClient.groupsList(requestOptions).body();
   }
 
+  /**
+   * Lists the company's partner groups ordered by code.
+   */
   public GroupsListPartnersResponse groupsList(GroupsListPartnersRequest request) {
     return this.rawClient.groupsList(request).body();
   }
 
+  /**
+   * Lists the company's partner groups ordered by code.
+   */
   public GroupsListPartnersResponse groupsList(GroupsListPartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.groupsList(request, requestOptions).body();
   }
 
+  /**
+   * Creates a partner status with a <code>sortOrder</code>; a <code>code</code> already used by a status of the company is refused with 409.
+   */
   public StatusesCreatePartnersResponse statusesCreate(StatusesCreatePartnersRequest request) {
     return this.rawClient.statusesCreate(request).body();
   }
 
+  /**
+   * Creates a partner status with a <code>sortOrder</code>; a <code>code</code> already used by a status of the company is refused with 409.
+   */
   public StatusesCreatePartnersResponse statusesCreate(StatusesCreatePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.statusesCreate(request, requestOptions).body();
   }
 
+  /**
+   * Changes the code, name or sort order of a partner status; a code already used by another status of the company is refused with 409.
+   */
   public StatusesUpdatePartnersResponse statusesUpdate(StatusesUpdatePartnersRequest request) {
     return this.rawClient.statusesUpdate(request).body();
   }
 
+  /**
+   * Changes the code, name or sort order of a partner status; a code already used by another status of the company is refused with 409.
+   */
   public StatusesUpdatePartnersResponse statusesUpdate(StatusesUpdatePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.statusesUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Deletes a partner status; a status still assigned to a live partner is refused with 409.
+   */
   public StatusesDeletePartnersResponse statusesDelete(StatusesDeletePartnersRequest request) {
     return this.rawClient.statusesDelete(request).body();
   }
 
+  /**
+   * Deletes a partner status; a status still assigned to a live partner is refused with 409.
+   */
   public StatusesDeletePartnersResponse statusesDelete(StatusesDeletePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.statusesDelete(request, requestOptions).body();
   }
 
+  /**
+   * Lists the company's partner statuses ordered by sort order, then code.
+   */
   public StatusesListPartnersResponse statusesList() {
     return this.rawClient.statusesList().body();
   }
 
+  /**
+   * Lists the company's partner statuses ordered by sort order, then code.
+   */
   public StatusesListPartnersResponse statusesList(RequestOptions requestOptions) {
     return this.rawClient.statusesList(requestOptions).body();
   }
 
+  /**
+   * Lists the company's partner statuses ordered by sort order, then code.
+   */
   public StatusesListPartnersResponse statusesList(StatusesListPartnersRequest request) {
     return this.rawClient.statusesList(request).body();
   }
 
+  /**
+   * Lists the company's partner statuses ordered by sort order, then code.
+   */
   public StatusesListPartnersResponse statusesList(StatusesListPartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.statusesList(request, requestOptions).body();
   }
 
+  /**
+   * Records an inquiry in status <code>new</code>, from a partner (<code>partnerId</code>) or from a contact given by <code>contactName</code> or <code>contactEmail</code>; without any of the three it is refused with 422. <code>assignedUserId</code> must be a member of the company. Emits <code>partner_inquiry.created</code>.
+   */
   public InquiriesCreatePartnersResponse inquiriesCreate(InquiriesCreatePartnersRequest request) {
     return this.rawClient.inquiriesCreate(request).body();
   }
 
+  /**
+   * Records an inquiry in status <code>new</code>, from a partner (<code>partnerId</code>) or from a contact given by <code>contactName</code> or <code>contactEmail</code>; without any of the three it is refused with 422. <code>assignedUserId</code> must be a member of the company. Emits <code>partner_inquiry.created</code>.
+   */
   public InquiriesCreatePartnersResponse inquiriesCreate(InquiriesCreatePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.inquiriesCreate(request, requestOptions).body();
   }
 
+  /**
+   * Changes the given fields of an inquiry; <code>partnerId</code> and <code>assignedUserId</code> accept null. Setting <code>status</code> to <code>closed</code> stamps <code>closedAt</code>, and moving a closed inquiry to another status clears it.
+   */
   public InquiriesUpdatePartnersResponse inquiriesUpdate(InquiriesUpdatePartnersRequest request) {
     return this.rawClient.inquiriesUpdate(request).body();
   }
 
+  /**
+   * Changes the given fields of an inquiry; <code>partnerId</code> and <code>assignedUserId</code> accept null. Setting <code>status</code> to <code>closed</code> stamps <code>closedAt</code>, and moving a closed inquiry to another status clears it.
+   */
   public InquiriesUpdatePartnersResponse inquiriesUpdate(InquiriesUpdatePartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.inquiriesUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Returns one inquiry with the name of its partner.
+   */
   public InquiriesGetPartnersResponse inquiriesGet(InquiriesGetPartnersRequest request) {
     return this.rawClient.inquiriesGet(request).body();
   }
 
+  /**
+   * Returns one inquiry with the name of its partner.
+   */
   public InquiriesGetPartnersResponse inquiriesGet(InquiriesGetPartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.inquiriesGet(request, requestOptions).body();
   }
 
+  /**
+   * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
+   */
   public InquiriesListPartnersResponse inquiriesList() {
     return this.rawClient.inquiriesList().body();
   }
 
+  /**
+   * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
+   */
   public InquiriesListPartnersResponse inquiriesList(RequestOptions requestOptions) {
     return this.rawClient.inquiriesList(requestOptions).body();
   }
 
+  /**
+   * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
+   */
   public InquiriesListPartnersResponse inquiriesList(InquiriesListPartnersRequest request) {
     return this.rawClient.inquiriesList(request).body();
   }
 
+  /**
+   * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
+   */
   public InquiriesListPartnersResponse inquiriesList(InquiriesListPartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.inquiriesList(request, requestOptions).body();
   }
 
+  /**
+   * Compares a partner's open receivables plus an optional <code>additionalAmount</code> with its <code>creditLimit</code>. The open receivables are the unpaid remainder of the partner's issued invoices, advance invoices and credit notes (credit notes negative), converted to the company's base currency at each invoice's <code>fxRate</code>. Without a credit limit <code>available</code> is null and <code>exceeded</code> is false.
+   */
   public CreditCheckPartnersResponse creditCheck(CreditCheckPartnersRequest request) {
     return this.rawClient.creditCheck(request).body();
   }
 
+  /**
+   * Compares a partner's open receivables plus an optional <code>additionalAmount</code> with its <code>creditLimit</code>. The open receivables are the unpaid remainder of the partner's issued invoices, advance invoices and credit notes (credit notes negative), converted to the company's base currency at each invoice's <code>fxRate</code>. Without a credit limit <code>available</code> is null and <code>exceeded</code> is false.
+   */
   public CreditCheckPartnersResponse creditCheck(CreditCheckPartnersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.creditCheck(request, requestOptions).body();

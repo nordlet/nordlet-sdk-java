@@ -100,371 +100,623 @@ public class AccountClient {
     return this.rawClient;
   }
 
+  /**
+   * Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with <code>account/login-link/consume</code>. When an unused link was requested for the same address within the last minute, the call answers <code>sent</code> without sending another. <code>locale</code> sets the language of the e-mail and of the link; <code>acceptTerms</code>, <code>acceptDpa</code> and <code>referralCode</code> are stored with the link and used when the address has no account yet.
+   */
   public LoginLinkRequestAccountResponse loginLinkRequest(LoginLinkRequestAccountRequest request) {
     return this.rawClient.loginLinkRequest(request).body();
   }
 
+  /**
+   * Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with <code>account/login-link/consume</code>. When an unused link was requested for the same address within the last minute, the call answers <code>sent</code> without sending another. <code>locale</code> sets the language of the e-mail and of the link; <code>acceptTerms</code>, <code>acceptDpa</code> and <code>referralCode</code> are stored with the link and used when the address has no account yet.
+   */
   public LoginLinkRequestAccountResponse loginLinkRequest(LoginLinkRequestAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.loginLinkRequest(request, requestOptions).body();
   }
 
+  /**
+   * Exchange a sign-in link token for a session; an unknown, used or expired token is refused with 401. When no account has the address, one is created (<code>isNewUser</code>), which is refused with 422 unless the link was requested with <code>acceptTerms</code> and <code>acceptDpa</code>; a <code>referralCode</code> on the link records who referred the new user. A link from <code>account/email/change-request</code> changes the signed-in user's address instead, refused with 409 when another account has it.
+   */
   public LoginLinkConsumeAccountResponse loginLinkConsume(LoginLinkConsumeAccountRequest request) {
     return this.rawClient.loginLinkConsume(request).body();
   }
 
+  /**
+   * Exchange a sign-in link token for a session; an unknown, used or expired token is refused with 401. When no account has the address, one is created (<code>isNewUser</code>), which is refused with 422 unless the link was requested with <code>acceptTerms</code> and <code>acceptDpa</code>; a <code>referralCode</code> on the link records who referred the new user. A link from <code>account/email/change-request</code> changes the signed-in user's address instead, refused with 409 when another account has it.
+   */
   public LoginLinkConsumeAccountResponse loginLinkConsume(LoginLinkConsumeAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.loginLinkConsume(request, requestOptions).body();
   }
 
+  /**
+   * Delete the session the call was made with.
+   */
   public LogoutAccountResponse logout() {
     return this.rawClient.logout().body();
   }
 
+  /**
+   * Delete the session the call was made with.
+   */
   public LogoutAccountResponse logout(RequestOptions requestOptions) {
     return this.rawClient.logout(requestOptions).body();
   }
 
+  /**
+   * Delete the session the call was made with.
+   */
   public LogoutAccountResponse logout(LogoutAccountRequest request) {
     return this.rawClient.logout(request).body();
   }
 
+  /**
+   * Delete the session the call was made with.
+   */
   public LogoutAccountResponse logout(LogoutAccountRequest request, RequestOptions requestOptions) {
     return this.rawClient.logout(request, requestOptions).body();
   }
 
+  /**
+   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+   */
   public MeAccountResponse me() {
     return this.rawClient.me().body();
   }
 
+  /**
+   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+   */
   public MeAccountResponse me(RequestOptions requestOptions) {
     return this.rawClient.me(requestOptions).body();
   }
 
+  /**
+   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+   */
   public MeAccountResponse me(MeAccountRequest request) {
     return this.rawClient.me(request).body();
   }
 
+  /**
+   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+   */
   public MeAccountResponse me(MeAccountRequest request, RequestOptions requestOptions) {
     return this.rawClient.me(request, requestOptions).body();
   }
 
+  /**
+   * List the members of the active company with their role.
+   */
   public MembersListAccountResponse membersList() {
     return this.rawClient.membersList().body();
   }
 
+  /**
+   * List the members of the active company with their role.
+   */
   public MembersListAccountResponse membersList(RequestOptions requestOptions) {
     return this.rawClient.membersList(requestOptions).body();
   }
 
+  /**
+   * List the members of the active company with their role.
+   */
   public MembersListAccountResponse membersList(MembersListAccountRequest request) {
     return this.rawClient.membersList(request).body();
   }
 
+  /**
+   * List the members of the active company with their role.
+   */
   public MembersListAccountResponse membersList(MembersListAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.membersList(request, requestOptions).body();
   }
 
+  /**
+   * Change the role of a member of the active company; owners and admins may call it. Refused with 422 for the caller's own role and with 403 for the owner's, which only <code>account/members/transfer-ownership</code> changes.
+   */
   public MembersSetRoleAccountResponse membersSetRole(MembersSetRoleAccountRequest request) {
     return this.rawClient.membersSetRole(request).body();
   }
 
+  /**
+   * Change the role of a member of the active company; owners and admins may call it. Refused with 422 for the caller's own role and with 403 for the owner's, which only <code>account/members/transfer-ownership</code> changes.
+   */
   public MembersSetRoleAccountResponse membersSetRole(MembersSetRoleAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.membersSetRole(request, requestOptions).body();
   }
 
+  /**
+   * Make another member the owner of the active company; the caller must be its owner and becomes an admin. Refused with 422 when <code>userId</code> is the caller. With <code>movePayer</code> the company's billing also moves to the new owner, which only the member currently paying for it may do (403).
+   */
   public MembersTransferOwnershipAccountResponse membersTransferOwnership(
       MembersTransferOwnershipAccountRequest request) {
     return this.rawClient.membersTransferOwnership(request).body();
   }
 
+  /**
+   * Make another member the owner of the active company; the caller must be its owner and becomes an admin. Refused with 422 when <code>userId</code> is the caller. With <code>movePayer</code> the company's billing also moves to the new owner, which only the member currently paying for it may do (403).
+   */
   public MembersTransferOwnershipAccountResponse membersTransferOwnership(
       MembersTransferOwnershipAccountRequest request, RequestOptions requestOptions) {
     return this.rawClient.membersTransferOwnership(request, requestOptions).body();
   }
 
+  /**
+   * Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and the API keys they created for it are revoked. Refused with 422 for the caller themself and with 403 for the owner.
+   */
   public MembersRemoveAccountResponse membersRemove(MembersRemoveAccountRequest request) {
     return this.rawClient.membersRemove(request).body();
   }
 
+  /**
+   * Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and the API keys they created for it are revoked. Refused with 422 for the caller themself and with 403 for the owner.
+   */
   public MembersRemoveAccountResponse membersRemove(MembersRemoveAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.membersRemove(request, requestOptions).body();
   }
 
+  /**
+   * Create an invitation to the active company for an e-mail address with the given role and send it by e-mail in <code>locale</code>; owners and admins may call it. The invitation is valid for 7 days and replaces an earlier pending one for the same address. Refused with 409 when the address already belongs to a member.
+   */
   public InvitesCreateAccountResponse invitesCreate(InvitesCreateAccountRequest request) {
     return this.rawClient.invitesCreate(request).body();
   }
 
+  /**
+   * Create an invitation to the active company for an e-mail address with the given role and send it by e-mail in <code>locale</code>; owners and admins may call it. The invitation is valid for 7 days and replaces an earlier pending one for the same address. Refused with 409 when the address already belongs to a member.
+   */
   public InvitesCreateAccountResponse invitesCreate(InvitesCreateAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.invitesCreate(request, requestOptions).body();
   }
 
+  /**
+   * List the pending invitations of the active company; <code>expired</code> marks those past their expiry.
+   */
   public InvitesListAccountResponse invitesList() {
     return this.rawClient.invitesList().body();
   }
 
+  /**
+   * List the pending invitations of the active company; <code>expired</code> marks those past their expiry.
+   */
   public InvitesListAccountResponse invitesList(RequestOptions requestOptions) {
     return this.rawClient.invitesList(requestOptions).body();
   }
 
+  /**
+   * List the pending invitations of the active company; <code>expired</code> marks those past their expiry.
+   */
   public InvitesListAccountResponse invitesList(InvitesListAccountRequest request) {
     return this.rawClient.invitesList(request).body();
   }
 
+  /**
+   * List the pending invitations of the active company; <code>expired</code> marks those past their expiry.
+   */
   public InvitesListAccountResponse invitesList(InvitesListAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.invitesList(request, requestOptions).body();
   }
 
+  /**
+   * Delete a pending invitation of the active company.
+   */
   public InvitesRevokeAccountResponse invitesRevoke(InvitesRevokeAccountRequest request) {
     return this.rawClient.invitesRevoke(request).body();
   }
 
+  /**
+   * Delete a pending invitation of the active company.
+   */
   public InvitesRevokeAccountResponse invitesRevoke(InvitesRevokeAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.invitesRevoke(request, requestOptions).body();
   }
 
+  /**
+   * Read a pending invitation by its token: the invited address, role and company name, whether it has expired and whether an account with that address already exists (<code>userExists</code>), in which case <code>account/invites/accept</code> must be called signed in as that account.
+   */
   public InvitesGetAccountResponse invitesGet(InvitesGetAccountRequest request) {
     return this.rawClient.invitesGet(request).body();
   }
 
+  /**
+   * Read a pending invitation by its token: the invited address, role and company name, whether it has expired and whether an account with that address already exists (<code>userExists</code>), in which case <code>account/invites/accept</code> must be called signed in as that account.
+   */
   public InvitesGetAccountResponse invitesGet(InvitesGetAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.invitesGet(request, requestOptions).body();
   }
 
+  /**
+   * Accept an invitation and return a session with the invited company active. When the address has no account, one is created with <code>name</code> and <code>locale</code>, which is refused with 422 unless <code>acceptTerms</code> and <code>acceptDpa</code> are true; when it has one, the call must be made signed in as that account (401 otherwise). An expired invitation is refused with 422.
+   */
   public InvitesAcceptAccountResponse invitesAccept(InvitesAcceptAccountRequest request) {
     return this.rawClient.invitesAccept(request).body();
   }
 
+  /**
+   * Accept an invitation and return a session with the invited company active. When the address has no account, one is created with <code>name</code> and <code>locale</code>, which is refused with 422 unless <code>acceptTerms</code> and <code>acceptDpa</code> are true; when it has one, the call must be made signed in as that account (401 otherwise). An expired invitation is refused with 422.
+   */
   public InvitesAcceptAccountResponse invitesAccept(InvitesAcceptAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.invitesAccept(request, requestOptions).body();
   }
 
+  /**
+   * Set the user's language: with an active company it is stored on their membership of that company (<code>scope</code> = <code>membership</code>), otherwise on the user (<code>scope</code> = <code>user</code>).
+   */
   public LocaleSetAccountResponse localeSet(LocaleSetAccountRequest request) {
     return this.rawClient.localeSet(request).body();
   }
 
+  /**
+   * Set the user's language: with an active company it is stored on their membership of that company (<code>scope</code> = <code>membership</code>), otherwise on the user (<code>scope</code> = <code>user</code>).
+   */
   public LocaleSetAccountResponse localeSet(LocaleSetAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.localeSet(request, requestOptions).body();
   }
 
+  /**
+   * Create a company with the caller as its owner and payer, seed its chart of accounts from the template of <code>countryCode</code>, and make it the active company of the session. <code>timeZone</code> defaults to the country's, <code>isVatPayer</code> to true and <code>defaultInvoiceCurrency</code> to the base currency. Refused with 422 when <code>baseCurrency</code> is not a supported currency.
+   */
   public CompaniesCreateAccountResponse companiesCreate(CompaniesCreateAccountRequest request) {
     return this.rawClient.companiesCreate(request).body();
   }
 
+  /**
+   * Create a company with the caller as its owner and payer, seed its chart of accounts from the template of <code>countryCode</code>, and make it the active company of the session. <code>timeZone</code> defaults to the country's, <code>isVatPayer</code> to true and <code>defaultInvoiceCurrency</code> to the base currency. Refused with 422 when <code>baseCurrency</code> is not a supported currency.
+   */
   public CompaniesCreateAccountResponse companiesCreate(CompaniesCreateAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.companiesCreate(request, requestOptions).body();
   }
 
+  /**
+   * Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member and with 422 when the company is archived or deleted.
+   */
   public CompaniesSelectAccountResponse companiesSelect(CompaniesSelectAccountRequest request) {
     return this.rawClient.companiesSelect(request).body();
   }
 
+  /**
+   * Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member and with 422 when the company is archived or deleted.
+   */
   public CompaniesSelectAccountResponse companiesSelect(CompaniesSelectAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.companiesSelect(request, requestOptions).body();
   }
 
+  /**
+   * Return the profile of the active company.
+   */
   public CompaniesProfileAccountResponse companiesProfile() {
     return this.rawClient.companiesProfile().body();
   }
 
+  /**
+   * Return the profile of the active company.
+   */
   public CompaniesProfileAccountResponse companiesProfile(RequestOptions requestOptions) {
     return this.rawClient.companiesProfile(requestOptions).body();
   }
 
+  /**
+   * Return the profile of the active company.
+   */
   public CompaniesProfileAccountResponse companiesProfile(CompaniesProfileAccountRequest request) {
     return this.rawClient.companiesProfile(request).body();
   }
 
+  /**
+   * Return the profile of the active company.
+   */
   public CompaniesProfileAccountResponse companiesProfile(CompaniesProfileAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.companiesProfile(request, requestOptions).body();
   }
 
+  /**
+   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+   */
   public CompaniesUpdateAccountResponse companiesUpdate() {
     return this.rawClient.companiesUpdate().body();
   }
 
+  /**
+   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+   */
   public CompaniesUpdateAccountResponse companiesUpdate(RequestOptions requestOptions) {
     return this.rawClient.companiesUpdate(requestOptions).body();
   }
 
+  /**
+   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+   */
   public CompaniesUpdateAccountResponse companiesUpdate(CompaniesUpdateAccountRequest request) {
     return this.rawClient.companiesUpdate(request).body();
   }
 
+  /**
+   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+   */
   public CompaniesUpdateAccountResponse companiesUpdate(CompaniesUpdateAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.companiesUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Set the company named by <code>companyId</code> to <code>archived</code>; the caller must be its owner. Every session that had it active loses it. Refused with 409 unless the company is active; <code>account/companies/activate</code> reverses it.
+   */
   public CompaniesArchiveAccountResponse companiesArchive(CompaniesArchiveAccountRequest request) {
     return this.rawClient.companiesArchive(request).body();
   }
 
+  /**
+   * Set the company named by <code>companyId</code> to <code>archived</code>; the caller must be its owner. Every session that had it active loses it. Refused with 409 unless the company is active; <code>account/companies/activate</code> reverses it.
+   */
   public CompaniesArchiveAccountResponse companiesArchive(CompaniesArchiveAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.companiesArchive(request, requestOptions).body();
   }
 
+  /**
+   * Set the company named by <code>companyId</code> to <code>deleted</code>; the caller must be its owner, and every session that had it active loses it. A sandbox company is purged at once; any other is purged by the scheduled purge after <code>purgeAfter</code> (10 days) and can be restored until then with <code>account/companies/activate</code>. Refused with 409 when it is already deleted.
+   */
   public CompaniesDeleteAccountResponse companiesDelete(CompaniesDeleteAccountRequest request) {
     return this.rawClient.companiesDelete(request).body();
   }
 
+  /**
+   * Set the company named by <code>companyId</code> to <code>deleted</code>; the caller must be its owner, and every session that had it active loses it. A sandbox company is purged at once; any other is purged by the scheduled purge after <code>purgeAfter</code> (10 days) and can be restored until then with <code>account/companies/activate</code>. Refused with 409 when it is already deleted.
+   */
   public CompaniesDeleteAccountResponse companiesDelete(CompaniesDeleteAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.companiesDelete(request, requestOptions).body();
   }
 
+  /**
+   * Set an archived or deleted company named by <code>companyId</code> back to <code>active</code>; the caller must be its owner. Refused with 409 when it is already active.
+   */
   public CompaniesActivateAccountResponse companiesActivate(
       CompaniesActivateAccountRequest request) {
     return this.rawClient.companiesActivate(request).body();
   }
 
+  /**
+   * Set an archived or deleted company named by <code>companyId</code> back to <code>active</code>; the caller must be its owner. Refused with 409 when it is already active.
+   */
   public CompaniesActivateAccountResponse companiesActivate(CompaniesActivateAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.companiesActivate(request, requestOptions).body();
   }
 
+  /**
+   * Create an API key for the active company and return the key itself once; owners, admins and developers may call it. <code>scopes</code> defaults to the caller's own scopes and may not exceed them (403); without <code>expiresInDays</code> the key does not expire.
+   */
   public ApiKeysCreateAccountResponse apiKeysCreate(ApiKeysCreateAccountRequest request) {
     return this.rawClient.apiKeysCreate(request).body();
   }
 
+  /**
+   * Create an API key for the active company and return the key itself once; owners, admins and developers may call it. <code>scopes</code> defaults to the caller's own scopes and may not exceed them (403); without <code>expiresInDays</code> the key does not expire.
+   */
   public ApiKeysCreateAccountResponse apiKeysCreate(ApiKeysCreateAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.apiKeysCreate(request, requestOptions).body();
   }
 
+  /**
+   * List the API keys of the active company, including expired and revoked ones.
+   */
   public ApiKeysListAccountResponse apiKeysList() {
     return this.rawClient.apiKeysList().body();
   }
 
+  /**
+   * List the API keys of the active company, including expired and revoked ones.
+   */
   public ApiKeysListAccountResponse apiKeysList(RequestOptions requestOptions) {
     return this.rawClient.apiKeysList(requestOptions).body();
   }
 
+  /**
+   * List the API keys of the active company, including expired and revoked ones.
+   */
   public ApiKeysListAccountResponse apiKeysList(ApiKeysListAccountRequest request) {
     return this.rawClient.apiKeysList(request).body();
   }
 
+  /**
+   * List the API keys of the active company, including expired and revoked ones.
+   */
   public ApiKeysListAccountResponse apiKeysList(ApiKeysListAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.apiKeysList(request, requestOptions).body();
   }
 
+  /**
+   * Create a new key with the name and scopes of the key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key. Refused with 409 when the old key is revoked.
+   */
   public ApiKeysRotateAccountResponse apiKeysRotate(ApiKeysRotateAccountRequest request) {
     return this.rawClient.apiKeysRotate(request).body();
   }
 
+  /**
+   * Create a new key with the name and scopes of the key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key. Refused with 409 when the old key is revoked.
+   */
   public ApiKeysRotateAccountResponse apiKeysRotate(ApiKeysRotateAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.apiKeysRotate(request, requestOptions).body();
   }
 
+  /**
+   * Revoke an API key of the active company at once.
+   */
   public ApiKeysRevokeAccountResponse apiKeysRevoke(ApiKeysRevokeAccountRequest request) {
     return this.rawClient.apiKeysRevoke(request).body();
   }
 
+  /**
+   * Revoke an API key of the active company at once.
+   */
   public ApiKeysRevokeAccountResponse apiKeysRevoke(ApiKeysRevokeAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.apiKeysRevoke(request, requestOptions).body();
   }
 
+  /**
+   * Record the signed-in user's acceptance of the current Terms of Service and Data Processing Agreement versions and return the consent state.
+   */
   public ConsentAcceptAccountResponse consentAccept(ConsentAcceptAccountRequest request) {
     return this.rawClient.consentAccept(request).body();
   }
 
+  /**
+   * Record the signed-in user's acceptance of the current Terms of Service and Data Processing Agreement versions and return the consent state.
+   */
   public ConsentAcceptAccountResponse consentAccept(ConsentAcceptAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.consentAccept(request, requestOptions).body();
   }
 
+  /**
+   * Set the signed-in user's name; null or a blank string clears it.
+   */
   public ProfileUpdateAccountResponse profileUpdate(ProfileUpdateAccountRequest request) {
     return this.rawClient.profileUpdate(request).body();
   }
 
+  /**
+   * Set the signed-in user's name; null or a blank string clears it.
+   */
   public ProfileUpdateAccountResponse profileUpdate(ProfileUpdateAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.profileUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Send a confirmation link to <code>newEmail</code>; the address changes when that link is consumed with <code>account/login-link/consume</code>. When an unused link was sent to the address within the last minute, the call answers <code>sent</code> without sending another. Refused with 422 when it is already the user's address and with 409 when another account has it.
+   */
   public EmailChangeRequestAccountResponse emailChangeRequest(
       EmailChangeRequestAccountRequest request) {
     return this.rawClient.emailChangeRequest(request).body();
   }
 
+  /**
+   * Send a confirmation link to <code>newEmail</code>; the address changes when that link is consumed with <code>account/login-link/consume</code>. When an unused link was sent to the address within the last minute, the call answers <code>sent</code> without sending another. Refused with 422 when it is already the user's address and with 409 when another account has it.
+   */
   public EmailChangeRequestAccountResponse emailChangeRequest(
       EmailChangeRequestAccountRequest request, RequestOptions requestOptions) {
     return this.rawClient.emailChangeRequest(request, requestOptions).body();
   }
 
+  /**
+   * List the signed-in user's sessions that have not expired; <code>current</code> marks the one the call was made with.
+   */
   public SessionsListAccountResponse sessionsList() {
     return this.rawClient.sessionsList().body();
   }
 
+  /**
+   * List the signed-in user's sessions that have not expired; <code>current</code> marks the one the call was made with.
+   */
   public SessionsListAccountResponse sessionsList(RequestOptions requestOptions) {
     return this.rawClient.sessionsList(requestOptions).body();
   }
 
+  /**
+   * List the signed-in user's sessions that have not expired; <code>current</code> marks the one the call was made with.
+   */
   public SessionsListAccountResponse sessionsList(SessionsListAccountRequest request) {
     return this.rawClient.sessionsList(request).body();
   }
 
+  /**
+   * List the signed-in user's sessions that have not expired; <code>current</code> marks the one the call was made with.
+   */
   public SessionsListAccountResponse sessionsList(SessionsListAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.sessionsList(request, requestOptions).body();
   }
 
+  /**
+   * Delete one of the signed-in user's sessions.
+   */
   public SessionsRevokeAccountResponse sessionsRevoke(SessionsRevokeAccountRequest request) {
     return this.rawClient.sessionsRevoke(request).body();
   }
 
+  /**
+   * Delete one of the signed-in user's sessions.
+   */
   public SessionsRevokeAccountResponse sessionsRevoke(SessionsRevokeAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.sessionsRevoke(request, requestOptions).body();
   }
 
+  /**
+   * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
+   */
   public SessionsRevokeOthersAccountResponse sessionsRevokeOthers() {
     return this.rawClient.sessionsRevokeOthers().body();
   }
 
+  /**
+   * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
+   */
   public SessionsRevokeOthersAccountResponse sessionsRevokeOthers(RequestOptions requestOptions) {
     return this.rawClient.sessionsRevokeOthers(requestOptions).body();
   }
 
+  /**
+   * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
+   */
   public SessionsRevokeOthersAccountResponse sessionsRevokeOthers(
       SessionsRevokeOthersAccountRequest request) {
     return this.rawClient.sessionsRevokeOthers(request).body();
   }
 
+  /**
+   * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
+   */
   public SessionsRevokeOthersAccountResponse sessionsRevokeOthers(
       SessionsRevokeOthersAccountRequest request, RequestOptions requestOptions) {
     return this.rawClient.sessionsRevokeOthers(request, requestOptions).body();
   }
 
+  /**
+   * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+   */
   public ExportAccountResponse export() {
     return this.rawClient.export().body();
   }
 
+  /**
+   * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+   */
   public ExportAccountResponse export(RequestOptions requestOptions) {
     return this.rawClient.export(requestOptions).body();
   }
 
+  /**
+   * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+   */
   public ExportAccountResponse export(ExportAccountRequest request) {
     return this.rawClient.export(request).body();
   }
 
+  /**
+   * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+   */
   public ExportAccountResponse export(ExportAccountRequest request, RequestOptions requestOptions) {
     return this.rawClient.export(request, requestOptions).body();
   }
@@ -483,63 +735,105 @@ public class AccountClient {
     return this.rawClient.delete(request, requestOptions).body();
   }
 
+  /**
+   * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
+   */
   public ReferralGetAccountResponse referralGet() {
     return this.rawClient.referralGet().body();
   }
 
+  /**
+   * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
+   */
   public ReferralGetAccountResponse referralGet(RequestOptions requestOptions) {
     return this.rawClient.referralGet(requestOptions).body();
   }
 
+  /**
+   * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
+   */
   public ReferralGetAccountResponse referralGet(ReferralGetAccountRequest request) {
     return this.rawClient.referralGet(request).body();
   }
 
+  /**
+   * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
+   */
   public ReferralGetAccountResponse referralGet(ReferralGetAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.referralGet(request, requestOptions).body();
   }
 
+  /**
+   * Convert <code>points</code> of the user's referral points into credit on their billing account at <code>rates.pointCents</code> per point, booked as an <code>adjustment</code> credit transaction; a billing account past its trial is set to active when the new balance allows. Refused with 422 when the user has fewer points than requested.
+   */
   public ReferralConvertAccountResponse referralConvert(ReferralConvertAccountRequest request) {
     return this.rawClient.referralConvert(request).body();
   }
 
+  /**
+   * Convert <code>points</code> of the user's referral points into credit on their billing account at <code>rates.pointCents</code> per point, booked as an <code>adjustment</code> credit transaction; a billing account past its trial is set to active when the new balance allows. Refused with 422 when the user has fewer points than requested.
+   */
   public ReferralConvertAccountResponse referralConvert(ReferralConvertAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.referralConvert(request, requestOptions).body();
   }
 
+  /**
+   * Return the signed-in user's saved column list and page size for the table <code>tableKey</code>; both are null when nothing is saved.
+   */
   public TableSettingsGetAccountResponse tableSettingsGet(TableSettingsGetAccountRequest request) {
     return this.rawClient.tableSettingsGet(request).body();
   }
 
+  /**
+   * Return the signed-in user's saved column list and page size for the table <code>tableKey</code>; both are null when nothing is saved.
+   */
   public TableSettingsGetAccountResponse tableSettingsGet(TableSettingsGetAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.tableSettingsGet(request, requestOptions).body();
   }
 
+  /**
+   * Save the signed-in user's column list and page size for the table <code>tableKey</code>; only the fields sent are changed, and null clears one.
+   */
   public TableSettingsSetAccountResponse tableSettingsSet(TableSettingsSetAccountRequest request) {
     return this.rawClient.tableSettingsSet(request).body();
   }
 
+  /**
+   * Save the signed-in user's column list and page size for the table <code>tableKey</code>; only the fields sent are changed, and null clears one.
+   */
   public TableSettingsSetAccountResponse tableSettingsSet(TableSettingsSetAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.tableSettingsSet(request, requestOptions).body();
   }
 
+  /**
+   * List the signed-in user's saved table settings.
+   */
   public TableSettingsListAccountResponse tableSettingsList() {
     return this.rawClient.tableSettingsList().body();
   }
 
+  /**
+   * List the signed-in user's saved table settings.
+   */
   public TableSettingsListAccountResponse tableSettingsList(RequestOptions requestOptions) {
     return this.rawClient.tableSettingsList(requestOptions).body();
   }
 
+  /**
+   * List the signed-in user's saved table settings.
+   */
   public TableSettingsListAccountResponse tableSettingsList(
       TableSettingsListAccountRequest request) {
     return this.rawClient.tableSettingsList(request).body();
   }
 
+  /**
+   * List the signed-in user's saved table settings.
+   */
   public TableSettingsListAccountResponse tableSettingsList(TableSettingsListAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.tableSettingsList(request, requestOptions).body();

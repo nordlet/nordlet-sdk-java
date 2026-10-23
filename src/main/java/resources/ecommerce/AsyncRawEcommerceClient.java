@@ -63,11 +63,17 @@ public class AsyncRawEcommerceClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Create a sales order from an online channel in status <code>new</code>. The customer is <code>partnerId</code> or <code>partner</code> details: with an <code>email</code> the existing partner with that e-mail is reused, otherwise a new partner is created; without either the call is refused with 422. <code>currency</code> defaults to the company's invoice currency, and <code>shipToCountryCode</code> and <code>marketplace</code> are kept for the VAT treatment of the invoice at fulfilment. A second order with the same <code>channel</code> and <code>externalRef</code> is refused with 409. Emits <code>sales_order.created</code>.
+   */
   public CompletableFuture<NordletApiHttpResponse<OrdersCreateEcommerceResponse>> ordersCreate(
       OrdersCreateEcommerceRequest request) {
     return ordersCreate(request,null);
   }
 
+  /**
+   * Create a sales order from an online channel in status <code>new</code>. The customer is <code>partnerId</code> or <code>partner</code> details: with an <code>email</code> the existing partner with that e-mail is reused, otherwise a new partner is created; without either the call is refused with 422. <code>currency</code> defaults to the company's invoice currency, and <code>shipToCountryCode</code> and <code>marketplace</code> are kept for the VAT treatment of the invoice at fulfilment. A second order with the same <code>channel</code> and <code>externalRef</code> is refused with 409. Emits <code>sales_order.created</code>.
+   */
   public CompletableFuture<NordletApiHttpResponse<OrdersCreateEcommerceResponse>> ordersCreate(
       OrdersCreateEcommerceRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -155,11 +161,17 @@ public class AsyncRawEcommerceClient {
       return future;
     }
 
+    /**
+     * Read one sales order with its lines.
+     */
     public CompletableFuture<NordletApiHttpResponse<OrdersGetEcommerceResponse>> ordersGet(
         OrdersGetEcommerceRequest request) {
       return ordersGet(request,null);
     }
 
+    /**
+     * Read one sales order with its lines.
+     */
     public CompletableFuture<NordletApiHttpResponse<OrdersGetEcommerceResponse>> ordersGet(
         OrdersGetEcommerceRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -247,20 +259,32 @@ public class AsyncRawEcommerceClient {
         return future;
       }
 
+      /**
+       * List sales orders without their lines. Filterable by <code>channel</code>, <code>externalRef</code>, <code>partnerId</code> and <code>status</code>; sortable by <code>createdAt</code>.
+       */
       public CompletableFuture<NordletApiHttpResponse<OrdersListEcommerceResponse>> ordersList() {
         return ordersList(OrdersListEcommerceRequest.builder().build());
       }
 
+      /**
+       * List sales orders without their lines. Filterable by <code>channel</code>, <code>externalRef</code>, <code>partnerId</code> and <code>status</code>; sortable by <code>createdAt</code>.
+       */
       public CompletableFuture<NordletApiHttpResponse<OrdersListEcommerceResponse>> ordersList(
           RequestOptions requestOptions) {
         return ordersList(OrdersListEcommerceRequest.builder().build(),requestOptions);
       }
 
+      /**
+       * List sales orders without their lines. Filterable by <code>channel</code>, <code>externalRef</code>, <code>partnerId</code> and <code>status</code>; sortable by <code>createdAt</code>.
+       */
       public CompletableFuture<NordletApiHttpResponse<OrdersListEcommerceResponse>> ordersList(
           OrdersListEcommerceRequest request) {
         return ordersList(request,null);
       }
 
+      /**
+       * List sales orders without their lines. Filterable by <code>channel</code>, <code>externalRef</code>, <code>partnerId</code> and <code>status</code>; sortable by <code>createdAt</code>.
+       */
       public CompletableFuture<NordletApiHttpResponse<OrdersListEcommerceResponse>> ordersList(
           OrdersListEcommerceRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -348,11 +372,17 @@ public class AsyncRawEcommerceClient {
           return future;
         }
 
+        /**
+         * Reserve stock for a <code>new</code> order in <code>warehouseId</code> (default: the order's warehouse; 422 when neither is set). Each product line, and each product component of a set line, is checked against the warehouse's on-hand quantity less the existing reservations; when any item is short the call is refused with 422 and nothing is reserved. Otherwise a reservation is written per stock line, <code>stock.changed</code> (change type <code>reserve</code>) is emitted for each, and the order becomes <code>reserved</code>. An order in another status is refused with 409.
+         */
         public CompletableFuture<NordletApiHttpResponse<OrdersReserveEcommerceResponse>> ordersReserve(
             OrdersReserveEcommerceRequest request) {
           return ordersReserve(request,null);
         }
 
+        /**
+         * Reserve stock for a <code>new</code> order in <code>warehouseId</code> (default: the order's warehouse; 422 when neither is set). Each product line, and each product component of a set line, is checked against the warehouse's on-hand quantity less the existing reservations; when any item is short the call is refused with 422 and nothing is reserved. Otherwise a reservation is written per stock line, <code>stock.changed</code> (change type <code>reserve</code>) is emitted for each, and the order becomes <code>reserved</code>. An order in another status is refused with 409.
+         */
         public CompletableFuture<NordletApiHttpResponse<OrdersReserveEcommerceResponse>> ordersReserve(
             OrdersReserveEcommerceRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -440,11 +470,17 @@ public class AsyncRawEcommerceClient {
             return future;
           }
 
+          /**
+           * Fulfil a <code>new</code> or <code>reserved</code> order: its reservations are released, the stock lines are consumed FIFO from the order's warehouse on <code>date</code> (default: the company's today), the cost of goods sold is posted as a journal entry debiting <code>cogsAccountCode</code> and crediting the stock accounts of the consumed layers (<code>inventoryAccountCode</code> when a layer has none), and a draft sale invoice for the order lines is created and linked as <code>invoiceId</code>, ready for <code>sales/invoices/issue</code>. With a <code>shipToCountryCode</code> on the order the invoice's VAT scheme is resolved for goods shipped there, as a marketplace sale when <code>marketplace</code> is set. Account codes default to the company's chart. Refused with 422 when the stock lines have no warehouse or stock is insufficient (unless the company allows negative stock), with 409 when the accounting period is locked or the order is already <code>fulfilled</code> or <code>cancelled</code>. Emits <code>sales_order.fulfilled</code> and <code>stock.changed</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<OrdersFulfillEcommerceResponse>> ordersFulfill(
               OrdersFulfillEcommerceRequest request) {
             return ordersFulfill(request,null);
           }
 
+          /**
+           * Fulfil a <code>new</code> or <code>reserved</code> order: its reservations are released, the stock lines are consumed FIFO from the order's warehouse on <code>date</code> (default: the company's today), the cost of goods sold is posted as a journal entry debiting <code>cogsAccountCode</code> and crediting the stock accounts of the consumed layers (<code>inventoryAccountCode</code> when a layer has none), and a draft sale invoice for the order lines is created and linked as <code>invoiceId</code>, ready for <code>sales/invoices/issue</code>. With a <code>shipToCountryCode</code> on the order the invoice's VAT scheme is resolved for goods shipped there, as a marketplace sale when <code>marketplace</code> is set. Account codes default to the company's chart. Refused with 422 when the stock lines have no warehouse or stock is insufficient (unless the company allows negative stock), with 409 when the accounting period is locked or the order is already <code>fulfilled</code> or <code>cancelled</code>. Emits <code>sales_order.fulfilled</code> and <code>stock.changed</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<OrdersFulfillEcommerceResponse>> ordersFulfill(
               OrdersFulfillEcommerceRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -532,11 +568,17 @@ public class AsyncRawEcommerceClient {
               return future;
             }
 
+            /**
+             * Cancel an order that is not fulfilled: its stock reservations are released, <code>stock.changed</code> (change type <code>release</code>) is emitted for each, and the status becomes <code>cancelled</code>. A fulfilled order is refused with 409.
+             */
             public CompletableFuture<NordletApiHttpResponse<OrdersCancelEcommerceResponse>> ordersCancel(
                 OrdersCancelEcommerceRequest request) {
               return ordersCancel(request,null);
             }
 
+            /**
+             * Cancel an order that is not fulfilled: its stock reservations are released, <code>stock.changed</code> (change type <code>release</code>) is emitted for each, and the status becomes <code>cancelled</code>. A fulfilled order is refused with 409.
+             */
             public CompletableFuture<NordletApiHttpResponse<OrdersCancelEcommerceResponse>> ordersCancel(
                 OrdersCancelEcommerceRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -624,21 +666,33 @@ public class AsyncRawEcommerceClient {
                 return future;
               }
 
+              /**
+               * List the company's items as a shop catalogue, in order of last update, with price and stock. <code>price</code> is the item's price in <code>priceListId</code> when given, else its own sale price, and <code>currency</code> that of the price list, else the company's invoice currency; <code>vatRatePercent</code> falls back to the rate of the item's VAT classifier. For a product <code>onHand</code>, <code>reserved</code> and <code>available</code> are summed over all warehouses or over <code>warehouseId</code> only; for a set <code>available</code> is the number of sets its product components can still make; for a service they are null. With <code>updatedSince</code> only items changed after that time are returned, deleted ones included (<code>deleted: true</code>), so a shop can sync incrementally; without it only live items are listed.
+               */
               public CompletableFuture<NordletApiHttpResponse<ProductsListEcommerceResponse>> productsList(
                   ) {
                 return productsList(ProductsListEcommerceRequest.builder().build());
               }
 
+              /**
+               * List the company's items as a shop catalogue, in order of last update, with price and stock. <code>price</code> is the item's price in <code>priceListId</code> when given, else its own sale price, and <code>currency</code> that of the price list, else the company's invoice currency; <code>vatRatePercent</code> falls back to the rate of the item's VAT classifier. For a product <code>onHand</code>, <code>reserved</code> and <code>available</code> are summed over all warehouses or over <code>warehouseId</code> only; for a set <code>available</code> is the number of sets its product components can still make; for a service they are null. With <code>updatedSince</code> only items changed after that time are returned, deleted ones included (<code>deleted: true</code>), so a shop can sync incrementally; without it only live items are listed.
+               */
               public CompletableFuture<NordletApiHttpResponse<ProductsListEcommerceResponse>> productsList(
                   RequestOptions requestOptions) {
                 return productsList(ProductsListEcommerceRequest.builder().build(),requestOptions);
               }
 
+              /**
+               * List the company's items as a shop catalogue, in order of last update, with price and stock. <code>price</code> is the item's price in <code>priceListId</code> when given, else its own sale price, and <code>currency</code> that of the price list, else the company's invoice currency; <code>vatRatePercent</code> falls back to the rate of the item's VAT classifier. For a product <code>onHand</code>, <code>reserved</code> and <code>available</code> are summed over all warehouses or over <code>warehouseId</code> only; for a set <code>available</code> is the number of sets its product components can still make; for a service they are null. With <code>updatedSince</code> only items changed after that time are returned, deleted ones included (<code>deleted: true</code>), so a shop can sync incrementally; without it only live items are listed.
+               */
               public CompletableFuture<NordletApiHttpResponse<ProductsListEcommerceResponse>> productsList(
                   ProductsListEcommerceRequest request) {
                 return productsList(request,null);
               }
 
+              /**
+               * List the company's items as a shop catalogue, in order of last update, with price and stock. <code>price</code> is the item's price in <code>priceListId</code> when given, else its own sale price, and <code>currency</code> that of the price list, else the company's invoice currency; <code>vatRatePercent</code> falls back to the rate of the item's VAT classifier. For a product <code>onHand</code>, <code>reserved</code> and <code>available</code> are summed over all warehouses or over <code>warehouseId</code> only; for a set <code>available</code> is the number of sets its product components can still make; for a service they are null. With <code>updatedSince</code> only items changed after that time are returned, deleted ones included (<code>deleted: true</code>), so a shop can sync incrementally; without it only live items are listed.
+               */
               public CompletableFuture<NordletApiHttpResponse<ProductsListEcommerceResponse>> productsList(
                   ProductsListEcommerceRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -726,21 +780,33 @@ public class AsyncRawEcommerceClient {
                   return future;
                 }
 
+                /**
+                 * Stock position per item and warehouse: <code>onHand</code>, <code>reserved</code> and their difference <code>available</code>, for all warehouses or <code>warehouseId</code> only. Only items with a positive quantity on hand are returned.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<StockListEcommerceResponse>> stockList(
                     ) {
                   return stockList(StockListEcommerceRequest.builder().build());
                 }
 
+                /**
+                 * Stock position per item and warehouse: <code>onHand</code>, <code>reserved</code> and their difference <code>available</code>, for all warehouses or <code>warehouseId</code> only. Only items with a positive quantity on hand are returned.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<StockListEcommerceResponse>> stockList(
                     RequestOptions requestOptions) {
                   return stockList(StockListEcommerceRequest.builder().build(),requestOptions);
                 }
 
+                /**
+                 * Stock position per item and warehouse: <code>onHand</code>, <code>reserved</code> and their difference <code>available</code>, for all warehouses or <code>warehouseId</code> only. Only items with a positive quantity on hand are returned.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<StockListEcommerceResponse>> stockList(
                     StockListEcommerceRequest request) {
                   return stockList(request,null);
                 }
 
+                /**
+                 * Stock position per item and warehouse: <code>onHand</code>, <code>reserved</code> and their difference <code>available</code>, for all warehouses or <code>warehouseId</code> only. Only items with a positive quantity on hand are returned.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<StockListEcommerceResponse>> stockList(
                     StockListEcommerceRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

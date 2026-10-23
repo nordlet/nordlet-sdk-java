@@ -59,11 +59,17 @@ public class AsyncRawTransportClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Create a draft waybill to the consignee. The cargo lines are <code>lines</code> or, when none are given and <code>saleInvoiceId</code> is set, the product lines of that sale invoice (422 when it has none); a line without <code>description</code>, <code>unit</code> or <code>productCode</code> takes them from its item. <code>documentDate</code> defaults to the company's today and <code>series</code> to <code>VAZ</code>.
+   */
   public CompletableFuture<NordletApiHttpResponse<WaybillsCreateTransportResponse>> waybillsCreate(
       WaybillsCreateTransportRequest request) {
     return waybillsCreate(request,null);
   }
 
+  /**
+   * Create a draft waybill to the consignee. The cargo lines are <code>lines</code> or, when none are given and <code>saleInvoiceId</code> is set, the product lines of that sale invoice (422 when it has none); a line without <code>description</code>, <code>unit</code> or <code>productCode</code> takes them from its item. <code>documentDate</code> defaults to the company's today and <code>series</code> to <code>VAZ</code>.
+   */
   public CompletableFuture<NordletApiHttpResponse<WaybillsCreateTransportResponse>> waybillsCreate(
       WaybillsCreateTransportRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -151,11 +157,17 @@ public class AsyncRawTransportClient {
       return future;
     }
 
+    /**
+     * Change a draft waybill; omitted fields keep their value, the optional ones can be cleared with null, and <code>lines</code>, when given, replace all existing lines. A waybill that is already issued or cancelled is refused with 409.
+     */
     public CompletableFuture<NordletApiHttpResponse<WaybillsUpdateTransportResponse>> waybillsUpdate(
         WaybillsUpdateTransportRequest request) {
       return waybillsUpdate(request,null);
     }
 
+    /**
+     * Change a draft waybill; omitted fields keep their value, the optional ones can be cleared with null, and <code>lines</code>, when given, replace all existing lines. A waybill that is already issued or cancelled is refused with 409.
+     */
     public CompletableFuture<NordletApiHttpResponse<WaybillsUpdateTransportResponse>> waybillsUpdate(
         WaybillsUpdateTransportRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -243,11 +255,17 @@ public class AsyncRawTransportClient {
         return future;
       }
 
+      /**
+       * Issue a draft waybill: it takes the next number of its <code>series</code> for the year of <code>documentDate</code> and becomes <code>issued</code>. Without a vehicle plate or without lines the call is refused with 422, a waybill that is not a draft with 409. Only issued waybills can go into the Lithuanian i.VAZ file (<code>declarations/lt/ivaz/generate</code>) and the Romanian e-Transport declaration (<code>declarations/ro/etransport/build</code>).
+       */
       public CompletableFuture<NordletApiHttpResponse<WaybillsIssueTransportResponse>> waybillsIssue(
           WaybillsIssueTransportRequest request) {
         return waybillsIssue(request,null);
       }
 
+      /**
+       * Issue a draft waybill: it takes the next number of its <code>series</code> for the year of <code>documentDate</code> and becomes <code>issued</code>. Without a vehicle plate or without lines the call is refused with 422, a waybill that is not a draft with 409. Only issued waybills can go into the Lithuanian i.VAZ file (<code>declarations/lt/ivaz/generate</code>) and the Romanian e-Transport declaration (<code>declarations/ro/etransport/build</code>).
+       */
       public CompletableFuture<NordletApiHttpResponse<WaybillsIssueTransportResponse>> waybillsIssue(
           WaybillsIssueTransportRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -335,11 +353,17 @@ public class AsyncRawTransportClient {
           return future;
         }
 
+        /**
+         * Cancel a draft or issued waybill. An already cancelled one is refused with 409.
+         */
         public CompletableFuture<NordletApiHttpResponse<WaybillsCancelTransportResponse>> waybillsCancel(
             WaybillsCancelTransportRequest request) {
           return waybillsCancel(request,null);
         }
 
+        /**
+         * Cancel a draft or issued waybill. An already cancelled one is refused with 409.
+         */
         public CompletableFuture<NordletApiHttpResponse<WaybillsCancelTransportResponse>> waybillsCancel(
             WaybillsCancelTransportRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -427,11 +451,17 @@ public class AsyncRawTransportClient {
             return future;
           }
 
+          /**
+           * Read one waybill with its lines.
+           */
           public CompletableFuture<NordletApiHttpResponse<WaybillsGetTransportResponse>> waybillsGet(
               WaybillsGetTransportRequest request) {
             return waybillsGet(request,null);
           }
 
+          /**
+           * Read one waybill with its lines.
+           */
           public CompletableFuture<NordletApiHttpResponse<WaybillsGetTransportResponse>> waybillsGet(
               WaybillsGetTransportRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -519,21 +549,33 @@ public class AsyncRawTransportClient {
               return future;
             }
 
+            /**
+             * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+             */
             public CompletableFuture<NordletApiHttpResponse<WaybillsListTransportResponse>> waybillsList(
                 ) {
               return waybillsList(WaybillsListTransportRequest.builder().build());
             }
 
+            /**
+             * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+             */
             public CompletableFuture<NordletApiHttpResponse<WaybillsListTransportResponse>> waybillsList(
                 RequestOptions requestOptions) {
               return waybillsList(WaybillsListTransportRequest.builder().build(),requestOptions);
             }
 
+            /**
+             * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+             */
             public CompletableFuture<NordletApiHttpResponse<WaybillsListTransportResponse>> waybillsList(
                 WaybillsListTransportRequest request) {
               return waybillsList(request,null);
             }
 
+            /**
+             * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+             */
             public CompletableFuture<NordletApiHttpResponse<WaybillsListTransportResponse>> waybillsList(
                 WaybillsListTransportRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

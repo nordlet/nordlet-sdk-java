@@ -87,11 +87,17 @@ public class AsyncRawLeadsClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Creates a lead in status <code>new</code>, <code>contacted</code>, <code>qualified</code> or <code>lost</code>. <code>assignedUserId</code> must be a member of the company and <code>sourceId</code> and <code>typeId</code> must exist in it; <code>countryCode</code> and <code>currency</code> are stored in upper case; <code>documents</code> attach uploaded files not yet linked to a record, and <code>notes</code> become the lead's first notes with the caller as author. Emits <code>lead.created</code>.
+   */
   public CompletableFuture<NordletApiHttpResponse<CreateLeadsResponse>> create(
       CreateLeadsRequest request) {
     return create(request,null);
   }
 
+  /**
+   * Creates a lead in status <code>new</code>, <code>contacted</code>, <code>qualified</code> or <code>lost</code>. <code>assignedUserId</code> must be a member of the company and <code>sourceId</code> and <code>typeId</code> must exist in it; <code>countryCode</code> and <code>currency</code> are stored in upper case; <code>documents</code> attach uploaded files not yet linked to a record, and <code>notes</code> become the lead's first notes with the caller as author. Emits <code>lead.created</code>.
+   */
   public CompletableFuture<NordletApiHttpResponse<CreateLeadsResponse>> create(
       CreateLeadsRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -179,11 +185,17 @@ public class AsyncRawLeadsClient {
       return future;
     }
 
+    /**
+     * Returns one lead with its source and type names.
+     */
     public CompletableFuture<NordletApiHttpResponse<GetLeadsResponse>> get(
         GetLeadsRequest request) {
       return get(request,null);
     }
 
+    /**
+     * Returns one lead with its source and type names.
+     */
     public CompletableFuture<NordletApiHttpResponse<GetLeadsResponse>> get(GetLeadsRequest request,
         RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -271,11 +283,17 @@ public class AsyncRawLeadsClient {
         return future;
       }
 
+      /**
+       * Changes the given fields of a lead; the clearable fields accept null, <code>documents</code> attach more uploaded files, and <code>countryCode</code> and <code>currency</code> are stored in upper case. A lead that is already converted cannot change <code>status</code> (409).
+       */
       public CompletableFuture<NordletApiHttpResponse<UpdateLeadsResponse>> update(
           UpdateLeadsRequest request) {
         return update(request,null);
       }
 
+      /**
+       * Changes the given fields of a lead; the clearable fields accept null, <code>documents</code> attach more uploaded files, and <code>countryCode</code> and <code>currency</code> are stored in upper case. A lead that is already converted cannot change <code>status</code> (409).
+       */
       public CompletableFuture<NordletApiHttpResponse<UpdateLeadsResponse>> update(
           UpdateLeadsRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -363,11 +381,17 @@ public class AsyncRawLeadsClient {
           return future;
         }
 
+        /**
+         * Deletes a lead with its notes and detaches its files, which stay in the company's files without a record.
+         */
         public CompletableFuture<NordletApiHttpResponse<DeleteLeadsResponse>> delete(
             DeleteLeadsRequest request) {
           return delete(request,null);
         }
 
+        /**
+         * Deletes a lead with its notes and detaches its files, which stay in the company's files without a record.
+         */
         public CompletableFuture<NordletApiHttpResponse<DeleteLeadsResponse>> delete(
             DeleteLeadsRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -455,20 +479,32 @@ public class AsyncRawLeadsClient {
             return future;
           }
 
+          /**
+           * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<ListLeadsResponse>> list() {
             return list(ListLeadsRequest.builder().build());
           }
 
+          /**
+           * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<ListLeadsResponse>> list(
               RequestOptions requestOptions) {
             return list(ListLeadsRequest.builder().build(),requestOptions);
           }
 
+          /**
+           * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<ListLeadsResponse>> list(
               ListLeadsRequest request) {
             return list(request,null);
           }
 
+          /**
+           * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<ListLeadsResponse>> list(
               ListLeadsRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -556,11 +592,17 @@ public class AsyncRawLeadsClient {
               return future;
             }
 
+            /**
+             * Adds a note to a lead with the caller as author and refreshes the lead's <code>updatedAt</code>.
+             */
             public CompletableFuture<NordletApiHttpResponse<NotesCreateLeadsResponse>> notesCreate(
                 NotesCreateLeadsRequest request) {
               return notesCreate(request,null);
             }
 
+            /**
+             * Adds a note to a lead with the caller as author and refreshes the lead's <code>updatedAt</code>.
+             */
             public CompletableFuture<NordletApiHttpResponse<NotesCreateLeadsResponse>> notesCreate(
                 NotesCreateLeadsRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -648,11 +690,17 @@ public class AsyncRawLeadsClient {
                 return future;
               }
 
+              /**
+               * Deletes a lead note.
+               */
               public CompletableFuture<NordletApiHttpResponse<NotesDeleteLeadsResponse>> notesDelete(
                   NotesDeleteLeadsRequest request) {
                 return notesDelete(request,null);
               }
 
+              /**
+               * Deletes a lead note.
+               */
               public CompletableFuture<NordletApiHttpResponse<NotesDeleteLeadsResponse>> notesDelete(
                   NotesDeleteLeadsRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -740,11 +788,17 @@ public class AsyncRawLeadsClient {
                   return future;
                 }
 
+                /**
+                 * Lists the notes of a lead, newest first.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<NotesListLeadsResponse>> notesList(
                     NotesListLeadsRequest request) {
                   return notesList(request,null);
                 }
 
+                /**
+                 * Lists the notes of a lead, newest first.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<NotesListLeadsResponse>> notesList(
                     NotesListLeadsRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -832,11 +886,17 @@ public class AsyncRawLeadsClient {
                     return future;
                   }
 
+                  /**
+                   * Lists the files attached to a lead, newest first.
+                   */
                   public CompletableFuture<NordletApiHttpResponse<FilesListLeadsResponse>> filesList(
                       FilesListLeadsRequest request) {
                     return filesList(request,null);
                   }
 
+                  /**
+                   * Lists the files attached to a lead, newest first.
+                   */
                   public CompletableFuture<NordletApiHttpResponse<FilesListLeadsResponse>> filesList(
                       FilesListLeadsRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -924,11 +984,17 @@ public class AsyncRawLeadsClient {
                       return future;
                     }
 
+                    /**
+                     * Creates a lead source; a <code>name</code> already used by a source of the company is refused with 409.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<SourcesCreateLeadsResponse>> sourcesCreate(
                         SourcesCreateLeadsRequest request) {
                       return sourcesCreate(request,null);
                     }
 
+                    /**
+                     * Creates a lead source; a <code>name</code> already used by a source of the company is refused with 409.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<SourcesCreateLeadsResponse>> sourcesCreate(
                         SourcesCreateLeadsRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1016,11 +1082,17 @@ public class AsyncRawLeadsClient {
                         return future;
                       }
 
+                      /**
+                       * Changes the name or <code>isActive</code> flag of a lead source; a name already used by another source of the company is refused with 409.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<SourcesUpdateLeadsResponse>> sourcesUpdate(
                           SourcesUpdateLeadsRequest request) {
                         return sourcesUpdate(request,null);
                       }
 
+                      /**
+                       * Changes the name or <code>isActive</code> flag of a lead source; a name already used by another source of the company is refused with 409.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<SourcesUpdateLeadsResponse>> sourcesUpdate(
                           SourcesUpdateLeadsRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1108,11 +1180,17 @@ public class AsyncRawLeadsClient {
                           return future;
                         }
 
+                        /**
+                         * Deletes a lead source; one still referenced by a lead is refused with 409 and should be deactivated with <code>leads/sources/update</code> instead.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<SourcesDeleteLeadsResponse>> sourcesDelete(
                             SourcesDeleteLeadsRequest request) {
                           return sourcesDelete(request,null);
                         }
 
+                        /**
+                         * Deletes a lead source; one still referenced by a lead is refused with 409 and should be deactivated with <code>leads/sources/update</code> instead.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<SourcesDeleteLeadsResponse>> sourcesDelete(
                             SourcesDeleteLeadsRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1200,21 +1278,33 @@ public class AsyncRawLeadsClient {
                             return future;
                           }
 
+                          /**
+                           * Lists all lead sources of the company, active and inactive, ordered by name.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<SourcesListLeadsResponse>> sourcesList(
                               ) {
                             return sourcesList(SourcesListLeadsRequest.builder().build());
                           }
 
+                          /**
+                           * Lists all lead sources of the company, active and inactive, ordered by name.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<SourcesListLeadsResponse>> sourcesList(
                               RequestOptions requestOptions) {
                             return sourcesList(SourcesListLeadsRequest.builder().build(),requestOptions);
                           }
 
+                          /**
+                           * Lists all lead sources of the company, active and inactive, ordered by name.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<SourcesListLeadsResponse>> sourcesList(
                               SourcesListLeadsRequest request) {
                             return sourcesList(request,null);
                           }
 
+                          /**
+                           * Lists all lead sources of the company, active and inactive, ordered by name.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<SourcesListLeadsResponse>> sourcesList(
                               SourcesListLeadsRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1302,21 +1392,33 @@ public class AsyncRawLeadsClient {
                               return future;
                             }
 
+                            /**
+                             * Lists the id and name of the active lead sources, ordered by name.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<SourcesOptionsLeadsResponse>> sourcesOptions(
                                 ) {
                               return sourcesOptions(SourcesOptionsLeadsRequest.builder().build());
                             }
 
+                            /**
+                             * Lists the id and name of the active lead sources, ordered by name.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<SourcesOptionsLeadsResponse>> sourcesOptions(
                                 RequestOptions requestOptions) {
                               return sourcesOptions(SourcesOptionsLeadsRequest.builder().build(),requestOptions);
                             }
 
+                            /**
+                             * Lists the id and name of the active lead sources, ordered by name.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<SourcesOptionsLeadsResponse>> sourcesOptions(
                                 SourcesOptionsLeadsRequest request) {
                               return sourcesOptions(request,null);
                             }
 
+                            /**
+                             * Lists the id and name of the active lead sources, ordered by name.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<SourcesOptionsLeadsResponse>> sourcesOptions(
                                 SourcesOptionsLeadsRequest request, RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1404,11 +1506,17 @@ public class AsyncRawLeadsClient {
                                 return future;
                               }
 
+                              /**
+                               * Creates a lead type; a <code>name</code> already used by a type of the company is refused with 409.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<TypesCreateLeadsResponse>> typesCreate(
                                   TypesCreateLeadsRequest request) {
                                 return typesCreate(request,null);
                               }
 
+                              /**
+                               * Creates a lead type; a <code>name</code> already used by a type of the company is refused with 409.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<TypesCreateLeadsResponse>> typesCreate(
                                   TypesCreateLeadsRequest request, RequestOptions requestOptions) {
                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1496,11 +1604,17 @@ public class AsyncRawLeadsClient {
                                   return future;
                                 }
 
+                                /**
+                                 * Changes the name or <code>isActive</code> flag of a lead type; a name already used by another type of the company is refused with 409.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<TypesUpdateLeadsResponse>> typesUpdate(
                                     TypesUpdateLeadsRequest request) {
                                   return typesUpdate(request,null);
                                 }
 
+                                /**
+                                 * Changes the name or <code>isActive</code> flag of a lead type; a name already used by another type of the company is refused with 409.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<TypesUpdateLeadsResponse>> typesUpdate(
                                     TypesUpdateLeadsRequest request,
                                     RequestOptions requestOptions) {
@@ -1589,11 +1703,17 @@ public class AsyncRawLeadsClient {
                                     return future;
                                   }
 
+                                  /**
+                                   * Deletes a lead type; one still referenced by a lead is refused with 409 and should be deactivated with <code>leads/types/update</code> instead.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<TypesDeleteLeadsResponse>> typesDelete(
                                       TypesDeleteLeadsRequest request) {
                                     return typesDelete(request,null);
                                   }
 
+                                  /**
+                                   * Deletes a lead type; one still referenced by a lead is refused with 409 and should be deactivated with <code>leads/types/update</code> instead.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<TypesDeleteLeadsResponse>> typesDelete(
                                       TypesDeleteLeadsRequest request,
                                       RequestOptions requestOptions) {
@@ -1682,21 +1802,33 @@ public class AsyncRawLeadsClient {
                                       return future;
                                     }
 
+                                    /**
+                                     * Lists all lead types of the company, active and inactive, ordered by name.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<TypesListLeadsResponse>> typesList(
                                         ) {
                                       return typesList(TypesListLeadsRequest.builder().build());
                                     }
 
+                                    /**
+                                     * Lists all lead types of the company, active and inactive, ordered by name.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<TypesListLeadsResponse>> typesList(
                                         RequestOptions requestOptions) {
                                       return typesList(TypesListLeadsRequest.builder().build(),requestOptions);
                                     }
 
+                                    /**
+                                     * Lists all lead types of the company, active and inactive, ordered by name.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<TypesListLeadsResponse>> typesList(
                                         TypesListLeadsRequest request) {
                                       return typesList(request,null);
                                     }
 
+                                    /**
+                                     * Lists all lead types of the company, active and inactive, ordered by name.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<TypesListLeadsResponse>> typesList(
                                         TypesListLeadsRequest request,
                                         RequestOptions requestOptions) {
@@ -1785,21 +1917,33 @@ public class AsyncRawLeadsClient {
                                         return future;
                                       }
 
+                                      /**
+                                       * Lists the id and name of the active lead types, ordered by name.
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<TypesOptionsLeadsResponse>> typesOptions(
                                           ) {
                                         return typesOptions(TypesOptionsLeadsRequest.builder().build());
                                       }
 
+                                      /**
+                                       * Lists the id and name of the active lead types, ordered by name.
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<TypesOptionsLeadsResponse>> typesOptions(
                                           RequestOptions requestOptions) {
                                         return typesOptions(TypesOptionsLeadsRequest.builder().build(),requestOptions);
                                       }
 
+                                      /**
+                                       * Lists the id and name of the active lead types, ordered by name.
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<TypesOptionsLeadsResponse>> typesOptions(
                                           TypesOptionsLeadsRequest request) {
                                         return typesOptions(request,null);
                                       }
 
+                                      /**
+                                       * Lists the id and name of the active lead types, ordered by name.
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<TypesOptionsLeadsResponse>> typesOptions(
                                           TypesOptionsLeadsRequest request,
                                           RequestOptions requestOptions) {

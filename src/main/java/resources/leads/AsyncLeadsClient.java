@@ -65,218 +65,362 @@ public class AsyncLeadsClient {
     return this.rawClient;
   }
 
+  /**
+   * Creates a lead in status <code>new</code>, <code>contacted</code>, <code>qualified</code> or <code>lost</code>. <code>assignedUserId</code> must be a member of the company and <code>sourceId</code> and <code>typeId</code> must exist in it; <code>countryCode</code> and <code>currency</code> are stored in upper case; <code>documents</code> attach uploaded files not yet linked to a record, and <code>notes</code> become the lead's first notes with the caller as author. Emits <code>lead.created</code>.
+   */
   public CompletableFuture<CreateLeadsResponse> create(CreateLeadsRequest request) {
     return this.rawClient.create(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a lead in status <code>new</code>, <code>contacted</code>, <code>qualified</code> or <code>lost</code>. <code>assignedUserId</code> must be a member of the company and <code>sourceId</code> and <code>typeId</code> must exist in it; <code>countryCode</code> and <code>currency</code> are stored in upper case; <code>documents</code> attach uploaded files not yet linked to a record, and <code>notes</code> become the lead's first notes with the caller as author. Emits <code>lead.created</code>.
+   */
   public CompletableFuture<CreateLeadsResponse> create(CreateLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.create(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Returns one lead with its source and type names.
+   */
   public CompletableFuture<GetLeadsResponse> get(GetLeadsRequest request) {
     return this.rawClient.get(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Returns one lead with its source and type names.
+   */
   public CompletableFuture<GetLeadsResponse> get(GetLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.get(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the given fields of a lead; the clearable fields accept null, <code>documents</code> attach more uploaded files, and <code>countryCode</code> and <code>currency</code> are stored in upper case. A lead that is already converted cannot change <code>status</code> (409).
+   */
   public CompletableFuture<UpdateLeadsResponse> update(UpdateLeadsRequest request) {
     return this.rawClient.update(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the given fields of a lead; the clearable fields accept null, <code>documents</code> attach more uploaded files, and <code>countryCode</code> and <code>currency</code> are stored in upper case. A lead that is already converted cannot change <code>status</code> (409).
+   */
   public CompletableFuture<UpdateLeadsResponse> update(UpdateLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.update(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a lead with its notes and detaches its files, which stay in the company's files without a record.
+   */
   public CompletableFuture<DeleteLeadsResponse> delete(DeleteLeadsRequest request) {
     return this.rawClient.delete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a lead with its notes and detaches its files, which stay in the company's files without a record.
+   */
   public CompletableFuture<DeleteLeadsResponse> delete(DeleteLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.delete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+   */
   public CompletableFuture<ListLeadsResponse> list() {
     return this.rawClient.list().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+   */
   public CompletableFuture<ListLeadsResponse> list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+   */
   public CompletableFuture<ListLeadsResponse> list(ListLeadsRequest request) {
     return this.rawClient.list(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+   */
   public CompletableFuture<ListLeadsResponse> list(ListLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.list(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds a note to a lead with the caller as author and refreshes the lead's <code>updatedAt</code>.
+   */
   public CompletableFuture<NotesCreateLeadsResponse> notesCreate(NotesCreateLeadsRequest request) {
     return this.rawClient.notesCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds a note to a lead with the caller as author and refreshes the lead's <code>updatedAt</code>.
+   */
   public CompletableFuture<NotesCreateLeadsResponse> notesCreate(NotesCreateLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.notesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a lead note.
+   */
   public CompletableFuture<NotesDeleteLeadsResponse> notesDelete(NotesDeleteLeadsRequest request) {
     return this.rawClient.notesDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a lead note.
+   */
   public CompletableFuture<NotesDeleteLeadsResponse> notesDelete(NotesDeleteLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.notesDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the notes of a lead, newest first.
+   */
   public CompletableFuture<NotesListLeadsResponse> notesList(NotesListLeadsRequest request) {
     return this.rawClient.notesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the notes of a lead, newest first.
+   */
   public CompletableFuture<NotesListLeadsResponse> notesList(NotesListLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.notesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the files attached to a lead, newest first.
+   */
   public CompletableFuture<FilesListLeadsResponse> filesList(FilesListLeadsRequest request) {
     return this.rawClient.filesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the files attached to a lead, newest first.
+   */
   public CompletableFuture<FilesListLeadsResponse> filesList(FilesListLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.filesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a lead source; a <code>name</code> already used by a source of the company is refused with 409.
+   */
   public CompletableFuture<SourcesCreateLeadsResponse> sourcesCreate(
       SourcesCreateLeadsRequest request) {
     return this.rawClient.sourcesCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a lead source; a <code>name</code> already used by a source of the company is refused with 409.
+   */
   public CompletableFuture<SourcesCreateLeadsResponse> sourcesCreate(
       SourcesCreateLeadsRequest request, RequestOptions requestOptions) {
     return this.rawClient.sourcesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the name or <code>isActive</code> flag of a lead source; a name already used by another source of the company is refused with 409.
+   */
   public CompletableFuture<SourcesUpdateLeadsResponse> sourcesUpdate(
       SourcesUpdateLeadsRequest request) {
     return this.rawClient.sourcesUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the name or <code>isActive</code> flag of a lead source; a name already used by another source of the company is refused with 409.
+   */
   public CompletableFuture<SourcesUpdateLeadsResponse> sourcesUpdate(
       SourcesUpdateLeadsRequest request, RequestOptions requestOptions) {
     return this.rawClient.sourcesUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a lead source; one still referenced by a lead is refused with 409 and should be deactivated with <code>leads/sources/update</code> instead.
+   */
   public CompletableFuture<SourcesDeleteLeadsResponse> sourcesDelete(
       SourcesDeleteLeadsRequest request) {
     return this.rawClient.sourcesDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a lead source; one still referenced by a lead is refused with 409 and should be deactivated with <code>leads/sources/update</code> instead.
+   */
   public CompletableFuture<SourcesDeleteLeadsResponse> sourcesDelete(
       SourcesDeleteLeadsRequest request, RequestOptions requestOptions) {
     return this.rawClient.sourcesDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists all lead sources of the company, active and inactive, ordered by name.
+   */
   public CompletableFuture<SourcesListLeadsResponse> sourcesList() {
     return this.rawClient.sourcesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists all lead sources of the company, active and inactive, ordered by name.
+   */
   public CompletableFuture<SourcesListLeadsResponse> sourcesList(RequestOptions requestOptions) {
     return this.rawClient.sourcesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists all lead sources of the company, active and inactive, ordered by name.
+   */
   public CompletableFuture<SourcesListLeadsResponse> sourcesList(SourcesListLeadsRequest request) {
     return this.rawClient.sourcesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists all lead sources of the company, active and inactive, ordered by name.
+   */
   public CompletableFuture<SourcesListLeadsResponse> sourcesList(SourcesListLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.sourcesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the id and name of the active lead sources, ordered by name.
+   */
   public CompletableFuture<SourcesOptionsLeadsResponse> sourcesOptions() {
     return this.rawClient.sourcesOptions().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the id and name of the active lead sources, ordered by name.
+   */
   public CompletableFuture<SourcesOptionsLeadsResponse> sourcesOptions(
       RequestOptions requestOptions) {
     return this.rawClient.sourcesOptions(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the id and name of the active lead sources, ordered by name.
+   */
   public CompletableFuture<SourcesOptionsLeadsResponse> sourcesOptions(
       SourcesOptionsLeadsRequest request) {
     return this.rawClient.sourcesOptions(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the id and name of the active lead sources, ordered by name.
+   */
   public CompletableFuture<SourcesOptionsLeadsResponse> sourcesOptions(
       SourcesOptionsLeadsRequest request, RequestOptions requestOptions) {
     return this.rawClient.sourcesOptions(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a lead type; a <code>name</code> already used by a type of the company is refused with 409.
+   */
   public CompletableFuture<TypesCreateLeadsResponse> typesCreate(TypesCreateLeadsRequest request) {
     return this.rawClient.typesCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a lead type; a <code>name</code> already used by a type of the company is refused with 409.
+   */
   public CompletableFuture<TypesCreateLeadsResponse> typesCreate(TypesCreateLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.typesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the name or <code>isActive</code> flag of a lead type; a name already used by another type of the company is refused with 409.
+   */
   public CompletableFuture<TypesUpdateLeadsResponse> typesUpdate(TypesUpdateLeadsRequest request) {
     return this.rawClient.typesUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the name or <code>isActive</code> flag of a lead type; a name already used by another type of the company is refused with 409.
+   */
   public CompletableFuture<TypesUpdateLeadsResponse> typesUpdate(TypesUpdateLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.typesUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a lead type; one still referenced by a lead is refused with 409 and should be deactivated with <code>leads/types/update</code> instead.
+   */
   public CompletableFuture<TypesDeleteLeadsResponse> typesDelete(TypesDeleteLeadsRequest request) {
     return this.rawClient.typesDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a lead type; one still referenced by a lead is refused with 409 and should be deactivated with <code>leads/types/update</code> instead.
+   */
   public CompletableFuture<TypesDeleteLeadsResponse> typesDelete(TypesDeleteLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.typesDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists all lead types of the company, active and inactive, ordered by name.
+   */
   public CompletableFuture<TypesListLeadsResponse> typesList() {
     return this.rawClient.typesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists all lead types of the company, active and inactive, ordered by name.
+   */
   public CompletableFuture<TypesListLeadsResponse> typesList(RequestOptions requestOptions) {
     return this.rawClient.typesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists all lead types of the company, active and inactive, ordered by name.
+   */
   public CompletableFuture<TypesListLeadsResponse> typesList(TypesListLeadsRequest request) {
     return this.rawClient.typesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists all lead types of the company, active and inactive, ordered by name.
+   */
   public CompletableFuture<TypesListLeadsResponse> typesList(TypesListLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.typesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the id and name of the active lead types, ordered by name.
+   */
   public CompletableFuture<TypesOptionsLeadsResponse> typesOptions() {
     return this.rawClient.typesOptions().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the id and name of the active lead types, ordered by name.
+   */
   public CompletableFuture<TypesOptionsLeadsResponse> typesOptions(RequestOptions requestOptions) {
     return this.rawClient.typesOptions(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the id and name of the active lead types, ordered by name.
+   */
   public CompletableFuture<TypesOptionsLeadsResponse> typesOptions(
       TypesOptionsLeadsRequest request) {
     return this.rawClient.typesOptions(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the id and name of the active lead types, ordered by name.
+   */
   public CompletableFuture<TypesOptionsLeadsResponse> typesOptions(TypesOptionsLeadsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.typesOptions(request, requestOptions).thenApply(response -> response.body());

@@ -36,76 +36,124 @@ public class WebhooksClient {
     return this.rawClient;
   }
 
+  /**
+   * Register a webhook endpoint for the given event types (<code>*</code> for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless <code>secret</code> is given, and this call is the only one that returns it.
+   */
   public SubscriptionsCreateWebhooksResponse subscriptionsCreate(
       SubscriptionsCreateWebhooksRequest request) {
     return this.rawClient.subscriptionsCreate(request).body();
   }
 
+  /**
+   * Register a webhook endpoint for the given event types (<code>*</code> for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless <code>secret</code> is given, and this call is the only one that returns it.
+   */
   public SubscriptionsCreateWebhooksResponse subscriptionsCreate(
       SubscriptionsCreateWebhooksRequest request, RequestOptions requestOptions) {
     return this.rawClient.subscriptionsCreate(request, requestOptions).body();
   }
 
+  /**
+   * List the company's webhook subscriptions with their last delivery state. Filterable by <code>url</code> and <code>isActive</code>; sortable by <code>createdAt</code> and <code>url</code>.
+   */
   public SubscriptionsListWebhooksResponse subscriptionsList() {
     return this.rawClient.subscriptionsList().body();
   }
 
+  /**
+   * List the company's webhook subscriptions with their last delivery state. Filterable by <code>url</code> and <code>isActive</code>; sortable by <code>createdAt</code> and <code>url</code>.
+   */
   public SubscriptionsListWebhooksResponse subscriptionsList(RequestOptions requestOptions) {
     return this.rawClient.subscriptionsList(requestOptions).body();
   }
 
+  /**
+   * List the company's webhook subscriptions with their last delivery state. Filterable by <code>url</code> and <code>isActive</code>; sortable by <code>createdAt</code> and <code>url</code>.
+   */
   public SubscriptionsListWebhooksResponse subscriptionsList(
       SubscriptionsListWebhooksRequest request) {
     return this.rawClient.subscriptionsList(request).body();
   }
 
+  /**
+   * List the company's webhook subscriptions with their last delivery state. Filterable by <code>url</code> and <code>isActive</code>; sortable by <code>createdAt</code> and <code>url</code>.
+   */
   public SubscriptionsListWebhooksResponse subscriptionsList(
       SubscriptionsListWebhooksRequest request, RequestOptions requestOptions) {
     return this.rawClient.subscriptionsList(request, requestOptions).body();
   }
 
+  /**
+   * Change the URL, event types or <code>isActive</code> flag of a subscription; at least one field is required (400) and a new URL must be an https address that resolves to a public network (422). Setting <code>isActive</code> to true also clears <code>pausedAt</code> and <code>consecutiveFailures</code>, which is how a subscription paused after 5 failed deliveries in a row is switched back on.
+   */
   public SubscriptionsUpdateWebhooksResponse subscriptionsUpdate(
       SubscriptionsUpdateWebhooksRequest request) {
     return this.rawClient.subscriptionsUpdate(request).body();
   }
 
+  /**
+   * Change the URL, event types or <code>isActive</code> flag of a subscription; at least one field is required (400) and a new URL must be an https address that resolves to a public network (422). Setting <code>isActive</code> to true also clears <code>pausedAt</code> and <code>consecutiveFailures</code>, which is how a subscription paused after 5 failed deliveries in a row is switched back on.
+   */
   public SubscriptionsUpdateWebhooksResponse subscriptionsUpdate(
       SubscriptionsUpdateWebhooksRequest request, RequestOptions requestOptions) {
     return this.rawClient.subscriptionsUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Delete a webhook subscription.
+   */
   public SubscriptionsDeleteWebhooksResponse subscriptionsDelete(
       SubscriptionsDeleteWebhooksRequest request) {
     return this.rawClient.subscriptionsDelete(request).body();
   }
 
+  /**
+   * Delete a webhook subscription.
+   */
   public SubscriptionsDeleteWebhooksResponse subscriptionsDelete(
       SubscriptionsDeleteWebhooksRequest request, RequestOptions requestOptions) {
     return this.rawClient.subscriptionsDelete(request, requestOptions).body();
   }
 
+  /**
+   * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
+   */
   public DeliveriesListWebhooksResponse deliveriesList() {
     return this.rawClient.deliveriesList().body();
   }
 
+  /**
+   * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
+   */
   public DeliveriesListWebhooksResponse deliveriesList(RequestOptions requestOptions) {
     return this.rawClient.deliveriesList(requestOptions).body();
   }
 
+  /**
+   * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
+   */
   public DeliveriesListWebhooksResponse deliveriesList(DeliveriesListWebhooksRequest request) {
     return this.rawClient.deliveriesList(request).body();
   }
 
+  /**
+   * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
+   */
   public DeliveriesListWebhooksResponse deliveriesList(DeliveriesListWebhooksRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.deliveriesList(request, requestOptions).body();
   }
 
+  /**
+   * Send a delivery again now: its status goes back to <code>pending</code> with the attempt count and last error cleared. Answers 409 when the subscription is inactive.
+   */
   public DeliveriesRedeliverWebhooksResponse deliveriesRedeliver(
       DeliveriesRedeliverWebhooksRequest request) {
     return this.rawClient.deliveriesRedeliver(request).body();
   }
 
+  /**
+   * Send a delivery again now: its status goes back to <code>pending</code> with the attempt count and last error cleared. Answers 409 when the subscription is inactive.
+   */
   public DeliveriesRedeliverWebhooksResponse deliveriesRedeliver(
       DeliveriesRedeliverWebhooksRequest request, RequestOptions requestOptions) {
     return this.rawClient.deliveriesRedeliver(request, requestOptions).body();

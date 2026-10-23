@@ -96,20 +96,32 @@ public class RawLedgerClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public NordletApiHttpResponse<AccountsListLedgerResponse> accountsList() {
     return accountsList(AccountsListLedgerRequest.builder().build());
   }
 
+  /**
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public NordletApiHttpResponse<AccountsListLedgerResponse> accountsList(
       RequestOptions requestOptions) {
     return accountsList(AccountsListLedgerRequest.builder().build(),requestOptions);
   }
 
+  /**
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public NordletApiHttpResponse<AccountsListLedgerResponse> accountsList(
       AccountsListLedgerRequest request) {
     return accountsList(request,null);
   }
 
+  /**
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public NordletApiHttpResponse<AccountsListLedgerResponse> accountsList(
       AccountsListLedgerRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -174,11 +186,17 @@ public class RawLedgerClient {
       }
     }
 
+    /**
+     * Adds an account to the company's chart of accounts. <code>parentId</code> must name an account of the same company. Answers 409 when an account with the same <code>code</code> already exists.
+     */
     public NordletApiHttpResponse<AccountsCreateLedgerResponse> accountsCreate(
         AccountsCreateLedgerRequest request) {
       return accountsCreate(request,null);
     }
 
+    /**
+     * Adds an account to the company's chart of accounts. <code>parentId</code> must name an account of the same company. Answers 409 when an account with the same <code>code</code> already exists.
+     */
     public NordletApiHttpResponse<AccountsCreateLedgerResponse> accountsCreate(
         AccountsCreateLedgerRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -243,11 +261,17 @@ public class RawLedgerClient {
         }
       }
 
+      /**
+       * Changes the name, parent or postability of an account; the code and type cannot be changed. An account cannot be its own parent.
+       */
       public NordletApiHttpResponse<AccountsUpdateLedgerResponse> accountsUpdate(
           AccountsUpdateLedgerRequest request) {
         return accountsUpdate(request,null);
       }
 
+      /**
+       * Changes the name, parent or postability of an account; the code and type cannot be changed. An account cannot be its own parent.
+       */
       public NordletApiHttpResponse<AccountsUpdateLedgerResponse> accountsUpdate(
           AccountsUpdateLedgerRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -312,20 +336,32 @@ public class RawLedgerClient {
           }
         }
 
+        /**
+         * Adds the accounts of the company's chart template that the chart does not have yet (an account whose code already exists is not replaced) and sets the parent links the template defines. Returns the number of accounts in the chart afterwards.
+         */
         public NordletApiHttpResponse<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate() {
           return accountsApplyTemplate(AccountsApplyTemplateLedgerRequest.builder().build());
         }
 
+        /**
+         * Adds the accounts of the company's chart template that the chart does not have yet (an account whose code already exists is not replaced) and sets the parent links the template defines. Returns the number of accounts in the chart afterwards.
+         */
         public NordletApiHttpResponse<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate(
             RequestOptions requestOptions) {
           return accountsApplyTemplate(AccountsApplyTemplateLedgerRequest.builder().build(),requestOptions);
         }
 
+        /**
+         * Adds the accounts of the company's chart template that the chart does not have yet (an account whose code already exists is not replaced) and sets the parent links the template defines. Returns the number of accounts in the chart afterwards.
+         */
         public NordletApiHttpResponse<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate(
             AccountsApplyTemplateLedgerRequest request) {
           return accountsApplyTemplate(request,null);
         }
 
+        /**
+         * Adds the accounts of the company's chart template that the chart does not have yet (an account whose code already exists is not replaced) and sets the parent links the template defines. Returns the number of accounts in the chart afterwards.
+         */
         public NordletApiHttpResponse<AccountsApplyTemplateLedgerResponse> accountsApplyTemplate(
             AccountsApplyTemplateLedgerRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -480,20 +516,32 @@ public class RawLedgerClient {
               }
             }
 
+            /**
+             * Lists the company's accounting periods with their <code>open</code> or <code>locked</code> status. Filterable by <code>year</code>, <code>month</code> and <code>status</code>; sortable by <code>year</code> and <code>month</code>.
+             */
             public NordletApiHttpResponse<PeriodsListLedgerResponse> periodsList() {
               return periodsList(PeriodsListLedgerRequest.builder().build());
             }
 
+            /**
+             * Lists the company's accounting periods with their <code>open</code> or <code>locked</code> status. Filterable by <code>year</code>, <code>month</code> and <code>status</code>; sortable by <code>year</code> and <code>month</code>.
+             */
             public NordletApiHttpResponse<PeriodsListLedgerResponse> periodsList(
                 RequestOptions requestOptions) {
               return periodsList(PeriodsListLedgerRequest.builder().build(),requestOptions);
             }
 
+            /**
+             * Lists the company's accounting periods with their <code>open</code> or <code>locked</code> status. Filterable by <code>year</code>, <code>month</code> and <code>status</code>; sortable by <code>year</code> and <code>month</code>.
+             */
             public NordletApiHttpResponse<PeriodsListLedgerResponse> periodsList(
                 PeriodsListLedgerRequest request) {
               return periodsList(request,null);
             }
 
+            /**
+             * Lists the company's accounting periods with their <code>open</code> or <code>locked</code> status. Filterable by <code>year</code>, <code>month</code> and <code>status</code>; sortable by <code>year</code> and <code>month</code>.
+             */
             public NordletApiHttpResponse<PeriodsListLedgerResponse> periodsList(
                 PeriodsListLedgerRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -558,11 +606,17 @@ public class RawLedgerClient {
                 }
               }
 
+              /**
+               * Locks the month so that postings dated in it are refused with 409 (<code>ledger/journal/transactions/create</code>, <code>cash/orders/create</code> and <code>cash/expense-reports/create</code> among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits <code>revenue_recognition.posted</code> when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule <code>closing.retainedEarnings</code>).
+               */
               public NordletApiHttpResponse<PeriodsLockLedgerResponse> periodsLock(
                   PeriodsLockLedgerRequest request) {
                 return periodsLock(request,null);
               }
 
+              /**
+               * Locks the month so that postings dated in it are refused with 409 (<code>ledger/journal/transactions/create</code>, <code>cash/orders/create</code> and <code>cash/expense-reports/create</code> among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits <code>revenue_recognition.posted</code> when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule <code>closing.retainedEarnings</code>).
+               */
               public NordletApiHttpResponse<PeriodsLockLedgerResponse> periodsLock(
                   PeriodsLockLedgerRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -627,11 +681,17 @@ public class RawLedgerClient {
                   }
                 }
 
+                /**
+                 * Opens the month for posting again. When the month is the company's fiscal year end and a year-end close is posted for it, posts a reversal of that close dated the same day.
+                 */
                 public NordletApiHttpResponse<PeriodsUnlockLedgerResponse> periodsUnlock(
                     PeriodsUnlockLedgerRequest request) {
                   return periodsUnlock(request,null);
                 }
 
+                /**
+                 * Opens the month for posting again. When the month is the company's fiscal year end and a year-end close is posted for it, posts a reversal of that close dated the same day.
+                 */
                 public NordletApiHttpResponse<PeriodsUnlockLedgerResponse> periodsUnlock(
                     PeriodsUnlockLedgerRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -696,21 +756,33 @@ public class RawLedgerClient {
                     }
                   }
 
+                  /**
+                   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                   */
                   public NordletApiHttpResponse<JournalTransactionsListLedgerResponse> journalTransactionsList(
                       ) {
                     return journalTransactionsList(JournalTransactionsListLedgerRequest.builder().build());
                   }
 
+                  /**
+                   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                   */
                   public NordletApiHttpResponse<JournalTransactionsListLedgerResponse> journalTransactionsList(
                       RequestOptions requestOptions) {
                     return journalTransactionsList(JournalTransactionsListLedgerRequest.builder().build(),requestOptions);
                   }
 
+                  /**
+                   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                   */
                   public NordletApiHttpResponse<JournalTransactionsListLedgerResponse> journalTransactionsList(
                       JournalTransactionsListLedgerRequest request) {
                     return journalTransactionsList(request,null);
                   }
 
+                  /**
+                   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                   */
                   public NordletApiHttpResponse<JournalTransactionsListLedgerResponse> journalTransactionsList(
                       JournalTransactionsListLedgerRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -775,11 +847,17 @@ public class RawLedgerClient {
                       }
                     }
 
+                    /**
+                     * Creates a cost center, optionally inside a cost center group. Answers 409 when the <code>code</code> is already used.
+                     */
                     public NordletApiHttpResponse<CostCentersCreateLedgerResponse> costCentersCreate(
                         CostCentersCreateLedgerRequest request) {
                       return costCentersCreate(request,null);
                     }
 
+                    /**
+                     * Creates a cost center, optionally inside a cost center group. Answers 409 when the <code>code</code> is already used.
+                     */
                     public NordletApiHttpResponse<CostCentersCreateLedgerResponse> costCentersCreate(
                         CostCentersCreateLedgerRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -844,11 +922,17 @@ public class RawLedgerClient {
                         }
                       }
 
+                      /**
+                       * Changes the name, group or active flag of a cost center. An inactive cost center is refused on new manual journal entries (<code>ledger/journal/transactions/create</code> answers 422).
+                       */
                       public NordletApiHttpResponse<CostCentersUpdateLedgerResponse> costCentersUpdate(
                           CostCentersUpdateLedgerRequest request) {
                         return costCentersUpdate(request,null);
                       }
 
+                      /**
+                       * Changes the name, group or active flag of a cost center. An inactive cost center is refused on new manual journal entries (<code>ledger/journal/transactions/create</code> answers 422).
+                       */
                       public NordletApiHttpResponse<CostCentersUpdateLedgerResponse> costCentersUpdate(
                           CostCentersUpdateLedgerRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -913,21 +997,33 @@ public class RawLedgerClient {
                           }
                         }
 
+                        /**
+                         * Lists cost centers with their group name. Filterable by <code>code</code>, <code>name</code>, <code>isActive</code> and <code>groupId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+                         */
                         public NordletApiHttpResponse<CostCentersListLedgerResponse> costCentersList(
                             ) {
                           return costCentersList(CostCentersListLedgerRequest.builder().build());
                         }
 
+                        /**
+                         * Lists cost centers with their group name. Filterable by <code>code</code>, <code>name</code>, <code>isActive</code> and <code>groupId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+                         */
                         public NordletApiHttpResponse<CostCentersListLedgerResponse> costCentersList(
                             RequestOptions requestOptions) {
                           return costCentersList(CostCentersListLedgerRequest.builder().build(),requestOptions);
                         }
 
+                        /**
+                         * Lists cost centers with their group name. Filterable by <code>code</code>, <code>name</code>, <code>isActive</code> and <code>groupId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+                         */
                         public NordletApiHttpResponse<CostCentersListLedgerResponse> costCentersList(
                             CostCentersListLedgerRequest request) {
                           return costCentersList(request,null);
                         }
 
+                        /**
+                         * Lists cost centers with their group name. Filterable by <code>code</code>, <code>name</code>, <code>isActive</code> and <code>groupId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+                         */
                         public NordletApiHttpResponse<CostCentersListLedgerResponse> costCentersList(
                             CostCentersListLedgerRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -992,11 +1088,17 @@ public class RawLedgerClient {
                             }
                           }
 
+                          /**
+                           * Creates a cost center group. Answers 409 when the <code>code</code> is already used.
+                           */
                           public NordletApiHttpResponse<CostCenterGroupsCreateLedgerResponse> costCenterGroupsCreate(
                               CostCenterGroupsCreateLedgerRequest request) {
                             return costCenterGroupsCreate(request,null);
                           }
 
+                          /**
+                           * Creates a cost center group. Answers 409 when the <code>code</code> is already used.
+                           */
                           public NordletApiHttpResponse<CostCenterGroupsCreateLedgerResponse> costCenterGroupsCreate(
                               CostCenterGroupsCreateLedgerRequest request,
                               RequestOptions requestOptions) {
@@ -1062,11 +1164,17 @@ public class RawLedgerClient {
                               }
                             }
 
+                            /**
+                             * Changes the code or name of a cost center group. Answers 409 when the new code is already used.
+                             */
                             public NordletApiHttpResponse<CostCenterGroupsUpdateLedgerResponse> costCenterGroupsUpdate(
                                 CostCenterGroupsUpdateLedgerRequest request) {
                               return costCenterGroupsUpdate(request,null);
                             }
 
+                            /**
+                             * Changes the code or name of a cost center group. Answers 409 when the new code is already used.
+                             */
                             public NordletApiHttpResponse<CostCenterGroupsUpdateLedgerResponse> costCenterGroupsUpdate(
                                 CostCenterGroupsUpdateLedgerRequest request,
                                 RequestOptions requestOptions) {
@@ -1132,11 +1240,17 @@ public class RawLedgerClient {
                                 }
                               }
 
+                              /**
+                               * Deletes a cost center group. Answers 409 while cost centers are still assigned to it.
+                               */
                               public NordletApiHttpResponse<CostCenterGroupsDeleteLedgerResponse> costCenterGroupsDelete(
                                   CostCenterGroupsDeleteLedgerRequest request) {
                                 return costCenterGroupsDelete(request,null);
                               }
 
+                              /**
+                               * Deletes a cost center group. Answers 409 while cost centers are still assigned to it.
+                               */
                               public NordletApiHttpResponse<CostCenterGroupsDeleteLedgerResponse> costCenterGroupsDelete(
                                   CostCenterGroupsDeleteLedgerRequest request,
                                   RequestOptions requestOptions) {
@@ -1202,21 +1316,33 @@ public class RawLedgerClient {
                                   }
                                 }
 
+                                /**
+                                 * Lists cost center groups. Filterable and sortable by <code>code</code> and <code>name</code>.
+                                 */
                                 public NordletApiHttpResponse<CostCenterGroupsListLedgerResponse> costCenterGroupsList(
                                     ) {
                                   return costCenterGroupsList(CostCenterGroupsListLedgerRequest.builder().build());
                                 }
 
+                                /**
+                                 * Lists cost center groups. Filterable and sortable by <code>code</code> and <code>name</code>.
+                                 */
                                 public NordletApiHttpResponse<CostCenterGroupsListLedgerResponse> costCenterGroupsList(
                                     RequestOptions requestOptions) {
                                   return costCenterGroupsList(CostCenterGroupsListLedgerRequest.builder().build(),requestOptions);
                                 }
 
+                                /**
+                                 * Lists cost center groups. Filterable and sortable by <code>code</code> and <code>name</code>.
+                                 */
                                 public NordletApiHttpResponse<CostCenterGroupsListLedgerResponse> costCenterGroupsList(
                                     CostCenterGroupsListLedgerRequest request) {
                                   return costCenterGroupsList(request,null);
                                 }
 
+                                /**
+                                 * Lists cost center groups. Filterable and sortable by <code>code</code> and <code>name</code>.
+                                 */
                                 public NordletApiHttpResponse<CostCenterGroupsListLedgerResponse> costCenterGroupsList(
                                     CostCenterGroupsListLedgerRequest request,
                                     RequestOptions requestOptions) {
@@ -1282,21 +1408,33 @@ public class RawLedgerClient {
                                     }
                                   }
 
+                                  /**
+                                   * Lists every posting rule with its default account code on the company's chart template, the account code in effect and whether the company has overridden it.
+                                   */
                                   public NordletApiHttpResponse<PostingRulesListLedgerResponse> postingRulesList(
                                       ) {
                                     return postingRulesList(PostingRulesListLedgerRequest.builder().build());
                                   }
 
+                                  /**
+                                   * Lists every posting rule with its default account code on the company's chart template, the account code in effect and whether the company has overridden it.
+                                   */
                                   public NordletApiHttpResponse<PostingRulesListLedgerResponse> postingRulesList(
                                       RequestOptions requestOptions) {
                                     return postingRulesList(PostingRulesListLedgerRequest.builder().build(),requestOptions);
                                   }
 
+                                  /**
+                                   * Lists every posting rule with its default account code on the company's chart template, the account code in effect and whether the company has overridden it.
+                                   */
                                   public NordletApiHttpResponse<PostingRulesListLedgerResponse> postingRulesList(
                                       PostingRulesListLedgerRequest request) {
                                     return postingRulesList(request,null);
                                   }
 
+                                  /**
+                                   * Lists every posting rule with its default account code on the company's chart template, the account code in effect and whether the company has overridden it.
+                                   */
                                   public NordletApiHttpResponse<PostingRulesListLedgerResponse> postingRulesList(
                                       PostingRulesListLedgerRequest request,
                                       RequestOptions requestOptions) {
@@ -1362,11 +1500,17 @@ public class RawLedgerClient {
                                       }
                                     }
 
+                                    /**
+                                     * Overrides the account code of one or more posting rules; an <code>accountCode</code> of null removes the override and the chart default applies again. Every code given must be a postable account of the company's chart, else 422.
+                                     */
                                     public NordletApiHttpResponse<PostingRulesUpdateLedgerResponse> postingRulesUpdate(
                                         PostingRulesUpdateLedgerRequest request) {
                                       return postingRulesUpdate(request,null);
                                     }
 
+                                    /**
+                                     * Overrides the account code of one or more posting rules; an <code>accountCode</code> of null removes the override and the chart default applies again. Every code given must be a postable account of the company's chart, else 422.
+                                     */
                                     public NordletApiHttpResponse<PostingRulesUpdateLedgerResponse> postingRulesUpdate(
                                         PostingRulesUpdateLedgerRequest request,
                                         RequestOptions requestOptions) {
@@ -1432,11 +1576,17 @@ public class RawLedgerClient {
                                         }
                                       }
 
+                                      /**
+                                       * Adds an owner of the company. <code>equityAccountCode</code> defaults to the share capital account of the company's chart; a code that is not in the chart of accounts answers 422.
+                                       */
                                       public NordletApiHttpResponse<OwnersCreateLedgerResponse> ownersCreate(
                                           OwnersCreateLedgerRequest request) {
                                         return ownersCreate(request,null);
                                       }
 
+                                      /**
+                                       * Adds an owner of the company. <code>equityAccountCode</code> defaults to the share capital account of the company's chart; a code that is not in the chart of accounts answers 422.
+                                       */
                                       public NordletApiHttpResponse<OwnersCreateLedgerResponse> ownersCreate(
                                           OwnersCreateLedgerRequest request,
                                           RequestOptions requestOptions) {
@@ -1502,11 +1652,17 @@ public class RawLedgerClient {
                                           }
                                         }
 
+                                        /**
+                                         * Changes the fields of an owner. An <code>equityAccountCode</code> that is not in the chart of accounts answers 422.
+                                         */
                                         public NordletApiHttpResponse<OwnersUpdateLedgerResponse> ownersUpdate(
                                             OwnersUpdateLedgerRequest request) {
                                           return ownersUpdate(request,null);
                                         }
 
+                                        /**
+                                         * Changes the fields of an owner. An <code>equityAccountCode</code> that is not in the chart of accounts answers 422.
+                                         */
                                         public NordletApiHttpResponse<OwnersUpdateLedgerResponse> ownersUpdate(
                                             OwnersUpdateLedgerRequest request,
                                             RequestOptions requestOptions) {
@@ -1572,11 +1728,17 @@ public class RawLedgerClient {
                                             }
                                           }
 
+                                          /**
+                                           * Deletes an owner.
+                                           */
                                           public NordletApiHttpResponse<OwnersDeleteLedgerResponse> ownersDelete(
                                               OwnersDeleteLedgerRequest request) {
                                             return ownersDelete(request,null);
                                           }
 
+                                          /**
+                                           * Deletes an owner.
+                                           */
                                           public NordletApiHttpResponse<OwnersDeleteLedgerResponse> ownersDelete(
                                               OwnersDeleteLedgerRequest request,
                                               RequestOptions requestOptions) {
@@ -1642,21 +1804,33 @@ public class RawLedgerClient {
                                               }
                                             }
 
+                                            /**
+                                             * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+                                             */
                                             public NordletApiHttpResponse<OwnersListLedgerResponse> ownersList(
                                                 ) {
                                               return ownersList(OwnersListLedgerRequest.builder().build());
                                             }
 
+                                            /**
+                                             * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+                                             */
                                             public NordletApiHttpResponse<OwnersListLedgerResponse> ownersList(
                                                 RequestOptions requestOptions) {
                                               return ownersList(OwnersListLedgerRequest.builder().build(),requestOptions);
                                             }
 
+                                            /**
+                                             * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+                                             */
                                             public NordletApiHttpResponse<OwnersListLedgerResponse> ownersList(
                                                 OwnersListLedgerRequest request) {
                                               return ownersList(request,null);
                                             }
 
+                                            /**
+                                             * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+                                             */
                                             public NordletApiHttpResponse<OwnersListLedgerResponse> ownersList(
                                                 OwnersListLedgerRequest request,
                                                 RequestOptions requestOptions) {
@@ -1722,11 +1896,17 @@ public class RawLedgerClient {
                                                 }
                                               }
 
+                                              /**
+                                               * Returns a journal transaction with its entries, ordered by account code.
+                                               */
                                               public NordletApiHttpResponse<JournalTransactionsGetLedgerResponse> journalTransactionsGet(
                                                   JournalTransactionsGetLedgerRequest request) {
                                                 return journalTransactionsGet(request,null);
                                               }
 
+                                              /**
+                                               * Returns a journal transaction with its entries, ordered by account code.
+                                               */
                                               public NordletApiHttpResponse<JournalTransactionsGetLedgerResponse> journalTransactionsGet(
                                                   JournalTransactionsGetLedgerRequest request,
                                                   RequestOptions requestOptions) {
@@ -1792,11 +1972,17 @@ public class RawLedgerClient {
                                                   }
                                                 }
 
+                                                /**
+                                                 * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount with more than two decimals, for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
+                                                 */
                                                 public NordletApiHttpResponse<JournalTransactionsCreateLedgerResponse> journalTransactionsCreate(
                                                     JournalTransactionsCreateLedgerRequest request) {
                                                   return journalTransactionsCreate(request,null);
                                                 }
 
+                                                /**
+                                                 * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount with more than two decimals, for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
+                                                 */
                                                 public NordletApiHttpResponse<JournalTransactionsCreateLedgerResponse> journalTransactionsCreate(
                                                     JournalTransactionsCreateLedgerRequest request,
                                                     RequestOptions requestOptions) {
@@ -1954,11 +2140,17 @@ public class RawLedgerClient {
                                                       }
                                                     }
 
+                                                    /**
+                                                     * Every postable account of the company with the row of <code>scheme</code> it falls into, by a mapping (<code>ledger/statement-rows/set</code>) or by the layout default, and the amount it carries there: the balance up to <code>toDate</code> on a balance-sheet row, the movement from <code>fromDate</code> to <code>toDate</code> on an income-statement row. <code>toDate</code> defaults to today and <code>fromDate</code> to 1 January of that year. <code>rows</code> holds the row totals and <code>unmapped</code> the accounts with a balance but no row.
+                                                     */
                                                     public NordletApiHttpResponse<StatementRowsListLedgerResponse> statementRowsList(
                                                         StatementRowsListLedgerRequest request) {
                                                       return statementRowsList(request,null);
                                                     }
 
+                                                    /**
+                                                     * Every postable account of the company with the row of <code>scheme</code> it falls into, by a mapping (<code>ledger/statement-rows/set</code>) or by the layout default, and the amount it carries there: the balance up to <code>toDate</code> on a balance-sheet row, the movement from <code>fromDate</code> to <code>toDate</code> on an income-statement row. <code>toDate</code> defaults to today and <code>fromDate</code> to 1 January of that year. <code>rows</code> holds the row totals and <code>unmapped</code> the accounts with a balance but no row.
+                                                     */
                                                     public NordletApiHttpResponse<StatementRowsListLedgerResponse> statementRowsList(
                                                         StatementRowsListLedgerRequest request,
                                                         RequestOptions requestOptions) {

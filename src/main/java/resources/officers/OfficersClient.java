@@ -60,28 +60,46 @@ public class OfficersClient {
     return this.rawClient.list(request, requestOptions).body();
   }
 
+  /**
+   * Add an officer to the company's register (<code>officers/list</code>); <code>signsAccounts</code> defaults to true. Refused with 422 when <code>resignedOn</code> is before <code>appointedOn</code>.
+   */
   public CreateOfficersResponse create(CreateOfficersRequest request) {
     return this.rawClient.create(request).body();
   }
 
+  /**
+   * Add an officer to the company's register (<code>officers/list</code>); <code>signsAccounts</code> defaults to true. Refused with 422 when <code>resignedOn</code> is before <code>appointedOn</code>.
+   */
   public CreateOfficersResponse create(CreateOfficersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.create(request, requestOptions).body();
   }
 
+  /**
+   * Replace the recorded data of an officer; every field is written as sent, so a field left out is cleared and <code>signsAccounts</code> falls back to true. Refused with 422 when <code>resignedOn</code> is before <code>appointedOn</code>.
+   */
   public UpdateOfficersResponse update(UpdateOfficersRequest request) {
     return this.rawClient.update(request).body();
   }
 
+  /**
+   * Replace the recorded data of an officer; every field is written as sent, so a field left out is cleared and <code>signsAccounts</code> falls back to true. Refused with 422 when <code>resignedOn</code> is before <code>appointedOn</code>.
+   */
   public UpdateOfficersResponse update(UpdateOfficersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.update(request, requestOptions).body();
   }
 
+  /**
+   * Remove an officer from the company's register.
+   */
   public DeleteOfficersResponse delete(DeleteOfficersRequest request) {
     return this.rawClient.delete(request).body();
   }
 
+  /**
+   * Remove an officer from the company's register.
+   */
   public DeleteOfficersResponse delete(DeleteOfficersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.delete(request, requestOptions).body();

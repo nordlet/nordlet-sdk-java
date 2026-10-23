@@ -32,42 +32,72 @@ public class FilesClient {
     return this.rawClient;
   }
 
+  /**
+   * Store a base64-encoded file of up to 10 MB (413 above that) under an <code>entity</code> and optional <code>entityId</code>, and return its record with the SHA-256 of the content and its <code>storageKey</code>, which other calls take as <code>documentRef</code>.
+   */
   public UploadFilesResponse upload(UploadFilesRequest request) {
     return this.rawClient.upload(request).body();
   }
 
+  /**
+   * Store a base64-encoded file of up to 10 MB (413 above that) under an <code>entity</code> and optional <code>entityId</code>, and return its record with the SHA-256 of the content and its <code>storageKey</code>, which other calls take as <code>documentRef</code>.
+   */
   public UploadFilesResponse upload(UploadFilesRequest request, RequestOptions requestOptions) {
     return this.rawClient.upload(request, requestOptions).body();
   }
 
+  /**
+   * Return a file record with its content, base64-encoded.
+   */
   public GetFilesResponse get(GetFilesRequest request) {
     return this.rawClient.get(request).body();
   }
 
+  /**
+   * Return a file record with its content, base64-encoded.
+   */
   public GetFilesResponse get(GetFilesRequest request, RequestOptions requestOptions) {
     return this.rawClient.get(request, requestOptions).body();
   }
 
+  /**
+   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+   */
   public ListFilesResponse list() {
     return this.rawClient.list().body();
   }
 
+  /**
+   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+   */
   public ListFilesResponse list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).body();
   }
 
+  /**
+   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+   */
   public ListFilesResponse list(ListFilesRequest request) {
     return this.rawClient.list(request).body();
   }
 
+  /**
+   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+   */
   public ListFilesResponse list(ListFilesRequest request, RequestOptions requestOptions) {
     return this.rawClient.list(request, requestOptions).body();
   }
 
+  /**
+   * Delete a file record and its stored content.
+   */
   public DeleteFilesResponse delete(DeleteFilesRequest request) {
     return this.rawClient.delete(request).body();
   }
 
+  /**
+   * Delete a file record and its stored content.
+   */
   public DeleteFilesResponse delete(DeleteFilesRequest request, RequestOptions requestOptions) {
     return this.rawClient.delete(request, requestOptions).body();
   }

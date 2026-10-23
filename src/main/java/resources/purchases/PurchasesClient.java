@@ -68,240 +68,402 @@ public class PurchasesClient {
     return this.rawClient;
   }
 
+  /**
+   * Create a draft purchase invoice or credit note (<code>type</code>) from a supplier document; it is posted with <code>purchases/invoices/register</code>. Lines without a unit price take the item's supplier or purchase price, <code>currency</code> defaults to the company's invoice currency, <code>documentRef</code> links an uploaded file, and the gross total leaves out self-assessed VAT. <code>creditedInvoiceId</code> (credit notes only) must be an invoice of the same partner, <code>purchaseOrderId</code> an order of the same partner that is not draft, submitted or cancelled, and <code>operationTypeId</code> an active purchase operation type, each 422 otherwise; the same <code>documentNumber</code> for the same partner is refused with 409.
+   */
   public InvoicesCreatePurchasesResponse invoicesCreate(InvoicesCreatePurchasesRequest request) {
     return this.rawClient.invoicesCreate(request).body();
   }
 
+  /**
+   * Create a draft purchase invoice or credit note (<code>type</code>) from a supplier document; it is posted with <code>purchases/invoices/register</code>. Lines without a unit price take the item's supplier or purchase price, <code>currency</code> defaults to the company's invoice currency, <code>documentRef</code> links an uploaded file, and the gross total leaves out self-assessed VAT. <code>creditedInvoiceId</code> (credit notes only) must be an invoice of the same partner, <code>purchaseOrderId</code> an order of the same partner that is not draft, submitted or cancelled, and <code>operationTypeId</code> an active purchase operation type, each 422 otherwise; the same <code>documentNumber</code> for the same partner is refused with 409.
+   */
   public InvoicesCreatePurchasesResponse invoicesCreate(InvoicesCreatePurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.invoicesCreate(request, requestOptions).body();
   }
 
+  /**
+   * Return one purchase invoice or credit note with its lines.
+   */
   public InvoicesGetPurchasesResponse invoicesGet(InvoicesGetPurchasesRequest request) {
     return this.rawClient.invoicesGet(request).body();
   }
 
+  /**
+   * Return one purchase invoice or credit note with its lines.
+   */
   public InvoicesGetPurchasesResponse invoicesGet(InvoicesGetPurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.invoicesGet(request, requestOptions).body();
   }
 
+  /**
+   * Change a draft purchase invoice (409 once registered); only the fields sent are changed, and <code>lines</code> replace all existing lines with the totals recomputed. <code>purchaseOrderId</code> and <code>operationTypeId</code> are checked as on <code>purchases/invoices/create</code> (422). A <code>documentNumber</code> already used for the partner is refused with 409.
+   */
   public InvoicesUpdatePurchasesResponse invoicesUpdate(InvoicesUpdatePurchasesRequest request) {
     return this.rawClient.invoicesUpdate(request).body();
   }
 
+  /**
+   * Change a draft purchase invoice (409 once registered); only the fields sent are changed, and <code>lines</code> replace all existing lines with the totals recomputed. <code>purchaseOrderId</code> and <code>operationTypeId</code> are checked as on <code>purchases/invoices/create</code> (422). A <code>documentNumber</code> already used for the partner is refused with 409.
+   */
   public InvoicesUpdatePurchasesResponse invoicesUpdate(InvoicesUpdatePurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.invoicesUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Mark a draft purchase invoice as deleted (409 once registered). A document capture linked to it goes back to <code>extracted</code> (or <code>pending</code> when it has no extraction) and can be confirmed again.
+   */
   public InvoicesDeletePurchasesResponse invoicesDelete(InvoicesDeletePurchasesRequest request) {
     return this.rawClient.invoicesDelete(request).body();
   }
 
+  /**
+   * Mark a draft purchase invoice as deleted (409 once registered). A document capture linked to it goes back to <code>extracted</code> (or <code>pending</code> when it has no extraction) and can be confirmed again.
+   */
   public InvoicesDeletePurchasesResponse invoicesDelete(InvoicesDeletePurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.invoicesDelete(request, requestOptions).body();
   }
 
+  /**
+   * Register a draft purchase invoice or credit note: posts the journal entry dated <code>registrationDate</code> (default the document date) and sets the status to <code>registered</code>. The entry debits each line's expense account (the line's <code>accountCode</code>, else the item's purchase or expense account, else the operation type's expense account, else the <code>purchases.goodsForResale</code> or <code>purchases.defaultExpense</code> rule account), debits VAT receivable (a company that is not a VAT payer books the VAT into the expense instead), credits payables (the operation type's credit account when set) and credits output VAT for self-assessed VAT; a credit note posts the reverse. Lines with <code>deferralStartDate</code> and <code>deferralEndDate</code> are debited to the <code>purchases.prepaidExpenses</code> account instead and get a monthly release schedule for <code>purchases/deferrals/post</code>. With <code>warehouseId</code> the product lines of an invoice are received into stock at their base-currency cost (422 on an order-linked invoice, whose goods arrive through <code>purchases/receipts/create</code>, and for a line that is also deferred); <code>returnFromStock</code> on a credit note that credits an invoice takes the goods back out of stock at their FIFO cost and books the difference to the credited amount on the <code>inventory.cogs</code> account (422 on an invoice, without <code>creditedInvoiceId</code>, or when no goods of the credited invoice are in stock). A credit note that credits a registered invoice in the same currency is applied to it as a payment up to the open amount. Refused with 409 when already registered or the accounting period is locked, and with 422 when the credit notes would exceed the credited invoice, a posting account is missing or no exchange rate exists for the date. Emits <code>purchase_invoice.registered</code>, <code>purchase_invoice.paid</code> when the credited invoice becomes fully paid, and <code>stock.changed</code> when stock moves.
+   */
   public InvoicesRegisterPurchasesResponse invoicesRegister(
       InvoicesRegisterPurchasesRequest request) {
     return this.rawClient.invoicesRegister(request).body();
   }
 
+  /**
+   * Register a draft purchase invoice or credit note: posts the journal entry dated <code>registrationDate</code> (default the document date) and sets the status to <code>registered</code>. The entry debits each line's expense account (the line's <code>accountCode</code>, else the item's purchase or expense account, else the operation type's expense account, else the <code>purchases.goodsForResale</code> or <code>purchases.defaultExpense</code> rule account), debits VAT receivable (a company that is not a VAT payer books the VAT into the expense instead), credits payables (the operation type's credit account when set) and credits output VAT for self-assessed VAT; a credit note posts the reverse. Lines with <code>deferralStartDate</code> and <code>deferralEndDate</code> are debited to the <code>purchases.prepaidExpenses</code> account instead and get a monthly release schedule for <code>purchases/deferrals/post</code>. With <code>warehouseId</code> the product lines of an invoice are received into stock at their base-currency cost (422 on an order-linked invoice, whose goods arrive through <code>purchases/receipts/create</code>, and for a line that is also deferred); <code>returnFromStock</code> on a credit note that credits an invoice takes the goods back out of stock at their FIFO cost and books the difference to the credited amount on the <code>inventory.cogs</code> account (422 on an invoice, without <code>creditedInvoiceId</code>, or when no goods of the credited invoice are in stock). A credit note that credits a registered invoice in the same currency is applied to it as a payment up to the open amount. Refused with 409 when already registered or the accounting period is locked, and with 422 when the credit notes would exceed the credited invoice, a posting account is missing or no exchange rate exists for the date. Emits <code>purchase_invoice.registered</code>, <code>purchase_invoice.paid</code> when the credited invoice becomes fully paid, and <code>stock.changed</code> when stock moves.
+   */
   public InvoicesRegisterPurchasesResponse invoicesRegister(
       InvoicesRegisterPurchasesRequest request, RequestOptions requestOptions) {
     return this.rawClient.invoicesRegister(request, requestOptions).body();
   }
 
+  /**
+   * List the monthly release rows that <code>purchases/invoices/register</code> creates for lines booked as prepaid expenses, each with its amount, expense and prepaid account and <code>status</code> (<code>pending</code>, <code>posted</code>, <code>cancelled</code>). Filterable by <code>invoiceId</code>, <code>status</code> and <code>scheduleDate</code>; sortable by <code>scheduleDate</code>.
+   */
   public DeferralsListPurchasesResponse deferralsList() {
     return this.rawClient.deferralsList().body();
   }
 
+  /**
+   * List the monthly release rows that <code>purchases/invoices/register</code> creates for lines booked as prepaid expenses, each with its amount, expense and prepaid account and <code>status</code> (<code>pending</code>, <code>posted</code>, <code>cancelled</code>). Filterable by <code>invoiceId</code>, <code>status</code> and <code>scheduleDate</code>; sortable by <code>scheduleDate</code>.
+   */
   public DeferralsListPurchasesResponse deferralsList(RequestOptions requestOptions) {
     return this.rawClient.deferralsList(requestOptions).body();
   }
 
+  /**
+   * List the monthly release rows that <code>purchases/invoices/register</code> creates for lines booked as prepaid expenses, each with its amount, expense and prepaid account and <code>status</code> (<code>pending</code>, <code>posted</code>, <code>cancelled</code>). Filterable by <code>invoiceId</code>, <code>status</code> and <code>scheduleDate</code>; sortable by <code>scheduleDate</code>.
+   */
   public DeferralsListPurchasesResponse deferralsList(DeferralsListPurchasesRequest request) {
     return this.rawClient.deferralsList(request).body();
   }
 
+  /**
+   * List the monthly release rows that <code>purchases/invoices/register</code> creates for lines booked as prepaid expenses, each with its amount, expense and prepaid account and <code>status</code> (<code>pending</code>, <code>posted</code>, <code>cancelled</code>). Filterable by <code>invoiceId</code>, <code>status</code> and <code>scheduleDate</code>; sortable by <code>scheduleDate</code>.
+   */
   public DeferralsListPurchasesResponse deferralsList(DeferralsListPurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.deferralsList(request, requestOptions).body();
   }
 
+  /**
+   * Post every <code>pending</code> prepaid-expense release row dated on or before <code>asOfDate</code> (default today in the company's time zone): one journal entry per schedule date debiting the expense account and crediting the prepaid account, and the rows become <code>posted</code>. A locked accounting period is refused with 409. The scheduled job <code>expense-deferrals</code> runs the same release for every active company.
+   */
   public DeferralsPostPurchasesResponse deferralsPost() {
     return this.rawClient.deferralsPost().body();
   }
 
+  /**
+   * Post every <code>pending</code> prepaid-expense release row dated on or before <code>asOfDate</code> (default today in the company's time zone): one journal entry per schedule date debiting the expense account and crediting the prepaid account, and the rows become <code>posted</code>. A locked accounting period is refused with 409. The scheduled job <code>expense-deferrals</code> runs the same release for every active company.
+   */
   public DeferralsPostPurchasesResponse deferralsPost(RequestOptions requestOptions) {
     return this.rawClient.deferralsPost(requestOptions).body();
   }
 
+  /**
+   * Post every <code>pending</code> prepaid-expense release row dated on or before <code>asOfDate</code> (default today in the company's time zone): one journal entry per schedule date debiting the expense account and crediting the prepaid account, and the rows become <code>posted</code>. A locked accounting period is refused with 409. The scheduled job <code>expense-deferrals</code> runs the same release for every active company.
+   */
   public DeferralsPostPurchasesResponse deferralsPost(DeferralsPostPurchasesRequest request) {
     return this.rawClient.deferralsPost(request).body();
   }
 
+  /**
+   * Post every <code>pending</code> prepaid-expense release row dated on or before <code>asOfDate</code> (default today in the company's time zone): one journal entry per schedule date debiting the expense account and crediting the prepaid account, and the rows become <code>posted</code>. A locked accounting period is refused with 409. The scheduled job <code>expense-deferrals</code> runs the same release for every active company.
+   */
   public DeferralsPostPurchasesResponse deferralsPost(DeferralsPostPurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.deferralsPost(request, requestOptions).body();
   }
 
+  /**
+   * List purchase invoices and credit notes without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>type</code>, <code>status</code>, <code>paymentStatus</code>, <code>documentNumber</code>, <code>documentDate</code>, <code>currency</code>, <code>operationTypeId</code>, <code>purchaseOrderId</code>, <code>grossTotal</code>, <code>netTotal</code>, <code>vatTotal</code> and <code>dueDate</code>; sortable by <code>createdAt</code>, <code>documentDate</code>, <code>documentNumber</code>, <code>grossTotal</code> and <code>dueDate</code>.
+   */
   public InvoicesListPurchasesResponse invoicesList() {
     return this.rawClient.invoicesList().body();
   }
 
+  /**
+   * List purchase invoices and credit notes without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>type</code>, <code>status</code>, <code>paymentStatus</code>, <code>documentNumber</code>, <code>documentDate</code>, <code>currency</code>, <code>operationTypeId</code>, <code>purchaseOrderId</code>, <code>grossTotal</code>, <code>netTotal</code>, <code>vatTotal</code> and <code>dueDate</code>; sortable by <code>createdAt</code>, <code>documentDate</code>, <code>documentNumber</code>, <code>grossTotal</code> and <code>dueDate</code>.
+   */
   public InvoicesListPurchasesResponse invoicesList(RequestOptions requestOptions) {
     return this.rawClient.invoicesList(requestOptions).body();
   }
 
+  /**
+   * List purchase invoices and credit notes without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>type</code>, <code>status</code>, <code>paymentStatus</code>, <code>documentNumber</code>, <code>documentDate</code>, <code>currency</code>, <code>operationTypeId</code>, <code>purchaseOrderId</code>, <code>grossTotal</code>, <code>netTotal</code>, <code>vatTotal</code> and <code>dueDate</code>; sortable by <code>createdAt</code>, <code>documentDate</code>, <code>documentNumber</code>, <code>grossTotal</code> and <code>dueDate</code>.
+   */
   public InvoicesListPurchasesResponse invoicesList(InvoicesListPurchasesRequest request) {
     return this.rawClient.invoicesList(request).body();
   }
 
+  /**
+   * List purchase invoices and credit notes without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>type</code>, <code>status</code>, <code>paymentStatus</code>, <code>documentNumber</code>, <code>documentDate</code>, <code>currency</code>, <code>operationTypeId</code>, <code>purchaseOrderId</code>, <code>grossTotal</code>, <code>netTotal</code>, <code>vatTotal</code> and <code>dueDate</code>; sortable by <code>createdAt</code>, <code>documentDate</code>, <code>documentNumber</code>, <code>grossTotal</code> and <code>dueDate</code>.
+   */
   public InvoicesListPurchasesResponse invoicesList(InvoicesListPurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.invoicesList(request, requestOptions).body();
   }
 
+  /**
+   * Create a draft purchase order for a supplier. Lines without a unit price take the item's supplier or purchase price; <code>orderNumber</code> comes from the <code>purchase_order</code> series with prefix PO when not given; <code>currency</code> defaults to the company's invoice currency; <code>documentRef</code> links an uploaded file to the order. A number already in use is refused with 409. The order continues with <code>purchases/orders/submit</code>, <code>purchases/orders/approve</code> and <code>purchases/receipts/create</code>.
+   */
   public OrdersCreatePurchasesResponse ordersCreate(OrdersCreatePurchasesRequest request) {
     return this.rawClient.ordersCreate(request).body();
   }
 
+  /**
+   * Create a draft purchase order for a supplier. Lines without a unit price take the item's supplier or purchase price; <code>orderNumber</code> comes from the <code>purchase_order</code> series with prefix PO when not given; <code>currency</code> defaults to the company's invoice currency; <code>documentRef</code> links an uploaded file to the order. A number already in use is refused with 409. The order continues with <code>purchases/orders/submit</code>, <code>purchases/orders/approve</code> and <code>purchases/receipts/create</code>.
+   */
   public OrdersCreatePurchasesResponse ordersCreate(OrdersCreatePurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersCreate(request, requestOptions).body();
   }
 
+  /**
+   * Change a draft purchase order (409 once it is submitted); only the fields sent are changed. <code>lines</code> replace all existing lines and the totals are recomputed.
+   */
   public OrdersUpdatePurchasesResponse ordersUpdate(OrdersUpdatePurchasesRequest request) {
     return this.rawClient.ordersUpdate(request).body();
   }
 
+  /**
+   * Change a draft purchase order (409 once it is submitted); only the fields sent are changed. <code>lines</code> replace all existing lines and the totals are recomputed.
+   */
   public OrdersUpdatePurchasesResponse ordersUpdate(OrdersUpdatePurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Return one purchase order with its lines; each line carries <code>receivedQty</code> and <code>remainingQty</code>.
+   */
   public OrdersGetPurchasesResponse ordersGet(OrdersGetPurchasesRequest request) {
     return this.rawClient.ordersGet(request).body();
   }
 
+  /**
+   * Return one purchase order with its lines; each line carries <code>receivedQty</code> and <code>remainingQty</code>.
+   */
   public OrdersGetPurchasesResponse ordersGet(OrdersGetPurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersGet(request, requestOptions).body();
   }
 
+  /**
+   * List purchase orders without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>status</code>, <code>orderNumber</code>, <code>orderDate</code>, <code>currency</code> and <code>grossTotal</code>; sortable by <code>createdAt</code>, <code>orderDate</code>, <code>orderNumber</code> and <code>grossTotal</code>.
+   */
   public OrdersListPurchasesResponse ordersList() {
     return this.rawClient.ordersList().body();
   }
 
+  /**
+   * List purchase orders without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>status</code>, <code>orderNumber</code>, <code>orderDate</code>, <code>currency</code> and <code>grossTotal</code>; sortable by <code>createdAt</code>, <code>orderDate</code>, <code>orderNumber</code> and <code>grossTotal</code>.
+   */
   public OrdersListPurchasesResponse ordersList(RequestOptions requestOptions) {
     return this.rawClient.ordersList(requestOptions).body();
   }
 
+  /**
+   * List purchase orders without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>status</code>, <code>orderNumber</code>, <code>orderDate</code>, <code>currency</code> and <code>grossTotal</code>; sortable by <code>createdAt</code>, <code>orderDate</code>, <code>orderNumber</code> and <code>grossTotal</code>.
+   */
   public OrdersListPurchasesResponse ordersList(OrdersListPurchasesRequest request) {
     return this.rawClient.ordersList(request).body();
   }
 
+  /**
+   * List purchase orders without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>status</code>, <code>orderNumber</code>, <code>orderDate</code>, <code>currency</code> and <code>grossTotal</code>; sortable by <code>createdAt</code>, <code>orderDate</code>, <code>orderNumber</code> and <code>grossTotal</code>.
+   */
   public OrdersListPurchasesResponse ordersList(OrdersListPurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersList(request, requestOptions).body();
   }
 
+  /**
+   * Move a <code>draft</code> purchase order to <code>submitted</code> for approval (409 from any other status). <code>reason</code> is kept in the audit log.
+   */
   public OrdersSubmitPurchasesResponse ordersSubmit(OrdersSubmitPurchasesRequest request) {
     return this.rawClient.ordersSubmit(request).body();
   }
 
+  /**
+   * Move a <code>draft</code> purchase order to <code>submitted</code> for approval (409 from any other status). <code>reason</code> is kept in the audit log.
+   */
   public OrdersSubmitPurchasesResponse ordersSubmit(OrdersSubmitPurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersSubmit(request, requestOptions).body();
   }
 
+  /**
+   * Approve a <code>submitted</code> purchase order (409 from any other status), recording who approved it and when; needs the <code>purchases:approve</code> scope. Goods are then received with <code>purchases/receipts/create</code>. Emits <code>purchase_order.approved</code>.
+   */
   public OrdersApprovePurchasesResponse ordersApprove(OrdersApprovePurchasesRequest request) {
     return this.rawClient.ordersApprove(request).body();
   }
 
+  /**
+   * Approve a <code>submitted</code> purchase order (409 from any other status), recording who approved it and when; needs the <code>purchases:approve</code> scope. Goods are then received with <code>purchases/receipts/create</code>. Emits <code>purchase_order.approved</code>.
+   */
   public OrdersApprovePurchasesResponse ordersApprove(OrdersApprovePurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersApprove(request, requestOptions).body();
   }
 
+  /**
+   * Send a <code>submitted</code> purchase order back to <code>draft</code> (409 from any other status); needs the <code>purchases:approve</code> scope. <code>reason</code> is kept in the audit log.
+   */
   public OrdersRejectPurchasesResponse ordersReject(OrdersRejectPurchasesRequest request) {
     return this.rawClient.ordersReject(request).body();
   }
 
+  /**
+   * Send a <code>submitted</code> purchase order back to <code>draft</code> (409 from any other status); needs the <code>purchases:approve</code> scope. <code>reason</code> is kept in the audit log.
+   */
   public OrdersRejectPurchasesResponse ordersReject(OrdersRejectPurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersReject(request, requestOptions).body();
   }
 
+  /**
+   * Cancel a <code>draft</code>, <code>submitted</code> or <code>approved</code> purchase order (409 from any other status, or when the order already has a goods receipt).
+   */
   public OrdersCancelPurchasesResponse ordersCancel(OrdersCancelPurchasesRequest request) {
     return this.rawClient.ordersCancel(request).body();
   }
 
+  /**
+   * Cancel a <code>draft</code>, <code>submitted</code> or <code>approved</code> purchase order (409 from any other status, or when the order already has a goods receipt).
+   */
   public OrdersCancelPurchasesResponse ordersCancel(OrdersCancelPurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersCancel(request, requestOptions).body();
   }
 
+  /**
+   * Close an <code>approved</code>, <code>partially_received</code> or <code>received</code> purchase order (409 from any other status); a closed order accepts no further goods receipts.
+   */
   public OrdersClosePurchasesResponse ordersClose(OrdersClosePurchasesRequest request) {
     return this.rawClient.ordersClose(request).body();
   }
 
+  /**
+   * Close an <code>approved</code>, <code>partially_received</code> or <code>received</code> purchase order (409 from any other status); a closed order accepts no further goods receipts.
+   */
   public OrdersClosePurchasesResponse ordersClose(OrdersClosePurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersClose(request, requestOptions).body();
   }
 
+  /**
+   * Mark a <code>draft</code> purchase order as deleted (409 once it is submitted).
+   */
   public OrdersDeletePurchasesResponse ordersDelete(OrdersDeletePurchasesRequest request) {
     return this.rawClient.ordersDelete(request).body();
   }
 
+  /**
+   * Mark a <code>draft</code> purchase order as deleted (409 once it is submitted).
+   */
   public OrdersDeletePurchasesResponse ordersDelete(OrdersDeletePurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersDelete(request, requestOptions).body();
   }
 
+  /**
+   * Record a goods receipt against an <code>approved</code> or <code>partially_received</code> purchase order (409 otherwise), numbered from the <code>goods_receipt</code> series with prefix GR. Lines whose item is a product go into stock in <code>warehouseId</code>, else the order's warehouse (422 when neither is set), at their share of the order line's net amount converted at the receipt date's rate; <code>lotNumber</code> and <code>expiryDate</code> receive them into a lot, and an item that needs lot or serial tracking is refused with 422 without one. A quantity above the line's remaining quantity is refused with 409; the order becomes <code>received</code> when every line is fully received, else <code>partially_received</code>. Emits <code>goods_receipt.posted</code>, <code>stock.changed</code> and, when fully received, <code>purchase_order.received</code>.
+   */
   public ReceiptsCreatePurchasesResponse receiptsCreate(ReceiptsCreatePurchasesRequest request) {
     return this.rawClient.receiptsCreate(request).body();
   }
 
+  /**
+   * Record a goods receipt against an <code>approved</code> or <code>partially_received</code> purchase order (409 otherwise), numbered from the <code>goods_receipt</code> series with prefix GR. Lines whose item is a product go into stock in <code>warehouseId</code>, else the order's warehouse (422 when neither is set), at their share of the order line's net amount converted at the receipt date's rate; <code>lotNumber</code> and <code>expiryDate</code> receive them into a lot, and an item that needs lot or serial tracking is refused with 422 without one. A quantity above the line's remaining quantity is refused with 409; the order becomes <code>received</code> when every line is fully received, else <code>partially_received</code>. Emits <code>goods_receipt.posted</code>, <code>stock.changed</code> and, when fully received, <code>purchase_order.received</code>.
+   */
   public ReceiptsCreatePurchasesResponse receiptsCreate(ReceiptsCreatePurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.receiptsCreate(request, requestOptions).body();
   }
 
+  /**
+   * Return one goods receipt with its lines and their stock movement ids.
+   */
   public ReceiptsGetPurchasesResponse receiptsGet(ReceiptsGetPurchasesRequest request) {
     return this.rawClient.receiptsGet(request).body();
   }
 
+  /**
+   * Return one goods receipt with its lines and their stock movement ids.
+   */
   public ReceiptsGetPurchasesResponse receiptsGet(ReceiptsGetPurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.receiptsGet(request, requestOptions).body();
   }
 
+  /**
+   * List goods receipts without lines. Filterable by <code>orderId</code>, <code>warehouseId</code>, <code>receiptDate</code> and <code>receiptNumber</code>; sortable by <code>createdAt</code> and <code>receiptDate</code>.
+   */
   public ReceiptsListPurchasesResponse receiptsList() {
     return this.rawClient.receiptsList().body();
   }
 
+  /**
+   * List goods receipts without lines. Filterable by <code>orderId</code>, <code>warehouseId</code>, <code>receiptDate</code> and <code>receiptNumber</code>; sortable by <code>createdAt</code> and <code>receiptDate</code>.
+   */
   public ReceiptsListPurchasesResponse receiptsList(RequestOptions requestOptions) {
     return this.rawClient.receiptsList(requestOptions).body();
   }
 
+  /**
+   * List goods receipts without lines. Filterable by <code>orderId</code>, <code>warehouseId</code>, <code>receiptDate</code> and <code>receiptNumber</code>; sortable by <code>createdAt</code> and <code>receiptDate</code>.
+   */
   public ReceiptsListPurchasesResponse receiptsList(ReceiptsListPurchasesRequest request) {
     return this.rawClient.receiptsList(request).body();
   }
 
+  /**
+   * List goods receipts without lines. Filterable by <code>orderId</code>, <code>warehouseId</code>, <code>receiptDate</code> and <code>receiptNumber</code>; sortable by <code>createdAt</code> and <code>receiptDate</code>.
+   */
   public ReceiptsListPurchasesResponse receiptsList(ReceiptsListPurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.receiptsList(request, requestOptions).body();
   }
 
+  /**
+   * Compare a purchase invoice with its linked purchase order and the goods received so far, grouped by item (by description for lines without one). Each row is <code>matched</code>, <code>not_received</code> (invoiced but nothing received), <code>over_invoiced</code> (invoiced more than received), <code>price_mismatch</code> (unit price differs by more than <code>priceTolerancePercent</code>), <code>not_on_order</code> or <code>not_invoiced</code>; <code>status</code> is <code>mismatched</code> when any row other than <code>not_invoiced</code> is not matched. Refused with 422 when the invoice has no <code>purchaseOrderId</code> or its currency differs from the order's. Nothing is changed.
+   */
   public InvoicesMatchPurchasesResponse invoicesMatch(InvoicesMatchPurchasesRequest request) {
     return this.rawClient.invoicesMatch(request).body();
   }
 
+  /**
+   * Compare a purchase invoice with its linked purchase order and the goods received so far, grouped by item (by description for lines without one). Each row is <code>matched</code>, <code>not_received</code> (invoiced but nothing received), <code>over_invoiced</code> (invoiced more than received), <code>price_mismatch</code> (unit price differs by more than <code>priceTolerancePercent</code>), <code>not_on_order</code> or <code>not_invoiced</code>; <code>status</code> is <code>mismatched</code> when any row other than <code>not_invoiced</code> is not matched. Refused with 422 when the invoice has no <code>purchaseOrderId</code> or its currency differs from the order's. Nothing is changed.
+   */
   public InvoicesMatchPurchasesResponse invoicesMatch(InvoicesMatchPurchasesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.invoicesMatch(request, requestOptions).body();

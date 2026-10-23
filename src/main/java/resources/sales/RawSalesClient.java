@@ -62,6 +62,13 @@ import com.nordlet.api.resources.sales.requests.RecognitionRunSalesRequest;
 import com.nordlet.api.resources.sales.requests.RecognitionRunsListSalesRequest;
 import com.nordlet.api.resources.sales.requests.RecognitionSchedulesListSalesRequest;
 import com.nordlet.api.resources.sales.requests.RecognitionSummarySalesRequest;
+import com.nordlet.api.resources.sales.requests.RecurringInvoicesCreateSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecurringInvoicesDeleteSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecurringInvoicesGenerateSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecurringInvoicesGetSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecurringInvoicesListSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecurringInvoicesRunSalesRequest;
+import com.nordlet.api.resources.sales.requests.RecurringInvoicesUpdateSalesRequest;
 import com.nordlet.api.resources.sales.requests.RefundLiabilityListSalesRequest;
 import com.nordlet.api.resources.sales.requests.RefundLiabilityTrueUpSalesRequest;
 import com.nordlet.api.resources.sales.types.ActsCancelSalesResponse;
@@ -103,6 +110,13 @@ import com.nordlet.api.resources.sales.types.RecognitionRunSalesResponse;
 import com.nordlet.api.resources.sales.types.RecognitionRunsListSalesResponse;
 import com.nordlet.api.resources.sales.types.RecognitionSchedulesListSalesResponse;
 import com.nordlet.api.resources.sales.types.RecognitionSummarySalesResponse;
+import com.nordlet.api.resources.sales.types.RecurringInvoicesCreateSalesResponse;
+import com.nordlet.api.resources.sales.types.RecurringInvoicesDeleteSalesResponse;
+import com.nordlet.api.resources.sales.types.RecurringInvoicesGenerateSalesResponse;
+import com.nordlet.api.resources.sales.types.RecurringInvoicesGetSalesResponse;
+import com.nordlet.api.resources.sales.types.RecurringInvoicesListSalesResponse;
+import com.nordlet.api.resources.sales.types.RecurringInvoicesRunSalesResponse;
+import com.nordlet.api.resources.sales.types.RecurringInvoicesUpdateSalesResponse;
 import com.nordlet.api.resources.sales.types.RefundLiabilityListSalesResponse;
 import com.nordlet.api.resources.sales.types.RefundLiabilityTrueUpSalesResponse;
 import com.nordlet.api.types.ErrorResponse;
@@ -124,11 +138,17 @@ public class RawSalesClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Create a draft sale document - an invoice, credit note, proforma or advance invoice (<code>type</code>) - with its lines; the totals are computed from the lines and <code>discountPercent</code>, and the number is assigned by <code>sales/invoices/issue</code>. Answers 422 when a credit note credits a proforma, another credit note or a document that is not issued, when the credited document has another partner or currency, when an OSS or IOSS document has no EU <code>vatCountryCode</code>, when the lines carry VAT but the company is not a VAT payer or the VAT scheme charges none, or when the operation type or document series is for another document type.
+   */
   public NordletApiHttpResponse<InvoicesCreateSalesResponse> invoicesCreate(
       InvoicesCreateSalesRequest request) {
     return invoicesCreate(request,null);
   }
 
+  /**
+   * Create a draft sale document - an invoice, credit note, proforma or advance invoice (<code>type</code>) - with its lines; the totals are computed from the lines and <code>discountPercent</code>, and the number is assigned by <code>sales/invoices/issue</code>. Answers 422 when a credit note credits a proforma, another credit note or a document that is not issued, when the credited document has another partner or currency, when an OSS or IOSS document has no EU <code>vatCountryCode</code>, when the lines carry VAT but the company is not a VAT payer or the VAT scheme charges none, or when the operation type or document series is for another document type.
+   */
   public NordletApiHttpResponse<InvoicesCreateSalesResponse> invoicesCreate(
       InvoicesCreateSalesRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -193,11 +213,17 @@ public class RawSalesClient {
       }
     }
 
+    /**
+     * Return one sale document with its lines, its VAT evidence and, on an advance invoice, the gross amount already applied to final invoices.
+     */
     public NordletApiHttpResponse<InvoicesGetSalesResponse> invoicesGet(
         InvoicesGetSalesRequest request) {
       return invoicesGet(request,null);
     }
 
+    /**
+     * Return one sale document with its lines, its VAT evidence and, on an advance invoice, the gross amount already applied to final invoices.
+     */
     public NordletApiHttpResponse<InvoicesGetSalesResponse> invoicesGet(
         InvoicesGetSalesRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -262,11 +288,17 @@ public class RawSalesClient {
         }
       }
 
+      /**
+       * Render a sale document, draft or issued, as a PDF returned base64-encoded. The document's own <code>locale</code> wins over the requested one. When the company has a payment link template and the document is issued and not paid, the PDF carries the payment link.
+       */
       public NordletApiHttpResponse<InvoicesPdfSalesResponse> invoicesPdf(
           InvoicesPdfSalesRequest request) {
         return invoicesPdf(request,null);
       }
 
+      /**
+       * Render a sale document, draft or issued, as a PDF returned base64-encoded. The document's own <code>locale</code> wins over the requested one. When the company has a payment link template and the document is issued and not paid, the PDF carries the payment link.
+       */
       public NordletApiHttpResponse<InvoicesPdfSalesResponse> invoicesPdf(
           InvoicesPdfSalesRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -331,11 +363,17 @@ public class RawSalesClient {
           }
         }
 
+        /**
+         * E-mail an issued sale document as a PDF attachment to <code>to</code>, else to the partner's e-mail address, and emit <code>sale_invoice.sent</code>. The PDF is the one of <code>sales/invoices/pdf</code>. Answers 422 when e-mail sending is not configured, when the document is not issued, or when neither <code>to</code> nor the partner's e-mail is set.
+         */
         public NordletApiHttpResponse<InvoicesSendSalesResponse> invoicesSend(
             InvoicesSendSalesRequest request) {
           return invoicesSend(request,null);
         }
 
+        /**
+         * E-mail an issued sale document as a PDF attachment to <code>to</code>, else to the partner's e-mail address, and emit <code>sale_invoice.sent</code>. The PDF is the one of <code>sales/invoices/pdf</code>. Answers 422 when e-mail sending is not configured, when the document is not issued, or when neither <code>to</code> nor the partner's e-mail is set.
+         */
         public NordletApiHttpResponse<InvoicesSendSalesResponse> invoicesSend(
             InvoicesSendSalesRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -400,11 +438,17 @@ public class RawSalesClient {
             }
           }
 
+          /**
+           * Render an issued invoice or credit note as a Peppol BIS Billing 3.0 UBL file, returned base64-encoded with the sender and receiver participant identifiers, without sending it; <code>sales/invoices/peppol-send</code> sends the same file. Answers 422 for a draft, a proforma or an advance invoice.
+           */
           public NordletApiHttpResponse<InvoicesPeppolXmlSalesResponse> invoicesPeppolXml(
               InvoicesPeppolXmlSalesRequest request) {
             return invoicesPeppolXml(request,null);
           }
 
+          /**
+           * Render an issued invoice or credit note as a Peppol BIS Billing 3.0 UBL file, returned base64-encoded with the sender and receiver participant identifiers, without sending it; <code>sales/invoices/peppol-send</code> sends the same file. Answers 422 for a draft, a proforma or an advance invoice.
+           */
           public NordletApiHttpResponse<InvoicesPeppolXmlSalesResponse> invoicesPeppolXml(
               InvoicesPeppolXmlSalesRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -844,11 +888,17 @@ public class RawSalesClient {
                         }
                       }
 
+                      /**
+                       * Change a draft sale document. Fields left out keep their value, <code>lines</code> replaces every line, and a changed <code>discountPercent</code> recomputes the existing lines. Answers 409 when the document is issued or locked, and 422 under the checks of <code>sales/invoices/create</code> (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
+                       */
                       public NordletApiHttpResponse<InvoicesUpdateSalesResponse> invoicesUpdate(
                           InvoicesUpdateSalesRequest request) {
                         return invoicesUpdate(request,null);
                       }
 
+                      /**
+                       * Change a draft sale document. Fields left out keep their value, <code>lines</code> replaces every line, and a changed <code>discountPercent</code> recomputes the existing lines. Answers 409 when the document is issued or locked, and 422 under the checks of <code>sales/invoices/create</code> (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
+                       */
                       public NordletApiHttpResponse<InvoicesUpdateSalesResponse> invoicesUpdate(
                           InvoicesUpdateSalesRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -913,11 +963,17 @@ public class RawSalesClient {
                           }
                         }
 
+                        /**
+                         * Delete a draft sale document and release the time entries billed on it. Answers 409 when the document is issued (credit it instead) or locked.
+                         */
                         public NordletApiHttpResponse<InvoicesDeleteSalesResponse> invoicesDelete(
                             InvoicesDeleteSalesRequest request) {
                           return invoicesDelete(request,null);
                         }
 
+                        /**
+                         * Delete a draft sale document and release the time entries billed on it. Answers 409 when the document is issued (credit it instead) or locked.
+                         */
                         public NordletApiHttpResponse<InvoicesDeleteSalesResponse> invoicesDelete(
                             InvoicesDeleteSalesRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -982,11 +1038,17 @@ public class RawSalesClient {
                             }
                           }
 
+                          /**
+                           * Issue a draft sale document: assigns the next number (from its document series, else from <code>series</code> or the type's default prefix and the year), the issue date (<code>issueDate</code>, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. <code>warehouseId</code> (or the series' warehouse) takes the sold goods of an invoice out of stock with a cost of goods sold entry; <code>returnToStock</code> puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits <code>sale_invoice.issued</code>, <code>sale_invoice.paid</code> when a credit note settles the credited invoice in full, and <code>intercompany.invoice_mirrored</code> when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked or the accounting period is locked, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when <code>returnToStock</code> is used on anything but a credit note of an invoice.
+                           */
                           public NordletApiHttpResponse<InvoicesIssueSalesResponse> invoicesIssue(
                               InvoicesIssueSalesRequest request) {
                             return invoicesIssue(request,null);
                           }
 
+                          /**
+                           * Issue a draft sale document: assigns the next number (from its document series, else from <code>series</code> or the type's default prefix and the year), the issue date (<code>issueDate</code>, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. <code>warehouseId</code> (or the series' warehouse) takes the sold goods of an invoice out of stock with a cost of goods sold entry; <code>returnToStock</code> puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits <code>sale_invoice.issued</code>, <code>sale_invoice.paid</code> when a credit note settles the credited invoice in full, and <code>intercompany.invoice_mirrored</code> when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked or the accounting period is locked, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when <code>returnToStock</code> is used on anything but a credit note of an invoice.
+                           */
                           public NordletApiHttpResponse<InvoicesIssueSalesResponse> invoicesIssue(
                               InvoicesIssueSalesRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1051,11 +1113,17 @@ public class RawSalesClient {
                               }
                             }
 
+                            /**
+                             * Lock a sale document. A locked document is refused with 409 by <code>sales/invoices/update</code>, <code>sales/invoices/delete</code>, <code>sales/invoices/issue</code> and <code>sales/invoices/apply-advance</code> until <code>sales/invoices/unlock</code>.
+                             */
                             public NordletApiHttpResponse<InvoicesLockSalesResponse> invoicesLock(
                                 InvoicesLockSalesRequest request) {
                               return invoicesLock(request,null);
                             }
 
+                            /**
+                             * Lock a sale document. A locked document is refused with 409 by <code>sales/invoices/update</code>, <code>sales/invoices/delete</code>, <code>sales/invoices/issue</code> and <code>sales/invoices/apply-advance</code> until <code>sales/invoices/unlock</code>.
+                             */
                             public NordletApiHttpResponse<InvoicesLockSalesResponse> invoicesLock(
                                 InvoicesLockSalesRequest request, RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1120,11 +1188,17 @@ public class RawSalesClient {
                                 }
                               }
 
+                              /**
+                               * Unlock a sale document locked with <code>sales/invoices/lock</code>.
+                               */
                               public NordletApiHttpResponse<InvoicesUnlockSalesResponse> invoicesUnlock(
                                   InvoicesUnlockSalesRequest request) {
                                 return invoicesUnlock(request,null);
                               }
 
+                              /**
+                               * Unlock a sale document locked with <code>sales/invoices/lock</code>.
+                               */
                               public NordletApiHttpResponse<InvoicesUnlockSalesResponse> invoicesUnlock(
                                   InvoicesUnlockSalesRequest request,
                                   RequestOptions requestOptions) {
@@ -1190,11 +1264,17 @@ public class RawSalesClient {
                                   }
                                 }
 
+                                /**
+                                 * Return the customer payment link of a sale document, rendered from the company's payment link template (<code>sales/invoices/payment-settings/update</code>); <code>url</code> is null when the company has no template or the document is not issued. The document's payment token is created on first use. Answers 409 when the document is already paid.
+                                 */
                                 public NordletApiHttpResponse<InvoicesPaymentLinkSalesResponse> invoicesPaymentLink(
                                     InvoicesPaymentLinkSalesRequest request) {
                                   return invoicesPaymentLink(request,null);
                                 }
 
+                                /**
+                                 * Return the customer payment link of a sale document, rendered from the company's payment link template (<code>sales/invoices/payment-settings/update</code>); <code>url</code> is null when the company has no template or the document is not issued. The document's payment token is created on first use. Answers 409 when the document is already paid.
+                                 */
                                 public NordletApiHttpResponse<InvoicesPaymentLinkSalesResponse> invoicesPaymentLink(
                                     InvoicesPaymentLinkSalesRequest request,
                                     RequestOptions requestOptions) {
@@ -1260,21 +1340,33 @@ public class RawSalesClient {
                                     }
                                   }
 
+                                  /**
+                                   * Return the company's payment link template, the https URL that <code>sales/invoices/payment-link</code>, the invoice PDF and the invoice e-mail fill in for an issued, unpaid document.
+                                   */
                                   public NordletApiHttpResponse<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet(
                                       ) {
                                     return invoicesPaymentSettingsGet(InvoicesPaymentSettingsGetSalesRequest.builder().build());
                                   }
 
+                                  /**
+                                   * Return the company's payment link template, the https URL that <code>sales/invoices/payment-link</code>, the invoice PDF and the invoice e-mail fill in for an issued, unpaid document.
+                                   */
                                   public NordletApiHttpResponse<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet(
                                       RequestOptions requestOptions) {
                                     return invoicesPaymentSettingsGet(InvoicesPaymentSettingsGetSalesRequest.builder().build(),requestOptions);
                                   }
 
+                                  /**
+                                   * Return the company's payment link template, the https URL that <code>sales/invoices/payment-link</code>, the invoice PDF and the invoice e-mail fill in for an issued, unpaid document.
+                                   */
                                   public NordletApiHttpResponse<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet(
                                       InvoicesPaymentSettingsGetSalesRequest request) {
                                     return invoicesPaymentSettingsGet(request,null);
                                   }
 
+                                  /**
+                                   * Return the company's payment link template, the https URL that <code>sales/invoices/payment-link</code>, the invoice PDF and the invoice e-mail fill in for an issued, unpaid document.
+                                   */
                                   public NordletApiHttpResponse<InvoicesPaymentSettingsGetSalesResponse> invoicesPaymentSettingsGet(
                                       InvoicesPaymentSettingsGetSalesRequest request,
                                       RequestOptions requestOptions) {
@@ -1340,11 +1432,17 @@ public class RawSalesClient {
                                       }
                                     }
 
+                                    /**
+                                     * Set or clear (null) the company's payment link template: an https URL in which <code>{{number}}</code>, <code>{{amount}}</code> (the unpaid balance), <code>{{currency}}</code>, <code>{{token}}</code>, <code>{{invoiceId}}</code> and <code>{{partnerName}}</code> are replaced, URL-encoded, when a link is rendered.
+                                     */
                                     public NordletApiHttpResponse<InvoicesPaymentSettingsUpdateSalesResponse> invoicesPaymentSettingsUpdate(
                                         InvoicesPaymentSettingsUpdateSalesRequest request) {
                                       return invoicesPaymentSettingsUpdate(request,null);
                                     }
 
+                                    /**
+                                     * Set or clear (null) the company's payment link template: an https URL in which <code>{{number}}</code>, <code>{{amount}}</code> (the unpaid balance), <code>{{currency}}</code>, <code>{{token}}</code>, <code>{{invoiceId}}</code> and <code>{{partnerName}}</code> are replaced, URL-encoded, when a link is rendered.
+                                     */
                                     public NordletApiHttpResponse<InvoicesPaymentSettingsUpdateSalesResponse> invoicesPaymentSettingsUpdate(
                                         InvoicesPaymentSettingsUpdateSalesRequest request,
                                         RequestOptions requestOptions) {
@@ -1410,21 +1508,33 @@ public class RawSalesClient {
                                         }
                                       }
 
+                                      /**
+                                       * List the revenue recognition schedules: the tranches of deferred income of issued invoices whose lines are recognised ratably, by milestone or by percent complete, each with its status and the journal transaction that recognised it. Filterable by invoiceId, invoiceLineId, status, method and scheduleDate; sortable by scheduleDate and createdAt.
+                                       */
                                       public NordletApiHttpResponse<RecognitionSchedulesListSalesResponse> recognitionSchedulesList(
                                           ) {
                                         return recognitionSchedulesList(RecognitionSchedulesListSalesRequest.builder().build());
                                       }
 
+                                      /**
+                                       * List the revenue recognition schedules: the tranches of deferred income of issued invoices whose lines are recognised ratably, by milestone or by percent complete, each with its status and the journal transaction that recognised it. Filterable by invoiceId, invoiceLineId, status, method and scheduleDate; sortable by scheduleDate and createdAt.
+                                       */
                                       public NordletApiHttpResponse<RecognitionSchedulesListSalesResponse> recognitionSchedulesList(
                                           RequestOptions requestOptions) {
                                         return recognitionSchedulesList(RecognitionSchedulesListSalesRequest.builder().build(),requestOptions);
                                       }
 
+                                      /**
+                                       * List the revenue recognition schedules: the tranches of deferred income of issued invoices whose lines are recognised ratably, by milestone or by percent complete, each with its status and the journal transaction that recognised it. Filterable by invoiceId, invoiceLineId, status, method and scheduleDate; sortable by scheduleDate and createdAt.
+                                       */
                                       public NordletApiHttpResponse<RecognitionSchedulesListSalesResponse> recognitionSchedulesList(
                                           RecognitionSchedulesListSalesRequest request) {
                                         return recognitionSchedulesList(request,null);
                                       }
 
+                                      /**
+                                       * List the revenue recognition schedules: the tranches of deferred income of issued invoices whose lines are recognised ratably, by milestone or by percent complete, each with its status and the journal transaction that recognised it. Filterable by invoiceId, invoiceLineId, status, method and scheduleDate; sortable by scheduleDate and createdAt.
+                                       */
                                       public NordletApiHttpResponse<RecognitionSchedulesListSalesResponse> recognitionSchedulesList(
                                           RecognitionSchedulesListSalesRequest request,
                                           RequestOptions requestOptions) {
@@ -1490,11 +1600,17 @@ public class RawSalesClient {
                                           }
                                         }
 
+                                        /**
+                                         * Apply a fully paid advance invoice to an issued invoice of the same partner: posts the settlement journal entry dated <code>date</code> (default today), with the applied amount's share of the advance VAT, and records the amount as a payment of the invoice. <code>amount</code> defaults to the smaller of the unapplied advance and the invoice's unpaid balance. Emits <code>sale_invoice.paid</code> when the invoice becomes fully paid. Answers 409 when the advance is not fully paid, is already applied or credited, when the invoice has nothing left to pay, or when <code>amount</code> exceeds the unapplied advance or the unpaid balance; 422 when the advance is not in the company's base currency or the two documents differ in currency.
+                                         */
                                         public NordletApiHttpResponse<InvoicesApplyAdvanceSalesResponse> invoicesApplyAdvance(
                                             InvoicesApplyAdvanceSalesRequest request) {
                                           return invoicesApplyAdvance(request,null);
                                         }
 
+                                        /**
+                                         * Apply a fully paid advance invoice to an issued invoice of the same partner: posts the settlement journal entry dated <code>date</code> (default today), with the applied amount's share of the advance VAT, and records the amount as a payment of the invoice. <code>amount</code> defaults to the smaller of the unapplied advance and the invoice's unpaid balance. Emits <code>sale_invoice.paid</code> when the invoice becomes fully paid. Answers 409 when the advance is not fully paid, is already applied or credited, when the invoice has nothing left to pay, or when <code>amount</code> exceeds the unapplied advance or the unpaid balance; 422 when the advance is not in the company's base currency or the two documents differ in currency.
+                                         */
                                         public NordletApiHttpResponse<InvoicesApplyAdvanceSalesResponse> invoicesApplyAdvance(
                                             InvoicesApplyAdvanceSalesRequest request,
                                             RequestOptions requestOptions) {
@@ -1560,21 +1676,33 @@ public class RawSalesClient {
                                             }
                                           }
 
+                                          /**
+                                           * List the sale documents of the company with the partner name. Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
+                                           */
                                           public NordletApiHttpResponse<InvoicesListSalesResponse> invoicesList(
                                               ) {
                                             return invoicesList(InvoicesListSalesRequest.builder().build());
                                           }
 
+                                          /**
+                                           * List the sale documents of the company with the partner name. Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
+                                           */
                                           public NordletApiHttpResponse<InvoicesListSalesResponse> invoicesList(
                                               RequestOptions requestOptions) {
                                             return invoicesList(InvoicesListSalesRequest.builder().build(),requestOptions);
                                           }
 
+                                          /**
+                                           * List the sale documents of the company with the partner name. Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
+                                           */
                                           public NordletApiHttpResponse<InvoicesListSalesResponse> invoicesList(
                                               InvoicesListSalesRequest request) {
                                             return invoicesList(request,null);
                                           }
 
+                                          /**
+                                           * List the sale documents of the company with the partner name. Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
+                                           */
                                           public NordletApiHttpResponse<InvoicesListSalesResponse> invoicesList(
                                               InvoicesListSalesRequest request,
                                               RequestOptions requestOptions) {
@@ -1640,11 +1768,17 @@ public class RawSalesClient {
                                               }
                                             }
 
+                                            /**
+                                             * Create a draft delivery act of goods or services (<code>type</code>) for a partner, dated <code>documentDate</code> (default today). Lines come from <code>lines</code>, else from the sale invoice in <code>saleInvoiceId</code>, else the act has none; the number is assigned by <code>sales/acts/issue</code>. Answers 422 when the sale invoice belongs to another partner or, when its lines are copied, has none.
+                                             */
                                             public NordletApiHttpResponse<ActsCreateSalesResponse> actsCreate(
                                                 ActsCreateSalesRequest request) {
                                               return actsCreate(request,null);
                                             }
 
+                                            /**
+                                             * Create a draft delivery act of goods or services (<code>type</code>) for a partner, dated <code>documentDate</code> (default today). Lines come from <code>lines</code>, else from the sale invoice in <code>saleInvoiceId</code>, else the act has none; the number is assigned by <code>sales/acts/issue</code>. Answers 422 when the sale invoice belongs to another partner or, when its lines are copied, has none.
+                                             */
                                             public NordletApiHttpResponse<ActsCreateSalesResponse> actsCreate(
                                                 ActsCreateSalesRequest request,
                                                 RequestOptions requestOptions) {
@@ -1710,11 +1844,17 @@ public class RawSalesClient {
                                                 }
                                               }
 
+                                              /**
+                                               * Change a draft delivery act; fields left out keep their value and <code>lines</code> replaces every line. Answers 409 when the act is issued or cancelled, 422 when the linked sale invoice belongs to another partner.
+                                               */
                                               public NordletApiHttpResponse<ActsUpdateSalesResponse> actsUpdate(
                                                   ActsUpdateSalesRequest request) {
                                                 return actsUpdate(request,null);
                                               }
 
+                                              /**
+                                               * Change a draft delivery act; fields left out keep their value and <code>lines</code> replaces every line. Answers 409 when the act is issued or cancelled, 422 when the linked sale invoice belongs to another partner.
+                                               */
                                               public NordletApiHttpResponse<ActsUpdateSalesResponse> actsUpdate(
                                                   ActsUpdateSalesRequest request,
                                                   RequestOptions requestOptions) {
@@ -1780,11 +1920,17 @@ public class RawSalesClient {
                                                   }
                                                 }
 
+                                                /**
+                                                 * Issue a draft delivery act: assigns the next number of its series for the year of the document date. When the act is linked to a sale invoice with pending milestone recognition schedules, they are all recognised on the act's document date, which posts the recognition journal entry and emits <code>revenue_recognition.posted</code>. Answers 409 when the act is not a draft, 422 when it has no lines.
+                                                 */
                                                 public NordletApiHttpResponse<ActsIssueSalesResponse> actsIssue(
                                                     ActsIssueSalesRequest request) {
                                                   return actsIssue(request,null);
                                                 }
 
+                                                /**
+                                                 * Issue a draft delivery act: assigns the next number of its series for the year of the document date. When the act is linked to a sale invoice with pending milestone recognition schedules, they are all recognised on the act's document date, which posts the recognition journal entry and emits <code>revenue_recognition.posted</code>. Answers 409 when the act is not a draft, 422 when it has no lines.
+                                                 */
                                                 public NordletApiHttpResponse<ActsIssueSalesResponse> actsIssue(
                                                     ActsIssueSalesRequest request,
                                                     RequestOptions requestOptions) {
@@ -1850,11 +1996,17 @@ public class RawSalesClient {
                                                     }
                                                   }
 
+                                                  /**
+                                                   * Cancel a draft or issued delivery act. Answers 409 when it is already cancelled.
+                                                   */
                                                   public NordletApiHttpResponse<ActsCancelSalesResponse> actsCancel(
                                                       ActsCancelSalesRequest request) {
                                                     return actsCancel(request,null);
                                                   }
 
+                                                  /**
+                                                   * Cancel a draft or issued delivery act. Answers 409 when it is already cancelled.
+                                                   */
                                                   public NordletApiHttpResponse<ActsCancelSalesResponse> actsCancel(
                                                       ActsCancelSalesRequest request,
                                                       RequestOptions requestOptions) {
@@ -1920,11 +2072,17 @@ public class RawSalesClient {
                                                       }
                                                     }
 
+                                                    /**
+                                                     * Return one delivery act with its lines.
+                                                     */
                                                     public NordletApiHttpResponse<ActsGetSalesResponse> actsGet(
                                                         ActsGetSalesRequest request) {
                                                       return actsGet(request,null);
                                                     }
 
+                                                    /**
+                                                     * Return one delivery act with its lines.
+                                                     */
                                                     public NordletApiHttpResponse<ActsGetSalesResponse> actsGet(
                                                         ActsGetSalesRequest request,
                                                         RequestOptions requestOptions) {
@@ -1990,21 +2148,33 @@ public class RawSalesClient {
                                                         }
                                                       }
 
+                                                      /**
+                                                       * List delivery acts. Filterable by status, type, partnerId and documentDate; sortable by createdAt, documentDate and fullNumber.
+                                                       */
                                                       public NordletApiHttpResponse<ActsListSalesResponse> actsList(
                                                           ) {
                                                         return actsList(ActsListSalesRequest.builder().build());
                                                       }
 
+                                                      /**
+                                                       * List delivery acts. Filterable by status, type, partnerId and documentDate; sortable by createdAt, documentDate and fullNumber.
+                                                       */
                                                       public NordletApiHttpResponse<ActsListSalesResponse> actsList(
                                                           RequestOptions requestOptions) {
                                                         return actsList(ActsListSalesRequest.builder().build(),requestOptions);
                                                       }
 
+                                                      /**
+                                                       * List delivery acts. Filterable by status, type, partnerId and documentDate; sortable by createdAt, documentDate and fullNumber.
+                                                       */
                                                       public NordletApiHttpResponse<ActsListSalesResponse> actsList(
                                                           ActsListSalesRequest request) {
                                                         return actsList(request,null);
                                                       }
 
+                                                      /**
+                                                       * List delivery acts. Filterable by status, type, partnerId and documentDate; sortable by createdAt, documentDate and fullNumber.
+                                                       */
                                                       public NordletApiHttpResponse<ActsListSalesResponse> actsList(
                                                           ActsListSalesRequest request,
                                                           RequestOptions requestOptions) {
@@ -2070,11 +2240,17 @@ public class RawSalesClient {
                                                           }
                                                         }
 
+                                                        /**
+                                                         * Render a delivery act as a PDF in <code>locale</code>, returned base64-encoded, with the number of the linked sale invoice when there is one.
+                                                         */
                                                         public NordletApiHttpResponse<ActsPdfSalesResponse> actsPdf(
                                                             ActsPdfSalesRequest request) {
                                                           return actsPdf(request,null);
                                                         }
 
+                                                        /**
+                                                         * Render a delivery act as a PDF in <code>locale</code>, returned base64-encoded, with the number of the linked sale invoice when there is one.
+                                                         */
                                                         public NordletApiHttpResponse<ActsPdfSalesResponse> actsPdf(
                                                             ActsPdfSalesRequest request,
                                                             RequestOptions requestOptions) {
@@ -2140,11 +2316,17 @@ public class RawSalesClient {
                                                             }
                                                           }
 
+                                                          /**
+                                                           * Create a named template for invoices or credit notes (<code>documentType</code>): the header defaults and the lines that <code>sales/recurring-invoices/generate</code> turns into invoices. Answers 422 when a referenced partner, agreement, operation type, document series, catalog item or project does not exist or the series is for another document type; 409 when a template with that name exists.
+                                                           */
                                                           public NordletApiHttpResponse<InvoiceTemplatesCreateSalesResponse> invoiceTemplatesCreate(
                                                               InvoiceTemplatesCreateSalesRequest request) {
                                                             return invoiceTemplatesCreate(request,null);
                                                           }
 
+                                                          /**
+                                                           * Create a named template for invoices or credit notes (<code>documentType</code>): the header defaults and the lines that <code>sales/recurring-invoices/generate</code> turns into invoices. Answers 422 when a referenced partner, agreement, operation type, document series, catalog item or project does not exist or the series is for another document type; 409 when a template with that name exists.
+                                                           */
                                                           public NordletApiHttpResponse<InvoiceTemplatesCreateSalesResponse> invoiceTemplatesCreate(
                                                               InvoiceTemplatesCreateSalesRequest request,
                                                               RequestOptions requestOptions) {
@@ -2210,11 +2392,17 @@ public class RawSalesClient {
                                                               }
                                                             }
 
+                                                            /**
+                                                             * Change a template; fields left out keep their value and <code>lines</code> replaces every line. The 422 reference checks of <code>sales/invoice-templates/create</code> apply; 409 when the new name is taken.
+                                                             */
                                                             public NordletApiHttpResponse<InvoiceTemplatesUpdateSalesResponse> invoiceTemplatesUpdate(
                                                                 InvoiceTemplatesUpdateSalesRequest request) {
                                                               return invoiceTemplatesUpdate(request,null);
                                                             }
 
+                                                            /**
+                                                             * Change a template; fields left out keep their value and <code>lines</code> replaces every line. The 422 reference checks of <code>sales/invoice-templates/create</code> apply; 409 when the new name is taken.
+                                                             */
                                                             public NordletApiHttpResponse<InvoiceTemplatesUpdateSalesResponse> invoiceTemplatesUpdate(
                                                                 InvoiceTemplatesUpdateSalesRequest request,
                                                                 RequestOptions requestOptions) {
@@ -2280,11 +2468,17 @@ public class RawSalesClient {
                                                                 }
                                                               }
 
+                                                              /**
+                                                               * Return one invoice template.
+                                                               */
                                                               public NordletApiHttpResponse<InvoiceTemplatesGetSalesResponse> invoiceTemplatesGet(
                                                                   InvoiceTemplatesGetSalesRequest request) {
                                                                 return invoiceTemplatesGet(request,null);
                                                               }
 
+                                                              /**
+                                                               * Return one invoice template.
+                                                               */
                                                               public NordletApiHttpResponse<InvoiceTemplatesGetSalesResponse> invoiceTemplatesGet(
                                                                   InvoiceTemplatesGetSalesRequest request,
                                                                   RequestOptions requestOptions) {
@@ -2350,11 +2544,17 @@ public class RawSalesClient {
                                                                   }
                                                                 }
 
+                                                                /**
+                                                                 * Delete an invoice template.
+                                                                 */
                                                                 public NordletApiHttpResponse<InvoiceTemplatesDeleteSalesResponse> invoiceTemplatesDelete(
                                                                     InvoiceTemplatesDeleteSalesRequest request) {
                                                                   return invoiceTemplatesDelete(request,null);
                                                                 }
 
+                                                                /**
+                                                                 * Delete an invoice template.
+                                                                 */
                                                                 public NordletApiHttpResponse<InvoiceTemplatesDeleteSalesResponse> invoiceTemplatesDelete(
                                                                     InvoiceTemplatesDeleteSalesRequest request,
                                                                     RequestOptions requestOptions) {
@@ -2420,21 +2620,33 @@ public class RawSalesClient {
                                                                     }
                                                                   }
 
+                                                                  /**
+                                                                   * List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType and createdAt.
+                                                                   */
                                                                   public NordletApiHttpResponse<InvoiceTemplatesListSalesResponse> invoiceTemplatesList(
                                                                       ) {
                                                                     return invoiceTemplatesList(InvoiceTemplatesListSalesRequest.builder().build());
                                                                   }
 
+                                                                  /**
+                                                                   * List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType and createdAt.
+                                                                   */
                                                                   public NordletApiHttpResponse<InvoiceTemplatesListSalesResponse> invoiceTemplatesList(
                                                                       RequestOptions requestOptions) {
                                                                     return invoiceTemplatesList(InvoiceTemplatesListSalesRequest.builder().build(),requestOptions);
                                                                   }
 
+                                                                  /**
+                                                                   * List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType and createdAt.
+                                                                   */
                                                                   public NordletApiHttpResponse<InvoiceTemplatesListSalesResponse> invoiceTemplatesList(
                                                                       InvoiceTemplatesListSalesRequest request) {
                                                                     return invoiceTemplatesList(request,null);
                                                                   }
 
+                                                                  /**
+                                                                   * List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType and createdAt.
+                                                                   */
                                                                   public NordletApiHttpResponse<InvoiceTemplatesListSalesResponse> invoiceTemplatesList(
                                                                       InvoiceTemplatesListSalesRequest request,
                                                                       RequestOptions requestOptions) {
@@ -2500,27 +2712,23 @@ public class RawSalesClient {
                                                                       }
                                                                     }
 
-                                                                    public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
-                                                                        ) {
-                                                                      return recognitionCompute(RecognitionComputeSalesRequest.builder().build());
+                                                                    /**
+                                                                     * Create a schedule that generates invoices from an invoice template every <code>interval</code> periods of <code>frequency</code> from <code>startDate</code> (the first run) until <code>endDate</code>, for <code>partnerId</code> or else the template's partner. <code>autoIssue</code> issues each generated invoice and <code>autoSend</code> e-mails it to <code>sendTo</code>, else to the partner. Invoices are generated by <code>sales/recurring-invoices/run</code>, <code>sales/recurring-invoices/generate</code> and the scheduled job <code>recurring-invoices</code>. Answers 422 when the template is a credit note template, when neither the schedule nor the template names a partner, when <code>endDate</code> is before <code>startDate</code>, or when <code>autoSend</code> is set without <code>autoIssue</code>.
+                                                                     */
+                                                                    public NordletApiHttpResponse<RecurringInvoicesCreateSalesResponse> recurringInvoicesCreate(
+                                                                        RecurringInvoicesCreateSalesRequest request) {
+                                                                      return recurringInvoicesCreate(request,null);
                                                                     }
 
-                                                                    public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
-                                                                        RequestOptions requestOptions) {
-                                                                      return recognitionCompute(RecognitionComputeSalesRequest.builder().build(),requestOptions);
-                                                                    }
-
-                                                                    public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
-                                                                        RecognitionComputeSalesRequest request) {
-                                                                      return recognitionCompute(request,null);
-                                                                    }
-
-                                                                    public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
-                                                                        RecognitionComputeSalesRequest request,
+                                                                    /**
+                                                                     * Create a schedule that generates invoices from an invoice template every <code>interval</code> periods of <code>frequency</code> from <code>startDate</code> (the first run) until <code>endDate</code>, for <code>partnerId</code> or else the template's partner. <code>autoIssue</code> issues each generated invoice and <code>autoSend</code> e-mails it to <code>sendTo</code>, else to the partner. Invoices are generated by <code>sales/recurring-invoices/run</code>, <code>sales/recurring-invoices/generate</code> and the scheduled job <code>recurring-invoices</code>. Answers 422 when the template is a credit note template, when neither the schedule nor the template names a partner, when <code>endDate</code> is before <code>startDate</code>, or when <code>autoSend</code> is set without <code>autoIssue</code>.
+                                                                     */
+                                                                    public NordletApiHttpResponse<RecurringInvoicesCreateSalesResponse> recurringInvoicesCreate(
+                                                                        RecurringInvoicesCreateSalesRequest request,
                                                                         RequestOptions requestOptions) {
                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                        .addPathSegments("v1/sales/recognition/compute");if (requestOptions != null) {
+                                                                        .addPathSegments("v1/sales/recurring-invoices/create");if (requestOptions != null) {
                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                           } );
@@ -2550,7 +2758,7 @@ public class RawSalesClient {
                                                                           ResponseBody responseBody = response.body();
                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                           if (response.isSuccessful()) {
-                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionComputeSalesResponse.class), response);
+                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecurringInvoicesCreateSalesResponse.class), response);
                                                                           }
                                                                           try {
                                                                             switch (response.code()) {
@@ -2580,27 +2788,23 @@ public class RawSalesClient {
                                                                         }
                                                                       }
 
-                                                                      public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
-                                                                          ) {
-                                                                        return recognitionRun(RecognitionRunSalesRequest.builder().build());
+                                                                      /**
+                                                                       * Change a schedule; fields left out keep their value. A change of <code>startDate</code>, <code>frequency</code> or <code>interval</code> moves <code>nextRunDate</code> to the first occurrence of the new grid on or after the current next run (or the new start date, if later); an explicit <code>nextRunDate</code> wins. <code>status</code> switches between <code>active</code> and <code>paused</code>; a next run past <code>endDate</code> makes the schedule <code>finished</code>. The 422 checks of <code>sales/recurring-invoices/create</code> apply.
+                                                                       */
+                                                                      public NordletApiHttpResponse<RecurringInvoicesUpdateSalesResponse> recurringInvoicesUpdate(
+                                                                          RecurringInvoicesUpdateSalesRequest request) {
+                                                                        return recurringInvoicesUpdate(request,null);
                                                                       }
 
-                                                                      public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
-                                                                          RequestOptions requestOptions) {
-                                                                        return recognitionRun(RecognitionRunSalesRequest.builder().build(),requestOptions);
-                                                                      }
-
-                                                                      public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
-                                                                          RecognitionRunSalesRequest request) {
-                                                                        return recognitionRun(request,null);
-                                                                      }
-
-                                                                      public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
-                                                                          RecognitionRunSalesRequest request,
+                                                                      /**
+                                                                       * Change a schedule; fields left out keep their value. A change of <code>startDate</code>, <code>frequency</code> or <code>interval</code> moves <code>nextRunDate</code> to the first occurrence of the new grid on or after the current next run (or the new start date, if later); an explicit <code>nextRunDate</code> wins. <code>status</code> switches between <code>active</code> and <code>paused</code>; a next run past <code>endDate</code> makes the schedule <code>finished</code>. The 422 checks of <code>sales/recurring-invoices/create</code> apply.
+                                                                       */
+                                                                      public NordletApiHttpResponse<RecurringInvoicesUpdateSalesResponse> recurringInvoicesUpdate(
+                                                                          RecurringInvoicesUpdateSalesRequest request,
                                                                           RequestOptions requestOptions) {
                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                          .addPathSegments("v1/sales/recognition/run");if (requestOptions != null) {
+                                                                          .addPathSegments("v1/sales/recurring-invoices/update");if (requestOptions != null) {
                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                             } );
@@ -2630,7 +2834,7 @@ public class RawSalesClient {
                                                                             ResponseBody responseBody = response.body();
                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                             if (response.isSuccessful()) {
-                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionRunSalesResponse.class), response);
+                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecurringInvoicesUpdateSalesResponse.class), response);
                                                                             }
                                                                             try {
                                                                               switch (response.code()) {
@@ -2660,17 +2864,23 @@ public class RawSalesClient {
                                                                           }
                                                                         }
 
-                                                                        public NordletApiHttpResponse<RecognitionProgressSalesResponse> recognitionProgress(
-                                                                            RecognitionProgressSalesRequest request) {
-                                                                          return recognitionProgress(request,null);
+                                                                        /**
+                                                                         * Return one recurring invoice schedule with the names of its template and partner.
+                                                                         */
+                                                                        public NordletApiHttpResponse<RecurringInvoicesGetSalesResponse> recurringInvoicesGet(
+                                                                            RecurringInvoicesGetSalesRequest request) {
+                                                                          return recurringInvoicesGet(request,null);
                                                                         }
 
-                                                                        public NordletApiHttpResponse<RecognitionProgressSalesResponse> recognitionProgress(
-                                                                            RecognitionProgressSalesRequest request,
+                                                                        /**
+                                                                         * Return one recurring invoice schedule with the names of its template and partner.
+                                                                         */
+                                                                        public NordletApiHttpResponse<RecurringInvoicesGetSalesResponse> recurringInvoicesGet(
+                                                                            RecurringInvoicesGetSalesRequest request,
                                                                             RequestOptions requestOptions) {
                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                            .addPathSegments("v1/sales/recognition/progress");if (requestOptions != null) {
+                                                                            .addPathSegments("v1/sales/recurring-invoices/get");if (requestOptions != null) {
                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                               } );
@@ -2700,7 +2910,7 @@ public class RawSalesClient {
                                                                               ResponseBody responseBody = response.body();
                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                               if (response.isSuccessful()) {
-                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionProgressSalesResponse.class), response);
+                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecurringInvoicesGetSalesResponse.class), response);
                                                                               }
                                                                               try {
                                                                                 switch (response.code()) {
@@ -2731,22 +2941,22 @@ public class RawSalesClient {
                                                                           }
 
                                                                           /**
-                                                                           * Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
+                                                                           * Delete a recurring invoice schedule. The invoices it generated stay.
                                                                            */
-                                                                          public NordletApiHttpResponse<RecognitionModifySalesResponse> recognitionModify(
-                                                                              RecognitionModifySalesRequest request) {
-                                                                            return recognitionModify(request,null);
+                                                                          public NordletApiHttpResponse<RecurringInvoicesDeleteSalesResponse> recurringInvoicesDelete(
+                                                                              RecurringInvoicesDeleteSalesRequest request) {
+                                                                            return recurringInvoicesDelete(request,null);
                                                                           }
 
                                                                           /**
-                                                                           * Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
+                                                                           * Delete a recurring invoice schedule. The invoices it generated stay.
                                                                            */
-                                                                          public NordletApiHttpResponse<RecognitionModifySalesResponse> recognitionModify(
-                                                                              RecognitionModifySalesRequest request,
+                                                                          public NordletApiHttpResponse<RecurringInvoicesDeleteSalesResponse> recurringInvoicesDelete(
+                                                                              RecurringInvoicesDeleteSalesRequest request,
                                                                               RequestOptions requestOptions) {
                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                              .addPathSegments("v1/sales/recognition/modify");if (requestOptions != null) {
+                                                                              .addPathSegments("v1/sales/recurring-invoices/delete");if (requestOptions != null) {
                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                 } );
@@ -2776,7 +2986,7 @@ public class RawSalesClient {
                                                                                 ResponseBody responseBody = response.body();
                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                 if (response.isSuccessful()) {
-                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionModifySalesResponse.class), response);
+                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecurringInvoicesDeleteSalesResponse.class), response);
                                                                                 }
                                                                                 try {
                                                                                   switch (response.code()) {
@@ -2806,27 +3016,23 @@ public class RawSalesClient {
                                                                               }
                                                                             }
 
-                                                                            public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
-                                                                                ) {
-                                                                              return recognitionRunsList(RecognitionRunsListSalesRequest.builder().build());
+                                                                            /**
+                                                                             * Generate the next invoice of a schedule now, dated its <code>nextRunDate</code>: creates a draft from the template (due date from the template's payment term, VAT scheme from the template or else resolved for the partner and supply type), issues it when <code>autoIssue</code> is set and e-mails it when <code>autoSend</code> is set, then moves the schedule to its next occurrence (or to <code>finished</code> after the last one) and emits <code>recurring_invoice.generated</code>. A failure to issue or send comes back in <code>error</code> and is stored as <code>lastError</code>; the draft stays. Answers 409 when the schedule is finished, 422 when the template is a credit note template or has no lines.
+                                                                             */
+                                                                            public NordletApiHttpResponse<RecurringInvoicesGenerateSalesResponse> recurringInvoicesGenerate(
+                                                                                RecurringInvoicesGenerateSalesRequest request) {
+                                                                              return recurringInvoicesGenerate(request,null);
                                                                             }
 
-                                                                            public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
-                                                                                RequestOptions requestOptions) {
-                                                                              return recognitionRunsList(RecognitionRunsListSalesRequest.builder().build(),requestOptions);
-                                                                            }
-
-                                                                            public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
-                                                                                RecognitionRunsListSalesRequest request) {
-                                                                              return recognitionRunsList(request,null);
-                                                                            }
-
-                                                                            public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
-                                                                                RecognitionRunsListSalesRequest request,
+                                                                            /**
+                                                                             * Generate the next invoice of a schedule now, dated its <code>nextRunDate</code>: creates a draft from the template (due date from the template's payment term, VAT scheme from the template or else resolved for the partner and supply type), issues it when <code>autoIssue</code> is set and e-mails it when <code>autoSend</code> is set, then moves the schedule to its next occurrence (or to <code>finished</code> after the last one) and emits <code>recurring_invoice.generated</code>. A failure to issue or send comes back in <code>error</code> and is stored as <code>lastError</code>; the draft stays. Answers 409 when the schedule is finished, 422 when the template is a credit note template or has no lines.
+                                                                             */
+                                                                            public NordletApiHttpResponse<RecurringInvoicesGenerateSalesResponse> recurringInvoicesGenerate(
+                                                                                RecurringInvoicesGenerateSalesRequest request,
                                                                                 RequestOptions requestOptions) {
                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                .addPathSegments("v1/sales/recognition/runs/list");if (requestOptions != null) {
+                                                                                .addPathSegments("v1/sales/recurring-invoices/generate");if (requestOptions != null) {
                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                   } );
@@ -2856,7 +3062,7 @@ public class RawSalesClient {
                                                                                   ResponseBody responseBody = response.body();
                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                   if (response.isSuccessful()) {
-                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionRunsListSalesResponse.class), response);
+                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecurringInvoicesGenerateSalesResponse.class), response);
                                                                                   }
                                                                                   try {
                                                                                     switch (response.code()) {
@@ -2886,27 +3092,39 @@ public class RawSalesClient {
                                                                                 }
                                                                               }
 
-                                                                              public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
+                                                                              /**
+                                                                               * Generate every invoice due up to <code>asOfDate</code> (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as <code>sales/recurring-invoices/generate</code> does for one; each generated invoice emits <code>recurring_invoice.generated</code>. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's <code>lastError</code>.
+                                                                               */
+                                                                              public NordletApiHttpResponse<RecurringInvoicesRunSalesResponse> recurringInvoicesRun(
                                                                                   ) {
-                                                                                return recognitionSummary(RecognitionSummarySalesRequest.builder().build());
+                                                                                return recurringInvoicesRun(RecurringInvoicesRunSalesRequest.builder().build());
                                                                               }
 
-                                                                              public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
+                                                                              /**
+                                                                               * Generate every invoice due up to <code>asOfDate</code> (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as <code>sales/recurring-invoices/generate</code> does for one; each generated invoice emits <code>recurring_invoice.generated</code>. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's <code>lastError</code>.
+                                                                               */
+                                                                              public NordletApiHttpResponse<RecurringInvoicesRunSalesResponse> recurringInvoicesRun(
                                                                                   RequestOptions requestOptions) {
-                                                                                return recognitionSummary(RecognitionSummarySalesRequest.builder().build(),requestOptions);
+                                                                                return recurringInvoicesRun(RecurringInvoicesRunSalesRequest.builder().build(),requestOptions);
                                                                               }
 
-                                                                              public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
-                                                                                  RecognitionSummarySalesRequest request) {
-                                                                                return recognitionSummary(request,null);
+                                                                              /**
+                                                                               * Generate every invoice due up to <code>asOfDate</code> (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as <code>sales/recurring-invoices/generate</code> does for one; each generated invoice emits <code>recurring_invoice.generated</code>. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's <code>lastError</code>.
+                                                                               */
+                                                                              public NordletApiHttpResponse<RecurringInvoicesRunSalesResponse> recurringInvoicesRun(
+                                                                                  RecurringInvoicesRunSalesRequest request) {
+                                                                                return recurringInvoicesRun(request,null);
                                                                               }
 
-                                                                              public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
-                                                                                  RecognitionSummarySalesRequest request,
+                                                                              /**
+                                                                               * Generate every invoice due up to <code>asOfDate</code> (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as <code>sales/recurring-invoices/generate</code> does for one; each generated invoice emits <code>recurring_invoice.generated</code>. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's <code>lastError</code>.
+                                                                               */
+                                                                              public NordletApiHttpResponse<RecurringInvoicesRunSalesResponse> recurringInvoicesRun(
+                                                                                  RecurringInvoicesRunSalesRequest request,
                                                                                   RequestOptions requestOptions) {
                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                  .addPathSegments("v1/sales/recognition/summary");if (requestOptions != null) {
+                                                                                  .addPathSegments("v1/sales/recurring-invoices/run");if (requestOptions != null) {
                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                     } );
@@ -2936,7 +3154,7 @@ public class RawSalesClient {
                                                                                     ResponseBody responseBody = response.body();
                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                     if (response.isSuccessful()) {
-                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionSummarySalesResponse.class), response);
+                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecurringInvoicesRunSalesResponse.class), response);
                                                                                     }
                                                                                     try {
                                                                                       switch (response.code()) {
@@ -2966,27 +3184,39 @@ public class RawSalesClient {
                                                                                   }
                                                                                 }
 
-                                                                                public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
+                                                                                /**
+                                                                                 * List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency and createdAt.
+                                                                                 */
+                                                                                public NordletApiHttpResponse<RecurringInvoicesListSalesResponse> recurringInvoicesList(
                                                                                     ) {
-                                                                                  return refundLiabilityList(RefundLiabilityListSalesRequest.builder().build());
+                                                                                  return recurringInvoicesList(RecurringInvoicesListSalesRequest.builder().build());
                                                                                 }
 
-                                                                                public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
+                                                                                /**
+                                                                                 * List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency and createdAt.
+                                                                                 */
+                                                                                public NordletApiHttpResponse<RecurringInvoicesListSalesResponse> recurringInvoicesList(
                                                                                     RequestOptions requestOptions) {
-                                                                                  return refundLiabilityList(RefundLiabilityListSalesRequest.builder().build(),requestOptions);
+                                                                                  return recurringInvoicesList(RecurringInvoicesListSalesRequest.builder().build(),requestOptions);
                                                                                 }
 
-                                                                                public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
-                                                                                    RefundLiabilityListSalesRequest request) {
-                                                                                  return refundLiabilityList(request,null);
+                                                                                /**
+                                                                                 * List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency and createdAt.
+                                                                                 */
+                                                                                public NordletApiHttpResponse<RecurringInvoicesListSalesResponse> recurringInvoicesList(
+                                                                                    RecurringInvoicesListSalesRequest request) {
+                                                                                  return recurringInvoicesList(request,null);
                                                                                 }
 
-                                                                                public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
-                                                                                    RefundLiabilityListSalesRequest request,
+                                                                                /**
+                                                                                 * List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency and createdAt.
+                                                                                 */
+                                                                                public NordletApiHttpResponse<RecurringInvoicesListSalesResponse> recurringInvoicesList(
+                                                                                    RecurringInvoicesListSalesRequest request,
                                                                                     RequestOptions requestOptions) {
                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                    .addPathSegments("v1/sales/refund-liability/list");if (requestOptions != null) {
+                                                                                    .addPathSegments("v1/sales/recurring-invoices/list");if (requestOptions != null) {
                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                       } );
@@ -3016,7 +3246,7 @@ public class RawSalesClient {
                                                                                       ResponseBody responseBody = response.body();
                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                       if (response.isSuccessful()) {
-                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RefundLiabilityListSalesResponse.class), response);
+                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecurringInvoicesListSalesResponse.class), response);
                                                                                       }
                                                                                       try {
                                                                                         switch (response.code()) {
@@ -3046,17 +3276,39 @@ public class RawSalesClient {
                                                                                     }
                                                                                   }
 
-                                                                                  public NordletApiHttpResponse<RefundLiabilityTrueUpSalesResponse> refundLiabilityTrueUp(
-                                                                                      RefundLiabilityTrueUpSalesRequest request) {
-                                                                                    return refundLiabilityTrueUp(request,null);
+                                                                                  /**
+                                                                                   * Preview the pending ratable revenue schedules due on or before <code>asOfDate</code> (default the company's current date) with their total; nothing is posted. <code>sales/recognition/run</code> posts them.
+                                                                                   */
+                                                                                  public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
+                                                                                      ) {
+                                                                                    return recognitionCompute(RecognitionComputeSalesRequest.builder().build());
                                                                                   }
 
-                                                                                  public NordletApiHttpResponse<RefundLiabilityTrueUpSalesResponse> refundLiabilityTrueUp(
-                                                                                      RefundLiabilityTrueUpSalesRequest request,
+                                                                                  /**
+                                                                                   * Preview the pending ratable revenue schedules due on or before <code>asOfDate</code> (default the company's current date) with their total; nothing is posted. <code>sales/recognition/run</code> posts them.
+                                                                                   */
+                                                                                  public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
+                                                                                      RequestOptions requestOptions) {
+                                                                                    return recognitionCompute(RecognitionComputeSalesRequest.builder().build(),requestOptions);
+                                                                                  }
+
+                                                                                  /**
+                                                                                   * Preview the pending ratable revenue schedules due on or before <code>asOfDate</code> (default the company's current date) with their total; nothing is posted. <code>sales/recognition/run</code> posts them.
+                                                                                   */
+                                                                                  public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
+                                                                                      RecognitionComputeSalesRequest request) {
+                                                                                    return recognitionCompute(request,null);
+                                                                                  }
+
+                                                                                  /**
+                                                                                   * Preview the pending ratable revenue schedules due on or before <code>asOfDate</code> (default the company's current date) with their total; nothing is posted. <code>sales/recognition/run</code> posts them.
+                                                                                   */
+                                                                                  public NordletApiHttpResponse<RecognitionComputeSalesResponse> recognitionCompute(
+                                                                                      RecognitionComputeSalesRequest request,
                                                                                       RequestOptions requestOptions) {
                                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                      .addPathSegments("v1/sales/refund-liability/true-up");if (requestOptions != null) {
+                                                                                      .addPathSegments("v1/sales/recognition/compute");if (requestOptions != null) {
                                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                                         } );
@@ -3086,7 +3338,7 @@ public class RawSalesClient {
                                                                                         ResponseBody responseBody = response.body();
                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                         if (response.isSuccessful()) {
-                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RefundLiabilityTrueUpSalesResponse.class), response);
+                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionComputeSalesResponse.class), response);
                                                                                         }
                                                                                         try {
                                                                                           switch (response.code()) {
@@ -3115,4 +3367,600 @@ public class RawSalesClient {
                                                                                         throw new NordletApiException("Network error executing HTTP request", e);
                                                                                       }
                                                                                     }
-                                                                                  }
+
+                                                                                    /**
+                                                                                     * Recognise deferred revenue: posts one journal entry dated <code>postingDate</code> (default <code>asOfDate</code>, default the company's current date) that debits the deferred income account and credits each line's revenue account, for the pending ratable schedules due on or before <code>asOfDate</code> or for exactly the <code>scheduleIds</code> given, marks them recognised, records a run with trigger <code>manual</code> and emits <code>revenue_recognition.posted</code>. Answers 422 when nothing is due or a given schedule is missing or no longer pending, and 409 when the posting period is locked. Due ratable schedules are also posted by the scheduler once their date has passed (trigger <code>schedule_due</code>).
+                                                                                     */
+                                                                                    public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
+                                                                                        ) {
+                                                                                      return recognitionRun(RecognitionRunSalesRequest.builder().build());
+                                                                                    }
+
+                                                                                    /**
+                                                                                     * Recognise deferred revenue: posts one journal entry dated <code>postingDate</code> (default <code>asOfDate</code>, default the company's current date) that debits the deferred income account and credits each line's revenue account, for the pending ratable schedules due on or before <code>asOfDate</code> or for exactly the <code>scheduleIds</code> given, marks them recognised, records a run with trigger <code>manual</code> and emits <code>revenue_recognition.posted</code>. Answers 422 when nothing is due or a given schedule is missing or no longer pending, and 409 when the posting period is locked. Due ratable schedules are also posted by the scheduler once their date has passed (trigger <code>schedule_due</code>).
+                                                                                     */
+                                                                                    public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
+                                                                                        RequestOptions requestOptions) {
+                                                                                      return recognitionRun(RecognitionRunSalesRequest.builder().build(),requestOptions);
+                                                                                    }
+
+                                                                                    /**
+                                                                                     * Recognise deferred revenue: posts one journal entry dated <code>postingDate</code> (default <code>asOfDate</code>, default the company's current date) that debits the deferred income account and credits each line's revenue account, for the pending ratable schedules due on or before <code>asOfDate</code> or for exactly the <code>scheduleIds</code> given, marks them recognised, records a run with trigger <code>manual</code> and emits <code>revenue_recognition.posted</code>. Answers 422 when nothing is due or a given schedule is missing or no longer pending, and 409 when the posting period is locked. Due ratable schedules are also posted by the scheduler once their date has passed (trigger <code>schedule_due</code>).
+                                                                                     */
+                                                                                    public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
+                                                                                        RecognitionRunSalesRequest request) {
+                                                                                      return recognitionRun(request,null);
+                                                                                    }
+
+                                                                                    /**
+                                                                                     * Recognise deferred revenue: posts one journal entry dated <code>postingDate</code> (default <code>asOfDate</code>, default the company's current date) that debits the deferred income account and credits each line's revenue account, for the pending ratable schedules due on or before <code>asOfDate</code> or for exactly the <code>scheduleIds</code> given, marks them recognised, records a run with trigger <code>manual</code> and emits <code>revenue_recognition.posted</code>. Answers 422 when nothing is due or a given schedule is missing or no longer pending, and 409 when the posting period is locked. Due ratable schedules are also posted by the scheduler once their date has passed (trigger <code>schedule_due</code>).
+                                                                                     */
+                                                                                    public NordletApiHttpResponse<RecognitionRunSalesResponse> recognitionRun(
+                                                                                        RecognitionRunSalesRequest request,
+                                                                                        RequestOptions requestOptions) {
+                                                                                      HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                        .addPathSegments("v1/sales/recognition/run");if (requestOptions != null) {
+                                                                                          requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                            httpUrl.addQueryParameter(_key, _value);
+                                                                                          } );
+                                                                                        }
+                                                                                        RequestBody body;
+                                                                                        try {
+                                                                                          body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                        }
+                                                                                        catch(JsonProcessingException e) {
+                                                                                          throw new NordletApiException("Failed to serialize request", e);
+                                                                                        }
+                                                                                        Request okhttpRequest = new Request.Builder()
+                                                                                          .url(httpUrl.build())
+                                                                                          .method("POST", body)
+                                                                                          .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                          .addHeader("Content-Type", "application/json")
+                                                                                          .addHeader("Accept", "application/json")
+                                                                                          .build();
+                                                                                        OkHttpClient client = clientOptions.httpClient();
+                                                                                        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                          client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                        }
+                                                                                        if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                          okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                        }
+                                                                                        try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                          ResponseBody responseBody = response.body();
+                                                                                          String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                          if (response.isSuccessful()) {
+                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionRunSalesResponse.class), response);
+                                                                                          }
+                                                                                          try {
+                                                                                            switch (response.code()) {
+                                                                                              case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            }
+                                                                                          }
+                                                                                          catch (JsonProcessingException ignored) {
+                                                                                            // unable to map error response, throwing generic error
+                                                                                          }
+                                                                                          Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                          throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                        }
+                                                                                        catch (JsonProcessingException e) {
+                                                                                          throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                        }
+                                                                                        catch (IOException e) {
+                                                                                          throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                        }
+                                                                                      }
+
+                                                                                      /**
+                                                                                       * Report the percentage of completion of a <code>percent_complete</code> invoice line and recognise the revenue up to it: a schedule for the difference between the revenue due at that percentage and the amount already recognised is created and posted at once, dated <code>date</code> (default the company's current date), as a run with trigger <code>progress</code> that emits <code>revenue_recognition.posted</code>. Refused with 422 when the line is not <code>percent_complete</code>, the invoice is not an issued standard invoice, the percentage is 0 or above 100, or nothing new is to be recognised; 409 when the period is locked.
+                                                                                       */
+                                                                                      public NordletApiHttpResponse<RecognitionProgressSalesResponse> recognitionProgress(
+                                                                                          RecognitionProgressSalesRequest request) {
+                                                                                        return recognitionProgress(request,null);
+                                                                                      }
+
+                                                                                      /**
+                                                                                       * Report the percentage of completion of a <code>percent_complete</code> invoice line and recognise the revenue up to it: a schedule for the difference between the revenue due at that percentage and the amount already recognised is created and posted at once, dated <code>date</code> (default the company's current date), as a run with trigger <code>progress</code> that emits <code>revenue_recognition.posted</code>. Refused with 422 when the line is not <code>percent_complete</code>, the invoice is not an issued standard invoice, the percentage is 0 or above 100, or nothing new is to be recognised; 409 when the period is locked.
+                                                                                       */
+                                                                                      public NordletApiHttpResponse<RecognitionProgressSalesResponse> recognitionProgress(
+                                                                                          RecognitionProgressSalesRequest request,
+                                                                                          RequestOptions requestOptions) {
+                                                                                        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                          .addPathSegments("v1/sales/recognition/progress");if (requestOptions != null) {
+                                                                                            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                              httpUrl.addQueryParameter(_key, _value);
+                                                                                            } );
+                                                                                          }
+                                                                                          RequestBody body;
+                                                                                          try {
+                                                                                            body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                          }
+                                                                                          catch(JsonProcessingException e) {
+                                                                                            throw new NordletApiException("Failed to serialize request", e);
+                                                                                          }
+                                                                                          Request okhttpRequest = new Request.Builder()
+                                                                                            .url(httpUrl.build())
+                                                                                            .method("POST", body)
+                                                                                            .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                            .addHeader("Content-Type", "application/json")
+                                                                                            .addHeader("Accept", "application/json")
+                                                                                            .build();
+                                                                                          OkHttpClient client = clientOptions.httpClient();
+                                                                                          if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                            client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                          }
+                                                                                          if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                            okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                          }
+                                                                                          try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                            ResponseBody responseBody = response.body();
+                                                                                            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                            if (response.isSuccessful()) {
+                                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionProgressSalesResponse.class), response);
+                                                                                            }
+                                                                                            try {
+                                                                                              switch (response.code()) {
+                                                                                                case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              }
+                                                                                            }
+                                                                                            catch (JsonProcessingException ignored) {
+                                                                                              // unable to map error response, throwing generic error
+                                                                                            }
+                                                                                            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                            throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                          }
+                                                                                          catch (JsonProcessingException e) {
+                                                                                            throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                          }
+                                                                                          catch (IOException e) {
+                                                                                            throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                          }
+                                                                                        }
+
+                                                                                        /**
+                                                                                         * Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
+                                                                                         */
+                                                                                        public NordletApiHttpResponse<RecognitionModifySalesResponse> recognitionModify(
+                                                                                            RecognitionModifySalesRequest request) {
+                                                                                          return recognitionModify(request,null);
+                                                                                        }
+
+                                                                                        /**
+                                                                                         * Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
+                                                                                         */
+                                                                                        public NordletApiHttpResponse<RecognitionModifySalesResponse> recognitionModify(
+                                                                                            RecognitionModifySalesRequest request,
+                                                                                            RequestOptions requestOptions) {
+                                                                                          HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                            .addPathSegments("v1/sales/recognition/modify");if (requestOptions != null) {
+                                                                                              requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                                httpUrl.addQueryParameter(_key, _value);
+                                                                                              } );
+                                                                                            }
+                                                                                            RequestBody body;
+                                                                                            try {
+                                                                                              body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                            }
+                                                                                            catch(JsonProcessingException e) {
+                                                                                              throw new NordletApiException("Failed to serialize request", e);
+                                                                                            }
+                                                                                            Request okhttpRequest = new Request.Builder()
+                                                                                              .url(httpUrl.build())
+                                                                                              .method("POST", body)
+                                                                                              .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                              .addHeader("Content-Type", "application/json")
+                                                                                              .addHeader("Accept", "application/json")
+                                                                                              .build();
+                                                                                            OkHttpClient client = clientOptions.httpClient();
+                                                                                            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                              client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                            }
+                                                                                            if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                              okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                            }
+                                                                                            try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                              ResponseBody responseBody = response.body();
+                                                                                              String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                              if (response.isSuccessful()) {
+                                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionModifySalesResponse.class), response);
+                                                                                              }
+                                                                                              try {
+                                                                                                switch (response.code()) {
+                                                                                                  case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                  case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                  case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                  case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                  case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                  case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                  case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                  case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                  case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                  case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                }
+                                                                                              }
+                                                                                              catch (JsonProcessingException ignored) {
+                                                                                                // unable to map error response, throwing generic error
+                                                                                              }
+                                                                                              Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                              throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                            }
+                                                                                            catch (JsonProcessingException e) {
+                                                                                              throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                            }
+                                                                                            catch (IOException e) {
+                                                                                              throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                            }
+                                                                                          }
+
+                                                                                          /**
+                                                                                           * List the revenue recognition runs, newest first; filterable by <code>runDate</code> and <code>trigger</code>, sortable by <code>runDate</code> and <code>createdAt</code>.
+                                                                                           */
+                                                                                          public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
+                                                                                              ) {
+                                                                                            return recognitionRunsList(RecognitionRunsListSalesRequest.builder().build());
+                                                                                          }
+
+                                                                                          /**
+                                                                                           * List the revenue recognition runs, newest first; filterable by <code>runDate</code> and <code>trigger</code>, sortable by <code>runDate</code> and <code>createdAt</code>.
+                                                                                           */
+                                                                                          public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
+                                                                                              RequestOptions requestOptions) {
+                                                                                            return recognitionRunsList(RecognitionRunsListSalesRequest.builder().build(),requestOptions);
+                                                                                          }
+
+                                                                                          /**
+                                                                                           * List the revenue recognition runs, newest first; filterable by <code>runDate</code> and <code>trigger</code>, sortable by <code>runDate</code> and <code>createdAt</code>.
+                                                                                           */
+                                                                                          public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
+                                                                                              RecognitionRunsListSalesRequest request) {
+                                                                                            return recognitionRunsList(request,null);
+                                                                                          }
+
+                                                                                          /**
+                                                                                           * List the revenue recognition runs, newest first; filterable by <code>runDate</code> and <code>trigger</code>, sortable by <code>runDate</code> and <code>createdAt</code>.
+                                                                                           */
+                                                                                          public NordletApiHttpResponse<RecognitionRunsListSalesResponse> recognitionRunsList(
+                                                                                              RecognitionRunsListSalesRequest request,
+                                                                                              RequestOptions requestOptions) {
+                                                                                            HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                              .addPathSegments("v1/sales/recognition/runs/list");if (requestOptions != null) {
+                                                                                                requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                                  httpUrl.addQueryParameter(_key, _value);
+                                                                                                } );
+                                                                                              }
+                                                                                              RequestBody body;
+                                                                                              try {
+                                                                                                body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                              }
+                                                                                              catch(JsonProcessingException e) {
+                                                                                                throw new NordletApiException("Failed to serialize request", e);
+                                                                                              }
+                                                                                              Request okhttpRequest = new Request.Builder()
+                                                                                                .url(httpUrl.build())
+                                                                                                .method("POST", body)
+                                                                                                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                                .addHeader("Content-Type", "application/json")
+                                                                                                .addHeader("Accept", "application/json")
+                                                                                                .build();
+                                                                                              OkHttpClient client = clientOptions.httpClient();
+                                                                                              if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                                client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                              }
+                                                                                              if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                                okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                              }
+                                                                                              try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                                ResponseBody responseBody = response.body();
+                                                                                                String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                                if (response.isSuccessful()) {
+                                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionRunsListSalesResponse.class), response);
+                                                                                                }
+                                                                                                try {
+                                                                                                  switch (response.code()) {
+                                                                                                    case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                    case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                    case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                    case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                    case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                    case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                    case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                    case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                  }
+                                                                                                }
+                                                                                                catch (JsonProcessingException ignored) {
+                                                                                                  // unable to map error response, throwing generic error
+                                                                                                }
+                                                                                                Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                                throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                              }
+                                                                                              catch (JsonProcessingException e) {
+                                                                                                throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                              }
+                                                                                              catch (IOException e) {
+                                                                                                throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                              }
+                                                                                            }
+
+                                                                                            /**
+                                                                                             * Deferred revenue per line of the issued standard invoices whose recognition method is not <code>point_in_time</code>: the deferred total, the amount recognised so far, the remainder, the number of pending schedules and the next schedule date, with totals; <code>invoiceId</code> limits it to one invoice. For a <code>percent_complete</code> line the deferred total is the line's base amount, for the other methods the sum of its schedules.
+                                                                                             */
+                                                                                            public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
+                                                                                                ) {
+                                                                                              return recognitionSummary(RecognitionSummarySalesRequest.builder().build());
+                                                                                            }
+
+                                                                                            /**
+                                                                                             * Deferred revenue per line of the issued standard invoices whose recognition method is not <code>point_in_time</code>: the deferred total, the amount recognised so far, the remainder, the number of pending schedules and the next schedule date, with totals; <code>invoiceId</code> limits it to one invoice. For a <code>percent_complete</code> line the deferred total is the line's base amount, for the other methods the sum of its schedules.
+                                                                                             */
+                                                                                            public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
+                                                                                                RequestOptions requestOptions) {
+                                                                                              return recognitionSummary(RecognitionSummarySalesRequest.builder().build(),requestOptions);
+                                                                                            }
+
+                                                                                            /**
+                                                                                             * Deferred revenue per line of the issued standard invoices whose recognition method is not <code>point_in_time</code>: the deferred total, the amount recognised so far, the remainder, the number of pending schedules and the next schedule date, with totals; <code>invoiceId</code> limits it to one invoice. For a <code>percent_complete</code> line the deferred total is the line's base amount, for the other methods the sum of its schedules.
+                                                                                             */
+                                                                                            public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
+                                                                                                RecognitionSummarySalesRequest request) {
+                                                                                              return recognitionSummary(request,null);
+                                                                                            }
+
+                                                                                            /**
+                                                                                             * Deferred revenue per line of the issued standard invoices whose recognition method is not <code>point_in_time</code>: the deferred total, the amount recognised so far, the remainder, the number of pending schedules and the next schedule date, with totals; <code>invoiceId</code> limits it to one invoice. For a <code>percent_complete</code> line the deferred total is the line's base amount, for the other methods the sum of its schedules.
+                                                                                             */
+                                                                                            public NordletApiHttpResponse<RecognitionSummarySalesResponse> recognitionSummary(
+                                                                                                RecognitionSummarySalesRequest request,
+                                                                                                RequestOptions requestOptions) {
+                                                                                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                                .addPathSegments("v1/sales/recognition/summary");if (requestOptions != null) {
+                                                                                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                                    httpUrl.addQueryParameter(_key, _value);
+                                                                                                  } );
+                                                                                                }
+                                                                                                RequestBody body;
+                                                                                                try {
+                                                                                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                                }
+                                                                                                catch(JsonProcessingException e) {
+                                                                                                  throw new NordletApiException("Failed to serialize request", e);
+                                                                                                }
+                                                                                                Request okhttpRequest = new Request.Builder()
+                                                                                                  .url(httpUrl.build())
+                                                                                                  .method("POST", body)
+                                                                                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                                  .addHeader("Content-Type", "application/json")
+                                                                                                  .addHeader("Accept", "application/json")
+                                                                                                  .build();
+                                                                                                OkHttpClient client = clientOptions.httpClient();
+                                                                                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                                  client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                                }
+                                                                                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                                }
+                                                                                                try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                                  ResponseBody responseBody = response.body();
+                                                                                                  String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                                  if (response.isSuccessful()) {
+                                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RecognitionSummarySalesResponse.class), response);
+                                                                                                  }
+                                                                                                  try {
+                                                                                                    switch (response.code()) {
+                                                                                                      case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                      case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                      case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                      case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                      case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                      case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                      case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                      case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                    }
+                                                                                                  }
+                                                                                                  catch (JsonProcessingException ignored) {
+                                                                                                    // unable to map error response, throwing generic error
+                                                                                                  }
+                                                                                                  Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                                  throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                                }
+                                                                                                catch (JsonProcessingException e) {
+                                                                                                  throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                                }
+                                                                                                catch (IOException e) {
+                                                                                                  throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                                }
+                                                                                              }
+
+                                                                                              /**
+                                                                                               * List the refund liabilities of issued invoices (created at issue from the lines' <code>refundEstimatePercent</code> or by <code>sales/refund-liability/true-up</code>): the estimate, the part consumed by credit notes, the settlement refunds and the remaining amount (estimate less consumed), with the invoice number. Filterable by invoiceId; sortable by createdAt and updatedAt.
+                                                                                               */
+                                                                                              public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
+                                                                                                  ) {
+                                                                                                return refundLiabilityList(RefundLiabilityListSalesRequest.builder().build());
+                                                                                              }
+
+                                                                                              /**
+                                                                                               * List the refund liabilities of issued invoices (created at issue from the lines' <code>refundEstimatePercent</code> or by <code>sales/refund-liability/true-up</code>): the estimate, the part consumed by credit notes, the settlement refunds and the remaining amount (estimate less consumed), with the invoice number. Filterable by invoiceId; sortable by createdAt and updatedAt.
+                                                                                               */
+                                                                                              public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
+                                                                                                  RequestOptions requestOptions) {
+                                                                                                return refundLiabilityList(RefundLiabilityListSalesRequest.builder().build(),requestOptions);
+                                                                                              }
+
+                                                                                              /**
+                                                                                               * List the refund liabilities of issued invoices (created at issue from the lines' <code>refundEstimatePercent</code> or by <code>sales/refund-liability/true-up</code>): the estimate, the part consumed by credit notes, the settlement refunds and the remaining amount (estimate less consumed), with the invoice number. Filterable by invoiceId; sortable by createdAt and updatedAt.
+                                                                                               */
+                                                                                              public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
+                                                                                                  RefundLiabilityListSalesRequest request) {
+                                                                                                return refundLiabilityList(request,null);
+                                                                                              }
+
+                                                                                              /**
+                                                                                               * List the refund liabilities of issued invoices (created at issue from the lines' <code>refundEstimatePercent</code> or by <code>sales/refund-liability/true-up</code>): the estimate, the part consumed by credit notes, the settlement refunds and the remaining amount (estimate less consumed), with the invoice number. Filterable by invoiceId; sortable by createdAt and updatedAt.
+                                                                                               */
+                                                                                              public NordletApiHttpResponse<RefundLiabilityListSalesResponse> refundLiabilityList(
+                                                                                                  RefundLiabilityListSalesRequest request,
+                                                                                                  RequestOptions requestOptions) {
+                                                                                                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                                  .addPathSegments("v1/sales/refund-liability/list");if (requestOptions != null) {
+                                                                                                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                                      httpUrl.addQueryParameter(_key, _value);
+                                                                                                    } );
+                                                                                                  }
+                                                                                                  RequestBody body;
+                                                                                                  try {
+                                                                                                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                                  }
+                                                                                                  catch(JsonProcessingException e) {
+                                                                                                    throw new NordletApiException("Failed to serialize request", e);
+                                                                                                  }
+                                                                                                  Request okhttpRequest = new Request.Builder()
+                                                                                                    .url(httpUrl.build())
+                                                                                                    .method("POST", body)
+                                                                                                    .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                                    .addHeader("Content-Type", "application/json")
+                                                                                                    .addHeader("Accept", "application/json")
+                                                                                                    .build();
+                                                                                                  OkHttpClient client = clientOptions.httpClient();
+                                                                                                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                                    client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                                  }
+                                                                                                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                                  }
+                                                                                                  try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                                    ResponseBody responseBody = response.body();
+                                                                                                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                                    if (response.isSuccessful()) {
+                                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RefundLiabilityListSalesResponse.class), response);
+                                                                                                    }
+                                                                                                    try {
+                                                                                                      switch (response.code()) {
+                                                                                                        case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                        case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                        case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                        case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                        case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                        case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                        case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                        case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                      }
+                                                                                                    }
+                                                                                                    catch (JsonProcessingException ignored) {
+                                                                                                      // unable to map error response, throwing generic error
+                                                                                                    }
+                                                                                                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                                    throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                                  }
+                                                                                                  catch (JsonProcessingException e) {
+                                                                                                    throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                                  }
+                                                                                                  catch (IOException e) {
+                                                                                                    throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                                  }
+                                                                                                }
+
+                                                                                                /**
+                                                                                                 * Re-estimate the refund liability of an issued standard invoice to <code>estimatedTotal</code> and post the difference on <code>date</code> (default today) between the refund liability account and the invoice's revenue accounts, in proportion to the lines' allocated or net amounts; creates the liability when the invoice has none. Emits <code>refund_liability.trued_up</code>. Answers 422 when the invoice is not an issued standard invoice, when the estimate is below the amount already consumed or unchanged, or when the invoice has no revenue to allocate against; 409 when the accounting period is locked.
+                                                                                                 */
+                                                                                                public NordletApiHttpResponse<RefundLiabilityTrueUpSalesResponse> refundLiabilityTrueUp(
+                                                                                                    RefundLiabilityTrueUpSalesRequest request) {
+                                                                                                  return refundLiabilityTrueUp(request,null);
+                                                                                                }
+
+                                                                                                /**
+                                                                                                 * Re-estimate the refund liability of an issued standard invoice to <code>estimatedTotal</code> and post the difference on <code>date</code> (default today) between the refund liability account and the invoice's revenue accounts, in proportion to the lines' allocated or net amounts; creates the liability when the invoice has none. Emits <code>refund_liability.trued_up</code>. Answers 422 when the invoice is not an issued standard invoice, when the estimate is below the amount already consumed or unchanged, or when the invoice has no revenue to allocate against; 409 when the accounting period is locked.
+                                                                                                 */
+                                                                                                public NordletApiHttpResponse<RefundLiabilityTrueUpSalesResponse> refundLiabilityTrueUp(
+                                                                                                    RefundLiabilityTrueUpSalesRequest request,
+                                                                                                    RequestOptions requestOptions) {
+                                                                                                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                                    .addPathSegments("v1/sales/refund-liability/true-up");if (requestOptions != null) {
+                                                                                                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                                        httpUrl.addQueryParameter(_key, _value);
+                                                                                                      } );
+                                                                                                    }
+                                                                                                    RequestBody body;
+                                                                                                    try {
+                                                                                                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                                    }
+                                                                                                    catch(JsonProcessingException e) {
+                                                                                                      throw new NordletApiException("Failed to serialize request", e);
+                                                                                                    }
+                                                                                                    Request okhttpRequest = new Request.Builder()
+                                                                                                      .url(httpUrl.build())
+                                                                                                      .method("POST", body)
+                                                                                                      .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                                      .addHeader("Content-Type", "application/json")
+                                                                                                      .addHeader("Accept", "application/json")
+                                                                                                      .build();
+                                                                                                    OkHttpClient client = clientOptions.httpClient();
+                                                                                                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                                      client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                                    }
+                                                                                                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                                    }
+                                                                                                    try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                                      ResponseBody responseBody = response.body();
+                                                                                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                                      if (response.isSuccessful()) {
+                                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RefundLiabilityTrueUpSalesResponse.class), response);
+                                                                                                      }
+                                                                                                      try {
+                                                                                                        switch (response.code()) {
+                                                                                                          case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                          case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                          case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                          case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                          case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                          case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                          case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                          case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                                        }
+                                                                                                      }
+                                                                                                      catch (JsonProcessingException ignored) {
+                                                                                                        // unable to map error response, throwing generic error
+                                                                                                      }
+                                                                                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                                      throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                                    }
+                                                                                                    catch (JsonProcessingException e) {
+                                                                                                      throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                                    }
+                                                                                                    catch (IOException e) {
+                                                                                                      throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                                    }
+                                                                                                  }
+                                                                                                }

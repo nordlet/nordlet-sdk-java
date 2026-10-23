@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.sales.types.InvoicesCreateSalesRequestLinesItem;
+import com.nordlet.api.resources.sales.types.InvoicesCreateSalesRequestLocale;
 import com.nordlet.api.resources.sales.types.InvoicesCreateSalesRequestType;
 import com.nordlet.api.resources.sales.types.InvoicesCreateSalesRequestVatScheme;
 import java.lang.Boolean;
@@ -68,6 +69,8 @@ public final class InvoicesCreateSalesRequest {
 
   private final Optional<String> documentRef;
 
+  private final Optional<InvoicesCreateSalesRequestLocale> locale;
+
   private final Optional<String> operationTypeId;
 
   private final Optional<String> documentSeriesId;
@@ -98,12 +101,12 @@ public final class InvoicesCreateSalesRequest {
       Optional<String> intrastatTransportMode, Optional<String> intrastatDeliveryTerms,
       Optional<String> intrastatRegion, Optional<String> intrastatNatureOfTransaction,
       Optional<String> vatCountryCode, Optional<Boolean> deemedSupplier, Optional<String> notes,
-      Optional<String> documentRef, Optional<String> operationTypeId,
-      Optional<String> documentSeriesId, Optional<String> seriesLabel, Optional<String> orderNumber,
-      Optional<String> issuedByName, Optional<String> issuedByTitle,
-      Optional<String> receivedByName, Optional<String> receivedByTitle,
-      Optional<String> discountPercent, List<InvoicesCreateSalesRequestLinesItem> lines,
-      Map<String, Object> additionalProperties) {
+      Optional<String> documentRef, Optional<InvoicesCreateSalesRequestLocale> locale,
+      Optional<String> operationTypeId, Optional<String> documentSeriesId,
+      Optional<String> seriesLabel, Optional<String> orderNumber, Optional<String> issuedByName,
+      Optional<String> issuedByTitle, Optional<String> receivedByName,
+      Optional<String> receivedByTitle, Optional<String> discountPercent,
+      List<InvoicesCreateSalesRequestLinesItem> lines, Map<String, Object> additionalProperties) {
     this.partnerId = partnerId;
     this.type = type;
     this.currency = currency;
@@ -122,6 +125,7 @@ public final class InvoicesCreateSalesRequest {
     this.deemedSupplier = deemedSupplier;
     this.notes = notes;
     this.documentRef = documentRef;
+    this.locale = locale;
     this.operationTypeId = operationTypeId;
     this.documentSeriesId = documentSeriesId;
     this.seriesLabel = seriesLabel;
@@ -231,6 +235,14 @@ public final class InvoicesCreateSalesRequest {
     return documentRef;
   }
 
+  /**
+   * @return Language of the PDF and of the e-mail the invoice is sent with; unset means the language asked for when the PDF is made
+   */
+  @JsonProperty("locale")
+  public Optional<InvoicesCreateSalesRequestLocale> getLocale() {
+    return locale;
+  }
+
   @JsonProperty("operationTypeId")
   public Optional<String> getOperationTypeId() {
     return operationTypeId;
@@ -293,12 +305,12 @@ public final class InvoicesCreateSalesRequest {
   }
 
   private boolean equalTo(InvoicesCreateSalesRequest other) {
-    return partnerId.equals(other.partnerId) && type.equals(other.type) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && discountPercent.equals(other.discountPercent) && lines.equals(other.lines);
+    return partnerId.equals(other.partnerId) && type.equals(other.type) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && locale.equals(other.locale) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && discountPercent.equals(other.discountPercent) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.partnerId, this.type, this.currency, this.issueDate, this.dueDate, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.discountPercent, this.lines);
+    return Objects.hash(this.partnerId, this.type, this.currency, this.issueDate, this.dueDate, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.locale, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.discountPercent, this.lines);
   }
 
   @java.lang.Override
@@ -397,6 +409,13 @@ public final class InvoicesCreateSalesRequest {
 
     _FinalStage documentRef(String documentRef);
 
+    /**
+     * <p>Language of the PDF and of the e-mail the invoice is sent with; unset means the language asked for when the PDF is made</p>
+     */
+    _FinalStage locale(Optional<InvoicesCreateSalesRequestLocale> locale);
+
+    _FinalStage locale(InvoicesCreateSalesRequestLocale locale);
+
     _FinalStage operationTypeId(Optional<String> operationTypeId);
 
     _FinalStage operationTypeId(String operationTypeId);
@@ -466,6 +485,8 @@ public final class InvoicesCreateSalesRequest {
 
     private Optional<String> operationTypeId = Optional.empty();
 
+    private Optional<InvoicesCreateSalesRequestLocale> locale = Optional.empty();
+
     private Optional<String> documentRef = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
@@ -526,6 +547,7 @@ public final class InvoicesCreateSalesRequest {
       deemedSupplier(other.getDeemedSupplier());
       notes(other.getNotes());
       documentRef(other.getDocumentRef());
+      locale(other.getLocale());
       operationTypeId(other.getOperationTypeId());
       documentSeriesId(other.getDocumentSeriesId());
       seriesLabel(other.getSeriesLabel());
@@ -714,6 +736,29 @@ public final class InvoicesCreateSalesRequest {
     )
     public _FinalStage operationTypeId(Optional<String> operationTypeId) {
       this.operationTypeId = operationTypeId;
+      return this;
+    }
+
+    /**
+     * <p>Language of the PDF and of the e-mail the invoice is sent with; unset means the language asked for when the PDF is made</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage locale(InvoicesCreateSalesRequestLocale locale) {
+      this.locale = Optional.ofNullable(locale);
+      return this;
+    }
+
+    /**
+     * <p>Language of the PDF and of the e-mail the invoice is sent with; unset means the language asked for when the PDF is made</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "locale",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage locale(Optional<InvoicesCreateSalesRequestLocale> locale) {
+      this.locale = locale;
       return this;
     }
 
@@ -1005,7 +1050,7 @@ public final class InvoicesCreateSalesRequest {
 
     @java.lang.Override
     public InvoicesCreateSalesRequest build() {
-      return new InvoicesCreateSalesRequest(partnerId, type, currency, issueDate, dueDate, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, discountPercent, lines, additionalProperties);
+      return new InvoicesCreateSalesRequest(partnerId, type, currency, issueDate, dueDate, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, locale, operationTypeId, documentSeriesId, seriesLabel, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, discountPercent, lines, additionalProperties);
     }
 
     @java.lang.Override

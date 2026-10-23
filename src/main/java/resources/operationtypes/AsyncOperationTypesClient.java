@@ -35,57 +35,93 @@ public class AsyncOperationTypesClient {
     return this.rawClient;
   }
 
+  /**
+   * Create an operation type: a <code>code</code> with the flags that say what it is for (<code>isSale</code>, <code>isPurchase</code>, ...), an optional <code>invoiceType</code> (<code>invoice</code>, <code>credit_note</code>, <code>proforma</code>, <code>advance</code>) and optional account codes. An invoice names it in <code>operationTypeId</code>: a sale invoice needs <code>isSale</code> and a matching <code>invoiceType</code>, a purchase invoice <code>isPurchase</code>, and the type's account codes then replace the default posting accounts when the invoice is issued (<code>sales/invoices/issue</code>) or registered (<code>purchases/invoices/register</code>). <code>includeInVatRegister: false</code> keeps the type's invoices out of the Lithuanian i.SAF and FR0600, <code>includeInSaft: false</code> out of the SAF-T file. Account codes must exist and be postable and <code>payerPartnerId</code> must be an active partner (422 otherwise); a repeated <code>code</code> is refused with 409.
+   */
   public CompletableFuture<CreateOperationTypesResponse> create(
       CreateOperationTypesRequest request) {
     return this.rawClient.create(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create an operation type: a <code>code</code> with the flags that say what it is for (<code>isSale</code>, <code>isPurchase</code>, ...), an optional <code>invoiceType</code> (<code>invoice</code>, <code>credit_note</code>, <code>proforma</code>, <code>advance</code>) and optional account codes. An invoice names it in <code>operationTypeId</code>: a sale invoice needs <code>isSale</code> and a matching <code>invoiceType</code>, a purchase invoice <code>isPurchase</code>, and the type's account codes then replace the default posting accounts when the invoice is issued (<code>sales/invoices/issue</code>) or registered (<code>purchases/invoices/register</code>). <code>includeInVatRegister: false</code> keeps the type's invoices out of the Lithuanian i.SAF and FR0600, <code>includeInSaft: false</code> out of the SAF-T file. Account codes must exist and be postable and <code>payerPartnerId</code> must be an active partner (422 otherwise); a repeated <code>code</code> is refused with 409.
+   */
   public CompletableFuture<CreateOperationTypesResponse> create(CreateOperationTypesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.create(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Change an operation type's fields; omitted ones keep their value. A <code>code</code> already used by another type is refused with 409, a body without changes with 400.
+   */
   public CompletableFuture<UpdateOperationTypesResponse> update(
       UpdateOperationTypesRequest request) {
     return this.rawClient.update(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Change an operation type's fields; omitted ones keep their value. A <code>code</code> already used by another type is refused with 409, a body without changes with 400.
+   */
   public CompletableFuture<UpdateOperationTypesResponse> update(UpdateOperationTypesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.update(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Read one operation type.
+   */
   public CompletableFuture<GetOperationTypesResponse> get(GetOperationTypesRequest request) {
     return this.rawClient.get(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Read one operation type.
+   */
   public CompletableFuture<GetOperationTypesResponse> get(GetOperationTypesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.get(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Delete an operation type that no sale invoice, purchase invoice or document series refers to. Otherwise the call is refused with 409; deactivate the type with <code>operation-types/update</code> instead.
+   */
   public CompletableFuture<DeleteOperationTypesResponse> delete(
       DeleteOperationTypesRequest request) {
     return this.rawClient.delete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Delete an operation type that no sale invoice, purchase invoice or document series refers to. Otherwise the call is refused with 409; deactivate the type with <code>operation-types/update</code> instead.
+   */
   public CompletableFuture<DeleteOperationTypesResponse> delete(DeleteOperationTypesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.delete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>sortOrder</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<ListOperationTypesResponse> list() {
     return this.rawClient.list().thenApply(response -> response.body());
   }
 
+  /**
+   * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>sortOrder</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<ListOperationTypesResponse> list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>sortOrder</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<ListOperationTypesResponse> list(ListOperationTypesRequest request) {
     return this.rawClient.list(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>sortOrder</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<ListOperationTypesResponse> list(ListOperationTypesRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.list(request, requestOptions).thenApply(response -> response.body());

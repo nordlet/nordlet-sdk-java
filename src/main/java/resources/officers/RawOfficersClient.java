@@ -138,10 +138,16 @@ public class RawOfficersClient {
       }
     }
 
+    /**
+     * Add an officer to the company's register (<code>officers/list</code>); <code>signsAccounts</code> defaults to true. Refused with 422 when <code>resignedOn</code> is before <code>appointedOn</code>.
+     */
     public NordletApiHttpResponse<CreateOfficersResponse> create(CreateOfficersRequest request) {
       return create(request,null);
     }
 
+    /**
+     * Add an officer to the company's register (<code>officers/list</code>); <code>signsAccounts</code> defaults to true. Refused with 422 when <code>resignedOn</code> is before <code>appointedOn</code>.
+     */
     public NordletApiHttpResponse<CreateOfficersResponse> create(CreateOfficersRequest request,
         RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -206,10 +212,16 @@ public class RawOfficersClient {
         }
       }
 
+      /**
+       * Replace the recorded data of an officer; every field is written as sent, so a field left out is cleared and <code>signsAccounts</code> falls back to true. Refused with 422 when <code>resignedOn</code> is before <code>appointedOn</code>.
+       */
       public NordletApiHttpResponse<UpdateOfficersResponse> update(UpdateOfficersRequest request) {
         return update(request,null);
       }
 
+      /**
+       * Replace the recorded data of an officer; every field is written as sent, so a field left out is cleared and <code>signsAccounts</code> falls back to true. Refused with 422 when <code>resignedOn</code> is before <code>appointedOn</code>.
+       */
       public NordletApiHttpResponse<UpdateOfficersResponse> update(UpdateOfficersRequest request,
           RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -274,11 +286,17 @@ public class RawOfficersClient {
           }
         }
 
+        /**
+         * Remove an officer from the company's register.
+         */
         public NordletApiHttpResponse<DeleteOfficersResponse> delete(
             DeleteOfficersRequest request) {
           return delete(request,null);
         }
 
+        /**
+         * Remove an officer from the company's register.
+         */
         public NordletApiHttpResponse<DeleteOfficersResponse> delete(DeleteOfficersRequest request,
             RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

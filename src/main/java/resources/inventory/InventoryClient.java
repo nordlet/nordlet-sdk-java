@@ -68,272 +68,452 @@ public class InventoryClient {
     return this.rawClient;
   }
 
+  /**
+   * Return the company's negative stock policy.
+   */
   public SettingsGetInventoryResponse settingsGet() {
     return this.rawClient.settingsGet().body();
   }
 
+  /**
+   * Return the company's negative stock policy.
+   */
   public SettingsGetInventoryResponse settingsGet(RequestOptions requestOptions) {
     return this.rawClient.settingsGet(requestOptions).body();
   }
 
+  /**
+   * Return the company's negative stock policy.
+   */
   public SettingsGetInventoryResponse settingsGet(SettingsGetInventoryRequest request) {
     return this.rawClient.settingsGet(request).body();
   }
 
+  /**
+   * Return the company's negative stock policy.
+   */
   public SettingsGetInventoryResponse settingsGet(SettingsGetInventoryRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.settingsGet(request, requestOptions).body();
   }
 
+  /**
+   * Set the negative stock policy. With <code>reject</code> a consumption larger than the stock on hand of the item in the warehouse is refused with 422. With <code>allow</code> the missing quantity is written as a shortage priced at the unit cost of the last receipt in that warehouse (the item's purchase price when there is none); the next receipt of the item there settles the shortage and posts any cost difference between <code>inventory.cogs</code> and <code>inventory.stock</code>. A consumption from a named lot is refused with 422 under both policies.
+   */
   public SettingsUpdateInventoryResponse settingsUpdate(SettingsUpdateInventoryRequest request) {
     return this.rawClient.settingsUpdate(request).body();
   }
 
+  /**
+   * Set the negative stock policy. With <code>reject</code> a consumption larger than the stock on hand of the item in the warehouse is refused with 422. With <code>allow</code> the missing quantity is written as a shortage priced at the unit cost of the last receipt in that warehouse (the item's purchase price when there is none); the next receipt of the item there settles the shortage and posts any cost difference between <code>inventory.cogs</code> and <code>inventory.stock</code>. A consumption from a named lot is refused with 422 under both policies.
+   */
   public SettingsUpdateInventoryResponse settingsUpdate(SettingsUpdateInventoryRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.settingsUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Create a warehouse. 409 when the code already exists.
+   */
   public WarehousesCreateInventoryResponse warehousesCreate(
       WarehousesCreateInventoryRequest request) {
     return this.rawClient.warehousesCreate(request).body();
   }
 
+  /**
+   * Create a warehouse. 409 when the code already exists.
+   */
   public WarehousesCreateInventoryResponse warehousesCreate(
       WarehousesCreateInventoryRequest request, RequestOptions requestOptions) {
     return this.rawClient.warehousesCreate(request, requestOptions).body();
   }
 
+  /**
+   * List the warehouses. Filterable and sortable: code, name.
+   */
   public WarehousesListInventoryResponse warehousesList() {
     return this.rawClient.warehousesList().body();
   }
 
+  /**
+   * List the warehouses. Filterable and sortable: code, name.
+   */
   public WarehousesListInventoryResponse warehousesList(RequestOptions requestOptions) {
     return this.rawClient.warehousesList(requestOptions).body();
   }
 
+  /**
+   * List the warehouses. Filterable and sortable: code, name.
+   */
   public WarehousesListInventoryResponse warehousesList(WarehousesListInventoryRequest request) {
     return this.rawClient.warehousesList(request).body();
   }
 
+  /**
+   * List the warehouses. Filterable and sortable: code, name.
+   */
   public WarehousesListInventoryResponse warehousesList(WarehousesListInventoryRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.warehousesList(request, requestOptions).body();
   }
 
+  /**
+   * Change the name or the country code of a warehouse.
+   */
   public WarehousesUpdateInventoryResponse warehousesUpdate(
       WarehousesUpdateInventoryRequest request) {
     return this.rawClient.warehousesUpdate(request).body();
   }
 
+  /**
+   * Change the name or the country code of a warehouse.
+   */
   public WarehousesUpdateInventoryResponse warehousesUpdate(
       WarehousesUpdateInventoryRequest request, RequestOptions requestOptions) {
     return this.rawClient.warehousesUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Record a manual receipt of an item into a warehouse at <code>unitCost</code> (document type <code>manual_receipt</code>); the quantity must be positive (422). A lot- or serial-tracked item needs <code>lotNumber</code> (422); an unknown lot is created, and <code>expiryDate</code> is stored on a lot that has none. A serial-tracked item is received one unit at a time (422), and 409 when that serial number is already in stock. Open shortages of the item in the warehouse (negative stock policy <code>allow</code>) are settled from the receipt. Emits <code>stock.changed</code>. Receipts against a purchase order go through <code>purchases/receipts/create</code>.
+   */
   public StockReceiveInventoryResponse stockReceive(StockReceiveInventoryRequest request) {
     return this.rawClient.stockReceive(request).body();
   }
 
+  /**
+   * Record a manual receipt of an item into a warehouse at <code>unitCost</code> (document type <code>manual_receipt</code>); the quantity must be positive (422). A lot- or serial-tracked item needs <code>lotNumber</code> (422); an unknown lot is created, and <code>expiryDate</code> is stored on a lot that has none. A serial-tracked item is received one unit at a time (422), and 409 when that serial number is already in stock. Open shortages of the item in the warehouse (negative stock policy <code>allow</code>) are settled from the receipt. Emits <code>stock.changed</code>. Receipts against a purchase order go through <code>purchases/receipts/create</code>.
+   */
   public StockReceiveInventoryResponse stockReceive(StockReceiveInventoryRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.stockReceive(request, requestOptions).body();
   }
 
+  /**
+   * Consume a quantity of an item from a warehouse, oldest layers first (from one lot when <code>lotNumber</code> is given), and post a journal entry: debit the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account), credit the stock account each consumed layer was received on (the chart's inventory account for layers without one), or <code>inventoryAccountCode</code> for the whole cost when given. 409 when the accounting period of <code>date</code> is locked; 422 when the stock is insufficient under the <code>reject</code> policy or in the named lot. Emits <code>stock.changed</code> and, when the consumption takes the available quantity from above a reorder rule's minimum to at or below it, <code>stock.reorder_needed</code>.
+   */
   public StockWriteOffInventoryResponse stockWriteOff(StockWriteOffInventoryRequest request) {
     return this.rawClient.stockWriteOff(request).body();
   }
 
+  /**
+   * Consume a quantity of an item from a warehouse, oldest layers first (from one lot when <code>lotNumber</code> is given), and post a journal entry: debit the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account), credit the stock account each consumed layer was received on (the chart's inventory account for layers without one), or <code>inventoryAccountCode</code> for the whole cost when given. 409 when the accounting period of <code>date</code> is locked; 422 when the stock is insufficient under the <code>reject</code> policy or in the named lot. Emits <code>stock.changed</code> and, when the consumption takes the available quantity from above a reorder rule's minimum to at or below it, <code>stock.reorder_needed</code>.
+   */
   public StockWriteOffInventoryResponse stockWriteOff(StockWriteOffInventoryRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.stockWriteOff(request, requestOptions).body();
   }
 
+  /**
+   * Move a quantity of an item from one warehouse to another: the source layers are consumed oldest first (from one lot when <code>lotNumber</code> is given) and received in the target with the same quantities, costs, lots and stock accounts (document type <code>warehouse_transfer</code>). 422 when both warehouses are the same or the source stock is insufficient under the <code>reject</code> policy. <code>inMovementId</code> is the first receipt when the consumption spans several lots or stock accounts. Emits <code>stock.changed</code> for both warehouses and <code>stock.reorder_needed</code> as <code>inventory/stock/write-off</code> does.
+   */
   public StockTransferInventoryResponse stockTransfer(StockTransferInventoryRequest request) {
     return this.rawClient.stockTransfer(request).body();
   }
 
+  /**
+   * Move a quantity of an item from one warehouse to another: the source layers are consumed oldest first (from one lot when <code>lotNumber</code> is given) and received in the target with the same quantities, costs, lots and stock accounts (document type <code>warehouse_transfer</code>). 422 when both warehouses are the same or the source stock is insufficient under the <code>reject</code> policy. <code>inMovementId</code> is the first receipt when the consumption spans several lots or stock accounts. Emits <code>stock.changed</code> for both warehouses and <code>stock.reorder_needed</code> as <code>inventory/stock/write-off</code> does.
+   */
   public StockTransferInventoryResponse stockTransfer(StockTransferInventoryRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.stockTransfer(request, requestOptions).body();
   }
 
+  /**
+   * Post a stock count for a warehouse. Each line names an item by <code>itemId</code> or <code>barcode</code> with its <code>countedQty</code>; the difference to the quantity on hand in the warehouse (all lots together) is written off oldest layers first or received as a surplus at <code>unitCost</code> (the item's purchase price when omitted; 422 when neither is set), with document type <code>stock_take</code>, and a surplus of a lot- or serial-tracked item needs <code>lotNumber</code> (422). The shortage cost less the surplus cost is posted in one journal entry between the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account) and the stock accounts (<code>inventoryAccountCode</code> for everything when given, else the accounts of the consumed layers and the chart's inventory account for the surpluses); nothing is posted and <code>journalTransactionId</code> is null when the net is zero. 409 when the accounting period of <code>date</code> is locked. Emits <code>stock.changed</code> per adjusted item.
+   */
   public StockTakeInventoryResponse stockTake(StockTakeInventoryRequest request) {
     return this.rawClient.stockTake(request).body();
   }
 
+  /**
+   * Post a stock count for a warehouse. Each line names an item by <code>itemId</code> or <code>barcode</code> with its <code>countedQty</code>; the difference to the quantity on hand in the warehouse (all lots together) is written off oldest layers first or received as a surplus at <code>unitCost</code> (the item's purchase price when omitted; 422 when neither is set), with document type <code>stock_take</code>, and a surplus of a lot- or serial-tracked item needs <code>lotNumber</code> (422). The shortage cost less the surplus cost is posted in one journal entry between the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account) and the stock accounts (<code>inventoryAccountCode</code> for everything when given, else the accounts of the consumed layers and the chart's inventory account for the surpluses); nothing is posted and <code>journalTransactionId</code> is null when the net is zero. 409 when the accounting period of <code>date</code> is locked. Emits <code>stock.changed</code> per adjusted item.
+   */
   public StockTakeInventoryResponse stockTake(StockTakeInventoryRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.stockTake(request, requestOptions).body();
   }
 
+  /**
+   * Return the quantity and value on hand per item and warehouse, summed from the stock movements, optionally for one <code>warehouseId</code> and/or <code>itemId</code>. Rows with a zero quantity are left out.
+   */
   public StockLevelsInventoryResponse stockLevels() {
     return this.rawClient.stockLevels().body();
   }
 
+  /**
+   * Return the quantity and value on hand per item and warehouse, summed from the stock movements, optionally for one <code>warehouseId</code> and/or <code>itemId</code>. Rows with a zero quantity are left out.
+   */
   public StockLevelsInventoryResponse stockLevels(RequestOptions requestOptions) {
     return this.rawClient.stockLevels(requestOptions).body();
   }
 
+  /**
+   * Return the quantity and value on hand per item and warehouse, summed from the stock movements, optionally for one <code>warehouseId</code> and/or <code>itemId</code>. Rows with a zero quantity are left out.
+   */
   public StockLevelsInventoryResponse stockLevels(StockLevelsInventoryRequest request) {
     return this.rawClient.stockLevels(request).body();
   }
 
+  /**
+   * Return the quantity and value on hand per item and warehouse, summed from the stock movements, optionally for one <code>warehouseId</code> and/or <code>itemId</code>. Rows with a zero quantity are left out.
+   */
   public StockLevelsInventoryResponse stockLevels(StockLevelsInventoryRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.stockLevels(request, requestOptions).body();
   }
 
+  /**
+   * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost; default newest first.
+   */
   public StockMovementsListInventoryResponse stockMovementsList() {
     return this.rawClient.stockMovementsList().body();
   }
 
+  /**
+   * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost; default newest first.
+   */
   public StockMovementsListInventoryResponse stockMovementsList(RequestOptions requestOptions) {
     return this.rawClient.stockMovementsList(requestOptions).body();
   }
 
+  /**
+   * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost; default newest first.
+   */
   public StockMovementsListInventoryResponse stockMovementsList(
       StockMovementsListInventoryRequest request) {
     return this.rawClient.stockMovementsList(request).body();
   }
 
+  /**
+   * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost; default newest first.
+   */
   public StockMovementsListInventoryResponse stockMovementsList(
       StockMovementsListInventoryRequest request, RequestOptions requestOptions) {
     return this.rawClient.stockMovementsList(request, requestOptions).body();
   }
 
+  /**
+   * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt; default newest first.
+   */
   public LotsListInventoryResponse lotsList() {
     return this.rawClient.lotsList().body();
   }
 
+  /**
+   * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt; default newest first.
+   */
   public LotsListInventoryResponse lotsList(RequestOptions requestOptions) {
     return this.rawClient.lotsList(requestOptions).body();
   }
 
+  /**
+   * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt; default newest first.
+   */
   public LotsListInventoryResponse lotsList(LotsListInventoryRequest request) {
     return this.rawClient.lotsList(request).body();
   }
 
+  /**
+   * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt; default newest first.
+   */
   public LotsListInventoryResponse lotsList(LotsListInventoryRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.lotsList(request, requestOptions).body();
   }
 
+  /**
+   * Return a lot with its quantity on hand and its movements in date order.
+   */
   public LotsGetInventoryResponse lotsGet(LotsGetInventoryRequest request) {
     return this.rawClient.lotsGet(request).body();
   }
 
+  /**
+   * Return a lot with its quantity on hand and its movements in date order.
+   */
   public LotsGetInventoryResponse lotsGet(LotsGetInventoryRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.lotsGet(request, requestOptions).body();
   }
 
+  /**
+   * Change the expiry date or the notes of a lot; null clears the value.
+   */
   public LotsUpdateInventoryResponse lotsUpdate(LotsUpdateInventoryRequest request) {
     return this.rawClient.lotsUpdate(request).body();
   }
 
+  /**
+   * Change the expiry date or the notes of a lot; null clears the value.
+   */
   public LotsUpdateInventoryResponse lotsUpdate(LotsUpdateInventoryRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.lotsUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Allocate an extra cost <code>amount</code> (positive, whole cents; 422 otherwise) over incoming stock movements, named by <code>movementIds</code> or taken from the lines of a goods receipt (<code>goodsReceiptId</code>; 422 when the receipt has no stock movements), in proportion to their cost (<code>by_value</code>) or quantity (<code>by_quantity</code>), largest remainder to the cent. The part of each share that belongs to the quantity still on hand raises the movement's remaining cost and recomputes its unit cost; the part that belongs to quantity already consumed is posted in a journal entry dated <code>date</code> debiting <code>inventory.cogs</code> and crediting the movement's stock account (<code>inventory.stock</code> when it has none), 409 when that period is locked. 422 when a movement is not incoming or the weights sum to zero. <code>sourceInvoiceId</code> records the purchase invoice the cost came from. Goods receipts come from <code>purchases/receipts/create</code>.
+   */
   public LandedCostsCreateInventoryResponse landedCostsCreate(
       LandedCostsCreateInventoryRequest request) {
     return this.rawClient.landedCostsCreate(request).body();
   }
 
+  /**
+   * Allocate an extra cost <code>amount</code> (positive, whole cents; 422 otherwise) over incoming stock movements, named by <code>movementIds</code> or taken from the lines of a goods receipt (<code>goodsReceiptId</code>; 422 when the receipt has no stock movements), in proportion to their cost (<code>by_value</code>) or quantity (<code>by_quantity</code>), largest remainder to the cent. The part of each share that belongs to the quantity still on hand raises the movement's remaining cost and recomputes its unit cost; the part that belongs to quantity already consumed is posted in a journal entry dated <code>date</code> debiting <code>inventory.cogs</code> and crediting the movement's stock account (<code>inventory.stock</code> when it has none), 409 when that period is locked. 422 when a movement is not incoming or the weights sum to zero. <code>sourceInvoiceId</code> records the purchase invoice the cost came from. Goods receipts come from <code>purchases/receipts/create</code>.
+   */
   public LandedCostsCreateInventoryResponse landedCostsCreate(
       LandedCostsCreateInventoryRequest request, RequestOptions requestOptions) {
     return this.rawClient.landedCostsCreate(request, requestOptions).body();
   }
 
+  /**
+   * Return a landed cost with its allocation lines and the journal transaction it posted, if any.
+   */
   public LandedCostsGetInventoryResponse landedCostsGet(LandedCostsGetInventoryRequest request) {
     return this.rawClient.landedCostsGet(request).body();
   }
 
+  /**
+   * Return a landed cost with its allocation lines and the journal transaction it posted, if any.
+   */
   public LandedCostsGetInventoryResponse landedCostsGet(LandedCostsGetInventoryRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.landedCostsGet(request, requestOptions).body();
   }
 
+  /**
+   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount; default newest first.
+   */
   public LandedCostsListInventoryResponse landedCostsList() {
     return this.rawClient.landedCostsList().body();
   }
 
+  /**
+   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount; default newest first.
+   */
   public LandedCostsListInventoryResponse landedCostsList(RequestOptions requestOptions) {
     return this.rawClient.landedCostsList(requestOptions).body();
   }
 
+  /**
+   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount; default newest first.
+   */
   public LandedCostsListInventoryResponse landedCostsList(LandedCostsListInventoryRequest request) {
     return this.rawClient.landedCostsList(request).body();
   }
 
+  /**
+   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount; default newest first.
+   */
   public LandedCostsListInventoryResponse landedCostsList(LandedCostsListInventoryRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.landedCostsList(request, requestOptions).body();
   }
 
+  /**
+   * Create a reorder rule for an item, for one warehouse or, without <code>warehouseId</code>, for the item over all warehouses; one rule per item and warehouse (409). While the rule is active, an outgoing movement or a reservation that takes the available quantity (on hand less reserved) from above <code>minQty</code> to at or below it emits <code>stock.reorder_needed</code> with the <code>reorderQty</code>. <code>inventory/reorder-rules/check</code> lists the rules currently at or below their minimum.
+   */
   public ReorderRulesCreateInventoryResponse reorderRulesCreate(
       ReorderRulesCreateInventoryRequest request) {
     return this.rawClient.reorderRulesCreate(request).body();
   }
 
+  /**
+   * Create a reorder rule for an item, for one warehouse or, without <code>warehouseId</code>, for the item over all warehouses; one rule per item and warehouse (409). While the rule is active, an outgoing movement or a reservation that takes the available quantity (on hand less reserved) from above <code>minQty</code> to at or below it emits <code>stock.reorder_needed</code> with the <code>reorderQty</code>. <code>inventory/reorder-rules/check</code> lists the rules currently at or below their minimum.
+   */
   public ReorderRulesCreateInventoryResponse reorderRulesCreate(
       ReorderRulesCreateInventoryRequest request, RequestOptions requestOptions) {
     return this.rawClient.reorderRulesCreate(request, requestOptions).body();
   }
 
+  /**
+   * Change the minimum quantity, the reorder quantity (null clears it), the active flag or the notes of a reorder rule.
+   */
   public ReorderRulesUpdateInventoryResponse reorderRulesUpdate(
       ReorderRulesUpdateInventoryRequest request) {
     return this.rawClient.reorderRulesUpdate(request).body();
   }
 
+  /**
+   * Change the minimum quantity, the reorder quantity (null clears it), the active flag or the notes of a reorder rule.
+   */
   public ReorderRulesUpdateInventoryResponse reorderRulesUpdate(
       ReorderRulesUpdateInventoryRequest request, RequestOptions requestOptions) {
     return this.rawClient.reorderRulesUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Delete a reorder rule.
+   */
   public ReorderRulesDeleteInventoryResponse reorderRulesDelete(
       ReorderRulesDeleteInventoryRequest request) {
     return this.rawClient.reorderRulesDelete(request).body();
   }
 
+  /**
+   * Delete a reorder rule.
+   */
   public ReorderRulesDeleteInventoryResponse reorderRulesDelete(
       ReorderRulesDeleteInventoryRequest request, RequestOptions requestOptions) {
     return this.rawClient.reorderRulesDelete(request, requestOptions).body();
   }
 
+  /**
+   * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty; default newest first.
+   */
   public ReorderRulesListInventoryResponse reorderRulesList() {
     return this.rawClient.reorderRulesList().body();
   }
 
+  /**
+   * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty; default newest first.
+   */
   public ReorderRulesListInventoryResponse reorderRulesList(RequestOptions requestOptions) {
     return this.rawClient.reorderRulesList(requestOptions).body();
   }
 
+  /**
+   * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty; default newest first.
+   */
   public ReorderRulesListInventoryResponse reorderRulesList(
       ReorderRulesListInventoryRequest request) {
     return this.rawClient.reorderRulesList(request).body();
   }
 
+  /**
+   * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty; default newest first.
+   */
   public ReorderRulesListInventoryResponse reorderRulesList(
       ReorderRulesListInventoryRequest request, RequestOptions requestOptions) {
     return this.rawClient.reorderRulesList(request, requestOptions).body();
   }
 
+  /**
+   * Return the active reorder rules whose available quantity (on hand less reserved, in the rule's warehouse or over all warehouses) is at or below <code>minQty</code>, with the quantities. Emits no event.
+   */
   public ReorderRulesCheckInventoryResponse reorderRulesCheck() {
     return this.rawClient.reorderRulesCheck().body();
   }
 
+  /**
+   * Return the active reorder rules whose available quantity (on hand less reserved, in the rule's warehouse or over all warehouses) is at or below <code>minQty</code>, with the quantities. Emits no event.
+   */
   public ReorderRulesCheckInventoryResponse reorderRulesCheck(RequestOptions requestOptions) {
     return this.rawClient.reorderRulesCheck(requestOptions).body();
   }
 
+  /**
+   * Return the active reorder rules whose available quantity (on hand less reserved, in the rule's warehouse or over all warehouses) is at or below <code>minQty</code>, with the quantities. Emits no event.
+   */
   public ReorderRulesCheckInventoryResponse reorderRulesCheck(
       ReorderRulesCheckInventoryRequest request) {
     return this.rawClient.reorderRulesCheck(request).body();
   }
 
+  /**
+   * Return the active reorder rules whose available quantity (on hand less reserved, in the rule's warehouse or over all warehouses) is at or below <code>minQty</code>, with the quantities. Emits no event.
+   */
   public ReorderRulesCheckInventoryResponse reorderRulesCheck(
       ReorderRulesCheckInventoryRequest request, RequestOptions requestOptions) {
     return this.rawClient.reorderRulesCheck(request, requestOptions).body();

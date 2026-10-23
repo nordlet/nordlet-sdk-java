@@ -97,21 +97,33 @@ public class AsyncRawReferenceClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Fetches the euro exchange rates the Bank of Lithuania web service publishes for <code>date</code> (default: the company's current date) and stores them in the rate table shared by all companies, replacing the rates already stored for that date. Answers 404 when no rates are published for the date.
+   */
   public CompletableFuture<NordletApiHttpResponse<ExchangeRatesSyncReferenceResponse>> exchangeRatesSync(
       ) {
     return exchangeRatesSync(ExchangeRatesSyncReferenceRequest.builder().build());
   }
 
+  /**
+   * Fetches the euro exchange rates the Bank of Lithuania web service publishes for <code>date</code> (default: the company's current date) and stores them in the rate table shared by all companies, replacing the rates already stored for that date. Answers 404 when no rates are published for the date.
+   */
   public CompletableFuture<NordletApiHttpResponse<ExchangeRatesSyncReferenceResponse>> exchangeRatesSync(
       RequestOptions requestOptions) {
     return exchangeRatesSync(ExchangeRatesSyncReferenceRequest.builder().build(),requestOptions);
   }
 
+  /**
+   * Fetches the euro exchange rates the Bank of Lithuania web service publishes for <code>date</code> (default: the company's current date) and stores them in the rate table shared by all companies, replacing the rates already stored for that date. Answers 404 when no rates are published for the date.
+   */
   public CompletableFuture<NordletApiHttpResponse<ExchangeRatesSyncReferenceResponse>> exchangeRatesSync(
       ExchangeRatesSyncReferenceRequest request) {
     return exchangeRatesSync(request,null);
   }
 
+  /**
+   * Fetches the euro exchange rates the Bank of Lithuania web service publishes for <code>date</code> (default: the company's current date) and stores them in the rate table shared by all companies, replacing the rates already stored for that date. Answers 404 when no rates are published for the date.
+   */
   public CompletableFuture<NordletApiHttpResponse<ExchangeRatesSyncReferenceResponse>> exchangeRatesSync(
       ExchangeRatesSyncReferenceRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -199,21 +211,33 @@ public class AsyncRawReferenceClient {
       return future;
     }
 
+    /**
+     * Lists the stored euro exchange rates, which are shared by all companies. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+     */
     public CompletableFuture<NordletApiHttpResponse<ExchangeRatesListReferenceResponse>> exchangeRatesList(
         ) {
       return exchangeRatesList(ExchangeRatesListReferenceRequest.builder().build());
     }
 
+    /**
+     * Lists the stored euro exchange rates, which are shared by all companies. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+     */
     public CompletableFuture<NordletApiHttpResponse<ExchangeRatesListReferenceResponse>> exchangeRatesList(
         RequestOptions requestOptions) {
       return exchangeRatesList(ExchangeRatesListReferenceRequest.builder().build(),requestOptions);
     }
 
+    /**
+     * Lists the stored euro exchange rates, which are shared by all companies. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+     */
     public CompletableFuture<NordletApiHttpResponse<ExchangeRatesListReferenceResponse>> exchangeRatesList(
         ExchangeRatesListReferenceRequest request) {
       return exchangeRatesList(request,null);
     }
 
+    /**
+     * Lists the stored euro exchange rates, which are shared by all companies. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+     */
     public CompletableFuture<NordletApiHttpResponse<ExchangeRatesListReferenceResponse>> exchangeRatesList(
         ExchangeRatesListReferenceRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -301,11 +325,17 @@ public class AsyncRawReferenceClient {
         return future;
       }
 
+      /**
+       * Stores a company exchange rate for <code>currency</code> on <code>date</code>, in units of the currency per one unit of the company's base currency, replacing the company rate stored for that currency and date. Rate lookups use the company rate when it is dated on or after the latest shared rate on or before the lookup date. Answers 422 when <code>rate</code> is not positive.
+       */
       public CompletableFuture<NordletApiHttpResponse<ExchangeRatesSetReferenceResponse>> exchangeRatesSet(
           ExchangeRatesSetReferenceRequest request) {
         return exchangeRatesSet(request,null);
       }
 
+      /**
+       * Stores a company exchange rate for <code>currency</code> on <code>date</code>, in units of the currency per one unit of the company's base currency, replacing the company rate stored for that currency and date. Rate lookups use the company rate when it is dated on or after the latest shared rate on or before the lookup date. Answers 422 when <code>rate</code> is not positive.
+       */
       public CompletableFuture<NordletApiHttpResponse<ExchangeRatesSetReferenceResponse>> exchangeRatesSet(
           ExchangeRatesSetReferenceRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -393,21 +423,33 @@ public class AsyncRawReferenceClient {
           return future;
         }
 
+        /**
+         * Lists the company's own exchange rates set with <code>reference/exchange-rates/set</code>. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+         */
         public CompletableFuture<NordletApiHttpResponse<ExchangeRatesOverridesListReferenceResponse>> exchangeRatesOverridesList(
             ) {
           return exchangeRatesOverridesList(ExchangeRatesOverridesListReferenceRequest.builder().build());
         }
 
+        /**
+         * Lists the company's own exchange rates set with <code>reference/exchange-rates/set</code>. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+         */
         public CompletableFuture<NordletApiHttpResponse<ExchangeRatesOverridesListReferenceResponse>> exchangeRatesOverridesList(
             RequestOptions requestOptions) {
           return exchangeRatesOverridesList(ExchangeRatesOverridesListReferenceRequest.builder().build(),requestOptions);
         }
 
+        /**
+         * Lists the company's own exchange rates set with <code>reference/exchange-rates/set</code>. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+         */
         public CompletableFuture<NordletApiHttpResponse<ExchangeRatesOverridesListReferenceResponse>> exchangeRatesOverridesList(
             ExchangeRatesOverridesListReferenceRequest request) {
           return exchangeRatesOverridesList(request,null);
         }
 
+        /**
+         * Lists the company's own exchange rates set with <code>reference/exchange-rates/set</code>. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+         */
         public CompletableFuture<NordletApiHttpResponse<ExchangeRatesOverridesListReferenceResponse>> exchangeRatesOverridesList(
             ExchangeRatesOverridesListReferenceRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -495,11 +537,17 @@ public class AsyncRawReferenceClient {
             return future;
           }
 
+          /**
+           * Removes the company's own exchange rate for <code>currency</code> on <code>date</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<ExchangeRatesOverridesDeleteReferenceResponse>> exchangeRatesOverridesDelete(
               ExchangeRatesOverridesDeleteReferenceRequest request) {
             return exchangeRatesOverridesDelete(request,null);
           }
 
+          /**
+           * Removes the company's own exchange rate for <code>currency</code> on <code>date</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<ExchangeRatesOverridesDeleteReferenceResponse>> exchangeRatesOverridesDelete(
               ExchangeRatesOverridesDeleteReferenceRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -587,21 +635,33 @@ public class AsyncRawReferenceClient {
               return future;
             }
 
+            /**
+             * Lists every country code Nordlet knows with its EU and EEA membership and its name in each supported locale.
+             */
             public CompletableFuture<NordletApiHttpResponse<CountriesListReferenceResponse>> countriesList(
                 ) {
               return countriesList(CountriesListReferenceRequest.builder().build());
             }
 
+            /**
+             * Lists every country code Nordlet knows with its EU and EEA membership and its name in each supported locale.
+             */
             public CompletableFuture<NordletApiHttpResponse<CountriesListReferenceResponse>> countriesList(
                 RequestOptions requestOptions) {
               return countriesList(CountriesListReferenceRequest.builder().build(),requestOptions);
             }
 
+            /**
+             * Lists every country code Nordlet knows with its EU and EEA membership and its name in each supported locale.
+             */
             public CompletableFuture<NordletApiHttpResponse<CountriesListReferenceResponse>> countriesList(
                 CountriesListReferenceRequest request) {
               return countriesList(request,null);
             }
 
+            /**
+             * Lists every country code Nordlet knows with its EU and EEA membership and its name in each supported locale.
+             */
             public CompletableFuture<NordletApiHttpResponse<CountriesListReferenceResponse>> countriesList(
                 CountriesListReferenceRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -689,21 +749,33 @@ public class AsyncRawReferenceClient {
                 return future;
               }
 
+              /**
+               * Lists the ten Lithuanian counties (apskritys) with their code and ISO code.
+               */
               public CompletableFuture<NordletApiHttpResponse<LtCountiesListReferenceResponse>> ltCountiesList(
                   ) {
                 return ltCountiesList(LtCountiesListReferenceRequest.builder().build());
               }
 
+              /**
+               * Lists the ten Lithuanian counties (apskritys) with their code and ISO code.
+               */
               public CompletableFuture<NordletApiHttpResponse<LtCountiesListReferenceResponse>> ltCountiesList(
                   RequestOptions requestOptions) {
                 return ltCountiesList(LtCountiesListReferenceRequest.builder().build(),requestOptions);
               }
 
+              /**
+               * Lists the ten Lithuanian counties (apskritys) with their code and ISO code.
+               */
               public CompletableFuture<NordletApiHttpResponse<LtCountiesListReferenceResponse>> ltCountiesList(
                   LtCountiesListReferenceRequest request) {
                 return ltCountiesList(request,null);
               }
 
+              /**
+               * Lists the ten Lithuanian counties (apskritys) with their code and ISO code.
+               */
               public CompletableFuture<NordletApiHttpResponse<LtCountiesListReferenceResponse>> ltCountiesList(
                   LtCountiesListReferenceRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -791,21 +863,33 @@ public class AsyncRawReferenceClient {
                   return future;
                 }
 
+                /**
+                 * Lists the Lithuanian municipalities (savivaldybės) with the county each belongs to; <code>countyCode</code> limits the list to one county.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<LtMunicipalitiesListReferenceResponse>> ltMunicipalitiesList(
                     ) {
                   return ltMunicipalitiesList(LtMunicipalitiesListReferenceRequest.builder().build());
                 }
 
+                /**
+                 * Lists the Lithuanian municipalities (savivaldybės) with the county each belongs to; <code>countyCode</code> limits the list to one county.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<LtMunicipalitiesListReferenceResponse>> ltMunicipalitiesList(
                     RequestOptions requestOptions) {
                   return ltMunicipalitiesList(LtMunicipalitiesListReferenceRequest.builder().build(),requestOptions);
                 }
 
+                /**
+                 * Lists the Lithuanian municipalities (savivaldybės) with the county each belongs to; <code>countyCode</code> limits the list to one county.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<LtMunicipalitiesListReferenceResponse>> ltMunicipalitiesList(
                     LtMunicipalitiesListReferenceRequest request) {
                   return ltMunicipalitiesList(request,null);
                 }
 
+                /**
+                 * Lists the Lithuanian municipalities (savivaldybės) with the county each belongs to; <code>countyCode</code> limits the list to one county.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<LtMunicipalitiesListReferenceResponse>> ltMunicipalitiesList(
                     LtMunicipalitiesListReferenceRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -893,21 +977,33 @@ public class AsyncRawReferenceClient {
                     return future;
                   }
 
+                  /**
+                   * Lists Lithuanian cities with their municipality; <code>municipalityCode</code> limits the list to one municipality and <code>q</code> to names that start with the given text (case-insensitive).
+                   */
                   public CompletableFuture<NordletApiHttpResponse<LtCitiesListReferenceResponse>> ltCitiesList(
                       ) {
                     return ltCitiesList(LtCitiesListReferenceRequest.builder().build());
                   }
 
+                  /**
+                   * Lists Lithuanian cities with their municipality; <code>municipalityCode</code> limits the list to one municipality and <code>q</code> to names that start with the given text (case-insensitive).
+                   */
                   public CompletableFuture<NordletApiHttpResponse<LtCitiesListReferenceResponse>> ltCitiesList(
                       RequestOptions requestOptions) {
                     return ltCitiesList(LtCitiesListReferenceRequest.builder().build(),requestOptions);
                   }
 
+                  /**
+                   * Lists Lithuanian cities with their municipality; <code>municipalityCode</code> limits the list to one municipality and <code>q</code> to names that start with the given text (case-insensitive).
+                   */
                   public CompletableFuture<NordletApiHttpResponse<LtCitiesListReferenceResponse>> ltCitiesList(
                       LtCitiesListReferenceRequest request) {
                     return ltCitiesList(request,null);
                   }
 
+                  /**
+                   * Lists Lithuanian cities with their municipality; <code>municipalityCode</code> limits the list to one municipality and <code>q</code> to names that start with the given text (case-insensitive).
+                   */
                   public CompletableFuture<NordletApiHttpResponse<LtCitiesListReferenceResponse>> ltCitiesList(
                       LtCitiesListReferenceRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -995,21 +1091,33 @@ public class AsyncRawReferenceClient {
                       return future;
                     }
 
+                    /**
+                     * Lists the banks of the bank directory shared by all companies. Filterable by <code>countryCode</code>, <code>name</code>, <code>bic</code> and <code>bankCode</code>; sortable by <code>name</code>, <code>bic</code> and <code>countryCode</code>.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<BanksListReferenceResponse>> banksList(
                         ) {
                       return banksList(BanksListReferenceRequest.builder().build());
                     }
 
+                    /**
+                     * Lists the banks of the bank directory shared by all companies. Filterable by <code>countryCode</code>, <code>name</code>, <code>bic</code> and <code>bankCode</code>; sortable by <code>name</code>, <code>bic</code> and <code>countryCode</code>.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<BanksListReferenceResponse>> banksList(
                         RequestOptions requestOptions) {
                       return banksList(BanksListReferenceRequest.builder().build(),requestOptions);
                     }
 
+                    /**
+                     * Lists the banks of the bank directory shared by all companies. Filterable by <code>countryCode</code>, <code>name</code>, <code>bic</code> and <code>bankCode</code>; sortable by <code>name</code>, <code>bic</code> and <code>countryCode</code>.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<BanksListReferenceResponse>> banksList(
                         BanksListReferenceRequest request) {
                       return banksList(request,null);
                     }
 
+                    /**
+                     * Lists the banks of the bank directory shared by all companies. Filterable by <code>countryCode</code>, <code>name</code>, <code>bic</code> and <code>bankCode</code>; sortable by <code>name</code>, <code>bic</code> and <code>countryCode</code>.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<BanksListReferenceResponse>> banksList(
                         BanksListReferenceRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1097,11 +1205,17 @@ public class AsyncRawReferenceClient {
                         return future;
                       }
 
+                      /**
+                       * Adds a bank to the shared bank directory or, when a bank with the same <code>countryCode</code> and <code>bic</code> exists, replaces its name, bank code and active flag. Platform administrators only.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<BanksUpsertReferenceResponse>> banksUpsert(
                           BanksUpsertReferenceRequest request) {
                         return banksUpsert(request,null);
                       }
 
+                      /**
+                       * Adds a bank to the shared bank directory or, when a bank with the same <code>countryCode</code> and <code>bic</code> exists, replaces its name, bank code and active flag. Platform administrators only.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<BanksUpsertReferenceResponse>> banksUpsert(
                           BanksUpsertReferenceRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1189,21 +1303,33 @@ public class AsyncRawReferenceClient {
                           return future;
                         }
 
+                        /**
+                         * Lists the ten Lithuanian regions (apskritys) with their code and ISO code; the same list as <code>reference/lt/counties/list</code>.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<LtRegionsListReferenceResponse>> ltRegionsList(
                             ) {
                           return ltRegionsList(LtRegionsListReferenceRequest.builder().build());
                         }
 
+                        /**
+                         * Lists the ten Lithuanian regions (apskritys) with their code and ISO code; the same list as <code>reference/lt/counties/list</code>.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<LtRegionsListReferenceResponse>> ltRegionsList(
                             RequestOptions requestOptions) {
                           return ltRegionsList(LtRegionsListReferenceRequest.builder().build(),requestOptions);
                         }
 
+                        /**
+                         * Lists the ten Lithuanian regions (apskritys) with their code and ISO code; the same list as <code>reference/lt/counties/list</code>.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<LtRegionsListReferenceResponse>> ltRegionsList(
                             LtRegionsListReferenceRequest request) {
                           return ltRegionsList(request,null);
                         }
 
+                        /**
+                         * Lists the ten Lithuanian regions (apskritys) with their code and ISO code; the same list as <code>reference/lt/counties/list</code>.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<LtRegionsListReferenceResponse>> ltRegionsList(
                             LtRegionsListReferenceRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1291,21 +1417,33 @@ public class AsyncRawReferenceClient {
                             return future;
                           }
 
+                          /**
+                           * Lists the currencies known to Nordlet with their minor units. Filterable and sortable by <code>code</code> and <code>name</code>.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<CurrenciesListReferenceResponse>> currenciesList(
                               ) {
                             return currenciesList(CurrenciesListReferenceRequest.builder().build());
                           }
 
+                          /**
+                           * Lists the currencies known to Nordlet with their minor units. Filterable and sortable by <code>code</code> and <code>name</code>.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<CurrenciesListReferenceResponse>> currenciesList(
                               RequestOptions requestOptions) {
                             return currenciesList(CurrenciesListReferenceRequest.builder().build(),requestOptions);
                           }
 
+                          /**
+                           * Lists the currencies known to Nordlet with their minor units. Filterable and sortable by <code>code</code> and <code>name</code>.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<CurrenciesListReferenceResponse>> currenciesList(
                               CurrenciesListReferenceRequest request) {
                             return currenciesList(request,null);
                           }
 
+                          /**
+                           * Lists the currencies known to Nordlet with their minor units. Filterable and sortable by <code>code</code> and <code>name</code>.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<CurrenciesListReferenceResponse>> currenciesList(
                               CurrenciesListReferenceRequest request,
                               RequestOptions requestOptions) {
@@ -1394,21 +1532,33 @@ public class AsyncRawReferenceClient {
                               return future;
                             }
 
+                            /**
+                             * Lists the company's VAT classifiers (code, country, name and rate). A document line that names a classifier in <code>vatClassifierCode</code> takes its rate from it when neither the line nor the item has a rate. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<VatClassifiersListReferenceResponse>> vatClassifiersList(
                                 ) {
                               return vatClassifiersList(VatClassifiersListReferenceRequest.builder().build());
                             }
 
+                            /**
+                             * Lists the company's VAT classifiers (code, country, name and rate). A document line that names a classifier in <code>vatClassifierCode</code> takes its rate from it when neither the line nor the item has a rate. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<VatClassifiersListReferenceResponse>> vatClassifiersList(
                                 RequestOptions requestOptions) {
                               return vatClassifiersList(VatClassifiersListReferenceRequest.builder().build(),requestOptions);
                             }
 
+                            /**
+                             * Lists the company's VAT classifiers (code, country, name and rate). A document line that names a classifier in <code>vatClassifierCode</code> takes its rate from it when neither the line nor the item has a rate. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<VatClassifiersListReferenceResponse>> vatClassifiersList(
                                 VatClassifiersListReferenceRequest request) {
                               return vatClassifiersList(request,null);
                             }
 
+                            /**
+                             * Lists the company's VAT classifiers (code, country, name and rate). A document line that names a classifier in <code>vatClassifierCode</code> takes its rate from it when neither the line nor the item has a rate. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<VatClassifiersListReferenceResponse>> vatClassifiersList(
                                 VatClassifiersListReferenceRequest request,
                                 RequestOptions requestOptions) {
@@ -1497,11 +1647,17 @@ public class AsyncRawReferenceClient {
                                 return future;
                               }
 
+                              /**
+                               * Adds VAT classifiers to the company or replaces the country, name and rate of the ones whose <code>code</code> already exists.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<VatClassifiersUpsertReferenceResponse>> vatClassifiersUpsert(
                                   VatClassifiersUpsertReferenceRequest request) {
                                 return vatClassifiersUpsert(request,null);
                               }
 
+                              /**
+                               * Adds VAT classifiers to the company or replaces the country, name and rate of the ones whose <code>code</code> already exists.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<VatClassifiersUpsertReferenceResponse>> vatClassifiersUpsert(
                                   VatClassifiersUpsertReferenceRequest request,
                                   RequestOptions requestOptions) {
@@ -1804,21 +1960,33 @@ public class AsyncRawReferenceClient {
                                       return future;
                                     }
 
+                                    /**
+                                     * Works out the VAT treatment of a supply by this company: the scheme (domestic, intra-EU B2B, reverse charge, OSS, IOSS, marketplace deemed supplier, export, out of scope or SME exempt), the country whose VAT applies, its rates with the company's overrides applied, and the legal basis. The customer comes from <code>partnerId</code> (country from the partner's address or VAT number, business status from the VAT number) or from <code>customerCountryCode</code> and <code>customerIsBusiness</code>; <code>date</code> defaults to the company's current date; when <code>belowDistanceSalesThreshold</code> is not given, the distance-sales threshold is tracked from the company's ledger. Answers 422 when the partner has neither an address country nor a VAT code.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<VatResolveReferenceResponse>> vatResolve(
                                         ) {
                                       return vatResolve(VatResolveReferenceRequest.builder().build());
                                     }
 
+                                    /**
+                                     * Works out the VAT treatment of a supply by this company: the scheme (domestic, intra-EU B2B, reverse charge, OSS, IOSS, marketplace deemed supplier, export, out of scope or SME exempt), the country whose VAT applies, its rates with the company's overrides applied, and the legal basis. The customer comes from <code>partnerId</code> (country from the partner's address or VAT number, business status from the VAT number) or from <code>customerCountryCode</code> and <code>customerIsBusiness</code>; <code>date</code> defaults to the company's current date; when <code>belowDistanceSalesThreshold</code> is not given, the distance-sales threshold is tracked from the company's ledger. Answers 422 when the partner has neither an address country nor a VAT code.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<VatResolveReferenceResponse>> vatResolve(
                                         RequestOptions requestOptions) {
                                       return vatResolve(VatResolveReferenceRequest.builder().build(),requestOptions);
                                     }
 
+                                    /**
+                                     * Works out the VAT treatment of a supply by this company: the scheme (domestic, intra-EU B2B, reverse charge, OSS, IOSS, marketplace deemed supplier, export, out of scope or SME exempt), the country whose VAT applies, its rates with the company's overrides applied, and the legal basis. The customer comes from <code>partnerId</code> (country from the partner's address or VAT number, business status from the VAT number) or from <code>customerCountryCode</code> and <code>customerIsBusiness</code>; <code>date</code> defaults to the company's current date; when <code>belowDistanceSalesThreshold</code> is not given, the distance-sales threshold is tracked from the company's ledger. Answers 422 when the partner has neither an address country nor a VAT code.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<VatResolveReferenceResponse>> vatResolve(
                                         VatResolveReferenceRequest request) {
                                       return vatResolve(request,null);
                                     }
 
+                                    /**
+                                     * Works out the VAT treatment of a supply by this company: the scheme (domestic, intra-EU B2B, reverse charge, OSS, IOSS, marketplace deemed supplier, export, out of scope or SME exempt), the country whose VAT applies, its rates with the company's overrides applied, and the legal basis. The customer comes from <code>partnerId</code> (country from the partner's address or VAT number, business status from the VAT number) or from <code>customerCountryCode</code> and <code>customerIsBusiness</code>; <code>date</code> defaults to the company's current date; when <code>belowDistanceSalesThreshold</code> is not given, the distance-sales threshold is tracked from the company's ledger. Answers 422 when the partner has neither an address country nor a VAT code.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<VatResolveReferenceResponse>> vatResolve(
                                         VatResolveReferenceRequest request,
                                         RequestOptions requestOptions) {
@@ -1907,21 +2075,33 @@ public class AsyncRawReferenceClient {
                                         return future;
                                       }
 
+                                      /**
+                                       * Lists the Combined Nomenclature codes of the directory shared by all companies. Filterable by <code>code</code>, <code>name</code> and <code>nameLt</code>; sortable by <code>code</code>.
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<CnCodesListReferenceResponse>> cnCodesList(
                                           ) {
                                         return cnCodesList(CnCodesListReferenceRequest.builder().build());
                                       }
 
+                                      /**
+                                       * Lists the Combined Nomenclature codes of the directory shared by all companies. Filterable by <code>code</code>, <code>name</code> and <code>nameLt</code>; sortable by <code>code</code>.
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<CnCodesListReferenceResponse>> cnCodesList(
                                           RequestOptions requestOptions) {
                                         return cnCodesList(CnCodesListReferenceRequest.builder().build(),requestOptions);
                                       }
 
+                                      /**
+                                       * Lists the Combined Nomenclature codes of the directory shared by all companies. Filterable by <code>code</code>, <code>name</code> and <code>nameLt</code>; sortable by <code>code</code>.
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<CnCodesListReferenceResponse>> cnCodesList(
                                           CnCodesListReferenceRequest request) {
                                         return cnCodesList(request,null);
                                       }
 
+                                      /**
+                                       * Lists the Combined Nomenclature codes of the directory shared by all companies. Filterable by <code>code</code>, <code>name</code> and <code>nameLt</code>; sortable by <code>code</code>.
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<CnCodesListReferenceResponse>> cnCodesList(
                                           CnCodesListReferenceRequest request,
                                           RequestOptions requestOptions) {
@@ -2010,11 +2190,17 @@ public class AsyncRawReferenceClient {
                                           return future;
                                         }
 
+                                        /**
+                                         * Adds Combined Nomenclature codes to the shared directory or replaces the names and supplementary unit of the codes that exist. Platform administrators only.
+                                         */
                                         public CompletableFuture<NordletApiHttpResponse<CnCodesUpsertReferenceResponse>> cnCodesUpsert(
                                             CnCodesUpsertReferenceRequest request) {
                                           return cnCodesUpsert(request,null);
                                         }
 
+                                        /**
+                                         * Adds Combined Nomenclature codes to the shared directory or replaces the names and supplementary unit of the codes that exist. Platform administrators only.
+                                         */
                                         public CompletableFuture<NordletApiHttpResponse<CnCodesUpsertReferenceResponse>> cnCodesUpsert(
                                             CnCodesUpsertReferenceRequest request,
                                             RequestOptions requestOptions) {
@@ -2103,21 +2289,33 @@ public class AsyncRawReferenceClient {
                                             return future;
                                           }
 
+                                          /**
+                                           * Lists the versions of the filing systems, schemas and forms Nordlet's output was checked against, with the date of the check and the source; <code>country</code> limits the list to one country.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<ComplianceVersionsListReferenceResponse>> complianceVersionsList(
                                               ) {
                                             return complianceVersionsList(ComplianceVersionsListReferenceRequest.builder().build());
                                           }
 
+                                          /**
+                                           * Lists the versions of the filing systems, schemas and forms Nordlet's output was checked against, with the date of the check and the source; <code>country</code> limits the list to one country.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<ComplianceVersionsListReferenceResponse>> complianceVersionsList(
                                               RequestOptions requestOptions) {
                                             return complianceVersionsList(ComplianceVersionsListReferenceRequest.builder().build(),requestOptions);
                                           }
 
+                                          /**
+                                           * Lists the versions of the filing systems, schemas and forms Nordlet's output was checked against, with the date of the check and the source; <code>country</code> limits the list to one country.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<ComplianceVersionsListReferenceResponse>> complianceVersionsList(
                                               ComplianceVersionsListReferenceRequest request) {
                                             return complianceVersionsList(request,null);
                                           }
 
+                                          /**
+                                           * Lists the versions of the filing systems, schemas and forms Nordlet's output was checked against, with the date of the check and the source; <code>country</code> limits the list to one country.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<ComplianceVersionsListReferenceResponse>> complianceVersionsList(
                                               ComplianceVersionsListReferenceRequest request,
                                               RequestOptions requestOptions) {
@@ -2206,21 +2404,33 @@ public class AsyncRawReferenceClient {
                                               return future;
                                             }
 
+                                            /**
+                                             * Lists the Intrastat thresholds stored per year: the reporting and the statistical-value threshold for arrivals and for dispatches.
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<IntrastatThresholdsListReferenceResponse>> intrastatThresholdsList(
                                                 ) {
                                               return intrastatThresholdsList(IntrastatThresholdsListReferenceRequest.builder().build());
                                             }
 
+                                            /**
+                                             * Lists the Intrastat thresholds stored per year: the reporting and the statistical-value threshold for arrivals and for dispatches.
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<IntrastatThresholdsListReferenceResponse>> intrastatThresholdsList(
                                                 RequestOptions requestOptions) {
                                               return intrastatThresholdsList(IntrastatThresholdsListReferenceRequest.builder().build(),requestOptions);
                                             }
 
+                                            /**
+                                             * Lists the Intrastat thresholds stored per year: the reporting and the statistical-value threshold for arrivals and for dispatches.
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<IntrastatThresholdsListReferenceResponse>> intrastatThresholdsList(
                                                 IntrastatThresholdsListReferenceRequest request) {
                                               return intrastatThresholdsList(request,null);
                                             }
 
+                                            /**
+                                             * Lists the Intrastat thresholds stored per year: the reporting and the statistical-value threshold for arrivals and for dispatches.
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<IntrastatThresholdsListReferenceResponse>> intrastatThresholdsList(
                                                 IntrastatThresholdsListReferenceRequest request,
                                                 RequestOptions requestOptions) {
@@ -2309,21 +2519,33 @@ public class AsyncRawReferenceClient {
                                                 return future;
                                               }
 
+                                              /**
+                                               * Lists the measurement units of the directory shared by all companies, with Lithuanian and English names. Filterable by <code>code</code>, <code>nameLt</code> and <code>nameEn</code>; sortable by <code>code</code>.
+                                               */
                                               public CompletableFuture<NordletApiHttpResponse<UnitsListReferenceResponse>> unitsList(
                                                   ) {
                                                 return unitsList(UnitsListReferenceRequest.builder().build());
                                               }
 
+                                              /**
+                                               * Lists the measurement units of the directory shared by all companies, with Lithuanian and English names. Filterable by <code>code</code>, <code>nameLt</code> and <code>nameEn</code>; sortable by <code>code</code>.
+                                               */
                                               public CompletableFuture<NordletApiHttpResponse<UnitsListReferenceResponse>> unitsList(
                                                   RequestOptions requestOptions) {
                                                 return unitsList(UnitsListReferenceRequest.builder().build(),requestOptions);
                                               }
 
+                                              /**
+                                               * Lists the measurement units of the directory shared by all companies, with Lithuanian and English names. Filterable by <code>code</code>, <code>nameLt</code> and <code>nameEn</code>; sortable by <code>code</code>.
+                                               */
                                               public CompletableFuture<NordletApiHttpResponse<UnitsListReferenceResponse>> unitsList(
                                                   UnitsListReferenceRequest request) {
                                                 return unitsList(request,null);
                                               }
 
+                                              /**
+                                               * Lists the measurement units of the directory shared by all companies, with Lithuanian and English names. Filterable by <code>code</code>, <code>nameLt</code> and <code>nameEn</code>; sortable by <code>code</code>.
+                                               */
                                               public CompletableFuture<NordletApiHttpResponse<UnitsListReferenceResponse>> unitsList(
                                                   UnitsListReferenceRequest request,
                                                   RequestOptions requestOptions) {
@@ -2412,11 +2634,17 @@ public class AsyncRawReferenceClient {
                                                   return future;
                                                 }
 
+                                                /**
+                                                 * Creates a numbering series for a document type, prefix and year; the first number the series hands out is at least <code>startAt</code>. Answers 409 when a series with the same document type, prefix and year exists.
+                                                 */
                                                 public CompletableFuture<NordletApiHttpResponse<SeriesCreateReferenceResponse>> seriesCreate(
                                                     SeriesCreateReferenceRequest request) {
                                                   return seriesCreate(request,null);
                                                 }
 
+                                                /**
+                                                 * Creates a numbering series for a document type, prefix and year; the first number the series hands out is at least <code>startAt</code>. Answers 409 when a series with the same document type, prefix and year exists.
+                                                 */
                                                 public CompletableFuture<NordletApiHttpResponse<SeriesCreateReferenceResponse>> seriesCreate(
                                                     SeriesCreateReferenceRequest request,
                                                     RequestOptions requestOptions) {
@@ -2505,21 +2733,33 @@ public class AsyncRawReferenceClient {
                                                     return future;
                                                   }
 
+                                                  /**
+                                                   * Lists the company's numbering series with the next number of each. Filterable and sortable by <code>documentType</code>, <code>prefix</code> and <code>year</code>.
+                                                   */
                                                   public CompletableFuture<NordletApiHttpResponse<SeriesListReferenceResponse>> seriesList(
                                                       ) {
                                                     return seriesList(SeriesListReferenceRequest.builder().build());
                                                   }
 
+                                                  /**
+                                                   * Lists the company's numbering series with the next number of each. Filterable and sortable by <code>documentType</code>, <code>prefix</code> and <code>year</code>.
+                                                   */
                                                   public CompletableFuture<NordletApiHttpResponse<SeriesListReferenceResponse>> seriesList(
                                                       RequestOptions requestOptions) {
                                                     return seriesList(SeriesListReferenceRequest.builder().build(),requestOptions);
                                                   }
 
+                                                  /**
+                                                   * Lists the company's numbering series with the next number of each. Filterable and sortable by <code>documentType</code>, <code>prefix</code> and <code>year</code>.
+                                                   */
                                                   public CompletableFuture<NordletApiHttpResponse<SeriesListReferenceResponse>> seriesList(
                                                       SeriesListReferenceRequest request) {
                                                     return seriesList(request,null);
                                                   }
 
+                                                  /**
+                                                   * Lists the company's numbering series with the next number of each. Filterable and sortable by <code>documentType</code>, <code>prefix</code> and <code>year</code>.
+                                                   */
                                                   public CompletableFuture<NordletApiHttpResponse<SeriesListReferenceResponse>> seriesList(
                                                       SeriesListReferenceRequest request,
                                                       RequestOptions requestOptions) {

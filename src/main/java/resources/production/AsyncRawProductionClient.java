@@ -89,11 +89,17 @@ public class AsyncRawProductionClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Create a work center with its <code>costPerHour</code>. <code>costAccountCode</code> must be a postable account of the chart (422 otherwise); when a production order completes, the labor cost of the operations run on this center is credited to it instead of the <code>production.laborApplied</code> posting rule account. A duplicate <code>code</code> is refused with 409.
+   */
   public CompletableFuture<NordletApiHttpResponse<WorkCentersCreateProductionResponse>> workCentersCreate(
       WorkCentersCreateProductionRequest request) {
     return workCentersCreate(request,null);
   }
 
+  /**
+   * Create a work center with its <code>costPerHour</code>. <code>costAccountCode</code> must be a postable account of the chart (422 otherwise); when a production order completes, the labor cost of the operations run on this center is credited to it instead of the <code>production.laborApplied</code> posting rule account. A duplicate <code>code</code> is refused with 409.
+   */
   public CompletableFuture<NordletApiHttpResponse<WorkCentersCreateProductionResponse>> workCentersCreate(
       WorkCentersCreateProductionRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -181,11 +187,17 @@ public class AsyncRawProductionClient {
       return future;
     }
 
+    /**
+     * Change a work center; only the fields sent are changed. <code>costAccountCode</code> must be a postable account of the chart (422 otherwise); a <code>code</code> already used by another work center is refused with 409.
+     */
     public CompletableFuture<NordletApiHttpResponse<WorkCentersUpdateProductionResponse>> workCentersUpdate(
         WorkCentersUpdateProductionRequest request) {
       return workCentersUpdate(request,null);
     }
 
+    /**
+     * Change a work center; only the fields sent are changed. <code>costAccountCode</code> must be a postable account of the chart (422 otherwise); a <code>code</code> already used by another work center is refused with 409.
+     */
     public CompletableFuture<NordletApiHttpResponse<WorkCentersUpdateProductionResponse>> workCentersUpdate(
         WorkCentersUpdateProductionRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -273,21 +285,33 @@ public class AsyncRawProductionClient {
         return future;
       }
 
+      /**
+       * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+       */
       public CompletableFuture<NordletApiHttpResponse<WorkCentersListProductionResponse>> workCentersList(
           ) {
         return workCentersList(WorkCentersListProductionRequest.builder().build());
       }
 
+      /**
+       * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+       */
       public CompletableFuture<NordletApiHttpResponse<WorkCentersListProductionResponse>> workCentersList(
           RequestOptions requestOptions) {
         return workCentersList(WorkCentersListProductionRequest.builder().build(),requestOptions);
       }
 
+      /**
+       * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+       */
       public CompletableFuture<NordletApiHttpResponse<WorkCentersListProductionResponse>> workCentersList(
           WorkCentersListProductionRequest request) {
         return workCentersList(request,null);
       }
 
+      /**
+       * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+       */
       public CompletableFuture<NordletApiHttpResponse<WorkCentersListProductionResponse>> workCentersList(
           WorkCentersListProductionRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -375,11 +399,17 @@ public class AsyncRawProductionClient {
           return future;
         }
 
+        /**
+         * Create a routing with its operations: <code>sequence</code>, work center, <code>setupMinutes</code>, <code>runMinutesPerUnit</code> and an optional <code>qualityCheckName</code> that becomes a pending quality check on every production order using the routing. Operation sequences must be unique (422); a duplicate <code>code</code> is refused with 409.
+         */
         public CompletableFuture<NordletApiHttpResponse<RoutingsCreateProductionResponse>> routingsCreate(
             RoutingsCreateProductionRequest request) {
           return routingsCreate(request,null);
         }
 
+        /**
+         * Create a routing with its operations: <code>sequence</code>, work center, <code>setupMinutes</code>, <code>runMinutesPerUnit</code> and an optional <code>qualityCheckName</code> that becomes a pending quality check on every production order using the routing. Operation sequences must be unique (422); a duplicate <code>code</code> is refused with 409.
+         */
         public CompletableFuture<NordletApiHttpResponse<RoutingsCreateProductionResponse>> routingsCreate(
             RoutingsCreateProductionRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -467,11 +497,17 @@ public class AsyncRawProductionClient {
             return future;
           }
 
+          /**
+           * Return one routing with its operations in sequence order.
+           */
           public CompletableFuture<NordletApiHttpResponse<RoutingsGetProductionResponse>> routingsGet(
               RoutingsGetProductionRequest request) {
             return routingsGet(request,null);
           }
 
+          /**
+           * Return one routing with its operations in sequence order.
+           */
           public CompletableFuture<NordletApiHttpResponse<RoutingsGetProductionResponse>> routingsGet(
               RoutingsGetProductionRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -559,21 +595,33 @@ public class AsyncRawProductionClient {
               return future;
             }
 
+            /**
+             * List routings without their operations. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+             */
             public CompletableFuture<NordletApiHttpResponse<RoutingsListProductionResponse>> routingsList(
                 ) {
               return routingsList(RoutingsListProductionRequest.builder().build());
             }
 
+            /**
+             * List routings without their operations. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+             */
             public CompletableFuture<NordletApiHttpResponse<RoutingsListProductionResponse>> routingsList(
                 RequestOptions requestOptions) {
               return routingsList(RoutingsListProductionRequest.builder().build(),requestOptions);
             }
 
+            /**
+             * List routings without their operations. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+             */
             public CompletableFuture<NordletApiHttpResponse<RoutingsListProductionResponse>> routingsList(
                 RoutingsListProductionRequest request) {
               return routingsList(request,null);
             }
 
+            /**
+             * List routings without their operations. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+             */
             public CompletableFuture<NordletApiHttpResponse<RoutingsListProductionResponse>> routingsList(
                 RoutingsListProductionRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -661,11 +709,17 @@ public class AsyncRawProductionClient {
                 return future;
               }
 
+              /**
+               * Record a <code>preventive</code> or <code>corrective</code> maintenance planned for a work center on <code>plannedDate</code>; it starts as <code>planned</code>.
+               */
               public CompletableFuture<NordletApiHttpResponse<MaintenanceCreateProductionResponse>> maintenanceCreate(
                   MaintenanceCreateProductionRequest request) {
                 return maintenanceCreate(request,null);
               }
 
+              /**
+               * Record a <code>preventive</code> or <code>corrective</code> maintenance planned for a work center on <code>plannedDate</code>; it starts as <code>planned</code>.
+               */
               public CompletableFuture<NordletApiHttpResponse<MaintenanceCreateProductionResponse>> maintenanceCreate(
                   MaintenanceCreateProductionRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -753,11 +807,17 @@ public class AsyncRawProductionClient {
                   return future;
                 }
 
+                /**
+                 * Mark a <code>planned</code> maintenance as completed on <code>completedDate</code>, with optional <code>downtimeHours</code> and <code>cost</code> (409 when it is already completed or cancelled). The work center's <code>nextMaintenanceDate</code> is then counted from the latest completed maintenance date.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<MaintenanceCompleteProductionResponse>> maintenanceComplete(
                     MaintenanceCompleteProductionRequest request) {
                   return maintenanceComplete(request,null);
                 }
 
+                /**
+                 * Mark a <code>planned</code> maintenance as completed on <code>completedDate</code>, with optional <code>downtimeHours</code> and <code>cost</code> (409 when it is already completed or cancelled). The work center's <code>nextMaintenanceDate</code> is then counted from the latest completed maintenance date.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<MaintenanceCompleteProductionResponse>> maintenanceComplete(
                     MaintenanceCompleteProductionRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -845,11 +905,17 @@ public class AsyncRawProductionClient {
                     return future;
                   }
 
+                  /**
+                   * Cancel a <code>planned</code> maintenance (409 when it is already completed or cancelled).
+                   */
                   public CompletableFuture<NordletApiHttpResponse<MaintenanceCancelProductionResponse>> maintenanceCancel(
                       MaintenanceCancelProductionRequest request) {
                     return maintenanceCancel(request,null);
                   }
 
+                  /**
+                   * Cancel a <code>planned</code> maintenance (409 when it is already completed or cancelled).
+                   */
                   public CompletableFuture<NordletApiHttpResponse<MaintenanceCancelProductionResponse>> maintenanceCancel(
                       MaintenanceCancelProductionRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -937,21 +1003,33 @@ public class AsyncRawProductionClient {
                       return future;
                     }
 
+                    /**
+                     * List maintenance records. Filterable by <code>workCenterId</code>, <code>status</code> and <code>type</code>; sortable by <code>plannedDate</code> and <code>createdAt</code>.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<MaintenanceListProductionResponse>> maintenanceList(
                         ) {
                       return maintenanceList(MaintenanceListProductionRequest.builder().build());
                     }
 
+                    /**
+                     * List maintenance records. Filterable by <code>workCenterId</code>, <code>status</code> and <code>type</code>; sortable by <code>plannedDate</code> and <code>createdAt</code>.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<MaintenanceListProductionResponse>> maintenanceList(
                         RequestOptions requestOptions) {
                       return maintenanceList(MaintenanceListProductionRequest.builder().build(),requestOptions);
                     }
 
+                    /**
+                     * List maintenance records. Filterable by <code>workCenterId</code>, <code>status</code> and <code>type</code>; sortable by <code>plannedDate</code> and <code>createdAt</code>.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<MaintenanceListProductionResponse>> maintenanceList(
                         MaintenanceListProductionRequest request) {
                       return maintenanceList(request,null);
                     }
 
+                    /**
+                     * List maintenance records. Filterable by <code>workCenterId</code>, <code>status</code> and <code>type</code>; sortable by <code>plannedDate</code> and <code>createdAt</code>.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<MaintenanceListProductionResponse>> maintenanceList(
                         MaintenanceListProductionRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1039,11 +1117,17 @@ public class AsyncRawProductionClient {
                         return future;
                       }
 
+                      /**
+                       * Create a bill of materials for a finished item. <code>outputQuantity</code> is the finished quantity made per unit of order quantity; each line's <code>quantity</code> is the component consumed per unit of order quantity, increased by its <code>scrapPercent</code> at completion; <code>routingId</code> is the default routing of assembly orders. A BOM that consumes its own finished item is refused with 422, a duplicate <code>code</code> with 409.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<BomsCreateProductionResponse>> bomsCreate(
                           BomsCreateProductionRequest request) {
                         return bomsCreate(request,null);
                       }
 
+                      /**
+                       * Create a bill of materials for a finished item. <code>outputQuantity</code> is the finished quantity made per unit of order quantity; each line's <code>quantity</code> is the component consumed per unit of order quantity, increased by its <code>scrapPercent</code> at completion; <code>routingId</code> is the default routing of assembly orders. A BOM that consumes its own finished item is refused with 422, a duplicate <code>code</code> with 409.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<BomsCreateProductionResponse>> bomsCreate(
                           BomsCreateProductionRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1131,11 +1215,17 @@ public class AsyncRawProductionClient {
                           return future;
                         }
 
+                        /**
+                         * Return one bill of materials with its component lines.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<BomsGetProductionResponse>> bomsGet(
                             BomsGetProductionRequest request) {
                           return bomsGet(request,null);
                         }
 
+                        /**
+                         * Return one bill of materials with its component lines.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<BomsGetProductionResponse>> bomsGet(
                             BomsGetProductionRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1223,21 +1313,33 @@ public class AsyncRawProductionClient {
                             return future;
                           }
 
+                          /**
+                           * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code> and <code>name</code>.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<BomsListProductionResponse>> bomsList(
                               ) {
                             return bomsList(BomsListProductionRequest.builder().build());
                           }
 
+                          /**
+                           * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code> and <code>name</code>.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<BomsListProductionResponse>> bomsList(
                               RequestOptions requestOptions) {
                             return bomsList(BomsListProductionRequest.builder().build(),requestOptions);
                           }
 
+                          /**
+                           * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code> and <code>name</code>.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<BomsListProductionResponse>> bomsList(
                               BomsListProductionRequest request) {
                             return bomsList(request,null);
                           }
 
+                          /**
+                           * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code> and <code>name</code>.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<BomsListProductionResponse>> bomsList(
                               BomsListProductionRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1325,11 +1427,17 @@ public class AsyncRawProductionClient {
                               return future;
                             }
 
+                            /**
+                             * Create a draft production order for <code>quantity</code> units of a BOM in a warehouse; stock moves only at <code>production/orders/complete</code>. An <code>assembly</code> order takes its routing from <code>routingId</code>, else from the BOM, and copies the routing's operations onto the order (<code>plannedMinutes</code> = setup minutes + run minutes per unit × finished quantity, priced at the work center's current <code>costPerHour</code>) with a pending quality check for every operation that names one. A <code>routingId</code> on a <code>disassembly</code> order, an inactive routing or a routing without operations is refused with 422.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<OrdersCreateProductionResponse>> ordersCreate(
                                 OrdersCreateProductionRequest request) {
                               return ordersCreate(request,null);
                             }
 
+                            /**
+                             * Create a draft production order for <code>quantity</code> units of a BOM in a warehouse; stock moves only at <code>production/orders/complete</code>. An <code>assembly</code> order takes its routing from <code>routingId</code>, else from the BOM, and copies the routing's operations onto the order (<code>plannedMinutes</code> = setup minutes + run minutes per unit × finished quantity, priced at the work center's current <code>costPerHour</code>) with a pending quality check for every operation that names one. A <code>routingId</code> on a <code>disassembly</code> order, an inactive routing or a routing without operations is refused with 422.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<OrdersCreateProductionResponse>> ordersCreate(
                                 OrdersCreateProductionRequest request,
                                 RequestOptions requestOptions) {
@@ -1418,11 +1526,17 @@ public class AsyncRawProductionClient {
                                 return future;
                               }
 
+                              /**
+                               * Record the <code>actualMinutes</code> spent on one operation of a draft production order; at completion the actual minutes, else the planned ones, price the operation's labor cost. Refused with 409 once the order is completed.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<OrdersRecordOperationProductionResponse>> ordersRecordOperation(
                                   OrdersRecordOperationProductionRequest request) {
                                 return ordersRecordOperation(request,null);
                               }
 
+                              /**
+                               * Record the <code>actualMinutes</code> spent on one operation of a draft production order; at completion the actual minutes, else the planned ones, price the operation's labor cost. Refused with 409 once the order is completed.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<OrdersRecordOperationProductionResponse>> ordersRecordOperation(
                                   OrdersRecordOperationProductionRequest request,
                                   RequestOptions requestOptions) {
@@ -1511,11 +1625,17 @@ public class AsyncRawProductionClient {
                                   return future;
                                 }
 
+                                /**
+                                 * Add a pending quality check to a draft production order (409 once the order is completed). The order cannot complete while a check is pending.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<QualityChecksAddProductionResponse>> qualityChecksAdd(
                                     QualityChecksAddProductionRequest request) {
                                   return qualityChecksAdd(request,null);
                                 }
 
+                                /**
+                                 * Add a pending quality check to a draft production order (409 once the order is completed). The order cannot complete while a check is pending.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<QualityChecksAddProductionResponse>> qualityChecksAdd(
                                     QualityChecksAddProductionRequest request,
                                     RequestOptions requestOptions) {
@@ -1604,11 +1724,17 @@ public class AsyncRawProductionClient {
                                     return future;
                                   }
 
+                                  /**
+                                   * Record the result of a quality check as <code>passed</code> or <code>failed</code>, with the time and the actor (409 once the order is completed). Only a <code>pending</code> check blocks <code>production/orders/complete</code>; a <code>failed</code> one does not.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<QualityChecksRecordProductionResponse>> qualityChecksRecord(
                                       QualityChecksRecordProductionRequest request) {
                                     return qualityChecksRecord(request,null);
                                   }
 
+                                  /**
+                                   * Record the result of a quality check as <code>passed</code> or <code>failed</code>, with the time and the actor (409 once the order is completed). Only a <code>pending</code> check blocks <code>production/orders/complete</code>; a <code>failed</code> one does not.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<QualityChecksRecordProductionResponse>> qualityChecksRecord(
                                       QualityChecksRecordProductionRequest request,
                                       RequestOptions requestOptions) {
@@ -1697,21 +1823,33 @@ public class AsyncRawProductionClient {
                                       return future;
                                     }
 
+                                    /**
+                                     * List quality checks. Filterable by <code>orderId</code>, <code>result</code> and <code>name</code>; sortable by <code>createdAt</code> and <code>name</code>.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<QualityChecksListProductionResponse>> qualityChecksList(
                                         ) {
                                       return qualityChecksList(QualityChecksListProductionRequest.builder().build());
                                     }
 
+                                    /**
+                                     * List quality checks. Filterable by <code>orderId</code>, <code>result</code> and <code>name</code>; sortable by <code>createdAt</code> and <code>name</code>.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<QualityChecksListProductionResponse>> qualityChecksList(
                                         RequestOptions requestOptions) {
                                       return qualityChecksList(QualityChecksListProductionRequest.builder().build(),requestOptions);
                                     }
 
+                                    /**
+                                     * List quality checks. Filterable by <code>orderId</code>, <code>result</code> and <code>name</code>; sortable by <code>createdAt</code> and <code>name</code>.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<QualityChecksListProductionResponse>> qualityChecksList(
                                         QualityChecksListProductionRequest request) {
                                       return qualityChecksList(request,null);
                                     }
 
+                                    /**
+                                     * List quality checks. Filterable by <code>orderId</code>, <code>result</code> and <code>name</code>; sortable by <code>createdAt</code> and <code>name</code>.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<QualityChecksListProductionResponse>> qualityChecksList(
                                         QualityChecksListProductionRequest request,
                                         RequestOptions requestOptions) {
@@ -1800,11 +1938,17 @@ public class AsyncRawProductionClient {
                                         return future;
                                       }
 
+                                      /**
+                                       * Complete a draft production order on the order's date. An <code>assembly</code> consumes the components FIFO from the warehouse (line quantity × order quantity, increased by <code>scrapPercent</code>), prices each operation at its actual or planned minutes × <code>costPerHour</code>, receives the finished item at material cost + labor cost less the share of <code>scrappedQuantity</code>, and, when there is labor, scrap or a component stock account other than the finished one, posts a journal entry debiting the finished stock account (and the <code>production.scrap</code> rule account for the scrapped share) and crediting the component stock accounts and the work centers' cost accounts (or the <code>production.laborApplied</code> rule account); a <code>disassembly</code> consumes the finished item and receives the components at its cost shared by quantity. <code>componentsAccountCode</code> and <code>finishedAccountCode</code> default to the chart's production accounts. Refused with 409 when the order is already completed, a quality check is still pending or the accounting period is locked, and with 422 when the BOM has no lines, <code>scrappedQuantity</code> is given on a disassembly or exceeds the finished quantity, the assembly cost is zero, stock is insufficient, a received item needs lot or serial tracking, or a posting account is missing. Emits <code>stock.changed</code>.
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<OrdersCompleteProductionResponse>> ordersComplete(
                                           OrdersCompleteProductionRequest request) {
                                         return ordersComplete(request,null);
                                       }
 
+                                      /**
+                                       * Complete a draft production order on the order's date. An <code>assembly</code> consumes the components FIFO from the warehouse (line quantity × order quantity, increased by <code>scrapPercent</code>), prices each operation at its actual or planned minutes × <code>costPerHour</code>, receives the finished item at material cost + labor cost less the share of <code>scrappedQuantity</code>, and, when there is labor, scrap or a component stock account other than the finished one, posts a journal entry debiting the finished stock account (and the <code>production.scrap</code> rule account for the scrapped share) and crediting the component stock accounts and the work centers' cost accounts (or the <code>production.laborApplied</code> rule account); a <code>disassembly</code> consumes the finished item and receives the components at its cost shared by quantity. <code>componentsAccountCode</code> and <code>finishedAccountCode</code> default to the chart's production accounts. Refused with 409 when the order is already completed, a quality check is still pending or the accounting period is locked, and with 422 when the BOM has no lines, <code>scrappedQuantity</code> is given on a disassembly or exceeds the finished quantity, the assembly cost is zero, stock is insufficient, a received item needs lot or serial tracking, or a posting account is missing. Emits <code>stock.changed</code>.
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<OrdersCompleteProductionResponse>> ordersComplete(
                                           OrdersCompleteProductionRequest request,
                                           RequestOptions requestOptions) {
@@ -1893,11 +2037,17 @@ public class AsyncRawProductionClient {
                                           return future;
                                         }
 
+                                        /**
+                                         * Return one production order with its operations and quality checks.
+                                         */
                                         public CompletableFuture<NordletApiHttpResponse<OrdersGetProductionResponse>> ordersGet(
                                             OrdersGetProductionRequest request) {
                                           return ordersGet(request,null);
                                         }
 
+                                        /**
+                                         * Return one production order with its operations and quality checks.
+                                         */
                                         public CompletableFuture<NordletApiHttpResponse<OrdersGetProductionResponse>> ordersGet(
                                             OrdersGetProductionRequest request,
                                             RequestOptions requestOptions) {
@@ -1986,21 +2136,33 @@ public class AsyncRawProductionClient {
                                             return future;
                                           }
 
+                                          /**
+                                           * List production orders without operations and quality checks. Filterable by <code>bomId</code>, <code>warehouseId</code>, <code>status</code> and <code>type</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<OrdersListProductionResponse>> ordersList(
                                               ) {
                                             return ordersList(OrdersListProductionRequest.builder().build());
                                           }
 
+                                          /**
+                                           * List production orders without operations and quality checks. Filterable by <code>bomId</code>, <code>warehouseId</code>, <code>status</code> and <code>type</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<OrdersListProductionResponse>> ordersList(
                                               RequestOptions requestOptions) {
                                             return ordersList(OrdersListProductionRequest.builder().build(),requestOptions);
                                           }
 
+                                          /**
+                                           * List production orders without operations and quality checks. Filterable by <code>bomId</code>, <code>warehouseId</code>, <code>status</code> and <code>type</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<OrdersListProductionResponse>> ordersList(
                                               OrdersListProductionRequest request) {
                                             return ordersList(request,null);
                                           }
 
+                                          /**
+                                           * List production orders without operations and quality checks. Filterable by <code>bomId</code>, <code>warehouseId</code>, <code>status</code> and <code>type</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<OrdersListProductionResponse>> ordersList(
                                               OrdersListProductionRequest request,
                                               RequestOptions requestOptions) {

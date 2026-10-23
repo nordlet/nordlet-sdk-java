@@ -49,154 +49,250 @@ public class AsyncBillingClient {
     return this.rawClient;
   }
 
+  /**
+   * Return the signed-in user's billing account: plan, account type, status, balance, trial and payment state, the month-to-date usage of the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings.
+   */
   public CompletableFuture<AccountGetBillingResponse> accountGet() {
     return this.rawClient.accountGet().thenApply(response -> response.body());
   }
 
+  /**
+   * Return the signed-in user's billing account: plan, account type, status, balance, trial and payment state, the month-to-date usage of the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings.
+   */
   public CompletableFuture<AccountGetBillingResponse> accountGet(RequestOptions requestOptions) {
     return this.rawClient.accountGet(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Return the signed-in user's billing account: plan, account type, status, balance, trial and payment state, the month-to-date usage of the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings.
+   */
   public CompletableFuture<AccountGetBillingResponse> accountGet(AccountGetBillingRequest request) {
     return this.rawClient.accountGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Return the signed-in user's billing account: plan, account type, status, balance, trial and payment state, the month-to-date usage of the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings.
+   */
   public CompletableFuture<AccountGetBillingResponse> accountGet(AccountGetBillingRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.accountGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Change the plan of the user's flat-rate billing account; answers 409 when the account type is not <code>flat_rate</code>. With a Stripe subscription and payments configured, the subscription is moved to the new plan.
+   */
   public CompletableFuture<AccountSetPlanBillingResponse> accountSetPlan(
       AccountSetPlanBillingRequest request) {
     return this.rawClient.accountSetPlan(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Change the plan of the user's flat-rate billing account; answers 409 when the account type is not <code>flat_rate</code>. With a Stripe subscription and payments configured, the subscription is moved to the new plan.
+   */
   public CompletableFuture<AccountSetPlanBillingResponse> accountSetPlan(
       AccountSetPlanBillingRequest request, RequestOptions requestOptions) {
     return this.rawClient.accountSetPlan(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Switch the user's billing account between <code>flat_rate</code> and <code>per_request</code>. With a Stripe subscription and payments configured, the subscription is moved to the plan's price for <code>flat_rate</code>; for <code>per_request</code> the plan is taken off the subscription, and a subscription that carried only the plan is cancelled, leaving the account without one. When Stripe refuses the change, the previous account type is restored.
+   */
   public CompletableFuture<AccountSetAccountTypeBillingResponse> accountSetAccountType(
       AccountSetAccountTypeBillingRequest request) {
     return this.rawClient.accountSetAccountType(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Switch the user's billing account between <code>flat_rate</code> and <code>per_request</code>. With a Stripe subscription and payments configured, the subscription is moved to the plan's price for <code>flat_rate</code>; for <code>per_request</code> the plan is taken off the subscription, and a subscription that carried only the plan is cancelled, leaving the account without one. When Stripe refuses the change, the previous account type is restored.
+   */
   public CompletableFuture<AccountSetAccountTypeBillingResponse> accountSetAccountType(
       AccountSetAccountTypeBillingRequest request, RequestOptions requestOptions) {
     return this.rawClient.accountSetAccountType(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Switch automatic top-ups on or off and set their amount. Switching them on needs a Stripe customer, which the first card top-up creates (400 otherwise); when switched on, a top-up is charged at once if the balance is at or below zero, no payment has failed and no top-up was requested in the last 24 hours.
+   */
   public CompletableFuture<AccountSetAutoTopUpBillingResponse> accountSetAutoTopUp(
       AccountSetAutoTopUpBillingRequest request) {
     return this.rawClient.accountSetAutoTopUp(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Switch automatic top-ups on or off and set their amount. Switching them on needs a Stripe customer, which the first card top-up creates (400 otherwise); when switched on, a top-up is charged at once if the balance is at or below zero, no payment has failed and no top-up was requested in the last 24 hours.
+   */
   public CompletableFuture<AccountSetAutoTopUpBillingResponse> accountSetAutoTopUp(
       AccountSetAutoTopUpBillingRequest request, RequestOptions requestOptions) {
     return this.rawClient.accountSetAutoTopUp(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Set the overdraft cap of the user's billing account: how far usage charges may take the balance below zero before the account is suspended. A suspended account whose balance is within the new cap is activated again.
+   */
   public CompletableFuture<AccountSetOverdraftCapBillingResponse> accountSetOverdraftCap(
       AccountSetOverdraftCapBillingRequest request) {
     return this.rawClient.accountSetOverdraftCap(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Set the overdraft cap of the user's billing account: how far usage charges may take the balance below zero before the account is suspended. A suspended account whose balance is within the new cap is activated again.
+   */
   public CompletableFuture<AccountSetOverdraftCapBillingResponse> accountSetOverdraftCap(
       AccountSetOverdraftCapBillingRequest request, RequestOptions requestOptions) {
     return this.rawClient.accountSetOverdraftCap(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>. Answers 503 when online payments are not configured.
+   */
   public CompletableFuture<TopupCreateBillingResponse> topupCreate(
       TopupCreateBillingRequest request) {
     return this.rawClient.topupCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>. Answers 503 when online payments are not configured.
+   */
   public CompletableFuture<TopupCreateBillingResponse> topupCreate(
       TopupCreateBillingRequest request, RequestOptions requestOptions) {
     return this.rawClient.topupCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Confirm a paid top-up Checkout session by <code>sessionId</code> and credit the account at once instead of waiting for the Stripe webhook; a session is credited only once. Answers 404 when the session is not the user's own or is not paid.
+   */
   public CompletableFuture<TopupConfirmBillingResponse> topupConfirm(
       TopupConfirmBillingRequest request) {
     return this.rawClient.topupConfirm(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Confirm a paid top-up Checkout session by <code>sessionId</code> and credit the account at once instead of waiting for the Stripe webhook; a session is credited only once. Answers 404 when the session is not the user's own or is not paid.
+   */
   public CompletableFuture<TopupConfirmBillingResponse> topupConfirm(
       TopupConfirmBillingRequest request, RequestOptions requestOptions) {
     return this.rawClient.topupConfirm(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured or the plan has no price.
+   */
   public CompletableFuture<FlatRateCreateBillingResponse> flatRateCreate() {
     return this.rawClient.flatRateCreate().thenApply(response -> response.body());
   }
 
+  /**
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured or the plan has no price.
+   */
   public CompletableFuture<FlatRateCreateBillingResponse> flatRateCreate(
       RequestOptions requestOptions) {
     return this.rawClient.flatRateCreate(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured or the plan has no price.
+   */
   public CompletableFuture<FlatRateCreateBillingResponse> flatRateCreate(
       FlatRateCreateBillingRequest request) {
     return this.rawClient.flatRateCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured or the plan has no price.
+   */
   public CompletableFuture<FlatRateCreateBillingResponse> flatRateCreate(
       FlatRateCreateBillingRequest request, RequestOptions requestOptions) {
     return this.rawClient.flatRateCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Confirm a completed flat-rate Checkout session by <code>sessionId</code>: the account becomes <code>flat_rate</code> on the session's plan with status <code>active</code> and the subscription attached, unless the Stripe webhook already did this. Answers 404 when the session is not the user's own or not completed.
+   */
   public CompletableFuture<FlatRateConfirmBillingResponse> flatRateConfirm(
       FlatRateConfirmBillingRequest request) {
     return this.rawClient.flatRateConfirm(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Confirm a completed flat-rate Checkout session by <code>sessionId</code>: the account becomes <code>flat_rate</code> on the session's plan with status <code>active</code> and the subscription attached, unless the Stripe webhook already did this. Answers 404 when the session is not the user's own or not completed.
+   */
   public CompletableFuture<FlatRateConfirmBillingResponse> flatRateConfirm(
       FlatRateConfirmBillingRequest request, RequestOptions requestOptions) {
     return this.rawClient.flatRateConfirm(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Open a Stripe customer portal session that returns to the credits page in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the user has no Stripe customer yet.
+   */
   public CompletableFuture<PortalCreateBillingResponse> portalCreate() {
     return this.rawClient.portalCreate().thenApply(response -> response.body());
   }
 
+  /**
+   * Open a Stripe customer portal session that returns to the credits page in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the user has no Stripe customer yet.
+   */
   public CompletableFuture<PortalCreateBillingResponse> portalCreate(
       RequestOptions requestOptions) {
     return this.rawClient.portalCreate(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Open a Stripe customer portal session that returns to the credits page in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the user has no Stripe customer yet.
+   */
   public CompletableFuture<PortalCreateBillingResponse> portalCreate(
       PortalCreateBillingRequest request) {
     return this.rawClient.portalCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Open a Stripe customer portal session that returns to the credits page in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the user has no Stripe customer yet.
+   */
   public CompletableFuture<PortalCreateBillingResponse> portalCreate(
       PortalCreateBillingRequest request, RequestOptions requestOptions) {
     return this.rawClient.portalCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the newest credit transactions of the user's billing account, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+   */
   public CompletableFuture<TransactionsListBillingResponse> transactionsList() {
     return this.rawClient.transactionsList().thenApply(response -> response.body());
   }
 
+  /**
+   * List the newest credit transactions of the user's billing account, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+   */
   public CompletableFuture<TransactionsListBillingResponse> transactionsList(
       RequestOptions requestOptions) {
     return this.rawClient.transactionsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the newest credit transactions of the user's billing account, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+   */
   public CompletableFuture<TransactionsListBillingResponse> transactionsList(
       TransactionsListBillingRequest request) {
     return this.rawClient.transactionsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the newest credit transactions of the user's billing account, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+   */
   public CompletableFuture<TransactionsListBillingResponse> transactionsList(
       TransactionsListBillingRequest request, RequestOptions requestOptions) {
     return this.rawClient.transactionsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the daily usage records of the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, OCR pages, file storage bytes, database bytes, sale invoices).
+   */
   public CompletableFuture<UsageListBillingResponse> usageList(UsageListBillingRequest request) {
     return this.rawClient.usageList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the daily usage records of the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, OCR pages, file storage bytes, database bytes, sale invoices).
+   */
   public CompletableFuture<UsageListBillingResponse> usageList(UsageListBillingRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.usageList(request, requestOptions).thenApply(response -> response.body());

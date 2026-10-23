@@ -55,11 +55,17 @@ public class AsyncRawFilesClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Store a base64-encoded file of up to 10 MB (413 above that) under an <code>entity</code> and optional <code>entityId</code>, and return its record with the SHA-256 of the content and its <code>storageKey</code>, which other calls take as <code>documentRef</code>.
+   */
   public CompletableFuture<NordletApiHttpResponse<UploadFilesResponse>> upload(
       UploadFilesRequest request) {
     return upload(request,null);
   }
 
+  /**
+   * Store a base64-encoded file of up to 10 MB (413 above that) under an <code>entity</code> and optional <code>entityId</code>, and return its record with the SHA-256 of the content and its <code>storageKey</code>, which other calls take as <code>documentRef</code>.
+   */
   public CompletableFuture<NordletApiHttpResponse<UploadFilesResponse>> upload(
       UploadFilesRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -147,11 +153,17 @@ public class AsyncRawFilesClient {
       return future;
     }
 
+    /**
+     * Return a file record with its content, base64-encoded.
+     */
     public CompletableFuture<NordletApiHttpResponse<GetFilesResponse>> get(
         GetFilesRequest request) {
       return get(request,null);
     }
 
+    /**
+     * Return a file record with its content, base64-encoded.
+     */
     public CompletableFuture<NordletApiHttpResponse<GetFilesResponse>> get(GetFilesRequest request,
         RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -239,20 +251,32 @@ public class AsyncRawFilesClient {
         return future;
       }
 
+      /**
+       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+       */
       public CompletableFuture<NordletApiHttpResponse<ListFilesResponse>> list() {
         return list(ListFilesRequest.builder().build());
       }
 
+      /**
+       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+       */
       public CompletableFuture<NordletApiHttpResponse<ListFilesResponse>> list(
           RequestOptions requestOptions) {
         return list(ListFilesRequest.builder().build(),requestOptions);
       }
 
+      /**
+       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+       */
       public CompletableFuture<NordletApiHttpResponse<ListFilesResponse>> list(
           ListFilesRequest request) {
         return list(request,null);
       }
 
+      /**
+       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+       */
       public CompletableFuture<NordletApiHttpResponse<ListFilesResponse>> list(
           ListFilesRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -340,11 +364,17 @@ public class AsyncRawFilesClient {
           return future;
         }
 
+        /**
+         * Delete a file record and its stored content.
+         */
         public CompletableFuture<NordletApiHttpResponse<DeleteFilesResponse>> delete(
             DeleteFilesRequest request) {
           return delete(request,null);
         }
 
+        /**
+         * Delete a file record and its stored content.
+         */
         public CompletableFuture<NordletApiHttpResponse<DeleteFilesResponse>> delete(
             DeleteFilesRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

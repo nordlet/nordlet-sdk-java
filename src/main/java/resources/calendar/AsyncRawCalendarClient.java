@@ -61,20 +61,32 @@ public class AsyncRawCalendarClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Lists, in due-date order, the filing deadlines Nordlet derives for the company from its country and profile together with the company's own events, between <code>from</code> and <code>to</code> (default 45 days back to 120 days ahead of the company's current date). Each deadline carries its submissions, whether it can be filed with <code>calendar/submit</code>, amended, or built with <code>calendar/download</code>, and whether its automation is on; <code>includeDone: false</code> leaves out the rows that are completed, submitted or accepted.
+   */
   public CompletableFuture<NordletApiHttpResponse<ListCalendarResponse>> list() {
     return list(ListCalendarRequest.builder().build());
   }
 
+  /**
+   * Lists, in due-date order, the filing deadlines Nordlet derives for the company from its country and profile together with the company's own events, between <code>from</code> and <code>to</code> (default 45 days back to 120 days ahead of the company's current date). Each deadline carries its submissions, whether it can be filed with <code>calendar/submit</code>, amended, or built with <code>calendar/download</code>, and whether its automation is on; <code>includeDone: false</code> leaves out the rows that are completed, submitted or accepted.
+   */
   public CompletableFuture<NordletApiHttpResponse<ListCalendarResponse>> list(
       RequestOptions requestOptions) {
     return list(ListCalendarRequest.builder().build(),requestOptions);
   }
 
+  /**
+   * Lists, in due-date order, the filing deadlines Nordlet derives for the company from its country and profile together with the company's own events, between <code>from</code> and <code>to</code> (default 45 days back to 120 days ahead of the company's current date). Each deadline carries its submissions, whether it can be filed with <code>calendar/submit</code>, amended, or built with <code>calendar/download</code>, and whether its automation is on; <code>includeDone: false</code> leaves out the rows that are completed, submitted or accepted.
+   */
   public CompletableFuture<NordletApiHttpResponse<ListCalendarResponse>> list(
       ListCalendarRequest request) {
     return list(request,null);
   }
 
+  /**
+   * Lists, in due-date order, the filing deadlines Nordlet derives for the company from its country and profile together with the company's own events, between <code>from</code> and <code>to</code> (default 45 days back to 120 days ahead of the company's current date). Each deadline carries its submissions, whether it can be filed with <code>calendar/submit</code>, amended, or built with <code>calendar/download</code>, and whether its automation is on; <code>includeDone: false</code> leaves out the rows that are completed, submitted or accepted.
+   */
   public CompletableFuture<NordletApiHttpResponse<ListCalendarResponse>> list(
       ListCalendarRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -162,11 +174,17 @@ public class AsyncRawCalendarClient {
       return future;
     }
 
+    /**
+     * Reads one calendar row by <code>key</code>: the id of a company event, or <code>ruleKey:period</code> for a filing deadline with its submissions.
+     */
     public CompletableFuture<NordletApiHttpResponse<GetCalendarResponse>> get(
         GetCalendarRequest request) {
       return get(request,null);
     }
 
+    /**
+     * Reads one calendar row by <code>key</code>: the id of a company event, or <code>ruleKey:period</code> for a filing deadline with its submissions.
+     */
     public CompletableFuture<NordletApiHttpResponse<GetCalendarResponse>> get(
         GetCalendarRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -450,11 +468,17 @@ public class AsyncRawCalendarClient {
             return future;
           }
 
+          /**
+           * Creates a company event (kind <code>custom</code>) with a title, a due date, notes and a done flag.
+           */
           public CompletableFuture<NordletApiHttpResponse<CreateCalendarResponse>> create(
               CreateCalendarRequest request) {
             return create(request,null);
           }
 
+          /**
+           * Creates a company event (kind <code>custom</code>) with a title, a due date, notes and a done flag.
+           */
           public CompletableFuture<NordletApiHttpResponse<CreateCalendarResponse>> create(
               CreateCalendarRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -542,11 +566,17 @@ public class AsyncRawCalendarClient {
               return future;
             }
 
+            /**
+             * Changes a calendar row by <code>key</code>. A company event takes a new title, due date, notes or done flag; a filing deadline (<code>ruleKey:period</code>) takes only notes and done, keeps its own title and date, and gets a stored row the first time it is annotated.
+             */
             public CompletableFuture<NordletApiHttpResponse<UpdateCalendarResponse>> update(
                 UpdateCalendarRequest request) {
               return update(request,null);
             }
 
+            /**
+             * Changes a calendar row by <code>key</code>. A company event takes a new title, due date, notes or done flag; a filing deadline (<code>ruleKey:period</code>) takes only notes and done, keeps its own title and date, and gets a stored row the first time it is annotated.
+             */
             public CompletableFuture<NordletApiHttpResponse<UpdateCalendarResponse>> update(
                 UpdateCalendarRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -634,11 +664,17 @@ public class AsyncRawCalendarClient {
                 return future;
               }
 
+              /**
+               * Deletes a company event by its id, or the stored notes and done mark of a filing deadline by <code>ruleKey:period</code>; the deadline itself still comes from the rules.
+               */
               public CompletableFuture<NordletApiHttpResponse<DeleteCalendarResponse>> delete(
                   DeleteCalendarRequest request) {
                 return delete(request,null);
               }
 
+              /**
+               * Deletes a company event by its id, or the stored notes and done mark of a filing deadline by <code>ruleKey:period</code>; the deadline itself still comes from the rules.
+               */
               public CompletableFuture<NordletApiHttpResponse<DeleteCalendarResponse>> delete(
                   DeleteCalendarRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

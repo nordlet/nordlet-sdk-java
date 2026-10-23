@@ -64,40 +64,64 @@ public class AsyncPlatformSellersClient {
     return this.rawClient.list(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Read one platform seller with its activities, ordered by year.
+   */
   public CompletableFuture<GetPlatformSellersResponse> get(GetPlatformSellersRequest request) {
     return this.rawClient.get(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Read one platform seller with its activities, ordered by year.
+   */
   public CompletableFuture<GetPlatformSellersResponse> get(GetPlatformSellersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.get(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Record a seller on the company's platform for the DAC7 report: an <code>individual</code> (first and last name required) or an <code>entity</code> (<code>entityName</code> required), with its <code>activities</code> per year and quarter. An <code>immovable_property</code> activity needs <code>propertyAddress</code>; property address, type and rented days on any other kind of activity are refused. These checks answer 422; a <code>partnerId</code> that does not exist answers 404. The report is built from the sellers with <code>declarations/eu/dac7/preview</code> and <code>declarations/eu/dac7/xml</code>.
+   */
   public CompletableFuture<CreatePlatformSellersResponse> create(
       CreatePlatformSellersRequest request) {
     return this.rawClient.create(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Record a seller on the company's platform for the DAC7 report: an <code>individual</code> (first and last name required) or an <code>entity</code> (<code>entityName</code> required), with its <code>activities</code> per year and quarter. An <code>immovable_property</code> activity needs <code>propertyAddress</code>; property address, type and rented days on any other kind of activity are refused. These checks answer 422; a <code>partnerId</code> that does not exist answers 404. The report is built from the sellers with <code>declarations/eu/dac7/preview</code> and <code>declarations/eu/dac7/xml</code>.
+   */
   public CompletableFuture<CreatePlatformSellersResponse> create(
       CreatePlatformSellersRequest request, RequestOptions requestOptions) {
     return this.rawClient.create(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Replace a platform seller's details and all of its activities with the ones given, under the same checks as <code>platform-sellers/create</code>.
+   */
   public CompletableFuture<UpdatePlatformSellersResponse> update(
       UpdatePlatformSellersRequest request) {
     return this.rawClient.update(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Replace a platform seller's details and all of its activities with the ones given, under the same checks as <code>platform-sellers/create</code>.
+   */
   public CompletableFuture<UpdatePlatformSellersResponse> update(
       UpdatePlatformSellersRequest request, RequestOptions requestOptions) {
     return this.rawClient.update(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Mark a platform seller as deleted. It leaves the lists and the DAC7 report.
+   */
   public CompletableFuture<DeletePlatformSellersResponse> delete(
       DeletePlatformSellersRequest request) {
     return this.rawClient.delete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Mark a platform seller as deleted. It leaves the lists and the DAC7 report.
+   */
   public CompletableFuture<DeletePlatformSellersResponse> delete(
       DeletePlatformSellersRequest request, RequestOptions requestOptions) {
     return this.rawClient.delete(request, requestOptions).thenApply(response -> response.body());

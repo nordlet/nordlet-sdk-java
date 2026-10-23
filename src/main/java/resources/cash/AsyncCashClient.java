@@ -41,111 +41,183 @@ public class AsyncCashClient {
     return this.rawClient;
   }
 
+  /**
+   * Creates a numbered cash receipt (series <code>KPO</code>) or cash disbursement (<code>KIO</code>) and posts it in the base currency between the cash account (<code>cashAccountCode</code>, default the cash account of the company's chart) and <code>counterAccountCode</code>; a receipt debits the cash account, a disbursement credits it. Linked to an invoice - <code>saleInvoiceId</code> for a receipt against an issued invoice or advance invoice or a disbursement against an issued credit note, <code>purchaseInvoiceId</code> for a disbursement against a registered purchase invoice - the counter account is the receivable or payable account of the posting rules, the invoice's paid amount and payment status (<code>partial</code> or <code>paid</code>) are updated, and <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code> is emitted when the invoice becomes fully paid. Answers 422 when both invoice ids are given, a receipt names a purchase invoice, <code>counterAccountCode</code> differs from the invoice's account, or the invoice is in another currency or belongs to another partner; 409 when <code>amount</code> exceeds the invoice's remaining amount or the accounting period of <code>date</code> is locked.
+   */
   public CompletableFuture<OrdersCreateCashResponse> ordersCreate(OrdersCreateCashRequest request) {
     return this.rawClient.ordersCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a numbered cash receipt (series <code>KPO</code>) or cash disbursement (<code>KIO</code>) and posts it in the base currency between the cash account (<code>cashAccountCode</code>, default the cash account of the company's chart) and <code>counterAccountCode</code>; a receipt debits the cash account, a disbursement credits it. Linked to an invoice - <code>saleInvoiceId</code> for a receipt against an issued invoice or advance invoice or a disbursement against an issued credit note, <code>purchaseInvoiceId</code> for a disbursement against a registered purchase invoice - the counter account is the receivable or payable account of the posting rules, the invoice's paid amount and payment status (<code>partial</code> or <code>paid</code>) are updated, and <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code> is emitted when the invoice becomes fully paid. Answers 422 when both invoice ids are given, a receipt names a purchase invoice, <code>counterAccountCode</code> differs from the invoice's account, or the invoice is in another currency or belongs to another partner; 409 when <code>amount</code> exceeds the invoice's remaining amount or the accounting period of <code>date</code> is locked.
+   */
   public CompletableFuture<OrdersCreateCashResponse> ordersCreate(OrdersCreateCashRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Returns one cash order.
+   */
   public CompletableFuture<OrdersGetCashResponse> ordersGet(OrdersGetCashRequest request) {
     return this.rawClient.ordersGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Returns one cash order.
+   */
   public CompletableFuture<OrdersGetCashResponse> ordersGet(OrdersGetCashRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code> and <code>amount</code>.
+   */
   public CompletableFuture<OrdersListCashResponse> ordersList() {
     return this.rawClient.ordersList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code> and <code>amount</code>.
+   */
   public CompletableFuture<OrdersListCashResponse> ordersList(RequestOptions requestOptions) {
     return this.rawClient.ordersList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code> and <code>amount</code>.
+   */
   public CompletableFuture<OrdersListCashResponse> ordersList(OrdersListCashRequest request) {
     return this.rawClient.ordersList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code> and <code>amount</code>.
+   */
   public CompletableFuture<OrdersListCashResponse> ordersList(OrdersListCashRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Returns the balance of a cash account (default: the cash account of the company's chart) from the posted journal entries, up to and including <code>asOf</code> when given.
+   */
   public CompletableFuture<BalanceCashResponse> balance() {
     return this.rawClient.balance().thenApply(response -> response.body());
   }
 
+  /**
+   * Returns the balance of a cash account (default: the cash account of the company's chart) from the posted journal entries, up to and including <code>asOf</code> when given.
+   */
   public CompletableFuture<BalanceCashResponse> balance(RequestOptions requestOptions) {
     return this.rawClient.balance(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Returns the balance of a cash account (default: the cash account of the company's chart) from the posted journal entries, up to and including <code>asOf</code> when given.
+   */
   public CompletableFuture<BalanceCashResponse> balance(BalanceCashRequest request) {
     return this.rawClient.balance(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Returns the balance of a cash account (default: the cash account of the company's chart) from the posted journal entries, up to and including <code>asOf</code> when given.
+   */
   public CompletableFuture<BalanceCashResponse> balance(BalanceCashRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.balance(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a numbered expense report (series <code>AA</code>) for the employee and posts it: each line's net amount is debited to its <code>accountCode</code> and the VAT total to the input VAT account of the posting rules (<code>purchases.vatReceivable</code>), or the gross amount to the line account when the company is not a VAT payer, and the total is credited to the cash advances account (<code>cash.advances</code>), which settles the employee's advance balance shown by <code>cash/advance-holders/balances</code>. Answers 422 when the total is zero or a line account is missing from the chart or not postable, and 409 when the accounting period of <code>date</code> is locked.
+   */
   public CompletableFuture<ExpenseReportsCreateCashResponse> expenseReportsCreate(
       ExpenseReportsCreateCashRequest request) {
     return this.rawClient.expenseReportsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a numbered expense report (series <code>AA</code>) for the employee and posts it: each line's net amount is debited to its <code>accountCode</code> and the VAT total to the input VAT account of the posting rules (<code>purchases.vatReceivable</code>), or the gross amount to the line account when the company is not a VAT payer, and the total is credited to the cash advances account (<code>cash.advances</code>), which settles the employee's advance balance shown by <code>cash/advance-holders/balances</code>. Answers 422 when the total is zero or a line account is missing from the chart or not postable, and 409 when the accounting period of <code>date</code> is locked.
+   */
   public CompletableFuture<ExpenseReportsCreateCashResponse> expenseReportsCreate(
       ExpenseReportsCreateCashRequest request, RequestOptions requestOptions) {
     return this.rawClient.expenseReportsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Returns one expense report with its lines.
+   */
   public CompletableFuture<ExpenseReportsGetCashResponse> expenseReportsGet(
       ExpenseReportsGetCashRequest request) {
     return this.rawClient.expenseReportsGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Returns one expense report with its lines.
+   */
   public CompletableFuture<ExpenseReportsGetCashResponse> expenseReportsGet(
       ExpenseReportsGetCashRequest request, RequestOptions requestOptions) {
     return this.rawClient.expenseReportsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+   */
   public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList() {
     return this.rawClient.expenseReportsList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+   */
   public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList(
       RequestOptions requestOptions) {
     return this.rawClient.expenseReportsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+   */
   public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList(
       ExpenseReportsListCashRequest request) {
     return this.rawClient.expenseReportsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+   */
   public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList(
       ExpenseReportsListCashRequest request, RequestOptions requestOptions) {
     return this.rawClient.expenseReportsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
+   */
   public CompletableFuture<AdvanceHoldersBalancesCashResponse> advanceHoldersBalances() {
     return this.rawClient.advanceHoldersBalances().thenApply(response -> response.body());
   }
 
+  /**
+   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
+   */
   public CompletableFuture<AdvanceHoldersBalancesCashResponse> advanceHoldersBalances(
       RequestOptions requestOptions) {
     return this.rawClient.advanceHoldersBalances(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
+   */
   public CompletableFuture<AdvanceHoldersBalancesCashResponse> advanceHoldersBalances(
       AdvanceHoldersBalancesCashRequest request) {
     return this.rawClient.advanceHoldersBalances(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
+   */
   public CompletableFuture<AdvanceHoldersBalancesCashResponse> advanceHoldersBalances(
       AdvanceHoldersBalancesCashRequest request, RequestOptions requestOptions) {
     return this.rawClient.advanceHoldersBalances(request, requestOptions).thenApply(response -> response.body());

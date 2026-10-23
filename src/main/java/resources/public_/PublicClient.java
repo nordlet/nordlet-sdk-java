@@ -28,28 +28,46 @@ public class PublicClient {
     return this.rawClient;
   }
 
+  /**
+   * Store a request for an integration: the integration asked for and the sender's name, company, e-mail and details. When <code>website</code> is filled in, the call answers <code>received</code> without storing anything.
+   */
   public IntegrationRequestsPublicResponse integrationRequests(
       IntegrationRequestsPublicRequest request) {
     return this.rawClient.integrationRequests(request).body();
   }
 
+  /**
+   * Store a request for an integration: the integration asked for and the sender's name, company, e-mail and details. When <code>website</code> is filled in, the call answers <code>received</code> without storing anything.
+   */
   public IntegrationRequestsPublicResponse integrationRequests(
       IntegrationRequestsPublicRequest request, RequestOptions requestOptions) {
     return this.rawClient.integrationRequests(request, requestOptions).body();
   }
 
+  /**
+   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+   */
   public void pay(String token) {
     this.rawClient.pay(token).body();
   }
 
+  /**
+   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+   */
   public void pay(String token, RequestOptions requestOptions) {
     this.rawClient.pay(token, requestOptions).body();
   }
 
+  /**
+   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+   */
   public void pay(String token, PayPublicRequest request) {
     this.rawClient.pay(token, request).body();
   }
 
+  /**
+   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+   */
   public void pay(String token, PayPublicRequest request, RequestOptions requestOptions) {
     this.rawClient.pay(token, request, requestOptions).body();
   }

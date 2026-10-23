@@ -63,11 +63,17 @@ public class AsyncRawFleetClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Register a vehicle. The plate number is stored in upper case and must be unique in the company (409 otherwise); <code>fixedAssetId</code> must name an existing fixed asset. Uploaded <code>documents</code> are attached to the vehicle.
+   */
   public CompletableFuture<NordletApiHttpResponse<VehiclesCreateFleetResponse>> vehiclesCreate(
       VehiclesCreateFleetRequest request) {
     return vehiclesCreate(request,null);
   }
 
+  /**
+   * Register a vehicle. The plate number is stored in upper case and must be unique in the company (409 otherwise); <code>fixedAssetId</code> must name an existing fixed asset. Uploaded <code>documents</code> are attached to the vehicle.
+   */
   public CompletableFuture<NordletApiHttpResponse<VehiclesCreateFleetResponse>> vehiclesCreate(
       VehiclesCreateFleetRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -155,11 +161,17 @@ public class AsyncRawFleetClient {
       return future;
     }
 
+    /**
+     * Change a vehicle's details or set its <code>status</code> to <code>active</code>, <code>sold</code> or <code>scrapped</code>; omitted fields keep their value. A plate number already used by another vehicle is refused with 409.
+     */
     public CompletableFuture<NordletApiHttpResponse<VehiclesUpdateFleetResponse>> vehiclesUpdate(
         VehiclesUpdateFleetRequest request) {
       return vehiclesUpdate(request,null);
     }
 
+    /**
+     * Change a vehicle's details or set its <code>status</code> to <code>active</code>, <code>sold</code> or <code>scrapped</code>; omitted fields keep their value. A plate number already used by another vehicle is refused with 409.
+     */
     public CompletableFuture<NordletApiHttpResponse<VehiclesUpdateFleetResponse>> vehiclesUpdate(
         VehiclesUpdateFleetRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -247,11 +259,17 @@ public class AsyncRawFleetClient {
         return future;
       }
 
+      /**
+       * Read one vehicle with its current assignment, when an employee holds it today.
+       */
       public CompletableFuture<NordletApiHttpResponse<VehiclesGetFleetResponse>> vehiclesGet(
           VehiclesGetFleetRequest request) {
         return vehiclesGet(request,null);
       }
 
+      /**
+       * Read one vehicle with its current assignment, when an employee holds it today.
+       */
       public CompletableFuture<NordletApiHttpResponse<VehiclesGetFleetResponse>> vehiclesGet(
           VehiclesGetFleetRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -339,20 +357,32 @@ public class AsyncRawFleetClient {
           return future;
         }
 
+        /**
+         * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code> and <code>createdAt</code>.
+         */
         public CompletableFuture<NordletApiHttpResponse<VehiclesListFleetResponse>> vehiclesList() {
           return vehiclesList(VehiclesListFleetRequest.builder().build());
         }
 
+        /**
+         * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code> and <code>createdAt</code>.
+         */
         public CompletableFuture<NordletApiHttpResponse<VehiclesListFleetResponse>> vehiclesList(
             RequestOptions requestOptions) {
           return vehiclesList(VehiclesListFleetRequest.builder().build(),requestOptions);
         }
 
+        /**
+         * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code> and <code>createdAt</code>.
+         */
         public CompletableFuture<NordletApiHttpResponse<VehiclesListFleetResponse>> vehiclesList(
             VehiclesListFleetRequest request) {
           return vehiclesList(request,null);
         }
 
+        /**
+         * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code> and <code>createdAt</code>.
+         */
         public CompletableFuture<NordletApiHttpResponse<VehiclesListFleetResponse>> vehiclesList(
             VehiclesListFleetRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -440,11 +470,17 @@ public class AsyncRawFleetClient {
             return future;
           }
 
+          /**
+           * Assign a vehicle to an employee from <code>fromDate</code>, open-ended or until <code>toDate</code>. A period that overlaps another assignment of the same vehicle is refused with 409, a <code>toDate</code> before <code>fromDate</code> with 422. <code>privateUse</code> makes the car a benefit in kind in <code>fleet/natura/preview</code>, and <code>employerPaysFuel</code> picks its rate.
+           */
           public CompletableFuture<NordletApiHttpResponse<AssignmentsCreateFleetResponse>> assignmentsCreate(
               AssignmentsCreateFleetRequest request) {
             return assignmentsCreate(request,null);
           }
 
+          /**
+           * Assign a vehicle to an employee from <code>fromDate</code>, open-ended or until <code>toDate</code>. A period that overlaps another assignment of the same vehicle is refused with 409, a <code>toDate</code> before <code>fromDate</code> with 422. <code>privateUse</code> makes the car a benefit in kind in <code>fleet/natura/preview</code>, and <code>employerPaysFuel</code> picks its rate.
+           */
           public CompletableFuture<NordletApiHttpResponse<AssignmentsCreateFleetResponse>> assignmentsCreate(
               AssignmentsCreateFleetRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -532,11 +568,17 @@ public class AsyncRawFleetClient {
               return future;
             }
 
+            /**
+             * End an open assignment on <code>toDate</code>. An assignment that already has an end date is refused with 409, a <code>toDate</code> before its <code>fromDate</code> with 422.
+             */
             public CompletableFuture<NordletApiHttpResponse<AssignmentsEndFleetResponse>> assignmentsEnd(
                 AssignmentsEndFleetRequest request) {
               return assignmentsEnd(request,null);
             }
 
+            /**
+             * End an open assignment on <code>toDate</code>. An assignment that already has an end date is refused with 409, a <code>toDate</code> before its <code>fromDate</code> with 422.
+             */
             public CompletableFuture<NordletApiHttpResponse<AssignmentsEndFleetResponse>> assignmentsEnd(
                 AssignmentsEndFleetRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -624,21 +666,33 @@ public class AsyncRawFleetClient {
                 return future;
               }
 
+              /**
+               * List vehicle assignments with the plate number and the employee's name. Filterable by <code>vehicleId</code>, <code>employeeId</code> and <code>privateUse</code>; sortable by <code>fromDate</code> and <code>createdAt</code>.
+               */
               public CompletableFuture<NordletApiHttpResponse<AssignmentsListFleetResponse>> assignmentsList(
                   ) {
                 return assignmentsList(AssignmentsListFleetRequest.builder().build());
               }
 
+              /**
+               * List vehicle assignments with the plate number and the employee's name. Filterable by <code>vehicleId</code>, <code>employeeId</code> and <code>privateUse</code>; sortable by <code>fromDate</code> and <code>createdAt</code>.
+               */
               public CompletableFuture<NordletApiHttpResponse<AssignmentsListFleetResponse>> assignmentsList(
                   RequestOptions requestOptions) {
                 return assignmentsList(AssignmentsListFleetRequest.builder().build(),requestOptions);
               }
 
+              /**
+               * List vehicle assignments with the plate number and the employee's name. Filterable by <code>vehicleId</code>, <code>employeeId</code> and <code>privateUse</code>; sortable by <code>fromDate</code> and <code>createdAt</code>.
+               */
               public CompletableFuture<NordletApiHttpResponse<AssignmentsListFleetResponse>> assignmentsList(
                   AssignmentsListFleetRequest request) {
                 return assignmentsList(request,null);
               }
 
+              /**
+               * List vehicle assignments with the plate number and the employee's name. Filterable by <code>vehicleId</code>, <code>employeeId</code> and <code>privateUse</code>; sortable by <code>fromDate</code> and <code>createdAt</code>.
+               */
               public CompletableFuture<NordletApiHttpResponse<AssignmentsListFleetResponse>> assignmentsList(
                   AssignmentsListFleetRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -726,11 +780,17 @@ public class AsyncRawFleetClient {
                   return future;
                 }
 
+                /**
+                 * Preview the car benefit in kind of a month for a Lithuanian company: every assignment with <code>privateUse</code> that overlaps the month is valued at 0.75 % of the vehicle's market value when the employer pays the fuel, else 0.70 %, one row per employee and vehicle, with the total. A company registered in another country is refused with 422. The same amounts are added to a payroll run created with <code>includeNatura</code> (<code>payroll/runs/create</code>).
+                 */
                 public CompletableFuture<NordletApiHttpResponse<NaturaPreviewFleetResponse>> naturaPreview(
                     NaturaPreviewFleetRequest request) {
                   return naturaPreview(request,null);
                 }
 
+                /**
+                 * Preview the car benefit in kind of a month for a Lithuanian company: every assignment with <code>privateUse</code> that overlaps the month is valued at 0.75 % of the vehicle's market value when the employer pays the fuel, else 0.70 %, one row per employee and vehicle, with the total. A company registered in another country is refused with 422. The same amounts are added to a payroll run created with <code>includeNatura</code> (<code>payroll/runs/create</code>).
+                 */
                 public CompletableFuture<NordletApiHttpResponse<NaturaPreviewFleetResponse>> naturaPreview(
                     NaturaPreviewFleetRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

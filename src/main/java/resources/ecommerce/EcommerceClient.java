@@ -40,97 +40,163 @@ public class EcommerceClient {
     return this.rawClient;
   }
 
+  /**
+   * Create a sales order from an online channel in status <code>new</code>. The customer is <code>partnerId</code> or <code>partner</code> details: with an <code>email</code> the existing partner with that e-mail is reused, otherwise a new partner is created; without either the call is refused with 422. <code>currency</code> defaults to the company's invoice currency, and <code>shipToCountryCode</code> and <code>marketplace</code> are kept for the VAT treatment of the invoice at fulfilment. A second order with the same <code>channel</code> and <code>externalRef</code> is refused with 409. Emits <code>sales_order.created</code>.
+   */
   public OrdersCreateEcommerceResponse ordersCreate(OrdersCreateEcommerceRequest request) {
     return this.rawClient.ordersCreate(request).body();
   }
 
+  /**
+   * Create a sales order from an online channel in status <code>new</code>. The customer is <code>partnerId</code> or <code>partner</code> details: with an <code>email</code> the existing partner with that e-mail is reused, otherwise a new partner is created; without either the call is refused with 422. <code>currency</code> defaults to the company's invoice currency, and <code>shipToCountryCode</code> and <code>marketplace</code> are kept for the VAT treatment of the invoice at fulfilment. A second order with the same <code>channel</code> and <code>externalRef</code> is refused with 409. Emits <code>sales_order.created</code>.
+   */
   public OrdersCreateEcommerceResponse ordersCreate(OrdersCreateEcommerceRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersCreate(request, requestOptions).body();
   }
 
+  /**
+   * Read one sales order with its lines.
+   */
   public OrdersGetEcommerceResponse ordersGet(OrdersGetEcommerceRequest request) {
     return this.rawClient.ordersGet(request).body();
   }
 
+  /**
+   * Read one sales order with its lines.
+   */
   public OrdersGetEcommerceResponse ordersGet(OrdersGetEcommerceRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersGet(request, requestOptions).body();
   }
 
+  /**
+   * List sales orders without their lines. Filterable by <code>channel</code>, <code>externalRef</code>, <code>partnerId</code> and <code>status</code>; sortable by <code>createdAt</code>.
+   */
   public OrdersListEcommerceResponse ordersList() {
     return this.rawClient.ordersList().body();
   }
 
+  /**
+   * List sales orders without their lines. Filterable by <code>channel</code>, <code>externalRef</code>, <code>partnerId</code> and <code>status</code>; sortable by <code>createdAt</code>.
+   */
   public OrdersListEcommerceResponse ordersList(RequestOptions requestOptions) {
     return this.rawClient.ordersList(requestOptions).body();
   }
 
+  /**
+   * List sales orders without their lines. Filterable by <code>channel</code>, <code>externalRef</code>, <code>partnerId</code> and <code>status</code>; sortable by <code>createdAt</code>.
+   */
   public OrdersListEcommerceResponse ordersList(OrdersListEcommerceRequest request) {
     return this.rawClient.ordersList(request).body();
   }
 
+  /**
+   * List sales orders without their lines. Filterable by <code>channel</code>, <code>externalRef</code>, <code>partnerId</code> and <code>status</code>; sortable by <code>createdAt</code>.
+   */
   public OrdersListEcommerceResponse ordersList(OrdersListEcommerceRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersList(request, requestOptions).body();
   }
 
+  /**
+   * Reserve stock for a <code>new</code> order in <code>warehouseId</code> (default: the order's warehouse; 422 when neither is set). Each product line, and each product component of a set line, is checked against the warehouse's on-hand quantity less the existing reservations; when any item is short the call is refused with 422 and nothing is reserved. Otherwise a reservation is written per stock line, <code>stock.changed</code> (change type <code>reserve</code>) is emitted for each, and the order becomes <code>reserved</code>. An order in another status is refused with 409.
+   */
   public OrdersReserveEcommerceResponse ordersReserve(OrdersReserveEcommerceRequest request) {
     return this.rawClient.ordersReserve(request).body();
   }
 
+  /**
+   * Reserve stock for a <code>new</code> order in <code>warehouseId</code> (default: the order's warehouse; 422 when neither is set). Each product line, and each product component of a set line, is checked against the warehouse's on-hand quantity less the existing reservations; when any item is short the call is refused with 422 and nothing is reserved. Otherwise a reservation is written per stock line, <code>stock.changed</code> (change type <code>reserve</code>) is emitted for each, and the order becomes <code>reserved</code>. An order in another status is refused with 409.
+   */
   public OrdersReserveEcommerceResponse ordersReserve(OrdersReserveEcommerceRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersReserve(request, requestOptions).body();
   }
 
+  /**
+   * Fulfil a <code>new</code> or <code>reserved</code> order: its reservations are released, the stock lines are consumed FIFO from the order's warehouse on <code>date</code> (default: the company's today), the cost of goods sold is posted as a journal entry debiting <code>cogsAccountCode</code> and crediting the stock accounts of the consumed layers (<code>inventoryAccountCode</code> when a layer has none), and a draft sale invoice for the order lines is created and linked as <code>invoiceId</code>, ready for <code>sales/invoices/issue</code>. With a <code>shipToCountryCode</code> on the order the invoice's VAT scheme is resolved for goods shipped there, as a marketplace sale when <code>marketplace</code> is set. Account codes default to the company's chart. Refused with 422 when the stock lines have no warehouse or stock is insufficient (unless the company allows negative stock), with 409 when the accounting period is locked or the order is already <code>fulfilled</code> or <code>cancelled</code>. Emits <code>sales_order.fulfilled</code> and <code>stock.changed</code>.
+   */
   public OrdersFulfillEcommerceResponse ordersFulfill(OrdersFulfillEcommerceRequest request) {
     return this.rawClient.ordersFulfill(request).body();
   }
 
+  /**
+   * Fulfil a <code>new</code> or <code>reserved</code> order: its reservations are released, the stock lines are consumed FIFO from the order's warehouse on <code>date</code> (default: the company's today), the cost of goods sold is posted as a journal entry debiting <code>cogsAccountCode</code> and crediting the stock accounts of the consumed layers (<code>inventoryAccountCode</code> when a layer has none), and a draft sale invoice for the order lines is created and linked as <code>invoiceId</code>, ready for <code>sales/invoices/issue</code>. With a <code>shipToCountryCode</code> on the order the invoice's VAT scheme is resolved for goods shipped there, as a marketplace sale when <code>marketplace</code> is set. Account codes default to the company's chart. Refused with 422 when the stock lines have no warehouse or stock is insufficient (unless the company allows negative stock), with 409 when the accounting period is locked or the order is already <code>fulfilled</code> or <code>cancelled</code>. Emits <code>sales_order.fulfilled</code> and <code>stock.changed</code>.
+   */
   public OrdersFulfillEcommerceResponse ordersFulfill(OrdersFulfillEcommerceRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersFulfill(request, requestOptions).body();
   }
 
+  /**
+   * Cancel an order that is not fulfilled: its stock reservations are released, <code>stock.changed</code> (change type <code>release</code>) is emitted for each, and the status becomes <code>cancelled</code>. A fulfilled order is refused with 409.
+   */
   public OrdersCancelEcommerceResponse ordersCancel(OrdersCancelEcommerceRequest request) {
     return this.rawClient.ordersCancel(request).body();
   }
 
+  /**
+   * Cancel an order that is not fulfilled: its stock reservations are released, <code>stock.changed</code> (change type <code>release</code>) is emitted for each, and the status becomes <code>cancelled</code>. A fulfilled order is refused with 409.
+   */
   public OrdersCancelEcommerceResponse ordersCancel(OrdersCancelEcommerceRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ordersCancel(request, requestOptions).body();
   }
 
+  /**
+   * List the company's items as a shop catalogue, in order of last update, with price and stock. <code>price</code> is the item's price in <code>priceListId</code> when given, else its own sale price, and <code>currency</code> that of the price list, else the company's invoice currency; <code>vatRatePercent</code> falls back to the rate of the item's VAT classifier. For a product <code>onHand</code>, <code>reserved</code> and <code>available</code> are summed over all warehouses or over <code>warehouseId</code> only; for a set <code>available</code> is the number of sets its product components can still make; for a service they are null. With <code>updatedSince</code> only items changed after that time are returned, deleted ones included (<code>deleted: true</code>), so a shop can sync incrementally; without it only live items are listed.
+   */
   public ProductsListEcommerceResponse productsList() {
     return this.rawClient.productsList().body();
   }
 
+  /**
+   * List the company's items as a shop catalogue, in order of last update, with price and stock. <code>price</code> is the item's price in <code>priceListId</code> when given, else its own sale price, and <code>currency</code> that of the price list, else the company's invoice currency; <code>vatRatePercent</code> falls back to the rate of the item's VAT classifier. For a product <code>onHand</code>, <code>reserved</code> and <code>available</code> are summed over all warehouses or over <code>warehouseId</code> only; for a set <code>available</code> is the number of sets its product components can still make; for a service they are null. With <code>updatedSince</code> only items changed after that time are returned, deleted ones included (<code>deleted: true</code>), so a shop can sync incrementally; without it only live items are listed.
+   */
   public ProductsListEcommerceResponse productsList(RequestOptions requestOptions) {
     return this.rawClient.productsList(requestOptions).body();
   }
 
+  /**
+   * List the company's items as a shop catalogue, in order of last update, with price and stock. <code>price</code> is the item's price in <code>priceListId</code> when given, else its own sale price, and <code>currency</code> that of the price list, else the company's invoice currency; <code>vatRatePercent</code> falls back to the rate of the item's VAT classifier. For a product <code>onHand</code>, <code>reserved</code> and <code>available</code> are summed over all warehouses or over <code>warehouseId</code> only; for a set <code>available</code> is the number of sets its product components can still make; for a service they are null. With <code>updatedSince</code> only items changed after that time are returned, deleted ones included (<code>deleted: true</code>), so a shop can sync incrementally; without it only live items are listed.
+   */
   public ProductsListEcommerceResponse productsList(ProductsListEcommerceRequest request) {
     return this.rawClient.productsList(request).body();
   }
 
+  /**
+   * List the company's items as a shop catalogue, in order of last update, with price and stock. <code>price</code> is the item's price in <code>priceListId</code> when given, else its own sale price, and <code>currency</code> that of the price list, else the company's invoice currency; <code>vatRatePercent</code> falls back to the rate of the item's VAT classifier. For a product <code>onHand</code>, <code>reserved</code> and <code>available</code> are summed over all warehouses or over <code>warehouseId</code> only; for a set <code>available</code> is the number of sets its product components can still make; for a service they are null. With <code>updatedSince</code> only items changed after that time are returned, deleted ones included (<code>deleted: true</code>), so a shop can sync incrementally; without it only live items are listed.
+   */
   public ProductsListEcommerceResponse productsList(ProductsListEcommerceRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.productsList(request, requestOptions).body();
   }
 
+  /**
+   * Stock position per item and warehouse: <code>onHand</code>, <code>reserved</code> and their difference <code>available</code>, for all warehouses or <code>warehouseId</code> only. Only items with a positive quantity on hand are returned.
+   */
   public StockListEcommerceResponse stockList() {
     return this.rawClient.stockList().body();
   }
 
+  /**
+   * Stock position per item and warehouse: <code>onHand</code>, <code>reserved</code> and their difference <code>available</code>, for all warehouses or <code>warehouseId</code> only. Only items with a positive quantity on hand are returned.
+   */
   public StockListEcommerceResponse stockList(RequestOptions requestOptions) {
     return this.rawClient.stockList(requestOptions).body();
   }
 
+  /**
+   * Stock position per item and warehouse: <code>onHand</code>, <code>reserved</code> and their difference <code>available</code>, for all warehouses or <code>warehouseId</code> only. Only items with a positive quantity on hand are returned.
+   */
   public StockListEcommerceResponse stockList(StockListEcommerceRequest request) {
     return this.rawClient.stockList(request).body();
   }
 
+  /**
+   * Stock position per item and warehouse: <code>onHand</code>, <code>reserved</code> and their difference <code>available</code>, for all warehouses or <code>warehouseId</code> only. Only items with a positive quantity on hand are returned.
+   */
   public StockListEcommerceResponse stockList(StockListEcommerceRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.stockList(request, requestOptions).body();

@@ -85,171 +85,279 @@ public class AsyncReportsClient {
     return this.rawClient;
   }
 
+  /**
+   * Trial balance of the posted ledger for a period: for every account with an opening balance or movement, the balance before <code>fromDate</code>, the debit and credit turnover between <code>fromDate</code> and <code>toDate</code>, and the closing balance, with debit and credit totals. Template account names follow the <code>Accept-Language</code> header.
+   */
   public CompletableFuture<TrialBalanceReportsResponse> trialBalance(
       TrialBalanceReportsRequest request) {
     return this.rawClient.trialBalance(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Trial balance of the posted ledger for a period: for every account with an opening balance or movement, the balance before <code>fromDate</code>, the debit and credit turnover between <code>fromDate</code> and <code>toDate</code>, and the closing balance, with debit and credit totals. Template account names follow the <code>Accept-Language</code> header.
+   */
   public CompletableFuture<TrialBalanceReportsResponse> trialBalance(
       TrialBalanceReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.trialBalance(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in <code>thresholds</code>; a category applies when at least two of its three limits are met. This is the default category of <code>reports/financial-statements</code>.
+   */
   public CompletableFuture<SizeCategoryReportsResponse> sizeCategory(
       SizeCategoryReportsRequest request) {
     return this.rawClient.sizeCategory(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in <code>thresholds</code>; a category applies when at least two of its three limits are met. This is the default category of <code>reports/financial-statements</code>.
+   */
   public CompletableFuture<SizeCategoryReportsResponse> sizeCategory(
       SizeCategoryReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.sizeCategory(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Balance sheet at <code>toDate</code> and profit and loss for the period from the posted ledger, year-end closing entries excluded, laid out by size category: <code>category</code> when given, else the one <code>reports/size-category</code> derives for the period. Micro gets the short balance sheet and profit and loss; the other categories add the balance sheet and profit and loss detail; medium and large also get the changes in equity and a cash flow summary. Line groupings follow the company's chart template.
+   */
   public CompletableFuture<FinancialStatementsReportsResponse> financialStatements(
       FinancialStatementsReportsRequest request) {
     return this.rawClient.financialStatements(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Balance sheet at <code>toDate</code> and profit and loss for the period from the posted ledger, year-end closing entries excluded, laid out by size category: <code>category</code> when given, else the one <code>reports/size-category</code> derives for the period. Micro gets the short balance sheet and profit and loss; the other categories add the balance sheet and profit and loss detail; medium and large also get the changes in equity and a cash flow summary. Line groupings follow the company's chart template.
+   */
   public CompletableFuture<FinancialStatementsReportsResponse> financialStatements(
       FinancialStatementsReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.financialStatements(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Posted journal transactions of a period in date order, each with its lines (account, debit, credit), paged with <code>page</code> and <code>pageSize</code> and the total count. Template account names follow the <code>Accept-Language</code> header.
+   */
   public CompletableFuture<GeneralJournalReportsResponse> generalJournal(
       GeneralJournalReportsRequest request) {
     return this.rawClient.generalJournal(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Posted journal transactions of a period in date order, each with its lines (account, debit, credit), paged with <code>page</code> and <code>pageSize</code> and the total count. Template account names follow the <code>Accept-Language</code> header.
+   */
   public CompletableFuture<GeneralJournalReportsResponse> generalJournal(
       GeneralJournalReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.generalJournal(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Ledger card of one account for a period: the opening balance before <code>fromDate</code>, every posted line in date order with a running balance, and the closing balance.
+   */
   public CompletableFuture<GlDetailReportsResponse> glDetail(GlDetailReportsRequest request) {
     return this.rawClient.glDetail(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Ledger card of one account for a period: the opening balance before <code>fromDate</code>, every posted line in date order with a running balance, and the closing balance.
+   */
   public CompletableFuture<GlDetailReportsResponse> glDetail(GlDetailReportsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.glDetail(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Open balance per partner: receivables from issued sale invoices and payables from registered purchase invoices that are not fully paid, credit notes reducing the balance, converted to the base currency at the document rate, with totals.
+   */
   public CompletableFuture<PartnerBalancesReportsResponse> partnerBalances() {
     return this.rawClient.partnerBalances().thenApply(response -> response.body());
   }
 
+  /**
+   * Open balance per partner: receivables from issued sale invoices and payables from registered purchase invoices that are not fully paid, credit notes reducing the balance, converted to the base currency at the document rate, with totals.
+   */
   public CompletableFuture<PartnerBalancesReportsResponse> partnerBalances(
       RequestOptions requestOptions) {
     return this.rawClient.partnerBalances(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Open balance per partner: receivables from issued sale invoices and payables from registered purchase invoices that are not fully paid, credit notes reducing the balance, converted to the base currency at the document rate, with totals.
+   */
   public CompletableFuture<PartnerBalancesReportsResponse> partnerBalances(
       PartnerBalancesReportsRequest request) {
     return this.rawClient.partnerBalances(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Open balance per partner: receivables from issued sale invoices and payables from registered purchase invoices that are not fully paid, credit notes reducing the balance, converted to the base currency at the document rate, with totals.
+   */
   public CompletableFuture<PartnerBalancesReportsResponse> partnerBalances(
       PartnerBalancesReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.partnerBalances(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Ageing of the open receivables or payables (<code>side</code>) at <code>asOf</code> (default the company's current date) per partner: not yet due, 1 to 30, 31 to 60, 61 to 90 and over 90 days past the due date. Counts documents dated on or before <code>asOf</code> and payments made up to that date.
+   */
   public CompletableFuture<DebtAgingReportsResponse> debtAging() {
     return this.rawClient.debtAging().thenApply(response -> response.body());
   }
 
+  /**
+   * Ageing of the open receivables or payables (<code>side</code>) at <code>asOf</code> (default the company's current date) per partner: not yet due, 1 to 30, 31 to 60, 61 to 90 and over 90 days past the due date. Counts documents dated on or before <code>asOf</code> and payments made up to that date.
+   */
   public CompletableFuture<DebtAgingReportsResponse> debtAging(RequestOptions requestOptions) {
     return this.rawClient.debtAging(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Ageing of the open receivables or payables (<code>side</code>) at <code>asOf</code> (default the company's current date) per partner: not yet due, 1 to 30, 31 to 60, 61 to 90 and over 90 days past the due date. Counts documents dated on or before <code>asOf</code> and payments made up to that date.
+   */
   public CompletableFuture<DebtAgingReportsResponse> debtAging(DebtAgingReportsRequest request) {
     return this.rawClient.debtAging(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Ageing of the open receivables or payables (<code>side</code>) at <code>asOf</code> (default the company's current date) per partner: not yet due, 1 to 30, 31 to 60, 61 to 90 and over 90 days past the due date. Counts documents dated on or before <code>asOf</code> and payments made up to that date.
+   */
   public CompletableFuture<DebtAgingReportsResponse> debtAging(DebtAgingReportsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.debtAging(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * One row per calendar month for the last <code>months</code> months ending with the current one: the receivable and payable balances at the end of the month and the revenue, expenses and net result posted in it, year-end closing entries excluded.
+   */
   public CompletableFuture<MonthlySummaryReportsResponse> monthlySummary() {
     return this.rawClient.monthlySummary().thenApply(response -> response.body());
   }
 
+  /**
+   * One row per calendar month for the last <code>months</code> months ending with the current one: the receivable and payable balances at the end of the month and the revenue, expenses and net result posted in it, year-end closing entries excluded.
+   */
   public CompletableFuture<MonthlySummaryReportsResponse> monthlySummary(
       RequestOptions requestOptions) {
     return this.rawClient.monthlySummary(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * One row per calendar month for the last <code>months</code> months ending with the current one: the receivable and payable balances at the end of the month and the revenue, expenses and net result posted in it, year-end closing entries excluded.
+   */
   public CompletableFuture<MonthlySummaryReportsResponse> monthlySummary(
       MonthlySummaryReportsRequest request) {
     return this.rawClient.monthlySummary(request).thenApply(response -> response.body());
   }
 
+  /**
+   * One row per calendar month for the last <code>months</code> months ending with the current one: the receivable and payable balances at the end of the month and the revenue, expenses and net result posted in it, year-end closing entries excluded.
+   */
   public CompletableFuture<MonthlySummaryReportsResponse> monthlySummary(
       MonthlySummaryReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.monthlySummary(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Quantity and value on hand per item and warehouse at <code>asOf</code>, summed from the stock movements dated on or before it; <code>warehouseId</code> limits the report to one warehouse. Rows with zero quantity and zero value are left out.
+   */
   public CompletableFuture<StockBalanceReportsResponse> stockBalance(
       StockBalanceReportsRequest request) {
     return this.rawClient.stockBalance(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Quantity and value on hand per item and warehouse at <code>asOf</code>, summed from the stock movements dated on or before it; <code>warehouseId</code> limits the report to one warehouse. Rows with zero quantity and zero value are left out.
+   */
   public CompletableFuture<StockBalanceReportsResponse> stockBalance(
       StockBalanceReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.stockBalance(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Stock movement per item for a period: opening quantity and value before <code>fromDate</code>, quantities and values received and issued between <code>fromDate</code> and <code>toDate</code>, and the closing figures; <code>warehouseId</code> and <code>itemId</code> narrow the report.
+   */
   public CompletableFuture<StockMovementReportsResponse> stockMovement(
       StockMovementReportsRequest request) {
     return this.rawClient.stockMovement(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Stock movement per item for a period: opening quantity and value before <code>fromDate</code>, quantities and values received and issued between <code>fromDate</code> and <code>toDate</code>, and the closing figures; <code>warehouseId</code> and <code>itemId</code> narrow the report.
+   */
   public CompletableFuture<StockMovementReportsResponse> stockMovement(
       StockMovementReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.stockMovement(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of <code>reports/vat-detail</code> grouped by rate.
+   */
   public CompletableFuture<VatSummaryReportsResponse> vatSummary(VatSummaryReportsRequest request) {
     return this.rawClient.vatSummary(request).thenApply(response -> response.body());
   }
 
+  /**
+   * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of <code>reports/vat-detail</code> grouped by rate.
+   */
   public CompletableFuture<VatSummaryReportsResponse> vatSummary(VatSummaryReportsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.vatSummary(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Cash flow statement of a period from the posted transactions that touch a cash account: the inflow and outflow of every counterpart account, grouped into operating, investing and financing by the account prefixes of the company's chart template, with opening and closing cash and <code>balanced</code> telling whether opening cash plus the net change equals closing cash. Template account names follow the <code>Accept-Language</code> header.
+   */
   public CompletableFuture<CashFlowReportsResponse> cashFlow(CashFlowReportsRequest request) {
     return this.rawClient.cashFlow(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Cash flow statement of a period from the posted transactions that touch a cash account: the inflow and outflow of every counterpart account, grouped into operating, investing and financing by the account prefixes of the company's chart template, with opening and closing cash and <code>balanced</code> telling whether opening cash plus the net change equals closing cash. Template account names follow the <code>Accept-Language</code> header.
+   */
   public CompletableFuture<CashFlowReportsResponse> cashFlow(CashFlowReportsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.cashFlow(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Age of the stock on hand at <code>asOf</code> per item and warehouse: the remaining quantity and value of each FIFO receipt layer, bucketed by days since the receipt (0 to 30, 31 to 60, 61 to 90, over 90), with totals; <code>warehouseId</code> limits the report to one warehouse. When movements after <code>asOf</code> exist, the layers are rebuilt by replaying the movements up to that date.
+   */
   public CompletableFuture<StockAgingReportsResponse> stockAging(StockAgingReportsRequest request) {
     return this.rawClient.stockAging(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Age of the stock on hand at <code>asOf</code> per item and warehouse: the remaining quantity and value of each FIFO receipt layer, bucketed by days since the receipt (0 to 30, 31 to 60, 61 to 90, over 90), with totals; <code>warehouseId</code> limits the report to one warehouse. When movements after <code>asOf</code> exist, the layers are rebuilt by replaying the movements up to that date.
+   */
   public CompletableFuture<StockAgingReportsResponse> stockAging(StockAgingReportsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.stockAging(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Items whose reserved quantity exceeds the quantity on hand, per warehouse: on hand, reserved and the shortage. Only items with a reservation are checked; <code>warehouseId</code> limits the report to one warehouse.
+   */
   public CompletableFuture<StockShortageReportsResponse> stockShortage() {
     return this.rawClient.stockShortage().thenApply(response -> response.body());
   }
 
+  /**
+   * Items whose reserved quantity exceeds the quantity on hand, per warehouse: on hand, reserved and the shortage. Only items with a reservation are checked; <code>warehouseId</code> limits the report to one warehouse.
+   */
   public CompletableFuture<StockShortageReportsResponse> stockShortage(
       RequestOptions requestOptions) {
     return this.rawClient.stockShortage(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Items whose reserved quantity exceeds the quantity on hand, per warehouse: on hand, reserved and the shortage. Only items with a reservation are checked; <code>warehouseId</code> limits the report to one warehouse.
+   */
   public CompletableFuture<StockShortageReportsResponse> stockShortage(
       StockShortageReportsRequest request) {
     return this.rawClient.stockShortage(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Items whose reserved quantity exceeds the quantity on hand, per warehouse: on hand, reserved and the shortage. Only items with a reservation are checked; <code>warehouseId</code> limits the report to one warehouse.
+   */
   public CompletableFuture<StockShortageReportsResponse> stockShortage(
       StockShortageReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.stockShortage(request, requestOptions).thenApply(response -> response.body());
@@ -300,133 +408,217 @@ public class AsyncReportsClient {
     return this.rawClient.fec(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Registered purchase invoices of a period (by registration date) from partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents, credit notes counting negative. The partner's country is the country code of its address, else the first two characters of its VAT number.
+   */
   public CompletableFuture<EuPurchasesReportsResponse> euPurchases(
       EuPurchasesReportsRequest request) {
     return this.rawClient.euPurchases(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Registered purchase invoices of a period (by registration date) from partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents, credit notes counting negative. The partner's country is the country code of its address, else the first two characters of its VAT number.
+   */
   public CompletableFuture<EuPurchasesReportsResponse> euPurchases(
       EuPurchasesReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.euPurchases(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. <code>reports/vat-summary</code> groups these rows by rate.
+   */
   public CompletableFuture<VatDetailReportsResponse> vatDetail(VatDetailReportsRequest request) {
     return this.rawClient.vatDetail(request).thenApply(response -> response.body());
   }
 
+  /**
+   * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. <code>reports/vat-summary</code> groups these rows by rate.
+   */
   public CompletableFuture<VatDetailReportsResponse> vatDetail(VatDetailReportsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.vatDetail(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * POS reports of a period (by report date): per report the net, VAT, gross, cash and card amounts and the cost of goods sold, the net and VAT per VAT rate across the reports, and totals.
+   */
   public CompletableFuture<PosSalesReportsResponse> posSales(PosSalesReportsRequest request) {
     return this.rawClient.posSales(request).thenApply(response -> response.body());
   }
 
+  /**
+   * POS reports of a period (by report date): per report the net, VAT, gross, cash and card amounts and the cost of goods sold, the net and VAT per VAT rate across the reports, and totals.
+   */
   public CompletableFuture<PosSalesReportsResponse> posSales(PosSalesReportsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.posSales(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Sales orders created in a period, grouped by channel and currency: the number of orders, how many are fulfilled, cancelled or still open (new or reserved), and the net and gross of the orders that are not cancelled, computed from their lines.
+   */
   public CompletableFuture<OnlineSalesReportsResponse> onlineSales(
       OnlineSalesReportsRequest request) {
     return this.rawClient.onlineSales(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Sales orders created in a period, grouped by channel and currency: the number of orders, how many are fulfilled, cancelled or still open (new or reserved), and the net and gross of the orders that are not cancelled, computed from their lines.
+   */
   public CompletableFuture<OnlineSalesReportsResponse> onlineSales(
       OnlineSalesReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.onlineSales(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Issued sale invoices and credit notes of a period (by issue date) to partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents. The partner's country is the country code of its address, else the first two characters of its VAT number.
+   */
   public CompletableFuture<OssReportsResponse> oss(OssReportsRequest request) {
     return this.rawClient.oss(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Issued sale invoices and credit notes of a period (by issue date) to partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents. The partner's country is the country code of its address, else the first two characters of its VAT number.
+   */
   public CompletableFuture<OssReportsResponse> oss(OssReportsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.oss(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Cash advances per employee for a period: the balance before <code>fromDate</code>, the advances paid out and returned through cash orders in the period, the amount settled by expense reports dated in the period, and the closing balance. A cash order counts as an advance when it names an employee and its counter account is the <code>cash.advances</code> posting rule.
+   */
   public CompletableFuture<AdvanceReconciliationReportsResponse> advanceReconciliation(
       AdvanceReconciliationReportsRequest request) {
     return this.rawClient.advanceReconciliation(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Cash advances per employee for a period: the balance before <code>fromDate</code>, the advances paid out and returned through cash orders in the period, the amount settled by expense reports dated in the period, and the closing balance. A cash order counts as an advance when it names an employee and its counter account is the <code>cash.advances</code> posting rule.
+   */
   public CompletableFuture<AdvanceReconciliationReportsResponse> advanceReconciliation(
       AdvanceReconciliationReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.advanceReconciliation(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Stock issued by write-offs and stock takes in a period: one row per outgoing movement with item, warehouse, quantity, cost and notes, and the total cost; <code>warehouseId</code> limits the report to one warehouse.
+   */
   public CompletableFuture<WriteOffActsReportsResponse> writeOffActs(
       WriteOffActsReportsRequest request) {
     return this.rawClient.writeOffActs(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Stock issued by write-offs and stock takes in a period: one row per outgoing movement with item, warehouse, quantity, cost and notes, and the total cost; <code>warehouseId</code> limits the report to one warehouse.
+   */
   public CompletableFuture<WriteOffActsReportsResponse> writeOffActs(
       WriteOffActsReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.writeOffActs(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Income, expenses and result per cost centre for a period, from the posted journal lines assigned to a cost centre.
+   */
   public CompletableFuture<CostCentersReportsResponse> costCenters(
       CostCentersReportsRequest request) {
     return this.rawClient.costCenters(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Income, expenses and result per cost centre for a period, from the posted journal lines assigned to a cost centre.
+   */
   public CompletableFuture<CostCentersReportsResponse> costCenters(
       CostCentersReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.costCenters(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Posted journal lines of one cost centre for a period, summed per account: debit, credit and net. Template account names follow the <code>Accept-Language</code> header.
+   */
   public CompletableFuture<CostCenterActivityReportsResponse> costCenterActivity(
       CostCenterActivityReportsRequest request) {
     return this.rawClient.costCenterActivity(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Posted journal lines of one cost centre for a period, summed per account: debit, credit and net. Template account names follow the <code>Accept-Language</code> header.
+   */
   public CompletableFuture<CostCenterActivityReportsResponse> costCenterActivity(
       CostCenterActivityReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.costCenterActivity(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Net purchases per cost centre and item for a period, from the lines of registered purchase invoices (by registration date) that carry a cost centre, credit notes counting negative; <code>costCenterId</code> limits the report to one cost centre. A line without an item is reported under its description.
+   */
   public CompletableFuture<CostCenterItemsReportsResponse> costCenterItems(
       CostCenterItemsReportsRequest request) {
     return this.rawClient.costCenterItems(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Net purchases per cost centre and item for a period, from the lines of registered purchase invoices (by registration date) that carry a cost centre, credit notes counting negative; <code>costCenterId</code> limits the report to one cost centre. A line without an item is reported under its description.
+   */
   public CompletableFuture<CostCenterItemsReportsResponse> costCenterItems(
       CostCenterItemsReportsRequest request, RequestOptions requestOptions) {
     return this.rawClient.costCenterItems(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Queue a report to be built in the background in one or more formats (<code>json</code>, <code>xlsx</code>, <code>pdf</code>) and stored as files; the job is returned at once with status <code>queued</code>. <code>reportType</code> is one of trial-balance, partner-balances, debt-aging, stock-balance, vat-summary, vat-detail, eu-purchases, oss, pos-sales, online-sales, advance-reconciliation, write-off-acts, cost-centers, cost-center-activity, cost-center-items and cash-flow, and <code>params</code> is the body of that report route; an unknown type or invalid params are refused with 422. Follow the job with <code>reports/jobs/get</code>, download its outputs with <code>files/get</code>, and listen for <code>report.completed</code> or <code>report.failed</code>; a report that does not finish within ten minutes fails.
+   */
   public CompletableFuture<JobsCreateReportsResponse> jobsCreate(JobsCreateReportsRequest request) {
     return this.rawClient.jobsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Queue a report to be built in the background in one or more formats (<code>json</code>, <code>xlsx</code>, <code>pdf</code>) and stored as files; the job is returned at once with status <code>queued</code>. <code>reportType</code> is one of trial-balance, partner-balances, debt-aging, stock-balance, vat-summary, vat-detail, eu-purchases, oss, pos-sales, online-sales, advance-reconciliation, write-off-acts, cost-centers, cost-center-activity, cost-center-items and cash-flow, and <code>params</code> is the body of that report route; an unknown type or invalid params are refused with 422. Follow the job with <code>reports/jobs/get</code>, download its outputs with <code>files/get</code>, and listen for <code>report.completed</code> or <code>report.failed</code>; a report that does not finish within ten minutes fails.
+   */
   public CompletableFuture<JobsCreateReportsResponse> jobsCreate(JobsCreateReportsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.jobsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Return one report job with its status (<code>queued</code>, <code>running</code>, <code>completed</code> or <code>failed</code>), the error of a failed job and the output files of a completed one.
+   */
   public CompletableFuture<JobsGetReportsResponse> jobsGet(JobsGetReportsRequest request) {
     return this.rawClient.jobsGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Return one report job with its status (<code>queued</code>, <code>running</code>, <code>completed</code> or <code>failed</code>), the error of a failed job and the output files of a completed one.
+   */
   public CompletableFuture<JobsGetReportsResponse> jobsGet(JobsGetReportsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.jobsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
+   */
   public CompletableFuture<JobsListReportsResponse> jobsList() {
     return this.rawClient.jobsList().thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
+   */
   public CompletableFuture<JobsListReportsResponse> jobsList(RequestOptions requestOptions) {
     return this.rawClient.jobsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
+   */
   public CompletableFuture<JobsListReportsResponse> jobsList(JobsListReportsRequest request) {
     return this.rawClient.jobsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
+   */
   public CompletableFuture<JobsListReportsResponse> jobsList(JobsListReportsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.jobsList(request, requestOptions).thenApply(response -> response.body());

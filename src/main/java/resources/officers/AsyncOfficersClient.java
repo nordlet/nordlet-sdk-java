@@ -62,28 +62,46 @@ public class AsyncOfficersClient {
     return this.rawClient.list(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Add an officer to the company's register (<code>officers/list</code>); <code>signsAccounts</code> defaults to true. Refused with 422 when <code>resignedOn</code> is before <code>appointedOn</code>.
+   */
   public CompletableFuture<CreateOfficersResponse> create(CreateOfficersRequest request) {
     return this.rawClient.create(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Add an officer to the company's register (<code>officers/list</code>); <code>signsAccounts</code> defaults to true. Refused with 422 when <code>resignedOn</code> is before <code>appointedOn</code>.
+   */
   public CompletableFuture<CreateOfficersResponse> create(CreateOfficersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.create(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Replace the recorded data of an officer; every field is written as sent, so a field left out is cleared and <code>signsAccounts</code> falls back to true. Refused with 422 when <code>resignedOn</code> is before <code>appointedOn</code>.
+   */
   public CompletableFuture<UpdateOfficersResponse> update(UpdateOfficersRequest request) {
     return this.rawClient.update(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Replace the recorded data of an officer; every field is written as sent, so a field left out is cleared and <code>signsAccounts</code> falls back to true. Refused with 422 when <code>resignedOn</code> is before <code>appointedOn</code>.
+   */
   public CompletableFuture<UpdateOfficersResponse> update(UpdateOfficersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.update(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Remove an officer from the company's register.
+   */
   public CompletableFuture<DeleteOfficersResponse> delete(DeleteOfficersRequest request) {
     return this.rawClient.delete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Remove an officer from the company's register.
+   */
   public CompletableFuture<DeleteOfficersResponse> delete(DeleteOfficersRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.delete(request, requestOptions).thenApply(response -> response.body());

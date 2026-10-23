@@ -39,27 +39,45 @@ public class AsyncCalendarClient {
     return this.rawClient;
   }
 
+  /**
+   * Lists, in due-date order, the filing deadlines Nordlet derives for the company from its country and profile together with the company's own events, between <code>from</code> and <code>to</code> (default 45 days back to 120 days ahead of the company's current date). Each deadline carries its submissions, whether it can be filed with <code>calendar/submit</code>, amended, or built with <code>calendar/download</code>, and whether its automation is on; <code>includeDone: false</code> leaves out the rows that are completed, submitted or accepted.
+   */
   public CompletableFuture<ListCalendarResponse> list() {
     return this.rawClient.list().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists, in due-date order, the filing deadlines Nordlet derives for the company from its country and profile together with the company's own events, between <code>from</code> and <code>to</code> (default 45 days back to 120 days ahead of the company's current date). Each deadline carries its submissions, whether it can be filed with <code>calendar/submit</code>, amended, or built with <code>calendar/download</code>, and whether its automation is on; <code>includeDone: false</code> leaves out the rows that are completed, submitted or accepted.
+   */
   public CompletableFuture<ListCalendarResponse> list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists, in due-date order, the filing deadlines Nordlet derives for the company from its country and profile together with the company's own events, between <code>from</code> and <code>to</code> (default 45 days back to 120 days ahead of the company's current date). Each deadline carries its submissions, whether it can be filed with <code>calendar/submit</code>, amended, or built with <code>calendar/download</code>, and whether its automation is on; <code>includeDone: false</code> leaves out the rows that are completed, submitted or accepted.
+   */
   public CompletableFuture<ListCalendarResponse> list(ListCalendarRequest request) {
     return this.rawClient.list(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists, in due-date order, the filing deadlines Nordlet derives for the company from its country and profile together with the company's own events, between <code>from</code> and <code>to</code> (default 45 days back to 120 days ahead of the company's current date). Each deadline carries its submissions, whether it can be filed with <code>calendar/submit</code>, amended, or built with <code>calendar/download</code>, and whether its automation is on; <code>includeDone: false</code> leaves out the rows that are completed, submitted or accepted.
+   */
   public CompletableFuture<ListCalendarResponse> list(ListCalendarRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.list(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Reads one calendar row by <code>key</code>: the id of a company event, or <code>ruleKey:period</code> for a filing deadline with its submissions.
+   */
   public CompletableFuture<GetCalendarResponse> get(GetCalendarRequest request) {
     return this.rawClient.get(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Reads one calendar row by <code>key</code>: the id of a company event, or <code>ruleKey:period</code> for a filing deadline with its submissions.
+   */
   public CompletableFuture<GetCalendarResponse> get(GetCalendarRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.get(request, requestOptions).thenApply(response -> response.body());
@@ -95,28 +113,46 @@ public class AsyncCalendarClient {
     return this.rawClient.download(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a company event (kind <code>custom</code>) with a title, a due date, notes and a done flag.
+   */
   public CompletableFuture<CreateCalendarResponse> create(CreateCalendarRequest request) {
     return this.rawClient.create(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a company event (kind <code>custom</code>) with a title, a due date, notes and a done flag.
+   */
   public CompletableFuture<CreateCalendarResponse> create(CreateCalendarRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.create(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes a calendar row by <code>key</code>. A company event takes a new title, due date, notes or done flag; a filing deadline (<code>ruleKey:period</code>) takes only notes and done, keeps its own title and date, and gets a stored row the first time it is annotated.
+   */
   public CompletableFuture<UpdateCalendarResponse> update(UpdateCalendarRequest request) {
     return this.rawClient.update(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes a calendar row by <code>key</code>. A company event takes a new title, due date, notes or done flag; a filing deadline (<code>ruleKey:period</code>) takes only notes and done, keeps its own title and date, and gets a stored row the first time it is annotated.
+   */
   public CompletableFuture<UpdateCalendarResponse> update(UpdateCalendarRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.update(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a company event by its id, or the stored notes and done mark of a filing deadline by <code>ruleKey:period</code>; the deadline itself still comes from the rules.
+   */
   public CompletableFuture<DeleteCalendarResponse> delete(DeleteCalendarRequest request) {
     return this.rawClient.delete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a company event by its id, or the stored notes and done mark of a filing deadline by <code>ruleKey:period</code>; the deadline itself still comes from the rules.
+   */
   public CompletableFuture<DeleteCalendarResponse> delete(DeleteCalendarRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.delete(request, requestOptions).thenApply(response -> response.body());

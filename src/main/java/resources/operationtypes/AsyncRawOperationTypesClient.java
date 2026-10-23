@@ -57,11 +57,17 @@ public class AsyncRawOperationTypesClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Create an operation type: a <code>code</code> with the flags that say what it is for (<code>isSale</code>, <code>isPurchase</code>, ...), an optional <code>invoiceType</code> (<code>invoice</code>, <code>credit_note</code>, <code>proforma</code>, <code>advance</code>) and optional account codes. An invoice names it in <code>operationTypeId</code>: a sale invoice needs <code>isSale</code> and a matching <code>invoiceType</code>, a purchase invoice <code>isPurchase</code>, and the type's account codes then replace the default posting accounts when the invoice is issued (<code>sales/invoices/issue</code>) or registered (<code>purchases/invoices/register</code>). <code>includeInVatRegister: false</code> keeps the type's invoices out of the Lithuanian i.SAF and FR0600, <code>includeInSaft: false</code> out of the SAF-T file. Account codes must exist and be postable and <code>payerPartnerId</code> must be an active partner (422 otherwise); a repeated <code>code</code> is refused with 409.
+   */
   public CompletableFuture<NordletApiHttpResponse<CreateOperationTypesResponse>> create(
       CreateOperationTypesRequest request) {
     return create(request,null);
   }
 
+  /**
+   * Create an operation type: a <code>code</code> with the flags that say what it is for (<code>isSale</code>, <code>isPurchase</code>, ...), an optional <code>invoiceType</code> (<code>invoice</code>, <code>credit_note</code>, <code>proforma</code>, <code>advance</code>) and optional account codes. An invoice names it in <code>operationTypeId</code>: a sale invoice needs <code>isSale</code> and a matching <code>invoiceType</code>, a purchase invoice <code>isPurchase</code>, and the type's account codes then replace the default posting accounts when the invoice is issued (<code>sales/invoices/issue</code>) or registered (<code>purchases/invoices/register</code>). <code>includeInVatRegister: false</code> keeps the type's invoices out of the Lithuanian i.SAF and FR0600, <code>includeInSaft: false</code> out of the SAF-T file. Account codes must exist and be postable and <code>payerPartnerId</code> must be an active partner (422 otherwise); a repeated <code>code</code> is refused with 409.
+   */
   public CompletableFuture<NordletApiHttpResponse<CreateOperationTypesResponse>> create(
       CreateOperationTypesRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -149,11 +155,17 @@ public class AsyncRawOperationTypesClient {
       return future;
     }
 
+    /**
+     * Change an operation type's fields; omitted ones keep their value. A <code>code</code> already used by another type is refused with 409, a body without changes with 400.
+     */
     public CompletableFuture<NordletApiHttpResponse<UpdateOperationTypesResponse>> update(
         UpdateOperationTypesRequest request) {
       return update(request,null);
     }
 
+    /**
+     * Change an operation type's fields; omitted ones keep their value. A <code>code</code> already used by another type is refused with 409, a body without changes with 400.
+     */
     public CompletableFuture<NordletApiHttpResponse<UpdateOperationTypesResponse>> update(
         UpdateOperationTypesRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -241,11 +253,17 @@ public class AsyncRawOperationTypesClient {
         return future;
       }
 
+      /**
+       * Read one operation type.
+       */
       public CompletableFuture<NordletApiHttpResponse<GetOperationTypesResponse>> get(
           GetOperationTypesRequest request) {
         return get(request,null);
       }
 
+      /**
+       * Read one operation type.
+       */
       public CompletableFuture<NordletApiHttpResponse<GetOperationTypesResponse>> get(
           GetOperationTypesRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -333,11 +351,17 @@ public class AsyncRawOperationTypesClient {
           return future;
         }
 
+        /**
+         * Delete an operation type that no sale invoice, purchase invoice or document series refers to. Otherwise the call is refused with 409; deactivate the type with <code>operation-types/update</code> instead.
+         */
         public CompletableFuture<NordletApiHttpResponse<DeleteOperationTypesResponse>> delete(
             DeleteOperationTypesRequest request) {
           return delete(request,null);
         }
 
+        /**
+         * Delete an operation type that no sale invoice, purchase invoice or document series refers to. Otherwise the call is refused with 409; deactivate the type with <code>operation-types/update</code> instead.
+         */
         public CompletableFuture<NordletApiHttpResponse<DeleteOperationTypesResponse>> delete(
             DeleteOperationTypesRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -425,20 +449,32 @@ public class AsyncRawOperationTypesClient {
             return future;
           }
 
+          /**
+           * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>sortOrder</code> and <code>createdAt</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<ListOperationTypesResponse>> list() {
             return list(ListOperationTypesRequest.builder().build());
           }
 
+          /**
+           * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>sortOrder</code> and <code>createdAt</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<ListOperationTypesResponse>> list(
               RequestOptions requestOptions) {
             return list(ListOperationTypesRequest.builder().build(),requestOptions);
           }
 
+          /**
+           * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>sortOrder</code> and <code>createdAt</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<ListOperationTypesResponse>> list(
               ListOperationTypesRequest request) {
             return list(request,null);
           }
 
+          /**
+           * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>sortOrder</code> and <code>createdAt</code>.
+           */
           public CompletableFuture<NordletApiHttpResponse<ListOperationTypesResponse>> list(
               ListOperationTypesRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

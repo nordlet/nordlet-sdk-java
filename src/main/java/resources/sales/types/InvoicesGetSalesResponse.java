@@ -113,6 +113,10 @@ public final class InvoicesGetSalesResponse {
 
   private final Optional<String> receivedByTitle;
 
+  private final Optional<String> locale;
+
+  private final Optional<String> recurringInvoiceId;
+
   private final Optional<OffsetDateTime> lockedAt;
 
   private final Optional<String> lockedBy;
@@ -172,16 +176,17 @@ public final class InvoicesGetSalesResponse {
       Optional<String> documentRef, Optional<String> operationTypeId,
       Optional<String> documentSeriesId, Optional<String> seriesLabel, String discountPercent,
       Optional<String> orderNumber, Optional<String> issuedByName, Optional<String> issuedByTitle,
-      Optional<String> receivedByName, Optional<String> receivedByTitle,
-      Optional<OffsetDateTime> lockedAt, Optional<String> lockedBy, Optional<String> payToken,
-      Optional<String> einvoiceSystem, Optional<String> einvoiceTransport,
-      Optional<String> einvoiceMessageId, Optional<String> einvoiceNumber,
-      Optional<String> einvoiceStatus, Optional<String> einvoiceDetail,
-      Optional<OffsetDateTime> einvoiceSentAt, Optional<OffsetDateTime> einvoiceCheckedAt,
-      Optional<String> peppolMessageId, Optional<String> peppolStatus,
-      Optional<String> peppolDetail, Optional<OffsetDateTime> peppolSentAt,
-      Optional<OffsetDateTime> peppolCheckedAt, OffsetDateTime createdAt, OffsetDateTime updatedAt,
-      Optional<String> advanceAppliedAmount, List<InvoicesGetSalesResponseLinesItem> lines,
+      Optional<String> receivedByName, Optional<String> receivedByTitle, Optional<String> locale,
+      Optional<String> recurringInvoiceId, Optional<OffsetDateTime> lockedAt,
+      Optional<String> lockedBy, Optional<String> payToken, Optional<String> einvoiceSystem,
+      Optional<String> einvoiceTransport, Optional<String> einvoiceMessageId,
+      Optional<String> einvoiceNumber, Optional<String> einvoiceStatus,
+      Optional<String> einvoiceDetail, Optional<OffsetDateTime> einvoiceSentAt,
+      Optional<OffsetDateTime> einvoiceCheckedAt, Optional<String> peppolMessageId,
+      Optional<String> peppolStatus, Optional<String> peppolDetail,
+      Optional<OffsetDateTime> peppolSentAt, Optional<OffsetDateTime> peppolCheckedAt,
+      OffsetDateTime createdAt, OffsetDateTime updatedAt, Optional<String> advanceAppliedAmount,
+      List<InvoicesGetSalesResponseLinesItem> lines,
       Optional<InvoicesGetSalesResponseVatEvidence> vatEvidence,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -224,6 +229,8 @@ public final class InvoicesGetSalesResponse {
     this.issuedByTitle = issuedByTitle;
     this.receivedByName = receivedByName;
     this.receivedByTitle = receivedByTitle;
+    this.locale = locale;
+    this.recurringInvoiceId = recurringInvoiceId;
     this.lockedAt = lockedAt;
     this.lockedBy = lockedBy;
     this.payToken = payToken;
@@ -530,6 +537,22 @@ public final class InvoicesGetSalesResponse {
       return Optional.empty();
     }
     return receivedByTitle;
+  }
+
+  @JsonIgnore
+  public Optional<String> getLocale() {
+    if (locale == null) {
+      return Optional.empty();
+    }
+    return locale;
+  }
+
+  @JsonIgnore
+  public Optional<String> getRecurringInvoiceId() {
+    if (recurringInvoiceId == null) {
+      return Optional.empty();
+    }
+    return recurringInvoiceId;
   }
 
   @JsonIgnore
@@ -950,6 +973,24 @@ public final class InvoicesGetSalesResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("locale")
+  private Optional<String> _getLocale() {
+    return locale;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("recurringInvoiceId")
+  private Optional<String> _getRecurringInvoiceId() {
+    return recurringInvoiceId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("lockedAt")
   private Optional<OffsetDateTime> _getLockedAt() {
     return lockedAt;
@@ -1120,12 +1161,12 @@ public final class InvoicesGetSalesResponse {
   }
 
   private boolean equalTo(InvoicesGetSalesResponse other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && fxRate.equals(other.fxRate) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && lockedAt.equals(other.lockedAt) && lockedBy.equals(other.lockedBy) && payToken.equals(other.payToken) && einvoiceSystem.equals(other.einvoiceSystem) && einvoiceTransport.equals(other.einvoiceTransport) && einvoiceMessageId.equals(other.einvoiceMessageId) && einvoiceNumber.equals(other.einvoiceNumber) && einvoiceStatus.equals(other.einvoiceStatus) && einvoiceDetail.equals(other.einvoiceDetail) && einvoiceSentAt.equals(other.einvoiceSentAt) && einvoiceCheckedAt.equals(other.einvoiceCheckedAt) && peppolMessageId.equals(other.peppolMessageId) && peppolStatus.equals(other.peppolStatus) && peppolDetail.equals(other.peppolDetail) && peppolSentAt.equals(other.peppolSentAt) && peppolCheckedAt.equals(other.peppolCheckedAt) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && advanceAppliedAmount.equals(other.advanceAppliedAmount) && lines.equals(other.lines) && vatEvidence.equals(other.vatEvidence);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && fxRate.equals(other.fxRate) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && locale.equals(other.locale) && recurringInvoiceId.equals(other.recurringInvoiceId) && lockedAt.equals(other.lockedAt) && lockedBy.equals(other.lockedBy) && payToken.equals(other.payToken) && einvoiceSystem.equals(other.einvoiceSystem) && einvoiceTransport.equals(other.einvoiceTransport) && einvoiceMessageId.equals(other.einvoiceMessageId) && einvoiceNumber.equals(other.einvoiceNumber) && einvoiceStatus.equals(other.einvoiceStatus) && einvoiceDetail.equals(other.einvoiceDetail) && einvoiceSentAt.equals(other.einvoiceSentAt) && einvoiceCheckedAt.equals(other.einvoiceCheckedAt) && peppolMessageId.equals(other.peppolMessageId) && peppolStatus.equals(other.peppolStatus) && peppolDetail.equals(other.peppolDetail) && peppolSentAt.equals(other.peppolSentAt) && peppolCheckedAt.equals(other.peppolCheckedAt) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && advanceAppliedAmount.equals(other.advanceAppliedAmount) && lines.equals(other.lines) && vatEvidence.equals(other.vatEvidence);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.fxRate, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.lockedAt, this.lockedBy, this.payToken, this.einvoiceSystem, this.einvoiceTransport, this.einvoiceMessageId, this.einvoiceNumber, this.einvoiceStatus, this.einvoiceDetail, this.einvoiceSentAt, this.einvoiceCheckedAt, this.peppolMessageId, this.peppolStatus, this.peppolDetail, this.peppolSentAt, this.peppolCheckedAt, this.createdAt, this.updatedAt, this.advanceAppliedAmount, this.lines, this.vatEvidence);
+    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.fxRate, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.locale, this.recurringInvoiceId, this.lockedAt, this.lockedBy, this.payToken, this.einvoiceSystem, this.einvoiceTransport, this.einvoiceMessageId, this.einvoiceNumber, this.einvoiceStatus, this.einvoiceDetail, this.einvoiceSentAt, this.einvoiceCheckedAt, this.peppolMessageId, this.peppolStatus, this.peppolDetail, this.peppolSentAt, this.peppolCheckedAt, this.createdAt, this.updatedAt, this.advanceAppliedAmount, this.lines, this.vatEvidence);
   }
 
   @java.lang.Override
@@ -1370,6 +1411,18 @@ public final class InvoicesGetSalesResponse {
 
     _FinalStage receivedByTitle(Nullable<String> receivedByTitle);
 
+    _FinalStage locale(Optional<String> locale);
+
+    _FinalStage locale(String locale);
+
+    _FinalStage locale(Nullable<String> locale);
+
+    _FinalStage recurringInvoiceId(Optional<String> recurringInvoiceId);
+
+    _FinalStage recurringInvoiceId(String recurringInvoiceId);
+
+    _FinalStage recurringInvoiceId(Nullable<String> recurringInvoiceId);
+
     _FinalStage lockedAt(Optional<OffsetDateTime> lockedAt);
 
     _FinalStage lockedAt(OffsetDateTime lockedAt);
@@ -1558,6 +1611,10 @@ public final class InvoicesGetSalesResponse {
 
     private Optional<OffsetDateTime> lockedAt = Optional.empty();
 
+    private Optional<String> recurringInvoiceId = Optional.empty();
+
+    private Optional<String> locale = Optional.empty();
+
     private Optional<String> receivedByTitle = Optional.empty();
 
     private Optional<String> receivedByName = Optional.empty();
@@ -1662,6 +1719,8 @@ public final class InvoicesGetSalesResponse {
       issuedByTitle(other.getIssuedByTitle());
       receivedByName(other.getReceivedByName());
       receivedByTitle(other.getReceivedByTitle());
+      locale(other.getLocale());
+      recurringInvoiceId(other.getRecurringInvoiceId());
       lockedAt(other.getLockedAt());
       lockedBy(other.getLockedBy());
       payToken(other.getPayToken());
@@ -2360,6 +2419,66 @@ public final class InvoicesGetSalesResponse {
     )
     public _FinalStage lockedAt(Optional<OffsetDateTime> lockedAt) {
       this.lockedAt = lockedAt;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage recurringInvoiceId(Nullable<String> recurringInvoiceId) {
+      if (recurringInvoiceId.isNull()) {
+        this.recurringInvoiceId = null;
+      }
+      else if (recurringInvoiceId.isEmpty()) {
+        this.recurringInvoiceId = Optional.empty();
+      }
+      else {
+        this.recurringInvoiceId = Optional.of(recurringInvoiceId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage recurringInvoiceId(String recurringInvoiceId) {
+      this.recurringInvoiceId = Optional.ofNullable(recurringInvoiceId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "recurringInvoiceId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage recurringInvoiceId(Optional<String> recurringInvoiceId) {
+      this.recurringInvoiceId = recurringInvoiceId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage locale(Nullable<String> locale) {
+      if (locale.isNull()) {
+        this.locale = null;
+      }
+      else if (locale.isEmpty()) {
+        this.locale = Optional.empty();
+      }
+      else {
+        this.locale = Optional.of(locale.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage locale(String locale) {
+      this.locale = Optional.ofNullable(locale);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "locale",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage locale(Optional<String> locale) {
+      this.locale = locale;
       return this;
     }
 
@@ -3205,7 +3324,7 @@ public final class InvoicesGetSalesResponse {
 
     @java.lang.Override
     public InvoicesGetSalesResponse build() {
-      return new InvoicesGetSalesResponse(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, fxRate, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, lockedAt, lockedBy, payToken, einvoiceSystem, einvoiceTransport, einvoiceMessageId, einvoiceNumber, einvoiceStatus, einvoiceDetail, einvoiceSentAt, einvoiceCheckedAt, peppolMessageId, peppolStatus, peppolDetail, peppolSentAt, peppolCheckedAt, createdAt, updatedAt, advanceAppliedAmount, lines, vatEvidence, additionalProperties);
+      return new InvoicesGetSalesResponse(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, fxRate, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, locale, recurringInvoiceId, lockedAt, lockedBy, payToken, einvoiceSystem, einvoiceTransport, einvoiceMessageId, einvoiceNumber, einvoiceStatus, einvoiceDetail, einvoiceSentAt, einvoiceCheckedAt, peppolMessageId, peppolStatus, peppolDetail, peppolSentAt, peppolCheckedAt, createdAt, updatedAt, advanceAppliedAmount, lines, vatEvidence, additionalProperties);
     }
 
     @java.lang.Override

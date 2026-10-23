@@ -52,11 +52,17 @@ public class RawDocumentSeriesClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Create a numbering series for sale invoices, credit notes, proformas or advance invoices (<code>documentType</code>). Numbers run from <code>nextNumber</code>, padded to <code>numberLength</code> digits, and are written as <code>prefix</code>-number or, with <code>printSeries</code> false, as the bare number; a series may be bound to an operation type (a default series of an operation type is picked for its documents that name no series) and to a warehouse, which <code>sales/invoices/issue</code> takes the goods from. <code>isDefault</code> makes it the default of its document type and clears the previous one. Answers 422 when only one end of the allocated range <code>allocatedFrom</code>..<code>allocatedTo</code> is given or the range is reversed, 409 when the prefix exists for the document type.
+   */
   public NordletApiHttpResponse<CreateDocumentSeriesResponse> create(
       CreateDocumentSeriesRequest request) {
     return create(request,null);
   }
 
+  /**
+   * Create a numbering series for sale invoices, credit notes, proformas or advance invoices (<code>documentType</code>). Numbers run from <code>nextNumber</code>, padded to <code>numberLength</code> digits, and are written as <code>prefix</code>-number or, with <code>printSeries</code> false, as the bare number; a series may be bound to an operation type (a default series of an operation type is picked for its documents that name no series) and to a warehouse, which <code>sales/invoices/issue</code> takes the goods from. <code>isDefault</code> makes it the default of its document type and clears the previous one. Answers 422 when only one end of the allocated range <code>allocatedFrom</code>..<code>allocatedTo</code> is given or the range is reversed, 409 when the prefix exists for the document type.
+   */
   public NordletApiHttpResponse<CreateDocumentSeriesResponse> create(
       CreateDocumentSeriesRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -121,11 +127,17 @@ public class RawDocumentSeriesClient {
       }
     }
 
+    /**
+     * Change a document series; fields left out keep their value. <code>nextNumber</code> cannot go below its current value (409); <code>isDefault</code> clears the previous default of the document type. Answers 422 for an incomplete or reversed allocated range, 409 when the prefix is taken for the document type.
+     */
     public NordletApiHttpResponse<UpdateDocumentSeriesResponse> update(
         UpdateDocumentSeriesRequest request) {
       return update(request,null);
     }
 
+    /**
+     * Change a document series; fields left out keep their value. <code>nextNumber</code> cannot go below its current value (409); <code>isDefault</code> clears the previous default of the document type. Answers 422 for an incomplete or reversed allocated range, 409 when the prefix is taken for the document type.
+     */
     public NordletApiHttpResponse<UpdateDocumentSeriesResponse> update(
         UpdateDocumentSeriesRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -190,11 +202,17 @@ public class RawDocumentSeriesClient {
         }
       }
 
+      /**
+       * Return one document series.
+       */
       public NordletApiHttpResponse<GetDocumentSeriesResponse> get(
           GetDocumentSeriesRequest request) {
         return get(request,null);
       }
 
+      /**
+       * Return one document series.
+       */
       public NordletApiHttpResponse<GetDocumentSeriesResponse> get(GetDocumentSeriesRequest request,
           RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -259,11 +277,17 @@ public class RawDocumentSeriesClient {
           }
         }
 
+        /**
+         * Delete a document series no sale document uses. Answers 409 when invoices reference it; deactivate it with <code>isActive</code> instead.
+         */
         public NordletApiHttpResponse<DeleteDocumentSeriesResponse> delete(
             DeleteDocumentSeriesRequest request) {
           return delete(request,null);
         }
 
+        /**
+         * Delete a document series no sale document uses. Answers 409 when invoices reference it; deactivate it with <code>isActive</code> instead.
+         */
         public NordletApiHttpResponse<DeleteDocumentSeriesResponse> delete(
             DeleteDocumentSeriesRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -328,20 +352,32 @@ public class RawDocumentSeriesClient {
             }
           }
 
+          /**
+           * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+           */
           public NordletApiHttpResponse<ListDocumentSeriesResponse> list() {
             return list(ListDocumentSeriesRequest.builder().build());
           }
 
+          /**
+           * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+           */
           public NordletApiHttpResponse<ListDocumentSeriesResponse> list(
               RequestOptions requestOptions) {
             return list(ListDocumentSeriesRequest.builder().build(),requestOptions);
           }
 
+          /**
+           * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+           */
           public NordletApiHttpResponse<ListDocumentSeriesResponse> list(
               ListDocumentSeriesRequest request) {
             return list(request,null);
           }
 
+          /**
+           * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+           */
           public NordletApiHttpResponse<ListDocumentSeriesResponse> list(
               ListDocumentSeriesRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

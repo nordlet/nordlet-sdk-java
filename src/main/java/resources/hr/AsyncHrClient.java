@@ -95,67 +95,109 @@ public class AsyncHrClient {
     return this.rawClient;
   }
 
+  /**
+   * Creates a job position with an optional code and name translations, for use in <code>hr/contracts/create</code>.
+   */
   public CompletableFuture<PositionsCreateHrResponse> positionsCreate(
       PositionsCreateHrRequest request) {
     return this.rawClient.positionsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a job position with an optional code and name translations, for use in <code>hr/contracts/create</code>.
+   */
   public CompletableFuture<PositionsCreateHrResponse> positionsCreate(
       PositionsCreateHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.positionsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the code, name or translations of a position; a null <code>translations</code> removes them.
+   */
   public CompletableFuture<PositionsUpdateHrResponse> positionsUpdate(
       PositionsUpdateHrRequest request) {
     return this.rawClient.positionsUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the code, name or translations of a position; a null <code>translations</code> removes them.
+   */
   public CompletableFuture<PositionsUpdateHrResponse> positionsUpdate(
       PositionsUpdateHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.positionsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's positions; filterable and sortable by <code>name</code> and <code>code</code>.
+   */
   public CompletableFuture<PositionsListHrResponse> positionsList() {
     return this.rawClient.positionsList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's positions; filterable and sortable by <code>name</code> and <code>code</code>.
+   */
   public CompletableFuture<PositionsListHrResponse> positionsList(RequestOptions requestOptions) {
     return this.rawClient.positionsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's positions; filterable and sortable by <code>name</code> and <code>code</code>.
+   */
   public CompletableFuture<PositionsListHrResponse> positionsList(PositionsListHrRequest request) {
     return this.rawClient.positionsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's positions; filterable and sortable by <code>name</code> and <code>code</code>.
+   */
   public CompletableFuture<PositionsListHrResponse> positionsList(PositionsListHrRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.positionsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false.
+   */
   public CompletableFuture<EmployeesCreateHrResponse> employeesCreate(
       EmployeesCreateHrRequest request) {
     return this.rawClient.employeesCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false.
+   */
   public CompletableFuture<EmployeesCreateHrResponse> employeesCreate(
       EmployeesCreateHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.employeesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too.
+   */
   public CompletableFuture<EmployeesUpdateHrResponse> employeesUpdate(
       EmployeesUpdateHrRequest request) {
     return this.rawClient.employeesUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too.
+   */
   public CompletableFuture<EmployeesUpdateHrResponse> employeesUpdate(
       EmployeesUpdateHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.employeesUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Reads one employee.
+   */
   public CompletableFuture<EmployeesGetHrResponse> employeesGet(EmployeesGetHrRequest request) {
     return this.rawClient.employeesGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Reads one employee.
+   */
   public CompletableFuture<EmployeesGetHrResponse> employeesGet(EmployeesGetHrRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.employeesGet(request, requestOptions).thenApply(response -> response.body());
@@ -192,28 +234,46 @@ public class AsyncHrClient {
     return this.rawClient.employeesFields(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<EmployeesListHrResponse> employeesList() {
     return this.rawClient.employeesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<EmployeesListHrResponse> employeesList(RequestOptions requestOptions) {
     return this.rawClient.employeesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<EmployeesListHrResponse> employeesList(EmployeesListHrRequest request) {
     return this.rawClient.employeesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<EmployeesListHrResponse> employeesList(EmployeesListHrRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.employeesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Marks the employee deleted; the record stays and no longer appears in lists or payroll runs. <code>hr/employees/anonymize</code> also blanks the personal data.
+   */
   public CompletableFuture<EmployeesDeleteHrResponse> employeesDelete(
       EmployeesDeleteHrRequest request) {
     return this.rawClient.employeesDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Marks the employee deleted; the record stays and no longer appears in lists or payroll runs. <code>hr/employees/anonymize</code> also blanks the personal data.
+   */
   public CompletableFuture<EmployeesDeleteHrResponse> employeesDelete(
       EmployeesDeleteHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.employeesDelete(request, requestOptions).thenApply(response -> response.body());
@@ -235,301 +295,487 @@ public class AsyncHrClient {
     return this.rawClient.employeesAnonymize(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates an employment contract for an employee. A <code>permanent</code> contract takes no <code>endDate</code> and a <code>fixed_term</code> one requires it; the number comes from <code>contractNo</code> or, with <code>agreementId</code>, from the employee's agreement; <code>workHours</code> defaults by <code>salaryType</code>. Answers 422 when the end date is before the start, and 409 when the employee already has a contract overlapping the period (end it with <code>hr/contracts/end</code> first) or the contract number already exists.
+   */
   public CompletableFuture<ContractsCreateHrResponse> contractsCreate(
       ContractsCreateHrRequest request) {
     return this.rawClient.contractsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates an employment contract for an employee. A <code>permanent</code> contract takes no <code>endDate</code> and a <code>fixed_term</code> one requires it; the number comes from <code>contractNo</code> or, with <code>agreementId</code>, from the employee's agreement; <code>workHours</code> defaults by <code>salaryType</code>. Answers 422 when the end date is before the start, and 409 when the employee already has a contract overlapping the period (end it with <code>hr/contracts/end</code> first) or the contract number already exists.
+   */
   public CompletableFuture<ContractsCreateHrResponse> contractsCreate(
       ContractsCreateHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.contractsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Ends a contract on <code>endDate</code> with an optional reason. Answers 422 when the end date is before the contract start.
+   */
   public CompletableFuture<ContractsEndHrResponse> contractsEnd(ContractsEndHrRequest request) {
     return this.rawClient.contractsEnd(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Ends a contract on <code>endDate</code> with an optional reason. Answers 422 when the end date is before the contract start.
+   */
   public CompletableFuture<ContractsEndHrResponse> contractsEnd(ContractsEndHrRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.contractsEnd(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists employment contracts; filterable by <code>employeeId</code>, <code>agreementId</code>, <code>status</code> and <code>contractNo</code>, sortable by <code>startDate</code> and <code>contractNo</code>.
+   */
   public CompletableFuture<ContractsListHrResponse> contractsList() {
     return this.rawClient.contractsList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists employment contracts; filterable by <code>employeeId</code>, <code>agreementId</code>, <code>status</code> and <code>contractNo</code>, sortable by <code>startDate</code> and <code>contractNo</code>.
+   */
   public CompletableFuture<ContractsListHrResponse> contractsList(RequestOptions requestOptions) {
     return this.rawClient.contractsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists employment contracts; filterable by <code>employeeId</code>, <code>agreementId</code>, <code>status</code> and <code>contractNo</code>, sortable by <code>startDate</code> and <code>contractNo</code>.
+   */
   public CompletableFuture<ContractsListHrResponse> contractsList(ContractsListHrRequest request) {
     return this.rawClient.contractsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists employment contracts; filterable by <code>employeeId</code>, <code>agreementId</code>, <code>status</code> and <code>contractNo</code>, sortable by <code>startDate</code> and <code>contractNo</code>.
+   */
   public CompletableFuture<ContractsListHrResponse> contractsList(ContractsListHrRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.contractsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates or replaces the leave entitlement of an employee for a year; <code>usedDays</code> is kept unless given (0 on a new row) and <code>remainingDays</code> is the entitled days less the used ones.
+   */
   public CompletableFuture<LeaveBalancesSetHrResponse> leaveBalancesSet(
       LeaveBalancesSetHrRequest request) {
     return this.rawClient.leaveBalancesSet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates or replaces the leave entitlement of an employee for a year; <code>usedDays</code> is kept unless given (0 on a new row) and <code>remainingDays</code> is the entitled days less the used ones.
+   */
   public CompletableFuture<LeaveBalancesSetHrResponse> leaveBalancesSet(
       LeaveBalancesSetHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.leaveBalancesSet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists leave balances, narrowed to an employee and/or a year when given, oldest year first.
+   */
   public CompletableFuture<LeaveBalancesListHrResponse> leaveBalancesList() {
     return this.rawClient.leaveBalancesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists leave balances, narrowed to an employee and/or a year when given, oldest year first.
+   */
   public CompletableFuture<LeaveBalancesListHrResponse> leaveBalancesList(
       RequestOptions requestOptions) {
     return this.rawClient.leaveBalancesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists leave balances, narrowed to an employee and/or a year when given, oldest year first.
+   */
   public CompletableFuture<LeaveBalancesListHrResponse> leaveBalancesList(
       LeaveBalancesListHrRequest request) {
     return this.rawClient.leaveBalancesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists leave balances, narrowed to an employee and/or a year when given, oldest year first.
+   */
   public CompletableFuture<LeaveBalancesListHrResponse> leaveBalancesList(
       LeaveBalancesListHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.leaveBalancesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Records a sick-leave certificate of an employee. Answers 422 when <code>toDate</code> is before <code>fromDate</code>. <code>payroll/runs/create</code> warns when a certificate covers working days of a month that has no timesheet.
+   */
   public CompletableFuture<IncapacityCertificatesCreateHrResponse> incapacityCertificatesCreate(
       IncapacityCertificatesCreateHrRequest request) {
     return this.rawClient.incapacityCertificatesCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Records a sick-leave certificate of an employee. Answers 422 when <code>toDate</code> is before <code>fromDate</code>. <code>payroll/runs/create</code> warns when a certificate covers working days of a month that has no timesheet.
+   */
   public CompletableFuture<IncapacityCertificatesCreateHrResponse> incapacityCertificatesCreate(
       IncapacityCertificatesCreateHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.incapacityCertificatesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists incapacity certificates; filterable by <code>employeeId</code> and <code>number</code>, sortable by <code>fromDate</code> and <code>number</code>.
+   */
   public CompletableFuture<IncapacityCertificatesListHrResponse> incapacityCertificatesList() {
     return this.rawClient.incapacityCertificatesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists incapacity certificates; filterable by <code>employeeId</code> and <code>number</code>, sortable by <code>fromDate</code> and <code>number</code>.
+   */
   public CompletableFuture<IncapacityCertificatesListHrResponse> incapacityCertificatesList(
       RequestOptions requestOptions) {
     return this.rawClient.incapacityCertificatesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists incapacity certificates; filterable by <code>employeeId</code> and <code>number</code>, sortable by <code>fromDate</code> and <code>number</code>.
+   */
   public CompletableFuture<IncapacityCertificatesListHrResponse> incapacityCertificatesList(
       IncapacityCertificatesListHrRequest request) {
     return this.rawClient.incapacityCertificatesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists incapacity certificates; filterable by <code>employeeId</code> and <code>number</code>, sortable by <code>fromDate</code> and <code>number</code>.
+   */
   public CompletableFuture<IncapacityCertificatesListHrResponse> incapacityCertificatesList(
       IncapacityCertificatesListHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.incapacityCertificatesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds the company's daily per diem rate for a destination country from <code>validFrom</code>; <code>hr/business-trips/create</code> takes the latest rate valid on the trip's start date. Answers 409 when a rate for that country already starts on that date.
+   */
   public CompletableFuture<PerDiemRatesCreateHrResponse> perDiemRatesCreate(
       PerDiemRatesCreateHrRequest request) {
     return this.rawClient.perDiemRatesCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds the company's daily per diem rate for a destination country from <code>validFrom</code>; <code>hr/business-trips/create</code> takes the latest rate valid on the trip's start date. Answers 409 when a rate for that country already starts on that date.
+   */
   public CompletableFuture<PerDiemRatesCreateHrResponse> perDiemRatesCreate(
       PerDiemRatesCreateHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.perDiemRatesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+   */
   public CompletableFuture<PerDiemRatesListHrResponse> perDiemRatesList() {
     return this.rawClient.perDiemRatesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+   */
   public CompletableFuture<PerDiemRatesListHrResponse> perDiemRatesList(
       RequestOptions requestOptions) {
     return this.rawClient.perDiemRatesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+   */
   public CompletableFuture<PerDiemRatesListHrResponse> perDiemRatesList(
       PerDiemRatesListHrRequest request) {
     return this.rawClient.perDiemRatesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+   */
   public CompletableFuture<PerDiemRatesListHrResponse> perDiemRatesList(
       PerDiemRatesListHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.perDiemRatesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a per diem rate.
+   */
   public CompletableFuture<PerDiemRatesDeleteHrResponse> perDiemRatesDelete(
       PerDiemRatesDeleteHrRequest request) {
     return this.rawClient.perDiemRatesDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a per diem rate.
+   */
   public CompletableFuture<PerDiemRatesDeleteHrResponse> perDiemRatesDelete(
       PerDiemRatesDeleteHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.perDiemRatesDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Stores the trip as a draft with <code>days</code> counted as calendar days, both ends included, and <code>perDiemAmount</code> as the days times the company's rate for the destination valid on the start date (<code>hr/per-diem-rates/create</code>). Answers 422 when the trip ends before it starts or no rate covers the destination on that date, and 409 when the employee already has a trip overlapping the dates.
+   */
   public CompletableFuture<BusinessTripsCreateHrResponse> businessTripsCreate(
       BusinessTripsCreateHrRequest request) {
     return this.rawClient.businessTripsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Stores the trip as a draft with <code>days</code> counted as calendar days, both ends included, and <code>perDiemAmount</code> as the days times the company's rate for the destination valid on the start date (<code>hr/per-diem-rates/create</code>). Answers 422 when the trip ends before it starts or no rate covers the destination on that date, and 409 when the employee already has a trip overlapping the dates.
+   */
   public CompletableFuture<BusinessTripsCreateHrResponse> businessTripsCreate(
       BusinessTripsCreateHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.businessTripsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Reads one business trip.
+   */
   public CompletableFuture<BusinessTripsGetHrResponse> businessTripsGet(
       BusinessTripsGetHrRequest request) {
     return this.rawClient.businessTripsGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Reads one business trip.
+   */
   public CompletableFuture<BusinessTripsGetHrResponse> businessTripsGet(
       BusinessTripsGetHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.businessTripsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+   */
   public CompletableFuture<BusinessTripsListHrResponse> businessTripsList() {
     return this.rawClient.businessTripsList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+   */
   public CompletableFuture<BusinessTripsListHrResponse> businessTripsList(
       RequestOptions requestOptions) {
     return this.rawClient.businessTripsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+   */
   public CompletableFuture<BusinessTripsListHrResponse> businessTripsList(
       BusinessTripsListHrRequest request) {
     return this.rawClient.businessTripsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+   */
   public CompletableFuture<BusinessTripsListHrResponse> businessTripsList(
       BusinessTripsListHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.businessTripsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Sets the trip's status to <code>approved</code>. <code>payroll/runs/create</code> without explicit lines adds the per diem of every approved trip ending in the run month as an untaxed addition and sets the trip's <code>payrollRunId</code>; reversing or cancelling the run releases the trip again. Answers 409 when the trip is not a draft.
+   */
   public CompletableFuture<BusinessTripsApproveHrResponse> businessTripsApprove(
       BusinessTripsApproveHrRequest request) {
     return this.rawClient.businessTripsApprove(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Sets the trip's status to <code>approved</code>. <code>payroll/runs/create</code> without explicit lines adds the per diem of every approved trip ending in the run month as an untaxed addition and sets the trip's <code>payrollRunId</code>; reversing or cancelling the run releases the trip again. Answers 409 when the trip is not a draft.
+   */
   public CompletableFuture<BusinessTripsApproveHrResponse> businessTripsApprove(
       BusinessTripsApproveHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.businessTripsApprove(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a draft trip; answers 409 when the trip is not a draft.
+   */
   public CompletableFuture<BusinessTripsDeleteHrResponse> businessTripsDelete(
       BusinessTripsDeleteHrRequest request) {
     return this.rawClient.businessTripsDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a draft trip; answers 409 when the trip is not a draft.
+   */
   public CompletableFuture<BusinessTripsDeleteHrResponse> businessTripsDelete(
       BusinessTripsDeleteHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.businessTripsDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds an education, qualification, certificate or training record to an employee, optionally linked to one of the company's uploaded files (<code>fileId</code>).
+   */
   public CompletableFuture<EmployeesRecordsCreateHrResponse> employeesRecordsCreate(
       EmployeesRecordsCreateHrRequest request) {
     return this.rawClient.employeesRecordsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds an education, qualification, certificate or training record to an employee, optionally linked to one of the company's uploaded files (<code>fileId</code>).
+   */
   public CompletableFuture<EmployeesRecordsCreateHrResponse> employeesRecordsCreate(
       EmployeesRecordsCreateHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.employeesRecordsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the given fields of an employee record; <code>issuedAt</code>, <code>validUntil</code> and <code>fileId</code> can be cleared with null.
+   */
   public CompletableFuture<EmployeesRecordsUpdateHrResponse> employeesRecordsUpdate(
       EmployeesRecordsUpdateHrRequest request) {
     return this.rawClient.employeesRecordsUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Changes the given fields of an employee record; <code>issuedAt</code>, <code>validUntil</code> and <code>fileId</code> can be cleared with null.
+   */
   public CompletableFuture<EmployeesRecordsUpdateHrResponse> employeesRecordsUpdate(
       EmployeesRecordsUpdateHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.employeesRecordsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes an employee record.
+   */
   public CompletableFuture<EmployeesRecordsDeleteHrResponse> employeesRecordsDelete(
       EmployeesRecordsDeleteHrRequest request) {
     return this.rawClient.employeesRecordsDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes an employee record.
+   */
   public CompletableFuture<EmployeesRecordsDeleteHrResponse> employeesRecordsDelete(
       EmployeesRecordsDeleteHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.employeesRecordsDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists employee records; filterable by <code>employeeId</code>, <code>type</code> and <code>title</code>, sortable by <code>createdAt</code> and <code>issuedAt</code>.
+   */
   public CompletableFuture<EmployeesRecordsListHrResponse> employeesRecordsList() {
     return this.rawClient.employeesRecordsList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists employee records; filterable by <code>employeeId</code>, <code>type</code> and <code>title</code>, sortable by <code>createdAt</code> and <code>issuedAt</code>.
+   */
   public CompletableFuture<EmployeesRecordsListHrResponse> employeesRecordsList(
       RequestOptions requestOptions) {
     return this.rawClient.employeesRecordsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists employee records; filterable by <code>employeeId</code>, <code>type</code> and <code>title</code>, sortable by <code>createdAt</code> and <code>issuedAt</code>.
+   */
   public CompletableFuture<EmployeesRecordsListHrResponse> employeesRecordsList(
       EmployeesRecordsListHrRequest request) {
     return this.rawClient.employeesRecordsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists employee records; filterable by <code>employeeId</code>, <code>type</code> and <code>title</code>, sortable by <code>createdAt</code> and <code>issuedAt</code>.
+   */
   public CompletableFuture<EmployeesRecordsListHrResponse> employeesRecordsList(
       EmployeesRecordsListHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.employeesRecordsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the files uploaded against an employee, newest first.
+   */
   public CompletableFuture<EmployeesAttachmentsListHrResponse> employeesAttachmentsList(
       EmployeesAttachmentsListHrRequest request) {
     return this.rawClient.employeesAttachmentsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the files uploaded against an employee, newest first.
+   */
   public CompletableFuture<EmployeesAttachmentsListHrResponse> employeesAttachmentsList(
       EmployeesAttachmentsListHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.employeesAttachmentsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Builds the timesheet of the month for every employee with a contract in it, or for one employee with <code>employeeId</code>, replacing any existing timesheet: the Monday to Friday days within the contract get the contract's daily hours (its weekly hours over five), and for a Lithuanian company the public holidays are <code>holiday</code> days with 0 hours. Answers 422 when no contract covers the month.
+   */
   public CompletableFuture<TimesheetsGenerateHrResponse> timesheetsGenerate(
       TimesheetsGenerateHrRequest request) {
     return this.rawClient.timesheetsGenerate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Builds the timesheet of the month for every employee with a contract in it, or for one employee with <code>employeeId</code>, replacing any existing timesheet: the Monday to Friday days within the contract get the contract's daily hours (its weekly hours over five), and for a Lithuanian company the public holidays are <code>holiday</code> days with 0 hours. Answers 422 when no contract covers the month.
+   */
   public CompletableFuture<TimesheetsGenerateHrResponse> timesheetsGenerate(
       TimesheetsGenerateHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.timesheetsGenerate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates or replaces the timesheet of an employee for a month from the given days; <code>workedDays</code> and <code>workedHours</code> count the <code>work</code> and <code>business_trip</code> days with hours. Answers 422 for a day outside the month, a day given twice or more than 24 hours in a day. <code>payroll/runs/create</code> reads the timesheet for the paid days, the days worked and the business-trip days of the month.
+   */
   public CompletableFuture<TimesheetsUpsertHrResponse> timesheetsUpsert(
       TimesheetsUpsertHrRequest request) {
     return this.rawClient.timesheetsUpsert(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates or replaces the timesheet of an employee for a month from the given days; <code>workedDays</code> and <code>workedHours</code> count the <code>work</code> and <code>business_trip</code> days with hours. Answers 422 for a day outside the month, a day given twice or more than 24 hours in a day. <code>payroll/runs/create</code> reads the timesheet for the paid days, the days worked and the business-trip days of the month.
+   */
   public CompletableFuture<TimesheetsUpsertHrResponse> timesheetsUpsert(
       TimesheetsUpsertHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.timesheetsUpsert(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Reads the timesheet of an employee for a month.
+   */
   public CompletableFuture<TimesheetsGetHrResponse> timesheetsGet(TimesheetsGetHrRequest request) {
     return this.rawClient.timesheetsGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Reads the timesheet of an employee for a month.
+   */
   public CompletableFuture<TimesheetsGetHrResponse> timesheetsGet(TimesheetsGetHrRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.timesheetsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the timesheets of a month, ordered by employee name.
+   */
   public CompletableFuture<TimesheetsListHrResponse> timesheetsList(
       TimesheetsListHrRequest request) {
     return this.rawClient.timesheetsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the timesheets of a month, ordered by employee name.
+   */
   public CompletableFuture<TimesheetsListHrResponse> timesheetsList(TimesheetsListHrRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.timesheetsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a timesheet.
+   */
   public CompletableFuture<TimesheetsDeleteHrResponse> timesheetsDelete(
       TimesheetsDeleteHrRequest request) {
     return this.rawClient.timesheetsDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Deletes a timesheet.
+   */
   public CompletableFuture<TimesheetsDeleteHrResponse> timesheetsDelete(
       TimesheetsDeleteHrRequest request, RequestOptions requestOptions) {
     return this.rawClient.timesheetsDelete(request, requestOptions).thenApply(response -> response.body());

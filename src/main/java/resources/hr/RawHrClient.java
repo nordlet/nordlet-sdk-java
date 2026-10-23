@@ -112,11 +112,17 @@ public class RawHrClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Creates a job position with an optional code and name translations, for use in <code>hr/contracts/create</code>.
+   */
   public NordletApiHttpResponse<PositionsCreateHrResponse> positionsCreate(
       PositionsCreateHrRequest request) {
     return positionsCreate(request,null);
   }
 
+  /**
+   * Creates a job position with an optional code and name translations, for use in <code>hr/contracts/create</code>.
+   */
   public NordletApiHttpResponse<PositionsCreateHrResponse> positionsCreate(
       PositionsCreateHrRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -181,11 +187,17 @@ public class RawHrClient {
       }
     }
 
+    /**
+     * Changes the code, name or translations of a position; a null <code>translations</code> removes them.
+     */
     public NordletApiHttpResponse<PositionsUpdateHrResponse> positionsUpdate(
         PositionsUpdateHrRequest request) {
       return positionsUpdate(request,null);
     }
 
+    /**
+     * Changes the code, name or translations of a position; a null <code>translations</code> removes them.
+     */
     public NordletApiHttpResponse<PositionsUpdateHrResponse> positionsUpdate(
         PositionsUpdateHrRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -250,20 +262,32 @@ public class RawHrClient {
         }
       }
 
+      /**
+       * Lists the company's positions; filterable and sortable by <code>name</code> and <code>code</code>.
+       */
       public NordletApiHttpResponse<PositionsListHrResponse> positionsList() {
         return positionsList(PositionsListHrRequest.builder().build());
       }
 
+      /**
+       * Lists the company's positions; filterable and sortable by <code>name</code> and <code>code</code>.
+       */
       public NordletApiHttpResponse<PositionsListHrResponse> positionsList(
           RequestOptions requestOptions) {
         return positionsList(PositionsListHrRequest.builder().build(),requestOptions);
       }
 
+      /**
+       * Lists the company's positions; filterable and sortable by <code>name</code> and <code>code</code>.
+       */
       public NordletApiHttpResponse<PositionsListHrResponse> positionsList(
           PositionsListHrRequest request) {
         return positionsList(request,null);
       }
 
+      /**
+       * Lists the company's positions; filterable and sortable by <code>name</code> and <code>code</code>.
+       */
       public NordletApiHttpResponse<PositionsListHrResponse> positionsList(
           PositionsListHrRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -328,11 +352,17 @@ public class RawHrClient {
           }
         }
 
+        /**
+         * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false.
+         */
         public NordletApiHttpResponse<EmployeesCreateHrResponse> employeesCreate(
             EmployeesCreateHrRequest request) {
           return employeesCreate(request,null);
         }
 
+        /**
+         * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false.
+         */
         public NordletApiHttpResponse<EmployeesCreateHrResponse> employeesCreate(
             EmployeesCreateHrRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -397,11 +427,17 @@ public class RawHrClient {
             }
           }
 
+          /**
+           * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too.
+           */
           public NordletApiHttpResponse<EmployeesUpdateHrResponse> employeesUpdate(
               EmployeesUpdateHrRequest request) {
             return employeesUpdate(request,null);
           }
 
+          /**
+           * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too.
+           */
           public NordletApiHttpResponse<EmployeesUpdateHrResponse> employeesUpdate(
               EmployeesUpdateHrRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -466,11 +502,17 @@ public class RawHrClient {
               }
             }
 
+            /**
+             * Reads one employee.
+             */
             public NordletApiHttpResponse<EmployeesGetHrResponse> employeesGet(
                 EmployeesGetHrRequest request) {
               return employeesGet(request,null);
             }
 
+            /**
+             * Reads one employee.
+             */
             public NordletApiHttpResponse<EmployeesGetHrResponse> employeesGet(
                 EmployeesGetHrRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -625,20 +667,32 @@ public class RawHrClient {
                   }
                 }
 
+                /**
+                 * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+                 */
                 public NordletApiHttpResponse<EmployeesListHrResponse> employeesList() {
                   return employeesList(EmployeesListHrRequest.builder().build());
                 }
 
+                /**
+                 * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+                 */
                 public NordletApiHttpResponse<EmployeesListHrResponse> employeesList(
                     RequestOptions requestOptions) {
                   return employeesList(EmployeesListHrRequest.builder().build(),requestOptions);
                 }
 
+                /**
+                 * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+                 */
                 public NordletApiHttpResponse<EmployeesListHrResponse> employeesList(
                     EmployeesListHrRequest request) {
                   return employeesList(request,null);
                 }
 
+                /**
+                 * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+                 */
                 public NordletApiHttpResponse<EmployeesListHrResponse> employeesList(
                     EmployeesListHrRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -703,11 +757,17 @@ public class RawHrClient {
                     }
                   }
 
+                  /**
+                   * Marks the employee deleted; the record stays and no longer appears in lists or payroll runs. <code>hr/employees/anonymize</code> also blanks the personal data.
+                   */
                   public NordletApiHttpResponse<EmployeesDeleteHrResponse> employeesDelete(
                       EmployeesDeleteHrRequest request) {
                     return employeesDelete(request,null);
                   }
 
+                  /**
+                   * Marks the employee deleted; the record stays and no longer appears in lists or payroll runs. <code>hr/employees/anonymize</code> also blanks the personal data.
+                   */
                   public NordletApiHttpResponse<EmployeesDeleteHrResponse> employeesDelete(
                       EmployeesDeleteHrRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -847,11 +907,17 @@ public class RawHrClient {
                         }
                       }
 
+                      /**
+                       * Creates an employment contract for an employee. A <code>permanent</code> contract takes no <code>endDate</code> and a <code>fixed_term</code> one requires it; the number comes from <code>contractNo</code> or, with <code>agreementId</code>, from the employee's agreement; <code>workHours</code> defaults by <code>salaryType</code>. Answers 422 when the end date is before the start, and 409 when the employee already has a contract overlapping the period (end it with <code>hr/contracts/end</code> first) or the contract number already exists.
+                       */
                       public NordletApiHttpResponse<ContractsCreateHrResponse> contractsCreate(
                           ContractsCreateHrRequest request) {
                         return contractsCreate(request,null);
                       }
 
+                      /**
+                       * Creates an employment contract for an employee. A <code>permanent</code> contract takes no <code>endDate</code> and a <code>fixed_term</code> one requires it; the number comes from <code>contractNo</code> or, with <code>agreementId</code>, from the employee's agreement; <code>workHours</code> defaults by <code>salaryType</code>. Answers 422 when the end date is before the start, and 409 when the employee already has a contract overlapping the period (end it with <code>hr/contracts/end</code> first) or the contract number already exists.
+                       */
                       public NordletApiHttpResponse<ContractsCreateHrResponse> contractsCreate(
                           ContractsCreateHrRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -916,11 +982,17 @@ public class RawHrClient {
                           }
                         }
 
+                        /**
+                         * Ends a contract on <code>endDate</code> with an optional reason. Answers 422 when the end date is before the contract start.
+                         */
                         public NordletApiHttpResponse<ContractsEndHrResponse> contractsEnd(
                             ContractsEndHrRequest request) {
                           return contractsEnd(request,null);
                         }
 
+                        /**
+                         * Ends a contract on <code>endDate</code> with an optional reason. Answers 422 when the end date is before the contract start.
+                         */
                         public NordletApiHttpResponse<ContractsEndHrResponse> contractsEnd(
                             ContractsEndHrRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -985,20 +1057,32 @@ public class RawHrClient {
                             }
                           }
 
+                          /**
+                           * Lists employment contracts; filterable by <code>employeeId</code>, <code>agreementId</code>, <code>status</code> and <code>contractNo</code>, sortable by <code>startDate</code> and <code>contractNo</code>.
+                           */
                           public NordletApiHttpResponse<ContractsListHrResponse> contractsList() {
                             return contractsList(ContractsListHrRequest.builder().build());
                           }
 
+                          /**
+                           * Lists employment contracts; filterable by <code>employeeId</code>, <code>agreementId</code>, <code>status</code> and <code>contractNo</code>, sortable by <code>startDate</code> and <code>contractNo</code>.
+                           */
                           public NordletApiHttpResponse<ContractsListHrResponse> contractsList(
                               RequestOptions requestOptions) {
                             return contractsList(ContractsListHrRequest.builder().build(),requestOptions);
                           }
 
+                          /**
+                           * Lists employment contracts; filterable by <code>employeeId</code>, <code>agreementId</code>, <code>status</code> and <code>contractNo</code>, sortable by <code>startDate</code> and <code>contractNo</code>.
+                           */
                           public NordletApiHttpResponse<ContractsListHrResponse> contractsList(
                               ContractsListHrRequest request) {
                             return contractsList(request,null);
                           }
 
+                          /**
+                           * Lists employment contracts; filterable by <code>employeeId</code>, <code>agreementId</code>, <code>status</code> and <code>contractNo</code>, sortable by <code>startDate</code> and <code>contractNo</code>.
+                           */
                           public NordletApiHttpResponse<ContractsListHrResponse> contractsList(
                               ContractsListHrRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1063,11 +1147,17 @@ public class RawHrClient {
                               }
                             }
 
+                            /**
+                             * Creates or replaces the leave entitlement of an employee for a year; <code>usedDays</code> is kept unless given (0 on a new row) and <code>remainingDays</code> is the entitled days less the used ones.
+                             */
                             public NordletApiHttpResponse<LeaveBalancesSetHrResponse> leaveBalancesSet(
                                 LeaveBalancesSetHrRequest request) {
                               return leaveBalancesSet(request,null);
                             }
 
+                            /**
+                             * Creates or replaces the leave entitlement of an employee for a year; <code>usedDays</code> is kept unless given (0 on a new row) and <code>remainingDays</code> is the entitled days less the used ones.
+                             */
                             public NordletApiHttpResponse<LeaveBalancesSetHrResponse> leaveBalancesSet(
                                 LeaveBalancesSetHrRequest request, RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1132,21 +1222,33 @@ public class RawHrClient {
                                 }
                               }
 
+                              /**
+                               * Lists leave balances, narrowed to an employee and/or a year when given, oldest year first.
+                               */
                               public NordletApiHttpResponse<LeaveBalancesListHrResponse> leaveBalancesList(
                                   ) {
                                 return leaveBalancesList(LeaveBalancesListHrRequest.builder().build());
                               }
 
+                              /**
+                               * Lists leave balances, narrowed to an employee and/or a year when given, oldest year first.
+                               */
                               public NordletApiHttpResponse<LeaveBalancesListHrResponse> leaveBalancesList(
                                   RequestOptions requestOptions) {
                                 return leaveBalancesList(LeaveBalancesListHrRequest.builder().build(),requestOptions);
                               }
 
+                              /**
+                               * Lists leave balances, narrowed to an employee and/or a year when given, oldest year first.
+                               */
                               public NordletApiHttpResponse<LeaveBalancesListHrResponse> leaveBalancesList(
                                   LeaveBalancesListHrRequest request) {
                                 return leaveBalancesList(request,null);
                               }
 
+                              /**
+                               * Lists leave balances, narrowed to an employee and/or a year when given, oldest year first.
+                               */
                               public NordletApiHttpResponse<LeaveBalancesListHrResponse> leaveBalancesList(
                                   LeaveBalancesListHrRequest request,
                                   RequestOptions requestOptions) {
@@ -1212,11 +1314,17 @@ public class RawHrClient {
                                   }
                                 }
 
+                                /**
+                                 * Records a sick-leave certificate of an employee. Answers 422 when <code>toDate</code> is before <code>fromDate</code>. <code>payroll/runs/create</code> warns when a certificate covers working days of a month that has no timesheet.
+                                 */
                                 public NordletApiHttpResponse<IncapacityCertificatesCreateHrResponse> incapacityCertificatesCreate(
                                     IncapacityCertificatesCreateHrRequest request) {
                                   return incapacityCertificatesCreate(request,null);
                                 }
 
+                                /**
+                                 * Records a sick-leave certificate of an employee. Answers 422 when <code>toDate</code> is before <code>fromDate</code>. <code>payroll/runs/create</code> warns when a certificate covers working days of a month that has no timesheet.
+                                 */
                                 public NordletApiHttpResponse<IncapacityCertificatesCreateHrResponse> incapacityCertificatesCreate(
                                     IncapacityCertificatesCreateHrRequest request,
                                     RequestOptions requestOptions) {
@@ -1282,21 +1390,33 @@ public class RawHrClient {
                                     }
                                   }
 
+                                  /**
+                                   * Lists incapacity certificates; filterable by <code>employeeId</code> and <code>number</code>, sortable by <code>fromDate</code> and <code>number</code>.
+                                   */
                                   public NordletApiHttpResponse<IncapacityCertificatesListHrResponse> incapacityCertificatesList(
                                       ) {
                                     return incapacityCertificatesList(IncapacityCertificatesListHrRequest.builder().build());
                                   }
 
+                                  /**
+                                   * Lists incapacity certificates; filterable by <code>employeeId</code> and <code>number</code>, sortable by <code>fromDate</code> and <code>number</code>.
+                                   */
                                   public NordletApiHttpResponse<IncapacityCertificatesListHrResponse> incapacityCertificatesList(
                                       RequestOptions requestOptions) {
                                     return incapacityCertificatesList(IncapacityCertificatesListHrRequest.builder().build(),requestOptions);
                                   }
 
+                                  /**
+                                   * Lists incapacity certificates; filterable by <code>employeeId</code> and <code>number</code>, sortable by <code>fromDate</code> and <code>number</code>.
+                                   */
                                   public NordletApiHttpResponse<IncapacityCertificatesListHrResponse> incapacityCertificatesList(
                                       IncapacityCertificatesListHrRequest request) {
                                     return incapacityCertificatesList(request,null);
                                   }
 
+                                  /**
+                                   * Lists incapacity certificates; filterable by <code>employeeId</code> and <code>number</code>, sortable by <code>fromDate</code> and <code>number</code>.
+                                   */
                                   public NordletApiHttpResponse<IncapacityCertificatesListHrResponse> incapacityCertificatesList(
                                       IncapacityCertificatesListHrRequest request,
                                       RequestOptions requestOptions) {
@@ -1362,11 +1482,17 @@ public class RawHrClient {
                                       }
                                     }
 
+                                    /**
+                                     * Adds the company's daily per diem rate for a destination country from <code>validFrom</code>; <code>hr/business-trips/create</code> takes the latest rate valid on the trip's start date. Answers 409 when a rate for that country already starts on that date.
+                                     */
                                     public NordletApiHttpResponse<PerDiemRatesCreateHrResponse> perDiemRatesCreate(
                                         PerDiemRatesCreateHrRequest request) {
                                       return perDiemRatesCreate(request,null);
                                     }
 
+                                    /**
+                                     * Adds the company's daily per diem rate for a destination country from <code>validFrom</code>; <code>hr/business-trips/create</code> takes the latest rate valid on the trip's start date. Answers 409 when a rate for that country already starts on that date.
+                                     */
                                     public NordletApiHttpResponse<PerDiemRatesCreateHrResponse> perDiemRatesCreate(
                                         PerDiemRatesCreateHrRequest request,
                                         RequestOptions requestOptions) {
@@ -1432,21 +1558,33 @@ public class RawHrClient {
                                         }
                                       }
 
+                                      /**
+                                       * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+                                       */
                                       public NordletApiHttpResponse<PerDiemRatesListHrResponse> perDiemRatesList(
                                           ) {
                                         return perDiemRatesList(PerDiemRatesListHrRequest.builder().build());
                                       }
 
+                                      /**
+                                       * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+                                       */
                                       public NordletApiHttpResponse<PerDiemRatesListHrResponse> perDiemRatesList(
                                           RequestOptions requestOptions) {
                                         return perDiemRatesList(PerDiemRatesListHrRequest.builder().build(),requestOptions);
                                       }
 
+                                      /**
+                                       * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+                                       */
                                       public NordletApiHttpResponse<PerDiemRatesListHrResponse> perDiemRatesList(
                                           PerDiemRatesListHrRequest request) {
                                         return perDiemRatesList(request,null);
                                       }
 
+                                      /**
+                                       * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+                                       */
                                       public NordletApiHttpResponse<PerDiemRatesListHrResponse> perDiemRatesList(
                                           PerDiemRatesListHrRequest request,
                                           RequestOptions requestOptions) {
@@ -1512,11 +1650,17 @@ public class RawHrClient {
                                           }
                                         }
 
+                                        /**
+                                         * Deletes a per diem rate.
+                                         */
                                         public NordletApiHttpResponse<PerDiemRatesDeleteHrResponse> perDiemRatesDelete(
                                             PerDiemRatesDeleteHrRequest request) {
                                           return perDiemRatesDelete(request,null);
                                         }
 
+                                        /**
+                                         * Deletes a per diem rate.
+                                         */
                                         public NordletApiHttpResponse<PerDiemRatesDeleteHrResponse> perDiemRatesDelete(
                                             PerDiemRatesDeleteHrRequest request,
                                             RequestOptions requestOptions) {
@@ -1582,11 +1726,17 @@ public class RawHrClient {
                                             }
                                           }
 
+                                          /**
+                                           * Stores the trip as a draft with <code>days</code> counted as calendar days, both ends included, and <code>perDiemAmount</code> as the days times the company's rate for the destination valid on the start date (<code>hr/per-diem-rates/create</code>). Answers 422 when the trip ends before it starts or no rate covers the destination on that date, and 409 when the employee already has a trip overlapping the dates.
+                                           */
                                           public NordletApiHttpResponse<BusinessTripsCreateHrResponse> businessTripsCreate(
                                               BusinessTripsCreateHrRequest request) {
                                             return businessTripsCreate(request,null);
                                           }
 
+                                          /**
+                                           * Stores the trip as a draft with <code>days</code> counted as calendar days, both ends included, and <code>perDiemAmount</code> as the days times the company's rate for the destination valid on the start date (<code>hr/per-diem-rates/create</code>). Answers 422 when the trip ends before it starts or no rate covers the destination on that date, and 409 when the employee already has a trip overlapping the dates.
+                                           */
                                           public NordletApiHttpResponse<BusinessTripsCreateHrResponse> businessTripsCreate(
                                               BusinessTripsCreateHrRequest request,
                                               RequestOptions requestOptions) {
@@ -1652,11 +1802,17 @@ public class RawHrClient {
                                               }
                                             }
 
+                                            /**
+                                             * Reads one business trip.
+                                             */
                                             public NordletApiHttpResponse<BusinessTripsGetHrResponse> businessTripsGet(
                                                 BusinessTripsGetHrRequest request) {
                                               return businessTripsGet(request,null);
                                             }
 
+                                            /**
+                                             * Reads one business trip.
+                                             */
                                             public NordletApiHttpResponse<BusinessTripsGetHrResponse> businessTripsGet(
                                                 BusinessTripsGetHrRequest request,
                                                 RequestOptions requestOptions) {
@@ -1722,21 +1878,33 @@ public class RawHrClient {
                                                 }
                                               }
 
+                                              /**
+                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+                                               */
                                               public NordletApiHttpResponse<BusinessTripsListHrResponse> businessTripsList(
                                                   ) {
                                                 return businessTripsList(BusinessTripsListHrRequest.builder().build());
                                               }
 
+                                              /**
+                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+                                               */
                                               public NordletApiHttpResponse<BusinessTripsListHrResponse> businessTripsList(
                                                   RequestOptions requestOptions) {
                                                 return businessTripsList(BusinessTripsListHrRequest.builder().build(),requestOptions);
                                               }
 
+                                              /**
+                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+                                               */
                                               public NordletApiHttpResponse<BusinessTripsListHrResponse> businessTripsList(
                                                   BusinessTripsListHrRequest request) {
                                                 return businessTripsList(request,null);
                                               }
 
+                                              /**
+                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+                                               */
                                               public NordletApiHttpResponse<BusinessTripsListHrResponse> businessTripsList(
                                                   BusinessTripsListHrRequest request,
                                                   RequestOptions requestOptions) {
@@ -1802,11 +1970,17 @@ public class RawHrClient {
                                                   }
                                                 }
 
+                                                /**
+                                                 * Sets the trip's status to <code>approved</code>. <code>payroll/runs/create</code> without explicit lines adds the per diem of every approved trip ending in the run month as an untaxed addition and sets the trip's <code>payrollRunId</code>; reversing or cancelling the run releases the trip again. Answers 409 when the trip is not a draft.
+                                                 */
                                                 public NordletApiHttpResponse<BusinessTripsApproveHrResponse> businessTripsApprove(
                                                     BusinessTripsApproveHrRequest request) {
                                                   return businessTripsApprove(request,null);
                                                 }
 
+                                                /**
+                                                 * Sets the trip's status to <code>approved</code>. <code>payroll/runs/create</code> without explicit lines adds the per diem of every approved trip ending in the run month as an untaxed addition and sets the trip's <code>payrollRunId</code>; reversing or cancelling the run releases the trip again. Answers 409 when the trip is not a draft.
+                                                 */
                                                 public NordletApiHttpResponse<BusinessTripsApproveHrResponse> businessTripsApprove(
                                                     BusinessTripsApproveHrRequest request,
                                                     RequestOptions requestOptions) {
@@ -1872,11 +2046,17 @@ public class RawHrClient {
                                                     }
                                                   }
 
+                                                  /**
+                                                   * Deletes a draft trip; answers 409 when the trip is not a draft.
+                                                   */
                                                   public NordletApiHttpResponse<BusinessTripsDeleteHrResponse> businessTripsDelete(
                                                       BusinessTripsDeleteHrRequest request) {
                                                     return businessTripsDelete(request,null);
                                                   }
 
+                                                  /**
+                                                   * Deletes a draft trip; answers 409 when the trip is not a draft.
+                                                   */
                                                   public NordletApiHttpResponse<BusinessTripsDeleteHrResponse> businessTripsDelete(
                                                       BusinessTripsDeleteHrRequest request,
                                                       RequestOptions requestOptions) {
@@ -1942,11 +2122,17 @@ public class RawHrClient {
                                                       }
                                                     }
 
+                                                    /**
+                                                     * Adds an education, qualification, certificate or training record to an employee, optionally linked to one of the company's uploaded files (<code>fileId</code>).
+                                                     */
                                                     public NordletApiHttpResponse<EmployeesRecordsCreateHrResponse> employeesRecordsCreate(
                                                         EmployeesRecordsCreateHrRequest request) {
                                                       return employeesRecordsCreate(request,null);
                                                     }
 
+                                                    /**
+                                                     * Adds an education, qualification, certificate or training record to an employee, optionally linked to one of the company's uploaded files (<code>fileId</code>).
+                                                     */
                                                     public NordletApiHttpResponse<EmployeesRecordsCreateHrResponse> employeesRecordsCreate(
                                                         EmployeesRecordsCreateHrRequest request,
                                                         RequestOptions requestOptions) {
@@ -2012,11 +2198,17 @@ public class RawHrClient {
                                                         }
                                                       }
 
+                                                      /**
+                                                       * Changes the given fields of an employee record; <code>issuedAt</code>, <code>validUntil</code> and <code>fileId</code> can be cleared with null.
+                                                       */
                                                       public NordletApiHttpResponse<EmployeesRecordsUpdateHrResponse> employeesRecordsUpdate(
                                                           EmployeesRecordsUpdateHrRequest request) {
                                                         return employeesRecordsUpdate(request,null);
                                                       }
 
+                                                      /**
+                                                       * Changes the given fields of an employee record; <code>issuedAt</code>, <code>validUntil</code> and <code>fileId</code> can be cleared with null.
+                                                       */
                                                       public NordletApiHttpResponse<EmployeesRecordsUpdateHrResponse> employeesRecordsUpdate(
                                                           EmployeesRecordsUpdateHrRequest request,
                                                           RequestOptions requestOptions) {
@@ -2082,11 +2274,17 @@ public class RawHrClient {
                                                           }
                                                         }
 
+                                                        /**
+                                                         * Deletes an employee record.
+                                                         */
                                                         public NordletApiHttpResponse<EmployeesRecordsDeleteHrResponse> employeesRecordsDelete(
                                                             EmployeesRecordsDeleteHrRequest request) {
                                                           return employeesRecordsDelete(request,null);
                                                         }
 
+                                                        /**
+                                                         * Deletes an employee record.
+                                                         */
                                                         public NordletApiHttpResponse<EmployeesRecordsDeleteHrResponse> employeesRecordsDelete(
                                                             EmployeesRecordsDeleteHrRequest request,
                                                             RequestOptions requestOptions) {
@@ -2152,21 +2350,33 @@ public class RawHrClient {
                                                             }
                                                           }
 
+                                                          /**
+                                                           * Lists employee records; filterable by <code>employeeId</code>, <code>type</code> and <code>title</code>, sortable by <code>createdAt</code> and <code>issuedAt</code>.
+                                                           */
                                                           public NordletApiHttpResponse<EmployeesRecordsListHrResponse> employeesRecordsList(
                                                               ) {
                                                             return employeesRecordsList(EmployeesRecordsListHrRequest.builder().build());
                                                           }
 
+                                                          /**
+                                                           * Lists employee records; filterable by <code>employeeId</code>, <code>type</code> and <code>title</code>, sortable by <code>createdAt</code> and <code>issuedAt</code>.
+                                                           */
                                                           public NordletApiHttpResponse<EmployeesRecordsListHrResponse> employeesRecordsList(
                                                               RequestOptions requestOptions) {
                                                             return employeesRecordsList(EmployeesRecordsListHrRequest.builder().build(),requestOptions);
                                                           }
 
+                                                          /**
+                                                           * Lists employee records; filterable by <code>employeeId</code>, <code>type</code> and <code>title</code>, sortable by <code>createdAt</code> and <code>issuedAt</code>.
+                                                           */
                                                           public NordletApiHttpResponse<EmployeesRecordsListHrResponse> employeesRecordsList(
                                                               EmployeesRecordsListHrRequest request) {
                                                             return employeesRecordsList(request,null);
                                                           }
 
+                                                          /**
+                                                           * Lists employee records; filterable by <code>employeeId</code>, <code>type</code> and <code>title</code>, sortable by <code>createdAt</code> and <code>issuedAt</code>.
+                                                           */
                                                           public NordletApiHttpResponse<EmployeesRecordsListHrResponse> employeesRecordsList(
                                                               EmployeesRecordsListHrRequest request,
                                                               RequestOptions requestOptions) {
@@ -2232,11 +2442,17 @@ public class RawHrClient {
                                                               }
                                                             }
 
+                                                            /**
+                                                             * Lists the files uploaded against an employee, newest first.
+                                                             */
                                                             public NordletApiHttpResponse<EmployeesAttachmentsListHrResponse> employeesAttachmentsList(
                                                                 EmployeesAttachmentsListHrRequest request) {
                                                               return employeesAttachmentsList(request,null);
                                                             }
 
+                                                            /**
+                                                             * Lists the files uploaded against an employee, newest first.
+                                                             */
                                                             public NordletApiHttpResponse<EmployeesAttachmentsListHrResponse> employeesAttachmentsList(
                                                                 EmployeesAttachmentsListHrRequest request,
                                                                 RequestOptions requestOptions) {
@@ -2302,11 +2518,17 @@ public class RawHrClient {
                                                                 }
                                                               }
 
+                                                              /**
+                                                               * Builds the timesheet of the month for every employee with a contract in it, or for one employee with <code>employeeId</code>, replacing any existing timesheet: the Monday to Friday days within the contract get the contract's daily hours (its weekly hours over five), and for a Lithuanian company the public holidays are <code>holiday</code> days with 0 hours. Answers 422 when no contract covers the month.
+                                                               */
                                                               public NordletApiHttpResponse<TimesheetsGenerateHrResponse> timesheetsGenerate(
                                                                   TimesheetsGenerateHrRequest request) {
                                                                 return timesheetsGenerate(request,null);
                                                               }
 
+                                                              /**
+                                                               * Builds the timesheet of the month for every employee with a contract in it, or for one employee with <code>employeeId</code>, replacing any existing timesheet: the Monday to Friday days within the contract get the contract's daily hours (its weekly hours over five), and for a Lithuanian company the public holidays are <code>holiday</code> days with 0 hours. Answers 422 when no contract covers the month.
+                                                               */
                                                               public NordletApiHttpResponse<TimesheetsGenerateHrResponse> timesheetsGenerate(
                                                                   TimesheetsGenerateHrRequest request,
                                                                   RequestOptions requestOptions) {
@@ -2372,11 +2594,17 @@ public class RawHrClient {
                                                                   }
                                                                 }
 
+                                                                /**
+                                                                 * Creates or replaces the timesheet of an employee for a month from the given days; <code>workedDays</code> and <code>workedHours</code> count the <code>work</code> and <code>business_trip</code> days with hours. Answers 422 for a day outside the month, a day given twice or more than 24 hours in a day. <code>payroll/runs/create</code> reads the timesheet for the paid days, the days worked and the business-trip days of the month.
+                                                                 */
                                                                 public NordletApiHttpResponse<TimesheetsUpsertHrResponse> timesheetsUpsert(
                                                                     TimesheetsUpsertHrRequest request) {
                                                                   return timesheetsUpsert(request,null);
                                                                 }
 
+                                                                /**
+                                                                 * Creates or replaces the timesheet of an employee for a month from the given days; <code>workedDays</code> and <code>workedHours</code> count the <code>work</code> and <code>business_trip</code> days with hours. Answers 422 for a day outside the month, a day given twice or more than 24 hours in a day. <code>payroll/runs/create</code> reads the timesheet for the paid days, the days worked and the business-trip days of the month.
+                                                                 */
                                                                 public NordletApiHttpResponse<TimesheetsUpsertHrResponse> timesheetsUpsert(
                                                                     TimesheetsUpsertHrRequest request,
                                                                     RequestOptions requestOptions) {
@@ -2442,11 +2670,17 @@ public class RawHrClient {
                                                                     }
                                                                   }
 
+                                                                  /**
+                                                                   * Reads the timesheet of an employee for a month.
+                                                                   */
                                                                   public NordletApiHttpResponse<TimesheetsGetHrResponse> timesheetsGet(
                                                                       TimesheetsGetHrRequest request) {
                                                                     return timesheetsGet(request,null);
                                                                   }
 
+                                                                  /**
+                                                                   * Reads the timesheet of an employee for a month.
+                                                                   */
                                                                   public NordletApiHttpResponse<TimesheetsGetHrResponse> timesheetsGet(
                                                                       TimesheetsGetHrRequest request,
                                                                       RequestOptions requestOptions) {
@@ -2512,11 +2746,17 @@ public class RawHrClient {
                                                                       }
                                                                     }
 
+                                                                    /**
+                                                                     * Lists the timesheets of a month, ordered by employee name.
+                                                                     */
                                                                     public NordletApiHttpResponse<TimesheetsListHrResponse> timesheetsList(
                                                                         TimesheetsListHrRequest request) {
                                                                       return timesheetsList(request,null);
                                                                     }
 
+                                                                    /**
+                                                                     * Lists the timesheets of a month, ordered by employee name.
+                                                                     */
                                                                     public NordletApiHttpResponse<TimesheetsListHrResponse> timesheetsList(
                                                                         TimesheetsListHrRequest request,
                                                                         RequestOptions requestOptions) {
@@ -2582,11 +2822,17 @@ public class RawHrClient {
                                                                         }
                                                                       }
 
+                                                                      /**
+                                                                       * Deletes a timesheet.
+                                                                       */
                                                                       public NordletApiHttpResponse<TimesheetsDeleteHrResponse> timesheetsDelete(
                                                                           TimesheetsDeleteHrRequest request) {
                                                                         return timesheetsDelete(request,null);
                                                                       }
 
+                                                                      /**
+                                                                       * Deletes a timesheet.
+                                                                       */
                                                                       public NordletApiHttpResponse<TimesheetsDeleteHrResponse> timesheetsDelete(
                                                                           TimesheetsDeleteHrRequest request,
                                                                           RequestOptions requestOptions) {

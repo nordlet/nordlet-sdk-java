@@ -78,54 +78,90 @@ public class LedgerClient {
     return this.rawClient;
   }
 
+  /**
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public AccountsListLedgerResponse accountsList() {
     return this.rawClient.accountsList().body();
   }
 
+  /**
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public AccountsListLedgerResponse accountsList(RequestOptions requestOptions) {
     return this.rawClient.accountsList(requestOptions).body();
   }
 
+  /**
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public AccountsListLedgerResponse accountsList(AccountsListLedgerRequest request) {
     return this.rawClient.accountsList(request).body();
   }
 
+  /**
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public AccountsListLedgerResponse accountsList(AccountsListLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.accountsList(request, requestOptions).body();
   }
 
+  /**
+   * Adds an account to the company's chart of accounts. <code>parentId</code> must name an account of the same company. Answers 409 when an account with the same <code>code</code> already exists.
+   */
   public AccountsCreateLedgerResponse accountsCreate(AccountsCreateLedgerRequest request) {
     return this.rawClient.accountsCreate(request).body();
   }
 
+  /**
+   * Adds an account to the company's chart of accounts. <code>parentId</code> must name an account of the same company. Answers 409 when an account with the same <code>code</code> already exists.
+   */
   public AccountsCreateLedgerResponse accountsCreate(AccountsCreateLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.accountsCreate(request, requestOptions).body();
   }
 
+  /**
+   * Changes the name, parent or postability of an account; the code and type cannot be changed. An account cannot be its own parent.
+   */
   public AccountsUpdateLedgerResponse accountsUpdate(AccountsUpdateLedgerRequest request) {
     return this.rawClient.accountsUpdate(request).body();
   }
 
+  /**
+   * Changes the name, parent or postability of an account; the code and type cannot be changed. An account cannot be its own parent.
+   */
   public AccountsUpdateLedgerResponse accountsUpdate(AccountsUpdateLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.accountsUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Adds the accounts of the company's chart template that the chart does not have yet (an account whose code already exists is not replaced) and sets the parent links the template defines. Returns the number of accounts in the chart afterwards.
+   */
   public AccountsApplyTemplateLedgerResponse accountsApplyTemplate() {
     return this.rawClient.accountsApplyTemplate().body();
   }
 
+  /**
+   * Adds the accounts of the company's chart template that the chart does not have yet (an account whose code already exists is not replaced) and sets the parent links the template defines. Returns the number of accounts in the chart afterwards.
+   */
   public AccountsApplyTemplateLedgerResponse accountsApplyTemplate(RequestOptions requestOptions) {
     return this.rawClient.accountsApplyTemplate(requestOptions).body();
   }
 
+  /**
+   * Adds the accounts of the company's chart template that the chart does not have yet (an account whose code already exists is not replaced) and sets the parent links the template defines. Returns the number of accounts in the chart afterwards.
+   */
   public AccountsApplyTemplateLedgerResponse accountsApplyTemplate(
       AccountsApplyTemplateLedgerRequest request) {
     return this.rawClient.accountsApplyTemplate(request).body();
   }
 
+  /**
+   * Adds the accounts of the company's chart template that the chart does not have yet (an account whose code already exists is not replaced) and sets the parent links the template defines. Returns the number of accounts in the chart afterwards.
+   */
   public AccountsApplyTemplateLedgerResponse accountsApplyTemplate(
       AccountsApplyTemplateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.accountsApplyTemplate(request, requestOptions).body();
@@ -161,229 +197,379 @@ public class LedgerClient {
     return this.rawClient.accountsSwitchChart(request, requestOptions).body();
   }
 
+  /**
+   * Lists the company's accounting periods with their <code>open</code> or <code>locked</code> status. Filterable by <code>year</code>, <code>month</code> and <code>status</code>; sortable by <code>year</code> and <code>month</code>.
+   */
   public PeriodsListLedgerResponse periodsList() {
     return this.rawClient.periodsList().body();
   }
 
+  /**
+   * Lists the company's accounting periods with their <code>open</code> or <code>locked</code> status. Filterable by <code>year</code>, <code>month</code> and <code>status</code>; sortable by <code>year</code> and <code>month</code>.
+   */
   public PeriodsListLedgerResponse periodsList(RequestOptions requestOptions) {
     return this.rawClient.periodsList(requestOptions).body();
   }
 
+  /**
+   * Lists the company's accounting periods with their <code>open</code> or <code>locked</code> status. Filterable by <code>year</code>, <code>month</code> and <code>status</code>; sortable by <code>year</code> and <code>month</code>.
+   */
   public PeriodsListLedgerResponse periodsList(PeriodsListLedgerRequest request) {
     return this.rawClient.periodsList(request).body();
   }
 
+  /**
+   * Lists the company's accounting periods with their <code>open</code> or <code>locked</code> status. Filterable by <code>year</code>, <code>month</code> and <code>status</code>; sortable by <code>year</code> and <code>month</code>.
+   */
   public PeriodsListLedgerResponse periodsList(PeriodsListLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.periodsList(request, requestOptions).body();
   }
 
+  /**
+   * Locks the month so that postings dated in it are refused with 409 (<code>ledger/journal/transactions/create</code>, <code>cash/orders/create</code> and <code>cash/expense-reports/create</code> among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits <code>revenue_recognition.posted</code> when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule <code>closing.retainedEarnings</code>).
+   */
   public PeriodsLockLedgerResponse periodsLock(PeriodsLockLedgerRequest request) {
     return this.rawClient.periodsLock(request).body();
   }
 
+  /**
+   * Locks the month so that postings dated in it are refused with 409 (<code>ledger/journal/transactions/create</code>, <code>cash/orders/create</code> and <code>cash/expense-reports/create</code> among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits <code>revenue_recognition.posted</code> when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule <code>closing.retainedEarnings</code>).
+   */
   public PeriodsLockLedgerResponse periodsLock(PeriodsLockLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.periodsLock(request, requestOptions).body();
   }
 
+  /**
+   * Opens the month for posting again. When the month is the company's fiscal year end and a year-end close is posted for it, posts a reversal of that close dated the same day.
+   */
   public PeriodsUnlockLedgerResponse periodsUnlock(PeriodsUnlockLedgerRequest request) {
     return this.rawClient.periodsUnlock(request).body();
   }
 
+  /**
+   * Opens the month for posting again. When the month is the company's fiscal year end and a year-end close is posted for it, posts a reversal of that close dated the same day.
+   */
   public PeriodsUnlockLedgerResponse periodsUnlock(PeriodsUnlockLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.periodsUnlock(request, requestOptions).body();
   }
 
+  /**
+   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
   public JournalTransactionsListLedgerResponse journalTransactionsList() {
     return this.rawClient.journalTransactionsList().body();
   }
 
+  /**
+   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
   public JournalTransactionsListLedgerResponse journalTransactionsList(
       RequestOptions requestOptions) {
     return this.rawClient.journalTransactionsList(requestOptions).body();
   }
 
+  /**
+   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
   public JournalTransactionsListLedgerResponse journalTransactionsList(
       JournalTransactionsListLedgerRequest request) {
     return this.rawClient.journalTransactionsList(request).body();
   }
 
+  /**
+   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
   public JournalTransactionsListLedgerResponse journalTransactionsList(
       JournalTransactionsListLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.journalTransactionsList(request, requestOptions).body();
   }
 
+  /**
+   * Creates a cost center, optionally inside a cost center group. Answers 409 when the <code>code</code> is already used.
+   */
   public CostCentersCreateLedgerResponse costCentersCreate(CostCentersCreateLedgerRequest request) {
     return this.rawClient.costCentersCreate(request).body();
   }
 
+  /**
+   * Creates a cost center, optionally inside a cost center group. Answers 409 when the <code>code</code> is already used.
+   */
   public CostCentersCreateLedgerResponse costCentersCreate(CostCentersCreateLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.costCentersCreate(request, requestOptions).body();
   }
 
+  /**
+   * Changes the name, group or active flag of a cost center. An inactive cost center is refused on new manual journal entries (<code>ledger/journal/transactions/create</code> answers 422).
+   */
   public CostCentersUpdateLedgerResponse costCentersUpdate(CostCentersUpdateLedgerRequest request) {
     return this.rawClient.costCentersUpdate(request).body();
   }
 
+  /**
+   * Changes the name, group or active flag of a cost center. An inactive cost center is refused on new manual journal entries (<code>ledger/journal/transactions/create</code> answers 422).
+   */
   public CostCentersUpdateLedgerResponse costCentersUpdate(CostCentersUpdateLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.costCentersUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Lists cost centers with their group name. Filterable by <code>code</code>, <code>name</code>, <code>isActive</code> and <code>groupId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CostCentersListLedgerResponse costCentersList() {
     return this.rawClient.costCentersList().body();
   }
 
+  /**
+   * Lists cost centers with their group name. Filterable by <code>code</code>, <code>name</code>, <code>isActive</code> and <code>groupId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CostCentersListLedgerResponse costCentersList(RequestOptions requestOptions) {
     return this.rawClient.costCentersList(requestOptions).body();
   }
 
+  /**
+   * Lists cost centers with their group name. Filterable by <code>code</code>, <code>name</code>, <code>isActive</code> and <code>groupId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CostCentersListLedgerResponse costCentersList(CostCentersListLedgerRequest request) {
     return this.rawClient.costCentersList(request).body();
   }
 
+  /**
+   * Lists cost centers with their group name. Filterable by <code>code</code>, <code>name</code>, <code>isActive</code> and <code>groupId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CostCentersListLedgerResponse costCentersList(CostCentersListLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.costCentersList(request, requestOptions).body();
   }
 
+  /**
+   * Creates a cost center group. Answers 409 when the <code>code</code> is already used.
+   */
   public CostCenterGroupsCreateLedgerResponse costCenterGroupsCreate(
       CostCenterGroupsCreateLedgerRequest request) {
     return this.rawClient.costCenterGroupsCreate(request).body();
   }
 
+  /**
+   * Creates a cost center group. Answers 409 when the <code>code</code> is already used.
+   */
   public CostCenterGroupsCreateLedgerResponse costCenterGroupsCreate(
       CostCenterGroupsCreateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.costCenterGroupsCreate(request, requestOptions).body();
   }
 
+  /**
+   * Changes the code or name of a cost center group. Answers 409 when the new code is already used.
+   */
   public CostCenterGroupsUpdateLedgerResponse costCenterGroupsUpdate(
       CostCenterGroupsUpdateLedgerRequest request) {
     return this.rawClient.costCenterGroupsUpdate(request).body();
   }
 
+  /**
+   * Changes the code or name of a cost center group. Answers 409 when the new code is already used.
+   */
   public CostCenterGroupsUpdateLedgerResponse costCenterGroupsUpdate(
       CostCenterGroupsUpdateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.costCenterGroupsUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Deletes a cost center group. Answers 409 while cost centers are still assigned to it.
+   */
   public CostCenterGroupsDeleteLedgerResponse costCenterGroupsDelete(
       CostCenterGroupsDeleteLedgerRequest request) {
     return this.rawClient.costCenterGroupsDelete(request).body();
   }
 
+  /**
+   * Deletes a cost center group. Answers 409 while cost centers are still assigned to it.
+   */
   public CostCenterGroupsDeleteLedgerResponse costCenterGroupsDelete(
       CostCenterGroupsDeleteLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.costCenterGroupsDelete(request, requestOptions).body();
   }
 
+  /**
+   * Lists cost center groups. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CostCenterGroupsListLedgerResponse costCenterGroupsList() {
     return this.rawClient.costCenterGroupsList().body();
   }
 
+  /**
+   * Lists cost center groups. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CostCenterGroupsListLedgerResponse costCenterGroupsList(RequestOptions requestOptions) {
     return this.rawClient.costCenterGroupsList(requestOptions).body();
   }
 
+  /**
+   * Lists cost center groups. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CostCenterGroupsListLedgerResponse costCenterGroupsList(
       CostCenterGroupsListLedgerRequest request) {
     return this.rawClient.costCenterGroupsList(request).body();
   }
 
+  /**
+   * Lists cost center groups. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CostCenterGroupsListLedgerResponse costCenterGroupsList(
       CostCenterGroupsListLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.costCenterGroupsList(request, requestOptions).body();
   }
 
+  /**
+   * Lists every posting rule with its default account code on the company's chart template, the account code in effect and whether the company has overridden it.
+   */
   public PostingRulesListLedgerResponse postingRulesList() {
     return this.rawClient.postingRulesList().body();
   }
 
+  /**
+   * Lists every posting rule with its default account code on the company's chart template, the account code in effect and whether the company has overridden it.
+   */
   public PostingRulesListLedgerResponse postingRulesList(RequestOptions requestOptions) {
     return this.rawClient.postingRulesList(requestOptions).body();
   }
 
+  /**
+   * Lists every posting rule with its default account code on the company's chart template, the account code in effect and whether the company has overridden it.
+   */
   public PostingRulesListLedgerResponse postingRulesList(PostingRulesListLedgerRequest request) {
     return this.rawClient.postingRulesList(request).body();
   }
 
+  /**
+   * Lists every posting rule with its default account code on the company's chart template, the account code in effect and whether the company has overridden it.
+   */
   public PostingRulesListLedgerResponse postingRulesList(PostingRulesListLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.postingRulesList(request, requestOptions).body();
   }
 
+  /**
+   * Overrides the account code of one or more posting rules; an <code>accountCode</code> of null removes the override and the chart default applies again. Every code given must be a postable account of the company's chart, else 422.
+   */
   public PostingRulesUpdateLedgerResponse postingRulesUpdate(
       PostingRulesUpdateLedgerRequest request) {
     return this.rawClient.postingRulesUpdate(request).body();
   }
 
+  /**
+   * Overrides the account code of one or more posting rules; an <code>accountCode</code> of null removes the override and the chart default applies again. Every code given must be a postable account of the company's chart, else 422.
+   */
   public PostingRulesUpdateLedgerResponse postingRulesUpdate(
       PostingRulesUpdateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.postingRulesUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Adds an owner of the company. <code>equityAccountCode</code> defaults to the share capital account of the company's chart; a code that is not in the chart of accounts answers 422.
+   */
   public OwnersCreateLedgerResponse ownersCreate(OwnersCreateLedgerRequest request) {
     return this.rawClient.ownersCreate(request).body();
   }
 
+  /**
+   * Adds an owner of the company. <code>equityAccountCode</code> defaults to the share capital account of the company's chart; a code that is not in the chart of accounts answers 422.
+   */
   public OwnersCreateLedgerResponse ownersCreate(OwnersCreateLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ownersCreate(request, requestOptions).body();
   }
 
+  /**
+   * Changes the fields of an owner. An <code>equityAccountCode</code> that is not in the chart of accounts answers 422.
+   */
   public OwnersUpdateLedgerResponse ownersUpdate(OwnersUpdateLedgerRequest request) {
     return this.rawClient.ownersUpdate(request).body();
   }
 
+  /**
+   * Changes the fields of an owner. An <code>equityAccountCode</code> that is not in the chart of accounts answers 422.
+   */
   public OwnersUpdateLedgerResponse ownersUpdate(OwnersUpdateLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ownersUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Deletes an owner.
+   */
   public OwnersDeleteLedgerResponse ownersDelete(OwnersDeleteLedgerRequest request) {
     return this.rawClient.ownersDelete(request).body();
   }
 
+  /**
+   * Deletes an owner.
+   */
   public OwnersDeleteLedgerResponse ownersDelete(OwnersDeleteLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ownersDelete(request, requestOptions).body();
   }
 
+  /**
+   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   */
   public OwnersListLedgerResponse ownersList() {
     return this.rawClient.ownersList().body();
   }
 
+  /**
+   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   */
   public OwnersListLedgerResponse ownersList(RequestOptions requestOptions) {
     return this.rawClient.ownersList(requestOptions).body();
   }
 
+  /**
+   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   */
   public OwnersListLedgerResponse ownersList(OwnersListLedgerRequest request) {
     return this.rawClient.ownersList(request).body();
   }
 
+  /**
+   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   */
   public OwnersListLedgerResponse ownersList(OwnersListLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ownersList(request, requestOptions).body();
   }
 
+  /**
+   * Returns a journal transaction with its entries, ordered by account code.
+   */
   public JournalTransactionsGetLedgerResponse journalTransactionsGet(
       JournalTransactionsGetLedgerRequest request) {
     return this.rawClient.journalTransactionsGet(request).body();
   }
 
+  /**
+   * Returns a journal transaction with its entries, ordered by account code.
+   */
   public JournalTransactionsGetLedgerResponse journalTransactionsGet(
       JournalTransactionsGetLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.journalTransactionsGet(request, requestOptions).body();
   }
 
+  /**
+   * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount with more than two decimals, for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
+   */
   public JournalTransactionsCreateLedgerResponse journalTransactionsCreate(
       JournalTransactionsCreateLedgerRequest request) {
     return this.rawClient.journalTransactionsCreate(request).body();
   }
 
+  /**
+   * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount with more than two decimals, for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
+   */
   public JournalTransactionsCreateLedgerResponse journalTransactionsCreate(
       JournalTransactionsCreateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.journalTransactionsCreate(request, requestOptions).body();
@@ -419,10 +605,16 @@ public class LedgerClient {
     return this.rawClient.statementRowsSchemes(request, requestOptions).body();
   }
 
+  /**
+   * Every postable account of the company with the row of <code>scheme</code> it falls into, by a mapping (<code>ledger/statement-rows/set</code>) or by the layout default, and the amount it carries there: the balance up to <code>toDate</code> on a balance-sheet row, the movement from <code>fromDate</code> to <code>toDate</code> on an income-statement row. <code>toDate</code> defaults to today and <code>fromDate</code> to 1 January of that year. <code>rows</code> holds the row totals and <code>unmapped</code> the accounts with a balance but no row.
+   */
   public StatementRowsListLedgerResponse statementRowsList(StatementRowsListLedgerRequest request) {
     return this.rawClient.statementRowsList(request).body();
   }
 
+  /**
+   * Every postable account of the company with the row of <code>scheme</code> it falls into, by a mapping (<code>ledger/statement-rows/set</code>) or by the layout default, and the amount it carries there: the balance up to <code>toDate</code> on a balance-sheet row, the movement from <code>fromDate</code> to <code>toDate</code> on an income-statement row. <code>toDate</code> defaults to today and <code>fromDate</code> to 1 January of that year. <code>rows</code> holds the row totals and <code>unmapped</code> the accounts with a balance but no row.
+   */
   public StatementRowsListLedgerResponse statementRowsList(StatementRowsListLedgerRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.statementRowsList(request, requestOptions).body();

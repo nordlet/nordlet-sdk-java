@@ -66,20 +66,32 @@ public class RawBillingClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Return the signed-in user's billing account: plan, account type, status, balance, trial and payment state, the month-to-date usage of the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings.
+   */
   public NordletApiHttpResponse<AccountGetBillingResponse> accountGet() {
     return accountGet(AccountGetBillingRequest.builder().build());
   }
 
+  /**
+   * Return the signed-in user's billing account: plan, account type, status, balance, trial and payment state, the month-to-date usage of the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings.
+   */
   public NordletApiHttpResponse<AccountGetBillingResponse> accountGet(
       RequestOptions requestOptions) {
     return accountGet(AccountGetBillingRequest.builder().build(),requestOptions);
   }
 
+  /**
+   * Return the signed-in user's billing account: plan, account type, status, balance, trial and payment state, the month-to-date usage of the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings.
+   */
   public NordletApiHttpResponse<AccountGetBillingResponse> accountGet(
       AccountGetBillingRequest request) {
     return accountGet(request,null);
   }
 
+  /**
+   * Return the signed-in user's billing account: plan, account type, status, balance, trial and payment state, the month-to-date usage of the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings.
+   */
   public NordletApiHttpResponse<AccountGetBillingResponse> accountGet(
       AccountGetBillingRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -144,11 +156,17 @@ public class RawBillingClient {
       }
     }
 
+    /**
+     * Change the plan of the user's flat-rate billing account; answers 409 when the account type is not <code>flat_rate</code>. With a Stripe subscription and payments configured, the subscription is moved to the new plan.
+     */
     public NordletApiHttpResponse<AccountSetPlanBillingResponse> accountSetPlan(
         AccountSetPlanBillingRequest request) {
       return accountSetPlan(request,null);
     }
 
+    /**
+     * Change the plan of the user's flat-rate billing account; answers 409 when the account type is not <code>flat_rate</code>. With a Stripe subscription and payments configured, the subscription is moved to the new plan.
+     */
     public NordletApiHttpResponse<AccountSetPlanBillingResponse> accountSetPlan(
         AccountSetPlanBillingRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -213,11 +231,17 @@ public class RawBillingClient {
         }
       }
 
+      /**
+       * Switch the user's billing account between <code>flat_rate</code> and <code>per_request</code>. With a Stripe subscription and payments configured, the subscription is moved to the plan's price for <code>flat_rate</code>; for <code>per_request</code> the plan is taken off the subscription, and a subscription that carried only the plan is cancelled, leaving the account without one. When Stripe refuses the change, the previous account type is restored.
+       */
       public NordletApiHttpResponse<AccountSetAccountTypeBillingResponse> accountSetAccountType(
           AccountSetAccountTypeBillingRequest request) {
         return accountSetAccountType(request,null);
       }
 
+      /**
+       * Switch the user's billing account between <code>flat_rate</code> and <code>per_request</code>. With a Stripe subscription and payments configured, the subscription is moved to the plan's price for <code>flat_rate</code>; for <code>per_request</code> the plan is taken off the subscription, and a subscription that carried only the plan is cancelled, leaving the account without one. When Stripe refuses the change, the previous account type is restored.
+       */
       public NordletApiHttpResponse<AccountSetAccountTypeBillingResponse> accountSetAccountType(
           AccountSetAccountTypeBillingRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -282,11 +306,17 @@ public class RawBillingClient {
           }
         }
 
+        /**
+         * Switch automatic top-ups on or off and set their amount. Switching them on needs a Stripe customer, which the first card top-up creates (400 otherwise); when switched on, a top-up is charged at once if the balance is at or below zero, no payment has failed and no top-up was requested in the last 24 hours.
+         */
         public NordletApiHttpResponse<AccountSetAutoTopUpBillingResponse> accountSetAutoTopUp(
             AccountSetAutoTopUpBillingRequest request) {
           return accountSetAutoTopUp(request,null);
         }
 
+        /**
+         * Switch automatic top-ups on or off and set their amount. Switching them on needs a Stripe customer, which the first card top-up creates (400 otherwise); when switched on, a top-up is charged at once if the balance is at or below zero, no payment has failed and no top-up was requested in the last 24 hours.
+         */
         public NordletApiHttpResponse<AccountSetAutoTopUpBillingResponse> accountSetAutoTopUp(
             AccountSetAutoTopUpBillingRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -351,11 +381,17 @@ public class RawBillingClient {
             }
           }
 
+          /**
+           * Set the overdraft cap of the user's billing account: how far usage charges may take the balance below zero before the account is suspended. A suspended account whose balance is within the new cap is activated again.
+           */
           public NordletApiHttpResponse<AccountSetOverdraftCapBillingResponse> accountSetOverdraftCap(
               AccountSetOverdraftCapBillingRequest request) {
             return accountSetOverdraftCap(request,null);
           }
 
+          /**
+           * Set the overdraft cap of the user's billing account: how far usage charges may take the balance below zero before the account is suspended. A suspended account whose balance is within the new cap is activated again.
+           */
           public NordletApiHttpResponse<AccountSetOverdraftCapBillingResponse> accountSetOverdraftCap(
               AccountSetOverdraftCapBillingRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -420,11 +456,17 @@ public class RawBillingClient {
               }
             }
 
+            /**
+             * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>. Answers 503 when online payments are not configured.
+             */
             public NordletApiHttpResponse<TopupCreateBillingResponse> topupCreate(
                 TopupCreateBillingRequest request) {
               return topupCreate(request,null);
             }
 
+            /**
+             * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>. Answers 503 when online payments are not configured.
+             */
             public NordletApiHttpResponse<TopupCreateBillingResponse> topupCreate(
                 TopupCreateBillingRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -489,11 +531,17 @@ public class RawBillingClient {
                 }
               }
 
+              /**
+               * Confirm a paid top-up Checkout session by <code>sessionId</code> and credit the account at once instead of waiting for the Stripe webhook; a session is credited only once. Answers 404 when the session is not the user's own or is not paid.
+               */
               public NordletApiHttpResponse<TopupConfirmBillingResponse> topupConfirm(
                   TopupConfirmBillingRequest request) {
                 return topupConfirm(request,null);
               }
 
+              /**
+               * Confirm a paid top-up Checkout session by <code>sessionId</code> and credit the account at once instead of waiting for the Stripe webhook; a session is credited only once. Answers 404 when the session is not the user's own or is not paid.
+               */
               public NordletApiHttpResponse<TopupConfirmBillingResponse> topupConfirm(
                   TopupConfirmBillingRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -558,20 +606,32 @@ public class RawBillingClient {
                   }
                 }
 
+                /**
+                 * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured or the plan has no price.
+                 */
                 public NordletApiHttpResponse<FlatRateCreateBillingResponse> flatRateCreate() {
                   return flatRateCreate(FlatRateCreateBillingRequest.builder().build());
                 }
 
+                /**
+                 * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured or the plan has no price.
+                 */
                 public NordletApiHttpResponse<FlatRateCreateBillingResponse> flatRateCreate(
                     RequestOptions requestOptions) {
                   return flatRateCreate(FlatRateCreateBillingRequest.builder().build(),requestOptions);
                 }
 
+                /**
+                 * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured or the plan has no price.
+                 */
                 public NordletApiHttpResponse<FlatRateCreateBillingResponse> flatRateCreate(
                     FlatRateCreateBillingRequest request) {
                   return flatRateCreate(request,null);
                 }
 
+                /**
+                 * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured or the plan has no price.
+                 */
                 public NordletApiHttpResponse<FlatRateCreateBillingResponse> flatRateCreate(
                     FlatRateCreateBillingRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -636,11 +696,17 @@ public class RawBillingClient {
                     }
                   }
 
+                  /**
+                   * Confirm a completed flat-rate Checkout session by <code>sessionId</code>: the account becomes <code>flat_rate</code> on the session's plan with status <code>active</code> and the subscription attached, unless the Stripe webhook already did this. Answers 404 when the session is not the user's own or not completed.
+                   */
                   public NordletApiHttpResponse<FlatRateConfirmBillingResponse> flatRateConfirm(
                       FlatRateConfirmBillingRequest request) {
                     return flatRateConfirm(request,null);
                   }
 
+                  /**
+                   * Confirm a completed flat-rate Checkout session by <code>sessionId</code>: the account becomes <code>flat_rate</code> on the session's plan with status <code>active</code> and the subscription attached, unless the Stripe webhook already did this. Answers 404 when the session is not the user's own or not completed.
+                   */
                   public NordletApiHttpResponse<FlatRateConfirmBillingResponse> flatRateConfirm(
                       FlatRateConfirmBillingRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -705,20 +771,32 @@ public class RawBillingClient {
                       }
                     }
 
+                    /**
+                     * Open a Stripe customer portal session that returns to the credits page in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the user has no Stripe customer yet.
+                     */
                     public NordletApiHttpResponse<PortalCreateBillingResponse> portalCreate() {
                       return portalCreate(PortalCreateBillingRequest.builder().build());
                     }
 
+                    /**
+                     * Open a Stripe customer portal session that returns to the credits page in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the user has no Stripe customer yet.
+                     */
                     public NordletApiHttpResponse<PortalCreateBillingResponse> portalCreate(
                         RequestOptions requestOptions) {
                       return portalCreate(PortalCreateBillingRequest.builder().build(),requestOptions);
                     }
 
+                    /**
+                     * Open a Stripe customer portal session that returns to the credits page in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the user has no Stripe customer yet.
+                     */
                     public NordletApiHttpResponse<PortalCreateBillingResponse> portalCreate(
                         PortalCreateBillingRequest request) {
                       return portalCreate(request,null);
                     }
 
+                    /**
+                     * Open a Stripe customer portal session that returns to the credits page in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the user has no Stripe customer yet.
+                     */
                     public NordletApiHttpResponse<PortalCreateBillingResponse> portalCreate(
                         PortalCreateBillingRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -783,21 +861,33 @@ public class RawBillingClient {
                         }
                       }
 
+                      /**
+                       * List the newest credit transactions of the user's billing account, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+                       */
                       public NordletApiHttpResponse<TransactionsListBillingResponse> transactionsList(
                           ) {
                         return transactionsList(TransactionsListBillingRequest.builder().build());
                       }
 
+                      /**
+                       * List the newest credit transactions of the user's billing account, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+                       */
                       public NordletApiHttpResponse<TransactionsListBillingResponse> transactionsList(
                           RequestOptions requestOptions) {
                         return transactionsList(TransactionsListBillingRequest.builder().build(),requestOptions);
                       }
 
+                      /**
+                       * List the newest credit transactions of the user's billing account, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+                       */
                       public NordletApiHttpResponse<TransactionsListBillingResponse> transactionsList(
                           TransactionsListBillingRequest request) {
                         return transactionsList(request,null);
                       }
 
+                      /**
+                       * List the newest credit transactions of the user's billing account, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+                       */
                       public NordletApiHttpResponse<TransactionsListBillingResponse> transactionsList(
                           TransactionsListBillingRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -862,11 +952,17 @@ public class RawBillingClient {
                           }
                         }
 
+                        /**
+                         * List the daily usage records of the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, OCR pages, file storage bytes, database bytes, sale invoices).
+                         */
                         public NordletApiHttpResponse<UsageListBillingResponse> usageList(
                             UsageListBillingRequest request) {
                           return usageList(request,null);
                         }
 
+                        /**
+                         * List the daily usage records of the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, OCR pages, file storage bytes, database bytes, sale invoices).
+                         */
                         public NordletApiHttpResponse<UsageListBillingResponse> usageList(
                             UsageListBillingRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

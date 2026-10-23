@@ -28,6 +28,8 @@ public final class SubscriptionsCreateWebhooksRequestEventsItem {
 
   public static final SubscriptionsCreateWebhooksRequestEventsItem ITEM_DELETED = new SubscriptionsCreateWebhooksRequestEventsItem(Value.ITEM_DELETED, "item.deleted");
 
+  public static final SubscriptionsCreateWebhooksRequestEventsItem RECURRING_INVOICE_GENERATED = new SubscriptionsCreateWebhooksRequestEventsItem(Value.RECURRING_INVOICE_GENERATED, "recurring_invoice.generated");
+
   public static final SubscriptionsCreateWebhooksRequestEventsItem LEAD_CONVERTED = new SubscriptionsCreateWebhooksRequestEventsItem(Value.LEAD_CONVERTED, "lead.converted");
 
   public static final SubscriptionsCreateWebhooksRequestEventsItem SETTLEMENT_IMPORTED = new SubscriptionsCreateWebhooksRequestEventsItem(Value.SETTLEMENT_IMPORTED, "settlement.imported");
@@ -150,6 +152,8 @@ public final class SubscriptionsCreateWebhooksRequestEventsItem {
         return visitor.visitGoodsReceiptPosted();
       case ITEM_DELETED:
         return visitor.visitItemDeleted();
+      case RECURRING_INVOICE_GENERATED:
+        return visitor.visitRecurringInvoiceGenerated();
       case LEAD_CONVERTED:
         return visitor.visitLeadConverted();
       case SETTLEMENT_IMPORTED:
@@ -251,6 +255,8 @@ public final class SubscriptionsCreateWebhooksRequestEventsItem {
         return GOODS_RECEIPT_POSTED;
       case "item.deleted":
         return ITEM_DELETED;
+      case "recurring_invoice.generated":
+        return RECURRING_INVOICE_GENERATED;
       case "lead.converted":
         return LEAD_CONVERTED;
       case "settlement.imported":
@@ -371,6 +377,8 @@ public final class SubscriptionsCreateWebhooksRequestEventsItem {
 
     PURCHASE_ORDER_RECEIVED,
 
+    RECURRING_INVOICE_GENERATED,
+
     REFUND_LIABILITY_ACTUAL,
 
     REFUND_LIABILITY_TRUED_UP,
@@ -464,6 +472,8 @@ public final class SubscriptionsCreateWebhooksRequestEventsItem {
     T visitPurchaseOrderApproved();
 
     T visitPurchaseOrderReceived();
+
+    T visitRecurringInvoiceGenerated();
 
     T visitRefundLiabilityActual();
 

@@ -235,11 +235,17 @@ public class AsyncRawDeclarationsClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Builds the Lithuanian Intrastat report of a month for one flow as the IDAIS INTRASTATReportSubmission XML: dispatches from the issued sale invoices and purchase credit notes, arrivals from the registered purchase invoices and sale credit notes, grouped into report items. <code>transactionNature</code>, <code>deliveryTerms</code>, <code>transportMode</code> and <code>regionCode</code> are the defaults for lines without their own values; <code>statisticalValueRequired</code> adds the statistical value to each item. Answers 422 when the company is not a VAT payer. With <code>persist</code>, the file is stored and a submission for <code>lt-intrastat-arrivals</code> or <code>lt-intrastat-dispatches</code> is created.
+   */
   public CompletableFuture<NordletApiHttpResponse<LtIntrastatComputeDeclarationsResponse>> ltIntrastatCompute(
       LtIntrastatComputeDeclarationsRequest request) {
     return ltIntrastatCompute(request,null);
   }
 
+  /**
+   * Builds the Lithuanian Intrastat report of a month for one flow as the IDAIS INTRASTATReportSubmission XML: dispatches from the issued sale invoices and purchase credit notes, arrivals from the registered purchase invoices and sale credit notes, grouped into report items. <code>transactionNature</code>, <code>deliveryTerms</code>, <code>transportMode</code> and <code>regionCode</code> are the defaults for lines without their own values; <code>statisticalValueRequired</code> adds the statistical value to each item. Answers 422 when the company is not a VAT payer. With <code>persist</code>, the file is stored and a submission for <code>lt-intrastat-arrivals</code> or <code>lt-intrastat-dispatches</code> is created.
+   */
   public CompletableFuture<NordletApiHttpResponse<LtIntrastatComputeDeclarationsResponse>> ltIntrastatCompute(
       LtIntrastatComputeDeclarationsRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -327,11 +333,17 @@ public class AsyncRawDeclarationsClient {
       return future;
     }
 
+    /**
+     * Builds the i.VAZ transport document message (iVAZ1.3.3) for up to 100 issued waybills and returns the XML. Answers 422 when the registration code of the company is not numeric or when a waybill is not issued. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz</code> is created.
+     */
     public CompletableFuture<NordletApiHttpResponse<LtIvazGenerateDeclarationsResponse>> ltIvazGenerate(
         LtIvazGenerateDeclarationsRequest request) {
       return ltIvazGenerate(request,null);
     }
 
+    /**
+     * Builds the i.VAZ transport document message (iVAZ1.3.3) for up to 100 issued waybills and returns the XML. Answers 422 when the registration code of the company is not numeric or when a waybill is not issued. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz</code> is created.
+     */
     public CompletableFuture<NordletApiHttpResponse<LtIvazGenerateDeclarationsResponse>> ltIvazGenerate(
         LtIvazGenerateDeclarationsRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -419,11 +431,17 @@ public class AsyncRawDeclarationsClient {
         return future;
       }
 
+      /**
+       * Checks the Intrastat reporting obligation of a year per flow: the value of goods traded with other Member States in the previous year, the month from which reporting is due (January when that value already passed the reporting threshold, else the month the cumulative value of the year passes it), whether the statistical value is required, and the monthly values. Answers 422 when no thresholds are stored for the year.
+       */
       public CompletableFuture<NordletApiHttpResponse<LtIntrastatObligationDeclarationsResponse>> ltIntrastatObligation(
           LtIntrastatObligationDeclarationsRequest request) {
         return ltIntrastatObligation(request,null);
       }
 
+      /**
+       * Checks the Intrastat reporting obligation of a year per flow: the value of goods traded with other Member States in the previous year, the month from which reporting is due (January when that value already passed the reporting threshold, else the month the cumulative value of the year passes it), whether the statistical value is required, and the monthly values. Answers 422 when no thresholds are stored for the year.
+       */
       public CompletableFuture<NordletApiHttpResponse<LtIntrastatObligationDeclarationsResponse>> ltIntrastatObligation(
           LtIntrastatObligationDeclarationsRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -511,11 +529,17 @@ public class AsyncRawDeclarationsClient {
           return future;
         }
 
+        /**
+         * Builds the Lithuanian i.SAF register XML of a month: <code>dataType</code> F covers both registers, S the issued sale invoices only, P the registered purchase invoices only. Returns the XML without storing it; <code>declarations/submissions/create</code> stores it as a submission.
+         */
         public CompletableFuture<NordletApiHttpResponse<LtIsafGenerateDeclarationsResponse>> ltIsafGenerate(
             LtIsafGenerateDeclarationsRequest request) {
           return ltIsafGenerate(request,null);
         }
 
+        /**
+         * Builds the Lithuanian i.SAF register XML of a month: <code>dataType</code> F covers both registers, S the issued sale invoices only, P the registered purchase invoices only. Returns the XML without storing it; <code>declarations/submissions/create</code> stores it as a submission.
+         */
         public CompletableFuture<NordletApiHttpResponse<LtIsafGenerateDeclarationsResponse>> ltIsafGenerate(
             LtIsafGenerateDeclarationsRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -603,11 +627,17 @@ public class AsyncRawDeclarationsClient {
             return future;
           }
 
+          /**
+           * Computes the fields of the Lithuanian VAT return FR0600 for the period of <code>months</code> months starting in <code>month</code>, with the breakdown by VAT classifier behind them. <code>deductionPercent</code> is the share of input VAT deducted and is written to field 28.
+           */
           public CompletableFuture<NordletApiHttpResponse<LtFr0600ComputeDeclarationsResponse>> ltFr0600Compute(
               LtFr0600ComputeDeclarationsRequest request) {
             return ltFr0600Compute(request,null);
           }
 
+          /**
+           * Computes the fields of the Lithuanian VAT return FR0600 for the period of <code>months</code> months starting in <code>month</code>, with the breakdown by VAT classifier behind them. <code>deductionPercent</code> is the share of input VAT deducted and is written to field 28.
+           */
           public CompletableFuture<NordletApiHttpResponse<LtFr0600ComputeDeclarationsResponse>> ltFr0600Compute(
               LtFr0600ComputeDeclarationsRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -695,11 +725,17 @@ public class AsyncRawDeclarationsClient {
               return future;
             }
 
+            /**
+             * Computes fields 5 to 7 of the monthly GPM313 from the payroll run of the month the pay was earned: the run of the previous month with <code>payoutTiming</code> <code>next-month</code>, the run of the same month with <code>same-month</code>. <code>paymentDay</code> decides whether the withheld tax goes to field 6 (paid by the 15th) or field 7 (after it). Fields 8 to 12 are returned as zero.
+             */
             public CompletableFuture<NordletApiHttpResponse<LtGpm313ComputeDeclarationsResponse>> ltGpm313Compute(
                 LtGpm313ComputeDeclarationsRequest request) {
               return ltGpm313Compute(request,null);
             }
 
+            /**
+             * Computes fields 5 to 7 of the monthly GPM313 from the payroll run of the month the pay was earned: the run of the previous month with <code>payoutTiming</code> <code>next-month</code>, the run of the same month with <code>same-month</code>. <code>paymentDay</code> decides whether the withheld tax goes to field 6 (paid by the 15th) or field 7 (after it). Fields 8 to 12 are returned as zero.
+             */
             public CompletableFuture<NordletApiHttpResponse<LtGpm313ComputeDeclarationsResponse>> ltGpm313Compute(
                 LtGpm313ComputeDeclarationsRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -787,11 +823,17 @@ public class AsyncRawDeclarationsClient {
                 return future;
               }
 
+              /**
+               * Computes the monthly SAM figures from the payroll run of the month: per employee the insured income, the employee and employer contributions together and the resulting tariff, plus the insured count and the totals. A missing run or a run still in draft is reported in the warnings.
+               */
               public CompletableFuture<NordletApiHttpResponse<LtSamComputeDeclarationsResponse>> ltSamCompute(
                   LtSamComputeDeclarationsRequest request) {
                 return ltSamCompute(request,null);
               }
 
+              /**
+               * Computes the monthly SAM figures from the payroll run of the month: per employee the insured income, the employee and employer contributions together and the resulting tariff, plus the insured count and the totals. A missing run or a run still in draft is reported in the warnings.
+               */
               public CompletableFuture<NordletApiHttpResponse<LtSamComputeDeclarationsResponse>> ltSamCompute(
                   LtSamComputeDeclarationsRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -879,11 +921,17 @@ public class AsyncRawDeclarationsClient {
                   return future;
                 }
 
+                /**
+                 * Lists the rows of the 1-SD (employment contracts that start in the date range) or of the 2-SD (contracts that ended in the range, with the final insured income and contributions from the payroll line of the termination month). Answers 422 when <code>fromDate</code> is after <code>toDate</code>.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<LtSdGenerateDeclarationsResponse>> ltSdGenerate(
                     LtSdGenerateDeclarationsRequest request) {
                   return ltSdGenerate(request,null);
                 }
 
+                /**
+                 * Lists the rows of the 1-SD (employment contracts that start in the date range) or of the 2-SD (contracts that ended in the range, with the final insured income and contributions from the payroll line of the termination month). Answers 422 when <code>fromDate</code> is after <code>toDate</code>.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<LtSdGenerateDeclarationsResponse>> ltSdGenerate(
                     LtSdGenerateDeclarationsRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -971,11 +1019,17 @@ public class AsyncRawDeclarationsClient {
                     return future;
                   }
 
+                  /**
+                   * Builds the Lithuanian SAF-T (version 2.01) XML for a date range: <code>dataType</code> F is the full file, GL, SI, PI, PA, MG and AS limit it to the general ledger, sale invoices, purchase invoices, payments, movements of goods or asset transactions. Answers 422 when <code>fromDate</code> is after <code>toDate</code>. With <code>persist</code>, the file is stored and a submission for <code>lt-saft</code> is created.
+                   */
                   public CompletableFuture<NordletApiHttpResponse<LtSaftGenerateDeclarationsResponse>> ltSaftGenerate(
                       LtSaftGenerateDeclarationsRequest request) {
                     return ltSaftGenerate(request,null);
                   }
 
+                  /**
+                   * Builds the Lithuanian SAF-T (version 2.01) XML for a date range: <code>dataType</code> F is the full file, GL, SI, PI, PA, MG and AS limit it to the general ledger, sale invoices, purchase invoices, payments, movements of goods or asset transactions. Answers 422 when <code>fromDate</code> is after <code>toDate</code>. With <code>persist</code>, the file is stored and a submission for <code>lt-saft</code> is created.
+                   */
                   public CompletableFuture<NordletApiHttpResponse<LtSaftGenerateDeclarationsResponse>> ltSaftGenerate(
                       LtSaftGenerateDeclarationsRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1063,11 +1117,17 @@ public class AsyncRawDeclarationsClient {
                       return future;
                     }
 
+                    /**
+                     * Builds an i.VAZ amendment message for up to 100 issued waybills, carrying their current data as TransportDocumentAmendment elements. Answers 422 when the registration code of the company is not numeric or when a waybill is not issued. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz-amendment</code> is created.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<LtIvazAmendDeclarationsResponse>> ltIvazAmend(
                         LtIvazAmendDeclarationsRequest request) {
                       return ltIvazAmend(request,null);
                     }
 
+                    /**
+                     * Builds an i.VAZ amendment message for up to 100 issued waybills, carrying their current data as TransportDocumentAmendment elements. Answers 422 when the registration code of the company is not numeric or when a waybill is not issued. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz-amendment</code> is created.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<LtIvazAmendDeclarationsResponse>> ltIvazAmend(
                         LtIvazAmendDeclarationsRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1155,11 +1215,17 @@ public class AsyncRawDeclarationsClient {
                         return future;
                       }
 
+                      /**
+                       * Builds an i.VAZ cancellation message for up to 100 waybills, each with a cancellation reason code and optional additional information. Answers 422 when the registration code of the company is not numeric; a waybill that was never issued is reported in the warnings. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz-cancellation</code> is created.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<LtIvazCancelDeclarationsResponse>> ltIvazCancel(
                           LtIvazCancelDeclarationsRequest request) {
                         return ltIvazCancel(request,null);
                       }
 
+                      /**
+                       * Builds an i.VAZ cancellation message for up to 100 waybills, each with a cancellation reason code and optional additional information. Answers 422 when the registration code of the company is not numeric; a waybill that was never issued is reported in the warnings. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz-cancellation</code> is created.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<LtIvazCancelDeclarationsResponse>> ltIvazCancel(
                           LtIvazCancelDeclarationsRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1247,11 +1313,17 @@ public class AsyncRawDeclarationsClient {
                           return future;
                         }
 
+                        /**
+                         * Computes the rows of the Lithuanian FR0564 report of a month from the issued sale invoices and credit notes with the <code>intra_eu_b2b</code> or <code>reverse_charge</code> scheme: one row per buyer VAT number of another Member State, with goods and services split by the type of the catalogue item. Invoices not in EUR and buyers without a valid EU VAT number are left out and named in the warnings; the triangular column is always zero.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<LtFr0564ComputeDeclarationsResponse>> ltFr0564Compute(
                             LtFr0564ComputeDeclarationsRequest request) {
                           return ltFr0564Compute(request,null);
                         }
 
+                        /**
+                         * Computes the rows of the Lithuanian FR0564 report of a month from the issued sale invoices and credit notes with the <code>intra_eu_b2b</code> or <code>reverse_charge</code> scheme: one row per buyer VAT number of another Member State, with goods and services split by the type of the catalogue item. Invoices not in EUR and buyers without a valid EU VAT number are left out and named in the warnings; the triangular column is always zero.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<LtFr0564ComputeDeclarationsResponse>> ltFr0564Compute(
                             LtFr0564ComputeDeclarationsRequest request,
                             RequestOptions requestOptions) {
@@ -1340,11 +1412,17 @@ public class AsyncRawDeclarationsClient {
                             return future;
                           }
 
+                          /**
+                           * Computes the rows of the annual GPM312 from the payroll runs of the payout months of the year (December of the previous year to November with <code>payoutTiming</code> <code>next-month</code>, January to December with <code>same-month</code>): one row per employee and payment type code, with the amount paid, the tax withheld and the rate applied.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<LtGpm312ComputeDeclarationsResponse>> ltGpm312Compute(
                               LtGpm312ComputeDeclarationsRequest request) {
                             return ltGpm312Compute(request,null);
                           }
 
+                          /**
+                           * Computes the rows of the annual GPM312 from the payroll runs of the payout months of the year (December of the previous year to November with <code>payoutTiming</code> <code>next-month</code>, January to December with <code>same-month</code>): one row per employee and payment type code, with the amount paid, the tax withheld and the rate applied.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<LtGpm312ComputeDeclarationsResponse>> ltGpm312Compute(
                               LtGpm312ComputeDeclarationsRequest request,
                               RequestOptions requestOptions) {
@@ -1433,11 +1511,17 @@ public class AsyncRawDeclarationsClient {
                               return future;
                             }
 
+                            /**
+                             * Computes the boxes of the Lithuanian annual corporate income tax return PLN204 for the fiscal year from the financial statements and the tax adjustments recorded with <code>declarations/tax-adjustments/create</code>: the PLN204S annex from the <code>non_deductible</code> adjustments and the PLN204Z annex from the <code>non_taxable_income</code> ones, by their <code>code</code>. The small-entity rate is applied when the size criteria allow it. Answers 422 when such an adjustment has no code or a code the annex does not list, or when no rate table covers the period.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<LtPln204ComputeDeclarationsResponse>> ltPln204Compute(
                                 LtPln204ComputeDeclarationsRequest request) {
                               return ltPln204Compute(request,null);
                             }
 
+                            /**
+                             * Computes the boxes of the Lithuanian annual corporate income tax return PLN204 for the fiscal year from the financial statements and the tax adjustments recorded with <code>declarations/tax-adjustments/create</code>: the PLN204S annex from the <code>non_deductible</code> adjustments and the PLN204Z annex from the <code>non_taxable_income</code> ones, by their <code>code</code>. The small-entity rate is applied when the size criteria allow it. Answers 422 when such an adjustment has no code or a code the annex does not list, or when no rate table covers the period.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<LtPln204ComputeDeclarationsResponse>> ltPln204Compute(
                                 LtPln204ComputeDeclarationsRequest request,
                                 RequestOptions requestOptions) {
@@ -1526,11 +1610,17 @@ public class AsyncRawDeclarationsClient {
                                 return future;
                               }
 
+                              /**
+                               * Computes the Union OSS return of a quarter from the issued invoices and credit notes with the <code>oss_union</code> VAT scheme: one row per Member State of consumption and VAT rate, classified as standard or reduced, and a corrections section for the credit notes that credit invoices of earlier periods. Amounts are in EUR, converted at the official rate of the last day of the period. Answers 422 when the company is not established in the EU.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<EuOssComputeDeclarationsResponse>> euOssCompute(
                                   EuOssComputeDeclarationsRequest request) {
                                 return euOssCompute(request,null);
                               }
 
+                              /**
+                               * Computes the Union OSS return of a quarter from the issued invoices and credit notes with the <code>oss_union</code> VAT scheme: one row per Member State of consumption and VAT rate, classified as standard or reduced, and a corrections section for the credit notes that credit invoices of earlier periods. Amounts are in EUR, converted at the official rate of the last day of the period. Answers 422 when the company is not established in the EU.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<EuOssComputeDeclarationsResponse>> euOssCompute(
                                   EuOssComputeDeclarationsRequest request,
                                   RequestOptions requestOptions) {
@@ -1619,11 +1709,17 @@ public class AsyncRawDeclarationsClient {
                                   return future;
                                 }
 
+                                /**
+                                 * Computes the IOSS return of a month from the issued invoices and credit notes with the <code>ioss</code> VAT scheme, with the same rows, corrections and EUR conversion as <code>declarations/eu/oss/compute</code>. Answers 422 when the company is not established in the EU.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<EuIossComputeDeclarationsResponse>> euIossCompute(
                                     EuIossComputeDeclarationsRequest request) {
                                   return euIossCompute(request,null);
                                 }
 
+                                /**
+                                 * Computes the IOSS return of a month from the issued invoices and credit notes with the <code>ioss</code> VAT scheme, with the same rows, corrections and EUR conversion as <code>declarations/eu/oss/compute</code>. Answers 422 when the company is not established in the EU.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<EuIossComputeDeclarationsResponse>> euIossCompute(
                                     EuIossComputeDeclarationsRequest request,
                                     RequestOptions requestOptions) {
@@ -1712,11 +1808,17 @@ public class AsyncRawDeclarationsClient {
                                     return future;
                                   }
 
+                                  /**
+                                   * Builds the monthly return of the special scheme for transfers of own goods from the warehouse transfers between warehouses in two different EU Member States: one row per destination and dispatch country with the cost of the goods as the taxable amount in EUR, the transfers behind the rows, and the due date. Answers 422 when the company is not established in the EU.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<EuOwnGoodsTransfersComputeDeclarationsResponse>> euOwnGoodsTransfersCompute(
                                       EuOwnGoodsTransfersComputeDeclarationsRequest request) {
                                     return euOwnGoodsTransfersCompute(request,null);
                                   }
 
+                                  /**
+                                   * Builds the monthly return of the special scheme for transfers of own goods from the warehouse transfers between warehouses in two different EU Member States: one row per destination and dispatch country with the cost of the goods as the taxable amount in EUR, the transfers behind the rows, and the due date. Answers 422 when the company is not established in the EU.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<EuOwnGoodsTransfersComputeDeclarationsResponse>> euOwnGoodsTransfersCompute(
                                       EuOwnGoodsTransfersComputeDeclarationsRequest request,
                                       RequestOptions requestOptions) {
@@ -1805,11 +1907,17 @@ public class AsyncRawDeclarationsClient {
                                       return future;
                                     }
 
+                                    /**
+                                     * Lists the transactions of a date range that fall under EU digital reporting: issued sale invoices and credit notes with the <code>intra_eu_b2b</code> or <code>reverse_charge</code> scheme to EU customers, and registered purchase invoices from suppliers in other Member States whose lines carry a self-assessed VAT classifier. Each transaction names the article it is reported under, the Member State it is reported to, its deadline and the data still missing. Answers 422 when the company is not identified for VAT in the EU.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<EuDigitalReportingListDeclarationsResponse>> euDigitalReportingList(
                                         EuDigitalReportingListDeclarationsRequest request) {
                                       return euDigitalReportingList(request,null);
                                     }
 
+                                    /**
+                                     * Lists the transactions of a date range that fall under EU digital reporting: issued sale invoices and credit notes with the <code>intra_eu_b2b</code> or <code>reverse_charge</code> scheme to EU customers, and registered purchase invoices from suppliers in other Member States whose lines carry a self-assessed VAT classifier. Each transaction names the article it is reported under, the Member State it is reported to, its deadline and the data still missing. Answers 422 when the company is not identified for VAT in the EU.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<EuDigitalReportingListDeclarationsResponse>> euDigitalReportingList(
                                         EuDigitalReportingListDeclarationsRequest request,
                                         RequestOptions requestOptions) {
@@ -1997,11 +2105,17 @@ public class AsyncRawDeclarationsClient {
                                           return future;
                                         }
 
+                                        /**
+                                         * Builds the DAC7 (DPI) XML report of a year for the Member State of the company and returns it base64-encoded with the file name the administration expects. Answers 422 when no DAC7 filing channel exists for the company country. The sellers and the missing data behind it come from <code>declarations/eu/dac7/preview</code>.
+                                         */
                                         public CompletableFuture<NordletApiHttpResponse<EuDac7XmlDeclarationsResponse>> euDac7Xml(
                                             EuDac7XmlDeclarationsRequest request) {
                                           return euDac7Xml(request,null);
                                         }
 
+                                        /**
+                                         * Builds the DAC7 (DPI) XML report of a year for the Member State of the company and returns it base64-encoded with the file name the administration expects. Answers 422 when no DAC7 filing channel exists for the company country. The sellers and the missing data behind it come from <code>declarations/eu/dac7/preview</code>.
+                                         */
                                         public CompletableFuture<NordletApiHttpResponse<EuDac7XmlDeclarationsResponse>> euDac7Xml(
                                             EuDac7XmlDeclarationsRequest request,
                                             RequestOptions requestOptions) {
@@ -2090,21 +2204,33 @@ public class AsyncRawDeclarationsClient {
                                             return future;
                                           }
 
+                                          /**
+                                           * Sums the cross-border sales to EU consumers (invoices under the <code>oss_union</code> scheme, and domestic-scheme invoices to partners without a VAT number in another Member State) of the current and the preceding calendar year as of <code>date</code> (default: the current date of the company) and compares both with the EUR 10 000 distance sales threshold.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<EuDistanceSalesThresholdGetDeclarationsResponse>> euDistanceSalesThresholdGet(
                                               ) {
                                             return euDistanceSalesThresholdGet(EuDistanceSalesThresholdGetDeclarationsRequest.builder().build());
                                           }
 
+                                          /**
+                                           * Sums the cross-border sales to EU consumers (invoices under the <code>oss_union</code> scheme, and domestic-scheme invoices to partners without a VAT number in another Member State) of the current and the preceding calendar year as of <code>date</code> (default: the current date of the company) and compares both with the EUR 10 000 distance sales threshold.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<EuDistanceSalesThresholdGetDeclarationsResponse>> euDistanceSalesThresholdGet(
                                               RequestOptions requestOptions) {
                                             return euDistanceSalesThresholdGet(EuDistanceSalesThresholdGetDeclarationsRequest.builder().build(),requestOptions);
                                           }
 
+                                          /**
+                                           * Sums the cross-border sales to EU consumers (invoices under the <code>oss_union</code> scheme, and domestic-scheme invoices to partners without a VAT number in another Member State) of the current and the preceding calendar year as of <code>date</code> (default: the current date of the company) and compares both with the EUR 10 000 distance sales threshold.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<EuDistanceSalesThresholdGetDeclarationsResponse>> euDistanceSalesThresholdGet(
                                               EuDistanceSalesThresholdGetDeclarationsRequest request) {
                                             return euDistanceSalesThresholdGet(request,null);
                                           }
 
+                                          /**
+                                           * Sums the cross-border sales to EU consumers (invoices under the <code>oss_union</code> scheme, and domestic-scheme invoices to partners without a VAT number in another Member State) of the current and the preceding calendar year as of <code>date</code> (default: the current date of the company) and compares both with the EUR 10 000 distance sales threshold.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<EuDistanceSalesThresholdGetDeclarationsResponse>> euDistanceSalesThresholdGet(
                                               EuDistanceSalesThresholdGetDeclarationsRequest request,
                                               RequestOptions requestOptions) {
@@ -2193,21 +2319,33 @@ public class AsyncRawDeclarationsClient {
                                               return future;
                                             }
 
+                                            /**
+                                             * Sums the turnover of the company within the Union (issued invoices and credit notes other than export and out-of-scope supplies) for the current and the previous calendar year as of <code>date</code> (default: the current date of the company) and compares it with the EUR 100 000 cap of the cross-border SME scheme. The status is <code>not_applicable</code> for a registered VAT payer, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>.
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<EuUnionTurnoverGetDeclarationsResponse>> euUnionTurnoverGet(
                                                 ) {
                                               return euUnionTurnoverGet(EuUnionTurnoverGetDeclarationsRequest.builder().build());
                                             }
 
+                                            /**
+                                             * Sums the turnover of the company within the Union (issued invoices and credit notes other than export and out-of-scope supplies) for the current and the previous calendar year as of <code>date</code> (default: the current date of the company) and compares it with the EUR 100 000 cap of the cross-border SME scheme. The status is <code>not_applicable</code> for a registered VAT payer, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>.
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<EuUnionTurnoverGetDeclarationsResponse>> euUnionTurnoverGet(
                                                 RequestOptions requestOptions) {
                                               return euUnionTurnoverGet(EuUnionTurnoverGetDeclarationsRequest.builder().build(),requestOptions);
                                             }
 
+                                            /**
+                                             * Sums the turnover of the company within the Union (issued invoices and credit notes other than export and out-of-scope supplies) for the current and the previous calendar year as of <code>date</code> (default: the current date of the company) and compares it with the EUR 100 000 cap of the cross-border SME scheme. The status is <code>not_applicable</code> for a registered VAT payer, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>.
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<EuUnionTurnoverGetDeclarationsResponse>> euUnionTurnoverGet(
                                                 EuUnionTurnoverGetDeclarationsRequest request) {
                                               return euUnionTurnoverGet(request,null);
                                             }
 
+                                            /**
+                                             * Sums the turnover of the company within the Union (issued invoices and credit notes other than export and out-of-scope supplies) for the current and the previous calendar year as of <code>date</code> (default: the current date of the company) and compares it with the EUR 100 000 cap of the cross-border SME scheme. The status is <code>not_applicable</code> for a registered VAT payer, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>.
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<EuUnionTurnoverGetDeclarationsResponse>> euUnionTurnoverGet(
                                                 EuUnionTurnoverGetDeclarationsRequest request,
                                                 RequestOptions requestOptions) {
@@ -2296,11 +2434,17 @@ public class AsyncRawDeclarationsClient {
                                                 return future;
                                               }
 
+                                              /**
+                                               * Builds the quarterly report of the cross-border SME scheme: the value of the issued supplies within the Union per Member State of supply (the VAT country of the invoice, else the country of the partner, else the home country), in the base currency of the company. Supplies that resolve to a non-EU country are left out and named in the warnings.
+                                               */
                                               public CompletableFuture<NordletApiHttpResponse<EuSmeCrossBorderReportComputeDeclarationsResponse>> euSmeCrossBorderReportCompute(
                                                   EuSmeCrossBorderReportComputeDeclarationsRequest request) {
                                                 return euSmeCrossBorderReportCompute(request,null);
                                               }
 
+                                              /**
+                                               * Builds the quarterly report of the cross-border SME scheme: the value of the issued supplies within the Union per Member State of supply (the VAT country of the invoice, else the country of the partner, else the home country), in the base currency of the company. Supplies that resolve to a non-EU country are left out and named in the warnings.
+                                               */
                                               public CompletableFuture<NordletApiHttpResponse<EuSmeCrossBorderReportComputeDeclarationsResponse>> euSmeCrossBorderReportCompute(
                                                   EuSmeCrossBorderReportComputeDeclarationsRequest request,
                                                   RequestOptions requestOptions) {
@@ -2389,21 +2533,33 @@ public class AsyncRawDeclarationsClient {
                                                   return future;
                                                 }
 
+                                                /**
+                                                 * Returns the stored table of national SME VAT exemption thresholds per Member State, with sector thresholds and intra-EU acquisition triggers where recorded, and the national and Union-wide caps of the directive. No company data is read.
+                                                 */
                                                 public CompletableFuture<NordletApiHttpResponse<EuSmeThresholdsListDeclarationsResponse>> euSmeThresholdsList(
                                                     ) {
                                                   return euSmeThresholdsList(EuSmeThresholdsListDeclarationsRequest.builder().build());
                                                 }
 
+                                                /**
+                                                 * Returns the stored table of national SME VAT exemption thresholds per Member State, with sector thresholds and intra-EU acquisition triggers where recorded, and the national and Union-wide caps of the directive. No company data is read.
+                                                 */
                                                 public CompletableFuture<NordletApiHttpResponse<EuSmeThresholdsListDeclarationsResponse>> euSmeThresholdsList(
                                                     RequestOptions requestOptions) {
                                                   return euSmeThresholdsList(EuSmeThresholdsListDeclarationsRequest.builder().build(),requestOptions);
                                                 }
 
+                                                /**
+                                                 * Returns the stored table of national SME VAT exemption thresholds per Member State, with sector thresholds and intra-EU acquisition triggers where recorded, and the national and Union-wide caps of the directive. No company data is read.
+                                                 */
                                                 public CompletableFuture<NordletApiHttpResponse<EuSmeThresholdsListDeclarationsResponse>> euSmeThresholdsList(
                                                     EuSmeThresholdsListDeclarationsRequest request) {
                                                   return euSmeThresholdsList(request,null);
                                                 }
 
+                                                /**
+                                                 * Returns the stored table of national SME VAT exemption thresholds per Member State, with sector thresholds and intra-EU acquisition triggers where recorded, and the national and Union-wide caps of the directive. No company data is read.
+                                                 */
                                                 public CompletableFuture<NordletApiHttpResponse<EuSmeThresholdsListDeclarationsResponse>> euSmeThresholdsList(
                                                     EuSmeThresholdsListDeclarationsRequest request,
                                                     RequestOptions requestOptions) {
@@ -2492,21 +2648,33 @@ public class AsyncRawDeclarationsClient {
                                                     return future;
                                                   }
 
+                                                  /**
+                                                   * Compares the gross turnover of the company in the current calendar year as of <code>date</code> (default: the current date of the company) with the national SME exemption threshold of its country. The status is <code>not_applicable</code> for a registered VAT payer, <code>unknown</code> when no threshold is on file or its currency differs from the base currency, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>; when the country has an intra-EU acquisitions trigger, the acquisitions from and services to other Member States are compared with it too.
+                                                   */
                                                   public CompletableFuture<NordletApiHttpResponse<EuSmeThresholdGetDeclarationsResponse>> euSmeThresholdGet(
                                                       ) {
                                                     return euSmeThresholdGet(EuSmeThresholdGetDeclarationsRequest.builder().build());
                                                   }
 
+                                                  /**
+                                                   * Compares the gross turnover of the company in the current calendar year as of <code>date</code> (default: the current date of the company) with the national SME exemption threshold of its country. The status is <code>not_applicable</code> for a registered VAT payer, <code>unknown</code> when no threshold is on file or its currency differs from the base currency, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>; when the country has an intra-EU acquisitions trigger, the acquisitions from and services to other Member States are compared with it too.
+                                                   */
                                                   public CompletableFuture<NordletApiHttpResponse<EuSmeThresholdGetDeclarationsResponse>> euSmeThresholdGet(
                                                       RequestOptions requestOptions) {
                                                     return euSmeThresholdGet(EuSmeThresholdGetDeclarationsRequest.builder().build(),requestOptions);
                                                   }
 
+                                                  /**
+                                                   * Compares the gross turnover of the company in the current calendar year as of <code>date</code> (default: the current date of the company) with the national SME exemption threshold of its country. The status is <code>not_applicable</code> for a registered VAT payer, <code>unknown</code> when no threshold is on file or its currency differs from the base currency, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>; when the country has an intra-EU acquisitions trigger, the acquisitions from and services to other Member States are compared with it too.
+                                                   */
                                                   public CompletableFuture<NordletApiHttpResponse<EuSmeThresholdGetDeclarationsResponse>> euSmeThresholdGet(
                                                       EuSmeThresholdGetDeclarationsRequest request) {
                                                     return euSmeThresholdGet(request,null);
                                                   }
 
+                                                  /**
+                                                   * Compares the gross turnover of the company in the current calendar year as of <code>date</code> (default: the current date of the company) with the national SME exemption threshold of its country. The status is <code>not_applicable</code> for a registered VAT payer, <code>unknown</code> when no threshold is on file or its currency differs from the base currency, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>; when the country has an intra-EU acquisitions trigger, the acquisitions from and services to other Member States are compared with it too.
+                                                   */
                                                   public CompletableFuture<NordletApiHttpResponse<EuSmeThresholdGetDeclarationsResponse>> euSmeThresholdGet(
                                                       EuSmeThresholdGetDeclarationsRequest request,
                                                       RequestOptions requestOptions) {
@@ -2595,21 +2763,33 @@ public class AsyncRawDeclarationsClient {
                                                       return future;
                                                     }
 
+                                                    /**
+                                                     * Lists the national VAT return forms Nordlet can compute, with the country, form key, form name, filing frequency and source.
+                                                     */
                                                     public CompletableFuture<NordletApiHttpResponse<EuVatReturnPacksListDeclarationsResponse>> euVatReturnPacksList(
                                                         ) {
                                                       return euVatReturnPacksList(EuVatReturnPacksListDeclarationsRequest.builder().build());
                                                     }
 
+                                                    /**
+                                                     * Lists the national VAT return forms Nordlet can compute, with the country, form key, form name, filing frequency and source.
+                                                     */
                                                     public CompletableFuture<NordletApiHttpResponse<EuVatReturnPacksListDeclarationsResponse>> euVatReturnPacksList(
                                                         RequestOptions requestOptions) {
                                                       return euVatReturnPacksList(EuVatReturnPacksListDeclarationsRequest.builder().build(),requestOptions);
                                                     }
 
+                                                    /**
+                                                     * Lists the national VAT return forms Nordlet can compute, with the country, form key, form name, filing frequency and source.
+                                                     */
                                                     public CompletableFuture<NordletApiHttpResponse<EuVatReturnPacksListDeclarationsResponse>> euVatReturnPacksList(
                                                         EuVatReturnPacksListDeclarationsRequest request) {
                                                       return euVatReturnPacksList(request,null);
                                                     }
 
+                                                    /**
+                                                     * Lists the national VAT return forms Nordlet can compute, with the country, form key, form name, filing frequency and source.
+                                                     */
                                                     public CompletableFuture<NordletApiHttpResponse<EuVatReturnPacksListDeclarationsResponse>> euVatReturnPacksList(
                                                         EuVatReturnPacksListDeclarationsRequest request,
                                                         RequestOptions requestOptions) {
@@ -2698,11 +2878,17 @@ public class AsyncRawDeclarationsClient {
                                                         return future;
                                                       }
 
+                                                      /**
+                                                       * Computes the national VAT return of <code>countryCode</code> for the period of <code>months</code> months starting in <code>month</code>, as the numbered boxes of the form with labels and amounts. Answers 422 when no return pack is registered for the country; the packs are listed by <code>declarations/eu/vat-return/packs/list</code>.
+                                                       */
                                                       public CompletableFuture<NordletApiHttpResponse<EuVatReturnComputeDeclarationsResponse>> euVatReturnCompute(
                                                           EuVatReturnComputeDeclarationsRequest request) {
                                                         return euVatReturnCompute(request,null);
                                                       }
 
+                                                      /**
+                                                       * Computes the national VAT return of <code>countryCode</code> for the period of <code>months</code> months starting in <code>month</code>, as the numbered boxes of the form with labels and amounts. Answers 422 when no return pack is registered for the country; the packs are listed by <code>declarations/eu/vat-return/packs/list</code>.
+                                                       */
                                                       public CompletableFuture<NordletApiHttpResponse<EuVatReturnComputeDeclarationsResponse>> euVatReturnCompute(
                                                           EuVatReturnComputeDeclarationsRequest request,
                                                           RequestOptions requestOptions) {
@@ -3500,11 +3686,17 @@ public class AsyncRawDeclarationsClient {
                                                                         return future;
                                                                       }
 
+                                                                      /**
+                                                                       * Records a tax adjustment of one kind for a tax year, with an optional form <code>code</code>. Answers 422 when the amount is zero.
+                                                                       */
                                                                       public CompletableFuture<NordletApiHttpResponse<TaxAdjustmentsCreateDeclarationsResponse>> taxAdjustmentsCreate(
                                                                           TaxAdjustmentsCreateDeclarationsRequest request) {
                                                                         return taxAdjustmentsCreate(request,null);
                                                                       }
 
+                                                                      /**
+                                                                       * Records a tax adjustment of one kind for a tax year, with an optional form <code>code</code>. Answers 422 when the amount is zero.
+                                                                       */
                                                                       public CompletableFuture<NordletApiHttpResponse<TaxAdjustmentsCreateDeclarationsResponse>> taxAdjustmentsCreate(
                                                                           TaxAdjustmentsCreateDeclarationsRequest request,
                                                                           RequestOptions requestOptions) {
@@ -3593,11 +3785,17 @@ public class AsyncRawDeclarationsClient {
                                                                           return future;
                                                                         }
 
+                                                                        /**
+                                                                         * Changes the kind, code, amount or description of a recorded tax adjustment; fields left out keep their value and an empty <code>code</code> clears it. Answers 422 when the new amount is zero.
+                                                                         */
                                                                         public CompletableFuture<NordletApiHttpResponse<TaxAdjustmentsUpdateDeclarationsResponse>> taxAdjustmentsUpdate(
                                                                             TaxAdjustmentsUpdateDeclarationsRequest request) {
                                                                           return taxAdjustmentsUpdate(request,null);
                                                                         }
 
+                                                                        /**
+                                                                         * Changes the kind, code, amount or description of a recorded tax adjustment; fields left out keep their value and an empty <code>code</code> clears it. Answers 422 when the new amount is zero.
+                                                                         */
                                                                         public CompletableFuture<NordletApiHttpResponse<TaxAdjustmentsUpdateDeclarationsResponse>> taxAdjustmentsUpdate(
                                                                             TaxAdjustmentsUpdateDeclarationsRequest request,
                                                                             RequestOptions requestOptions) {
@@ -3686,11 +3884,17 @@ public class AsyncRawDeclarationsClient {
                                                                             return future;
                                                                           }
 
+                                                                          /**
+                                                                           * Deletes a recorded tax adjustment.
+                                                                           */
                                                                           public CompletableFuture<NordletApiHttpResponse<TaxAdjustmentsDeleteDeclarationsResponse>> taxAdjustmentsDelete(
                                                                               TaxAdjustmentsDeleteDeclarationsRequest request) {
                                                                             return taxAdjustmentsDelete(request,null);
                                                                           }
 
+                                                                          /**
+                                                                           * Deletes a recorded tax adjustment.
+                                                                           */
                                                                           public CompletableFuture<NordletApiHttpResponse<TaxAdjustmentsDeleteDeclarationsResponse>> taxAdjustmentsDelete(
                                                                               TaxAdjustmentsDeleteDeclarationsRequest request,
                                                                               RequestOptions requestOptions) {
@@ -3878,11 +4082,17 @@ public class AsyncRawDeclarationsClient {
                                                                                 return future;
                                                                               }
 
+                                                                              /**
+                                                                               * Records a payment made towards a tax (<code>tax</code>) of a year, and of a month when given, as an advance payment, tax withheld by others, a final settlement or a refund received. Answers 422 when the amount is zero.
+                                                                               */
                                                                               public CompletableFuture<NordletApiHttpResponse<TaxPaymentsCreateDeclarationsResponse>> taxPaymentsCreate(
                                                                                   TaxPaymentsCreateDeclarationsRequest request) {
                                                                                 return taxPaymentsCreate(request,null);
                                                                               }
 
+                                                                              /**
+                                                                               * Records a payment made towards a tax (<code>tax</code>) of a year, and of a month when given, as an advance payment, tax withheld by others, a final settlement or a refund received. Answers 422 when the amount is zero.
+                                                                               */
                                                                               public CompletableFuture<NordletApiHttpResponse<TaxPaymentsCreateDeclarationsResponse>> taxPaymentsCreate(
                                                                                   TaxPaymentsCreateDeclarationsRequest request,
                                                                                   RequestOptions requestOptions) {
@@ -3971,11 +4181,17 @@ public class AsyncRawDeclarationsClient {
                                                                                   return future;
                                                                                 }
 
+                                                                                /**
+                                                                                 * Changes the kind, amount, payment date, reference or description of a recorded tax payment; fields left out keep their value and an empty <code>reference</code> clears it. Answers 422 when the new amount is zero.
+                                                                                 */
                                                                                 public CompletableFuture<NordletApiHttpResponse<TaxPaymentsUpdateDeclarationsResponse>> taxPaymentsUpdate(
                                                                                     TaxPaymentsUpdateDeclarationsRequest request) {
                                                                                   return taxPaymentsUpdate(request,null);
                                                                                 }
 
+                                                                                /**
+                                                                                 * Changes the kind, amount, payment date, reference or description of a recorded tax payment; fields left out keep their value and an empty <code>reference</code> clears it. Answers 422 when the new amount is zero.
+                                                                                 */
                                                                                 public CompletableFuture<NordletApiHttpResponse<TaxPaymentsUpdateDeclarationsResponse>> taxPaymentsUpdate(
                                                                                     TaxPaymentsUpdateDeclarationsRequest request,
                                                                                     RequestOptions requestOptions) {
@@ -4064,11 +4280,17 @@ public class AsyncRawDeclarationsClient {
                                                                                     return future;
                                                                                   }
 
+                                                                                  /**
+                                                                                   * Deletes a recorded tax payment.
+                                                                                   */
                                                                                   public CompletableFuture<NordletApiHttpResponse<TaxPaymentsDeleteDeclarationsResponse>> taxPaymentsDelete(
                                                                                       TaxPaymentsDeleteDeclarationsRequest request) {
                                                                                     return taxPaymentsDelete(request,null);
                                                                                   }
 
+                                                                                  /**
+                                                                                   * Deletes a recorded tax payment.
+                                                                                   */
                                                                                   public CompletableFuture<NordletApiHttpResponse<TaxPaymentsDeleteDeclarationsResponse>> taxPaymentsDelete(
                                                                                       TaxPaymentsDeleteDeclarationsRequest request,
                                                                                       RequestOptions requestOptions) {
@@ -4256,11 +4478,17 @@ public class AsyncRawDeclarationsClient {
                                                                                         return future;
                                                                                       }
 
+                                                                                      /**
+                                                                                       * Creates or replaces the record of a year: whether and when the accounts were adopted, when they were prepared, whether they were audited (with the qualification flag and the auditor report date) or the auditor was not elected, the report texts and the appropriation of the result. Answers 422 when <code>adopted</code> is true without <code>adoptionDate</code>, when the adoption date is not after 31 December of the year, or when the date of preparation is after the adoption date.
+                                                                                       */
                                                                                       public CompletableFuture<NordletApiHttpResponse<AnnualAccountsSetDeclarationsResponse>> annualAccountsSet(
                                                                                           AnnualAccountsSetDeclarationsRequest request) {
                                                                                         return annualAccountsSet(request,null);
                                                                                       }
 
+                                                                                      /**
+                                                                                       * Creates or replaces the record of a year: whether and when the accounts were adopted, when they were prepared, whether they were audited (with the qualification flag and the auditor report date) or the auditor was not elected, the report texts and the appropriation of the result. Answers 422 when <code>adopted</code> is true without <code>adoptionDate</code>, when the adoption date is not after 31 December of the year, or when the date of preparation is after the adoption date.
+                                                                                       */
                                                                                       public CompletableFuture<NordletApiHttpResponse<AnnualAccountsSetDeclarationsResponse>> annualAccountsSet(
                                                                                           AnnualAccountsSetDeclarationsRequest request,
                                                                                           RequestOptions requestOptions) {
@@ -4349,11 +4577,17 @@ public class AsyncRawDeclarationsClient {
                                                                                           return future;
                                                                                         }
 
+                                                                                        /**
+                                                                                         * Adds a director to the signatures of the annual accounts of the year: signed, with the date and place of signature, or not signed, with the reason. Answers 422 when no annual accounts record exists for the year (<code>declarations/annual-accounts/set</code> first), when a signed entry lacks the date or the place, or when an unsigned entry lacks the reason.
+                                                                                         */
                                                                                         public CompletableFuture<NordletApiHttpResponse<AnnualAccountsSignaturesCreateDeclarationsResponse>> annualAccountsSignaturesCreate(
                                                                                             AnnualAccountsSignaturesCreateDeclarationsRequest request) {
                                                                                           return annualAccountsSignaturesCreate(request,null);
                                                                                         }
 
+                                                                                        /**
+                                                                                         * Adds a director to the signatures of the annual accounts of the year: signed, with the date and place of signature, or not signed, with the reason. Answers 422 when no annual accounts record exists for the year (<code>declarations/annual-accounts/set</code> first), when a signed entry lacks the date or the place, or when an unsigned entry lacks the reason.
+                                                                                         */
                                                                                         public CompletableFuture<NordletApiHttpResponse<AnnualAccountsSignaturesCreateDeclarationsResponse>> annualAccountsSignaturesCreate(
                                                                                             AnnualAccountsSignaturesCreateDeclarationsRequest request,
                                                                                             RequestOptions requestOptions) {
@@ -4442,11 +4676,17 @@ public class AsyncRawDeclarationsClient {
                                                                                             return future;
                                                                                           }
 
+                                                                                          /**
+                                                                                           * Replaces the name, type and signing facts of a recorded director signature. Answers 422 when a signed entry lacks the date or the place of signature, or when an unsigned entry lacks the reason.
+                                                                                           */
                                                                                           public CompletableFuture<NordletApiHttpResponse<AnnualAccountsSignaturesUpdateDeclarationsResponse>> annualAccountsSignaturesUpdate(
                                                                                               AnnualAccountsSignaturesUpdateDeclarationsRequest request) {
                                                                                             return annualAccountsSignaturesUpdate(request,null);
                                                                                           }
 
+                                                                                          /**
+                                                                                           * Replaces the name, type and signing facts of a recorded director signature. Answers 422 when a signed entry lacks the date or the place of signature, or when an unsigned entry lacks the reason.
+                                                                                           */
                                                                                           public CompletableFuture<NordletApiHttpResponse<AnnualAccountsSignaturesUpdateDeclarationsResponse>> annualAccountsSignaturesUpdate(
                                                                                               AnnualAccountsSignaturesUpdateDeclarationsRequest request,
                                                                                               RequestOptions requestOptions) {
@@ -4535,11 +4775,17 @@ public class AsyncRawDeclarationsClient {
                                                                                               return future;
                                                                                             }
 
+                                                                                            /**
+                                                                                             * Deletes a recorded director signature.
+                                                                                             */
                                                                                             public CompletableFuture<NordletApiHttpResponse<AnnualAccountsSignaturesDeleteDeclarationsResponse>> annualAccountsSignaturesDelete(
                                                                                                 AnnualAccountsSignaturesDeleteDeclarationsRequest request) {
                                                                                               return annualAccountsSignaturesDelete(request,null);
                                                                                             }
 
+                                                                                            /**
+                                                                                             * Deletes a recorded director signature.
+                                                                                             */
                                                                                             public CompletableFuture<NordletApiHttpResponse<AnnualAccountsSignaturesDeleteDeclarationsResponse>> annualAccountsSignaturesDelete(
                                                                                                 AnnualAccountsSignaturesDeleteDeclarationsRequest request,
                                                                                                 RequestOptions requestOptions) {
@@ -4628,11 +4874,17 @@ public class AsyncRawDeclarationsClient {
                                                                                                 return future;
                                                                                               }
 
+                                                                                              /**
+                                                                                               * Adds a profit distribution decision (decision date, kind, amount, description) to the annual accounts record of the year. Answers 422 when no annual accounts record exists for the year.
+                                                                                               */
                                                                                               public CompletableFuture<NordletApiHttpResponse<AnnualAccountsDistributionsCreateDeclarationsResponse>> annualAccountsDistributionsCreate(
                                                                                                   AnnualAccountsDistributionsCreateDeclarationsRequest request) {
                                                                                                 return annualAccountsDistributionsCreate(request,null);
                                                                                               }
 
+                                                                                              /**
+                                                                                               * Adds a profit distribution decision (decision date, kind, amount, description) to the annual accounts record of the year. Answers 422 when no annual accounts record exists for the year.
+                                                                                               */
                                                                                               public CompletableFuture<NordletApiHttpResponse<AnnualAccountsDistributionsCreateDeclarationsResponse>> annualAccountsDistributionsCreate(
                                                                                                   AnnualAccountsDistributionsCreateDeclarationsRequest request,
                                                                                                   RequestOptions requestOptions) {
@@ -4721,11 +4973,17 @@ public class AsyncRawDeclarationsClient {
                                                                                                   return future;
                                                                                                 }
 
+                                                                                                /**
+                                                                                                 * Replaces the decision date, kind, amount and description of a recorded profit distribution.
+                                                                                                 */
                                                                                                 public CompletableFuture<NordletApiHttpResponse<AnnualAccountsDistributionsUpdateDeclarationsResponse>> annualAccountsDistributionsUpdate(
                                                                                                     AnnualAccountsDistributionsUpdateDeclarationsRequest request) {
                                                                                                   return annualAccountsDistributionsUpdate(request,null);
                                                                                                 }
 
+                                                                                                /**
+                                                                                                 * Replaces the decision date, kind, amount and description of a recorded profit distribution.
+                                                                                                 */
                                                                                                 public CompletableFuture<NordletApiHttpResponse<AnnualAccountsDistributionsUpdateDeclarationsResponse>> annualAccountsDistributionsUpdate(
                                                                                                     AnnualAccountsDistributionsUpdateDeclarationsRequest request,
                                                                                                     RequestOptions requestOptions) {
@@ -4814,11 +5072,17 @@ public class AsyncRawDeclarationsClient {
                                                                                                     return future;
                                                                                                   }
 
+                                                                                                  /**
+                                                                                                   * Deletes a recorded profit distribution.
+                                                                                                   */
                                                                                                   public CompletableFuture<NordletApiHttpResponse<AnnualAccountsDistributionsDeleteDeclarationsResponse>> annualAccountsDistributionsDelete(
                                                                                                       AnnualAccountsDistributionsDeleteDeclarationsRequest request) {
                                                                                                     return annualAccountsDistributionsDelete(request,null);
                                                                                                   }
 
+                                                                                                  /**
+                                                                                                   * Deletes a recorded profit distribution.
+                                                                                                   */
                                                                                                   public CompletableFuture<NordletApiHttpResponse<AnnualAccountsDistributionsDeleteDeclarationsResponse>> annualAccountsDistributionsDelete(
                                                                                                       AnnualAccountsDistributionsDeleteDeclarationsRequest request,
                                                                                                       RequestOptions requestOptions) {
@@ -5006,11 +5270,17 @@ public class AsyncRawDeclarationsClient {
                                                                                                         return future;
                                                                                                       }
 
+                                                                                                      /**
+                                                                                                       * Removes the attachment from the annual accounts and deletes its file record and the stored bytes.
+                                                                                                       */
                                                                                                       public CompletableFuture<NordletApiHttpResponse<AnnualAccountsAttachmentsDeleteDeclarationsResponse>> annualAccountsAttachmentsDelete(
                                                                                                           AnnualAccountsAttachmentsDeleteDeclarationsRequest request) {
                                                                                                         return annualAccountsAttachmentsDelete(request,null);
                                                                                                       }
 
+                                                                                                      /**
+                                                                                                       * Removes the attachment from the annual accounts and deletes its file record and the stored bytes.
+                                                                                                       */
                                                                                                       public CompletableFuture<NordletApiHttpResponse<AnnualAccountsAttachmentsDeleteDeclarationsResponse>> annualAccountsAttachmentsDelete(
                                                                                                           AnnualAccountsAttachmentsDeleteDeclarationsRequest request,
                                                                                                           RequestOptions requestOptions) {
@@ -8283,21 +8553,33 @@ public class AsyncRawDeclarationsClient {
                                                                                                                                                                           return future;
                                                                                                                                                                         }
 
+                                                                                                                                                                        /**
+                                                                                                                                                                         * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it.
+                                                                                                                                                                         */
                                                                                                                                                                         public CompletableFuture<NordletApiHttpResponse<ConfigsListDeclarationsResponse>> configsList(
                                                                                                                                                                             ) {
                                                                                                                                                                           return configsList(ConfigsListDeclarationsRequest.builder().build());
                                                                                                                                                                         }
 
+                                                                                                                                                                        /**
+                                                                                                                                                                         * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it.
+                                                                                                                                                                         */
                                                                                                                                                                         public CompletableFuture<NordletApiHttpResponse<ConfigsListDeclarationsResponse>> configsList(
                                                                                                                                                                             RequestOptions requestOptions) {
                                                                                                                                                                           return configsList(ConfigsListDeclarationsRequest.builder().build(),requestOptions);
                                                                                                                                                                         }
 
+                                                                                                                                                                        /**
+                                                                                                                                                                         * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it.
+                                                                                                                                                                         */
                                                                                                                                                                         public CompletableFuture<NordletApiHttpResponse<ConfigsListDeclarationsResponse>> configsList(
                                                                                                                                                                             ConfigsListDeclarationsRequest request) {
                                                                                                                                                                           return configsList(request,null);
                                                                                                                                                                         }
 
+                                                                                                                                                                        /**
+                                                                                                                                                                         * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it.
+                                                                                                                                                                         */
                                                                                                                                                                         public CompletableFuture<NordletApiHttpResponse<ConfigsListDeclarationsResponse>> configsList(
                                                                                                                                                                             ConfigsListDeclarationsRequest request,
                                                                                                                                                                             RequestOptions requestOptions) {
@@ -8386,11 +8668,17 @@ public class AsyncRawDeclarationsClient {
                                                                                                                                                                             return future;
                                                                                                                                                                           }
 
+                                                                                                                                                                          /**
+                                                                                                                                                                           * Stores the settings of one filing system for the company, merging the given fields into the stored ones. A secret or certificate value is encrypted before it is stored, an empty string clears a field, and <code>__secret_set__</code> leaves a stored secret unchanged. Answers 422 for an unknown system.
+                                                                                                                                                                           */
                                                                                                                                                                           public CompletableFuture<NordletApiHttpResponse<ConfigsUpdateDeclarationsResponse>> configsUpdate(
                                                                                                                                                                               ConfigsUpdateDeclarationsRequest request) {
                                                                                                                                                                             return configsUpdate(request,null);
                                                                                                                                                                           }
 
+                                                                                                                                                                          /**
+                                                                                                                                                                           * Stores the settings of one filing system for the company, merging the given fields into the stored ones. A secret or certificate value is encrypted before it is stored, an empty string clears a field, and <code>__secret_set__</code> leaves a stored secret unchanged. Answers 422 for an unknown system.
+                                                                                                                                                                           */
                                                                                                                                                                           public CompletableFuture<NordletApiHttpResponse<ConfigsUpdateDeclarationsResponse>> configsUpdate(
                                                                                                                                                                               ConfigsUpdateDeclarationsRequest request,
                                                                                                                                                                               RequestOptions requestOptions) {
@@ -8479,11 +8767,17 @@ public class AsyncRawDeclarationsClient {
                                                                                                                                                                               return future;
                                                                                                                                                                             }
 
+                                                                                                                                                                            /**
+                                                                                                                                                                             * Stores a PEM certificate, a PEM private key or a PKCS#12 bundle (base64 in <code>content</code>, opened with <code>passphrase</code> when it needs one) in the settings of the filing system and replaces the earlier upload of the same kind; for a PEM certificate the fingerprint, subject, issuer and validity dates are recorded. Answers 422 when the system is unknown or does not authenticate with a certificate. Returns the full certificate list of the company.
+                                                                                                                                                                             */
                                                                                                                                                                             public CompletableFuture<NordletApiHttpResponse<CertificatesUploadDeclarationsResponse>> certificatesUpload(
                                                                                                                                                                                 CertificatesUploadDeclarationsRequest request) {
                                                                                                                                                                               return certificatesUpload(request,null);
                                                                                                                                                                             }
 
+                                                                                                                                                                            /**
+                                                                                                                                                                             * Stores a PEM certificate, a PEM private key or a PKCS#12 bundle (base64 in <code>content</code>, opened with <code>passphrase</code> when it needs one) in the settings of the filing system and replaces the earlier upload of the same kind; for a PEM certificate the fingerprint, subject, issuer and validity dates are recorded. Answers 422 when the system is unknown or does not authenticate with a certificate. Returns the full certificate list of the company.
+                                                                                                                                                                             */
                                                                                                                                                                             public CompletableFuture<NordletApiHttpResponse<CertificatesUploadDeclarationsResponse>> certificatesUpload(
                                                                                                                                                                                 CertificatesUploadDeclarationsRequest request,
                                                                                                                                                                                 RequestOptions requestOptions) {
@@ -8572,21 +8866,33 @@ public class AsyncRawDeclarationsClient {
                                                                                                                                                                                 return future;
                                                                                                                                                                               }
 
+                                                                                                                                                                              /**
+                                                                                                                                                                               * Lists the certificates and private keys stored for the filing systems of the company, ordered by system and field, each with its validity facts and health (<code>ok</code>, <code>expiring</code>, <code>expired</code> or <code>unknown</code>).
+                                                                                                                                                                               */
                                                                                                                                                                               public CompletableFuture<NordletApiHttpResponse<CertificatesListDeclarationsResponse>> certificatesList(
                                                                                                                                                                                   ) {
                                                                                                                                                                                 return certificatesList(CertificatesListDeclarationsRequest.builder().build());
                                                                                                                                                                               }
 
+                                                                                                                                                                              /**
+                                                                                                                                                                               * Lists the certificates and private keys stored for the filing systems of the company, ordered by system and field, each with its validity facts and health (<code>ok</code>, <code>expiring</code>, <code>expired</code> or <code>unknown</code>).
+                                                                                                                                                                               */
                                                                                                                                                                               public CompletableFuture<NordletApiHttpResponse<CertificatesListDeclarationsResponse>> certificatesList(
                                                                                                                                                                                   RequestOptions requestOptions) {
                                                                                                                                                                                 return certificatesList(CertificatesListDeclarationsRequest.builder().build(),requestOptions);
                                                                                                                                                                               }
 
+                                                                                                                                                                              /**
+                                                                                                                                                                               * Lists the certificates and private keys stored for the filing systems of the company, ordered by system and field, each with its validity facts and health (<code>ok</code>, <code>expiring</code>, <code>expired</code> or <code>unknown</code>).
+                                                                                                                                                                               */
                                                                                                                                                                               public CompletableFuture<NordletApiHttpResponse<CertificatesListDeclarationsResponse>> certificatesList(
                                                                                                                                                                                   CertificatesListDeclarationsRequest request) {
                                                                                                                                                                                 return certificatesList(request,null);
                                                                                                                                                                               }
 
+                                                                                                                                                                              /**
+                                                                                                                                                                               * Lists the certificates and private keys stored for the filing systems of the company, ordered by system and field, each with its validity facts and health (<code>ok</code>, <code>expiring</code>, <code>expired</code> or <code>unknown</code>).
+                                                                                                                                                                               */
                                                                                                                                                                               public CompletableFuture<NordletApiHttpResponse<CertificatesListDeclarationsResponse>> certificatesList(
                                                                                                                                                                                   CertificatesListDeclarationsRequest request,
                                                                                                                                                                                   RequestOptions requestOptions) {
@@ -8675,11 +8981,17 @@ public class AsyncRawDeclarationsClient {
                                                                                                                                                                                   return future;
                                                                                                                                                                                 }
 
+                                                                                                                                                                                /**
+                                                                                                                                                                                 * Removes the certificate or the private key (<code>fieldKey</code>) of a filing system from the settings of the company and from the certificate list, and returns the remaining certificates.
+                                                                                                                                                                                 */
                                                                                                                                                                                 public CompletableFuture<NordletApiHttpResponse<CertificatesDeleteDeclarationsResponse>> certificatesDelete(
                                                                                                                                                                                     CertificatesDeleteDeclarationsRequest request) {
                                                                                                                                                                                   return certificatesDelete(request,null);
                                                                                                                                                                                 }
 
+                                                                                                                                                                                /**
+                                                                                                                                                                                 * Removes the certificate or the private key (<code>fieldKey</code>) of a filing system from the settings of the company and from the certificate list, and returns the remaining certificates.
+                                                                                                                                                                                 */
                                                                                                                                                                                 public CompletableFuture<NordletApiHttpResponse<CertificatesDeleteDeclarationsResponse>> certificatesDelete(
                                                                                                                                                                                     CertificatesDeleteDeclarationsRequest request,
                                                                                                                                                                                     RequestOptions requestOptions) {
@@ -8768,21 +9080,33 @@ public class AsyncRawDeclarationsClient {
                                                                                                                                                                                     return future;
                                                                                                                                                                                   }
 
+                                                                                                                                                                                  /**
+                                                                                                                                                                                   * Lists the filing deadlines Nordlet can file by itself for the country of the company: for each, whether automatic filing is switched on, whether the rule applies to the company profile, whether its filing system is configured, the state of its certificate and whether it would go to the test or the production service.
+                                                                                                                                                                                   */
                                                                                                                                                                                   public CompletableFuture<NordletApiHttpResponse<AutomationListDeclarationsResponse>> automationList(
                                                                                                                                                                                       ) {
                                                                                                                                                                                     return automationList(AutomationListDeclarationsRequest.builder().build());
                                                                                                                                                                                   }
 
+                                                                                                                                                                                  /**
+                                                                                                                                                                                   * Lists the filing deadlines Nordlet can file by itself for the country of the company: for each, whether automatic filing is switched on, whether the rule applies to the company profile, whether its filing system is configured, the state of its certificate and whether it would go to the test or the production service.
+                                                                                                                                                                                   */
                                                                                                                                                                                   public CompletableFuture<NordletApiHttpResponse<AutomationListDeclarationsResponse>> automationList(
                                                                                                                                                                                       RequestOptions requestOptions) {
                                                                                                                                                                                     return automationList(AutomationListDeclarationsRequest.builder().build(),requestOptions);
                                                                                                                                                                                   }
 
+                                                                                                                                                                                  /**
+                                                                                                                                                                                   * Lists the filing deadlines Nordlet can file by itself for the country of the company: for each, whether automatic filing is switched on, whether the rule applies to the company profile, whether its filing system is configured, the state of its certificate and whether it would go to the test or the production service.
+                                                                                                                                                                                   */
                                                                                                                                                                                   public CompletableFuture<NordletApiHttpResponse<AutomationListDeclarationsResponse>> automationList(
                                                                                                                                                                                       AutomationListDeclarationsRequest request) {
                                                                                                                                                                                     return automationList(request,null);
                                                                                                                                                                                   }
 
+                                                                                                                                                                                  /**
+                                                                                                                                                                                   * Lists the filing deadlines Nordlet can file by itself for the country of the company: for each, whether automatic filing is switched on, whether the rule applies to the company profile, whether its filing system is configured, the state of its certificate and whether it would go to the test or the production service.
+                                                                                                                                                                                   */
                                                                                                                                                                                   public CompletableFuture<NordletApiHttpResponse<AutomationListDeclarationsResponse>> automationList(
                                                                                                                                                                                       AutomationListDeclarationsRequest request,
                                                                                                                                                                                       RequestOptions requestOptions) {
@@ -8871,11 +9195,17 @@ public class AsyncRawDeclarationsClient {
                                                                                                                                                                                       return future;
                                                                                                                                                                                     }
 
+                                                                                                                                                                                    /**
+                                                                                                                                                                                     * Switches automatic filing of one deadline on or off for the company and returns the list of <code>declarations/automation/list</code>. Answers 422 when the deadline is not one Nordlet files, or when switching on while the filing system is connected to the test service of the administration (unless the company is a sandbox), is not configured, or has no valid certificate.
+                                                                                                                                                                                     */
                                                                                                                                                                                     public CompletableFuture<NordletApiHttpResponse<AutomationUpdateDeclarationsResponse>> automationUpdate(
                                                                                                                                                                                         AutomationUpdateDeclarationsRequest request) {
                                                                                                                                                                                       return automationUpdate(request,null);
                                                                                                                                                                                     }
 
+                                                                                                                                                                                    /**
+                                                                                                                                                                                     * Switches automatic filing of one deadline on or off for the company and returns the list of <code>declarations/automation/list</code>. Answers 422 when the deadline is not one Nordlet files, or when switching on while the filing system is connected to the test service of the administration (unless the company is a sandbox), is not configured, or has no valid certificate.
+                                                                                                                                                                                     */
                                                                                                                                                                                     public CompletableFuture<NordletApiHttpResponse<AutomationUpdateDeclarationsResponse>> automationUpdate(
                                                                                                                                                                                         AutomationUpdateDeclarationsRequest request,
                                                                                                                                                                                         RequestOptions requestOptions) {
@@ -8964,11 +9294,17 @@ public class AsyncRawDeclarationsClient {
                                                                                                                                                                                         return future;
                                                                                                                                                                                       }
 
+                                                                                                                                                                                      /**
+                                                                                                                                                                                       * Sends a submission that is still in status <code>generated</code> through its filing system once more, with the stored file or, when none was stored yet, a freshly generated one, and returns the updated submission. Answers 409 when the submission is already submitted, accepted or rejected.
+                                                                                                                                                                                       */
                                                                                                                                                                                       public CompletableFuture<NordletApiHttpResponse<SubmissionsRetryDeclarationsResponse>> submissionsRetry(
                                                                                                                                                                                           SubmissionsRetryDeclarationsRequest request) {
                                                                                                                                                                                         return submissionsRetry(request,null);
                                                                                                                                                                                       }
 
+                                                                                                                                                                                      /**
+                                                                                                                                                                                       * Sends a submission that is still in status <code>generated</code> through its filing system once more, with the stored file or, when none was stored yet, a freshly generated one, and returns the updated submission. Answers 409 when the submission is already submitted, accepted or rejected.
+                                                                                                                                                                                       */
                                                                                                                                                                                       public CompletableFuture<NordletApiHttpResponse<SubmissionsRetryDeclarationsResponse>> submissionsRetry(
                                                                                                                                                                                           SubmissionsRetryDeclarationsRequest request,
                                                                                                                                                                                           RequestOptions requestOptions) {
@@ -9057,11 +9393,17 @@ public class AsyncRawDeclarationsClient {
                                                                                                                                                                                           return future;
                                                                                                                                                                                         }
 
+                                                                                                                                                                                        /**
+                                                                                                                                                                                         * Builds the Lithuanian i.SAF register file of a month (<code>dataType</code> F both registers, S sale invoices only, P purchase invoices only), stores it and creates a submission in status <code>generated</code> for the obligation <code>lt-isaf</code>, the only obligation accepted. The XML alone comes from <code>declarations/lt/isaf/generate</code>; the submission is moved on with <code>declarations/submissions/mark</code>.
+                                                                                                                                                                                         */
                                                                                                                                                                                         public CompletableFuture<NordletApiHttpResponse<SubmissionsCreateDeclarationsResponse>> submissionsCreate(
                                                                                                                                                                                             SubmissionsCreateDeclarationsRequest request) {
                                                                                                                                                                                           return submissionsCreate(request,null);
                                                                                                                                                                                         }
 
+                                                                                                                                                                                        /**
+                                                                                                                                                                                         * Builds the Lithuanian i.SAF register file of a month (<code>dataType</code> F both registers, S sale invoices only, P purchase invoices only), stores it and creates a submission in status <code>generated</code> for the obligation <code>lt-isaf</code>, the only obligation accepted. The XML alone comes from <code>declarations/lt/isaf/generate</code>; the submission is moved on with <code>declarations/submissions/mark</code>.
+                                                                                                                                                                                         */
                                                                                                                                                                                         public CompletableFuture<NordletApiHttpResponse<SubmissionsCreateDeclarationsResponse>> submissionsCreate(
                                                                                                                                                                                             SubmissionsCreateDeclarationsRequest request,
                                                                                                                                                                                             RequestOptions requestOptions) {
@@ -9150,11 +9492,17 @@ public class AsyncRawDeclarationsClient {
                                                                                                                                                                                             return future;
                                                                                                                                                                                           }
 
+                                                                                                                                                                                          /**
+                                                                                                                                                                                           * Records by hand that a submission was sent, accepted or rejected, with the reference and message of the administration when given. The allowed moves are <code>generated</code> to <code>submitted</code> and <code>submitted</code> to <code>accepted</code> or <code>rejected</code>; any other move answers 409. A submission without a transport system is marked as sent manually.
+                                                                                                                                                                                           */
                                                                                                                                                                                           public CompletableFuture<NordletApiHttpResponse<SubmissionsMarkDeclarationsResponse>> submissionsMark(
                                                                                                                                                                                               SubmissionsMarkDeclarationsRequest request) {
                                                                                                                                                                                             return submissionsMark(request,null);
                                                                                                                                                                                           }
 
+                                                                                                                                                                                          /**
+                                                                                                                                                                                           * Records by hand that a submission was sent, accepted or rejected, with the reference and message of the administration when given. The allowed moves are <code>generated</code> to <code>submitted</code> and <code>submitted</code> to <code>accepted</code> or <code>rejected</code>; any other move answers 409. A submission without a transport system is marked as sent manually.
+                                                                                                                                                                                           */
                                                                                                                                                                                           public CompletableFuture<NordletApiHttpResponse<SubmissionsMarkDeclarationsResponse>> submissionsMark(
                                                                                                                                                                                               SubmissionsMarkDeclarationsRequest request,
                                                                                                                                                                                               RequestOptions requestOptions) {
@@ -9243,21 +9591,33 @@ public class AsyncRawDeclarationsClient {
                                                                                                                                                                                               return future;
                                                                                                                                                                                             }
 
+                                                                                                                                                                                            /**
+                                                                                                                                                                                             * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code> or <code>periodYear</code>.
+                                                                                                                                                                                             */
                                                                                                                                                                                             public CompletableFuture<NordletApiHttpResponse<SubmissionsListDeclarationsResponse>> submissionsList(
                                                                                                                                                                                                 ) {
                                                                                                                                                                                               return submissionsList(SubmissionsListDeclarationsRequest.builder().build());
                                                                                                                                                                                             }
 
+                                                                                                                                                                                            /**
+                                                                                                                                                                                             * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code> or <code>periodYear</code>.
+                                                                                                                                                                                             */
                                                                                                                                                                                             public CompletableFuture<NordletApiHttpResponse<SubmissionsListDeclarationsResponse>> submissionsList(
                                                                                                                                                                                                 RequestOptions requestOptions) {
                                                                                                                                                                                               return submissionsList(SubmissionsListDeclarationsRequest.builder().build(),requestOptions);
                                                                                                                                                                                             }
 
+                                                                                                                                                                                            /**
+                                                                                                                                                                                             * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code> or <code>periodYear</code>.
+                                                                                                                                                                                             */
                                                                                                                                                                                             public CompletableFuture<NordletApiHttpResponse<SubmissionsListDeclarationsResponse>> submissionsList(
                                                                                                                                                                                                 SubmissionsListDeclarationsRequest request) {
                                                                                                                                                                                               return submissionsList(request,null);
                                                                                                                                                                                             }
 
+                                                                                                                                                                                            /**
+                                                                                                                                                                                             * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code> or <code>periodYear</code>.
+                                                                                                                                                                                             */
                                                                                                                                                                                             public CompletableFuture<NordletApiHttpResponse<SubmissionsListDeclarationsResponse>> submissionsList(
                                                                                                                                                                                                 SubmissionsListDeclarationsRequest request,
                                                                                                                                                                                                 RequestOptions requestOptions) {

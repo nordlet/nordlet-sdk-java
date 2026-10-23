@@ -68,11 +68,17 @@ public class RawPosClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Register a cash register (POS device). The serial number must be unique in the company; a repeat is refused with 409.
+   */
   public NordletApiHttpResponse<DevicesCreatePosResponse> devicesCreate(
       DevicesCreatePosRequest request) {
     return devicesCreate(request,null);
   }
 
+  /**
+   * Register a cash register (POS device). The serial number must be unique in the company; a repeat is refused with 409.
+   */
   public NordletApiHttpResponse<DevicesCreatePosResponse> devicesCreate(
       DevicesCreatePosRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -137,11 +143,17 @@ public class RawPosClient {
       }
     }
 
+    /**
+     * Change a POS device's details or set <code>isActive</code>; an inactive device accepts no new shifts or reports. A serial number already used by another device is refused with 409.
+     */
     public NordletApiHttpResponse<DevicesUpdatePosResponse> devicesUpdate(
         DevicesUpdatePosRequest request) {
       return devicesUpdate(request,null);
     }
 
+    /**
+     * Change a POS device's details or set <code>isActive</code>; an inactive device accepts no new shifts or reports. A serial number already used by another device is refused with 409.
+     */
     public NordletApiHttpResponse<DevicesUpdatePosResponse> devicesUpdate(
         DevicesUpdatePosRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -206,20 +218,32 @@ public class RawPosClient {
         }
       }
 
+      /**
+       * List POS devices. Filterable by <code>name</code> and <code>serialNumber</code>; sortable by <code>name</code>, <code>serialNumber</code> and <code>createdAt</code>.
+       */
       public NordletApiHttpResponse<DevicesListPosResponse> devicesList() {
         return devicesList(DevicesListPosRequest.builder().build());
       }
 
+      /**
+       * List POS devices. Filterable by <code>name</code> and <code>serialNumber</code>; sortable by <code>name</code>, <code>serialNumber</code> and <code>createdAt</code>.
+       */
       public NordletApiHttpResponse<DevicesListPosResponse> devicesList(
           RequestOptions requestOptions) {
         return devicesList(DevicesListPosRequest.builder().build(),requestOptions);
       }
 
+      /**
+       * List POS devices. Filterable by <code>name</code> and <code>serialNumber</code>; sortable by <code>name</code>, <code>serialNumber</code> and <code>createdAt</code>.
+       */
       public NordletApiHttpResponse<DevicesListPosResponse> devicesList(
           DevicesListPosRequest request) {
         return devicesList(request,null);
       }
 
+      /**
+       * List POS devices. Filterable by <code>name</code> and <code>serialNumber</code>; sortable by <code>name</code>, <code>serialNumber</code> and <code>createdAt</code>.
+       */
       public NordletApiHttpResponse<DevicesListPosResponse> devicesList(
           DevicesListPosRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -284,11 +308,17 @@ public class RawPosClient {
           }
         }
 
+        /**
+         * Record a daily cash register report (Z-report) and post it to the ledger in one journal entry: the cash and card takings are debited to <code>cashAccountCode</code> and <code>cardAccountCode</code>, the net of the <code>vatLines</code> is credited to <code>revenueAccountCode</code> and their VAT to <code>vatAccountCode</code>. <code>itemLines</code> write the sold products off <code>warehouseId</code> FIFO (a set is expanded to its product components) and add the cost of goods sold, debited to <code>cogsAccountCode</code> against the stock accounts. Account codes default to the company's chart. Refused with 422 when cash plus card differs from the gross total, the item lines have no warehouse or the device is inactive, with 409 when the accounting period is locked or the <code>reportNumber</code> already exists. Emits <code>pos_report.created</code> and, per item line, <code>stock.changed</code>.
+         */
         public NordletApiHttpResponse<ReportsCreatePosResponse> reportsCreate(
             ReportsCreatePosRequest request) {
           return reportsCreate(request,null);
         }
 
+        /**
+         * Record a daily cash register report (Z-report) and post it to the ledger in one journal entry: the cash and card takings are debited to <code>cashAccountCode</code> and <code>cardAccountCode</code>, the net of the <code>vatLines</code> is credited to <code>revenueAccountCode</code> and their VAT to <code>vatAccountCode</code>. <code>itemLines</code> write the sold products off <code>warehouseId</code> FIFO (a set is expanded to its product components) and add the cost of goods sold, debited to <code>cogsAccountCode</code> against the stock accounts. Account codes default to the company's chart. Refused with 422 when cash plus card differs from the gross total, the item lines have no warehouse or the device is inactive, with 409 when the accounting period is locked or the <code>reportNumber</code> already exists. Emits <code>pos_report.created</code> and, per item line, <code>stock.changed</code>.
+         */
         public NordletApiHttpResponse<ReportsCreatePosResponse> reportsCreate(
             ReportsCreatePosRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -353,11 +383,17 @@ public class RawPosClient {
             }
           }
 
+          /**
+           * Read one POS report with its VAT lines.
+           */
           public NordletApiHttpResponse<ReportsGetPosResponse> reportsGet(
               ReportsGetPosRequest request) {
             return reportsGet(request,null);
           }
 
+          /**
+           * Read one POS report with its VAT lines.
+           */
           public NordletApiHttpResponse<ReportsGetPosResponse> reportsGet(
               ReportsGetPosRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -422,20 +458,32 @@ public class RawPosClient {
               }
             }
 
+            /**
+             * List POS reports without their VAT lines. Filterable by <code>date</code>, <code>reportNumber</code> and <code>deviceId</code>; sortable by <code>date</code>, <code>reportNumber</code> and <code>createdAt</code>.
+             */
             public NordletApiHttpResponse<ReportsListPosResponse> reportsList() {
               return reportsList(ReportsListPosRequest.builder().build());
             }
 
+            /**
+             * List POS reports without their VAT lines. Filterable by <code>date</code>, <code>reportNumber</code> and <code>deviceId</code>; sortable by <code>date</code>, <code>reportNumber</code> and <code>createdAt</code>.
+             */
             public NordletApiHttpResponse<ReportsListPosResponse> reportsList(
                 RequestOptions requestOptions) {
               return reportsList(ReportsListPosRequest.builder().build(),requestOptions);
             }
 
+            /**
+             * List POS reports without their VAT lines. Filterable by <code>date</code>, <code>reportNumber</code> and <code>deviceId</code>; sortable by <code>date</code>, <code>reportNumber</code> and <code>createdAt</code>.
+             */
             public NordletApiHttpResponse<ReportsListPosResponse> reportsList(
                 ReportsListPosRequest request) {
               return reportsList(request,null);
             }
 
+            /**
+             * List POS reports without their VAT lines. Filterable by <code>date</code>, <code>reportNumber</code> and <code>deviceId</code>; sortable by <code>date</code>, <code>reportNumber</code> and <code>createdAt</code>.
+             */
             public NordletApiHttpResponse<ReportsListPosResponse> reportsList(
                 ReportsListPosRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -500,11 +548,17 @@ public class RawPosClient {
                 }
               }
 
+              /**
+               * Open a shift on a POS device with the cash float <code>openingCash</code>. A device has at most one open shift (409 for a second); an inactive device is refused with 422. Give <code>warehouseId</code> when the shift will sell stock items; they are written off that warehouse when the shift is closed.
+               */
               public NordletApiHttpResponse<ShiftsOpenPosResponse> shiftsOpen(
                   ShiftsOpenPosRequest request) {
                 return shiftsOpen(request,null);
               }
 
+              /**
+               * Open a shift on a POS device with the cash float <code>openingCash</code>. A device has at most one open shift (409 for a second); an inactive device is refused with 422. Give <code>warehouseId</code> when the shift will sell stock items; they are written off that warehouse when the shift is closed.
+               */
               public NordletApiHttpResponse<ShiftsOpenPosResponse> shiftsOpen(
                   ShiftsOpenPosRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -569,11 +623,17 @@ public class RawPosClient {
                   }
                 }
 
+                /**
+                 * Read one POS shift.
+                 */
                 public NordletApiHttpResponse<ShiftsGetPosResponse> shiftsGet(
                     ShiftsGetPosRequest request) {
                   return shiftsGet(request,null);
                 }
 
+                /**
+                 * Read one POS shift.
+                 */
                 public NordletApiHttpResponse<ShiftsGetPosResponse> shiftsGet(
                     ShiftsGetPosRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -638,20 +698,32 @@ public class RawPosClient {
                     }
                   }
 
+                  /**
+                   * List POS shifts. Filterable by <code>deviceId</code> and <code>status</code>; sortable by <code>openedAt</code>.
+                   */
                   public NordletApiHttpResponse<ShiftsListPosResponse> shiftsList() {
                     return shiftsList(ShiftsListPosRequest.builder().build());
                   }
 
+                  /**
+                   * List POS shifts. Filterable by <code>deviceId</code> and <code>status</code>; sortable by <code>openedAt</code>.
+                   */
                   public NordletApiHttpResponse<ShiftsListPosResponse> shiftsList(
                       RequestOptions requestOptions) {
                     return shiftsList(ShiftsListPosRequest.builder().build(),requestOptions);
                   }
 
+                  /**
+                   * List POS shifts. Filterable by <code>deviceId</code> and <code>status</code>; sortable by <code>openedAt</code>.
+                   */
                   public NordletApiHttpResponse<ShiftsListPosResponse> shiftsList(
                       ShiftsListPosRequest request) {
                     return shiftsList(request,null);
                   }
 
+                  /**
+                   * List POS shifts. Filterable by <code>deviceId</code> and <code>status</code>; sortable by <code>openedAt</code>.
+                   */
                   public NordletApiHttpResponse<ShiftsListPosResponse> shiftsList(
                       ShiftsListPosRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -716,11 +788,17 @@ public class RawPosClient {
                       }
                     }
 
+                    /**
+                     * Record a receipt in an open shift, numbered per shift from 1. Each line's net, VAT and gross come from its VAT-inclusive unit price; a line without <code>description</code> takes its item's name. Refused with 422 when cash plus card differs from the receipt total or a stock item is sold in a shift opened without a warehouse, with 409 when the shift is closed.
+                     */
                     public NordletApiHttpResponse<ReceiptsCreatePosResponse> receiptsCreate(
                         ReceiptsCreatePosRequest request) {
                       return receiptsCreate(request,null);
                     }
 
+                    /**
+                     * Record a receipt in an open shift, numbered per shift from 1. Each line's net, VAT and gross come from its VAT-inclusive unit price; a line without <code>description</code> takes its item's name. Refused with 422 when cash plus card differs from the receipt total or a stock item is sold in a shift opened without a warehouse, with 409 when the shift is closed.
+                     */
                     public NordletApiHttpResponse<ReceiptsCreatePosResponse> receiptsCreate(
                         ReceiptsCreatePosRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -785,20 +863,32 @@ public class RawPosClient {
                         }
                       }
 
+                      /**
+                       * List receipts without their lines. Filterable by <code>shiftId</code>; sortable by <code>number</code> and <code>createdAt</code>.
+                       */
                       public NordletApiHttpResponse<ReceiptsListPosResponse> receiptsList() {
                         return receiptsList(ReceiptsListPosRequest.builder().build());
                       }
 
+                      /**
+                       * List receipts without their lines. Filterable by <code>shiftId</code>; sortable by <code>number</code> and <code>createdAt</code>.
+                       */
                       public NordletApiHttpResponse<ReceiptsListPosResponse> receiptsList(
                           RequestOptions requestOptions) {
                         return receiptsList(ReceiptsListPosRequest.builder().build(),requestOptions);
                       }
 
+                      /**
+                       * List receipts without their lines. Filterable by <code>shiftId</code>; sortable by <code>number</code> and <code>createdAt</code>.
+                       */
                       public NordletApiHttpResponse<ReceiptsListPosResponse> receiptsList(
                           ReceiptsListPosRequest request) {
                         return receiptsList(request,null);
                       }
 
+                      /**
+                       * List receipts without their lines. Filterable by <code>shiftId</code>; sortable by <code>number</code> and <code>createdAt</code>.
+                       */
                       public NordletApiHttpResponse<ReceiptsListPosResponse> receiptsList(
                           ReceiptsListPosRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -863,11 +953,17 @@ public class RawPosClient {
                           }
                         }
 
+                        /**
+                         * Read one receipt with its lines.
+                         */
                         public NordletApiHttpResponse<ReceiptsGetPosResponse> receiptsGet(
                             ReceiptsGetPosRequest request) {
                           return receiptsGet(request,null);
                         }
 
+                        /**
+                         * Read one receipt with its lines.
+                         */
                         public NordletApiHttpResponse<ReceiptsGetPosResponse> receiptsGet(
                             ReceiptsGetPosRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -932,11 +1028,17 @@ public class RawPosClient {
                             }
                           }
 
+                          /**
+                           * Close an open shift: its receipts are summed by VAT rate and by product into one POS report, created as by <code>pos/reports/create</code> with number <code>reportNumber</code> (default <code>Z-&lt;device serial&gt;-&lt;n&gt;</code>, n being the device's closed shifts plus one) on <code>date</code> (default: the company's today), which posts the takings and the stock write-off to the ledger and emits <code>pos_report.created</code>. The response adds <code>expectedCash</code> (opening cash plus the cash receipts) and <code>cashDifference</code> (<code>countedCash</code> less expected). A shift without receipts is refused with 422, a closed one with 409.
+                           */
                           public NordletApiHttpResponse<ShiftsClosePosResponse> shiftsClose(
                               ShiftsClosePosRequest request) {
                             return shiftsClose(request,null);
                           }
 
+                          /**
+                           * Close an open shift: its receipts are summed by VAT rate and by product into one POS report, created as by <code>pos/reports/create</code> with number <code>reportNumber</code> (default <code>Z-&lt;device serial&gt;-&lt;n&gt;</code>, n being the device's closed shifts plus one) on <code>date</code> (default: the company's today), which posts the takings and the stock write-off to the ledger and emits <code>pos_report.created</code>. The response adds <code>expectedCash</code> (opening cash plus the cash receipts) and <code>cashDifference</code> (<code>countedCash</code> less expected). A shift without receipts is refused with 422, a closed one with 409.
+                           */
                           public NordletApiHttpResponse<ShiftsClosePosResponse> shiftsClose(
                               ShiftsClosePosRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

@@ -17,6 +17,7 @@ import com.nordlet.api.core.Nullable;
 import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.sales.types.InvoicesUpdateSalesRequestLinesItem;
+import com.nordlet.api.resources.sales.types.InvoicesUpdateSalesRequestLocale;
 import com.nordlet.api.resources.sales.types.InvoicesUpdateSalesRequestVatScheme;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -61,6 +62,8 @@ public final class InvoicesUpdateSalesRequest {
 
   private final Optional<String> notes;
 
+  private final Optional<InvoicesUpdateSalesRequestLocale> locale;
+
   private final Optional<String> operationTypeId;
 
   private final Optional<String> documentSeriesId;
@@ -89,11 +92,11 @@ public final class InvoicesUpdateSalesRequest {
       Optional<String> intrastatTransportMode, Optional<String> intrastatDeliveryTerms,
       Optional<String> intrastatRegion, Optional<String> intrastatNatureOfTransaction,
       Optional<String> vatCountryCode, Optional<Boolean> deemedSupplier, Optional<String> notes,
-      Optional<String> operationTypeId, Optional<String> documentSeriesId,
-      Optional<String> seriesLabel, Optional<String> discountPercent, Optional<String> orderNumber,
-      Optional<String> issuedByName, Optional<String> issuedByTitle,
-      Optional<String> receivedByName, Optional<String> receivedByTitle,
-      Optional<List<InvoicesUpdateSalesRequestLinesItem>> lines,
+      Optional<InvoicesUpdateSalesRequestLocale> locale, Optional<String> operationTypeId,
+      Optional<String> documentSeriesId, Optional<String> seriesLabel,
+      Optional<String> discountPercent, Optional<String> orderNumber, Optional<String> issuedByName,
+      Optional<String> issuedByTitle, Optional<String> receivedByName,
+      Optional<String> receivedByTitle, Optional<List<InvoicesUpdateSalesRequestLinesItem>> lines,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.partnerId = partnerId;
@@ -109,6 +112,7 @@ public final class InvoicesUpdateSalesRequest {
     this.vatCountryCode = vatCountryCode;
     this.deemedSupplier = deemedSupplier;
     this.notes = notes;
+    this.locale = locale;
     this.operationTypeId = operationTypeId;
     this.documentSeriesId = documentSeriesId;
     this.seriesLabel = seriesLabel;
@@ -217,6 +221,14 @@ public final class InvoicesUpdateSalesRequest {
   @JsonProperty("notes")
   public Optional<String> getNotes() {
     return notes;
+  }
+
+  @JsonIgnore
+  public Optional<InvoicesUpdateSalesRequestLocale> getLocale() {
+    if (locale == null) {
+      return Optional.empty();
+    }
+    return locale;
   }
 
   @JsonIgnore
@@ -378,6 +390,15 @@ public final class InvoicesUpdateSalesRequest {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("locale")
+  private Optional<InvoicesUpdateSalesRequestLocale> _getLocale() {
+    return locale;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("operationTypeId")
   private Optional<String> _getOperationTypeId() {
     return operationTypeId;
@@ -458,12 +479,12 @@ public final class InvoicesUpdateSalesRequest {
   }
 
   private boolean equalTo(InvoicesUpdateSalesRequest other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && agreementId.equals(other.agreementId) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && lines.equals(other.lines);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && agreementId.equals(other.agreementId) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && locale.equals(other.locale) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.agreementId, this.currency, this.issueDate, this.dueDate, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.lines);
+    return Objects.hash(this.id, this.partnerId, this.agreementId, this.currency, this.issueDate, this.dueDate, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.locale, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.lines);
   }
 
   @java.lang.Override
@@ -558,6 +579,12 @@ public final class InvoicesUpdateSalesRequest {
 
     _FinalStage notes(String notes);
 
+    _FinalStage locale(Optional<InvoicesUpdateSalesRequestLocale> locale);
+
+    _FinalStage locale(InvoicesUpdateSalesRequestLocale locale);
+
+    _FinalStage locale(Nullable<InvoicesUpdateSalesRequestLocale> locale);
+
     _FinalStage operationTypeId(Optional<String> operationTypeId);
 
     _FinalStage operationTypeId(String operationTypeId);
@@ -641,6 +668,8 @@ public final class InvoicesUpdateSalesRequest {
 
     private Optional<String> operationTypeId = Optional.empty();
 
+    private Optional<InvoicesUpdateSalesRequestLocale> locale = Optional.empty();
+
     private Optional<String> notes = Optional.empty();
 
     private Optional<Boolean> deemedSupplier = Optional.empty();
@@ -689,6 +718,7 @@ public final class InvoicesUpdateSalesRequest {
       vatCountryCode(other.getVatCountryCode());
       deemedSupplier(other.getDeemedSupplier());
       notes(other.getNotes());
+      locale(other.getLocale());
       operationTypeId(other.getOperationTypeId());
       documentSeriesId(other.getDocumentSeriesId());
       seriesLabel(other.getSeriesLabel());
@@ -978,6 +1008,36 @@ public final class InvoicesUpdateSalesRequest {
     )
     public _FinalStage operationTypeId(Optional<String> operationTypeId) {
       this.operationTypeId = operationTypeId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage locale(Nullable<InvoicesUpdateSalesRequestLocale> locale) {
+      if (locale.isNull()) {
+        this.locale = null;
+      }
+      else if (locale.isEmpty()) {
+        this.locale = Optional.empty();
+      }
+      else {
+        this.locale = Optional.of(locale.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage locale(InvoicesUpdateSalesRequestLocale locale) {
+      this.locale = Optional.ofNullable(locale);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "locale",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage locale(Optional<InvoicesUpdateSalesRequestLocale> locale) {
+      this.locale = locale;
       return this;
     }
 
@@ -1317,7 +1377,7 @@ public final class InvoicesUpdateSalesRequest {
 
     @java.lang.Override
     public InvoicesUpdateSalesRequest build() {
-      return new InvoicesUpdateSalesRequest(id, partnerId, agreementId, currency, issueDate, dueDate, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, lines, additionalProperties);
+      return new InvoicesUpdateSalesRequest(id, partnerId, agreementId, currency, issueDate, dueDate, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, locale, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, lines, additionalProperties);
     }
 
     @java.lang.Override

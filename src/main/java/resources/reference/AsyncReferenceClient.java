@@ -75,250 +75,406 @@ public class AsyncReferenceClient {
     return this.rawClient;
   }
 
+  /**
+   * Fetches the euro exchange rates the Bank of Lithuania web service publishes for <code>date</code> (default: the company's current date) and stores them in the rate table shared by all companies, replacing the rates already stored for that date. Answers 404 when no rates are published for the date.
+   */
   public CompletableFuture<ExchangeRatesSyncReferenceResponse> exchangeRatesSync() {
     return this.rawClient.exchangeRatesSync().thenApply(response -> response.body());
   }
 
+  /**
+   * Fetches the euro exchange rates the Bank of Lithuania web service publishes for <code>date</code> (default: the company's current date) and stores them in the rate table shared by all companies, replacing the rates already stored for that date. Answers 404 when no rates are published for the date.
+   */
   public CompletableFuture<ExchangeRatesSyncReferenceResponse> exchangeRatesSync(
       RequestOptions requestOptions) {
     return this.rawClient.exchangeRatesSync(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Fetches the euro exchange rates the Bank of Lithuania web service publishes for <code>date</code> (default: the company's current date) and stores them in the rate table shared by all companies, replacing the rates already stored for that date. Answers 404 when no rates are published for the date.
+   */
   public CompletableFuture<ExchangeRatesSyncReferenceResponse> exchangeRatesSync(
       ExchangeRatesSyncReferenceRequest request) {
     return this.rawClient.exchangeRatesSync(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Fetches the euro exchange rates the Bank of Lithuania web service publishes for <code>date</code> (default: the company's current date) and stores them in the rate table shared by all companies, replacing the rates already stored for that date. Answers 404 when no rates are published for the date.
+   */
   public CompletableFuture<ExchangeRatesSyncReferenceResponse> exchangeRatesSync(
       ExchangeRatesSyncReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.exchangeRatesSync(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the stored euro exchange rates, which are shared by all companies. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+   */
   public CompletableFuture<ExchangeRatesListReferenceResponse> exchangeRatesList() {
     return this.rawClient.exchangeRatesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the stored euro exchange rates, which are shared by all companies. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+   */
   public CompletableFuture<ExchangeRatesListReferenceResponse> exchangeRatesList(
       RequestOptions requestOptions) {
     return this.rawClient.exchangeRatesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the stored euro exchange rates, which are shared by all companies. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+   */
   public CompletableFuture<ExchangeRatesListReferenceResponse> exchangeRatesList(
       ExchangeRatesListReferenceRequest request) {
     return this.rawClient.exchangeRatesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the stored euro exchange rates, which are shared by all companies. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+   */
   public CompletableFuture<ExchangeRatesListReferenceResponse> exchangeRatesList(
       ExchangeRatesListReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.exchangeRatesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Stores a company exchange rate for <code>currency</code> on <code>date</code>, in units of the currency per one unit of the company's base currency, replacing the company rate stored for that currency and date. Rate lookups use the company rate when it is dated on or after the latest shared rate on or before the lookup date. Answers 422 when <code>rate</code> is not positive.
+   */
   public CompletableFuture<ExchangeRatesSetReferenceResponse> exchangeRatesSet(
       ExchangeRatesSetReferenceRequest request) {
     return this.rawClient.exchangeRatesSet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Stores a company exchange rate for <code>currency</code> on <code>date</code>, in units of the currency per one unit of the company's base currency, replacing the company rate stored for that currency and date. Rate lookups use the company rate when it is dated on or after the latest shared rate on or before the lookup date. Answers 422 when <code>rate</code> is not positive.
+   */
   public CompletableFuture<ExchangeRatesSetReferenceResponse> exchangeRatesSet(
       ExchangeRatesSetReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.exchangeRatesSet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's own exchange rates set with <code>reference/exchange-rates/set</code>. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+   */
   public CompletableFuture<ExchangeRatesOverridesListReferenceResponse> exchangeRatesOverridesList(
       ) {
     return this.rawClient.exchangeRatesOverridesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's own exchange rates set with <code>reference/exchange-rates/set</code>. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+   */
   public CompletableFuture<ExchangeRatesOverridesListReferenceResponse> exchangeRatesOverridesList(
       RequestOptions requestOptions) {
     return this.rawClient.exchangeRatesOverridesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's own exchange rates set with <code>reference/exchange-rates/set</code>. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+   */
   public CompletableFuture<ExchangeRatesOverridesListReferenceResponse> exchangeRatesOverridesList(
       ExchangeRatesOverridesListReferenceRequest request) {
     return this.rawClient.exchangeRatesOverridesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's own exchange rates set with <code>reference/exchange-rates/set</code>. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+   */
   public CompletableFuture<ExchangeRatesOverridesListReferenceResponse> exchangeRatesOverridesList(
       ExchangeRatesOverridesListReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.exchangeRatesOverridesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Removes the company's own exchange rate for <code>currency</code> on <code>date</code>.
+   */
   public CompletableFuture<ExchangeRatesOverridesDeleteReferenceResponse> exchangeRatesOverridesDelete(
       ExchangeRatesOverridesDeleteReferenceRequest request) {
     return this.rawClient.exchangeRatesOverridesDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Removes the company's own exchange rate for <code>currency</code> on <code>date</code>.
+   */
   public CompletableFuture<ExchangeRatesOverridesDeleteReferenceResponse> exchangeRatesOverridesDelete(
       ExchangeRatesOverridesDeleteReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.exchangeRatesOverridesDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists every country code Nordlet knows with its EU and EEA membership and its name in each supported locale.
+   */
   public CompletableFuture<CountriesListReferenceResponse> countriesList() {
     return this.rawClient.countriesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists every country code Nordlet knows with its EU and EEA membership and its name in each supported locale.
+   */
   public CompletableFuture<CountriesListReferenceResponse> countriesList(
       RequestOptions requestOptions) {
     return this.rawClient.countriesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists every country code Nordlet knows with its EU and EEA membership and its name in each supported locale.
+   */
   public CompletableFuture<CountriesListReferenceResponse> countriesList(
       CountriesListReferenceRequest request) {
     return this.rawClient.countriesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists every country code Nordlet knows with its EU and EEA membership and its name in each supported locale.
+   */
   public CompletableFuture<CountriesListReferenceResponse> countriesList(
       CountriesListReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.countriesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the ten Lithuanian counties (apskritys) with their code and ISO code.
+   */
   public CompletableFuture<LtCountiesListReferenceResponse> ltCountiesList() {
     return this.rawClient.ltCountiesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the ten Lithuanian counties (apskritys) with their code and ISO code.
+   */
   public CompletableFuture<LtCountiesListReferenceResponse> ltCountiesList(
       RequestOptions requestOptions) {
     return this.rawClient.ltCountiesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the ten Lithuanian counties (apskritys) with their code and ISO code.
+   */
   public CompletableFuture<LtCountiesListReferenceResponse> ltCountiesList(
       LtCountiesListReferenceRequest request) {
     return this.rawClient.ltCountiesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the ten Lithuanian counties (apskritys) with their code and ISO code.
+   */
   public CompletableFuture<LtCountiesListReferenceResponse> ltCountiesList(
       LtCountiesListReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.ltCountiesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the Lithuanian municipalities (savivaldybės) with the county each belongs to; <code>countyCode</code> limits the list to one county.
+   */
   public CompletableFuture<LtMunicipalitiesListReferenceResponse> ltMunicipalitiesList() {
     return this.rawClient.ltMunicipalitiesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the Lithuanian municipalities (savivaldybės) with the county each belongs to; <code>countyCode</code> limits the list to one county.
+   */
   public CompletableFuture<LtMunicipalitiesListReferenceResponse> ltMunicipalitiesList(
       RequestOptions requestOptions) {
     return this.rawClient.ltMunicipalitiesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the Lithuanian municipalities (savivaldybės) with the county each belongs to; <code>countyCode</code> limits the list to one county.
+   */
   public CompletableFuture<LtMunicipalitiesListReferenceResponse> ltMunicipalitiesList(
       LtMunicipalitiesListReferenceRequest request) {
     return this.rawClient.ltMunicipalitiesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the Lithuanian municipalities (savivaldybės) with the county each belongs to; <code>countyCode</code> limits the list to one county.
+   */
   public CompletableFuture<LtMunicipalitiesListReferenceResponse> ltMunicipalitiesList(
       LtMunicipalitiesListReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.ltMunicipalitiesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists Lithuanian cities with their municipality; <code>municipalityCode</code> limits the list to one municipality and <code>q</code> to names that start with the given text (case-insensitive).
+   */
   public CompletableFuture<LtCitiesListReferenceResponse> ltCitiesList() {
     return this.rawClient.ltCitiesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists Lithuanian cities with their municipality; <code>municipalityCode</code> limits the list to one municipality and <code>q</code> to names that start with the given text (case-insensitive).
+   */
   public CompletableFuture<LtCitiesListReferenceResponse> ltCitiesList(
       RequestOptions requestOptions) {
     return this.rawClient.ltCitiesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists Lithuanian cities with their municipality; <code>municipalityCode</code> limits the list to one municipality and <code>q</code> to names that start with the given text (case-insensitive).
+   */
   public CompletableFuture<LtCitiesListReferenceResponse> ltCitiesList(
       LtCitiesListReferenceRequest request) {
     return this.rawClient.ltCitiesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists Lithuanian cities with their municipality; <code>municipalityCode</code> limits the list to one municipality and <code>q</code> to names that start with the given text (case-insensitive).
+   */
   public CompletableFuture<LtCitiesListReferenceResponse> ltCitiesList(
       LtCitiesListReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.ltCitiesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the banks of the bank directory shared by all companies. Filterable by <code>countryCode</code>, <code>name</code>, <code>bic</code> and <code>bankCode</code>; sortable by <code>name</code>, <code>bic</code> and <code>countryCode</code>.
+   */
   public CompletableFuture<BanksListReferenceResponse> banksList() {
     return this.rawClient.banksList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the banks of the bank directory shared by all companies. Filterable by <code>countryCode</code>, <code>name</code>, <code>bic</code> and <code>bankCode</code>; sortable by <code>name</code>, <code>bic</code> and <code>countryCode</code>.
+   */
   public CompletableFuture<BanksListReferenceResponse> banksList(RequestOptions requestOptions) {
     return this.rawClient.banksList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the banks of the bank directory shared by all companies. Filterable by <code>countryCode</code>, <code>name</code>, <code>bic</code> and <code>bankCode</code>; sortable by <code>name</code>, <code>bic</code> and <code>countryCode</code>.
+   */
   public CompletableFuture<BanksListReferenceResponse> banksList(
       BanksListReferenceRequest request) {
     return this.rawClient.banksList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the banks of the bank directory shared by all companies. Filterable by <code>countryCode</code>, <code>name</code>, <code>bic</code> and <code>bankCode</code>; sortable by <code>name</code>, <code>bic</code> and <code>countryCode</code>.
+   */
   public CompletableFuture<BanksListReferenceResponse> banksList(BanksListReferenceRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.banksList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds a bank to the shared bank directory or, when a bank with the same <code>countryCode</code> and <code>bic</code> exists, replaces its name, bank code and active flag. Platform administrators only.
+   */
   public CompletableFuture<BanksUpsertReferenceResponse> banksUpsert(
       BanksUpsertReferenceRequest request) {
     return this.rawClient.banksUpsert(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds a bank to the shared bank directory or, when a bank with the same <code>countryCode</code> and <code>bic</code> exists, replaces its name, bank code and active flag. Platform administrators only.
+   */
   public CompletableFuture<BanksUpsertReferenceResponse> banksUpsert(
       BanksUpsertReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.banksUpsert(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the ten Lithuanian regions (apskritys) with their code and ISO code; the same list as <code>reference/lt/counties/list</code>.
+   */
   public CompletableFuture<LtRegionsListReferenceResponse> ltRegionsList() {
     return this.rawClient.ltRegionsList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the ten Lithuanian regions (apskritys) with their code and ISO code; the same list as <code>reference/lt/counties/list</code>.
+   */
   public CompletableFuture<LtRegionsListReferenceResponse> ltRegionsList(
       RequestOptions requestOptions) {
     return this.rawClient.ltRegionsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the ten Lithuanian regions (apskritys) with their code and ISO code; the same list as <code>reference/lt/counties/list</code>.
+   */
   public CompletableFuture<LtRegionsListReferenceResponse> ltRegionsList(
       LtRegionsListReferenceRequest request) {
     return this.rawClient.ltRegionsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the ten Lithuanian regions (apskritys) with their code and ISO code; the same list as <code>reference/lt/counties/list</code>.
+   */
   public CompletableFuture<LtRegionsListReferenceResponse> ltRegionsList(
       LtRegionsListReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.ltRegionsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the currencies known to Nordlet with their minor units. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<CurrenciesListReferenceResponse> currenciesList() {
     return this.rawClient.currenciesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the currencies known to Nordlet with their minor units. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<CurrenciesListReferenceResponse> currenciesList(
       RequestOptions requestOptions) {
     return this.rawClient.currenciesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the currencies known to Nordlet with their minor units. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<CurrenciesListReferenceResponse> currenciesList(
       CurrenciesListReferenceRequest request) {
     return this.rawClient.currenciesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the currencies known to Nordlet with their minor units. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<CurrenciesListReferenceResponse> currenciesList(
       CurrenciesListReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.currenciesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's VAT classifiers (code, country, name and rate). A document line that names a classifier in <code>vatClassifierCode</code> takes its rate from it when neither the line nor the item has a rate. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
+   */
   public CompletableFuture<VatClassifiersListReferenceResponse> vatClassifiersList() {
     return this.rawClient.vatClassifiersList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's VAT classifiers (code, country, name and rate). A document line that names a classifier in <code>vatClassifierCode</code> takes its rate from it when neither the line nor the item has a rate. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
+   */
   public CompletableFuture<VatClassifiersListReferenceResponse> vatClassifiersList(
       RequestOptions requestOptions) {
     return this.rawClient.vatClassifiersList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's VAT classifiers (code, country, name and rate). A document line that names a classifier in <code>vatClassifierCode</code> takes its rate from it when neither the line nor the item has a rate. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
+   */
   public CompletableFuture<VatClassifiersListReferenceResponse> vatClassifiersList(
       VatClassifiersListReferenceRequest request) {
     return this.rawClient.vatClassifiersList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's VAT classifiers (code, country, name and rate). A document line that names a classifier in <code>vatClassifierCode</code> takes its rate from it when neither the line nor the item has a rate. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
+   */
   public CompletableFuture<VatClassifiersListReferenceResponse> vatClassifiersList(
       VatClassifiersListReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.vatClassifiersList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds VAT classifiers to the company or replaces the country, name and rate of the ones whose <code>code</code> already exists.
+   */
   public CompletableFuture<VatClassifiersUpsertReferenceResponse> vatClassifiersUpsert(
       VatClassifiersUpsertReferenceRequest request) {
     return this.rawClient.vatClassifiersUpsert(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds VAT classifiers to the company or replaces the country, name and rate of the ones whose <code>code</code> already exists.
+   */
   public CompletableFuture<VatClassifiersUpsertReferenceResponse> vatClassifiersUpsert(
       VatClassifiersUpsertReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.vatClassifiersUpsert(request, requestOptions).thenApply(response -> response.body());
@@ -371,132 +527,216 @@ public class AsyncReferenceClient {
     return this.rawClient.euVatRatesSetOverrides(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Works out the VAT treatment of a supply by this company: the scheme (domestic, intra-EU B2B, reverse charge, OSS, IOSS, marketplace deemed supplier, export, out of scope or SME exempt), the country whose VAT applies, its rates with the company's overrides applied, and the legal basis. The customer comes from <code>partnerId</code> (country from the partner's address or VAT number, business status from the VAT number) or from <code>customerCountryCode</code> and <code>customerIsBusiness</code>; <code>date</code> defaults to the company's current date; when <code>belowDistanceSalesThreshold</code> is not given, the distance-sales threshold is tracked from the company's ledger. Answers 422 when the partner has neither an address country nor a VAT code.
+   */
   public CompletableFuture<VatResolveReferenceResponse> vatResolve() {
     return this.rawClient.vatResolve().thenApply(response -> response.body());
   }
 
+  /**
+   * Works out the VAT treatment of a supply by this company: the scheme (domestic, intra-EU B2B, reverse charge, OSS, IOSS, marketplace deemed supplier, export, out of scope or SME exempt), the country whose VAT applies, its rates with the company's overrides applied, and the legal basis. The customer comes from <code>partnerId</code> (country from the partner's address or VAT number, business status from the VAT number) or from <code>customerCountryCode</code> and <code>customerIsBusiness</code>; <code>date</code> defaults to the company's current date; when <code>belowDistanceSalesThreshold</code> is not given, the distance-sales threshold is tracked from the company's ledger. Answers 422 when the partner has neither an address country nor a VAT code.
+   */
   public CompletableFuture<VatResolveReferenceResponse> vatResolve(RequestOptions requestOptions) {
     return this.rawClient.vatResolve(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Works out the VAT treatment of a supply by this company: the scheme (domestic, intra-EU B2B, reverse charge, OSS, IOSS, marketplace deemed supplier, export, out of scope or SME exempt), the country whose VAT applies, its rates with the company's overrides applied, and the legal basis. The customer comes from <code>partnerId</code> (country from the partner's address or VAT number, business status from the VAT number) or from <code>customerCountryCode</code> and <code>customerIsBusiness</code>; <code>date</code> defaults to the company's current date; when <code>belowDistanceSalesThreshold</code> is not given, the distance-sales threshold is tracked from the company's ledger. Answers 422 when the partner has neither an address country nor a VAT code.
+   */
   public CompletableFuture<VatResolveReferenceResponse> vatResolve(
       VatResolveReferenceRequest request) {
     return this.rawClient.vatResolve(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Works out the VAT treatment of a supply by this company: the scheme (domestic, intra-EU B2B, reverse charge, OSS, IOSS, marketplace deemed supplier, export, out of scope or SME exempt), the country whose VAT applies, its rates with the company's overrides applied, and the legal basis. The customer comes from <code>partnerId</code> (country from the partner's address or VAT number, business status from the VAT number) or from <code>customerCountryCode</code> and <code>customerIsBusiness</code>; <code>date</code> defaults to the company's current date; when <code>belowDistanceSalesThreshold</code> is not given, the distance-sales threshold is tracked from the company's ledger. Answers 422 when the partner has neither an address country nor a VAT code.
+   */
   public CompletableFuture<VatResolveReferenceResponse> vatResolve(
       VatResolveReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.vatResolve(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the Combined Nomenclature codes of the directory shared by all companies. Filterable by <code>code</code>, <code>name</code> and <code>nameLt</code>; sortable by <code>code</code>.
+   */
   public CompletableFuture<CnCodesListReferenceResponse> cnCodesList() {
     return this.rawClient.cnCodesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the Combined Nomenclature codes of the directory shared by all companies. Filterable by <code>code</code>, <code>name</code> and <code>nameLt</code>; sortable by <code>code</code>.
+   */
   public CompletableFuture<CnCodesListReferenceResponse> cnCodesList(
       RequestOptions requestOptions) {
     return this.rawClient.cnCodesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the Combined Nomenclature codes of the directory shared by all companies. Filterable by <code>code</code>, <code>name</code> and <code>nameLt</code>; sortable by <code>code</code>.
+   */
   public CompletableFuture<CnCodesListReferenceResponse> cnCodesList(
       CnCodesListReferenceRequest request) {
     return this.rawClient.cnCodesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the Combined Nomenclature codes of the directory shared by all companies. Filterable by <code>code</code>, <code>name</code> and <code>nameLt</code>; sortable by <code>code</code>.
+   */
   public CompletableFuture<CnCodesListReferenceResponse> cnCodesList(
       CnCodesListReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.cnCodesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds Combined Nomenclature codes to the shared directory or replaces the names and supplementary unit of the codes that exist. Platform administrators only.
+   */
   public CompletableFuture<CnCodesUpsertReferenceResponse> cnCodesUpsert(
       CnCodesUpsertReferenceRequest request) {
     return this.rawClient.cnCodesUpsert(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Adds Combined Nomenclature codes to the shared directory or replaces the names and supplementary unit of the codes that exist. Platform administrators only.
+   */
   public CompletableFuture<CnCodesUpsertReferenceResponse> cnCodesUpsert(
       CnCodesUpsertReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.cnCodesUpsert(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the versions of the filing systems, schemas and forms Nordlet's output was checked against, with the date of the check and the source; <code>country</code> limits the list to one country.
+   */
   public CompletableFuture<ComplianceVersionsListReferenceResponse> complianceVersionsList() {
     return this.rawClient.complianceVersionsList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the versions of the filing systems, schemas and forms Nordlet's output was checked against, with the date of the check and the source; <code>country</code> limits the list to one country.
+   */
   public CompletableFuture<ComplianceVersionsListReferenceResponse> complianceVersionsList(
       RequestOptions requestOptions) {
     return this.rawClient.complianceVersionsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the versions of the filing systems, schemas and forms Nordlet's output was checked against, with the date of the check and the source; <code>country</code> limits the list to one country.
+   */
   public CompletableFuture<ComplianceVersionsListReferenceResponse> complianceVersionsList(
       ComplianceVersionsListReferenceRequest request) {
     return this.rawClient.complianceVersionsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the versions of the filing systems, schemas and forms Nordlet's output was checked against, with the date of the check and the source; <code>country</code> limits the list to one country.
+   */
   public CompletableFuture<ComplianceVersionsListReferenceResponse> complianceVersionsList(
       ComplianceVersionsListReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.complianceVersionsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the Intrastat thresholds stored per year: the reporting and the statistical-value threshold for arrivals and for dispatches.
+   */
   public CompletableFuture<IntrastatThresholdsListReferenceResponse> intrastatThresholdsList() {
     return this.rawClient.intrastatThresholdsList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the Intrastat thresholds stored per year: the reporting and the statistical-value threshold for arrivals and for dispatches.
+   */
   public CompletableFuture<IntrastatThresholdsListReferenceResponse> intrastatThresholdsList(
       RequestOptions requestOptions) {
     return this.rawClient.intrastatThresholdsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the Intrastat thresholds stored per year: the reporting and the statistical-value threshold for arrivals and for dispatches.
+   */
   public CompletableFuture<IntrastatThresholdsListReferenceResponse> intrastatThresholdsList(
       IntrastatThresholdsListReferenceRequest request) {
     return this.rawClient.intrastatThresholdsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the Intrastat thresholds stored per year: the reporting and the statistical-value threshold for arrivals and for dispatches.
+   */
   public CompletableFuture<IntrastatThresholdsListReferenceResponse> intrastatThresholdsList(
       IntrastatThresholdsListReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.intrastatThresholdsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the measurement units of the directory shared by all companies, with Lithuanian and English names. Filterable by <code>code</code>, <code>nameLt</code> and <code>nameEn</code>; sortable by <code>code</code>.
+   */
   public CompletableFuture<UnitsListReferenceResponse> unitsList() {
     return this.rawClient.unitsList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the measurement units of the directory shared by all companies, with Lithuanian and English names. Filterable by <code>code</code>, <code>nameLt</code> and <code>nameEn</code>; sortable by <code>code</code>.
+   */
   public CompletableFuture<UnitsListReferenceResponse> unitsList(RequestOptions requestOptions) {
     return this.rawClient.unitsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the measurement units of the directory shared by all companies, with Lithuanian and English names. Filterable by <code>code</code>, <code>nameLt</code> and <code>nameEn</code>; sortable by <code>code</code>.
+   */
   public CompletableFuture<UnitsListReferenceResponse> unitsList(
       UnitsListReferenceRequest request) {
     return this.rawClient.unitsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the measurement units of the directory shared by all companies, with Lithuanian and English names. Filterable by <code>code</code>, <code>nameLt</code> and <code>nameEn</code>; sortable by <code>code</code>.
+   */
   public CompletableFuture<UnitsListReferenceResponse> unitsList(UnitsListReferenceRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.unitsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a numbering series for a document type, prefix and year; the first number the series hands out is at least <code>startAt</code>. Answers 409 when a series with the same document type, prefix and year exists.
+   */
   public CompletableFuture<SeriesCreateReferenceResponse> seriesCreate(
       SeriesCreateReferenceRequest request) {
     return this.rawClient.seriesCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Creates a numbering series for a document type, prefix and year; the first number the series hands out is at least <code>startAt</code>. Answers 409 when a series with the same document type, prefix and year exists.
+   */
   public CompletableFuture<SeriesCreateReferenceResponse> seriesCreate(
       SeriesCreateReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.seriesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's numbering series with the next number of each. Filterable and sortable by <code>documentType</code>, <code>prefix</code> and <code>year</code>.
+   */
   public CompletableFuture<SeriesListReferenceResponse> seriesList() {
     return this.rawClient.seriesList().thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's numbering series with the next number of each. Filterable and sortable by <code>documentType</code>, <code>prefix</code> and <code>year</code>.
+   */
   public CompletableFuture<SeriesListReferenceResponse> seriesList(RequestOptions requestOptions) {
     return this.rawClient.seriesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's numbering series with the next number of each. Filterable and sortable by <code>documentType</code>, <code>prefix</code> and <code>year</code>.
+   */
   public CompletableFuture<SeriesListReferenceResponse> seriesList(
       SeriesListReferenceRequest request) {
     return this.rawClient.seriesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Lists the company's numbering series with the next number of each. Filterable and sortable by <code>documentType</code>, <code>prefix</code> and <code>year</code>.
+   */
   public CompletableFuture<SeriesListReferenceResponse> seriesList(
       SeriesListReferenceRequest request, RequestOptions requestOptions) {
     return this.rawClient.seriesList(request, requestOptions).thenApply(response -> response.body());

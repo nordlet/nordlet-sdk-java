@@ -166,21 +166,33 @@ public class AsyncRawPeppolClient {
       return future;
     }
 
+    /**
+     * Apply one event: a delivery status event updates the Peppol status of the sale invoice with that message id and, when the status changes, emits <code>sale_invoice.peppol_delivered</code>, <code>sale_invoice.peppol_rejected</code> or <code>sale_invoice.peppol_failed</code>; a received-document event fetches the document from the access point, stores it as a document capture with the matched supplier, emits <code>document_capture.peppol_received</code> and marks it read at the access point (a document already stored is skipped). <code>handled</code> is false when the event matched no invoice or document. Answers 404 when no company uses that provider account, 401 when the signature does not match.
+     */
     public CompletableFuture<NordletApiHttpResponse<WebhooksPeppolResponse>> webhooks(
         WebhooksPeppolRequestProvider provider, String companyId) {
       return webhooks(provider,companyId,WebhooksPeppolRequest.builder().build());
     }
 
+    /**
+     * Apply one event: a delivery status event updates the Peppol status of the sale invoice with that message id and, when the status changes, emits <code>sale_invoice.peppol_delivered</code>, <code>sale_invoice.peppol_rejected</code> or <code>sale_invoice.peppol_failed</code>; a received-document event fetches the document from the access point, stores it as a document capture with the matched supplier, emits <code>document_capture.peppol_received</code> and marks it read at the access point (a document already stored is skipped). <code>handled</code> is false when the event matched no invoice or document. Answers 404 when no company uses that provider account, 401 when the signature does not match.
+     */
     public CompletableFuture<NordletApiHttpResponse<WebhooksPeppolResponse>> webhooks(
         WebhooksPeppolRequestProvider provider, String companyId, RequestOptions requestOptions) {
       return webhooks(provider,companyId,WebhooksPeppolRequest.builder().build(),requestOptions);
     }
 
+    /**
+     * Apply one event: a delivery status event updates the Peppol status of the sale invoice with that message id and, when the status changes, emits <code>sale_invoice.peppol_delivered</code>, <code>sale_invoice.peppol_rejected</code> or <code>sale_invoice.peppol_failed</code>; a received-document event fetches the document from the access point, stores it as a document capture with the matched supplier, emits <code>document_capture.peppol_received</code> and marks it read at the access point (a document already stored is skipped). <code>handled</code> is false when the event matched no invoice or document. Answers 404 when no company uses that provider account, 401 when the signature does not match.
+     */
     public CompletableFuture<NordletApiHttpResponse<WebhooksPeppolResponse>> webhooks(
         WebhooksPeppolRequestProvider provider, String companyId, WebhooksPeppolRequest request) {
       return webhooks(provider,companyId,request,null);
     }
 
+    /**
+     * Apply one event: a delivery status event updates the Peppol status of the sale invoice with that message id and, when the status changes, emits <code>sale_invoice.peppol_delivered</code>, <code>sale_invoice.peppol_rejected</code> or <code>sale_invoice.peppol_failed</code>; a received-document event fetches the document from the access point, stores it as a document capture with the matched supplier, emits <code>document_capture.peppol_received</code> and marks it read at the access point (a document already stored is skipped). <code>handled</code> is false when the event matched no invoice or document. Answers 404 when no company uses that provider account, 401 when the signature does not match.
+     */
     public CompletableFuture<NordletApiHttpResponse<WebhooksPeppolResponse>> webhooks(
         WebhooksPeppolRequestProvider provider, String companyId, WebhooksPeppolRequest request,
         RequestOptions requestOptions) {

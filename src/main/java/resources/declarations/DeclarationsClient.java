@@ -212,175 +212,283 @@ public class DeclarationsClient {
     return this.rawClient;
   }
 
+  /**
+   * Builds the Lithuanian Intrastat report of a month for one flow as the IDAIS INTRASTATReportSubmission XML: dispatches from the issued sale invoices and purchase credit notes, arrivals from the registered purchase invoices and sale credit notes, grouped into report items. <code>transactionNature</code>, <code>deliveryTerms</code>, <code>transportMode</code> and <code>regionCode</code> are the defaults for lines without their own values; <code>statisticalValueRequired</code> adds the statistical value to each item. Answers 422 when the company is not a VAT payer. With <code>persist</code>, the file is stored and a submission for <code>lt-intrastat-arrivals</code> or <code>lt-intrastat-dispatches</code> is created.
+   */
   public LtIntrastatComputeDeclarationsResponse ltIntrastatCompute(
       LtIntrastatComputeDeclarationsRequest request) {
     return this.rawClient.ltIntrastatCompute(request).body();
   }
 
+  /**
+   * Builds the Lithuanian Intrastat report of a month for one flow as the IDAIS INTRASTATReportSubmission XML: dispatches from the issued sale invoices and purchase credit notes, arrivals from the registered purchase invoices and sale credit notes, grouped into report items. <code>transactionNature</code>, <code>deliveryTerms</code>, <code>transportMode</code> and <code>regionCode</code> are the defaults for lines without their own values; <code>statisticalValueRequired</code> adds the statistical value to each item. Answers 422 when the company is not a VAT payer. With <code>persist</code>, the file is stored and a submission for <code>lt-intrastat-arrivals</code> or <code>lt-intrastat-dispatches</code> is created.
+   */
   public LtIntrastatComputeDeclarationsResponse ltIntrastatCompute(
       LtIntrastatComputeDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.ltIntrastatCompute(request, requestOptions).body();
   }
 
+  /**
+   * Builds the i.VAZ transport document message (iVAZ1.3.3) for up to 100 issued waybills and returns the XML. Answers 422 when the registration code of the company is not numeric or when a waybill is not issued. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz</code> is created.
+   */
   public LtIvazGenerateDeclarationsResponse ltIvazGenerate(
       LtIvazGenerateDeclarationsRequest request) {
     return this.rawClient.ltIvazGenerate(request).body();
   }
 
+  /**
+   * Builds the i.VAZ transport document message (iVAZ1.3.3) for up to 100 issued waybills and returns the XML. Answers 422 when the registration code of the company is not numeric or when a waybill is not issued. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz</code> is created.
+   */
   public LtIvazGenerateDeclarationsResponse ltIvazGenerate(
       LtIvazGenerateDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.ltIvazGenerate(request, requestOptions).body();
   }
 
+  /**
+   * Checks the Intrastat reporting obligation of a year per flow: the value of goods traded with other Member States in the previous year, the month from which reporting is due (January when that value already passed the reporting threshold, else the month the cumulative value of the year passes it), whether the statistical value is required, and the monthly values. Answers 422 when no thresholds are stored for the year.
+   */
   public LtIntrastatObligationDeclarationsResponse ltIntrastatObligation(
       LtIntrastatObligationDeclarationsRequest request) {
     return this.rawClient.ltIntrastatObligation(request).body();
   }
 
+  /**
+   * Checks the Intrastat reporting obligation of a year per flow: the value of goods traded with other Member States in the previous year, the month from which reporting is due (January when that value already passed the reporting threshold, else the month the cumulative value of the year passes it), whether the statistical value is required, and the monthly values. Answers 422 when no thresholds are stored for the year.
+   */
   public LtIntrastatObligationDeclarationsResponse ltIntrastatObligation(
       LtIntrastatObligationDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.ltIntrastatObligation(request, requestOptions).body();
   }
 
+  /**
+   * Builds the Lithuanian i.SAF register XML of a month: <code>dataType</code> F covers both registers, S the issued sale invoices only, P the registered purchase invoices only. Returns the XML without storing it; <code>declarations/submissions/create</code> stores it as a submission.
+   */
   public LtIsafGenerateDeclarationsResponse ltIsafGenerate(
       LtIsafGenerateDeclarationsRequest request) {
     return this.rawClient.ltIsafGenerate(request).body();
   }
 
+  /**
+   * Builds the Lithuanian i.SAF register XML of a month: <code>dataType</code> F covers both registers, S the issued sale invoices only, P the registered purchase invoices only. Returns the XML without storing it; <code>declarations/submissions/create</code> stores it as a submission.
+   */
   public LtIsafGenerateDeclarationsResponse ltIsafGenerate(
       LtIsafGenerateDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.ltIsafGenerate(request, requestOptions).body();
   }
 
+  /**
+   * Computes the fields of the Lithuanian VAT return FR0600 for the period of <code>months</code> months starting in <code>month</code>, with the breakdown by VAT classifier behind them. <code>deductionPercent</code> is the share of input VAT deducted and is written to field 28.
+   */
   public LtFr0600ComputeDeclarationsResponse ltFr0600Compute(
       LtFr0600ComputeDeclarationsRequest request) {
     return this.rawClient.ltFr0600Compute(request).body();
   }
 
+  /**
+   * Computes the fields of the Lithuanian VAT return FR0600 for the period of <code>months</code> months starting in <code>month</code>, with the breakdown by VAT classifier behind them. <code>deductionPercent</code> is the share of input VAT deducted and is written to field 28.
+   */
   public LtFr0600ComputeDeclarationsResponse ltFr0600Compute(
       LtFr0600ComputeDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.ltFr0600Compute(request, requestOptions).body();
   }
 
+  /**
+   * Computes fields 5 to 7 of the monthly GPM313 from the payroll run of the month the pay was earned: the run of the previous month with <code>payoutTiming</code> <code>next-month</code>, the run of the same month with <code>same-month</code>. <code>paymentDay</code> decides whether the withheld tax goes to field 6 (paid by the 15th) or field 7 (after it). Fields 8 to 12 are returned as zero.
+   */
   public LtGpm313ComputeDeclarationsResponse ltGpm313Compute(
       LtGpm313ComputeDeclarationsRequest request) {
     return this.rawClient.ltGpm313Compute(request).body();
   }
 
+  /**
+   * Computes fields 5 to 7 of the monthly GPM313 from the payroll run of the month the pay was earned: the run of the previous month with <code>payoutTiming</code> <code>next-month</code>, the run of the same month with <code>same-month</code>. <code>paymentDay</code> decides whether the withheld tax goes to field 6 (paid by the 15th) or field 7 (after it). Fields 8 to 12 are returned as zero.
+   */
   public LtGpm313ComputeDeclarationsResponse ltGpm313Compute(
       LtGpm313ComputeDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.ltGpm313Compute(request, requestOptions).body();
   }
 
+  /**
+   * Computes the monthly SAM figures from the payroll run of the month: per employee the insured income, the employee and employer contributions together and the resulting tariff, plus the insured count and the totals. A missing run or a run still in draft is reported in the warnings.
+   */
   public LtSamComputeDeclarationsResponse ltSamCompute(LtSamComputeDeclarationsRequest request) {
     return this.rawClient.ltSamCompute(request).body();
   }
 
+  /**
+   * Computes the monthly SAM figures from the payroll run of the month: per employee the insured income, the employee and employer contributions together and the resulting tariff, plus the insured count and the totals. A missing run or a run still in draft is reported in the warnings.
+   */
   public LtSamComputeDeclarationsResponse ltSamCompute(LtSamComputeDeclarationsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ltSamCompute(request, requestOptions).body();
   }
 
+  /**
+   * Lists the rows of the 1-SD (employment contracts that start in the date range) or of the 2-SD (contracts that ended in the range, with the final insured income and contributions from the payroll line of the termination month). Answers 422 when <code>fromDate</code> is after <code>toDate</code>.
+   */
   public LtSdGenerateDeclarationsResponse ltSdGenerate(LtSdGenerateDeclarationsRequest request) {
     return this.rawClient.ltSdGenerate(request).body();
   }
 
+  /**
+   * Lists the rows of the 1-SD (employment contracts that start in the date range) or of the 2-SD (contracts that ended in the range, with the final insured income and contributions from the payroll line of the termination month). Answers 422 when <code>fromDate</code> is after <code>toDate</code>.
+   */
   public LtSdGenerateDeclarationsResponse ltSdGenerate(LtSdGenerateDeclarationsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ltSdGenerate(request, requestOptions).body();
   }
 
+  /**
+   * Builds the Lithuanian SAF-T (version 2.01) XML for a date range: <code>dataType</code> F is the full file, GL, SI, PI, PA, MG and AS limit it to the general ledger, sale invoices, purchase invoices, payments, movements of goods or asset transactions. Answers 422 when <code>fromDate</code> is after <code>toDate</code>. With <code>persist</code>, the file is stored and a submission for <code>lt-saft</code> is created.
+   */
   public LtSaftGenerateDeclarationsResponse ltSaftGenerate(
       LtSaftGenerateDeclarationsRequest request) {
     return this.rawClient.ltSaftGenerate(request).body();
   }
 
+  /**
+   * Builds the Lithuanian SAF-T (version 2.01) XML for a date range: <code>dataType</code> F is the full file, GL, SI, PI, PA, MG and AS limit it to the general ledger, sale invoices, purchase invoices, payments, movements of goods or asset transactions. Answers 422 when <code>fromDate</code> is after <code>toDate</code>. With <code>persist</code>, the file is stored and a submission for <code>lt-saft</code> is created.
+   */
   public LtSaftGenerateDeclarationsResponse ltSaftGenerate(
       LtSaftGenerateDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.ltSaftGenerate(request, requestOptions).body();
   }
 
+  /**
+   * Builds an i.VAZ amendment message for up to 100 issued waybills, carrying their current data as TransportDocumentAmendment elements. Answers 422 when the registration code of the company is not numeric or when a waybill is not issued. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz-amendment</code> is created.
+   */
   public LtIvazAmendDeclarationsResponse ltIvazAmend(LtIvazAmendDeclarationsRequest request) {
     return this.rawClient.ltIvazAmend(request).body();
   }
 
+  /**
+   * Builds an i.VAZ amendment message for up to 100 issued waybills, carrying their current data as TransportDocumentAmendment elements. Answers 422 when the registration code of the company is not numeric or when a waybill is not issued. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz-amendment</code> is created.
+   */
   public LtIvazAmendDeclarationsResponse ltIvazAmend(LtIvazAmendDeclarationsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ltIvazAmend(request, requestOptions).body();
   }
 
+  /**
+   * Builds an i.VAZ cancellation message for up to 100 waybills, each with a cancellation reason code and optional additional information. Answers 422 when the registration code of the company is not numeric; a waybill that was never issued is reported in the warnings. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz-cancellation</code> is created.
+   */
   public LtIvazCancelDeclarationsResponse ltIvazCancel(LtIvazCancelDeclarationsRequest request) {
     return this.rawClient.ltIvazCancel(request).body();
   }
 
+  /**
+   * Builds an i.VAZ cancellation message for up to 100 waybills, each with a cancellation reason code and optional additional information. Answers 422 when the registration code of the company is not numeric; a waybill that was never issued is reported in the warnings. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz-cancellation</code> is created.
+   */
   public LtIvazCancelDeclarationsResponse ltIvazCancel(LtIvazCancelDeclarationsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.ltIvazCancel(request, requestOptions).body();
   }
 
+  /**
+   * Computes the rows of the Lithuanian FR0564 report of a month from the issued sale invoices and credit notes with the <code>intra_eu_b2b</code> or <code>reverse_charge</code> scheme: one row per buyer VAT number of another Member State, with goods and services split by the type of the catalogue item. Invoices not in EUR and buyers without a valid EU VAT number are left out and named in the warnings; the triangular column is always zero.
+   */
   public LtFr0564ComputeDeclarationsResponse ltFr0564Compute(
       LtFr0564ComputeDeclarationsRequest request) {
     return this.rawClient.ltFr0564Compute(request).body();
   }
 
+  /**
+   * Computes the rows of the Lithuanian FR0564 report of a month from the issued sale invoices and credit notes with the <code>intra_eu_b2b</code> or <code>reverse_charge</code> scheme: one row per buyer VAT number of another Member State, with goods and services split by the type of the catalogue item. Invoices not in EUR and buyers without a valid EU VAT number are left out and named in the warnings; the triangular column is always zero.
+   */
   public LtFr0564ComputeDeclarationsResponse ltFr0564Compute(
       LtFr0564ComputeDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.ltFr0564Compute(request, requestOptions).body();
   }
 
+  /**
+   * Computes the rows of the annual GPM312 from the payroll runs of the payout months of the year (December of the previous year to November with <code>payoutTiming</code> <code>next-month</code>, January to December with <code>same-month</code>): one row per employee and payment type code, with the amount paid, the tax withheld and the rate applied.
+   */
   public LtGpm312ComputeDeclarationsResponse ltGpm312Compute(
       LtGpm312ComputeDeclarationsRequest request) {
     return this.rawClient.ltGpm312Compute(request).body();
   }
 
+  /**
+   * Computes the rows of the annual GPM312 from the payroll runs of the payout months of the year (December of the previous year to November with <code>payoutTiming</code> <code>next-month</code>, January to December with <code>same-month</code>): one row per employee and payment type code, with the amount paid, the tax withheld and the rate applied.
+   */
   public LtGpm312ComputeDeclarationsResponse ltGpm312Compute(
       LtGpm312ComputeDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.ltGpm312Compute(request, requestOptions).body();
   }
 
+  /**
+   * Computes the boxes of the Lithuanian annual corporate income tax return PLN204 for the fiscal year from the financial statements and the tax adjustments recorded with <code>declarations/tax-adjustments/create</code>: the PLN204S annex from the <code>non_deductible</code> adjustments and the PLN204Z annex from the <code>non_taxable_income</code> ones, by their <code>code</code>. The small-entity rate is applied when the size criteria allow it. Answers 422 when such an adjustment has no code or a code the annex does not list, or when no rate table covers the period.
+   */
   public LtPln204ComputeDeclarationsResponse ltPln204Compute(
       LtPln204ComputeDeclarationsRequest request) {
     return this.rawClient.ltPln204Compute(request).body();
   }
 
+  /**
+   * Computes the boxes of the Lithuanian annual corporate income tax return PLN204 for the fiscal year from the financial statements and the tax adjustments recorded with <code>declarations/tax-adjustments/create</code>: the PLN204S annex from the <code>non_deductible</code> adjustments and the PLN204Z annex from the <code>non_taxable_income</code> ones, by their <code>code</code>. The small-entity rate is applied when the size criteria allow it. Answers 422 when such an adjustment has no code or a code the annex does not list, or when no rate table covers the period.
+   */
   public LtPln204ComputeDeclarationsResponse ltPln204Compute(
       LtPln204ComputeDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.ltPln204Compute(request, requestOptions).body();
   }
 
+  /**
+   * Computes the Union OSS return of a quarter from the issued invoices and credit notes with the <code>oss_union</code> VAT scheme: one row per Member State of consumption and VAT rate, classified as standard or reduced, and a corrections section for the credit notes that credit invoices of earlier periods. Amounts are in EUR, converted at the official rate of the last day of the period. Answers 422 when the company is not established in the EU.
+   */
   public EuOssComputeDeclarationsResponse euOssCompute(EuOssComputeDeclarationsRequest request) {
     return this.rawClient.euOssCompute(request).body();
   }
 
+  /**
+   * Computes the Union OSS return of a quarter from the issued invoices and credit notes with the <code>oss_union</code> VAT scheme: one row per Member State of consumption and VAT rate, classified as standard or reduced, and a corrections section for the credit notes that credit invoices of earlier periods. Amounts are in EUR, converted at the official rate of the last day of the period. Answers 422 when the company is not established in the EU.
+   */
   public EuOssComputeDeclarationsResponse euOssCompute(EuOssComputeDeclarationsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.euOssCompute(request, requestOptions).body();
   }
 
+  /**
+   * Computes the IOSS return of a month from the issued invoices and credit notes with the <code>ioss</code> VAT scheme, with the same rows, corrections and EUR conversion as <code>declarations/eu/oss/compute</code>. Answers 422 when the company is not established in the EU.
+   */
   public EuIossComputeDeclarationsResponse euIossCompute(EuIossComputeDeclarationsRequest request) {
     return this.rawClient.euIossCompute(request).body();
   }
 
+  /**
+   * Computes the IOSS return of a month from the issued invoices and credit notes with the <code>ioss</code> VAT scheme, with the same rows, corrections and EUR conversion as <code>declarations/eu/oss/compute</code>. Answers 422 when the company is not established in the EU.
+   */
   public EuIossComputeDeclarationsResponse euIossCompute(EuIossComputeDeclarationsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.euIossCompute(request, requestOptions).body();
   }
 
+  /**
+   * Builds the monthly return of the special scheme for transfers of own goods from the warehouse transfers between warehouses in two different EU Member States: one row per destination and dispatch country with the cost of the goods as the taxable amount in EUR, the transfers behind the rows, and the due date. Answers 422 when the company is not established in the EU.
+   */
   public EuOwnGoodsTransfersComputeDeclarationsResponse euOwnGoodsTransfersCompute(
       EuOwnGoodsTransfersComputeDeclarationsRequest request) {
     return this.rawClient.euOwnGoodsTransfersCompute(request).body();
   }
 
+  /**
+   * Builds the monthly return of the special scheme for transfers of own goods from the warehouse transfers between warehouses in two different EU Member States: one row per destination and dispatch country with the cost of the goods as the taxable amount in EUR, the transfers behind the rows, and the due date. Answers 422 when the company is not established in the EU.
+   */
   public EuOwnGoodsTransfersComputeDeclarationsResponse euOwnGoodsTransfersCompute(
       EuOwnGoodsTransfersComputeDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.euOwnGoodsTransfersCompute(request, requestOptions).body();
   }
 
+  /**
+   * Lists the transactions of a date range that fall under EU digital reporting: issued sale invoices and credit notes with the <code>intra_eu_b2b</code> or <code>reverse_charge</code> scheme to EU customers, and registered purchase invoices from suppliers in other Member States whose lines carry a self-assessed VAT classifier. Each transaction names the article it is reported under, the Member State it is reported to, its deadline and the data still missing. Answers 422 when the company is not identified for VAT in the EU.
+   */
   public EuDigitalReportingListDeclarationsResponse euDigitalReportingList(
       EuDigitalReportingListDeclarationsRequest request) {
     return this.rawClient.euDigitalReportingList(request).body();
   }
 
+  /**
+   * Lists the transactions of a date range that fall under EU digital reporting: issued sale invoices and credit notes with the <code>intra_eu_b2b</code> or <code>reverse_charge</code> scheme to EU customers, and registered purchase invoices from suppliers in other Member States whose lines carry a self-assessed VAT classifier. Each transaction names the article it is reported under, the Member State it is reported to, its deadline and the data still missing. Answers 422 when the company is not identified for VAT in the EU.
+   */
   public EuDigitalReportingListDeclarationsResponse euDigitalReportingList(
       EuDigitalReportingListDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.euDigitalReportingList(request, requestOptions).body();
@@ -401,123 +509,201 @@ public class DeclarationsClient {
     return this.rawClient.euDac7Preview(request, requestOptions).body();
   }
 
+  /**
+   * Builds the DAC7 (DPI) XML report of a year for the Member State of the company and returns it base64-encoded with the file name the administration expects. Answers 422 when no DAC7 filing channel exists for the company country. The sellers and the missing data behind it come from <code>declarations/eu/dac7/preview</code>.
+   */
   public EuDac7XmlDeclarationsResponse euDac7Xml(EuDac7XmlDeclarationsRequest request) {
     return this.rawClient.euDac7Xml(request).body();
   }
 
+  /**
+   * Builds the DAC7 (DPI) XML report of a year for the Member State of the company and returns it base64-encoded with the file name the administration expects. Answers 422 when no DAC7 filing channel exists for the company country. The sellers and the missing data behind it come from <code>declarations/eu/dac7/preview</code>.
+   */
   public EuDac7XmlDeclarationsResponse euDac7Xml(EuDac7XmlDeclarationsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.euDac7Xml(request, requestOptions).body();
   }
 
+  /**
+   * Sums the cross-border sales to EU consumers (invoices under the <code>oss_union</code> scheme, and domestic-scheme invoices to partners without a VAT number in another Member State) of the current and the preceding calendar year as of <code>date</code> (default: the current date of the company) and compares both with the EUR 10 000 distance sales threshold.
+   */
   public EuDistanceSalesThresholdGetDeclarationsResponse euDistanceSalesThresholdGet() {
     return this.rawClient.euDistanceSalesThresholdGet().body();
   }
 
+  /**
+   * Sums the cross-border sales to EU consumers (invoices under the <code>oss_union</code> scheme, and domestic-scheme invoices to partners without a VAT number in another Member State) of the current and the preceding calendar year as of <code>date</code> (default: the current date of the company) and compares both with the EUR 10 000 distance sales threshold.
+   */
   public EuDistanceSalesThresholdGetDeclarationsResponse euDistanceSalesThresholdGet(
       RequestOptions requestOptions) {
     return this.rawClient.euDistanceSalesThresholdGet(requestOptions).body();
   }
 
+  /**
+   * Sums the cross-border sales to EU consumers (invoices under the <code>oss_union</code> scheme, and domestic-scheme invoices to partners without a VAT number in another Member State) of the current and the preceding calendar year as of <code>date</code> (default: the current date of the company) and compares both with the EUR 10 000 distance sales threshold.
+   */
   public EuDistanceSalesThresholdGetDeclarationsResponse euDistanceSalesThresholdGet(
       EuDistanceSalesThresholdGetDeclarationsRequest request) {
     return this.rawClient.euDistanceSalesThresholdGet(request).body();
   }
 
+  /**
+   * Sums the cross-border sales to EU consumers (invoices under the <code>oss_union</code> scheme, and domestic-scheme invoices to partners without a VAT number in another Member State) of the current and the preceding calendar year as of <code>date</code> (default: the current date of the company) and compares both with the EUR 10 000 distance sales threshold.
+   */
   public EuDistanceSalesThresholdGetDeclarationsResponse euDistanceSalesThresholdGet(
       EuDistanceSalesThresholdGetDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.euDistanceSalesThresholdGet(request, requestOptions).body();
   }
 
+  /**
+   * Sums the turnover of the company within the Union (issued invoices and credit notes other than export and out-of-scope supplies) for the current and the previous calendar year as of <code>date</code> (default: the current date of the company) and compares it with the EUR 100 000 cap of the cross-border SME scheme. The status is <code>not_applicable</code> for a registered VAT payer, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>.
+   */
   public EuUnionTurnoverGetDeclarationsResponse euUnionTurnoverGet() {
     return this.rawClient.euUnionTurnoverGet().body();
   }
 
+  /**
+   * Sums the turnover of the company within the Union (issued invoices and credit notes other than export and out-of-scope supplies) for the current and the previous calendar year as of <code>date</code> (default: the current date of the company) and compares it with the EUR 100 000 cap of the cross-border SME scheme. The status is <code>not_applicable</code> for a registered VAT payer, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>.
+   */
   public EuUnionTurnoverGetDeclarationsResponse euUnionTurnoverGet(RequestOptions requestOptions) {
     return this.rawClient.euUnionTurnoverGet(requestOptions).body();
   }
 
+  /**
+   * Sums the turnover of the company within the Union (issued invoices and credit notes other than export and out-of-scope supplies) for the current and the previous calendar year as of <code>date</code> (default: the current date of the company) and compares it with the EUR 100 000 cap of the cross-border SME scheme. The status is <code>not_applicable</code> for a registered VAT payer, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>.
+   */
   public EuUnionTurnoverGetDeclarationsResponse euUnionTurnoverGet(
       EuUnionTurnoverGetDeclarationsRequest request) {
     return this.rawClient.euUnionTurnoverGet(request).body();
   }
 
+  /**
+   * Sums the turnover of the company within the Union (issued invoices and credit notes other than export and out-of-scope supplies) for the current and the previous calendar year as of <code>date</code> (default: the current date of the company) and compares it with the EUR 100 000 cap of the cross-border SME scheme. The status is <code>not_applicable</code> for a registered VAT payer, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>.
+   */
   public EuUnionTurnoverGetDeclarationsResponse euUnionTurnoverGet(
       EuUnionTurnoverGetDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.euUnionTurnoverGet(request, requestOptions).body();
   }
 
+  /**
+   * Builds the quarterly report of the cross-border SME scheme: the value of the issued supplies within the Union per Member State of supply (the VAT country of the invoice, else the country of the partner, else the home country), in the base currency of the company. Supplies that resolve to a non-EU country are left out and named in the warnings.
+   */
   public EuSmeCrossBorderReportComputeDeclarationsResponse euSmeCrossBorderReportCompute(
       EuSmeCrossBorderReportComputeDeclarationsRequest request) {
     return this.rawClient.euSmeCrossBorderReportCompute(request).body();
   }
 
+  /**
+   * Builds the quarterly report of the cross-border SME scheme: the value of the issued supplies within the Union per Member State of supply (the VAT country of the invoice, else the country of the partner, else the home country), in the base currency of the company. Supplies that resolve to a non-EU country are left out and named in the warnings.
+   */
   public EuSmeCrossBorderReportComputeDeclarationsResponse euSmeCrossBorderReportCompute(
       EuSmeCrossBorderReportComputeDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.euSmeCrossBorderReportCompute(request, requestOptions).body();
   }
 
+  /**
+   * Returns the stored table of national SME VAT exemption thresholds per Member State, with sector thresholds and intra-EU acquisition triggers where recorded, and the national and Union-wide caps of the directive. No company data is read.
+   */
   public EuSmeThresholdsListDeclarationsResponse euSmeThresholdsList() {
     return this.rawClient.euSmeThresholdsList().body();
   }
 
+  /**
+   * Returns the stored table of national SME VAT exemption thresholds per Member State, with sector thresholds and intra-EU acquisition triggers where recorded, and the national and Union-wide caps of the directive. No company data is read.
+   */
   public EuSmeThresholdsListDeclarationsResponse euSmeThresholdsList(
       RequestOptions requestOptions) {
     return this.rawClient.euSmeThresholdsList(requestOptions).body();
   }
 
+  /**
+   * Returns the stored table of national SME VAT exemption thresholds per Member State, with sector thresholds and intra-EU acquisition triggers where recorded, and the national and Union-wide caps of the directive. No company data is read.
+   */
   public EuSmeThresholdsListDeclarationsResponse euSmeThresholdsList(
       EuSmeThresholdsListDeclarationsRequest request) {
     return this.rawClient.euSmeThresholdsList(request).body();
   }
 
+  /**
+   * Returns the stored table of national SME VAT exemption thresholds per Member State, with sector thresholds and intra-EU acquisition triggers where recorded, and the national and Union-wide caps of the directive. No company data is read.
+   */
   public EuSmeThresholdsListDeclarationsResponse euSmeThresholdsList(
       EuSmeThresholdsListDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.euSmeThresholdsList(request, requestOptions).body();
   }
 
+  /**
+   * Compares the gross turnover of the company in the current calendar year as of <code>date</code> (default: the current date of the company) with the national SME exemption threshold of its country. The status is <code>not_applicable</code> for a registered VAT payer, <code>unknown</code> when no threshold is on file or its currency differs from the base currency, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>; when the country has an intra-EU acquisitions trigger, the acquisitions from and services to other Member States are compared with it too.
+   */
   public EuSmeThresholdGetDeclarationsResponse euSmeThresholdGet() {
     return this.rawClient.euSmeThresholdGet().body();
   }
 
+  /**
+   * Compares the gross turnover of the company in the current calendar year as of <code>date</code> (default: the current date of the company) with the national SME exemption threshold of its country. The status is <code>not_applicable</code> for a registered VAT payer, <code>unknown</code> when no threshold is on file or its currency differs from the base currency, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>; when the country has an intra-EU acquisitions trigger, the acquisitions from and services to other Member States are compared with it too.
+   */
   public EuSmeThresholdGetDeclarationsResponse euSmeThresholdGet(RequestOptions requestOptions) {
     return this.rawClient.euSmeThresholdGet(requestOptions).body();
   }
 
+  /**
+   * Compares the gross turnover of the company in the current calendar year as of <code>date</code> (default: the current date of the company) with the national SME exemption threshold of its country. The status is <code>not_applicable</code> for a registered VAT payer, <code>unknown</code> when no threshold is on file or its currency differs from the base currency, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>; when the country has an intra-EU acquisitions trigger, the acquisitions from and services to other Member States are compared with it too.
+   */
   public EuSmeThresholdGetDeclarationsResponse euSmeThresholdGet(
       EuSmeThresholdGetDeclarationsRequest request) {
     return this.rawClient.euSmeThresholdGet(request).body();
   }
 
+  /**
+   * Compares the gross turnover of the company in the current calendar year as of <code>date</code> (default: the current date of the company) with the national SME exemption threshold of its country. The status is <code>not_applicable</code> for a registered VAT payer, <code>unknown</code> when no threshold is on file or its currency differs from the base currency, otherwise <code>below</code>, <code>approaching</code> or <code>exceeded</code>; when the country has an intra-EU acquisitions trigger, the acquisitions from and services to other Member States are compared with it too.
+   */
   public EuSmeThresholdGetDeclarationsResponse euSmeThresholdGet(
       EuSmeThresholdGetDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.euSmeThresholdGet(request, requestOptions).body();
   }
 
+  /**
+   * Lists the national VAT return forms Nordlet can compute, with the country, form key, form name, filing frequency and source.
+   */
   public EuVatReturnPacksListDeclarationsResponse euVatReturnPacksList() {
     return this.rawClient.euVatReturnPacksList().body();
   }
 
+  /**
+   * Lists the national VAT return forms Nordlet can compute, with the country, form key, form name, filing frequency and source.
+   */
   public EuVatReturnPacksListDeclarationsResponse euVatReturnPacksList(
       RequestOptions requestOptions) {
     return this.rawClient.euVatReturnPacksList(requestOptions).body();
   }
 
+  /**
+   * Lists the national VAT return forms Nordlet can compute, with the country, form key, form name, filing frequency and source.
+   */
   public EuVatReturnPacksListDeclarationsResponse euVatReturnPacksList(
       EuVatReturnPacksListDeclarationsRequest request) {
     return this.rawClient.euVatReturnPacksList(request).body();
   }
 
+  /**
+   * Lists the national VAT return forms Nordlet can compute, with the country, form key, form name, filing frequency and source.
+   */
   public EuVatReturnPacksListDeclarationsResponse euVatReturnPacksList(
       EuVatReturnPacksListDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.euVatReturnPacksList(request, requestOptions).body();
   }
 
+  /**
+   * Computes the national VAT return of <code>countryCode</code> for the period of <code>months</code> months starting in <code>month</code>, as the numbered boxes of the form with labels and amounts. Answers 422 when no return pack is registered for the country; the packs are listed by <code>declarations/eu/vat-return/packs/list</code>.
+   */
   public EuVatReturnComputeDeclarationsResponse euVatReturnCompute(
       EuVatReturnComputeDeclarationsRequest request) {
     return this.rawClient.euVatReturnCompute(request).body();
   }
 
+  /**
+   * Computes the national VAT return of <code>countryCode</code> for the period of <code>months</code> months starting in <code>month</code>, as the numbered boxes of the form with labels and amounts. Answers 422 when no return pack is registered for the country; the packs are listed by <code>declarations/eu/vat-return/packs/list</code>.
+   */
   public EuVatReturnComputeDeclarationsResponse euVatReturnCompute(
       EuVatReturnComputeDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.euVatReturnCompute(request, requestOptions).body();
@@ -648,31 +834,49 @@ public class DeclarationsClient {
     return this.rawClient.taxAdjustmentsList(request, requestOptions).body();
   }
 
+  /**
+   * Records a tax adjustment of one kind for a tax year, with an optional form <code>code</code>. Answers 422 when the amount is zero.
+   */
   public TaxAdjustmentsCreateDeclarationsResponse taxAdjustmentsCreate(
       TaxAdjustmentsCreateDeclarationsRequest request) {
     return this.rawClient.taxAdjustmentsCreate(request).body();
   }
 
+  /**
+   * Records a tax adjustment of one kind for a tax year, with an optional form <code>code</code>. Answers 422 when the amount is zero.
+   */
   public TaxAdjustmentsCreateDeclarationsResponse taxAdjustmentsCreate(
       TaxAdjustmentsCreateDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.taxAdjustmentsCreate(request, requestOptions).body();
   }
 
+  /**
+   * Changes the kind, code, amount or description of a recorded tax adjustment; fields left out keep their value and an empty <code>code</code> clears it. Answers 422 when the new amount is zero.
+   */
   public TaxAdjustmentsUpdateDeclarationsResponse taxAdjustmentsUpdate(
       TaxAdjustmentsUpdateDeclarationsRequest request) {
     return this.rawClient.taxAdjustmentsUpdate(request).body();
   }
 
+  /**
+   * Changes the kind, code, amount or description of a recorded tax adjustment; fields left out keep their value and an empty <code>code</code> clears it. Answers 422 when the new amount is zero.
+   */
   public TaxAdjustmentsUpdateDeclarationsResponse taxAdjustmentsUpdate(
       TaxAdjustmentsUpdateDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.taxAdjustmentsUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Deletes a recorded tax adjustment.
+   */
   public TaxAdjustmentsDeleteDeclarationsResponse taxAdjustmentsDelete(
       TaxAdjustmentsDeleteDeclarationsRequest request) {
     return this.rawClient.taxAdjustmentsDelete(request).body();
   }
 
+  /**
+   * Deletes a recorded tax adjustment.
+   */
   public TaxAdjustmentsDeleteDeclarationsResponse taxAdjustmentsDelete(
       TaxAdjustmentsDeleteDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.taxAdjustmentsDelete(request, requestOptions).body();
@@ -694,31 +898,49 @@ public class DeclarationsClient {
     return this.rawClient.taxPaymentsList(request, requestOptions).body();
   }
 
+  /**
+   * Records a payment made towards a tax (<code>tax</code>) of a year, and of a month when given, as an advance payment, tax withheld by others, a final settlement or a refund received. Answers 422 when the amount is zero.
+   */
   public TaxPaymentsCreateDeclarationsResponse taxPaymentsCreate(
       TaxPaymentsCreateDeclarationsRequest request) {
     return this.rawClient.taxPaymentsCreate(request).body();
   }
 
+  /**
+   * Records a payment made towards a tax (<code>tax</code>) of a year, and of a month when given, as an advance payment, tax withheld by others, a final settlement or a refund received. Answers 422 when the amount is zero.
+   */
   public TaxPaymentsCreateDeclarationsResponse taxPaymentsCreate(
       TaxPaymentsCreateDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.taxPaymentsCreate(request, requestOptions).body();
   }
 
+  /**
+   * Changes the kind, amount, payment date, reference or description of a recorded tax payment; fields left out keep their value and an empty <code>reference</code> clears it. Answers 422 when the new amount is zero.
+   */
   public TaxPaymentsUpdateDeclarationsResponse taxPaymentsUpdate(
       TaxPaymentsUpdateDeclarationsRequest request) {
     return this.rawClient.taxPaymentsUpdate(request).body();
   }
 
+  /**
+   * Changes the kind, amount, payment date, reference or description of a recorded tax payment; fields left out keep their value and an empty <code>reference</code> clears it. Answers 422 when the new amount is zero.
+   */
   public TaxPaymentsUpdateDeclarationsResponse taxPaymentsUpdate(
       TaxPaymentsUpdateDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.taxPaymentsUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Deletes a recorded tax payment.
+   */
   public TaxPaymentsDeleteDeclarationsResponse taxPaymentsDelete(
       TaxPaymentsDeleteDeclarationsRequest request) {
     return this.rawClient.taxPaymentsDelete(request).body();
   }
 
+  /**
+   * Deletes a recorded tax payment.
+   */
   public TaxPaymentsDeleteDeclarationsResponse taxPaymentsDelete(
       TaxPaymentsDeleteDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.taxPaymentsDelete(request, requestOptions).body();
@@ -740,71 +962,113 @@ public class DeclarationsClient {
     return this.rawClient.annualAccountsGet(request, requestOptions).body();
   }
 
+  /**
+   * Creates or replaces the record of a year: whether and when the accounts were adopted, when they were prepared, whether they were audited (with the qualification flag and the auditor report date) or the auditor was not elected, the report texts and the appropriation of the result. Answers 422 when <code>adopted</code> is true without <code>adoptionDate</code>, when the adoption date is not after 31 December of the year, or when the date of preparation is after the adoption date.
+   */
   public AnnualAccountsSetDeclarationsResponse annualAccountsSet(
       AnnualAccountsSetDeclarationsRequest request) {
     return this.rawClient.annualAccountsSet(request).body();
   }
 
+  /**
+   * Creates or replaces the record of a year: whether and when the accounts were adopted, when they were prepared, whether they were audited (with the qualification flag and the auditor report date) or the auditor was not elected, the report texts and the appropriation of the result. Answers 422 when <code>adopted</code> is true without <code>adoptionDate</code>, when the adoption date is not after 31 December of the year, or when the date of preparation is after the adoption date.
+   */
   public AnnualAccountsSetDeclarationsResponse annualAccountsSet(
       AnnualAccountsSetDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.annualAccountsSet(request, requestOptions).body();
   }
 
+  /**
+   * Adds a director to the signatures of the annual accounts of the year: signed, with the date and place of signature, or not signed, with the reason. Answers 422 when no annual accounts record exists for the year (<code>declarations/annual-accounts/set</code> first), when a signed entry lacks the date or the place, or when an unsigned entry lacks the reason.
+   */
   public AnnualAccountsSignaturesCreateDeclarationsResponse annualAccountsSignaturesCreate(
       AnnualAccountsSignaturesCreateDeclarationsRequest request) {
     return this.rawClient.annualAccountsSignaturesCreate(request).body();
   }
 
+  /**
+   * Adds a director to the signatures of the annual accounts of the year: signed, with the date and place of signature, or not signed, with the reason. Answers 422 when no annual accounts record exists for the year (<code>declarations/annual-accounts/set</code> first), when a signed entry lacks the date or the place, or when an unsigned entry lacks the reason.
+   */
   public AnnualAccountsSignaturesCreateDeclarationsResponse annualAccountsSignaturesCreate(
       AnnualAccountsSignaturesCreateDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.annualAccountsSignaturesCreate(request, requestOptions).body();
   }
 
+  /**
+   * Replaces the name, type and signing facts of a recorded director signature. Answers 422 when a signed entry lacks the date or the place of signature, or when an unsigned entry lacks the reason.
+   */
   public AnnualAccountsSignaturesUpdateDeclarationsResponse annualAccountsSignaturesUpdate(
       AnnualAccountsSignaturesUpdateDeclarationsRequest request) {
     return this.rawClient.annualAccountsSignaturesUpdate(request).body();
   }
 
+  /**
+   * Replaces the name, type and signing facts of a recorded director signature. Answers 422 when a signed entry lacks the date or the place of signature, or when an unsigned entry lacks the reason.
+   */
   public AnnualAccountsSignaturesUpdateDeclarationsResponse annualAccountsSignaturesUpdate(
       AnnualAccountsSignaturesUpdateDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.annualAccountsSignaturesUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Deletes a recorded director signature.
+   */
   public AnnualAccountsSignaturesDeleteDeclarationsResponse annualAccountsSignaturesDelete(
       AnnualAccountsSignaturesDeleteDeclarationsRequest request) {
     return this.rawClient.annualAccountsSignaturesDelete(request).body();
   }
 
+  /**
+   * Deletes a recorded director signature.
+   */
   public AnnualAccountsSignaturesDeleteDeclarationsResponse annualAccountsSignaturesDelete(
       AnnualAccountsSignaturesDeleteDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.annualAccountsSignaturesDelete(request, requestOptions).body();
   }
 
+  /**
+   * Adds a profit distribution decision (decision date, kind, amount, description) to the annual accounts record of the year. Answers 422 when no annual accounts record exists for the year.
+   */
   public AnnualAccountsDistributionsCreateDeclarationsResponse annualAccountsDistributionsCreate(
       AnnualAccountsDistributionsCreateDeclarationsRequest request) {
     return this.rawClient.annualAccountsDistributionsCreate(request).body();
   }
 
+  /**
+   * Adds a profit distribution decision (decision date, kind, amount, description) to the annual accounts record of the year. Answers 422 when no annual accounts record exists for the year.
+   */
   public AnnualAccountsDistributionsCreateDeclarationsResponse annualAccountsDistributionsCreate(
       AnnualAccountsDistributionsCreateDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.annualAccountsDistributionsCreate(request, requestOptions).body();
   }
 
+  /**
+   * Replaces the decision date, kind, amount and description of a recorded profit distribution.
+   */
   public AnnualAccountsDistributionsUpdateDeclarationsResponse annualAccountsDistributionsUpdate(
       AnnualAccountsDistributionsUpdateDeclarationsRequest request) {
     return this.rawClient.annualAccountsDistributionsUpdate(request).body();
   }
 
+  /**
+   * Replaces the decision date, kind, amount and description of a recorded profit distribution.
+   */
   public AnnualAccountsDistributionsUpdateDeclarationsResponse annualAccountsDistributionsUpdate(
       AnnualAccountsDistributionsUpdateDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.annualAccountsDistributionsUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Deletes a recorded profit distribution.
+   */
   public AnnualAccountsDistributionsDeleteDeclarationsResponse annualAccountsDistributionsDelete(
       AnnualAccountsDistributionsDeleteDeclarationsRequest request) {
     return this.rawClient.annualAccountsDistributionsDelete(request).body();
   }
 
+  /**
+   * Deletes a recorded profit distribution.
+   */
   public AnnualAccountsDistributionsDeleteDeclarationsResponse annualAccountsDistributionsDelete(
       AnnualAccountsDistributionsDeleteDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.annualAccountsDistributionsDelete(request, requestOptions).body();
@@ -826,11 +1090,17 @@ public class DeclarationsClient {
     return this.rawClient.annualAccountsAttachmentsAdd(request, requestOptions).body();
   }
 
+  /**
+   * Removes the attachment from the annual accounts and deletes its file record and the stored bytes.
+   */
   public AnnualAccountsAttachmentsDeleteDeclarationsResponse annualAccountsAttachmentsDelete(
       AnnualAccountsAttachmentsDeleteDeclarationsRequest request) {
     return this.rawClient.annualAccountsAttachmentsDelete(request).body();
   }
 
+  /**
+   * Removes the attachment from the annual accounts and deletes its file record and the stored bytes.
+   */
   public AnnualAccountsAttachmentsDeleteDeclarationsResponse annualAccountsAttachmentsDelete(
       AnnualAccountsAttachmentsDeleteDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.annualAccountsAttachmentsDelete(request, requestOptions).body();
@@ -1356,141 +1626,231 @@ public class DeclarationsClient {
     return this.rawClient.liLohnlistenGenerate(request, requestOptions).body();
   }
 
+  /**
+   * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it.
+   */
   public ConfigsListDeclarationsResponse configsList() {
     return this.rawClient.configsList().body();
   }
 
+  /**
+   * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it.
+   */
   public ConfigsListDeclarationsResponse configsList(RequestOptions requestOptions) {
     return this.rawClient.configsList(requestOptions).body();
   }
 
+  /**
+   * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it.
+   */
   public ConfigsListDeclarationsResponse configsList(ConfigsListDeclarationsRequest request) {
     return this.rawClient.configsList(request).body();
   }
 
+  /**
+   * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it.
+   */
   public ConfigsListDeclarationsResponse configsList(ConfigsListDeclarationsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.configsList(request, requestOptions).body();
   }
 
+  /**
+   * Stores the settings of one filing system for the company, merging the given fields into the stored ones. A secret or certificate value is encrypted before it is stored, an empty string clears a field, and <code>__secret_set__</code> leaves a stored secret unchanged. Answers 422 for an unknown system.
+   */
   public ConfigsUpdateDeclarationsResponse configsUpdate(ConfigsUpdateDeclarationsRequest request) {
     return this.rawClient.configsUpdate(request).body();
   }
 
+  /**
+   * Stores the settings of one filing system for the company, merging the given fields into the stored ones. A secret or certificate value is encrypted before it is stored, an empty string clears a field, and <code>__secret_set__</code> leaves a stored secret unchanged. Answers 422 for an unknown system.
+   */
   public ConfigsUpdateDeclarationsResponse configsUpdate(ConfigsUpdateDeclarationsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.configsUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Stores a PEM certificate, a PEM private key or a PKCS#12 bundle (base64 in <code>content</code>, opened with <code>passphrase</code> when it needs one) in the settings of the filing system and replaces the earlier upload of the same kind; for a PEM certificate the fingerprint, subject, issuer and validity dates are recorded. Answers 422 when the system is unknown or does not authenticate with a certificate. Returns the full certificate list of the company.
+   */
   public CertificatesUploadDeclarationsResponse certificatesUpload(
       CertificatesUploadDeclarationsRequest request) {
     return this.rawClient.certificatesUpload(request).body();
   }
 
+  /**
+   * Stores a PEM certificate, a PEM private key or a PKCS#12 bundle (base64 in <code>content</code>, opened with <code>passphrase</code> when it needs one) in the settings of the filing system and replaces the earlier upload of the same kind; for a PEM certificate the fingerprint, subject, issuer and validity dates are recorded. Answers 422 when the system is unknown or does not authenticate with a certificate. Returns the full certificate list of the company.
+   */
   public CertificatesUploadDeclarationsResponse certificatesUpload(
       CertificatesUploadDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.certificatesUpload(request, requestOptions).body();
   }
 
+  /**
+   * Lists the certificates and private keys stored for the filing systems of the company, ordered by system and field, each with its validity facts and health (<code>ok</code>, <code>expiring</code>, <code>expired</code> or <code>unknown</code>).
+   */
   public CertificatesListDeclarationsResponse certificatesList() {
     return this.rawClient.certificatesList().body();
   }
 
+  /**
+   * Lists the certificates and private keys stored for the filing systems of the company, ordered by system and field, each with its validity facts and health (<code>ok</code>, <code>expiring</code>, <code>expired</code> or <code>unknown</code>).
+   */
   public CertificatesListDeclarationsResponse certificatesList(RequestOptions requestOptions) {
     return this.rawClient.certificatesList(requestOptions).body();
   }
 
+  /**
+   * Lists the certificates and private keys stored for the filing systems of the company, ordered by system and field, each with its validity facts and health (<code>ok</code>, <code>expiring</code>, <code>expired</code> or <code>unknown</code>).
+   */
   public CertificatesListDeclarationsResponse certificatesList(
       CertificatesListDeclarationsRequest request) {
     return this.rawClient.certificatesList(request).body();
   }
 
+  /**
+   * Lists the certificates and private keys stored for the filing systems of the company, ordered by system and field, each with its validity facts and health (<code>ok</code>, <code>expiring</code>, <code>expired</code> or <code>unknown</code>).
+   */
   public CertificatesListDeclarationsResponse certificatesList(
       CertificatesListDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.certificatesList(request, requestOptions).body();
   }
 
+  /**
+   * Removes the certificate or the private key (<code>fieldKey</code>) of a filing system from the settings of the company and from the certificate list, and returns the remaining certificates.
+   */
   public CertificatesDeleteDeclarationsResponse certificatesDelete(
       CertificatesDeleteDeclarationsRequest request) {
     return this.rawClient.certificatesDelete(request).body();
   }
 
+  /**
+   * Removes the certificate or the private key (<code>fieldKey</code>) of a filing system from the settings of the company and from the certificate list, and returns the remaining certificates.
+   */
   public CertificatesDeleteDeclarationsResponse certificatesDelete(
       CertificatesDeleteDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.certificatesDelete(request, requestOptions).body();
   }
 
+  /**
+   * Lists the filing deadlines Nordlet can file by itself for the country of the company: for each, whether automatic filing is switched on, whether the rule applies to the company profile, whether its filing system is configured, the state of its certificate and whether it would go to the test or the production service.
+   */
   public AutomationListDeclarationsResponse automationList() {
     return this.rawClient.automationList().body();
   }
 
+  /**
+   * Lists the filing deadlines Nordlet can file by itself for the country of the company: for each, whether automatic filing is switched on, whether the rule applies to the company profile, whether its filing system is configured, the state of its certificate and whether it would go to the test or the production service.
+   */
   public AutomationListDeclarationsResponse automationList(RequestOptions requestOptions) {
     return this.rawClient.automationList(requestOptions).body();
   }
 
+  /**
+   * Lists the filing deadlines Nordlet can file by itself for the country of the company: for each, whether automatic filing is switched on, whether the rule applies to the company profile, whether its filing system is configured, the state of its certificate and whether it would go to the test or the production service.
+   */
   public AutomationListDeclarationsResponse automationList(
       AutomationListDeclarationsRequest request) {
     return this.rawClient.automationList(request).body();
   }
 
+  /**
+   * Lists the filing deadlines Nordlet can file by itself for the country of the company: for each, whether automatic filing is switched on, whether the rule applies to the company profile, whether its filing system is configured, the state of its certificate and whether it would go to the test or the production service.
+   */
   public AutomationListDeclarationsResponse automationList(
       AutomationListDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.automationList(request, requestOptions).body();
   }
 
+  /**
+   * Switches automatic filing of one deadline on or off for the company and returns the list of <code>declarations/automation/list</code>. Answers 422 when the deadline is not one Nordlet files, or when switching on while the filing system is connected to the test service of the administration (unless the company is a sandbox), is not configured, or has no valid certificate.
+   */
   public AutomationUpdateDeclarationsResponse automationUpdate(
       AutomationUpdateDeclarationsRequest request) {
     return this.rawClient.automationUpdate(request).body();
   }
 
+  /**
+   * Switches automatic filing of one deadline on or off for the company and returns the list of <code>declarations/automation/list</code>. Answers 422 when the deadline is not one Nordlet files, or when switching on while the filing system is connected to the test service of the administration (unless the company is a sandbox), is not configured, or has no valid certificate.
+   */
   public AutomationUpdateDeclarationsResponse automationUpdate(
       AutomationUpdateDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.automationUpdate(request, requestOptions).body();
   }
 
+  /**
+   * Sends a submission that is still in status <code>generated</code> through its filing system once more, with the stored file or, when none was stored yet, a freshly generated one, and returns the updated submission. Answers 409 when the submission is already submitted, accepted or rejected.
+   */
   public SubmissionsRetryDeclarationsResponse submissionsRetry(
       SubmissionsRetryDeclarationsRequest request) {
     return this.rawClient.submissionsRetry(request).body();
   }
 
+  /**
+   * Sends a submission that is still in status <code>generated</code> through its filing system once more, with the stored file or, when none was stored yet, a freshly generated one, and returns the updated submission. Answers 409 when the submission is already submitted, accepted or rejected.
+   */
   public SubmissionsRetryDeclarationsResponse submissionsRetry(
       SubmissionsRetryDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.submissionsRetry(request, requestOptions).body();
   }
 
+  /**
+   * Builds the Lithuanian i.SAF register file of a month (<code>dataType</code> F both registers, S sale invoices only, P purchase invoices only), stores it and creates a submission in status <code>generated</code> for the obligation <code>lt-isaf</code>, the only obligation accepted. The XML alone comes from <code>declarations/lt/isaf/generate</code>; the submission is moved on with <code>declarations/submissions/mark</code>.
+   */
   public SubmissionsCreateDeclarationsResponse submissionsCreate(
       SubmissionsCreateDeclarationsRequest request) {
     return this.rawClient.submissionsCreate(request).body();
   }
 
+  /**
+   * Builds the Lithuanian i.SAF register file of a month (<code>dataType</code> F both registers, S sale invoices only, P purchase invoices only), stores it and creates a submission in status <code>generated</code> for the obligation <code>lt-isaf</code>, the only obligation accepted. The XML alone comes from <code>declarations/lt/isaf/generate</code>; the submission is moved on with <code>declarations/submissions/mark</code>.
+   */
   public SubmissionsCreateDeclarationsResponse submissionsCreate(
       SubmissionsCreateDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.submissionsCreate(request, requestOptions).body();
   }
 
+  /**
+   * Records by hand that a submission was sent, accepted or rejected, with the reference and message of the administration when given. The allowed moves are <code>generated</code> to <code>submitted</code> and <code>submitted</code> to <code>accepted</code> or <code>rejected</code>; any other move answers 409. A submission without a transport system is marked as sent manually.
+   */
   public SubmissionsMarkDeclarationsResponse submissionsMark(
       SubmissionsMarkDeclarationsRequest request) {
     return this.rawClient.submissionsMark(request).body();
   }
 
+  /**
+   * Records by hand that a submission was sent, accepted or rejected, with the reference and message of the administration when given. The allowed moves are <code>generated</code> to <code>submitted</code> and <code>submitted</code> to <code>accepted</code> or <code>rejected</code>; any other move answers 409. A submission without a transport system is marked as sent manually.
+   */
   public SubmissionsMarkDeclarationsResponse submissionsMark(
       SubmissionsMarkDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.submissionsMark(request, requestOptions).body();
   }
 
+  /**
+   * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code> or <code>periodYear</code>.
+   */
   public SubmissionsListDeclarationsResponse submissionsList() {
     return this.rawClient.submissionsList().body();
   }
 
+  /**
+   * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code> or <code>periodYear</code>.
+   */
   public SubmissionsListDeclarationsResponse submissionsList(RequestOptions requestOptions) {
     return this.rawClient.submissionsList(requestOptions).body();
   }
 
+  /**
+   * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code> or <code>periodYear</code>.
+   */
   public SubmissionsListDeclarationsResponse submissionsList(
       SubmissionsListDeclarationsRequest request) {
     return this.rawClient.submissionsList(request).body();
   }
 
+  /**
+   * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code> or <code>periodYear</code>.
+   */
   public SubmissionsListDeclarationsResponse submissionsList(
       SubmissionsListDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.submissionsList(request, requestOptions).body();

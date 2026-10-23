@@ -53,185 +53,299 @@ public class AsyncAgreementsClient {
     return this.rawClient;
   }
 
+  /**
+   * Return whether automatic agreement billing is switched on for the company.
+   */
   public CompletableFuture<SettingsGetAgreementsResponse> settingsGet() {
     return this.rawClient.settingsGet().thenApply(response -> response.body());
   }
 
+  /**
+   * Return whether automatic agreement billing is switched on for the company.
+   */
   public CompletableFuture<SettingsGetAgreementsResponse> settingsGet(
       RequestOptions requestOptions) {
     return this.rawClient.settingsGet(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Return whether automatic agreement billing is switched on for the company.
+   */
   public CompletableFuture<SettingsGetAgreementsResponse> settingsGet(
       SettingsGetAgreementsRequest request) {
     return this.rawClient.settingsGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Return whether automatic agreement billing is switched on for the company.
+   */
   public CompletableFuture<SettingsGetAgreementsResponse> settingsGet(
       SettingsGetAgreementsRequest request, RequestOptions requestOptions) {
     return this.rawClient.settingsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Switch automatic agreement billing on or off for the company. With it on, a scheduled job runs the same billing as <code>agreements/agreements/billing/run</code> for the company once a day.
+   */
   public CompletableFuture<SettingsUpdateAgreementsResponse> settingsUpdate(
       SettingsUpdateAgreementsRequest request) {
     return this.rawClient.settingsUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Switch automatic agreement billing on or off for the company. With it on, a scheduled job runs the same billing as <code>agreements/agreements/billing/run</code> for the company once a day.
+   */
   public CompletableFuture<SettingsUpdateAgreementsResponse> settingsUpdate(
       SettingsUpdateAgreementsRequest request, RequestOptions requestOptions) {
     return this.rawClient.settingsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Create an agreement type with a <code>code</code> and a <code>name</code>. Answers 409 when the company already has a type with that code.
+   */
   public CompletableFuture<TypesCreateAgreementsResponse> typesCreate(
       TypesCreateAgreementsRequest request) {
     return this.rawClient.typesCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create an agreement type with a <code>code</code> and a <code>name</code>. Answers 409 when the company already has a type with that code.
+   */
   public CompletableFuture<TypesCreateAgreementsResponse> typesCreate(
       TypesCreateAgreementsRequest request, RequestOptions requestOptions) {
     return this.rawClient.typesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's agreement types. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<TypesListAgreementsResponse> typesList() {
     return this.rawClient.typesList().thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's agreement types. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<TypesListAgreementsResponse> typesList(RequestOptions requestOptions) {
     return this.rawClient.typesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's agreement types. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<TypesListAgreementsResponse> typesList(
       TypesListAgreementsRequest request) {
     return this.rawClient.typesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's agreement types. Filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<TypesListAgreementsResponse> typesList(
       TypesListAgreementsRequest request, RequestOptions requestOptions) {
     return this.rawClient.typesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Create an agreement for exactly one party, a partner, an employee or a bank account, which must exist in the company (400 otherwise). Without <code>kind</code>, an employee agreement is <code>employment</code>, a bank account agreement is <code>bank</code> and a partner agreement is <code>other</code>; a <code>documentRef</code> (the <code>storageKey</code> of an uploaded file) attaches that file to the agreement. Answers 409 when the company already has an agreement with that <code>number</code>.
+   */
   public CompletableFuture<AgreementsCreateAgreementsResponse> agreementsCreate(
       AgreementsCreateAgreementsRequest request) {
     return this.rawClient.agreementsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create an agreement for exactly one party, a partner, an employee or a bank account, which must exist in the company (400 otherwise). Without <code>kind</code>, an employee agreement is <code>employment</code>, a bank account agreement is <code>bank</code> and a partner agreement is <code>other</code>; a <code>documentRef</code> (the <code>storageKey</code> of an uploaded file) attaches that file to the agreement. Answers 409 when the company already has an agreement with that <code>number</code>.
+   */
   public CompletableFuture<AgreementsCreateAgreementsResponse> agreementsCreate(
       AgreementsCreateAgreementsRequest request, RequestOptions requestOptions) {
     return this.rawClient.agreementsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Return one agreement with its items.
+   */
   public CompletableFuture<AgreementsGetAgreementsResponse> agreementsGet(
       AgreementsGetAgreementsRequest request) {
     return this.rawClient.agreementsGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Return one agreement with its items.
+   */
   public CompletableFuture<AgreementsGetAgreementsResponse> agreementsGet(
       AgreementsGetAgreementsRequest request, RequestOptions requestOptions) {
     return this.rawClient.agreementsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Change the given fields of an agreement and return it with its items. The party, <code>number</code>, <code>startDate</code>, <code>currency</code> and items are not changed by this call.
+   */
   public CompletableFuture<AgreementsUpdateAgreementsResponse> agreementsUpdate(
       AgreementsUpdateAgreementsRequest request) {
     return this.rawClient.agreementsUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Change the given fields of an agreement and return it with its items. The party, <code>number</code>, <code>startDate</code>, <code>currency</code> and items are not changed by this call.
+   */
   public CompletableFuture<AgreementsUpdateAgreementsResponse> agreementsUpdate(
       AgreementsUpdateAgreementsRequest request, RequestOptions requestOptions) {
     return this.rawClient.agreementsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Mark an agreement as deleted. It is no longer returned, changed or billed.
+   */
   public CompletableFuture<AgreementsDeleteAgreementsResponse> agreementsDelete(
       AgreementsDeleteAgreementsRequest request) {
     return this.rawClient.agreementsDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Mark an agreement as deleted. It is no longer returned, changed or billed.
+   */
   public CompletableFuture<AgreementsDeleteAgreementsResponse> agreementsDelete(
       AgreementsDeleteAgreementsRequest request, RequestOptions requestOptions) {
     return this.rawClient.agreementsDelete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code> and <code>createdAt</code> (default <code>startDate</code> descending).
+   */
   public CompletableFuture<AgreementsListAgreementsResponse> agreementsList() {
     return this.rawClient.agreementsList().thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code> and <code>createdAt</code> (default <code>startDate</code> descending).
+   */
   public CompletableFuture<AgreementsListAgreementsResponse> agreementsList(
       RequestOptions requestOptions) {
     return this.rawClient.agreementsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code> and <code>createdAt</code> (default <code>startDate</code> descending).
+   */
   public CompletableFuture<AgreementsListAgreementsResponse> agreementsList(
       AgreementsListAgreementsRequest request) {
     return this.rawClient.agreementsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code> and <code>createdAt</code> (default <code>startDate</code> descending).
+   */
   public CompletableFuture<AgreementsListAgreementsResponse> agreementsList(
       AgreementsListAgreementsRequest request, RequestOptions requestOptions) {
     return this.rawClient.agreementsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Create a draft sale invoice for the next unbilled period of an active agreement that has a partner and a <code>billingPeriod</code>. The period follows the monthly, quarterly or annual grid from <code>startDate</code>, continues after the last period already invoiced for the agreement, and is prorated by days when it starts late or is cut by <code>endDate</code>; an <code>autoRenew</code> agreement has its <code>endDate</code> moved forward by whole terms instead (<code>renewedEndDate</code>). The lines come from the agreement items, else one line of <code>value</code>, with revenue recognised ratably over the period. Answers 422 when the agreement is not active, has no partner, billing period, items or value, carries VAT while the company is not a VAT payer, is fully billed through its end date, or when the next period starts after <code>asOfDate</code> (default today). Emits <code>agreement.invoice_generated</code>.
+   */
   public CompletableFuture<AgreementsGenerateInvoiceAgreementsResponse> agreementsGenerateInvoice(
       AgreementsGenerateInvoiceAgreementsRequest request) {
     return this.rawClient.agreementsGenerateInvoice(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create a draft sale invoice for the next unbilled period of an active agreement that has a partner and a <code>billingPeriod</code>. The period follows the monthly, quarterly or annual grid from <code>startDate</code>, continues after the last period already invoiced for the agreement, and is prorated by days when it starts late or is cut by <code>endDate</code>; an <code>autoRenew</code> agreement has its <code>endDate</code> moved forward by whole terms instead (<code>renewedEndDate</code>). The lines come from the agreement items, else one line of <code>value</code>, with revenue recognised ratably over the period. Answers 422 when the agreement is not active, has no partner, billing period, items or value, carries VAT while the company is not a VAT payer, is fully billed through its end date, or when the next period starts after <code>asOfDate</code> (default today). Emits <code>agreement.invoice_generated</code>.
+   */
   public CompletableFuture<AgreementsGenerateInvoiceAgreementsResponse> agreementsGenerateInvoice(
       AgreementsGenerateInvoiceAgreementsRequest request, RequestOptions requestOptions) {
     return this.rawClient.agreementsGenerateInvoice(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
+   */
   public CompletableFuture<AgreementsBillingRunAgreementsResponse> agreementsBillingRun() {
     return this.rawClient.agreementsBillingRun().thenApply(response -> response.body());
   }
 
+  /**
+   * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
+   */
   public CompletableFuture<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
       RequestOptions requestOptions) {
     return this.rawClient.agreementsBillingRun(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
+   */
   public CompletableFuture<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
       AgreementsBillingRunAgreementsRequest request) {
     return this.rawClient.agreementsBillingRun(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
+   */
   public CompletableFuture<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
       AgreementsBillingRunAgreementsRequest request, RequestOptions requestOptions) {
     return this.rawClient.agreementsBillingRun(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Create an insurance policy. Answers 422 when <code>toDate</code> is before <code>fromDate</code>, 400 when <code>insurerPartnerId</code> is not a partner of the company, and 409 when the company already has a policy with that <code>policyNumber</code>.
+   */
   public CompletableFuture<InsurancePoliciesCreateAgreementsResponse> insurancePoliciesCreate(
       InsurancePoliciesCreateAgreementsRequest request) {
     return this.rawClient.insurancePoliciesCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create an insurance policy. Answers 422 when <code>toDate</code> is before <code>fromDate</code>, 400 when <code>insurerPartnerId</code> is not a partner of the company, and 409 when the company already has a policy with that <code>policyNumber</code>.
+   */
   public CompletableFuture<InsurancePoliciesCreateAgreementsResponse> insurancePoliciesCreate(
       InsurancePoliciesCreateAgreementsRequest request, RequestOptions requestOptions) {
     return this.rawClient.insurancePoliciesCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
+   */
   public CompletableFuture<InsurancePoliciesListAgreementsResponse> insurancePoliciesList() {
     return this.rawClient.insurancePoliciesList().thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
+   */
   public CompletableFuture<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
       RequestOptions requestOptions) {
     return this.rawClient.insurancePoliciesList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
+   */
   public CompletableFuture<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
       InsurancePoliciesListAgreementsRequest request) {
     return this.rawClient.insurancePoliciesList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
+   */
   public CompletableFuture<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
       InsurancePoliciesListAgreementsRequest request, RequestOptions requestOptions) {
     return this.rawClient.insurancePoliciesList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Mark an insurance policy as deleted.
+   */
   public CompletableFuture<InsurancePoliciesDeleteAgreementsResponse> insurancePoliciesDelete(
       InsurancePoliciesDeleteAgreementsRequest request) {
     return this.rawClient.insurancePoliciesDelete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Mark an insurance policy as deleted.
+   */
   public CompletableFuture<InsurancePoliciesDeleteAgreementsResponse> insurancePoliciesDelete(
       InsurancePoliciesDeleteAgreementsRequest request, RequestOptions requestOptions) {
     return this.rawClient.insurancePoliciesDelete(request, requestOptions).thenApply(response -> response.body());

@@ -91,20 +91,32 @@ public class AsyncRawInventoryClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Return the company's negative stock policy.
+   */
   public CompletableFuture<NordletApiHttpResponse<SettingsGetInventoryResponse>> settingsGet() {
     return settingsGet(SettingsGetInventoryRequest.builder().build());
   }
 
+  /**
+   * Return the company's negative stock policy.
+   */
   public CompletableFuture<NordletApiHttpResponse<SettingsGetInventoryResponse>> settingsGet(
       RequestOptions requestOptions) {
     return settingsGet(SettingsGetInventoryRequest.builder().build(),requestOptions);
   }
 
+  /**
+   * Return the company's negative stock policy.
+   */
   public CompletableFuture<NordletApiHttpResponse<SettingsGetInventoryResponse>> settingsGet(
       SettingsGetInventoryRequest request) {
     return settingsGet(request,null);
   }
 
+  /**
+   * Return the company's negative stock policy.
+   */
   public CompletableFuture<NordletApiHttpResponse<SettingsGetInventoryResponse>> settingsGet(
       SettingsGetInventoryRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -192,11 +204,17 @@ public class AsyncRawInventoryClient {
       return future;
     }
 
+    /**
+     * Set the negative stock policy. With <code>reject</code> a consumption larger than the stock on hand of the item in the warehouse is refused with 422. With <code>allow</code> the missing quantity is written as a shortage priced at the unit cost of the last receipt in that warehouse (the item's purchase price when there is none); the next receipt of the item there settles the shortage and posts any cost difference between <code>inventory.cogs</code> and <code>inventory.stock</code>. A consumption from a named lot is refused with 422 under both policies.
+     */
     public CompletableFuture<NordletApiHttpResponse<SettingsUpdateInventoryResponse>> settingsUpdate(
         SettingsUpdateInventoryRequest request) {
       return settingsUpdate(request,null);
     }
 
+    /**
+     * Set the negative stock policy. With <code>reject</code> a consumption larger than the stock on hand of the item in the warehouse is refused with 422. With <code>allow</code> the missing quantity is written as a shortage priced at the unit cost of the last receipt in that warehouse (the item's purchase price when there is none); the next receipt of the item there settles the shortage and posts any cost difference between <code>inventory.cogs</code> and <code>inventory.stock</code>. A consumption from a named lot is refused with 422 under both policies.
+     */
     public CompletableFuture<NordletApiHttpResponse<SettingsUpdateInventoryResponse>> settingsUpdate(
         SettingsUpdateInventoryRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -284,11 +302,17 @@ public class AsyncRawInventoryClient {
         return future;
       }
 
+      /**
+       * Create a warehouse. 409 when the code already exists.
+       */
       public CompletableFuture<NordletApiHttpResponse<WarehousesCreateInventoryResponse>> warehousesCreate(
           WarehousesCreateInventoryRequest request) {
         return warehousesCreate(request,null);
       }
 
+      /**
+       * Create a warehouse. 409 when the code already exists.
+       */
       public CompletableFuture<NordletApiHttpResponse<WarehousesCreateInventoryResponse>> warehousesCreate(
           WarehousesCreateInventoryRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -376,21 +400,33 @@ public class AsyncRawInventoryClient {
           return future;
         }
 
+        /**
+         * List the warehouses. Filterable and sortable: code, name.
+         */
         public CompletableFuture<NordletApiHttpResponse<WarehousesListInventoryResponse>> warehousesList(
             ) {
           return warehousesList(WarehousesListInventoryRequest.builder().build());
         }
 
+        /**
+         * List the warehouses. Filterable and sortable: code, name.
+         */
         public CompletableFuture<NordletApiHttpResponse<WarehousesListInventoryResponse>> warehousesList(
             RequestOptions requestOptions) {
           return warehousesList(WarehousesListInventoryRequest.builder().build(),requestOptions);
         }
 
+        /**
+         * List the warehouses. Filterable and sortable: code, name.
+         */
         public CompletableFuture<NordletApiHttpResponse<WarehousesListInventoryResponse>> warehousesList(
             WarehousesListInventoryRequest request) {
           return warehousesList(request,null);
         }
 
+        /**
+         * List the warehouses. Filterable and sortable: code, name.
+         */
         public CompletableFuture<NordletApiHttpResponse<WarehousesListInventoryResponse>> warehousesList(
             WarehousesListInventoryRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -478,11 +514,17 @@ public class AsyncRawInventoryClient {
             return future;
           }
 
+          /**
+           * Change the name or the country code of a warehouse.
+           */
           public CompletableFuture<NordletApiHttpResponse<WarehousesUpdateInventoryResponse>> warehousesUpdate(
               WarehousesUpdateInventoryRequest request) {
             return warehousesUpdate(request,null);
           }
 
+          /**
+           * Change the name or the country code of a warehouse.
+           */
           public CompletableFuture<NordletApiHttpResponse<WarehousesUpdateInventoryResponse>> warehousesUpdate(
               WarehousesUpdateInventoryRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -570,11 +612,17 @@ public class AsyncRawInventoryClient {
               return future;
             }
 
+            /**
+             * Record a manual receipt of an item into a warehouse at <code>unitCost</code> (document type <code>manual_receipt</code>); the quantity must be positive (422). A lot- or serial-tracked item needs <code>lotNumber</code> (422); an unknown lot is created, and <code>expiryDate</code> is stored on a lot that has none. A serial-tracked item is received one unit at a time (422), and 409 when that serial number is already in stock. Open shortages of the item in the warehouse (negative stock policy <code>allow</code>) are settled from the receipt. Emits <code>stock.changed</code>. Receipts against a purchase order go through <code>purchases/receipts/create</code>.
+             */
             public CompletableFuture<NordletApiHttpResponse<StockReceiveInventoryResponse>> stockReceive(
                 StockReceiveInventoryRequest request) {
               return stockReceive(request,null);
             }
 
+            /**
+             * Record a manual receipt of an item into a warehouse at <code>unitCost</code> (document type <code>manual_receipt</code>); the quantity must be positive (422). A lot- or serial-tracked item needs <code>lotNumber</code> (422); an unknown lot is created, and <code>expiryDate</code> is stored on a lot that has none. A serial-tracked item is received one unit at a time (422), and 409 when that serial number is already in stock. Open shortages of the item in the warehouse (negative stock policy <code>allow</code>) are settled from the receipt. Emits <code>stock.changed</code>. Receipts against a purchase order go through <code>purchases/receipts/create</code>.
+             */
             public CompletableFuture<NordletApiHttpResponse<StockReceiveInventoryResponse>> stockReceive(
                 StockReceiveInventoryRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -662,11 +710,17 @@ public class AsyncRawInventoryClient {
                 return future;
               }
 
+              /**
+               * Consume a quantity of an item from a warehouse, oldest layers first (from one lot when <code>lotNumber</code> is given), and post a journal entry: debit the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account), credit the stock account each consumed layer was received on (the chart's inventory account for layers without one), or <code>inventoryAccountCode</code> for the whole cost when given. 409 when the accounting period of <code>date</code> is locked; 422 when the stock is insufficient under the <code>reject</code> policy or in the named lot. Emits <code>stock.changed</code> and, when the consumption takes the available quantity from above a reorder rule's minimum to at or below it, <code>stock.reorder_needed</code>.
+               */
               public CompletableFuture<NordletApiHttpResponse<StockWriteOffInventoryResponse>> stockWriteOff(
                   StockWriteOffInventoryRequest request) {
                 return stockWriteOff(request,null);
               }
 
+              /**
+               * Consume a quantity of an item from a warehouse, oldest layers first (from one lot when <code>lotNumber</code> is given), and post a journal entry: debit the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account), credit the stock account each consumed layer was received on (the chart's inventory account for layers without one), or <code>inventoryAccountCode</code> for the whole cost when given. 409 when the accounting period of <code>date</code> is locked; 422 when the stock is insufficient under the <code>reject</code> policy or in the named lot. Emits <code>stock.changed</code> and, when the consumption takes the available quantity from above a reorder rule's minimum to at or below it, <code>stock.reorder_needed</code>.
+               */
               public CompletableFuture<NordletApiHttpResponse<StockWriteOffInventoryResponse>> stockWriteOff(
                   StockWriteOffInventoryRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -754,11 +808,17 @@ public class AsyncRawInventoryClient {
                   return future;
                 }
 
+                /**
+                 * Move a quantity of an item from one warehouse to another: the source layers are consumed oldest first (from one lot when <code>lotNumber</code> is given) and received in the target with the same quantities, costs, lots and stock accounts (document type <code>warehouse_transfer</code>). 422 when both warehouses are the same or the source stock is insufficient under the <code>reject</code> policy. <code>inMovementId</code> is the first receipt when the consumption spans several lots or stock accounts. Emits <code>stock.changed</code> for both warehouses and <code>stock.reorder_needed</code> as <code>inventory/stock/write-off</code> does.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<StockTransferInventoryResponse>> stockTransfer(
                     StockTransferInventoryRequest request) {
                   return stockTransfer(request,null);
                 }
 
+                /**
+                 * Move a quantity of an item from one warehouse to another: the source layers are consumed oldest first (from one lot when <code>lotNumber</code> is given) and received in the target with the same quantities, costs, lots and stock accounts (document type <code>warehouse_transfer</code>). 422 when both warehouses are the same or the source stock is insufficient under the <code>reject</code> policy. <code>inMovementId</code> is the first receipt when the consumption spans several lots or stock accounts. Emits <code>stock.changed</code> for both warehouses and <code>stock.reorder_needed</code> as <code>inventory/stock/write-off</code> does.
+                 */
                 public CompletableFuture<NordletApiHttpResponse<StockTransferInventoryResponse>> stockTransfer(
                     StockTransferInventoryRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -846,11 +906,17 @@ public class AsyncRawInventoryClient {
                     return future;
                   }
 
+                  /**
+                   * Post a stock count for a warehouse. Each line names an item by <code>itemId</code> or <code>barcode</code> with its <code>countedQty</code>; the difference to the quantity on hand in the warehouse (all lots together) is written off oldest layers first or received as a surplus at <code>unitCost</code> (the item's purchase price when omitted; 422 when neither is set), with document type <code>stock_take</code>, and a surplus of a lot- or serial-tracked item needs <code>lotNumber</code> (422). The shortage cost less the surplus cost is posted in one journal entry between the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account) and the stock accounts (<code>inventoryAccountCode</code> for everything when given, else the accounts of the consumed layers and the chart's inventory account for the surpluses); nothing is posted and <code>journalTransactionId</code> is null when the net is zero. 409 when the accounting period of <code>date</code> is locked. Emits <code>stock.changed</code> per adjusted item.
+                   */
                   public CompletableFuture<NordletApiHttpResponse<StockTakeInventoryResponse>> stockTake(
                       StockTakeInventoryRequest request) {
                     return stockTake(request,null);
                   }
 
+                  /**
+                   * Post a stock count for a warehouse. Each line names an item by <code>itemId</code> or <code>barcode</code> with its <code>countedQty</code>; the difference to the quantity on hand in the warehouse (all lots together) is written off oldest layers first or received as a surplus at <code>unitCost</code> (the item's purchase price when omitted; 422 when neither is set), with document type <code>stock_take</code>, and a surplus of a lot- or serial-tracked item needs <code>lotNumber</code> (422). The shortage cost less the surplus cost is posted in one journal entry between the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account) and the stock accounts (<code>inventoryAccountCode</code> for everything when given, else the accounts of the consumed layers and the chart's inventory account for the surpluses); nothing is posted and <code>journalTransactionId</code> is null when the net is zero. 409 when the accounting period of <code>date</code> is locked. Emits <code>stock.changed</code> per adjusted item.
+                   */
                   public CompletableFuture<NordletApiHttpResponse<StockTakeInventoryResponse>> stockTake(
                       StockTakeInventoryRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -938,21 +1004,33 @@ public class AsyncRawInventoryClient {
                       return future;
                     }
 
+                    /**
+                     * Return the quantity and value on hand per item and warehouse, summed from the stock movements, optionally for one <code>warehouseId</code> and/or <code>itemId</code>. Rows with a zero quantity are left out.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<StockLevelsInventoryResponse>> stockLevels(
                         ) {
                       return stockLevels(StockLevelsInventoryRequest.builder().build());
                     }
 
+                    /**
+                     * Return the quantity and value on hand per item and warehouse, summed from the stock movements, optionally for one <code>warehouseId</code> and/or <code>itemId</code>. Rows with a zero quantity are left out.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<StockLevelsInventoryResponse>> stockLevels(
                         RequestOptions requestOptions) {
                       return stockLevels(StockLevelsInventoryRequest.builder().build(),requestOptions);
                     }
 
+                    /**
+                     * Return the quantity and value on hand per item and warehouse, summed from the stock movements, optionally for one <code>warehouseId</code> and/or <code>itemId</code>. Rows with a zero quantity are left out.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<StockLevelsInventoryResponse>> stockLevels(
                         StockLevelsInventoryRequest request) {
                       return stockLevels(request,null);
                     }
 
+                    /**
+                     * Return the quantity and value on hand per item and warehouse, summed from the stock movements, optionally for one <code>warehouseId</code> and/or <code>itemId</code>. Rows with a zero quantity are left out.
+                     */
                     public CompletableFuture<NordletApiHttpResponse<StockLevelsInventoryResponse>> stockLevels(
                         StockLevelsInventoryRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1040,21 +1118,33 @@ public class AsyncRawInventoryClient {
                         return future;
                       }
 
+                      /**
+                       * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost; default newest first.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<StockMovementsListInventoryResponse>> stockMovementsList(
                           ) {
                         return stockMovementsList(StockMovementsListInventoryRequest.builder().build());
                       }
 
+                      /**
+                       * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost; default newest first.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<StockMovementsListInventoryResponse>> stockMovementsList(
                           RequestOptions requestOptions) {
                         return stockMovementsList(StockMovementsListInventoryRequest.builder().build(),requestOptions);
                       }
 
+                      /**
+                       * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost; default newest first.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<StockMovementsListInventoryResponse>> stockMovementsList(
                           StockMovementsListInventoryRequest request) {
                         return stockMovementsList(request,null);
                       }
 
+                      /**
+                       * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost; default newest first.
+                       */
                       public CompletableFuture<NordletApiHttpResponse<StockMovementsListInventoryResponse>> stockMovementsList(
                           StockMovementsListInventoryRequest request,
                           RequestOptions requestOptions) {
@@ -1143,21 +1233,33 @@ public class AsyncRawInventoryClient {
                           return future;
                         }
 
+                        /**
+                         * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt; default newest first.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<LotsListInventoryResponse>> lotsList(
                             ) {
                           return lotsList(LotsListInventoryRequest.builder().build());
                         }
 
+                        /**
+                         * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt; default newest first.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<LotsListInventoryResponse>> lotsList(
                             RequestOptions requestOptions) {
                           return lotsList(LotsListInventoryRequest.builder().build(),requestOptions);
                         }
 
+                        /**
+                         * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt; default newest first.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<LotsListInventoryResponse>> lotsList(
                             LotsListInventoryRequest request) {
                           return lotsList(request,null);
                         }
 
+                        /**
+                         * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt; default newest first.
+                         */
                         public CompletableFuture<NordletApiHttpResponse<LotsListInventoryResponse>> lotsList(
                             LotsListInventoryRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1245,11 +1347,17 @@ public class AsyncRawInventoryClient {
                             return future;
                           }
 
+                          /**
+                           * Return a lot with its quantity on hand and its movements in date order.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<LotsGetInventoryResponse>> lotsGet(
                               LotsGetInventoryRequest request) {
                             return lotsGet(request,null);
                           }
 
+                          /**
+                           * Return a lot with its quantity on hand and its movements in date order.
+                           */
                           public CompletableFuture<NordletApiHttpResponse<LotsGetInventoryResponse>> lotsGet(
                               LotsGetInventoryRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1337,11 +1445,17 @@ public class AsyncRawInventoryClient {
                               return future;
                             }
 
+                            /**
+                             * Change the expiry date or the notes of a lot; null clears the value.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<LotsUpdateInventoryResponse>> lotsUpdate(
                                 LotsUpdateInventoryRequest request) {
                               return lotsUpdate(request,null);
                             }
 
+                            /**
+                             * Change the expiry date or the notes of a lot; null clears the value.
+                             */
                             public CompletableFuture<NordletApiHttpResponse<LotsUpdateInventoryResponse>> lotsUpdate(
                                 LotsUpdateInventoryRequest request, RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1429,11 +1543,17 @@ public class AsyncRawInventoryClient {
                                 return future;
                               }
 
+                              /**
+                               * Allocate an extra cost <code>amount</code> (positive, whole cents; 422 otherwise) over incoming stock movements, named by <code>movementIds</code> or taken from the lines of a goods receipt (<code>goodsReceiptId</code>; 422 when the receipt has no stock movements), in proportion to their cost (<code>by_value</code>) or quantity (<code>by_quantity</code>), largest remainder to the cent. The part of each share that belongs to the quantity still on hand raises the movement's remaining cost and recomputes its unit cost; the part that belongs to quantity already consumed is posted in a journal entry dated <code>date</code> debiting <code>inventory.cogs</code> and crediting the movement's stock account (<code>inventory.stock</code> when it has none), 409 when that period is locked. 422 when a movement is not incoming or the weights sum to zero. <code>sourceInvoiceId</code> records the purchase invoice the cost came from. Goods receipts come from <code>purchases/receipts/create</code>.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<LandedCostsCreateInventoryResponse>> landedCostsCreate(
                                   LandedCostsCreateInventoryRequest request) {
                                 return landedCostsCreate(request,null);
                               }
 
+                              /**
+                               * Allocate an extra cost <code>amount</code> (positive, whole cents; 422 otherwise) over incoming stock movements, named by <code>movementIds</code> or taken from the lines of a goods receipt (<code>goodsReceiptId</code>; 422 when the receipt has no stock movements), in proportion to their cost (<code>by_value</code>) or quantity (<code>by_quantity</code>), largest remainder to the cent. The part of each share that belongs to the quantity still on hand raises the movement's remaining cost and recomputes its unit cost; the part that belongs to quantity already consumed is posted in a journal entry dated <code>date</code> debiting <code>inventory.cogs</code> and crediting the movement's stock account (<code>inventory.stock</code> when it has none), 409 when that period is locked. 422 when a movement is not incoming or the weights sum to zero. <code>sourceInvoiceId</code> records the purchase invoice the cost came from. Goods receipts come from <code>purchases/receipts/create</code>.
+                               */
                               public CompletableFuture<NordletApiHttpResponse<LandedCostsCreateInventoryResponse>> landedCostsCreate(
                                   LandedCostsCreateInventoryRequest request,
                                   RequestOptions requestOptions) {
@@ -1522,11 +1642,17 @@ public class AsyncRawInventoryClient {
                                   return future;
                                 }
 
+                                /**
+                                 * Return a landed cost with its allocation lines and the journal transaction it posted, if any.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<LandedCostsGetInventoryResponse>> landedCostsGet(
                                     LandedCostsGetInventoryRequest request) {
                                   return landedCostsGet(request,null);
                                 }
 
+                                /**
+                                 * Return a landed cost with its allocation lines and the journal transaction it posted, if any.
+                                 */
                                 public CompletableFuture<NordletApiHttpResponse<LandedCostsGetInventoryResponse>> landedCostsGet(
                                     LandedCostsGetInventoryRequest request,
                                     RequestOptions requestOptions) {
@@ -1615,21 +1741,33 @@ public class AsyncRawInventoryClient {
                                     return future;
                                   }
 
+                                  /**
+                                   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount; default newest first.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<LandedCostsListInventoryResponse>> landedCostsList(
                                       ) {
                                     return landedCostsList(LandedCostsListInventoryRequest.builder().build());
                                   }
 
+                                  /**
+                                   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount; default newest first.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<LandedCostsListInventoryResponse>> landedCostsList(
                                       RequestOptions requestOptions) {
                                     return landedCostsList(LandedCostsListInventoryRequest.builder().build(),requestOptions);
                                   }
 
+                                  /**
+                                   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount; default newest first.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<LandedCostsListInventoryResponse>> landedCostsList(
                                       LandedCostsListInventoryRequest request) {
                                     return landedCostsList(request,null);
                                   }
 
+                                  /**
+                                   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount; default newest first.
+                                   */
                                   public CompletableFuture<NordletApiHttpResponse<LandedCostsListInventoryResponse>> landedCostsList(
                                       LandedCostsListInventoryRequest request,
                                       RequestOptions requestOptions) {
@@ -1718,11 +1856,17 @@ public class AsyncRawInventoryClient {
                                       return future;
                                     }
 
+                                    /**
+                                     * Create a reorder rule for an item, for one warehouse or, without <code>warehouseId</code>, for the item over all warehouses; one rule per item and warehouse (409). While the rule is active, an outgoing movement or a reservation that takes the available quantity (on hand less reserved) from above <code>minQty</code> to at or below it emits <code>stock.reorder_needed</code> with the <code>reorderQty</code>. <code>inventory/reorder-rules/check</code> lists the rules currently at or below their minimum.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<ReorderRulesCreateInventoryResponse>> reorderRulesCreate(
                                         ReorderRulesCreateInventoryRequest request) {
                                       return reorderRulesCreate(request,null);
                                     }
 
+                                    /**
+                                     * Create a reorder rule for an item, for one warehouse or, without <code>warehouseId</code>, for the item over all warehouses; one rule per item and warehouse (409). While the rule is active, an outgoing movement or a reservation that takes the available quantity (on hand less reserved) from above <code>minQty</code> to at or below it emits <code>stock.reorder_needed</code> with the <code>reorderQty</code>. <code>inventory/reorder-rules/check</code> lists the rules currently at or below their minimum.
+                                     */
                                     public CompletableFuture<NordletApiHttpResponse<ReorderRulesCreateInventoryResponse>> reorderRulesCreate(
                                         ReorderRulesCreateInventoryRequest request,
                                         RequestOptions requestOptions) {
@@ -1811,11 +1955,17 @@ public class AsyncRawInventoryClient {
                                         return future;
                                       }
 
+                                      /**
+                                       * Change the minimum quantity, the reorder quantity (null clears it), the active flag or the notes of a reorder rule.
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<ReorderRulesUpdateInventoryResponse>> reorderRulesUpdate(
                                           ReorderRulesUpdateInventoryRequest request) {
                                         return reorderRulesUpdate(request,null);
                                       }
 
+                                      /**
+                                       * Change the minimum quantity, the reorder quantity (null clears it), the active flag or the notes of a reorder rule.
+                                       */
                                       public CompletableFuture<NordletApiHttpResponse<ReorderRulesUpdateInventoryResponse>> reorderRulesUpdate(
                                           ReorderRulesUpdateInventoryRequest request,
                                           RequestOptions requestOptions) {
@@ -1904,11 +2054,17 @@ public class AsyncRawInventoryClient {
                                           return future;
                                         }
 
+                                        /**
+                                         * Delete a reorder rule.
+                                         */
                                         public CompletableFuture<NordletApiHttpResponse<ReorderRulesDeleteInventoryResponse>> reorderRulesDelete(
                                             ReorderRulesDeleteInventoryRequest request) {
                                           return reorderRulesDelete(request,null);
                                         }
 
+                                        /**
+                                         * Delete a reorder rule.
+                                         */
                                         public CompletableFuture<NordletApiHttpResponse<ReorderRulesDeleteInventoryResponse>> reorderRulesDelete(
                                             ReorderRulesDeleteInventoryRequest request,
                                             RequestOptions requestOptions) {
@@ -1997,21 +2153,33 @@ public class AsyncRawInventoryClient {
                                             return future;
                                           }
 
+                                          /**
+                                           * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty; default newest first.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<ReorderRulesListInventoryResponse>> reorderRulesList(
                                               ) {
                                             return reorderRulesList(ReorderRulesListInventoryRequest.builder().build());
                                           }
 
+                                          /**
+                                           * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty; default newest first.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<ReorderRulesListInventoryResponse>> reorderRulesList(
                                               RequestOptions requestOptions) {
                                             return reorderRulesList(ReorderRulesListInventoryRequest.builder().build(),requestOptions);
                                           }
 
+                                          /**
+                                           * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty; default newest first.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<ReorderRulesListInventoryResponse>> reorderRulesList(
                                               ReorderRulesListInventoryRequest request) {
                                             return reorderRulesList(request,null);
                                           }
 
+                                          /**
+                                           * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty; default newest first.
+                                           */
                                           public CompletableFuture<NordletApiHttpResponse<ReorderRulesListInventoryResponse>> reorderRulesList(
                                               ReorderRulesListInventoryRequest request,
                                               RequestOptions requestOptions) {
@@ -2100,21 +2268,33 @@ public class AsyncRawInventoryClient {
                                               return future;
                                             }
 
+                                            /**
+                                             * Return the active reorder rules whose available quantity (on hand less reserved, in the rule's warehouse or over all warehouses) is at or below <code>minQty</code>, with the quantities. Emits no event.
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<ReorderRulesCheckInventoryResponse>> reorderRulesCheck(
                                                 ) {
                                               return reorderRulesCheck(ReorderRulesCheckInventoryRequest.builder().build());
                                             }
 
+                                            /**
+                                             * Return the active reorder rules whose available quantity (on hand less reserved, in the rule's warehouse or over all warehouses) is at or below <code>minQty</code>, with the quantities. Emits no event.
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<ReorderRulesCheckInventoryResponse>> reorderRulesCheck(
                                                 RequestOptions requestOptions) {
                                               return reorderRulesCheck(ReorderRulesCheckInventoryRequest.builder().build(),requestOptions);
                                             }
 
+                                            /**
+                                             * Return the active reorder rules whose available quantity (on hand less reserved, in the rule's warehouse or over all warehouses) is at or below <code>minQty</code>, with the quantities. Emits no event.
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<ReorderRulesCheckInventoryResponse>> reorderRulesCheck(
                                                 ReorderRulesCheckInventoryRequest request) {
                                               return reorderRulesCheck(request,null);
                                             }
 
+                                            /**
+                                             * Return the active reorder rules whose available quantity (on hand less reserved, in the rule's warehouse or over all warehouses) is at or below <code>minQty</code>, with the quantities. Emits no event.
+                                             */
                                             public CompletableFuture<NordletApiHttpResponse<ReorderRulesCheckInventoryResponse>> reorderRulesCheck(
                                                 ReorderRulesCheckInventoryRequest request,
                                                 RequestOptions requestOptions) {

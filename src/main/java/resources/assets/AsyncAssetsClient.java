@@ -51,76 +51,124 @@ public class AsyncAssetsClient {
     return this.rawClient;
   }
 
+  /**
+   * Return the company's fixed asset setting <code>autoDepreciation</code>.
+   */
   public CompletableFuture<SettingsGetAssetsResponse> settingsGet() {
     return this.rawClient.settingsGet().thenApply(response -> response.body());
   }
 
+  /**
+   * Return the company's fixed asset setting <code>autoDepreciation</code>.
+   */
   public CompletableFuture<SettingsGetAssetsResponse> settingsGet(RequestOptions requestOptions) {
     return this.rawClient.settingsGet(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Return the company's fixed asset setting <code>autoDepreciation</code>.
+   */
   public CompletableFuture<SettingsGetAssetsResponse> settingsGet(
       SettingsGetAssetsRequest request) {
     return this.rawClient.settingsGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Return the company's fixed asset setting <code>autoDepreciation</code>.
+   */
   public CompletableFuture<SettingsGetAssetsResponse> settingsGet(SettingsGetAssetsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.settingsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Turn automatic depreciation on or off. When it is on, the scheduler posts the previous month's depreciation for the company once a day, as <code>assets/depreciation/post</code> does.
+   */
   public CompletableFuture<SettingsUpdateAssetsResponse> settingsUpdate(
       SettingsUpdateAssetsRequest request) {
     return this.rawClient.settingsUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Turn automatic depreciation on or off. When it is on, the scheduler posts the previous month's depreciation for the company once a day, as <code>assets/depreciation/post</code> does.
+   */
   public CompletableFuture<SettingsUpdateAssetsResponse> settingsUpdate(
       SettingsUpdateAssetsRequest request, RequestOptions requestOptions) {
     return this.rawClient.settingsUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Create an asset group: the asset, accumulated depreciation and depreciation expense accounts its assets are posted to, and an optional default useful life in months. <code>expenseAccountCode</code> defaults to the chart's depreciation expense account; each account must exist and be postable (422). A duplicate code is refused with 409.
+   */
   public CompletableFuture<GroupsCreateAssetsResponse> groupsCreate(
       GroupsCreateAssetsRequest request) {
     return this.rawClient.groupsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create an asset group: the asset, accumulated depreciation and depreciation expense accounts its assets are posted to, and an optional default useful life in months. <code>expenseAccountCode</code> defaults to the chart's depreciation expense account; each account must exist and be postable (422). A duplicate code is refused with 409.
+   */
   public CompletableFuture<GroupsCreateAssetsResponse> groupsCreate(
       GroupsCreateAssetsRequest request, RequestOptions requestOptions) {
     return this.rawClient.groupsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the asset groups; filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<GroupsListAssetsResponse> groupsList() {
     return this.rawClient.groupsList().thenApply(response -> response.body());
   }
 
+  /**
+   * List the asset groups; filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<GroupsListAssetsResponse> groupsList(RequestOptions requestOptions) {
     return this.rawClient.groupsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the asset groups; filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<GroupsListAssetsResponse> groupsList(GroupsListAssetsRequest request) {
     return this.rawClient.groupsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the asset groups; filterable and sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<GroupsListAssetsResponse> groupsList(GroupsListAssetsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.groupsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Register a fixed asset in a group with its acquisition date and cost, salvage value, useful life in months (defaults to the group's default; 422 when neither is set) and depreciation start date (defaults to the acquisition date). The salvage value must be below the acquisition cost (422); a duplicate code is refused with 409. Depreciation is posted with <code>assets/depreciation/post</code>.
+   */
   public CompletableFuture<AssetsCreateAssetsResponse> assetsCreate(
       AssetsCreateAssetsRequest request) {
     return this.rawClient.assetsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Register a fixed asset in a group with its acquisition date and cost, salvage value, useful life in months (defaults to the group's default; 422 when neither is set) and depreciation start date (defaults to the acquisition date). The salvage value must be below the acquisition cost (422); a duplicate code is refused with 409. Depreciation is posted with <code>assets/depreciation/post</code>.
+   */
   public CompletableFuture<AssetsCreateAssetsResponse> assetsCreate(
       AssetsCreateAssetsRequest request, RequestOptions requestOptions) {
     return this.rawClient.assetsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Change an asset that has no posted depreciation yet: group, code, name, dates, cost, salvage value, useful life, notes or documents. Refused with 409 once depreciation is posted or the asset is disposed, and with 422 when the salvage value would reach the acquisition cost; a duplicate code is 409.
+   */
   public CompletableFuture<AssetsUpdateAssetsResponse> assetsUpdate(
       AssetsUpdateAssetsRequest request) {
     return this.rawClient.assetsUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Change an asset that has no posted depreciation yet: group, code, name, dates, cost, salvage value, useful life, notes or documents. Refused with 409 once depreciation is posted or the asset is disposed, and with 422 when the salvage value would reach the acquisition cost; a duplicate code is 409.
+   */
   public CompletableFuture<AssetsUpdateAssetsResponse> assetsUpdate(
       AssetsUpdateAssetsRequest request, RequestOptions requestOptions) {
     return this.rawClient.assetsUpdate(request, requestOptions).thenApply(response -> response.body());
@@ -142,37 +190,61 @@ public class AsyncAssetsClient {
     return this.rawClient.assetsInputVat(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Return one fixed asset with its totals (cost including modernisations, accumulated depreciation, net book value, total life in months), its input VAT facts and its disposal.
+   */
   public CompletableFuture<AssetsGetAssetsResponse> assetsGet(AssetsGetAssetsRequest request) {
     return this.rawClient.assetsGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Return one fixed asset with its totals (cost including modernisations, accumulated depreciation, net book value, total life in months), its input VAT facts and its disposal.
+   */
   public CompletableFuture<AssetsGetAssetsResponse> assetsGet(AssetsGetAssetsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.assetsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code> and <code>acquisitionCost</code>.
+   */
   public CompletableFuture<AssetsListAssetsResponse> assetsList() {
     return this.rawClient.assetsList().thenApply(response -> response.body());
   }
 
+  /**
+   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code> and <code>acquisitionCost</code>.
+   */
   public CompletableFuture<AssetsListAssetsResponse> assetsList(RequestOptions requestOptions) {
     return this.rawClient.assetsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code> and <code>acquisitionCost</code>.
+   */
   public CompletableFuture<AssetsListAssetsResponse> assetsList(AssetsListAssetsRequest request) {
     return this.rawClient.assetsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code> and <code>acquisitionCost</code>.
+   */
   public CompletableFuture<AssetsListAssetsResponse> assetsList(AssetsListAssetsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.assetsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Record a modernisation of a fixed asset: <code>amount</code> is added to its cost and <code>addedLifeMonths</code> to its useful life from the month of <code>date</code> on, and the remaining depreciable value is spread over the months left. Refused with 422 when the asset is disposed or when no depreciation month would be left (give <code>addedLifeMonths</code> of at least 1); a fully depreciated asset becomes active again.
+   */
   public CompletableFuture<AssetsModernizeAssetsResponse> assetsModernize(
       AssetsModernizeAssetsRequest request) {
     return this.rawClient.assetsModernize(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Record a modernisation of a fixed asset: <code>amount</code> is added to its cost and <code>addedLifeMonths</code> to its useful life from the month of <code>date</code> on, and the remaining depreciable value is spread over the months left. Refused with 422 when the asset is disposed or when no depreciation month would be left (give <code>addedLifeMonths</code> of at least 1); a fully depreciated asset becomes active again.
+   */
   public CompletableFuture<AssetsModernizeAssetsResponse> assetsModernize(
       AssetsModernizeAssetsRequest request, RequestOptions requestOptions) {
     return this.rawClient.assetsModernize(request, requestOptions).thenApply(response -> response.body());
@@ -194,21 +266,33 @@ public class AsyncAssetsClient {
     return this.rawClient.assetsDispose(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Preview what <code>assets/depreciation/post</code> would post for a month: per active asset the amount and the months it covers, earlier unposted months included, and whether the month is already posted. Nothing is written.
+   */
   public CompletableFuture<DepreciationPreviewAssetsResponse> depreciationPreview(
       DepreciationPreviewAssetsRequest request) {
     return this.rawClient.depreciationPreview(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Preview what <code>assets/depreciation/post</code> would post for a month: per active asset the amount and the months it covers, earlier unposted months included, and whether the month is already posted. Nothing is written.
+   */
   public CompletableFuture<DepreciationPreviewAssetsResponse> depreciationPreview(
       DepreciationPreviewAssetsRequest request, RequestOptions requestOptions) {
     return this.rawClient.depreciationPreview(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Post the depreciation of a month: one journal entry dated the last day of the month that debits each group's expense account and credits its accumulated depreciation account, for every active asset whose depreciation has started, covering that month and any earlier month not yet posted. Each month's amount is the remaining depreciable value (cost plus modernisations less salvage value less accumulated depreciation) divided by the months left; an asset whose life or value is used up becomes <code>fully_depreciated</code>. Answers 409 when the period is locked, and <code>journalTransactionId</code> null when nothing is due.
+   */
   public CompletableFuture<DepreciationPostAssetsResponse> depreciationPost(
       DepreciationPostAssetsRequest request) {
     return this.rawClient.depreciationPost(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Post the depreciation of a month: one journal entry dated the last day of the month that debits each group's expense account and credits its accumulated depreciation account, for every active asset whose depreciation has started, covering that month and any earlier month not yet posted. Each month's amount is the remaining depreciable value (cost plus modernisations less salvage value less accumulated depreciation) divided by the months left; an asset whose life or value is used up becomes <code>fully_depreciated</code>. Answers 409 when the period is locked, and <code>journalTransactionId</code> null when nothing is due.
+   */
   public CompletableFuture<DepreciationPostAssetsResponse> depreciationPost(
       DepreciationPostAssetsRequest request, RequestOptions requestOptions) {
     return this.rawClient.depreciationPost(request, requestOptions).thenApply(response -> response.body());

@@ -52,114 +52,192 @@ public class PayrollClient {
     return this.rawClient;
   }
 
+  /**
+   * Creates a department with a code and a name; answers 409 when the code already exists.
+   */
   public DepartmentsCreatePayrollResponse departmentsCreate(
       DepartmentsCreatePayrollRequest request) {
     return this.rawClient.departmentsCreate(request).body();
   }
 
+  /**
+   * Creates a department with a code and a name; answers 409 when the code already exists.
+   */
   public DepartmentsCreatePayrollResponse departmentsCreate(DepartmentsCreatePayrollRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.departmentsCreate(request, requestOptions).body();
   }
 
+  /**
+   * Lists the company's departments ordered by code.
+   */
   public DepartmentsListPayrollResponse departmentsList() {
     return this.rawClient.departmentsList().body();
   }
 
+  /**
+   * Lists the company's departments ordered by code.
+   */
   public DepartmentsListPayrollResponse departmentsList(RequestOptions requestOptions) {
     return this.rawClient.departmentsList(requestOptions).body();
   }
 
+  /**
+   * Lists the company's departments ordered by code.
+   */
   public DepartmentsListPayrollResponse departmentsList(DepartmentsListPayrollRequest request) {
     return this.rawClient.departmentsList(request).body();
   }
 
+  /**
+   * Lists the company's departments ordered by code.
+   */
   public DepartmentsListPayrollResponse departmentsList(DepartmentsListPayrollRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.departmentsList(request, requestOptions).body();
   }
 
+  /**
+   * Creates a work schedule with a code, a name and <code>hoursPerWeek</code> (default 40); answers 409 when the code already exists.
+   */
   public SchedulesCreatePayrollResponse schedulesCreate(SchedulesCreatePayrollRequest request) {
     return this.rawClient.schedulesCreate(request).body();
   }
 
+  /**
+   * Creates a work schedule with a code, a name and <code>hoursPerWeek</code> (default 40); answers 409 when the code already exists.
+   */
   public SchedulesCreatePayrollResponse schedulesCreate(SchedulesCreatePayrollRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.schedulesCreate(request, requestOptions).body();
   }
 
+  /**
+   * Lists the company's work schedules ordered by code.
+   */
   public SchedulesListPayrollResponse schedulesList() {
     return this.rawClient.schedulesList().body();
   }
 
+  /**
+   * Lists the company's work schedules ordered by code.
+   */
   public SchedulesListPayrollResponse schedulesList(RequestOptions requestOptions) {
     return this.rawClient.schedulesList(requestOptions).body();
   }
 
+  /**
+   * Lists the company's work schedules ordered by code.
+   */
   public SchedulesListPayrollResponse schedulesList(SchedulesListPayrollRequest request) {
     return this.rawClient.schedulesList(request).body();
   }
 
+  /**
+   * Lists the company's work schedules ordered by code.
+   */
   public SchedulesListPayrollResponse schedulesList(SchedulesListPayrollRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.schedulesList(request, requestOptions).body();
   }
 
+  /**
+   * Reads the payment types of the company country's payroll engine, each with the labels of the taxes, contributions and reporting lines it is subject to (<code>applies</code>), and the default type an untyped payment falls under. These codes are what <code>payroll/calc</code> and the additions of <code>payroll/runs/create</code> accept as <code>paymentType</code>. Answers 422 when Nordlet has no payroll engine for the company's country.
+   */
   public PaymentTypesListPayrollResponse paymentTypesList() {
     return this.rawClient.paymentTypesList().body();
   }
 
+  /**
+   * Reads the payment types of the company country's payroll engine, each with the labels of the taxes, contributions and reporting lines it is subject to (<code>applies</code>), and the default type an untyped payment falls under. These codes are what <code>payroll/calc</code> and the additions of <code>payroll/runs/create</code> accept as <code>paymentType</code>. Answers 422 when Nordlet has no payroll engine for the company's country.
+   */
   public PaymentTypesListPayrollResponse paymentTypesList(RequestOptions requestOptions) {
     return this.rawClient.paymentTypesList(requestOptions).body();
   }
 
+  /**
+   * Reads the payment types of the company country's payroll engine, each with the labels of the taxes, contributions and reporting lines it is subject to (<code>applies</code>), and the default type an untyped payment falls under. These codes are what <code>payroll/calc</code> and the additions of <code>payroll/runs/create</code> accept as <code>paymentType</code>. Answers 422 when Nordlet has no payroll engine for the company's country.
+   */
   public PaymentTypesListPayrollResponse paymentTypesList(PaymentTypesListPayrollRequest request) {
     return this.rawClient.paymentTypesList(request).body();
   }
 
+  /**
+   * Reads the payment types of the company country's payroll engine, each with the labels of the taxes, contributions and reporting lines it is subject to (<code>applies</code>), and the default type an untyped payment falls under. These codes are what <code>payroll/calc</code> and the additions of <code>payroll/runs/create</code> accept as <code>paymentType</code>. Answers 422 when Nordlet has no payroll engine for the company's country.
+   */
   public PaymentTypesListPayrollResponse paymentTypesList(PaymentTypesListPayrollRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.paymentTypesList(request, requestOptions).body();
   }
 
+  /**
+   * Runs the company country's payroll engine once on a taxable base at a date, with the employee settings given in the body instead of an employee record, and returns the allowance, income tax, contributions, components and net; nothing is saved. <code>payments</code> passes typed payments to the engine; each <code>paymentType</code> must be a code from <code>payroll/payment-types/list</code> (422 otherwise). Answers 422 when Nordlet has no payroll engine for the company's country.
+   */
   public CalcPayrollResponse calc(CalcPayrollRequest request) {
     return this.rawClient.calc(request).body();
   }
 
+  /**
+   * Runs the company country's payroll engine once on a taxable base at a date, with the employee settings given in the body instead of an employee record, and returns the allowance, income tax, contributions, components and net; nothing is saved. <code>payments</code> passes typed payments to the engine; each <code>paymentType</code> must be a code from <code>payroll/payment-types/list</code> (422 otherwise). Answers 422 when Nordlet has no payroll engine for the company's country.
+   */
   public CalcPayrollResponse calc(CalcPayrollRequest request, RequestOptions requestOptions) {
     return this.rawClient.calc(request, requestOptions).body();
   }
 
+  /**
+   * Creates a draft payroll run for a month, computing each line with the company country's payroll engine, the employee's approved runs of the year so far and of the two previous years, the month's timesheet and <code>payDate</code> (default the last day of the month). Without <code>lines</code>, every active employee whose contract covers the month gets a line: the gross is the contract's monthly salary reduced to the paid working days of the contract and the timesheet, unless <code>grossOverrides</code> sets it; the per diems of approved business trips ending in the month are added untaxed and the trips linked to the run; for a Lithuanian company the car benefit in kind (<code>includeNatura</code>) and the compensation for unused leave of a contract ending in the month are added. With <code>lines</code>, only the given employees are computed with their gross, additions and deductions; a taxable addition may carry a <code>paymentType</code> from <code>payroll/payment-types/list</code> and <code>hours</code>. Answers 422 when the country has no engine, an employee is given twice, has two contracts in the month, has no contract and no gross, or is paid by the hour or day without a gross; 409 when a run for the month already exists or the accounting period is locked.
+   */
   public RunsCreatePayrollResponse runsCreate(RunsCreatePayrollRequest request) {
     return this.rawClient.runsCreate(request).body();
   }
 
+  /**
+   * Creates a draft payroll run for a month, computing each line with the company country's payroll engine, the employee's approved runs of the year so far and of the two previous years, the month's timesheet and <code>payDate</code> (default the last day of the month). Without <code>lines</code>, every active employee whose contract covers the month gets a line: the gross is the contract's monthly salary reduced to the paid working days of the contract and the timesheet, unless <code>grossOverrides</code> sets it; the per diems of approved business trips ending in the month are added untaxed and the trips linked to the run; for a Lithuanian company the car benefit in kind (<code>includeNatura</code>) and the compensation for unused leave of a contract ending in the month are added. With <code>lines</code>, only the given employees are computed with their gross, additions and deductions; a taxable addition may carry a <code>paymentType</code> from <code>payroll/payment-types/list</code> and <code>hours</code>. Answers 422 when the country has no engine, an employee is given twice, has two contracts in the month, has no contract and no gross, or is paid by the hour or day without a gross; 409 when a run for the month already exists or the accounting period is locked.
+   */
   public RunsCreatePayrollResponse runsCreate(RunsCreatePayrollRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.runsCreate(request, requestOptions).body();
   }
 
+  /**
+   * Reads a payroll run with its lines.
+   */
   public RunsGetPayrollResponse runsGet(RunsGetPayrollRequest request) {
     return this.rawClient.runsGet(request).body();
   }
 
+  /**
+   * Reads a payroll run with its lines.
+   */
   public RunsGetPayrollResponse runsGet(RunsGetPayrollRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.runsGet(request, requestOptions).body();
   }
 
+  /**
+   * Lists payroll runs without their lines; filterable by <code>status</code>, <code>year</code> and <code>month</code>, sortable by <code>createdAt</code>, <code>year</code> and <code>month</code>.
+   */
   public RunsListPayrollResponse runsList() {
     return this.rawClient.runsList().body();
   }
 
+  /**
+   * Lists payroll runs without their lines; filterable by <code>status</code>, <code>year</code> and <code>month</code>, sortable by <code>createdAt</code>, <code>year</code> and <code>month</code>.
+   */
   public RunsListPayrollResponse runsList(RequestOptions requestOptions) {
     return this.rawClient.runsList(requestOptions).body();
   }
 
+  /**
+   * Lists payroll runs without their lines; filterable by <code>status</code>, <code>year</code> and <code>month</code>, sortable by <code>createdAt</code>, <code>year</code> and <code>month</code>.
+   */
   public RunsListPayrollResponse runsList(RunsListPayrollRequest request) {
     return this.rawClient.runsList(request).body();
   }
 
+  /**
+   * Lists payroll runs without their lines; filterable by <code>status</code>, <code>year</code> and <code>month</code>, sortable by <code>createdAt</code>, <code>year</code> and <code>month</code>.
+   */
   public RunsListPayrollResponse runsList(RunsListPayrollRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.runsList(request, requestOptions).body();
@@ -180,37 +258,61 @@ public class PayrollClient {
     return this.rawClient.linesAttendance(request, requestOptions).body();
   }
 
+  /**
+   * Posts the run's journal entry dated the last day of the month and sets the status to <code>approved</code>: the wage expense (net pay, income tax, employee contributions and deductions) and the employer contributions are debited; the net payable, the income tax, the social contributions (on one account, or split between the employee and employer accounts when their codes differ) and the deductions are credited. The accounts default to the payroll accounts of the company's chart template; each can be given per call. Answers 409 when the run is not a draft or the accounting period is locked, 422 when the run has no lines or nothing to post, and emits <code>payroll_run.approved</code>. For an Irish company with the automation of the <code>ie-payroll-withholding</code> deadline switched on, the month's payroll submission is sent at once and a failure is added to the run's <code>warnings</code>. Undo with <code>payroll/runs/reverse</code>, pay with <code>payroll/payments/export</code>.
+   */
   public RunsApprovePayrollResponse runsApprove(RunsApprovePayrollRequest request) {
     return this.rawClient.runsApprove(request).body();
   }
 
+  /**
+   * Posts the run's journal entry dated the last day of the month and sets the status to <code>approved</code>: the wage expense (net pay, income tax, employee contributions and deductions) and the employer contributions are debited; the net payable, the income tax, the social contributions (on one account, or split between the employee and employer accounts when their codes differ) and the deductions are credited. The accounts default to the payroll accounts of the company's chart template; each can be given per call. Answers 409 when the run is not a draft or the accounting period is locked, 422 when the run has no lines or nothing to post, and emits <code>payroll_run.approved</code>. For an Irish company with the automation of the <code>ie-payroll-withholding</code> deadline switched on, the month's payroll submission is sent at once and a failure is added to the run's <code>warnings</code>. Undo with <code>payroll/runs/reverse</code>, pay with <code>payroll/payments/export</code>.
+   */
   public RunsApprovePayrollResponse runsApprove(RunsApprovePayrollRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.runsApprove(request, requestOptions).body();
   }
 
+  /**
+   * Posts a journal entry dated the last day of the month that mirrors the run's entry (debits and credits swapped), sets the status to <code>reversed</code> with the reason, and releases the business trips the run paid so the next run picks them up again. Answers 409 when the run is not approved, when part of it is matched to bank payments (<code>paidAmount</code>, unmatch them first) or when the accounting period is locked. Emits <code>payroll_run.reversed</code>.
+   */
   public RunsReversePayrollResponse runsReverse(RunsReversePayrollRequest request) {
     return this.rawClient.runsReverse(request).body();
   }
 
+  /**
+   * Posts a journal entry dated the last day of the month that mirrors the run's entry (debits and credits swapped), sets the status to <code>reversed</code> with the reason, and releases the business trips the run paid so the next run picks them up again. Answers 409 when the run is not approved, when part of it is matched to bank payments (<code>paidAmount</code>, unmatch them first) or when the accounting period is locked. Emits <code>payroll_run.reversed</code>.
+   */
   public RunsReversePayrollResponse runsReverse(RunsReversePayrollRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.runsReverse(request, requestOptions).body();
   }
 
+  /**
+   * Deletes a draft run with its lines and releases the business trips linked to it; answers 409 when the run is not a draft. An approved run is undone with <code>payroll/runs/reverse</code>.
+   */
   public RunsCancelPayrollResponse runsCancel(RunsCancelPayrollRequest request) {
     return this.rawClient.runsCancel(request).body();
   }
 
+  /**
+   * Deletes a draft run with its lines and releases the business trips linked to it; answers 409 when the run is not a draft. An approved run is undone with <code>payroll/runs/reverse</code>.
+   */
   public RunsCancelPayrollResponse runsCancel(RunsCancelPayrollRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.runsCancel(request, requestOptions).body();
   }
 
+  /**
+   * Builds a SEPA credit transfer file (pain.001.001.03) for an approved run: one transfer from the chosen bank account to each employee's IBAN for the line's net when it is positive, with a remittance text in <code>locale</code> (default the locale of the calling user) and the run period, executed on <code>executionDate</code> (default the company's current date). Answers 409 when the run is not approved, and 422 when the bank account has no IBAN or is not in the company's base currency, an employee has no IBAN (<code>hr/employees/update</code>) or no line has a positive net. The file is returned in <code>xml</code>; nothing is sent to the bank.
+   */
   public PaymentsExportPayrollResponse paymentsExport(PaymentsExportPayrollRequest request) {
     return this.rawClient.paymentsExport(request).body();
   }
 
+  /**
+   * Builds a SEPA credit transfer file (pain.001.001.03) for an approved run: one transfer from the chosen bank account to each employee's IBAN for the line's net when it is positive, with a remittance text in <code>locale</code> (default the locale of the calling user) and the run period, executed on <code>executionDate</code> (default the company's current date). Answers 409 when the run is not approved, and 422 when the bank account has no IBAN or is not in the company's base currency, an employee has no IBAN (<code>hr/employees/update</code>) or no line has a positive net. The file is returned in <code>xml</code>; nothing is sent to the bank.
+   */
   public PaymentsExportPayrollResponse paymentsExport(PaymentsExportPayrollRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.paymentsExport(request, requestOptions).body();

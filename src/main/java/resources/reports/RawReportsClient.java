@@ -102,11 +102,17 @@ public class RawReportsClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Trial balance of the posted ledger for a period: for every account with an opening balance or movement, the balance before <code>fromDate</code>, the debit and credit turnover between <code>fromDate</code> and <code>toDate</code>, and the closing balance, with debit and credit totals. Template account names follow the <code>Accept-Language</code> header.
+   */
   public NordletApiHttpResponse<TrialBalanceReportsResponse> trialBalance(
       TrialBalanceReportsRequest request) {
     return trialBalance(request,null);
   }
 
+  /**
+   * Trial balance of the posted ledger for a period: for every account with an opening balance or movement, the balance before <code>fromDate</code>, the debit and credit turnover between <code>fromDate</code> and <code>toDate</code>, and the closing balance, with debit and credit totals. Template account names follow the <code>Accept-Language</code> header.
+   */
   public NordletApiHttpResponse<TrialBalanceReportsResponse> trialBalance(
       TrialBalanceReportsRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -171,11 +177,17 @@ public class RawReportsClient {
       }
     }
 
+    /**
+     * Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in <code>thresholds</code>; a category applies when at least two of its three limits are met. This is the default category of <code>reports/financial-statements</code>.
+     */
     public NordletApiHttpResponse<SizeCategoryReportsResponse> sizeCategory(
         SizeCategoryReportsRequest request) {
       return sizeCategory(request,null);
     }
 
+    /**
+     * Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in <code>thresholds</code>; a category applies when at least two of its three limits are met. This is the default category of <code>reports/financial-statements</code>.
+     */
     public NordletApiHttpResponse<SizeCategoryReportsResponse> sizeCategory(
         SizeCategoryReportsRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -240,11 +252,17 @@ public class RawReportsClient {
         }
       }
 
+      /**
+       * Balance sheet at <code>toDate</code> and profit and loss for the period from the posted ledger, year-end closing entries excluded, laid out by size category: <code>category</code> when given, else the one <code>reports/size-category</code> derives for the period. Micro gets the short balance sheet and profit and loss; the other categories add the balance sheet and profit and loss detail; medium and large also get the changes in equity and a cash flow summary. Line groupings follow the company's chart template.
+       */
       public NordletApiHttpResponse<FinancialStatementsReportsResponse> financialStatements(
           FinancialStatementsReportsRequest request) {
         return financialStatements(request,null);
       }
 
+      /**
+       * Balance sheet at <code>toDate</code> and profit and loss for the period from the posted ledger, year-end closing entries excluded, laid out by size category: <code>category</code> when given, else the one <code>reports/size-category</code> derives for the period. Micro gets the short balance sheet and profit and loss; the other categories add the balance sheet and profit and loss detail; medium and large also get the changes in equity and a cash flow summary. Line groupings follow the company's chart template.
+       */
       public NordletApiHttpResponse<FinancialStatementsReportsResponse> financialStatements(
           FinancialStatementsReportsRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -309,11 +327,17 @@ public class RawReportsClient {
           }
         }
 
+        /**
+         * Posted journal transactions of a period in date order, each with its lines (account, debit, credit), paged with <code>page</code> and <code>pageSize</code> and the total count. Template account names follow the <code>Accept-Language</code> header.
+         */
         public NordletApiHttpResponse<GeneralJournalReportsResponse> generalJournal(
             GeneralJournalReportsRequest request) {
           return generalJournal(request,null);
         }
 
+        /**
+         * Posted journal transactions of a period in date order, each with its lines (account, debit, credit), paged with <code>page</code> and <code>pageSize</code> and the total count. Template account names follow the <code>Accept-Language</code> header.
+         */
         public NordletApiHttpResponse<GeneralJournalReportsResponse> generalJournal(
             GeneralJournalReportsRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -378,11 +402,17 @@ public class RawReportsClient {
             }
           }
 
+          /**
+           * Ledger card of one account for a period: the opening balance before <code>fromDate</code>, every posted line in date order with a running balance, and the closing balance.
+           */
           public NordletApiHttpResponse<GlDetailReportsResponse> glDetail(
               GlDetailReportsRequest request) {
             return glDetail(request,null);
           }
 
+          /**
+           * Ledger card of one account for a period: the opening balance before <code>fromDate</code>, every posted line in date order with a running balance, and the closing balance.
+           */
           public NordletApiHttpResponse<GlDetailReportsResponse> glDetail(
               GlDetailReportsRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -447,20 +477,32 @@ public class RawReportsClient {
               }
             }
 
+            /**
+             * Open balance per partner: receivables from issued sale invoices and payables from registered purchase invoices that are not fully paid, credit notes reducing the balance, converted to the base currency at the document rate, with totals.
+             */
             public NordletApiHttpResponse<PartnerBalancesReportsResponse> partnerBalances() {
               return partnerBalances(PartnerBalancesReportsRequest.builder().build());
             }
 
+            /**
+             * Open balance per partner: receivables from issued sale invoices and payables from registered purchase invoices that are not fully paid, credit notes reducing the balance, converted to the base currency at the document rate, with totals.
+             */
             public NordletApiHttpResponse<PartnerBalancesReportsResponse> partnerBalances(
                 RequestOptions requestOptions) {
               return partnerBalances(PartnerBalancesReportsRequest.builder().build(),requestOptions);
             }
 
+            /**
+             * Open balance per partner: receivables from issued sale invoices and payables from registered purchase invoices that are not fully paid, credit notes reducing the balance, converted to the base currency at the document rate, with totals.
+             */
             public NordletApiHttpResponse<PartnerBalancesReportsResponse> partnerBalances(
                 PartnerBalancesReportsRequest request) {
               return partnerBalances(request,null);
             }
 
+            /**
+             * Open balance per partner: receivables from issued sale invoices and payables from registered purchase invoices that are not fully paid, credit notes reducing the balance, converted to the base currency at the document rate, with totals.
+             */
             public NordletApiHttpResponse<PartnerBalancesReportsResponse> partnerBalances(
                 PartnerBalancesReportsRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -525,20 +567,32 @@ public class RawReportsClient {
                 }
               }
 
+              /**
+               * Ageing of the open receivables or payables (<code>side</code>) at <code>asOf</code> (default the company's current date) per partner: not yet due, 1 to 30, 31 to 60, 61 to 90 and over 90 days past the due date. Counts documents dated on or before <code>asOf</code> and payments made up to that date.
+               */
               public NordletApiHttpResponse<DebtAgingReportsResponse> debtAging() {
                 return debtAging(DebtAgingReportsRequest.builder().build());
               }
 
+              /**
+               * Ageing of the open receivables or payables (<code>side</code>) at <code>asOf</code> (default the company's current date) per partner: not yet due, 1 to 30, 31 to 60, 61 to 90 and over 90 days past the due date. Counts documents dated on or before <code>asOf</code> and payments made up to that date.
+               */
               public NordletApiHttpResponse<DebtAgingReportsResponse> debtAging(
                   RequestOptions requestOptions) {
                 return debtAging(DebtAgingReportsRequest.builder().build(),requestOptions);
               }
 
+              /**
+               * Ageing of the open receivables or payables (<code>side</code>) at <code>asOf</code> (default the company's current date) per partner: not yet due, 1 to 30, 31 to 60, 61 to 90 and over 90 days past the due date. Counts documents dated on or before <code>asOf</code> and payments made up to that date.
+               */
               public NordletApiHttpResponse<DebtAgingReportsResponse> debtAging(
                   DebtAgingReportsRequest request) {
                 return debtAging(request,null);
               }
 
+              /**
+               * Ageing of the open receivables or payables (<code>side</code>) at <code>asOf</code> (default the company's current date) per partner: not yet due, 1 to 30, 31 to 60, 61 to 90 and over 90 days past the due date. Counts documents dated on or before <code>asOf</code> and payments made up to that date.
+               */
               public NordletApiHttpResponse<DebtAgingReportsResponse> debtAging(
                   DebtAgingReportsRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -603,20 +657,32 @@ public class RawReportsClient {
                   }
                 }
 
+                /**
+                 * One row per calendar month for the last <code>months</code> months ending with the current one: the receivable and payable balances at the end of the month and the revenue, expenses and net result posted in it, year-end closing entries excluded.
+                 */
                 public NordletApiHttpResponse<MonthlySummaryReportsResponse> monthlySummary() {
                   return monthlySummary(MonthlySummaryReportsRequest.builder().build());
                 }
 
+                /**
+                 * One row per calendar month for the last <code>months</code> months ending with the current one: the receivable and payable balances at the end of the month and the revenue, expenses and net result posted in it, year-end closing entries excluded.
+                 */
                 public NordletApiHttpResponse<MonthlySummaryReportsResponse> monthlySummary(
                     RequestOptions requestOptions) {
                   return monthlySummary(MonthlySummaryReportsRequest.builder().build(),requestOptions);
                 }
 
+                /**
+                 * One row per calendar month for the last <code>months</code> months ending with the current one: the receivable and payable balances at the end of the month and the revenue, expenses and net result posted in it, year-end closing entries excluded.
+                 */
                 public NordletApiHttpResponse<MonthlySummaryReportsResponse> monthlySummary(
                     MonthlySummaryReportsRequest request) {
                   return monthlySummary(request,null);
                 }
 
+                /**
+                 * One row per calendar month for the last <code>months</code> months ending with the current one: the receivable and payable balances at the end of the month and the revenue, expenses and net result posted in it, year-end closing entries excluded.
+                 */
                 public NordletApiHttpResponse<MonthlySummaryReportsResponse> monthlySummary(
                     MonthlySummaryReportsRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -681,11 +747,17 @@ public class RawReportsClient {
                     }
                   }
 
+                  /**
+                   * Quantity and value on hand per item and warehouse at <code>asOf</code>, summed from the stock movements dated on or before it; <code>warehouseId</code> limits the report to one warehouse. Rows with zero quantity and zero value are left out.
+                   */
                   public NordletApiHttpResponse<StockBalanceReportsResponse> stockBalance(
                       StockBalanceReportsRequest request) {
                     return stockBalance(request,null);
                   }
 
+                  /**
+                   * Quantity and value on hand per item and warehouse at <code>asOf</code>, summed from the stock movements dated on or before it; <code>warehouseId</code> limits the report to one warehouse. Rows with zero quantity and zero value are left out.
+                   */
                   public NordletApiHttpResponse<StockBalanceReportsResponse> stockBalance(
                       StockBalanceReportsRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -750,11 +822,17 @@ public class RawReportsClient {
                       }
                     }
 
+                    /**
+                     * Stock movement per item for a period: opening quantity and value before <code>fromDate</code>, quantities and values received and issued between <code>fromDate</code> and <code>toDate</code>, and the closing figures; <code>warehouseId</code> and <code>itemId</code> narrow the report.
+                     */
                     public NordletApiHttpResponse<StockMovementReportsResponse> stockMovement(
                         StockMovementReportsRequest request) {
                       return stockMovement(request,null);
                     }
 
+                    /**
+                     * Stock movement per item for a period: opening quantity and value before <code>fromDate</code>, quantities and values received and issued between <code>fromDate</code> and <code>toDate</code>, and the closing figures; <code>warehouseId</code> and <code>itemId</code> narrow the report.
+                     */
                     public NordletApiHttpResponse<StockMovementReportsResponse> stockMovement(
                         StockMovementReportsRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -819,11 +897,17 @@ public class RawReportsClient {
                         }
                       }
 
+                      /**
+                       * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of <code>reports/vat-detail</code> grouped by rate.
+                       */
                       public NordletApiHttpResponse<VatSummaryReportsResponse> vatSummary(
                           VatSummaryReportsRequest request) {
                         return vatSummary(request,null);
                       }
 
+                      /**
+                       * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of <code>reports/vat-detail</code> grouped by rate.
+                       */
                       public NordletApiHttpResponse<VatSummaryReportsResponse> vatSummary(
                           VatSummaryReportsRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -888,11 +972,17 @@ public class RawReportsClient {
                           }
                         }
 
+                        /**
+                         * Cash flow statement of a period from the posted transactions that touch a cash account: the inflow and outflow of every counterpart account, grouped into operating, investing and financing by the account prefixes of the company's chart template, with opening and closing cash and <code>balanced</code> telling whether opening cash plus the net change equals closing cash. Template account names follow the <code>Accept-Language</code> header.
+                         */
                         public NordletApiHttpResponse<CashFlowReportsResponse> cashFlow(
                             CashFlowReportsRequest request) {
                           return cashFlow(request,null);
                         }
 
+                        /**
+                         * Cash flow statement of a period from the posted transactions that touch a cash account: the inflow and outflow of every counterpart account, grouped into operating, investing and financing by the account prefixes of the company's chart template, with opening and closing cash and <code>balanced</code> telling whether opening cash plus the net change equals closing cash. Template account names follow the <code>Accept-Language</code> header.
+                         */
                         public NordletApiHttpResponse<CashFlowReportsResponse> cashFlow(
                             CashFlowReportsRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -957,11 +1047,17 @@ public class RawReportsClient {
                             }
                           }
 
+                          /**
+                           * Age of the stock on hand at <code>asOf</code> per item and warehouse: the remaining quantity and value of each FIFO receipt layer, bucketed by days since the receipt (0 to 30, 31 to 60, 61 to 90, over 90), with totals; <code>warehouseId</code> limits the report to one warehouse. When movements after <code>asOf</code> exist, the layers are rebuilt by replaying the movements up to that date.
+                           */
                           public NordletApiHttpResponse<StockAgingReportsResponse> stockAging(
                               StockAgingReportsRequest request) {
                             return stockAging(request,null);
                           }
 
+                          /**
+                           * Age of the stock on hand at <code>asOf</code> per item and warehouse: the remaining quantity and value of each FIFO receipt layer, bucketed by days since the receipt (0 to 30, 31 to 60, 61 to 90, over 90), with totals; <code>warehouseId</code> limits the report to one warehouse. When movements after <code>asOf</code> exist, the layers are rebuilt by replaying the movements up to that date.
+                           */
                           public NordletApiHttpResponse<StockAgingReportsResponse> stockAging(
                               StockAgingReportsRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1026,21 +1122,33 @@ public class RawReportsClient {
                               }
                             }
 
+                            /**
+                             * Items whose reserved quantity exceeds the quantity on hand, per warehouse: on hand, reserved and the shortage. Only items with a reservation are checked; <code>warehouseId</code> limits the report to one warehouse.
+                             */
                             public NordletApiHttpResponse<StockShortageReportsResponse> stockShortage(
                                 ) {
                               return stockShortage(StockShortageReportsRequest.builder().build());
                             }
 
+                            /**
+                             * Items whose reserved quantity exceeds the quantity on hand, per warehouse: on hand, reserved and the shortage. Only items with a reservation are checked; <code>warehouseId</code> limits the report to one warehouse.
+                             */
                             public NordletApiHttpResponse<StockShortageReportsResponse> stockShortage(
                                 RequestOptions requestOptions) {
                               return stockShortage(StockShortageReportsRequest.builder().build(),requestOptions);
                             }
 
+                            /**
+                             * Items whose reserved quantity exceeds the quantity on hand, per warehouse: on hand, reserved and the shortage. Only items with a reservation are checked; <code>warehouseId</code> limits the report to one warehouse.
+                             */
                             public NordletApiHttpResponse<StockShortageReportsResponse> stockShortage(
                                 StockShortageReportsRequest request) {
                               return stockShortage(request,null);
                             }
 
+                            /**
+                             * Items whose reserved quantity exceeds the quantity on hand, per warehouse: on hand, reserved and the shortage. Only items with a reservation are checked; <code>warehouseId</code> limits the report to one warehouse.
+                             */
                             public NordletApiHttpResponse<StockShortageReportsResponse> stockShortage(
                                 StockShortageReportsRequest request,
                                 RequestOptions requestOptions) {
@@ -1331,11 +1439,17 @@ public class RawReportsClient {
                                       }
                                     }
 
+                                    /**
+                                     * Registered purchase invoices of a period (by registration date) from partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents, credit notes counting negative. The partner's country is the country code of its address, else the first two characters of its VAT number.
+                                     */
                                     public NordletApiHttpResponse<EuPurchasesReportsResponse> euPurchases(
                                         EuPurchasesReportsRequest request) {
                                       return euPurchases(request,null);
                                     }
 
+                                    /**
+                                     * Registered purchase invoices of a period (by registration date) from partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents, credit notes counting negative. The partner's country is the country code of its address, else the first two characters of its VAT number.
+                                     */
                                     public NordletApiHttpResponse<EuPurchasesReportsResponse> euPurchases(
                                         EuPurchasesReportsRequest request,
                                         RequestOptions requestOptions) {
@@ -1401,11 +1515,17 @@ public class RawReportsClient {
                                         }
                                       }
 
+                                      /**
+                                       * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. <code>reports/vat-summary</code> groups these rows by rate.
+                                       */
                                       public NordletApiHttpResponse<VatDetailReportsResponse> vatDetail(
                                           VatDetailReportsRequest request) {
                                         return vatDetail(request,null);
                                       }
 
+                                      /**
+                                       * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. <code>reports/vat-summary</code> groups these rows by rate.
+                                       */
                                       public NordletApiHttpResponse<VatDetailReportsResponse> vatDetail(
                                           VatDetailReportsRequest request,
                                           RequestOptions requestOptions) {
@@ -1471,11 +1591,17 @@ public class RawReportsClient {
                                           }
                                         }
 
+                                        /**
+                                         * POS reports of a period (by report date): per report the net, VAT, gross, cash and card amounts and the cost of goods sold, the net and VAT per VAT rate across the reports, and totals.
+                                         */
                                         public NordletApiHttpResponse<PosSalesReportsResponse> posSales(
                                             PosSalesReportsRequest request) {
                                           return posSales(request,null);
                                         }
 
+                                        /**
+                                         * POS reports of a period (by report date): per report the net, VAT, gross, cash and card amounts and the cost of goods sold, the net and VAT per VAT rate across the reports, and totals.
+                                         */
                                         public NordletApiHttpResponse<PosSalesReportsResponse> posSales(
                                             PosSalesReportsRequest request,
                                             RequestOptions requestOptions) {
@@ -1541,11 +1667,17 @@ public class RawReportsClient {
                                             }
                                           }
 
+                                          /**
+                                           * Sales orders created in a period, grouped by channel and currency: the number of orders, how many are fulfilled, cancelled or still open (new or reserved), and the net and gross of the orders that are not cancelled, computed from their lines.
+                                           */
                                           public NordletApiHttpResponse<OnlineSalesReportsResponse> onlineSales(
                                               OnlineSalesReportsRequest request) {
                                             return onlineSales(request,null);
                                           }
 
+                                          /**
+                                           * Sales orders created in a period, grouped by channel and currency: the number of orders, how many are fulfilled, cancelled or still open (new or reserved), and the net and gross of the orders that are not cancelled, computed from their lines.
+                                           */
                                           public NordletApiHttpResponse<OnlineSalesReportsResponse> onlineSales(
                                               OnlineSalesReportsRequest request,
                                               RequestOptions requestOptions) {
@@ -1611,11 +1743,17 @@ public class RawReportsClient {
                                               }
                                             }
 
+                                            /**
+                                             * Issued sale invoices and credit notes of a period (by issue date) to partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents. The partner's country is the country code of its address, else the first two characters of its VAT number.
+                                             */
                                             public NordletApiHttpResponse<OssReportsResponse> oss(
                                                 OssReportsRequest request) {
                                               return oss(request,null);
                                             }
 
+                                            /**
+                                             * Issued sale invoices and credit notes of a period (by issue date) to partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents. The partner's country is the country code of its address, else the first two characters of its VAT number.
+                                             */
                                             public NordletApiHttpResponse<OssReportsResponse> oss(
                                                 OssReportsRequest request,
                                                 RequestOptions requestOptions) {
@@ -1681,11 +1819,17 @@ public class RawReportsClient {
                                                 }
                                               }
 
+                                              /**
+                                               * Cash advances per employee for a period: the balance before <code>fromDate</code>, the advances paid out and returned through cash orders in the period, the amount settled by expense reports dated in the period, and the closing balance. A cash order counts as an advance when it names an employee and its counter account is the <code>cash.advances</code> posting rule.
+                                               */
                                               public NordletApiHttpResponse<AdvanceReconciliationReportsResponse> advanceReconciliation(
                                                   AdvanceReconciliationReportsRequest request) {
                                                 return advanceReconciliation(request,null);
                                               }
 
+                                              /**
+                                               * Cash advances per employee for a period: the balance before <code>fromDate</code>, the advances paid out and returned through cash orders in the period, the amount settled by expense reports dated in the period, and the closing balance. A cash order counts as an advance when it names an employee and its counter account is the <code>cash.advances</code> posting rule.
+                                               */
                                               public NordletApiHttpResponse<AdvanceReconciliationReportsResponse> advanceReconciliation(
                                                   AdvanceReconciliationReportsRequest request,
                                                   RequestOptions requestOptions) {
@@ -1751,11 +1895,17 @@ public class RawReportsClient {
                                                   }
                                                 }
 
+                                                /**
+                                                 * Stock issued by write-offs and stock takes in a period: one row per outgoing movement with item, warehouse, quantity, cost and notes, and the total cost; <code>warehouseId</code> limits the report to one warehouse.
+                                                 */
                                                 public NordletApiHttpResponse<WriteOffActsReportsResponse> writeOffActs(
                                                     WriteOffActsReportsRequest request) {
                                                   return writeOffActs(request,null);
                                                 }
 
+                                                /**
+                                                 * Stock issued by write-offs and stock takes in a period: one row per outgoing movement with item, warehouse, quantity, cost and notes, and the total cost; <code>warehouseId</code> limits the report to one warehouse.
+                                                 */
                                                 public NordletApiHttpResponse<WriteOffActsReportsResponse> writeOffActs(
                                                     WriteOffActsReportsRequest request,
                                                     RequestOptions requestOptions) {
@@ -1821,11 +1971,17 @@ public class RawReportsClient {
                                                     }
                                                   }
 
+                                                  /**
+                                                   * Income, expenses and result per cost centre for a period, from the posted journal lines assigned to a cost centre.
+                                                   */
                                                   public NordletApiHttpResponse<CostCentersReportsResponse> costCenters(
                                                       CostCentersReportsRequest request) {
                                                     return costCenters(request,null);
                                                   }
 
+                                                  /**
+                                                   * Income, expenses and result per cost centre for a period, from the posted journal lines assigned to a cost centre.
+                                                   */
                                                   public NordletApiHttpResponse<CostCentersReportsResponse> costCenters(
                                                       CostCentersReportsRequest request,
                                                       RequestOptions requestOptions) {
@@ -1891,11 +2047,17 @@ public class RawReportsClient {
                                                       }
                                                     }
 
+                                                    /**
+                                                     * Posted journal lines of one cost centre for a period, summed per account: debit, credit and net. Template account names follow the <code>Accept-Language</code> header.
+                                                     */
                                                     public NordletApiHttpResponse<CostCenterActivityReportsResponse> costCenterActivity(
                                                         CostCenterActivityReportsRequest request) {
                                                       return costCenterActivity(request,null);
                                                     }
 
+                                                    /**
+                                                     * Posted journal lines of one cost centre for a period, summed per account: debit, credit and net. Template account names follow the <code>Accept-Language</code> header.
+                                                     */
                                                     public NordletApiHttpResponse<CostCenterActivityReportsResponse> costCenterActivity(
                                                         CostCenterActivityReportsRequest request,
                                                         RequestOptions requestOptions) {
@@ -1961,11 +2123,17 @@ public class RawReportsClient {
                                                         }
                                                       }
 
+                                                      /**
+                                                       * Net purchases per cost centre and item for a period, from the lines of registered purchase invoices (by registration date) that carry a cost centre, credit notes counting negative; <code>costCenterId</code> limits the report to one cost centre. A line without an item is reported under its description.
+                                                       */
                                                       public NordletApiHttpResponse<CostCenterItemsReportsResponse> costCenterItems(
                                                           CostCenterItemsReportsRequest request) {
                                                         return costCenterItems(request,null);
                                                       }
 
+                                                      /**
+                                                       * Net purchases per cost centre and item for a period, from the lines of registered purchase invoices (by registration date) that carry a cost centre, credit notes counting negative; <code>costCenterId</code> limits the report to one cost centre. A line without an item is reported under its description.
+                                                       */
                                                       public NordletApiHttpResponse<CostCenterItemsReportsResponse> costCenterItems(
                                                           CostCenterItemsReportsRequest request,
                                                           RequestOptions requestOptions) {
@@ -2031,11 +2199,17 @@ public class RawReportsClient {
                                                           }
                                                         }
 
+                                                        /**
+                                                         * Queue a report to be built in the background in one or more formats (<code>json</code>, <code>xlsx</code>, <code>pdf</code>) and stored as files; the job is returned at once with status <code>queued</code>. <code>reportType</code> is one of trial-balance, partner-balances, debt-aging, stock-balance, vat-summary, vat-detail, eu-purchases, oss, pos-sales, online-sales, advance-reconciliation, write-off-acts, cost-centers, cost-center-activity, cost-center-items and cash-flow, and <code>params</code> is the body of that report route; an unknown type or invalid params are refused with 422. Follow the job with <code>reports/jobs/get</code>, download its outputs with <code>files/get</code>, and listen for <code>report.completed</code> or <code>report.failed</code>; a report that does not finish within ten minutes fails.
+                                                         */
                                                         public NordletApiHttpResponse<JobsCreateReportsResponse> jobsCreate(
                                                             JobsCreateReportsRequest request) {
                                                           return jobsCreate(request,null);
                                                         }
 
+                                                        /**
+                                                         * Queue a report to be built in the background in one or more formats (<code>json</code>, <code>xlsx</code>, <code>pdf</code>) and stored as files; the job is returned at once with status <code>queued</code>. <code>reportType</code> is one of trial-balance, partner-balances, debt-aging, stock-balance, vat-summary, vat-detail, eu-purchases, oss, pos-sales, online-sales, advance-reconciliation, write-off-acts, cost-centers, cost-center-activity, cost-center-items and cash-flow, and <code>params</code> is the body of that report route; an unknown type or invalid params are refused with 422. Follow the job with <code>reports/jobs/get</code>, download its outputs with <code>files/get</code>, and listen for <code>report.completed</code> or <code>report.failed</code>; a report that does not finish within ten minutes fails.
+                                                         */
                                                         public NordletApiHttpResponse<JobsCreateReportsResponse> jobsCreate(
                                                             JobsCreateReportsRequest request,
                                                             RequestOptions requestOptions) {
@@ -2101,11 +2275,17 @@ public class RawReportsClient {
                                                             }
                                                           }
 
+                                                          /**
+                                                           * Return one report job with its status (<code>queued</code>, <code>running</code>, <code>completed</code> or <code>failed</code>), the error of a failed job and the output files of a completed one.
+                                                           */
                                                           public NordletApiHttpResponse<JobsGetReportsResponse> jobsGet(
                                                               JobsGetReportsRequest request) {
                                                             return jobsGet(request,null);
                                                           }
 
+                                                          /**
+                                                           * Return one report job with its status (<code>queued</code>, <code>running</code>, <code>completed</code> or <code>failed</code>), the error of a failed job and the output files of a completed one.
+                                                           */
                                                           public NordletApiHttpResponse<JobsGetReportsResponse> jobsGet(
                                                               JobsGetReportsRequest request,
                                                               RequestOptions requestOptions) {
@@ -2171,21 +2351,33 @@ public class RawReportsClient {
                                                               }
                                                             }
 
+                                                            /**
+                                                             * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
+                                                             */
                                                             public NordletApiHttpResponse<JobsListReportsResponse> jobsList(
                                                                 ) {
                                                               return jobsList(JobsListReportsRequest.builder().build());
                                                             }
 
+                                                            /**
+                                                             * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
+                                                             */
                                                             public NordletApiHttpResponse<JobsListReportsResponse> jobsList(
                                                                 RequestOptions requestOptions) {
                                                               return jobsList(JobsListReportsRequest.builder().build(),requestOptions);
                                                             }
 
+                                                            /**
+                                                             * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
+                                                             */
                                                             public NordletApiHttpResponse<JobsListReportsResponse> jobsList(
                                                                 JobsListReportsRequest request) {
                                                               return jobsList(request,null);
                                                             }
 
+                                                            /**
+                                                             * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
+                                                             */
                                                             public NordletApiHttpResponse<JobsListReportsResponse> jobsList(
                                                                 JobsListReportsRequest request,
                                                                 RequestOptions requestOptions) {

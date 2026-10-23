@@ -98,11 +98,17 @@ public class RawCatalogClient {
     this.clientOptions = clientOptions;
   }
 
+  /**
+   * Create a catalog item: a product, a service or a set of other items. <code>unit</code> must be <code>vnt</code>, a global measurement unit or one of the company's own units (<code>catalog/units/options</code>), the sale, purchase and expense account codes must be postable accounts of the chart, and <code>priceFrom</code>/<code>priceTo</code> and <code>validFrom</code>/<code>validTo</code> must be in order; otherwise 422. A <code>set</code> needs at least one component and none of them may be a set; <code>components</code> on any other type is refused with 422. 409 when an active item already carries the <code>code</code>. <code>documentRef</code> is the storage key of a file uploaded with <code>files/upload</code>, which is attached to the item. Emits <code>item.created</code>.
+   */
   public NordletApiHttpResponse<ItemsCreateCatalogResponse> itemsCreate(
       ItemsCreateCatalogRequest request) {
     return itemsCreate(request,null);
   }
 
+  /**
+   * Create a catalog item: a product, a service or a set of other items. <code>unit</code> must be <code>vnt</code>, a global measurement unit or one of the company's own units (<code>catalog/units/options</code>), the sale, purchase and expense account codes must be postable accounts of the chart, and <code>priceFrom</code>/<code>priceTo</code> and <code>validFrom</code>/<code>validTo</code> must be in order; otherwise 422. A <code>set</code> needs at least one component and none of them may be a set; <code>components</code> on any other type is refused with 422. 409 when an active item already carries the <code>code</code>. <code>documentRef</code> is the storage key of a file uploaded with <code>files/upload</code>, which is attached to the item. Emits <code>item.created</code>.
+   */
   public NordletApiHttpResponse<ItemsCreateCatalogResponse> itemsCreate(
       ItemsCreateCatalogRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -167,11 +173,17 @@ public class RawCatalogClient {
       }
     }
 
+    /**
+     * Return one item; a set comes with its components.
+     */
     public NordletApiHttpResponse<ItemsGetCatalogResponse> itemsGet(
         ItemsGetCatalogRequest request) {
       return itemsGet(request,null);
     }
 
+    /**
+     * Return one item; a set comes with its components.
+     */
     public NordletApiHttpResponse<ItemsGetCatalogResponse> itemsGet(ItemsGetCatalogRequest request,
         RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -236,11 +248,17 @@ public class RawCatalogClient {
         }
       }
 
+      /**
+       * Change the fields of an item; the fields that are nullable in the request can be set to null to clear them. The checks of <code>catalog/items/create</code> apply. <code>components</code> replaces the whole component list and is accepted only when the item is or becomes a set (422); turning an item into a set needs components and is refused with 409 while the item is itself a component of another set. Turning a set into another type removes its components. 409 when an active item already carries the new <code>code</code>. Emits <code>item.updated</code>.
+       */
       public NordletApiHttpResponse<ItemsUpdateCatalogResponse> itemsUpdate(
           ItemsUpdateCatalogRequest request) {
         return itemsUpdate(request,null);
       }
 
+      /**
+       * Change the fields of an item; the fields that are nullable in the request can be set to null to clear them. The checks of <code>catalog/items/create</code> apply. <code>components</code> replaces the whole component list and is accepted only when the item is or becomes a set (422); turning an item into a set needs components and is refused with 409 while the item is itself a component of another set. Turning a set into another type removes its components. 409 when an active item already carries the new <code>code</code>. Emits <code>item.updated</code>.
+       */
       public NordletApiHttpResponse<ItemsUpdateCatalogResponse> itemsUpdate(
           ItemsUpdateCatalogRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -305,11 +323,17 @@ public class RawCatalogClient {
           }
         }
 
+        /**
+         * Soft-delete an item. Refused with 409 while the item is a component of an active set. Emits <code>item.deleted</code>.
+         */
         public NordletApiHttpResponse<ItemsDeleteCatalogResponse> itemsDelete(
             ItemsDeleteCatalogRequest request) {
           return itemsDelete(request,null);
         }
 
+        /**
+         * Soft-delete an item. Refused with 409 while the item is a component of an active set. Emits <code>item.deleted</code>.
+         */
         public NordletApiHttpResponse<ItemsDeleteCatalogResponse> itemsDelete(
             ItemsDeleteCatalogRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -374,20 +398,32 @@ public class RawCatalogClient {
             }
           }
 
+          /**
+           * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+           */
           public NordletApiHttpResponse<ItemsListCatalogResponse> itemsList() {
             return itemsList(ItemsListCatalogRequest.builder().build());
           }
 
+          /**
+           * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+           */
           public NordletApiHttpResponse<ItemsListCatalogResponse> itemsList(
               RequestOptions requestOptions) {
             return itemsList(ItemsListCatalogRequest.builder().build(),requestOptions);
           }
 
+          /**
+           * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+           */
           public NordletApiHttpResponse<ItemsListCatalogResponse> itemsList(
               ItemsListCatalogRequest request) {
             return itemsList(request,null);
           }
 
+          /**
+           * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+           */
           public NordletApiHttpResponse<ItemsListCatalogResponse> itemsList(
               ItemsListCatalogRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -452,11 +488,17 @@ public class RawCatalogClient {
               }
             }
 
+            /**
+             * List the files attached to an item, newest first.
+             */
             public NordletApiHttpResponse<ItemsFilesListCatalogResponse> itemsFilesList(
                 ItemsFilesListCatalogRequest request) {
               return itemsFilesList(request,null);
             }
 
+            /**
+             * List the files attached to an item, newest first.
+             */
             public NordletApiHttpResponse<ItemsFilesListCatalogResponse> itemsFilesList(
                 ItemsFilesListCatalogRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -521,11 +563,17 @@ public class RawCatalogClient {
                 }
               }
 
+              /**
+               * Create an item kind: a code, a name, the SAF-T item type, whether quantities are accounted for, and a sort order. 409 when the code already exists.
+               */
               public NordletApiHttpResponse<ItemsKindsCreateCatalogResponse> itemsKindsCreate(
                   ItemsKindsCreateCatalogRequest request) {
                 return itemsKindsCreate(request,null);
               }
 
+              /**
+               * Create an item kind: a code, a name, the SAF-T item type, whether quantities are accounted for, and a sort order. 409 when the code already exists.
+               */
               public NordletApiHttpResponse<ItemsKindsCreateCatalogResponse> itemsKindsCreate(
                   ItemsKindsCreateCatalogRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -590,11 +638,17 @@ public class RawCatalogClient {
                   }
                 }
 
+                /**
+                 * Change an item kind. 409 when the new code already exists.
+                 */
                 public NordletApiHttpResponse<ItemsKindsUpdateCatalogResponse> itemsKindsUpdate(
                     ItemsKindsUpdateCatalogRequest request) {
                   return itemsKindsUpdate(request,null);
                 }
 
+                /**
+                 * Change an item kind. 409 when the new code already exists.
+                 */
                 public NordletApiHttpResponse<ItemsKindsUpdateCatalogResponse> itemsKindsUpdate(
                     ItemsKindsUpdateCatalogRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -659,11 +713,17 @@ public class RawCatalogClient {
                     }
                   }
 
+                  /**
+                   * Delete an item kind. Refused with 409 while an active item uses it; soft-deleted items that still carry it are detached.
+                   */
                   public NordletApiHttpResponse<ItemsKindsDeleteCatalogResponse> itemsKindsDelete(
                       ItemsKindsDeleteCatalogRequest request) {
                     return itemsKindsDelete(request,null);
                   }
 
+                  /**
+                   * Delete an item kind. Refused with 409 while an active item uses it; soft-deleted items that still carry it are detached.
+                   */
                   public NordletApiHttpResponse<ItemsKindsDeleteCatalogResponse> itemsKindsDelete(
                       ItemsKindsDeleteCatalogRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -728,20 +788,32 @@ public class RawCatalogClient {
                       }
                     }
 
+                    /**
+                     * List the company's item kinds in sort order, then by code.
+                     */
                     public NordletApiHttpResponse<ItemsKindsListCatalogResponse> itemsKindsList() {
                       return itemsKindsList(ItemsKindsListCatalogRequest.builder().build());
                     }
 
+                    /**
+                     * List the company's item kinds in sort order, then by code.
+                     */
                     public NordletApiHttpResponse<ItemsKindsListCatalogResponse> itemsKindsList(
                         RequestOptions requestOptions) {
                       return itemsKindsList(ItemsKindsListCatalogRequest.builder().build(),requestOptions);
                     }
 
+                    /**
+                     * List the company's item kinds in sort order, then by code.
+                     */
                     public NordletApiHttpResponse<ItemsKindsListCatalogResponse> itemsKindsList(
                         ItemsKindsListCatalogRequest request) {
                       return itemsKindsList(request,null);
                     }
 
+                    /**
+                     * List the company's item kinds in sort order, then by code.
+                     */
                     public NordletApiHttpResponse<ItemsKindsListCatalogResponse> itemsKindsList(
                         ItemsKindsListCatalogRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -806,11 +878,17 @@ public class RawCatalogClient {
                         }
                       }
 
+                      /**
+                       * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). 409 when the code already exists.
+                       */
                       public NordletApiHttpResponse<UnitsCreateCatalogResponse> unitsCreate(
                           UnitsCreateCatalogRequest request) {
                         return unitsCreate(request,null);
                       }
 
+                      /**
+                       * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). 409 when the code already exists.
+                       */
                       public NordletApiHttpResponse<UnitsCreateCatalogResponse> unitsCreate(
                           UnitsCreateCatalogRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -875,11 +953,17 @@ public class RawCatalogClient {
                           }
                         }
 
+                        /**
+                         * Change the code, name or active flag of a company unit. 409 when the new code already exists.
+                         */
                         public NordletApiHttpResponse<UnitsUpdateCatalogResponse> unitsUpdate(
                             UnitsUpdateCatalogRequest request) {
                           return unitsUpdate(request,null);
                         }
 
+                        /**
+                         * Change the code, name or active flag of a company unit. 409 when the new code already exists.
+                         */
                         public NordletApiHttpResponse<UnitsUpdateCatalogResponse> unitsUpdate(
                             UnitsUpdateCatalogRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -944,11 +1028,17 @@ public class RawCatalogClient {
                             }
                           }
 
+                          /**
+                           * Delete a company unit of measure.
+                           */
                           public NordletApiHttpResponse<UnitsDeleteCatalogResponse> unitsDelete(
                               UnitsDeleteCatalogRequest request) {
                             return unitsDelete(request,null);
                           }
 
+                          /**
+                           * Delete a company unit of measure.
+                           */
                           public NordletApiHttpResponse<UnitsDeleteCatalogResponse> unitsDelete(
                               UnitsDeleteCatalogRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1013,20 +1103,32 @@ public class RawCatalogClient {
                               }
                             }
 
+                            /**
+                             * List the company's own units of measure, ordered by code.
+                             */
                             public NordletApiHttpResponse<UnitsListCatalogResponse> unitsList() {
                               return unitsList(UnitsListCatalogRequest.builder().build());
                             }
 
+                            /**
+                             * List the company's own units of measure, ordered by code.
+                             */
                             public NordletApiHttpResponse<UnitsListCatalogResponse> unitsList(
                                 RequestOptions requestOptions) {
                               return unitsList(UnitsListCatalogRequest.builder().build(),requestOptions);
                             }
 
+                            /**
+                             * List the company's own units of measure, ordered by code.
+                             */
                             public NordletApiHttpResponse<UnitsListCatalogResponse> unitsList(
                                 UnitsListCatalogRequest request) {
                               return unitsList(request,null);
                             }
 
+                            /**
+                             * List the company's own units of measure, ordered by code.
+                             */
                             public NordletApiHttpResponse<UnitsListCatalogResponse> unitsList(
                                 UnitsListCatalogRequest request, RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -1091,21 +1193,33 @@ public class RawCatalogClient {
                                 }
                               }
 
+                              /**
+                               * Return the unit codes an item can use: the company's active own units first, then the global measurement units, named in the requested <code>locale</code> (Lithuanian for <code>lt</code>, English otherwise). A company unit hides a global unit with the same code.
+                               */
                               public NordletApiHttpResponse<UnitsOptionsCatalogResponse> unitsOptions(
                                   ) {
                                 return unitsOptions(UnitsOptionsCatalogRequest.builder().build());
                               }
 
+                              /**
+                               * Return the unit codes an item can use: the company's active own units first, then the global measurement units, named in the requested <code>locale</code> (Lithuanian for <code>lt</code>, English otherwise). A company unit hides a global unit with the same code.
+                               */
                               public NordletApiHttpResponse<UnitsOptionsCatalogResponse> unitsOptions(
                                   RequestOptions requestOptions) {
                                 return unitsOptions(UnitsOptionsCatalogRequest.builder().build(),requestOptions);
                               }
 
+                              /**
+                               * Return the unit codes an item can use: the company's active own units first, then the global measurement units, named in the requested <code>locale</code> (Lithuanian for <code>lt</code>, English otherwise). A company unit hides a global unit with the same code.
+                               */
                               public NordletApiHttpResponse<UnitsOptionsCatalogResponse> unitsOptions(
                                   UnitsOptionsCatalogRequest request) {
                                 return unitsOptions(request,null);
                               }
 
+                              /**
+                               * Return the unit codes an item can use: the company's active own units first, then the global measurement units, named in the requested <code>locale</code> (Lithuanian for <code>lt</code>, English otherwise). A company unit hides a global unit with the same code.
+                               */
                               public NordletApiHttpResponse<UnitsOptionsCatalogResponse> unitsOptions(
                                   UnitsOptionsCatalogRequest request,
                                   RequestOptions requestOptions) {
@@ -1171,11 +1285,17 @@ public class RawCatalogClient {
                                   }
                                 }
 
+                                /**
+                                 * Create an item group, optionally under <code>parentId</code>. 409 when the code already exists.
+                                 */
                                 public NordletApiHttpResponse<ItemGroupsCreateCatalogResponse> itemGroupsCreate(
                                     ItemGroupsCreateCatalogRequest request) {
                                   return itemGroupsCreate(request,null);
                                 }
 
+                                /**
+                                 * Create an item group, optionally under <code>parentId</code>. 409 when the code already exists.
+                                 */
                                 public NordletApiHttpResponse<ItemGroupsCreateCatalogResponse> itemGroupsCreate(
                                     ItemGroupsCreateCatalogRequest request,
                                     RequestOptions requestOptions) {
@@ -1241,11 +1361,17 @@ public class RawCatalogClient {
                                     }
                                   }
 
+                                  /**
+                                   * Change the code, name or parent of an item group; <code>parentId</code> null moves it to the top level. 422 when the new parent is the group itself or one of its descendants. 409 when the new code already exists.
+                                   */
                                   public NordletApiHttpResponse<ItemGroupsUpdateCatalogResponse> itemGroupsUpdate(
                                       ItemGroupsUpdateCatalogRequest request) {
                                     return itemGroupsUpdate(request,null);
                                   }
 
+                                  /**
+                                   * Change the code, name or parent of an item group; <code>parentId</code> null moves it to the top level. 422 when the new parent is the group itself or one of its descendants. 409 when the new code already exists.
+                                   */
                                   public NordletApiHttpResponse<ItemGroupsUpdateCatalogResponse> itemGroupsUpdate(
                                       ItemGroupsUpdateCatalogRequest request,
                                       RequestOptions requestOptions) {
@@ -1311,11 +1437,17 @@ public class RawCatalogClient {
                                       }
                                     }
 
+                                    /**
+                                     * Delete an item group. Refused with 409 while it has child groups or active items assigned.
+                                     */
                                     public NordletApiHttpResponse<ItemGroupsDeleteCatalogResponse> itemGroupsDelete(
                                         ItemGroupsDeleteCatalogRequest request) {
                                       return itemGroupsDelete(request,null);
                                     }
 
+                                    /**
+                                     * Delete an item group. Refused with 409 while it has child groups or active items assigned.
+                                     */
                                     public NordletApiHttpResponse<ItemGroupsDeleteCatalogResponse> itemGroupsDelete(
                                         ItemGroupsDeleteCatalogRequest request,
                                         RequestOptions requestOptions) {
@@ -1381,21 +1513,33 @@ public class RawCatalogClient {
                                         }
                                       }
 
+                                      /**
+                                       * List the company's item groups, ordered by code.
+                                       */
                                       public NordletApiHttpResponse<ItemGroupsListCatalogResponse> itemGroupsList(
                                           ) {
                                         return itemGroupsList(ItemGroupsListCatalogRequest.builder().build());
                                       }
 
+                                      /**
+                                       * List the company's item groups, ordered by code.
+                                       */
                                       public NordletApiHttpResponse<ItemGroupsListCatalogResponse> itemGroupsList(
                                           RequestOptions requestOptions) {
                                         return itemGroupsList(ItemGroupsListCatalogRequest.builder().build(),requestOptions);
                                       }
 
+                                      /**
+                                       * List the company's item groups, ordered by code.
+                                       */
                                       public NordletApiHttpResponse<ItemGroupsListCatalogResponse> itemGroupsList(
                                           ItemGroupsListCatalogRequest request) {
                                         return itemGroupsList(request,null);
                                       }
 
+                                      /**
+                                       * List the company's item groups, ordered by code.
+                                       */
                                       public NordletApiHttpResponse<ItemGroupsListCatalogResponse> itemGroupsList(
                                           ItemGroupsListCatalogRequest request,
                                           RequestOptions requestOptions) {
@@ -1461,11 +1605,17 @@ public class RawCatalogClient {
                                           }
                                         }
 
+                                        /**
+                                         * Create or replace the supplier record of an item for a partner (one per item and partner): supplier code, purchase price excluding VAT, currency (EUR when omitted) and notes. Fields omitted from the request are cleared on an existing record.
+                                         */
                                         public NordletApiHttpResponse<ItemsSuppliersUpsertCatalogResponse> itemsSuppliersUpsert(
                                             ItemsSuppliersUpsertCatalogRequest request) {
                                           return itemsSuppliersUpsert(request,null);
                                         }
 
+                                        /**
+                                         * Create or replace the supplier record of an item for a partner (one per item and partner): supplier code, purchase price excluding VAT, currency (EUR when omitted) and notes. Fields omitted from the request are cleared on an existing record.
+                                         */
                                         public NordletApiHttpResponse<ItemsSuppliersUpsertCatalogResponse> itemsSuppliersUpsert(
                                             ItemsSuppliersUpsertCatalogRequest request,
                                             RequestOptions requestOptions) {
@@ -1531,21 +1681,33 @@ public class RawCatalogClient {
                                             }
                                           }
 
+                                          /**
+                                           * List the supplier records, optionally for one <code>itemId</code> and/or <code>partnerId</code>, ordered by partner name.
+                                           */
                                           public NordletApiHttpResponse<ItemsSuppliersListCatalogResponse> itemsSuppliersList(
                                               ) {
                                             return itemsSuppliersList(ItemsSuppliersListCatalogRequest.builder().build());
                                           }
 
+                                          /**
+                                           * List the supplier records, optionally for one <code>itemId</code> and/or <code>partnerId</code>, ordered by partner name.
+                                           */
                                           public NordletApiHttpResponse<ItemsSuppliersListCatalogResponse> itemsSuppliersList(
                                               RequestOptions requestOptions) {
                                             return itemsSuppliersList(ItemsSuppliersListCatalogRequest.builder().build(),requestOptions);
                                           }
 
+                                          /**
+                                           * List the supplier records, optionally for one <code>itemId</code> and/or <code>partnerId</code>, ordered by partner name.
+                                           */
                                           public NordletApiHttpResponse<ItemsSuppliersListCatalogResponse> itemsSuppliersList(
                                               ItemsSuppliersListCatalogRequest request) {
                                             return itemsSuppliersList(request,null);
                                           }
 
+                                          /**
+                                           * List the supplier records, optionally for one <code>itemId</code> and/or <code>partnerId</code>, ordered by partner name.
+                                           */
                                           public NordletApiHttpResponse<ItemsSuppliersListCatalogResponse> itemsSuppliersList(
                                               ItemsSuppliersListCatalogRequest request,
                                               RequestOptions requestOptions) {
@@ -1611,11 +1773,17 @@ public class RawCatalogClient {
                                               }
                                             }
 
+                                            /**
+                                             * Delete the supplier record of an item.
+                                             */
                                             public NordletApiHttpResponse<ItemsSuppliersDeleteCatalogResponse> itemsSuppliersDelete(
                                                 ItemsSuppliersDeleteCatalogRequest request) {
                                               return itemsSuppliersDelete(request,null);
                                             }
 
+                                            /**
+                                             * Delete the supplier record of an item.
+                                             */
                                             public NordletApiHttpResponse<ItemsSuppliersDeleteCatalogResponse> itemsSuppliersDelete(
                                                 ItemsSuppliersDeleteCatalogRequest request,
                                                 RequestOptions requestOptions) {
@@ -1681,11 +1849,17 @@ public class RawCatalogClient {
                                                 }
                                               }
 
+                                              /**
+                                               * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
+                                               */
                                               public NordletApiHttpResponse<PriceListsCreateCatalogResponse> priceListsCreate(
                                                   PriceListsCreateCatalogRequest request) {
                                                 return priceListsCreate(request,null);
                                               }
 
+                                              /**
+                                               * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
+                                               */
                                               public NordletApiHttpResponse<PriceListsCreateCatalogResponse> priceListsCreate(
                                                   PriceListsCreateCatalogRequest request,
                                                   RequestOptions requestOptions) {
@@ -1751,11 +1925,17 @@ public class RawCatalogClient {
                                                   }
                                                 }
 
+                                                /**
+                                                 * Change a price list. 409 when the new code already exists.
+                                                 */
                                                 public NordletApiHttpResponse<PriceListsUpdateCatalogResponse> priceListsUpdate(
                                                     PriceListsUpdateCatalogRequest request) {
                                                   return priceListsUpdate(request,null);
                                                 }
 
+                                                /**
+                                                 * Change a price list. 409 when the new code already exists.
+                                                 */
                                                 public NordletApiHttpResponse<PriceListsUpdateCatalogResponse> priceListsUpdate(
                                                     PriceListsUpdateCatalogRequest request,
                                                     RequestOptions requestOptions) {
@@ -1821,21 +2001,33 @@ public class RawCatalogClient {
                                                     }
                                                   }
 
+                                                  /**
+                                                   * List the company's price lists, ordered by code.
+                                                   */
                                                   public NordletApiHttpResponse<PriceListsListCatalogResponse> priceListsList(
                                                       ) {
                                                     return priceListsList(PriceListsListCatalogRequest.builder().build());
                                                   }
 
+                                                  /**
+                                                   * List the company's price lists, ordered by code.
+                                                   */
                                                   public NordletApiHttpResponse<PriceListsListCatalogResponse> priceListsList(
                                                       RequestOptions requestOptions) {
                                                     return priceListsList(PriceListsListCatalogRequest.builder().build(),requestOptions);
                                                   }
 
+                                                  /**
+                                                   * List the company's price lists, ordered by code.
+                                                   */
                                                   public NordletApiHttpResponse<PriceListsListCatalogResponse> priceListsList(
                                                       PriceListsListCatalogRequest request) {
                                                     return priceListsList(request,null);
                                                   }
 
+                                                  /**
+                                                   * List the company's price lists, ordered by code.
+                                                   */
                                                   public NordletApiHttpResponse<PriceListsListCatalogResponse> priceListsList(
                                                       PriceListsListCatalogRequest request,
                                                       RequestOptions requestOptions) {
@@ -1901,11 +2093,17 @@ public class RawCatalogClient {
                                                       }
                                                     }
 
+                                                    /**
+                                                     * Set the unit price excluding VAT of up to 500 items on a price list; a price already on the list is replaced and the other items on the list are kept. 422 when an item appears twice in the request. Emits <code>price_list.updated</code> with the item ids.
+                                                     */
                                                     public NordletApiHttpResponse<PriceListsItemsSetCatalogResponse> priceListsItemsSet(
                                                         PriceListsItemsSetCatalogRequest request) {
                                                       return priceListsItemsSet(request,null);
                                                     }
 
+                                                    /**
+                                                     * Set the unit price excluding VAT of up to 500 items on a price list; a price already on the list is replaced and the other items on the list are kept. 422 when an item appears twice in the request. Emits <code>price_list.updated</code> with the item ids.
+                                                     */
                                                     public NordletApiHttpResponse<PriceListsItemsSetCatalogResponse> priceListsItemsSet(
                                                         PriceListsItemsSetCatalogRequest request,
                                                         RequestOptions requestOptions) {
@@ -1971,11 +2169,17 @@ public class RawCatalogClient {
                                                         }
                                                       }
 
+                                                      /**
+                                                       * List the prices of a price list with the item name and code, ordered by item name.
+                                                       */
                                                       public NordletApiHttpResponse<PriceListsItemsListCatalogResponse> priceListsItemsList(
                                                           PriceListsItemsListCatalogRequest request) {
                                                         return priceListsItemsList(request,null);
                                                       }
 
+                                                      /**
+                                                       * List the prices of a price list with the item name and code, ordered by item name.
+                                                       */
                                                       public NordletApiHttpResponse<PriceListsItemsListCatalogResponse> priceListsItemsList(
                                                           PriceListsItemsListCatalogRequest request,
                                                           RequestOptions requestOptions) {
@@ -2041,11 +2245,17 @@ public class RawCatalogClient {
                                                           }
                                                         }
 
+                                                        /**
+                                                         * Remove one item from a price list.
+                                                         */
                                                         public NordletApiHttpResponse<PriceListsItemsDeleteCatalogResponse> priceListsItemsDelete(
                                                             PriceListsItemsDeleteCatalogRequest request) {
                                                           return priceListsItemsDelete(request,null);
                                                         }
 
+                                                        /**
+                                                         * Remove one item from a price list.
+                                                         */
                                                         public NordletApiHttpResponse<PriceListsItemsDeleteCatalogResponse> priceListsItemsDelete(
                                                             PriceListsItemsDeleteCatalogRequest request,
                                                             RequestOptions requestOptions) {

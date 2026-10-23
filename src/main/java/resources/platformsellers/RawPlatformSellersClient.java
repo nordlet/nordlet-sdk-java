@@ -141,11 +141,17 @@ public class RawPlatformSellersClient {
       }
     }
 
+    /**
+     * Read one platform seller with its activities, ordered by year.
+     */
     public NordletApiHttpResponse<GetPlatformSellersResponse> get(
         GetPlatformSellersRequest request) {
       return get(request,null);
     }
 
+    /**
+     * Read one platform seller with its activities, ordered by year.
+     */
     public NordletApiHttpResponse<GetPlatformSellersResponse> get(GetPlatformSellersRequest request,
         RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -210,11 +216,17 @@ public class RawPlatformSellersClient {
         }
       }
 
+      /**
+       * Record a seller on the company's platform for the DAC7 report: an <code>individual</code> (first and last name required) or an <code>entity</code> (<code>entityName</code> required), with its <code>activities</code> per year and quarter. An <code>immovable_property</code> activity needs <code>propertyAddress</code>; property address, type and rented days on any other kind of activity are refused. These checks answer 422; a <code>partnerId</code> that does not exist answers 404. The report is built from the sellers with <code>declarations/eu/dac7/preview</code> and <code>declarations/eu/dac7/xml</code>.
+       */
       public NordletApiHttpResponse<CreatePlatformSellersResponse> create(
           CreatePlatformSellersRequest request) {
         return create(request,null);
       }
 
+      /**
+       * Record a seller on the company's platform for the DAC7 report: an <code>individual</code> (first and last name required) or an <code>entity</code> (<code>entityName</code> required), with its <code>activities</code> per year and quarter. An <code>immovable_property</code> activity needs <code>propertyAddress</code>; property address, type and rented days on any other kind of activity are refused. These checks answer 422; a <code>partnerId</code> that does not exist answers 404. The report is built from the sellers with <code>declarations/eu/dac7/preview</code> and <code>declarations/eu/dac7/xml</code>.
+       */
       public NordletApiHttpResponse<CreatePlatformSellersResponse> create(
           CreatePlatformSellersRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -279,11 +291,17 @@ public class RawPlatformSellersClient {
           }
         }
 
+        /**
+         * Replace a platform seller's details and all of its activities with the ones given, under the same checks as <code>platform-sellers/create</code>.
+         */
         public NordletApiHttpResponse<UpdatePlatformSellersResponse> update(
             UpdatePlatformSellersRequest request) {
           return update(request,null);
         }
 
+        /**
+         * Replace a platform seller's details and all of its activities with the ones given, under the same checks as <code>platform-sellers/create</code>.
+         */
         public NordletApiHttpResponse<UpdatePlatformSellersResponse> update(
             UpdatePlatformSellersRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
@@ -348,11 +366,17 @@ public class RawPlatformSellersClient {
             }
           }
 
+          /**
+           * Mark a platform seller as deleted. It leaves the lists and the DAC7 report.
+           */
           public NordletApiHttpResponse<DeletePlatformSellersResponse> delete(
               DeletePlatformSellersRequest request) {
             return delete(request,null);
           }
 
+          /**
+           * Mark a platform seller as deleted. It leaves the lists and the DAC7 report.
+           */
           public NordletApiHttpResponse<DeletePlatformSellersResponse> delete(
               DeletePlatformSellersRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()

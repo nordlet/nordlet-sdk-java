@@ -30,28 +30,46 @@ public class AsyncPublicClient {
     return this.rawClient;
   }
 
+  /**
+   * Store a request for an integration: the integration asked for and the sender's name, company, e-mail and details. When <code>website</code> is filled in, the call answers <code>received</code> without storing anything.
+   */
   public CompletableFuture<IntegrationRequestsPublicResponse> integrationRequests(
       IntegrationRequestsPublicRequest request) {
     return this.rawClient.integrationRequests(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Store a request for an integration: the integration asked for and the sender's name, company, e-mail and details. When <code>website</code> is filled in, the call answers <code>received</code> without storing anything.
+   */
   public CompletableFuture<IntegrationRequestsPublicResponse> integrationRequests(
       IntegrationRequestsPublicRequest request, RequestOptions requestOptions) {
     return this.rawClient.integrationRequests(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+   */
   public CompletableFuture<Void> pay(String token) {
     return this.rawClient.pay(token).thenApply(response -> response.body());
   }
 
+  /**
+   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+   */
   public CompletableFuture<Void> pay(String token, RequestOptions requestOptions) {
     return this.rawClient.pay(token, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+   */
   public CompletableFuture<Void> pay(String token, PayPublicRequest request) {
     return this.rawClient.pay(token, request).thenApply(response -> response.body());
   }
 
+  /**
+   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+   */
   public CompletableFuture<Void> pay(String token, PayPublicRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.pay(token, request, requestOptions).thenApply(response -> response.body());

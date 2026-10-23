@@ -67,261 +67,423 @@ public class AsyncProductionClient {
     return this.rawClient;
   }
 
+  /**
+   * Create a work center with its <code>costPerHour</code>. <code>costAccountCode</code> must be a postable account of the chart (422 otherwise); when a production order completes, the labor cost of the operations run on this center is credited to it instead of the <code>production.laborApplied</code> posting rule account. A duplicate <code>code</code> is refused with 409.
+   */
   public CompletableFuture<WorkCentersCreateProductionResponse> workCentersCreate(
       WorkCentersCreateProductionRequest request) {
     return this.rawClient.workCentersCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create a work center with its <code>costPerHour</code>. <code>costAccountCode</code> must be a postable account of the chart (422 otherwise); when a production order completes, the labor cost of the operations run on this center is credited to it instead of the <code>production.laborApplied</code> posting rule account. A duplicate <code>code</code> is refused with 409.
+   */
   public CompletableFuture<WorkCentersCreateProductionResponse> workCentersCreate(
       WorkCentersCreateProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.workCentersCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Change a work center; only the fields sent are changed. <code>costAccountCode</code> must be a postable account of the chart (422 otherwise); a <code>code</code> already used by another work center is refused with 409.
+   */
   public CompletableFuture<WorkCentersUpdateProductionResponse> workCentersUpdate(
       WorkCentersUpdateProductionRequest request) {
     return this.rawClient.workCentersUpdate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Change a work center; only the fields sent are changed. <code>costAccountCode</code> must be a postable account of the chart (422 otherwise); a <code>code</code> already used by another work center is refused with 409.
+   */
   public CompletableFuture<WorkCentersUpdateProductionResponse> workCentersUpdate(
       WorkCentersUpdateProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.workCentersUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<WorkCentersListProductionResponse> workCentersList() {
     return this.rawClient.workCentersList().thenApply(response -> response.body());
   }
 
+  /**
+   * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<WorkCentersListProductionResponse> workCentersList(
       RequestOptions requestOptions) {
     return this.rawClient.workCentersList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<WorkCentersListProductionResponse> workCentersList(
       WorkCentersListProductionRequest request) {
     return this.rawClient.workCentersList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<WorkCentersListProductionResponse> workCentersList(
       WorkCentersListProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.workCentersList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Create a routing with its operations: <code>sequence</code>, work center, <code>setupMinutes</code>, <code>runMinutesPerUnit</code> and an optional <code>qualityCheckName</code> that becomes a pending quality check on every production order using the routing. Operation sequences must be unique (422); a duplicate <code>code</code> is refused with 409.
+   */
   public CompletableFuture<RoutingsCreateProductionResponse> routingsCreate(
       RoutingsCreateProductionRequest request) {
     return this.rawClient.routingsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create a routing with its operations: <code>sequence</code>, work center, <code>setupMinutes</code>, <code>runMinutesPerUnit</code> and an optional <code>qualityCheckName</code> that becomes a pending quality check on every production order using the routing. Operation sequences must be unique (422); a duplicate <code>code</code> is refused with 409.
+   */
   public CompletableFuture<RoutingsCreateProductionResponse> routingsCreate(
       RoutingsCreateProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.routingsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Return one routing with its operations in sequence order.
+   */
   public CompletableFuture<RoutingsGetProductionResponse> routingsGet(
       RoutingsGetProductionRequest request) {
     return this.rawClient.routingsGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Return one routing with its operations in sequence order.
+   */
   public CompletableFuture<RoutingsGetProductionResponse> routingsGet(
       RoutingsGetProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.routingsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List routings without their operations. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<RoutingsListProductionResponse> routingsList() {
     return this.rawClient.routingsList().thenApply(response -> response.body());
   }
 
+  /**
+   * List routings without their operations. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<RoutingsListProductionResponse> routingsList(
       RequestOptions requestOptions) {
     return this.rawClient.routingsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List routings without their operations. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<RoutingsListProductionResponse> routingsList(
       RoutingsListProductionRequest request) {
     return this.rawClient.routingsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List routings without their operations. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<RoutingsListProductionResponse> routingsList(
       RoutingsListProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.routingsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Record a <code>preventive</code> or <code>corrective</code> maintenance planned for a work center on <code>plannedDate</code>; it starts as <code>planned</code>.
+   */
   public CompletableFuture<MaintenanceCreateProductionResponse> maintenanceCreate(
       MaintenanceCreateProductionRequest request) {
     return this.rawClient.maintenanceCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Record a <code>preventive</code> or <code>corrective</code> maintenance planned for a work center on <code>plannedDate</code>; it starts as <code>planned</code>.
+   */
   public CompletableFuture<MaintenanceCreateProductionResponse> maintenanceCreate(
       MaintenanceCreateProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.maintenanceCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Mark a <code>planned</code> maintenance as completed on <code>completedDate</code>, with optional <code>downtimeHours</code> and <code>cost</code> (409 when it is already completed or cancelled). The work center's <code>nextMaintenanceDate</code> is then counted from the latest completed maintenance date.
+   */
   public CompletableFuture<MaintenanceCompleteProductionResponse> maintenanceComplete(
       MaintenanceCompleteProductionRequest request) {
     return this.rawClient.maintenanceComplete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Mark a <code>planned</code> maintenance as completed on <code>completedDate</code>, with optional <code>downtimeHours</code> and <code>cost</code> (409 when it is already completed or cancelled). The work center's <code>nextMaintenanceDate</code> is then counted from the latest completed maintenance date.
+   */
   public CompletableFuture<MaintenanceCompleteProductionResponse> maintenanceComplete(
       MaintenanceCompleteProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.maintenanceComplete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Cancel a <code>planned</code> maintenance (409 when it is already completed or cancelled).
+   */
   public CompletableFuture<MaintenanceCancelProductionResponse> maintenanceCancel(
       MaintenanceCancelProductionRequest request) {
     return this.rawClient.maintenanceCancel(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Cancel a <code>planned</code> maintenance (409 when it is already completed or cancelled).
+   */
   public CompletableFuture<MaintenanceCancelProductionResponse> maintenanceCancel(
       MaintenanceCancelProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.maintenanceCancel(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List maintenance records. Filterable by <code>workCenterId</code>, <code>status</code> and <code>type</code>; sortable by <code>plannedDate</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<MaintenanceListProductionResponse> maintenanceList() {
     return this.rawClient.maintenanceList().thenApply(response -> response.body());
   }
 
+  /**
+   * List maintenance records. Filterable by <code>workCenterId</code>, <code>status</code> and <code>type</code>; sortable by <code>plannedDate</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<MaintenanceListProductionResponse> maintenanceList(
       RequestOptions requestOptions) {
     return this.rawClient.maintenanceList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List maintenance records. Filterable by <code>workCenterId</code>, <code>status</code> and <code>type</code>; sortable by <code>plannedDate</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<MaintenanceListProductionResponse> maintenanceList(
       MaintenanceListProductionRequest request) {
     return this.rawClient.maintenanceList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List maintenance records. Filterable by <code>workCenterId</code>, <code>status</code> and <code>type</code>; sortable by <code>plannedDate</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<MaintenanceListProductionResponse> maintenanceList(
       MaintenanceListProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.maintenanceList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Create a bill of materials for a finished item. <code>outputQuantity</code> is the finished quantity made per unit of order quantity; each line's <code>quantity</code> is the component consumed per unit of order quantity, increased by its <code>scrapPercent</code> at completion; <code>routingId</code> is the default routing of assembly orders. A BOM that consumes its own finished item is refused with 422, a duplicate <code>code</code> with 409.
+   */
   public CompletableFuture<BomsCreateProductionResponse> bomsCreate(
       BomsCreateProductionRequest request) {
     return this.rawClient.bomsCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create a bill of materials for a finished item. <code>outputQuantity</code> is the finished quantity made per unit of order quantity; each line's <code>quantity</code> is the component consumed per unit of order quantity, increased by its <code>scrapPercent</code> at completion; <code>routingId</code> is the default routing of assembly orders. A BOM that consumes its own finished item is refused with 422, a duplicate <code>code</code> with 409.
+   */
   public CompletableFuture<BomsCreateProductionResponse> bomsCreate(
       BomsCreateProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.bomsCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Return one bill of materials with its component lines.
+   */
   public CompletableFuture<BomsGetProductionResponse> bomsGet(BomsGetProductionRequest request) {
     return this.rawClient.bomsGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Return one bill of materials with its component lines.
+   */
   public CompletableFuture<BomsGetProductionResponse> bomsGet(BomsGetProductionRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.bomsGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<BomsListProductionResponse> bomsList() {
     return this.rawClient.bomsList().thenApply(response -> response.body());
   }
 
+  /**
+   * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<BomsListProductionResponse> bomsList(RequestOptions requestOptions) {
     return this.rawClient.bomsList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<BomsListProductionResponse> bomsList(BomsListProductionRequest request) {
     return this.rawClient.bomsList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code> and <code>name</code>.
+   */
   public CompletableFuture<BomsListProductionResponse> bomsList(BomsListProductionRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.bomsList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Create a draft production order for <code>quantity</code> units of a BOM in a warehouse; stock moves only at <code>production/orders/complete</code>. An <code>assembly</code> order takes its routing from <code>routingId</code>, else from the BOM, and copies the routing's operations onto the order (<code>plannedMinutes</code> = setup minutes + run minutes per unit × finished quantity, priced at the work center's current <code>costPerHour</code>) with a pending quality check for every operation that names one. A <code>routingId</code> on a <code>disassembly</code> order, an inactive routing or a routing without operations is refused with 422.
+   */
   public CompletableFuture<OrdersCreateProductionResponse> ordersCreate(
       OrdersCreateProductionRequest request) {
     return this.rawClient.ordersCreate(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Create a draft production order for <code>quantity</code> units of a BOM in a warehouse; stock moves only at <code>production/orders/complete</code>. An <code>assembly</code> order takes its routing from <code>routingId</code>, else from the BOM, and copies the routing's operations onto the order (<code>plannedMinutes</code> = setup minutes + run minutes per unit × finished quantity, priced at the work center's current <code>costPerHour</code>) with a pending quality check for every operation that names one. A <code>routingId</code> on a <code>disassembly</code> order, an inactive routing or a routing without operations is refused with 422.
+   */
   public CompletableFuture<OrdersCreateProductionResponse> ordersCreate(
       OrdersCreateProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.ordersCreate(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Record the <code>actualMinutes</code> spent on one operation of a draft production order; at completion the actual minutes, else the planned ones, price the operation's labor cost. Refused with 409 once the order is completed.
+   */
   public CompletableFuture<OrdersRecordOperationProductionResponse> ordersRecordOperation(
       OrdersRecordOperationProductionRequest request) {
     return this.rawClient.ordersRecordOperation(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Record the <code>actualMinutes</code> spent on one operation of a draft production order; at completion the actual minutes, else the planned ones, price the operation's labor cost. Refused with 409 once the order is completed.
+   */
   public CompletableFuture<OrdersRecordOperationProductionResponse> ordersRecordOperation(
       OrdersRecordOperationProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.ordersRecordOperation(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Add a pending quality check to a draft production order (409 once the order is completed). The order cannot complete while a check is pending.
+   */
   public CompletableFuture<QualityChecksAddProductionResponse> qualityChecksAdd(
       QualityChecksAddProductionRequest request) {
     return this.rawClient.qualityChecksAdd(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Add a pending quality check to a draft production order (409 once the order is completed). The order cannot complete while a check is pending.
+   */
   public CompletableFuture<QualityChecksAddProductionResponse> qualityChecksAdd(
       QualityChecksAddProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.qualityChecksAdd(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Record the result of a quality check as <code>passed</code> or <code>failed</code>, with the time and the actor (409 once the order is completed). Only a <code>pending</code> check blocks <code>production/orders/complete</code>; a <code>failed</code> one does not.
+   */
   public CompletableFuture<QualityChecksRecordProductionResponse> qualityChecksRecord(
       QualityChecksRecordProductionRequest request) {
     return this.rawClient.qualityChecksRecord(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Record the result of a quality check as <code>passed</code> or <code>failed</code>, with the time and the actor (409 once the order is completed). Only a <code>pending</code> check blocks <code>production/orders/complete</code>; a <code>failed</code> one does not.
+   */
   public CompletableFuture<QualityChecksRecordProductionResponse> qualityChecksRecord(
       QualityChecksRecordProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.qualityChecksRecord(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List quality checks. Filterable by <code>orderId</code>, <code>result</code> and <code>name</code>; sortable by <code>createdAt</code> and <code>name</code>.
+   */
   public CompletableFuture<QualityChecksListProductionResponse> qualityChecksList() {
     return this.rawClient.qualityChecksList().thenApply(response -> response.body());
   }
 
+  /**
+   * List quality checks. Filterable by <code>orderId</code>, <code>result</code> and <code>name</code>; sortable by <code>createdAt</code> and <code>name</code>.
+   */
   public CompletableFuture<QualityChecksListProductionResponse> qualityChecksList(
       RequestOptions requestOptions) {
     return this.rawClient.qualityChecksList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List quality checks. Filterable by <code>orderId</code>, <code>result</code> and <code>name</code>; sortable by <code>createdAt</code> and <code>name</code>.
+   */
   public CompletableFuture<QualityChecksListProductionResponse> qualityChecksList(
       QualityChecksListProductionRequest request) {
     return this.rawClient.qualityChecksList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List quality checks. Filterable by <code>orderId</code>, <code>result</code> and <code>name</code>; sortable by <code>createdAt</code> and <code>name</code>.
+   */
   public CompletableFuture<QualityChecksListProductionResponse> qualityChecksList(
       QualityChecksListProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.qualityChecksList(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Complete a draft production order on the order's date. An <code>assembly</code> consumes the components FIFO from the warehouse (line quantity × order quantity, increased by <code>scrapPercent</code>), prices each operation at its actual or planned minutes × <code>costPerHour</code>, receives the finished item at material cost + labor cost less the share of <code>scrappedQuantity</code>, and, when there is labor, scrap or a component stock account other than the finished one, posts a journal entry debiting the finished stock account (and the <code>production.scrap</code> rule account for the scrapped share) and crediting the component stock accounts and the work centers' cost accounts (or the <code>production.laborApplied</code> rule account); a <code>disassembly</code> consumes the finished item and receives the components at its cost shared by quantity. <code>componentsAccountCode</code> and <code>finishedAccountCode</code> default to the chart's production accounts. Refused with 409 when the order is already completed, a quality check is still pending or the accounting period is locked, and with 422 when the BOM has no lines, <code>scrappedQuantity</code> is given on a disassembly or exceeds the finished quantity, the assembly cost is zero, stock is insufficient, a received item needs lot or serial tracking, or a posting account is missing. Emits <code>stock.changed</code>.
+   */
   public CompletableFuture<OrdersCompleteProductionResponse> ordersComplete(
       OrdersCompleteProductionRequest request) {
     return this.rawClient.ordersComplete(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Complete a draft production order on the order's date. An <code>assembly</code> consumes the components FIFO from the warehouse (line quantity × order quantity, increased by <code>scrapPercent</code>), prices each operation at its actual or planned minutes × <code>costPerHour</code>, receives the finished item at material cost + labor cost less the share of <code>scrappedQuantity</code>, and, when there is labor, scrap or a component stock account other than the finished one, posts a journal entry debiting the finished stock account (and the <code>production.scrap</code> rule account for the scrapped share) and crediting the component stock accounts and the work centers' cost accounts (or the <code>production.laborApplied</code> rule account); a <code>disassembly</code> consumes the finished item and receives the components at its cost shared by quantity. <code>componentsAccountCode</code> and <code>finishedAccountCode</code> default to the chart's production accounts. Refused with 409 when the order is already completed, a quality check is still pending or the accounting period is locked, and with 422 when the BOM has no lines, <code>scrappedQuantity</code> is given on a disassembly or exceeds the finished quantity, the assembly cost is zero, stock is insufficient, a received item needs lot or serial tracking, or a posting account is missing. Emits <code>stock.changed</code>.
+   */
   public CompletableFuture<OrdersCompleteProductionResponse> ordersComplete(
       OrdersCompleteProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.ordersComplete(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * Return one production order with its operations and quality checks.
+   */
   public CompletableFuture<OrdersGetProductionResponse> ordersGet(
       OrdersGetProductionRequest request) {
     return this.rawClient.ordersGet(request).thenApply(response -> response.body());
   }
 
+  /**
+   * Return one production order with its operations and quality checks.
+   */
   public CompletableFuture<OrdersGetProductionResponse> ordersGet(
       OrdersGetProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.ordersGet(request, requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List production orders without operations and quality checks. Filterable by <code>bomId</code>, <code>warehouseId</code>, <code>status</code> and <code>type</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<OrdersListProductionResponse> ordersList() {
     return this.rawClient.ordersList().thenApply(response -> response.body());
   }
 
+  /**
+   * List production orders without operations and quality checks. Filterable by <code>bomId</code>, <code>warehouseId</code>, <code>status</code> and <code>type</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<OrdersListProductionResponse> ordersList(RequestOptions requestOptions) {
     return this.rawClient.ordersList(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List production orders without operations and quality checks. Filterable by <code>bomId</code>, <code>warehouseId</code>, <code>status</code> and <code>type</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<OrdersListProductionResponse> ordersList(
       OrdersListProductionRequest request) {
     return this.rawClient.ordersList(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List production orders without operations and quality checks. Filterable by <code>bomId</code>, <code>warehouseId</code>, <code>status</code> and <code>type</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
   public CompletableFuture<OrdersListProductionResponse> ordersList(
       OrdersListProductionRequest request, RequestOptions requestOptions) {
     return this.rawClient.ordersList(request, requestOptions).thenApply(response -> response.body());

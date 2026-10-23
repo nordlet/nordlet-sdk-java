@@ -27,18 +27,30 @@ public class AsyncAuditClient {
     return this.rawClient;
   }
 
+  /**
+   * List the audit log of the company: who did what to which entity, with the recorded change in <code>diff</code>. Filterable by <code>action</code>, <code>entity</code>, <code>entityId</code>, <code>actorType</code> and <code>actorId</code>; sortable by <code>createdAt</code> and <code>id</code>, newest first by default.
+   */
   public CompletableFuture<ListAuditResponse> list() {
     return this.rawClient.list().thenApply(response -> response.body());
   }
 
+  /**
+   * List the audit log of the company: who did what to which entity, with the recorded change in <code>diff</code>. Filterable by <code>action</code>, <code>entity</code>, <code>entityId</code>, <code>actorType</code> and <code>actorId</code>; sortable by <code>createdAt</code> and <code>id</code>, newest first by default.
+   */
   public CompletableFuture<ListAuditResponse> list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).thenApply(response -> response.body());
   }
 
+  /**
+   * List the audit log of the company: who did what to which entity, with the recorded change in <code>diff</code>. Filterable by <code>action</code>, <code>entity</code>, <code>entityId</code>, <code>actorType</code> and <code>actorId</code>; sortable by <code>createdAt</code> and <code>id</code>, newest first by default.
+   */
   public CompletableFuture<ListAuditResponse> list(ListAuditRequest request) {
     return this.rawClient.list(request).thenApply(response -> response.body());
   }
 
+  /**
+   * List the audit log of the company: who did what to which entity, with the recorded change in <code>diff</code>. Filterable by <code>action</code>, <code>entity</code>, <code>entityId</code>, <code>actorType</code> and <code>actorId</code>; sortable by <code>createdAt</code> and <code>id</code>, newest first by default.
+   */
   public CompletableFuture<ListAuditResponse> list(ListAuditRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.list(request, requestOptions).thenApply(response -> response.body());
