@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.account.types.LoginLinkRequestAccountRequestApp;
 import com.nordlet.api.resources.account.types.LoginLinkRequestAccountRequestLocale;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -38,17 +39,20 @@ public final class LoginLinkRequestAccountRequest {
 
   private final Optional<String> referralCode;
 
+  private final Optional<LoginLinkRequestAccountRequestApp> app;
+
   private final Map<String, Object> additionalProperties;
 
   private LoginLinkRequestAccountRequest(String email,
       Optional<LoginLinkRequestAccountRequestLocale> locale, Optional<Boolean> acceptTerms,
       Optional<Boolean> acceptDpa, Optional<String> referralCode,
-      Map<String, Object> additionalProperties) {
+      Optional<LoginLinkRequestAccountRequestApp> app, Map<String, Object> additionalProperties) {
     this.email = email;
     this.locale = locale;
     this.acceptTerms = acceptTerms;
     this.acceptDpa = acceptDpa;
     this.referralCode = referralCode;
+    this.app = app;
     this.additionalProperties = additionalProperties;
   }
 
@@ -77,6 +81,11 @@ public final class LoginLinkRequestAccountRequest {
     return referralCode;
   }
 
+  @JsonProperty("app")
+  public Optional<LoginLinkRequestAccountRequestApp> getApp() {
+    return app;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -89,12 +98,12 @@ public final class LoginLinkRequestAccountRequest {
   }
 
   private boolean equalTo(LoginLinkRequestAccountRequest other) {
-    return email.equals(other.email) && locale.equals(other.locale) && acceptTerms.equals(other.acceptTerms) && acceptDpa.equals(other.acceptDpa) && referralCode.equals(other.referralCode);
+    return email.equals(other.email) && locale.equals(other.locale) && acceptTerms.equals(other.acceptTerms) && acceptDpa.equals(other.acceptDpa) && referralCode.equals(other.referralCode) && app.equals(other.app);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.email, this.locale, this.acceptTerms, this.acceptDpa, this.referralCode);
+    return Objects.hash(this.email, this.locale, this.acceptTerms, this.acceptDpa, this.referralCode, this.app);
   }
 
   @java.lang.Override
@@ -134,6 +143,10 @@ public final class LoginLinkRequestAccountRequest {
     _FinalStage referralCode(Optional<String> referralCode);
 
     _FinalStage referralCode(String referralCode);
+
+    _FinalStage app(Optional<LoginLinkRequestAccountRequestApp> app);
+
+    _FinalStage app(LoginLinkRequestAccountRequestApp app);
   }
 
   @JsonIgnoreProperties(
@@ -141,6 +154,8 @@ public final class LoginLinkRequestAccountRequest {
   )
   public static final class Builder implements EmailStage, _FinalStage {
     private String email;
+
+    private Optional<LoginLinkRequestAccountRequestApp> app = Optional.empty();
 
     private Optional<String> referralCode = Optional.empty();
 
@@ -163,6 +178,7 @@ public final class LoginLinkRequestAccountRequest {
       acceptTerms(other.getAcceptTerms());
       acceptDpa(other.getAcceptDpa());
       referralCode(other.getReferralCode());
+      app(other.getApp());
       return this;
     }
 
@@ -170,6 +186,22 @@ public final class LoginLinkRequestAccountRequest {
     @JsonSetter("email")
     public _FinalStage email(@NotNull String email) {
       this.email = Objects.requireNonNull(email, "email must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage app(LoginLinkRequestAccountRequestApp app) {
+      this.app = Optional.ofNullable(app);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "app",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage app(Optional<LoginLinkRequestAccountRequestApp> app) {
+      this.app = app;
       return this;
     }
 
@@ -239,7 +271,7 @@ public final class LoginLinkRequestAccountRequest {
 
     @java.lang.Override
     public LoginLinkRequestAccountRequest build() {
-      return new LoginLinkRequestAccountRequest(email, locale, acceptTerms, acceptDpa, referralCode, additionalProperties);
+      return new LoginLinkRequestAccountRequest(email, locale, acceptTerms, acceptDpa, referralCode, app, additionalProperties);
     }
 
     @java.lang.Override

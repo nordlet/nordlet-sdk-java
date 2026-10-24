@@ -32,6 +32,8 @@ public final class DebtRemindersListPartnersResponseRowsItem {
 
   private final String partnerId;
 
+  private final DebtRemindersListPartnersResponseRowsItemKind kind;
+
   private final String sentTo;
 
   private final long invoiceCount;
@@ -48,11 +50,13 @@ public final class DebtRemindersListPartnersResponseRowsItem {
 
   private final Map<String, Object> additionalProperties;
 
-  private DebtRemindersListPartnersResponseRowsItem(String id, String partnerId, String sentTo,
-      long invoiceCount, String totalDue, String interestDue, String currency,
-      List<String> invoiceIds, OffsetDateTime sentAt, Map<String, Object> additionalProperties) {
+  private DebtRemindersListPartnersResponseRowsItem(String id, String partnerId,
+      DebtRemindersListPartnersResponseRowsItemKind kind, String sentTo, long invoiceCount,
+      String totalDue, String interestDue, String currency, List<String> invoiceIds,
+      OffsetDateTime sentAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.partnerId = partnerId;
+    this.kind = kind;
     this.sentTo = sentTo;
     this.invoiceCount = invoiceCount;
     this.totalDue = totalDue;
@@ -71,6 +75,11 @@ public final class DebtRemindersListPartnersResponseRowsItem {
   @JsonProperty("partnerId")
   public String getPartnerId() {
     return partnerId;
+  }
+
+  @JsonProperty("kind")
+  public DebtRemindersListPartnersResponseRowsItemKind getKind() {
+    return kind;
   }
 
   @JsonProperty("sentTo")
@@ -120,12 +129,12 @@ public final class DebtRemindersListPartnersResponseRowsItem {
   }
 
   private boolean equalTo(DebtRemindersListPartnersResponseRowsItem other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && sentTo.equals(other.sentTo) && invoiceCount == other.invoiceCount && totalDue.equals(other.totalDue) && interestDue.equals(other.interestDue) && currency.equals(other.currency) && invoiceIds.equals(other.invoiceIds) && sentAt.equals(other.sentAt);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && kind.equals(other.kind) && sentTo.equals(other.sentTo) && invoiceCount == other.invoiceCount && totalDue.equals(other.totalDue) && interestDue.equals(other.interestDue) && currency.equals(other.currency) && invoiceIds.equals(other.invoiceIds) && sentAt.equals(other.sentAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.sentTo, this.invoiceCount, this.totalDue, this.interestDue, this.currency, this.invoiceIds, this.sentAt);
+    return Objects.hash(this.id, this.partnerId, this.kind, this.sentTo, this.invoiceCount, this.totalDue, this.interestDue, this.currency, this.invoiceIds, this.sentAt);
   }
 
   @java.lang.Override
@@ -144,7 +153,11 @@ public final class DebtRemindersListPartnersResponseRowsItem {
   }
 
   public interface PartnerIdStage {
-    SentToStage partnerId(@NotNull String partnerId);
+    KindStage partnerId(@NotNull String partnerId);
+  }
+
+  public interface KindStage {
+    SentToStage kind(@NotNull DebtRemindersListPartnersResponseRowsItemKind kind);
   }
 
   public interface SentToStage {
@@ -188,10 +201,12 @@ public final class DebtRemindersListPartnersResponseRowsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, PartnerIdStage, SentToStage, InvoiceCountStage, TotalDueStage, InterestDueStage, CurrencyStage, SentAtStage, _FinalStage {
+  public static final class Builder implements IdStage, PartnerIdStage, KindStage, SentToStage, InvoiceCountStage, TotalDueStage, InterestDueStage, CurrencyStage, SentAtStage, _FinalStage {
     private String id;
 
     private String partnerId;
+
+    private DebtRemindersListPartnersResponseRowsItemKind kind;
 
     private String sentTo;
 
@@ -217,6 +232,7 @@ public final class DebtRemindersListPartnersResponseRowsItem {
     public Builder from(DebtRemindersListPartnersResponseRowsItem other) {
       id(other.getId());
       partnerId(other.getPartnerId());
+      kind(other.getKind());
       sentTo(other.getSentTo());
       invoiceCount(other.getInvoiceCount());
       totalDue(other.getTotalDue());
@@ -236,8 +252,15 @@ public final class DebtRemindersListPartnersResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("partnerId")
-    public SentToStage partnerId(@NotNull String partnerId) {
+    public KindStage partnerId(@NotNull String partnerId) {
       this.partnerId = Objects.requireNonNull(partnerId, "partnerId must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("kind")
+    public SentToStage kind(@NotNull DebtRemindersListPartnersResponseRowsItemKind kind) {
+      this.kind = Objects.requireNonNull(kind, "kind must not be null");
       return this;
     }
 
@@ -312,7 +335,7 @@ public final class DebtRemindersListPartnersResponseRowsItem {
 
     @java.lang.Override
     public DebtRemindersListPartnersResponseRowsItem build() {
-      return new DebtRemindersListPartnersResponseRowsItem(id, partnerId, sentTo, invoiceCount, totalDue, interestDue, currency, invoiceIds, sentAt, additionalProperties);
+      return new DebtRemindersListPartnersResponseRowsItem(id, partnerId, kind, sentTo, invoiceCount, totalDue, interestDue, currency, invoiceIds, sentAt, additionalProperties);
     }
 
     @java.lang.Override

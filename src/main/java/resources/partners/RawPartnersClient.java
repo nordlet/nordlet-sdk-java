@@ -40,6 +40,9 @@ import com.nordlet.api.resources.partners.requests.CreatePartnersRequest;
 import com.nordlet.api.resources.partners.requests.CreditCheckPartnersRequest;
 import com.nordlet.api.resources.partners.requests.DebtRemindersListPartnersRequest;
 import com.nordlet.api.resources.partners.requests.DebtRemindersPreviewPartnersRequest;
+import com.nordlet.api.resources.partners.requests.DebtRemindersSettingsGetPartnersRequest;
+import com.nordlet.api.resources.partners.requests.DebtRemindersSettingsUpdatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.DebtRemindersUpcomingPartnersRequest;
 import com.nordlet.api.resources.partners.requests.DeletePartnersRequest;
 import com.nordlet.api.resources.partners.requests.FilesListPartnersRequest;
 import com.nordlet.api.resources.partners.requests.FindOrCreatePartnersRequest;
@@ -79,6 +82,9 @@ import com.nordlet.api.resources.partners.types.CreatePartnersResponse;
 import com.nordlet.api.resources.partners.types.CreditCheckPartnersResponse;
 import com.nordlet.api.resources.partners.types.DebtRemindersListPartnersResponse;
 import com.nordlet.api.resources.partners.types.DebtRemindersPreviewPartnersResponse;
+import com.nordlet.api.resources.partners.types.DebtRemindersSettingsGetPartnersResponse;
+import com.nordlet.api.resources.partners.types.DebtRemindersSettingsUpdatePartnersResponse;
+import com.nordlet.api.resources.partners.types.DebtRemindersUpcomingPartnersResponse;
 import com.nordlet.api.resources.partners.types.DeletePartnersResponse;
 import com.nordlet.api.resources.partners.types.FilesListPartnersResponse;
 import com.nordlet.api.resources.partners.types.FindOrCreatePartnersResponse;
@@ -1144,7 +1150,7 @@ public class RawPartnersClient {
                             }
 
                             /**
-                             * Runs the selection of the daily debt-reminder job for this company as of the company's current date and returns what it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no reminder in the last 7 days and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+                             * Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no overdue reminder in the last <code>repeatDays</code> days (<code>partners/debt-reminders/settings/get</code>) and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
                              */
                             public NordletApiHttpResponse<DebtRemindersPreviewPartnersResponse> debtRemindersPreview(
                                 ) {
@@ -1152,7 +1158,7 @@ public class RawPartnersClient {
                             }
 
                             /**
-                             * Runs the selection of the daily debt-reminder job for this company as of the company's current date and returns what it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no reminder in the last 7 days and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+                             * Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no overdue reminder in the last <code>repeatDays</code> days (<code>partners/debt-reminders/settings/get</code>) and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
                              */
                             public NordletApiHttpResponse<DebtRemindersPreviewPartnersResponse> debtRemindersPreview(
                                 RequestOptions requestOptions) {
@@ -1160,7 +1166,7 @@ public class RawPartnersClient {
                             }
 
                             /**
-                             * Runs the selection of the daily debt-reminder job for this company as of the company's current date and returns what it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no reminder in the last 7 days and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+                             * Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no overdue reminder in the last <code>repeatDays</code> days (<code>partners/debt-reminders/settings/get</code>) and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
                              */
                             public NordletApiHttpResponse<DebtRemindersPreviewPartnersResponse> debtRemindersPreview(
                                 DebtRemindersPreviewPartnersRequest request) {
@@ -1168,7 +1174,7 @@ public class RawPartnersClient {
                             }
 
                             /**
-                             * Runs the selection of the daily debt-reminder job for this company as of the company's current date and returns what it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no reminder in the last 7 days and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+                             * Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no overdue reminder in the last <code>repeatDays</code> days (<code>partners/debt-reminders/settings/get</code>) and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
                              */
                             public NordletApiHttpResponse<DebtRemindersPreviewPartnersResponse> debtRemindersPreview(
                                 DebtRemindersPreviewPartnersRequest request,
@@ -1236,7 +1242,7 @@ public class RawPartnersClient {
                               }
 
                               /**
-                               * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered; filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
+                               * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered and its <code>kind</code> (<code>before_due</code> or <code>overdue</code>); filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
                                */
                               public NordletApiHttpResponse<DebtRemindersListPartnersResponse> debtRemindersList(
                                   ) {
@@ -1244,7 +1250,7 @@ public class RawPartnersClient {
                               }
 
                               /**
-                               * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered; filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
+                               * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered and its <code>kind</code> (<code>before_due</code> or <code>overdue</code>); filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
                                */
                               public NordletApiHttpResponse<DebtRemindersListPartnersResponse> debtRemindersList(
                                   RequestOptions requestOptions) {
@@ -1252,7 +1258,7 @@ public class RawPartnersClient {
                               }
 
                               /**
-                               * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered; filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
+                               * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered and its <code>kind</code> (<code>before_due</code> or <code>overdue</code>); filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
                                */
                               public NordletApiHttpResponse<DebtRemindersListPartnersResponse> debtRemindersList(
                                   DebtRemindersListPartnersRequest request) {
@@ -1260,7 +1266,7 @@ public class RawPartnersClient {
                               }
 
                               /**
-                               * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered; filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
+                               * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered and its <code>kind</code> (<code>before_due</code> or <code>overdue</code>); filterable by <code>partnerId</code>, sortable by <code>sentAt</code>.
                                */
                               public NordletApiHttpResponse<DebtRemindersListPartnersResponse> debtRemindersList(
                                   DebtRemindersListPartnersRequest request,
@@ -1328,38 +1334,38 @@ public class RawPartnersClient {
                                 }
 
                                 /**
-                                 * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+                                 * Returns the debt-reminder schedule of the company: <code>daysBefore</code>, the days before the due date on which the first reminder is sent (null when no reminder is sent before the due date), and <code>repeatDays</code>, the days between overdue reminders to a partner.
                                  */
-                                public NordletApiHttpResponse<ValidateVatPartnersResponse> validateVat(
+                                public NordletApiHttpResponse<DebtRemindersSettingsGetPartnersResponse> debtRemindersSettingsGet(
                                     ) {
-                                  return validateVat(ValidateVatPartnersRequest.builder().build());
+                                  return debtRemindersSettingsGet(DebtRemindersSettingsGetPartnersRequest.builder().build());
                                 }
 
                                 /**
-                                 * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+                                 * Returns the debt-reminder schedule of the company: <code>daysBefore</code>, the days before the due date on which the first reminder is sent (null when no reminder is sent before the due date), and <code>repeatDays</code>, the days between overdue reminders to a partner.
                                  */
-                                public NordletApiHttpResponse<ValidateVatPartnersResponse> validateVat(
+                                public NordletApiHttpResponse<DebtRemindersSettingsGetPartnersResponse> debtRemindersSettingsGet(
                                     RequestOptions requestOptions) {
-                                  return validateVat(ValidateVatPartnersRequest.builder().build(),requestOptions);
+                                  return debtRemindersSettingsGet(DebtRemindersSettingsGetPartnersRequest.builder().build(),requestOptions);
                                 }
 
                                 /**
-                                 * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+                                 * Returns the debt-reminder schedule of the company: <code>daysBefore</code>, the days before the due date on which the first reminder is sent (null when no reminder is sent before the due date), and <code>repeatDays</code>, the days between overdue reminders to a partner.
                                  */
-                                public NordletApiHttpResponse<ValidateVatPartnersResponse> validateVat(
-                                    ValidateVatPartnersRequest request) {
-                                  return validateVat(request,null);
+                                public NordletApiHttpResponse<DebtRemindersSettingsGetPartnersResponse> debtRemindersSettingsGet(
+                                    DebtRemindersSettingsGetPartnersRequest request) {
+                                  return debtRemindersSettingsGet(request,null);
                                 }
 
                                 /**
-                                 * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+                                 * Returns the debt-reminder schedule of the company: <code>daysBefore</code>, the days before the due date on which the first reminder is sent (null when no reminder is sent before the due date), and <code>repeatDays</code>, the days between overdue reminders to a partner.
                                  */
-                                public NordletApiHttpResponse<ValidateVatPartnersResponse> validateVat(
-                                    ValidateVatPartnersRequest request,
+                                public NordletApiHttpResponse<DebtRemindersSettingsGetPartnersResponse> debtRemindersSettingsGet(
+                                    DebtRemindersSettingsGetPartnersRequest request,
                                     RequestOptions requestOptions) {
                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                    .addPathSegments("v1/partners/validate-vat");if (requestOptions != null) {
+                                    .addPathSegments("v1/partners/debt-reminders/settings/get");if (requestOptions != null) {
                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                         httpUrl.addQueryParameter(_key, _value);
                                       } );
@@ -1389,7 +1395,7 @@ public class RawPartnersClient {
                                       ResponseBody responseBody = response.body();
                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                       if (response.isSuccessful()) {
-                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ValidateVatPartnersResponse.class), response);
+                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DebtRemindersSettingsGetPartnersResponse.class), response);
                                       }
                                       try {
                                         switch (response.code()) {
@@ -1420,38 +1426,38 @@ public class RawPartnersClient {
                                   }
 
                                   /**
-                                   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+                                   * Changes the given fields of the company's debt-reminder schedule. <code>daysBefore</code> (1 to 90, or null to send nothing before the due date) makes the daily job send one &quot;payment due soon&quot; reminder per invoice that many days before its due date; <code>repeatDays</code> (1 to 90) is the number of days between overdue reminders to a partner. Only partners with <code>autoDebtReminder</code> get reminders. A body without fields is refused with 400.
                                    */
-                                  public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
+                                  public NordletApiHttpResponse<DebtRemindersSettingsUpdatePartnersResponse> debtRemindersSettingsUpdate(
                                       ) {
-                                    return vatReviewsList(VatReviewsListPartnersRequest.builder().build());
+                                    return debtRemindersSettingsUpdate(DebtRemindersSettingsUpdatePartnersRequest.builder().build());
                                   }
 
                                   /**
-                                   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+                                   * Changes the given fields of the company's debt-reminder schedule. <code>daysBefore</code> (1 to 90, or null to send nothing before the due date) makes the daily job send one &quot;payment due soon&quot; reminder per invoice that many days before its due date; <code>repeatDays</code> (1 to 90) is the number of days between overdue reminders to a partner. Only partners with <code>autoDebtReminder</code> get reminders. A body without fields is refused with 400.
                                    */
-                                  public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
+                                  public NordletApiHttpResponse<DebtRemindersSettingsUpdatePartnersResponse> debtRemindersSettingsUpdate(
                                       RequestOptions requestOptions) {
-                                    return vatReviewsList(VatReviewsListPartnersRequest.builder().build(),requestOptions);
+                                    return debtRemindersSettingsUpdate(DebtRemindersSettingsUpdatePartnersRequest.builder().build(),requestOptions);
                                   }
 
                                   /**
-                                   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+                                   * Changes the given fields of the company's debt-reminder schedule. <code>daysBefore</code> (1 to 90, or null to send nothing before the due date) makes the daily job send one &quot;payment due soon&quot; reminder per invoice that many days before its due date; <code>repeatDays</code> (1 to 90) is the number of days between overdue reminders to a partner. Only partners with <code>autoDebtReminder</code> get reminders. A body without fields is refused with 400.
                                    */
-                                  public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
-                                      VatReviewsListPartnersRequest request) {
-                                    return vatReviewsList(request,null);
+                                  public NordletApiHttpResponse<DebtRemindersSettingsUpdatePartnersResponse> debtRemindersSettingsUpdate(
+                                      DebtRemindersSettingsUpdatePartnersRequest request) {
+                                    return debtRemindersSettingsUpdate(request,null);
                                   }
 
                                   /**
-                                   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+                                   * Changes the given fields of the company's debt-reminder schedule. <code>daysBefore</code> (1 to 90, or null to send nothing before the due date) makes the daily job send one &quot;payment due soon&quot; reminder per invoice that many days before its due date; <code>repeatDays</code> (1 to 90) is the number of days between overdue reminders to a partner. Only partners with <code>autoDebtReminder</code> get reminders. A body without fields is refused with 400.
                                    */
-                                  public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
-                                      VatReviewsListPartnersRequest request,
+                                  public NordletApiHttpResponse<DebtRemindersSettingsUpdatePartnersResponse> debtRemindersSettingsUpdate(
+                                      DebtRemindersSettingsUpdatePartnersRequest request,
                                       RequestOptions requestOptions) {
                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                      .addPathSegments("v1/partners/vat-reviews/list");if (requestOptions != null) {
+                                      .addPathSegments("v1/partners/debt-reminders/settings/update");if (requestOptions != null) {
                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                           httpUrl.addQueryParameter(_key, _value);
                                         } );
@@ -1481,7 +1487,7 @@ public class RawPartnersClient {
                                         ResponseBody responseBody = response.body();
                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                         if (response.isSuccessful()) {
-                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, VatReviewsListPartnersResponse.class), response);
+                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DebtRemindersSettingsUpdatePartnersResponse.class), response);
                                         }
                                         try {
                                           switch (response.code()) {
@@ -1512,22 +1518,38 @@ public class RawPartnersClient {
                                     }
 
                                     /**
-                                     * Closes an open VAT review as <code>confirmed_valid</code>, <code>confirmed_invalid</code> or <code>dismissed</code>, with an optional note. The first two also set the partner's <code>vatValid</code> and stamp <code>vatValidatedAt</code> when the partner still carries the reviewed VAT code; <code>dismissed</code> leaves the partner unchanged. A review that is already resolved answers 409; emits <code>vat_review.resolved</code>.
+                                     * Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice of the partners that get reminders (<code>autoDebtReminder</code>, active, with an e-mail address), as of the company's current date and sorted by <code>date</code>. A <code>before_due</code> reminder is sent once per invoice, <code>daysBefore</code> days before its due date or on the first daily run after that while the due date is still ahead; <code>overdue</code> reminders start the day after the due date and repeat every <code>repeatDays</code> days per partner, counting only overdue reminders. Nothing is sent or recorded.
                                      */
-                                    public NordletApiHttpResponse<VatReviewsResolvePartnersResponse> vatReviewsResolve(
-                                        VatReviewsResolvePartnersRequest request) {
-                                      return vatReviewsResolve(request,null);
+                                    public NordletApiHttpResponse<DebtRemindersUpcomingPartnersResponse> debtRemindersUpcoming(
+                                        ) {
+                                      return debtRemindersUpcoming(DebtRemindersUpcomingPartnersRequest.builder().build());
                                     }
 
                                     /**
-                                     * Closes an open VAT review as <code>confirmed_valid</code>, <code>confirmed_invalid</code> or <code>dismissed</code>, with an optional note. The first two also set the partner's <code>vatValid</code> and stamp <code>vatValidatedAt</code> when the partner still carries the reviewed VAT code; <code>dismissed</code> leaves the partner unchanged. A review that is already resolved answers 409; emits <code>vat_review.resolved</code>.
+                                     * Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice of the partners that get reminders (<code>autoDebtReminder</code>, active, with an e-mail address), as of the company's current date and sorted by <code>date</code>. A <code>before_due</code> reminder is sent once per invoice, <code>daysBefore</code> days before its due date or on the first daily run after that while the due date is still ahead; <code>overdue</code> reminders start the day after the due date and repeat every <code>repeatDays</code> days per partner, counting only overdue reminders. Nothing is sent or recorded.
                                      */
-                                    public NordletApiHttpResponse<VatReviewsResolvePartnersResponse> vatReviewsResolve(
-                                        VatReviewsResolvePartnersRequest request,
+                                    public NordletApiHttpResponse<DebtRemindersUpcomingPartnersResponse> debtRemindersUpcoming(
+                                        RequestOptions requestOptions) {
+                                      return debtRemindersUpcoming(DebtRemindersUpcomingPartnersRequest.builder().build(),requestOptions);
+                                    }
+
+                                    /**
+                                     * Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice of the partners that get reminders (<code>autoDebtReminder</code>, active, with an e-mail address), as of the company's current date and sorted by <code>date</code>. A <code>before_due</code> reminder is sent once per invoice, <code>daysBefore</code> days before its due date or on the first daily run after that while the due date is still ahead; <code>overdue</code> reminders start the day after the due date and repeat every <code>repeatDays</code> days per partner, counting only overdue reminders. Nothing is sent or recorded.
+                                     */
+                                    public NordletApiHttpResponse<DebtRemindersUpcomingPartnersResponse> debtRemindersUpcoming(
+                                        DebtRemindersUpcomingPartnersRequest request) {
+                                      return debtRemindersUpcoming(request,null);
+                                    }
+
+                                    /**
+                                     * Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice of the partners that get reminders (<code>autoDebtReminder</code>, active, with an e-mail address), as of the company's current date and sorted by <code>date</code>. A <code>before_due</code> reminder is sent once per invoice, <code>daysBefore</code> days before its due date or on the first daily run after that while the due date is still ahead; <code>overdue</code> reminders start the day after the due date and repeat every <code>repeatDays</code> days per partner, counting only overdue reminders. Nothing is sent or recorded.
+                                     */
+                                    public NordletApiHttpResponse<DebtRemindersUpcomingPartnersResponse> debtRemindersUpcoming(
+                                        DebtRemindersUpcomingPartnersRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                        .addPathSegments("v1/partners/vat-reviews/resolve");if (requestOptions != null) {
+                                        .addPathSegments("v1/partners/debt-reminders/upcoming");if (requestOptions != null) {
                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                             httpUrl.addQueryParameter(_key, _value);
                                           } );
@@ -1557,7 +1579,7 @@ public class RawPartnersClient {
                                           ResponseBody responseBody = response.body();
                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                           if (response.isSuccessful()) {
-                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, VatReviewsResolvePartnersResponse.class), response);
+                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DebtRemindersUpcomingPartnersResponse.class), response);
                                           }
                                           try {
                                             switch (response.code()) {
@@ -1588,22 +1610,38 @@ public class RawPartnersClient {
                                       }
 
                                       /**
-                                       * Creates a partner. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that is not an EU VAT number is stored unchecked (see <code>partners/validate-vat</code>).
+                                       * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
                                        */
-                                      public NordletApiHttpResponse<CreatePartnersResponse> create(
-                                          CreatePartnersRequest request) {
-                                        return create(request,null);
+                                      public NordletApiHttpResponse<ValidateVatPartnersResponse> validateVat(
+                                          ) {
+                                        return validateVat(ValidateVatPartnersRequest.builder().build());
                                       }
 
                                       /**
-                                       * Creates a partner. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that is not an EU VAT number is stored unchecked (see <code>partners/validate-vat</code>).
+                                       * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
                                        */
-                                      public NordletApiHttpResponse<CreatePartnersResponse> create(
-                                          CreatePartnersRequest request,
+                                      public NordletApiHttpResponse<ValidateVatPartnersResponse> validateVat(
+                                          RequestOptions requestOptions) {
+                                        return validateVat(ValidateVatPartnersRequest.builder().build(),requestOptions);
+                                      }
+
+                                      /**
+                                       * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+                                       */
+                                      public NordletApiHttpResponse<ValidateVatPartnersResponse> validateVat(
+                                          ValidateVatPartnersRequest request) {
+                                        return validateVat(request,null);
+                                      }
+
+                                      /**
+                                       * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+                                       */
+                                      public NordletApiHttpResponse<ValidateVatPartnersResponse> validateVat(
+                                          ValidateVatPartnersRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                          .addPathSegments("v1/partners/create");if (requestOptions != null) {
+                                          .addPathSegments("v1/partners/validate-vat");if (requestOptions != null) {
                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                               httpUrl.addQueryParameter(_key, _value);
                                             } );
@@ -1633,7 +1671,7 @@ public class RawPartnersClient {
                                             ResponseBody responseBody = response.body();
                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                             if (response.isSuccessful()) {
-                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CreatePartnersResponse.class), response);
+                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ValidateVatPartnersResponse.class), response);
                                             }
                                             try {
                                               switch (response.code()) {
@@ -1664,22 +1702,38 @@ public class RawPartnersClient {
                                         }
 
                                         /**
-                                         * Returns the live partner matched by <code>code</code>, then <code>vatCode</code>, then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. A creation that loses a race on the partner code returns the partner the other call created.
+                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
                                          */
-                                        public NordletApiHttpResponse<FindOrCreatePartnersResponse> findOrCreate(
-                                            FindOrCreatePartnersRequest request) {
-                                          return findOrCreate(request,null);
+                                        public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
+                                            ) {
+                                          return vatReviewsList(VatReviewsListPartnersRequest.builder().build());
                                         }
 
                                         /**
-                                         * Returns the live partner matched by <code>code</code>, then <code>vatCode</code>, then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. A creation that loses a race on the partner code returns the partner the other call created.
+                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
                                          */
-                                        public NordletApiHttpResponse<FindOrCreatePartnersResponse> findOrCreate(
-                                            FindOrCreatePartnersRequest request,
+                                        public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
+                                            RequestOptions requestOptions) {
+                                          return vatReviewsList(VatReviewsListPartnersRequest.builder().build(),requestOptions);
+                                        }
+
+                                        /**
+                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+                                         */
+                                        public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
+                                            VatReviewsListPartnersRequest request) {
+                                          return vatReviewsList(request,null);
+                                        }
+
+                                        /**
+                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+                                         */
+                                        public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
+                                            VatReviewsListPartnersRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                            .addPathSegments("v1/partners/find-or-create");if (requestOptions != null) {
+                                            .addPathSegments("v1/partners/vat-reviews/list");if (requestOptions != null) {
                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                 httpUrl.addQueryParameter(_key, _value);
                                               } );
@@ -1709,7 +1763,7 @@ public class RawPartnersClient {
                                               ResponseBody responseBody = response.body();
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FindOrCreatePartnersResponse.class), response);
+                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, VatReviewsListPartnersResponse.class), response);
                                               }
                                               try {
                                                 switch (response.code()) {
@@ -1740,22 +1794,22 @@ public class RawPartnersClient {
                                           }
 
                                           /**
-                                           * Returns one partner; a deleted partner answers 404.
+                                           * Closes an open VAT review as <code>confirmed_valid</code>, <code>confirmed_invalid</code> or <code>dismissed</code>, with an optional note. The first two also set the partner's <code>vatValid</code> and stamp <code>vatValidatedAt</code> when the partner still carries the reviewed VAT code; <code>dismissed</code> leaves the partner unchanged. A review that is already resolved answers 409; emits <code>vat_review.resolved</code>.
                                            */
-                                          public NordletApiHttpResponse<GetPartnersResponse> get(
-                                              GetPartnersRequest request) {
-                                            return get(request,null);
+                                          public NordletApiHttpResponse<VatReviewsResolvePartnersResponse> vatReviewsResolve(
+                                              VatReviewsResolvePartnersRequest request) {
+                                            return vatReviewsResolve(request,null);
                                           }
 
                                           /**
-                                           * Returns one partner; a deleted partner answers 404.
+                                           * Closes an open VAT review as <code>confirmed_valid</code>, <code>confirmed_invalid</code> or <code>dismissed</code>, with an optional note. The first two also set the partner's <code>vatValid</code> and stamp <code>vatValidatedAt</code> when the partner still carries the reviewed VAT code; <code>dismissed</code> leaves the partner unchanged. A review that is already resolved answers 409; emits <code>vat_review.resolved</code>.
                                            */
-                                          public NordletApiHttpResponse<GetPartnersResponse> get(
-                                              GetPartnersRequest request,
+                                          public NordletApiHttpResponse<VatReviewsResolvePartnersResponse> vatReviewsResolve(
+                                              VatReviewsResolvePartnersRequest request,
                                               RequestOptions requestOptions) {
                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                              .addPathSegments("v1/partners/get");if (requestOptions != null) {
+                                              .addPathSegments("v1/partners/vat-reviews/resolve");if (requestOptions != null) {
                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                   httpUrl.addQueryParameter(_key, _value);
                                                 } );
@@ -1785,7 +1839,7 @@ public class RawPartnersClient {
                                                 ResponseBody responseBody = response.body();
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GetPartnersResponse.class), response);
+                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, VatReviewsResolvePartnersResponse.class), response);
                                                 }
                                                 try {
                                                   switch (response.code()) {
@@ -1816,22 +1870,22 @@ public class RawPartnersClient {
                                             }
 
                                             /**
-                                             * Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
+                                             * Creates a partner. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that is not an EU VAT number is stored unchecked (see <code>partners/validate-vat</code>).
                                              */
-                                            public NordletApiHttpResponse<UpdatePartnersResponse> update(
-                                                UpdatePartnersRequest request) {
-                                              return update(request,null);
+                                            public NordletApiHttpResponse<CreatePartnersResponse> create(
+                                                CreatePartnersRequest request) {
+                                              return create(request,null);
                                             }
 
                                             /**
-                                             * Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
+                                             * Creates a partner. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that is not an EU VAT number is stored unchecked (see <code>partners/validate-vat</code>).
                                              */
-                                            public NordletApiHttpResponse<UpdatePartnersResponse> update(
-                                                UpdatePartnersRequest request,
+                                            public NordletApiHttpResponse<CreatePartnersResponse> create(
+                                                CreatePartnersRequest request,
                                                 RequestOptions requestOptions) {
                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                .addPathSegments("v1/partners/update");if (requestOptions != null) {
+                                                .addPathSegments("v1/partners/create");if (requestOptions != null) {
                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                     httpUrl.addQueryParameter(_key, _value);
                                                   } );
@@ -1861,7 +1915,7 @@ public class RawPartnersClient {
                                                   ResponseBody responseBody = response.body();
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, UpdatePartnersResponse.class), response);
+                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CreatePartnersResponse.class), response);
                                                   }
                                                   try {
                                                     switch (response.code()) {
@@ -1892,22 +1946,22 @@ public class RawPartnersClient {
                                               }
 
                                               /**
-                                               * Marks a partner as deleted; it no longer appears in lists or lookups.
+                                               * Returns the live partner matched by <code>code</code>, then <code>vatCode</code>, then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. A creation that loses a race on the partner code returns the partner the other call created.
                                                */
-                                              public NordletApiHttpResponse<DeletePartnersResponse> delete(
-                                                  DeletePartnersRequest request) {
-                                                return delete(request,null);
+                                              public NordletApiHttpResponse<FindOrCreatePartnersResponse> findOrCreate(
+                                                  FindOrCreatePartnersRequest request) {
+                                                return findOrCreate(request,null);
                                               }
 
                                               /**
-                                               * Marks a partner as deleted; it no longer appears in lists or lookups.
+                                               * Returns the live partner matched by <code>code</code>, then <code>vatCode</code>, then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. A creation that loses a race on the partner code returns the partner the other call created.
                                                */
-                                              public NordletApiHttpResponse<DeletePartnersResponse> delete(
-                                                  DeletePartnersRequest request,
+                                              public NordletApiHttpResponse<FindOrCreatePartnersResponse> findOrCreate(
+                                                  FindOrCreatePartnersRequest request,
                                                   RequestOptions requestOptions) {
                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                  .addPathSegments("v1/partners/delete");if (requestOptions != null) {
+                                                  .addPathSegments("v1/partners/find-or-create");if (requestOptions != null) {
                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                       httpUrl.addQueryParameter(_key, _value);
                                                     } );
@@ -1937,7 +1991,7 @@ public class RawPartnersClient {
                                                     ResponseBody responseBody = response.body();
                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                     if (response.isSuccessful()) {
-                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeletePartnersResponse.class), response);
+                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FindOrCreatePartnersResponse.class), response);
                                                     }
                                                     try {
                                                       switch (response.code()) {
@@ -1968,22 +2022,22 @@ public class RawPartnersClient {
                                                 }
 
                                                 /**
-                                                 * Moves every row that references the duplicate <code>sourceId</code> through a foreign key to partners (looked up in the database catalogue, within the company) to <code>targetId</code>, then marks the source partner as deleted; <code>moved</code> lists the tables, columns and row counts. Merging a partner into itself is 422, and when both partners hold the same unique entry (for example the same IBAN or item supplier row) the merge is refused with 409 until it is removed from one of them. When the kept partner has an open VAT review, the duplicate's open review is resolved as <code>superseded</code> (<code>vat_review.resolved</code>).
+                                                 * Returns one partner; a deleted partner answers 404.
                                                  */
-                                                public NordletApiHttpResponse<MergePartnersResponse> merge(
-                                                    MergePartnersRequest request) {
-                                                  return merge(request,null);
+                                                public NordletApiHttpResponse<GetPartnersResponse> get(
+                                                    GetPartnersRequest request) {
+                                                  return get(request,null);
                                                 }
 
                                                 /**
-                                                 * Moves every row that references the duplicate <code>sourceId</code> through a foreign key to partners (looked up in the database catalogue, within the company) to <code>targetId</code>, then marks the source partner as deleted; <code>moved</code> lists the tables, columns and row counts. Merging a partner into itself is 422, and when both partners hold the same unique entry (for example the same IBAN or item supplier row) the merge is refused with 409 until it is removed from one of them. When the kept partner has an open VAT review, the duplicate's open review is resolved as <code>superseded</code> (<code>vat_review.resolved</code>).
+                                                 * Returns one partner; a deleted partner answers 404.
                                                  */
-                                                public NordletApiHttpResponse<MergePartnersResponse> merge(
-                                                    MergePartnersRequest request,
+                                                public NordletApiHttpResponse<GetPartnersResponse> get(
+                                                    GetPartnersRequest request,
                                                     RequestOptions requestOptions) {
                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                    .addPathSegments("v1/partners/merge");if (requestOptions != null) {
+                                                    .addPathSegments("v1/partners/get");if (requestOptions != null) {
                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                         httpUrl.addQueryParameter(_key, _value);
                                                       } );
@@ -2013,7 +2067,7 @@ public class RawPartnersClient {
                                                       ResponseBody responseBody = response.body();
                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                       if (response.isSuccessful()) {
-                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MergePartnersResponse.class), response);
+                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GetPartnersResponse.class), response);
                                                       }
                                                       try {
                                                         switch (response.code()) {
@@ -2044,22 +2098,22 @@ public class RawPartnersClient {
                                                   }
 
                                                   /**
-                                                   * Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
+                                                   * Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
                                                    */
-                                                  public NordletApiHttpResponse<AnonymizePartnersResponse> anonymize(
-                                                      AnonymizePartnersRequest request) {
-                                                    return anonymize(request,null);
+                                                  public NordletApiHttpResponse<UpdatePartnersResponse> update(
+                                                      UpdatePartnersRequest request) {
+                                                    return update(request,null);
                                                   }
 
                                                   /**
-                                                   * Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
+                                                   * Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
                                                    */
-                                                  public NordletApiHttpResponse<AnonymizePartnersResponse> anonymize(
-                                                      AnonymizePartnersRequest request,
+                                                  public NordletApiHttpResponse<UpdatePartnersResponse> update(
+                                                      UpdatePartnersRequest request,
                                                       RequestOptions requestOptions) {
                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                      .addPathSegments("v1/partners/anonymize");if (requestOptions != null) {
+                                                      .addPathSegments("v1/partners/update");if (requestOptions != null) {
                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                           httpUrl.addQueryParameter(_key, _value);
                                                         } );
@@ -2089,7 +2143,7 @@ public class RawPartnersClient {
                                                         ResponseBody responseBody = response.body();
                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                         if (response.isSuccessful()) {
-                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnonymizePartnersResponse.class), response);
+                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, UpdatePartnersResponse.class), response);
                                                         }
                                                         try {
                                                           switch (response.code()) {
@@ -2120,38 +2174,22 @@ public class RawPartnersClient {
                                                     }
 
                                                     /**
-                                                     * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+                                                     * Marks a partner as deleted; it no longer appears in lists or lookups.
                                                      */
-                                                    public NordletApiHttpResponse<ListPartnersResponse> list(
-                                                        ) {
-                                                      return list(ListPartnersRequest.builder().build());
+                                                    public NordletApiHttpResponse<DeletePartnersResponse> delete(
+                                                        DeletePartnersRequest request) {
+                                                      return delete(request,null);
                                                     }
 
                                                     /**
-                                                     * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+                                                     * Marks a partner as deleted; it no longer appears in lists or lookups.
                                                      */
-                                                    public NordletApiHttpResponse<ListPartnersResponse> list(
-                                                        RequestOptions requestOptions) {
-                                                      return list(ListPartnersRequest.builder().build(),requestOptions);
-                                                    }
-
-                                                    /**
-                                                     * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
-                                                     */
-                                                    public NordletApiHttpResponse<ListPartnersResponse> list(
-                                                        ListPartnersRequest request) {
-                                                      return list(request,null);
-                                                    }
-
-                                                    /**
-                                                     * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
-                                                     */
-                                                    public NordletApiHttpResponse<ListPartnersResponse> list(
-                                                        ListPartnersRequest request,
+                                                    public NordletApiHttpResponse<DeletePartnersResponse> delete(
+                                                        DeletePartnersRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                        .addPathSegments("v1/partners/list");if (requestOptions != null) {
+                                                        .addPathSegments("v1/partners/delete");if (requestOptions != null) {
                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                             httpUrl.addQueryParameter(_key, _value);
                                                           } );
@@ -2181,7 +2219,7 @@ public class RawPartnersClient {
                                                           ResponseBody responseBody = response.body();
                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                           if (response.isSuccessful()) {
-                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ListPartnersResponse.class), response);
+                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeletePartnersResponse.class), response);
                                                           }
                                                           try {
                                                             switch (response.code()) {
@@ -2212,22 +2250,22 @@ public class RawPartnersClient {
                                                       }
 
                                                       /**
-                                                       * Creates a partner group; a <code>code</code> already used by a group of the company is refused with 409.
+                                                       * Moves every row that references the duplicate <code>sourceId</code> through a foreign key to partners (looked up in the database catalogue, within the company) to <code>targetId</code>, then marks the source partner as deleted; <code>moved</code> lists the tables, columns and row counts. Merging a partner into itself is 422, and when both partners hold the same unique entry (for example the same IBAN or item supplier row) the merge is refused with 409 until it is removed from one of them. When the kept partner has an open VAT review, the duplicate's open review is resolved as <code>superseded</code> (<code>vat_review.resolved</code>).
                                                        */
-                                                      public NordletApiHttpResponse<GroupsCreatePartnersResponse> groupsCreate(
-                                                          GroupsCreatePartnersRequest request) {
-                                                        return groupsCreate(request,null);
+                                                      public NordletApiHttpResponse<MergePartnersResponse> merge(
+                                                          MergePartnersRequest request) {
+                                                        return merge(request,null);
                                                       }
 
                                                       /**
-                                                       * Creates a partner group; a <code>code</code> already used by a group of the company is refused with 409.
+                                                       * Moves every row that references the duplicate <code>sourceId</code> through a foreign key to partners (looked up in the database catalogue, within the company) to <code>targetId</code>, then marks the source partner as deleted; <code>moved</code> lists the tables, columns and row counts. Merging a partner into itself is 422, and when both partners hold the same unique entry (for example the same IBAN or item supplier row) the merge is refused with 409 until it is removed from one of them. When the kept partner has an open VAT review, the duplicate's open review is resolved as <code>superseded</code> (<code>vat_review.resolved</code>).
                                                        */
-                                                      public NordletApiHttpResponse<GroupsCreatePartnersResponse> groupsCreate(
-                                                          GroupsCreatePartnersRequest request,
+                                                      public NordletApiHttpResponse<MergePartnersResponse> merge(
+                                                          MergePartnersRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                          .addPathSegments("v1/partners/groups/create");if (requestOptions != null) {
+                                                          .addPathSegments("v1/partners/merge");if (requestOptions != null) {
                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                               httpUrl.addQueryParameter(_key, _value);
                                                             } );
@@ -2257,7 +2295,7 @@ public class RawPartnersClient {
                                                             ResponseBody responseBody = response.body();
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsCreatePartnersResponse.class), response);
+                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MergePartnersResponse.class), response);
                                                             }
                                                             try {
                                                               switch (response.code()) {
@@ -2288,22 +2326,22 @@ public class RawPartnersClient {
                                                         }
 
                                                         /**
-                                                         * Changes the code or name of a partner group; a code already used by another group of the company is refused with 409.
+                                                         * Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
                                                          */
-                                                        public NordletApiHttpResponse<GroupsUpdatePartnersResponse> groupsUpdate(
-                                                            GroupsUpdatePartnersRequest request) {
-                                                          return groupsUpdate(request,null);
+                                                        public NordletApiHttpResponse<AnonymizePartnersResponse> anonymize(
+                                                            AnonymizePartnersRequest request) {
+                                                          return anonymize(request,null);
                                                         }
 
                                                         /**
-                                                         * Changes the code or name of a partner group; a code already used by another group of the company is refused with 409.
+                                                         * Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
                                                          */
-                                                        public NordletApiHttpResponse<GroupsUpdatePartnersResponse> groupsUpdate(
-                                                            GroupsUpdatePartnersRequest request,
+                                                        public NordletApiHttpResponse<AnonymizePartnersResponse> anonymize(
+                                                            AnonymizePartnersRequest request,
                                                             RequestOptions requestOptions) {
                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                            .addPathSegments("v1/partners/groups/update");if (requestOptions != null) {
+                                                            .addPathSegments("v1/partners/anonymize");if (requestOptions != null) {
                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                 httpUrl.addQueryParameter(_key, _value);
                                                               } );
@@ -2333,7 +2371,7 @@ public class RawPartnersClient {
                                                               ResponseBody responseBody = response.body();
                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                               if (response.isSuccessful()) {
-                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsUpdatePartnersResponse.class), response);
+                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AnonymizePartnersResponse.class), response);
                                                               }
                                                               try {
                                                                 switch (response.code()) {
@@ -2364,22 +2402,38 @@ public class RawPartnersClient {
                                                           }
 
                                                           /**
-                                                           * Deletes a partner group; a group still assigned to a live partner is refused with 409.
+                                                           * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
                                                            */
-                                                          public NordletApiHttpResponse<GroupsDeletePartnersResponse> groupsDelete(
-                                                              GroupsDeletePartnersRequest request) {
-                                                            return groupsDelete(request,null);
+                                                          public NordletApiHttpResponse<ListPartnersResponse> list(
+                                                              ) {
+                                                            return list(ListPartnersRequest.builder().build());
                                                           }
 
                                                           /**
-                                                           * Deletes a partner group; a group still assigned to a live partner is refused with 409.
+                                                           * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
                                                            */
-                                                          public NordletApiHttpResponse<GroupsDeletePartnersResponse> groupsDelete(
-                                                              GroupsDeletePartnersRequest request,
+                                                          public NordletApiHttpResponse<ListPartnersResponse> list(
+                                                              RequestOptions requestOptions) {
+                                                            return list(ListPartnersRequest.builder().build(),requestOptions);
+                                                          }
+
+                                                          /**
+                                                           * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+                                                           */
+                                                          public NordletApiHttpResponse<ListPartnersResponse> list(
+                                                              ListPartnersRequest request) {
+                                                            return list(request,null);
+                                                          }
+
+                                                          /**
+                                                           * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+                                                           */
+                                                          public NordletApiHttpResponse<ListPartnersResponse> list(
+                                                              ListPartnersRequest request,
                                                               RequestOptions requestOptions) {
                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                              .addPathSegments("v1/partners/groups/delete");if (requestOptions != null) {
+                                                              .addPathSegments("v1/partners/list");if (requestOptions != null) {
                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                 } );
@@ -2409,7 +2463,7 @@ public class RawPartnersClient {
                                                                 ResponseBody responseBody = response.body();
                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                 if (response.isSuccessful()) {
-                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsDeletePartnersResponse.class), response);
+                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ListPartnersResponse.class), response);
                                                                 }
                                                                 try {
                                                                   switch (response.code()) {
@@ -2440,38 +2494,22 @@ public class RawPartnersClient {
                                                             }
 
                                                             /**
-                                                             * Lists the company's partner groups ordered by code.
+                                                             * Creates a partner group; a <code>code</code> already used by a group of the company is refused with 409.
                                                              */
-                                                            public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
-                                                                ) {
-                                                              return groupsList(GroupsListPartnersRequest.builder().build());
+                                                            public NordletApiHttpResponse<GroupsCreatePartnersResponse> groupsCreate(
+                                                                GroupsCreatePartnersRequest request) {
+                                                              return groupsCreate(request,null);
                                                             }
 
                                                             /**
-                                                             * Lists the company's partner groups ordered by code.
+                                                             * Creates a partner group; a <code>code</code> already used by a group of the company is refused with 409.
                                                              */
-                                                            public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
-                                                                RequestOptions requestOptions) {
-                                                              return groupsList(GroupsListPartnersRequest.builder().build(),requestOptions);
-                                                            }
-
-                                                            /**
-                                                             * Lists the company's partner groups ordered by code.
-                                                             */
-                                                            public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
-                                                                GroupsListPartnersRequest request) {
-                                                              return groupsList(request,null);
-                                                            }
-
-                                                            /**
-                                                             * Lists the company's partner groups ordered by code.
-                                                             */
-                                                            public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
-                                                                GroupsListPartnersRequest request,
+                                                            public NordletApiHttpResponse<GroupsCreatePartnersResponse> groupsCreate(
+                                                                GroupsCreatePartnersRequest request,
                                                                 RequestOptions requestOptions) {
                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                .addPathSegments("v1/partners/groups/list");if (requestOptions != null) {
+                                                                .addPathSegments("v1/partners/groups/create");if (requestOptions != null) {
                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                   } );
@@ -2501,7 +2539,7 @@ public class RawPartnersClient {
                                                                   ResponseBody responseBody = response.body();
                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                   if (response.isSuccessful()) {
-                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsListPartnersResponse.class), response);
+                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsCreatePartnersResponse.class), response);
                                                                   }
                                                                   try {
                                                                     switch (response.code()) {
@@ -2532,22 +2570,22 @@ public class RawPartnersClient {
                                                               }
 
                                                               /**
-                                                               * Creates a partner status with a <code>sortOrder</code>; a <code>code</code> already used by a status of the company is refused with 409.
+                                                               * Changes the code or name of a partner group; a code already used by another group of the company is refused with 409.
                                                                */
-                                                              public NordletApiHttpResponse<StatusesCreatePartnersResponse> statusesCreate(
-                                                                  StatusesCreatePartnersRequest request) {
-                                                                return statusesCreate(request,null);
+                                                              public NordletApiHttpResponse<GroupsUpdatePartnersResponse> groupsUpdate(
+                                                                  GroupsUpdatePartnersRequest request) {
+                                                                return groupsUpdate(request,null);
                                                               }
 
                                                               /**
-                                                               * Creates a partner status with a <code>sortOrder</code>; a <code>code</code> already used by a status of the company is refused with 409.
+                                                               * Changes the code or name of a partner group; a code already used by another group of the company is refused with 409.
                                                                */
-                                                              public NordletApiHttpResponse<StatusesCreatePartnersResponse> statusesCreate(
-                                                                  StatusesCreatePartnersRequest request,
+                                                              public NordletApiHttpResponse<GroupsUpdatePartnersResponse> groupsUpdate(
+                                                                  GroupsUpdatePartnersRequest request,
                                                                   RequestOptions requestOptions) {
                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                  .addPathSegments("v1/partners/statuses/create");if (requestOptions != null) {
+                                                                  .addPathSegments("v1/partners/groups/update");if (requestOptions != null) {
                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                     } );
@@ -2577,7 +2615,7 @@ public class RawPartnersClient {
                                                                     ResponseBody responseBody = response.body();
                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                     if (response.isSuccessful()) {
-                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesCreatePartnersResponse.class), response);
+                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsUpdatePartnersResponse.class), response);
                                                                     }
                                                                     try {
                                                                       switch (response.code()) {
@@ -2608,22 +2646,22 @@ public class RawPartnersClient {
                                                                 }
 
                                                                 /**
-                                                                 * Changes the code, name or sort order of a partner status; a code already used by another status of the company is refused with 409.
+                                                                 * Deletes a partner group; a group still assigned to a live partner is refused with 409.
                                                                  */
-                                                                public NordletApiHttpResponse<StatusesUpdatePartnersResponse> statusesUpdate(
-                                                                    StatusesUpdatePartnersRequest request) {
-                                                                  return statusesUpdate(request,null);
+                                                                public NordletApiHttpResponse<GroupsDeletePartnersResponse> groupsDelete(
+                                                                    GroupsDeletePartnersRequest request) {
+                                                                  return groupsDelete(request,null);
                                                                 }
 
                                                                 /**
-                                                                 * Changes the code, name or sort order of a partner status; a code already used by another status of the company is refused with 409.
+                                                                 * Deletes a partner group; a group still assigned to a live partner is refused with 409.
                                                                  */
-                                                                public NordletApiHttpResponse<StatusesUpdatePartnersResponse> statusesUpdate(
-                                                                    StatusesUpdatePartnersRequest request,
+                                                                public NordletApiHttpResponse<GroupsDeletePartnersResponse> groupsDelete(
+                                                                    GroupsDeletePartnersRequest request,
                                                                     RequestOptions requestOptions) {
                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                    .addPathSegments("v1/partners/statuses/update");if (requestOptions != null) {
+                                                                    .addPathSegments("v1/partners/groups/delete");if (requestOptions != null) {
                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                       } );
@@ -2653,7 +2691,7 @@ public class RawPartnersClient {
                                                                       ResponseBody responseBody = response.body();
                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                       if (response.isSuccessful()) {
-                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesUpdatePartnersResponse.class), response);
+                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsDeletePartnersResponse.class), response);
                                                                       }
                                                                       try {
                                                                         switch (response.code()) {
@@ -2684,22 +2722,38 @@ public class RawPartnersClient {
                                                                   }
 
                                                                   /**
-                                                                   * Deletes a partner status; a status still assigned to a live partner is refused with 409.
+                                                                   * Lists the company's partner groups ordered by code.
                                                                    */
-                                                                  public NordletApiHttpResponse<StatusesDeletePartnersResponse> statusesDelete(
-                                                                      StatusesDeletePartnersRequest request) {
-                                                                    return statusesDelete(request,null);
+                                                                  public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
+                                                                      ) {
+                                                                    return groupsList(GroupsListPartnersRequest.builder().build());
                                                                   }
 
                                                                   /**
-                                                                   * Deletes a partner status; a status still assigned to a live partner is refused with 409.
+                                                                   * Lists the company's partner groups ordered by code.
                                                                    */
-                                                                  public NordletApiHttpResponse<StatusesDeletePartnersResponse> statusesDelete(
-                                                                      StatusesDeletePartnersRequest request,
+                                                                  public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
+                                                                      RequestOptions requestOptions) {
+                                                                    return groupsList(GroupsListPartnersRequest.builder().build(),requestOptions);
+                                                                  }
+
+                                                                  /**
+                                                                   * Lists the company's partner groups ordered by code.
+                                                                   */
+                                                                  public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
+                                                                      GroupsListPartnersRequest request) {
+                                                                    return groupsList(request,null);
+                                                                  }
+
+                                                                  /**
+                                                                   * Lists the company's partner groups ordered by code.
+                                                                   */
+                                                                  public NordletApiHttpResponse<GroupsListPartnersResponse> groupsList(
+                                                                      GroupsListPartnersRequest request,
                                                                       RequestOptions requestOptions) {
                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                      .addPathSegments("v1/partners/statuses/delete");if (requestOptions != null) {
+                                                                      .addPathSegments("v1/partners/groups/list");if (requestOptions != null) {
                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                         } );
@@ -2729,7 +2783,7 @@ public class RawPartnersClient {
                                                                         ResponseBody responseBody = response.body();
                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                         if (response.isSuccessful()) {
-                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesDeletePartnersResponse.class), response);
+                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsListPartnersResponse.class), response);
                                                                         }
                                                                         try {
                                                                           switch (response.code()) {
@@ -2760,38 +2814,22 @@ public class RawPartnersClient {
                                                                     }
 
                                                                     /**
-                                                                     * Lists the company's partner statuses ordered by sort order, then code.
+                                                                     * Creates a partner status with a <code>sortOrder</code>; a <code>code</code> already used by a status of the company is refused with 409.
                                                                      */
-                                                                    public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
-                                                                        ) {
-                                                                      return statusesList(StatusesListPartnersRequest.builder().build());
+                                                                    public NordletApiHttpResponse<StatusesCreatePartnersResponse> statusesCreate(
+                                                                        StatusesCreatePartnersRequest request) {
+                                                                      return statusesCreate(request,null);
                                                                     }
 
                                                                     /**
-                                                                     * Lists the company's partner statuses ordered by sort order, then code.
+                                                                     * Creates a partner status with a <code>sortOrder</code>; a <code>code</code> already used by a status of the company is refused with 409.
                                                                      */
-                                                                    public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
-                                                                        RequestOptions requestOptions) {
-                                                                      return statusesList(StatusesListPartnersRequest.builder().build(),requestOptions);
-                                                                    }
-
-                                                                    /**
-                                                                     * Lists the company's partner statuses ordered by sort order, then code.
-                                                                     */
-                                                                    public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
-                                                                        StatusesListPartnersRequest request) {
-                                                                      return statusesList(request,null);
-                                                                    }
-
-                                                                    /**
-                                                                     * Lists the company's partner statuses ordered by sort order, then code.
-                                                                     */
-                                                                    public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
-                                                                        StatusesListPartnersRequest request,
+                                                                    public NordletApiHttpResponse<StatusesCreatePartnersResponse> statusesCreate(
+                                                                        StatusesCreatePartnersRequest request,
                                                                         RequestOptions requestOptions) {
                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                        .addPathSegments("v1/partners/statuses/list");if (requestOptions != null) {
+                                                                        .addPathSegments("v1/partners/statuses/create");if (requestOptions != null) {
                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                           } );
@@ -2821,7 +2859,7 @@ public class RawPartnersClient {
                                                                           ResponseBody responseBody = response.body();
                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                           if (response.isSuccessful()) {
-                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesListPartnersResponse.class), response);
+                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesCreatePartnersResponse.class), response);
                                                                           }
                                                                           try {
                                                                             switch (response.code()) {
@@ -2852,22 +2890,22 @@ public class RawPartnersClient {
                                                                       }
 
                                                                       /**
-                                                                       * Records an inquiry in status <code>new</code>, from a partner (<code>partnerId</code>) or from a contact given by <code>contactName</code> or <code>contactEmail</code>; without any of the three it is refused with 422. <code>assignedUserId</code> must be a member of the company. Emits <code>partner_inquiry.created</code>.
+                                                                       * Changes the code, name or sort order of a partner status; a code already used by another status of the company is refused with 409.
                                                                        */
-                                                                      public NordletApiHttpResponse<InquiriesCreatePartnersResponse> inquiriesCreate(
-                                                                          InquiriesCreatePartnersRequest request) {
-                                                                        return inquiriesCreate(request,null);
+                                                                      public NordletApiHttpResponse<StatusesUpdatePartnersResponse> statusesUpdate(
+                                                                          StatusesUpdatePartnersRequest request) {
+                                                                        return statusesUpdate(request,null);
                                                                       }
 
                                                                       /**
-                                                                       * Records an inquiry in status <code>new</code>, from a partner (<code>partnerId</code>) or from a contact given by <code>contactName</code> or <code>contactEmail</code>; without any of the three it is refused with 422. <code>assignedUserId</code> must be a member of the company. Emits <code>partner_inquiry.created</code>.
+                                                                       * Changes the code, name or sort order of a partner status; a code already used by another status of the company is refused with 409.
                                                                        */
-                                                                      public NordletApiHttpResponse<InquiriesCreatePartnersResponse> inquiriesCreate(
-                                                                          InquiriesCreatePartnersRequest request,
+                                                                      public NordletApiHttpResponse<StatusesUpdatePartnersResponse> statusesUpdate(
+                                                                          StatusesUpdatePartnersRequest request,
                                                                           RequestOptions requestOptions) {
                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                          .addPathSegments("v1/partners/inquiries/create");if (requestOptions != null) {
+                                                                          .addPathSegments("v1/partners/statuses/update");if (requestOptions != null) {
                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                             } );
@@ -2897,7 +2935,7 @@ public class RawPartnersClient {
                                                                             ResponseBody responseBody = response.body();
                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                             if (response.isSuccessful()) {
-                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesCreatePartnersResponse.class), response);
+                                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesUpdatePartnersResponse.class), response);
                                                                             }
                                                                             try {
                                                                               switch (response.code()) {
@@ -2928,22 +2966,22 @@ public class RawPartnersClient {
                                                                         }
 
                                                                         /**
-                                                                         * Changes the given fields of an inquiry; <code>partnerId</code> and <code>assignedUserId</code> accept null. Setting <code>status</code> to <code>closed</code> stamps <code>closedAt</code>, and moving a closed inquiry to another status clears it.
+                                                                         * Deletes a partner status; a status still assigned to a live partner is refused with 409.
                                                                          */
-                                                                        public NordletApiHttpResponse<InquiriesUpdatePartnersResponse> inquiriesUpdate(
-                                                                            InquiriesUpdatePartnersRequest request) {
-                                                                          return inquiriesUpdate(request,null);
+                                                                        public NordletApiHttpResponse<StatusesDeletePartnersResponse> statusesDelete(
+                                                                            StatusesDeletePartnersRequest request) {
+                                                                          return statusesDelete(request,null);
                                                                         }
 
                                                                         /**
-                                                                         * Changes the given fields of an inquiry; <code>partnerId</code> and <code>assignedUserId</code> accept null. Setting <code>status</code> to <code>closed</code> stamps <code>closedAt</code>, and moving a closed inquiry to another status clears it.
+                                                                         * Deletes a partner status; a status still assigned to a live partner is refused with 409.
                                                                          */
-                                                                        public NordletApiHttpResponse<InquiriesUpdatePartnersResponse> inquiriesUpdate(
-                                                                            InquiriesUpdatePartnersRequest request,
+                                                                        public NordletApiHttpResponse<StatusesDeletePartnersResponse> statusesDelete(
+                                                                            StatusesDeletePartnersRequest request,
                                                                             RequestOptions requestOptions) {
                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                            .addPathSegments("v1/partners/inquiries/update");if (requestOptions != null) {
+                                                                            .addPathSegments("v1/partners/statuses/delete");if (requestOptions != null) {
                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                               } );
@@ -2973,7 +3011,7 @@ public class RawPartnersClient {
                                                                               ResponseBody responseBody = response.body();
                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                               if (response.isSuccessful()) {
-                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesUpdatePartnersResponse.class), response);
+                                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesDeletePartnersResponse.class), response);
                                                                               }
                                                                               try {
                                                                                 switch (response.code()) {
@@ -3004,22 +3042,38 @@ public class RawPartnersClient {
                                                                           }
 
                                                                           /**
-                                                                           * Returns one inquiry with the name of its partner.
+                                                                           * Lists the company's partner statuses ordered by sort order, then code.
                                                                            */
-                                                                          public NordletApiHttpResponse<InquiriesGetPartnersResponse> inquiriesGet(
-                                                                              InquiriesGetPartnersRequest request) {
-                                                                            return inquiriesGet(request,null);
+                                                                          public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
+                                                                              ) {
+                                                                            return statusesList(StatusesListPartnersRequest.builder().build());
                                                                           }
 
                                                                           /**
-                                                                           * Returns one inquiry with the name of its partner.
+                                                                           * Lists the company's partner statuses ordered by sort order, then code.
                                                                            */
-                                                                          public NordletApiHttpResponse<InquiriesGetPartnersResponse> inquiriesGet(
-                                                                              InquiriesGetPartnersRequest request,
+                                                                          public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
+                                                                              RequestOptions requestOptions) {
+                                                                            return statusesList(StatusesListPartnersRequest.builder().build(),requestOptions);
+                                                                          }
+
+                                                                          /**
+                                                                           * Lists the company's partner statuses ordered by sort order, then code.
+                                                                           */
+                                                                          public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
+                                                                              StatusesListPartnersRequest request) {
+                                                                            return statusesList(request,null);
+                                                                          }
+
+                                                                          /**
+                                                                           * Lists the company's partner statuses ordered by sort order, then code.
+                                                                           */
+                                                                          public NordletApiHttpResponse<StatusesListPartnersResponse> statusesList(
+                                                                              StatusesListPartnersRequest request,
                                                                               RequestOptions requestOptions) {
                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                              .addPathSegments("v1/partners/inquiries/get");if (requestOptions != null) {
+                                                                              .addPathSegments("v1/partners/statuses/list");if (requestOptions != null) {
                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                 } );
@@ -3049,7 +3103,7 @@ public class RawPartnersClient {
                                                                                 ResponseBody responseBody = response.body();
                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                 if (response.isSuccessful()) {
-                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesGetPartnersResponse.class), response);
+                                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatusesListPartnersResponse.class), response);
                                                                                 }
                                                                                 try {
                                                                                   switch (response.code()) {
@@ -3080,38 +3134,22 @@ public class RawPartnersClient {
                                                                             }
 
                                                                             /**
-                                                                             * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
+                                                                             * Records an inquiry in status <code>new</code>, from a partner (<code>partnerId</code>) or from a contact given by <code>contactName</code> or <code>contactEmail</code>; without any of the three it is refused with 422. <code>assignedUserId</code> must be a member of the company. Emits <code>partner_inquiry.created</code>.
                                                                              */
-                                                                            public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
-                                                                                ) {
-                                                                              return inquiriesList(InquiriesListPartnersRequest.builder().build());
+                                                                            public NordletApiHttpResponse<InquiriesCreatePartnersResponse> inquiriesCreate(
+                                                                                InquiriesCreatePartnersRequest request) {
+                                                                              return inquiriesCreate(request,null);
                                                                             }
 
                                                                             /**
-                                                                             * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
+                                                                             * Records an inquiry in status <code>new</code>, from a partner (<code>partnerId</code>) or from a contact given by <code>contactName</code> or <code>contactEmail</code>; without any of the three it is refused with 422. <code>assignedUserId</code> must be a member of the company. Emits <code>partner_inquiry.created</code>.
                                                                              */
-                                                                            public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
-                                                                                RequestOptions requestOptions) {
-                                                                              return inquiriesList(InquiriesListPartnersRequest.builder().build(),requestOptions);
-                                                                            }
-
-                                                                            /**
-                                                                             * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
-                                                                             */
-                                                                            public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
-                                                                                InquiriesListPartnersRequest request) {
-                                                                              return inquiriesList(request,null);
-                                                                            }
-
-                                                                            /**
-                                                                             * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
-                                                                             */
-                                                                            public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
-                                                                                InquiriesListPartnersRequest request,
+                                                                            public NordletApiHttpResponse<InquiriesCreatePartnersResponse> inquiriesCreate(
+                                                                                InquiriesCreatePartnersRequest request,
                                                                                 RequestOptions requestOptions) {
                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                .addPathSegments("v1/partners/inquiries/list");if (requestOptions != null) {
+                                                                                .addPathSegments("v1/partners/inquiries/create");if (requestOptions != null) {
                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                   } );
@@ -3141,7 +3179,7 @@ public class RawPartnersClient {
                                                                                   ResponseBody responseBody = response.body();
                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                   if (response.isSuccessful()) {
-                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesListPartnersResponse.class), response);
+                                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesCreatePartnersResponse.class), response);
                                                                                   }
                                                                                   try {
                                                                                     switch (response.code()) {
@@ -3172,22 +3210,22 @@ public class RawPartnersClient {
                                                                               }
 
                                                                               /**
-                                                                               * Compares a partner's open receivables plus an optional <code>additionalAmount</code> with its <code>creditLimit</code>. The open receivables are the unpaid remainder of the partner's issued invoices, advance invoices and credit notes (credit notes negative), converted to the company's base currency at each invoice's <code>fxRate</code>. Without a credit limit <code>available</code> is null and <code>exceeded</code> is false.
+                                                                               * Changes the given fields of an inquiry; <code>partnerId</code> and <code>assignedUserId</code> accept null. Setting <code>status</code> to <code>closed</code> stamps <code>closedAt</code>, and moving a closed inquiry to another status clears it.
                                                                                */
-                                                                              public NordletApiHttpResponse<CreditCheckPartnersResponse> creditCheck(
-                                                                                  CreditCheckPartnersRequest request) {
-                                                                                return creditCheck(request,null);
+                                                                              public NordletApiHttpResponse<InquiriesUpdatePartnersResponse> inquiriesUpdate(
+                                                                                  InquiriesUpdatePartnersRequest request) {
+                                                                                return inquiriesUpdate(request,null);
                                                                               }
 
                                                                               /**
-                                                                               * Compares a partner's open receivables plus an optional <code>additionalAmount</code> with its <code>creditLimit</code>. The open receivables are the unpaid remainder of the partner's issued invoices, advance invoices and credit notes (credit notes negative), converted to the company's base currency at each invoice's <code>fxRate</code>. Without a credit limit <code>available</code> is null and <code>exceeded</code> is false.
+                                                                               * Changes the given fields of an inquiry; <code>partnerId</code> and <code>assignedUserId</code> accept null. Setting <code>status</code> to <code>closed</code> stamps <code>closedAt</code>, and moving a closed inquiry to another status clears it.
                                                                                */
-                                                                              public NordletApiHttpResponse<CreditCheckPartnersResponse> creditCheck(
-                                                                                  CreditCheckPartnersRequest request,
+                                                                              public NordletApiHttpResponse<InquiriesUpdatePartnersResponse> inquiriesUpdate(
+                                                                                  InquiriesUpdatePartnersRequest request,
                                                                                   RequestOptions requestOptions) {
                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                  .addPathSegments("v1/partners/credit-check");if (requestOptions != null) {
+                                                                                  .addPathSegments("v1/partners/inquiries/update");if (requestOptions != null) {
                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                     } );
@@ -3217,7 +3255,7 @@ public class RawPartnersClient {
                                                                                     ResponseBody responseBody = response.body();
                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                     if (response.isSuccessful()) {
-                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CreditCheckPartnersResponse.class), response);
+                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesUpdatePartnersResponse.class), response);
                                                                                     }
                                                                                     try {
                                                                                       switch (response.code()) {
@@ -3246,4 +3284,248 @@ public class RawPartnersClient {
                                                                                     throw new NordletApiException("Network error executing HTTP request", e);
                                                                                   }
                                                                                 }
-                                                                              }
+
+                                                                                /**
+                                                                                 * Returns one inquiry with the name of its partner.
+                                                                                 */
+                                                                                public NordletApiHttpResponse<InquiriesGetPartnersResponse> inquiriesGet(
+                                                                                    InquiriesGetPartnersRequest request) {
+                                                                                  return inquiriesGet(request,null);
+                                                                                }
+
+                                                                                /**
+                                                                                 * Returns one inquiry with the name of its partner.
+                                                                                 */
+                                                                                public NordletApiHttpResponse<InquiriesGetPartnersResponse> inquiriesGet(
+                                                                                    InquiriesGetPartnersRequest request,
+                                                                                    RequestOptions requestOptions) {
+                                                                                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                    .addPathSegments("v1/partners/inquiries/get");if (requestOptions != null) {
+                                                                                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                        httpUrl.addQueryParameter(_key, _value);
+                                                                                      } );
+                                                                                    }
+                                                                                    RequestBody body;
+                                                                                    try {
+                                                                                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                    }
+                                                                                    catch(JsonProcessingException e) {
+                                                                                      throw new NordletApiException("Failed to serialize request", e);
+                                                                                    }
+                                                                                    Request okhttpRequest = new Request.Builder()
+                                                                                      .url(httpUrl.build())
+                                                                                      .method("POST", body)
+                                                                                      .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                      .addHeader("Content-Type", "application/json")
+                                                                                      .addHeader("Accept", "application/json")
+                                                                                      .build();
+                                                                                    OkHttpClient client = clientOptions.httpClient();
+                                                                                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                      client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                    }
+                                                                                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                    }
+                                                                                    try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                      ResponseBody responseBody = response.body();
+                                                                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                      if (response.isSuccessful()) {
+                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesGetPartnersResponse.class), response);
+                                                                                      }
+                                                                                      try {
+                                                                                        switch (response.code()) {
+                                                                                          case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        }
+                                                                                      }
+                                                                                      catch (JsonProcessingException ignored) {
+                                                                                        // unable to map error response, throwing generic error
+                                                                                      }
+                                                                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                      throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                    }
+                                                                                    catch (JsonProcessingException e) {
+                                                                                      throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                    }
+                                                                                    catch (IOException e) {
+                                                                                      throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                    }
+                                                                                  }
+
+                                                                                  /**
+                                                                                   * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
+                                                                                   */
+                                                                                  public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
+                                                                                      ) {
+                                                                                    return inquiriesList(InquiriesListPartnersRequest.builder().build());
+                                                                                  }
+
+                                                                                  /**
+                                                                                   * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
+                                                                                   */
+                                                                                  public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
+                                                                                      RequestOptions requestOptions) {
+                                                                                    return inquiriesList(InquiriesListPartnersRequest.builder().build(),requestOptions);
+                                                                                  }
+
+                                                                                  /**
+                                                                                   * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
+                                                                                   */
+                                                                                  public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
+                                                                                      InquiriesListPartnersRequest request) {
+                                                                                    return inquiriesList(request,null);
+                                                                                  }
+
+                                                                                  /**
+                                                                                   * Lists inquiries with their partner names; filterable by <code>status</code>, <code>channel</code>, <code>partnerId</code>, <code>assignedUserId</code> and <code>subject</code>, sortable by <code>createdAt</code> and <code>updatedAt</code>.
+                                                                                   */
+                                                                                  public NordletApiHttpResponse<InquiriesListPartnersResponse> inquiriesList(
+                                                                                      InquiriesListPartnersRequest request,
+                                                                                      RequestOptions requestOptions) {
+                                                                                    HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                      .addPathSegments("v1/partners/inquiries/list");if (requestOptions != null) {
+                                                                                        requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                          httpUrl.addQueryParameter(_key, _value);
+                                                                                        } );
+                                                                                      }
+                                                                                      RequestBody body;
+                                                                                      try {
+                                                                                        body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                      }
+                                                                                      catch(JsonProcessingException e) {
+                                                                                        throw new NordletApiException("Failed to serialize request", e);
+                                                                                      }
+                                                                                      Request okhttpRequest = new Request.Builder()
+                                                                                        .url(httpUrl.build())
+                                                                                        .method("POST", body)
+                                                                                        .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                        .addHeader("Content-Type", "application/json")
+                                                                                        .addHeader("Accept", "application/json")
+                                                                                        .build();
+                                                                                      OkHttpClient client = clientOptions.httpClient();
+                                                                                      if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                        client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                      }
+                                                                                      if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                        okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                      }
+                                                                                      try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                        ResponseBody responseBody = response.body();
+                                                                                        String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                        if (response.isSuccessful()) {
+                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InquiriesListPartnersResponse.class), response);
+                                                                                        }
+                                                                                        try {
+                                                                                          switch (response.code()) {
+                                                                                            case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          }
+                                                                                        }
+                                                                                        catch (JsonProcessingException ignored) {
+                                                                                          // unable to map error response, throwing generic error
+                                                                                        }
+                                                                                        Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                        throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                      }
+                                                                                      catch (JsonProcessingException e) {
+                                                                                        throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                      }
+                                                                                      catch (IOException e) {
+                                                                                        throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                      }
+                                                                                    }
+
+                                                                                    /**
+                                                                                     * Compares a partner's open receivables plus an optional <code>additionalAmount</code> with its <code>creditLimit</code>. The open receivables are the unpaid remainder of the partner's issued invoices, advance invoices and credit notes (credit notes negative), converted to the company's base currency at each invoice's <code>fxRate</code>. Without a credit limit <code>available</code> is null and <code>exceeded</code> is false.
+                                                                                     */
+                                                                                    public NordletApiHttpResponse<CreditCheckPartnersResponse> creditCheck(
+                                                                                        CreditCheckPartnersRequest request) {
+                                                                                      return creditCheck(request,null);
+                                                                                    }
+
+                                                                                    /**
+                                                                                     * Compares a partner's open receivables plus an optional <code>additionalAmount</code> with its <code>creditLimit</code>. The open receivables are the unpaid remainder of the partner's issued invoices, advance invoices and credit notes (credit notes negative), converted to the company's base currency at each invoice's <code>fxRate</code>. Without a credit limit <code>available</code> is null and <code>exceeded</code> is false.
+                                                                                     */
+                                                                                    public NordletApiHttpResponse<CreditCheckPartnersResponse> creditCheck(
+                                                                                        CreditCheckPartnersRequest request,
+                                                                                        RequestOptions requestOptions) {
+                                                                                      HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                        .addPathSegments("v1/partners/credit-check");if (requestOptions != null) {
+                                                                                          requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                            httpUrl.addQueryParameter(_key, _value);
+                                                                                          } );
+                                                                                        }
+                                                                                        RequestBody body;
+                                                                                        try {
+                                                                                          body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                        }
+                                                                                        catch(JsonProcessingException e) {
+                                                                                          throw new NordletApiException("Failed to serialize request", e);
+                                                                                        }
+                                                                                        Request okhttpRequest = new Request.Builder()
+                                                                                          .url(httpUrl.build())
+                                                                                          .method("POST", body)
+                                                                                          .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                          .addHeader("Content-Type", "application/json")
+                                                                                          .addHeader("Accept", "application/json")
+                                                                                          .build();
+                                                                                        OkHttpClient client = clientOptions.httpClient();
+                                                                                        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                          client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                        }
+                                                                                        if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                          okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                        }
+                                                                                        try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                          ResponseBody responseBody = response.body();
+                                                                                          String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                          if (response.isSuccessful()) {
+                                                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CreditCheckPartnersResponse.class), response);
+                                                                                          }
+                                                                                          try {
+                                                                                            switch (response.code()) {
+                                                                                              case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                              case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            }
+                                                                                          }
+                                                                                          catch (JsonProcessingException ignored) {
+                                                                                            // unable to map error response, throwing generic error
+                                                                                          }
+                                                                                          Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                          throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                        }
+                                                                                        catch (JsonProcessingException e) {
+                                                                                          throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                        }
+                                                                                        catch (IOException e) {
+                                                                                          throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                        }
+                                                                                      }
+                                                                                    }

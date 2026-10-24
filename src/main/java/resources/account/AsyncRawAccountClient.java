@@ -124,7 +124,7 @@ public class AsyncRawAccountClient {
   }
 
   /**
-   * Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with <code>account/login-link/consume</code>. When an unused link was requested for the same address within the last minute, the call answers <code>sent</code> without sending another. <code>locale</code> sets the language of the e-mail and of the link; <code>acceptTerms</code>, <code>acceptDpa</code> and <code>referralCode</code> are stored with the link and used when the address has no account yet.
+   * Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with <code>account/login-link/consume</code>. When an unused link was requested for the same address within the last minute, the call answers <code>sent</code> without sending another. <code>locale</code> sets the language of the e-mail and of the link; <code>app</code> set to <code>invoice</code> makes the link open the invoice app instead of the Nordlet app; <code>acceptTerms</code>, <code>acceptDpa</code> and <code>referralCode</code> are stored with the link and used when the address has no account yet.
    */
   public CompletableFuture<NordletApiHttpResponse<LoginLinkRequestAccountResponse>> loginLinkRequest(
       LoginLinkRequestAccountRequest request) {
@@ -132,7 +132,7 @@ public class AsyncRawAccountClient {
   }
 
   /**
-   * Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with <code>account/login-link/consume</code>. When an unused link was requested for the same address within the last minute, the call answers <code>sent</code> without sending another. <code>locale</code> sets the language of the e-mail and of the link; <code>acceptTerms</code>, <code>acceptDpa</code> and <code>referralCode</code> are stored with the link and used when the address has no account yet.
+   * Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with <code>account/login-link/consume</code>. When an unused link was requested for the same address within the last minute, the call answers <code>sent</code> without sending another. <code>locale</code> sets the language of the e-mail and of the link; <code>app</code> set to <code>invoice</code> makes the link open the invoice app instead of the Nordlet app; <code>acceptTerms</code>, <code>acceptDpa</code> and <code>referralCode</code> are stored with the link and used when the address has no account yet.
    */
   public CompletableFuture<NordletApiHttpResponse<LoginLinkRequestAccountResponse>> loginLinkRequest(
       LoginLinkRequestAccountRequest request, RequestOptions requestOptions) {
