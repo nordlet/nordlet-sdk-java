@@ -10,6 +10,8 @@ import java.lang.Object;
 import java.lang.String;
 
 public final class FlatRateConfirmBillingResponsePlan {
+  public static final FlatRateConfirmBillingResponsePlan INVOICING = new FlatRateConfirmBillingResponsePlan(Value.INVOICING, "invoicing");
+
   public static final FlatRateConfirmBillingResponsePlan STARTER = new FlatRateConfirmBillingResponsePlan(Value.STARTER, "starter");
 
   public static final FlatRateConfirmBillingResponsePlan SCALE = new FlatRateConfirmBillingResponsePlan(Value.SCALE, "scale");
@@ -48,6 +50,8 @@ public final class FlatRateConfirmBillingResponsePlan {
 
   public <T> T visit(Visitor<T> visitor) {
     switch (value) {
+      case INVOICING:
+        return visitor.visitInvoicing();
       case STARTER:
         return visitor.visitStarter();
       case SCALE:
@@ -65,6 +69,8 @@ public final class FlatRateConfirmBillingResponsePlan {
   )
   public static FlatRateConfirmBillingResponsePlan valueOf(String value) {
     switch (value) {
+      case "invoicing":
+        return INVOICING;
       case "starter":
         return STARTER;
       case "scale":
@@ -83,6 +89,8 @@ public final class FlatRateConfirmBillingResponsePlan {
 
     SCALE,
 
+    INVOICING,
+
     UNKNOWN
   }
 
@@ -92,6 +100,8 @@ public final class FlatRateConfirmBillingResponsePlan {
     T visitBusiness();
 
     T visitScale();
+
+    T visitInvoicing();
 
     T visitUnknown(String unknownType);
   }

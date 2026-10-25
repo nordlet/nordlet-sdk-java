@@ -12,9 +12,67 @@ import java.lang.String;
 public final class InvoicesCreateSalesRequestLocale {
   public static final InvoicesCreateSalesRequestLocale EN = new InvoicesCreateSalesRequestLocale(Value.EN, "en");
 
-  public static final InvoicesCreateSalesRequestLocale DE = new InvoicesCreateSalesRequestLocale(Value.DE, "de");
+  public static final InvoicesCreateSalesRequestLocale ZH = new InvoicesCreateSalesRequestLocale(Value.ZH, "zh");
+
+  public static final InvoicesCreateSalesRequestLocale HI = new InvoicesCreateSalesRequestLocale(Value.HI, "hi");
 
   public static final InvoicesCreateSalesRequestLocale LT = new InvoicesCreateSalesRequestLocale(Value.LT, "lt");
+
+  public static final InvoicesCreateSalesRequestLocale DA = new InvoicesCreateSalesRequestLocale(Value.DA, "da");
+
+  public static final InvoicesCreateSalesRequestLocale LV = new InvoicesCreateSalesRequestLocale(Value.LV, "lv");
+
+  public static final InvoicesCreateSalesRequestLocale TR = new InvoicesCreateSalesRequestLocale(Value.TR, "tr");
+
+  public static final InvoicesCreateSalesRequestLocale FI = new InvoicesCreateSalesRequestLocale(Value.FI, "fi");
+
+  public static final InvoicesCreateSalesRequestLocale RO = new InvoicesCreateSalesRequestLocale(Value.RO, "ro");
+
+  public static final InvoicesCreateSalesRequestLocale ES = new InvoicesCreateSalesRequestLocale(Value.ES, "es");
+
+  public static final InvoicesCreateSalesRequestLocale PL = new InvoicesCreateSalesRequestLocale(Value.PL, "pl");
+
+  public static final InvoicesCreateSalesRequestLocale DE = new InvoicesCreateSalesRequestLocale(Value.DE, "de");
+
+  public static final InvoicesCreateSalesRequestLocale GA = new InvoicesCreateSalesRequestLocale(Value.GA, "ga");
+
+  public static final InvoicesCreateSalesRequestLocale ET = new InvoicesCreateSalesRequestLocale(Value.ET, "et");
+
+  public static final InvoicesCreateSalesRequestLocale HR = new InvoicesCreateSalesRequestLocale(Value.HR, "hr");
+
+  public static final InvoicesCreateSalesRequestLocale SK = new InvoicesCreateSalesRequestLocale(Value.SK, "sk");
+
+  public static final InvoicesCreateSalesRequestLocale SL = new InvoicesCreateSalesRequestLocale(Value.SL, "sl");
+
+  public static final InvoicesCreateSalesRequestLocale MT = new InvoicesCreateSalesRequestLocale(Value.MT, "mt");
+
+  public static final InvoicesCreateSalesRequestLocale CS = new InvoicesCreateSalesRequestLocale(Value.CS, "cs");
+
+  public static final InvoicesCreateSalesRequestLocale RU = new InvoicesCreateSalesRequestLocale(Value.RU, "ru");
+
+  public static final InvoicesCreateSalesRequestLocale JA = new InvoicesCreateSalesRequestLocale(Value.JA, "ja");
+
+  public static final InvoicesCreateSalesRequestLocale HU = new InvoicesCreateSalesRequestLocale(Value.HU, "hu");
+
+  public static final InvoicesCreateSalesRequestLocale NL = new InvoicesCreateSalesRequestLocale(Value.NL, "nl");
+
+  public static final InvoicesCreateSalesRequestLocale BG = new InvoicesCreateSalesRequestLocale(Value.BG, "bg");
+
+  public static final InvoicesCreateSalesRequestLocale PT = new InvoicesCreateSalesRequestLocale(Value.PT, "pt");
+
+  public static final InvoicesCreateSalesRequestLocale AR = new InvoicesCreateSalesRequestLocale(Value.AR, "ar");
+
+  public static final InvoicesCreateSalesRequestLocale FR = new InvoicesCreateSalesRequestLocale(Value.FR, "fr");
+
+  public static final InvoicesCreateSalesRequestLocale NO = new InvoicesCreateSalesRequestLocale(Value.NO, "no");
+
+  public static final InvoicesCreateSalesRequestLocale IS = new InvoicesCreateSalesRequestLocale(Value.IS, "is");
+
+  public static final InvoicesCreateSalesRequestLocale SV = new InvoicesCreateSalesRequestLocale(Value.SV, "sv");
+
+  public static final InvoicesCreateSalesRequestLocale IT = new InvoicesCreateSalesRequestLocale(Value.IT, "it");
+
+  public static final InvoicesCreateSalesRequestLocale EL = new InvoicesCreateSalesRequestLocale(Value.EL, "el");
 
   private final Value value;
 
@@ -50,10 +108,68 @@ public final class InvoicesCreateSalesRequestLocale {
     switch (value) {
       case EN:
         return visitor.visitEn();
-      case DE:
-        return visitor.visitDe();
+      case ZH:
+        return visitor.visitZh();
+      case HI:
+        return visitor.visitHi();
       case LT:
         return visitor.visitLt();
+      case DA:
+        return visitor.visitDa();
+      case LV:
+        return visitor.visitLv();
+      case TR:
+        return visitor.visitTr();
+      case FI:
+        return visitor.visitFi();
+      case RO:
+        return visitor.visitRo();
+      case ES:
+        return visitor.visitEs();
+      case PL:
+        return visitor.visitPl();
+      case DE:
+        return visitor.visitDe();
+      case GA:
+        return visitor.visitGa();
+      case ET:
+        return visitor.visitEt();
+      case HR:
+        return visitor.visitHr();
+      case SK:
+        return visitor.visitSk();
+      case SL:
+        return visitor.visitSl();
+      case MT:
+        return visitor.visitMt();
+      case CS:
+        return visitor.visitCs();
+      case RU:
+        return visitor.visitRu();
+      case JA:
+        return visitor.visitJa();
+      case HU:
+        return visitor.visitHu();
+      case NL:
+        return visitor.visitNl();
+      case BG:
+        return visitor.visitBg();
+      case PT:
+        return visitor.visitPt();
+      case AR:
+        return visitor.visitAr();
+      case FR:
+        return visitor.visitFr();
+      case NO:
+        return visitor.visitNo();
+      case IS:
+        return visitor.visitIs();
+      case SV:
+        return visitor.visitSv();
+      case IT:
+        return visitor.visitIt();
+      case EL:
+        return visitor.visitEl();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -67,10 +183,68 @@ public final class InvoicesCreateSalesRequestLocale {
     switch (value) {
       case "en":
         return EN;
-      case "de":
-        return DE;
+      case "zh":
+        return ZH;
+      case "hi":
+        return HI;
       case "lt":
         return LT;
+      case "da":
+        return DA;
+      case "lv":
+        return LV;
+      case "tr":
+        return TR;
+      case "fi":
+        return FI;
+      case "ro":
+        return RO;
+      case "es":
+        return ES;
+      case "pl":
+        return PL;
+      case "de":
+        return DE;
+      case "ga":
+        return GA;
+      case "et":
+        return ET;
+      case "hr":
+        return HR;
+      case "sk":
+        return SK;
+      case "sl":
+        return SL;
+      case "mt":
+        return MT;
+      case "cs":
+        return CS;
+      case "ru":
+        return RU;
+      case "ja":
+        return JA;
+      case "hu":
+        return HU;
+      case "nl":
+        return NL;
+      case "bg":
+        return BG;
+      case "pt":
+        return PT;
+      case "ar":
+        return AR;
+      case "fr":
+        return FR;
+      case "no":
+        return NO;
+      case "is":
+        return IS;
+      case "sv":
+        return SV;
+      case "it":
+        return IT;
+      case "el":
+        return EL;
       default:
         return new InvoicesCreateSalesRequestLocale(Value.UNKNOWN, value);
     }
@@ -83,6 +257,64 @@ public final class InvoicesCreateSalesRequestLocale {
 
     DE,
 
+    FR,
+
+    ES,
+
+    IT,
+
+    PT,
+
+    NL,
+
+    PL,
+
+    SV,
+
+    DA,
+
+    NO,
+
+    FI,
+
+    ET,
+
+    LV,
+
+    CS,
+
+    SK,
+
+    HU,
+
+    RO,
+
+    BG,
+
+    HR,
+
+    SL,
+
+    EL,
+
+    MT,
+
+    IS,
+
+    GA,
+
+    ZH,
+
+    JA,
+
+    AR,
+
+    HI,
+
+    RU,
+
+    TR,
+
     UNKNOWN
   }
 
@@ -92,6 +324,64 @@ public final class InvoicesCreateSalesRequestLocale {
     T visitLt();
 
     T visitDe();
+
+    T visitFr();
+
+    T visitEs();
+
+    T visitIt();
+
+    T visitPt();
+
+    T visitNl();
+
+    T visitPl();
+
+    T visitSv();
+
+    T visitDa();
+
+    T visitNo();
+
+    T visitFi();
+
+    T visitEt();
+
+    T visitLv();
+
+    T visitCs();
+
+    T visitSk();
+
+    T visitHu();
+
+    T visitRo();
+
+    T visitBg();
+
+    T visitHr();
+
+    T visitSl();
+
+    T visitEl();
+
+    T visitMt();
+
+    T visitIs();
+
+    T visitGa();
+
+    T visitZh();
+
+    T visitJa();
+
+    T visitAr();
+
+    T visitHi();
+
+    T visitRu();
+
+    T visitTr();
 
     T visitUnknown(String unknownType);
   }

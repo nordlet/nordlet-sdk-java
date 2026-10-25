@@ -14,6 +14,7 @@ import com.nordlet.api.resources.billing.requests.AccountSetPlanBillingRequest;
 import com.nordlet.api.resources.billing.requests.FlatRateConfirmBillingRequest;
 import com.nordlet.api.resources.billing.requests.FlatRateCreateBillingRequest;
 import com.nordlet.api.resources.billing.requests.PortalCreateBillingRequest;
+import com.nordlet.api.resources.billing.requests.SubscriptionCancelBillingRequest;
 import com.nordlet.api.resources.billing.requests.TopupConfirmBillingRequest;
 import com.nordlet.api.resources.billing.requests.TopupCreateBillingRequest;
 import com.nordlet.api.resources.billing.requests.TransactionsListBillingRequest;
@@ -26,6 +27,7 @@ import com.nordlet.api.resources.billing.types.AccountSetPlanBillingResponse;
 import com.nordlet.api.resources.billing.types.FlatRateConfirmBillingResponse;
 import com.nordlet.api.resources.billing.types.FlatRateCreateBillingResponse;
 import com.nordlet.api.resources.billing.types.PortalCreateBillingResponse;
+import com.nordlet.api.resources.billing.types.SubscriptionCancelBillingResponse;
 import com.nordlet.api.resources.billing.types.TopupConfirmBillingResponse;
 import com.nordlet.api.resources.billing.types.TopupCreateBillingResponse;
 import com.nordlet.api.resources.billing.types.TransactionsListBillingResponse;
@@ -171,28 +173,28 @@ public class BillingClient {
   }
 
   /**
-   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured or the plan has no price.
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. The <code>invoicing</code> plan of the invoice tool takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
    */
   public FlatRateCreateBillingResponse flatRateCreate() {
     return this.rawClient.flatRateCreate().body();
   }
 
   /**
-   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured or the plan has no price.
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. The <code>invoicing</code> plan of the invoice tool takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
    */
   public FlatRateCreateBillingResponse flatRateCreate(RequestOptions requestOptions) {
     return this.rawClient.flatRateCreate(requestOptions).body();
   }
 
   /**
-   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured or the plan has no price.
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. The <code>invoicing</code> plan of the invoice tool takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
    */
   public FlatRateCreateBillingResponse flatRateCreate(FlatRateCreateBillingRequest request) {
     return this.rawClient.flatRateCreate(request).body();
   }
 
   /**
-   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured or the plan has no price.
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. The <code>invoicing</code> plan of the invoice tool takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
    */
   public FlatRateCreateBillingResponse flatRateCreate(FlatRateCreateBillingRequest request,
       RequestOptions requestOptions) {
@@ -212,6 +214,36 @@ public class BillingClient {
   public FlatRateConfirmBillingResponse flatRateConfirm(FlatRateConfirmBillingRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.flatRateConfirm(request, requestOptions).body();
+  }
+
+  /**
+   * Cancel the user's Stripe subscription at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
+   */
+  public SubscriptionCancelBillingResponse subscriptionCancel() {
+    return this.rawClient.subscriptionCancel().body();
+  }
+
+  /**
+   * Cancel the user's Stripe subscription at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
+   */
+  public SubscriptionCancelBillingResponse subscriptionCancel(RequestOptions requestOptions) {
+    return this.rawClient.subscriptionCancel(requestOptions).body();
+  }
+
+  /**
+   * Cancel the user's Stripe subscription at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
+   */
+  public SubscriptionCancelBillingResponse subscriptionCancel(
+      SubscriptionCancelBillingRequest request) {
+    return this.rawClient.subscriptionCancel(request).body();
+  }
+
+  /**
+   * Cancel the user's Stripe subscription at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
+   */
+  public SubscriptionCancelBillingResponse subscriptionCancel(
+      SubscriptionCancelBillingRequest request, RequestOptions requestOptions) {
+    return this.rawClient.subscriptionCancel(request, requestOptions).body();
   }
 
   /**

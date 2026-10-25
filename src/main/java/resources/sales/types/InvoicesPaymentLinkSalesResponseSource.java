@@ -12,6 +12,8 @@ import java.lang.String;
 public final class InvoicesPaymentLinkSalesResponseSource {
   public static final InvoicesPaymentLinkSalesResponseSource TEMPLATE = new InvoicesPaymentLinkSalesResponseSource(Value.TEMPLATE, "template");
 
+  public static final InvoicesPaymentLinkSalesResponseSource STRIPE = new InvoicesPaymentLinkSalesResponseSource(Value.STRIPE, "stripe");
+
   private final Value value;
 
   private final String string;
@@ -46,6 +48,8 @@ public final class InvoicesPaymentLinkSalesResponseSource {
     switch (value) {
       case TEMPLATE:
         return visitor.visitTemplate();
+      case STRIPE:
+        return visitor.visitStripe();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -59,18 +63,24 @@ public final class InvoicesPaymentLinkSalesResponseSource {
     switch (value) {
       case "template":
         return TEMPLATE;
+      case "stripe":
+        return STRIPE;
       default:
         return new InvoicesPaymentLinkSalesResponseSource(Value.UNKNOWN, value);
     }
   }
 
   public enum Value {
+    STRIPE,
+
     TEMPLATE,
 
     UNKNOWN
   }
 
   public interface Visitor<T> {
+    T visitStripe();
+
     T visitTemplate();
 
     T visitUnknown(String unknownType);

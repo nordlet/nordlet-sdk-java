@@ -16,6 +16,7 @@ import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.account.types.CompaniesCreateAccountRequestAccountsKeptBy;
 import com.nordlet.api.resources.account.types.CompaniesCreateAccountRequestAddress;
 import com.nordlet.api.resources.account.types.CompaniesCreateAccountRequestCountryCode;
+import com.nordlet.api.resources.account.types.CompaniesCreateAccountRequestDefaultInvoiceLocale;
 import com.nordlet.api.resources.account.types.CompaniesCreateAccountRequestVatPeriod;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -60,6 +61,20 @@ public final class CompaniesCreateAccountRequest {
 
   private final Optional<String> bankName;
 
+  private final Optional<String> bankBic;
+
+  private final Optional<String> bankCode;
+
+  private final Optional<String> bankBranchCode;
+
+  private final Optional<String> bankAccountNumber;
+
+  private final Optional<String> invoicePrefix;
+
+  private final Optional<CompaniesCreateAccountRequestDefaultInvoiceLocale> defaultInvoiceLocale;
+
+  private final Optional<String> defaultInvoiceNote;
+
   private final Optional<String> peppolId;
 
   private final Optional<String> sepaCreditorId;
@@ -98,9 +113,13 @@ public final class CompaniesCreateAccountRequest {
       Optional<String> timeZone, Optional<Map<String, String>> filingOptions,
       Optional<CompaniesCreateAccountRequestAddress> address, Optional<String> email,
       Optional<String> phone, Optional<String> iban, Optional<String> bankName,
-      Optional<String> peppolId, Optional<String> sepaCreditorId,
-      Optional<String> defaultInvoiceCurrency, Optional<String> legalForm,
-      Optional<String> registryName, Optional<String> incorporatedOn, Optional<String> shareCapital,
+      Optional<String> bankBic, Optional<String> bankCode, Optional<String> bankBranchCode,
+      Optional<String> bankAccountNumber, Optional<String> invoicePrefix,
+      Optional<CompaniesCreateAccountRequestDefaultInvoiceLocale> defaultInvoiceLocale,
+      Optional<String> defaultInvoiceNote, Optional<String> peppolId,
+      Optional<String> sepaCreditorId, Optional<String> defaultInvoiceCurrency,
+      Optional<String> legalForm, Optional<String> registryName, Optional<String> incorporatedOn,
+      Optional<String> shareCapital,
       Optional<CompaniesCreateAccountRequestAccountsKeptBy> accountsKeptBy,
       Optional<String> bookkeeperName, Optional<String> auditorName,
       Optional<String> auditorRegistrationNumber, Optional<Boolean> auditRequired,
@@ -120,6 +139,13 @@ public final class CompaniesCreateAccountRequest {
     this.phone = phone;
     this.iban = iban;
     this.bankName = bankName;
+    this.bankBic = bankBic;
+    this.bankCode = bankCode;
+    this.bankBranchCode = bankBranchCode;
+    this.bankAccountNumber = bankAccountNumber;
+    this.invoicePrefix = invoicePrefix;
+    this.defaultInvoiceLocale = defaultInvoiceLocale;
+    this.defaultInvoiceNote = defaultInvoiceNote;
     this.peppolId = peppolId;
     this.sepaCreditorId = sepaCreditorId;
     this.defaultInvoiceCurrency = defaultInvoiceCurrency;
@@ -206,6 +232,56 @@ public final class CompaniesCreateAccountRequest {
   @JsonProperty("bankName")
   public Optional<String> getBankName() {
     return bankName;
+  }
+
+  @JsonProperty("bankBic")
+  public Optional<String> getBankBic() {
+    return bankBic;
+  }
+
+  /**
+   * @return Sort code, routing number, BSB, IFSC or institution number
+   */
+  @JsonProperty("bankCode")
+  public Optional<String> getBankCode() {
+    return bankCode;
+  }
+
+  /**
+   * @return Transit number (Canada)
+   */
+  @JsonProperty("bankBranchCode")
+  public Optional<String> getBankBranchCode() {
+    return bankBranchCode;
+  }
+
+  @JsonProperty("bankAccountNumber")
+  public Optional<String> getBankAccountNumber() {
+    return bankAccountNumber;
+  }
+
+  /**
+   * @return Prefix of the numbers of invoices issued without a document series; SF when not set
+   */
+  @JsonProperty("invoicePrefix")
+  public Optional<String> getInvoicePrefix() {
+    return invoicePrefix;
+  }
+
+  /**
+   * @return Language a new invoice starts with when neither the invoice nor its partner names one
+   */
+  @JsonProperty("defaultInvoiceLocale")
+  public Optional<CompaniesCreateAccountRequestDefaultInvoiceLocale> getDefaultInvoiceLocale() {
+    return defaultInvoiceLocale;
+  }
+
+  /**
+   * @return Note a new invoice, proforma or advance invoice starts with when it names no notes
+   */
+  @JsonProperty("defaultInvoiceNote")
+  public Optional<String> getDefaultInvoiceNote() {
+    return defaultInvoiceNote;
   }
 
   @JsonProperty("peppolId")
@@ -304,12 +380,12 @@ public final class CompaniesCreateAccountRequest {
   }
 
   private boolean equalTo(CompaniesCreateAccountRequest other) {
-    return name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer.equals(other.isVatPayer) && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired.equals(other.auditRequired) && countryCode.equals(other.countryCode) && baseCurrency.equals(other.baseCurrency) && isSandbox.equals(other.isSandbox);
+    return name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer.equals(other.isVatPayer) && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && bankBic.equals(other.bankBic) && bankCode.equals(other.bankCode) && bankBranchCode.equals(other.bankBranchCode) && bankAccountNumber.equals(other.bankAccountNumber) && invoicePrefix.equals(other.invoicePrefix) && defaultInvoiceLocale.equals(other.defaultInvoiceLocale) && defaultInvoiceNote.equals(other.defaultInvoiceNote) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired.equals(other.auditRequired) && countryCode.equals(other.countryCode) && baseCurrency.equals(other.baseCurrency) && isSandbox.equals(other.isSandbox);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.vatPeriod, this.fiscalYearEndMonth, this.timeZone, this.filingOptions, this.address, this.email, this.phone, this.iban, this.bankName, this.peppolId, this.sepaCreditorId, this.defaultInvoiceCurrency, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired, this.countryCode, this.baseCurrency, this.isSandbox);
+    return Objects.hash(this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.vatPeriod, this.fiscalYearEndMonth, this.timeZone, this.filingOptions, this.address, this.email, this.phone, this.iban, this.bankName, this.bankBic, this.bankCode, this.bankBranchCode, this.bankAccountNumber, this.invoicePrefix, this.defaultInvoiceLocale, this.defaultInvoiceNote, this.peppolId, this.sepaCreditorId, this.defaultInvoiceCurrency, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired, this.countryCode, this.baseCurrency, this.isSandbox);
   }
 
   @java.lang.Override
@@ -385,6 +461,51 @@ public final class CompaniesCreateAccountRequest {
     _FinalStage bankName(Optional<String> bankName);
 
     _FinalStage bankName(String bankName);
+
+    _FinalStage bankBic(Optional<String> bankBic);
+
+    _FinalStage bankBic(String bankBic);
+
+    /**
+     * <p>Sort code, routing number, BSB, IFSC or institution number</p>
+     */
+    _FinalStage bankCode(Optional<String> bankCode);
+
+    _FinalStage bankCode(String bankCode);
+
+    /**
+     * <p>Transit number (Canada)</p>
+     */
+    _FinalStage bankBranchCode(Optional<String> bankBranchCode);
+
+    _FinalStage bankBranchCode(String bankBranchCode);
+
+    _FinalStage bankAccountNumber(Optional<String> bankAccountNumber);
+
+    _FinalStage bankAccountNumber(String bankAccountNumber);
+
+    /**
+     * <p>Prefix of the numbers of invoices issued without a document series; SF when not set</p>
+     */
+    _FinalStage invoicePrefix(Optional<String> invoicePrefix);
+
+    _FinalStage invoicePrefix(String invoicePrefix);
+
+    /**
+     * <p>Language a new invoice starts with when neither the invoice nor its partner names one</p>
+     */
+    _FinalStage defaultInvoiceLocale(
+        Optional<CompaniesCreateAccountRequestDefaultInvoiceLocale> defaultInvoiceLocale);
+
+    _FinalStage defaultInvoiceLocale(
+        CompaniesCreateAccountRequestDefaultInvoiceLocale defaultInvoiceLocale);
+
+    /**
+     * <p>Note a new invoice, proforma or advance invoice starts with when it names no notes</p>
+     */
+    _FinalStage defaultInvoiceNote(Optional<String> defaultInvoiceNote);
+
+    _FinalStage defaultInvoiceNote(String defaultInvoiceNote);
 
     _FinalStage peppolId(Optional<String> peppolId);
 
@@ -493,6 +614,20 @@ public final class CompaniesCreateAccountRequest {
 
     private Optional<String> peppolId = Optional.empty();
 
+    private Optional<String> defaultInvoiceNote = Optional.empty();
+
+    private Optional<CompaniesCreateAccountRequestDefaultInvoiceLocale> defaultInvoiceLocale = Optional.empty();
+
+    private Optional<String> invoicePrefix = Optional.empty();
+
+    private Optional<String> bankAccountNumber = Optional.empty();
+
+    private Optional<String> bankBranchCode = Optional.empty();
+
+    private Optional<String> bankCode = Optional.empty();
+
+    private Optional<String> bankBic = Optional.empty();
+
     private Optional<String> bankName = Optional.empty();
 
     private Optional<String> iban = Optional.empty();
@@ -541,6 +676,13 @@ public final class CompaniesCreateAccountRequest {
       phone(other.getPhone());
       iban(other.getIban());
       bankName(other.getBankName());
+      bankBic(other.getBankBic());
+      bankCode(other.getBankCode());
+      bankBranchCode(other.getBankBranchCode());
+      bankAccountNumber(other.getBankAccountNumber());
+      invoicePrefix(other.getInvoicePrefix());
+      defaultInvoiceLocale(other.getDefaultInvoiceLocale());
+      defaultInvoiceNote(other.getDefaultInvoiceNote());
       peppolId(other.getPeppolId());
       sepaCreditorId(other.getSepaCreditorId());
       defaultInvoiceCurrency(other.getDefaultInvoiceCurrency());
@@ -828,6 +970,155 @@ public final class CompaniesCreateAccountRequest {
       return this;
     }
 
+    /**
+     * <p>Note a new invoice, proforma or advance invoice starts with when it names no notes</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage defaultInvoiceNote(String defaultInvoiceNote) {
+      this.defaultInvoiceNote = Optional.ofNullable(defaultInvoiceNote);
+      return this;
+    }
+
+    /**
+     * <p>Note a new invoice, proforma or advance invoice starts with when it names no notes</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "defaultInvoiceNote",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage defaultInvoiceNote(Optional<String> defaultInvoiceNote) {
+      this.defaultInvoiceNote = defaultInvoiceNote;
+      return this;
+    }
+
+    /**
+     * <p>Language a new invoice starts with when neither the invoice nor its partner names one</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage defaultInvoiceLocale(
+        CompaniesCreateAccountRequestDefaultInvoiceLocale defaultInvoiceLocale) {
+      this.defaultInvoiceLocale = Optional.ofNullable(defaultInvoiceLocale);
+      return this;
+    }
+
+    /**
+     * <p>Language a new invoice starts with when neither the invoice nor its partner names one</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "defaultInvoiceLocale",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage defaultInvoiceLocale(
+        Optional<CompaniesCreateAccountRequestDefaultInvoiceLocale> defaultInvoiceLocale) {
+      this.defaultInvoiceLocale = defaultInvoiceLocale;
+      return this;
+    }
+
+    /**
+     * <p>Prefix of the numbers of invoices issued without a document series; SF when not set</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage invoicePrefix(String invoicePrefix) {
+      this.invoicePrefix = Optional.ofNullable(invoicePrefix);
+      return this;
+    }
+
+    /**
+     * <p>Prefix of the numbers of invoices issued without a document series; SF when not set</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "invoicePrefix",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage invoicePrefix(Optional<String> invoicePrefix) {
+      this.invoicePrefix = invoicePrefix;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankAccountNumber(String bankAccountNumber) {
+      this.bankAccountNumber = Optional.ofNullable(bankAccountNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankAccountNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankAccountNumber(Optional<String> bankAccountNumber) {
+      this.bankAccountNumber = bankAccountNumber;
+      return this;
+    }
+
+    /**
+     * <p>Transit number (Canada)</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage bankBranchCode(String bankBranchCode) {
+      this.bankBranchCode = Optional.ofNullable(bankBranchCode);
+      return this;
+    }
+
+    /**
+     * <p>Transit number (Canada)</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankBranchCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankBranchCode(Optional<String> bankBranchCode) {
+      this.bankBranchCode = bankBranchCode;
+      return this;
+    }
+
+    /**
+     * <p>Sort code, routing number, BSB, IFSC or institution number</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage bankCode(String bankCode) {
+      this.bankCode = Optional.ofNullable(bankCode);
+      return this;
+    }
+
+    /**
+     * <p>Sort code, routing number, BSB, IFSC or institution number</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankCode(Optional<String> bankCode) {
+      this.bankCode = bankCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankBic(String bankBic) {
+      this.bankBic = Optional.ofNullable(bankBic);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankBic",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankBic(Optional<String> bankBic) {
+      this.bankBic = bankBic;
+      return this;
+    }
+
     @java.lang.Override
     public _FinalStage bankName(String bankName) {
       this.bankName = Optional.ofNullable(bankName);
@@ -1038,7 +1329,7 @@ public final class CompaniesCreateAccountRequest {
 
     @java.lang.Override
     public CompaniesCreateAccountRequest build() {
-      return new CompaniesCreateAccountRequest(name, code, vatCode, smeExemptionNumber, isVatPayer, vatPeriod, fiscalYearEndMonth, timeZone, filingOptions, address, email, phone, iban, bankName, peppolId, sepaCreditorId, defaultInvoiceCurrency, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, countryCode, baseCurrency, isSandbox, additionalProperties);
+      return new CompaniesCreateAccountRequest(name, code, vatCode, smeExemptionNumber, isVatPayer, vatPeriod, fiscalYearEndMonth, timeZone, filingOptions, address, email, phone, iban, bankName, bankBic, bankCode, bankBranchCode, bankAccountNumber, invoicePrefix, defaultInvoiceLocale, defaultInvoiceNote, peppolId, sepaCreditorId, defaultInvoiceCurrency, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, countryCode, baseCurrency, isSandbox, additionalProperties);
     }
 
     @java.lang.Override

@@ -18,6 +18,8 @@ import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.partners.types.UpdatePartnersRequestAddress;
 import com.nordlet.api.resources.partners.types.UpdatePartnersRequestCorrespondenceAddress;
+import com.nordlet.api.resources.partners.types.UpdatePartnersRequestInvoiceCurrency;
+import com.nordlet.api.resources.partners.types.UpdatePartnersRequestInvoiceLocale;
 import com.nordlet.api.resources.partners.types.UpdatePartnersRequestLegalCountryClass;
 import com.nordlet.api.resources.partners.types.UpdatePartnersRequestType;
 import java.lang.Boolean;
@@ -60,6 +62,10 @@ public final class UpdatePartnersRequest {
   private final Optional<Boolean> isSupplier;
 
   private final Optional<Long> paymentTermDays;
+
+  private final Optional<UpdatePartnersRequestInvoiceCurrency> invoiceCurrency;
+
+  private final Optional<UpdatePartnersRequestInvoiceLocale> invoiceLocale;
 
   private final Optional<String> creditLimit;
 
@@ -112,8 +118,10 @@ public final class UpdatePartnersRequest {
       Optional<String> peppolId, Optional<String> email, Optional<String> phone,
       Optional<String> selfEmploymentCertNo, Optional<String> birthDate,
       Optional<Boolean> isCustomer, Optional<Boolean> isSupplier, Optional<Long> paymentTermDays,
-      Optional<String> creditLimit, Optional<String> priceListId, Optional<String> groupId,
-      Optional<String> statusId, Optional<UpdatePartnersRequestAddress> address,
+      Optional<UpdatePartnersRequestInvoiceCurrency> invoiceCurrency,
+      Optional<UpdatePartnersRequestInvoiceLocale> invoiceLocale, Optional<String> creditLimit,
+      Optional<String> priceListId, Optional<String> groupId, Optional<String> statusId,
+      Optional<UpdatePartnersRequestAddress> address,
       Optional<UpdatePartnersRequestCorrespondenceAddress> correspondenceAddress,
       Optional<String> notes, Optional<String> documentRef, Optional<String> shortName,
       Optional<String> website, Optional<String> fax, Optional<String> eoriCode,
@@ -136,6 +144,8 @@ public final class UpdatePartnersRequest {
     this.isCustomer = isCustomer;
     this.isSupplier = isSupplier;
     this.paymentTermDays = paymentTermDays;
+    this.invoiceCurrency = invoiceCurrency;
+    this.invoiceLocale = invoiceLocale;
     this.creditLimit = creditLimit;
     this.priceListId = priceListId;
     this.groupId = groupId;
@@ -248,6 +258,28 @@ public final class UpdatePartnersRequest {
       return Optional.empty();
     }
     return paymentTermDays;
+  }
+
+  /**
+   * @return Currency a new invoice for this partner starts with when the invoice names none
+   */
+  @JsonIgnore
+  public Optional<UpdatePartnersRequestInvoiceCurrency> getInvoiceCurrency() {
+    if (invoiceCurrency == null) {
+      return Optional.empty();
+    }
+    return invoiceCurrency;
+  }
+
+  /**
+   * @return Language a new invoice for this partner starts with when the invoice names none
+   */
+  @JsonIgnore
+  public Optional<UpdatePartnersRequestInvoiceLocale> getInvoiceLocale() {
+    if (invoiceLocale == null) {
+      return Optional.empty();
+    }
+    return invoiceLocale;
   }
 
   @JsonIgnore
@@ -487,6 +519,24 @@ public final class UpdatePartnersRequest {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("invoiceCurrency")
+  private Optional<UpdatePartnersRequestInvoiceCurrency> _getInvoiceCurrency() {
+    return invoiceCurrency;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("invoiceLocale")
+  private Optional<UpdatePartnersRequestInvoiceLocale> _getInvoiceLocale() {
+    return invoiceLocale;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("creditLimit")
   private Optional<String> _getCreditLimit() {
     return creditLimit;
@@ -648,12 +698,12 @@ public final class UpdatePartnersRequest {
   }
 
   private boolean equalTo(UpdatePartnersRequest other) {
-    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && autoDebtReminder.equals(other.autoDebtReminder) && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee.equals(other.isEmployee) && isGroupMember.equals(other.isGroupMember) && isActive.equals(other.isActive) && legalCountryClass.equals(other.legalCountryClass);
+    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && invoiceCurrency.equals(other.invoiceCurrency) && invoiceLocale.equals(other.invoiceLocale) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && autoDebtReminder.equals(other.autoDebtReminder) && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee.equals(other.isEmployee) && isGroupMember.equals(other.isGroupMember) && isActive.equals(other.isActive) && legalCountryClass.equals(other.legalCountryClass);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isCustomer, this.isSupplier, this.paymentTermDays, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass);
+    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isCustomer, this.isSupplier, this.paymentTermDays, this.invoiceCurrency, this.invoiceLocale, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass);
   }
 
   @java.lang.Override
@@ -741,6 +791,24 @@ public final class UpdatePartnersRequest {
     _FinalStage paymentTermDays(Long paymentTermDays);
 
     _FinalStage paymentTermDays(Nullable<Long> paymentTermDays);
+
+    /**
+     * <p>Currency a new invoice for this partner starts with when the invoice names none</p>
+     */
+    _FinalStage invoiceCurrency(Optional<UpdatePartnersRequestInvoiceCurrency> invoiceCurrency);
+
+    _FinalStage invoiceCurrency(UpdatePartnersRequestInvoiceCurrency invoiceCurrency);
+
+    _FinalStage invoiceCurrency(Nullable<UpdatePartnersRequestInvoiceCurrency> invoiceCurrency);
+
+    /**
+     * <p>Language a new invoice for this partner starts with when the invoice names none</p>
+     */
+    _FinalStage invoiceLocale(Optional<UpdatePartnersRequestInvoiceLocale> invoiceLocale);
+
+    _FinalStage invoiceLocale(UpdatePartnersRequestInvoiceLocale invoiceLocale);
+
+    _FinalStage invoiceLocale(Nullable<UpdatePartnersRequestInvoiceLocale> invoiceLocale);
 
     _FinalStage creditLimit(Optional<String> creditLimit);
 
@@ -920,6 +988,10 @@ public final class UpdatePartnersRequest {
 
     private Optional<String> creditLimit = Optional.empty();
 
+    private Optional<UpdatePartnersRequestInvoiceLocale> invoiceLocale = Optional.empty();
+
+    private Optional<UpdatePartnersRequestInvoiceCurrency> invoiceCurrency = Optional.empty();
+
     private Optional<Long> paymentTermDays = Optional.empty();
 
     private Optional<Boolean> isSupplier = Optional.empty();
@@ -965,6 +1037,8 @@ public final class UpdatePartnersRequest {
       isCustomer(other.getIsCustomer());
       isSupplier(other.getIsSupplier());
       paymentTermDays(other.getPaymentTermDays());
+      invoiceCurrency(other.getInvoiceCurrency());
+      invoiceLocale(other.getInvoiceLocale());
       creditLimit(other.getCreditLimit());
       priceListId(other.getPriceListId());
       groupId(other.getGroupId());
@@ -1592,6 +1666,90 @@ public final class UpdatePartnersRequest {
       return this;
     }
 
+    /**
+     * <p>Language a new invoice for this partner starts with when the invoice names none</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage invoiceLocale(Nullable<UpdatePartnersRequestInvoiceLocale> invoiceLocale) {
+      if (invoiceLocale.isNull()) {
+        this.invoiceLocale = null;
+      }
+      else if (invoiceLocale.isEmpty()) {
+        this.invoiceLocale = Optional.empty();
+      }
+      else {
+        this.invoiceLocale = Optional.of(invoiceLocale.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Language a new invoice for this partner starts with when the invoice names none</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage invoiceLocale(UpdatePartnersRequestInvoiceLocale invoiceLocale) {
+      this.invoiceLocale = Optional.ofNullable(invoiceLocale);
+      return this;
+    }
+
+    /**
+     * <p>Language a new invoice for this partner starts with when the invoice names none</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "invoiceLocale",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage invoiceLocale(Optional<UpdatePartnersRequestInvoiceLocale> invoiceLocale) {
+      this.invoiceLocale = invoiceLocale;
+      return this;
+    }
+
+    /**
+     * <p>Currency a new invoice for this partner starts with when the invoice names none</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage invoiceCurrency(
+        Nullable<UpdatePartnersRequestInvoiceCurrency> invoiceCurrency) {
+      if (invoiceCurrency.isNull()) {
+        this.invoiceCurrency = null;
+      }
+      else if (invoiceCurrency.isEmpty()) {
+        this.invoiceCurrency = Optional.empty();
+      }
+      else {
+        this.invoiceCurrency = Optional.of(invoiceCurrency.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Currency a new invoice for this partner starts with when the invoice names none</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage invoiceCurrency(UpdatePartnersRequestInvoiceCurrency invoiceCurrency) {
+      this.invoiceCurrency = Optional.ofNullable(invoiceCurrency);
+      return this;
+    }
+
+    /**
+     * <p>Currency a new invoice for this partner starts with when the invoice names none</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "invoiceCurrency",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage invoiceCurrency(
+        Optional<UpdatePartnersRequestInvoiceCurrency> invoiceCurrency) {
+      this.invoiceCurrency = invoiceCurrency;
+      return this;
+    }
+
     @java.lang.Override
     public _FinalStage paymentTermDays(Nullable<Long> paymentTermDays) {
       if (paymentTermDays.isNull()) {
@@ -1898,7 +2056,7 @@ public final class UpdatePartnersRequest {
 
     @java.lang.Override
     public UpdatePartnersRequest build() {
-      return new UpdatePartnersRequest(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isCustomer, isSupplier, paymentTermDays, creditLimit, priceListId, groupId, statusId, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, additionalProperties);
+      return new UpdatePartnersRequest(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isCustomer, isSupplier, paymentTermDays, invoiceCurrency, invoiceLocale, creditLimit, priceListId, groupId, statusId, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, additionalProperties);
     }
 
     @java.lang.Override

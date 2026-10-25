@@ -40,6 +40,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_SENT = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_SENT, "sale_invoice.sent");
 
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_QUOTE_SENT = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_QUOTE_SENT, "sale_invoice.quote_sent");
+
   public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_PAID = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_PAID, "sale_invoice.paid");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_PEPPOL_SENT = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_PEPPOL_SENT, "sale_invoice.peppol_sent");
@@ -164,6 +166,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
         return visitor.visitRevenueRecognitionModified();
       case SALE_INVOICE_SENT:
         return visitor.visitSaleInvoiceSent();
+      case SALE_INVOICE_QUOTE_SENT:
+        return visitor.visitSaleInvoiceQuoteSent();
       case SALE_INVOICE_PAID:
         return visitor.visitSaleInvoicePaid();
       case SALE_INVOICE_PEPPOL_SENT:
@@ -267,6 +271,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
         return REVENUE_RECOGNITION_MODIFIED;
       case "sale_invoice.sent":
         return SALE_INVOICE_SENT;
+      case "sale_invoice.quote_sent":
+        return SALE_INVOICE_QUOTE_SENT;
       case "sale_invoice.paid":
         return SALE_INVOICE_PAID;
       case "sale_invoice.peppol_sent":
@@ -405,6 +411,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
 
     SALE_INVOICE_PEPPOL_SENT,
 
+    SALE_INVOICE_QUOTE_SENT,
+
     SALE_INVOICE_SENT,
 
     SALES_ORDER_CREATED,
@@ -500,6 +508,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
     T visitSaleInvoicePeppolRejected();
 
     T visitSaleInvoicePeppolSent();
+
+    T visitSaleInvoiceQuoteSent();
 
     T visitSaleInvoiceSent();
 

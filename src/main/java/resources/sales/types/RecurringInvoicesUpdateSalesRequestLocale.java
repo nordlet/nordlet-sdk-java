@@ -12,9 +12,67 @@ import java.lang.String;
 public final class RecurringInvoicesUpdateSalesRequestLocale {
   public static final RecurringInvoicesUpdateSalesRequestLocale EN = new RecurringInvoicesUpdateSalesRequestLocale(Value.EN, "en");
 
-  public static final RecurringInvoicesUpdateSalesRequestLocale DE = new RecurringInvoicesUpdateSalesRequestLocale(Value.DE, "de");
+  public static final RecurringInvoicesUpdateSalesRequestLocale ZH = new RecurringInvoicesUpdateSalesRequestLocale(Value.ZH, "zh");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale HI = new RecurringInvoicesUpdateSalesRequestLocale(Value.HI, "hi");
 
   public static final RecurringInvoicesUpdateSalesRequestLocale LT = new RecurringInvoicesUpdateSalesRequestLocale(Value.LT, "lt");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale DA = new RecurringInvoicesUpdateSalesRequestLocale(Value.DA, "da");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale LV = new RecurringInvoicesUpdateSalesRequestLocale(Value.LV, "lv");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale TR = new RecurringInvoicesUpdateSalesRequestLocale(Value.TR, "tr");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale FI = new RecurringInvoicesUpdateSalesRequestLocale(Value.FI, "fi");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale RO = new RecurringInvoicesUpdateSalesRequestLocale(Value.RO, "ro");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale ES = new RecurringInvoicesUpdateSalesRequestLocale(Value.ES, "es");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale PL = new RecurringInvoicesUpdateSalesRequestLocale(Value.PL, "pl");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale DE = new RecurringInvoicesUpdateSalesRequestLocale(Value.DE, "de");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale GA = new RecurringInvoicesUpdateSalesRequestLocale(Value.GA, "ga");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale ET = new RecurringInvoicesUpdateSalesRequestLocale(Value.ET, "et");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale HR = new RecurringInvoicesUpdateSalesRequestLocale(Value.HR, "hr");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale SK = new RecurringInvoicesUpdateSalesRequestLocale(Value.SK, "sk");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale SL = new RecurringInvoicesUpdateSalesRequestLocale(Value.SL, "sl");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale MT = new RecurringInvoicesUpdateSalesRequestLocale(Value.MT, "mt");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale CS = new RecurringInvoicesUpdateSalesRequestLocale(Value.CS, "cs");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale RU = new RecurringInvoicesUpdateSalesRequestLocale(Value.RU, "ru");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale JA = new RecurringInvoicesUpdateSalesRequestLocale(Value.JA, "ja");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale HU = new RecurringInvoicesUpdateSalesRequestLocale(Value.HU, "hu");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale NL = new RecurringInvoicesUpdateSalesRequestLocale(Value.NL, "nl");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale BG = new RecurringInvoicesUpdateSalesRequestLocale(Value.BG, "bg");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale PT = new RecurringInvoicesUpdateSalesRequestLocale(Value.PT, "pt");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale AR = new RecurringInvoicesUpdateSalesRequestLocale(Value.AR, "ar");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale FR = new RecurringInvoicesUpdateSalesRequestLocale(Value.FR, "fr");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale NO = new RecurringInvoicesUpdateSalesRequestLocale(Value.NO, "no");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale IS = new RecurringInvoicesUpdateSalesRequestLocale(Value.IS, "is");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale SV = new RecurringInvoicesUpdateSalesRequestLocale(Value.SV, "sv");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale IT = new RecurringInvoicesUpdateSalesRequestLocale(Value.IT, "it");
+
+  public static final RecurringInvoicesUpdateSalesRequestLocale EL = new RecurringInvoicesUpdateSalesRequestLocale(Value.EL, "el");
 
   private final Value value;
 
@@ -50,10 +108,68 @@ public final class RecurringInvoicesUpdateSalesRequestLocale {
     switch (value) {
       case EN:
         return visitor.visitEn();
-      case DE:
-        return visitor.visitDe();
+      case ZH:
+        return visitor.visitZh();
+      case HI:
+        return visitor.visitHi();
       case LT:
         return visitor.visitLt();
+      case DA:
+        return visitor.visitDa();
+      case LV:
+        return visitor.visitLv();
+      case TR:
+        return visitor.visitTr();
+      case FI:
+        return visitor.visitFi();
+      case RO:
+        return visitor.visitRo();
+      case ES:
+        return visitor.visitEs();
+      case PL:
+        return visitor.visitPl();
+      case DE:
+        return visitor.visitDe();
+      case GA:
+        return visitor.visitGa();
+      case ET:
+        return visitor.visitEt();
+      case HR:
+        return visitor.visitHr();
+      case SK:
+        return visitor.visitSk();
+      case SL:
+        return visitor.visitSl();
+      case MT:
+        return visitor.visitMt();
+      case CS:
+        return visitor.visitCs();
+      case RU:
+        return visitor.visitRu();
+      case JA:
+        return visitor.visitJa();
+      case HU:
+        return visitor.visitHu();
+      case NL:
+        return visitor.visitNl();
+      case BG:
+        return visitor.visitBg();
+      case PT:
+        return visitor.visitPt();
+      case AR:
+        return visitor.visitAr();
+      case FR:
+        return visitor.visitFr();
+      case NO:
+        return visitor.visitNo();
+      case IS:
+        return visitor.visitIs();
+      case SV:
+        return visitor.visitSv();
+      case IT:
+        return visitor.visitIt();
+      case EL:
+        return visitor.visitEl();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -67,10 +183,68 @@ public final class RecurringInvoicesUpdateSalesRequestLocale {
     switch (value) {
       case "en":
         return EN;
-      case "de":
-        return DE;
+      case "zh":
+        return ZH;
+      case "hi":
+        return HI;
       case "lt":
         return LT;
+      case "da":
+        return DA;
+      case "lv":
+        return LV;
+      case "tr":
+        return TR;
+      case "fi":
+        return FI;
+      case "ro":
+        return RO;
+      case "es":
+        return ES;
+      case "pl":
+        return PL;
+      case "de":
+        return DE;
+      case "ga":
+        return GA;
+      case "et":
+        return ET;
+      case "hr":
+        return HR;
+      case "sk":
+        return SK;
+      case "sl":
+        return SL;
+      case "mt":
+        return MT;
+      case "cs":
+        return CS;
+      case "ru":
+        return RU;
+      case "ja":
+        return JA;
+      case "hu":
+        return HU;
+      case "nl":
+        return NL;
+      case "bg":
+        return BG;
+      case "pt":
+        return PT;
+      case "ar":
+        return AR;
+      case "fr":
+        return FR;
+      case "no":
+        return NO;
+      case "is":
+        return IS;
+      case "sv":
+        return SV;
+      case "it":
+        return IT;
+      case "el":
+        return EL;
       default:
         return new RecurringInvoicesUpdateSalesRequestLocale(Value.UNKNOWN, value);
     }
@@ -83,6 +257,64 @@ public final class RecurringInvoicesUpdateSalesRequestLocale {
 
     DE,
 
+    FR,
+
+    ES,
+
+    IT,
+
+    PT,
+
+    NL,
+
+    PL,
+
+    SV,
+
+    DA,
+
+    NO,
+
+    FI,
+
+    ET,
+
+    LV,
+
+    CS,
+
+    SK,
+
+    HU,
+
+    RO,
+
+    BG,
+
+    HR,
+
+    SL,
+
+    EL,
+
+    MT,
+
+    IS,
+
+    GA,
+
+    ZH,
+
+    JA,
+
+    AR,
+
+    HI,
+
+    RU,
+
+    TR,
+
     UNKNOWN
   }
 
@@ -92,6 +324,64 @@ public final class RecurringInvoicesUpdateSalesRequestLocale {
     T visitLt();
 
     T visitDe();
+
+    T visitFr();
+
+    T visitEs();
+
+    T visitIt();
+
+    T visitPt();
+
+    T visitNl();
+
+    T visitPl();
+
+    T visitSv();
+
+    T visitDa();
+
+    T visitNo();
+
+    T visitFi();
+
+    T visitEt();
+
+    T visitLv();
+
+    T visitCs();
+
+    T visitSk();
+
+    T visitHu();
+
+    T visitRo();
+
+    T visitBg();
+
+    T visitHr();
+
+    T visitSl();
+
+    T visitEl();
+
+    T visitMt();
+
+    T visitIs();
+
+    T visitGa();
+
+    T visitZh();
+
+    T visitJa();
+
+    T visitAr();
+
+    T visitHi();
+
+    T visitRu();
+
+    T visitTr();
 
     T visitUnknown(String unknownType);
   }

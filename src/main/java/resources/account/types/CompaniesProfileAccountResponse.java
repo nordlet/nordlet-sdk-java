@@ -66,6 +66,22 @@ public final class CompaniesProfileAccountResponse {
 
   private final Optional<String> bankName;
 
+  private final Optional<String> bankBic;
+
+  private final Optional<String> bankCode;
+
+  private final Optional<String> bankBranchCode;
+
+  private final Optional<String> bankAccountNumber;
+
+  private final String invoicePrefix;
+
+  private final String nextInvoiceNumber;
+
+  private final Optional<String> defaultInvoiceLocale;
+
+  private final Optional<String> defaultInvoiceNote;
+
   private final Optional<String> peppolId;
 
   private final Optional<String> sepaCreditorId;
@@ -107,6 +123,9 @@ public final class CompaniesProfileAccountResponse {
       CompaniesProfileAccountResponseStatus status,
       Optional<CompaniesProfileAccountResponseAddress> address, Optional<String> email,
       Optional<String> phone, Optional<String> iban, Optional<String> bankName,
+      Optional<String> bankBic, Optional<String> bankCode, Optional<String> bankBranchCode,
+      Optional<String> bankAccountNumber, String invoicePrefix, String nextInvoiceNumber,
+      Optional<String> defaultInvoiceLocale, Optional<String> defaultInvoiceNote,
       Optional<String> peppolId, Optional<String> sepaCreditorId, Optional<String> logoFileId,
       Optional<String> legalForm, Optional<String> registryName, Optional<String> incorporatedOn,
       Optional<String> shareCapital,
@@ -134,6 +153,14 @@ public final class CompaniesProfileAccountResponse {
     this.phone = phone;
     this.iban = iban;
     this.bankName = bankName;
+    this.bankBic = bankBic;
+    this.bankCode = bankCode;
+    this.bankBranchCode = bankBranchCode;
+    this.bankAccountNumber = bankAccountNumber;
+    this.invoicePrefix = invoicePrefix;
+    this.nextInvoiceNumber = nextInvoiceNumber;
+    this.defaultInvoiceLocale = defaultInvoiceLocale;
+    this.defaultInvoiceNote = defaultInvoiceNote;
     this.peppolId = peppolId;
     this.sepaCreditorId = sepaCreditorId;
     this.logoFileId = logoFileId;
@@ -271,6 +298,70 @@ public final class CompaniesProfileAccountResponse {
       return Optional.empty();
     }
     return bankName;
+  }
+
+  @JsonIgnore
+  public Optional<String> getBankBic() {
+    if (bankBic == null) {
+      return Optional.empty();
+    }
+    return bankBic;
+  }
+
+  @JsonIgnore
+  public Optional<String> getBankCode() {
+    if (bankCode == null) {
+      return Optional.empty();
+    }
+    return bankCode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getBankBranchCode() {
+    if (bankBranchCode == null) {
+      return Optional.empty();
+    }
+    return bankBranchCode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getBankAccountNumber() {
+    if (bankAccountNumber == null) {
+      return Optional.empty();
+    }
+    return bankAccountNumber;
+  }
+
+  /**
+   * @return Prefix of the numbers of invoices issued without a document series (SF when none was set)
+   */
+  @JsonProperty("invoicePrefix")
+  public String getInvoicePrefix() {
+    return invoicePrefix;
+  }
+
+  /**
+   * @return Number the next invoice issued without a document series gets, before any country-specific format
+   */
+  @JsonProperty("nextInvoiceNumber")
+  public String getNextInvoiceNumber() {
+    return nextInvoiceNumber;
+  }
+
+  @JsonIgnore
+  public Optional<String> getDefaultInvoiceLocale() {
+    if (defaultInvoiceLocale == null) {
+      return Optional.empty();
+    }
+    return defaultInvoiceLocale;
+  }
+
+  @JsonIgnore
+  public Optional<String> getDefaultInvoiceNote() {
+    if (defaultInvoiceNote == null) {
+      return Optional.empty();
+    }
+    return defaultInvoiceNote;
   }
 
   @JsonIgnore
@@ -471,6 +562,60 @@ public final class CompaniesProfileAccountResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("bankBic")
+  private Optional<String> _getBankBic() {
+    return bankBic;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("bankCode")
+  private Optional<String> _getBankCode() {
+    return bankCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("bankBranchCode")
+  private Optional<String> _getBankBranchCode() {
+    return bankBranchCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("bankAccountNumber")
+  private Optional<String> _getBankAccountNumber() {
+    return bankAccountNumber;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("defaultInvoiceLocale")
+  private Optional<String> _getDefaultInvoiceLocale() {
+    return defaultInvoiceLocale;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("defaultInvoiceNote")
+  private Optional<String> _getDefaultInvoiceNote() {
+    return defaultInvoiceNote;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("peppolId")
   private Optional<String> _getPeppolId() {
     return peppolId;
@@ -605,12 +750,12 @@ public final class CompaniesProfileAccountResponse {
   }
 
   private boolean equalTo(CompaniesProfileAccountResponse other) {
-    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer == other.isVatPayer && isSandbox == other.isSandbox && countryCode.equals(other.countryCode) && chartTemplate.equals(other.chartTemplate) && countryChartTemplate.equals(other.countryChartTemplate) && baseCurrency.equals(other.baseCurrency) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && status.equals(other.status) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && logoFileId.equals(other.logoFileId) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired == other.auditRequired;
+    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer == other.isVatPayer && isSandbox == other.isSandbox && countryCode.equals(other.countryCode) && chartTemplate.equals(other.chartTemplate) && countryChartTemplate.equals(other.countryChartTemplate) && baseCurrency.equals(other.baseCurrency) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && status.equals(other.status) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && bankBic.equals(other.bankBic) && bankCode.equals(other.bankCode) && bankBranchCode.equals(other.bankBranchCode) && bankAccountNumber.equals(other.bankAccountNumber) && invoicePrefix.equals(other.invoicePrefix) && nextInvoiceNumber.equals(other.nextInvoiceNumber) && defaultInvoiceLocale.equals(other.defaultInvoiceLocale) && defaultInvoiceNote.equals(other.defaultInvoiceNote) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && logoFileId.equals(other.logoFileId) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired == other.auditRequired;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.isSandbox, this.countryCode, this.chartTemplate, this.countryChartTemplate, this.baseCurrency, this.defaultInvoiceCurrency, this.status, this.address, this.email, this.phone, this.iban, this.bankName, this.peppolId, this.sepaCreditorId, this.logoFileId, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.vatPeriod, this.fiscalYearEndMonth, this.timeZone, this.filingOptions, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired);
+    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.isSandbox, this.countryCode, this.chartTemplate, this.countryChartTemplate, this.baseCurrency, this.defaultInvoiceCurrency, this.status, this.address, this.email, this.phone, this.iban, this.bankName, this.bankBic, this.bankCode, this.bankBranchCode, this.bankAccountNumber, this.invoicePrefix, this.nextInvoiceNumber, this.defaultInvoiceLocale, this.defaultInvoiceNote, this.peppolId, this.sepaCreditorId, this.logoFileId, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.vatPeriod, this.fiscalYearEndMonth, this.timeZone, this.filingOptions, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired);
   }
 
   @java.lang.Override
@@ -667,7 +812,21 @@ public final class CompaniesProfileAccountResponse {
   }
 
   public interface StatusStage {
-    TimeZoneStage status(@NotNull CompaniesProfileAccountResponseStatus status);
+    InvoicePrefixStage status(@NotNull CompaniesProfileAccountResponseStatus status);
+  }
+
+  public interface InvoicePrefixStage {
+    /**
+     * <p>Prefix of the numbers of invoices issued without a document series (SF when none was set)</p>
+     */
+    NextInvoiceNumberStage invoicePrefix(@NotNull String invoicePrefix);
+  }
+
+  public interface NextInvoiceNumberStage {
+    /**
+     * <p>Number the next invoice issued without a document series gets, before any country-specific format</p>
+     */
+    TimeZoneStage nextInvoiceNumber(@NotNull String nextInvoiceNumber);
   }
 
   public interface TimeZoneStage {
@@ -732,6 +891,42 @@ public final class CompaniesProfileAccountResponse {
     _FinalStage bankName(String bankName);
 
     _FinalStage bankName(Nullable<String> bankName);
+
+    _FinalStage bankBic(Optional<String> bankBic);
+
+    _FinalStage bankBic(String bankBic);
+
+    _FinalStage bankBic(Nullable<String> bankBic);
+
+    _FinalStage bankCode(Optional<String> bankCode);
+
+    _FinalStage bankCode(String bankCode);
+
+    _FinalStage bankCode(Nullable<String> bankCode);
+
+    _FinalStage bankBranchCode(Optional<String> bankBranchCode);
+
+    _FinalStage bankBranchCode(String bankBranchCode);
+
+    _FinalStage bankBranchCode(Nullable<String> bankBranchCode);
+
+    _FinalStage bankAccountNumber(Optional<String> bankAccountNumber);
+
+    _FinalStage bankAccountNumber(String bankAccountNumber);
+
+    _FinalStage bankAccountNumber(Nullable<String> bankAccountNumber);
+
+    _FinalStage defaultInvoiceLocale(Optional<String> defaultInvoiceLocale);
+
+    _FinalStage defaultInvoiceLocale(String defaultInvoiceLocale);
+
+    _FinalStage defaultInvoiceLocale(Nullable<String> defaultInvoiceLocale);
+
+    _FinalStage defaultInvoiceNote(Optional<String> defaultInvoiceNote);
+
+    _FinalStage defaultInvoiceNote(String defaultInvoiceNote);
+
+    _FinalStage defaultInvoiceNote(Nullable<String> defaultInvoiceNote);
 
     _FinalStage peppolId(Optional<String> peppolId);
 
@@ -823,7 +1018,7 @@ public final class CompaniesProfileAccountResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, NameStage, IsVatPayerStage, IsSandboxStage, CountryCodeStage, ChartTemplateStage, CountryChartTemplateStage, BaseCurrencyStage, DefaultInvoiceCurrencyStage, StatusStage, TimeZoneStage, AuditRequiredStage, _FinalStage {
+  public static final class Builder implements IdStage, NameStage, IsVatPayerStage, IsSandboxStage, CountryCodeStage, ChartTemplateStage, CountryChartTemplateStage, BaseCurrencyStage, DefaultInvoiceCurrencyStage, StatusStage, InvoicePrefixStage, NextInvoiceNumberStage, TimeZoneStage, AuditRequiredStage, _FinalStage {
     private String id;
 
     private String name;
@@ -843,6 +1038,10 @@ public final class CompaniesProfileAccountResponse {
     private String defaultInvoiceCurrency;
 
     private CompaniesProfileAccountResponseStatus status;
+
+    private String invoicePrefix;
+
+    private String nextInvoiceNumber;
 
     private String timeZone;
 
@@ -875,6 +1074,18 @@ public final class CompaniesProfileAccountResponse {
     private Optional<String> sepaCreditorId = Optional.empty();
 
     private Optional<String> peppolId = Optional.empty();
+
+    private Optional<String> defaultInvoiceNote = Optional.empty();
+
+    private Optional<String> defaultInvoiceLocale = Optional.empty();
+
+    private Optional<String> bankAccountNumber = Optional.empty();
+
+    private Optional<String> bankBranchCode = Optional.empty();
+
+    private Optional<String> bankCode = Optional.empty();
+
+    private Optional<String> bankBic = Optional.empty();
 
     private Optional<String> bankName = Optional.empty();
 
@@ -918,6 +1129,14 @@ public final class CompaniesProfileAccountResponse {
       phone(other.getPhone());
       iban(other.getIban());
       bankName(other.getBankName());
+      bankBic(other.getBankBic());
+      bankCode(other.getBankCode());
+      bankBranchCode(other.getBankBranchCode());
+      bankAccountNumber(other.getBankAccountNumber());
+      invoicePrefix(other.getInvoicePrefix());
+      nextInvoiceNumber(other.getNextInvoiceNumber());
+      defaultInvoiceLocale(other.getDefaultInvoiceLocale());
+      defaultInvoiceNote(other.getDefaultInvoiceNote());
       peppolId(other.getPeppolId());
       sepaCreditorId(other.getSepaCreditorId());
       logoFileId(other.getLogoFileId());
@@ -1010,8 +1229,30 @@ public final class CompaniesProfileAccountResponse {
 
     @java.lang.Override
     @JsonSetter("status")
-    public TimeZoneStage status(@NotNull CompaniesProfileAccountResponseStatus status) {
+    public InvoicePrefixStage status(@NotNull CompaniesProfileAccountResponseStatus status) {
       this.status = Objects.requireNonNull(status, "status must not be null");
+      return this;
+    }
+
+    /**
+     * <p>Prefix of the numbers of invoices issued without a document series (SF when none was set)</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    @JsonSetter("invoicePrefix")
+    public NextInvoiceNumberStage invoicePrefix(@NotNull String invoicePrefix) {
+      this.invoicePrefix = Objects.requireNonNull(invoicePrefix, "invoicePrefix must not be null");
+      return this;
+    }
+
+    /**
+     * <p>Number the next invoice issued without a document series gets, before any country-specific format</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    @JsonSetter("nextInvoiceNumber")
+    public TimeZoneStage nextInvoiceNumber(@NotNull String nextInvoiceNumber) {
+      this.nextInvoiceNumber = Objects.requireNonNull(nextInvoiceNumber, "nextInvoiceNumber must not be null");
       return this;
     }
 
@@ -1453,6 +1694,186 @@ public final class CompaniesProfileAccountResponse {
     }
 
     @java.lang.Override
+    public _FinalStage defaultInvoiceNote(Nullable<String> defaultInvoiceNote) {
+      if (defaultInvoiceNote.isNull()) {
+        this.defaultInvoiceNote = null;
+      }
+      else if (defaultInvoiceNote.isEmpty()) {
+        this.defaultInvoiceNote = Optional.empty();
+      }
+      else {
+        this.defaultInvoiceNote = Optional.of(defaultInvoiceNote.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage defaultInvoiceNote(String defaultInvoiceNote) {
+      this.defaultInvoiceNote = Optional.ofNullable(defaultInvoiceNote);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "defaultInvoiceNote",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage defaultInvoiceNote(Optional<String> defaultInvoiceNote) {
+      this.defaultInvoiceNote = defaultInvoiceNote;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage defaultInvoiceLocale(Nullable<String> defaultInvoiceLocale) {
+      if (defaultInvoiceLocale.isNull()) {
+        this.defaultInvoiceLocale = null;
+      }
+      else if (defaultInvoiceLocale.isEmpty()) {
+        this.defaultInvoiceLocale = Optional.empty();
+      }
+      else {
+        this.defaultInvoiceLocale = Optional.of(defaultInvoiceLocale.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage defaultInvoiceLocale(String defaultInvoiceLocale) {
+      this.defaultInvoiceLocale = Optional.ofNullable(defaultInvoiceLocale);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "defaultInvoiceLocale",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage defaultInvoiceLocale(Optional<String> defaultInvoiceLocale) {
+      this.defaultInvoiceLocale = defaultInvoiceLocale;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankAccountNumber(Nullable<String> bankAccountNumber) {
+      if (bankAccountNumber.isNull()) {
+        this.bankAccountNumber = null;
+      }
+      else if (bankAccountNumber.isEmpty()) {
+        this.bankAccountNumber = Optional.empty();
+      }
+      else {
+        this.bankAccountNumber = Optional.of(bankAccountNumber.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankAccountNumber(String bankAccountNumber) {
+      this.bankAccountNumber = Optional.ofNullable(bankAccountNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankAccountNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankAccountNumber(Optional<String> bankAccountNumber) {
+      this.bankAccountNumber = bankAccountNumber;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankBranchCode(Nullable<String> bankBranchCode) {
+      if (bankBranchCode.isNull()) {
+        this.bankBranchCode = null;
+      }
+      else if (bankBranchCode.isEmpty()) {
+        this.bankBranchCode = Optional.empty();
+      }
+      else {
+        this.bankBranchCode = Optional.of(bankBranchCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankBranchCode(String bankBranchCode) {
+      this.bankBranchCode = Optional.ofNullable(bankBranchCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankBranchCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankBranchCode(Optional<String> bankBranchCode) {
+      this.bankBranchCode = bankBranchCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankCode(Nullable<String> bankCode) {
+      if (bankCode.isNull()) {
+        this.bankCode = null;
+      }
+      else if (bankCode.isEmpty()) {
+        this.bankCode = Optional.empty();
+      }
+      else {
+        this.bankCode = Optional.of(bankCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankCode(String bankCode) {
+      this.bankCode = Optional.ofNullable(bankCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankCode(Optional<String> bankCode) {
+      this.bankCode = bankCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankBic(Nullable<String> bankBic) {
+      if (bankBic.isNull()) {
+        this.bankBic = null;
+      }
+      else if (bankBic.isEmpty()) {
+        this.bankBic = Optional.empty();
+      }
+      else {
+        this.bankBic = Optional.of(bankBic.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankBic(String bankBic) {
+      this.bankBic = Optional.ofNullable(bankBic);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankBic",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankBic(Optional<String> bankBic) {
+      this.bankBic = bankBic;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage bankName(Nullable<String> bankName) {
       if (bankName.isNull()) {
         this.bankName = null;
@@ -1694,7 +2115,7 @@ public final class CompaniesProfileAccountResponse {
 
     @java.lang.Override
     public CompaniesProfileAccountResponse build() {
-      return new CompaniesProfileAccountResponse(id, name, code, vatCode, smeExemptionNumber, isVatPayer, isSandbox, countryCode, chartTemplate, countryChartTemplate, baseCurrency, defaultInvoiceCurrency, status, address, email, phone, iban, bankName, peppolId, sepaCreditorId, logoFileId, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, vatPeriod, fiscalYearEndMonth, timeZone, filingOptions, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, additionalProperties);
+      return new CompaniesProfileAccountResponse(id, name, code, vatCode, smeExemptionNumber, isVatPayer, isSandbox, countryCode, chartTemplate, countryChartTemplate, baseCurrency, defaultInvoiceCurrency, status, address, email, phone, iban, bankName, bankBic, bankCode, bankBranchCode, bankAccountNumber, invoicePrefix, nextInvoiceNumber, defaultInvoiceLocale, defaultInvoiceNote, peppolId, sepaCreditorId, logoFileId, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, vatPeriod, fiscalYearEndMonth, timeZone, filingOptions, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, additionalProperties);
     }
 
     @java.lang.Override

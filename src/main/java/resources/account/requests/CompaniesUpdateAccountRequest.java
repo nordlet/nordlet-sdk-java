@@ -18,6 +18,7 @@ import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.account.types.CompaniesUpdateAccountRequestAccountsKeptBy;
 import com.nordlet.api.resources.account.types.CompaniesUpdateAccountRequestAddress;
+import com.nordlet.api.resources.account.types.CompaniesUpdateAccountRequestDefaultInvoiceLocale;
 import com.nordlet.api.resources.account.types.CompaniesUpdateAccountRequestLogo;
 import com.nordlet.api.resources.account.types.CompaniesUpdateAccountRequestVatPeriod;
 import java.lang.Boolean;
@@ -62,6 +63,20 @@ public final class CompaniesUpdateAccountRequest {
 
   private final Optional<String> bankName;
 
+  private final Optional<String> bankBic;
+
+  private final Optional<String> bankCode;
+
+  private final Optional<String> bankBranchCode;
+
+  private final Optional<String> bankAccountNumber;
+
+  private final Optional<String> invoicePrefix;
+
+  private final Optional<CompaniesUpdateAccountRequestDefaultInvoiceLocale> defaultInvoiceLocale;
+
+  private final Optional<String> defaultInvoiceNote;
+
   private final Optional<String> peppolId;
 
   private final Optional<String> sepaCreditorId;
@@ -96,9 +111,13 @@ public final class CompaniesUpdateAccountRequest {
       Optional<String> timeZone, Optional<Map<String, Optional<String>>> filingOptions,
       Optional<CompaniesUpdateAccountRequestAddress> address, Optional<String> email,
       Optional<String> phone, Optional<String> iban, Optional<String> bankName,
-      Optional<String> peppolId, Optional<String> sepaCreditorId,
-      Optional<String> defaultInvoiceCurrency, Optional<String> legalForm,
-      Optional<String> registryName, Optional<String> incorporatedOn, Optional<String> shareCapital,
+      Optional<String> bankBic, Optional<String> bankCode, Optional<String> bankBranchCode,
+      Optional<String> bankAccountNumber, Optional<String> invoicePrefix,
+      Optional<CompaniesUpdateAccountRequestDefaultInvoiceLocale> defaultInvoiceLocale,
+      Optional<String> defaultInvoiceNote, Optional<String> peppolId,
+      Optional<String> sepaCreditorId, Optional<String> defaultInvoiceCurrency,
+      Optional<String> legalForm, Optional<String> registryName, Optional<String> incorporatedOn,
+      Optional<String> shareCapital,
       Optional<CompaniesUpdateAccountRequestAccountsKeptBy> accountsKeptBy,
       Optional<String> bookkeeperName, Optional<String> auditorName,
       Optional<String> auditorRegistrationNumber, Optional<Boolean> auditRequired,
@@ -117,6 +136,13 @@ public final class CompaniesUpdateAccountRequest {
     this.phone = phone;
     this.iban = iban;
     this.bankName = bankName;
+    this.bankBic = bankBic;
+    this.bankCode = bankCode;
+    this.bankBranchCode = bankBranchCode;
+    this.bankAccountNumber = bankAccountNumber;
+    this.invoicePrefix = invoicePrefix;
+    this.defaultInvoiceLocale = defaultInvoiceLocale;
+    this.defaultInvoiceNote = defaultInvoiceNote;
     this.peppolId = peppolId;
     this.sepaCreditorId = sepaCreditorId;
     this.defaultInvoiceCurrency = defaultInvoiceCurrency;
@@ -231,6 +257,77 @@ public final class CompaniesUpdateAccountRequest {
       return Optional.empty();
     }
     return bankName;
+  }
+
+  @JsonIgnore
+  public Optional<String> getBankBic() {
+    if (bankBic == null) {
+      return Optional.empty();
+    }
+    return bankBic;
+  }
+
+  /**
+   * @return Sort code, routing number, BSB, IFSC or institution number
+   */
+  @JsonIgnore
+  public Optional<String> getBankCode() {
+    if (bankCode == null) {
+      return Optional.empty();
+    }
+    return bankCode;
+  }
+
+  /**
+   * @return Transit number (Canada)
+   */
+  @JsonIgnore
+  public Optional<String> getBankBranchCode() {
+    if (bankBranchCode == null) {
+      return Optional.empty();
+    }
+    return bankBranchCode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getBankAccountNumber() {
+    if (bankAccountNumber == null) {
+      return Optional.empty();
+    }
+    return bankAccountNumber;
+  }
+
+  /**
+   * @return Prefix of the numbers of invoices issued without a document series; SF when not set
+   */
+  @JsonIgnore
+  public Optional<String> getInvoicePrefix() {
+    if (invoicePrefix == null) {
+      return Optional.empty();
+    }
+    return invoicePrefix;
+  }
+
+  /**
+   * @return Language a new invoice starts with when neither the invoice nor its partner names one
+   */
+  @JsonIgnore
+  public Optional<CompaniesUpdateAccountRequestDefaultInvoiceLocale> getDefaultInvoiceLocale() {
+    if (defaultInvoiceLocale == null) {
+      return Optional.empty();
+    }
+    return defaultInvoiceLocale;
+  }
+
+  /**
+   * @return Note a new invoice, proforma or advance invoice starts with when it names no notes
+   */
+  @JsonIgnore
+  public Optional<String> getDefaultInvoiceNote() {
+    if (defaultInvoiceNote == null) {
+      return Optional.empty();
+    }
+    return defaultInvoiceNote;
   }
 
   @JsonIgnore
@@ -422,6 +519,69 @@ public final class CompaniesUpdateAccountRequest {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("bankBic")
+  private Optional<String> _getBankBic() {
+    return bankBic;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("bankCode")
+  private Optional<String> _getBankCode() {
+    return bankCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("bankBranchCode")
+  private Optional<String> _getBankBranchCode() {
+    return bankBranchCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("bankAccountNumber")
+  private Optional<String> _getBankAccountNumber() {
+    return bankAccountNumber;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("invoicePrefix")
+  private Optional<String> _getInvoicePrefix() {
+    return invoicePrefix;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("defaultInvoiceLocale")
+  private Optional<CompaniesUpdateAccountRequestDefaultInvoiceLocale> _getDefaultInvoiceLocale() {
+    return defaultInvoiceLocale;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("defaultInvoiceNote")
+  private Optional<String> _getDefaultInvoiceNote() {
+    return defaultInvoiceNote;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("peppolId")
   private Optional<String> _getPeppolId() {
     return peppolId;
@@ -520,12 +680,12 @@ public final class CompaniesUpdateAccountRequest {
   }
 
   private boolean equalTo(CompaniesUpdateAccountRequest other) {
-    return name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer.equals(other.isVatPayer) && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired.equals(other.auditRequired) && logo.equals(other.logo);
+    return name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer.equals(other.isVatPayer) && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && bankBic.equals(other.bankBic) && bankCode.equals(other.bankCode) && bankBranchCode.equals(other.bankBranchCode) && bankAccountNumber.equals(other.bankAccountNumber) && invoicePrefix.equals(other.invoicePrefix) && defaultInvoiceLocale.equals(other.defaultInvoiceLocale) && defaultInvoiceNote.equals(other.defaultInvoiceNote) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired.equals(other.auditRequired) && logo.equals(other.logo);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.vatPeriod, this.fiscalYearEndMonth, this.timeZone, this.filingOptions, this.address, this.email, this.phone, this.iban, this.bankName, this.peppolId, this.sepaCreditorId, this.defaultInvoiceCurrency, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired, this.logo);
+    return Objects.hash(this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.vatPeriod, this.fiscalYearEndMonth, this.timeZone, this.filingOptions, this.address, this.email, this.phone, this.iban, this.bankName, this.bankBic, this.bankCode, this.bankBranchCode, this.bankAccountNumber, this.invoicePrefix, this.defaultInvoiceLocale, this.defaultInvoiceNote, this.peppolId, this.sepaCreditorId, this.defaultInvoiceCurrency, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired, this.logo);
   }
 
   @java.lang.Override
@@ -568,6 +728,20 @@ public final class CompaniesUpdateAccountRequest {
     private Optional<String> iban = Optional.empty();
 
     private Optional<String> bankName = Optional.empty();
+
+    private Optional<String> bankBic = Optional.empty();
+
+    private Optional<String> bankCode = Optional.empty();
+
+    private Optional<String> bankBranchCode = Optional.empty();
+
+    private Optional<String> bankAccountNumber = Optional.empty();
+
+    private Optional<String> invoicePrefix = Optional.empty();
+
+    private Optional<CompaniesUpdateAccountRequestDefaultInvoiceLocale> defaultInvoiceLocale = Optional.empty();
+
+    private Optional<String> defaultInvoiceNote = Optional.empty();
 
     private Optional<String> peppolId = Optional.empty();
 
@@ -616,6 +790,13 @@ public final class CompaniesUpdateAccountRequest {
       phone(other.getPhone());
       iban(other.getIban());
       bankName(other.getBankName());
+      bankBic(other.getBankBic());
+      bankCode(other.getBankCode());
+      bankBranchCode(other.getBankBranchCode());
+      bankAccountNumber(other.getBankAccountNumber());
+      invoicePrefix(other.getInvoicePrefix());
+      defaultInvoiceLocale(other.getDefaultInvoiceLocale());
+      defaultInvoiceNote(other.getDefaultInvoiceNote());
       peppolId(other.getPeppolId());
       sepaCreditorId(other.getSepaCreditorId());
       defaultInvoiceCurrency(other.getDefaultInvoiceCurrency());
@@ -959,6 +1140,213 @@ public final class CompaniesUpdateAccountRequest {
     }
 
     @JsonSetter(
+        value = "bankBic",
+        nulls = Nulls.SKIP
+    )
+    public Builder bankBic(Optional<String> bankBic) {
+      this.bankBic = bankBic;
+      return this;
+    }
+
+    public Builder bankBic(String bankBic) {
+      this.bankBic = Optional.ofNullable(bankBic);
+      return this;
+    }
+
+    public Builder bankBic(Nullable<String> bankBic) {
+      if (bankBic.isNull()) {
+        this.bankBic = null;
+      }
+      else if (bankBic.isEmpty()) {
+        this.bankBic = Optional.empty();
+      }
+      else {
+        this.bankBic = Optional.of(bankBic.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Sort code, routing number, BSB, IFSC or institution number</p>
+     */
+    @JsonSetter(
+        value = "bankCode",
+        nulls = Nulls.SKIP
+    )
+    public Builder bankCode(Optional<String> bankCode) {
+      this.bankCode = bankCode;
+      return this;
+    }
+
+    public Builder bankCode(String bankCode) {
+      this.bankCode = Optional.ofNullable(bankCode);
+      return this;
+    }
+
+    public Builder bankCode(Nullable<String> bankCode) {
+      if (bankCode.isNull()) {
+        this.bankCode = null;
+      }
+      else if (bankCode.isEmpty()) {
+        this.bankCode = Optional.empty();
+      }
+      else {
+        this.bankCode = Optional.of(bankCode.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Transit number (Canada)</p>
+     */
+    @JsonSetter(
+        value = "bankBranchCode",
+        nulls = Nulls.SKIP
+    )
+    public Builder bankBranchCode(Optional<String> bankBranchCode) {
+      this.bankBranchCode = bankBranchCode;
+      return this;
+    }
+
+    public Builder bankBranchCode(String bankBranchCode) {
+      this.bankBranchCode = Optional.ofNullable(bankBranchCode);
+      return this;
+    }
+
+    public Builder bankBranchCode(Nullable<String> bankBranchCode) {
+      if (bankBranchCode.isNull()) {
+        this.bankBranchCode = null;
+      }
+      else if (bankBranchCode.isEmpty()) {
+        this.bankBranchCode = Optional.empty();
+      }
+      else {
+        this.bankBranchCode = Optional.of(bankBranchCode.get());
+      }
+      return this;
+    }
+
+    @JsonSetter(
+        value = "bankAccountNumber",
+        nulls = Nulls.SKIP
+    )
+    public Builder bankAccountNumber(Optional<String> bankAccountNumber) {
+      this.bankAccountNumber = bankAccountNumber;
+      return this;
+    }
+
+    public Builder bankAccountNumber(String bankAccountNumber) {
+      this.bankAccountNumber = Optional.ofNullable(bankAccountNumber);
+      return this;
+    }
+
+    public Builder bankAccountNumber(Nullable<String> bankAccountNumber) {
+      if (bankAccountNumber.isNull()) {
+        this.bankAccountNumber = null;
+      }
+      else if (bankAccountNumber.isEmpty()) {
+        this.bankAccountNumber = Optional.empty();
+      }
+      else {
+        this.bankAccountNumber = Optional.of(bankAccountNumber.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Prefix of the numbers of invoices issued without a document series; SF when not set</p>
+     */
+    @JsonSetter(
+        value = "invoicePrefix",
+        nulls = Nulls.SKIP
+    )
+    public Builder invoicePrefix(Optional<String> invoicePrefix) {
+      this.invoicePrefix = invoicePrefix;
+      return this;
+    }
+
+    public Builder invoicePrefix(String invoicePrefix) {
+      this.invoicePrefix = Optional.ofNullable(invoicePrefix);
+      return this;
+    }
+
+    public Builder invoicePrefix(Nullable<String> invoicePrefix) {
+      if (invoicePrefix.isNull()) {
+        this.invoicePrefix = null;
+      }
+      else if (invoicePrefix.isEmpty()) {
+        this.invoicePrefix = Optional.empty();
+      }
+      else {
+        this.invoicePrefix = Optional.of(invoicePrefix.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Language a new invoice starts with when neither the invoice nor its partner names one</p>
+     */
+    @JsonSetter(
+        value = "defaultInvoiceLocale",
+        nulls = Nulls.SKIP
+    )
+    public Builder defaultInvoiceLocale(
+        Optional<CompaniesUpdateAccountRequestDefaultInvoiceLocale> defaultInvoiceLocale) {
+      this.defaultInvoiceLocale = defaultInvoiceLocale;
+      return this;
+    }
+
+    public Builder defaultInvoiceLocale(
+        CompaniesUpdateAccountRequestDefaultInvoiceLocale defaultInvoiceLocale) {
+      this.defaultInvoiceLocale = Optional.ofNullable(defaultInvoiceLocale);
+      return this;
+    }
+
+    public Builder defaultInvoiceLocale(
+        Nullable<CompaniesUpdateAccountRequestDefaultInvoiceLocale> defaultInvoiceLocale) {
+      if (defaultInvoiceLocale.isNull()) {
+        this.defaultInvoiceLocale = null;
+      }
+      else if (defaultInvoiceLocale.isEmpty()) {
+        this.defaultInvoiceLocale = Optional.empty();
+      }
+      else {
+        this.defaultInvoiceLocale = Optional.of(defaultInvoiceLocale.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Note a new invoice, proforma or advance invoice starts with when it names no notes</p>
+     */
+    @JsonSetter(
+        value = "defaultInvoiceNote",
+        nulls = Nulls.SKIP
+    )
+    public Builder defaultInvoiceNote(Optional<String> defaultInvoiceNote) {
+      this.defaultInvoiceNote = defaultInvoiceNote;
+      return this;
+    }
+
+    public Builder defaultInvoiceNote(String defaultInvoiceNote) {
+      this.defaultInvoiceNote = Optional.ofNullable(defaultInvoiceNote);
+      return this;
+    }
+
+    public Builder defaultInvoiceNote(Nullable<String> defaultInvoiceNote) {
+      if (defaultInvoiceNote.isNull()) {
+        this.defaultInvoiceNote = null;
+      }
+      else if (defaultInvoiceNote.isEmpty()) {
+        this.defaultInvoiceNote = Optional.empty();
+      }
+      else {
+        this.defaultInvoiceNote = Optional.of(defaultInvoiceNote.get());
+      }
+      return this;
+    }
+
+    @JsonSetter(
         value = "peppolId",
         nulls = Nulls.SKIP
     )
@@ -1273,7 +1661,7 @@ public final class CompaniesUpdateAccountRequest {
     }
 
     public CompaniesUpdateAccountRequest build() {
-      return new CompaniesUpdateAccountRequest(name, code, vatCode, smeExemptionNumber, isVatPayer, vatPeriod, fiscalYearEndMonth, timeZone, filingOptions, address, email, phone, iban, bankName, peppolId, sepaCreditorId, defaultInvoiceCurrency, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, logo, additionalProperties);
+      return new CompaniesUpdateAccountRequest(name, code, vatCode, smeExemptionNumber, isVatPayer, vatPeriod, fiscalYearEndMonth, timeZone, filingOptions, address, email, phone, iban, bankName, bankBic, bankCode, bankBranchCode, bankAccountNumber, invoicePrefix, defaultInvoiceLocale, defaultInvoiceNote, peppolId, sepaCreditorId, defaultInvoiceCurrency, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, logo, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

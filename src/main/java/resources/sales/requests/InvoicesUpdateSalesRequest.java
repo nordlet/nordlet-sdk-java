@@ -64,6 +64,10 @@ public final class InvoicesUpdateSalesRequest {
 
   private final Optional<InvoicesUpdateSalesRequestLocale> locale;
 
+  private final Optional<Boolean> payLinkEnabled;
+
+  private final Optional<Boolean> debtRemindersEnabled;
+
   private final Optional<String> operationTypeId;
 
   private final Optional<String> documentSeriesId;
@@ -82,6 +86,8 @@ public final class InvoicesUpdateSalesRequest {
 
   private final Optional<String> receivedByTitle;
 
+  private final Optional<String> salesTaxPercent;
+
   private final Optional<List<InvoicesUpdateSalesRequestLinesItem>> lines;
 
   private final Map<String, Object> additionalProperties;
@@ -92,11 +98,13 @@ public final class InvoicesUpdateSalesRequest {
       Optional<String> intrastatTransportMode, Optional<String> intrastatDeliveryTerms,
       Optional<String> intrastatRegion, Optional<String> intrastatNatureOfTransaction,
       Optional<String> vatCountryCode, Optional<Boolean> deemedSupplier, Optional<String> notes,
-      Optional<InvoicesUpdateSalesRequestLocale> locale, Optional<String> operationTypeId,
+      Optional<InvoicesUpdateSalesRequestLocale> locale, Optional<Boolean> payLinkEnabled,
+      Optional<Boolean> debtRemindersEnabled, Optional<String> operationTypeId,
       Optional<String> documentSeriesId, Optional<String> seriesLabel,
       Optional<String> discountPercent, Optional<String> orderNumber, Optional<String> issuedByName,
       Optional<String> issuedByTitle, Optional<String> receivedByName,
-      Optional<String> receivedByTitle, Optional<List<InvoicesUpdateSalesRequestLinesItem>> lines,
+      Optional<String> receivedByTitle, Optional<String> salesTaxPercent,
+      Optional<List<InvoicesUpdateSalesRequestLinesItem>> lines,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.partnerId = partnerId;
@@ -113,6 +121,8 @@ public final class InvoicesUpdateSalesRequest {
     this.deemedSupplier = deemedSupplier;
     this.notes = notes;
     this.locale = locale;
+    this.payLinkEnabled = payLinkEnabled;
+    this.debtRemindersEnabled = debtRemindersEnabled;
     this.operationTypeId = operationTypeId;
     this.documentSeriesId = documentSeriesId;
     this.seriesLabel = seriesLabel;
@@ -122,6 +132,7 @@ public final class InvoicesUpdateSalesRequest {
     this.issuedByTitle = issuedByTitle;
     this.receivedByName = receivedByName;
     this.receivedByTitle = receivedByTitle;
+    this.salesTaxPercent = salesTaxPercent;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
   }
@@ -231,6 +242,16 @@ public final class InvoicesUpdateSalesRequest {
     return locale;
   }
 
+  @JsonProperty("payLinkEnabled")
+  public Optional<Boolean> getPayLinkEnabled() {
+    return payLinkEnabled;
+  }
+
+  @JsonProperty("debtRemindersEnabled")
+  public Optional<Boolean> getDebtRemindersEnabled() {
+    return debtRemindersEnabled;
+  }
+
   @JsonIgnore
   public Optional<String> getOperationTypeId() {
     if (operationTypeId == null) {
@@ -298,6 +319,14 @@ public final class InvoicesUpdateSalesRequest {
       return Optional.empty();
     }
     return receivedByTitle;
+  }
+
+  @JsonIgnore
+  public Optional<String> getSalesTaxPercent() {
+    if (salesTaxPercent == null) {
+      return Optional.empty();
+    }
+    return salesTaxPercent;
   }
 
   @JsonProperty("lines")
@@ -467,6 +496,15 @@ public final class InvoicesUpdateSalesRequest {
     return receivedByTitle;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("salesTaxPercent")
+  private Optional<String> _getSalesTaxPercent() {
+    return salesTaxPercent;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -479,12 +517,12 @@ public final class InvoicesUpdateSalesRequest {
   }
 
   private boolean equalTo(InvoicesUpdateSalesRequest other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && agreementId.equals(other.agreementId) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && locale.equals(other.locale) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && lines.equals(other.lines);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && agreementId.equals(other.agreementId) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && locale.equals(other.locale) && payLinkEnabled.equals(other.payLinkEnabled) && debtRemindersEnabled.equals(other.debtRemindersEnabled) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && salesTaxPercent.equals(other.salesTaxPercent) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.agreementId, this.currency, this.issueDate, this.dueDate, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.locale, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.lines);
+    return Objects.hash(this.id, this.partnerId, this.agreementId, this.currency, this.issueDate, this.dueDate, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.locale, this.payLinkEnabled, this.debtRemindersEnabled, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.salesTaxPercent, this.lines);
   }
 
   @java.lang.Override
@@ -585,6 +623,14 @@ public final class InvoicesUpdateSalesRequest {
 
     _FinalStage locale(Nullable<InvoicesUpdateSalesRequestLocale> locale);
 
+    _FinalStage payLinkEnabled(Optional<Boolean> payLinkEnabled);
+
+    _FinalStage payLinkEnabled(Boolean payLinkEnabled);
+
+    _FinalStage debtRemindersEnabled(Optional<Boolean> debtRemindersEnabled);
+
+    _FinalStage debtRemindersEnabled(Boolean debtRemindersEnabled);
+
     _FinalStage operationTypeId(Optional<String> operationTypeId);
 
     _FinalStage operationTypeId(String operationTypeId);
@@ -637,6 +683,12 @@ public final class InvoicesUpdateSalesRequest {
 
     _FinalStage receivedByTitle(Nullable<String> receivedByTitle);
 
+    _FinalStage salesTaxPercent(Optional<String> salesTaxPercent);
+
+    _FinalStage salesTaxPercent(String salesTaxPercent);
+
+    _FinalStage salesTaxPercent(Nullable<String> salesTaxPercent);
+
     _FinalStage lines(Optional<List<InvoicesUpdateSalesRequestLinesItem>> lines);
 
     _FinalStage lines(List<InvoicesUpdateSalesRequestLinesItem> lines);
@@ -649,6 +701,8 @@ public final class InvoicesUpdateSalesRequest {
     private String id;
 
     private Optional<List<InvoicesUpdateSalesRequestLinesItem>> lines = Optional.empty();
+
+    private Optional<String> salesTaxPercent = Optional.empty();
 
     private Optional<String> receivedByTitle = Optional.empty();
 
@@ -667,6 +721,10 @@ public final class InvoicesUpdateSalesRequest {
     private Optional<String> documentSeriesId = Optional.empty();
 
     private Optional<String> operationTypeId = Optional.empty();
+
+    private Optional<Boolean> debtRemindersEnabled = Optional.empty();
+
+    private Optional<Boolean> payLinkEnabled = Optional.empty();
 
     private Optional<InvoicesUpdateSalesRequestLocale> locale = Optional.empty();
 
@@ -719,6 +777,8 @@ public final class InvoicesUpdateSalesRequest {
       deemedSupplier(other.getDeemedSupplier());
       notes(other.getNotes());
       locale(other.getLocale());
+      payLinkEnabled(other.getPayLinkEnabled());
+      debtRemindersEnabled(other.getDebtRemindersEnabled());
       operationTypeId(other.getOperationTypeId());
       documentSeriesId(other.getDocumentSeriesId());
       seriesLabel(other.getSeriesLabel());
@@ -728,6 +788,7 @@ public final class InvoicesUpdateSalesRequest {
       issuedByTitle(other.getIssuedByTitle());
       receivedByName(other.getReceivedByName());
       receivedByTitle(other.getReceivedByTitle());
+      salesTaxPercent(other.getSalesTaxPercent());
       lines(other.getLines());
       return this;
     }
@@ -752,6 +813,36 @@ public final class InvoicesUpdateSalesRequest {
     )
     public _FinalStage lines(Optional<List<InvoicesUpdateSalesRequestLinesItem>> lines) {
       this.lines = lines;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage salesTaxPercent(Nullable<String> salesTaxPercent) {
+      if (salesTaxPercent.isNull()) {
+        this.salesTaxPercent = null;
+      }
+      else if (salesTaxPercent.isEmpty()) {
+        this.salesTaxPercent = Optional.empty();
+      }
+      else {
+        this.salesTaxPercent = Optional.of(salesTaxPercent.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage salesTaxPercent(String salesTaxPercent) {
+      this.salesTaxPercent = Optional.ofNullable(salesTaxPercent);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "salesTaxPercent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage salesTaxPercent(Optional<String> salesTaxPercent) {
+      this.salesTaxPercent = salesTaxPercent;
       return this;
     }
 
@@ -1008,6 +1099,38 @@ public final class InvoicesUpdateSalesRequest {
     )
     public _FinalStage operationTypeId(Optional<String> operationTypeId) {
       this.operationTypeId = operationTypeId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage debtRemindersEnabled(Boolean debtRemindersEnabled) {
+      this.debtRemindersEnabled = Optional.ofNullable(debtRemindersEnabled);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "debtRemindersEnabled",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage debtRemindersEnabled(Optional<Boolean> debtRemindersEnabled) {
+      this.debtRemindersEnabled = debtRemindersEnabled;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage payLinkEnabled(Boolean payLinkEnabled) {
+      this.payLinkEnabled = Optional.ofNullable(payLinkEnabled);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "payLinkEnabled",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage payLinkEnabled(Optional<Boolean> payLinkEnabled) {
+      this.payLinkEnabled = payLinkEnabled;
       return this;
     }
 
@@ -1377,7 +1500,7 @@ public final class InvoicesUpdateSalesRequest {
 
     @java.lang.Override
     public InvoicesUpdateSalesRequest build() {
-      return new InvoicesUpdateSalesRequest(id, partnerId, agreementId, currency, issueDate, dueDate, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, locale, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, lines, additionalProperties);
+      return new InvoicesUpdateSalesRequest(id, partnerId, agreementId, currency, issueDate, dueDate, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, locale, payLinkEnabled, debtRemindersEnabled, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, salesTaxPercent, lines, additionalProperties);
     }
 
     @java.lang.Override

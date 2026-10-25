@@ -10,6 +10,8 @@ import java.lang.Object;
 import java.lang.String;
 
 public final class AccountSetPlanBillingRequestPlan {
+  public static final AccountSetPlanBillingRequestPlan INVOICING = new AccountSetPlanBillingRequestPlan(Value.INVOICING, "invoicing");
+
   public static final AccountSetPlanBillingRequestPlan STARTER = new AccountSetPlanBillingRequestPlan(Value.STARTER, "starter");
 
   public static final AccountSetPlanBillingRequestPlan SCALE = new AccountSetPlanBillingRequestPlan(Value.SCALE, "scale");
@@ -48,6 +50,8 @@ public final class AccountSetPlanBillingRequestPlan {
 
   public <T> T visit(Visitor<T> visitor) {
     switch (value) {
+      case INVOICING:
+        return visitor.visitInvoicing();
       case STARTER:
         return visitor.visitStarter();
       case SCALE:
@@ -65,6 +69,8 @@ public final class AccountSetPlanBillingRequestPlan {
   )
   public static AccountSetPlanBillingRequestPlan valueOf(String value) {
     switch (value) {
+      case "invoicing":
+        return INVOICING;
       case "starter":
         return STARTER;
       case "scale":
@@ -83,6 +89,8 @@ public final class AccountSetPlanBillingRequestPlan {
 
     SCALE,
 
+    INVOICING,
+
     UNKNOWN
   }
 
@@ -92,6 +100,8 @@ public final class AccountSetPlanBillingRequestPlan {
     T visitBusiness();
 
     T visitScale();
+
+    T visitInvoicing();
 
     T visitUnknown(String unknownType);
   }

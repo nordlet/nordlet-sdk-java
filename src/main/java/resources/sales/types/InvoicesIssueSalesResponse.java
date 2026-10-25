@@ -63,6 +63,10 @@ public final class InvoicesIssueSalesResponse {
 
   private final String grossTotal;
 
+  private final Optional<String> salesTaxPercent;
+
+  private final String salesTaxTotal;
+
   private final String paidAmount;
 
   private final Optional<String> journalTransactionId;
@@ -123,6 +127,10 @@ public final class InvoicesIssueSalesResponse {
 
   private final Optional<String> payToken;
 
+  private final boolean payLinkEnabled;
+
+  private final boolean debtRemindersEnabled;
+
   private final Optional<String> einvoiceSystem;
 
   private final Optional<String> einvoiceTransport;
@@ -166,10 +174,11 @@ public final class InvoicesIssueSalesResponse {
       InvoicesIssueSalesResponsePaymentStatus paymentStatus, Optional<String> series,
       Optional<Long> number, Optional<String> fullNumber, Optional<String> issueDate,
       Optional<String> dueDate, String currency, Optional<String> fxRate, String netTotal,
-      String vatTotal, String grossTotal, String paidAmount, Optional<String> journalTransactionId,
-      Optional<String> appliedToInvoiceId, Optional<String> creditedInvoiceId,
-      Optional<String> creditedInvoiceReference, Optional<String> creditedInvoiceDate,
-      Optional<String> agreementId, Optional<InvoicesIssueSalesResponseVatScheme> vatScheme,
+      String vatTotal, String grossTotal, Optional<String> salesTaxPercent, String salesTaxTotal,
+      String paidAmount, Optional<String> journalTransactionId, Optional<String> appliedToInvoiceId,
+      Optional<String> creditedInvoiceId, Optional<String> creditedInvoiceReference,
+      Optional<String> creditedInvoiceDate, Optional<String> agreementId,
+      Optional<InvoicesIssueSalesResponseVatScheme> vatScheme,
       Optional<String> intrastatTransportMode, Optional<String> intrastatDeliveryTerms,
       Optional<String> intrastatRegion, Optional<String> intrastatNatureOfTransaction,
       Optional<String> vatCountryCode, boolean deemedSupplier, Optional<String> notes,
@@ -178,7 +187,8 @@ public final class InvoicesIssueSalesResponse {
       Optional<String> orderNumber, Optional<String> issuedByName, Optional<String> issuedByTitle,
       Optional<String> receivedByName, Optional<String> receivedByTitle, Optional<String> locale,
       Optional<String> recurringInvoiceId, Optional<OffsetDateTime> lockedAt,
-      Optional<String> lockedBy, Optional<String> payToken, Optional<String> einvoiceSystem,
+      Optional<String> lockedBy, Optional<String> payToken, boolean payLinkEnabled,
+      boolean debtRemindersEnabled, Optional<String> einvoiceSystem,
       Optional<String> einvoiceTransport, Optional<String> einvoiceMessageId,
       Optional<String> einvoiceNumber, Optional<String> einvoiceStatus,
       Optional<String> einvoiceDetail, Optional<OffsetDateTime> einvoiceSentAt,
@@ -204,6 +214,8 @@ public final class InvoicesIssueSalesResponse {
     this.netTotal = netTotal;
     this.vatTotal = vatTotal;
     this.grossTotal = grossTotal;
+    this.salesTaxPercent = salesTaxPercent;
+    this.salesTaxTotal = salesTaxTotal;
     this.paidAmount = paidAmount;
     this.journalTransactionId = journalTransactionId;
     this.appliedToInvoiceId = appliedToInvoiceId;
@@ -234,6 +246,8 @@ public final class InvoicesIssueSalesResponse {
     this.lockedAt = lockedAt;
     this.lockedBy = lockedBy;
     this.payToken = payToken;
+    this.payLinkEnabled = payLinkEnabled;
+    this.debtRemindersEnabled = debtRemindersEnabled;
     this.einvoiceSystem = einvoiceSystem;
     this.einvoiceTransport = einvoiceTransport;
     this.einvoiceMessageId = einvoiceMessageId;
@@ -346,6 +360,19 @@ public final class InvoicesIssueSalesResponse {
   @JsonProperty("grossTotal")
   public String getGrossTotal() {
     return grossTotal;
+  }
+
+  @JsonIgnore
+  public Optional<String> getSalesTaxPercent() {
+    if (salesTaxPercent == null) {
+      return Optional.empty();
+    }
+    return salesTaxPercent;
+  }
+
+  @JsonProperty("salesTaxTotal")
+  public String getSalesTaxTotal() {
+    return salesTaxTotal;
   }
 
   @JsonProperty("paidAmount")
@@ -579,6 +606,16 @@ public final class InvoicesIssueSalesResponse {
     return payToken;
   }
 
+  @JsonProperty("payLinkEnabled")
+  public boolean getPayLinkEnabled() {
+    return payLinkEnabled;
+  }
+
+  @JsonProperty("debtRemindersEnabled")
+  public boolean getDebtRemindersEnabled() {
+    return debtRemindersEnabled;
+  }
+
   @JsonIgnore
   public Optional<String> getEinvoiceSystem() {
     if (einvoiceSystem == null) {
@@ -769,6 +806,15 @@ public final class InvoicesIssueSalesResponse {
   @JsonProperty("fxRate")
   private Optional<String> _getFxRate() {
     return fxRate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("salesTaxPercent")
+  private Optional<String> _getSalesTaxPercent() {
+    return salesTaxPercent;
   }
 
   @JsonInclude(
@@ -1161,12 +1207,12 @@ public final class InvoicesIssueSalesResponse {
   }
 
   private boolean equalTo(InvoicesIssueSalesResponse other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && fxRate.equals(other.fxRate) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && locale.equals(other.locale) && recurringInvoiceId.equals(other.recurringInvoiceId) && lockedAt.equals(other.lockedAt) && lockedBy.equals(other.lockedBy) && payToken.equals(other.payToken) && einvoiceSystem.equals(other.einvoiceSystem) && einvoiceTransport.equals(other.einvoiceTransport) && einvoiceMessageId.equals(other.einvoiceMessageId) && einvoiceNumber.equals(other.einvoiceNumber) && einvoiceStatus.equals(other.einvoiceStatus) && einvoiceDetail.equals(other.einvoiceDetail) && einvoiceSentAt.equals(other.einvoiceSentAt) && einvoiceCheckedAt.equals(other.einvoiceCheckedAt) && peppolMessageId.equals(other.peppolMessageId) && peppolStatus.equals(other.peppolStatus) && peppolDetail.equals(other.peppolDetail) && peppolSentAt.equals(other.peppolSentAt) && peppolCheckedAt.equals(other.peppolCheckedAt) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && advanceAppliedAmount.equals(other.advanceAppliedAmount) && lines.equals(other.lines) && vatEvidence.equals(other.vatEvidence);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && fxRate.equals(other.fxRate) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && salesTaxPercent.equals(other.salesTaxPercent) && salesTaxTotal.equals(other.salesTaxTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && locale.equals(other.locale) && recurringInvoiceId.equals(other.recurringInvoiceId) && lockedAt.equals(other.lockedAt) && lockedBy.equals(other.lockedBy) && payToken.equals(other.payToken) && payLinkEnabled == other.payLinkEnabled && debtRemindersEnabled == other.debtRemindersEnabled && einvoiceSystem.equals(other.einvoiceSystem) && einvoiceTransport.equals(other.einvoiceTransport) && einvoiceMessageId.equals(other.einvoiceMessageId) && einvoiceNumber.equals(other.einvoiceNumber) && einvoiceStatus.equals(other.einvoiceStatus) && einvoiceDetail.equals(other.einvoiceDetail) && einvoiceSentAt.equals(other.einvoiceSentAt) && einvoiceCheckedAt.equals(other.einvoiceCheckedAt) && peppolMessageId.equals(other.peppolMessageId) && peppolStatus.equals(other.peppolStatus) && peppolDetail.equals(other.peppolDetail) && peppolSentAt.equals(other.peppolSentAt) && peppolCheckedAt.equals(other.peppolCheckedAt) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && advanceAppliedAmount.equals(other.advanceAppliedAmount) && lines.equals(other.lines) && vatEvidence.equals(other.vatEvidence);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.fxRate, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.locale, this.recurringInvoiceId, this.lockedAt, this.lockedBy, this.payToken, this.einvoiceSystem, this.einvoiceTransport, this.einvoiceMessageId, this.einvoiceNumber, this.einvoiceStatus, this.einvoiceDetail, this.einvoiceSentAt, this.einvoiceCheckedAt, this.peppolMessageId, this.peppolStatus, this.peppolDetail, this.peppolSentAt, this.peppolCheckedAt, this.createdAt, this.updatedAt, this.advanceAppliedAmount, this.lines, this.vatEvidence);
+    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.fxRate, this.netTotal, this.vatTotal, this.grossTotal, this.salesTaxPercent, this.salesTaxTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.locale, this.recurringInvoiceId, this.lockedAt, this.lockedBy, this.payToken, this.payLinkEnabled, this.debtRemindersEnabled, this.einvoiceSystem, this.einvoiceTransport, this.einvoiceMessageId, this.einvoiceNumber, this.einvoiceStatus, this.einvoiceDetail, this.einvoiceSentAt, this.einvoiceCheckedAt, this.peppolMessageId, this.peppolStatus, this.peppolDetail, this.peppolSentAt, this.peppolCheckedAt, this.createdAt, this.updatedAt, this.advanceAppliedAmount, this.lines, this.vatEvidence);
   }
 
   @java.lang.Override
@@ -1213,7 +1259,11 @@ public final class InvoicesIssueSalesResponse {
   }
 
   public interface GrossTotalStage {
-    PaidAmountStage grossTotal(@NotNull String grossTotal);
+    SalesTaxTotalStage grossTotal(@NotNull String grossTotal);
+  }
+
+  public interface SalesTaxTotalStage {
+    PaidAmountStage salesTaxTotal(@NotNull String salesTaxTotal);
   }
 
   public interface PaidAmountStage {
@@ -1225,7 +1275,15 @@ public final class InvoicesIssueSalesResponse {
   }
 
   public interface DiscountPercentStage {
-    CreatedAtStage discountPercent(@NotNull String discountPercent);
+    PayLinkEnabledStage discountPercent(@NotNull String discountPercent);
+  }
+
+  public interface PayLinkEnabledStage {
+    DebtRemindersEnabledStage payLinkEnabled(boolean payLinkEnabled);
+  }
+
+  public interface DebtRemindersEnabledStage {
+    CreatedAtStage debtRemindersEnabled(boolean debtRemindersEnabled);
   }
 
   public interface CreatedAtStage {
@@ -1278,6 +1336,12 @@ public final class InvoicesIssueSalesResponse {
     _FinalStage fxRate(String fxRate);
 
     _FinalStage fxRate(Nullable<String> fxRate);
+
+    _FinalStage salesTaxPercent(Optional<String> salesTaxPercent);
+
+    _FinalStage salesTaxPercent(String salesTaxPercent);
+
+    _FinalStage salesTaxPercent(Nullable<String> salesTaxPercent);
 
     _FinalStage journalTransactionId(Optional<String> journalTransactionId);
 
@@ -1544,7 +1608,7 @@ public final class InvoicesIssueSalesResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, PartnerIdStage, TypeStage, StatusStage, PaymentStatusStage, CurrencyStage, NetTotalStage, VatTotalStage, GrossTotalStage, PaidAmountStage, DeemedSupplierStage, DiscountPercentStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, PartnerIdStage, TypeStage, StatusStage, PaymentStatusStage, CurrencyStage, NetTotalStage, VatTotalStage, GrossTotalStage, SalesTaxTotalStage, PaidAmountStage, DeemedSupplierStage, DiscountPercentStage, PayLinkEnabledStage, DebtRemindersEnabledStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
     private String id;
 
     private String partnerId;
@@ -1563,11 +1627,17 @@ public final class InvoicesIssueSalesResponse {
 
     private String grossTotal;
 
+    private String salesTaxTotal;
+
     private String paidAmount;
 
     private boolean deemedSupplier;
 
     private String discountPercent;
+
+    private boolean payLinkEnabled;
+
+    private boolean debtRemindersEnabled;
 
     private OffsetDateTime createdAt;
 
@@ -1659,6 +1729,8 @@ public final class InvoicesIssueSalesResponse {
 
     private Optional<String> journalTransactionId = Optional.empty();
 
+    private Optional<String> salesTaxPercent = Optional.empty();
+
     private Optional<String> fxRate = Optional.empty();
 
     private Optional<String> dueDate = Optional.empty();
@@ -1694,6 +1766,8 @@ public final class InvoicesIssueSalesResponse {
       netTotal(other.getNetTotal());
       vatTotal(other.getVatTotal());
       grossTotal(other.getGrossTotal());
+      salesTaxPercent(other.getSalesTaxPercent());
+      salesTaxTotal(other.getSalesTaxTotal());
       paidAmount(other.getPaidAmount());
       journalTransactionId(other.getJournalTransactionId());
       appliedToInvoiceId(other.getAppliedToInvoiceId());
@@ -1724,6 +1798,8 @@ public final class InvoicesIssueSalesResponse {
       lockedAt(other.getLockedAt());
       lockedBy(other.getLockedBy());
       payToken(other.getPayToken());
+      payLinkEnabled(other.getPayLinkEnabled());
+      debtRemindersEnabled(other.getDebtRemindersEnabled());
       einvoiceSystem(other.getEinvoiceSystem());
       einvoiceTransport(other.getEinvoiceTransport());
       einvoiceMessageId(other.getEinvoiceMessageId());
@@ -1804,8 +1880,15 @@ public final class InvoicesIssueSalesResponse {
 
     @java.lang.Override
     @JsonSetter("grossTotal")
-    public PaidAmountStage grossTotal(@NotNull String grossTotal) {
+    public SalesTaxTotalStage grossTotal(@NotNull String grossTotal) {
       this.grossTotal = Objects.requireNonNull(grossTotal, "grossTotal must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("salesTaxTotal")
+    public PaidAmountStage salesTaxTotal(@NotNull String salesTaxTotal) {
+      this.salesTaxTotal = Objects.requireNonNull(salesTaxTotal, "salesTaxTotal must not be null");
       return this;
     }
 
@@ -1825,8 +1908,22 @@ public final class InvoicesIssueSalesResponse {
 
     @java.lang.Override
     @JsonSetter("discountPercent")
-    public CreatedAtStage discountPercent(@NotNull String discountPercent) {
+    public PayLinkEnabledStage discountPercent(@NotNull String discountPercent) {
       this.discountPercent = Objects.requireNonNull(discountPercent, "discountPercent must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("payLinkEnabled")
+    public DebtRemindersEnabledStage payLinkEnabled(boolean payLinkEnabled) {
+      this.payLinkEnabled = payLinkEnabled;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("debtRemindersEnabled")
+    public CreatedAtStage debtRemindersEnabled(boolean debtRemindersEnabled) {
+      this.debtRemindersEnabled = debtRemindersEnabled;
       return this;
     }
 
@@ -3143,6 +3240,36 @@ public final class InvoicesIssueSalesResponse {
     }
 
     @java.lang.Override
+    public _FinalStage salesTaxPercent(Nullable<String> salesTaxPercent) {
+      if (salesTaxPercent.isNull()) {
+        this.salesTaxPercent = null;
+      }
+      else if (salesTaxPercent.isEmpty()) {
+        this.salesTaxPercent = Optional.empty();
+      }
+      else {
+        this.salesTaxPercent = Optional.of(salesTaxPercent.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage salesTaxPercent(String salesTaxPercent) {
+      this.salesTaxPercent = Optional.ofNullable(salesTaxPercent);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "salesTaxPercent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage salesTaxPercent(Optional<String> salesTaxPercent) {
+      this.salesTaxPercent = salesTaxPercent;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage fxRate(Nullable<String> fxRate) {
       if (fxRate.isNull()) {
         this.fxRate = null;
@@ -3324,7 +3451,7 @@ public final class InvoicesIssueSalesResponse {
 
     @java.lang.Override
     public InvoicesIssueSalesResponse build() {
-      return new InvoicesIssueSalesResponse(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, fxRate, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, locale, recurringInvoiceId, lockedAt, lockedBy, payToken, einvoiceSystem, einvoiceTransport, einvoiceMessageId, einvoiceNumber, einvoiceStatus, einvoiceDetail, einvoiceSentAt, einvoiceCheckedAt, peppolMessageId, peppolStatus, peppolDetail, peppolSentAt, peppolCheckedAt, createdAt, updatedAt, advanceAppliedAmount, lines, vatEvidence, additionalProperties);
+      return new InvoicesIssueSalesResponse(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, fxRate, netTotal, vatTotal, grossTotal, salesTaxPercent, salesTaxTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, locale, recurringInvoiceId, lockedAt, lockedBy, payToken, payLinkEnabled, debtRemindersEnabled, einvoiceSystem, einvoiceTransport, einvoiceMessageId, einvoiceNumber, einvoiceStatus, einvoiceDetail, einvoiceSentAt, einvoiceCheckedAt, peppolMessageId, peppolStatus, peppolDetail, peppolSentAt, peppolCheckedAt, createdAt, updatedAt, advanceAppliedAmount, lines, vatEvidence, additionalProperties);
     }
 
     @java.lang.Override

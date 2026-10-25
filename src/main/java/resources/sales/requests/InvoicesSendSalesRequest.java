@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.sales.types.InvoicesSendSalesRequestLocale;
+import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -33,13 +34,17 @@ public final class InvoicesSendSalesRequest {
 
   private final Optional<InvoicesSendSalesRequestLocale> locale;
 
+  private final Optional<Boolean> quote;
+
   private final Map<String, Object> additionalProperties;
 
   private InvoicesSendSalesRequest(String id, Optional<String> to,
-      Optional<InvoicesSendSalesRequestLocale> locale, Map<String, Object> additionalProperties) {
+      Optional<InvoicesSendSalesRequestLocale> locale, Optional<Boolean> quote,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.to = to;
     this.locale = locale;
+    this.quote = quote;
     this.additionalProperties = additionalProperties;
   }
 
@@ -58,6 +63,11 @@ public final class InvoicesSendSalesRequest {
     return locale;
   }
 
+  @JsonProperty("quote")
+  public Optional<Boolean> getQuote() {
+    return quote;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -70,12 +80,12 @@ public final class InvoicesSendSalesRequest {
   }
 
   private boolean equalTo(InvoicesSendSalesRequest other) {
-    return id.equals(other.id) && to.equals(other.to) && locale.equals(other.locale);
+    return id.equals(other.id) && to.equals(other.to) && locale.equals(other.locale) && quote.equals(other.quote);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.to, this.locale);
+    return Objects.hash(this.id, this.to, this.locale, this.quote);
   }
 
   @java.lang.Override
@@ -107,6 +117,10 @@ public final class InvoicesSendSalesRequest {
     _FinalStage locale(Optional<InvoicesSendSalesRequestLocale> locale);
 
     _FinalStage locale(InvoicesSendSalesRequestLocale locale);
+
+    _FinalStage quote(Optional<Boolean> quote);
+
+    _FinalStage quote(Boolean quote);
   }
 
   @JsonIgnoreProperties(
@@ -114,6 +128,8 @@ public final class InvoicesSendSalesRequest {
   )
   public static final class Builder implements IdStage, _FinalStage {
     private String id;
+
+    private Optional<Boolean> quote = Optional.empty();
 
     private Optional<InvoicesSendSalesRequestLocale> locale = Optional.empty();
 
@@ -130,6 +146,7 @@ public final class InvoicesSendSalesRequest {
       id(other.getId());
       to(other.getTo());
       locale(other.getLocale());
+      quote(other.getQuote());
       return this;
     }
 
@@ -137,6 +154,22 @@ public final class InvoicesSendSalesRequest {
     @JsonSetter("id")
     public _FinalStage id(@NotNull String id) {
       this.id = Objects.requireNonNull(id, "id must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage quote(Boolean quote) {
+      this.quote = Optional.ofNullable(quote);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "quote",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage quote(Optional<Boolean> quote) {
+      this.quote = quote;
       return this;
     }
 
@@ -174,7 +207,7 @@ public final class InvoicesSendSalesRequest {
 
     @java.lang.Override
     public InvoicesSendSalesRequest build() {
-      return new InvoicesSendSalesRequest(id, to, locale, additionalProperties);
+      return new InvoicesSendSalesRequest(id, to, locale, quote, additionalProperties);
     }
 
     @java.lang.Override

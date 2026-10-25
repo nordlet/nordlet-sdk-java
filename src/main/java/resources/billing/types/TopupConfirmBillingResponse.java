@@ -51,6 +51,8 @@ public final class TopupConfirmBillingResponse {
 
   private final boolean hasSubscription;
 
+  private final Optional<OffsetDateTime> subscriptionCancelAt;
+
   private final Optional<OffsetDateTime> paymentFailedAt;
 
   private final Optional<String> paymentFailedInvoiceUrl;
@@ -78,8 +80,8 @@ public final class TopupConfirmBillingResponse {
       long balanceCents, Optional<OffsetDateTime> trialEndsAt,
       Optional<OffsetDateTime> firstTopUpAt, Optional<String> lastChargedDate,
       boolean paymentsConfigured, boolean hasPaymentAccount, boolean hasSubscription,
-      Optional<OffsetDateTime> paymentFailedAt, Optional<String> paymentFailedInvoiceUrl,
-      TopupConfirmBillingResponseMonthToDate monthToDate,
+      Optional<OffsetDateTime> subscriptionCancelAt, Optional<OffsetDateTime> paymentFailedAt,
+      Optional<String> paymentFailedInvoiceUrl, TopupConfirmBillingResponseMonthToDate monthToDate,
       Map<String, TopupConfirmBillingResponsePlansValue> plans, String apiRequestEur,
       TopupConfirmBillingResponseTopUp topUp, TopupConfirmBillingResponseAutoTopUp autoTopUp,
       long overdraftCapCents, long overdraftCapMaxCents, long trialDays,
@@ -94,6 +96,7 @@ public final class TopupConfirmBillingResponse {
     this.paymentsConfigured = paymentsConfigured;
     this.hasPaymentAccount = hasPaymentAccount;
     this.hasSubscription = hasSubscription;
+    this.subscriptionCancelAt = subscriptionCancelAt;
     this.paymentFailedAt = paymentFailedAt;
     this.paymentFailedInvoiceUrl = paymentFailedInvoiceUrl;
     this.monthToDate = monthToDate;
@@ -164,6 +167,17 @@ public final class TopupConfirmBillingResponse {
   @JsonProperty("hasSubscription")
   public boolean getHasSubscription() {
     return hasSubscription;
+  }
+
+  /**
+   * @return When the Stripe subscription ends after <code>subscription/cancel</code>; null while it renews
+   */
+  @JsonIgnore
+  public Optional<OffsetDateTime> getSubscriptionCancelAt() {
+    if (subscriptionCancelAt == null) {
+      return Optional.empty();
+    }
+    return subscriptionCancelAt;
   }
 
   @JsonIgnore
@@ -253,6 +267,15 @@ public final class TopupConfirmBillingResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("subscriptionCancelAt")
+  private Optional<OffsetDateTime> _getSubscriptionCancelAt() {
+    return subscriptionCancelAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("paymentFailedAt")
   private Optional<OffsetDateTime> _getPaymentFailedAt() {
     return paymentFailedAt;
@@ -279,12 +302,12 @@ public final class TopupConfirmBillingResponse {
   }
 
   private boolean equalTo(TopupConfirmBillingResponse other) {
-    return plan.equals(other.plan) && accountType.equals(other.accountType) && status.equals(other.status) && balanceCents == other.balanceCents && trialEndsAt.equals(other.trialEndsAt) && firstTopUpAt.equals(other.firstTopUpAt) && lastChargedDate.equals(other.lastChargedDate) && paymentsConfigured == other.paymentsConfigured && hasPaymentAccount == other.hasPaymentAccount && hasSubscription == other.hasSubscription && paymentFailedAt.equals(other.paymentFailedAt) && paymentFailedInvoiceUrl.equals(other.paymentFailedInvoiceUrl) && monthToDate.equals(other.monthToDate) && plans.equals(other.plans) && apiRequestEur.equals(other.apiRequestEur) && topUp.equals(other.topUp) && autoTopUp.equals(other.autoTopUp) && overdraftCapCents == other.overdraftCapCents && overdraftCapMaxCents == other.overdraftCapMaxCents && trialDays == other.trialDays;
+    return plan.equals(other.plan) && accountType.equals(other.accountType) && status.equals(other.status) && balanceCents == other.balanceCents && trialEndsAt.equals(other.trialEndsAt) && firstTopUpAt.equals(other.firstTopUpAt) && lastChargedDate.equals(other.lastChargedDate) && paymentsConfigured == other.paymentsConfigured && hasPaymentAccount == other.hasPaymentAccount && hasSubscription == other.hasSubscription && subscriptionCancelAt.equals(other.subscriptionCancelAt) && paymentFailedAt.equals(other.paymentFailedAt) && paymentFailedInvoiceUrl.equals(other.paymentFailedInvoiceUrl) && monthToDate.equals(other.monthToDate) && plans.equals(other.plans) && apiRequestEur.equals(other.apiRequestEur) && topUp.equals(other.topUp) && autoTopUp.equals(other.autoTopUp) && overdraftCapCents == other.overdraftCapCents && overdraftCapMaxCents == other.overdraftCapMaxCents && trialDays == other.trialDays;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.plan, this.accountType, this.status, this.balanceCents, this.trialEndsAt, this.firstTopUpAt, this.lastChargedDate, this.paymentsConfigured, this.hasPaymentAccount, this.hasSubscription, this.paymentFailedAt, this.paymentFailedInvoiceUrl, this.monthToDate, this.plans, this.apiRequestEur, this.topUp, this.autoTopUp, this.overdraftCapCents, this.overdraftCapMaxCents, this.trialDays);
+    return Objects.hash(this.plan, this.accountType, this.status, this.balanceCents, this.trialEndsAt, this.firstTopUpAt, this.lastChargedDate, this.paymentsConfigured, this.hasPaymentAccount, this.hasSubscription, this.subscriptionCancelAt, this.paymentFailedAt, this.paymentFailedInvoiceUrl, this.monthToDate, this.plans, this.apiRequestEur, this.topUp, this.autoTopUp, this.overdraftCapCents, this.overdraftCapMaxCents, this.trialDays);
   }
 
   @java.lang.Override
@@ -379,6 +402,15 @@ public final class TopupConfirmBillingResponse {
 
     _FinalStage lastChargedDate(Nullable<String> lastChargedDate);
 
+    /**
+     * <p>When the Stripe subscription ends after <code>subscription/cancel</code>; null while it renews</p>
+     */
+    _FinalStage subscriptionCancelAt(Optional<OffsetDateTime> subscriptionCancelAt);
+
+    _FinalStage subscriptionCancelAt(OffsetDateTime subscriptionCancelAt);
+
+    _FinalStage subscriptionCancelAt(Nullable<OffsetDateTime> subscriptionCancelAt);
+
     _FinalStage paymentFailedAt(Optional<OffsetDateTime> paymentFailedAt);
 
     _FinalStage paymentFailedAt(OffsetDateTime paymentFailedAt);
@@ -436,6 +468,8 @@ public final class TopupConfirmBillingResponse {
 
     private Optional<OffsetDateTime> paymentFailedAt = Optional.empty();
 
+    private Optional<OffsetDateTime> subscriptionCancelAt = Optional.empty();
+
     private Optional<String> lastChargedDate = Optional.empty();
 
     private Optional<OffsetDateTime> firstTopUpAt = Optional.empty();
@@ -460,6 +494,7 @@ public final class TopupConfirmBillingResponse {
       paymentsConfigured(other.getPaymentsConfigured());
       hasPaymentAccount(other.getHasPaymentAccount());
       hasSubscription(other.getHasSubscription());
+      subscriptionCancelAt(other.getSubscriptionCancelAt());
       paymentFailedAt(other.getPaymentFailedAt());
       paymentFailedInvoiceUrl(other.getPaymentFailedInvoiceUrl());
       monthToDate(other.getMonthToDate());
@@ -660,6 +695,47 @@ public final class TopupConfirmBillingResponse {
       return this;
     }
 
+    /**
+     * <p>When the Stripe subscription ends after <code>subscription/cancel</code>; null while it renews</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage subscriptionCancelAt(Nullable<OffsetDateTime> subscriptionCancelAt) {
+      if (subscriptionCancelAt.isNull()) {
+        this.subscriptionCancelAt = null;
+      }
+      else if (subscriptionCancelAt.isEmpty()) {
+        this.subscriptionCancelAt = Optional.empty();
+      }
+      else {
+        this.subscriptionCancelAt = Optional.of(subscriptionCancelAt.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>When the Stripe subscription ends after <code>subscription/cancel</code>; null while it renews</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage subscriptionCancelAt(OffsetDateTime subscriptionCancelAt) {
+      this.subscriptionCancelAt = Optional.ofNullable(subscriptionCancelAt);
+      return this;
+    }
+
+    /**
+     * <p>When the Stripe subscription ends after <code>subscription/cancel</code>; null while it renews</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "subscriptionCancelAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage subscriptionCancelAt(Optional<OffsetDateTime> subscriptionCancelAt) {
+      this.subscriptionCancelAt = subscriptionCancelAt;
+      return this;
+    }
+
     @java.lang.Override
     public _FinalStage lastChargedDate(Nullable<String> lastChargedDate) {
       if (lastChargedDate.isNull()) {
@@ -752,7 +828,7 @@ public final class TopupConfirmBillingResponse {
 
     @java.lang.Override
     public TopupConfirmBillingResponse build() {
-      return new TopupConfirmBillingResponse(plan, accountType, status, balanceCents, trialEndsAt, firstTopUpAt, lastChargedDate, paymentsConfigured, hasPaymentAccount, hasSubscription, paymentFailedAt, paymentFailedInvoiceUrl, monthToDate, plans, apiRequestEur, topUp, autoTopUp, overdraftCapCents, overdraftCapMaxCents, trialDays, additionalProperties);
+      return new TopupConfirmBillingResponse(plan, accountType, status, balanceCents, trialEndsAt, firstTopUpAt, lastChargedDate, paymentsConfigured, hasPaymentAccount, hasSubscription, subscriptionCancelAt, paymentFailedAt, paymentFailedInvoiceUrl, monthToDate, plans, apiRequestEur, topUp, autoTopUp, overdraftCapCents, overdraftCapMaxCents, trialDays, additionalProperties);
     }
 
     @java.lang.Override

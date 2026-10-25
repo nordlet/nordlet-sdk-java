@@ -13,12 +13,16 @@ import com.nordlet.api.resources.sales.requests.ActsIssueSalesRequest;
 import com.nordlet.api.resources.sales.requests.ActsListSalesRequest;
 import com.nordlet.api.resources.sales.requests.ActsPdfSalesRequest;
 import com.nordlet.api.resources.sales.requests.ActsUpdateSalesRequest;
+import com.nordlet.api.resources.sales.requests.ExportsMonthSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoiceTemplatesCreateSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoiceTemplatesDeleteSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoiceTemplatesGetSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoiceTemplatesListSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoiceTemplatesUpdateSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesApplyAdvanceSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesCardPaymentsConnectSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesCardPaymentsDisconnectSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesCardPaymentsGetSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesCreateSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesDeleteSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesEinvoiceSendSalesRequest;
@@ -38,6 +42,8 @@ import com.nordlet.api.resources.sales.requests.InvoicesPeppolXmlSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesSendSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesUnlockSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesUpdateSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesViewSalesRequest;
+import com.nordlet.api.resources.sales.requests.PaymentsListSalesRequest;
 import com.nordlet.api.resources.sales.requests.RecognitionComputeSalesRequest;
 import com.nordlet.api.resources.sales.requests.RecognitionModifySalesRequest;
 import com.nordlet.api.resources.sales.requests.RecognitionProgressSalesRequest;
@@ -61,12 +67,16 @@ import com.nordlet.api.resources.sales.types.ActsIssueSalesResponse;
 import com.nordlet.api.resources.sales.types.ActsListSalesResponse;
 import com.nordlet.api.resources.sales.types.ActsPdfSalesResponse;
 import com.nordlet.api.resources.sales.types.ActsUpdateSalesResponse;
+import com.nordlet.api.resources.sales.types.ExportsMonthSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoiceTemplatesCreateSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoiceTemplatesDeleteSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoiceTemplatesGetSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoiceTemplatesListSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoiceTemplatesUpdateSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesApplyAdvanceSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesCardPaymentsConnectSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesCardPaymentsDisconnectSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesCardPaymentsGetSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesCreateSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesDeleteSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesEinvoiceSendSalesResponse;
@@ -86,6 +96,8 @@ import com.nordlet.api.resources.sales.types.InvoicesPeppolXmlSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesSendSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesUnlockSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesUpdateSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesViewSalesResponse;
+import com.nordlet.api.resources.sales.types.PaymentsListSalesResponse;
 import com.nordlet.api.resources.sales.types.RecognitionComputeSalesResponse;
 import com.nordlet.api.resources.sales.types.RecognitionModifySalesResponse;
 import com.nordlet.api.resources.sales.types.RecognitionProgressSalesResponse;
@@ -168,7 +180,23 @@ public class AsyncSalesClient {
   }
 
   /**
-   * E-mail an issued sale document as a PDF attachment to <code>to</code>, else to the partner's e-mail address, and emit <code>sale_invoice.sent</code>. The PDF is the one of <code>sales/invoices/pdf</code>. Answers 422 when e-mail sending is not configured, when the document is not issued, or when neither <code>to</code> nor the partner's e-mail is set.
+   * Return a sale document as its customer sees it: the seller as printed on it (the snapshot taken at issue, else the company), the buyer with address and e-mail, the lines, the totals, <code>paidOn</code> (the date of the latest payment once the document is paid), <code>payUrl</code> (as in <code>sales/invoices/payment-link</code>) and <code>token</code>, the document's customer token for <code>public/invoices/get</code> and <code>public/invoices/pdf</code>, created on first use; <code>token</code> is null on a draft.
+   */
+  public CompletableFuture<InvoicesViewSalesResponse> invoicesView(
+      InvoicesViewSalesRequest request) {
+    return this.rawClient.invoicesView(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return a sale document as its customer sees it: the seller as printed on it (the snapshot taken at issue, else the company), the buyer with address and e-mail, the lines, the totals, <code>paidOn</code> (the date of the latest payment once the document is paid), <code>payUrl</code> (as in <code>sales/invoices/payment-link</code>) and <code>token</code>, the document's customer token for <code>public/invoices/get</code> and <code>public/invoices/pdf</code>, created on first use; <code>token</code> is null on a draft.
+   */
+  public CompletableFuture<InvoicesViewSalesResponse> invoicesView(InvoicesViewSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesView(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * E-mail an issued sale document as a PDF attachment to <code>to</code>, else to the partner's e-mail address, and emit <code>sale_invoice.sent</code>. The PDF is the one of <code>sales/invoices/pdf</code>. With <code>quote: true</code> the document must be a draft: it is e-mailed as a quote (PDF titled quote, no payment link), stays a draft, and <code>sale_invoice.quote_sent</code> is emitted instead. Answers 422 when e-mail sending is not configured, when the document is not issued (or, with <code>quote</code>, not a draft), or when neither <code>to</code> nor the partner's e-mail is set.
    */
   public CompletableFuture<InvoicesSendSalesResponse> invoicesSend(
       InvoicesSendSalesRequest request) {
@@ -176,7 +204,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * E-mail an issued sale document as a PDF attachment to <code>to</code>, else to the partner's e-mail address, and emit <code>sale_invoice.sent</code>. The PDF is the one of <code>sales/invoices/pdf</code>. Answers 422 when e-mail sending is not configured, when the document is not issued, or when neither <code>to</code> nor the partner's e-mail is set.
+   * E-mail an issued sale document as a PDF attachment to <code>to</code>, else to the partner's e-mail address, and emit <code>sale_invoice.sent</code>. The PDF is the one of <code>sales/invoices/pdf</code>. With <code>quote: true</code> the document must be a draft: it is e-mailed as a quote (PDF titled quote, no payment link), stays a draft, and <code>sale_invoice.quote_sent</code> is emitted instead. Answers 422 when e-mail sending is not configured, when the document is not issued (or, with <code>quote</code>, not a draft), or when neither <code>to</code> nor the partner's e-mail is set.
    */
   public CompletableFuture<InvoicesSendSalesResponse> invoicesSend(InvoicesSendSalesRequest request,
       RequestOptions requestOptions) {
@@ -280,7 +308,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Change a draft sale document. Fields left out keep their value, <code>lines</code> replaces every line, and a changed <code>discountPercent</code> recomputes the existing lines. Answers 409 when the document is issued or locked, and 422 under the checks of <code>sales/invoices/create</code> (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
+   * Change a draft sale document. Fields left out keep their value, <code>lines</code> replaces every line, a changed <code>discountPercent</code> recomputes the existing lines, and <code>salesTaxPercent</code> (invoices only, null removes it) recomputes the sales tax and the total. Answers 409 when the document is issued or locked, and 422 under the checks of <code>sales/invoices/create</code> (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
    */
   public CompletableFuture<InvoicesUpdateSalesResponse> invoicesUpdate(
       InvoicesUpdateSalesRequest request) {
@@ -288,7 +316,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Change a draft sale document. Fields left out keep their value, <code>lines</code> replaces every line, and a changed <code>discountPercent</code> recomputes the existing lines. Answers 409 when the document is issued or locked, and 422 under the checks of <code>sales/invoices/create</code> (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
+   * Change a draft sale document. Fields left out keep their value, <code>lines</code> replaces every line, a changed <code>discountPercent</code> recomputes the existing lines, and <code>salesTaxPercent</code> (invoices only, null removes it) recomputes the sales tax and the total. Answers 409 when the document is issued or locked, and 422 under the checks of <code>sales/invoices/create</code> (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
    */
   public CompletableFuture<InvoicesUpdateSalesResponse> invoicesUpdate(
       InvoicesUpdateSalesRequest request, RequestOptions requestOptions) {
@@ -360,7 +388,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Return the customer payment link of a sale document, rendered from the company's payment link template (<code>sales/invoices/payment-settings/update</code>); <code>url</code> is null when the company has no template or the document is not issued. The document's payment token is created on first use. Answers 409 when the document is already paid.
+   * Return the customer payment link of a sale document: the Stripe card payment page (<code>source</code> <code>stripe</code>) when the company's Stripe account is connected and can take charges (<code>sales/invoices/card-payments/get</code>), else the link rendered from the company's payment link template (<code>sales/invoices/payment-settings/update</code>, <code>source</code> <code>template</code>); <code>url</code> is null when the company has neither, the document is not issued or its <code>payLinkEnabled</code> is false. The document's payment token is created on first use. Answers 409 when the document is already paid.
    */
   public CompletableFuture<InvoicesPaymentLinkSalesResponse> invoicesPaymentLink(
       InvoicesPaymentLinkSalesRequest request) {
@@ -368,7 +396,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Return the customer payment link of a sale document, rendered from the company's payment link template (<code>sales/invoices/payment-settings/update</code>); <code>url</code> is null when the company has no template or the document is not issued. The document's payment token is created on first use. Answers 409 when the document is already paid.
+   * Return the customer payment link of a sale document: the Stripe card payment page (<code>source</code> <code>stripe</code>) when the company's Stripe account is connected and can take charges (<code>sales/invoices/card-payments/get</code>), else the link rendered from the company's payment link template (<code>sales/invoices/payment-settings/update</code>, <code>source</code> <code>template</code>); <code>url</code> is null when the company has neither, the document is not issued or its <code>payLinkEnabled</code> is false. The document's payment token is created on first use. Answers 409 when the document is already paid.
    */
   public CompletableFuture<InvoicesPaymentLinkSalesResponse> invoicesPaymentLink(
       InvoicesPaymentLinkSalesRequest request, RequestOptions requestOptions) {
@@ -1056,5 +1084,116 @@ public class AsyncSalesClient {
   public CompletableFuture<RefundLiabilityTrueUpSalesResponse> refundLiabilityTrueUp(
       RefundLiabilityTrueUpSalesRequest request, RequestOptions requestOptions) {
     return this.rawClient.refundLiabilityTrueUp(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * List the money received on sale documents between <code>from</code> and <code>to</code> (inclusive), oldest first: bank payments matched to the document, card settlements of a payment provider and cash receipt orders. A reversed bank match is a row with a negative amount on the date it was reversed. Credit notes, advances applied to a final invoice and balances carried over by a migration are not money received and are left out. <code>amount</code> is in the document currency; <code>method</code> is <code>card</code> for a settlement or a payment into a Stripe bank account, <code>cash</code> for a cash order and <code>bank_transfer</code> otherwise.
+   */
+  public CompletableFuture<PaymentsListSalesResponse> paymentsList(
+      PaymentsListSalesRequest request) {
+    return this.rawClient.paymentsList(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * List the money received on sale documents between <code>from</code> and <code>to</code> (inclusive), oldest first: bank payments matched to the document, card settlements of a payment provider and cash receipt orders. A reversed bank match is a row with a negative amount on the date it was reversed. Credit notes, advances applied to a final invoice and balances carried over by a migration are not money received and are left out. <code>amount</code> is in the document currency; <code>method</code> is <code>card</code> for a settlement or a payment into a Stripe bank account, <code>cash</code> for a cash order and <code>bank_transfer</code> otherwise.
+   */
+  public CompletableFuture<PaymentsListSalesResponse> paymentsList(PaymentsListSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.paymentsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Export one calendar month for the accountant as a single file: every invoice and credit note issued in the month (number, dates, client, currency, net, VAT, total and the amount paid so far) and every payment received in the month as listed by <code>sales/payments/list</code>. <code>format</code> is <code>csv</code> (comma separated, UTF-8, one section per table) or <code>pdf</code>. <code>format</code> <code>nordlet</code> instead returns a JSON package that <code>migration/books/validate</code> and <code>migration/books/import</code> accept: every posted journal transaction dated in the month with its debit and credit lines, the accounts those lines use (with their parent accounts) and the partners of those transactions; its cutoverDate is the day after the month ends. The file comes back base64-encoded in <code>data</code>.
+   */
+  public CompletableFuture<ExportsMonthSalesResponse> exportsMonth(
+      ExportsMonthSalesRequest request) {
+    return this.rawClient.exportsMonth(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Export one calendar month for the accountant as a single file: every invoice and credit note issued in the month (number, dates, client, currency, net, VAT, total and the amount paid so far) and every payment received in the month as listed by <code>sales/payments/list</code>. <code>format</code> is <code>csv</code> (comma separated, UTF-8, one section per table) or <code>pdf</code>. <code>format</code> <code>nordlet</code> instead returns a JSON package that <code>migration/books/validate</code> and <code>migration/books/import</code> accept: every posted journal transaction dated in the month with its debit and credit lines, the accounts those lines use (with their parent accounts) and the partners of those transactions; its cutoverDate is the day after the month ends. The file comes back base64-encoded in <code>data</code>.
+   */
+  public CompletableFuture<ExportsMonthSalesResponse> exportsMonth(ExportsMonthSalesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.exportsMonth(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return whether the company's Stripe account is connected for card payments and whether Stripe lets it take charges yet. While the account is connected but cannot take charges, Stripe is asked again on each call. When <code>chargesEnabled</code> is true, payment links of issued invoices open a Stripe Checkout page on that account.
+   */
+  public CompletableFuture<InvoicesCardPaymentsGetSalesResponse> invoicesCardPaymentsGet() {
+    return this.rawClient.invoicesCardPaymentsGet().thenApply(response -> response.body());
+  }
+
+  /**
+   * Return whether the company's Stripe account is connected for card payments and whether Stripe lets it take charges yet. While the account is connected but cannot take charges, Stripe is asked again on each call. When <code>chargesEnabled</code> is true, payment links of issued invoices open a Stripe Checkout page on that account.
+   */
+  public CompletableFuture<InvoicesCardPaymentsGetSalesResponse> invoicesCardPaymentsGet(
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesCardPaymentsGet(requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return whether the company's Stripe account is connected for card payments and whether Stripe lets it take charges yet. While the account is connected but cannot take charges, Stripe is asked again on each call. When <code>chargesEnabled</code> is true, payment links of issued invoices open a Stripe Checkout page on that account.
+   */
+  public CompletableFuture<InvoicesCardPaymentsGetSalesResponse> invoicesCardPaymentsGet(
+      InvoicesCardPaymentsGetSalesRequest request) {
+    return this.rawClient.invoicesCardPaymentsGet(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return whether the company's Stripe account is connected for card payments and whether Stripe lets it take charges yet. While the account is connected but cannot take charges, Stripe is asked again on each call. When <code>chargesEnabled</code> is true, payment links of issued invoices open a Stripe Checkout page on that account.
+   */
+  public CompletableFuture<InvoicesCardPaymentsGetSalesResponse> invoicesCardPaymentsGet(
+      InvoicesCardPaymentsGetSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesCardPaymentsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Start or continue connecting the company's own Stripe account for card payments: creates the Stripe account on first use and returns the Stripe-hosted onboarding <code>url</code>. Stripe sends the user back to <code>returnUrl</code> when onboarding ends and to <code>refreshUrl</code> when the link has expired. Answers 503 when Stripe is not configured.
+   */
+  public CompletableFuture<InvoicesCardPaymentsConnectSalesResponse> invoicesCardPaymentsConnect(
+      InvoicesCardPaymentsConnectSalesRequest request) {
+    return this.rawClient.invoicesCardPaymentsConnect(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Start or continue connecting the company's own Stripe account for card payments: creates the Stripe account on first use and returns the Stripe-hosted onboarding <code>url</code>. Stripe sends the user back to <code>returnUrl</code> when onboarding ends and to <code>refreshUrl</code> when the link has expired. Answers 503 when Stripe is not configured.
+   */
+  public CompletableFuture<InvoicesCardPaymentsConnectSalesResponse> invoicesCardPaymentsConnect(
+      InvoicesCardPaymentsConnectSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesCardPaymentsConnect(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Disconnect the company's Stripe account: payment links fall back to the payment link template. The Stripe account itself is left as it is.
+   */
+  public CompletableFuture<InvoicesCardPaymentsDisconnectSalesResponse> invoicesCardPaymentsDisconnect(
+      ) {
+    return this.rawClient.invoicesCardPaymentsDisconnect().thenApply(response -> response.body());
+  }
+
+  /**
+   * Disconnect the company's Stripe account: payment links fall back to the payment link template. The Stripe account itself is left as it is.
+   */
+  public CompletableFuture<InvoicesCardPaymentsDisconnectSalesResponse> invoicesCardPaymentsDisconnect(
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesCardPaymentsDisconnect(requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Disconnect the company's Stripe account: payment links fall back to the payment link template. The Stripe account itself is left as it is.
+   */
+  public CompletableFuture<InvoicesCardPaymentsDisconnectSalesResponse> invoicesCardPaymentsDisconnect(
+      InvoicesCardPaymentsDisconnectSalesRequest request) {
+    return this.rawClient.invoicesCardPaymentsDisconnect(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Disconnect the company's Stripe account: payment links fall back to the payment link template. The Stripe account itself is left as it is.
+   */
+  public CompletableFuture<InvoicesCardPaymentsDisconnectSalesResponse> invoicesCardPaymentsDisconnect(
+      InvoicesCardPaymentsDisconnectSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesCardPaymentsDisconnect(request, requestOptions).thenApply(response -> response.body());
   }
 }

@@ -71,6 +71,10 @@ public final class InvoicesCreateSalesRequest {
 
   private final Optional<InvoicesCreateSalesRequestLocale> locale;
 
+  private final Optional<Boolean> payLinkEnabled;
+
+  private final Optional<Boolean> debtRemindersEnabled;
+
   private final Optional<String> operationTypeId;
 
   private final Optional<String> documentSeriesId;
@@ -89,6 +93,8 @@ public final class InvoicesCreateSalesRequest {
 
   private final Optional<String> discountPercent;
 
+  private final Optional<String> salesTaxPercent;
+
   private final List<InvoicesCreateSalesRequestLinesItem> lines;
 
   private final Map<String, Object> additionalProperties;
@@ -102,11 +108,13 @@ public final class InvoicesCreateSalesRequest {
       Optional<String> intrastatRegion, Optional<String> intrastatNatureOfTransaction,
       Optional<String> vatCountryCode, Optional<Boolean> deemedSupplier, Optional<String> notes,
       Optional<String> documentRef, Optional<InvoicesCreateSalesRequestLocale> locale,
+      Optional<Boolean> payLinkEnabled, Optional<Boolean> debtRemindersEnabled,
       Optional<String> operationTypeId, Optional<String> documentSeriesId,
       Optional<String> seriesLabel, Optional<String> orderNumber, Optional<String> issuedByName,
       Optional<String> issuedByTitle, Optional<String> receivedByName,
       Optional<String> receivedByTitle, Optional<String> discountPercent,
-      List<InvoicesCreateSalesRequestLinesItem> lines, Map<String, Object> additionalProperties) {
+      Optional<String> salesTaxPercent, List<InvoicesCreateSalesRequestLinesItem> lines,
+      Map<String, Object> additionalProperties) {
     this.partnerId = partnerId;
     this.type = type;
     this.currency = currency;
@@ -126,6 +134,8 @@ public final class InvoicesCreateSalesRequest {
     this.notes = notes;
     this.documentRef = documentRef;
     this.locale = locale;
+    this.payLinkEnabled = payLinkEnabled;
+    this.debtRemindersEnabled = debtRemindersEnabled;
     this.operationTypeId = operationTypeId;
     this.documentSeriesId = documentSeriesId;
     this.seriesLabel = seriesLabel;
@@ -135,6 +145,7 @@ public final class InvoicesCreateSalesRequest {
     this.receivedByName = receivedByName;
     this.receivedByTitle = receivedByTitle;
     this.discountPercent = discountPercent;
+    this.salesTaxPercent = salesTaxPercent;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
   }
@@ -243,6 +254,22 @@ public final class InvoicesCreateSalesRequest {
     return locale;
   }
 
+  /**
+   * @return Whether the PDF and the e-mail carry the payment link of the company payment link template
+   */
+  @JsonProperty("payLinkEnabled")
+  public Optional<Boolean> getPayLinkEnabled() {
+    return payLinkEnabled;
+  }
+
+  /**
+   * @return Whether automatic debt reminders include this invoice when its partner has them turned on
+   */
+  @JsonProperty("debtRemindersEnabled")
+  public Optional<Boolean> getDebtRemindersEnabled() {
+    return debtRemindersEnabled;
+  }
+
   @JsonProperty("operationTypeId")
   public Optional<String> getOperationTypeId() {
     return operationTypeId;
@@ -288,6 +315,14 @@ public final class InvoicesCreateSalesRequest {
     return discountPercent;
   }
 
+  /**
+   * @return Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.
+   */
+  @JsonProperty("salesTaxPercent")
+  public Optional<String> getSalesTaxPercent() {
+    return salesTaxPercent;
+  }
+
   @JsonProperty("lines")
   public List<InvoicesCreateSalesRequestLinesItem> getLines() {
     return lines;
@@ -305,12 +340,12 @@ public final class InvoicesCreateSalesRequest {
   }
 
   private boolean equalTo(InvoicesCreateSalesRequest other) {
-    return partnerId.equals(other.partnerId) && type.equals(other.type) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && locale.equals(other.locale) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && discountPercent.equals(other.discountPercent) && lines.equals(other.lines);
+    return partnerId.equals(other.partnerId) && type.equals(other.type) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && locale.equals(other.locale) && payLinkEnabled.equals(other.payLinkEnabled) && debtRemindersEnabled.equals(other.debtRemindersEnabled) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && discountPercent.equals(other.discountPercent) && salesTaxPercent.equals(other.salesTaxPercent) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.partnerId, this.type, this.currency, this.issueDate, this.dueDate, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.locale, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.discountPercent, this.lines);
+    return Objects.hash(this.partnerId, this.type, this.currency, this.issueDate, this.dueDate, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.locale, this.payLinkEnabled, this.debtRemindersEnabled, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.discountPercent, this.salesTaxPercent, this.lines);
   }
 
   @java.lang.Override
@@ -416,6 +451,20 @@ public final class InvoicesCreateSalesRequest {
 
     _FinalStage locale(InvoicesCreateSalesRequestLocale locale);
 
+    /**
+     * <p>Whether the PDF and the e-mail carry the payment link of the company payment link template</p>
+     */
+    _FinalStage payLinkEnabled(Optional<Boolean> payLinkEnabled);
+
+    _FinalStage payLinkEnabled(Boolean payLinkEnabled);
+
+    /**
+     * <p>Whether automatic debt reminders include this invoice when its partner has them turned on</p>
+     */
+    _FinalStage debtRemindersEnabled(Optional<Boolean> debtRemindersEnabled);
+
+    _FinalStage debtRemindersEnabled(Boolean debtRemindersEnabled);
+
     _FinalStage operationTypeId(Optional<String> operationTypeId);
 
     _FinalStage operationTypeId(String operationTypeId);
@@ -452,6 +501,13 @@ public final class InvoicesCreateSalesRequest {
 
     _FinalStage discountPercent(String discountPercent);
 
+    /**
+     * <p>Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.</p>
+     */
+    _FinalStage salesTaxPercent(Optional<String> salesTaxPercent);
+
+    _FinalStage salesTaxPercent(String salesTaxPercent);
+
     _FinalStage lines(List<InvoicesCreateSalesRequestLinesItem> lines);
 
     _FinalStage addLines(InvoicesCreateSalesRequestLinesItem lines);
@@ -466,6 +522,8 @@ public final class InvoicesCreateSalesRequest {
     private String partnerId;
 
     private List<InvoicesCreateSalesRequestLinesItem> lines = new ArrayList<>();
+
+    private Optional<String> salesTaxPercent = Optional.empty();
 
     private Optional<String> discountPercent = Optional.empty();
 
@@ -484,6 +542,10 @@ public final class InvoicesCreateSalesRequest {
     private Optional<String> documentSeriesId = Optional.empty();
 
     private Optional<String> operationTypeId = Optional.empty();
+
+    private Optional<Boolean> debtRemindersEnabled = Optional.empty();
+
+    private Optional<Boolean> payLinkEnabled = Optional.empty();
 
     private Optional<InvoicesCreateSalesRequestLocale> locale = Optional.empty();
 
@@ -548,6 +610,8 @@ public final class InvoicesCreateSalesRequest {
       notes(other.getNotes());
       documentRef(other.getDocumentRef());
       locale(other.getLocale());
+      payLinkEnabled(other.getPayLinkEnabled());
+      debtRemindersEnabled(other.getDebtRemindersEnabled());
       operationTypeId(other.getOperationTypeId());
       documentSeriesId(other.getDocumentSeriesId());
       seriesLabel(other.getSeriesLabel());
@@ -557,6 +621,7 @@ public final class InvoicesCreateSalesRequest {
       receivedByName(other.getReceivedByName());
       receivedByTitle(other.getReceivedByTitle());
       discountPercent(other.getDiscountPercent());
+      salesTaxPercent(other.getSalesTaxPercent());
       lines(other.getLines());
       return this;
     }
@@ -592,6 +657,29 @@ public final class InvoicesCreateSalesRequest {
       if (lines != null) {
         this.lines.addAll(lines);
       }
+      return this;
+    }
+
+    /**
+     * <p>Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage salesTaxPercent(String salesTaxPercent) {
+      this.salesTaxPercent = Optional.ofNullable(salesTaxPercent);
+      return this;
+    }
+
+    /**
+     * <p>Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "salesTaxPercent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage salesTaxPercent(Optional<String> salesTaxPercent) {
+      this.salesTaxPercent = salesTaxPercent;
       return this;
     }
 
@@ -736,6 +824,52 @@ public final class InvoicesCreateSalesRequest {
     )
     public _FinalStage operationTypeId(Optional<String> operationTypeId) {
       this.operationTypeId = operationTypeId;
+      return this;
+    }
+
+    /**
+     * <p>Whether automatic debt reminders include this invoice when its partner has them turned on</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage debtRemindersEnabled(Boolean debtRemindersEnabled) {
+      this.debtRemindersEnabled = Optional.ofNullable(debtRemindersEnabled);
+      return this;
+    }
+
+    /**
+     * <p>Whether automatic debt reminders include this invoice when its partner has them turned on</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "debtRemindersEnabled",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage debtRemindersEnabled(Optional<Boolean> debtRemindersEnabled) {
+      this.debtRemindersEnabled = debtRemindersEnabled;
+      return this;
+    }
+
+    /**
+     * <p>Whether the PDF and the e-mail carry the payment link of the company payment link template</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage payLinkEnabled(Boolean payLinkEnabled) {
+      this.payLinkEnabled = Optional.ofNullable(payLinkEnabled);
+      return this;
+    }
+
+    /**
+     * <p>Whether the PDF and the e-mail carry the payment link of the company payment link template</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "payLinkEnabled",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage payLinkEnabled(Optional<Boolean> payLinkEnabled) {
+      this.payLinkEnabled = payLinkEnabled;
       return this;
     }
 
@@ -1050,7 +1184,7 @@ public final class InvoicesCreateSalesRequest {
 
     @java.lang.Override
     public InvoicesCreateSalesRequest build() {
-      return new InvoicesCreateSalesRequest(partnerId, type, currency, issueDate, dueDate, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, locale, operationTypeId, documentSeriesId, seriesLabel, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, discountPercent, lines, additionalProperties);
+      return new InvoicesCreateSalesRequest(partnerId, type, currency, issueDate, dueDate, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, locale, payLinkEnabled, debtRemindersEnabled, operationTypeId, documentSeriesId, seriesLabel, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, discountPercent, salesTaxPercent, lines, additionalProperties);
     }
 
     @java.lang.Override

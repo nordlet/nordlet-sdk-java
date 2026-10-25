@@ -1456,7 +1456,7 @@ public class AsyncRawPartnersClient {
                             }
 
                             /**
-                             * Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no overdue reminder in the last <code>repeatDays</code> days (<code>partners/debt-reminders/settings/get</code>) and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+                             * Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no overdue reminder in the last <code>repeatDays</code> days (<code>partners/debt-reminders/settings/get</code>) and has issued invoices or advance invoices with <code>debtRemindersEnabled</code> past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
                              */
                             public CompletableFuture<NordletApiHttpResponse<DebtRemindersPreviewPartnersResponse>> debtRemindersPreview(
                                 ) {
@@ -1464,7 +1464,7 @@ public class AsyncRawPartnersClient {
                             }
 
                             /**
-                             * Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no overdue reminder in the last <code>repeatDays</code> days (<code>partners/debt-reminders/settings/get</code>) and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+                             * Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no overdue reminder in the last <code>repeatDays</code> days (<code>partners/debt-reminders/settings/get</code>) and has issued invoices or advance invoices with <code>debtRemindersEnabled</code> past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
                              */
                             public CompletableFuture<NordletApiHttpResponse<DebtRemindersPreviewPartnersResponse>> debtRemindersPreview(
                                 RequestOptions requestOptions) {
@@ -1472,7 +1472,7 @@ public class AsyncRawPartnersClient {
                             }
 
                             /**
-                             * Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no overdue reminder in the last <code>repeatDays</code> days (<code>partners/debt-reminders/settings/get</code>) and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+                             * Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no overdue reminder in the last <code>repeatDays</code> days (<code>partners/debt-reminders/settings/get</code>) and has issued invoices or advance invoices with <code>debtRemindersEnabled</code> past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
                              */
                             public CompletableFuture<NordletApiHttpResponse<DebtRemindersPreviewPartnersResponse>> debtRemindersPreview(
                                 DebtRemindersPreviewPartnersRequest request) {
@@ -1480,7 +1480,7 @@ public class AsyncRawPartnersClient {
                             }
 
                             /**
-                             * Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no overdue reminder in the last <code>repeatDays</code> days (<code>partners/debt-reminders/settings/get</code>) and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
+                             * Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has <code>autoDebtReminder</code>, is active, has an e-mail address, got no overdue reminder in the last <code>repeatDays</code> days (<code>partners/debt-reminders/settings/get</code>) and has issued invoices or advance invoices with <code>debtRemindersEnabled</code> past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's <code>lateInterestPercent</code> times the days late over 365, and the totals are per currency. Sent reminders are listed by <code>partners/debt-reminders/list</code>.
                              */
                             public CompletableFuture<NordletApiHttpResponse<DebtRemindersPreviewPartnersResponse>> debtRemindersPreview(
                                 DebtRemindersPreviewPartnersRequest request,
@@ -1801,7 +1801,7 @@ public class AsyncRawPartnersClient {
                                   }
 
                                   /**
-                                   * Changes the given fields of the company's debt-reminder schedule. <code>daysBefore</code> (1 to 90, or null to send nothing before the due date) makes the daily job send one &quot;payment due soon&quot; reminder per invoice that many days before its due date; <code>repeatDays</code> (1 to 90) is the number of days between overdue reminders to a partner. Only partners with <code>autoDebtReminder</code> get reminders. A body without fields is refused with 400.
+                                   * Changes the given fields of the company's debt-reminder schedule. <code>daysBefore</code> (1 to 90, or null to send nothing before the due date) makes the daily job send one &quot;payment due soon&quot; reminder per invoice that many days before its due date; <code>repeatDays</code> (1 to 90) is the number of days between overdue reminders to a partner. Only partners with <code>autoDebtReminder</code> get reminders, and only for invoices with <code>debtRemindersEnabled</code>. A body without fields is refused with 400.
                                    */
                                   public CompletableFuture<NordletApiHttpResponse<DebtRemindersSettingsUpdatePartnersResponse>> debtRemindersSettingsUpdate(
                                       ) {
@@ -1809,7 +1809,7 @@ public class AsyncRawPartnersClient {
                                   }
 
                                   /**
-                                   * Changes the given fields of the company's debt-reminder schedule. <code>daysBefore</code> (1 to 90, or null to send nothing before the due date) makes the daily job send one &quot;payment due soon&quot; reminder per invoice that many days before its due date; <code>repeatDays</code> (1 to 90) is the number of days between overdue reminders to a partner. Only partners with <code>autoDebtReminder</code> get reminders. A body without fields is refused with 400.
+                                   * Changes the given fields of the company's debt-reminder schedule. <code>daysBefore</code> (1 to 90, or null to send nothing before the due date) makes the daily job send one &quot;payment due soon&quot; reminder per invoice that many days before its due date; <code>repeatDays</code> (1 to 90) is the number of days between overdue reminders to a partner. Only partners with <code>autoDebtReminder</code> get reminders, and only for invoices with <code>debtRemindersEnabled</code>. A body without fields is refused with 400.
                                    */
                                   public CompletableFuture<NordletApiHttpResponse<DebtRemindersSettingsUpdatePartnersResponse>> debtRemindersSettingsUpdate(
                                       RequestOptions requestOptions) {
@@ -1817,7 +1817,7 @@ public class AsyncRawPartnersClient {
                                   }
 
                                   /**
-                                   * Changes the given fields of the company's debt-reminder schedule. <code>daysBefore</code> (1 to 90, or null to send nothing before the due date) makes the daily job send one &quot;payment due soon&quot; reminder per invoice that many days before its due date; <code>repeatDays</code> (1 to 90) is the number of days between overdue reminders to a partner. Only partners with <code>autoDebtReminder</code> get reminders. A body without fields is refused with 400.
+                                   * Changes the given fields of the company's debt-reminder schedule. <code>daysBefore</code> (1 to 90, or null to send nothing before the due date) makes the daily job send one &quot;payment due soon&quot; reminder per invoice that many days before its due date; <code>repeatDays</code> (1 to 90) is the number of days between overdue reminders to a partner. Only partners with <code>autoDebtReminder</code> get reminders, and only for invoices with <code>debtRemindersEnabled</code>. A body without fields is refused with 400.
                                    */
                                   public CompletableFuture<NordletApiHttpResponse<DebtRemindersSettingsUpdatePartnersResponse>> debtRemindersSettingsUpdate(
                                       DebtRemindersSettingsUpdatePartnersRequest request) {
@@ -1825,7 +1825,7 @@ public class AsyncRawPartnersClient {
                                   }
 
                                   /**
-                                   * Changes the given fields of the company's debt-reminder schedule. <code>daysBefore</code> (1 to 90, or null to send nothing before the due date) makes the daily job send one &quot;payment due soon&quot; reminder per invoice that many days before its due date; <code>repeatDays</code> (1 to 90) is the number of days between overdue reminders to a partner. Only partners with <code>autoDebtReminder</code> get reminders. A body without fields is refused with 400.
+                                   * Changes the given fields of the company's debt-reminder schedule. <code>daysBefore</code> (1 to 90, or null to send nothing before the due date) makes the daily job send one &quot;payment due soon&quot; reminder per invoice that many days before its due date; <code>repeatDays</code> (1 to 90) is the number of days between overdue reminders to a partner. Only partners with <code>autoDebtReminder</code> get reminders, and only for invoices with <code>debtRemindersEnabled</code>. A body without fields is refused with 400.
                                    */
                                   public CompletableFuture<NordletApiHttpResponse<DebtRemindersSettingsUpdatePartnersResponse>> debtRemindersSettingsUpdate(
                                       DebtRemindersSettingsUpdatePartnersRequest request,
@@ -1916,7 +1916,7 @@ public class AsyncRawPartnersClient {
                                     }
 
                                     /**
-                                     * Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice of the partners that get reminders (<code>autoDebtReminder</code>, active, with an e-mail address), as of the company's current date and sorted by <code>date</code>. A <code>before_due</code> reminder is sent once per invoice, <code>daysBefore</code> days before its due date or on the first daily run after that while the due date is still ahead; <code>overdue</code> reminders start the day after the due date and repeat every <code>repeatDays</code> days per partner, counting only overdue reminders. Nothing is sent or recorded.
+                                     * Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice with <code>debtRemindersEnabled</code> of the partners that get reminders (<code>autoDebtReminder</code>, active, with an e-mail address), as of the company's current date and sorted by <code>date</code>. A <code>before_due</code> reminder is sent once per invoice, <code>daysBefore</code> days before its due date or on the first daily run after that while the due date is still ahead; <code>overdue</code> reminders start the day after the due date and repeat every <code>repeatDays</code> days per partner, counting only overdue reminders. Nothing is sent or recorded.
                                      */
                                     public CompletableFuture<NordletApiHttpResponse<DebtRemindersUpcomingPartnersResponse>> debtRemindersUpcoming(
                                         ) {
@@ -1924,7 +1924,7 @@ public class AsyncRawPartnersClient {
                                     }
 
                                     /**
-                                     * Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice of the partners that get reminders (<code>autoDebtReminder</code>, active, with an e-mail address), as of the company's current date and sorted by <code>date</code>. A <code>before_due</code> reminder is sent once per invoice, <code>daysBefore</code> days before its due date or on the first daily run after that while the due date is still ahead; <code>overdue</code> reminders start the day after the due date and repeat every <code>repeatDays</code> days per partner, counting only overdue reminders. Nothing is sent or recorded.
+                                     * Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice with <code>debtRemindersEnabled</code> of the partners that get reminders (<code>autoDebtReminder</code>, active, with an e-mail address), as of the company's current date and sorted by <code>date</code>. A <code>before_due</code> reminder is sent once per invoice, <code>daysBefore</code> days before its due date or on the first daily run after that while the due date is still ahead; <code>overdue</code> reminders start the day after the due date and repeat every <code>repeatDays</code> days per partner, counting only overdue reminders. Nothing is sent or recorded.
                                      */
                                     public CompletableFuture<NordletApiHttpResponse<DebtRemindersUpcomingPartnersResponse>> debtRemindersUpcoming(
                                         RequestOptions requestOptions) {
@@ -1932,7 +1932,7 @@ public class AsyncRawPartnersClient {
                                     }
 
                                     /**
-                                     * Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice of the partners that get reminders (<code>autoDebtReminder</code>, active, with an e-mail address), as of the company's current date and sorted by <code>date</code>. A <code>before_due</code> reminder is sent once per invoice, <code>daysBefore</code> days before its due date or on the first daily run after that while the due date is still ahead; <code>overdue</code> reminders start the day after the due date and repeat every <code>repeatDays</code> days per partner, counting only overdue reminders. Nothing is sent or recorded.
+                                     * Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice with <code>debtRemindersEnabled</code> of the partners that get reminders (<code>autoDebtReminder</code>, active, with an e-mail address), as of the company's current date and sorted by <code>date</code>. A <code>before_due</code> reminder is sent once per invoice, <code>daysBefore</code> days before its due date or on the first daily run after that while the due date is still ahead; <code>overdue</code> reminders start the day after the due date and repeat every <code>repeatDays</code> days per partner, counting only overdue reminders. Nothing is sent or recorded.
                                      */
                                     public CompletableFuture<NordletApiHttpResponse<DebtRemindersUpcomingPartnersResponse>> debtRemindersUpcoming(
                                         DebtRemindersUpcomingPartnersRequest request) {
@@ -1940,7 +1940,7 @@ public class AsyncRawPartnersClient {
                                     }
 
                                     /**
-                                     * Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice of the partners that get reminders (<code>autoDebtReminder</code>, active, with an e-mail address), as of the company's current date and sorted by <code>date</code>. A <code>before_due</code> reminder is sent once per invoice, <code>daysBefore</code> days before its due date or on the first daily run after that while the due date is still ahead; <code>overdue</code> reminders start the day after the due date and repeat every <code>repeatDays</code> days per partner, counting only overdue reminders. Nothing is sent or recorded.
+                                     * Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice with <code>debtRemindersEnabled</code> of the partners that get reminders (<code>autoDebtReminder</code>, active, with an e-mail address), as of the company's current date and sorted by <code>date</code>. A <code>before_due</code> reminder is sent once per invoice, <code>daysBefore</code> days before its due date or on the first daily run after that while the due date is still ahead; <code>overdue</code> reminders start the day after the due date and repeat every <code>repeatDays</code> days per partner, counting only overdue reminders. Nothing is sent or recorded.
                                      */
                                     public CompletableFuture<NordletApiHttpResponse<DebtRemindersUpcomingPartnersResponse>> debtRemindersUpcoming(
                                         DebtRemindersUpcomingPartnersRequest request,

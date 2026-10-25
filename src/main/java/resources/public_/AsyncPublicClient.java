@@ -7,8 +7,14 @@ package com.nordlet.api.resources.public_;
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.public_.requests.IntegrationRequestsPublicRequest;
+import com.nordlet.api.resources.public_.requests.InvoicesCheckoutPublicRequest;
+import com.nordlet.api.resources.public_.requests.InvoicesGetPublicRequest;
+import com.nordlet.api.resources.public_.requests.InvoicesPdfPublicRequest;
 import com.nordlet.api.resources.public_.requests.PayPublicRequest;
 import com.nordlet.api.resources.public_.types.IntegrationRequestsPublicResponse;
+import com.nordlet.api.resources.public_.types.InvoicesCheckoutPublicResponse;
+import com.nordlet.api.resources.public_.types.InvoicesGetPublicResponse;
+import com.nordlet.api.resources.public_.types.InvoicesPdfPublicResponse;
 import java.lang.String;
 import java.lang.Void;
 import java.util.concurrent.CompletableFuture;
@@ -47,31 +53,79 @@ public class AsyncPublicClient {
   }
 
   /**
-   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice, the invoice has <code>payLinkEnabled</code> false or the company has no template, and 409 when the invoice is already paid.
    */
   public CompletableFuture<Void> pay(String token) {
     return this.rawClient.pay(token).thenApply(response -> response.body());
   }
 
   /**
-   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice, the invoice has <code>payLinkEnabled</code> false or the company has no template, and 409 when the invoice is already paid.
    */
   public CompletableFuture<Void> pay(String token, RequestOptions requestOptions) {
     return this.rawClient.pay(token, requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice, the invoice has <code>payLinkEnabled</code> false or the company has no template, and 409 when the invoice is already paid.
    */
   public CompletableFuture<Void> pay(String token, PayPublicRequest request) {
     return this.rawClient.pay(token, request).thenApply(response -> response.body());
   }
 
   /**
-   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice or the company has no template, and 409 when the invoice is already paid.
+   * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice, the invoice has <code>payLinkEnabled</code> false or the company has no template, and 409 when the invoice is already paid.
    */
   public CompletableFuture<Void> pay(String token, PayPublicRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.pay(token, request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return the issued sale document that carries this customer token (<code>token</code> of <code>sales/invoices/view</code>), in the shape of <code>sales/invoices/view</code> without the token. Answers 404 when the token matches no issued document.
+   */
+  public CompletableFuture<InvoicesGetPublicResponse> invoicesGet(
+      InvoicesGetPublicRequest request) {
+    return this.rawClient.invoicesGet(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return the issued sale document that carries this customer token (<code>token</code> of <code>sales/invoices/view</code>), in the shape of <code>sales/invoices/view</code> without the token. Answers 404 when the token matches no issued document.
+   */
+  public CompletableFuture<InvoicesGetPublicResponse> invoicesGet(InvoicesGetPublicRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Open a Stripe Checkout page on the company's connected Stripe account for the amount still unpaid on the issued invoice that carries this customer token, and return its <code>url</code>. Stripe sends the customer back to the public invoice page. Answers 404 when the token matches no issued invoice, the invoice has <code>payLinkEnabled</code> false or the company has no Stripe account that can take charges, 409 when the invoice is already paid and 422 when Stripe cannot take the amount in the invoice currency.
+   */
+  public CompletableFuture<InvoicesCheckoutPublicResponse> invoicesCheckout(
+      InvoicesCheckoutPublicRequest request) {
+    return this.rawClient.invoicesCheckout(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Open a Stripe Checkout page on the company's connected Stripe account for the amount still unpaid on the issued invoice that carries this customer token, and return its <code>url</code>. Stripe sends the customer back to the public invoice page. Answers 404 when the token matches no issued invoice, the invoice has <code>payLinkEnabled</code> false or the company has no Stripe account that can take charges, 409 when the invoice is already paid and 422 when Stripe cannot take the amount in the invoice currency.
+   */
+  public CompletableFuture<InvoicesCheckoutPublicResponse> invoicesCheckout(
+      InvoicesCheckoutPublicRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesCheckout(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return the PDF of the issued sale document that carries this customer token, base64-encoded, as <code>sales/invoices/pdf</code> renders it in the document's own language, English when it has none. Answers 404 when the token matches no issued document.
+   */
+  public CompletableFuture<InvoicesPdfPublicResponse> invoicesPdf(
+      InvoicesPdfPublicRequest request) {
+    return this.rawClient.invoicesPdf(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return the PDF of the issued sale document that carries this customer token, base64-encoded, as <code>sales/invoices/pdf</code> renders it in the document's own language, English when it has none. Answers 404 when the token matches no issued document.
+   */
+  public CompletableFuture<InvoicesPdfPublicResponse> invoicesPdf(InvoicesPdfPublicRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.invoicesPdf(request, requestOptions).thenApply(response -> response.body());
   }
 }
