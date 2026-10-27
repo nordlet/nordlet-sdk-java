@@ -425,28 +425,28 @@ public class AccountClient {
   }
 
   /**
-   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation.
    */
   public CompaniesUpdateAccountResponse companiesUpdate() {
     return this.rawClient.companiesUpdate().body();
   }
 
   /**
-   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation.
    */
   public CompaniesUpdateAccountResponse companiesUpdate(RequestOptions requestOptions) {
     return this.rawClient.companiesUpdate(requestOptions).body();
   }
 
   /**
-   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation.
    */
   public CompaniesUpdateAccountResponse companiesUpdate(CompaniesUpdateAccountRequest request) {
     return this.rawClient.companiesUpdate(request).body();
   }
 
   /**
-   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation.
    */
   public CompaniesUpdateAccountResponse companiesUpdate(CompaniesUpdateAccountRequest request,
       RequestOptions requestOptions) {

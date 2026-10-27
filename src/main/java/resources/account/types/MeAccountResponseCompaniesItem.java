@@ -42,6 +42,8 @@ public final class MeAccountResponseCompaniesItem {
 
   private final boolean isSandbox;
 
+  private final boolean cashBasis;
+
   private final MeAccountResponseCompaniesItemStatus status;
 
   private final Optional<OffsetDateTime> deletedAt;
@@ -49,7 +51,7 @@ public final class MeAccountResponseCompaniesItem {
   private final Map<String, Object> additionalProperties;
 
   private MeAccountResponseCompaniesItem(String id, String name, Optional<String> code,
-      Optional<String> vatCode, String role, boolean isSandbox,
+      Optional<String> vatCode, String role, boolean isSandbox, boolean cashBasis,
       MeAccountResponseCompaniesItemStatus status, Optional<OffsetDateTime> deletedAt,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -58,6 +60,7 @@ public final class MeAccountResponseCompaniesItem {
     this.vatCode = vatCode;
     this.role = role;
     this.isSandbox = isSandbox;
+    this.cashBasis = cashBasis;
     this.status = status;
     this.deletedAt = deletedAt;
     this.additionalProperties = additionalProperties;
@@ -97,6 +100,11 @@ public final class MeAccountResponseCompaniesItem {
   @JsonProperty("isSandbox")
   public boolean getIsSandbox() {
     return isSandbox;
+  }
+
+  @JsonProperty("cashBasis")
+  public boolean getCashBasis() {
+    return cashBasis;
   }
 
   @JsonProperty("status")
@@ -151,12 +159,12 @@ public final class MeAccountResponseCompaniesItem {
   }
 
   private boolean equalTo(MeAccountResponseCompaniesItem other) {
-    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && role.equals(other.role) && isSandbox == other.isSandbox && status.equals(other.status) && deletedAt.equals(other.deletedAt);
+    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && role.equals(other.role) && isSandbox == other.isSandbox && cashBasis == other.cashBasis && status.equals(other.status) && deletedAt.equals(other.deletedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.role, this.isSandbox, this.status, this.deletedAt);
+    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.role, this.isSandbox, this.cashBasis, this.status, this.deletedAt);
   }
 
   @java.lang.Override
@@ -183,7 +191,11 @@ public final class MeAccountResponseCompaniesItem {
   }
 
   public interface IsSandboxStage {
-    StatusStage isSandbox(boolean isSandbox);
+    CashBasisStage isSandbox(boolean isSandbox);
+  }
+
+  public interface CashBasisStage {
+    StatusStage cashBasis(boolean cashBasis);
   }
 
   public interface StatusStage {
@@ -219,7 +231,7 @@ public final class MeAccountResponseCompaniesItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, NameStage, RoleStage, IsSandboxStage, StatusStage, _FinalStage {
+  public static final class Builder implements IdStage, NameStage, RoleStage, IsSandboxStage, CashBasisStage, StatusStage, _FinalStage {
     private String id;
 
     private String name;
@@ -227,6 +239,8 @@ public final class MeAccountResponseCompaniesItem {
     private String role;
 
     private boolean isSandbox;
+
+    private boolean cashBasis;
 
     private MeAccountResponseCompaniesItemStatus status;
 
@@ -250,6 +264,7 @@ public final class MeAccountResponseCompaniesItem {
       vatCode(other.getVatCode());
       role(other.getRole());
       isSandbox(other.getIsSandbox());
+      cashBasis(other.getCashBasis());
       status(other.getStatus());
       deletedAt(other.getDeletedAt());
       return this;
@@ -278,8 +293,15 @@ public final class MeAccountResponseCompaniesItem {
 
     @java.lang.Override
     @JsonSetter("isSandbox")
-    public StatusStage isSandbox(boolean isSandbox) {
+    public CashBasisStage isSandbox(boolean isSandbox) {
       this.isSandbox = isSandbox;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("cashBasis")
+    public StatusStage cashBasis(boolean cashBasis) {
+      this.cashBasis = cashBasis;
       return this;
     }
 
@@ -382,7 +404,7 @@ public final class MeAccountResponseCompaniesItem {
 
     @java.lang.Override
     public MeAccountResponseCompaniesItem build() {
-      return new MeAccountResponseCompaniesItem(id, name, code, vatCode, role, isSandbox, status, deletedAt, additionalProperties);
+      return new MeAccountResponseCompaniesItem(id, name, code, vatCode, role, isSandbox, cashBasis, status, deletedAt, additionalProperties);
     }
 
     @java.lang.Override

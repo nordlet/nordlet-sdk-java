@@ -24,6 +24,8 @@ public final class DeReturnsGenerateDeclarationsRequestRuleKey {
 
   public static final DeReturnsGenerateDeclarationsRequestRuleKey DE_TRADE_TAX_APPORTIONMENT = new DeReturnsGenerateDeclarationsRequestRuleKey(Value.DE_TRADE_TAX_APPORTIONMENT, "de-trade-tax-apportionment");
 
+  public static final DeReturnsGenerateDeclarationsRequestRuleKey DE_EUER = new DeReturnsGenerateDeclarationsRequestRuleKey(Value.DE_EUER, "de-euer");
+
   private final Value value;
 
   private final String string;
@@ -70,6 +72,8 @@ public final class DeReturnsGenerateDeclarationsRequestRuleKey {
         return visitor.visitDeEBilanz();
       case DE_TRADE_TAX_APPORTIONMENT:
         return visitor.visitDeTradeTaxApportionment();
+      case DE_EUER:
+        return visitor.visitDeEuer();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -95,6 +99,8 @@ public final class DeReturnsGenerateDeclarationsRequestRuleKey {
         return DE_E_BILANZ;
       case "de-trade-tax-apportionment":
         return DE_TRADE_TAX_APPORTIONMENT;
+      case "de-euer":
+        return DE_EUER;
       default:
         return new DeReturnsGenerateDeclarationsRequestRuleKey(Value.UNKNOWN, value);
     }
@@ -115,6 +121,8 @@ public final class DeReturnsGenerateDeclarationsRequestRuleKey {
 
     DE_PAYROLL_STATEMENTS,
 
+    DE_EUER,
+
     UNKNOWN
   }
 
@@ -132,6 +140,8 @@ public final class DeReturnsGenerateDeclarationsRequestRuleKey {
     T visitDePayrollWithholding();
 
     T visitDePayrollStatements();
+
+    T visitDeEuer();
 
     T visitUnknown(String unknownType);
   }

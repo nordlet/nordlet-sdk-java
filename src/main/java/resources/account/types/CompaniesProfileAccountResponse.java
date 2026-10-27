@@ -44,6 +44,8 @@ public final class CompaniesProfileAccountResponse {
 
   private final boolean isSandbox;
 
+  private final boolean cashBasis;
+
   private final String countryCode;
 
   private final String chartTemplate;
@@ -118,8 +120,8 @@ public final class CompaniesProfileAccountResponse {
 
   private CompaniesProfileAccountResponse(String id, String name, Optional<String> code,
       Optional<String> vatCode, Optional<String> smeExemptionNumber, boolean isVatPayer,
-      boolean isSandbox, String countryCode, String chartTemplate, String countryChartTemplate,
-      String baseCurrency, String defaultInvoiceCurrency,
+      boolean isSandbox, boolean cashBasis, String countryCode, String chartTemplate,
+      String countryChartTemplate, String baseCurrency, String defaultInvoiceCurrency,
       CompaniesProfileAccountResponseStatus status,
       Optional<CompaniesProfileAccountResponseAddress> address, Optional<String> email,
       Optional<String> phone, Optional<String> iban, Optional<String> bankName,
@@ -142,6 +144,7 @@ public final class CompaniesProfileAccountResponse {
     this.smeExemptionNumber = smeExemptionNumber;
     this.isVatPayer = isVatPayer;
     this.isSandbox = isSandbox;
+    this.cashBasis = cashBasis;
     this.countryCode = countryCode;
     this.chartTemplate = chartTemplate;
     this.countryChartTemplate = countryChartTemplate;
@@ -222,6 +225,11 @@ public final class CompaniesProfileAccountResponse {
   @JsonProperty("isSandbox")
   public boolean getIsSandbox() {
     return isSandbox;
+  }
+
+  @JsonProperty("cashBasis")
+  public boolean getCashBasis() {
+    return cashBasis;
   }
 
   @JsonProperty("countryCode")
@@ -750,12 +758,12 @@ public final class CompaniesProfileAccountResponse {
   }
 
   private boolean equalTo(CompaniesProfileAccountResponse other) {
-    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer == other.isVatPayer && isSandbox == other.isSandbox && countryCode.equals(other.countryCode) && chartTemplate.equals(other.chartTemplate) && countryChartTemplate.equals(other.countryChartTemplate) && baseCurrency.equals(other.baseCurrency) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && status.equals(other.status) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && bankBic.equals(other.bankBic) && bankCode.equals(other.bankCode) && bankBranchCode.equals(other.bankBranchCode) && bankAccountNumber.equals(other.bankAccountNumber) && invoicePrefix.equals(other.invoicePrefix) && nextInvoiceNumber.equals(other.nextInvoiceNumber) && defaultInvoiceLocale.equals(other.defaultInvoiceLocale) && defaultInvoiceNote.equals(other.defaultInvoiceNote) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && logoFileId.equals(other.logoFileId) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired == other.auditRequired;
+    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer == other.isVatPayer && isSandbox == other.isSandbox && cashBasis == other.cashBasis && countryCode.equals(other.countryCode) && chartTemplate.equals(other.chartTemplate) && countryChartTemplate.equals(other.countryChartTemplate) && baseCurrency.equals(other.baseCurrency) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && status.equals(other.status) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && bankBic.equals(other.bankBic) && bankCode.equals(other.bankCode) && bankBranchCode.equals(other.bankBranchCode) && bankAccountNumber.equals(other.bankAccountNumber) && invoicePrefix.equals(other.invoicePrefix) && nextInvoiceNumber.equals(other.nextInvoiceNumber) && defaultInvoiceLocale.equals(other.defaultInvoiceLocale) && defaultInvoiceNote.equals(other.defaultInvoiceNote) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && logoFileId.equals(other.logoFileId) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired == other.auditRequired;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.isSandbox, this.countryCode, this.chartTemplate, this.countryChartTemplate, this.baseCurrency, this.defaultInvoiceCurrency, this.status, this.address, this.email, this.phone, this.iban, this.bankName, this.bankBic, this.bankCode, this.bankBranchCode, this.bankAccountNumber, this.invoicePrefix, this.nextInvoiceNumber, this.defaultInvoiceLocale, this.defaultInvoiceNote, this.peppolId, this.sepaCreditorId, this.logoFileId, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.vatPeriod, this.fiscalYearEndMonth, this.timeZone, this.filingOptions, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired);
+    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.isSandbox, this.cashBasis, this.countryCode, this.chartTemplate, this.countryChartTemplate, this.baseCurrency, this.defaultInvoiceCurrency, this.status, this.address, this.email, this.phone, this.iban, this.bankName, this.bankBic, this.bankCode, this.bankBranchCode, this.bankAccountNumber, this.invoicePrefix, this.nextInvoiceNumber, this.defaultInvoiceLocale, this.defaultInvoiceNote, this.peppolId, this.sepaCreditorId, this.logoFileId, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.vatPeriod, this.fiscalYearEndMonth, this.timeZone, this.filingOptions, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired);
   }
 
   @java.lang.Override
@@ -782,7 +790,11 @@ public final class CompaniesProfileAccountResponse {
   }
 
   public interface IsSandboxStage {
-    CountryCodeStage isSandbox(boolean isSandbox);
+    CashBasisStage isSandbox(boolean isSandbox);
+  }
+
+  public interface CashBasisStage {
+    CountryCodeStage cashBasis(boolean cashBasis);
   }
 
   public interface CountryCodeStage {
@@ -1018,7 +1030,7 @@ public final class CompaniesProfileAccountResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, NameStage, IsVatPayerStage, IsSandboxStage, CountryCodeStage, ChartTemplateStage, CountryChartTemplateStage, BaseCurrencyStage, DefaultInvoiceCurrencyStage, StatusStage, InvoicePrefixStage, NextInvoiceNumberStage, TimeZoneStage, AuditRequiredStage, _FinalStage {
+  public static final class Builder implements IdStage, NameStage, IsVatPayerStage, IsSandboxStage, CashBasisStage, CountryCodeStage, ChartTemplateStage, CountryChartTemplateStage, BaseCurrencyStage, DefaultInvoiceCurrencyStage, StatusStage, InvoicePrefixStage, NextInvoiceNumberStage, TimeZoneStage, AuditRequiredStage, _FinalStage {
     private String id;
 
     private String name;
@@ -1026,6 +1038,8 @@ public final class CompaniesProfileAccountResponse {
     private boolean isVatPayer;
 
     private boolean isSandbox;
+
+    private boolean cashBasis;
 
     private String countryCode;
 
@@ -1118,6 +1132,7 @@ public final class CompaniesProfileAccountResponse {
       smeExemptionNumber(other.getSmeExemptionNumber());
       isVatPayer(other.getIsVatPayer());
       isSandbox(other.getIsSandbox());
+      cashBasis(other.getCashBasis());
       countryCode(other.getCountryCode());
       chartTemplate(other.getChartTemplate());
       countryChartTemplate(other.getCountryChartTemplate());
@@ -1179,8 +1194,15 @@ public final class CompaniesProfileAccountResponse {
 
     @java.lang.Override
     @JsonSetter("isSandbox")
-    public CountryCodeStage isSandbox(boolean isSandbox) {
+    public CashBasisStage isSandbox(boolean isSandbox) {
       this.isSandbox = isSandbox;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("cashBasis")
+    public CountryCodeStage cashBasis(boolean cashBasis) {
+      this.cashBasis = cashBasis;
       return this;
     }
 
@@ -2115,7 +2137,7 @@ public final class CompaniesProfileAccountResponse {
 
     @java.lang.Override
     public CompaniesProfileAccountResponse build() {
-      return new CompaniesProfileAccountResponse(id, name, code, vatCode, smeExemptionNumber, isVatPayer, isSandbox, countryCode, chartTemplate, countryChartTemplate, baseCurrency, defaultInvoiceCurrency, status, address, email, phone, iban, bankName, bankBic, bankCode, bankBranchCode, bankAccountNumber, invoicePrefix, nextInvoiceNumber, defaultInvoiceLocale, defaultInvoiceNote, peppolId, sepaCreditorId, logoFileId, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, vatPeriod, fiscalYearEndMonth, timeZone, filingOptions, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, additionalProperties);
+      return new CompaniesProfileAccountResponse(id, name, code, vatCode, smeExemptionNumber, isVatPayer, isSandbox, cashBasis, countryCode, chartTemplate, countryChartTemplate, baseCurrency, defaultInvoiceCurrency, status, address, email, phone, iban, bankName, bankBic, bankCode, bankBranchCode, bankAccountNumber, invoicePrefix, nextInvoiceNumber, defaultInvoiceLocale, defaultInvoiceNote, peppolId, sepaCreditorId, logoFileId, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, vatPeriod, fiscalYearEndMonth, timeZone, filingOptions, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, additionalProperties);
     }
 
     @java.lang.Override

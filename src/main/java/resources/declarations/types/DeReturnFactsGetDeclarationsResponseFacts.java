@@ -80,6 +80,12 @@ public final class DeReturnFactsGetDeclarationsResponseFacts {
 
   private final Optional<String> distanceSales;
 
+  private final Optional<DeReturnFactsGetDeclarationsResponseFactsEuerEinkunftsart> euerEinkunftsart;
+
+  private final Optional<String> euerEntnahmen;
+
+  private final Optional<String> euerEinlagen;
+
   private final Map<String, Object> additionalProperties;
 
   private DeReturnFactsGetDeclarationsResponseFacts(Optional<List<String>> changedShareholderIds,
@@ -101,6 +107,8 @@ public final class DeReturnFactsGetDeclarationsResponseFacts {
       Optional<String> bic,
       Optional<DeReturnFactsGetDeclarationsResponseFactsRepresentative> representative,
       Optional<String> singleTransportTax, Optional<String> distanceSales,
+      Optional<DeReturnFactsGetDeclarationsResponseFactsEuerEinkunftsart> euerEinkunftsart,
+      Optional<String> euerEntnahmen, Optional<String> euerEinlagen,
       Map<String, Object> additionalProperties) {
     this.changedShareholderIds = changedShareholderIds;
     this.shareholderContracts = shareholderContracts;
@@ -127,6 +135,9 @@ public final class DeReturnFactsGetDeclarationsResponseFacts {
     this.representative = representative;
     this.singleTransportTax = singleTransportTax;
     this.distanceSales = distanceSales;
+    this.euerEinkunftsart = euerEinkunftsart;
+    this.euerEntnahmen = euerEntnahmen;
+    this.euerEinlagen = euerEinlagen;
     this.additionalProperties = additionalProperties;
   }
 
@@ -270,6 +281,21 @@ public final class DeReturnFactsGetDeclarationsResponseFacts {
     return distanceSales;
   }
 
+  @JsonProperty("euerEinkunftsart")
+  public Optional<DeReturnFactsGetDeclarationsResponseFactsEuerEinkunftsart> getEuerEinkunftsart() {
+    return euerEinkunftsart;
+  }
+
+  @JsonProperty("euerEntnahmen")
+  public Optional<String> getEuerEntnahmen() {
+    return euerEntnahmen;
+  }
+
+  @JsonProperty("euerEinlagen")
+  public Optional<String> getEuerEinlagen() {
+    return euerEinlagen;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -309,12 +335,12 @@ public final class DeReturnFactsGetDeclarationsResponseFacts {
   }
 
   private boolean equalTo(DeReturnFactsGetDeclarationsResponseFacts other) {
-    return changedShareholderIds.equals(other.changedShareholderIds) && shareholderContracts.equals(other.shareholderContracts) && contracts.equals(other.contracts) && harmfulShareAcquisition.equals(other.harmfulShareAcquisition) && coronaAid.equals(other.coronaAid) && lossCarryback.equals(other.lossCarryback) && donationCarryforward.equals(other.donationCarryforward) && contributionAccountOpening.equals(other.contributionAccountOpening) && contributions.equals(other.contributions) && distributions.equals(other.distributions) && taxBalanceEquity.equals(other.taxBalanceEquity) && multipleMunicipalities.equals(other.multipleMunicipalities) && relocation.equals(other.relocation) && municipalities.equals(other.municipalities) && landHoldings.equals(other.landHoldings) && propertyTaxExpense.equals(other.propertyTaxExpense) && licencesToNonResidents.equals(other.licencesToNonResidents) && participations.equals(other.participations) && foreignIncome.equals(other.foreignIncome) && smallBusinessSwitchDate.equals(other.smallBusinessSwitchDate) && refundProcedureApplied.equals(other.refundProcedureApplied) && bic.equals(other.bic) && representative.equals(other.representative) && singleTransportTax.equals(other.singleTransportTax) && distanceSales.equals(other.distanceSales);
+    return changedShareholderIds.equals(other.changedShareholderIds) && shareholderContracts.equals(other.shareholderContracts) && contracts.equals(other.contracts) && harmfulShareAcquisition.equals(other.harmfulShareAcquisition) && coronaAid.equals(other.coronaAid) && lossCarryback.equals(other.lossCarryback) && donationCarryforward.equals(other.donationCarryforward) && contributionAccountOpening.equals(other.contributionAccountOpening) && contributions.equals(other.contributions) && distributions.equals(other.distributions) && taxBalanceEquity.equals(other.taxBalanceEquity) && multipleMunicipalities.equals(other.multipleMunicipalities) && relocation.equals(other.relocation) && municipalities.equals(other.municipalities) && landHoldings.equals(other.landHoldings) && propertyTaxExpense.equals(other.propertyTaxExpense) && licencesToNonResidents.equals(other.licencesToNonResidents) && participations.equals(other.participations) && foreignIncome.equals(other.foreignIncome) && smallBusinessSwitchDate.equals(other.smallBusinessSwitchDate) && refundProcedureApplied.equals(other.refundProcedureApplied) && bic.equals(other.bic) && representative.equals(other.representative) && singleTransportTax.equals(other.singleTransportTax) && distanceSales.equals(other.distanceSales) && euerEinkunftsart.equals(other.euerEinkunftsart) && euerEntnahmen.equals(other.euerEntnahmen) && euerEinlagen.equals(other.euerEinlagen);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.changedShareholderIds, this.shareholderContracts, this.contracts, this.harmfulShareAcquisition, this.coronaAid, this.lossCarryback, this.donationCarryforward, this.contributionAccountOpening, this.contributions, this.distributions, this.taxBalanceEquity, this.multipleMunicipalities, this.relocation, this.municipalities, this.landHoldings, this.propertyTaxExpense, this.licencesToNonResidents, this.participations, this.foreignIncome, this.smallBusinessSwitchDate, this.refundProcedureApplied, this.bic, this.representative, this.singleTransportTax, this.distanceSales);
+    return Objects.hash(this.changedShareholderIds, this.shareholderContracts, this.contracts, this.harmfulShareAcquisition, this.coronaAid, this.lossCarryback, this.donationCarryforward, this.contributionAccountOpening, this.contributions, this.distributions, this.taxBalanceEquity, this.multipleMunicipalities, this.relocation, this.municipalities, this.landHoldings, this.propertyTaxExpense, this.licencesToNonResidents, this.participations, this.foreignIncome, this.smallBusinessSwitchDate, this.refundProcedureApplied, this.bic, this.representative, this.singleTransportTax, this.distanceSales, this.euerEinkunftsart, this.euerEntnahmen, this.euerEinlagen);
   }
 
   @java.lang.Override
@@ -380,6 +406,12 @@ public final class DeReturnFactsGetDeclarationsResponseFacts {
 
     private Optional<String> distanceSales = Optional.empty();
 
+    private Optional<DeReturnFactsGetDeclarationsResponseFactsEuerEinkunftsart> euerEinkunftsart = Optional.empty();
+
+    private Optional<String> euerEntnahmen = Optional.empty();
+
+    private Optional<String> euerEinlagen = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -412,6 +444,9 @@ public final class DeReturnFactsGetDeclarationsResponseFacts {
       representative(other.getRepresentative());
       singleTransportTax(other.getSingleTransportTax());
       distanceSales(other.getDistanceSales());
+      euerEinkunftsart(other.getEuerEinkunftsart());
+      euerEntnahmen(other.getEuerEntnahmen());
+      euerEinlagen(other.getEuerEinlagen());
       return this;
     }
 
@@ -823,8 +858,52 @@ public final class DeReturnFactsGetDeclarationsResponseFacts {
       return this;
     }
 
+    @JsonSetter(
+        value = "euerEinkunftsart",
+        nulls = Nulls.SKIP
+    )
+    public Builder euerEinkunftsart(
+        Optional<DeReturnFactsGetDeclarationsResponseFactsEuerEinkunftsart> euerEinkunftsart) {
+      this.euerEinkunftsart = euerEinkunftsart;
+      return this;
+    }
+
+    public Builder euerEinkunftsart(
+        DeReturnFactsGetDeclarationsResponseFactsEuerEinkunftsart euerEinkunftsart) {
+      this.euerEinkunftsart = Optional.ofNullable(euerEinkunftsart);
+      return this;
+    }
+
+    @JsonSetter(
+        value = "euerEntnahmen",
+        nulls = Nulls.SKIP
+    )
+    public Builder euerEntnahmen(Optional<String> euerEntnahmen) {
+      this.euerEntnahmen = euerEntnahmen;
+      return this;
+    }
+
+    public Builder euerEntnahmen(String euerEntnahmen) {
+      this.euerEntnahmen = Optional.ofNullable(euerEntnahmen);
+      return this;
+    }
+
+    @JsonSetter(
+        value = "euerEinlagen",
+        nulls = Nulls.SKIP
+    )
+    public Builder euerEinlagen(Optional<String> euerEinlagen) {
+      this.euerEinlagen = euerEinlagen;
+      return this;
+    }
+
+    public Builder euerEinlagen(String euerEinlagen) {
+      this.euerEinlagen = Optional.ofNullable(euerEinlagen);
+      return this;
+    }
+
     public DeReturnFactsGetDeclarationsResponseFacts build() {
-      return new DeReturnFactsGetDeclarationsResponseFacts(changedShareholderIds, shareholderContracts, contracts, harmfulShareAcquisition, coronaAid, lossCarryback, donationCarryforward, contributionAccountOpening, contributions, distributions, taxBalanceEquity, multipleMunicipalities, relocation, municipalities, landHoldings, propertyTaxExpense, licencesToNonResidents, participations, foreignIncome, smallBusinessSwitchDate, refundProcedureApplied, bic, representative, singleTransportTax, distanceSales, additionalProperties);
+      return new DeReturnFactsGetDeclarationsResponseFacts(changedShareholderIds, shareholderContracts, contracts, harmfulShareAcquisition, coronaAid, lossCarryback, donationCarryforward, contributionAccountOpening, contributions, distributions, taxBalanceEquity, multipleMunicipalities, relocation, municipalities, landHoldings, propertyTaxExpense, licencesToNonResidents, participations, foreignIncome, smallBusinessSwitchDate, refundProcedureApplied, bic, representative, singleTransportTax, distanceSales, euerEinkunftsart, euerEntnahmen, euerEinlagen, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

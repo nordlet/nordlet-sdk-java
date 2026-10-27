@@ -41,10 +41,12 @@ public final class CompaniesCreateAccountResponse {
 
   private final boolean isSandbox;
 
+  private final boolean cashBasis;
+
   private final Map<String, Object> additionalProperties;
 
   private CompaniesCreateAccountResponse(String id, String name, Optional<String> code,
-      Optional<String> vatCode, String role, boolean isSandbox,
+      Optional<String> vatCode, String role, boolean isSandbox, boolean cashBasis,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.name = name;
@@ -52,6 +54,7 @@ public final class CompaniesCreateAccountResponse {
     this.vatCode = vatCode;
     this.role = role;
     this.isSandbox = isSandbox;
+    this.cashBasis = cashBasis;
     this.additionalProperties = additionalProperties;
   }
 
@@ -91,6 +94,11 @@ public final class CompaniesCreateAccountResponse {
     return isSandbox;
   }
 
+  @JsonProperty("cashBasis")
+  public boolean getCashBasis() {
+    return cashBasis;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -121,12 +129,12 @@ public final class CompaniesCreateAccountResponse {
   }
 
   private boolean equalTo(CompaniesCreateAccountResponse other) {
-    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && role.equals(other.role) && isSandbox == other.isSandbox;
+    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && role.equals(other.role) && isSandbox == other.isSandbox && cashBasis == other.cashBasis;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.role, this.isSandbox);
+    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.role, this.isSandbox, this.cashBasis);
   }
 
   @java.lang.Override
@@ -153,7 +161,11 @@ public final class CompaniesCreateAccountResponse {
   }
 
   public interface IsSandboxStage {
-    _FinalStage isSandbox(boolean isSandbox);
+    CashBasisStage isSandbox(boolean isSandbox);
+  }
+
+  public interface CashBasisStage {
+    _FinalStage cashBasis(boolean cashBasis);
   }
 
   public interface _FinalStage {
@@ -179,7 +191,7 @@ public final class CompaniesCreateAccountResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, NameStage, RoleStage, IsSandboxStage, _FinalStage {
+  public static final class Builder implements IdStage, NameStage, RoleStage, IsSandboxStage, CashBasisStage, _FinalStage {
     private String id;
 
     private String name;
@@ -187,6 +199,8 @@ public final class CompaniesCreateAccountResponse {
     private String role;
 
     private boolean isSandbox;
+
+    private boolean cashBasis;
 
     private Optional<String> vatCode = Optional.empty();
 
@@ -206,6 +220,7 @@ public final class CompaniesCreateAccountResponse {
       vatCode(other.getVatCode());
       role(other.getRole());
       isSandbox(other.getIsSandbox());
+      cashBasis(other.getCashBasis());
       return this;
     }
 
@@ -232,8 +247,15 @@ public final class CompaniesCreateAccountResponse {
 
     @java.lang.Override
     @JsonSetter("isSandbox")
-    public _FinalStage isSandbox(boolean isSandbox) {
+    public CashBasisStage isSandbox(boolean isSandbox) {
       this.isSandbox = isSandbox;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("cashBasis")
+    public _FinalStage cashBasis(boolean cashBasis) {
+      this.cashBasis = cashBasis;
       return this;
     }
 
@@ -299,7 +321,7 @@ public final class CompaniesCreateAccountResponse {
 
     @java.lang.Override
     public CompaniesCreateAccountResponse build() {
-      return new CompaniesCreateAccountResponse(id, name, code, vatCode, role, isSandbox, additionalProperties);
+      return new CompaniesCreateAccountResponse(id, name, code, vatCode, role, isSandbox, cashBasis, additionalProperties);
     }
 
     @java.lang.Override

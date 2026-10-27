@@ -5,9 +5,9 @@
   "generatorConfig": {
     "package-prefix": "com.nordlet.api"
   },
-  "originGitCommit": "469ca9ed4c42ca722fe0e5b0e01f37491469a804",
+  "originGitCommit": "8e3692c75090c04f1300f981da5787b1d38b20e8",
   "originGitCommitIsDirty": false,
   "invokedBy": "ci",
-  "requestedVersion": "0.5.6",
+  "requestedVersion": "0.5.7",
   "ciProvider": "github"
 }

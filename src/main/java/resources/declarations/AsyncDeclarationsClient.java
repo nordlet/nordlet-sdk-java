@@ -27,6 +27,7 @@ import com.nordlet.api.resources.declarations.requests.CyHe32GenerateDeclaration
 import com.nordlet.api.resources.declarations.requests.CyTd4GenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.DeBeitragsnachweisGenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.DeDeuevGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.DeEuerGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.DeReturnFactsGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.DeReturnFactsSetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.DeReturnsGenerateDeclarationsRequest;
@@ -121,6 +122,7 @@ import com.nordlet.api.resources.declarations.types.CyHe32GenerateDeclarationsRe
 import com.nordlet.api.resources.declarations.types.CyTd4GenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.DeBeitragsnachweisGenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.DeDeuevGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.DeEuerGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.DeReturnFactsGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.DeReturnFactsSetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.DeReturnsGenerateDeclarationsResponse;
@@ -1153,7 +1155,7 @@ public class AsyncDeclarationsClient {
   }
 
   /**
-   * Build one of the German returns that ELSTER accepts only through a licensed ERiC transmission (E-Bilanz, Körperschaftsteuer, Gewerbesteuer with its Zerlegungserklärung, annual VAT return, Lohnsteuer-Anmeldung, Lohnsteuerbescheinigung) for the company to send through its own ELSTER-capable program. The period is the year, or YYYY-MM for the monthly Lohnsteuer-Anmeldung.
+   * Build one of the German returns that ELSTER accepts only through a licensed ERiC transmission (E-Bilanz, Körperschaftsteuer, Gewerbesteuer with its Zerlegungserklärung, annual VAT return, Lohnsteuer-Anmeldung, Lohnsteuerbescheinigung) for the company to send through its own ELSTER-capable program, or the Anlage EÜR with the Anlage AVEÜR of a cash-basis company as a UTF-8 CSV file of its Zeilen and Kennzahlen (<code>de-euer</code>, 422 for a company without the cash-basis flag). The period is the year, or YYYY-MM for the monthly Lohnsteuer-Anmeldung.
    */
   public CompletableFuture<DeReturnsGenerateDeclarationsResponse> deReturnsGenerate(
       DeReturnsGenerateDeclarationsRequest request) {
@@ -1161,7 +1163,7 @@ public class AsyncDeclarationsClient {
   }
 
   /**
-   * Build one of the German returns that ELSTER accepts only through a licensed ERiC transmission (E-Bilanz, Körperschaftsteuer, Gewerbesteuer with its Zerlegungserklärung, annual VAT return, Lohnsteuer-Anmeldung, Lohnsteuerbescheinigung) for the company to send through its own ELSTER-capable program. The period is the year, or YYYY-MM for the monthly Lohnsteuer-Anmeldung.
+   * Build one of the German returns that ELSTER accepts only through a licensed ERiC transmission (E-Bilanz, Körperschaftsteuer, Gewerbesteuer with its Zerlegungserklärung, annual VAT return, Lohnsteuer-Anmeldung, Lohnsteuerbescheinigung) for the company to send through its own ELSTER-capable program, or the Anlage EÜR with the Anlage AVEÜR of a cash-basis company as a UTF-8 CSV file of its Zeilen and Kennzahlen (<code>de-euer</code>, 422 for a company without the cash-basis flag). The period is the year, or YYYY-MM for the monthly Lohnsteuer-Anmeldung.
    */
   public CompletableFuture<DeReturnsGenerateDeclarationsResponse> deReturnsGenerate(
       DeReturnsGenerateDeclarationsRequest request, RequestOptions requestOptions) {
@@ -1169,7 +1171,23 @@ public class AsyncDeclarationsClient {
   }
 
   /**
-   * The facts of one year that the German annual returns (Körperschaftsteuer, Gewerbesteuer, Umsatzsteuererklärung) need and the ledger does not hold: changes of shareholders, contracts with shareholders, the tax contribution account, loss carry-back, the donation carry-forward, the business premises with the municipalities for the apportionment of the trade tax, the land values or property tax and the participations for the trade tax additions and reductions, the foreign income per country for the Anlage AESt, the date of leaving the small-business scheme and the Anlage UN answers of a company seated abroad. A key that is absent has not been answered.
+   * The Anlage EÜR and the Anlage AVEÜR of a year for a company that determines its profit on a cash basis (§ 4 Abs. 3 EStG), as the Zeilen and Kennzahlen of the official 2025 forms with their amounts: the receipts and payments of the year from the invoice payments (each payment split over the lines of its invoice), the payroll and tax payments and the journal transactions on cash and bank accounts, and the asset register for the Anlage AVEÜR and the AfA. Accounts are placed on the Zeilen through the de-euer statement scheme (Account → Statement rows). Refused with 422 for a company without the cash-basis flag.
+   */
+  public CompletableFuture<DeEuerGetDeclarationsResponse> deEuerGet(
+      DeEuerGetDeclarationsRequest request) {
+    return this.rawClient.deEuerGet(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * The Anlage EÜR and the Anlage AVEÜR of a year for a company that determines its profit on a cash basis (§ 4 Abs. 3 EStG), as the Zeilen and Kennzahlen of the official 2025 forms with their amounts: the receipts and payments of the year from the invoice payments (each payment split over the lines of its invoice), the payroll and tax payments and the journal transactions on cash and bank accounts, and the asset register for the Anlage AVEÜR and the AfA. Accounts are placed on the Zeilen through the de-euer statement scheme (Account → Statement rows). Refused with 422 for a company without the cash-basis flag.
+   */
+  public CompletableFuture<DeEuerGetDeclarationsResponse> deEuerGet(
+      DeEuerGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.deEuerGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * The facts of one year that the German annual returns (Körperschaftsteuer, Gewerbesteuer, Umsatzsteuererklärung) need and the ledger does not hold: changes of shareholders, contracts with shareholders, the tax contribution account, loss carry-back, the donation carry-forward, the business premises with the municipalities for the apportionment of the trade tax, the land values or property tax and the participations for the trade tax additions and reductions, the foreign income per country for the Anlage AESt, the date of leaving the small-business scheme, the Anlage UN answers of a company seated abroad and, for a cash-basis company, the kind of income and the withdrawals and contributions of the owner for the Anlage EÜR. A key that is absent has not been answered.
    */
   public CompletableFuture<DeReturnFactsGetDeclarationsResponse> deReturnFactsGet(
       DeReturnFactsGetDeclarationsRequest request) {
@@ -1177,7 +1195,7 @@ public class AsyncDeclarationsClient {
   }
 
   /**
-   * The facts of one year that the German annual returns (Körperschaftsteuer, Gewerbesteuer, Umsatzsteuererklärung) need and the ledger does not hold: changes of shareholders, contracts with shareholders, the tax contribution account, loss carry-back, the donation carry-forward, the business premises with the municipalities for the apportionment of the trade tax, the land values or property tax and the participations for the trade tax additions and reductions, the foreign income per country for the Anlage AESt, the date of leaving the small-business scheme and the Anlage UN answers of a company seated abroad. A key that is absent has not been answered.
+   * The facts of one year that the German annual returns (Körperschaftsteuer, Gewerbesteuer, Umsatzsteuererklärung) need and the ledger does not hold: changes of shareholders, contracts with shareholders, the tax contribution account, loss carry-back, the donation carry-forward, the business premises with the municipalities for the apportionment of the trade tax, the land values or property tax and the participations for the trade tax additions and reductions, the foreign income per country for the Anlage AESt, the date of leaving the small-business scheme, the Anlage UN answers of a company seated abroad and, for a cash-basis company, the kind of income and the withdrawals and contributions of the owner for the Anlage EÜR. A key that is absent has not been answered.
    */
   public CompletableFuture<DeReturnFactsGetDeclarationsResponse> deReturnFactsGet(
       DeReturnFactsGetDeclarationsRequest request, RequestOptions requestOptions) {

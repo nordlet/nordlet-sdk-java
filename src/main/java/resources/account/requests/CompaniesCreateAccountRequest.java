@@ -105,6 +105,8 @@ public final class CompaniesCreateAccountRequest {
 
   private final Optional<Boolean> isSandbox;
 
+  private final Optional<Boolean> cashBasis;
+
   private final Map<String, Object> additionalProperties;
 
   private CompaniesCreateAccountRequest(String name, Optional<String> code,
@@ -124,7 +126,8 @@ public final class CompaniesCreateAccountRequest {
       Optional<String> bookkeeperName, Optional<String> auditorName,
       Optional<String> auditorRegistrationNumber, Optional<Boolean> auditRequired,
       Optional<CompaniesCreateAccountRequestCountryCode> countryCode, Optional<String> baseCurrency,
-      Optional<Boolean> isSandbox, Map<String, Object> additionalProperties) {
+      Optional<Boolean> isSandbox, Optional<Boolean> cashBasis,
+      Map<String, Object> additionalProperties) {
     this.name = name;
     this.code = code;
     this.vatCode = vatCode;
@@ -161,6 +164,7 @@ public final class CompaniesCreateAccountRequest {
     this.countryCode = countryCode;
     this.baseCurrency = baseCurrency;
     this.isSandbox = isSandbox;
+    this.cashBasis = cashBasis;
     this.additionalProperties = additionalProperties;
   }
 
@@ -368,6 +372,14 @@ public final class CompaniesCreateAccountRequest {
     return isSandbox;
   }
 
+  /**
+   * @return The company determines its profit on a cash basis (receipts and payments, in Germany the Einnahmenüberschussrechnung of § 4 Abs. 3 EStG); it gets the cash-basis returns in its filing calendar (immutable after creation)
+   */
+  @JsonProperty("cashBasis")
+  public Optional<Boolean> getCashBasis() {
+    return cashBasis;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -380,12 +392,12 @@ public final class CompaniesCreateAccountRequest {
   }
 
   private boolean equalTo(CompaniesCreateAccountRequest other) {
-    return name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer.equals(other.isVatPayer) && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && bankBic.equals(other.bankBic) && bankCode.equals(other.bankCode) && bankBranchCode.equals(other.bankBranchCode) && bankAccountNumber.equals(other.bankAccountNumber) && invoicePrefix.equals(other.invoicePrefix) && defaultInvoiceLocale.equals(other.defaultInvoiceLocale) && defaultInvoiceNote.equals(other.defaultInvoiceNote) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired.equals(other.auditRequired) && countryCode.equals(other.countryCode) && baseCurrency.equals(other.baseCurrency) && isSandbox.equals(other.isSandbox);
+    return name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer.equals(other.isVatPayer) && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && bankBic.equals(other.bankBic) && bankCode.equals(other.bankCode) && bankBranchCode.equals(other.bankBranchCode) && bankAccountNumber.equals(other.bankAccountNumber) && invoicePrefix.equals(other.invoicePrefix) && defaultInvoiceLocale.equals(other.defaultInvoiceLocale) && defaultInvoiceNote.equals(other.defaultInvoiceNote) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired.equals(other.auditRequired) && countryCode.equals(other.countryCode) && baseCurrency.equals(other.baseCurrency) && isSandbox.equals(other.isSandbox) && cashBasis.equals(other.cashBasis);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.vatPeriod, this.fiscalYearEndMonth, this.timeZone, this.filingOptions, this.address, this.email, this.phone, this.iban, this.bankName, this.bankBic, this.bankCode, this.bankBranchCode, this.bankAccountNumber, this.invoicePrefix, this.defaultInvoiceLocale, this.defaultInvoiceNote, this.peppolId, this.sepaCreditorId, this.defaultInvoiceCurrency, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired, this.countryCode, this.baseCurrency, this.isSandbox);
+    return Objects.hash(this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.vatPeriod, this.fiscalYearEndMonth, this.timeZone, this.filingOptions, this.address, this.email, this.phone, this.iban, this.bankName, this.bankBic, this.bankCode, this.bankBranchCode, this.bankAccountNumber, this.invoicePrefix, this.defaultInvoiceLocale, this.defaultInvoiceNote, this.peppolId, this.sepaCreditorId, this.defaultInvoiceCurrency, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired, this.countryCode, this.baseCurrency, this.isSandbox, this.cashBasis);
   }
 
   @java.lang.Override
@@ -576,6 +588,13 @@ public final class CompaniesCreateAccountRequest {
     _FinalStage isSandbox(Optional<Boolean> isSandbox);
 
     _FinalStage isSandbox(Boolean isSandbox);
+
+    /**
+     * <p>The company determines its profit on a cash basis (receipts and payments, in Germany the Einnahmenüberschussrechnung of § 4 Abs. 3 EStG); it gets the cash-basis returns in its filing calendar (immutable after creation)</p>
+     */
+    _FinalStage cashBasis(Optional<Boolean> cashBasis);
+
+    _FinalStage cashBasis(Boolean cashBasis);
   }
 
   @JsonIgnoreProperties(
@@ -583,6 +602,8 @@ public final class CompaniesCreateAccountRequest {
   )
   public static final class Builder implements NameStage, _FinalStage {
     private String name;
+
+    private Optional<Boolean> cashBasis = Optional.empty();
 
     private Optional<Boolean> isSandbox = Optional.empty();
 
@@ -698,6 +719,7 @@ public final class CompaniesCreateAccountRequest {
       countryCode(other.getCountryCode());
       baseCurrency(other.getBaseCurrency());
       isSandbox(other.getIsSandbox());
+      cashBasis(other.getCashBasis());
       return this;
     }
 
@@ -705,6 +727,29 @@ public final class CompaniesCreateAccountRequest {
     @JsonSetter("name")
     public _FinalStage name(@NotNull String name) {
       this.name = Objects.requireNonNull(name, "name must not be null");
+      return this;
+    }
+
+    /**
+     * <p>The company determines its profit on a cash basis (receipts and payments, in Germany the Einnahmenüberschussrechnung of § 4 Abs. 3 EStG); it gets the cash-basis returns in its filing calendar (immutable after creation)</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage cashBasis(Boolean cashBasis) {
+      this.cashBasis = Optional.ofNullable(cashBasis);
+      return this;
+    }
+
+    /**
+     * <p>The company determines its profit on a cash basis (receipts and payments, in Germany the Einnahmenüberschussrechnung of § 4 Abs. 3 EStG); it gets the cash-basis returns in its filing calendar (immutable after creation)</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "cashBasis",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage cashBasis(Optional<Boolean> cashBasis) {
+      this.cashBasis = cashBasis;
       return this;
     }
 
@@ -1329,7 +1374,7 @@ public final class CompaniesCreateAccountRequest {
 
     @java.lang.Override
     public CompaniesCreateAccountRequest build() {
-      return new CompaniesCreateAccountRequest(name, code, vatCode, smeExemptionNumber, isVatPayer, vatPeriod, fiscalYearEndMonth, timeZone, filingOptions, address, email, phone, iban, bankName, bankBic, bankCode, bankBranchCode, bankAccountNumber, invoicePrefix, defaultInvoiceLocale, defaultInvoiceNote, peppolId, sepaCreditorId, defaultInvoiceCurrency, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, countryCode, baseCurrency, isSandbox, additionalProperties);
+      return new CompaniesCreateAccountRequest(name, code, vatCode, smeExemptionNumber, isVatPayer, vatPeriod, fiscalYearEndMonth, timeZone, filingOptions, address, email, phone, iban, bankName, bankBic, bankCode, bankBranchCode, bankAccountNumber, invoicePrefix, defaultInvoiceLocale, defaultInvoiceNote, peppolId, sepaCreditorId, defaultInvoiceCurrency, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, countryCode, baseCurrency, isSandbox, cashBasis, additionalProperties);
     }
 
     @java.lang.Override

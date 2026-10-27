@@ -1469,7 +1469,7 @@ public class RawAccountClient {
                                     }
 
                                     /**
-                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation.
                                      */
                                     public NordletApiHttpResponse<CompaniesUpdateAccountResponse> companiesUpdate(
                                         ) {
@@ -1477,7 +1477,7 @@ public class RawAccountClient {
                                     }
 
                                     /**
-                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation.
                                      */
                                     public NordletApiHttpResponse<CompaniesUpdateAccountResponse> companiesUpdate(
                                         RequestOptions requestOptions) {
@@ -1485,7 +1485,7 @@ public class RawAccountClient {
                                     }
 
                                     /**
-                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation.
                                      */
                                     public NordletApiHttpResponse<CompaniesUpdateAccountResponse> companiesUpdate(
                                         CompaniesUpdateAccountRequest request) {
@@ -1493,7 +1493,7 @@ public class RawAccountClient {
                                     }
 
                                     /**
-                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency and sandbox flag are fixed at creation.
+                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation.
                                      */
                                     public NordletApiHttpResponse<CompaniesUpdateAccountResponse> companiesUpdate(
                                         CompaniesUpdateAccountRequest request,
