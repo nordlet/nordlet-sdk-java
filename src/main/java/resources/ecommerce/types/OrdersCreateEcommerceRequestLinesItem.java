@@ -36,16 +36,19 @@ public final class OrdersCreateEcommerceRequestLinesItem {
 
   private final Optional<String> vatRatePercent;
 
+  private final Optional<String> vatClassifierCode;
+
   private final Map<String, Object> additionalProperties;
 
   private OrdersCreateEcommerceRequestLinesItem(Optional<String> itemId, String description,
       String quantity, String unitPriceExclVat, Optional<String> vatRatePercent,
-      Map<String, Object> additionalProperties) {
+      Optional<String> vatClassifierCode, Map<String, Object> additionalProperties) {
     this.itemId = itemId;
     this.description = description;
     this.quantity = quantity;
     this.unitPriceExclVat = unitPriceExclVat;
     this.vatRatePercent = vatRatePercent;
+    this.vatClassifierCode = vatClassifierCode;
     this.additionalProperties = additionalProperties;
   }
 
@@ -74,6 +77,11 @@ public final class OrdersCreateEcommerceRequestLinesItem {
     return vatRatePercent;
   }
 
+  @JsonProperty("vatClassifierCode")
+  public Optional<String> getVatClassifierCode() {
+    return vatClassifierCode;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -86,12 +94,12 @@ public final class OrdersCreateEcommerceRequestLinesItem {
   }
 
   private boolean equalTo(OrdersCreateEcommerceRequestLinesItem other) {
-    return itemId.equals(other.itemId) && description.equals(other.description) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && vatRatePercent.equals(other.vatRatePercent);
+    return itemId.equals(other.itemId) && description.equals(other.description) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.itemId, this.description, this.quantity, this.unitPriceExclVat, this.vatRatePercent);
+    return Objects.hash(this.itemId, this.description, this.quantity, this.unitPriceExclVat, this.vatRatePercent, this.vatClassifierCode);
   }
 
   @java.lang.Override
@@ -131,6 +139,10 @@ public final class OrdersCreateEcommerceRequestLinesItem {
     _FinalStage vatRatePercent(Optional<String> vatRatePercent);
 
     _FinalStage vatRatePercent(String vatRatePercent);
+
+    _FinalStage vatClassifierCode(Optional<String> vatClassifierCode);
+
+    _FinalStage vatClassifierCode(String vatClassifierCode);
   }
 
   @JsonIgnoreProperties(
@@ -142,6 +154,8 @@ public final class OrdersCreateEcommerceRequestLinesItem {
     private String quantity;
 
     private String unitPriceExclVat;
+
+    private Optional<String> vatClassifierCode = Optional.empty();
 
     private Optional<String> vatRatePercent = Optional.empty();
 
@@ -160,6 +174,7 @@ public final class OrdersCreateEcommerceRequestLinesItem {
       quantity(other.getQuantity());
       unitPriceExclVat(other.getUnitPriceExclVat());
       vatRatePercent(other.getVatRatePercent());
+      vatClassifierCode(other.getVatClassifierCode());
       return this;
     }
 
@@ -181,6 +196,22 @@ public final class OrdersCreateEcommerceRequestLinesItem {
     @JsonSetter("unitPriceExclVat")
     public _FinalStage unitPriceExclVat(@NotNull String unitPriceExclVat) {
       this.unitPriceExclVat = Objects.requireNonNull(unitPriceExclVat, "unitPriceExclVat must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatClassifierCode(String vatClassifierCode) {
+      this.vatClassifierCode = Optional.ofNullable(vatClassifierCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "vatClassifierCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage vatClassifierCode(Optional<String> vatClassifierCode) {
+      this.vatClassifierCode = vatClassifierCode;
       return this;
     }
 
@@ -218,7 +249,7 @@ public final class OrdersCreateEcommerceRequestLinesItem {
 
     @java.lang.Override
     public OrdersCreateEcommerceRequestLinesItem build() {
-      return new OrdersCreateEcommerceRequestLinesItem(itemId, description, quantity, unitPriceExclVat, vatRatePercent, additionalProperties);
+      return new OrdersCreateEcommerceRequestLinesItem(itemId, description, quantity, unitPriceExclVat, vatRatePercent, vatClassifierCode, additionalProperties);
     }
 
     @java.lang.Override

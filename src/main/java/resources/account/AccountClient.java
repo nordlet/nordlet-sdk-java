@@ -35,6 +35,9 @@ import com.nordlet.api.resources.account.requests.MembersListAccountRequest;
 import com.nordlet.api.resources.account.requests.MembersRemoveAccountRequest;
 import com.nordlet.api.resources.account.requests.MembersSetRoleAccountRequest;
 import com.nordlet.api.resources.account.requests.MembersTransferOwnershipAccountRequest;
+import com.nordlet.api.resources.account.requests.OauthAuthorizeApproveAccountRequest;
+import com.nordlet.api.resources.account.requests.OauthAuthorizeDenyAccountRequest;
+import com.nordlet.api.resources.account.requests.OauthAuthorizeDescribeAccountRequest;
 import com.nordlet.api.resources.account.requests.ProfileUpdateAccountRequest;
 import com.nordlet.api.resources.account.requests.ReferralConvertAccountRequest;
 import com.nordlet.api.resources.account.requests.ReferralGetAccountRequest;
@@ -73,6 +76,9 @@ import com.nordlet.api.resources.account.types.MembersListAccountResponse;
 import com.nordlet.api.resources.account.types.MembersRemoveAccountResponse;
 import com.nordlet.api.resources.account.types.MembersSetRoleAccountResponse;
 import com.nordlet.api.resources.account.types.MembersTransferOwnershipAccountResponse;
+import com.nordlet.api.resources.account.types.OauthAuthorizeApproveAccountResponse;
+import com.nordlet.api.resources.account.types.OauthAuthorizeDenyAccountResponse;
+import com.nordlet.api.resources.account.types.OauthAuthorizeDescribeAccountResponse;
 import com.nordlet.api.resources.account.types.ProfileUpdateAccountResponse;
 import com.nordlet.api.resources.account.types.ReferralConvertAccountResponse;
 import com.nordlet.api.resources.account.types.ReferralGetAccountResponse;
@@ -159,28 +165,28 @@ public class AccountClient {
   }
 
   /**
-   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in.
    */
   public MeAccountResponse me() {
     return this.rawClient.me().body();
   }
 
   /**
-   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in.
    */
   public MeAccountResponse me(RequestOptions requestOptions) {
     return this.rawClient.me(requestOptions).body();
   }
 
   /**
-   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in.
    */
   public MeAccountResponse me(MeAccountRequest request) {
     return this.rawClient.me(request).body();
   }
 
   /**
-   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in.
    */
   public MeAccountResponse me(MeAccountRequest request, RequestOptions requestOptions) {
     return this.rawClient.me(request, requestOptions).body();
@@ -247,14 +253,14 @@ public class AccountClient {
   }
 
   /**
-   * Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and the API keys they created for it are revoked. Refused with 422 for the caller themself and with 403 for the owner.
+   * Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and their API keys stop working in it. Refused with 422 for the caller themself and with 403 for the owner.
    */
   public MembersRemoveAccountResponse membersRemove(MembersRemoveAccountRequest request) {
     return this.rawClient.membersRemove(request).body();
   }
 
   /**
-   * Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and the API keys they created for it are revoked. Refused with 422 for the caller themself and with 403 for the owner.
+   * Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and their API keys stop working in it. Refused with 422 for the caller themself and with 403 for the owner.
    */
   public MembersRemoveAccountResponse membersRemove(MembersRemoveAccountRequest request,
       RequestOptions requestOptions) {
@@ -381,14 +387,14 @@ public class AccountClient {
   }
 
   /**
-   * Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member and with 422 when the company is archived or deleted.
+   * Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member, with 422 when the company is archived or deleted, and with 422 for an API key, which names the company in the <code>x-nordlet-company</code> header of each call instead.
    */
   public CompaniesSelectAccountResponse companiesSelect(CompaniesSelectAccountRequest request) {
     return this.rawClient.companiesSelect(request).body();
   }
 
   /**
-   * Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member and with 422 when the company is archived or deleted.
+   * Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member, with 422 when the company is archived or deleted, and with 422 for an API key, which names the company in the <code>x-nordlet-company</code> header of each call instead.
    */
   public CompaniesSelectAccountResponse companiesSelect(CompaniesSelectAccountRequest request,
       RequestOptions requestOptions) {
@@ -500,14 +506,14 @@ public class AccountClient {
   }
 
   /**
-   * Create an API key for the active company and return the key itself once; owners, admins and developers may call it. <code>scopes</code> defaults to the caller's own scopes and may not exceed them (403); without <code>expiresInDays</code> the key does not expire.
+   * Create an API key for the signed-in person and return the key itself once. Owners, admins and developers of the active company may call it. The key works in every company the person is a member of, with the rights of their role in each; every call names the company in the <code>x-nordlet-company</code> header. <code>scopes</code> defaults to the caller's scopes in the active company and may not exceed them (403); in each company the key's scopes are further limited to the person's role there. Without <code>expiresInDays</code> the key does not expire.
    */
   public ApiKeysCreateAccountResponse apiKeysCreate(ApiKeysCreateAccountRequest request) {
     return this.rawClient.apiKeysCreate(request).body();
   }
 
   /**
-   * Create an API key for the active company and return the key itself once; owners, admins and developers may call it. <code>scopes</code> defaults to the caller's own scopes and may not exceed them (403); without <code>expiresInDays</code> the key does not expire.
+   * Create an API key for the signed-in person and return the key itself once. Owners, admins and developers of the active company may call it. The key works in every company the person is a member of, with the rights of their role in each; every call names the company in the <code>x-nordlet-company</code> header. <code>scopes</code> defaults to the caller's scopes in the active company and may not exceed them (403); in each company the key's scopes are further limited to the person's role there. Without <code>expiresInDays</code> the key does not expire.
    */
   public ApiKeysCreateAccountResponse apiKeysCreate(ApiKeysCreateAccountRequest request,
       RequestOptions requestOptions) {
@@ -515,28 +521,28 @@ public class AccountClient {
   }
 
   /**
-   * List the API keys of the active company, including expired and revoked ones.
+   * List the signed-in person's API keys, including expired and revoked ones.
    */
   public ApiKeysListAccountResponse apiKeysList() {
     return this.rawClient.apiKeysList().body();
   }
 
   /**
-   * List the API keys of the active company, including expired and revoked ones.
+   * List the signed-in person's API keys, including expired and revoked ones.
    */
   public ApiKeysListAccountResponse apiKeysList(RequestOptions requestOptions) {
     return this.rawClient.apiKeysList(requestOptions).body();
   }
 
   /**
-   * List the API keys of the active company, including expired and revoked ones.
+   * List the signed-in person's API keys, including expired and revoked ones.
    */
   public ApiKeysListAccountResponse apiKeysList(ApiKeysListAccountRequest request) {
     return this.rawClient.apiKeysList(request).body();
   }
 
   /**
-   * List the API keys of the active company, including expired and revoked ones.
+   * List the signed-in person's API keys, including expired and revoked ones.
    */
   public ApiKeysListAccountResponse apiKeysList(ApiKeysListAccountRequest request,
       RequestOptions requestOptions) {
@@ -544,14 +550,14 @@ public class AccountClient {
   }
 
   /**
-   * Create a new key with the name and scopes of the key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key. Refused with 409 when the old key is revoked.
+   * Create a new key with the name and scopes of the signed-in person's key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key. Refused with 409 when the old key is revoked or belongs to an app connected through OAuth, which renews its own access.
    */
   public ApiKeysRotateAccountResponse apiKeysRotate(ApiKeysRotateAccountRequest request) {
     return this.rawClient.apiKeysRotate(request).body();
   }
 
   /**
-   * Create a new key with the name and scopes of the key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key. Refused with 409 when the old key is revoked.
+   * Create a new key with the name and scopes of the signed-in person's key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key. Refused with 409 when the old key is revoked or belongs to an app connected through OAuth, which renews its own access.
    */
   public ApiKeysRotateAccountResponse apiKeysRotate(ApiKeysRotateAccountRequest request,
       RequestOptions requestOptions) {
@@ -559,14 +565,14 @@ public class AccountClient {
   }
 
   /**
-   * Revoke an API key of the active company at once.
+   * Revoke one of the signed-in person's API keys at once.
    */
   public ApiKeysRevokeAccountResponse apiKeysRevoke(ApiKeysRevokeAccountRequest request) {
     return this.rawClient.apiKeysRevoke(request).body();
   }
 
   /**
-   * Revoke an API key of the active company at once.
+   * Revoke one of the signed-in person's API keys at once.
    */
   public ApiKeysRevokeAccountResponse apiKeysRevoke(ApiKeysRevokeAccountRequest request,
       RequestOptions requestOptions) {
@@ -694,28 +700,28 @@ public class AccountClient {
   }
 
   /**
-   * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+   * Return the user's profile, consent state, memberships, unexpired sessions, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
    */
   public ExportAccountResponse export() {
     return this.rawClient.export().body();
   }
 
   /**
-   * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+   * Return the user's profile, consent state, memberships, unexpired sessions, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
    */
   public ExportAccountResponse export(RequestOptions requestOptions) {
     return this.rawClient.export(requestOptions).body();
   }
 
   /**
-   * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+   * Return the user's profile, consent state, memberships, unexpired sessions, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
    */
   public ExportAccountResponse export(ExportAccountRequest request) {
     return this.rawClient.export(request).body();
   }
 
   /**
-   * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+   * Return the user's profile, consent state, memberships, unexpired sessions, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
    */
   public ExportAccountResponse export(ExportAccountRequest request, RequestOptions requestOptions) {
     return this.rawClient.export(request, requestOptions).body();
@@ -837,5 +843,53 @@ public class AccountClient {
   public TableSettingsListAccountResponse tableSettingsList(TableSettingsListAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.tableSettingsList(request, requestOptions).body();
+  }
+
+  /**
+   * Check an OAuth authorization request of an app that wants to connect to Nordlet (such as Claude) and return the name the app registered, the address the signed-in person is sent back to and the scopes asked for. Refused with 422 when the request is invalid: unknown app, redirect address not registered for it, no PKCE (S256), unknown scope or a resource other than the MCP server.
+   */
+  public OauthAuthorizeDescribeAccountResponse oauthAuthorizeDescribe(
+      OauthAuthorizeDescribeAccountRequest request) {
+    return this.rawClient.oauthAuthorizeDescribe(request).body();
+  }
+
+  /**
+   * Check an OAuth authorization request of an app that wants to connect to Nordlet (such as Claude) and return the name the app registered, the address the signed-in person is sent back to and the scopes asked for. Refused with 422 when the request is invalid: unknown app, redirect address not registered for it, no PKCE (S256), unknown scope or a resource other than the MCP server.
+   */
+  public OauthAuthorizeDescribeAccountResponse oauthAuthorizeDescribe(
+      OauthAuthorizeDescribeAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.oauthAuthorizeDescribe(request, requestOptions).body();
+  }
+
+  /**
+   * Allow the app of an OAuth authorization request to act for the signed-in person and return the app's redirect address with a one-time authorization code (valid for 5 minutes). The app exchanges the code at <code>/oauth/token</code> for an access token that works like an API key of the person: in every company they are a member of, with the rights of their role there. The connection is listed among the person's API keys under the app's name and is revoked there. Refused with 422 like <code>account/oauth/authorize/describe</code>.
+   */
+  public OauthAuthorizeApproveAccountResponse oauthAuthorizeApprove(
+      OauthAuthorizeApproveAccountRequest request) {
+    return this.rawClient.oauthAuthorizeApprove(request).body();
+  }
+
+  /**
+   * Allow the app of an OAuth authorization request to act for the signed-in person and return the app's redirect address with a one-time authorization code (valid for 5 minutes). The app exchanges the code at <code>/oauth/token</code> for an access token that works like an API key of the person: in every company they are a member of, with the rights of their role there. The connection is listed among the person's API keys under the app's name and is revoked there. Refused with 422 like <code>account/oauth/authorize/describe</code>.
+   */
+  public OauthAuthorizeApproveAccountResponse oauthAuthorizeApprove(
+      OauthAuthorizeApproveAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.oauthAuthorizeApprove(request, requestOptions).body();
+  }
+
+  /**
+   * Refuse an OAuth authorization request and return the app's redirect address with the error <code>access_denied</code>. Refused with 422 like <code>account/oauth/authorize/describe</code>.
+   */
+  public OauthAuthorizeDenyAccountResponse oauthAuthorizeDeny(
+      OauthAuthorizeDenyAccountRequest request) {
+    return this.rawClient.oauthAuthorizeDeny(request).body();
+  }
+
+  /**
+   * Refuse an OAuth authorization request and return the app's redirect address with the error <code>access_denied</code>. Refused with 422 like <code>account/oauth/authorize/describe</code>.
+   */
+  public OauthAuthorizeDenyAccountResponse oauthAuthorizeDeny(
+      OauthAuthorizeDenyAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.oauthAuthorizeDeny(request, requestOptions).body();
   }
 }

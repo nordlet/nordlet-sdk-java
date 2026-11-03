@@ -27,6 +27,8 @@ import org.jetbrains.annotations.NotNull;
 public final class ExportAccountResponseCreditTransactionsItem {
   private final String id;
 
+  private final ExportAccountResponseCreditTransactionsItemSite site;
+
   private final String type;
 
   private final long amountCents;
@@ -39,10 +41,12 @@ public final class ExportAccountResponseCreditTransactionsItem {
 
   private final Map<String, Object> additionalProperties;
 
-  private ExportAccountResponseCreditTransactionsItem(String id, String type, long amountCents,
+  private ExportAccountResponseCreditTransactionsItem(String id,
+      ExportAccountResponseCreditTransactionsItemSite site, String type, long amountCents,
       long balanceAfterCents, String description, OffsetDateTime createdAt,
       Map<String, Object> additionalProperties) {
     this.id = id;
+    this.site = site;
     this.type = type;
     this.amountCents = amountCents;
     this.balanceAfterCents = balanceAfterCents;
@@ -54,6 +58,11 @@ public final class ExportAccountResponseCreditTransactionsItem {
   @JsonProperty("id")
   public String getId() {
     return id;
+  }
+
+  @JsonProperty("site")
+  public ExportAccountResponseCreditTransactionsItemSite getSite() {
+    return site;
   }
 
   @JsonProperty("type")
@@ -93,12 +102,12 @@ public final class ExportAccountResponseCreditTransactionsItem {
   }
 
   private boolean equalTo(ExportAccountResponseCreditTransactionsItem other) {
-    return id.equals(other.id) && type.equals(other.type) && amountCents == other.amountCents && balanceAfterCents == other.balanceAfterCents && description.equals(other.description) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && site.equals(other.site) && type.equals(other.type) && amountCents == other.amountCents && balanceAfterCents == other.balanceAfterCents && description.equals(other.description) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.type, this.amountCents, this.balanceAfterCents, this.description, this.createdAt);
+    return Objects.hash(this.id, this.site, this.type, this.amountCents, this.balanceAfterCents, this.description, this.createdAt);
   }
 
   @java.lang.Override
@@ -111,9 +120,13 @@ public final class ExportAccountResponseCreditTransactionsItem {
   }
 
   public interface IdStage {
-    TypeStage id(@NotNull String id);
+    SiteStage id(@NotNull String id);
 
     Builder from(ExportAccountResponseCreditTransactionsItem other);
+  }
+
+  public interface SiteStage {
+    TypeStage site(@NotNull ExportAccountResponseCreditTransactionsItemSite site);
   }
 
   public interface TypeStage {
@@ -147,8 +160,10 @@ public final class ExportAccountResponseCreditTransactionsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, TypeStage, AmountCentsStage, BalanceAfterCentsStage, DescriptionStage, CreatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, SiteStage, TypeStage, AmountCentsStage, BalanceAfterCentsStage, DescriptionStage, CreatedAtStage, _FinalStage {
     private String id;
+
+    private ExportAccountResponseCreditTransactionsItemSite site;
 
     private String type;
 
@@ -169,6 +184,7 @@ public final class ExportAccountResponseCreditTransactionsItem {
     @java.lang.Override
     public Builder from(ExportAccountResponseCreditTransactionsItem other) {
       id(other.getId());
+      site(other.getSite());
       type(other.getType());
       amountCents(other.getAmountCents());
       balanceAfterCents(other.getBalanceAfterCents());
@@ -179,8 +195,15 @@ public final class ExportAccountResponseCreditTransactionsItem {
 
     @java.lang.Override
     @JsonSetter("id")
-    public TypeStage id(@NotNull String id) {
+    public SiteStage id(@NotNull String id) {
       this.id = Objects.requireNonNull(id, "id must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("site")
+    public TypeStage site(@NotNull ExportAccountResponseCreditTransactionsItemSite site) {
+      this.site = Objects.requireNonNull(site, "site must not be null");
       return this;
     }
 
@@ -221,7 +244,7 @@ public final class ExportAccountResponseCreditTransactionsItem {
 
     @java.lang.Override
     public ExportAccountResponseCreditTransactionsItem build() {
-      return new ExportAccountResponseCreditTransactionsItem(id, type, amountCents, balanceAfterCents, description, createdAt, additionalProperties);
+      return new ExportAccountResponseCreditTransactionsItem(id, site, type, amountCents, balanceAfterCents, description, createdAt, additionalProperties);
     }
 
     @java.lang.Override

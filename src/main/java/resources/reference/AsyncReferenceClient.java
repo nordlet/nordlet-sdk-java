@@ -434,14 +434,14 @@ public class AsyncReferenceClient {
   }
 
   /**
-   * Lists the company's VAT classifiers (code, country, name and rate). A document line that names a classifier in <code>vatClassifierCode</code> takes its rate from it when neither the line nor the item has a rate. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
+   * Lists the company's VAT types (code, country, name and rate). A document line names one in <code>vatClassifierCode</code> and takes its rate, VAT scheme and return boxes from it; a company that has VAT types refuses a line without one (422). <code>side</code> says whether the type is for sale lines, purchase lines or both, <code>scheme</code> is its VAT scheme and <code>nameEn</code> its English name; both are null for a type the company added itself. A type without a rate takes the line's <code>vatRatePercent</code> on the sides where <code>rateFromLine</code> is true, and 0% elsewhere. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
    */
   public CompletableFuture<VatClassifiersListReferenceResponse> vatClassifiersList() {
     return this.rawClient.vatClassifiersList().thenApply(response -> response.body());
   }
 
   /**
-   * Lists the company's VAT classifiers (code, country, name and rate). A document line that names a classifier in <code>vatClassifierCode</code> takes its rate from it when neither the line nor the item has a rate. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
+   * Lists the company's VAT types (code, country, name and rate). A document line names one in <code>vatClassifierCode</code> and takes its rate, VAT scheme and return boxes from it; a company that has VAT types refuses a line without one (422). <code>side</code> says whether the type is for sale lines, purchase lines or both, <code>scheme</code> is its VAT scheme and <code>nameEn</code> its English name; both are null for a type the company added itself. A type without a rate takes the line's <code>vatRatePercent</code> on the sides where <code>rateFromLine</code> is true, and 0% elsewhere. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
    */
   public CompletableFuture<VatClassifiersListReferenceResponse> vatClassifiersList(
       RequestOptions requestOptions) {
@@ -449,7 +449,7 @@ public class AsyncReferenceClient {
   }
 
   /**
-   * Lists the company's VAT classifiers (code, country, name and rate). A document line that names a classifier in <code>vatClassifierCode</code> takes its rate from it when neither the line nor the item has a rate. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
+   * Lists the company's VAT types (code, country, name and rate). A document line names one in <code>vatClassifierCode</code> and takes its rate, VAT scheme and return boxes from it; a company that has VAT types refuses a line without one (422). <code>side</code> says whether the type is for sale lines, purchase lines or both, <code>scheme</code> is its VAT scheme and <code>nameEn</code> its English name; both are null for a type the company added itself. A type without a rate takes the line's <code>vatRatePercent</code> on the sides where <code>rateFromLine</code> is true, and 0% elsewhere. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
    */
   public CompletableFuture<VatClassifiersListReferenceResponse> vatClassifiersList(
       VatClassifiersListReferenceRequest request) {
@@ -457,7 +457,7 @@ public class AsyncReferenceClient {
   }
 
   /**
-   * Lists the company's VAT classifiers (code, country, name and rate). A document line that names a classifier in <code>vatClassifierCode</code> takes its rate from it when neither the line nor the item has a rate. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
+   * Lists the company's VAT types (code, country, name and rate). A document line names one in <code>vatClassifierCode</code> and takes its rate, VAT scheme and return boxes from it; a company that has VAT types refuses a line without one (422). <code>side</code> says whether the type is for sale lines, purchase lines or both, <code>scheme</code> is its VAT scheme and <code>nameEn</code> its English name; both are null for a type the company added itself. A type without a rate takes the line's <code>vatRatePercent</code> on the sides where <code>rateFromLine</code> is true, and 0% elsewhere. Filterable by <code>code</code>, <code>countryCode</code> and <code>ratePercent</code>; sortable by <code>code</code> and <code>ratePercent</code>.
    */
   public CompletableFuture<VatClassifiersListReferenceResponse> vatClassifiersList(
       VatClassifiersListReferenceRequest request, RequestOptions requestOptions) {

@@ -28,6 +28,8 @@ public final class CreatePartnersRequestInvoiceLocale {
 
   public static final CreatePartnersRequestInvoiceLocale RO = new CreatePartnersRequestInvoiceLocale(Value.RO, "ro");
 
+  public static final CreatePartnersRequestInvoiceLocale UK = new CreatePartnersRequestInvoiceLocale(Value.UK, "uk");
+
   public static final CreatePartnersRequestInvoiceLocale ES = new CreatePartnersRequestInvoiceLocale(Value.ES, "es");
 
   public static final CreatePartnersRequestInvoiceLocale PL = new CreatePartnersRequestInvoiceLocale(Value.PL, "pl");
@@ -124,6 +126,8 @@ public final class CreatePartnersRequestInvoiceLocale {
         return visitor.visitFi();
       case RO:
         return visitor.visitRo();
+      case UK:
+        return visitor.visitUk();
       case ES:
         return visitor.visitEs();
       case PL:
@@ -199,6 +203,8 @@ public final class CreatePartnersRequestInvoiceLocale {
         return FI;
       case "ro":
         return RO;
+      case "uk":
+        return UK;
       case "es":
         return ES;
       case "pl":
@@ -315,6 +321,8 @@ public final class CreatePartnersRequestInvoiceLocale {
 
     TR,
 
+    UK,
+
     UNKNOWN
   }
 
@@ -382,6 +390,8 @@ public final class CreatePartnersRequestInvoiceLocale {
     T visitRu();
 
     T visitTr();
+
+    T visitUk();
 
     T visitUnknown(String unknownType);
   }

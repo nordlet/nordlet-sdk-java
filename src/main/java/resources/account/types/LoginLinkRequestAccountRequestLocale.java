@@ -12,9 +12,69 @@ import java.lang.String;
 public final class LoginLinkRequestAccountRequestLocale {
   public static final LoginLinkRequestAccountRequestLocale EN = new LoginLinkRequestAccountRequestLocale(Value.EN, "en");
 
-  public static final LoginLinkRequestAccountRequestLocale DE = new LoginLinkRequestAccountRequestLocale(Value.DE, "de");
+  public static final LoginLinkRequestAccountRequestLocale ZH = new LoginLinkRequestAccountRequestLocale(Value.ZH, "zh");
+
+  public static final LoginLinkRequestAccountRequestLocale HI = new LoginLinkRequestAccountRequestLocale(Value.HI, "hi");
 
   public static final LoginLinkRequestAccountRequestLocale LT = new LoginLinkRequestAccountRequestLocale(Value.LT, "lt");
+
+  public static final LoginLinkRequestAccountRequestLocale DA = new LoginLinkRequestAccountRequestLocale(Value.DA, "da");
+
+  public static final LoginLinkRequestAccountRequestLocale LV = new LoginLinkRequestAccountRequestLocale(Value.LV, "lv");
+
+  public static final LoginLinkRequestAccountRequestLocale TR = new LoginLinkRequestAccountRequestLocale(Value.TR, "tr");
+
+  public static final LoginLinkRequestAccountRequestLocale FI = new LoginLinkRequestAccountRequestLocale(Value.FI, "fi");
+
+  public static final LoginLinkRequestAccountRequestLocale RO = new LoginLinkRequestAccountRequestLocale(Value.RO, "ro");
+
+  public static final LoginLinkRequestAccountRequestLocale UK = new LoginLinkRequestAccountRequestLocale(Value.UK, "uk");
+
+  public static final LoginLinkRequestAccountRequestLocale ES = new LoginLinkRequestAccountRequestLocale(Value.ES, "es");
+
+  public static final LoginLinkRequestAccountRequestLocale PL = new LoginLinkRequestAccountRequestLocale(Value.PL, "pl");
+
+  public static final LoginLinkRequestAccountRequestLocale DE = new LoginLinkRequestAccountRequestLocale(Value.DE, "de");
+
+  public static final LoginLinkRequestAccountRequestLocale GA = new LoginLinkRequestAccountRequestLocale(Value.GA, "ga");
+
+  public static final LoginLinkRequestAccountRequestLocale ET = new LoginLinkRequestAccountRequestLocale(Value.ET, "et");
+
+  public static final LoginLinkRequestAccountRequestLocale HR = new LoginLinkRequestAccountRequestLocale(Value.HR, "hr");
+
+  public static final LoginLinkRequestAccountRequestLocale SK = new LoginLinkRequestAccountRequestLocale(Value.SK, "sk");
+
+  public static final LoginLinkRequestAccountRequestLocale SL = new LoginLinkRequestAccountRequestLocale(Value.SL, "sl");
+
+  public static final LoginLinkRequestAccountRequestLocale MT = new LoginLinkRequestAccountRequestLocale(Value.MT, "mt");
+
+  public static final LoginLinkRequestAccountRequestLocale CS = new LoginLinkRequestAccountRequestLocale(Value.CS, "cs");
+
+  public static final LoginLinkRequestAccountRequestLocale RU = new LoginLinkRequestAccountRequestLocale(Value.RU, "ru");
+
+  public static final LoginLinkRequestAccountRequestLocale JA = new LoginLinkRequestAccountRequestLocale(Value.JA, "ja");
+
+  public static final LoginLinkRequestAccountRequestLocale HU = new LoginLinkRequestAccountRequestLocale(Value.HU, "hu");
+
+  public static final LoginLinkRequestAccountRequestLocale NL = new LoginLinkRequestAccountRequestLocale(Value.NL, "nl");
+
+  public static final LoginLinkRequestAccountRequestLocale BG = new LoginLinkRequestAccountRequestLocale(Value.BG, "bg");
+
+  public static final LoginLinkRequestAccountRequestLocale PT = new LoginLinkRequestAccountRequestLocale(Value.PT, "pt");
+
+  public static final LoginLinkRequestAccountRequestLocale AR = new LoginLinkRequestAccountRequestLocale(Value.AR, "ar");
+
+  public static final LoginLinkRequestAccountRequestLocale FR = new LoginLinkRequestAccountRequestLocale(Value.FR, "fr");
+
+  public static final LoginLinkRequestAccountRequestLocale NO = new LoginLinkRequestAccountRequestLocale(Value.NO, "no");
+
+  public static final LoginLinkRequestAccountRequestLocale IS = new LoginLinkRequestAccountRequestLocale(Value.IS, "is");
+
+  public static final LoginLinkRequestAccountRequestLocale SV = new LoginLinkRequestAccountRequestLocale(Value.SV, "sv");
+
+  public static final LoginLinkRequestAccountRequestLocale IT = new LoginLinkRequestAccountRequestLocale(Value.IT, "it");
+
+  public static final LoginLinkRequestAccountRequestLocale EL = new LoginLinkRequestAccountRequestLocale(Value.EL, "el");
 
   private final Value value;
 
@@ -50,10 +110,70 @@ public final class LoginLinkRequestAccountRequestLocale {
     switch (value) {
       case EN:
         return visitor.visitEn();
-      case DE:
-        return visitor.visitDe();
+      case ZH:
+        return visitor.visitZh();
+      case HI:
+        return visitor.visitHi();
       case LT:
         return visitor.visitLt();
+      case DA:
+        return visitor.visitDa();
+      case LV:
+        return visitor.visitLv();
+      case TR:
+        return visitor.visitTr();
+      case FI:
+        return visitor.visitFi();
+      case RO:
+        return visitor.visitRo();
+      case UK:
+        return visitor.visitUk();
+      case ES:
+        return visitor.visitEs();
+      case PL:
+        return visitor.visitPl();
+      case DE:
+        return visitor.visitDe();
+      case GA:
+        return visitor.visitGa();
+      case ET:
+        return visitor.visitEt();
+      case HR:
+        return visitor.visitHr();
+      case SK:
+        return visitor.visitSk();
+      case SL:
+        return visitor.visitSl();
+      case MT:
+        return visitor.visitMt();
+      case CS:
+        return visitor.visitCs();
+      case RU:
+        return visitor.visitRu();
+      case JA:
+        return visitor.visitJa();
+      case HU:
+        return visitor.visitHu();
+      case NL:
+        return visitor.visitNl();
+      case BG:
+        return visitor.visitBg();
+      case PT:
+        return visitor.visitPt();
+      case AR:
+        return visitor.visitAr();
+      case FR:
+        return visitor.visitFr();
+      case NO:
+        return visitor.visitNo();
+      case IS:
+        return visitor.visitIs();
+      case SV:
+        return visitor.visitSv();
+      case IT:
+        return visitor.visitIt();
+      case EL:
+        return visitor.visitEl();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -67,10 +187,70 @@ public final class LoginLinkRequestAccountRequestLocale {
     switch (value) {
       case "en":
         return EN;
-      case "de":
-        return DE;
+      case "zh":
+        return ZH;
+      case "hi":
+        return HI;
       case "lt":
         return LT;
+      case "da":
+        return DA;
+      case "lv":
+        return LV;
+      case "tr":
+        return TR;
+      case "fi":
+        return FI;
+      case "ro":
+        return RO;
+      case "uk":
+        return UK;
+      case "es":
+        return ES;
+      case "pl":
+        return PL;
+      case "de":
+        return DE;
+      case "ga":
+        return GA;
+      case "et":
+        return ET;
+      case "hr":
+        return HR;
+      case "sk":
+        return SK;
+      case "sl":
+        return SL;
+      case "mt":
+        return MT;
+      case "cs":
+        return CS;
+      case "ru":
+        return RU;
+      case "ja":
+        return JA;
+      case "hu":
+        return HU;
+      case "nl":
+        return NL;
+      case "bg":
+        return BG;
+      case "pt":
+        return PT;
+      case "ar":
+        return AR;
+      case "fr":
+        return FR;
+      case "no":
+        return NO;
+      case "is":
+        return IS;
+      case "sv":
+        return SV;
+      case "it":
+        return IT;
+      case "el":
+        return EL;
       default:
         return new LoginLinkRequestAccountRequestLocale(Value.UNKNOWN, value);
     }
@@ -83,6 +263,66 @@ public final class LoginLinkRequestAccountRequestLocale {
 
     DE,
 
+    FR,
+
+    ES,
+
+    IT,
+
+    PT,
+
+    NL,
+
+    PL,
+
+    SV,
+
+    DA,
+
+    NO,
+
+    FI,
+
+    ET,
+
+    LV,
+
+    CS,
+
+    SK,
+
+    HU,
+
+    RO,
+
+    BG,
+
+    HR,
+
+    SL,
+
+    EL,
+
+    MT,
+
+    IS,
+
+    GA,
+
+    ZH,
+
+    JA,
+
+    AR,
+
+    HI,
+
+    RU,
+
+    TR,
+
+    UK,
+
     UNKNOWN
   }
 
@@ -92,6 +332,66 @@ public final class LoginLinkRequestAccountRequestLocale {
     T visitLt();
 
     T visitDe();
+
+    T visitFr();
+
+    T visitEs();
+
+    T visitIt();
+
+    T visitPt();
+
+    T visitNl();
+
+    T visitPl();
+
+    T visitSv();
+
+    T visitDa();
+
+    T visitNo();
+
+    T visitFi();
+
+    T visitEt();
+
+    T visitLv();
+
+    T visitCs();
+
+    T visitSk();
+
+    T visitHu();
+
+    T visitRo();
+
+    T visitBg();
+
+    T visitHr();
+
+    T visitSl();
+
+    T visitEl();
+
+    T visitMt();
+
+    T visitIs();
+
+    T visitGa();
+
+    T visitZh();
+
+    T visitJa();
+
+    T visitAr();
+
+    T visitHi();
+
+    T visitRu();
+
+    T visitTr();
+
+    T visitUk();
 
     T visitUnknown(String unknownType);
   }

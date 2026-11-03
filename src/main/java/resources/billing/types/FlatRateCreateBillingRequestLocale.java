@@ -12,9 +12,69 @@ import java.lang.String;
 public final class FlatRateCreateBillingRequestLocale {
   public static final FlatRateCreateBillingRequestLocale EN = new FlatRateCreateBillingRequestLocale(Value.EN, "en");
 
-  public static final FlatRateCreateBillingRequestLocale DE = new FlatRateCreateBillingRequestLocale(Value.DE, "de");
+  public static final FlatRateCreateBillingRequestLocale ZH = new FlatRateCreateBillingRequestLocale(Value.ZH, "zh");
+
+  public static final FlatRateCreateBillingRequestLocale HI = new FlatRateCreateBillingRequestLocale(Value.HI, "hi");
 
   public static final FlatRateCreateBillingRequestLocale LT = new FlatRateCreateBillingRequestLocale(Value.LT, "lt");
+
+  public static final FlatRateCreateBillingRequestLocale DA = new FlatRateCreateBillingRequestLocale(Value.DA, "da");
+
+  public static final FlatRateCreateBillingRequestLocale LV = new FlatRateCreateBillingRequestLocale(Value.LV, "lv");
+
+  public static final FlatRateCreateBillingRequestLocale TR = new FlatRateCreateBillingRequestLocale(Value.TR, "tr");
+
+  public static final FlatRateCreateBillingRequestLocale FI = new FlatRateCreateBillingRequestLocale(Value.FI, "fi");
+
+  public static final FlatRateCreateBillingRequestLocale RO = new FlatRateCreateBillingRequestLocale(Value.RO, "ro");
+
+  public static final FlatRateCreateBillingRequestLocale UK = new FlatRateCreateBillingRequestLocale(Value.UK, "uk");
+
+  public static final FlatRateCreateBillingRequestLocale ES = new FlatRateCreateBillingRequestLocale(Value.ES, "es");
+
+  public static final FlatRateCreateBillingRequestLocale PL = new FlatRateCreateBillingRequestLocale(Value.PL, "pl");
+
+  public static final FlatRateCreateBillingRequestLocale DE = new FlatRateCreateBillingRequestLocale(Value.DE, "de");
+
+  public static final FlatRateCreateBillingRequestLocale GA = new FlatRateCreateBillingRequestLocale(Value.GA, "ga");
+
+  public static final FlatRateCreateBillingRequestLocale ET = new FlatRateCreateBillingRequestLocale(Value.ET, "et");
+
+  public static final FlatRateCreateBillingRequestLocale HR = new FlatRateCreateBillingRequestLocale(Value.HR, "hr");
+
+  public static final FlatRateCreateBillingRequestLocale SK = new FlatRateCreateBillingRequestLocale(Value.SK, "sk");
+
+  public static final FlatRateCreateBillingRequestLocale SL = new FlatRateCreateBillingRequestLocale(Value.SL, "sl");
+
+  public static final FlatRateCreateBillingRequestLocale MT = new FlatRateCreateBillingRequestLocale(Value.MT, "mt");
+
+  public static final FlatRateCreateBillingRequestLocale CS = new FlatRateCreateBillingRequestLocale(Value.CS, "cs");
+
+  public static final FlatRateCreateBillingRequestLocale RU = new FlatRateCreateBillingRequestLocale(Value.RU, "ru");
+
+  public static final FlatRateCreateBillingRequestLocale JA = new FlatRateCreateBillingRequestLocale(Value.JA, "ja");
+
+  public static final FlatRateCreateBillingRequestLocale HU = new FlatRateCreateBillingRequestLocale(Value.HU, "hu");
+
+  public static final FlatRateCreateBillingRequestLocale NL = new FlatRateCreateBillingRequestLocale(Value.NL, "nl");
+
+  public static final FlatRateCreateBillingRequestLocale BG = new FlatRateCreateBillingRequestLocale(Value.BG, "bg");
+
+  public static final FlatRateCreateBillingRequestLocale PT = new FlatRateCreateBillingRequestLocale(Value.PT, "pt");
+
+  public static final FlatRateCreateBillingRequestLocale AR = new FlatRateCreateBillingRequestLocale(Value.AR, "ar");
+
+  public static final FlatRateCreateBillingRequestLocale FR = new FlatRateCreateBillingRequestLocale(Value.FR, "fr");
+
+  public static final FlatRateCreateBillingRequestLocale NO = new FlatRateCreateBillingRequestLocale(Value.NO, "no");
+
+  public static final FlatRateCreateBillingRequestLocale IS = new FlatRateCreateBillingRequestLocale(Value.IS, "is");
+
+  public static final FlatRateCreateBillingRequestLocale SV = new FlatRateCreateBillingRequestLocale(Value.SV, "sv");
+
+  public static final FlatRateCreateBillingRequestLocale IT = new FlatRateCreateBillingRequestLocale(Value.IT, "it");
+
+  public static final FlatRateCreateBillingRequestLocale EL = new FlatRateCreateBillingRequestLocale(Value.EL, "el");
 
   private final Value value;
 
@@ -50,10 +110,70 @@ public final class FlatRateCreateBillingRequestLocale {
     switch (value) {
       case EN:
         return visitor.visitEn();
-      case DE:
-        return visitor.visitDe();
+      case ZH:
+        return visitor.visitZh();
+      case HI:
+        return visitor.visitHi();
       case LT:
         return visitor.visitLt();
+      case DA:
+        return visitor.visitDa();
+      case LV:
+        return visitor.visitLv();
+      case TR:
+        return visitor.visitTr();
+      case FI:
+        return visitor.visitFi();
+      case RO:
+        return visitor.visitRo();
+      case UK:
+        return visitor.visitUk();
+      case ES:
+        return visitor.visitEs();
+      case PL:
+        return visitor.visitPl();
+      case DE:
+        return visitor.visitDe();
+      case GA:
+        return visitor.visitGa();
+      case ET:
+        return visitor.visitEt();
+      case HR:
+        return visitor.visitHr();
+      case SK:
+        return visitor.visitSk();
+      case SL:
+        return visitor.visitSl();
+      case MT:
+        return visitor.visitMt();
+      case CS:
+        return visitor.visitCs();
+      case RU:
+        return visitor.visitRu();
+      case JA:
+        return visitor.visitJa();
+      case HU:
+        return visitor.visitHu();
+      case NL:
+        return visitor.visitNl();
+      case BG:
+        return visitor.visitBg();
+      case PT:
+        return visitor.visitPt();
+      case AR:
+        return visitor.visitAr();
+      case FR:
+        return visitor.visitFr();
+      case NO:
+        return visitor.visitNo();
+      case IS:
+        return visitor.visitIs();
+      case SV:
+        return visitor.visitSv();
+      case IT:
+        return visitor.visitIt();
+      case EL:
+        return visitor.visitEl();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -67,10 +187,70 @@ public final class FlatRateCreateBillingRequestLocale {
     switch (value) {
       case "en":
         return EN;
-      case "de":
-        return DE;
+      case "zh":
+        return ZH;
+      case "hi":
+        return HI;
       case "lt":
         return LT;
+      case "da":
+        return DA;
+      case "lv":
+        return LV;
+      case "tr":
+        return TR;
+      case "fi":
+        return FI;
+      case "ro":
+        return RO;
+      case "uk":
+        return UK;
+      case "es":
+        return ES;
+      case "pl":
+        return PL;
+      case "de":
+        return DE;
+      case "ga":
+        return GA;
+      case "et":
+        return ET;
+      case "hr":
+        return HR;
+      case "sk":
+        return SK;
+      case "sl":
+        return SL;
+      case "mt":
+        return MT;
+      case "cs":
+        return CS;
+      case "ru":
+        return RU;
+      case "ja":
+        return JA;
+      case "hu":
+        return HU;
+      case "nl":
+        return NL;
+      case "bg":
+        return BG;
+      case "pt":
+        return PT;
+      case "ar":
+        return AR;
+      case "fr":
+        return FR;
+      case "no":
+        return NO;
+      case "is":
+        return IS;
+      case "sv":
+        return SV;
+      case "it":
+        return IT;
+      case "el":
+        return EL;
       default:
         return new FlatRateCreateBillingRequestLocale(Value.UNKNOWN, value);
     }
@@ -83,6 +263,66 @@ public final class FlatRateCreateBillingRequestLocale {
 
     DE,
 
+    FR,
+
+    ES,
+
+    IT,
+
+    PT,
+
+    NL,
+
+    PL,
+
+    SV,
+
+    DA,
+
+    NO,
+
+    FI,
+
+    ET,
+
+    LV,
+
+    CS,
+
+    SK,
+
+    HU,
+
+    RO,
+
+    BG,
+
+    HR,
+
+    SL,
+
+    EL,
+
+    MT,
+
+    IS,
+
+    GA,
+
+    ZH,
+
+    JA,
+
+    AR,
+
+    HI,
+
+    RU,
+
+    TR,
+
+    UK,
+
     UNKNOWN
   }
 
@@ -92,6 +332,66 @@ public final class FlatRateCreateBillingRequestLocale {
     T visitLt();
 
     T visitDe();
+
+    T visitFr();
+
+    T visitEs();
+
+    T visitIt();
+
+    T visitPt();
+
+    T visitNl();
+
+    T visitPl();
+
+    T visitSv();
+
+    T visitDa();
+
+    T visitNo();
+
+    T visitFi();
+
+    T visitEt();
+
+    T visitLv();
+
+    T visitCs();
+
+    T visitSk();
+
+    T visitHu();
+
+    T visitRo();
+
+    T visitBg();
+
+    T visitHr();
+
+    T visitSl();
+
+    T visitEl();
+
+    T visitMt();
+
+    T visitIs();
+
+    T visitGa();
+
+    T visitZh();
+
+    T visitJa();
+
+    T visitAr();
+
+    T visitHi();
+
+    T visitRu();
+
+    T visitTr();
+
+    T visitUk();
 
     T visitUnknown(String unknownType);
   }

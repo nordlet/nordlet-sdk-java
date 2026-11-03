@@ -51,28 +51,28 @@ public class BillingClient {
   }
 
   /**
-   * Return the signed-in user's billing account: plan, account type, status, balance, trial and payment state, the month-to-date usage of the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings.
+   * Return the signed-in user's billing account of the site named by the <code>x-nordlet-site</code> header (<code>app</code> when absent): plan, account type, status, balance, trial and payment state, the month-to-date usage of that site in the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings. Each site has its own account and plan.
    */
   public AccountGetBillingResponse accountGet() {
     return this.rawClient.accountGet().body();
   }
 
   /**
-   * Return the signed-in user's billing account: plan, account type, status, balance, trial and payment state, the month-to-date usage of the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings.
+   * Return the signed-in user's billing account of the site named by the <code>x-nordlet-site</code> header (<code>app</code> when absent): plan, account type, status, balance, trial and payment state, the month-to-date usage of that site in the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings. Each site has its own account and plan.
    */
   public AccountGetBillingResponse accountGet(RequestOptions requestOptions) {
     return this.rawClient.accountGet(requestOptions).body();
   }
 
   /**
-   * Return the signed-in user's billing account: plan, account type, status, balance, trial and payment state, the month-to-date usage of the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings.
+   * Return the signed-in user's billing account of the site named by the <code>x-nordlet-site</code> header (<code>app</code> when absent): plan, account type, status, balance, trial and payment state, the month-to-date usage of that site in the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings. Each site has its own account and plan.
    */
   public AccountGetBillingResponse accountGet(AccountGetBillingRequest request) {
     return this.rawClient.accountGet(request).body();
   }
 
   /**
-   * Return the signed-in user's billing account: plan, account type, status, balance, trial and payment state, the month-to-date usage of the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings.
+   * Return the signed-in user's billing account of the site named by the <code>x-nordlet-site</code> header (<code>app</code> when absent): plan, account type, status, balance, trial and payment state, the month-to-date usage of that site in the companies the user pays for with an estimate of today's charge, the plan catalogue, and the top-up, automatic top-up and overdraft settings. Each site has its own account and plan.
    */
   public AccountGetBillingResponse accountGet(AccountGetBillingRequest request,
       RequestOptions requestOptions) {
@@ -80,14 +80,14 @@ public class BillingClient {
   }
 
   /**
-   * Change the plan of the user's flat-rate billing account; answers 409 when the account type is not <code>flat_rate</code>. With a Stripe subscription and payments configured, the subscription is moved to the new plan.
+   * Change the plan of the user's flat-rate billing account of the request's site; answers 422 when the plan is not one of that site's plans and 409 when the account type is not <code>flat_rate</code>. With a Stripe subscription and payments configured, the subscription is moved to the new plan.
    */
   public AccountSetPlanBillingResponse accountSetPlan(AccountSetPlanBillingRequest request) {
     return this.rawClient.accountSetPlan(request).body();
   }
 
   /**
-   * Change the plan of the user's flat-rate billing account; answers 409 when the account type is not <code>flat_rate</code>. With a Stripe subscription and payments configured, the subscription is moved to the new plan.
+   * Change the plan of the user's flat-rate billing account of the request's site; answers 422 when the plan is not one of that site's plans and 409 when the account type is not <code>flat_rate</code>. With a Stripe subscription and payments configured, the subscription is moved to the new plan.
    */
   public AccountSetPlanBillingResponse accountSetPlan(AccountSetPlanBillingRequest request,
       RequestOptions requestOptions) {
@@ -95,7 +95,7 @@ public class BillingClient {
   }
 
   /**
-   * Switch the user's billing account between <code>flat_rate</code> and <code>per_request</code>. With a Stripe subscription and payments configured, the subscription is moved to the plan's price for <code>flat_rate</code>; for <code>per_request</code> the plan is taken off the subscription, and a subscription that carried only the plan is cancelled, leaving the account without one. When Stripe refuses the change, the previous account type is restored.
+   * Switch the user's billing account of the request's site between <code>flat_rate</code> and <code>per_request</code>; answers 422 for an account type the site does not offer (the <code>invoice</code> site has <code>flat_rate</code> only). With a Stripe subscription and payments configured, the subscription is moved to the plan's price for <code>flat_rate</code>; for <code>per_request</code> the plan is taken off the subscription, and a subscription that carried only the plan is cancelled, leaving the account without one. When Stripe refuses the change, the previous account type is restored.
    */
   public AccountSetAccountTypeBillingResponse accountSetAccountType(
       AccountSetAccountTypeBillingRequest request) {
@@ -103,7 +103,7 @@ public class BillingClient {
   }
 
   /**
-   * Switch the user's billing account between <code>flat_rate</code> and <code>per_request</code>. With a Stripe subscription and payments configured, the subscription is moved to the plan's price for <code>flat_rate</code>; for <code>per_request</code> the plan is taken off the subscription, and a subscription that carried only the plan is cancelled, leaving the account without one. When Stripe refuses the change, the previous account type is restored.
+   * Switch the user's billing account of the request's site between <code>flat_rate</code> and <code>per_request</code>; answers 422 for an account type the site does not offer (the <code>invoice</code> site has <code>flat_rate</code> only). With a Stripe subscription and payments configured, the subscription is moved to the plan's price for <code>flat_rate</code>; for <code>per_request</code> the plan is taken off the subscription, and a subscription that carried only the plan is cancelled, leaving the account without one. When Stripe refuses the change, the previous account type is restored.
    */
   public AccountSetAccountTypeBillingResponse accountSetAccountType(
       AccountSetAccountTypeBillingRequest request, RequestOptions requestOptions) {
@@ -111,7 +111,7 @@ public class BillingClient {
   }
 
   /**
-   * Switch automatic top-ups on or off and set their amount. Switching them on needs a Stripe customer, which the first card top-up creates (400 otherwise); when switched on, a top-up is charged at once if the balance is at or below zero, no payment has failed and no top-up was requested in the last 24 hours.
+   * Switch automatic top-ups on or off and set their amount; answers 409 on a site without top-ups. Switching them on needs a Stripe customer, which the first card top-up creates (400 otherwise); when switched on, a top-up is charged at once if the balance is at or below zero, no payment has failed and no top-up was requested in the last 24 hours.
    */
   public AccountSetAutoTopUpBillingResponse accountSetAutoTopUp(
       AccountSetAutoTopUpBillingRequest request) {
@@ -119,7 +119,7 @@ public class BillingClient {
   }
 
   /**
-   * Switch automatic top-ups on or off and set their amount. Switching them on needs a Stripe customer, which the first card top-up creates (400 otherwise); when switched on, a top-up is charged at once if the balance is at or below zero, no payment has failed and no top-up was requested in the last 24 hours.
+   * Switch automatic top-ups on or off and set their amount; answers 409 on a site without top-ups. Switching them on needs a Stripe customer, which the first card top-up creates (400 otherwise); when switched on, a top-up is charged at once if the balance is at or below zero, no payment has failed and no top-up was requested in the last 24 hours.
    */
   public AccountSetAutoTopUpBillingResponse accountSetAutoTopUp(
       AccountSetAutoTopUpBillingRequest request, RequestOptions requestOptions) {
@@ -127,7 +127,7 @@ public class BillingClient {
   }
 
   /**
-   * Set the overdraft cap of the user's billing account: how far usage charges may take the balance below zero before the account is suspended. A suspended account whose balance is within the new cap is activated again.
+   * Set the overdraft cap of the user's billing account: how far usage charges may take the balance below zero before the account is suspended. A suspended account whose balance is within the new cap is activated again. Answers 409 on a site without top-ups.
    */
   public AccountSetOverdraftCapBillingResponse accountSetOverdraftCap(
       AccountSetOverdraftCapBillingRequest request) {
@@ -135,7 +135,7 @@ public class BillingClient {
   }
 
   /**
-   * Set the overdraft cap of the user's billing account: how far usage charges may take the balance below zero before the account is suspended. A suspended account whose balance is within the new cap is activated again.
+   * Set the overdraft cap of the user's billing account: how far usage charges may take the balance below zero before the account is suspended. A suspended account whose balance is within the new cap is activated again. Answers 409 on a site without top-ups.
    */
   public AccountSetOverdraftCapBillingResponse accountSetOverdraftCap(
       AccountSetOverdraftCapBillingRequest request, RequestOptions requestOptions) {
@@ -143,14 +143,14 @@ public class BillingClient {
   }
 
   /**
-   * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>. Answers 503 when online payments are not configured.
+   * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>. Answers 409 on a site without top-ups and 503 when online payments are not configured.
    */
   public TopupCreateBillingResponse topupCreate(TopupCreateBillingRequest request) {
     return this.rawClient.topupCreate(request).body();
   }
 
   /**
-   * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>. Answers 503 when online payments are not configured.
+   * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>. Answers 409 on a site without top-ups and 503 when online payments are not configured.
    */
   public TopupCreateBillingResponse topupCreate(TopupCreateBillingRequest request,
       RequestOptions requestOptions) {
@@ -158,14 +158,14 @@ public class BillingClient {
   }
 
   /**
-   * Confirm a paid top-up Checkout session by <code>sessionId</code> and credit the account at once instead of waiting for the Stripe webhook; a session is credited only once. Answers 404 when the session is not the user's own or is not paid.
+   * Confirm a paid top-up Checkout session by <code>sessionId</code> and credit the account at once instead of waiting for the Stripe webhook; a session is credited only once. Answers 404 when the session is not the user's own or is not paid, and 409 on a site without top-ups.
    */
   public TopupConfirmBillingResponse topupConfirm(TopupConfirmBillingRequest request) {
     return this.rawClient.topupConfirm(request).body();
   }
 
   /**
-   * Confirm a paid top-up Checkout session by <code>sessionId</code> and credit the account at once instead of waiting for the Stripe webhook; a session is credited only once. Answers 404 when the session is not the user's own or is not paid.
+   * Confirm a paid top-up Checkout session by <code>sessionId</code> and credit the account at once instead of waiting for the Stripe webhook; a session is credited only once. Answers 404 when the session is not the user's own or is not paid, and 409 on a site without top-ups.
    */
   public TopupConfirmBillingResponse topupConfirm(TopupConfirmBillingRequest request,
       RequestOptions requestOptions) {
@@ -173,28 +173,28 @@ public class BillingClient {
   }
 
   /**
-   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. The <code>invoicing</code> plan of the invoice tool takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for that account when it has none. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
    */
   public FlatRateCreateBillingResponse flatRateCreate() {
     return this.rawClient.flatRateCreate().body();
   }
 
   /**
-   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. The <code>invoicing</code> plan of the invoice tool takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for that account when it has none. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
    */
   public FlatRateCreateBillingResponse flatRateCreate(RequestOptions requestOptions) {
     return this.rawClient.flatRateCreate(requestOptions).body();
   }
 
   /**
-   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. The <code>invoicing</code> plan of the invoice tool takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for that account when it has none. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
    */
   public FlatRateCreateBillingResponse flatRateCreate(FlatRateCreateBillingRequest request) {
     return this.rawClient.flatRateCreate(request).body();
   }
 
   /**
-   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code>, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for the user when there is none. The <code>invoicing</code> plan of the invoice tool takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for that account when it has none. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
    */
   public FlatRateCreateBillingResponse flatRateCreate(FlatRateCreateBillingRequest request,
       RequestOptions requestOptions) {
@@ -202,14 +202,14 @@ public class BillingClient {
   }
 
   /**
-   * Confirm a completed flat-rate Checkout session by <code>sessionId</code>: the account becomes <code>flat_rate</code> on the session's plan with status <code>active</code> and the subscription attached, unless the Stripe webhook already did this. Answers 404 when the session is not the user's own or not completed.
+   * Confirm a completed flat-rate Checkout session by <code>sessionId</code>: the billing account of the site of the session's plan becomes <code>flat_rate</code> on that plan with status <code>active</code> and the subscription attached, unless the Stripe webhook already did this. Answers 404 when the session is not the user's own or not completed.
    */
   public FlatRateConfirmBillingResponse flatRateConfirm(FlatRateConfirmBillingRequest request) {
     return this.rawClient.flatRateConfirm(request).body();
   }
 
   /**
-   * Confirm a completed flat-rate Checkout session by <code>sessionId</code>: the account becomes <code>flat_rate</code> on the session's plan with status <code>active</code> and the subscription attached, unless the Stripe webhook already did this. Answers 404 when the session is not the user's own or not completed.
+   * Confirm a completed flat-rate Checkout session by <code>sessionId</code>: the billing account of the site of the session's plan becomes <code>flat_rate</code> on that plan with status <code>active</code> and the subscription attached, unless the Stripe webhook already did this. Answers 404 when the session is not the user's own or not completed.
    */
   public FlatRateConfirmBillingResponse flatRateConfirm(FlatRateConfirmBillingRequest request,
       RequestOptions requestOptions) {
@@ -217,21 +217,21 @@ public class BillingClient {
   }
 
   /**
-   * Cancel the user's Stripe subscription at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
+   * Cancel the Stripe subscription of the user's billing account of the request's site at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
    */
   public SubscriptionCancelBillingResponse subscriptionCancel() {
     return this.rawClient.subscriptionCancel().body();
   }
 
   /**
-   * Cancel the user's Stripe subscription at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
+   * Cancel the Stripe subscription of the user's billing account of the request's site at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
    */
   public SubscriptionCancelBillingResponse subscriptionCancel(RequestOptions requestOptions) {
     return this.rawClient.subscriptionCancel(requestOptions).body();
   }
 
   /**
-   * Cancel the user's Stripe subscription at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
+   * Cancel the Stripe subscription of the user's billing account of the request's site at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
    */
   public SubscriptionCancelBillingResponse subscriptionCancel(
       SubscriptionCancelBillingRequest request) {
@@ -239,7 +239,7 @@ public class BillingClient {
   }
 
   /**
-   * Cancel the user's Stripe subscription at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
+   * Cancel the Stripe subscription of the user's billing account of the request's site at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
    */
   public SubscriptionCancelBillingResponse subscriptionCancel(
       SubscriptionCancelBillingRequest request, RequestOptions requestOptions) {
@@ -247,28 +247,28 @@ public class BillingClient {
   }
 
   /**
-   * Open a Stripe customer portal session that returns to the credits page in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the user has no Stripe customer yet.
+   * Open a Stripe customer portal session for the billing account of the request's site that returns to that site's credits page (the plan page on the <code>invoice</code> site) in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the account has no Stripe customer yet.
    */
   public PortalCreateBillingResponse portalCreate() {
     return this.rawClient.portalCreate().body();
   }
 
   /**
-   * Open a Stripe customer portal session that returns to the credits page in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the user has no Stripe customer yet.
+   * Open a Stripe customer portal session for the billing account of the request's site that returns to that site's credits page (the plan page on the <code>invoice</code> site) in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the account has no Stripe customer yet.
    */
   public PortalCreateBillingResponse portalCreate(RequestOptions requestOptions) {
     return this.rawClient.portalCreate(requestOptions).body();
   }
 
   /**
-   * Open a Stripe customer portal session that returns to the credits page in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the user has no Stripe customer yet.
+   * Open a Stripe customer portal session for the billing account of the request's site that returns to that site's credits page (the plan page on the <code>invoice</code> site) in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the account has no Stripe customer yet.
    */
   public PortalCreateBillingResponse portalCreate(PortalCreateBillingRequest request) {
     return this.rawClient.portalCreate(request).body();
   }
 
   /**
-   * Open a Stripe customer portal session that returns to the credits page in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the user has no Stripe customer yet.
+   * Open a Stripe customer portal session for the billing account of the request's site that returns to that site's credits page (the plan page on the <code>invoice</code> site) in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the account has no Stripe customer yet.
    */
   public PortalCreateBillingResponse portalCreate(PortalCreateBillingRequest request,
       RequestOptions requestOptions) {
@@ -276,28 +276,28 @@ public class BillingClient {
   }
 
   /**
-   * List the newest credit transactions of the user's billing account, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+   * List the newest credit transactions of the user's billing account of the request's site, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
    */
   public TransactionsListBillingResponse transactionsList() {
     return this.rawClient.transactionsList().body();
   }
 
   /**
-   * List the newest credit transactions of the user's billing account, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+   * List the newest credit transactions of the user's billing account of the request's site, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
    */
   public TransactionsListBillingResponse transactionsList(RequestOptions requestOptions) {
     return this.rawClient.transactionsList(requestOptions).body();
   }
 
   /**
-   * List the newest credit transactions of the user's billing account, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+   * List the newest credit transactions of the user's billing account of the request's site, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
    */
   public TransactionsListBillingResponse transactionsList(TransactionsListBillingRequest request) {
     return this.rawClient.transactionsList(request).body();
   }
 
   /**
-   * List the newest credit transactions of the user's billing account, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+   * List the newest credit transactions of the user's billing account of the request's site, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
    */
   public TransactionsListBillingResponse transactionsList(TransactionsListBillingRequest request,
       RequestOptions requestOptions) {
@@ -305,14 +305,14 @@ public class BillingClient {
   }
 
   /**
-   * List the daily usage records of the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, OCR pages, file storage bytes, database bytes, sale invoices).
+   * List the daily usage records of the request's site in the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, OCR pages, file storage bytes, database bytes, sale invoices). Requests, OCR pages and invoices count on the site the request came from; storage counts on the <code>app</code> site.
    */
   public UsageListBillingResponse usageList(UsageListBillingRequest request) {
     return this.rawClient.usageList(request).body();
   }
 
   /**
-   * List the daily usage records of the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, OCR pages, file storage bytes, database bytes, sale invoices).
+   * List the daily usage records of the request's site in the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, OCR pages, file storage bytes, database bytes, sale invoices). Requests, OCR pages and invoices count on the site the request came from; storage counts on the <code>app</code> site.
    */
   public UsageListBillingResponse usageList(UsageListBillingRequest request,
       RequestOptions requestOptions) {

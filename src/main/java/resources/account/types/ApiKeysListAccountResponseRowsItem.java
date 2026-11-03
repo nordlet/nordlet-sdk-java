@@ -44,8 +44,6 @@ public final class ApiKeysListAccountResponseRowsItem {
 
   private final Optional<String> replacedByKeyId;
 
-  private final Optional<String> createdByUserId;
-
   private final Optional<OffsetDateTime> revokedAt;
 
   private final OffsetDateTime createdAt;
@@ -54,16 +52,14 @@ public final class ApiKeysListAccountResponseRowsItem {
 
   private ApiKeysListAccountResponseRowsItem(String id, String name, List<String> scopes,
       Optional<OffsetDateTime> lastUsedAt, Optional<OffsetDateTime> expiresAt,
-      Optional<String> replacedByKeyId, Optional<String> createdByUserId,
-      Optional<OffsetDateTime> revokedAt, OffsetDateTime createdAt,
-      Map<String, Object> additionalProperties) {
+      Optional<String> replacedByKeyId, Optional<OffsetDateTime> revokedAt,
+      OffsetDateTime createdAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.name = name;
     this.scopes = scopes;
     this.lastUsedAt = lastUsedAt;
     this.expiresAt = expiresAt;
     this.replacedByKeyId = replacedByKeyId;
-    this.createdByUserId = createdByUserId;
     this.revokedAt = revokedAt;
     this.createdAt = createdAt;
     this.additionalProperties = additionalProperties;
@@ -106,14 +102,6 @@ public final class ApiKeysListAccountResponseRowsItem {
       return Optional.empty();
     }
     return replacedByKeyId;
-  }
-
-  @JsonIgnore
-  public Optional<String> getCreatedByUserId() {
-    if (createdByUserId == null) {
-      return Optional.empty();
-    }
-    return createdByUserId;
   }
 
   @JsonIgnore
@@ -160,15 +148,6 @@ public final class ApiKeysListAccountResponseRowsItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
-  @JsonProperty("createdByUserId")
-  private Optional<String> _getCreatedByUserId() {
-    return createdByUserId;
-  }
-
-  @JsonInclude(
-      value = JsonInclude.Include.CUSTOM,
-      valueFilter = NullableNonemptyFilter.class
-  )
   @JsonProperty("revokedAt")
   private Optional<OffsetDateTime> _getRevokedAt() {
     return revokedAt;
@@ -186,12 +165,12 @@ public final class ApiKeysListAccountResponseRowsItem {
   }
 
   private boolean equalTo(ApiKeysListAccountResponseRowsItem other) {
-    return id.equals(other.id) && name.equals(other.name) && scopes.equals(other.scopes) && lastUsedAt.equals(other.lastUsedAt) && expiresAt.equals(other.expiresAt) && replacedByKeyId.equals(other.replacedByKeyId) && createdByUserId.equals(other.createdByUserId) && revokedAt.equals(other.revokedAt) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && name.equals(other.name) && scopes.equals(other.scopes) && lastUsedAt.equals(other.lastUsedAt) && expiresAt.equals(other.expiresAt) && replacedByKeyId.equals(other.replacedByKeyId) && revokedAt.equals(other.revokedAt) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.scopes, this.lastUsedAt, this.expiresAt, this.replacedByKeyId, this.createdByUserId, this.revokedAt, this.createdAt);
+    return Objects.hash(this.id, this.name, this.scopes, this.lastUsedAt, this.expiresAt, this.replacedByKeyId, this.revokedAt, this.createdAt);
   }
 
   @java.lang.Override
@@ -248,12 +227,6 @@ public final class ApiKeysListAccountResponseRowsItem {
 
     _FinalStage replacedByKeyId(Nullable<String> replacedByKeyId);
 
-    _FinalStage createdByUserId(Optional<String> createdByUserId);
-
-    _FinalStage createdByUserId(String createdByUserId);
-
-    _FinalStage createdByUserId(Nullable<String> createdByUserId);
-
     _FinalStage revokedAt(Optional<OffsetDateTime> revokedAt);
 
     _FinalStage revokedAt(OffsetDateTime revokedAt);
@@ -272,8 +245,6 @@ public final class ApiKeysListAccountResponseRowsItem {
     private OffsetDateTime createdAt;
 
     private Optional<OffsetDateTime> revokedAt = Optional.empty();
-
-    private Optional<String> createdByUserId = Optional.empty();
 
     private Optional<String> replacedByKeyId = Optional.empty();
 
@@ -297,7 +268,6 @@ public final class ApiKeysListAccountResponseRowsItem {
       lastUsedAt(other.getLastUsedAt());
       expiresAt(other.getExpiresAt());
       replacedByKeyId(other.getReplacedByKeyId());
-      createdByUserId(other.getCreatedByUserId());
       revokedAt(other.getRevokedAt());
       createdAt(other.getCreatedAt());
       return this;
@@ -351,36 +321,6 @@ public final class ApiKeysListAccountResponseRowsItem {
     )
     public _FinalStage revokedAt(Optional<OffsetDateTime> revokedAt) {
       this.revokedAt = revokedAt;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage createdByUserId(Nullable<String> createdByUserId) {
-      if (createdByUserId.isNull()) {
-        this.createdByUserId = null;
-      }
-      else if (createdByUserId.isEmpty()) {
-        this.createdByUserId = Optional.empty();
-      }
-      else {
-        this.createdByUserId = Optional.of(createdByUserId.get());
-      }
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage createdByUserId(String createdByUserId) {
-      this.createdByUserId = Optional.ofNullable(createdByUserId);
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter(
-        value = "createdByUserId",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage createdByUserId(Optional<String> createdByUserId) {
-      this.createdByUserId = createdByUserId;
       return this;
     }
 
@@ -503,7 +443,7 @@ public final class ApiKeysListAccountResponseRowsItem {
 
     @java.lang.Override
     public ApiKeysListAccountResponseRowsItem build() {
-      return new ApiKeysListAccountResponseRowsItem(id, name, scopes, lastUsedAt, expiresAt, replacedByKeyId, createdByUserId, revokedAt, createdAt, additionalProperties);
+      return new ApiKeysListAccountResponseRowsItem(id, name, scopes, lastUsedAt, expiresAt, replacedByKeyId, revokedAt, createdAt, additionalProperties);
     }
 
     @java.lang.Override

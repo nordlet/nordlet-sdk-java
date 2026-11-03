@@ -36,16 +36,19 @@ public final class AgreementsCreateAgreementsRequestItemsItem {
 
   private final Optional<String> vatRatePercent;
 
+  private final Optional<String> vatClassifierCode;
+
   private final Map<String, Object> additionalProperties;
 
   private AgreementsCreateAgreementsRequestItemsItem(Optional<String> itemId, String description,
       Optional<String> quantity, Optional<String> unitPrice, Optional<String> vatRatePercent,
-      Map<String, Object> additionalProperties) {
+      Optional<String> vatClassifierCode, Map<String, Object> additionalProperties) {
     this.itemId = itemId;
     this.description = description;
     this.quantity = quantity;
     this.unitPrice = unitPrice;
     this.vatRatePercent = vatRatePercent;
+    this.vatClassifierCode = vatClassifierCode;
     this.additionalProperties = additionalProperties;
   }
 
@@ -74,6 +77,11 @@ public final class AgreementsCreateAgreementsRequestItemsItem {
     return vatRatePercent;
   }
 
+  @JsonProperty("vatClassifierCode")
+  public Optional<String> getVatClassifierCode() {
+    return vatClassifierCode;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -86,12 +94,12 @@ public final class AgreementsCreateAgreementsRequestItemsItem {
   }
 
   private boolean equalTo(AgreementsCreateAgreementsRequestItemsItem other) {
-    return itemId.equals(other.itemId) && description.equals(other.description) && quantity.equals(other.quantity) && unitPrice.equals(other.unitPrice) && vatRatePercent.equals(other.vatRatePercent);
+    return itemId.equals(other.itemId) && description.equals(other.description) && quantity.equals(other.quantity) && unitPrice.equals(other.unitPrice) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.itemId, this.description, this.quantity, this.unitPrice, this.vatRatePercent);
+    return Objects.hash(this.itemId, this.description, this.quantity, this.unitPrice, this.vatRatePercent, this.vatClassifierCode);
   }
 
   @java.lang.Override
@@ -131,6 +139,10 @@ public final class AgreementsCreateAgreementsRequestItemsItem {
     _FinalStage vatRatePercent(Optional<String> vatRatePercent);
 
     _FinalStage vatRatePercent(String vatRatePercent);
+
+    _FinalStage vatClassifierCode(Optional<String> vatClassifierCode);
+
+    _FinalStage vatClassifierCode(String vatClassifierCode);
   }
 
   @JsonIgnoreProperties(
@@ -138,6 +150,8 @@ public final class AgreementsCreateAgreementsRequestItemsItem {
   )
   public static final class Builder implements DescriptionStage, _FinalStage {
     private String description;
+
+    private Optional<String> vatClassifierCode = Optional.empty();
 
     private Optional<String> vatRatePercent = Optional.empty();
 
@@ -160,6 +174,7 @@ public final class AgreementsCreateAgreementsRequestItemsItem {
       quantity(other.getQuantity());
       unitPrice(other.getUnitPrice());
       vatRatePercent(other.getVatRatePercent());
+      vatClassifierCode(other.getVatClassifierCode());
       return this;
     }
 
@@ -167,6 +182,22 @@ public final class AgreementsCreateAgreementsRequestItemsItem {
     @JsonSetter("description")
     public _FinalStage description(@NotNull String description) {
       this.description = Objects.requireNonNull(description, "description must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatClassifierCode(String vatClassifierCode) {
+      this.vatClassifierCode = Optional.ofNullable(vatClassifierCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "vatClassifierCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage vatClassifierCode(Optional<String> vatClassifierCode) {
+      this.vatClassifierCode = vatClassifierCode;
       return this;
     }
 
@@ -236,7 +267,7 @@ public final class AgreementsCreateAgreementsRequestItemsItem {
 
     @java.lang.Override
     public AgreementsCreateAgreementsRequestItemsItem build() {
-      return new AgreementsCreateAgreementsRequestItemsItem(itemId, description, quantity, unitPrice, vatRatePercent, additionalProperties);
+      return new AgreementsCreateAgreementsRequestItemsItem(itemId, description, quantity, unitPrice, vatRatePercent, vatClassifierCode, additionalProperties);
     }
 
     @java.lang.Override

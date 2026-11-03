@@ -41,17 +41,21 @@ public final class AgreementsUpdateAgreementsResponseItemsItem {
 
   private final Optional<String> vatRatePercent;
 
+  private final Optional<String> vatClassifierCode;
+
   private final Map<String, Object> additionalProperties;
 
   private AgreementsUpdateAgreementsResponseItemsItem(String id, Optional<String> itemId,
       String description, Optional<String> quantity, Optional<String> unitPrice,
-      Optional<String> vatRatePercent, Map<String, Object> additionalProperties) {
+      Optional<String> vatRatePercent, Optional<String> vatClassifierCode,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.itemId = itemId;
     this.description = description;
     this.quantity = quantity;
     this.unitPrice = unitPrice;
     this.vatRatePercent = vatRatePercent;
+    this.vatClassifierCode = vatClassifierCode;
     this.additionalProperties = additionalProperties;
   }
 
@@ -97,6 +101,14 @@ public final class AgreementsUpdateAgreementsResponseItemsItem {
     return vatRatePercent;
   }
 
+  @JsonIgnore
+  public Optional<String> getVatClassifierCode() {
+    if (vatClassifierCode == null) {
+      return Optional.empty();
+    }
+    return vatClassifierCode;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -133,6 +145,15 @@ public final class AgreementsUpdateAgreementsResponseItemsItem {
     return vatRatePercent;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("vatClassifierCode")
+  private Optional<String> _getVatClassifierCode() {
+    return vatClassifierCode;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -145,12 +166,12 @@ public final class AgreementsUpdateAgreementsResponseItemsItem {
   }
 
   private boolean equalTo(AgreementsUpdateAgreementsResponseItemsItem other) {
-    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && quantity.equals(other.quantity) && unitPrice.equals(other.unitPrice) && vatRatePercent.equals(other.vatRatePercent);
+    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && quantity.equals(other.quantity) && unitPrice.equals(other.unitPrice) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.itemId, this.description, this.quantity, this.unitPrice, this.vatRatePercent);
+    return Objects.hash(this.id, this.itemId, this.description, this.quantity, this.unitPrice, this.vatRatePercent, this.vatClassifierCode);
   }
 
   @java.lang.Override
@@ -202,6 +223,12 @@ public final class AgreementsUpdateAgreementsResponseItemsItem {
     _FinalStage vatRatePercent(String vatRatePercent);
 
     _FinalStage vatRatePercent(Nullable<String> vatRatePercent);
+
+    _FinalStage vatClassifierCode(Optional<String> vatClassifierCode);
+
+    _FinalStage vatClassifierCode(String vatClassifierCode);
+
+    _FinalStage vatClassifierCode(Nullable<String> vatClassifierCode);
   }
 
   @JsonIgnoreProperties(
@@ -211,6 +238,8 @@ public final class AgreementsUpdateAgreementsResponseItemsItem {
     private String id;
 
     private String description;
+
+    private Optional<String> vatClassifierCode = Optional.empty();
 
     private Optional<String> vatRatePercent = Optional.empty();
 
@@ -234,6 +263,7 @@ public final class AgreementsUpdateAgreementsResponseItemsItem {
       quantity(other.getQuantity());
       unitPrice(other.getUnitPrice());
       vatRatePercent(other.getVatRatePercent());
+      vatClassifierCode(other.getVatClassifierCode());
       return this;
     }
 
@@ -248,6 +278,36 @@ public final class AgreementsUpdateAgreementsResponseItemsItem {
     @JsonSetter("description")
     public _FinalStage description(@NotNull String description) {
       this.description = Objects.requireNonNull(description, "description must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatClassifierCode(Nullable<String> vatClassifierCode) {
+      if (vatClassifierCode.isNull()) {
+        this.vatClassifierCode = null;
+      }
+      else if (vatClassifierCode.isEmpty()) {
+        this.vatClassifierCode = Optional.empty();
+      }
+      else {
+        this.vatClassifierCode = Optional.of(vatClassifierCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatClassifierCode(String vatClassifierCode) {
+      this.vatClassifierCode = Optional.ofNullable(vatClassifierCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "vatClassifierCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage vatClassifierCode(Optional<String> vatClassifierCode) {
+      this.vatClassifierCode = vatClassifierCode;
       return this;
     }
 
@@ -373,7 +433,7 @@ public final class AgreementsUpdateAgreementsResponseItemsItem {
 
     @java.lang.Override
     public AgreementsUpdateAgreementsResponseItemsItem build() {
-      return new AgreementsUpdateAgreementsResponseItemsItem(id, itemId, description, quantity, unitPrice, vatRatePercent, additionalProperties);
+      return new AgreementsUpdateAgreementsResponseItemsItem(id, itemId, description, quantity, unitPrice, vatRatePercent, vatClassifierCode, additionalProperties);
     }
 
     @java.lang.Override

@@ -31,6 +31,8 @@ import org.jetbrains.annotations.NotNull;
     builder = AccountSetPlanBillingResponse.Builder.class
 )
 public final class AccountSetPlanBillingResponse {
+  private final AccountSetPlanBillingResponseSite site;
+
   private final AccountSetPlanBillingResponsePlan plan;
 
   private final AccountSetPlanBillingResponseAccountType accountType;
@@ -75,8 +77,8 @@ public final class AccountSetPlanBillingResponse {
 
   private final Map<String, Object> additionalProperties;
 
-  private AccountSetPlanBillingResponse(AccountSetPlanBillingResponsePlan plan,
-      AccountSetPlanBillingResponseAccountType accountType,
+  private AccountSetPlanBillingResponse(AccountSetPlanBillingResponseSite site,
+      AccountSetPlanBillingResponsePlan plan, AccountSetPlanBillingResponseAccountType accountType,
       AccountSetPlanBillingResponseStatus status, long balanceCents,
       Optional<OffsetDateTime> trialEndsAt, Optional<OffsetDateTime> firstTopUpAt,
       Optional<String> lastChargedDate, boolean paymentsConfigured, boolean hasPaymentAccount,
@@ -87,6 +89,7 @@ public final class AccountSetPlanBillingResponse {
       AccountSetPlanBillingResponseTopUp topUp, AccountSetPlanBillingResponseAutoTopUp autoTopUp,
       long overdraftCapCents, long overdraftCapMaxCents, long trialDays,
       Map<String, Object> additionalProperties) {
+    this.site = site;
     this.plan = plan;
     this.accountType = accountType;
     this.status = status;
@@ -109,6 +112,14 @@ public final class AccountSetPlanBillingResponse {
     this.overdraftCapMaxCents = overdraftCapMaxCents;
     this.trialDays = trialDays;
     this.additionalProperties = additionalProperties;
+  }
+
+  /**
+   * @return The site whose plan this is, from the <code>x-nordlet-site</code> header
+   */
+  @JsonProperty("site")
+  public AccountSetPlanBillingResponseSite getSite() {
+    return site;
   }
 
   @JsonProperty("plan")
@@ -303,12 +314,12 @@ public final class AccountSetPlanBillingResponse {
   }
 
   private boolean equalTo(AccountSetPlanBillingResponse other) {
-    return plan.equals(other.plan) && accountType.equals(other.accountType) && status.equals(other.status) && balanceCents == other.balanceCents && trialEndsAt.equals(other.trialEndsAt) && firstTopUpAt.equals(other.firstTopUpAt) && lastChargedDate.equals(other.lastChargedDate) && paymentsConfigured == other.paymentsConfigured && hasPaymentAccount == other.hasPaymentAccount && hasSubscription == other.hasSubscription && subscriptionCancelAt.equals(other.subscriptionCancelAt) && paymentFailedAt.equals(other.paymentFailedAt) && paymentFailedInvoiceUrl.equals(other.paymentFailedInvoiceUrl) && monthToDate.equals(other.monthToDate) && plans.equals(other.plans) && apiRequestEur.equals(other.apiRequestEur) && topUp.equals(other.topUp) && autoTopUp.equals(other.autoTopUp) && overdraftCapCents == other.overdraftCapCents && overdraftCapMaxCents == other.overdraftCapMaxCents && trialDays == other.trialDays;
+    return site.equals(other.site) && plan.equals(other.plan) && accountType.equals(other.accountType) && status.equals(other.status) && balanceCents == other.balanceCents && trialEndsAt.equals(other.trialEndsAt) && firstTopUpAt.equals(other.firstTopUpAt) && lastChargedDate.equals(other.lastChargedDate) && paymentsConfigured == other.paymentsConfigured && hasPaymentAccount == other.hasPaymentAccount && hasSubscription == other.hasSubscription && subscriptionCancelAt.equals(other.subscriptionCancelAt) && paymentFailedAt.equals(other.paymentFailedAt) && paymentFailedInvoiceUrl.equals(other.paymentFailedInvoiceUrl) && monthToDate.equals(other.monthToDate) && plans.equals(other.plans) && apiRequestEur.equals(other.apiRequestEur) && topUp.equals(other.topUp) && autoTopUp.equals(other.autoTopUp) && overdraftCapCents == other.overdraftCapCents && overdraftCapMaxCents == other.overdraftCapMaxCents && trialDays == other.trialDays;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.plan, this.accountType, this.status, this.balanceCents, this.trialEndsAt, this.firstTopUpAt, this.lastChargedDate, this.paymentsConfigured, this.hasPaymentAccount, this.hasSubscription, this.subscriptionCancelAt, this.paymentFailedAt, this.paymentFailedInvoiceUrl, this.monthToDate, this.plans, this.apiRequestEur, this.topUp, this.autoTopUp, this.overdraftCapCents, this.overdraftCapMaxCents, this.trialDays);
+    return Objects.hash(this.site, this.plan, this.accountType, this.status, this.balanceCents, this.trialEndsAt, this.firstTopUpAt, this.lastChargedDate, this.paymentsConfigured, this.hasPaymentAccount, this.hasSubscription, this.subscriptionCancelAt, this.paymentFailedAt, this.paymentFailedInvoiceUrl, this.monthToDate, this.plans, this.apiRequestEur, this.topUp, this.autoTopUp, this.overdraftCapCents, this.overdraftCapMaxCents, this.trialDays);
   }
 
   @java.lang.Override
@@ -316,14 +327,21 @@ public final class AccountSetPlanBillingResponse {
     return ObjectMappers.stringify(this);
   }
 
-  public static PlanStage builder() {
+  public static SiteStage builder() {
     return new Builder();
+  }
+
+  public interface SiteStage {
+    /**
+     * <p>The site whose plan this is, from the <code>x-nordlet-site</code> header</p>
+     */
+    PlanStage site(@NotNull AccountSetPlanBillingResponseSite site);
+
+    Builder from(AccountSetPlanBillingResponse other);
   }
 
   public interface PlanStage {
     AccountTypeStage plan(@NotNull AccountSetPlanBillingResponsePlan plan);
-
-    Builder from(AccountSetPlanBillingResponse other);
   }
 
   public interface AccountTypeStage {
@@ -434,7 +452,9 @@ public final class AccountSetPlanBillingResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements PlanStage, AccountTypeStage, StatusStage, BalanceCentsStage, PaymentsConfiguredStage, HasPaymentAccountStage, HasSubscriptionStage, MonthToDateStage, ApiRequestEurStage, TopUpStage, AutoTopUpStage, OverdraftCapCentsStage, OverdraftCapMaxCentsStage, TrialDaysStage, _FinalStage {
+  public static final class Builder implements SiteStage, PlanStage, AccountTypeStage, StatusStage, BalanceCentsStage, PaymentsConfiguredStage, HasPaymentAccountStage, HasSubscriptionStage, MonthToDateStage, ApiRequestEurStage, TopUpStage, AutoTopUpStage, OverdraftCapCentsStage, OverdraftCapMaxCentsStage, TrialDaysStage, _FinalStage {
+    private AccountSetPlanBillingResponseSite site;
+
     private AccountSetPlanBillingResponsePlan plan;
 
     private AccountSetPlanBillingResponseAccountType accountType;
@@ -485,6 +505,7 @@ public final class AccountSetPlanBillingResponse {
 
     @java.lang.Override
     public Builder from(AccountSetPlanBillingResponse other) {
+      site(other.getSite());
       plan(other.getPlan());
       accountType(other.getAccountType());
       status(other.getStatus());
@@ -506,6 +527,17 @@ public final class AccountSetPlanBillingResponse {
       overdraftCapCents(other.getOverdraftCapCents());
       overdraftCapMaxCents(other.getOverdraftCapMaxCents());
       trialDays(other.getTrialDays());
+      return this;
+    }
+
+    /**
+     * <p>The site whose plan this is, from the <code>x-nordlet-site</code> header</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    @JsonSetter("site")
+    public PlanStage site(@NotNull AccountSetPlanBillingResponseSite site) {
+      this.site = Objects.requireNonNull(site, "site must not be null");
       return this;
     }
 
@@ -829,7 +861,7 @@ public final class AccountSetPlanBillingResponse {
 
     @java.lang.Override
     public AccountSetPlanBillingResponse build() {
-      return new AccountSetPlanBillingResponse(plan, accountType, status, balanceCents, trialEndsAt, firstTopUpAt, lastChargedDate, paymentsConfigured, hasPaymentAccount, hasSubscription, subscriptionCancelAt, paymentFailedAt, paymentFailedInvoiceUrl, monthToDate, plans, apiRequestEur, topUp, autoTopUp, overdraftCapCents, overdraftCapMaxCents, trialDays, additionalProperties);
+      return new AccountSetPlanBillingResponse(site, plan, accountType, status, balanceCents, trialEndsAt, firstTopUpAt, lastChargedDate, paymentsConfigured, hasPaymentAccount, hasSubscription, subscriptionCancelAt, paymentFailedAt, paymentFailedInvoiceUrl, monthToDate, plans, apiRequestEur, topUp, autoTopUp, overdraftCapCents, overdraftCapMaxCents, trialDays, additionalProperties);
     }
 
     @java.lang.Override

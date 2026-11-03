@@ -12,9 +12,69 @@ import java.lang.String;
 public final class PaymentsExportPayrollRequestLocale {
   public static final PaymentsExportPayrollRequestLocale EN = new PaymentsExportPayrollRequestLocale(Value.EN, "en");
 
-  public static final PaymentsExportPayrollRequestLocale DE = new PaymentsExportPayrollRequestLocale(Value.DE, "de");
+  public static final PaymentsExportPayrollRequestLocale ZH = new PaymentsExportPayrollRequestLocale(Value.ZH, "zh");
+
+  public static final PaymentsExportPayrollRequestLocale HI = new PaymentsExportPayrollRequestLocale(Value.HI, "hi");
 
   public static final PaymentsExportPayrollRequestLocale LT = new PaymentsExportPayrollRequestLocale(Value.LT, "lt");
+
+  public static final PaymentsExportPayrollRequestLocale DA = new PaymentsExportPayrollRequestLocale(Value.DA, "da");
+
+  public static final PaymentsExportPayrollRequestLocale LV = new PaymentsExportPayrollRequestLocale(Value.LV, "lv");
+
+  public static final PaymentsExportPayrollRequestLocale TR = new PaymentsExportPayrollRequestLocale(Value.TR, "tr");
+
+  public static final PaymentsExportPayrollRequestLocale FI = new PaymentsExportPayrollRequestLocale(Value.FI, "fi");
+
+  public static final PaymentsExportPayrollRequestLocale RO = new PaymentsExportPayrollRequestLocale(Value.RO, "ro");
+
+  public static final PaymentsExportPayrollRequestLocale UK = new PaymentsExportPayrollRequestLocale(Value.UK, "uk");
+
+  public static final PaymentsExportPayrollRequestLocale ES = new PaymentsExportPayrollRequestLocale(Value.ES, "es");
+
+  public static final PaymentsExportPayrollRequestLocale PL = new PaymentsExportPayrollRequestLocale(Value.PL, "pl");
+
+  public static final PaymentsExportPayrollRequestLocale DE = new PaymentsExportPayrollRequestLocale(Value.DE, "de");
+
+  public static final PaymentsExportPayrollRequestLocale GA = new PaymentsExportPayrollRequestLocale(Value.GA, "ga");
+
+  public static final PaymentsExportPayrollRequestLocale ET = new PaymentsExportPayrollRequestLocale(Value.ET, "et");
+
+  public static final PaymentsExportPayrollRequestLocale HR = new PaymentsExportPayrollRequestLocale(Value.HR, "hr");
+
+  public static final PaymentsExportPayrollRequestLocale SK = new PaymentsExportPayrollRequestLocale(Value.SK, "sk");
+
+  public static final PaymentsExportPayrollRequestLocale SL = new PaymentsExportPayrollRequestLocale(Value.SL, "sl");
+
+  public static final PaymentsExportPayrollRequestLocale MT = new PaymentsExportPayrollRequestLocale(Value.MT, "mt");
+
+  public static final PaymentsExportPayrollRequestLocale CS = new PaymentsExportPayrollRequestLocale(Value.CS, "cs");
+
+  public static final PaymentsExportPayrollRequestLocale RU = new PaymentsExportPayrollRequestLocale(Value.RU, "ru");
+
+  public static final PaymentsExportPayrollRequestLocale JA = new PaymentsExportPayrollRequestLocale(Value.JA, "ja");
+
+  public static final PaymentsExportPayrollRequestLocale HU = new PaymentsExportPayrollRequestLocale(Value.HU, "hu");
+
+  public static final PaymentsExportPayrollRequestLocale NL = new PaymentsExportPayrollRequestLocale(Value.NL, "nl");
+
+  public static final PaymentsExportPayrollRequestLocale BG = new PaymentsExportPayrollRequestLocale(Value.BG, "bg");
+
+  public static final PaymentsExportPayrollRequestLocale PT = new PaymentsExportPayrollRequestLocale(Value.PT, "pt");
+
+  public static final PaymentsExportPayrollRequestLocale AR = new PaymentsExportPayrollRequestLocale(Value.AR, "ar");
+
+  public static final PaymentsExportPayrollRequestLocale FR = new PaymentsExportPayrollRequestLocale(Value.FR, "fr");
+
+  public static final PaymentsExportPayrollRequestLocale NO = new PaymentsExportPayrollRequestLocale(Value.NO, "no");
+
+  public static final PaymentsExportPayrollRequestLocale IS = new PaymentsExportPayrollRequestLocale(Value.IS, "is");
+
+  public static final PaymentsExportPayrollRequestLocale SV = new PaymentsExportPayrollRequestLocale(Value.SV, "sv");
+
+  public static final PaymentsExportPayrollRequestLocale IT = new PaymentsExportPayrollRequestLocale(Value.IT, "it");
+
+  public static final PaymentsExportPayrollRequestLocale EL = new PaymentsExportPayrollRequestLocale(Value.EL, "el");
 
   private final Value value;
 
@@ -50,10 +110,70 @@ public final class PaymentsExportPayrollRequestLocale {
     switch (value) {
       case EN:
         return visitor.visitEn();
-      case DE:
-        return visitor.visitDe();
+      case ZH:
+        return visitor.visitZh();
+      case HI:
+        return visitor.visitHi();
       case LT:
         return visitor.visitLt();
+      case DA:
+        return visitor.visitDa();
+      case LV:
+        return visitor.visitLv();
+      case TR:
+        return visitor.visitTr();
+      case FI:
+        return visitor.visitFi();
+      case RO:
+        return visitor.visitRo();
+      case UK:
+        return visitor.visitUk();
+      case ES:
+        return visitor.visitEs();
+      case PL:
+        return visitor.visitPl();
+      case DE:
+        return visitor.visitDe();
+      case GA:
+        return visitor.visitGa();
+      case ET:
+        return visitor.visitEt();
+      case HR:
+        return visitor.visitHr();
+      case SK:
+        return visitor.visitSk();
+      case SL:
+        return visitor.visitSl();
+      case MT:
+        return visitor.visitMt();
+      case CS:
+        return visitor.visitCs();
+      case RU:
+        return visitor.visitRu();
+      case JA:
+        return visitor.visitJa();
+      case HU:
+        return visitor.visitHu();
+      case NL:
+        return visitor.visitNl();
+      case BG:
+        return visitor.visitBg();
+      case PT:
+        return visitor.visitPt();
+      case AR:
+        return visitor.visitAr();
+      case FR:
+        return visitor.visitFr();
+      case NO:
+        return visitor.visitNo();
+      case IS:
+        return visitor.visitIs();
+      case SV:
+        return visitor.visitSv();
+      case IT:
+        return visitor.visitIt();
+      case EL:
+        return visitor.visitEl();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -67,10 +187,70 @@ public final class PaymentsExportPayrollRequestLocale {
     switch (value) {
       case "en":
         return EN;
-      case "de":
-        return DE;
+      case "zh":
+        return ZH;
+      case "hi":
+        return HI;
       case "lt":
         return LT;
+      case "da":
+        return DA;
+      case "lv":
+        return LV;
+      case "tr":
+        return TR;
+      case "fi":
+        return FI;
+      case "ro":
+        return RO;
+      case "uk":
+        return UK;
+      case "es":
+        return ES;
+      case "pl":
+        return PL;
+      case "de":
+        return DE;
+      case "ga":
+        return GA;
+      case "et":
+        return ET;
+      case "hr":
+        return HR;
+      case "sk":
+        return SK;
+      case "sl":
+        return SL;
+      case "mt":
+        return MT;
+      case "cs":
+        return CS;
+      case "ru":
+        return RU;
+      case "ja":
+        return JA;
+      case "hu":
+        return HU;
+      case "nl":
+        return NL;
+      case "bg":
+        return BG;
+      case "pt":
+        return PT;
+      case "ar":
+        return AR;
+      case "fr":
+        return FR;
+      case "no":
+        return NO;
+      case "is":
+        return IS;
+      case "sv":
+        return SV;
+      case "it":
+        return IT;
+      case "el":
+        return EL;
       default:
         return new PaymentsExportPayrollRequestLocale(Value.UNKNOWN, value);
     }
@@ -83,6 +263,66 @@ public final class PaymentsExportPayrollRequestLocale {
 
     DE,
 
+    FR,
+
+    ES,
+
+    IT,
+
+    PT,
+
+    NL,
+
+    PL,
+
+    SV,
+
+    DA,
+
+    NO,
+
+    FI,
+
+    ET,
+
+    LV,
+
+    CS,
+
+    SK,
+
+    HU,
+
+    RO,
+
+    BG,
+
+    HR,
+
+    SL,
+
+    EL,
+
+    MT,
+
+    IS,
+
+    GA,
+
+    ZH,
+
+    JA,
+
+    AR,
+
+    HI,
+
+    RU,
+
+    TR,
+
+    UK,
+
     UNKNOWN
   }
 
@@ -92,6 +332,66 @@ public final class PaymentsExportPayrollRequestLocale {
     T visitLt();
 
     T visitDe();
+
+    T visitFr();
+
+    T visitEs();
+
+    T visitIt();
+
+    T visitPt();
+
+    T visitNl();
+
+    T visitPl();
+
+    T visitSv();
+
+    T visitDa();
+
+    T visitNo();
+
+    T visitFi();
+
+    T visitEt();
+
+    T visitLv();
+
+    T visitCs();
+
+    T visitSk();
+
+    T visitHu();
+
+    T visitRo();
+
+    T visitBg();
+
+    T visitHr();
+
+    T visitSl();
+
+    T visitEl();
+
+    T visitMt();
+
+    T visitIs();
+
+    T visitGa();
+
+    T visitZh();
+
+    T visitJa();
+
+    T visitAr();
+
+    T visitHi();
+
+    T visitRu();
+
+    T visitTr();
+
+    T visitUk();
 
     T visitUnknown(String unknownType);
   }

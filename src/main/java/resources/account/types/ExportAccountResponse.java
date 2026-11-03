@@ -44,6 +44,8 @@ public final class ExportAccountResponse {
 
   private final Optional<ExportAccountResponseBilling> billing;
 
+  private final List<ExportAccountResponseBillingAccountsItem> billingAccounts;
+
   private final List<ExportAccountResponseCreditTransactionsItem> creditTransactions;
 
   private final List<ExportAccountResponseAuditEntriesItem> auditEntries;
@@ -54,6 +56,7 @@ public final class ExportAccountResponse {
       ExportAccountResponseConsent consent, List<ExportAccountResponseMembershipsItem> memberships,
       List<ExportAccountResponseSessionsItem> sessions,
       Optional<ExportAccountResponseBilling> billing,
+      List<ExportAccountResponseBillingAccountsItem> billingAccounts,
       List<ExportAccountResponseCreditTransactionsItem> creditTransactions,
       List<ExportAccountResponseAuditEntriesItem> auditEntries,
       Map<String, Object> additionalProperties) {
@@ -63,6 +66,7 @@ public final class ExportAccountResponse {
     this.memberships = memberships;
     this.sessions = sessions;
     this.billing = billing;
+    this.billingAccounts = billingAccounts;
     this.creditTransactions = creditTransactions;
     this.auditEntries = auditEntries;
     this.additionalProperties = additionalProperties;
@@ -101,6 +105,11 @@ public final class ExportAccountResponse {
     return billing;
   }
 
+  @JsonProperty("billingAccounts")
+  public List<ExportAccountResponseBillingAccountsItem> getBillingAccounts() {
+    return billingAccounts;
+  }
+
   @JsonProperty("creditTransactions")
   public List<ExportAccountResponseCreditTransactionsItem> getCreditTransactions() {
     return creditTransactions;
@@ -132,12 +141,12 @@ public final class ExportAccountResponse {
   }
 
   private boolean equalTo(ExportAccountResponse other) {
-    return generatedAt.equals(other.generatedAt) && user.equals(other.user) && consent.equals(other.consent) && memberships.equals(other.memberships) && sessions.equals(other.sessions) && billing.equals(other.billing) && creditTransactions.equals(other.creditTransactions) && auditEntries.equals(other.auditEntries);
+    return generatedAt.equals(other.generatedAt) && user.equals(other.user) && consent.equals(other.consent) && memberships.equals(other.memberships) && sessions.equals(other.sessions) && billing.equals(other.billing) && billingAccounts.equals(other.billingAccounts) && creditTransactions.equals(other.creditTransactions) && auditEntries.equals(other.auditEntries);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.generatedAt, this.user, this.consent, this.memberships, this.sessions, this.billing, this.creditTransactions, this.auditEntries);
+    return Objects.hash(this.generatedAt, this.user, this.consent, this.memberships, this.sessions, this.billing, this.billingAccounts, this.creditTransactions, this.auditEntries);
   }
 
   @java.lang.Override
@@ -188,6 +197,13 @@ public final class ExportAccountResponse {
 
     _FinalStage billing(Nullable<ExportAccountResponseBilling> billing);
 
+    _FinalStage billingAccounts(List<ExportAccountResponseBillingAccountsItem> billingAccounts);
+
+    _FinalStage addBillingAccounts(ExportAccountResponseBillingAccountsItem billingAccounts);
+
+    _FinalStage addAllBillingAccounts(
+        List<ExportAccountResponseBillingAccountsItem> billingAccounts);
+
     _FinalStage creditTransactions(
         List<ExportAccountResponseCreditTransactionsItem> creditTransactions);
 
@@ -218,6 +234,8 @@ public final class ExportAccountResponse {
 
     private List<ExportAccountResponseCreditTransactionsItem> creditTransactions = new ArrayList<>();
 
+    private List<ExportAccountResponseBillingAccountsItem> billingAccounts = new ArrayList<>();
+
     private Optional<ExportAccountResponseBilling> billing = Optional.empty();
 
     private List<ExportAccountResponseSessionsItem> sessions = new ArrayList<>();
@@ -238,6 +256,7 @@ public final class ExportAccountResponse {
       memberships(other.getMemberships());
       sessions(other.getSessions());
       billing(other.getBilling());
+      billingAccounts(other.getBillingAccounts());
       creditTransactions(other.getCreditTransactions());
       auditEntries(other.getAuditEntries());
       return this;
@@ -318,6 +337,36 @@ public final class ExportAccountResponse {
       this.creditTransactions.clear();
       if (creditTransactions != null) {
         this.creditTransactions.addAll(creditTransactions);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addAllBillingAccounts(
+        List<ExportAccountResponseBillingAccountsItem> billingAccounts) {
+      if (billingAccounts != null) {
+        this.billingAccounts.addAll(billingAccounts);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addBillingAccounts(
+        ExportAccountResponseBillingAccountsItem billingAccounts) {
+      this.billingAccounts.add(billingAccounts);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "billingAccounts",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage billingAccounts(
+        List<ExportAccountResponseBillingAccountsItem> billingAccounts) {
+      this.billingAccounts.clear();
+      if (billingAccounts != null) {
+        this.billingAccounts.addAll(billingAccounts);
       }
       return this;
     }
@@ -408,7 +457,7 @@ public final class ExportAccountResponse {
 
     @java.lang.Override
     public ExportAccountResponse build() {
-      return new ExportAccountResponse(generatedAt, user, consent, memberships, sessions, billing, creditTransactions, auditEntries, additionalProperties);
+      return new ExportAccountResponse(generatedAt, user, consent, memberships, sessions, billing, billingAccounts, creditTransactions, auditEntries, additionalProperties);
     }
 
     @java.lang.Override

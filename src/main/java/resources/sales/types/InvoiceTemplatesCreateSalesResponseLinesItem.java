@@ -35,6 +35,8 @@ public final class InvoiceTemplatesCreateSalesResponseLinesItem {
 
   private final Optional<String> vatRatePercent;
 
+  private final Optional<String> vatClassifierCode;
+
   private final Optional<String> vatExemptionBasis;
 
   private final Optional<String> projectId;
@@ -45,13 +47,15 @@ public final class InvoiceTemplatesCreateSalesResponseLinesItem {
 
   private InvoiceTemplatesCreateSalesResponseLinesItem(Optional<String> itemId,
       Optional<String> description, Optional<String> quantity, Optional<String> unitPriceExclVat,
-      Optional<String> vatRatePercent, Optional<String> vatExemptionBasis,
-      Optional<String> projectId, Optional<String> unit, Map<String, Object> additionalProperties) {
+      Optional<String> vatRatePercent, Optional<String> vatClassifierCode,
+      Optional<String> vatExemptionBasis, Optional<String> projectId, Optional<String> unit,
+      Map<String, Object> additionalProperties) {
     this.itemId = itemId;
     this.description = description;
     this.quantity = quantity;
     this.unitPriceExclVat = unitPriceExclVat;
     this.vatRatePercent = vatRatePercent;
+    this.vatClassifierCode = vatClassifierCode;
     this.vatExemptionBasis = vatExemptionBasis;
     this.projectId = projectId;
     this.unit = unit;
@@ -83,6 +87,11 @@ public final class InvoiceTemplatesCreateSalesResponseLinesItem {
     return vatRatePercent;
   }
 
+  @JsonProperty("vatClassifierCode")
+  public Optional<String> getVatClassifierCode() {
+    return vatClassifierCode;
+  }
+
   @JsonProperty("vatExemptionBasis")
   public Optional<String> getVatExemptionBasis() {
     return vatExemptionBasis;
@@ -110,12 +119,12 @@ public final class InvoiceTemplatesCreateSalesResponseLinesItem {
   }
 
   private boolean equalTo(InvoiceTemplatesCreateSalesResponseLinesItem other) {
-    return itemId.equals(other.itemId) && description.equals(other.description) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && vatRatePercent.equals(other.vatRatePercent) && vatExemptionBasis.equals(other.vatExemptionBasis) && projectId.equals(other.projectId) && unit.equals(other.unit);
+    return itemId.equals(other.itemId) && description.equals(other.description) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && vatExemptionBasis.equals(other.vatExemptionBasis) && projectId.equals(other.projectId) && unit.equals(other.unit);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.itemId, this.description, this.quantity, this.unitPriceExclVat, this.vatRatePercent, this.vatExemptionBasis, this.projectId, this.unit);
+    return Objects.hash(this.itemId, this.description, this.quantity, this.unitPriceExclVat, this.vatRatePercent, this.vatClassifierCode, this.vatExemptionBasis, this.projectId, this.unit);
   }
 
   @java.lang.Override
@@ -141,6 +150,8 @@ public final class InvoiceTemplatesCreateSalesResponseLinesItem {
 
     private Optional<String> vatRatePercent = Optional.empty();
 
+    private Optional<String> vatClassifierCode = Optional.empty();
+
     private Optional<String> vatExemptionBasis = Optional.empty();
 
     private Optional<String> projectId = Optional.empty();
@@ -159,6 +170,7 @@ public final class InvoiceTemplatesCreateSalesResponseLinesItem {
       quantity(other.getQuantity());
       unitPriceExclVat(other.getUnitPriceExclVat());
       vatRatePercent(other.getVatRatePercent());
+      vatClassifierCode(other.getVatClassifierCode());
       vatExemptionBasis(other.getVatExemptionBasis());
       projectId(other.getProjectId());
       unit(other.getUnit());
@@ -236,6 +248,20 @@ public final class InvoiceTemplatesCreateSalesResponseLinesItem {
     }
 
     @JsonSetter(
+        value = "vatClassifierCode",
+        nulls = Nulls.SKIP
+    )
+    public Builder vatClassifierCode(Optional<String> vatClassifierCode) {
+      this.vatClassifierCode = vatClassifierCode;
+      return this;
+    }
+
+    public Builder vatClassifierCode(String vatClassifierCode) {
+      this.vatClassifierCode = Optional.ofNullable(vatClassifierCode);
+      return this;
+    }
+
+    @JsonSetter(
         value = "vatExemptionBasis",
         nulls = Nulls.SKIP
     )
@@ -278,7 +304,7 @@ public final class InvoiceTemplatesCreateSalesResponseLinesItem {
     }
 
     public InvoiceTemplatesCreateSalesResponseLinesItem build() {
-      return new InvoiceTemplatesCreateSalesResponseLinesItem(itemId, description, quantity, unitPriceExclVat, vatRatePercent, vatExemptionBasis, projectId, unit, additionalProperties);
+      return new InvoiceTemplatesCreateSalesResponseLinesItem(itemId, description, quantity, unitPriceExclVat, vatRatePercent, vatClassifierCode, vatExemptionBasis, projectId, unit, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

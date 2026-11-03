@@ -12,9 +12,69 @@ import java.lang.String;
 public final class UnitsOptionsCatalogRequestLocale {
   public static final UnitsOptionsCatalogRequestLocale EN = new UnitsOptionsCatalogRequestLocale(Value.EN, "en");
 
-  public static final UnitsOptionsCatalogRequestLocale DE = new UnitsOptionsCatalogRequestLocale(Value.DE, "de");
+  public static final UnitsOptionsCatalogRequestLocale ZH = new UnitsOptionsCatalogRequestLocale(Value.ZH, "zh");
+
+  public static final UnitsOptionsCatalogRequestLocale HI = new UnitsOptionsCatalogRequestLocale(Value.HI, "hi");
 
   public static final UnitsOptionsCatalogRequestLocale LT = new UnitsOptionsCatalogRequestLocale(Value.LT, "lt");
+
+  public static final UnitsOptionsCatalogRequestLocale DA = new UnitsOptionsCatalogRequestLocale(Value.DA, "da");
+
+  public static final UnitsOptionsCatalogRequestLocale LV = new UnitsOptionsCatalogRequestLocale(Value.LV, "lv");
+
+  public static final UnitsOptionsCatalogRequestLocale TR = new UnitsOptionsCatalogRequestLocale(Value.TR, "tr");
+
+  public static final UnitsOptionsCatalogRequestLocale FI = new UnitsOptionsCatalogRequestLocale(Value.FI, "fi");
+
+  public static final UnitsOptionsCatalogRequestLocale RO = new UnitsOptionsCatalogRequestLocale(Value.RO, "ro");
+
+  public static final UnitsOptionsCatalogRequestLocale UK = new UnitsOptionsCatalogRequestLocale(Value.UK, "uk");
+
+  public static final UnitsOptionsCatalogRequestLocale ES = new UnitsOptionsCatalogRequestLocale(Value.ES, "es");
+
+  public static final UnitsOptionsCatalogRequestLocale PL = new UnitsOptionsCatalogRequestLocale(Value.PL, "pl");
+
+  public static final UnitsOptionsCatalogRequestLocale DE = new UnitsOptionsCatalogRequestLocale(Value.DE, "de");
+
+  public static final UnitsOptionsCatalogRequestLocale GA = new UnitsOptionsCatalogRequestLocale(Value.GA, "ga");
+
+  public static final UnitsOptionsCatalogRequestLocale ET = new UnitsOptionsCatalogRequestLocale(Value.ET, "et");
+
+  public static final UnitsOptionsCatalogRequestLocale HR = new UnitsOptionsCatalogRequestLocale(Value.HR, "hr");
+
+  public static final UnitsOptionsCatalogRequestLocale SK = new UnitsOptionsCatalogRequestLocale(Value.SK, "sk");
+
+  public static final UnitsOptionsCatalogRequestLocale SL = new UnitsOptionsCatalogRequestLocale(Value.SL, "sl");
+
+  public static final UnitsOptionsCatalogRequestLocale MT = new UnitsOptionsCatalogRequestLocale(Value.MT, "mt");
+
+  public static final UnitsOptionsCatalogRequestLocale CS = new UnitsOptionsCatalogRequestLocale(Value.CS, "cs");
+
+  public static final UnitsOptionsCatalogRequestLocale RU = new UnitsOptionsCatalogRequestLocale(Value.RU, "ru");
+
+  public static final UnitsOptionsCatalogRequestLocale JA = new UnitsOptionsCatalogRequestLocale(Value.JA, "ja");
+
+  public static final UnitsOptionsCatalogRequestLocale HU = new UnitsOptionsCatalogRequestLocale(Value.HU, "hu");
+
+  public static final UnitsOptionsCatalogRequestLocale NL = new UnitsOptionsCatalogRequestLocale(Value.NL, "nl");
+
+  public static final UnitsOptionsCatalogRequestLocale BG = new UnitsOptionsCatalogRequestLocale(Value.BG, "bg");
+
+  public static final UnitsOptionsCatalogRequestLocale PT = new UnitsOptionsCatalogRequestLocale(Value.PT, "pt");
+
+  public static final UnitsOptionsCatalogRequestLocale AR = new UnitsOptionsCatalogRequestLocale(Value.AR, "ar");
+
+  public static final UnitsOptionsCatalogRequestLocale FR = new UnitsOptionsCatalogRequestLocale(Value.FR, "fr");
+
+  public static final UnitsOptionsCatalogRequestLocale NO = new UnitsOptionsCatalogRequestLocale(Value.NO, "no");
+
+  public static final UnitsOptionsCatalogRequestLocale IS = new UnitsOptionsCatalogRequestLocale(Value.IS, "is");
+
+  public static final UnitsOptionsCatalogRequestLocale SV = new UnitsOptionsCatalogRequestLocale(Value.SV, "sv");
+
+  public static final UnitsOptionsCatalogRequestLocale IT = new UnitsOptionsCatalogRequestLocale(Value.IT, "it");
+
+  public static final UnitsOptionsCatalogRequestLocale EL = new UnitsOptionsCatalogRequestLocale(Value.EL, "el");
 
   private final Value value;
 
@@ -50,10 +110,70 @@ public final class UnitsOptionsCatalogRequestLocale {
     switch (value) {
       case EN:
         return visitor.visitEn();
-      case DE:
-        return visitor.visitDe();
+      case ZH:
+        return visitor.visitZh();
+      case HI:
+        return visitor.visitHi();
       case LT:
         return visitor.visitLt();
+      case DA:
+        return visitor.visitDa();
+      case LV:
+        return visitor.visitLv();
+      case TR:
+        return visitor.visitTr();
+      case FI:
+        return visitor.visitFi();
+      case RO:
+        return visitor.visitRo();
+      case UK:
+        return visitor.visitUk();
+      case ES:
+        return visitor.visitEs();
+      case PL:
+        return visitor.visitPl();
+      case DE:
+        return visitor.visitDe();
+      case GA:
+        return visitor.visitGa();
+      case ET:
+        return visitor.visitEt();
+      case HR:
+        return visitor.visitHr();
+      case SK:
+        return visitor.visitSk();
+      case SL:
+        return visitor.visitSl();
+      case MT:
+        return visitor.visitMt();
+      case CS:
+        return visitor.visitCs();
+      case RU:
+        return visitor.visitRu();
+      case JA:
+        return visitor.visitJa();
+      case HU:
+        return visitor.visitHu();
+      case NL:
+        return visitor.visitNl();
+      case BG:
+        return visitor.visitBg();
+      case PT:
+        return visitor.visitPt();
+      case AR:
+        return visitor.visitAr();
+      case FR:
+        return visitor.visitFr();
+      case NO:
+        return visitor.visitNo();
+      case IS:
+        return visitor.visitIs();
+      case SV:
+        return visitor.visitSv();
+      case IT:
+        return visitor.visitIt();
+      case EL:
+        return visitor.visitEl();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -67,10 +187,70 @@ public final class UnitsOptionsCatalogRequestLocale {
     switch (value) {
       case "en":
         return EN;
-      case "de":
-        return DE;
+      case "zh":
+        return ZH;
+      case "hi":
+        return HI;
       case "lt":
         return LT;
+      case "da":
+        return DA;
+      case "lv":
+        return LV;
+      case "tr":
+        return TR;
+      case "fi":
+        return FI;
+      case "ro":
+        return RO;
+      case "uk":
+        return UK;
+      case "es":
+        return ES;
+      case "pl":
+        return PL;
+      case "de":
+        return DE;
+      case "ga":
+        return GA;
+      case "et":
+        return ET;
+      case "hr":
+        return HR;
+      case "sk":
+        return SK;
+      case "sl":
+        return SL;
+      case "mt":
+        return MT;
+      case "cs":
+        return CS;
+      case "ru":
+        return RU;
+      case "ja":
+        return JA;
+      case "hu":
+        return HU;
+      case "nl":
+        return NL;
+      case "bg":
+        return BG;
+      case "pt":
+        return PT;
+      case "ar":
+        return AR;
+      case "fr":
+        return FR;
+      case "no":
+        return NO;
+      case "is":
+        return IS;
+      case "sv":
+        return SV;
+      case "it":
+        return IT;
+      case "el":
+        return EL;
       default:
         return new UnitsOptionsCatalogRequestLocale(Value.UNKNOWN, value);
     }
@@ -83,6 +263,66 @@ public final class UnitsOptionsCatalogRequestLocale {
 
     DE,
 
+    FR,
+
+    ES,
+
+    IT,
+
+    PT,
+
+    NL,
+
+    PL,
+
+    SV,
+
+    DA,
+
+    NO,
+
+    FI,
+
+    ET,
+
+    LV,
+
+    CS,
+
+    SK,
+
+    HU,
+
+    RO,
+
+    BG,
+
+    HR,
+
+    SL,
+
+    EL,
+
+    MT,
+
+    IS,
+
+    GA,
+
+    ZH,
+
+    JA,
+
+    AR,
+
+    HI,
+
+    RU,
+
+    TR,
+
+    UK,
+
     UNKNOWN
   }
 
@@ -92,6 +332,66 @@ public final class UnitsOptionsCatalogRequestLocale {
     T visitLt();
 
     T visitDe();
+
+    T visitFr();
+
+    T visitEs();
+
+    T visitIt();
+
+    T visitPt();
+
+    T visitNl();
+
+    T visitPl();
+
+    T visitSv();
+
+    T visitDa();
+
+    T visitNo();
+
+    T visitFi();
+
+    T visitEt();
+
+    T visitLv();
+
+    T visitCs();
+
+    T visitSk();
+
+    T visitHu();
+
+    T visitRo();
+
+    T visitBg();
+
+    T visitHr();
+
+    T visitSl();
+
+    T visitEl();
+
+    T visitMt();
+
+    T visitIs();
+
+    T visitGa();
+
+    T visitZh();
+
+    T visitJa();
+
+    T visitAr();
+
+    T visitHi();
+
+    T visitRu();
+
+    T visitTr();
+
+    T visitUk();
 
     T visitUnknown(String unknownType);
   }

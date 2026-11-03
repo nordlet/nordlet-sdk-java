@@ -26,6 +26,8 @@ import org.jetbrains.annotations.NotNull;
 public final class UsageListBillingResponseRowsItem {
   private final String companyId;
 
+  private final UsageListBillingResponseRowsItemSite site;
+
   private final String date;
 
   private final UsageListBillingResponseRowsItemMetric metric;
@@ -34,10 +36,12 @@ public final class UsageListBillingResponseRowsItem {
 
   private final Map<String, Object> additionalProperties;
 
-  private UsageListBillingResponseRowsItem(String companyId, String date,
+  private UsageListBillingResponseRowsItem(String companyId,
+      UsageListBillingResponseRowsItemSite site, String date,
       UsageListBillingResponseRowsItemMetric metric, double quantity,
       Map<String, Object> additionalProperties) {
     this.companyId = companyId;
+    this.site = site;
     this.date = date;
     this.metric = metric;
     this.quantity = quantity;
@@ -47,6 +51,11 @@ public final class UsageListBillingResponseRowsItem {
   @JsonProperty("companyId")
   public String getCompanyId() {
     return companyId;
+  }
+
+  @JsonProperty("site")
+  public UsageListBillingResponseRowsItemSite getSite() {
+    return site;
   }
 
   @JsonProperty("date")
@@ -76,12 +85,12 @@ public final class UsageListBillingResponseRowsItem {
   }
 
   private boolean equalTo(UsageListBillingResponseRowsItem other) {
-    return companyId.equals(other.companyId) && date.equals(other.date) && metric.equals(other.metric) && quantity == other.quantity;
+    return companyId.equals(other.companyId) && site.equals(other.site) && date.equals(other.date) && metric.equals(other.metric) && quantity == other.quantity;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.companyId, this.date, this.metric, this.quantity);
+    return Objects.hash(this.companyId, this.site, this.date, this.metric, this.quantity);
   }
 
   @java.lang.Override
@@ -94,9 +103,13 @@ public final class UsageListBillingResponseRowsItem {
   }
 
   public interface CompanyIdStage {
-    DateStage companyId(@NotNull String companyId);
+    SiteStage companyId(@NotNull String companyId);
 
     Builder from(UsageListBillingResponseRowsItem other);
+  }
+
+  public interface SiteStage {
+    DateStage site(@NotNull UsageListBillingResponseRowsItemSite site);
   }
 
   public interface DateStage {
@@ -122,8 +135,10 @@ public final class UsageListBillingResponseRowsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements CompanyIdStage, DateStage, MetricStage, QuantityStage, _FinalStage {
+  public static final class Builder implements CompanyIdStage, SiteStage, DateStage, MetricStage, QuantityStage, _FinalStage {
     private String companyId;
+
+    private UsageListBillingResponseRowsItemSite site;
 
     private String date;
 
@@ -140,6 +155,7 @@ public final class UsageListBillingResponseRowsItem {
     @java.lang.Override
     public Builder from(UsageListBillingResponseRowsItem other) {
       companyId(other.getCompanyId());
+      site(other.getSite());
       date(other.getDate());
       metric(other.getMetric());
       quantity(other.getQuantity());
@@ -148,8 +164,15 @@ public final class UsageListBillingResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("companyId")
-    public DateStage companyId(@NotNull String companyId) {
+    public SiteStage companyId(@NotNull String companyId) {
       this.companyId = Objects.requireNonNull(companyId, "companyId must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("site")
+    public DateStage site(@NotNull UsageListBillingResponseRowsItemSite site) {
+      this.site = Objects.requireNonNull(site, "site must not be null");
       return this;
     }
 
@@ -176,7 +199,7 @@ public final class UsageListBillingResponseRowsItem {
 
     @java.lang.Override
     public UsageListBillingResponseRowsItem build() {
-      return new UsageListBillingResponseRowsItem(companyId, date, metric, quantity, additionalProperties);
+      return new UsageListBillingResponseRowsItem(companyId, site, date, metric, quantity, additionalProperties);
     }
 
     @java.lang.Override

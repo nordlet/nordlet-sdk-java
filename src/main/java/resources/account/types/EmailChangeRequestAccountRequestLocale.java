@@ -12,9 +12,69 @@ import java.lang.String;
 public final class EmailChangeRequestAccountRequestLocale {
   public static final EmailChangeRequestAccountRequestLocale EN = new EmailChangeRequestAccountRequestLocale(Value.EN, "en");
 
-  public static final EmailChangeRequestAccountRequestLocale DE = new EmailChangeRequestAccountRequestLocale(Value.DE, "de");
+  public static final EmailChangeRequestAccountRequestLocale ZH = new EmailChangeRequestAccountRequestLocale(Value.ZH, "zh");
+
+  public static final EmailChangeRequestAccountRequestLocale HI = new EmailChangeRequestAccountRequestLocale(Value.HI, "hi");
 
   public static final EmailChangeRequestAccountRequestLocale LT = new EmailChangeRequestAccountRequestLocale(Value.LT, "lt");
+
+  public static final EmailChangeRequestAccountRequestLocale DA = new EmailChangeRequestAccountRequestLocale(Value.DA, "da");
+
+  public static final EmailChangeRequestAccountRequestLocale LV = new EmailChangeRequestAccountRequestLocale(Value.LV, "lv");
+
+  public static final EmailChangeRequestAccountRequestLocale TR = new EmailChangeRequestAccountRequestLocale(Value.TR, "tr");
+
+  public static final EmailChangeRequestAccountRequestLocale FI = new EmailChangeRequestAccountRequestLocale(Value.FI, "fi");
+
+  public static final EmailChangeRequestAccountRequestLocale RO = new EmailChangeRequestAccountRequestLocale(Value.RO, "ro");
+
+  public static final EmailChangeRequestAccountRequestLocale UK = new EmailChangeRequestAccountRequestLocale(Value.UK, "uk");
+
+  public static final EmailChangeRequestAccountRequestLocale ES = new EmailChangeRequestAccountRequestLocale(Value.ES, "es");
+
+  public static final EmailChangeRequestAccountRequestLocale PL = new EmailChangeRequestAccountRequestLocale(Value.PL, "pl");
+
+  public static final EmailChangeRequestAccountRequestLocale DE = new EmailChangeRequestAccountRequestLocale(Value.DE, "de");
+
+  public static final EmailChangeRequestAccountRequestLocale GA = new EmailChangeRequestAccountRequestLocale(Value.GA, "ga");
+
+  public static final EmailChangeRequestAccountRequestLocale ET = new EmailChangeRequestAccountRequestLocale(Value.ET, "et");
+
+  public static final EmailChangeRequestAccountRequestLocale HR = new EmailChangeRequestAccountRequestLocale(Value.HR, "hr");
+
+  public static final EmailChangeRequestAccountRequestLocale SK = new EmailChangeRequestAccountRequestLocale(Value.SK, "sk");
+
+  public static final EmailChangeRequestAccountRequestLocale SL = new EmailChangeRequestAccountRequestLocale(Value.SL, "sl");
+
+  public static final EmailChangeRequestAccountRequestLocale MT = new EmailChangeRequestAccountRequestLocale(Value.MT, "mt");
+
+  public static final EmailChangeRequestAccountRequestLocale CS = new EmailChangeRequestAccountRequestLocale(Value.CS, "cs");
+
+  public static final EmailChangeRequestAccountRequestLocale RU = new EmailChangeRequestAccountRequestLocale(Value.RU, "ru");
+
+  public static final EmailChangeRequestAccountRequestLocale JA = new EmailChangeRequestAccountRequestLocale(Value.JA, "ja");
+
+  public static final EmailChangeRequestAccountRequestLocale HU = new EmailChangeRequestAccountRequestLocale(Value.HU, "hu");
+
+  public static final EmailChangeRequestAccountRequestLocale NL = new EmailChangeRequestAccountRequestLocale(Value.NL, "nl");
+
+  public static final EmailChangeRequestAccountRequestLocale BG = new EmailChangeRequestAccountRequestLocale(Value.BG, "bg");
+
+  public static final EmailChangeRequestAccountRequestLocale PT = new EmailChangeRequestAccountRequestLocale(Value.PT, "pt");
+
+  public static final EmailChangeRequestAccountRequestLocale AR = new EmailChangeRequestAccountRequestLocale(Value.AR, "ar");
+
+  public static final EmailChangeRequestAccountRequestLocale FR = new EmailChangeRequestAccountRequestLocale(Value.FR, "fr");
+
+  public static final EmailChangeRequestAccountRequestLocale NO = new EmailChangeRequestAccountRequestLocale(Value.NO, "no");
+
+  public static final EmailChangeRequestAccountRequestLocale IS = new EmailChangeRequestAccountRequestLocale(Value.IS, "is");
+
+  public static final EmailChangeRequestAccountRequestLocale SV = new EmailChangeRequestAccountRequestLocale(Value.SV, "sv");
+
+  public static final EmailChangeRequestAccountRequestLocale IT = new EmailChangeRequestAccountRequestLocale(Value.IT, "it");
+
+  public static final EmailChangeRequestAccountRequestLocale EL = new EmailChangeRequestAccountRequestLocale(Value.EL, "el");
 
   private final Value value;
 
@@ -50,10 +110,70 @@ public final class EmailChangeRequestAccountRequestLocale {
     switch (value) {
       case EN:
         return visitor.visitEn();
-      case DE:
-        return visitor.visitDe();
+      case ZH:
+        return visitor.visitZh();
+      case HI:
+        return visitor.visitHi();
       case LT:
         return visitor.visitLt();
+      case DA:
+        return visitor.visitDa();
+      case LV:
+        return visitor.visitLv();
+      case TR:
+        return visitor.visitTr();
+      case FI:
+        return visitor.visitFi();
+      case RO:
+        return visitor.visitRo();
+      case UK:
+        return visitor.visitUk();
+      case ES:
+        return visitor.visitEs();
+      case PL:
+        return visitor.visitPl();
+      case DE:
+        return visitor.visitDe();
+      case GA:
+        return visitor.visitGa();
+      case ET:
+        return visitor.visitEt();
+      case HR:
+        return visitor.visitHr();
+      case SK:
+        return visitor.visitSk();
+      case SL:
+        return visitor.visitSl();
+      case MT:
+        return visitor.visitMt();
+      case CS:
+        return visitor.visitCs();
+      case RU:
+        return visitor.visitRu();
+      case JA:
+        return visitor.visitJa();
+      case HU:
+        return visitor.visitHu();
+      case NL:
+        return visitor.visitNl();
+      case BG:
+        return visitor.visitBg();
+      case PT:
+        return visitor.visitPt();
+      case AR:
+        return visitor.visitAr();
+      case FR:
+        return visitor.visitFr();
+      case NO:
+        return visitor.visitNo();
+      case IS:
+        return visitor.visitIs();
+      case SV:
+        return visitor.visitSv();
+      case IT:
+        return visitor.visitIt();
+      case EL:
+        return visitor.visitEl();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -67,10 +187,70 @@ public final class EmailChangeRequestAccountRequestLocale {
     switch (value) {
       case "en":
         return EN;
-      case "de":
-        return DE;
+      case "zh":
+        return ZH;
+      case "hi":
+        return HI;
       case "lt":
         return LT;
+      case "da":
+        return DA;
+      case "lv":
+        return LV;
+      case "tr":
+        return TR;
+      case "fi":
+        return FI;
+      case "ro":
+        return RO;
+      case "uk":
+        return UK;
+      case "es":
+        return ES;
+      case "pl":
+        return PL;
+      case "de":
+        return DE;
+      case "ga":
+        return GA;
+      case "et":
+        return ET;
+      case "hr":
+        return HR;
+      case "sk":
+        return SK;
+      case "sl":
+        return SL;
+      case "mt":
+        return MT;
+      case "cs":
+        return CS;
+      case "ru":
+        return RU;
+      case "ja":
+        return JA;
+      case "hu":
+        return HU;
+      case "nl":
+        return NL;
+      case "bg":
+        return BG;
+      case "pt":
+        return PT;
+      case "ar":
+        return AR;
+      case "fr":
+        return FR;
+      case "no":
+        return NO;
+      case "is":
+        return IS;
+      case "sv":
+        return SV;
+      case "it":
+        return IT;
+      case "el":
+        return EL;
       default:
         return new EmailChangeRequestAccountRequestLocale(Value.UNKNOWN, value);
     }
@@ -83,6 +263,66 @@ public final class EmailChangeRequestAccountRequestLocale {
 
     DE,
 
+    FR,
+
+    ES,
+
+    IT,
+
+    PT,
+
+    NL,
+
+    PL,
+
+    SV,
+
+    DA,
+
+    NO,
+
+    FI,
+
+    ET,
+
+    LV,
+
+    CS,
+
+    SK,
+
+    HU,
+
+    RO,
+
+    BG,
+
+    HR,
+
+    SL,
+
+    EL,
+
+    MT,
+
+    IS,
+
+    GA,
+
+    ZH,
+
+    JA,
+
+    AR,
+
+    HI,
+
+    RU,
+
+    TR,
+
+    UK,
+
     UNKNOWN
   }
 
@@ -92,6 +332,66 @@ public final class EmailChangeRequestAccountRequestLocale {
     T visitLt();
 
     T visitDe();
+
+    T visitFr();
+
+    T visitEs();
+
+    T visitIt();
+
+    T visitPt();
+
+    T visitNl();
+
+    T visitPl();
+
+    T visitSv();
+
+    T visitDa();
+
+    T visitNo();
+
+    T visitFi();
+
+    T visitEt();
+
+    T visitLv();
+
+    T visitCs();
+
+    T visitSk();
+
+    T visitHu();
+
+    T visitRo();
+
+    T visitBg();
+
+    T visitHr();
+
+    T visitSl();
+
+    T visitEl();
+
+    T visitMt();
+
+    T visitIs();
+
+    T visitGa();
+
+    T visitZh();
+
+    T visitJa();
+
+    T visitAr();
+
+    T visitHi();
+
+    T visitRu();
+
+    T visitTr();
+
+    T visitUk();
 
     T visitUnknown(String unknownType);
   }

@@ -28,6 +28,8 @@ public final class CompaniesCreateAccountRequestDefaultInvoiceLocale {
 
   public static final CompaniesCreateAccountRequestDefaultInvoiceLocale RO = new CompaniesCreateAccountRequestDefaultInvoiceLocale(Value.RO, "ro");
 
+  public static final CompaniesCreateAccountRequestDefaultInvoiceLocale UK = new CompaniesCreateAccountRequestDefaultInvoiceLocale(Value.UK, "uk");
+
   public static final CompaniesCreateAccountRequestDefaultInvoiceLocale ES = new CompaniesCreateAccountRequestDefaultInvoiceLocale(Value.ES, "es");
 
   public static final CompaniesCreateAccountRequestDefaultInvoiceLocale PL = new CompaniesCreateAccountRequestDefaultInvoiceLocale(Value.PL, "pl");
@@ -124,6 +126,8 @@ public final class CompaniesCreateAccountRequestDefaultInvoiceLocale {
         return visitor.visitFi();
       case RO:
         return visitor.visitRo();
+      case UK:
+        return visitor.visitUk();
       case ES:
         return visitor.visitEs();
       case PL:
@@ -199,6 +203,8 @@ public final class CompaniesCreateAccountRequestDefaultInvoiceLocale {
         return FI;
       case "ro":
         return RO;
+      case "uk":
+        return UK;
       case "es":
         return ES;
       case "pl":
@@ -315,6 +321,8 @@ public final class CompaniesCreateAccountRequestDefaultInvoiceLocale {
 
     TR,
 
+    UK,
+
     UNKNOWN
   }
 
@@ -382,6 +390,8 @@ public final class CompaniesCreateAccountRequestDefaultInvoiceLocale {
     T visitRu();
 
     T visitTr();
+
+    T visitUk();
 
     T visitUnknown(String unknownType);
   }

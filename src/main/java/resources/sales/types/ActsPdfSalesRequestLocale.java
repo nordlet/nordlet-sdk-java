@@ -12,9 +12,69 @@ import java.lang.String;
 public final class ActsPdfSalesRequestLocale {
   public static final ActsPdfSalesRequestLocale EN = new ActsPdfSalesRequestLocale(Value.EN, "en");
 
-  public static final ActsPdfSalesRequestLocale DE = new ActsPdfSalesRequestLocale(Value.DE, "de");
+  public static final ActsPdfSalesRequestLocale ZH = new ActsPdfSalesRequestLocale(Value.ZH, "zh");
+
+  public static final ActsPdfSalesRequestLocale HI = new ActsPdfSalesRequestLocale(Value.HI, "hi");
 
   public static final ActsPdfSalesRequestLocale LT = new ActsPdfSalesRequestLocale(Value.LT, "lt");
+
+  public static final ActsPdfSalesRequestLocale DA = new ActsPdfSalesRequestLocale(Value.DA, "da");
+
+  public static final ActsPdfSalesRequestLocale LV = new ActsPdfSalesRequestLocale(Value.LV, "lv");
+
+  public static final ActsPdfSalesRequestLocale TR = new ActsPdfSalesRequestLocale(Value.TR, "tr");
+
+  public static final ActsPdfSalesRequestLocale FI = new ActsPdfSalesRequestLocale(Value.FI, "fi");
+
+  public static final ActsPdfSalesRequestLocale RO = new ActsPdfSalesRequestLocale(Value.RO, "ro");
+
+  public static final ActsPdfSalesRequestLocale UK = new ActsPdfSalesRequestLocale(Value.UK, "uk");
+
+  public static final ActsPdfSalesRequestLocale ES = new ActsPdfSalesRequestLocale(Value.ES, "es");
+
+  public static final ActsPdfSalesRequestLocale PL = new ActsPdfSalesRequestLocale(Value.PL, "pl");
+
+  public static final ActsPdfSalesRequestLocale DE = new ActsPdfSalesRequestLocale(Value.DE, "de");
+
+  public static final ActsPdfSalesRequestLocale GA = new ActsPdfSalesRequestLocale(Value.GA, "ga");
+
+  public static final ActsPdfSalesRequestLocale ET = new ActsPdfSalesRequestLocale(Value.ET, "et");
+
+  public static final ActsPdfSalesRequestLocale HR = new ActsPdfSalesRequestLocale(Value.HR, "hr");
+
+  public static final ActsPdfSalesRequestLocale SK = new ActsPdfSalesRequestLocale(Value.SK, "sk");
+
+  public static final ActsPdfSalesRequestLocale SL = new ActsPdfSalesRequestLocale(Value.SL, "sl");
+
+  public static final ActsPdfSalesRequestLocale MT = new ActsPdfSalesRequestLocale(Value.MT, "mt");
+
+  public static final ActsPdfSalesRequestLocale CS = new ActsPdfSalesRequestLocale(Value.CS, "cs");
+
+  public static final ActsPdfSalesRequestLocale RU = new ActsPdfSalesRequestLocale(Value.RU, "ru");
+
+  public static final ActsPdfSalesRequestLocale JA = new ActsPdfSalesRequestLocale(Value.JA, "ja");
+
+  public static final ActsPdfSalesRequestLocale HU = new ActsPdfSalesRequestLocale(Value.HU, "hu");
+
+  public static final ActsPdfSalesRequestLocale NL = new ActsPdfSalesRequestLocale(Value.NL, "nl");
+
+  public static final ActsPdfSalesRequestLocale BG = new ActsPdfSalesRequestLocale(Value.BG, "bg");
+
+  public static final ActsPdfSalesRequestLocale PT = new ActsPdfSalesRequestLocale(Value.PT, "pt");
+
+  public static final ActsPdfSalesRequestLocale AR = new ActsPdfSalesRequestLocale(Value.AR, "ar");
+
+  public static final ActsPdfSalesRequestLocale FR = new ActsPdfSalesRequestLocale(Value.FR, "fr");
+
+  public static final ActsPdfSalesRequestLocale NO = new ActsPdfSalesRequestLocale(Value.NO, "no");
+
+  public static final ActsPdfSalesRequestLocale IS = new ActsPdfSalesRequestLocale(Value.IS, "is");
+
+  public static final ActsPdfSalesRequestLocale SV = new ActsPdfSalesRequestLocale(Value.SV, "sv");
+
+  public static final ActsPdfSalesRequestLocale IT = new ActsPdfSalesRequestLocale(Value.IT, "it");
+
+  public static final ActsPdfSalesRequestLocale EL = new ActsPdfSalesRequestLocale(Value.EL, "el");
 
   private final Value value;
 
@@ -50,10 +110,70 @@ public final class ActsPdfSalesRequestLocale {
     switch (value) {
       case EN:
         return visitor.visitEn();
-      case DE:
-        return visitor.visitDe();
+      case ZH:
+        return visitor.visitZh();
+      case HI:
+        return visitor.visitHi();
       case LT:
         return visitor.visitLt();
+      case DA:
+        return visitor.visitDa();
+      case LV:
+        return visitor.visitLv();
+      case TR:
+        return visitor.visitTr();
+      case FI:
+        return visitor.visitFi();
+      case RO:
+        return visitor.visitRo();
+      case UK:
+        return visitor.visitUk();
+      case ES:
+        return visitor.visitEs();
+      case PL:
+        return visitor.visitPl();
+      case DE:
+        return visitor.visitDe();
+      case GA:
+        return visitor.visitGa();
+      case ET:
+        return visitor.visitEt();
+      case HR:
+        return visitor.visitHr();
+      case SK:
+        return visitor.visitSk();
+      case SL:
+        return visitor.visitSl();
+      case MT:
+        return visitor.visitMt();
+      case CS:
+        return visitor.visitCs();
+      case RU:
+        return visitor.visitRu();
+      case JA:
+        return visitor.visitJa();
+      case HU:
+        return visitor.visitHu();
+      case NL:
+        return visitor.visitNl();
+      case BG:
+        return visitor.visitBg();
+      case PT:
+        return visitor.visitPt();
+      case AR:
+        return visitor.visitAr();
+      case FR:
+        return visitor.visitFr();
+      case NO:
+        return visitor.visitNo();
+      case IS:
+        return visitor.visitIs();
+      case SV:
+        return visitor.visitSv();
+      case IT:
+        return visitor.visitIt();
+      case EL:
+        return visitor.visitEl();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -67,10 +187,70 @@ public final class ActsPdfSalesRequestLocale {
     switch (value) {
       case "en":
         return EN;
-      case "de":
-        return DE;
+      case "zh":
+        return ZH;
+      case "hi":
+        return HI;
       case "lt":
         return LT;
+      case "da":
+        return DA;
+      case "lv":
+        return LV;
+      case "tr":
+        return TR;
+      case "fi":
+        return FI;
+      case "ro":
+        return RO;
+      case "uk":
+        return UK;
+      case "es":
+        return ES;
+      case "pl":
+        return PL;
+      case "de":
+        return DE;
+      case "ga":
+        return GA;
+      case "et":
+        return ET;
+      case "hr":
+        return HR;
+      case "sk":
+        return SK;
+      case "sl":
+        return SL;
+      case "mt":
+        return MT;
+      case "cs":
+        return CS;
+      case "ru":
+        return RU;
+      case "ja":
+        return JA;
+      case "hu":
+        return HU;
+      case "nl":
+        return NL;
+      case "bg":
+        return BG;
+      case "pt":
+        return PT;
+      case "ar":
+        return AR;
+      case "fr":
+        return FR;
+      case "no":
+        return NO;
+      case "is":
+        return IS;
+      case "sv":
+        return SV;
+      case "it":
+        return IT;
+      case "el":
+        return EL;
       default:
         return new ActsPdfSalesRequestLocale(Value.UNKNOWN, value);
     }
@@ -83,6 +263,66 @@ public final class ActsPdfSalesRequestLocale {
 
     DE,
 
+    FR,
+
+    ES,
+
+    IT,
+
+    PT,
+
+    NL,
+
+    PL,
+
+    SV,
+
+    DA,
+
+    NO,
+
+    FI,
+
+    ET,
+
+    LV,
+
+    CS,
+
+    SK,
+
+    HU,
+
+    RO,
+
+    BG,
+
+    HR,
+
+    SL,
+
+    EL,
+
+    MT,
+
+    IS,
+
+    GA,
+
+    ZH,
+
+    JA,
+
+    AR,
+
+    HI,
+
+    RU,
+
+    TR,
+
+    UK,
+
     UNKNOWN
   }
 
@@ -92,6 +332,66 @@ public final class ActsPdfSalesRequestLocale {
     T visitLt();
 
     T visitDe();
+
+    T visitFr();
+
+    T visitEs();
+
+    T visitIt();
+
+    T visitPt();
+
+    T visitNl();
+
+    T visitPl();
+
+    T visitSv();
+
+    T visitDa();
+
+    T visitNo();
+
+    T visitFi();
+
+    T visitEt();
+
+    T visitLv();
+
+    T visitCs();
+
+    T visitSk();
+
+    T visitHu();
+
+    T visitRo();
+
+    T visitBg();
+
+    T visitHr();
+
+    T visitSl();
+
+    T visitEl();
+
+    T visitMt();
+
+    T visitIs();
+
+    T visitGa();
+
+    T visitZh();
+
+    T visitJa();
+
+    T visitAr();
+
+    T visitHi();
+
+    T visitRu();
+
+    T visitTr();
+
+    T visitUk();
 
     T visitUnknown(String unknownType);
   }

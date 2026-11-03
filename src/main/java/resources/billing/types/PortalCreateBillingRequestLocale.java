@@ -12,9 +12,69 @@ import java.lang.String;
 public final class PortalCreateBillingRequestLocale {
   public static final PortalCreateBillingRequestLocale EN = new PortalCreateBillingRequestLocale(Value.EN, "en");
 
-  public static final PortalCreateBillingRequestLocale DE = new PortalCreateBillingRequestLocale(Value.DE, "de");
+  public static final PortalCreateBillingRequestLocale ZH = new PortalCreateBillingRequestLocale(Value.ZH, "zh");
+
+  public static final PortalCreateBillingRequestLocale HI = new PortalCreateBillingRequestLocale(Value.HI, "hi");
 
   public static final PortalCreateBillingRequestLocale LT = new PortalCreateBillingRequestLocale(Value.LT, "lt");
+
+  public static final PortalCreateBillingRequestLocale DA = new PortalCreateBillingRequestLocale(Value.DA, "da");
+
+  public static final PortalCreateBillingRequestLocale LV = new PortalCreateBillingRequestLocale(Value.LV, "lv");
+
+  public static final PortalCreateBillingRequestLocale TR = new PortalCreateBillingRequestLocale(Value.TR, "tr");
+
+  public static final PortalCreateBillingRequestLocale FI = new PortalCreateBillingRequestLocale(Value.FI, "fi");
+
+  public static final PortalCreateBillingRequestLocale RO = new PortalCreateBillingRequestLocale(Value.RO, "ro");
+
+  public static final PortalCreateBillingRequestLocale UK = new PortalCreateBillingRequestLocale(Value.UK, "uk");
+
+  public static final PortalCreateBillingRequestLocale ES = new PortalCreateBillingRequestLocale(Value.ES, "es");
+
+  public static final PortalCreateBillingRequestLocale PL = new PortalCreateBillingRequestLocale(Value.PL, "pl");
+
+  public static final PortalCreateBillingRequestLocale DE = new PortalCreateBillingRequestLocale(Value.DE, "de");
+
+  public static final PortalCreateBillingRequestLocale GA = new PortalCreateBillingRequestLocale(Value.GA, "ga");
+
+  public static final PortalCreateBillingRequestLocale ET = new PortalCreateBillingRequestLocale(Value.ET, "et");
+
+  public static final PortalCreateBillingRequestLocale HR = new PortalCreateBillingRequestLocale(Value.HR, "hr");
+
+  public static final PortalCreateBillingRequestLocale SK = new PortalCreateBillingRequestLocale(Value.SK, "sk");
+
+  public static final PortalCreateBillingRequestLocale SL = new PortalCreateBillingRequestLocale(Value.SL, "sl");
+
+  public static final PortalCreateBillingRequestLocale MT = new PortalCreateBillingRequestLocale(Value.MT, "mt");
+
+  public static final PortalCreateBillingRequestLocale CS = new PortalCreateBillingRequestLocale(Value.CS, "cs");
+
+  public static final PortalCreateBillingRequestLocale RU = new PortalCreateBillingRequestLocale(Value.RU, "ru");
+
+  public static final PortalCreateBillingRequestLocale JA = new PortalCreateBillingRequestLocale(Value.JA, "ja");
+
+  public static final PortalCreateBillingRequestLocale HU = new PortalCreateBillingRequestLocale(Value.HU, "hu");
+
+  public static final PortalCreateBillingRequestLocale NL = new PortalCreateBillingRequestLocale(Value.NL, "nl");
+
+  public static final PortalCreateBillingRequestLocale BG = new PortalCreateBillingRequestLocale(Value.BG, "bg");
+
+  public static final PortalCreateBillingRequestLocale PT = new PortalCreateBillingRequestLocale(Value.PT, "pt");
+
+  public static final PortalCreateBillingRequestLocale AR = new PortalCreateBillingRequestLocale(Value.AR, "ar");
+
+  public static final PortalCreateBillingRequestLocale FR = new PortalCreateBillingRequestLocale(Value.FR, "fr");
+
+  public static final PortalCreateBillingRequestLocale NO = new PortalCreateBillingRequestLocale(Value.NO, "no");
+
+  public static final PortalCreateBillingRequestLocale IS = new PortalCreateBillingRequestLocale(Value.IS, "is");
+
+  public static final PortalCreateBillingRequestLocale SV = new PortalCreateBillingRequestLocale(Value.SV, "sv");
+
+  public static final PortalCreateBillingRequestLocale IT = new PortalCreateBillingRequestLocale(Value.IT, "it");
+
+  public static final PortalCreateBillingRequestLocale EL = new PortalCreateBillingRequestLocale(Value.EL, "el");
 
   private final Value value;
 
@@ -50,10 +110,70 @@ public final class PortalCreateBillingRequestLocale {
     switch (value) {
       case EN:
         return visitor.visitEn();
-      case DE:
-        return visitor.visitDe();
+      case ZH:
+        return visitor.visitZh();
+      case HI:
+        return visitor.visitHi();
       case LT:
         return visitor.visitLt();
+      case DA:
+        return visitor.visitDa();
+      case LV:
+        return visitor.visitLv();
+      case TR:
+        return visitor.visitTr();
+      case FI:
+        return visitor.visitFi();
+      case RO:
+        return visitor.visitRo();
+      case UK:
+        return visitor.visitUk();
+      case ES:
+        return visitor.visitEs();
+      case PL:
+        return visitor.visitPl();
+      case DE:
+        return visitor.visitDe();
+      case GA:
+        return visitor.visitGa();
+      case ET:
+        return visitor.visitEt();
+      case HR:
+        return visitor.visitHr();
+      case SK:
+        return visitor.visitSk();
+      case SL:
+        return visitor.visitSl();
+      case MT:
+        return visitor.visitMt();
+      case CS:
+        return visitor.visitCs();
+      case RU:
+        return visitor.visitRu();
+      case JA:
+        return visitor.visitJa();
+      case HU:
+        return visitor.visitHu();
+      case NL:
+        return visitor.visitNl();
+      case BG:
+        return visitor.visitBg();
+      case PT:
+        return visitor.visitPt();
+      case AR:
+        return visitor.visitAr();
+      case FR:
+        return visitor.visitFr();
+      case NO:
+        return visitor.visitNo();
+      case IS:
+        return visitor.visitIs();
+      case SV:
+        return visitor.visitSv();
+      case IT:
+        return visitor.visitIt();
+      case EL:
+        return visitor.visitEl();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -67,10 +187,70 @@ public final class PortalCreateBillingRequestLocale {
     switch (value) {
       case "en":
         return EN;
-      case "de":
-        return DE;
+      case "zh":
+        return ZH;
+      case "hi":
+        return HI;
       case "lt":
         return LT;
+      case "da":
+        return DA;
+      case "lv":
+        return LV;
+      case "tr":
+        return TR;
+      case "fi":
+        return FI;
+      case "ro":
+        return RO;
+      case "uk":
+        return UK;
+      case "es":
+        return ES;
+      case "pl":
+        return PL;
+      case "de":
+        return DE;
+      case "ga":
+        return GA;
+      case "et":
+        return ET;
+      case "hr":
+        return HR;
+      case "sk":
+        return SK;
+      case "sl":
+        return SL;
+      case "mt":
+        return MT;
+      case "cs":
+        return CS;
+      case "ru":
+        return RU;
+      case "ja":
+        return JA;
+      case "hu":
+        return HU;
+      case "nl":
+        return NL;
+      case "bg":
+        return BG;
+      case "pt":
+        return PT;
+      case "ar":
+        return AR;
+      case "fr":
+        return FR;
+      case "no":
+        return NO;
+      case "is":
+        return IS;
+      case "sv":
+        return SV;
+      case "it":
+        return IT;
+      case "el":
+        return EL;
       default:
         return new PortalCreateBillingRequestLocale(Value.UNKNOWN, value);
     }
@@ -83,6 +263,66 @@ public final class PortalCreateBillingRequestLocale {
 
     DE,
 
+    FR,
+
+    ES,
+
+    IT,
+
+    PT,
+
+    NL,
+
+    PL,
+
+    SV,
+
+    DA,
+
+    NO,
+
+    FI,
+
+    ET,
+
+    LV,
+
+    CS,
+
+    SK,
+
+    HU,
+
+    RO,
+
+    BG,
+
+    HR,
+
+    SL,
+
+    EL,
+
+    MT,
+
+    IS,
+
+    GA,
+
+    ZH,
+
+    JA,
+
+    AR,
+
+    HI,
+
+    RU,
+
+    TR,
+
+    UK,
+
     UNKNOWN
   }
 
@@ -92,6 +332,66 @@ public final class PortalCreateBillingRequestLocale {
     T visitLt();
 
     T visitDe();
+
+    T visitFr();
+
+    T visitEs();
+
+    T visitIt();
+
+    T visitPt();
+
+    T visitNl();
+
+    T visitPl();
+
+    T visitSv();
+
+    T visitDa();
+
+    T visitNo();
+
+    T visitFi();
+
+    T visitEt();
+
+    T visitLv();
+
+    T visitCs();
+
+    T visitSk();
+
+    T visitHu();
+
+    T visitRo();
+
+    T visitBg();
+
+    T visitHr();
+
+    T visitSl();
+
+    T visitEl();
+
+    T visitMt();
+
+    T visitIs();
+
+    T visitGa();
+
+    T visitZh();
+
+    T visitJa();
+
+    T visitAr();
+
+    T visitHi();
+
+    T visitRu();
+
+    T visitTr();
+
+    T visitUk();
 
     T visitUnknown(String unknownType);
   }

@@ -45,6 +45,8 @@ public final class ImportTemplatesUpdateBankRequest {
 
   private final Optional<String> invoiceVatRatePercent;
 
+  private final Optional<String> invoiceVatClassifierCode;
+
   private final Optional<String> companyMetaField;
 
   private final Optional<String> invoiceItemId;
@@ -71,18 +73,19 @@ public final class ImportTemplatesUpdateBankRequest {
       Optional<ImportTemplatesUpdateBankRequestType> type,
       Optional<List<ImportTemplatesUpdateBankRequestFieldsItem>> fields,
       Optional<List<String>> metaFields, Optional<String> invoiceMetaField,
-      Optional<String> invoiceVatRatePercent, Optional<String> companyMetaField,
-      Optional<String> invoiceItemId, Optional<Boolean> advanceInvoices,
-      Optional<String> authorizationOperationTypeId, Optional<String> payoutOperationTypeId,
-      Optional<String> commissionOperationTypeId, Optional<String> lenderMetaField,
-      Optional<String> partialRefundLabel, Optional<String> fullRefundLabel, String id,
-      Map<String, Object> additionalProperties) {
+      Optional<String> invoiceVatRatePercent, Optional<String> invoiceVatClassifierCode,
+      Optional<String> companyMetaField, Optional<String> invoiceItemId,
+      Optional<Boolean> advanceInvoices, Optional<String> authorizationOperationTypeId,
+      Optional<String> payoutOperationTypeId, Optional<String> commissionOperationTypeId,
+      Optional<String> lenderMetaField, Optional<String> partialRefundLabel,
+      Optional<String> fullRefundLabel, String id, Map<String, Object> additionalProperties) {
     this.name = name;
     this.type = type;
     this.fields = fields;
     this.metaFields = metaFields;
     this.invoiceMetaField = invoiceMetaField;
     this.invoiceVatRatePercent = invoiceVatRatePercent;
+    this.invoiceVatClassifierCode = invoiceVatClassifierCode;
     this.companyMetaField = companyMetaField;
     this.invoiceItemId = invoiceItemId;
     this.advanceInvoices = advanceInvoices;
@@ -130,6 +133,14 @@ public final class ImportTemplatesUpdateBankRequest {
       return Optional.empty();
     }
     return invoiceVatRatePercent;
+  }
+
+  @JsonIgnore
+  public Optional<String> getInvoiceVatClassifierCode() {
+    if (invoiceVatClassifierCode == null) {
+      return Optional.empty();
+    }
+    return invoiceVatClassifierCode;
   }
 
   @JsonIgnore
@@ -228,6 +239,15 @@ public final class ImportTemplatesUpdateBankRequest {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("invoiceVatClassifierCode")
+  private Optional<String> _getInvoiceVatClassifierCode() {
+    return invoiceVatClassifierCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("companyMetaField")
   private Optional<String> _getCompanyMetaField() {
     return companyMetaField;
@@ -308,12 +328,12 @@ public final class ImportTemplatesUpdateBankRequest {
   }
 
   private boolean equalTo(ImportTemplatesUpdateBankRequest other) {
-    return name.equals(other.name) && type.equals(other.type) && fields.equals(other.fields) && metaFields.equals(other.metaFields) && invoiceMetaField.equals(other.invoiceMetaField) && invoiceVatRatePercent.equals(other.invoiceVatRatePercent) && companyMetaField.equals(other.companyMetaField) && invoiceItemId.equals(other.invoiceItemId) && advanceInvoices.equals(other.advanceInvoices) && authorizationOperationTypeId.equals(other.authorizationOperationTypeId) && payoutOperationTypeId.equals(other.payoutOperationTypeId) && commissionOperationTypeId.equals(other.commissionOperationTypeId) && lenderMetaField.equals(other.lenderMetaField) && partialRefundLabel.equals(other.partialRefundLabel) && fullRefundLabel.equals(other.fullRefundLabel) && id.equals(other.id);
+    return name.equals(other.name) && type.equals(other.type) && fields.equals(other.fields) && metaFields.equals(other.metaFields) && invoiceMetaField.equals(other.invoiceMetaField) && invoiceVatRatePercent.equals(other.invoiceVatRatePercent) && invoiceVatClassifierCode.equals(other.invoiceVatClassifierCode) && companyMetaField.equals(other.companyMetaField) && invoiceItemId.equals(other.invoiceItemId) && advanceInvoices.equals(other.advanceInvoices) && authorizationOperationTypeId.equals(other.authorizationOperationTypeId) && payoutOperationTypeId.equals(other.payoutOperationTypeId) && commissionOperationTypeId.equals(other.commissionOperationTypeId) && lenderMetaField.equals(other.lenderMetaField) && partialRefundLabel.equals(other.partialRefundLabel) && fullRefundLabel.equals(other.fullRefundLabel) && id.equals(other.id);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.type, this.fields, this.metaFields, this.invoiceMetaField, this.invoiceVatRatePercent, this.companyMetaField, this.invoiceItemId, this.advanceInvoices, this.authorizationOperationTypeId, this.payoutOperationTypeId, this.commissionOperationTypeId, this.lenderMetaField, this.partialRefundLabel, this.fullRefundLabel, this.id);
+    return Objects.hash(this.name, this.type, this.fields, this.metaFields, this.invoiceMetaField, this.invoiceVatRatePercent, this.invoiceVatClassifierCode, this.companyMetaField, this.invoiceItemId, this.advanceInvoices, this.authorizationOperationTypeId, this.payoutOperationTypeId, this.commissionOperationTypeId, this.lenderMetaField, this.partialRefundLabel, this.fullRefundLabel, this.id);
   }
 
   @java.lang.Override
@@ -365,6 +385,12 @@ public final class ImportTemplatesUpdateBankRequest {
     _FinalStage invoiceVatRatePercent(String invoiceVatRatePercent);
 
     _FinalStage invoiceVatRatePercent(Nullable<String> invoiceVatRatePercent);
+
+    _FinalStage invoiceVatClassifierCode(Optional<String> invoiceVatClassifierCode);
+
+    _FinalStage invoiceVatClassifierCode(String invoiceVatClassifierCode);
+
+    _FinalStage invoiceVatClassifierCode(Nullable<String> invoiceVatClassifierCode);
 
     _FinalStage companyMetaField(Optional<String> companyMetaField);
 
@@ -443,6 +469,8 @@ public final class ImportTemplatesUpdateBankRequest {
 
     private Optional<String> companyMetaField = Optional.empty();
 
+    private Optional<String> invoiceVatClassifierCode = Optional.empty();
+
     private Optional<String> invoiceVatRatePercent = Optional.empty();
 
     private Optional<String> invoiceMetaField = Optional.empty();
@@ -469,6 +497,7 @@ public final class ImportTemplatesUpdateBankRequest {
       metaFields(other.getMetaFields());
       invoiceMetaField(other.getInvoiceMetaField());
       invoiceVatRatePercent(other.getInvoiceVatRatePercent());
+      invoiceVatClassifierCode(other.getInvoiceVatClassifierCode());
       companyMetaField(other.getCompanyMetaField());
       invoiceItemId(other.getInvoiceItemId());
       advanceInvoices(other.getAdvanceInvoices());
@@ -746,6 +775,36 @@ public final class ImportTemplatesUpdateBankRequest {
     }
 
     @java.lang.Override
+    public _FinalStage invoiceVatClassifierCode(Nullable<String> invoiceVatClassifierCode) {
+      if (invoiceVatClassifierCode.isNull()) {
+        this.invoiceVatClassifierCode = null;
+      }
+      else if (invoiceVatClassifierCode.isEmpty()) {
+        this.invoiceVatClassifierCode = Optional.empty();
+      }
+      else {
+        this.invoiceVatClassifierCode = Optional.of(invoiceVatClassifierCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage invoiceVatClassifierCode(String invoiceVatClassifierCode) {
+      this.invoiceVatClassifierCode = Optional.ofNullable(invoiceVatClassifierCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "invoiceVatClassifierCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage invoiceVatClassifierCode(Optional<String> invoiceVatClassifierCode) {
+      this.invoiceVatClassifierCode = invoiceVatClassifierCode;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage invoiceVatRatePercent(Nullable<String> invoiceVatRatePercent) {
       if (invoiceVatRatePercent.isNull()) {
         this.invoiceVatRatePercent = null;
@@ -871,7 +930,7 @@ public final class ImportTemplatesUpdateBankRequest {
 
     @java.lang.Override
     public ImportTemplatesUpdateBankRequest build() {
-      return new ImportTemplatesUpdateBankRequest(name, type, fields, metaFields, invoiceMetaField, invoiceVatRatePercent, companyMetaField, invoiceItemId, advanceInvoices, authorizationOperationTypeId, payoutOperationTypeId, commissionOperationTypeId, lenderMetaField, partialRefundLabel, fullRefundLabel, id, additionalProperties);
+      return new ImportTemplatesUpdateBankRequest(name, type, fields, metaFields, invoiceMetaField, invoiceVatRatePercent, invoiceVatClassifierCode, companyMetaField, invoiceItemId, advanceInvoices, authorizationOperationTypeId, payoutOperationTypeId, commissionOperationTypeId, lenderMetaField, partialRefundLabel, fullRefundLabel, id, additionalProperties);
     }
 
     @java.lang.Override

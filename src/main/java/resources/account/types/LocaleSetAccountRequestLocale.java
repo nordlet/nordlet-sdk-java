@@ -12,9 +12,69 @@ import java.lang.String;
 public final class LocaleSetAccountRequestLocale {
   public static final LocaleSetAccountRequestLocale EN = new LocaleSetAccountRequestLocale(Value.EN, "en");
 
-  public static final LocaleSetAccountRequestLocale DE = new LocaleSetAccountRequestLocale(Value.DE, "de");
+  public static final LocaleSetAccountRequestLocale ZH = new LocaleSetAccountRequestLocale(Value.ZH, "zh");
+
+  public static final LocaleSetAccountRequestLocale HI = new LocaleSetAccountRequestLocale(Value.HI, "hi");
 
   public static final LocaleSetAccountRequestLocale LT = new LocaleSetAccountRequestLocale(Value.LT, "lt");
+
+  public static final LocaleSetAccountRequestLocale DA = new LocaleSetAccountRequestLocale(Value.DA, "da");
+
+  public static final LocaleSetAccountRequestLocale LV = new LocaleSetAccountRequestLocale(Value.LV, "lv");
+
+  public static final LocaleSetAccountRequestLocale TR = new LocaleSetAccountRequestLocale(Value.TR, "tr");
+
+  public static final LocaleSetAccountRequestLocale FI = new LocaleSetAccountRequestLocale(Value.FI, "fi");
+
+  public static final LocaleSetAccountRequestLocale RO = new LocaleSetAccountRequestLocale(Value.RO, "ro");
+
+  public static final LocaleSetAccountRequestLocale UK = new LocaleSetAccountRequestLocale(Value.UK, "uk");
+
+  public static final LocaleSetAccountRequestLocale ES = new LocaleSetAccountRequestLocale(Value.ES, "es");
+
+  public static final LocaleSetAccountRequestLocale PL = new LocaleSetAccountRequestLocale(Value.PL, "pl");
+
+  public static final LocaleSetAccountRequestLocale DE = new LocaleSetAccountRequestLocale(Value.DE, "de");
+
+  public static final LocaleSetAccountRequestLocale GA = new LocaleSetAccountRequestLocale(Value.GA, "ga");
+
+  public static final LocaleSetAccountRequestLocale ET = new LocaleSetAccountRequestLocale(Value.ET, "et");
+
+  public static final LocaleSetAccountRequestLocale HR = new LocaleSetAccountRequestLocale(Value.HR, "hr");
+
+  public static final LocaleSetAccountRequestLocale SK = new LocaleSetAccountRequestLocale(Value.SK, "sk");
+
+  public static final LocaleSetAccountRequestLocale SL = new LocaleSetAccountRequestLocale(Value.SL, "sl");
+
+  public static final LocaleSetAccountRequestLocale MT = new LocaleSetAccountRequestLocale(Value.MT, "mt");
+
+  public static final LocaleSetAccountRequestLocale CS = new LocaleSetAccountRequestLocale(Value.CS, "cs");
+
+  public static final LocaleSetAccountRequestLocale RU = new LocaleSetAccountRequestLocale(Value.RU, "ru");
+
+  public static final LocaleSetAccountRequestLocale JA = new LocaleSetAccountRequestLocale(Value.JA, "ja");
+
+  public static final LocaleSetAccountRequestLocale HU = new LocaleSetAccountRequestLocale(Value.HU, "hu");
+
+  public static final LocaleSetAccountRequestLocale NL = new LocaleSetAccountRequestLocale(Value.NL, "nl");
+
+  public static final LocaleSetAccountRequestLocale BG = new LocaleSetAccountRequestLocale(Value.BG, "bg");
+
+  public static final LocaleSetAccountRequestLocale PT = new LocaleSetAccountRequestLocale(Value.PT, "pt");
+
+  public static final LocaleSetAccountRequestLocale AR = new LocaleSetAccountRequestLocale(Value.AR, "ar");
+
+  public static final LocaleSetAccountRequestLocale FR = new LocaleSetAccountRequestLocale(Value.FR, "fr");
+
+  public static final LocaleSetAccountRequestLocale NO = new LocaleSetAccountRequestLocale(Value.NO, "no");
+
+  public static final LocaleSetAccountRequestLocale IS = new LocaleSetAccountRequestLocale(Value.IS, "is");
+
+  public static final LocaleSetAccountRequestLocale SV = new LocaleSetAccountRequestLocale(Value.SV, "sv");
+
+  public static final LocaleSetAccountRequestLocale IT = new LocaleSetAccountRequestLocale(Value.IT, "it");
+
+  public static final LocaleSetAccountRequestLocale EL = new LocaleSetAccountRequestLocale(Value.EL, "el");
 
   private final Value value;
 
@@ -50,10 +110,70 @@ public final class LocaleSetAccountRequestLocale {
     switch (value) {
       case EN:
         return visitor.visitEn();
-      case DE:
-        return visitor.visitDe();
+      case ZH:
+        return visitor.visitZh();
+      case HI:
+        return visitor.visitHi();
       case LT:
         return visitor.visitLt();
+      case DA:
+        return visitor.visitDa();
+      case LV:
+        return visitor.visitLv();
+      case TR:
+        return visitor.visitTr();
+      case FI:
+        return visitor.visitFi();
+      case RO:
+        return visitor.visitRo();
+      case UK:
+        return visitor.visitUk();
+      case ES:
+        return visitor.visitEs();
+      case PL:
+        return visitor.visitPl();
+      case DE:
+        return visitor.visitDe();
+      case GA:
+        return visitor.visitGa();
+      case ET:
+        return visitor.visitEt();
+      case HR:
+        return visitor.visitHr();
+      case SK:
+        return visitor.visitSk();
+      case SL:
+        return visitor.visitSl();
+      case MT:
+        return visitor.visitMt();
+      case CS:
+        return visitor.visitCs();
+      case RU:
+        return visitor.visitRu();
+      case JA:
+        return visitor.visitJa();
+      case HU:
+        return visitor.visitHu();
+      case NL:
+        return visitor.visitNl();
+      case BG:
+        return visitor.visitBg();
+      case PT:
+        return visitor.visitPt();
+      case AR:
+        return visitor.visitAr();
+      case FR:
+        return visitor.visitFr();
+      case NO:
+        return visitor.visitNo();
+      case IS:
+        return visitor.visitIs();
+      case SV:
+        return visitor.visitSv();
+      case IT:
+        return visitor.visitIt();
+      case EL:
+        return visitor.visitEl();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -67,10 +187,70 @@ public final class LocaleSetAccountRequestLocale {
     switch (value) {
       case "en":
         return EN;
-      case "de":
-        return DE;
+      case "zh":
+        return ZH;
+      case "hi":
+        return HI;
       case "lt":
         return LT;
+      case "da":
+        return DA;
+      case "lv":
+        return LV;
+      case "tr":
+        return TR;
+      case "fi":
+        return FI;
+      case "ro":
+        return RO;
+      case "uk":
+        return UK;
+      case "es":
+        return ES;
+      case "pl":
+        return PL;
+      case "de":
+        return DE;
+      case "ga":
+        return GA;
+      case "et":
+        return ET;
+      case "hr":
+        return HR;
+      case "sk":
+        return SK;
+      case "sl":
+        return SL;
+      case "mt":
+        return MT;
+      case "cs":
+        return CS;
+      case "ru":
+        return RU;
+      case "ja":
+        return JA;
+      case "hu":
+        return HU;
+      case "nl":
+        return NL;
+      case "bg":
+        return BG;
+      case "pt":
+        return PT;
+      case "ar":
+        return AR;
+      case "fr":
+        return FR;
+      case "no":
+        return NO;
+      case "is":
+        return IS;
+      case "sv":
+        return SV;
+      case "it":
+        return IT;
+      case "el":
+        return EL;
       default:
         return new LocaleSetAccountRequestLocale(Value.UNKNOWN, value);
     }
@@ -83,6 +263,66 @@ public final class LocaleSetAccountRequestLocale {
 
     DE,
 
+    FR,
+
+    ES,
+
+    IT,
+
+    PT,
+
+    NL,
+
+    PL,
+
+    SV,
+
+    DA,
+
+    NO,
+
+    FI,
+
+    ET,
+
+    LV,
+
+    CS,
+
+    SK,
+
+    HU,
+
+    RO,
+
+    BG,
+
+    HR,
+
+    SL,
+
+    EL,
+
+    MT,
+
+    IS,
+
+    GA,
+
+    ZH,
+
+    JA,
+
+    AR,
+
+    HI,
+
+    RU,
+
+    TR,
+
+    UK,
+
     UNKNOWN
   }
 
@@ -92,6 +332,66 @@ public final class LocaleSetAccountRequestLocale {
     T visitLt();
 
     T visitDe();
+
+    T visitFr();
+
+    T visitEs();
+
+    T visitIt();
+
+    T visitPt();
+
+    T visitNl();
+
+    T visitPl();
+
+    T visitSv();
+
+    T visitDa();
+
+    T visitNo();
+
+    T visitFi();
+
+    T visitEt();
+
+    T visitLv();
+
+    T visitCs();
+
+    T visitSk();
+
+    T visitHu();
+
+    T visitRo();
+
+    T visitBg();
+
+    T visitHr();
+
+    T visitSl();
+
+    T visitEl();
+
+    T visitMt();
+
+    T visitIs();
+
+    T visitGa();
+
+    T visitZh();
+
+    T visitJa();
+
+    T visitAr();
+
+    T visitHi();
+
+    T visitRu();
+
+    T visitTr();
+
+    T visitUk();
 
     T visitUnknown(String unknownType);
   }

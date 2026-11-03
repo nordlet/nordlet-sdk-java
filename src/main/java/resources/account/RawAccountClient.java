@@ -52,6 +52,9 @@ import com.nordlet.api.resources.account.requests.MembersListAccountRequest;
 import com.nordlet.api.resources.account.requests.MembersRemoveAccountRequest;
 import com.nordlet.api.resources.account.requests.MembersSetRoleAccountRequest;
 import com.nordlet.api.resources.account.requests.MembersTransferOwnershipAccountRequest;
+import com.nordlet.api.resources.account.requests.OauthAuthorizeApproveAccountRequest;
+import com.nordlet.api.resources.account.requests.OauthAuthorizeDenyAccountRequest;
+import com.nordlet.api.resources.account.requests.OauthAuthorizeDescribeAccountRequest;
 import com.nordlet.api.resources.account.requests.ProfileUpdateAccountRequest;
 import com.nordlet.api.resources.account.requests.ReferralConvertAccountRequest;
 import com.nordlet.api.resources.account.requests.ReferralGetAccountRequest;
@@ -90,6 +93,9 @@ import com.nordlet.api.resources.account.types.MembersListAccountResponse;
 import com.nordlet.api.resources.account.types.MembersRemoveAccountResponse;
 import com.nordlet.api.resources.account.types.MembersSetRoleAccountResponse;
 import com.nordlet.api.resources.account.types.MembersTransferOwnershipAccountResponse;
+import com.nordlet.api.resources.account.types.OauthAuthorizeApproveAccountResponse;
+import com.nordlet.api.resources.account.types.OauthAuthorizeDenyAccountResponse;
+import com.nordlet.api.resources.account.types.OauthAuthorizeDescribeAccountResponse;
 import com.nordlet.api.resources.account.types.ProfileUpdateAccountResponse;
 import com.nordlet.api.resources.account.types.ReferralConvertAccountResponse;
 import com.nordlet.api.resources.account.types.ReferralGetAccountResponse;
@@ -357,28 +363,28 @@ public class RawAccountClient {
         }
 
         /**
-         * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+         * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in.
          */
         public NordletApiHttpResponse<MeAccountResponse> me() {
           return me(MeAccountRequest.builder().build());
         }
 
         /**
-         * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+         * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in.
          */
         public NordletApiHttpResponse<MeAccountResponse> me(RequestOptions requestOptions) {
           return me(MeAccountRequest.builder().build(),requestOptions);
         }
 
         /**
-         * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+         * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in.
          */
         public NordletApiHttpResponse<MeAccountResponse> me(MeAccountRequest request) {
           return me(request,null);
         }
 
         /**
-         * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance.
+         * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in.
          */
         public NordletApiHttpResponse<MeAccountResponse> me(MeAccountRequest request,
             RequestOptions requestOptions) {
@@ -685,7 +691,7 @@ public class RawAccountClient {
                 }
 
                 /**
-                 * Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and the API keys they created for it are revoked. Refused with 422 for the caller themself and with 403 for the owner.
+                 * Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and their API keys stop working in it. Refused with 422 for the caller themself and with 403 for the owner.
                  */
                 public NordletApiHttpResponse<MembersRemoveAccountResponse> membersRemove(
                     MembersRemoveAccountRequest request) {
@@ -693,7 +699,7 @@ public class RawAccountClient {
                 }
 
                 /**
-                 * Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and the API keys they created for it are revoked. Refused with 422 for the caller themself and with 403 for the owner.
+                 * Remove a member from the active company; owners and admins may call it. Their sessions lose this company as the active one and their API keys stop working in it. Refused with 422 for the caller themself and with 403 for the owner.
                  */
                 public NordletApiHttpResponse<MembersRemoveAccountResponse> membersRemove(
                     MembersRemoveAccountRequest request, RequestOptions requestOptions) {
@@ -1301,7 +1307,7 @@ public class RawAccountClient {
                                 }
 
                                 /**
-                                 * Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member and with 422 when the company is archived or deleted.
+                                 * Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member, with 422 when the company is archived or deleted, and with 422 for an API key, which names the company in the <code>x-nordlet-company</code> header of each call instead.
                                  */
                                 public NordletApiHttpResponse<CompaniesSelectAccountResponse> companiesSelect(
                                     CompaniesSelectAccountRequest request) {
@@ -1309,7 +1315,7 @@ public class RawAccountClient {
                                 }
 
                                 /**
-                                 * Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member and with 422 when the company is archived or deleted.
+                                 * Make one of the caller's companies the active company of the session. Refused with 403 when the caller is not a member, with 422 when the company is archived or deleted, and with 422 for an API key, which names the company in the <code>x-nordlet-company</code> header of each call instead.
                                  */
                                 public NordletApiHttpResponse<CompaniesSelectAccountResponse> companiesSelect(
                                     CompaniesSelectAccountRequest request,
@@ -1789,7 +1795,7 @@ public class RawAccountClient {
                                             }
 
                                             /**
-                                             * Create an API key for the active company and return the key itself once; owners, admins and developers may call it. <code>scopes</code> defaults to the caller's own scopes and may not exceed them (403); without <code>expiresInDays</code> the key does not expire.
+                                             * Create an API key for the signed-in person and return the key itself once. Owners, admins and developers of the active company may call it. The key works in every company the person is a member of, with the rights of their role in each; every call names the company in the <code>x-nordlet-company</code> header. <code>scopes</code> defaults to the caller's scopes in the active company and may not exceed them (403); in each company the key's scopes are further limited to the person's role there. Without <code>expiresInDays</code> the key does not expire.
                                              */
                                             public NordletApiHttpResponse<ApiKeysCreateAccountResponse> apiKeysCreate(
                                                 ApiKeysCreateAccountRequest request) {
@@ -1797,7 +1803,7 @@ public class RawAccountClient {
                                             }
 
                                             /**
-                                             * Create an API key for the active company and return the key itself once; owners, admins and developers may call it. <code>scopes</code> defaults to the caller's own scopes and may not exceed them (403); without <code>expiresInDays</code> the key does not expire.
+                                             * Create an API key for the signed-in person and return the key itself once. Owners, admins and developers of the active company may call it. The key works in every company the person is a member of, with the rights of their role in each; every call names the company in the <code>x-nordlet-company</code> header. <code>scopes</code> defaults to the caller's scopes in the active company and may not exceed them (403); in each company the key's scopes are further limited to the person's role there. Without <code>expiresInDays</code> the key does not expire.
                                              */
                                             public NordletApiHttpResponse<ApiKeysCreateAccountResponse> apiKeysCreate(
                                                 ApiKeysCreateAccountRequest request,
@@ -1865,7 +1871,7 @@ public class RawAccountClient {
                                               }
 
                                               /**
-                                               * List the API keys of the active company, including expired and revoked ones.
+                                               * List the signed-in person's API keys, including expired and revoked ones.
                                                */
                                               public NordletApiHttpResponse<ApiKeysListAccountResponse> apiKeysList(
                                                   ) {
@@ -1873,7 +1879,7 @@ public class RawAccountClient {
                                               }
 
                                               /**
-                                               * List the API keys of the active company, including expired and revoked ones.
+                                               * List the signed-in person's API keys, including expired and revoked ones.
                                                */
                                               public NordletApiHttpResponse<ApiKeysListAccountResponse> apiKeysList(
                                                   RequestOptions requestOptions) {
@@ -1881,7 +1887,7 @@ public class RawAccountClient {
                                               }
 
                                               /**
-                                               * List the API keys of the active company, including expired and revoked ones.
+                                               * List the signed-in person's API keys, including expired and revoked ones.
                                                */
                                               public NordletApiHttpResponse<ApiKeysListAccountResponse> apiKeysList(
                                                   ApiKeysListAccountRequest request) {
@@ -1889,7 +1895,7 @@ public class RawAccountClient {
                                               }
 
                                               /**
-                                               * List the API keys of the active company, including expired and revoked ones.
+                                               * List the signed-in person's API keys, including expired and revoked ones.
                                                */
                                               public NordletApiHttpResponse<ApiKeysListAccountResponse> apiKeysList(
                                                   ApiKeysListAccountRequest request,
@@ -1957,7 +1963,7 @@ public class RawAccountClient {
                                                 }
 
                                                 /**
-                                                 * Create a new key with the name and scopes of the key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key. Refused with 409 when the old key is revoked.
+                                                 * Create a new key with the name and scopes of the signed-in person's key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key. Refused with 409 when the old key is revoked or belongs to an app connected through OAuth, which renews its own access.
                                                  */
                                                 public NordletApiHttpResponse<ApiKeysRotateAccountResponse> apiKeysRotate(
                                                     ApiKeysRotateAccountRequest request) {
@@ -1965,7 +1971,7 @@ public class RawAccountClient {
                                                 }
 
                                                 /**
-                                                 * Create a new key with the name and scopes of the key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key. Refused with 409 when the old key is revoked.
+                                                 * Create a new key with the name and scopes of the signed-in person's key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key. Refused with 409 when the old key is revoked or belongs to an app connected through OAuth, which renews its own access.
                                                  */
                                                 public NordletApiHttpResponse<ApiKeysRotateAccountResponse> apiKeysRotate(
                                                     ApiKeysRotateAccountRequest request,
@@ -2033,7 +2039,7 @@ public class RawAccountClient {
                                                   }
 
                                                   /**
-                                                   * Revoke an API key of the active company at once.
+                                                   * Revoke one of the signed-in person's API keys at once.
                                                    */
                                                   public NordletApiHttpResponse<ApiKeysRevokeAccountResponse> apiKeysRevoke(
                                                       ApiKeysRevokeAccountRequest request) {
@@ -2041,7 +2047,7 @@ public class RawAccountClient {
                                                   }
 
                                                   /**
-                                                   * Revoke an API key of the active company at once.
+                                                   * Revoke one of the signed-in person's API keys at once.
                                                    */
                                                   public NordletApiHttpResponse<ApiKeysRevokeAccountResponse> apiKeysRevoke(
                                                       ApiKeysRevokeAccountRequest request,
@@ -2597,7 +2603,7 @@ public class RawAccountClient {
                                                                 }
 
                                                                 /**
-                                                                 * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+                                                                 * Return the user's profile, consent state, memberships, unexpired sessions, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
                                                                  */
                                                                 public NordletApiHttpResponse<ExportAccountResponse> export(
                                                                     ) {
@@ -2605,7 +2611,7 @@ public class RawAccountClient {
                                                                 }
 
                                                                 /**
-                                                                 * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+                                                                 * Return the user's profile, consent state, memberships, unexpired sessions, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
                                                                  */
                                                                 public NordletApiHttpResponse<ExportAccountResponse> export(
                                                                     RequestOptions requestOptions) {
@@ -2613,7 +2619,7 @@ public class RawAccountClient {
                                                                 }
 
                                                                 /**
-                                                                 * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+                                                                 * Return the user's profile, consent state, memberships, unexpired sessions, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
                                                                  */
                                                                 public NordletApiHttpResponse<ExportAccountResponse> export(
                                                                     ExportAccountRequest request) {
@@ -2621,7 +2627,7 @@ public class RawAccountClient {
                                                                 }
 
                                                                 /**
-                                                                 * Return the user's profile, consent state, memberships, unexpired sessions, billing account, credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+                                                                 * Return the user's profile, consent state, memberships, unexpired sessions, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
                                                                  */
                                                                 public NordletApiHttpResponse<ExportAccountResponse> export(
                                                                     ExportAccountRequest request,
@@ -3175,4 +3181,232 @@ public class RawAccountClient {
                                                                                   throw new NordletApiException("Network error executing HTTP request", e);
                                                                                 }
                                                                               }
-                                                                            }
+
+                                                                              /**
+                                                                               * Check an OAuth authorization request of an app that wants to connect to Nordlet (such as Claude) and return the name the app registered, the address the signed-in person is sent back to and the scopes asked for. Refused with 422 when the request is invalid: unknown app, redirect address not registered for it, no PKCE (S256), unknown scope or a resource other than the MCP server.
+                                                                               */
+                                                                              public NordletApiHttpResponse<OauthAuthorizeDescribeAccountResponse> oauthAuthorizeDescribe(
+                                                                                  OauthAuthorizeDescribeAccountRequest request) {
+                                                                                return oauthAuthorizeDescribe(request,null);
+                                                                              }
+
+                                                                              /**
+                                                                               * Check an OAuth authorization request of an app that wants to connect to Nordlet (such as Claude) and return the name the app registered, the address the signed-in person is sent back to and the scopes asked for. Refused with 422 when the request is invalid: unknown app, redirect address not registered for it, no PKCE (S256), unknown scope or a resource other than the MCP server.
+                                                                               */
+                                                                              public NordletApiHttpResponse<OauthAuthorizeDescribeAccountResponse> oauthAuthorizeDescribe(
+                                                                                  OauthAuthorizeDescribeAccountRequest request,
+                                                                                  RequestOptions requestOptions) {
+                                                                                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                  .addPathSegments("v1/account/oauth/authorize/describe");if (requestOptions != null) {
+                                                                                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                      httpUrl.addQueryParameter(_key, _value);
+                                                                                    } );
+                                                                                  }
+                                                                                  RequestBody body;
+                                                                                  try {
+                                                                                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                  }
+                                                                                  catch(JsonProcessingException e) {
+                                                                                    throw new NordletApiException("Failed to serialize request", e);
+                                                                                  }
+                                                                                  Request okhttpRequest = new Request.Builder()
+                                                                                    .url(httpUrl.build())
+                                                                                    .method("POST", body)
+                                                                                    .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                    .addHeader("Content-Type", "application/json")
+                                                                                    .addHeader("Accept", "application/json")
+                                                                                    .build();
+                                                                                  OkHttpClient client = clientOptions.httpClient();
+                                                                                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                    client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                  }
+                                                                                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                  }
+                                                                                  try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                    ResponseBody responseBody = response.body();
+                                                                                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                    if (response.isSuccessful()) {
+                                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OauthAuthorizeDescribeAccountResponse.class), response);
+                                                                                    }
+                                                                                    try {
+                                                                                      switch (response.code()) {
+                                                                                        case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                      }
+                                                                                    }
+                                                                                    catch (JsonProcessingException ignored) {
+                                                                                      // unable to map error response, throwing generic error
+                                                                                    }
+                                                                                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                    throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                  }
+                                                                                  catch (JsonProcessingException e) {
+                                                                                    throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                  }
+                                                                                  catch (IOException e) {
+                                                                                    throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                  }
+                                                                                }
+
+                                                                                /**
+                                                                                 * Allow the app of an OAuth authorization request to act for the signed-in person and return the app's redirect address with a one-time authorization code (valid for 5 minutes). The app exchanges the code at <code>/oauth/token</code> for an access token that works like an API key of the person: in every company they are a member of, with the rights of their role there. The connection is listed among the person's API keys under the app's name and is revoked there. Refused with 422 like <code>account/oauth/authorize/describe</code>.
+                                                                                 */
+                                                                                public NordletApiHttpResponse<OauthAuthorizeApproveAccountResponse> oauthAuthorizeApprove(
+                                                                                    OauthAuthorizeApproveAccountRequest request) {
+                                                                                  return oauthAuthorizeApprove(request,null);
+                                                                                }
+
+                                                                                /**
+                                                                                 * Allow the app of an OAuth authorization request to act for the signed-in person and return the app's redirect address with a one-time authorization code (valid for 5 minutes). The app exchanges the code at <code>/oauth/token</code> for an access token that works like an API key of the person: in every company they are a member of, with the rights of their role there. The connection is listed among the person's API keys under the app's name and is revoked there. Refused with 422 like <code>account/oauth/authorize/describe</code>.
+                                                                                 */
+                                                                                public NordletApiHttpResponse<OauthAuthorizeApproveAccountResponse> oauthAuthorizeApprove(
+                                                                                    OauthAuthorizeApproveAccountRequest request,
+                                                                                    RequestOptions requestOptions) {
+                                                                                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                    .addPathSegments("v1/account/oauth/authorize/approve");if (requestOptions != null) {
+                                                                                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                        httpUrl.addQueryParameter(_key, _value);
+                                                                                      } );
+                                                                                    }
+                                                                                    RequestBody body;
+                                                                                    try {
+                                                                                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                    }
+                                                                                    catch(JsonProcessingException e) {
+                                                                                      throw new NordletApiException("Failed to serialize request", e);
+                                                                                    }
+                                                                                    Request okhttpRequest = new Request.Builder()
+                                                                                      .url(httpUrl.build())
+                                                                                      .method("POST", body)
+                                                                                      .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                      .addHeader("Content-Type", "application/json")
+                                                                                      .addHeader("Accept", "application/json")
+                                                                                      .build();
+                                                                                    OkHttpClient client = clientOptions.httpClient();
+                                                                                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                      client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                    }
+                                                                                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                    }
+                                                                                    try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                      ResponseBody responseBody = response.body();
+                                                                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                      if (response.isSuccessful()) {
+                                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OauthAuthorizeApproveAccountResponse.class), response);
+                                                                                      }
+                                                                                      try {
+                                                                                        switch (response.code()) {
+                                                                                          case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                        }
+                                                                                      }
+                                                                                      catch (JsonProcessingException ignored) {
+                                                                                        // unable to map error response, throwing generic error
+                                                                                      }
+                                                                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                      throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                    }
+                                                                                    catch (JsonProcessingException e) {
+                                                                                      throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                    }
+                                                                                    catch (IOException e) {
+                                                                                      throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                    }
+                                                                                  }
+
+                                                                                  /**
+                                                                                   * Refuse an OAuth authorization request and return the app's redirect address with the error <code>access_denied</code>. Refused with 422 like <code>account/oauth/authorize/describe</code>.
+                                                                                   */
+                                                                                  public NordletApiHttpResponse<OauthAuthorizeDenyAccountResponse> oauthAuthorizeDeny(
+                                                                                      OauthAuthorizeDenyAccountRequest request) {
+                                                                                    return oauthAuthorizeDeny(request,null);
+                                                                                  }
+
+                                                                                  /**
+                                                                                   * Refuse an OAuth authorization request and return the app's redirect address with the error <code>access_denied</code>. Refused with 422 like <code>account/oauth/authorize/describe</code>.
+                                                                                   */
+                                                                                  public NordletApiHttpResponse<OauthAuthorizeDenyAccountResponse> oauthAuthorizeDeny(
+                                                                                      OauthAuthorizeDenyAccountRequest request,
+                                                                                      RequestOptions requestOptions) {
+                                                                                    HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                      .addPathSegments("v1/account/oauth/authorize/deny");if (requestOptions != null) {
+                                                                                        requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                          httpUrl.addQueryParameter(_key, _value);
+                                                                                        } );
+                                                                                      }
+                                                                                      RequestBody body;
+                                                                                      try {
+                                                                                        body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                      }
+                                                                                      catch(JsonProcessingException e) {
+                                                                                        throw new NordletApiException("Failed to serialize request", e);
+                                                                                      }
+                                                                                      Request okhttpRequest = new Request.Builder()
+                                                                                        .url(httpUrl.build())
+                                                                                        .method("POST", body)
+                                                                                        .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                        .addHeader("Content-Type", "application/json")
+                                                                                        .addHeader("Accept", "application/json")
+                                                                                        .build();
+                                                                                      OkHttpClient client = clientOptions.httpClient();
+                                                                                      if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                        client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                      }
+                                                                                      if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                        okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                      }
+                                                                                      try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                                        ResponseBody responseBody = response.body();
+                                                                                        String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                        if (response.isSuccessful()) {
+                                                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OauthAuthorizeDenyAccountResponse.class), response);
+                                                                                        }
+                                                                                        try {
+                                                                                          switch (response.code()) {
+                                                                                            case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                            case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                                          }
+                                                                                        }
+                                                                                        catch (JsonProcessingException ignored) {
+                                                                                          // unable to map error response, throwing generic error
+                                                                                        }
+                                                                                        Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                        throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                                      }
+                                                                                      catch (JsonProcessingException e) {
+                                                                                        throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                                      }
+                                                                                      catch (IOException e) {
+                                                                                        throw new NordletApiException("Network error executing HTTP request", e);
+                                                                                      }
+                                                                                    }
+                                                                                  }

@@ -41,17 +41,20 @@ public final class OrdersReserveEcommerceResponseLinesItem {
 
   private final String vatRatePercent;
 
+  private final Optional<String> vatClassifierCode;
+
   private final Map<String, Object> additionalProperties;
 
   private OrdersReserveEcommerceResponseLinesItem(String id, Optional<String> itemId,
       String description, String quantity, String unitPriceExclVat, String vatRatePercent,
-      Map<String, Object> additionalProperties) {
+      Optional<String> vatClassifierCode, Map<String, Object> additionalProperties) {
     this.id = id;
     this.itemId = itemId;
     this.description = description;
     this.quantity = quantity;
     this.unitPriceExclVat = unitPriceExclVat;
     this.vatRatePercent = vatRatePercent;
+    this.vatClassifierCode = vatClassifierCode;
     this.additionalProperties = additionalProperties;
   }
 
@@ -88,6 +91,14 @@ public final class OrdersReserveEcommerceResponseLinesItem {
     return vatRatePercent;
   }
 
+  @JsonIgnore
+  public Optional<String> getVatClassifierCode() {
+    if (vatClassifierCode == null) {
+      return Optional.empty();
+    }
+    return vatClassifierCode;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -95,6 +106,15 @@ public final class OrdersReserveEcommerceResponseLinesItem {
   @JsonProperty("itemId")
   private Optional<String> _getItemId() {
     return itemId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("vatClassifierCode")
+  private Optional<String> _getVatClassifierCode() {
+    return vatClassifierCode;
   }
 
   @java.lang.Override
@@ -109,12 +129,12 @@ public final class OrdersReserveEcommerceResponseLinesItem {
   }
 
   private boolean equalTo(OrdersReserveEcommerceResponseLinesItem other) {
-    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && vatRatePercent.equals(other.vatRatePercent);
+    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.itemId, this.description, this.quantity, this.unitPriceExclVat, this.vatRatePercent);
+    return Objects.hash(this.id, this.itemId, this.description, this.quantity, this.unitPriceExclVat, this.vatRatePercent, this.vatClassifierCode);
   }
 
   @java.lang.Override
@@ -160,6 +180,12 @@ public final class OrdersReserveEcommerceResponseLinesItem {
     _FinalStage itemId(String itemId);
 
     _FinalStage itemId(Nullable<String> itemId);
+
+    _FinalStage vatClassifierCode(Optional<String> vatClassifierCode);
+
+    _FinalStage vatClassifierCode(String vatClassifierCode);
+
+    _FinalStage vatClassifierCode(Nullable<String> vatClassifierCode);
   }
 
   @JsonIgnoreProperties(
@@ -175,6 +201,8 @@ public final class OrdersReserveEcommerceResponseLinesItem {
     private String unitPriceExclVat;
 
     private String vatRatePercent;
+
+    private Optional<String> vatClassifierCode = Optional.empty();
 
     private Optional<String> itemId = Optional.empty();
 
@@ -192,6 +220,7 @@ public final class OrdersReserveEcommerceResponseLinesItem {
       quantity(other.getQuantity());
       unitPriceExclVat(other.getUnitPriceExclVat());
       vatRatePercent(other.getVatRatePercent());
+      vatClassifierCode(other.getVatClassifierCode());
       return this;
     }
 
@@ -231,6 +260,36 @@ public final class OrdersReserveEcommerceResponseLinesItem {
     }
 
     @java.lang.Override
+    public _FinalStage vatClassifierCode(Nullable<String> vatClassifierCode) {
+      if (vatClassifierCode.isNull()) {
+        this.vatClassifierCode = null;
+      }
+      else if (vatClassifierCode.isEmpty()) {
+        this.vatClassifierCode = Optional.empty();
+      }
+      else {
+        this.vatClassifierCode = Optional.of(vatClassifierCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatClassifierCode(String vatClassifierCode) {
+      this.vatClassifierCode = Optional.ofNullable(vatClassifierCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "vatClassifierCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage vatClassifierCode(Optional<String> vatClassifierCode) {
+      this.vatClassifierCode = vatClassifierCode;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage itemId(Nullable<String> itemId) {
       if (itemId.isNull()) {
         this.itemId = null;
@@ -262,7 +321,7 @@ public final class OrdersReserveEcommerceResponseLinesItem {
 
     @java.lang.Override
     public OrdersReserveEcommerceResponseLinesItem build() {
-      return new OrdersReserveEcommerceResponseLinesItem(id, itemId, description, quantity, unitPriceExclVat, vatRatePercent, additionalProperties);
+      return new OrdersReserveEcommerceResponseLinesItem(id, itemId, description, quantity, unitPriceExclVat, vatRatePercent, vatClassifierCode, additionalProperties);
     }
 
     @java.lang.Override

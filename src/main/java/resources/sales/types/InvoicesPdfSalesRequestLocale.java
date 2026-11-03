@@ -28,6 +28,8 @@ public final class InvoicesPdfSalesRequestLocale {
 
   public static final InvoicesPdfSalesRequestLocale RO = new InvoicesPdfSalesRequestLocale(Value.RO, "ro");
 
+  public static final InvoicesPdfSalesRequestLocale UK = new InvoicesPdfSalesRequestLocale(Value.UK, "uk");
+
   public static final InvoicesPdfSalesRequestLocale ES = new InvoicesPdfSalesRequestLocale(Value.ES, "es");
 
   public static final InvoicesPdfSalesRequestLocale PL = new InvoicesPdfSalesRequestLocale(Value.PL, "pl");
@@ -124,6 +126,8 @@ public final class InvoicesPdfSalesRequestLocale {
         return visitor.visitFi();
       case RO:
         return visitor.visitRo();
+      case UK:
+        return visitor.visitUk();
       case ES:
         return visitor.visitEs();
       case PL:
@@ -199,6 +203,8 @@ public final class InvoicesPdfSalesRequestLocale {
         return FI;
       case "ro":
         return RO;
+      case "uk":
+        return UK;
       case "es":
         return ES;
       case "pl":
@@ -315,6 +321,8 @@ public final class InvoicesPdfSalesRequestLocale {
 
     TR,
 
+    UK,
+
     UNKNOWN
   }
 
@@ -382,6 +390,8 @@ public final class InvoicesPdfSalesRequestLocale {
     T visitRu();
 
     T visitTr();
+
+    T visitUk();
 
     T visitUnknown(String unknownType);
   }

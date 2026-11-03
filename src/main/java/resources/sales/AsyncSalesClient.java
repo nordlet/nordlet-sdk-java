@@ -388,7 +388,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Return the customer payment link of a sale document: the Stripe card payment page (<code>source</code> <code>stripe</code>) when the company's Stripe account is connected and can take charges (<code>sales/invoices/card-payments/get</code>), else the link rendered from the company's payment link template (<code>sales/invoices/payment-settings/update</code>, <code>source</code> <code>template</code>); <code>url</code> is null when the company has neither, the document is not issued or its <code>payLinkEnabled</code> is false. The document's payment token is created on first use. Answers 409 when the document is already paid.
+   * Return the customer payment link of a sale document: the Stripe card payment page (<code>source</code> <code>stripe</code>) when the company's Stripe account is connected and can take charges (<code>sales/invoices/card-payments/get</code>), else the link rendered from the company's payment link template (<code>sales/invoices/payment-settings/update</code>, <code>source</code> <code>template</code>); <code>url</code> is null when the company has neither, the document is a credit note, is not issued or its <code>payLinkEnabled</code> is false. The document's payment token is created on first use. Answers 409 when the document is already paid.
    */
   public CompletableFuture<InvoicesPaymentLinkSalesResponse> invoicesPaymentLink(
       InvoicesPaymentLinkSalesRequest request) {
@@ -396,7 +396,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Return the customer payment link of a sale document: the Stripe card payment page (<code>source</code> <code>stripe</code>) when the company's Stripe account is connected and can take charges (<code>sales/invoices/card-payments/get</code>), else the link rendered from the company's payment link template (<code>sales/invoices/payment-settings/update</code>, <code>source</code> <code>template</code>); <code>url</code> is null when the company has neither, the document is not issued or its <code>payLinkEnabled</code> is false. The document's payment token is created on first use. Answers 409 when the document is already paid.
+   * Return the customer payment link of a sale document: the Stripe card payment page (<code>source</code> <code>stripe</code>) when the company's Stripe account is connected and can take charges (<code>sales/invoices/card-payments/get</code>), else the link rendered from the company's payment link template (<code>sales/invoices/payment-settings/update</code>, <code>source</code> <code>template</code>); <code>url</code> is null when the company has neither, the document is a credit note, is not issued or its <code>payLinkEnabled</code> is false. The document's payment token is created on first use. Answers 409 when the document is already paid.
    */
   public CompletableFuture<InvoicesPaymentLinkSalesResponse> invoicesPaymentLink(
       InvoicesPaymentLinkSalesRequest request, RequestOptions requestOptions) {

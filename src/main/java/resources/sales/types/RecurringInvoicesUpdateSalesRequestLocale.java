@@ -28,6 +28,8 @@ public final class RecurringInvoicesUpdateSalesRequestLocale {
 
   public static final RecurringInvoicesUpdateSalesRequestLocale RO = new RecurringInvoicesUpdateSalesRequestLocale(Value.RO, "ro");
 
+  public static final RecurringInvoicesUpdateSalesRequestLocale UK = new RecurringInvoicesUpdateSalesRequestLocale(Value.UK, "uk");
+
   public static final RecurringInvoicesUpdateSalesRequestLocale ES = new RecurringInvoicesUpdateSalesRequestLocale(Value.ES, "es");
 
   public static final RecurringInvoicesUpdateSalesRequestLocale PL = new RecurringInvoicesUpdateSalesRequestLocale(Value.PL, "pl");
@@ -124,6 +126,8 @@ public final class RecurringInvoicesUpdateSalesRequestLocale {
         return visitor.visitFi();
       case RO:
         return visitor.visitRo();
+      case UK:
+        return visitor.visitUk();
       case ES:
         return visitor.visitEs();
       case PL:
@@ -199,6 +203,8 @@ public final class RecurringInvoicesUpdateSalesRequestLocale {
         return FI;
       case "ro":
         return RO;
+      case "uk":
+        return UK;
       case "es":
         return ES;
       case "pl":
@@ -315,6 +321,8 @@ public final class RecurringInvoicesUpdateSalesRequestLocale {
 
     TR,
 
+    UK,
+
     UNKNOWN
   }
 
@@ -382,6 +390,8 @@ public final class RecurringInvoicesUpdateSalesRequestLocale {
     T visitRu();
 
     T visitTr();
+
+    T visitUk();
 
     T visitUnknown(String unknownType);
   }

@@ -12,9 +12,69 @@ import java.lang.String;
 public final class InvitesAcceptAccountRequestLocale {
   public static final InvitesAcceptAccountRequestLocale EN = new InvitesAcceptAccountRequestLocale(Value.EN, "en");
 
-  public static final InvitesAcceptAccountRequestLocale DE = new InvitesAcceptAccountRequestLocale(Value.DE, "de");
+  public static final InvitesAcceptAccountRequestLocale ZH = new InvitesAcceptAccountRequestLocale(Value.ZH, "zh");
+
+  public static final InvitesAcceptAccountRequestLocale HI = new InvitesAcceptAccountRequestLocale(Value.HI, "hi");
 
   public static final InvitesAcceptAccountRequestLocale LT = new InvitesAcceptAccountRequestLocale(Value.LT, "lt");
+
+  public static final InvitesAcceptAccountRequestLocale DA = new InvitesAcceptAccountRequestLocale(Value.DA, "da");
+
+  public static final InvitesAcceptAccountRequestLocale LV = new InvitesAcceptAccountRequestLocale(Value.LV, "lv");
+
+  public static final InvitesAcceptAccountRequestLocale TR = new InvitesAcceptAccountRequestLocale(Value.TR, "tr");
+
+  public static final InvitesAcceptAccountRequestLocale FI = new InvitesAcceptAccountRequestLocale(Value.FI, "fi");
+
+  public static final InvitesAcceptAccountRequestLocale RO = new InvitesAcceptAccountRequestLocale(Value.RO, "ro");
+
+  public static final InvitesAcceptAccountRequestLocale UK = new InvitesAcceptAccountRequestLocale(Value.UK, "uk");
+
+  public static final InvitesAcceptAccountRequestLocale ES = new InvitesAcceptAccountRequestLocale(Value.ES, "es");
+
+  public static final InvitesAcceptAccountRequestLocale PL = new InvitesAcceptAccountRequestLocale(Value.PL, "pl");
+
+  public static final InvitesAcceptAccountRequestLocale DE = new InvitesAcceptAccountRequestLocale(Value.DE, "de");
+
+  public static final InvitesAcceptAccountRequestLocale GA = new InvitesAcceptAccountRequestLocale(Value.GA, "ga");
+
+  public static final InvitesAcceptAccountRequestLocale ET = new InvitesAcceptAccountRequestLocale(Value.ET, "et");
+
+  public static final InvitesAcceptAccountRequestLocale HR = new InvitesAcceptAccountRequestLocale(Value.HR, "hr");
+
+  public static final InvitesAcceptAccountRequestLocale SK = new InvitesAcceptAccountRequestLocale(Value.SK, "sk");
+
+  public static final InvitesAcceptAccountRequestLocale SL = new InvitesAcceptAccountRequestLocale(Value.SL, "sl");
+
+  public static final InvitesAcceptAccountRequestLocale MT = new InvitesAcceptAccountRequestLocale(Value.MT, "mt");
+
+  public static final InvitesAcceptAccountRequestLocale CS = new InvitesAcceptAccountRequestLocale(Value.CS, "cs");
+
+  public static final InvitesAcceptAccountRequestLocale RU = new InvitesAcceptAccountRequestLocale(Value.RU, "ru");
+
+  public static final InvitesAcceptAccountRequestLocale JA = new InvitesAcceptAccountRequestLocale(Value.JA, "ja");
+
+  public static final InvitesAcceptAccountRequestLocale HU = new InvitesAcceptAccountRequestLocale(Value.HU, "hu");
+
+  public static final InvitesAcceptAccountRequestLocale NL = new InvitesAcceptAccountRequestLocale(Value.NL, "nl");
+
+  public static final InvitesAcceptAccountRequestLocale BG = new InvitesAcceptAccountRequestLocale(Value.BG, "bg");
+
+  public static final InvitesAcceptAccountRequestLocale PT = new InvitesAcceptAccountRequestLocale(Value.PT, "pt");
+
+  public static final InvitesAcceptAccountRequestLocale AR = new InvitesAcceptAccountRequestLocale(Value.AR, "ar");
+
+  public static final InvitesAcceptAccountRequestLocale FR = new InvitesAcceptAccountRequestLocale(Value.FR, "fr");
+
+  public static final InvitesAcceptAccountRequestLocale NO = new InvitesAcceptAccountRequestLocale(Value.NO, "no");
+
+  public static final InvitesAcceptAccountRequestLocale IS = new InvitesAcceptAccountRequestLocale(Value.IS, "is");
+
+  public static final InvitesAcceptAccountRequestLocale SV = new InvitesAcceptAccountRequestLocale(Value.SV, "sv");
+
+  public static final InvitesAcceptAccountRequestLocale IT = new InvitesAcceptAccountRequestLocale(Value.IT, "it");
+
+  public static final InvitesAcceptAccountRequestLocale EL = new InvitesAcceptAccountRequestLocale(Value.EL, "el");
 
   private final Value value;
 
@@ -50,10 +110,70 @@ public final class InvitesAcceptAccountRequestLocale {
     switch (value) {
       case EN:
         return visitor.visitEn();
-      case DE:
-        return visitor.visitDe();
+      case ZH:
+        return visitor.visitZh();
+      case HI:
+        return visitor.visitHi();
       case LT:
         return visitor.visitLt();
+      case DA:
+        return visitor.visitDa();
+      case LV:
+        return visitor.visitLv();
+      case TR:
+        return visitor.visitTr();
+      case FI:
+        return visitor.visitFi();
+      case RO:
+        return visitor.visitRo();
+      case UK:
+        return visitor.visitUk();
+      case ES:
+        return visitor.visitEs();
+      case PL:
+        return visitor.visitPl();
+      case DE:
+        return visitor.visitDe();
+      case GA:
+        return visitor.visitGa();
+      case ET:
+        return visitor.visitEt();
+      case HR:
+        return visitor.visitHr();
+      case SK:
+        return visitor.visitSk();
+      case SL:
+        return visitor.visitSl();
+      case MT:
+        return visitor.visitMt();
+      case CS:
+        return visitor.visitCs();
+      case RU:
+        return visitor.visitRu();
+      case JA:
+        return visitor.visitJa();
+      case HU:
+        return visitor.visitHu();
+      case NL:
+        return visitor.visitNl();
+      case BG:
+        return visitor.visitBg();
+      case PT:
+        return visitor.visitPt();
+      case AR:
+        return visitor.visitAr();
+      case FR:
+        return visitor.visitFr();
+      case NO:
+        return visitor.visitNo();
+      case IS:
+        return visitor.visitIs();
+      case SV:
+        return visitor.visitSv();
+      case IT:
+        return visitor.visitIt();
+      case EL:
+        return visitor.visitEl();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -67,10 +187,70 @@ public final class InvitesAcceptAccountRequestLocale {
     switch (value) {
       case "en":
         return EN;
-      case "de":
-        return DE;
+      case "zh":
+        return ZH;
+      case "hi":
+        return HI;
       case "lt":
         return LT;
+      case "da":
+        return DA;
+      case "lv":
+        return LV;
+      case "tr":
+        return TR;
+      case "fi":
+        return FI;
+      case "ro":
+        return RO;
+      case "uk":
+        return UK;
+      case "es":
+        return ES;
+      case "pl":
+        return PL;
+      case "de":
+        return DE;
+      case "ga":
+        return GA;
+      case "et":
+        return ET;
+      case "hr":
+        return HR;
+      case "sk":
+        return SK;
+      case "sl":
+        return SL;
+      case "mt":
+        return MT;
+      case "cs":
+        return CS;
+      case "ru":
+        return RU;
+      case "ja":
+        return JA;
+      case "hu":
+        return HU;
+      case "nl":
+        return NL;
+      case "bg":
+        return BG;
+      case "pt":
+        return PT;
+      case "ar":
+        return AR;
+      case "fr":
+        return FR;
+      case "no":
+        return NO;
+      case "is":
+        return IS;
+      case "sv":
+        return SV;
+      case "it":
+        return IT;
+      case "el":
+        return EL;
       default:
         return new InvitesAcceptAccountRequestLocale(Value.UNKNOWN, value);
     }
@@ -83,6 +263,66 @@ public final class InvitesAcceptAccountRequestLocale {
 
     DE,
 
+    FR,
+
+    ES,
+
+    IT,
+
+    PT,
+
+    NL,
+
+    PL,
+
+    SV,
+
+    DA,
+
+    NO,
+
+    FI,
+
+    ET,
+
+    LV,
+
+    CS,
+
+    SK,
+
+    HU,
+
+    RO,
+
+    BG,
+
+    HR,
+
+    SL,
+
+    EL,
+
+    MT,
+
+    IS,
+
+    GA,
+
+    ZH,
+
+    JA,
+
+    AR,
+
+    HI,
+
+    RU,
+
+    TR,
+
+    UK,
+
     UNKNOWN
   }
 
@@ -92,6 +332,66 @@ public final class InvitesAcceptAccountRequestLocale {
     T visitLt();
 
     T visitDe();
+
+    T visitFr();
+
+    T visitEs();
+
+    T visitIt();
+
+    T visitPt();
+
+    T visitNl();
+
+    T visitPl();
+
+    T visitSv();
+
+    T visitDa();
+
+    T visitNo();
+
+    T visitFi();
+
+    T visitEt();
+
+    T visitLv();
+
+    T visitCs();
+
+    T visitSk();
+
+    T visitHu();
+
+    T visitRo();
+
+    T visitBg();
+
+    T visitHr();
+
+    T visitSl();
+
+    T visitEl();
+
+    T visitMt();
+
+    T visitIs();
+
+    T visitGa();
+
+    T visitZh();
+
+    T visitJa();
+
+    T visitAr();
+
+    T visitHi();
+
+    T visitRu();
+
+    T visitTr();
+
+    T visitUk();
 
     T visitUnknown(String unknownType);
   }

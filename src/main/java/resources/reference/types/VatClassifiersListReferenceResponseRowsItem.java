@@ -35,16 +35,32 @@ public final class VatClassifiersListReferenceResponseRowsItem {
 
   private final String name;
 
+  private final Optional<String> nameEn;
+
   private final Optional<String> ratePercent;
+
+  private final VatClassifiersListReferenceResponseRowsItemSide side;
+
+  private final Optional<VatClassifiersListReferenceResponseRowsItemScheme> scheme;
+
+  private final VatClassifiersListReferenceResponseRowsItemRateFromLine rateFromLine;
 
   private final Map<String, Object> additionalProperties;
 
   private VatClassifiersListReferenceResponseRowsItem(String code, String countryCode, String name,
-      Optional<String> ratePercent, Map<String, Object> additionalProperties) {
+      Optional<String> nameEn, Optional<String> ratePercent,
+      VatClassifiersListReferenceResponseRowsItemSide side,
+      Optional<VatClassifiersListReferenceResponseRowsItemScheme> scheme,
+      VatClassifiersListReferenceResponseRowsItemRateFromLine rateFromLine,
+      Map<String, Object> additionalProperties) {
     this.code = code;
     this.countryCode = countryCode;
     this.name = name;
+    this.nameEn = nameEn;
     this.ratePercent = ratePercent;
+    this.side = side;
+    this.scheme = scheme;
+    this.rateFromLine = rateFromLine;
     this.additionalProperties = additionalProperties;
   }
 
@@ -64,11 +80,46 @@ public final class VatClassifiersListReferenceResponseRowsItem {
   }
 
   @JsonIgnore
+  public Optional<String> getNameEn() {
+    if (nameEn == null) {
+      return Optional.empty();
+    }
+    return nameEn;
+  }
+
+  @JsonIgnore
   public Optional<String> getRatePercent() {
     if (ratePercent == null) {
       return Optional.empty();
     }
     return ratePercent;
+  }
+
+  @JsonProperty("side")
+  public VatClassifiersListReferenceResponseRowsItemSide getSide() {
+    return side;
+  }
+
+  @JsonIgnore
+  public Optional<VatClassifiersListReferenceResponseRowsItemScheme> getScheme() {
+    if (scheme == null) {
+      return Optional.empty();
+    }
+    return scheme;
+  }
+
+  @JsonProperty("rateFromLine")
+  public VatClassifiersListReferenceResponseRowsItemRateFromLine getRateFromLine() {
+    return rateFromLine;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("nameEn")
+  private Optional<String> _getNameEn() {
+    return nameEn;
   }
 
   @JsonInclude(
@@ -78,6 +129,15 @@ public final class VatClassifiersListReferenceResponseRowsItem {
   @JsonProperty("ratePercent")
   private Optional<String> _getRatePercent() {
     return ratePercent;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("scheme")
+  private Optional<VatClassifiersListReferenceResponseRowsItemScheme> _getScheme() {
+    return scheme;
   }
 
   @java.lang.Override
@@ -92,12 +152,12 @@ public final class VatClassifiersListReferenceResponseRowsItem {
   }
 
   private boolean equalTo(VatClassifiersListReferenceResponseRowsItem other) {
-    return code.equals(other.code) && countryCode.equals(other.countryCode) && name.equals(other.name) && ratePercent.equals(other.ratePercent);
+    return code.equals(other.code) && countryCode.equals(other.countryCode) && name.equals(other.name) && nameEn.equals(other.nameEn) && ratePercent.equals(other.ratePercent) && side.equals(other.side) && scheme.equals(other.scheme) && rateFromLine.equals(other.rateFromLine);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.code, this.countryCode, this.name, this.ratePercent);
+    return Objects.hash(this.code, this.countryCode, this.name, this.nameEn, this.ratePercent, this.side, this.scheme, this.rateFromLine);
   }
 
   @java.lang.Override
@@ -120,7 +180,16 @@ public final class VatClassifiersListReferenceResponseRowsItem {
   }
 
   public interface NameStage {
-    _FinalStage name(@NotNull String name);
+    SideStage name(@NotNull String name);
+  }
+
+  public interface SideStage {
+    RateFromLineStage side(@NotNull VatClassifiersListReferenceResponseRowsItemSide side);
+  }
+
+  public interface RateFromLineStage {
+    _FinalStage rateFromLine(
+        @NotNull VatClassifiersListReferenceResponseRowsItemRateFromLine rateFromLine);
   }
 
   public interface _FinalStage {
@@ -130,24 +199,44 @@ public final class VatClassifiersListReferenceResponseRowsItem {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage nameEn(Optional<String> nameEn);
+
+    _FinalStage nameEn(String nameEn);
+
+    _FinalStage nameEn(Nullable<String> nameEn);
+
     _FinalStage ratePercent(Optional<String> ratePercent);
 
     _FinalStage ratePercent(String ratePercent);
 
     _FinalStage ratePercent(Nullable<String> ratePercent);
+
+    _FinalStage scheme(Optional<VatClassifiersListReferenceResponseRowsItemScheme> scheme);
+
+    _FinalStage scheme(VatClassifiersListReferenceResponseRowsItemScheme scheme);
+
+    _FinalStage scheme(Nullable<VatClassifiersListReferenceResponseRowsItemScheme> scheme);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements CodeStage, CountryCodeStage, NameStage, _FinalStage {
+  public static final class Builder implements CodeStage, CountryCodeStage, NameStage, SideStage, RateFromLineStage, _FinalStage {
     private String code;
 
     private String countryCode;
 
     private String name;
 
+    private VatClassifiersListReferenceResponseRowsItemSide side;
+
+    private VatClassifiersListReferenceResponseRowsItemRateFromLine rateFromLine;
+
+    private Optional<VatClassifiersListReferenceResponseRowsItemScheme> scheme = Optional.empty();
+
     private Optional<String> ratePercent = Optional.empty();
+
+    private Optional<String> nameEn = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -160,7 +249,11 @@ public final class VatClassifiersListReferenceResponseRowsItem {
       code(other.getCode());
       countryCode(other.getCountryCode());
       name(other.getName());
+      nameEn(other.getNameEn());
       ratePercent(other.getRatePercent());
+      side(other.getSide());
+      scheme(other.getScheme());
+      rateFromLine(other.getRateFromLine());
       return this;
     }
 
@@ -180,8 +273,53 @@ public final class VatClassifiersListReferenceResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("name")
-    public _FinalStage name(@NotNull String name) {
+    public SideStage name(@NotNull String name) {
       this.name = Objects.requireNonNull(name, "name must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("side")
+    public RateFromLineStage side(@NotNull VatClassifiersListReferenceResponseRowsItemSide side) {
+      this.side = Objects.requireNonNull(side, "side must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("rateFromLine")
+    public _FinalStage rateFromLine(
+        @NotNull VatClassifiersListReferenceResponseRowsItemRateFromLine rateFromLine) {
+      this.rateFromLine = Objects.requireNonNull(rateFromLine, "rateFromLine must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage scheme(Nullable<VatClassifiersListReferenceResponseRowsItemScheme> scheme) {
+      if (scheme.isNull()) {
+        this.scheme = null;
+      }
+      else if (scheme.isEmpty()) {
+        this.scheme = Optional.empty();
+      }
+      else {
+        this.scheme = Optional.of(scheme.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage scheme(VatClassifiersListReferenceResponseRowsItemScheme scheme) {
+      this.scheme = Optional.ofNullable(scheme);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "scheme",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage scheme(Optional<VatClassifiersListReferenceResponseRowsItemScheme> scheme) {
+      this.scheme = scheme;
       return this;
     }
 
@@ -216,8 +354,38 @@ public final class VatClassifiersListReferenceResponseRowsItem {
     }
 
     @java.lang.Override
+    public _FinalStage nameEn(Nullable<String> nameEn) {
+      if (nameEn.isNull()) {
+        this.nameEn = null;
+      }
+      else if (nameEn.isEmpty()) {
+        this.nameEn = Optional.empty();
+      }
+      else {
+        this.nameEn = Optional.of(nameEn.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage nameEn(String nameEn) {
+      this.nameEn = Optional.ofNullable(nameEn);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "nameEn",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage nameEn(Optional<String> nameEn) {
+      this.nameEn = nameEn;
+      return this;
+    }
+
+    @java.lang.Override
     public VatClassifiersListReferenceResponseRowsItem build() {
-      return new VatClassifiersListReferenceResponseRowsItem(code, countryCode, name, ratePercent, additionalProperties);
+      return new VatClassifiersListReferenceResponseRowsItem(code, countryCode, name, nameEn, ratePercent, side, scheme, rateFromLine, additionalProperties);
     }
 
     @java.lang.Override
